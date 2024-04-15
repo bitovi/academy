@@ -30,7 +30,7 @@ JSX is a special syntax designed to look almost identical to HTML. Developers de
 #### Basic JSX looks like HTML
 
 ```tsx
-const greeting = <h1>Hello, world!</h1>;
+const greeting = <h1>Hello, world!</h1>
 ```
 
 This code snippet creates a simple JSX element: an `<h1>` header with the text “Hello, world!” This is similar to writing HTML, but it’s actually JSX inside a JavaScript file.
@@ -38,8 +38,8 @@ This code snippet creates a simple JSX element: an `<h1>` header with the text �
 ### Embedding a JavaScript expression in JSX
 
 ```tsx
-const name = "Alice";
-const greeting = <h1>Hello, {name}!</h1>;
+const name = "Alice"
+const greeting = <h1>Hello, {name}!</h1>
 ```
 
 Here, we embed a JavaScript expression `{name}` within JSX. The value of the name variable is displayed within the `<h1>` tag.
@@ -48,10 +48,10 @@ Here, we embed a JavaScript expression `{name}` within JSX. The value of the nam
 
 ```tsx
 function welcome(name) {
-  return <h1>Hello, {name}</h1>;
+  return <h1>Hello, {name}</h1>
 }
 
-const welcomeMessage = welcome('Alice');
+const welcomeMessage = welcome("Alice")
 ```
 
 This example illustrates a regular JavaScript function being called with a single argument. The `welcome` function returns JSX, showing how JSX can be seamlessly integrated within standard JavaScript functions.
@@ -62,10 +62,10 @@ React has a procedural `React.createElement` syntax, but most applications do no
 
 ```tsx
 function welcome(name) {
-  return React.createElement("h1", null, `Hello, ${name}!`);
+  return React.createElement("h1", null, `Hello, ${name}!`)
 }
 
-const welcomeMessage = welcome("Alice");
+const welcomeMessage = welcome("Alice")
 ```
 
 This transformation is handled by tools like Vite during the build process, allowing us to write more readable and maintainable code using JSX.
@@ -83,9 +83,7 @@ This nomenclature difference is because they are technically different, though t
 When talking about the HTML below, you might say that the `href` attribute is a URL:
 
 ```html
-<a href="https://www.bitovi.com/academy/">
-  Bitovi Academy
-</a>
+<a href="https://www.bitovi.com/academy/"> Bitovi Academy </a>
 ```
 
 The above is valid JSX too, but we would say that the `href` _prop_ is being passed into the anchor element.
@@ -97,12 +95,12 @@ In HTML, some elements are self-closing and don’t need a closing tag.
 For example: the `img` element is a self-closing element:
 
 ```html
-<img alt="" src="image.png">
+<img alt="" src="image.png" />
 ```
 
 In JSX, no elements are self-closing, which means that _all_ elements must have a closing tag, like the `img` below:
 
-```tsx
+```html
 <img alt="" src="image.png" />
 ```
 
@@ -117,13 +115,15 @@ In HTML, comments are written using the `<!-- -->` syntax, seen below. Anything 
 </p>
 ```
 
-In JSX, comments follow the JavaScript comment syntax. Since JSX is transpiled into JavaScript, you must use JavaScript’s {/* */} syntax for comments within the JSX part of your code.
+In JSX, comments follow the JavaScript comment syntax. Since JSX is transpiled into JavaScript, you must use JavaScript’s {/\* \*/} syntax for comments within the JSX part of your code.
 
 ```tsx
-<p>
-  {/* This is a JSX comment */}
-  Visible content
-</p>
+const content = (
+  <p>
+    {/* This is a JSX comment */}
+    Visible content
+  </p>
+)
 ```
 
 #### Reserved words are renamed
@@ -131,10 +131,12 @@ In JSX, comments follow the JavaScript comment syntax. Since JSX is transpiled i
 The HTML attributes `class` and `for` are reserved words in JavaScript. In JSX, these are renamed to `className` and `htmlFor`, respectively.
 
 ```tsx
-<p className="form-field">
-  <label htmlFor="name-input">Name:</label>
-  <input id="name-input" />
-</p>
+const content = (
+  <p className="form-field">
+    <label htmlFor="name-input">Name:</label>
+    <input id="name-input" />
+  </p>
+)
 ```
 
 #### Style prop
@@ -142,9 +144,7 @@ The HTML attributes `class` and `for` are reserved words in JavaScript. In JSX, 
 In HTML, the appearance of most elements can be altered using the `style` attribute. React supports a `style` prop, but it accepts an object, not a string. The style object has properties whose names are camel-case versions of their CSS counterparts. IE: "font-style" becomes `fontStyle`.
 
 ```tsx
-<p style={{ fontStyle: "italic" }}>
-  Restaurants
-</p>
+const content = <p style={{ fontStyle: "italic" }}>Restaurants</p>
 ```
 
 As we go through this training, you’ll learn additional differences.
@@ -169,11 +169,13 @@ function Form() {
 When creating functions that have no logic and just return JSX, especially when they're an argument to a function, the convention is to use an arrow function with an implicit return. This is nearly always coupled with the parenthesis convention, too. (Don't worry: you'll learn about `.map` in the next objective.)
 
 ```tsx
+const data = ["one", "two"]
+
 function List() {
   return (
     <div>
       {data.map((name) => (
-        <li>{name}</li>
+        <li key={name}>{name}</li>
       ))}
     </div>
   )
@@ -247,7 +249,7 @@ JSX is dynamic. You can insert values from variables and objects into your JSX a
 ```tsx
 const name = "Bitovi"
 
-<p>Welcome to {name}!</p>
+const content = <p>Welcome to {name}!</p>
 ```
 
 In the code above, use the `{name}` syntax to tell JSX that to render the value stored in the `name` variable (i.e. `"Bitovi"`) into our view.
@@ -258,14 +260,14 @@ You can take this a step further by interpolating multiple values, and using Jav
 const person = {
   name: "mike",
   profession: "programmer",
-};
+}
 
 const content = (
   <main>
-    <h1>Hi I'm {person.name.toUpperCase()}!</h1>
-    <p>I'm a {person.profession} living in Philadelphia.</p>
+    <h1>Hi I’m {person.name.toUpperCase()}!</h1>
+    <p>I’m a {person.profession} living in Philadelphia.</p>
   </main>
-);
+)
 ```
 
 @highlight 7,8
@@ -275,8 +277,8 @@ const content = (
 Remember, JSX is an alternative syntax for normal JavaScript—it is not magic. This means that you can use JSX as a normal value, too.
 
 ```tsx
-const header = <h1>Hello World</h1>;
-const body = <p>My name is {"Mike"}</p>;
+const header = <h1>Hello World</h1>
+const body = <p>My name is {"Mike"}</p>
 
 function MyPage() {
   return (
@@ -284,10 +286,8 @@ function MyPage() {
       {header}
       {body}
     </main>
-  );
+  )
 }
-
-ReactDOM.render(<MyPage />, document.getElementById('root'));
 ```
 
 @codepen react
@@ -304,10 +304,10 @@ If rendered, `page` will output:
 If this surprises you, remember that underneath the syntactic sugar, JSX is nothing more than `React.createElement` calls:
 
 ```tsx
-const header = React.createElement("h1", null, "Hello World");
-const body = React.createElement("p", null, `My name is ${"Mike"}`);
+const header = React.createElement("h1", null, "Hello World")
+const body = React.createElement("p", null, `My name is ${"Mike"}`)
 
-const page = React.createElement("main", null, [header, body]);
+const page = React.createElement("main", null, [header, body])
 ```
 
 ### Working with conditionals and loops in JSX
@@ -320,36 +320,40 @@ To put it simply: only things that you could pass into a function can be used in
 
 Conditions can be re-written using the ternary operator.
 
-```tsx
+```tsx-error
 // This does not work
-<p>
-  {
-    if (a === b) { // Control flow does not belong in JSX
-      "a and b are equal"
-    } else {
-      "a and b are different"
+const content = (
+  <p>
+    {
+      if (a === b) { // Control flow does not belong in JSX
+        "a and b are equal"
+      } else {
+        "a and b are different"
+      }
     }
-  }
-</p>
+  </p>
+)
+```
 
+```tsx
 // But the same can be accomplished with ternaries
-<p>
-  {a === b // Ternaries are expressions.
-    ? 'a and b are equal'
-    : 'a and b are different'}
-</p>
+const content = (
+  <p>
+    {a === b // Ternaries are expressions.
+      ? "a and b are equal"
+      : "a and b are different"}
+  </p>
+)
 ```
 
 If ternaries seem excessive for any particular case, you can write all your logic in a separate function and invoke it from within JSX.
 
 ```tsx
 function makeResult() {
-  return a === b
-    ? 'a and b are equal'
-    : 'a and b are different';
+  return a === b ? "a and b are equal" : "a and b are different"
 }
 
-<p>{makeResult()}</p>
+const content = <p>{makeResult()}</p>
 ```
 
 #### Using loops
@@ -358,7 +362,7 @@ JSX does not support traditional loop statements like `for`, `while`, or `do...w
 
 The example below will **not** work:
 
-```tsx
+```tsx-error
 const names = ['Alfa', 'Bravo', 'Charlie'];
 
 // This does not work
@@ -371,27 +375,23 @@ const content = (
       }
     }
   </ul>
-);
+)
 ```
 
 The `Array.map()` function is the most common and idiomatic way to render lists in JSX.
 It’s especially useful for rendering arrays of data as HTML elements.
 
 ```tsx
-const names = ['Alfa', 'Bravo', 'Charlie'];
+const names = ["Alfa", "Bravo", "Charlie"]
 
 // This will work
 const content = (
   <ul>
     {names.map((name) => {
-      return (
-        <li key={name}>
-          {name}
-        </li>
-      );
+      return <li key={name}>{name}</li>
     })}
   </ul>
-);
+)
 ```
 
 That will produce the following HTML:
@@ -418,24 +418,20 @@ It’s often convenient to use IDs from your data as keys. For example, if our d
 
 ```tsx
 const names = [
-  { id: '550e8400', name: 'Alfa' },
-  { id: 'f47ac10b', name: 'Bravo' },
-  { id: '5a3c9dd9', name: 'Alfa' },
-  { id: '3d3f6f4d', name: 'Charlie' },
-  { id: 'aab3fcba', name: 'Delta' },
-];
+  { id: "550e8400", name: "Alfa" },
+  { id: "f47ac10b", name: "Bravo" },
+  { id: "5a3c9dd9", name: "Alfa" },
+  { id: "3d3f6f4d", name: "Charlie" },
+  { id: "aab3fcba", name: "Delta" },
+]
 
 const content = (
   <ul>
     {names.map(({ id, name }) => {
-      return (
-        <li key={id}>
-          {name}
-        </li>
-      );
+      return <li key={id}>{name}</li>
     })}
   </ul>
-);
+)
 ```
 
 That will produce the following HTML:

@@ -54,6 +54,8 @@ The property `event.target.value` is particularly important when dealing with in
 For most input types, you’ll want to use `event.target.value` to get the value entered. But there are exceptions! For `<input type="checkbox">`, you’ll want to use `event.target.checked` instead:
 
 ```tsx
+import { useState } from "react"
+
 const TodoItem: React.FC = () => {
   const [isCompleted, setIsCompleted] = useState(false)
   return (
@@ -68,6 +70,7 @@ const TodoItem: React.FC = () => {
   )
 }
 ```
+
 @highlight 7-8, only
 
 ### Using TypeScript’s `Record` interface
@@ -108,19 +111,19 @@ The same rules apply when state is an array: create a new array, then update the
 
 ```tsx
 // Adding an item when state (`current`) is an array.
-setSelectedOrders(current => {
-  const next = [...current, newOrder];
-  return next;
-});
+setSelectedOrders((current) => {
+  const next = [...current, newOrder]
+  return next
+})
 
 // Replacing an item when state (`current`) is an array.
-setUpdatedRestaurant(current => {
+setUpdatedRestaurant((current) => {
   const next = [
-    ...current.filter(item => item.id !== updatedRestaurant.id),
-    updatedRestaurant
-  ];
-  return next;
-});
+    ...current.filter((item) => item.id !== updatedRestaurant.id),
+    updatedRestaurant,
+  ]
+  return next
+})
 ```
 
 OK, that was a lot. Let’s start making some code changes so we can select menu items for an order.
@@ -149,9 +152,9 @@ These tests will pass when the solution has been implemented properly.
 Hint: The `items` state will look like this when populated:
 
 ```tsx
-{
-  "Menu item 1 name": 1.23,// Menu item 1 price
-  "Menu item 2 name": 4.56,// Menu item 2 price
+const items = {
+  "Menu item 1 name": 1.23, // Menu item 1 price
+  "Menu item 2 name": 4.56, // Menu item 2 price
 }
 ```
 
@@ -181,29 +184,28 @@ Since the value of every `id` attribute in an HTML document must be unique, this
 Let’s say you’re rendering a component that has a `label` that needs to be associated with an `input`:
 
 ```html
-<label for="name">
-  Name
-</label>
-<input id="name" type="text">
+<label for="name"> Name </label> <input id="name" type="text" />
 ```
+
 @highlight 1, 4
 
 Every ID has to be unique in an HTML page, but `name` might clash with another element in a page. To avoid this issue in React, we can get a unique ID with `useId()`:
 
 ```tsx
-import { useId } from 'react'
+import { useId } from "react"
 
 const Form: React.FC = () => {
-  const id = useId();
+  const id = useId()
 
   return (
-    <label htmlFor={id}>
-      Name
-    </label>
-    <input id={id} type="text" />
+    <>
+      <label htmlFor={id}>Name</label>
+      <input id={id} type="text" />
+    </>
   )
 }
 ```
+
 @highlight 1, 4, 7, 10
 
 The value of `useId` is guaranteed to be unique within the component where it is used; this ideal for linking related components together.

@@ -136,20 +136,22 @@ Then we can access this variable using `import.meta.env`:
 
 ```tsx
 const response = await fetch(`${import.meta.env.VITE_PMO_API}/data`, {
-    method: "GET",
+  method: "GET",
 })
 
 const data = await response.json()
 ```
+
 @highlight 1
 
 Concatenating the two, this will be the equivalent of making this `fetch` request:
 
 ```tsx
 const response = await fetch(`//localhost:7070/data`, {
-    method: "GET",
+  method: "GET",
 })
 ```
+
 @highlight 1
 
 ### Setup 1
@@ -287,8 +289,8 @@ Here’s a breakdown of this URL:
 - Base URL: `http://www.example.com/page`
 - Query Parameter Indicator: `?`
 - Query Parameters:
-    - `param1=value1`
-    - `param2=value2`
+  - `param1=value1`
+  - `param2=value2`
 
 ### Setup 3
 
@@ -393,8 +395,8 @@ Hint: Use the new `stringifyQuery` function to convert an object of query parame
 
 ```tsx
 stringifyQuery({
-    param1: "value1",
-    param2: "value2",
+  param1: "value1",
+  param2: "value2",
 })
 ```
 

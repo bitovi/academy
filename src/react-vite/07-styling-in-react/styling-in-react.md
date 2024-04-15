@@ -45,20 +45,15 @@ Here’s what the `BlogPost.css` file might look like:
 And the `BlogPost.tsx` component:
 
 ```tsx
-import React from 'react';
-import './BlogPost.css';
+import "./BlogPost.css"
 
 const BlogPost: React.FC = ({ authorAvatar, content }) => {
   return (
     <article>
-      <img
-        alt="Headshot showing…"
-        className="avatar"
-        src={authorAvatar}
-      />
+      <img alt="Headshot showing…" className="avatar" src={authorAvatar} />
       <p>{content}</p>
     </article>
-  );
+  )
 }
 ```
 
@@ -75,17 +70,12 @@ Here’s what the `UserProfile.css` file might look like:
 And the `UserProfile.tsx` component:
 
 ```tsx
-import React from 'react';
-import './UserProfile.css';
+import "./UserProfile.css"
 
 const UserProfile: React.FC = () => {
   return (
-    <img
-      alt="User avatar showing…"
-      className="avatar"
-      src="user-profile.jpg"
-    />
-  );
+    <img alt="User avatar showing…" className="avatar" src="user-profile.jpg" />
+  )
 }
 ```
 
@@ -156,22 +146,22 @@ export default { avatar: "avatar_R8f2" }
 In order to add the `.avatar` class to a component, import the CSS Modules styling object and apply the class using the original class name as the key. Note the HTML `class` attribute is renamed to `className` in JSX because `class` is a reserved word in JavaScript.
 
 ```tsx
-import React from 'react';
-import styles from './BlogPost.module.css`
+import styles from "./BlogPost.module.css"
 
 const BlogPost: React.FC = ({ authorAvatar, content }) => {
   return (
     <article>
       <img
         alt="Headshot showing…"
-        className={styles['avatar']}
+        className={styles["avatar"]}
         src={authorAvatar}
       />
       <p>{content}</p>
     </article>
-  );
+  )
 }
 ```
+
 @highlight 2, 9
 
 ### Avoid plain selectors

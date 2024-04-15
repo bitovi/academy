@@ -32,11 +32,7 @@ So far, we have placed all of our JSX inside the `App` function. Notice two thin
 
 ```tsx
 function App() {
-  return (
-    <main>
-      Some page content
-    </main>
-  );
+  return <main>Some page content</main>
 }
 ```
 
@@ -54,11 +50,7 @@ Second, our component must return either `null` or something renderable, like JS
 
 ```tsx
 const Button = () => {
-  return (
-    <button className="button primary">
-      Activate me
-    </button>
-  );
+  return <button className="button primary">Activate me</button>
 }
 ```
 
@@ -72,7 +64,7 @@ const App = () => {
       <Button />
       <Button />
     </main>
-  );
+  )
 }
 ```
 
@@ -85,7 +77,7 @@ You can think of components as fancy functions.
 While you can't actually do the following, this is functionally similar to what React is doing for you.
 
 ```tsx
-import type React from "react";
+import type React from "react"
 
 const App: React.FC = () => {
   return (
@@ -94,7 +86,7 @@ const App: React.FC = () => {
       {Button()}
       {Button()}
     </main>
-  );
+  )
 }
 ```
 

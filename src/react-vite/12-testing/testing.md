@@ -41,7 +41,7 @@ Let's take a look at an example: say we want to test a component we created name
 ```html
 <div class="form-field">
   <label htmlFor="inputId">Email:</label>
-  <input id="inputId" type="email" value="test@example.com">
+  <input id="inputId" type="email" value="test@example.com" />
 </div>
 ```
 
@@ -51,10 +51,10 @@ The second argument to `it` is a callback function that is called to run the tes
 
 ```tsx
 it("renders the correct label and value", () => {
-  render(<EmailInputField label="Email" value="test@example.com" />);
-  const label = screen.getByText("Email:");
-  expect(label).toBeInTheDocument();
-});
+  render(<EmailInputField label="Email" value="test@example.com" />)
+  const label = screen.getByText("Email:")
+  expect(label).toBeInTheDocument()
+})
 ```
 
 In the test above, we validate that the label is correct. We use the `getByText` function to select a single element whose `textContent` matches the string, "Email:". If you look closely you can see that the `<label>` content in the HTML has a ":" (colon) at the end, but the `label` prop does not, we can conclude that EmailInputField appends the colon — but **the purpose of the test isn't how EmailInputField works, it's the DOM output that it returns**. After we get an element, we then use `expect` and `toBeInTheDocument` to verify the element was rendered properly. Our test passes because the generated DOM is what we expect the user will perceive.
@@ -63,14 +63,14 @@ We also want to validate the `<input>` element; let's update the test:
 
 ```tsx
 it("renders the correct label and value", () => {
-  render(<EmailInputField label="Email" value="test@example.com" />);
-  const label = screen.getByText("Email:");
-  expect(label).toBeInTheDocument();
+  render(<EmailInputField label="Email" value="test@example.com" />)
+  const label = screen.getByText("Email:")
+  expect(label).toBeInTheDocument()
 
   // Validate the input value.
-  const input = screen.getByDisplayValue("test@example.com");
-  expect(input).toBeInTheDocument();
-});
+  const input = screen.getByDisplayValue("test@example.com")
+  expect(input).toBeInTheDocument()
+})
 ```
 
 We've used a different query to select the `<input>` element: `getByDisplayValue`. It returns an input element whose value matches the provided string. React Testing Library has a [suite of "query" functions](https://testing-library.com/docs/queries/about) that select elements based on characteristics like: role, label text, placeholder text, text, display value, alt text, and title. Our test continues to pass because the input's value in the DOM matches what we expect.
@@ -107,10 +107,12 @@ Before we move on, let's consider the `type` prop — shouldn't we test to be su
 Hint: Here’s the JSX you can use for the component:
 
 ```tsx
-<FormSelect label="Test Label" onChange={() => { }} value="">
+const content = (
+  <FormSelect label="Test Label" onChange={() => {}} value="">
     <option value="option1">Option 1</option>
     <option value="option2">Option 2</option>
-</FormSelect>
+  </FormSelect>
+)
 ```
 
 <strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/12-testing/01-problem?file=src/components/FormSelect/FormSelect.test.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/12-testing/01-problem?file=src/components/FormSelect/FormSelect.test.tsx) to do this exercise in an online code editor.
@@ -143,28 +145,28 @@ Referring back to the HTML output by the `EmailInputField` component:
 ```html
 <div class="form-field">
   <label htmlFor="inputId">Email:</label>
-  <input id="inputId" type="email" value="test@example.com">
+  <input id="inputId" type="email" value="test@example.com" />
 </div>
 ```
 
 We want to write a test to verify that what the user types is displayed as the `<input>`'s value. The user-event library includes a method named `keyboard` that we can use to send a sequence of key events to the `<input>` element. The `keyboard` method provides a good simulation of what happens when a user is typing. Before we use `keyboard` in a test, we need to [initialize user events with the `setup` method](https://testing-library.com/docs/user-event/setup#direct-apis). Let's look at the test:
 
 ```tsx
-import userEvent from "@testing-library/user-event";
+import userEvent from "@testing-library/user-event"
 
 it("captures email input", async () => {
-  const user = userEvent.setup();
+  const user = userEvent.setup()
 
-  render(<EmailInputField label="Email" value="" />);
+  render(<EmailInputField label="Email" value="" />)
 
-  const input = screen.getByLabelText("Email:");
-  expect(input).toBeInTheDocument();
-  expect(input).toHaveDisplayValue(""); // Verify the beginning state: no value is set.
+  const input = screen.getByLabelText("Email:")
+  expect(input).toBeInTheDocument()
+  expect(input).toHaveDisplayValue("") // Verify the beginning state: no value is set.
 
-  await user.click(input);
-  await user.keyboard("test@example.com");
-  expect(input).toHaveDisplayValue("test@example.com");
-});
+  await user.click(input)
+  await user.keyboard("test@example.com")
+  expect(input).toHaveDisplayValue("test@example.com")
+})
 ```
 
 There are some notable differences compared to the previous test:
@@ -188,22 +190,24 @@ There is one final point to consider: testing the `type` attribute of the `<inpu
 This is a great reason for choosing the "email" type rather than the "text" type. The "email" type prevents the user from entering an incorrectly formatted email address. This also helps guide our thinking — rather than testing an attribute **value**, we can test the input's **behavior**. We'll add another test to ensure incorrect email formats are flagged as invalid.
 
 ```tsx
+import userEvent from "@testing-library/user-event"
+
 it("flags an incorrectly formatted email address as invalid", async () => {
-  const user = userEvent.setup();
+  const user = userEvent.setup()
 
-  render(<EmailInputField label="Email" value="" />);
+  render(<EmailInputField label="Email" value="" />)
 
-  const input = screen.getByLabelText("Email:");
-  expect(input).toBeInTheDocument();
+  const input = screen.getByLabelText("Email:")
+  expect(input).toBeInTheDocument()
 
-  await user.click(input);
-  await user.keyboard("test");
-  expect(input).toHaveDisplayValue("test");
+  await user.click(input)
+  await user.keyboard("test")
+  expect(input).toHaveDisplayValue("test")
 
-  await user.tab();
-  expect(input).not.toHaveFocus();
-  expect(input).toBeInvalid();
-});
+  await user.tab()
+  expect(input).not.toHaveFocus()
+  expect(input).toBeInvalid()
+})
 ```
 
 Compared to the prior test, this one inputs a string that is not a valid email address and has three additional lines at the end that move focus away from the `<input>` element, triggering the built-in validation to be executed, and then asserts that the `<input>` has been [marked as invalid](https://github.com/testing-library/jest-dom?tab=readme-ov-file#tobeinvalid).

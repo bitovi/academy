@@ -88,6 +88,8 @@ When you define nested routes in your route configuration above, you don’t imm
 In the example below, the child component (`<AboutPage>` or `<HomePage>` from our `createBrowserRouter` example) would be rendered inside the `<main>` element:
 
 ```tsx
+import { Outlet } from "react-router-dom"
+
 const Layout = () => {
   return (
     <>
@@ -97,9 +99,10 @@ const Layout = () => {
       </main>
       <footer>©</footer>
     </>
-  );
-};
+  )
+}
 ```
+
 @highlight 6
 
 ### Setup 1
@@ -111,6 +114,7 @@ To get starting with React Router in our application, let’s install `react-rou
 ```shell
 npm install react-router-dom@6
 ```
+
 ✏️ Create **src/pages/Home/** (folder)
 
 ✏️ Create **src/pages/Home/index.ts** and update it to be:
@@ -174,9 +178,9 @@ The `Link` component is a basic building block in React Router. It allows you to
 Use the `Link` component similarly to how you use an `<a>` element in HTML. Instead of using `href`, you use `to` to specify the path.
 
 ```tsx
-<Link to="/about">
-    About
-</Link>
+import { Link } from "react-router-dom"
+
+const content = <Link to="/about">About</Link>
 ```
 
 When users click on this link, they are directed to the `/about` route in your application, without causing a full page reload.
@@ -187,20 +191,27 @@ If you want to style another element based on the current route, you’ll need
 to use the `useMatches` function:
 
 ```tsx
-import { useMatch } from 'react-router-dom';
+import { useMatch } from "react-router-dom"
 
 function App() {
-  const aboutMatch = useMatch('/about');
-  const contactMatch = useMatch('/contact');
+  const aboutMatch = useMatch("/about")
+  const contactMatch = useMatch("/contact")
 
   return (
     <>
-      <p>{aboutMatch ? 'Current page is /about' : 'About page is not a match'}</p>
-      <p>{contactMatch ? 'Current page is /contact' : 'Contact page is not a match'}</p>
+      <p>
+        {aboutMatch ? "Current page is /about" : "About page is not a match"}
+      </p>
+      <p>
+        {contactMatch
+          ? "Current page is /contact"
+          : "Contact page is not a match"}
+      </p>
     </>
-  );
+  )
 }
 ```
+
 @highlight 4-5, 9-10
 
 In the example above, `aboutMatch` will be an object with details about the route if the current route is `/about`; otherwise, `useMatch` will return `undefined` if the current route is something else.

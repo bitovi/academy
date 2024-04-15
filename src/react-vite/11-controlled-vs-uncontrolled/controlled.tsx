@@ -1,5 +1,7 @@
+import { useState } from "react"
+
 const ControlledInput: React.FC = () => {
-  const [name, setName] = useState("");
+  const [name, setName] = useState("")
   return (
     <label>
       Name:

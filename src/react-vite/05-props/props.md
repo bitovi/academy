@@ -37,13 +37,17 @@ Let’s create a `SubmitButton` component to see props in action:
 
 ```tsx
 interface SubmitButtonProps {
-  label: string;
-  onClick: () => void;
+  label: string
+  onClick: () => void
 }
 
 const SubmitButton: React.FC<SubmitButtonProps> = (props) => {
-  const { label, onClick } = props;
-  return <button onClick={onClick} type="submit">{label}</button>;
+  const { label, onClick } = props
+  return (
+    <button onClick={onClick} type="submit">
+      {label}
+    </button>
+  )
 }
 ```
 
@@ -55,14 +59,15 @@ However, more commonly (and for the rest of this course) you will see props dest
 
 ```tsx
 interface SubmitButtonProps {
-  label: string;
-  onClick: () => void;
+  label: string
+  onClick: () => void
 }
 
 const SubmitButton: React.FC<SubmitButtonProps> = ({ label, onClick }) => {
-  return <button onClick={onClick}>{label}</button>;
+  return <button onClick={onClick}>{label}</button>
 }
 ```
+
 @highlight 6 only
 
 ### Passing component props
@@ -77,10 +82,9 @@ In the example below, the `label` prop accepts a string. so the value is surroun
 Here’s how to use our `SubmitButton`:
 
 ```tsx
-<SubmitButton
-  label="Activate"
-  onClick={() => alert("Activated!")}
-/>
+const content = (
+  <SubmitButton label="Activate" onClick={() => alert("Activated!")} />
+)
 ```
 
 In the example above, we’re setting the `label` prop to the string “Activate” and the `onClick` prop to a function that displays an alert.
