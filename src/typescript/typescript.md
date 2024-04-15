@@ -71,4 +71,4 @@ Angular and many other frameworks use TypeScript to take advantage of its typech
 
 ## Next steps
 
-✏️ Head over to the [first lesson](learn-typescript/intro-to-typescript.html) and get your environment setup.
+✏️ Head over to the [first lesson](learn-typescript/why-typescript.html) and get your environment setup.
