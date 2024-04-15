@@ -7,10 +7,10 @@
 
 ## Overview
 
-In this section we will:
+In this section, you will:
 
-- Learn about TypeScript configuration options to help us optimize our workflow
-- Learn about linting with TypeScript
+- Learn about TypeScript configuration options to help us optimize our workflow.
+- Learn about linting with TypeScript.
 
 ## Configuring TypeScript
 
@@ -18,14 +18,14 @@ We’re able to configure how our projects use TypeScript from selecting which f
 
 ### tsconfig.json
 
-Customize the TypeScript compiling and linting options by creating a `tsconfig.json` file in the root directory of our TypeScript project. The following config will
+Customize the TypeScript compiling and linting options by creating a `tsconfig.json` file in the root directory of the TypeScript project. The following config will
 
 - specify ECMAScript target version as 'es5'
 - specify module code generation (from 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015' or 'esnext')
 - generate source map files
 - remove comments from compiled code
 
-The following is an example config code. **Don’t add this to our project or the tests for the TypeScript exercises in this training will fail.**
+The following is an example config code. **Don’t add this to your project or the tests for the TypeScript exercises in this training will fail.**
 
 ```javascript
 {
@@ -64,7 +64,7 @@ ESLint is a static code analysis tool. It helps us find and fix problematic patt
 
 ### Why Migrate to ESLint?
 
-> If we are looking for migrating to ESLint on an existing Angular project, consider using [angular-eslint](https://github.com/angular-eslint/angular-eslint). We also have a [blog post](https://www.bitovi.com/blog/angular-upgrades-painless-migration-from-tslint-to-eslint "Angular Upgrades: Painless Migration from TSLint to ESLint") to help we on that!
+> If we are looking for migrating to ESLint on an existing Angular project, consider using [angular-eslint](https://github.com/angular-eslint/angular-eslint). We also have a [blog post](https://www.bitovi.com/blog/angular-upgrades-painless-migration-from-tslint-to-eslint "Angular Upgrades: Painless Migration from TSLint to ESLint") to help you on that!
 
 - TSLint is [deprecated](https://github.com/palantir/tslint) since January 2020, in favor of ESLint.
 
@@ -113,4 +113,4 @@ For more information on TypeScript with ESLint, we can refer to the [typescript-
 
 ## Next steps
 
-Next we will learn how to import and export functions between modules.
+Next we will learn how to [import and export](./exporting-and-importing.html) functions between modules.
