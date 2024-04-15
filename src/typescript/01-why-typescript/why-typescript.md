@@ -74,6 +74,11 @@ function greet(user) {
     console.info(`Hello, ${user.name}`);
 }
 ```
+## Why use TypeScript?
+
+### Typechecking
+
+Typechecking is the process of verifying and enforcing the constraints of types, checking each variable, function, and expression to ensure they all fit together correctly. It's like ensuring that you're using the right tools for the job and putting them in the right places, so your program runs smoothly without unexpected errors.
 
 In the TypeScript code provided, an attempt is made to assign a value to `itemCount`, which is expected to be a `number`, but instead, a `string` was passed:
 
@@ -85,13 +90,6 @@ TypeScript will throw an error at compile time:
 ```typescript
 error TS2322: Type '"five"' is not assignable to type 'number'.
 ```
-
-
-## Why use TypeScript?
-
-### Typechecking
-
-Typechecking is the process of verifying and enforcing the constraints of types.
 
 ### Static vs. Dynamic Typing
 
