@@ -92,12 +92,6 @@ const App: React.FC = () => {
 
 Did you notice the `React.FC` that was used in the previous example to type the `App` const? Because we're using TypeScript with our project, we can apply types to help make sure the function component is properly formed. React provides the type `FC` (an abbreviation for "function component") that can be applied to a function component. This type defines the arguments and return value that a function component must implement.
 
-### File Organization: Modlets
-
-// TODO: get from slides
-
-Now you’re ready to create your first component.
-
 ### Setup
 
 It’s best practice to create a new folder that will contain all of the related files for that component, including test and CSS files.
