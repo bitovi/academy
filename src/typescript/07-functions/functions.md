@@ -9,10 +9,11 @@
 
 In this part, we will:
 
-- Annotate functions parameters and return values.
-- Use optional parameters & rest parameters
+- Learn how to annotate functions parameters and return values
+- Learn how to use optional parameters & rest parameters
 
-The exercise will have you update a function with TypeScript annotations.
+The exercises will teach you how to:
+- Update a function with TypeScript annotations.
 
 ## Functions in TypeScript
 
@@ -113,21 +114,21 @@ dog.bark.call(address);
 
 Line 10 will error with: `Property 'name' is missing in type '{ street: string; }' but required in type '{ name: string; }'.`
 
-## Exercise: dnaCost
+## Exercise: DNA Cost
 
 ### The Problem
 
-The following function in `3-functions-dnaCost.ts` calculates the cost of synthesizing
+The following function in `dnaCost.ts` calculates the cost of synthesizing
 a DNA sequence to make a dinosaur. It calculates the cost by adding a `baseCost` plus
 the length of the DNA sequence:
 
-@sourceref ./5-exercise-start.ts
+@sourceref ../../../exercises/typescript/07-functions/01-problem/src/dnaCost.ts
 @codepen
 
 Now scientists want to mix the DNA of multiple dinosaurs.
-Open the `3-functions-dnaCost.ts` file and modify this function to:
+Open the `dnaCost.ts` file and modify this function to:
 1. take an unknown amount of sequences;
-2. return the sum of baseCost and the length of each sequence.
+2. return the sum of `baseCost` and the length of each sequence.
 
 ```ts
 let raptorDNA = 'CGGCA';
@@ -145,7 +146,7 @@ console.log(indoraptorCost);
 ✏️ Run the following to verify your solution:
 
 ```shell
-npm run 3-functions
+npm run test
 ```
 
 ### The solution
@@ -153,12 +154,10 @@ npm run 3-functions
 <details>
 <summary>Click to see the solution</summary>
 
-✏️ Update `3-functions-dnaCost.ts` to add each sequence to the
+✏️ Update `dnaCost.ts` to add each sequence to the
 base cost.  This solution uses [Array.prototype.reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce):
 
-@sourceref ./5-exercise-solution.ts
-
-
+@sourceref ./../../../exercises/typescript/07-functions/01-solution/src/dnaCost.ts
 
 You’ll notice that specifying a return type is not necessary.  This is
 because TypeScript can infer the return value from the arguments.
@@ -179,3 +178,7 @@ export function dnaCost(baseCost: number, ...sequences: string[]) {
 @highlight 1-4
 
 </details>
+
+## Next steps
+
+Next, let’s take a look at [classes](./classes.html) in TypeScript.
