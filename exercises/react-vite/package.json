@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "typecheck": "tsc",
-    "eslint": "eslint *.mjs */*/src",
-    "prettier": "prettier --check *.mjs */*/src"
+    "eslint": "eslint *.mjs */*/*.ts */*/*.json */*/src",
+    "prettier": "prettier --check *.mjs */*/*.ts */*/*.json */*/src"
   },
   "eslintConfig": {
     "root": true,

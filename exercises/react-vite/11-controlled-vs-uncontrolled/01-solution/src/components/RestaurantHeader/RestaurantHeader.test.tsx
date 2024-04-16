@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom"
+import type { Restaurant } from "../../services/restaurant/interfaces"
 import { render, screen } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
-import { Restaurant } from "../../services/restaurant/interfaces"
 import RestaurantHeader from "./RestaurantHeader"
 
 describe("RestaurantHeader component", () => {

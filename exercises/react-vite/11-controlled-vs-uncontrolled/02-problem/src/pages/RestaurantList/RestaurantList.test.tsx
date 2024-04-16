@@ -1,11 +1,17 @@
-import type { ReactNode } from "react"
 import "@testing-library/jest-dom"
+import type { ReactNode } from "react"
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { MemoryRouter } from "react-router-dom"
 import { describe, expect, it, vi } from "vitest"
 
 import RestaurantList from "./RestaurantList"
+
+import {
+  useCities,
+  useRestaurants,
+  useStates,
+} from "../../services/restaurant/hooks"
 
 // Mock the hooks used in the component
 vi.mock("../../services/restaurant/hooks", () => ({
@@ -31,12 +37,6 @@ vi.mock("../../services/restaurant/hooks", () => ({
     }
   }),
 }))
-
-import {
-  useCities,
-  useRestaurants,
-  useStates,
-} from "../../services/restaurant/hooks"
 
 // Wrap component with MemoryRouter to mock routing
 const renderWithRouter = (ui: ReactNode, { route = "/" } = {}) => {

@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react"
 import type { City, State } from "./interfaces"
+import { useEffect, useState } from "react"
 
 interface StatesResponse {
   data: State[] | null

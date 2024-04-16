@@ -149,14 +149,14 @@ npm install --save-dev vitest@1 @testing-library/react@14 @testing-library/user-
 
 ✏️ Update **vite.config.ts** to be:
 
-@diff ../../../exercises/react-vite/02-setting-up-your-environment/02-solution/vite.config.ts ../../../exercises/react-vite/02-setting-up-your-environment/04-solution/vite.config.ts
+@diff ../../../exercises/react-vite/02-setting-up-your-environment/02-solution/vite.config.ts ../../../exercises/react-vite/02-setting-up-your-environment/03-solution/vite.config.ts
 
 Once the packages are installed and the config file is updated, open the "package.json" file (in the project’s root) and add the "test" line to the `scripts` object; this simplifies running tests using Vite.
 
 ✏️ Update **package.json** to be:
 
 @sourceref ../../../exercises/react-vite/02-setting-up-your-environment/03-solution/package.json
-@highlight 10, only
+@highlight 7, only
 
 ### Verify 3
 
@@ -205,8 +205,7 @@ npm install --save-dev @bitovi/eslint-config prettier
 
 ✏️ Update **package.json** to be:
 
-@sourceref ../../../exercises/react-vite/02-setting-up-your-environment/03-solution/package.json
-@highlight 7-12, 14-17, 18-21, only
+@diff ../../../exercises/react-vite/02-setting-up-your-environment/03-solution/package.json ../../../exercises/react-vite/02-setting-up-your-environment/04-solution/package.json
 
 ### Verify 4
 

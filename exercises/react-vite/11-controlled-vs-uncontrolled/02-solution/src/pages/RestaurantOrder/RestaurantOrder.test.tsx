@@ -1,10 +1,12 @@
-import type { ReactNode } from "react"
 import "@testing-library/jest-dom"
+import type { ReactNode } from "react"
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { MemoryRouter } from "react-router-dom"
 import { describe, expect, it, vi } from "vitest"
 import RestaurantOrder from "./RestaurantOrder"
+
+import { useRestaurant } from "../../services/restaurant/hooks"
 
 // Mock the hooks and components used in RestaurantOrder
 vi.mock("../../services/restaurant/hooks", () => ({
@@ -16,8 +18,6 @@ vi.mock("../../components/RestaurantHeader", () => ({
     <div data-testid="mock-restaurant-header">Mock RestaurantHeader</div>
   )),
 }))
-
-import { useRestaurant } from "../../services/restaurant/hooks"
 
 const mockRestaurantData = {
   data: {

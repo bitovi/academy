@@ -4,20 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "typecheck": "tsc",
-    "eslint": "eslint vite.config.ts src",
-    "prettier": "prettier --check vite.config.ts src",
-    "test": "vitest",
     "dev": "vite",
-    "build": "tsc && vite build"
-  },
-  "eslintConfig": {
-    "root": true,
-    "extends": "@bitovi/eslint-config/react"
-  },
-  "prettier": {
-    "semi": false,
-    "trailingComma": "all"
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   },
   "dependencies": {
     "react": "^18.2.0",

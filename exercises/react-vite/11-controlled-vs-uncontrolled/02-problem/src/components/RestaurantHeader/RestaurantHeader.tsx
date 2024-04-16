@@ -1,4 +1,4 @@
-import { Restaurant } from "../../services/restaurant/interfaces"
+import type { Restaurant } from "../../services/restaurant/interfaces"
 
 const RestaurantHeader: React.FC<{ restaurant: Restaurant }> = ({
   restaurant,

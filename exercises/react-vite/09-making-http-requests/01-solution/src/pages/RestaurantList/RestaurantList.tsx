@@ -1,9 +1,9 @@
+import type { State } from "../../services/restaurant/interfaces"
 import CheeseThumbnail from "place-my-order-assets/images/2-thumbnail.jpg"
 import PoutineThumbnail from "place-my-order-assets/images/4-thumbnail.jpg"
 import { useEffect, useState } from "react"
 import ListItem from "./ListItem"
 import { useCities } from "../../services/restaurant/hooks"
-import { State } from "../../services/restaurant/interfaces"
 
 interface StatesResponse {
   data: State[] | null

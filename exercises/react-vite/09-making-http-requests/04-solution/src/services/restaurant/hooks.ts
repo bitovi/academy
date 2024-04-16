@@ -1,6 +1,6 @@
+import type { City, State } from "./interfaces"
 import { useEffect, useState } from "react"
 import { apiRequest } from "../api"
-import type { City, State } from "./interfaces"
 
 interface CitiesResponse {
   data: City[] | null

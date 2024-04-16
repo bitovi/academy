@@ -1,4 +1,5 @@
-import { FormEvent, useState } from "react"
+import type { FormEvent} from "react";
+import { useState } from "react"
 import { useParams } from "react-router-dom"
 import FormTextField from "../../components/FormTextField"
 import RestaurantHeader from "../../components/RestaurantHeader"
