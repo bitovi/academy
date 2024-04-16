@@ -42,7 +42,7 @@ function returnNumber(): number {
 //works!
 ```
 
-## Optional Parameters
+## Optional parameters
 
 Sometimes when writing functions, we don’t need every parameter to be satisfied. TypeScript allows us to mark optional parameters (or properties) with a ``?`` so the compiler will not error if an optional param isn’t passed.
 
@@ -64,7 +64,7 @@ let otherOtherDino = buildDinosaur('Charlie');
 //error an argument for 'breed' was not provided
 ```
 
-## Rest Parameters
+## Rest parameters
 
 Rest parameters are a way to pass in an unknown number of arguments to a function. Rest params are signaled to the transpiler by passing an ellipsis (...) followed by the parameter name.
 
@@ -78,7 +78,7 @@ buildDinosaur('Indominous Rex', 'Velociraptor', 'Tyrannosaurus rex', 'Therizinos
 //      Tyrannosaurus rex, Therizinosaurus, cuttlefish"
 ```
 
-## `this` Parameters
+## `this` parameters
 
 JavaScript functions can be called or created with a dynamic `this`. For example:
 
@@ -116,7 +116,7 @@ Line 10 will error with: `Property 'name' is missing in type '{ street: string; 
 
 ## Exercise: DNA Cost
 
-### The Problem
+### The problem
 
 The following function in `dnaCost.ts` calculates the cost of synthesizing
 a DNA sequence to make a dinosaur. It calculates the cost by adding a `baseCost` plus
@@ -141,7 +141,7 @@ console.log(indoraptorCost);
 // Logs 5017
 ```
 
-### Verify Your Solution
+### Verify your solution
 
 ✏️ Run the following to verify your solution:
 
