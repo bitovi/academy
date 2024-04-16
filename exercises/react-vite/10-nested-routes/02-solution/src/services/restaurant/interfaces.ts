@@ -4,35 +4,35 @@ export interface City {
 }
 
 interface Item {
-  name: string;
-  price: number;
+  name: string
+  price: number
 }
 
 interface Menu {
-  dinner: Item[];
-  lunch: Item[];
+  dinner: Item[]
+  lunch: Item[]
 }
 
 interface Address {
-  city: string;
-  state: string;
-  street: string;
-  zip: string;
+  city: string
+  state: string
+  street: string
+  zip: string
 }
 
 interface Images {
-  banner: string;
-  owner: string;
-  thumbnail: string;
+  banner: string
+  owner: string
+  thumbnail: string
 }
 
 export interface Restaurant {
-  _id: string;
-  address?: Address;
-  images: Images;
-  menu: Menu;
-  name: string;
-  slug: string;
+  _id: string
+  address?: Address
+  images: Images
+  menu: Menu
+  name: string
+  slug: string
 }
 
 export interface State {

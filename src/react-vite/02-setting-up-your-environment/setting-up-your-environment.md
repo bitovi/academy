@@ -195,7 +195,7 @@ Remove these generated files that we won't need. Some projects do need them, but
 ✏️ Uninstall unneeded packages and Install our eslint config and prettier:
 
 ```shell
-npm uninstall @typescript-eslint/eslint-plugin @typescript-eslint/parser
+npm uninstall @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react-hooks eslint-plugin-react-refresh
 npm install --save-dev @bitovi/eslint-config prettier
 ```
 

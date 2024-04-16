@@ -1,29 +1,29 @@
-import { useEffect, useState } from 'react'
-import { apiRequest } from '../api'
-import type { City, Restaurant, State } from './interfaces'
+import { useEffect, useState } from "react"
+import { apiRequest } from "../api"
+import type { City, Restaurant, State } from "./interfaces"
 
 interface CitiesResponse {
-  data: City[] | null;
-  error: Error | null;
-  isPending: boolean;
+  data: City[] | null
+  error: Error | null
+  isPending: boolean
 }
 
 interface RestaurantResponse {
-  data: Restaurant | null;
-  error: Error | null;
-  isPending: boolean;
+  data: Restaurant | null
+  error: Error | null
+  isPending: boolean
 }
 
 interface RestaurantsResponse {
-  data: Restaurant[] | null;
-  error: Error | null;
-  isPending: boolean;
+  data: Restaurant[] | null
+  error: Error | null
+  isPending: boolean
 }
 
 interface StatesResponse {
-  data: State[] | null;
-  error: Error | null;
-  isPending: boolean;
+  data: State[] | null
+  error: Error | null
+  isPending: boolean
 }
 
 export function useCities(state: string): CitiesResponse {
@@ -36,11 +36,11 @@ export function useCities(state: string): CitiesResponse {
   useEffect(() => {
     const fetchData = async () => {
       const { data, error } = await apiRequest<CitiesResponse>({
-          method: "GET",
-          path: "/cities",
-          params: {
-              state: state
-          },
+        method: "GET",
+        path: "/cities",
+        params: {
+          state: state,
+        },
       })
 
       setResponse({
@@ -50,7 +50,7 @@ export function useCities(state: string): CitiesResponse {
       })
     }
     fetchData()
-  }, [state]);
+  }, [state])
 
   return response
 }
@@ -65,8 +65,8 @@ export function useRestaurant(slug: string): RestaurantResponse {
   useEffect(() => {
     const fetchData = async () => {
       const { data, error } = await apiRequest({
-          method: "GET",
-          path: `/restaurants/${slug}`,
+        method: "GET",
+        path: `/restaurants/${slug}`,
       })
 
       setResponse({
@@ -76,12 +76,15 @@ export function useRestaurant(slug: string): RestaurantResponse {
       })
     }
     fetchData()
-  }, [slug]);
+  }, [slug])
 
   return response
 }
 
-export function useRestaurants(state: string, city: string): RestaurantsResponse {
+export function useRestaurants(
+  state: string,
+  city: string,
+): RestaurantsResponse {
   const [response, setResponse] = useState<RestaurantsResponse>({
     data: null,
     error: null,
@@ -91,12 +94,12 @@ export function useRestaurants(state: string, city: string): RestaurantsResponse
   useEffect(() => {
     const fetchData = async () => {
       const { data, error } = await apiRequest<RestaurantsResponse>({
-          method: "GET",
-          path: "/restaurants",
-          params: {
-              "filter[address.state]": state,
-              "filter[address.city]": city,
-          },
+        method: "GET",
+        path: "/restaurants",
+        params: {
+          "filter[address.state]": state,
+          "filter[address.city]": city,
+        },
       })
 
       setResponse({
@@ -106,7 +109,7 @@ export function useRestaurants(state: string, city: string): RestaurantsResponse
       })
     }
     fetchData()
-  }, [state, city]);
+  }, [state, city])
 
   return response
 }
@@ -121,8 +124,8 @@ export function useStates(): StatesResponse {
   useEffect(() => {
     const fetchData = async () => {
       const { data, error } = await apiRequest<StatesResponse>({
-          method: "GET",
-          path: "/states",
+        method: "GET",
+        path: "/states",
       })
 
       setResponse({
@@ -132,7 +135,7 @@ export function useStates(): StatesResponse {
       })
     }
     fetchData()
-  }, []);
+  }, [])
 
   return response
 }

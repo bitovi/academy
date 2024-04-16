@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "typecheck": "tsc",
-    "eslint": "eslint validate-react-vite.mjs */*/src",
-    "prettier": "prettier --check validate-react-vite.mjs */*/src"
+    "eslint": "eslint *.mjs */*/src",
+    "prettier": "prettier --check *.mjs */*/src"
   },
   "eslintConfig": {
     "root": true,
