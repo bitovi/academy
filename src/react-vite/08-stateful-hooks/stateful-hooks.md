@@ -72,7 +72,7 @@ As you can see in the previous example, `useState` returns an array with two ele
 In the following code, the value is being rendered and the setter is being used to keep track of which theme is chosen:
 
 @sourceref ./useState.tsx
-@highlight 8, 14, 16, 19, 22, only
+@highlight 8, 14-16, only
 
 Every time a `useState`’s setter is invoked with a new value, React compares the new value with the current value. If the values are the same, nothing happens; **if the values are different, React will rerender the component** so the new state value can be used to update the component.
 
@@ -204,9 +204,9 @@ In the example above, you can see that our `useToggle` Hook is a function that h
 How would we use this Hook? Let’s take a look at this example:
 
 @sourceref ./Toggle.tsx
-@highlight 2, 5, 12-13, 18, only
+@highlight 1, 4, 11-12, 16, only
 
-In this component, we call our `useToggle` Hook with the initial “on” state (`true`). Our Hook returns the `on` state and `toggle` function for changing the on/off state.
+In this component, we call our `useToggle` Hook with the initial state (`true`). Our Hook returns the `active` state and `toggleActive` function for changing the on/off state.
 
 We will learn more about binding the `input` values in a later section, but for now the takeaway is that we can create our custom `useToggle` Hook and call it in our components, just like React’s built-in Hooks!
 

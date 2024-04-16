@@ -34,11 +34,11 @@ const Selected: React.FC = () => {
           <label key={landmark.id}>
             {landmark.name}:
             <input
+              type="checkbox"
               checked={selected[landmark.name]}
               onChange={(event) =>
                 handleSelectedChange(landmark.name, event.target.checked)
               }
-              type="checkbox"
             />
           </label>
         )

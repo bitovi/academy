@@ -1,19 +1,19 @@
 import { useToggle } from "./useToggle"
 
 const Toggle: React.FC = () => {
-  const [on, toggle] = useToggle(true)
+  const [active, toggleActive] = useToggle(true)
 
   return (
     <form>
       <label className="toggle">
         <input
           className="toggle-checkbox"
-          checked={on}
-          onChange={toggle}
+          checked={active}
+          onChange={toggleActive}
           type="checkbox"
         />
         <div className="toggle-switch"></div>
-        <span className="toggle-label">{on ? "On" : "Off"}</span>
+        <span className="toggle-label">{active ? "On" : "Off"}</span>
       </label>
     </form>
   )

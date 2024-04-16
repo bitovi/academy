@@ -103,7 +103,7 @@ const Layout = () => {
 }
 ```
 
-@highlight 6
+@highlight 8
 
 ### Setup 1
 
@@ -212,7 +212,7 @@ function App() {
 }
 ```
 
-@highlight 4-5, 9-10
+@highlight 4-5, 9-11
 
 In the example above, `aboutMatch` will be an object with details about the route if the current route is `/about`; otherwise, `useMatch` will return `undefined` if the current route is something else.
 

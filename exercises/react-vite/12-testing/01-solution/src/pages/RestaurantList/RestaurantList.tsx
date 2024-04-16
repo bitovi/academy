@@ -12,16 +12,18 @@ const RestaurantList: React.FC = () => {
   const [city, setCity] = useState("")
 
   const statesResponse = useStates()
+
   const citiesResponse = useCities(state)
+
   const restaurantsResponse = useRestaurants(state, city)
 
-  const updateState = (newValue: string) => {
-    setState(newValue)
+  const updateState = (stateShortCode: string) => {
+    setState(stateShortCode)
     setCity("")
   }
 
-  const updateCity = (newValue: string) => {
-    setCity(newValue)
+  const updateCity = (cityName: string) => {
+    setCity(cityName)
   }
 
   return (

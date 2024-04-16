@@ -34,6 +34,12 @@ async function crawl(directory) {
         fs.rm(path.join(directory, module, project, "tsconfig.tsbuildinfo")),
       )
       await silence(() =>
+        fs.rm(path.join(directory, module, project, "public/vite.svg")),
+      )
+      await silence(() =>
+        fs.rmdir(path.join(directory, module, project, "public")),
+      )
+      await silence(() =>
         fs.rm(path.join(directory, module, project, "src/assets/react.svg")),
       )
       await silence(() =>

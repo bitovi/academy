@@ -187,6 +187,7 @@ Before we begin adding any content, its a good idea to clean up generated files 
 
 Remove these generated files that we won't need. Some projects do need them, but this one won't.
 
+- `public/vite.svg`
 - `src/assets`
 - `src/App.css`
 - `tsconfig.node.json`
@@ -205,7 +206,7 @@ npm install --save-dev @bitovi/eslint-config prettier
 
 ✏️ Update **package.json** to be:
 
-@diff ../../../exercises/react-vite/02-setting-up-your-environment/03-solution/package.json ../../../exercises/react-vite/02-setting-up-your-environment/04-solution/package.json
+@diff ../../../exercises/react-vite/02-setting-up-your-environment/03-solution/package.json ../../../exercises/react-vite/02-setting-up-your-environment/04-solution/package.json only
 
 ### Verify 4
 

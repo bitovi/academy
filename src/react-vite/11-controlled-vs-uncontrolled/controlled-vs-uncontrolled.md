@@ -34,7 +34,7 @@ An input is **controlled** when both its `value` (or `checked`) and `onChange` p
 Let’s take a look at an example of a controlled input:
 
 @sourceref ./controlled.tsx
-@highlight 6-10, only
+@highlight 8-12, only
 
 Controlled components aren’t allowed to have a value of `null` or `undefined`. To set an input with “no value,” use an empty string: `""`.
 
@@ -43,7 +43,7 @@ Controlled components aren’t allowed to have a value of `null` or `undefined`.
 In the previous example, the `<input>` prop `onChange` had its value set to a function known as an “event handler.”
 
 @sourceref ./controlled.tsx
-@highlight 7-8, only
+@highlight 10, only
 
 When an event occurs, such as a user typing in an input field, an `event` object is passed to the event handler function. This event object contains various properties and methods that provide information about the event.
 
@@ -61,9 +61,9 @@ const TodoItem: React.FC = () => {
   return (
     <label>
       <input
+        type="checkbox"
         checked={isCompleted}
         onChange={(event) => setIsCompleted(event.target.checked)}
-        type="checkbox"
       />
       Completed
     </label>
@@ -71,7 +71,7 @@ const TodoItem: React.FC = () => {
 }
 ```
 
-@highlight 7-8, only
+@highlight 9-10, only
 
 ### Using TypeScript’s `Record` interface
 
@@ -122,6 +122,7 @@ setUpdatedRestaurant((current) => {
     ...current.filter((item) => item.id !== updatedRestaurant.id),
     updatedRestaurant,
   ]
+
   return next
 })
 ```

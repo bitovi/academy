@@ -1,3 +1,5 @@
 import type { City } from "./interfaces"
 
-export function useCities(state: string): City[] {}
+export function useCities(state: string): City[] {
+  return []
+}

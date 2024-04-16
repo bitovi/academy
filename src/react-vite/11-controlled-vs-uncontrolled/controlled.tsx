@@ -6,8 +6,8 @@ const ControlledInput: React.FC = () => {
     <label>
       Name:
       <input
-        onChange={(event) => setName(event.target.value)}
         type="text"
+        onChange={(event) => setName(event.target.value)}
         value={name}
       />
     </label>

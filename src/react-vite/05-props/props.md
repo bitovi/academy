@@ -51,6 +51,8 @@ const SubmitButton: React.FC<SubmitButtonProps> = (props) => {
 }
 ```
 
+@highlight 6-7, only
+
 In this example, `SubmitButtonProps` is an interface that defines the types for `label` (a string) and `onClick` (a function). Our `SubmitButton` component then uses these props to display a button with a label and a click action.
 
 The example above illustrates how props are passed to component as an argument.
@@ -68,7 +70,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ label, onClick }) => {
 }
 ```
 
-@highlight 6 only
+@highlight 6, only
 
 ### Passing component props
 

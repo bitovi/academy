@@ -162,7 +162,7 @@ const BlogPost: React.FC = ({ authorAvatar, content }) => {
 }
 ```
 
-@highlight 2, 9
+@highlight 1, 8
 
 ### Avoid plain selectors
 

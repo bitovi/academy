@@ -83,7 +83,7 @@ This nomenclature difference is because they are technically different, though t
 When talking about the HTML below, you might say that the `href` attribute is a URL:
 
 ```html
-<a href="https://www.bitovi.com/academy/"> Bitovi Academy </a>
+<a href="https://www.bitovi.com/academy/">Bitovi Academy</a>
 ```
 
 The above is valid JSX too, but we would say that the `href` _prop_ is being passed into the anchor element.
@@ -270,7 +270,7 @@ const content = (
 )
 ```
 
-@highlight 7,8
+@highlight 8,9
 
 ### JSX is a syntax extension for JavaScript
 

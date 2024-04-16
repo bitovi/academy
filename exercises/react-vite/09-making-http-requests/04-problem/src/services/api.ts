@@ -6,7 +6,12 @@ export async function apiRequest<Data = never, Params = unknown>({
   method: string
   params?: Params
   path: string
-}): Promise<{ data: Data | null; error: Error | null }> {}
+}): Promise<{ data: Data | null; error: Error | null }> {
+  return {
+    data: null,
+    error: null,
+  }
+}
 
 export function stringifyQuery(input: Record<string, string>): string {
   const output: string[] = []

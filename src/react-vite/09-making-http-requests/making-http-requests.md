@@ -41,7 +41,7 @@ In the example above, we have a `UserProfile` interface that keeps track of an `
 Here is an example component with `useEffect`:
 
 @sourceref dependency-array-empty.tsx
-@highlight 1, 11-17, only
+@highlight 1, 11-21, only
 
 Let’s break this example down by the two arguments that `useEffect` takes:
 
@@ -64,14 +64,14 @@ Consider three scenarios based on the dependency array:
 If the dependency array is an empty array, the effect runs once after the initial render.
 
 @sourceref dependency-array-empty.tsx
-@highlight 11-17, only
+@highlight 11-21, only
 
 #### Array with values
 
 When you include values (variables, props, state) in the dependency array, the effect will only re-run if those specific values change between renders. This selective execution can optimize performance by avoiding unnecessary work.
 
 @sourceref dependency-array-with-values.tsx
-@highlight 4, 7-8, only
+@highlight 4, 6-8, only
 
 #### No dependency array
 
@@ -130,7 +130,6 @@ Vite, our build tool, provides an easy way to work with environment variables. I
 Here’s how we can use it: in our project’s root directory, we can create a `.env` file with variables like this:
 
 @sourceref ../../../exercises/react-vite/09-making-http-requests/01-solution/.env
-@highlight 1
 
 Then we can access this variable using `import.meta.env`:
 
@@ -186,7 +185,6 @@ It will be helpful to have a third terminal tab for the `npm run api` command.
 ✏️ Create **.env** and update it to be:
 
 @sourceref ../../../exercises/react-vite/09-making-http-requests/01-solution/.env
-@highlight 1
 
 ✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
 
