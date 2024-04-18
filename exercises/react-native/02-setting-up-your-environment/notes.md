@@ -34,4 +34,16 @@ Copy basic test and simplify App
 
 Add "Place my order" text and test for it
 
-##
+## Lint and format
+
+```bash
+npm i --save-dev depcheck
+```
+
+The scaffold already installed ESLint and Prettier, but no command to run Prettier. Add commands.
+
+```bash
+npm i --save-dev @bitovi/eslint-config
+```
+
+Edit lint config
