@@ -1,5 +1,6 @@
 @page learn-typescript/functions Functions
 @parent learn-typescript 7
+@outline 3
 
 @description Learn how to annotate functions parameters and return values, use different parameter types available.
 
@@ -9,12 +10,13 @@
 
 In this part, we will:
 
-- Annotate functions parameters and return values.
+- Annotate functions parameters and return values
 - Use optional parameters & rest parameters
+- Update a function with TypeScript annotations
 
-The exercise will have you update a function with TypeScript annotations.
+## Objective: Annotating Functions 
 
-## Functions in TypeScript
+### Functions in TypeScript
 
 In TypeScript, we’re able to annotate function parameters to better guard our code. If the following, `add` is called  with two parameters that are not numbers TypeScript’s compiler will throw an error when compiled.
 
@@ -41,7 +43,7 @@ function returnNumber(): number {
 //works!
 ```
 
-## Optional Parameters
+### Optional parameters
 
 Sometimes when writing functions, we don’t need every parameter to be satisfied. TypeScript allows us to mark optional parameters (or properties) with a ``?`` so the compiler will not error if an optional param isn’t passed.
 
@@ -63,7 +65,7 @@ let otherOtherDino = buildDinosaur('Charlie');
 //error an argument for 'breed' was not provided
 ```
 
-## Rest Parameters
+### Rest parameters
 
 Rest parameters are a way to pass in an unknown number of arguments to a function. Rest params are signaled to the transpiler by passing an ellipsis (...) followed by the parameter name.
 
@@ -77,7 +79,7 @@ buildDinosaur('Indominous Rex', 'Velociraptor', 'Tyrannosaurus rex', 'Therizinos
 //      Tyrannosaurus rex, Therizinosaurus, cuttlefish"
 ```
 
-## `this` Parameters
+### `this` parameters
 
 JavaScript functions can be called or created with a dynamic `this`. For example:
 
@@ -113,21 +115,19 @@ dog.bark.call(address);
 
 Line 10 will error with: `Property 'name' is missing in type '{ street: string; }' but required in type '{ name: string; }'.`
 
-## Exercise: dnaCost
+### Exercise: DNA Cost
 
-### The Problem
-
-The following function in `3-functions-dnaCost.ts` calculates the cost of synthesizing
+The following function in `dnaCost.ts` calculates the cost of synthesizing
 a DNA sequence to make a dinosaur. It calculates the cost by adding a `baseCost` plus
 the length of the DNA sequence:
 
-@sourceref ./5-exercise-start.ts
+@sourceref ../../../exercises/typescript/07-functions/01-problem/src/dnaCost.ts
 @codepen
 
 Now scientists want to mix the DNA of multiple dinosaurs.
-Open the `3-functions-dnaCost.ts` file and modify this function to:
+Open the `dnaCost.ts` file and modify this function to:
 1. take an unknown amount of sequences;
-2. return the sum of baseCost and the length of each sequence.
+2. return the sum of `baseCost` and the length of each sequence.
 
 ```ts
 let raptorDNA = 'CGGCA';
@@ -140,12 +140,12 @@ console.log(indoraptorCost);
 // Logs 5017
 ```
 
-### Verify Your Solution
+### Verify your solution
 
 ✏️ Run the following to verify your solution:
 
 ```shell
-npm run 3-functions
+npm run test
 ```
 
 ### The solution
@@ -153,12 +153,10 @@ npm run 3-functions
 <details>
 <summary>Click to see the solution</summary>
 
-✏️ Update `3-functions-dnaCost.ts` to add each sequence to the
+✏️ Update `dnaCost.ts` to add each sequence to the
 base cost.  This solution uses [Array.prototype.reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce):
 
-@sourceref ./5-exercise-solution.ts
-
-
+@sourceref ./../../../exercises/typescript/07-functions/01-solution/src/dnaCost.ts
 
 You’ll notice that specifying a return type is not necessary.  This is
 because TypeScript can infer the return value from the arguments.
@@ -179,3 +177,7 @@ export function dnaCost(baseCost: number, ...sequences: string[]) {
 @highlight 1-4
 
 </details>
+
+## Next steps
+
+Next, let’s take a look at [classes](./classes.html) in TypeScript.
