@@ -1,5 +1,6 @@
 @page learn-typescript/functions Functions
 @parent learn-typescript 7
+@outline 3
 
 @description Learn how to annotate functions parameters and return values, use different parameter types available.
 
@@ -9,13 +10,13 @@
 
 In this part, we will:
 
-- Learn how to annotate functions parameters and return values
-- Learn how to use optional parameters & rest parameters
+- Annotate functions parameters and return values
+- Use optional parameters & rest parameters
+- Update a function with TypeScript annotations
 
-The exercises will teach you how to:
-- Update a function with TypeScript annotations.
+## Objective: Annotating Functions 
 
-## Functions in TypeScript
+### Functions in TypeScript
 
 In TypeScript, we’re able to annotate function parameters to better guard our code. If the following, `add` is called  with two parameters that are not numbers TypeScript’s compiler will throw an error when compiled.
 
@@ -42,7 +43,7 @@ function returnNumber(): number {
 //works!
 ```
 
-## Optional parameters
+### Optional parameters
 
 Sometimes when writing functions, we don’t need every parameter to be satisfied. TypeScript allows us to mark optional parameters (or properties) with a ``?`` so the compiler will not error if an optional param isn’t passed.
 
@@ -64,7 +65,7 @@ let otherOtherDino = buildDinosaur('Charlie');
 //error an argument for 'breed' was not provided
 ```
 
-## Rest parameters
+### Rest parameters
 
 Rest parameters are a way to pass in an unknown number of arguments to a function. Rest params are signaled to the transpiler by passing an ellipsis (...) followed by the parameter name.
 
@@ -78,7 +79,7 @@ buildDinosaur('Indominous Rex', 'Velociraptor', 'Tyrannosaurus rex', 'Therizinos
 //      Tyrannosaurus rex, Therizinosaurus, cuttlefish"
 ```
 
-## `this` parameters
+### `this` parameters
 
 JavaScript functions can be called or created with a dynamic `this`. For example:
 
@@ -114,9 +115,7 @@ dog.bark.call(address);
 
 Line 10 will error with: `Property 'name' is missing in type '{ street: string; }' but required in type '{ name: string; }'.`
 
-## Exercise: DNA Cost
-
-### The problem
+### Exercise: DNA Cost
 
 The following function in `dnaCost.ts` calculates the cost of synthesizing
 a DNA sequence to make a dinosaur. It calculates the cost by adding a `baseCost` plus
