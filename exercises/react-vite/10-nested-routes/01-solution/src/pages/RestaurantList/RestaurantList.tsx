@@ -1,6 +1,10 @@
-import { useState } from 'react'
-import { useCities, useRestaurants, useStates } from '../../services/restaurant/hooks'
-import ListItem from './ListItem'
+import { useState } from "react"
+import {
+  useCities,
+  useRestaurants,
+  useStates,
+} from "../../services/restaurant/hooks"
+import ListItem from "./ListItem"
 
 const RestaurantList: React.FC = () => {
   const [state, setState] = useState("")
@@ -34,17 +38,15 @@ const RestaurantList: React.FC = () => {
             <select
               className="form-control"
               id="stateSelect"
-              onChange={event => updateState(event.target.value)}
+              onChange={(event) => updateState(event.target.value)}
               value={state}
             >
               <option key="choose_state" value="">
-                {
-                  statesResponse.isPending
-                    ? "Loading states…"
-                    : statesResponse.error
-                      ? statesResponse.error.message
-                      : "Choose a state"
-                }
+                {statesResponse.isPending
+                  ? "Loading states…"
+                  : statesResponse.error
+                    ? statesResponse.error.message
+                    : "Choose a state"}
               </option>
               {statesResponse.data?.map(({ short, name }) => (
                 <option key={short} value={short}>
@@ -61,25 +63,24 @@ const RestaurantList: React.FC = () => {
             <select
               className="form-control"
               id="citySelect"
-              onChange={event => updateCity(event.target.value)}
+              onChange={(event) => updateCity(event.target.value)}
               value={city}
             >
               <option key="choose_city" value="">
-                {
-                  state
-                    ? citiesResponse.isPending
-                      ? "Loading cities…"
-                      : citiesResponse.error
-                        ? citiesResponse.error.message
-                        : "Choose a city"
-                    : "Choose a state before selecting a city"
-                }
+                {state
+                  ? citiesResponse.isPending
+                    ? "Loading cities…"
+                    : citiesResponse.error
+                      ? citiesResponse.error.message
+                      : "Choose a city"
+                  : "Choose a state before selecting a city"}
               </option>
-              {state && citiesResponse.data?.map(({ name }) => (
-                <option key={name} value={name}>
-                  {name}
-                </option>
-              ))}
+              {state &&
+                citiesResponse.data?.map(({ name }) => (
+                  <option key={name} value={name}>
+                    {name}
+                  </option>
+                ))}
             </select>
           </div>
         </form>
@@ -96,23 +97,23 @@ const RestaurantList: React.FC = () => {
           </p>
         )}
 
-        {city && restaurantsResponse.data && (
-          restaurantsResponse.data.length === 0 ? (
-            !restaurantsResponse.isPending && (
-              <p aria-live="polite">No restaurants found.</p>
-            )
-          ) : (
-            restaurantsResponse.data.map(({ _id, slug, name, address, images }) => (
-              <ListItem
-                key={_id}
-                address={address}
-                name={name}
-                slug={slug}
-                thumbnail={images.thumbnail}
-              />
-            ))
-          )
-        )}
+        {city &&
+          restaurantsResponse.data &&
+          (restaurantsResponse.data.length === 0
+            ? !restaurantsResponse.isPending && (
+                <p aria-live="polite">No restaurants found.</p>
+              )
+            : restaurantsResponse.data.map(
+                ({ _id, slug, name, address, images }) => (
+                  <ListItem
+                    key={_id}
+                    address={address}
+                    name={name}
+                    slug={slug}
+                    thumbnail={images.thumbnail}
+                  />
+                ),
+              ))}
       </div>
     </>
   )

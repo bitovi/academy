@@ -1,6 +1,4 @@
-import './App.css'
-
-function App() {
+const App: React.FC = () => {
   return (
     <>
       <h1>Place My Order App: Coming Soon!</h1>

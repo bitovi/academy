@@ -1,47 +1,46 @@
-import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
-import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import { useState } from 'react'
-import ListItem from './ListItem'
+import CheeseThumbnail from "place-my-order-assets/images/2-thumbnail.jpg"
+import PoutineThumbnail from "place-my-order-assets/images/4-thumbnail.jpg"
+import { useState } from "react"
+import ListItem from "./ListItem"
 
 const RestaurantList: React.FC = () => {
-
   const states = [
-    { name: 'Illinois', short: 'IL' },
-    { name: 'Wisconsin', short: 'WI' },
+    { name: "Illinois", short: "IL" },
+    { name: "Wisconsin", short: "WI" },
   ]
 
   const restaurants = {
     data: [
       {
-        name: 'Cheese Curd City',
-        slug: 'cheese-curd-city',
+        name: "Cheese Curd City",
+        slug: "cheese-curd-city",
         images: {
           thumbnail: CheeseThumbnail,
         },
         address: {
-          street: '2451 W Washburne Ave',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53295',
+          street: "2451 W Washburne Ave",
+          city: "Green Bay",
+          state: "WI",
+          zip: "53295",
         },
-        _id: 'Ar0qBJHxM3ecOhcr',
+        _id: "Ar0qBJHxM3ecOhcr",
       },
       {
-        name: 'Poutine Palace',
-        slug: 'poutine-palace',
+        name: "Poutine Palace",
+        slug: "poutine-palace",
         images: {
           thumbnail: PoutineThumbnail,
         },
         address: {
-          street: '230 W Kinzie Street',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53205',
+          street: "230 W Kinzie Street",
+          city: "Green Bay",
+          state: "WI",
+          zip: "53205",
         },
-        _id: '3ZOZyTY1LH26LnVw',
+        _id: "3ZOZyTY1LH26LnVw",
       },
-    ]
-  };
+    ],
+  }
 
   return (
     <>
@@ -57,9 +56,7 @@ const RestaurantList: React.FC = () => {
               </button>
             ))}
             <hr />
-            <p>
-              Current state: {"(none)"}
-            </p>
+            <p>Current state: {"(none)"}</p>
           </div>
         </form>
 

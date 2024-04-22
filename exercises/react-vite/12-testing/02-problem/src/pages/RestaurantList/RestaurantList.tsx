@@ -1,7 +1,11 @@
-import { useState } from 'react'
-import { useCities, useRestaurants, useStates } from '../../services/restaurant/hooks'
-import ListItem from './ListItem'
-import FormSelect from '../../components/FormSelect'
+import { useState } from "react"
+import {
+  useCities,
+  useRestaurants,
+  useStates,
+} from "../../services/restaurant/hooks"
+import ListItem from "./ListItem"
+import FormSelect from "../../components/FormSelect"
 
 const RestaurantList: React.FC = () => {
   const [state, setState] = useState("")
@@ -26,19 +30,13 @@ const RestaurantList: React.FC = () => {
         <h2 className="page-header">Restaurants</h2>
 
         <form className="form">
-          <FormSelect
-            label="State"
-            onChange={updateState}
-            value={state}
-          >
+          <FormSelect label="State" onChange={updateState} value={state}>
             <option key="choose_state" value="">
-              {
-                statesResponse.isPending
-                  ? "Loading states…"
-                  : statesResponse.error
-                    ? statesResponse.error.message
-                    : "Choose a state"
-              }
+              {statesResponse.isPending
+                ? "Loading states…"
+                : statesResponse.error
+                  ? statesResponse.error.message
+                  : "Choose a state"}
             </option>
             {statesResponse.data?.map(({ short, name }) => (
               <option key={short} value={short}>
@@ -47,27 +45,22 @@ const RestaurantList: React.FC = () => {
             ))}
           </FormSelect>
 
-          <FormSelect
-            label="City"
-            onChange={updateCity}
-            value={city}
-          >
+          <FormSelect label="City" onChange={updateCity} value={city}>
             <option key="choose_city" value="">
-              {
-                state
-                  ? citiesResponse.isPending
-                    ? "Loading cities…"
-                    : citiesResponse.error
-                      ? citiesResponse.error.message
-                      : "Choose a city"
-                  : "Choose a state before selecting a city"
-              }
+              {state
+                ? citiesResponse.isPending
+                  ? "Loading cities…"
+                  : citiesResponse.error
+                    ? citiesResponse.error.message
+                    : "Choose a city"
+                : "Choose a state before selecting a city"}
             </option>
-            {state && citiesResponse.data?.map(({ name }) => (
-              <option key={name} value={name}>
-                {name}
-              </option>
-            ))}
+            {state &&
+              citiesResponse.data?.map(({ name }) => (
+                <option key={name} value={name}>
+                  {name}
+                </option>
+              ))}
           </FormSelect>
         </form>
 
@@ -83,23 +76,23 @@ const RestaurantList: React.FC = () => {
           </p>
         )}
 
-        {city && restaurantsResponse.data && (
-          restaurantsResponse.data.length === 0 ? (
-            !restaurantsResponse.isPending && (
-              <p aria-live="polite">No restaurants found.</p>
-            )
-          ) : (
-            restaurantsResponse.data.map(({ _id, slug, name, address, images }) => (
-              <ListItem
-                key={_id}
-                address={address}
-                name={name}
-                slug={slug}
-                thumbnail={images.thumbnail}
-              />
-            ))
-          )
-        )}
+        {city &&
+          restaurantsResponse.data &&
+          (restaurantsResponse.data.length === 0
+            ? !restaurantsResponse.isPending && (
+                <p aria-live="polite">No restaurants found.</p>
+              )
+            : restaurantsResponse.data.map(
+                ({ _id, slug, name, address, images }) => (
+                  <ListItem
+                    key={_id}
+                    address={address}
+                    name={name}
+                    slug={slug}
+                    thumbnail={images.thumbnail}
+                  />
+                ),
+              ))}
       </div>
     </>
   )

@@ -1,16 +1,16 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Home from './pages/Home'
-import RestaurantDetails from './pages/RestaurantDetails'
-import RestaurantList from './pages/RestaurantList'
-import App from './App.tsx'
-import './index.css'
+import React from "react"
+import ReactDOM from "react-dom/client"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import Home from "./pages/Home"
+import RestaurantDetails from "./pages/RestaurantDetails"
+import RestaurantList from "./pages/RestaurantList"
+import App from "./App.tsx"
+import "./index.css"
 
 const router = createBrowserRouter(
   [
     {
-      path: '/',
+      path: "/",
       element: <App />,
       children: [
         {
@@ -18,18 +18,18 @@ const router = createBrowserRouter(
           element: <Home />,
         },
         {
-          path: '/restaurants',
+          path: "/restaurants",
           children: [
             {
-              path: '',
+              path: "",
               element: <RestaurantList />,
             },
             {
-              path: ':slug',
+              path: ":slug",
               element: <RestaurantDetails />,
             },
           ],
-        }
+        },
       ],
     },
   ],
@@ -38,7 +38,7 @@ const router = createBrowserRouter(
   },
 )
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <RouterProvider router={router} />
   </React.StrictMode>,

@@ -1,20 +1,20 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import ProductPage from './pages/Product'
-import Features from './pages/Product/components/Features'
-import Support from './pages/Product/components/Support'
-import WhereToBuy from './pages/Product/components/WhereToBuy'
-import App from './App.tsx'
+import React from "react"
+import ReactDOM from "react-dom/client"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import ProductPage from "./pages/Product"
+import Features from "./pages/Product/components/Features"
+import Support from "./pages/Product/components/Support"
+import WhereToBuy from "./pages/Product/components/WhereToBuy"
+import App from "./App.tsx"
 
 const router = createBrowserRouter(
   [
     {
-      path: '/',
+      path: "/",
       element: <App />,
       children: [
         {
-          path: 'product',
+          path: "product",
           element: <ProductPage />,
           children: [
             {
@@ -29,7 +29,7 @@ const router = createBrowserRouter(
               index: "support",
               element: <Support />,
             },
-          ]
+          ],
         },
       ],
     },
@@ -39,7 +39,7 @@ const router = createBrowserRouter(
   },
 )
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <RouterProvider router={router} />
   </React.StrictMode>,
