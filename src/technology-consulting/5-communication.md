@@ -1,5 +1,6 @@
 @page learn-technology-consulting/communication Effective Communication
 @parent learn-technology-consulting 5
+@outline 2
 
 @description Best practices for communicating with clients.
 
@@ -9,12 +10,11 @@
 
 The following best practices might seem basic, but surprisingly few people follow through with them. Simply performing “the basics” will make you stand out, ensure clarity, and reduce risk of an expectation gap growing over time.
 
-### _Remote Work_
+### Remote Work
 
 Remote work adds additional challenges to an already difficult job. As a consultant you want to optimize for value - since your customer can’t observe your work, you have to communicate it.
 
-<details>
-<summary>Always be moving</summary>
+#### Always be moving
 
 _Not a single day should go by without some sort of observable progress._ Have an update prepared for standup for **every** task you’re working on.
 
@@ -24,8 +24,7 @@ For example, when you start the work you change the status of the ticket and the
 
 </details>
 
-<details>
-<summary>Tell before being asked</summary>
+#### Tell before being asked
 
 If your customer has to ask you what that status of a ticket is, outside of a standup, you need to communicate more. Your customer is your customer, not your manager. You gain and keep confidence by lining up your progress with their expected progress.
 
@@ -33,8 +32,7 @@ Never feel like you are bothering your client by sending them a gif or short mov
 
 </details>
 
-<details>
-<summary>State expectations explicitly</summary>
+#### State expectations explicitly
 
 Communication is hard, and that is why it is one of the longest sections of this training. It is even harder to coordinate while not in the same room. When communicating with your customer restate goals, actions, and tasks explicitly. This should be done with words for immediate confirmation and clarification and in writing for documentation purposes.
 
@@ -42,81 +40,73 @@ If you are off in your understanding or re-iteration the other person may be ann
 
 </details>
 
-### _Standups_
+### Standups
 
 The idea of a stand-up meeting is to ensure a brief discussion of important issues, current challenges and their solutions. Once the core issues are discussed, the team can quickly disperse to carry out that day’s initiatives. It’s important to do your part to make standups effective but efficient.
 
-<details>
-<summary>Prepare in advance</summary>
+#### Prepare in advance
 
 Take 10 minutes before the meeting to think about what you’re going to say. You will not waste precious minutes of your team’s time thinking of your update off the cuff, and doing so will make you sound prepared and keep your update concise.
 
 </details>
 
-<details>
-<summary>Write it out/document</summary>
+#### Write it out/document
 
 Standups can be done in writing! This can be more efficient for a fully remote team, especially with major time zone differences. If you or your client prefers in person meetings, ask the team to submit their updates in advance ([there are tools for this](https://slack.com/slack-tips/run-daily-standups-or-check-ins)), or have someone document the updates in a shared wiki.
 
 </details>
 
-<details>
-<summary>Frequency</summary>
+#### Frequency
 
 Consider the frequency in which you meet. The frequency should be based on the team size and usefulness of the information. Don’t meet daily if you’re giving the same updates every day. The best way to figure this out is to find out what information people need, and when, and plan the cadence around that. You can always adjust later!
 
 </details>
 
-<details>
-<summary>Find out what information needs to be conveyed and to whom</summary>
+#### Find out what information needs to be conveyed and to whom
 
 Know your audience! Think about what the audience needs to know vs what you want to share. Save challenges or stories for another venue.
 
 </details>
 
-### _Successful meetings_
+### Successful meetings
 
-<details>
-<summary>Set an agenda</summary>
+#### Set an agenda
 
 Come into a meeting with an agenda. State the agenda at the start so everyone is aware of what you’d like to accomplish. This might include topics of discussion or key questions you’d like to answer.
 
 </details>
 
-<details>
-<summary>Take notes</summary>
+#### Take notes
 
 Simply take notes during calls and meetings. Summarize the “next actions” and make sure its clear who is assigned each action.
 
 </details>
 
-<details>
-<summary>Send recaps</summary>
+#### Send recaps
 
 Simply send a summary of your notes and next steps out to all stakeholders or attendees. If you’re meeting alone with a client, send it to them.
 
 </details>
 
-<details>
-<summary>Take ownership</summary>
+#### Take ownership
 
 When appropriate, make it clear that you will complete certain tasks by a certain date.
 
 </details>
 
-### _Ask questions_
+### Ask questions
 
 Don’t be embarrassed if you don’t understand something. Strive to never leave an interaction without fully understanding what was discussed or how something will work. If you’re unsure, ask to restate a summary of your understanding back and ask for confirmation.
 
 Ironically, you never actually sound “dumb” when you ask for clarification or say you don’t understand something, you come off as brave and intelligent.
 
-### _State expectations explicitly_
+### State expectations explicitly
 
 Often, a project or discussion will end without clear roles, responsibilities, or tasks. When that happens, it’s up to you to add structure to these fuzzy edges.
 
 Create a suggested plan and state which parts you will take ownership of. Or if more discussion or direction is needed, ask for that.
 
-### _Care - no, for real!_
+### Care — no, for real!
 
 As simple as it sounds, I’ve found that one of the key differences between great consultants and average ones is _caring_ - really caring about making the project successful through any means necessary.
 
@@ -141,7 +131,7 @@ The best business writing puts the onus on the writer instead of the reader. Thi
 
 More often than not, people do the opposite. They write quickly, lazily, and from their perspective - leaving the reader to piece together the puzzle before they can understand the context and content of their message. Most people will give up and opt out rather than jump through these hoops, so make it easy on them.
 
-### _Optimize for a short attention span_
+### Optimize for a short attention span
 
 Everyone has a short attention span, so get to the point.
 
@@ -149,13 +139,13 @@ The number one mistake we see in business writing (usually emails), is attemptin
 
 Ironically, your message has its best chance of actually working if you can boil it down to its essence and avoid writing long essays that no one will end up reading.
 
-### _Don’t bury the lede_
+### Don’t bury the lede
 
 Journalists usually write their articles (at least in newspapers) in order of priority. They assumed people would read the first paragraph, or maybe the first two or three paragraphs, far more often than the entire article. Therefore, they put the most important summary in the first paragraph, then the second most important point in the second paragraph, etc. This is called “not burying the lede.”
 
 The lede is the summary or the essence of your argument. If you “bury” it under mountains of text, it’s unlikely many people will be able to dig it out.
 
-### _Use whitespace_
+### Use whitespace
 
 Whitespace is pleasing to the eye and encourages further reading. By contrast, long blocks of text are intimidating and leads to abandonment - whether an article, email, marketing copy, or any form of writing. I’m sure there’s a UX study somewhere to prove this, but until we find it, just take my word for it.
 
@@ -172,7 +162,7 @@ And short paragraphs. With short sentences.
 
 Use **bold** and <span style="background-color: yellow">highlights</span> to emphasize the most important parts of your message.
 
-### _Summaries and calls to action_
+### Summaries and calls to action
 
 In many cases the details are important and can’t be condensed to the brevity you might strive for. In these cases, consider 3 sections to your email:
 
@@ -182,7 +172,7 @@ In many cases the details are important and can’t be condensed to the brevity 
 
 ## Exercises
 
-### _Meetings_
+### Meetings
 
 You recently attended a meeting where you were asked to discuss a new feature on your project. You started on the work, but today at standup you learned another developer is working on the same feature. Furthermore, your project manager is asking you to attend another meeting today to discuss a different new feature.
 
@@ -206,7 +196,7 @@ Send out an an agenda in advance of the meeting. Also, explain what happened wit
 
 </details>
 
-### _Email 1_
+### Email 1
 
 Consider the following email:
 
@@ -242,7 +232,7 @@ Answer
 
 </details>
 
-### _Email 2_
+### Email 2
 
 Improve the following email:
 
@@ -268,7 +258,7 @@ Answer
 
 </details>
 
-### _Organizing_
+### Organizing
 
 Consider the following thoughts. Find a way to organize this into relevant categories, and highlight the most important parts.
 
