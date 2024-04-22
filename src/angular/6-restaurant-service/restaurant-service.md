@@ -1,4 +1,4 @@
-@page learn-angular/restaurant-service Writing a Restaurant Service
+@page learn-angular/restaurant-service Fetching Data with Services
 @parent learn-angular 6
 
 @description Learn how to write an Angular service that gets data from the server.
@@ -9,7 +9,7 @@
 
 In this part, we will:
 
-- Install the place-my-order API
+- Install the `place-my-order` API
 - Update `npm start` script
 - Create an environment variable for API URL
 - Generate a new service via the CLI
@@ -20,9 +20,9 @@ In this part, we will:
 
 We want to create an Angular service with a method that will get a list of restaurants from our Place My Order API.
 
-## P1: What You Need to Know
+## P1: What you need to know
 
-To complete this problem, you'll need to know:
+To complete this problem, you’ll need to know:
 
 - The basics of Angular Services.
 - How to generate a service.
@@ -31,9 +31,9 @@ To complete this problem, you'll need to know:
 
 ## Angular Service Basics
 
-Angular <a href="https://angular.io/guide/architecture-services" >Services</a> are pieces of functionality that may not need to be tied to a view like components. A common example of a service is making an HTTP request to get data. Many components may require functionality to fetch data, and a Service can help abstract that logic into one place to be used across components.
+Angular <a href="https://angular.io/guide/architecture-services">Services</a> are pieces of functionality that may not need to be tied to a view like components. A common example of a service is making an HTTP request to get data. Many components may require functionality to fetch data, and a Service can help abstract that logic into one place to be used across components.
 
-The following example shows a `UsersService` with methods on it that return a list of users and get a user by ID, and shows how the UsersService is injected into the `AppComponent` and calls the `getUsers` to get the list of users to display in the template.
+The following example shows a `UsersService` with methods on it that return a list of users and get a user by ID, and shows how the `UsersService` is injected into the `AppComponent` and calls the `getUsers` to get the list of users to display in the template.
 
 @sourceref ./service.html
 @codepen
@@ -50,17 +50,17 @@ ng g service users
 This will create a `src/app/users.service.ts` file and associated `spec`
 test file.
 
-> HINT: You can generate a service in a folder `ng g service folder/users`
+> Hint: You can generate a service in a folder `ng g service folder/users`
 
 ## Injectable
 
-<a href="https://angular.io/api/core/Injectable" >`Injectable`</a> is an Angular decorator that makes the class it's decorating available to Angular's <a href="https://angular.io/api/core/Injector" >Injector</a> for creation. In the case of creating service to get data to use in our application, we want those services to be able to be injected into the app components we need the services in.
+<a href="https://angular.io/api/core/Injectable">`Injectable`</a> is an Angular decorator that makes the class it’s decorating available to Angular’s <a href="https://angular.io/api/core/Injector">Injector</a> for creation. In the case of creating service to get data to use in our application, we want those services to be able to be injected into the app components we need the services in.
 
-Angular uses the injector to create dependencies using providers - which know how to create said dependencies. We can then inject our service into our components constructor to take advantage of Angular's dependency injection pattern.
+Angular uses the injector to create dependencies using providers - which know how to create said dependencies. We can then inject our service into our components constructor to take advantage of Angular’s dependency injection pattern.
 
 ## Importing `HttpClientModule` into _app.module.ts_
 
-For making HTTP requests to interact with an API, Angular provides <a href="https://angular.io/api/common/http/HttpClientModule" >HttpClient Module</a>. To use it we'll need to import it in the root module of our app and include it the imports array.
+For making HTTP requests to interact with an API, Angular provides <a href="https://angular.io/api/common/http/HttpClientModule">HttpClient Module</a>. To use it we’ll need to import it in the root module of our app and include it the imports array.
 
 **src/app/app.module.ts**
 
@@ -69,18 +69,18 @@ For making HTTP requests to interact with an API, Angular provides <a href="http
 
 ## Using HttpClient to Make a Request
 
-<a href="https://angular.io/api/common/http/HttpClient" >HttpClient</a> is a class with methods for making HTTP requests. Methods will return <a href="https://angular.io/guide/observables" >RxJS Observables</a>.
+<a href="https://angular.io/api/common/http/HttpClient">HttpClient</a> is a class with methods for making HTTP requests. Methods will return <a href="https://angular.io/guide/observables">RxJS Observables</a>.
 
 @sourceref ./http.html
 @codepen
 @highlight 23,25-27,29-31, only
 
-This tutorial won't cover RxJS in depth, but it's worth being aware of Angular's
-heavy use of it. Checkout our [learn-rxjs] tutorial for more information.
+This tutorial won’t cover RxJS in depth, but it’s worth being aware of Angular’s
+heavy use of it. Check out our [learn-rxjs] tutorial for more information.
 
-## P1: Technical Requirements
+## P1: Technical requirements
 
-Write a `RestaurantService` with a method `getRestaurants` that uses `httpClient` to get a list of restaurants from an environment variable\ + `/restaurants`. For example, we could get restaurants like:
+Write a `RestaurantService` with a method `getRestaurants` that uses `httpClient` to get a list of restaurants from an environment variable + `/restaurants`. For example, we could get restaurants like:
 
 ```typescript
 const httpClient = new HttpClient();
@@ -108,28 +108,18 @@ Before we begin making services, we must:
 
 ### Installing the Place My Order API
 
-We've done some work to create a Place My Order API for use in this app by creating an NPM package that will generate fake restaurant data and serve it from port 7070.
+We’ve done some work to create a Place My Order API for use in this app by creating an npm package that will generate fake restaurant data and serve it from port 7070.
 
 ✏️ Run:
 
 ```bash
-npm install place-my-order-api --save
+npm install place-my-order-api@1
 ```
 
 ✏️ Next add an API script to your `package.json`
 
-```js
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "api": "place-my-order-api --port 7070"
-  },
-```
-
-@highlight 7
+@sourceref ../../../exercises/angular/6-restaurant-service/problem/package.json
+@highlight 7, only
 
 ✏️ In **new** terminal window, start the API server by running:
 
@@ -141,42 +131,36 @@ Double check the api by navigating to <a href="http://localhost:7070/restaurants
 
 ### Create an Environment Variable
 
-The way we're accessing our locally run API during development may be different than how we access it in production. To prepare for this, we'll set an environment variable to do what we need. Angular already generated an `environments` folder for us with two files:
+The way we’re accessing our locally run API during development may be different than how we access it in production. To prepare for this, we’ll set an environment variable to do what we need.
 
-`src/environments/environment.ts`
+✏️ To generate the environment files, run:
 
-```typescript
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
-
-export const environment = {
-  production: false
-};
-
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
-
+```bash
+ng generate environments
 ```
 
-`src/environments/environment.prod.ts`
+> Before v15, Angular used to generate the environment files with `ng new` command.
+
+The command will generate two files, `src/environments/environment.ts` and `src/environments/environment.development.ts`, with the following content:
 
 ```typescript
-export const environment = {
-  production: true
-};
-
+export const environment = {};
 ```
 
-When developing locally Angular will use the `environment.ts` file, but when we create a production build the `environment.prod.ts` file will be used. We'll update the production file when we get ready to deploy, but for now, update the `environment.ts` file to include an `apiUrl` key with the value of where our API is being served from: `http://localhost:7070`.
+When developing locally Angular will use the `environment.development.ts` file, but when we create a production build the `environment.ts` file will be used. Update `environment.ts` and `environment.development.ts` files to include a `production` key and an `apiUrl` key with the value of where our API is being served from: `http://localhost:7070`.
 
 ✏️ Update `src/environments/environment.ts`:
+
+```typescript
+export const environment = {
+  production: true,
+  apiUrl: 'http://localhost:7070',
+};
+```
+
+@highlight 2, 3
+
+✏️ Update `src/environments/environment.development.ts`:
 
 ```typescript
 export const environment = {
@@ -185,7 +169,7 @@ export const environment = {
 };
 ```
 
-@highlight 3
+@highlight 2, 3
 
 Now generate the restaurant service:
 
@@ -195,11 +179,26 @@ Now generate the restaurant service:
 ng g service restaurant/restaurant
 ```
 
-## P1: How to Verify Your Solution is Correct
+✏️ Update `src/app/restaurant/restaurant.service.ts`:
+
+@sourceref ../../../exercises/angular/6-restaurant-service/problem/src/app/restaurant/restaurant.service.ts
+@highlight 1, 3-4, only
+
+### Having issues with your local setup?
+
+You can get through most of this tutorial by using an online code editor. You won’t be able to run our tests to verify your solution, but you will be able to make changes to your app and see them live.
+
+You can use one of these two online editors:
+
+- [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/angular/6-restaurant-service/problem?file=src/app/image-url.pipe.ts)
+
+- [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/angular/6-restaurant-service/problem?file=src/app/image-url.pipe.ts)
+
+## P1: How to verify your solution is correct
 
 ✏️ Update the spec file **src/app/restaurant/restaurant.service.spec.ts** to be:
 
-@sourceref ./restaurant.service.spec.ts
+@diff ../../../exercises/angular/3a-pipes/problem/src/app/restaurant/restaurant.component.spec.ts ../../../exercises/angular/6-restaurant-service/problem/src/app/restaurant/restaurant.component.spec.ts only
 
 ✏️ Quit the previous tests running and restart them:
 
@@ -207,36 +206,34 @@ ng g service restaurant/restaurant
 npm run test
 ```
 
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
-
 ## P1: Solution
+
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 <details>
 <summary>Click to see the solution</summary>
 ✏️ Update **src/app/app.module.ts** to inject the `HttpClientModule`:
 
-@sourceref ./app.module.ts
-@highlight 1,21, only
+@diff ../../../exercises/angular/6-restaurant-service/problem/src/app/app.module.ts ./app.module.ts only
 
 ✏️ Update **src/app/restaurant/restaurant.service.ts** to make a request to the API server `/restaurants`:
 
-@sourceref ./restaurant.service-1.ts
-@highlight 1,3,4,10,12-14
+@diff ../../../exercises/angular/6-restaurant-service/problem/src/app/restaurant/restaurant.service.ts ./restaurant.service-1.ts only
 
 </details>
 
 ## Problem 2: Write an Interface to Describe the Restaurant Object and Data Response
 
-Currently, from TypeScript's perspective, `getRestaurants()` can return anything. This
+Currently, from TypeScript’s perspective, `getRestaurants()` can return anything. This
 means if we use the data from `getRestaurants()`, TypeScript will not be able to notice
 any mistakes. This undermines the whole point of TypeScript!
 
-## P2: What You Need to Know
+## P2: What you need to know
 
-To solve this problem, you'll need to:
+To solve this problem, you’ll need to:
 
 - Understand interfaces in TypeScript
-- How to generate an interface with Angular's CLI.
+- How to generate an interface with Angular’s CLI.
 
 ## Interfaces in TypeScript
 
@@ -265,12 +262,10 @@ ng g interface user
 This will generate:
 
 ```typescript
-export interface User {
-}
-
+export interface User {}
 ```
 
-## P2: Technical Requirements
+## P2: Technical requirements
 
 Write interfaces to tell TypeScript what we expect restaurant and other related objects to look like and use them in our restaurant service. A `Restaurant` interface should represent an object like this:
 
@@ -307,11 +302,11 @@ let restaurant = {
 };
 ```
 
-This interface should be written in the **src/app/restaurant/restaurant.service.ts** file.
+This interface should be written in the **src/app/restaurant/restaurant.ts** file.
 
 ## P2: Setup
 
-We've already written a `ResponseData` interface that will take an array of restaurants for you. Here's the code to get you started:
+We’ve already written a `ResponseData` interface that will take an array of restaurants for you. Here’s the code to get you started:
 
 ✏️ Generate the restaurant interface:
 
@@ -322,7 +317,7 @@ ng g interface restaurant/restaurant
 ✏️ Update **src/app/restaurant/restaurant.ts** with some starter code that includes
 some scaffolding for some of the sub-interfaces within the `Restaurant` interfaces:
 
-@sourceref ./restaurant-starter.ts
+@sourceref ../../../exercises/angular/6-restaurant-service/problem/src/app/restaurant/restaurant.ts
 @highlight 1-16,18
 
 ✏️ Update **src/app/restaurant/restaurant.service.ts** to import the `Restaurant` interface, use
@@ -330,13 +325,13 @@ it within the `ResponseData` interface which is used by `httpClient.get`:
 
 @diff ./restaurant.service-1.ts ./restaurant.service.ts
 
-## P2: How to Verify Your Solution is Correct
+## P2: How to verify your solution is correct
 
 ✏️ Update the spec file **src/app/restaurant/restaurant.service.spec.ts** to be:
 
-@diff ./restaurant.service.spec.ts ./restaurant.service-with-interface.spec.ts only
+@diff ../../../exercises/angular/6-restaurant-service/problem/src/app/restaurant/restaurant.component.spec.ts ./restaurant.service-with-interface.spec.ts only
 
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass! If you haven't written the interfaces correctly, you'll see a compile error before the tests runs. You might need to restart the test script to see the compile error.
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass! If you haven’t written the interfaces correctly, you’ll see a compile error before the tests runs. You might need to restart the test script to see the compile error.
 
 ## P2: Solution
 
@@ -344,8 +339,8 @@ it within the `ResponseData` interface which is used by `httpClient.get`:
 <summary>Click to see the solution</summary>
 ✏️ Update **src/app/restaurant/restaurant.ts** to:
 
-@diff ./restaurant-starter.ts ./restaurant.ts
+@diff ../../../exercises/angular/6-restaurant-service/problem/src/app/restaurant/restaurant.ts ./restaurant.ts
 
-In the next step we'll call the `getRestaurants` method in our component to get the list of restaurants.
+In the next step we’ll call the `getRestaurants` method in our component to get the list of restaurants.
 
 </details>

@@ -25,7 +25,7 @@
 
 ## Problem 1: Create `login$` Effect to Handle API Requests
 
-1. `LoginEffects` should create a login API request using `ngx-learn-ngrx`'s `LoginService.login()` method whenever the `LoginActions.login` Action is dispatched using an Effect called `login$`.
+1. `LoginEffects` should create a login API request using `ngx-learn-ngrx`’s `LoginService.login()` method whenever the `LoginActions.login` Action is dispatched using an Effect called `login$`.
 
 2. If the API request is successful, a `LoginActions.loginSuccess` Action should be dispatched using the API response.
 
@@ -33,12 +33,10 @@
 
 <details open>
 <summary>src/app/store/login/login.effects.ts</summary>
-
 @diff ../4-create-actions/login.effects.ts ./login.effects-error-message-helper.ts only
-
 </details>
 
-## P1: What You Need to Know
+## P1: What you need to know
 
 [NgRx Effects](https://ngrx.io/guide/effects) are a side-effect model that utilizes RxJS to react to Actions being dispatched to manage side-effects such as network requests, web socket messages and time-based events. One thing that Effects are not responsible for is updating state; this is a responsiblity for Reducers ([learn-ngrx/create-reducer]).
 
@@ -62,7 +60,7 @@ NgRx provides a couple of helpful functions and the `Actions` class to create Ef
 One way to subscribe to an "inner" `Observable` within an existing "outer" `Observable` stream is to use 
 "flattening" operators such as [`mergeMap`](https://rxjs.dev/api/operators/mergeMap), [`switchMap`](https://rxjs.dev/api/operators/switchMap), or [`exhaustMap`](https://rxjs.dev/api/operators/exhaustMap). These "flattening" operators can also allow us to use `Promises` within our `Observable` stream as well.
 
-Although we could use any of these "flattening" operators as a working solution, we will be using `exhaustMap`. Each of the "flattening" operators have a slightly different behavior when handling __multiple__ "inner" `Subscriptions`. For `exhaustMap`, each new "inner" `Subscription` is ignored if there is an existing "inner" `Subscription` that hasn't completed yet:
+Although we could use any of these "flattening" operators as a working solution, we will be using `exhaustMap`. Each of the "flattening" operators have a slightly different behavior when handling __multiple__ "inner" `Subscriptions`. For `exhaustMap`, each new "inner" `Subscription` is ignored if there is an existing "inner" `Subscription` that hasn’t completed yet:
 
 @sourceref ./exhaust-map-example.html
 @codepen
@@ -94,7 +92,7 @@ We can also perform error handling and dispatch a new Action when an error occur
 @sourceref ./contact.effects.ts
 @highlight 18-25, 35, only
 
-And last, you will need to use `ngx-learn-ngrx`'s `LoginService` to perform authentication for course:
+And last, you will need to use `ngx-learn-ngrx`’s `LoginService` to perform authentication for course:
 
 @diff ./login.effects-error-message-helper.ts ./login.effects-login-service.ts only
 
@@ -110,22 +108,20 @@ The `login()` method will throw an error if any of these cases are not met:
 
 3. `username` must be alphanumeric including hyphens or underscores.
 
-When one of these requirements aren't met, an error is thrown and an error is logged in the console in red text.
+When one of these requirements aren’t met, an error is thrown and an error is logged in the console in red text.
 
 
 ## P1: Solution
 
 <details>
 <summary>src/app/store/login/login.effects.ts</summary>
-
 @diff ./login.effects-error-message-helper.ts ./login.effects-login-effect.ts only
-
 </details>
 
 
 ## Problem 2: Create `logout$` Effect to Handle API Requests
 
-1. `LoginEffects` should create a logout API request  using `ngx-learn-ngrx`'s `LoginService.logout()` method whenever the `LoginActions.logout` Action is dispatched using an Effect called `logout$`.
+1. `LoginEffects` should create a logout API request  using `ngx-learn-ngrx`’s `LoginService.logout()` method whenever the `LoginActions.logout` Action is dispatched using an Effect called `logout$`.
 
 2. If the API request is successful, a `LoginActions.logoutSuccess` Action should be dispatched using the API response. 
 
@@ -136,9 +132,7 @@ When one of these requirements aren't met, an error is thrown and an error is lo
 
 <details>
 <summary>src/app/store/login/login.effects.ts</summary>
-
 @diff ./login.effects-login-effect.ts ./login.effects.ts only
-
 </details>
 
 

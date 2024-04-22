@@ -55,7 +55,7 @@ Your client informs you that your team will be working on a new feature for your
 Answer
 </summary>
 
-Let them know that plan is likely untenable, and that you'd like to evaluate the scope before committing to that deadline (otherwise there's risk in not meeting it). Work with them to find a scope that keeps them within their time and staffing constraints. If they are not flexible, explain the scope-resources-deadline trifecta and the risks. Ask them to consider additional resources, or a more flexible deadline.
+Let them know that plan is likely untenable, and that you’d like to evaluate the scope before committing to that deadline (otherwise there’s risk in not meeting it). Work with them to find a scope that keeps them within their time and staffing constraints. If they are not flexible, explain the scope-resources-deadline trifecta and the risks. Ask them to consider additional resources, or a more flexible deadline.
 
 Principals used:
 
@@ -85,7 +85,7 @@ Principals used:
 
 ## Exercise: The Difficult Developer
 
-There is one particularly grumpy client developer that joins your team in the middle of the project. Every idea you propose they argue against. They tend to nitpick all your pull requests with [bikeshed-type](https://en.wikipedia.org/wiki/Law_of_triviality) comments. Recently, they proposed that we rewrite our project in Angular because it's easier to onboard new developers to a popular framework.
+There is one particularly grumpy client developer that joins your team in the middle of the project. Every idea you propose they argue against. They tend to nitpick all your pull requests with [bikeshed-type](https://en.wikipedia.org/wiki/Law_of_triviality) comments. Recently, they proposed that we rewrite our project in Angular because it’s easier to onboard new developers to a popular framework.
 
 **What do you do?**
 

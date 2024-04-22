@@ -7,6 +7,6 @@ covering CanJS core libraries.
 
 @body
 
-## Next Steps
+## Next steps
 
 ✏️ Head over to the [first lesson](learn-canjs/setup-canjs.html) and get your environment setup.

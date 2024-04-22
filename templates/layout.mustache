@@ -6,7 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="{{description}}">
-
+  {{#if metaogimage}}
+  <meta property="og:image" content="{{metaogimage}}">
+  <meta name="twitter:image" content="{{metaogimage}}">
+  {{/if}}
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -80,16 +83,17 @@
     </script>
 
   </div>
-  <div id="email-modal" style="display: none;">
+  <div id="email-modal" role="dialog" aria-modal="true" aria-labelledby="dialog_label" style="display: none;">
     <div aria-hidden="true" class="email-modal-backdrop"></div>
     <div role="region" class="email-modal-content">
-      <h2>Join the Bitovi Newsletter</h2>
+      <h2 id="dialog_label">Join the Bitovi Newsletter</h2>
       <p>
-        To start the course, please provide an email.<br />
+        Do you want to receive updates about new Bitovi Academy courses, Bitovi open source projects, and dev community news? If so, please provide your email. We won’t spam you or give it away for any reason!<br />
         <i style="font-size: 0.8rem;">By providing your email you agree to receive communications from Bitovi</i>
       </p>
       <div id="academy-hubspot-form-embed"></div>
       <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+      <button id="email-modal-close" title="dismiss"><img src="{{pathToDest}}/static/img/close.svg" height="24" width="24"></button>
     </div>
   </div>
 </body>

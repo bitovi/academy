@@ -1,14 +1,14 @@
 @page learn-docker/writing-a-dockerfile Writing a Dockerfile
 @parent learn-docker 3
 
-@description Write a Dockerfile to containerize the NodeJS app.
+@description Write a Dockerfile to containerize the Node.js app.
 
 @body
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/LiAkpRc6z0Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Our Dockerfile
-Starting with the solution, the `Dockerfile` for our NodeJS app should look like this. 
+Starting with the solution, the `Dockerfile` for our Node.js app should look like this. 
 
 ✏️ Copy and paste this to the root of your project and name the file `Dockerfile`:
 ```dockerfile
@@ -26,7 +26,7 @@ EXPOSE $PORT
 CMD npm start
 ```
 
-Let's break down each line.
+Let’s break down each line.
 ## FROM instruction
 The `FROM` instruction is the first line of any Dockerfile. It sets the base image to be used as a starting point for all other instructions. Using base images allows deferring:
 
@@ -35,7 +35,7 @@ The `FROM` instruction is the first line of any Dockerfile. It sets the base ima
 
 to the provider of the base image.
 
-In our case, We are using `node:15`. `node` specifies the name of the base image and `15` is a tag specifying the version of the image. This base image has the latest version of NodeJS 15 pre-installed, allowing the rest of the `Dockerfile` to focus on logic specific to our application. The `node:15` image also has a `Dockerfile` which means it also has a `FROM` instruction. `node:15` uses [Debian](https://hub.docker.com/_/debian) as its base image. This layering of Docker images repeats until a Dockerfile uses `FROM scratch` as its base image.
+In our case, We are using `node:15`. `node` specifies the name of the base image and `15` is a tag specifying the version of the image. This base image has the latest version of Node.js 15 pre-installed, allowing the rest of the `Dockerfile` to focus on logic specific to our application. The `node:15` image also has a `Dockerfile` which means it also has a `FROM` instruction. `node:15` uses [Debian](https://hub.docker.com/_/debian) as its base image. This layering of Docker images repeats until a Dockerfile uses `FROM scratch` as its base image.
 
 By default, Docker will look for images  on [Dockerhub](https://hub.docker.com/). For example, the `node` image we are using is pulled from [here](https://hub.docker.com/_/node), but you can create your own base images and share them publicly or privately to Dockerhub or other package registries.
 
@@ -160,5 +160,5 @@ In our case, we are running our express server with `CMD npm start`. This will c
 
 More information about [CMD](https://docs.docker.com/engine/reference/builder/#cmd)
 
-## What's next
-That was a lot on Dockerfiles. Next we'll be looking at actually building and running our image!
+## What’s next
+That was a lot on Dockerfiles. Next we’ll be looking at actually building and running our image!

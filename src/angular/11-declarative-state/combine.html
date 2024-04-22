@@ -7,17 +7,17 @@
   const selectedHatStream$ = zip(
     of('Bowler', 'Top', 'Baseball'),
     interval(750)
-  ).pipe(map(([val, num]) => val));
+  ).pipe(map(([value, num]) => value));
 
   // emits the values every 2000ms in order
   const selectedJacketStream$ = zip(
     of('Trenchcoat', 'Tuxedo', 'Bomber'),
     interval(2000)
-  ).pipe(map(([val, num]) => val));
+  ).pipe(map(([value, num]) => value));
 
   combineLatest(selectedHatStream$, selectedJacketStream$).subscribe(
     ([hat, jacket]) => {
-      console.log(`selected outfit: ${hat} hat & ${jacket} jacket`);
+      console.info(`selected outfit: ${hat} hat & ${jacket} jacket`);
     }
   );
 

@@ -40,6 +40,6 @@ jobs:
       - name: Deploy
         if: ${{ github.ref == 'refs/heads/main' }}
         env:
-          HUBSPOT_API_KEY: ${{ secrets.HUBSPOT_API_KEY }}
+          HUBSPOT_TOKEN: ${{ secrets.HUBSPOT_TOKEN }}
           HUBSPOT_CAMPAIGN_ID: ${{ secrets.HUBSPOT_CAMPAIGN_ID }}
         run: npm run deploy

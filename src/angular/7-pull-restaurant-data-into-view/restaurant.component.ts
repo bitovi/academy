@@ -10,7 +10,7 @@ export interface Data {
 @Component({
   selector: 'pmo-restaurant',
   templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less'],
+  styleUrl: './restaurant.component.css',
 })
 export class RestaurantComponent implements OnInit {
   restaurants: Data = {

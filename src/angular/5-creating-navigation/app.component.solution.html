@@ -1,0 +1,17 @@
+<header>
+  <nav>
+    <h1>place-my-order.com</h1>
+    <ul>
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a routerLink="/">Home</a>
+      </li>
+      <li [ngClass]="{ active: rla.isActive }">
+        <a routerLink="/restaurants" routerLinkActive #rla="routerLinkActive">
+          Restaurants
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<router-outlet />

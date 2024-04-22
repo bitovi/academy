@@ -7,10 +7,10 @@
   const menuItems$ = zip(
     of('Steamed Mussels', 'Truffle Noodles', 'Charred Octopus', 'Onion fries'),
     interval(2000)
-  ).pipe(map(([val, num]) => val));
+  ).pipe(map(([value, num]) => value));
 
   menuItems$.pipe(pairwise()).subscribe(([previous, current]) => {
-    console.log('Previous: ' + previous, 'Current: ' + current);
+    console.info('Previous: ' + previous, 'Current: ' + current);
   });
 
   // logs:

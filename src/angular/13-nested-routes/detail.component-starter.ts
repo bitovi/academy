@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'pmo-detail',
   templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.less']
+  styleUrl: './detail.component.css'
 })
-export class DetailComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+export class DetailComponent {
 
 }

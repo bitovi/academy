@@ -17,7 +17,7 @@ In this part, we will:
 
 ## Add Production API URL
 
-For our production app, we won't be running a local server, instead we'll point to `https://place-my-order-api.herokuapp.com`. All we need to do is add the apiUrl variable to our production environment file. When we do a production build by running `ng build --prod`, our production file will be used.
+For our production app, we won’t be running a local server, instead we’ll point to `https://www.place-my-order.com/api`. All we need to do is add the apiUrl variable to our production environment file. When we do a production build by running `ng build`, our production file will be used.
 
 ✏️ Update **src/environments/environment.prod.ts**:
 
@@ -52,7 +52,7 @@ firebase init
 ```
 
 1. Which Firebase CLI features do you want to setup for this folder? (hosting)
-2. Select a default Firebase project for this directory? (don't setup a default project)
+2. Select a default Firebase project for this directory? (don’t setup a default project)
 3. What do you want to use as your public directory? (dist/place-my-order)
 4. Configure as a single-page app (rewrite all urls to /index.html)? (yes)
 5. Set up automatic builds and deploys with GitHub? (no)
@@ -66,10 +66,10 @@ firebase use --add
 
 ## Deploy App
 
-We need to get our app ready to deploy, so we'll create a build with the production flag.
+We need to get our app ready to deploy, so we’ll create a build.
 
 ```shell
-ng build --prod
+ng build
 ```
 
 ```shell
@@ -77,7 +77,7 @@ firebase deploy
 firebase open hosting:site
 ```
 
-Now when we view our project url from the page Firebase launches we'll see our app!
+Now when we view our project url from the page Firebase launches we’ll see our app!
 
 ## Update npm scripts
 
@@ -85,10 +85,10 @@ Now when we view our project url from the page Firebase launches we'll see our a
  "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "api": "place-my-order-api --port 7070",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "api": "place-my-order-api --port 7070",
     "deploy": "ng build && firebase deploy"
   },
 ```

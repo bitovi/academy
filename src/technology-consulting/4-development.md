@@ -11,7 +11,7 @@
 After creating [learn-technology-consulting/goals goals], and [learn-technology-consulting/prioritization prioritizing] the
 features that add the most value to your users, you _might_ be ready to actually build something.
 
-The _goal_ of development is to support a **product's**
+The _goal_ of development is to support a **product’s**
 development. Limited to a technical perspective (given
 the right features), a
 good product is **error free** and **high-performance**.
@@ -182,7 +182,7 @@ application and team.
 <input type="radio"/> Yes
 <input type="radio"/> No
 
-**Do you work alongside the client's developers?**
+**Do you work alongside the client’s developers?**
 
 <input type="radio"/> Yes
 <input type="radio"/> No
@@ -200,7 +200,7 @@ application and team.
 
 <input type="radio"/> Every month
 
-<input type="radio"/> Of new people's code
+<input type="radio"/> Of new people’s code
 
 <input type="radio"/> Never
 

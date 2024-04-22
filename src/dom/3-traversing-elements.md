@@ -260,7 +260,7 @@ QUnit.test('$.fn.next', function(){
 ### What you need to know
 
 - [nextElementSibling](https://developer.mozilla.org/en-US/docs/Web/API/NonDocumentTypeChildNode/nextElementSibling)
-  returns the element immediately following the specified one in its parent's children list, or `null` if the specified element is the last one in the list.
+  returns the element immediately following the specified one in its parent’s children list, or `null` if the specified element is the last one in the list.
 
 ### The solution
 
@@ -308,7 +308,7 @@ QUnit.test('$.fn.prev', function(){
 ### What you need to know
 
 - [previousElementSibling](https://developer.mozilla.org/en-US/docs/Web/API/NonDocumentTypeChildNode/previousElementSibling)
-  returns the Element immediately prior to the specified one in its parent's children list, or `null` if the specified element is the first one in the list.
+  returns the Element immediately prior to the specified one in its parent’s children list, or `null` if the specified element is the first one in the list.
 
 ### The solution
 

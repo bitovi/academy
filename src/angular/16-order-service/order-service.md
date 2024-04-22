@@ -16,14 +16,14 @@ In this part, we will:
 
 ## Problem 1: Create Order Service and Export Items and Order interfaces
 
-We need to create a new service to handle creating and updating orders. We'll need three interfaces - one to describe the order form data, one to describe the order, and one to describe items in the order.
+We need to create a new service to handle creating and updating orders. We’ll need three interfaces - one to describe the order form data, one to describe the order, and one to describe items in the order.
 
-## P1: Technical Requirements
+## P1: Technical requirements
 
-Create a new service `order` in the order directory, and write and export `OrderForm`, `Order` and `Item` interfaces representing these objects in the new service:
+Create a new service `order` in the order directory, and write and export `CreateOrderDto`, `Order` and `Item` interfaces representing these objects in the new service:
 
 ```typescript
-const orderForm = {
+const createOrderDto = {
   restaurant: '12345',
   name: 'Jennifer',
   address: '123 Main st',
@@ -74,7 +74,7 @@ const order = {
 
 ## Problem 2: Finish the Order Service
 
-With our order service we'll want to be able to create new orders, updating existing orders, delete orders, and view all orders.
+With our order service we’ll want to be able to create new orders, updating existing orders, delete orders, and view all orders.
 
 ## P2: Setup
 
@@ -92,11 +92,11 @@ get the tests to pass.
 ng test
 ```
 
-## P2: What You Need to Know
+## P2: What you need to know
 
-- The method signatures for the methods you'll be adding to `OrderService`:
+- The method signatures for the methods you’ll be adding to `OrderService`:
   - `getOrders(): Observable<{data: Order[]}>` should make a `GET` request
-  - `createOrder(orderForm: OrderForm): Observable<Order>` should make a `POST` request
+  - `createOrder(orderForm: CreateOrderDto): Observable<Order>` should make a `POST` request
   - `updateOrder(order: Order, status: string): Observable<Order>` should make a `PUT` request to `/orders/<order-id>`
   - `deleteOrder(orderId: string): Observable<Order>` should make a `DELETE` request to `/orders/<order-id>`
 - You will need to make sure `HttpClient` is imported and
@@ -114,7 +114,7 @@ ng test
 
 ## Problem 3: Use the OrderService in the OrderComponent to Create an Order
 
-## P3: Technical Requirements
+## P3: Technical requirements
 
 For this problem, we will:
 
@@ -126,12 +126,14 @@ For this problem, we will:
 How we will solve this:
 
 1. We will import the order service, and save it as `orderService` in the
-   `OrderComponent`'s `constructor`.
-2. Call `orderService`'s `createOrder` with the `orderForm`'s values.
+   `OrderComponent`’s `constructor`.
+2. Call `orderService`’s `createOrder` with the `orderForm`’s values.
 3. While the order is being created `orderProcessing` should be `true`.
 4. Once complete, `orderComplete` should be set to `true`
    and set back to `false` when `startNewOrder()` is called.
 5. We will save the completed order in `completedOrder`.
+
+> A FormGroup’s `value` property is wrapped in `Partial` type because controls are removed from the form’s value when disabled. For our case, we don’t need to disable controls. We can use a FormGroup’s `getRawValue()` method to access its value with the full type.
 
 ## P3: Setup
 
@@ -146,17 +148,17 @@ a `startNewOrder` that will start a new order.
 
 @diff ../14-building-order-form/child-component/order-2.component.ts ./order.component.ts only
 
-## P3: How to Verify Your Solution is Correct
+## P3: How to verify your solution is correct
 
-If you've implemented everything correctly, you should now be able to create an order from the UI and see a record of your completed order once it's created.
+If you’ve implemented everything correctly, you should now be able to create an order from the UI and see a record of your completed order once it’s created.
 
 ✏️ Update the menu-items spec file **src/app/order/order.component.spec.ts** to be:
 
 @diff ../14-building-order-form/order.component.spec-final.ts ./order.component.spec.ts only
 
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
-## P3: What You Need to Know
+## P3: What you need to know
 
 - How to import a service
 - How to call a method on a service and get the result

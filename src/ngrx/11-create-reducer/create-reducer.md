@@ -24,13 +24,13 @@
 Update the Login State shape by adding `userId`, `username`, and `token` properties to its interface definition. Each property should have type `string | null`.
 
 
-## P1: What You Need to Know
+## P1: What you need to know
 
 Now that we have all of our Actions prepared to dispatch whenever we need, we will update the Login State. Typically a Reducer is updated with 3 steps:
 
 1. Define or update `Store` interface to have an [expected shape](https://ngrx.io/guide/store/reducers#defining-the-state-shape) after Reducer updates state.
 
-2. Set or update value to [state's initial value](https://ngrx.io/guide/store/reducers#setting-the-initial-state) to satisfy new `Store` interface definition.
+2. Set or update value to [state’s initial value](https://ngrx.io/guide/store/reducers#setting-the-initial-state) to satisfy new `Store` interface definition.
 
 3. [Add or update handler(s)](https://ngrx.io/guide/store/reducers#creating-the-reducer-function) used to define Reducer function.
 
@@ -44,9 +44,7 @@ To prepare this, we need to update the Login Feature `State` interface found at 
 
 <details>
 <summary>src/app/store/login/login.reducer.ts</summary>
-
 @diff ../4-create-actions/login.reducer.ts ./login.reducer-define-state.ts only
-
 </details>
 
 
@@ -55,9 +53,9 @@ To prepare this, we need to update the Login Feature `State` interface found at 
 Set initial state for Login State. Each member of the Login State should start with `null` as its value.
 
 
-## P2: What You Need to Know
+## P2: What you need to know
 
-Now that we have updated the Login State's shape by updating the `State` interface, we need to update its initial shape. By default, we will set each member to `null`. Here is an example of doing that:
+Now that we have updated the Login State’s shape by updating the `State` interface, we need to update its initial shape. By default, we will set each member to `null`. Here is an example of doing that:
 
 @sourceref ./initial-value.ts
 @highlight 2, 3
@@ -67,9 +65,7 @@ Now that we have updated the Login State's shape by updating the `State` interfa
 
 <details>
 <summary>src/app/store/login/login.reducer.ts</summary>
-
 @diff ./login.reducer-define-state.ts ./login.reducer-initial-state.ts only
-
 </details>
 
 
@@ -78,7 +74,7 @@ Now that we have updated the Login State's shape by updating the `State` interfa
 Login Reducer should include an `on()` handler that updates Login State with `userId`, `username` and `token` whenever `LoginActions.loginSuccess` Action is dispatched.
 
 
-## P3: What You Need to Know
+## P3: What you need to know
 
 We can [create NgRx Reducers](https://ngrx.io/guide/store/reducers#creating-the-reducer-function) using the [`createReducer()`](https://ngrx.io/api/store/createReducer#description) helper function.
 
@@ -98,9 +94,7 @@ When writing an `on()` handler, there are 2 arguments that we need to provide:
 
 <details>
 <summary>src/app/store/login/login.reducer.ts</summary>
-
 @diff ./login.reducer-initial-state.ts ./login.reducer-on-login-success.ts only
-
 </details>
 
 
@@ -109,7 +103,7 @@ When writing an `on()` handler, there are 2 arguments that we need to provide:
 Login Reducer should include an `on()` handler that resets Login State back to `initialState` whenever `LoginActions.logoutSuccess` Action is dispatched.
 
 
-## P4: What You Need to Know
+## P4: What you need to know
 
 A common requirement is to reset state. One approach might look like this:
 
@@ -126,9 +120,7 @@ Both solutions are fine, but it is likely better to reuse `initialState` to futu
 
 <details>
 <summary>src/app/store/login/login.reducer.ts</summary>
-
 @diff ./login.reducer-on-login-success.ts ./login.reducer.ts only
-
 </details>
 
 

@@ -1,7 +1,7 @@
 @page learn-rxjs/expiry Expiry
 @parent learn-rxjs 6
 
-@description Apply what you've learned from previous sections to the `expiry` field.
+@description Apply what you’ve learned from previous sections to the `expiry` field.
 
 @body
 
@@ -50,7 +50,7 @@ Finally:
 You already know everything you need to know. Apply what you learned from
 `cardNumber$`, `cardError$` and `showCardError$` to `expiry$`, `expiryError$`, and `showExpiryError$`.
 
-## The Solution
+## The solution
 
 <details>
 <summary>Click to see the solution</summary>

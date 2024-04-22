@@ -6,25 +6,38 @@ Everything we know about frontend, backend, UX, and Devops consulting and manage
 
 The following sections detail how to make various improvements to the site. Make sure you have cloned this repo and run:
 
-```
+```sh
 npm install
 ```
 
+### Dev Server
+
+You can start a development server at `http://localhost:8080/academy/` by running:
+
+```sh
+npm run start
+```
+
+`start` runs **both** the dev server and watch mode (changes to the source code will cause a
+rebuild). However the browser will **not** reload when the source code changes.
+
 ### Watch mode
 
-When actively working on the content, the most useful option is the watch mode. Run:
+Watch mode will automatically trigger a rebuild when the source code changes. Run:
 
-```
+```sh
 npm run dev
 ```
 
-This will take a while the first time. The site will be created in the `academy` folder. Use `http-server` or something similar to view site with automatic refreshing on file-save. (In your browser you may need to open the academy folder if running from root.) If you don't use something like `http-server`, you will need to refresh after changes.
+This will take a while the first time. The site will be created in the `academy` folder.
+
+If the upcoming calendar events section returns "Sorry, events can’t load right now", it may be an issue with the ip address, so try http://localhost:5500/academy/
 
 ### Changing styles or images
 
 Change `academy/static/styles/styles.less` or add images to `academy/img`, then run:
 
-```
+```sh
 npm run rebuild-assets
 ```
 
@@ -34,7 +47,7 @@ This should take about 5 seconds.
 
 If you want to do a full production build from scratch, run:
 
-```
+```sh
 npm run build
 ```
 
@@ -46,14 +59,14 @@ Academy is automatically deployed when anything is merged into `main`.
 
 Academy can be deployed manually by running the following command:
 
-```
+```sh
 npm run deploy
 ```
 
-Doing so requires access to the Bitovi Hubspot API key and Campaign Id, which can be found in Bitovi's 1Password `Academy` vault. Add them to a new `.env` file in this repos root directory:
+Doing so requires access to the Bitovi Hubspot Access token and Campaign Id, which can be found in Bitovi’s 1Password `Academy` vault. Add them to a new `.env` file in this repos root directory:
 
-```
-HUBSPOT_API_KEY=<api key>
+```sh
+HUBSPOT_TOKEN=<access token>
 HUBSPOT_CAMPAIGN_ID=<campaign id>
 ```
 
@@ -69,7 +82,7 @@ Create your course in the `src` folder. For best results, follow the organizatio
 
 - The first page in your course should use the following template at the top of the file:
 
-```
+```md
 @page <subdirectory-url> <Page Title>
 @parent bit-academy 4
 
@@ -78,11 +91,19 @@ Create your course in the `src` folder. For best results, follow the organizatio
 @body
 ```
 
+Once you have a 1200x630 image, you can add a `@metaogimage` tag as follows
+
+```md
+@metaogimage ../static/img/program-management-with-jira/og-thumbnail.png
+```
+
+
+
 > In the first page, please include an overview of what the course will cover as well as a links for all subsequent pages in the course.
 
 Pages other than the first, introductory page should change the header to this format:
 
-```
+```md
 @page <subdirectory-url>/<specific-page-url> <Page Title>
 @parent <subdirectory-url> <page order number>
 
@@ -103,13 +124,13 @@ Pages other than the first, introductory page should change the header to this f
 - Highlight all changed lines whenever possible.
 - If possible, highlight and use `only` on all long codeblocks to display only relevant code sections.
 - Solution codeblocks should be inside collapsed summary elements and have all changed lines highlighted.
-- Code blocks benefit from introduction as demonstrated before every code block at Angular Course's [Filter Cities by State](https://www.bitovi.com/academy/learn-angular/form-value-changes.html)
+- Code blocks benefit from introduction as demonstrated before every code block at Angular Course’s [Filter Cities by State](https://www.bitovi.com/academy/learn-angular/form-value-changes.html)
 
 ---
 
 ## Formatting Tips
 
-- Empty lines matter after certain elements. If something isn't displaying properly it could be missing a blank like before or after it.
+- Empty lines matter after certain elements. If something isn’t displaying properly it could be missing a blank like before or after it.
 - More sample elements can be viewed in training/style-guide.md
 
 ### Collapsing Summary Elements
@@ -124,49 +145,49 @@ This is hidden until the summary is opened.
 </details>
 <!-- ``` -->
 
-> note: All solution codes should be hidden inside a collapsed element. 
+> note: All solution codes should be hidden inside a collapsed element.
 
 ### Code blocks
 
 #### Separating code from .md files
 
-Code blocks can be written directly in the markdown files or written in separate files. 
+Code blocks can be written directly in the markdown files or written in separate files.
 
 The use of separate files for code is entirely optional, but allows the use of `@sourceref` to easily reference it and `@diff` to automatically highlight changes between codeblocks.
 
 #### Highlighting & Minimizing
 
-* Including the `only` keyword will minimize non-highlighted code. Using it is always optional and can be left off.
+- Including the `only` keyword will minimize non-highlighted code. Using it is always optional and can be left off.
 
 #### Manual highlighting
 
-```js
+```md
 @sourceref <relative file path for code>
 @highlight <line numbers>, only
 ```
 
-* `@sourceref` line is interchangable with code blocks.
-* Sections of highlighted lines can be separated with commas. Ex: `@highlight 1-3, 7-24`
+- `@sourceref` line is interchangable with code blocks.
+- Sections of highlighted lines can be separated with commas. Ex: `@highlight 1-3, 7-24`
 
 #### Automatic Highlighting
 
 To automatically highlight differences between code blocks use the following instead of above:
 
-```
+```md
 @diff <initial version of file> <current, displayed file with changes> only
 ```
 
-* Use relative file paths like first example
-* Requires code be in separate files and the use of `@sourceref`
-* Especially useful for highlighting changes in solution codes
+- Use relative file paths like first example
+- Requires code be in separate files and the use of `@sourceref`
+- Especially useful for highlighting changes in solution codes
 
 ### Links
 
 Internal and external links can be created with Markdown syntax:
 
-```
+```md
 <!-- Internal link -->
-[Bitovi Academy's RxJS training](../learn-rxjs.html)
+[Bitovi Academy’s RxJS training](../learn-rxjs.html)
 
 <!-- External link: -->
 [`mergeMap`](https://rxjs-dev.firebaseapp.com/api/operators/mergeMap)
@@ -174,7 +195,7 @@ Internal and external links can be created with Markdown syntax:
 
 Internal links can also be created with the following format:
 
-```
+```md
 [learn-typescript/generics TypeScript guide]
 ```
 

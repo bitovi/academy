@@ -36,13 +36,13 @@ Our goal is to have a different set of Action instead:
     - props: `{ errorMsg: string }`
 
 
-## P1: What You Need to Know
+## P1: What you need to know
 
 Action Types in NgRx follow a string pattern: `[Source] Event`. Since Actions represent a unique event, an Action Type should be a unique identifier for that event. NgRx encourages Actions to be unique in order to help with application debugging, traceability and maintainability. [Here’s a great presentation about Action Best Practices](https://www.youtube.com/watch?v=JmnsEvoy-gY) from Mike Ryan, co-creator of NgRx.
 
 `createAction()` can take up to two arguments: the string `type` and a `config` function that represents additional metadata, usually referred as `props` in Redux Pattern:
 
-> Note that many of the code examples in these sections are for instructional purposes only, and aren't part of our main application repo or solution
+> Note that many of the code examples in these sections are for instructional purposes only, and aren’t part of our main application repo or solution
 
 ```ts
 // Note: This example code is not part of our application repo or solution
@@ -60,9 +60,7 @@ export const submit = createAction(
 
 <details>
 <summary>src/app/store/login/login.actions.ts</summary>
-
 @diff ../3-ngrx-init/login.actions.ts ./login.actions-login-actions.ts only
-
 </details>
 
 
@@ -83,34 +81,28 @@ Next, our goal is to create 3 more Actions for logout:
 
 <details>
 <summary>src/app/store/login/login.actions.ts</summary>
-
 @diff ./login.actions-login-actions.ts ./login.actions.ts only
-
 </details>
 
 
 ## Cleaning Up Removed Actions
 
-Now that we've removed the generated Actions, we will need to update a couple of files so that our application can run:
+Now that we’ve removed the generated Actions, we will need to update a couple of files so that our application can run:
 
 >Also note that this clean up will be required for the upcoming unit tests to pass
 
-First, we'll remove the generated Effects. And we will remove the unused imports from `@ngrx/effects`, `rxjs/operators`, `rxjs`, and `./login.actions`:
+First, we’ll remove the generated Effects. And we will remove the unused imports from `@ngrx/effects`, `rxjs/operators`, `rxjs`, and `./login.actions`:
 
 <details open>
 <summary>src/app/store/login/login.effects.ts</summary>
-
 @diff ../3-ngrx-init/login.effects.ts ./login.effects.ts only
-
 </details>
 
-Last, we'll remove the generated `on()` handlers in our Reducer function. And we will remove the unused imports from `@ngrx/store` and `./login.actions`:
+Last, we’ll remove the generated `on()` handlers in our Reducer function. And we will remove the unused imports from `@ngrx/store` and `./login.actions`:
 
 <details open>
 <summary>src/app/store/login/login.reducer.ts</summary>
-
 @diff ../3-ngrx-init/login.reducer.ts ./login.reducer.ts only
-
 </details>
 
 

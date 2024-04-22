@@ -24,7 +24,7 @@ const { Routes, RouterModule } = ng.router;
     <p>Look at me!</p>
     <ul class="nav">
       <li routerLinkActive="active">
-        <a routerLink="/about" >About</a>
+        <a routerLink="/about">About</a>
       </li>
       <li routerLinkActive="active">
         <a routerLink="/merp">Not an actual route</a>
@@ -33,7 +33,7 @@ const { Routes, RouterModule } = ng.router;
         <a routerLink="/blarg">Another not actual route</a>
       </li>
       <li routerLinkActive="active">
-        <a routerLink="boop">/boop - I will reroute to /about</a>
+        <a routerLink="team">/team - I will reroute to /about</a>
       </li>
     </ul>
     <router-outlet></router-outlet>
@@ -68,7 +68,7 @@ class PageNotFoundComponent {
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
-  { path: 'boop',  redirectTo: '/about', pathMatch: 'full' },
+  { path: 'team',  redirectTo: '/about', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -83,7 +83,7 @@ class AppRoutingModule { }
   imports: [
     BrowserModule,
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   bootstrap: [AppComponent],
   providers: []

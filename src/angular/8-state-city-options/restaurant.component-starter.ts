@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Restaurant } from './restaurant';
 import { ResponseData, RestaurantService } from './restaurant.service';
 
@@ -11,10 +11,13 @@ export interface Data {
 @Component({
   selector: 'pmo-restaurant',
   templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less'],
+  styleUrl: './restaurant.component.css',
 })
 export class RestaurantComponent implements OnInit {
-  form: FormGroup = this.createForm();
+  form: FormGroup<{
+    state: FormControl<string>;
+    city: FormControl<string>;
+  }> = this.createForm();
 
   restaurants: Data = {
     value: [],
@@ -47,7 +50,10 @@ export class RestaurantComponent implements OnInit {
     });
   }
 
-  createForm(): FormGroup {
+  createForm(): FormGroup<{
+    state: FormControl<string>;
+    city: FormControl<string>;
+  }> {
 
   }
 }

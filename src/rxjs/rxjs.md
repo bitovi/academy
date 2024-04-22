@@ -5,16 +5,16 @@
 
 @body
 
-## Before You Begin
+## Before you begin
 
-<a href="https://www.bitovi.com/community/slack">
-<img src="https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.png?width=200"
-  style="float:left"/> <span style="margin-top: 10px;display: inline-block;">Click here to join<br/>Bitovi's Slack Community</span></a>
+<a href="https://discord.gg/J7ejFsZnJ4">
+<img src="./static/img/discord.png"
+  style="float:left; margin:20px" width="57"/> <span style="margin-top: 10px;display: inline-block;">Click here to join the<br/>Bitovi Community Discord</span></a>
 
-Join Bitovi's Slack Community to get help on Bitovi Academy courses or other
+Join the Bitovi Community Discord to get help on Bitovi Academy courses or other
 Angular, React, CanJS and JavaScript problems.
 
-Please ask questions related to RxJS and Angular in the [Angular Chat Room](https://bitovi-community.slack.com/messages/CFD2J3HT3).
+Please ask questions related to RxJS and Angular in the [Angular Chat Room](https://discord.gg/Qv26e4uq5z).
 
 If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/academy/issues) or email `contact@bitovi.com`.
 
@@ -59,7 +59,7 @@ Each section of the guide is broken down into the following sections:
 - [learn-rxjs/cvc] - Read, validate, and show the error of the CVC
 - [learn-rxjs/disable-pay-button] - Disable the pay button if any part of the card has an error - `combineLatest`
 - [learn-rxjs/request-payment] - Make a request when the pay button is clicked
-- [learn-rxjs/show-paying] - Update the pay button's text while payments are pending
+- [learn-rxjs/show-paying] - Update the pay button’s text while payments are pending
 - [learn-rxjs/disable-while-pending] - Disable the payment button while payments are pending
 
 ## Logic Flow
@@ -78,7 +78,7 @@ be a useful reference for understanding how the tutorial works:
   <img src="./static/img/codepen-stack.png" width="50%" alt="CodePen stacked" title="CodePen stacked" style="border: solid 1px #808080" />
 
 - Save your CodePen
-- If you can't figure out what is breaking, use an [online diff checker](https://www.diffchecker.com/) to
+- If you can’t figure out what is breaking, use an [online diff checker](https://www.diffchecker.com/) to
   compare your code with the solution.
 
   <img src="./static/img/diff-checker.png" width="50%" alt="Diff Checker" title="DiffChecker" style="border: solid 1px #808080" />
@@ -92,7 +92,7 @@ be a useful reference for understanding how the tutorial works:
 - This guide uses Angular. However, most of the Angular parts are explained. Angular experience is
   not required; however, experience in some other modern web framework **is** required.
 
-## Next Steps
+## Next steps
 
 Head over to the [first lesson](learn-rxjs/basics.html) and learn about observables.
 

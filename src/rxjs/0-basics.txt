@@ -2,8 +2,8 @@ OVERVIEW  =========
 
 This video is an overview of the entire course.
 
-Before we start, it's important to make sure everyone knows about Bitovi's
-Community slack.  It's a great place to get help on these exercises, and
+Before we start, it’s important to make sure everyone knows about Bitovi’s
+Community Discord.  It’s a great place to get help on these exercises, and
 talk tech with likeminded folks.
 
 So as I mentioned, this course is about RxJS.  RxJS and other observable
@@ -19,7 +19,7 @@ tool.  Specifically, it:
 - Simulates a payment with a Promise that resolves in 2 seconds.
 
 This exercise will use a bit TypeScript, Angular for the view and component layer. RxJS
-can be used with any framework, but it's more or less built in to
+can be used with any framework, but it’s more or less built in to
 Angular, so using angular makes sense.
 
 If you are familiar with other frameworks, everything here should make sense.
@@ -28,14 +28,14 @@ To complete this course, we will complete the following steps:
 
 - First we will learn the basics of RxJS and how to create observables.
 - Then we will set setting up basic validation.
-- We'll show how to debug RxJS … Handy if you are writing this without seeing
+- We’ll show how to debug RxJS … Handy if you are writing this without seeing
   the answers!
 - Next we will make the error show up only when someone has blurred and
   apply this to all the fields.
 - Finally, we will begin implementing the pay button.
 
 While doing ths process, we will be building observables.  This graph
-here shows the relationship.  While thinking about RxJS, it's important
+here shows the relationship.  While thinking about RxJS, it’s important
 to understand the flow of one observable into another.  Observables here
 are color coded.
 
@@ -51,18 +51,18 @@ are color coded.
 
 Finally, some important notes on completing this training:
 
-- This training can be done in codepen, but it's useful to have the vertical view.
+- This training can be done in codepen, but it’s useful to have the vertical view.
 
 - I recommend creating a codepen account so you can save your codepen.
 
-- If you get lost, you can take a difference from the solution to your code to see what's wrong.
+- If you get lost, you can take a difference from the solution to your code to see what’s wrong.
 
-- This guide will use a bit of Promises, Angular, and TypeScript, however, it's minor and you can likely do this course without fully understanding them.
+- This guide will use a bit of Promises, Angular, and TypeScript, however, it’s minor and you can likely do this course without fully understanding them.
 
 
 BASICS =========
 
-Hello and welcome to Bitovi Academy's Learn RxJS training.
+Hello and welcome to Bitovi Academy’s Learn RxJS training.
 
 This video covers the "basics" step where we introduce observables.
 Specifically, we will cover:

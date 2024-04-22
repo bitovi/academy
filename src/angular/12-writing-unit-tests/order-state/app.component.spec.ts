@@ -94,7 +94,7 @@ describe('AppComponent', () => {
       fixture.detectChanges();
       tick();
       fixture.detectChanges();
-      let homeLinkLi = fixture.debugElement.query(By.css('li'));
+      const homeLinkLi = fixture.debugElement.query(By.css('li'));
       expect(homeLinkLi.nativeElement.classList).toContain('active');
       expect(compiled.querySelectorAll('.active').length).toBe(1);
       fixture.destroy();
@@ -109,7 +109,7 @@ describe('AppComponent', () => {
       fixture.detectChanges();
       tick();
       fixture.detectChanges();
-      let restaurantsLinkLi = fixture.debugElement.query(By.css('li:nth-child(2)'));
+      const restaurantsLinkLi = fixture.debugElement.query(By.css('li:nth-child(2)'));
       expect(restaurantsLinkLi.nativeElement.classList).toContain('active');
       expect(compiled.querySelectorAll('.active').length).toBe(1);
       fixture.destroy();

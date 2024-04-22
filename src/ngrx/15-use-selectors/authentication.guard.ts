@@ -7,7 +7,7 @@ import { map, Observable } from 'rxjs';
 import * as LoginSelectors from '../store/login/login.selectors';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthenticationGuard implements CanActivate, CanLoad {
   constructor(private router: Router, private store: Store) {}

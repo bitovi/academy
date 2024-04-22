@@ -1,7 +1,7 @@
-@page learn-angular/nested-routes Nested Restaurant Routes
+@page learn-angular/nested-routes Creating Nested Routes
 @parent learn-angular 13
 
-@description Creating nested restaurant routes
+@description Creating nested restaurant routes.
 
 @body
 
@@ -18,7 +18,7 @@ In this part, we will:
 
 We want to have a component to display individual restaurants details, and want the path to be nested under the restaurants path.
 
-## What You Need to Know
+## What you need to know
 
 To solve this exercise you will need to know:
 
@@ -26,17 +26,17 @@ To solve this exercise you will need to know:
 - How to create a route with a param
 - How to get a route param using ActivatedRoute
 
-## Route Parameters & Child Views
+## Route parameters & child views
 
-A common pattern in SPA architecture is to serve a view of an individual piece of data from a path with an identifying parameter. Previously we've defined static paths with Angulars <a href="https://angular.io/guide/router" >router</a>. To create a nested route, we'll need the slug after the slash to be dynamic. We can set a token for the router parameter with `:`. To get the slug from the route in a component, we use the <a href="https://angular.io/api/router/ActivatedRoute" >ActivatedRoute</a> interface.
+A common pattern in SPA architecture is to serve a view of an individual piece of data from a path with an identifying parameter. Previously we’ve defined static paths with Angular’s <a href="https://angular.io/guide/router">router</a>. To create a nested route, we’ll need the slug after the slash to be dynamic. We can set a token for the router parameter with `:`. To get the slug from the route in a component, we use the <a href="https://angular.io/api/router/ActivatedRoute">ActivatedRoute</a> interface.
 
 @sourceref ./nested-route.html
 @codepen
 @highlight 93-94,101,105,107,115,only
 
-## Technical Requirements
+## Technical requirements
 
-Create a new component called `detail` in the restaurant component folder that is a detail view for an individual restaurant that is served from the path `'/restaurants/restaurant-slug'`. Create the route as well, and use the `getRestaurant` method on the RestaurantService to fetch the restaurant based on the route snapshot. The detail component should have a member 'restaurant' that is a type of Restaurant and an 'isLoading' member set to true or false based on when the restaurant data has been fetched.
+Create a new component called `detail` in the restaurant component folder that is a detail view for an individual restaurant that is served from the path `'/restaurants/restaurant-slug'`. Create the route as well, and use the `getRestaurant` method on the `RestaurantService` to fetch the restaurant based on the route snapshot. The detail component should have a member `restaurant` that is a type of Restaurant and an `isLoading` member set to true or false based on when the restaurant data has been fetched.
 
 ## Setup
 
@@ -50,21 +50,22 @@ ng g component restaurant/detail
 
 @sourceref ./detail.component.html
 
-## How to Verify Your Solution is Correct
+## How to verify your solution is correct
 
-When you click the detail button on a restaurant from the restaurant list view you'll see the detail view of that restaurant.
+When you click the detail button on a restaurant from the restaurant list view you’ll see the detail view of that restaurant.
 
-✏️ Update the spec file **src/app/restaurant/detail.component.spec.ts** to be:
+✏️ Update the spec file **src/app/restaurant/detail/detail.component.spec.ts** to be:
 
 @sourceref ./detail.component.spec.ts
+@highlight 101-155, only
 
 ✏️ Update the spec file **src/app/app.component.spec.ts** to be:
 
 @diff ../8-state-city-options/app.component.spec.ts ./app.component.spec.ts only
 
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
-
 ## Solution
+
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 <details>
 <summary>Click to see the solution</summary>

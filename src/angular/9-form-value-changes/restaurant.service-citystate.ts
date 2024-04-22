@@ -9,9 +9,10 @@ export interface ResponseData {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class RestaurantService {
+
   constructor(private httpClient: HttpClient) {}
 
   getRestaurants(): Observable<ResponseData> {

@@ -6,16 +6,16 @@ using it to make a basic tabs widget. We strongly suggest finishing [learn-advan
 
 @body
 
-## Before You Begin
+## Before you begin
 
-<a href="https://www.bitovi.com/community/slack" style="display:flex;align-items:center">
-<img src="https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.png?width=200"
-  style="float:left"/> <span style="display: inline-block;">Click here to join<br/>Bitovi's Slack Community</span></a>
+<a href="https://discord.gg/J7ejFsZnJ4" style="display:flex;align-items:center">
+<img src="./static/img/discord.png"
+  style="float:left; margin:20px" width="57"/> <span style="display: inline-block;">Click here to join the<br/>Bitovi Community Discord</span></a>
 
-Join Bitovi's Slack Community to get help on Bitovi Academy courses or other
+Join the Bitovi Community Discord to get help on Bitovi Academy courses or other
 Angular, React, CanJS and JavaScript problems.
 
-Please ask questions related to jQuery and the DOM in the [JS and DOM chat room](https://bitovi-community.slack.com/messages/CFMMNSV5X).
+Please ask questions related to jQuery and the DOM in the [JS and DOM chat room](https://discord.gg/qxqgyGquk7).
 
 If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/academy/issues) or email `contact@bitovi.com`.
 
@@ -25,7 +25,7 @@ The end result of this training is to build a basic, [progressively enhanced](ht
 
 <img src="./static/img/dog-tabs.png" width="50%"/>
 
-We will be creating simple versions of many of jQuery's most useful methods:
+We will be creating simple versions of many of jQuery’s most useful methods:
 
 ```js
 $ = function (selector) {
@@ -89,6 +89,6 @@ Creating jQuery requires meta programming
 (functions that take functions that return functions). We encourage participants to
 finish the [learn-advanced-javascript] course before beginning this training.
 
-## Next Steps
+## Next steps
 
 ✏️ Head over to the [first lesson](learn-dom-jquery/functional-utilities.html) to get set up and start learning about functional utilities.

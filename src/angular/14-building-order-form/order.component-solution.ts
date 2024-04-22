@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   AbstractControl,
-  FormArray,
   FormBuilder,
+  FormControl,
   FormGroup,
   ValidationErrors,
   ValidatorFn,
@@ -13,6 +13,19 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Restaurant } from '../restaurant/restaurant';
 import { RestaurantService } from '../restaurant/restaurant.service';
+
+export interface Item {
+  name: string;
+  price: number;
+}
+
+export interface OrderForm {
+  restaurant: FormControl<string>;
+  name: FormControl<string>;
+  address: FormControl<string>;
+  phone: FormControl<string>;
+  items: FormControl<Item[]>;
+}
 
 // CUSTOM VALIDATION FUNCTION TO ENSURE THAT THE ITEMS FORM VALUE CONTAINS AT LEAST ONE ITEM.
 function minLengthArray(min: number): ValidatorFn {
@@ -27,13 +40,12 @@ function minLengthArray(min: number): ValidatorFn {
 @Component({
   selector: 'pmo-order',
   templateUrl: './order.component.html',
-  styleUrls: ['./order.component.less'],
+  styleUrl: './order.component.css',
 })
 export class OrderComponent implements OnInit, OnDestroy {
-  orderForm?: FormGroup;
+  orderForm?: FormGroup<OrderForm>;
   restaurant?: Restaurant;
   isLoading = true;
-  items?: FormArray;
   orderTotal = 0.0;
   completedOrder: any;
   orderComplete = false;
@@ -68,40 +80,41 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   createOrderForm(): void {
-    this.orderForm = this.formBuilder.group({
-      restaurant: [this.restaurant?._id],
-      name: [null, Validators.required],
-      address: [null, Validators.required],
-      phone: [null, Validators.required],
+    this.orderForm = this.formBuilder.nonNullable.group({
+      restaurant: [this.restaurant?._id ?? '', Validators.required],
+      name: ['', Validators.required],
+      address: ['', Validators.required],
+      phone: ['', Validators.required],
       // PASSING OUR CUSTOM VALIDATION FUNCTION TO THIS FORM CONTROL
-      items: [[], minLengthArray(1)],
+      items: [[] as Item[], minLengthArray(1)],
     });
     this.onChanges();
   }
 
   onChanges(): void {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
-    this.orderForm
-      ?.get('items')
-      ?.valueChanges.pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) => {
-        let total = 0.0;
-        if (val.length) {
-          for (const item of val) {
-            total += item.price;
-          }
-          this.orderTotal = Math.round(total * 100) / 100;
-        } else {
-          this.orderTotal = total;
-        }
-      });
+    this.orderForm?.controls.items.valueChanges
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((value) => this.calculateTotal(value));
+  }
+
+  calculateTotal(items: Item[]): void {
+    let total = 0.0;
+    if (items.length) {
+      for (const item of items) {
+        total += item.price;
+      }
+      this.orderTotal = Math.round(total * 100) / 100;
+    } else {
+      this.orderTotal = total;
+    }
   }
 
   onSubmit(): void {}
 
   startNewOrder(): void {
     this.orderComplete = false;
-    this.completedOrder = this.orderForm?.value;
+    this.completedOrder = undefined;
     // CLEAR THE ORDER FORM
     this.createOrderForm();
   }

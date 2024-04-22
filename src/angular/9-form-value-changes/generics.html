@@ -33,18 +33,22 @@ interface Dinosaur {
   template: `
     <p>My strings</p>
     <ul>
-      <li *ngFor="let string of myListOfStrings; let i=index">{{string}}</li>
+      <li *ngFor="let string of myListOfStrings; let i=index">
+        {{string}}
+      </li>
     </ul>
 
     <p>My dinosaurs</p>
     <ul>
-      <li *ngFor="let dino of myListOfDinosaurs; let i=index">{{dino.name}} is a {{dino.breed}} and has {{dino.teeth}} teeth.</li>
+      <li *ngFor="let dino of myListOfDinosaurs; let i=index">
+        {{dino.name}} is a {{dino.breed}} and has {{dino.teeth}} teeth.
+      </li>
     </ul>
   `
 })
 class AppComponent implements OnInit {
-  public myListOfStrings = new GenericCollection<string>();
-  public myListOfDinosaurs = new GenericCollection<Dinosaur>();
+  myListOfStrings = new GenericCollection<string>();
+  myListOfDinosaurs = new GenericCollection<Dinosaur>();
 
   constructor() {}
 
@@ -52,7 +56,8 @@ class AppComponent implements OnInit {
     this.myListOfStrings.pushItem('booop');
     this.myListOfStrings.pushItem('TA DA');
     this.myListOfStrings.pushItem(5);
-    //error Argument type of '5' is not assignable to parameter of type 'string'
+    // Error: Argument type of '5' is not assignable to
+    // parameter of type 'string'
 
     let dinoA = {
       name: 'Blue',
@@ -68,7 +73,8 @@ class AppComponent implements OnInit {
     this.myListOfDinosaurs.pushItem(dinoA);
     this.myListOfDinosaurs.pushItem(dinoB);
     this.myListOfDinosaurs.pushItem({name: 'Charlie'});
-    //error Argument type '{ name: string; }' is not assignable to parameter of type 'Dinosaur'.
+    // Error: Argument type '{ name: string; }' is not
+    // assignable to parameter of type 'Dinosaur'.
   }
 
 }

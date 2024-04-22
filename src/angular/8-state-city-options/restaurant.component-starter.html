@@ -19,7 +19,7 @@
         <ng-container *ngIf="!cities.isPending">
           <option value="">Choose a city</option>
           <!-- iterate through all cities to create options with
-            the short property as the value and the name displayed-->
+            the name property as the value and the name displayed-->
         </ng-container>
       </select>
     </div>
@@ -28,6 +28,7 @@
   <ng-container *ngIf="restaurants.value.length">
     <div class="restaurant" *ngFor="let restaurant of restaurants.value">
       <img
+        alt=""
         src="{{ restaurant.images.thumbnail | imageUrl }}"
         width="100"
         height="100"

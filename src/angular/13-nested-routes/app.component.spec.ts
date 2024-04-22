@@ -239,6 +239,7 @@ describe('AppComponent', () => {
   });
 
   it('should render the HomeComponent with router navigates to "/" path', fakeAsync(() => {
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['']).then(() => {
       expect(location.path()).toBe('');
@@ -247,6 +248,7 @@ describe('AppComponent', () => {
   }));
 
   it('should render the RestaurantsComponent with router navigates to "/restaurants" path', fakeAsync(() => {
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants']).then(() => {
       expect(location.path()).toBe('/restaurants');
@@ -255,6 +257,7 @@ describe('AppComponent', () => {
   }));
 
   it('should render the DetailComponent with router navigates to "/restaurants/slug" path', fakeAsync(() => {
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants/crab-shack']).then(() => {
       expect(location.path()).toBe('/restaurants/crab-shack');
@@ -262,7 +265,7 @@ describe('AppComponent', () => {
     });
   }));
 
-  it('should have the home navigation link href set to ""', () => {
+  it('should have the home navigation link href set to "/"', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     const homeLink = compiled.querySelector('li a');
@@ -270,7 +273,7 @@ describe('AppComponent', () => {
     expect(href).toEqual('/');
   });
 
-  it('should have the restaurants navigation link href set to ""', () => {
+  it('should have the restaurants navigation link href set to "/restaurants"', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     const restaurantsLink = compiled.querySelector('li:nth-child(2) a');
@@ -283,6 +286,7 @@ describe('AppComponent', () => {
     router.navigate(['']);
     fixture.detectChanges();
     tick();
+    fixture.detectChanges();
 
     const homeLinkLi = compiled.querySelector('li');
     expect(homeLinkLi?.classList).toContain('active');

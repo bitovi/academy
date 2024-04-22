@@ -48,7 +48,7 @@ type PokemonNamesFromEgg = FromEgg<PokemonEgg>; // "bulbasaur" | "ivysaur" | ...
 
 ## Renamed Keys
 
-Back when we were looking at mapped types, the name of the key was always preserved; however, it’d be incredibly useful if there was a way we could rename some of the keys by adding some text to them. Luckily for us, there’s a way! We can leverage template literal types within a key mapping. Let's look at an example. Let’s make a `Stateful` type that adds getters and setters for any of the properties of the type passed in. If we gave it `{name: string}` we’d want it to create `{name: string; setName: (newValue: string) => void; getName: () => string;`. Let's start with adding a type that produces a “getter”.
+Back when we were looking at mapped types, the name of the key was always preserved; however, it’d be incredibly useful if there was a way we could rename some of the keys by adding some text to them. Luckily for us, there’s a way! We can leverage template literal types within a key mapping. Let’s look at an example. Let’s make a `Stateful` type that adds getters and setters for any of the properties of the type passed in. If we gave it `{name: string}` we’d want it to create `{name: string; setName: (newValue: string) => void; getName: () => string;`. Let’s start with adding a type that produces a “getter”.
 
 ```ts
 type Getters<T> = {
@@ -59,7 +59,7 @@ type Getters<T> = {
 
 > `string & OriginalKey` is a way for us to tell TypeScript `OriginalKey` can be used in template literal types.
 
-When we feed a type into this, everything looks decent, but there’s one big issue, the getter’s name doesn’t follow any sort of naming convention – it's not camel-cased.
+When we feed a type into this, everything looks decent, but there’s one big issue, the getter’s name doesn’t follow any sort of naming convention – it’s not camel-cased.
 
 ```ts
 type Pokemon = {
@@ -162,7 +162,7 @@ type Margin = "margin-top" | "margin-left"; // ...
 
 ### Exercise 2
 
-Let's create a type that reverses `Getter<T>`. `FromGetter<T>` should take an object type and create a new type from all keys starting
+Let’s create a type that reverses `Getter<T>`. `FromGetter<T>` should take an object type and create a new type from all keys starting
 with `get`. The new type should have the key name be camel-cased and the type of the property should resolve to the `ReturnType` of
 the getter if it is a function. If it is not a function, it should resolve to whatever it was.
 

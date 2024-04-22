@@ -11,7 +11,8 @@
     "build": "bit-docs -df",
     "rebuild-assets": "bit-docs -dfs",
     "clean": "rm -rf academy",
-    "deploy": "node scripts/hubspot-deploy"
+    "deploy": "node scripts/hubspot-deploy",
+    "start": "concurrently -k \"npm:dev\" \"http-server -c -1\""
   },
   "bit-docs": {
     "dependencies": {
@@ -20,7 +21,7 @@
       "bit-docs-js": "^0.0.6",
       "bit-docs-tag-sourceref": "^0.0.3",
       "bit-docs-generate-html": "^0.15.0",
-      "bit-docs-prettify": "^0.4.1",
+      "bit-docs-prettify": "^0.4.2",
       "bit-docs-tag-demo": "^0.5.3",
       "bit-docs-tag-diff": "^0.1.0",
       "bit-docs-html-codepen-link": "^2.1.0",
@@ -55,9 +56,11 @@
     "bottleneck": "^2.17.1",
     "cheerio": "^1.0.0-rc.3",
     "commander": "^9.4.0",
+    "concurrently": "^8.2.2",
     "depcheck": "^1.4.3",
     "dotenv": "^7.0.0",
     "glob": "^8.0.3",
+    "http-server": "^14.1.1",
     "lz-string": "^1.4.4",
     "recursive-readdir": "^2.2.2"
   }

@@ -36,20 +36,24 @@
   </ng-container>
   <ng-template #showOrderForm>
     <h2>Order here</h2>
-    <form *ngIf="orderForm" [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+    <form
+      *ngIf="orderForm && restaurant"
+      [formGroup]="orderForm"
+      (ngSubmit)="onSubmit()"
+    >
       <tabset>
-        <tab heading="Lunch Menu" *ngIf="restaurant?.menu?.lunch">
+        <tab heading="Lunch Menu" *ngIf="restaurant.menu.lunch">
           <ul class="list-group">
             <pmo-menu-items
-              [items]="restaurant?.menu?.lunch"
+              [items]="restaurant.menu.lunch"
               formControlName="items"
             ></pmo-menu-items>
           </ul>
         </tab>
-        <tab heading="Dinner Menu" *ngIf="restaurant?.menu?.dinner">
+        <tab heading="Dinner Menu" *ngIf="restaurant.menu.dinner">
           <ul class="list-group">
             <pmo-menu-items
-              [items]="restaurant?.menu?.dinner"
+              [items]="restaurant.menu.dinner"
               formControlName="items"
             ></pmo-menu-items>
           </ul>
@@ -57,20 +61,12 @@
       </tabset>
       <div class="form-group">
         <label class="control-label">Name:</label>
-        <input
-          name="name"
-          type="text"
-          formControlName="name"
-        />
+        <input name="name" type="text" formControlName="name" />
         <p>Please enter your name.</p>
       </div>
       <div class="form-group">
         <label class="control-label">Address:</label>
-        <input
-          name="address"
-          type="text"
-          formControlName="address"
-        />
+        <input name="address" type="text" formControlName="address" />
         <p class="help-text">Please enter your address.</p>
       </div>
       <div class="form-group">

@@ -5,18 +5,18 @@
 
 @body
 
-## Before You Begin
+## Before you begin
 
-<p><a href="https://www.bitovi.com/community/slack">
-<img src="https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.png?width=200"
-  style="float:left"/> <span style="margin-top: 10px;display: inline-block;">Click here to join<br/>Bitovi's Slack Community</span></a></p>
+<p><a href="https://discord.gg/J7ejFsZnJ4">
+<img src="./static/img/discord.png"
+  style="float:left; margin:20px" width="57"/> <span style="margin-top: 10px;display: inline-block;">Click here to join the<br/>Bitovi Community Discord</span></a></p>
 
 <br/>
 
-Join Bitovi's Slack Community to get help on Bitovi Academy courses or other
+Join the Bitovi Community Discord to get help on Bitovi Academy courses or other
 Angular, React, CanJS and JavaScript problems.
 
-Please ask questions related to Angular in the [Angular chat room](https://bitovi-community.slack.com/messages/CFD2J3HT3).
+Please ask questions related to Angular in the [Angular chat room](https://discord.gg/Qv26e4uq5z).
 
 If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/academy/issues) or email `contact@bitovi.com`.
 
@@ -40,7 +40,7 @@ the features that are present across almost all single page apps:
 
 As for the application itself, it:
 
-- Is written in Angular 13
+- Is written in Angular 17
 - Is a single page application (SPA) that uses [pushState](https://developer.mozilla.org/en-US/docs/Web/API/History/pushState) to simulate routing between several pages.
   - A `home` page
   - A `restaurant list` page that lets the user filter restaurants by state and city
@@ -56,7 +56,7 @@ As for the application itself, it:
 
 ## Outline
 
-The guide begins ([learn-angular/why-angular]) with a discussion of Angular's
+The guide begins ([learn-angular/why-angular]) with a discussion of Angular’s
 strengths. We will install Angular ([learn-angular/building-our-first-app]) and use it to generate a new project. Then we will set out creating some _components_ ([learn-angular/creating-components]) and ([learn-angular/creating-pipes]) to manipulate their data, the component will be shown when
 the right url is present ([learn-angular/adding-routing]) and adding navigation links ([learn-angular/creating-navigation]) to route to those _components_.
 
@@ -69,13 +69,13 @@ selecting a city filter the restaurants ([learn-angular/updating-service-params]
 an optional and advanced exercise, you can convert handle the state declaratively
 with RxJS ([learn-angular/declarative-state]).
 
-After writing all that code, it's good to learn a bit about testing. While this tutorial
+After writing all that code, it’s good to learn a bit about testing. While this tutorial
 has tests to verify your solutions, we will turn the tables and have you write a test for
 retrieving a single restaurant from the service layer ([learn-angular/writing-unit-tests]). This will prepare us to create a nested route for the restaurant details page ([learn-angular/nested-routes]).
 
 Now we are ready to turn our attention to learning about creating, updating, and deleting
 data. We will start by building an Order Form ([learn-angular/building-order-form]) and then update it to utilize directives
-([learn-angular/creating-directive]), which in turn allows us to create orders on the server ([learn-angular/order-service]). We'll then create a page that lets us update an order's status or delete an order ([learn-angular/order-history-component]). 
+([learn-angular/creating-directive]), which in turn allows us to create orders on the server ([learn-angular/order-service]). We’ll then create a page that lets us update an order’s status or delete an order ([learn-angular/order-history-component]).
 We will utilize pipes to create an item total calculation across the application ([learn-angular/item-total-pipe])
 and will even make the order page update when someone else updates an order ([learn-angular/real-time-connection]).
 
@@ -84,9 +84,11 @@ production and deploying it for others to see ([learn-angular/deploy-app]).
 
 ## Requirements
 
-In order to complete this guide, you need to have [NodeJS](https://nodejs.org/en/) version
-12 or later installed.
+In order to complete this guide, you need to have [Node.js](https://nodejs.org/en/) version
+18.13 or later installed.
 
-## Next Steps
+[Chrome](https://www.google.com/chrome) browser is required for running automated tests, which ensure you have the correct solutions to the proposed exercises.
+
+## Next steps
 
 ✏️ Head over to the [first lesson](learn-angular/why-angular.html) and get your environment setup.

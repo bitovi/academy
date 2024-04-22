@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 
 export interface Item {
   name: string;
   price: number;
 }
 
-export interface OrderForm {
+export interface CreateOrderDto {
   restaurant: string;
   name: string;
   address: string;
@@ -27,7 +27,7 @@ export interface Order {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class OrderService {
   constructor(private httpClient: HttpClient) {}
@@ -38,7 +38,7 @@ export class OrderService {
     );
   }
 
-  createOrder(order: OrderForm): Observable<Order> {
+  createOrder(order: CreateOrderDto): Observable<Order> {
     const orderData = {
       ...order,
       status: 'new',

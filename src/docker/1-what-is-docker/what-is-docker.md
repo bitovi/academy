@@ -8,14 +8,14 @@
 <iframe width="560" height="315" src="https://www.youtube.com/embed/eD2xZZis2GI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Overview
-Traditional application deployment requires packaging application source code into an artifact. An artifact is the output of the transformation from application source code to a runnable asset. In the case of NodeJS, it is Javascript with dependencies installed (node_modules). The artifact is deployed to a server that has a compatible operating system, runtime and other dependent libraries.
+Traditional application deployment requires packaging application source code into an artifact. An artifact is the output of the transformation from application source code to a runnable asset. In the case of Node.js, it is Javascript with dependencies installed (node_modules). The artifact is deployed to a server that has a compatible operating system, runtime and other dependent libraries.
 
-Docker exists to address these issues. Docker bundles runtime dependencies with application source code into an image - creating a unified experience whether an application is being run on a developer's workstation or a production server.
+Docker exists to address these issues. Docker bundles runtime dependencies with application source code into an image - creating a unified experience whether an application is being run on a developer’s workstation or a production server.
 
 ## VMs vs Docker Containers
 [Virtual machines](https://www.vmware.com/topics/glossary/content/virtual-machine) (VM) are an abstraction of a physical server turning one server into many. A [hypervisor](https://www.vmware.com/topics/glossary/content/hypervisor) is installed on the host server allowing multiple VMs to run on a single machine. Each VM includes a full copy of an operating system (OS) making it resource intensive to run and slow to boot.
 
-Containers are an abstraction at the app layer that packages application artifacts and dependencies together. The fundamental difference is containers share the same host operating system, but each container runs in it's own isolated process controlled by the Docker Engine. Containers are more lightweight than VMs and typically boot in seconds instead of minutes.
+Containers are an abstraction at the app layer that packages application artifacts and dependencies together. The fundamental difference is containers share the same host operating system, but each container runs in it’s own isolated process controlled by the Docker Engine. Containers are more lightweight than VMs and typically boot in seconds instead of minutes.
 
 ![Docker Architecture](../static/img/docker/1-what-is-docker/docker-arch.png)
 

@@ -96,7 +96,7 @@ for all subscribers of `squares`:
 
 Read more about this technique on [RxJS's documentation](https://rxjs.dev/guide/subject#multicasted-observables). Note that the `multicast` and `refCount` operators are [deprecated](https://rxjs.dev/deprecations/multicasting#multicast) in RxJS 7, and the [`share`](https://rxjs.dev/api/operators/share) operator used above is analogous to the functionality formerly provided by `multicast(() => new Subject()), refCount()`.
 
-## The Solution
+## The solution
 
 <details>
 <summary>Click to see the solution</summary>

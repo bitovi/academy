@@ -14,13 +14,13 @@ const { Component, VERSION } = ng.core;
 @Component({
   selector: 'my-app',
   template: `
-  <div ngClass="my-active-class">...</div>
+    <div ngClass="my-active-class">...</div>
 
-  <div [ngClass]="classSetOnComponent">...</div>
+    <div [ngClass]="classSetOnComponent">...</div>
   `
 })
 class AppComponent {
-  public classSetOnComponent: string = 'my-active-class';
+  classSetOnComponent: string = 'my-active-class';
   constructor() {
   }
 }

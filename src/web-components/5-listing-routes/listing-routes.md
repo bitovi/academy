@@ -30,16 +30,14 @@ Additionally we have text within the header that says __Loading routes…__ stat
 1. Remove the `#loading-routes` element since the routes are now loaded.
 
 
-## Technical Requirements
+## Technical requirements
 
 The following snippet of JavaScript will be useful for fetching data from the bus tracker API. Use the `getRoutesEndpoint` string to fetch the list of routes.
 
 ```js
-const proxyUrl = "https://can-cors.herokuapp.com/";
-const token = "?key=piRYHjJ5D2Am39C9MxduHgRZc&format=json";
-const apiRoot = "http://www.ctabustracker.com/bustime/api/v2/";
-const getRoutesEndpoint = apiRoot + "getroutes" + token;
-const getVehiclesEndpoint = apiRoot + "getvehicles" + token;
+const apiRoot = "https://cta-bustracker.vercel.app/api/";
+const getRoutesEndpoint = apiRoot + "routes";
+const getVehiclesEndpoint = apiRoot + "vehicles";
 ```
 
 To display the routes we want to create an `<li>` for each route and attach it to the `.routes-list` element. Use this markup to create that li. Inspect the results of the API request to figure out how to display the `.route-number` and `.route-name` appropriately.
@@ -54,16 +52,16 @@ To display the routes we want to create an `<li>` for each route and attach it t
 </li>
 ```
 
-## What You Need to Know
+## What you need to know
 
 - How to use [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to make API requests.
-- Setting an element's text.
+- Setting an element’s text.
 
 ### Fetch
 
 `fetch` is a function on the `window` object that is used to make network requests. In its simplest form it only needs a string URL, which will be used to make a [GET](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET) request.
 
-fetch differs slightly from the older [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) in a variety of ways; for example fetch does not include cookies by default. It's easier to use, however, because it uses [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). If you don't need to support Internet Explorer you'll probably want to use fetch in your applications.
+fetch differs slightly from the older [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) in a variety of ways; for example fetch does not include cookies by default. It’s easier to use, however, because it uses [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). If you don’t need to support Internet Explorer you’ll probably want to use fetch in your applications.
 
 `fetch()` returns a [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response) object. To get a JSON object from this use `response.json()` like so:
 
@@ -113,13 +111,13 @@ setTimeout(() => {
 @codepen
 @highlight 4-9
 
-Usually you will use `.textContent` unless building a library where performance is critical. textContent is the most convenient way to change an element's text.
+Usually you will use `.textContent` unless building a library where performance is critical. textContent is the most convenient way to change an element’s text.
 
 ## Solution
 
 ✏️ Use the markup provided above and create another template with the id of `route-template`. Keep a reference to this template in your JavaScript along with the other template. Copy the URL snippet from above and paste that so that it can be used within the component.
 
-Create a method on the component, we're calling it `getRoutes` here that is called in the `connectedCallback` method. It's an async method that uses [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to retrieve the list of routes which we can get with `data["bustime-response"].routes`.
+Create a method on the component, we’re calling it `getRoutes` here that is called in the `connectedCallback` method. It’s an async method that uses [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to retrieve the list of routes which we can get with `data["bustime-response"].routes`.
 
 Loop over the routes and clone an instance of the template filling in the route number with `route.rt` and the route name with `route.rtnm`.
 
@@ -129,7 +127,7 @@ At the end of the `getRoutes` method remove the `#loading-routes` element.
 <summary>Click to see the solution</summary>
 
 @sourceref ./index.html
-@highlight 179-187,214-218,221,231,234-253,only
+@highlight 179-187,214-216,219,233,236-251,only
 @codepen
 
 </details>

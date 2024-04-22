@@ -1,13 +1,13 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { Item, Order, OrderService } from '../order.service';
 
 @Component({
   selector: 'pmo-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.less'],
+  styleUrl: './list.component.css',
 })
-export class ListComponent implements OnInit, OnDestroy {
+export class ListComponent implements OnDestroy {
   @Input() orders?: Order[];
   @Input() listTitle?: string;
   @Input() status?: string;
@@ -18,8 +18,6 @@ export class ListComponent implements OnInit, OnDestroy {
   private onDestroy$ = new Subject<void>();
 
   constructor(private orderService: OrderService) {}
-
-  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.onDestroy$.next();

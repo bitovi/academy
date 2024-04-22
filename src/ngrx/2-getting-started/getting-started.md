@@ -1,13 +1,13 @@
 @page learn-ngrx/getting-started Getting Started
 @parent learn-ngrx 2
 
-@description Checkout the course repository and get setup for upcoming lessons!
+@description Check out the course repository and get setup for upcoming lessons!
 
 @body
 
 ## Git Repository
 
-For the sake of convenience, we've prepared a git repository for you to checkout as a starting point for the upcoming exercises. Each page in this training will contain a link to branches representing the starting point and solution for that section along with a link to a diff showing changes made.
+For the sake of convenience, we’ve prepared a git repository for you to checkout as a starting point for the upcoming exercises. Each page in this training will contain a link to branches representing the starting point and solution for that section along with a link to a diff showing changes made.
 
 
 ## Setting up your Project
@@ -34,7 +34,7 @@ npm -v # 6.14.13
 
 If you have the wrong versions, we suggest using [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) (for mac) or [volta](https://docs.volta.sh/guide/getting-started) (for windows) for node version management.
 
-Next install the project's node dependencies using `npm install`.
+Next install the project’s node dependencies using `npm install`.
 
 You now have the project starting point checked out, which includes:
 
@@ -46,4 +46,4 @@ You now have the project starting point checked out, which includes:
 
 4. Login and Dashboard UI Components
 
-5. `TODO`'s for needed functionality
+5. `TODO`’s for needed functionality

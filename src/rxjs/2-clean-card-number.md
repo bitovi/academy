@@ -68,7 +68,7 @@ In this section, we will:
 
 The debugging section will show how to verify the results in details.
 
-## The Solution
+## The solution
 
 <details>
 <summary>Click to see the solution</summary>

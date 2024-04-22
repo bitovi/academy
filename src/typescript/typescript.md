@@ -6,16 +6,16 @@ ready to develop projects in TypeScript.
 
 @body
 
-## Before You Begin
+## Before you begin
 
-<a href="https://www.bitovi.com/community/slack">
-<img src="https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.png?width=200"
-  style="float:left"/> <span style="margin-top: 10px;display: inline-block;">Click here to join<br/>Bitovi's Slack Community</span></a>
+<a href="https://discord.gg/J7ejFsZnJ4">
+<img src="./static/img/discord.png"
+  style="float:left; margin:20px" width="57"/> <span style="margin-top: 10px;display: inline-block;">Click here to join the<br/>Bitovi Community Discord</span></a>
 
-Join Bitovi's Slack Community to get help on Bitovi Academy courses or other
+Join the Bitovi Community Discord to get help on Bitovi Academy courses or other
 Angular, React, CanJS and JavaScript problems.
 
-Please ask questions related to TypeScript in the [TypeScript chat room](https://bitovi-community.slack.com/archives/CJ4K07T7F).
+Please ask questions related to TypeScript in the [TypeScript chat room](https://discord.gg/qxqgyGquk7).
 
 If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/academy/issues) or email `contact@bitovi.com`.
 
@@ -69,6 +69,6 @@ Angular and many other frameworks use TypeScript to take advantage of its typech
   }
   ```
 
-## Next Steps
+## Next steps
 
 ✏️ Head over to the [first lesson](learn-typescript/why-typescript.html) and get your environment setup.

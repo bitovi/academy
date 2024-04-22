@@ -1,4 +1,4 @@
-Hello and welcome to Bitovi Academy's Learn RxJS training.
+Hello and welcome to Bitovi Academy’s Learn RxJS training.
 
 This course covers how to perform the event reducer pattern with RxJS's scan operator.
 Specifically, we are going to:
@@ -7,8 +7,8 @@ Specifically, we are going to:
   there is no error.  However, once I blur, an error is shown. At that point, an error
   will be shown as long as the card is invalid.
 
-- We'll also make the input red by adding a "is-error" className when we should
-  show that there's an error.
+- We’ll also make the input red by adding a "is-error" className when we should
+  show that there’s an error.
 
 The next example will show how to reduce these events with the scan operator.
 
@@ -17,12 +17,12 @@ There are a few other things you need to know to solve this problem.
 The first is that userCardNumberBlurred should be a subject instead of
 a BehaviorSubject.
 
-A Subject is just like BehaviorSubject, except it doesn't publish it's last
+A Subject is just like BehaviorSubject, except it doesn’t publish it’s last
 emitted value for all new subscribers. BehaviorSubjects are good when you
-want to retain some state.  We don't need to retain state. We just want a signal
+want to retain some state.  We don’t need to retain state. We just want a signal
 that a blur happened here and now.
 
-userCardNumber and userCardNumberBlurred will be pretty similar otherwise.  We'll
+userCardNumber and userCardNumberBlurred will be pretty similar otherwise.  We’ll
 want to listen to blur on the input and call `.next()` with true.
 
 
@@ -30,7 +30,7 @@ want to listen to blur on the input and call `.next()` with true.
  to need to conditionally
 show the error message div.
 
-I'll use the ngIf directive.
+I’ll use the ngIf directive.
 
 isValid will always be false, but what about showCardError?
 

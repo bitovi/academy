@@ -5,6 +5,6 @@ Our docker image is huge. Reducing its total size is going to make it faster to 
 We are going to look at two strategies for addressing this.
 
 
-First we're going to be changing the FROM instruction in our Dockerfile.
+First we’re going to be changing the FROM instruction in our Dockerfile.
 
 We are currently using node:15. Node along with many other official docker images provide variants.

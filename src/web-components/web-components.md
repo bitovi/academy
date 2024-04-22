@@ -5,16 +5,16 @@
 
 This course covers the essentials for building [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components).
 
-## Before You Begin
+## Before you begin
 
-<a href="https://www.bitovi.com/community/slack">
-<img src="https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.png?width=200"
-  style="float:left"/> <span style="margin-top: 10px;display: inline-block;">Click here to join<br/>Bitovi's Slack Community</span></a>
+<a href="https://discord.gg/J7ejFsZnJ4">
+<img src="./static/img/discord.png"
+  style="float:left; margin:20px" width="57"/> <span style="margin-top: 10px;display: inline-block;">Click here to join the<br/>Bitovi Community Discord</span></a>
 
-Join Bitovi's Slack Community to get help on Bitovi University courses or other
+Join the Bitovi Community Discord to get help on Bitovi University courses or other
 Angular, React, CanJS and JavaScript problems.
 
-Please ask questions related to Web Components in the [JS and DOM chat room](https://bitovi-community.slack.com/messages/CFMMNSV5X).
+Please ask questions related to Web Components in the [JS and DOM chat room](https://discord.gg/qxqgyGquk7).
 
 If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/academy/issues) or email `contact@bitovi.com`.
 
@@ -42,6 +42,6 @@ The end result of this training will be a [CTA Bus tracker](http://www.ctabustra
 
 <img width="746" alt="CTA bus tracker web component" src="https://user-images.githubusercontent.com/361671/58019488-a36c9080-7ad3-11e9-84cc-e60cced008af.png">
 
-## Next Steps
+## Next steps
 
 ✏️ Head over to the [first lesson](learn-web-components/why-wc.html) and learn more about Web Components.

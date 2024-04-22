@@ -29,7 +29,7 @@ When an error occurs in the API it should wipe away any existing markers.
 1. Add a getter/setter pair on the `google-map-view` to handle `.vehicles`. When set it should use the Marker snippet (below) to create a new marker for *each* vehicle.
 1. When a route is selected and markers are already displayed for a previous route, remove the previous markers.
 
-## Technical Requirements
+## Technical requirements
 
 To create a new marker use `new google.maps.Marker`. This takes an object with some options that look like this:
 
@@ -51,7 +51,7 @@ Additionally this snippet can be used to remove a marker:
 marker.setMap(null);
 ```
 
-## What You Need to Know
+## What you need to know
 
 - How to use JavaScript getters and setters to handle dynamic property values.
 - How to use default values in custom elements.
@@ -60,7 +60,7 @@ marker.setMap(null);
 
 JavaScript [setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) allow observation of property changes. Adding a setter for `vehicles` provides a hook for when the `<bus-tracker>` component passes the array of vehicles for the selected route.
 
-In order to reflect back the list of vehicles in a [getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) you can save the vehicle list to another property on the element (like an underscore property). It's common when a setter exists that a getter does as well.
+In order to reflect back the list of vehicles in a [getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) you can save the vehicle list to another property on the element (like an underscore property). It’s common when a setter exists that a getter does as well.
 
 This is an example of a getter/setter pair in a JavaScript class.
 
@@ -126,7 +126,7 @@ setTimeout(() => counter.count--, 15000);
 
 ### Default values
 
-Most properties supported by built-in elements have some sort of default value. For example the [\<progress\>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress) element has a `max` property that defaults to `1`: `document.createElement('progress').max; // 1`. __All__ elements have an `onclick` property whose default value is `null`. It's good practice to provide default values for your supported public properties, and these can be set in the [constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor). Combining getters, setters and default values for properties makes your component more robust.
+Most properties supported by built-in elements have some sort of default value. For example the [\<progress\>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress) element has a `max` property that defaults to `1`: `document.createElement('progress').max; // 1`. __All__ elements have an `onclick` property whose default value is `null`. It’s good practice to provide default values for your supported public properties, and these can be set in the [constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor). Combining getters, setters and default values for properties makes your component more robust.
 
 ```js
 class DogElement extends HTMLElement {
@@ -151,7 +151,7 @@ class DogElement extends HTMLElement {
 <summary>Click to see the solution</summary>
 
 @sourceref ./index.html
-@highlight 204-205,219-242,267,306,309,only
+@highlight 204-205,219-242,265,304,307,only
 @codepen
 
 </details>

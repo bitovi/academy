@@ -25,7 +25,7 @@ const { takeUntil } = rxjs.operators;
   template: `
     <ul class="nav">
       <li routerLinkActive="active">
-        <a routerLink="/about" >About</a>
+        <a routerLink="/about">About</a>
       </li>
     </ul>
     <router-outlet></router-outlet>
@@ -50,7 +50,7 @@ class AboutComponent {
   selector: 'home-component',
   template: `
     <p>A home component!</p>
-    <form [formGroup]="myQuickForm">
+    <form [formGroup]="userForm">
       <label>
           First name:
           <input type="text" formControlName="firstName">
@@ -67,7 +67,7 @@ class AboutComponent {
   `
 })
 class HomeComponent implements OnInit, OnDestroy {
-  myQuickForm: FormGroup;
+  userForm: FormGroup;
   private onDestroy$ = new Subject<void>();
 
   constructor(private fb:FormBuilder) {
@@ -75,14 +75,14 @@ class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.myQuickForm = this.fb.group({
+    this.userForm = this.fb.group({
       firstName: {value: '', disabled: false},
       lastName: {value: '', disabled: false},
       email: {value: '', disabled: false}
     });
 
-    this.myQuickForm.valueChanges.pipe(takeUntil(this.onDestroy$)).subscribe((val) => {
-      console.log(val);
+    this.userForm.valueChanges.pipe(takeUntil(this.onDestroy$)).subscribe((value) => {
+      console.info(value);
     });
 
   }

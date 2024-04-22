@@ -1,6 +1,6 @@
 @page learn-to-debug-javascript/prototypes Prototypes
 @parent learn-to-debug-javascript 3
-@description Learn how to explore an object's proto chain.
+@description Learn how to explore an object’s proto chain.
 
 @body
 
@@ -8,7 +8,7 @@
 ## The problem
 
 
-What is the value of `frozen`'s `rated` property that it inherited from the `Entertainment`
+What is the value of `frozen`’s `rated` property that it inherited from the `Entertainment`
 prototype?
 
 ```html

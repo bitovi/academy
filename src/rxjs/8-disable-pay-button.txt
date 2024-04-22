@@ -1,4 +1,4 @@
-Hello and welcome to Bitovi Academy's Learn RxJS training.
+Hello and welcome to Bitovi Academy’s Learn RxJS training.
 
 This course covers how to perform the event reducer pattern with RxJS's scan operator.
 Specifically, we are going to:

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { ResponseData } from 'src/app/restaurant/restaurant.service';
+import { ResponseData } from '../../restaurant/restaurant.service';
 import { Order, OrderService } from '../order.service';
 
 interface Data<T> {
@@ -11,7 +11,7 @@ interface Data<T> {
 @Component({
   selector: 'pmo-history',
   templateUrl: './history.component.html',
-  styleUrls: ['./history.component.less'],
+  styleUrl: './history.component.css',
 })
 export class HistoryComponent implements OnInit, OnDestroy {
   orders: Data<Order> = { value: [], isPending: true };

@@ -11,14 +11,14 @@ The following best practices might seem basic, but surprisingly few people follo
 
 ### _Remote Work_
 
-Remote work adds additional challenges to an already difficult job. As a consultant you want to optimize for value - since your customer can't observe your work, you have to communicate it.
+Remote work adds additional challenges to an already difficult job. As a consultant you want to optimize for value - since your customer can’t observe your work, you have to communicate it.
 
 <details>
 <summary>Always be moving</summary>
 
 _Not a single day should go by without some sort of observable progress._ Have an update prepared for standup for **every** task you’re working on.
 
-Let's say you have a feature or bug that takes multiple days to complete. It shouldn't be radio silence until it's finished! So what is the difference between communicative and annoying? **Feedback**.
+Let’s say you have a feature or bug that takes multiple days to complete. It shouldn’t be radio silence until it’s finished! So what is the difference between communicative and annoying? **Feedback**.
 
 For example, when you start the work you change the status of the ticket and then open a pull request and mark it as Work in Progress (WIP). Be sure to push your work up at the end of each day. You may even reach out to your customer or a team member to go over your work to make sure you both understand the ticket the same way.
 
@@ -44,12 +44,12 @@ If you are off in your understanding or re-iteration the other person may be ann
 
 ### _Standups_
 
-The idea of a stand-up meeting is to ensure a brief discussion of important issues, current challenges and their solutions. Once the core issues are discussed, the team can quickly disperse to carry out that day’s initiatives. It's important to do your part to make standups effective but efficient.
+The idea of a stand-up meeting is to ensure a brief discussion of important issues, current challenges and their solutions. Once the core issues are discussed, the team can quickly disperse to carry out that day’s initiatives. It’s important to do your part to make standups effective but efficient.
 
 <details>
 <summary>Prepare in advance</summary>
 
-Take 10 minutes before the meeting to think about what you're going to say. You will not waste precious minutes of your team's time thinking of your update off the cuff, and doing so will make you sound prepared and keep your update concise.
+Take 10 minutes before the meeting to think about what you’re going to say. You will not waste precious minutes of your team’s time thinking of your update off the cuff, and doing so will make you sound prepared and keep your update concise.
 
 </details>
 
@@ -63,7 +63,7 @@ Standups can be done in writing! This can be more efficient for a fully remote t
 <details>
 <summary>Frequency</summary>
 
-Consider the frequency in which you meet. The frequency should be based on the team size and usefulness of the information. Don't meet daily if you're giving the same updates every day. The best way to figure this out is to find out what information people need, and when, and plan the cadence around that. You can always adjust later!
+Consider the frequency in which you meet. The frequency should be based on the team size and usefulness of the information. Don’t meet daily if you’re giving the same updates every day. The best way to figure this out is to find out what information people need, and when, and plan the cadence around that. You can always adjust later!
 
 </details>
 
@@ -124,14 +124,14 @@ Most people just go through the motions. If you care a lot, and you’re not ash
 
 ## Communication Tools
 
-The following the communication tools that should be present on every project. With so many options, it important to pick the correct technology for the type of interaction you expect. Immediacy (as in how quickly you need a response) is the governing attribute for each tool. Below are a list of common tools used in today's workplace in order from least immediate to most immediate.
+The following the communication tools that should be present on every project. With so many options, it important to pick the correct technology for the type of interaction you expect. Immediacy (as in how quickly you need a response) is the governing attribute for each tool. Below are a list of common tools used in today’s workplace in order from least immediate to most immediate.
 
 - Wiki
 - Email
 - Chat
 - Meetings
 
-When deciding what tool to use, start at the top - it is the most respectful of your recipient's time. Most communications are informational in nature and should be documented (like in a wiki) or emailed. If using email to ask a question or to get a response, follow the [business writing](#business-writing) principles outlined below.
+When deciding what tool to use, start at the top - it is the most respectful of your recipient’s time. Most communications are informational in nature and should be documented (like in a wiki) or emailed. If using email to ask a question or to get a response, follow the [business writing](#business-writing) principles outlined below.
 
 Chat replies can be delayed but most modern tools like Slack give the sender the ability to "demand" a recipients attention with notifications. Meetings should only be scheduled when decisions need to be made at that very moment.
 
@@ -193,13 +193,13 @@ You recently attended a meeting where you were asked to discuss a new feature on
 Answer
 </summary>
 
-Send out an an agenda in advance of the meeting. Also, explain what happened with the confusion around the previous feature, and that you'd like to agree who will work on this feature at the meeting. During the meeting, ask clarifying questions about the new feature and who is expected to implement it. Offer to take ownership of the feature if appropriate. Take notes about all of this. After the meeting, send out a recap of what was discussed to all of those who attended, making it clear who will be implementing the feature.
+Send out an an agenda in advance of the meeting. Also, explain what happened with the confusion around the previous feature, and that you’d like to agree who will work on this feature at the meeting. During the meeting, ask clarifying questions about the new feature and who is expected to implement it. Offer to take ownership of the feature if appropriate. Take notes about all of this. After the meeting, send out a recap of what was discussed to all of those who attended, making it clear who will be implementing the feature.
 
 **Principles used:**
 
 - Come prepared (setting an agenda will make the meeting more focussed)
 - State expectations explicitly (explaining the confusion from before will help clarify the expectation you want to identify an explicit owner)
-- Take notes and send recaps (there's no question of who will be implementing the feature this time)
+- Take notes and send recaps (there’s no question of who will be implementing the feature this time)
 - Take ownership (your initiative creates less confusion)
 - State expectations explicitly (everyone knows that you own this feature)
 - Just care (having a clear purpose to the meeting and taking ownership show your dedication to the project)
@@ -228,9 +228,9 @@ Once you’ve identified those problems, try to rewrite it to solve those proble
 Answer
 </summary>
 
-> I am concerned that Rates & Fees will **miss** the June 27th deadline. **Let's discuss how we can address this concern at today's standup.**
+> I am concerned that Rates & Fees will **miss** the June 27th deadline. **Let’s discuss how we can address this concern at today’s standup.**
 >
-> This is mainly due to the fact that full time dev didn't begin until June 2nd, which doesn't give us enough time for QA and verification. Unfortunately, I only learned about this deadline very recently, or I would have notified you sooner.
+> This is mainly due to the fact that full time dev didn’t begin until June 2nd, which doesn’t give us enough time for QA and verification. Unfortunately, I only learned about this deadline very recently, or I would have notified you sooner.
 
 **Principles used:**
 
@@ -238,7 +238,7 @@ Answer
 - Don’t bury the lede (the point of the email is stated first)
 - Use whitespace (separating the first sentence from the rest makes the point clearer)
 - Use bold to emphasize the most important parts of your message (need to discuss this ASAP, so highlight the call to action)
-- Exec summaries and calls to action (it's clear what the next step is)
+- Exec summaries and calls to action (it’s clear what the next step is)
 
 </details>
 
@@ -246,7 +246,7 @@ Answer
 
 Improve the following email:
 
-> I felt that David wasn't being very articulate as to why he needed access to Google Analytics so I gave him a call. I didn't think he was being clear so I wanted to clarify with him before we made any decisions At first I didn't quite understand his reasoning but after my phone call with him I changed my mind. I think it would be a good idea to give our designer access to Google Analytics. I think David would be more receptive to me and we could better communicate on issues and how to solve them.
+> I felt that David wasn’t being very articulate as to why he needed access to Google Analytics so I gave him a call. I didn’t think he was being clear so I wanted to clarify with him before we made any decisions At first I didn’t quite understand his reasoning but after my phone call with him I changed my mind. I think it would be a good idea to give our designer access to Google Analytics. I think David would be more receptive to me and we could better communicate on issues and how to solve them.
 
 <details>
 <summary>
@@ -275,10 +275,10 @@ Consider the following thoughts. Find a way to organize this into relevant categ
 > - Major homepage dev is complete and on time. Play with the demo here
 > - Minor bugs remain, listed here
 > - The QA team will start working on this page today
-> - We still don't have a full QA server or timeline. If we don't have it by end of week, we'll be a week behind on our timeline. Who will own this?
-> - We can't test the logged in views of the homepage without a QA server.
-> - Even though the homepage and locator will be done and ready to deploy before the production servers are available, we decided we'll still deploy Club Locator first (maybe by only a few days) to minimize risk on a lower visibility page.
-> - This means we'll be maintaining separate code branches for the locator release and the Locator+Homepage release. This is why we'll have Homepage on one server - http://samsminor.herokuapp.com - and locator on another - http://samsminor.herokuapp.com
+> - We still don’t have a full QA server or timeline. If we don’t have it by end of week, we’ll be a week behind on our timeline. Who will own this?
+> - We can’t test the logged in views of the homepage without a QA server.
+> - Even though the homepage and locator will be done and ready to deploy before the production servers are available, we decided we’ll still deploy Club Locator first (maybe by only a few days) to minimize risk on a lower visibility page.
+> - This means we’ll be maintaining separate code branches for the locator release and the Locator+Homepage release. This is why we’ll have Homepage on one server - http://samsminor.herokuapp.com - and locator on another - http://samsminor.herokuapp.com
 
 <details>
 <summary>
@@ -287,8 +287,8 @@ Answer
 
 > **Blockers**
 >
-> - We still don't have a full QA server or timeline. If we don't have it by end of week, we'll be a week behind on our timeline. Who will own this?
-> - We can't test the logged in views of the homepage without a QA server.
+> - We still don’t have a full QA server or timeline. If we don’t have it by end of week, we’ll be a week behind on our timeline. Who will own this?
+> - We can’t test the logged in views of the homepage without a QA server.
 >
 > **Status**
 >
@@ -298,8 +298,8 @@ Answer
 >
 > **Discussion**
 >
-> - Even though the homepage and locator will be done and ready to deploy before the production servers are available, we decided we'll still deploy Club Locator first (maybe by only a few days) to minimize risk on a lower visibility page.
-> - This means we'll be maintaining separate code branches for the locator release and the Locator+Homepage release:
+> - Even though the homepage and locator will be done and ready to deploy before the production servers are available, we decided we’ll still deploy Club Locator first (maybe by only a few days) to minimize risk on a lower visibility page.
+> - This means we’ll be maintaining separate code branches for the locator release and the Locator+Homepage release:
 >   - Homepage: http://samsminor.herokuapp.com
 >   - Locator: http://samsclub.herokuapp.com
 

@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   AbstractControl,
-  FormArray,
   FormBuilder,
+  FormControl,
   FormGroup,
   ValidationErrors,
   ValidatorFn,
@@ -12,6 +12,19 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Restaurant } from '../restaurant/restaurant';
 import { RestaurantService } from '../restaurant/restaurant.service';
+
+export interface Item {
+  name: string;
+  price: number;
+}
+
+export interface OrderForm {
+  restaurant: FormControl<string>;
+  name: FormControl<string>;
+  address: FormControl<string>;
+  phone: FormControl<string>;
+  items: FormControl<Item[]>;
+}
 
 // CUSTOM VALIDATION FUNCTION TO ENSURE THAT THE ITEMS FORM VALUE CONTAINS AT LEAST ONE ITEM.
 function minLengthArray(min: number): ValidatorFn {
@@ -26,13 +39,12 @@ function minLengthArray(min: number): ValidatorFn {
 @Component({
   selector: 'pmo-order',
   templateUrl: './order.component.html',
-  styleUrls: ['./order.component.less'],
+  styleUrl: './order.component.css',
 })
 export class OrderComponent implements OnInit, OnDestroy {
-  orderForm?: FormGroup;
+  orderForm?: FormGroup<OrderForm>;
   restaurant?: Restaurant;
   isLoading = true;
-  items?: FormArray;
   orderTotal = 0.0;
   completedOrder: any;
   orderComplete = false;
@@ -54,7 +66,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   createOrderForm(): void {
     // CREATE AN ORDER FORM TO COLLECT: RESTAURANT ID, NAME, ADDRESS, PHONE, AND ITEMS
     // ITEMS SHOULD USE THE CUSTOM MINLENGTH ARRAY VALIDATION
-    this.orderForm = this.formBuilder.group({});
+    this.orderForm = this.formBuilder.nonNullable.group({});
     this.onChanges();
   }
 
@@ -62,11 +74,23 @@ export class OrderComponent implements OnInit, OnDestroy {
     // SUBSCRIBE TO THE ITEMS FORMCONTROL CHANGE TO CALCULATE A NEW TOTAL
   }
 
+  calculateTotal(items: Item[]): void {
+    let total = 0.0;
+    if (items.length) {
+      for (const item of items) {
+        total += item.price;
+      }
+      this.orderTotal = Math.round(total * 100) / 100;
+    } else {
+      this.orderTotal = total;
+    }
+  }
+
   onSubmit(): void {}
 
   startNewOrder(): void {
     this.orderComplete = false;
-    this.completedOrder = this.orderForm?.value;
+    this.completedOrder = undefined;
     // CLEAR THE ORDER FORM
     this.createOrderForm();
   }

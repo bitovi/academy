@@ -122,7 +122,7 @@ You can call `subject.next()` in the DOM as follows:
 
 @highlight 5
 
-Use `| async` to write out an observable's value in a template as follows:
+Use `| async` to write out an observable’s value in a template as follows:
 
 ```html
 UserCardNumber: {{ userCardNumber$ | async }} <br />
@@ -130,7 +130,7 @@ UserCardNumber: {{ userCardNumber$ | async }} <br />
 
 Read more about this technique [here](https://angular.io/guide/observables-in-angular#async-pipe).
 
-## The Solution
+## The solution
 
 <details>
 <summary>Click to see the solution</summary>

@@ -9,8 +9,8 @@
 
 In this part, we will:
 
-- Use routerLink to create navigation links
-- Use routerLinkActive to highlight current navigation
+- Use `routerLink` to create navigation links
+- Use `routerLinkActive` to highlight current navigation
 
 ## Problem
 
@@ -22,51 +22,16 @@ if they are for the current page or not.
   style="border: solid 1px black; "
   title="Place My Order App working nav"/>
 
-## Technical Requirements
-
-Create a navigation menu that will route to our home and restaurant components when clicked, as well as show an `active` class on the `li` element when the route is active.
-
-Make your changes in the **src/app/app.component.html** file. The markup structure should look like this:
-
-```html
-<header>
-  <nav>
-    <h1>place-my-order.com</h1>
-    <ul>
-      <li>
-        <a>Home</a>
-      </li>
-      <li>
-        <a>Restaurants</a>
-      </li>
-    </ul>
-  </nav>
-</header>
-```
-
-## How to Verify Your Solution is Correct
-
-You will know you've completed the exercise correctly when you can click the nav items to
-see the UI change and see the active class on the current nav item.
-
-![Place My Order App working nav](../static/img/angular/pmo-working-nav.gif 'Place My Order App working nav')
-
-✏️ Update the spec file **src/app/app.component.spec.ts** to be:
-
-@diff ../4-adding-routing/app.component.spec.ts ./app.component.spec.ts only
-
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
-
-## What You Need to Know
+## What you need to know
 
 To solve this, you will need to know how to:
 
-- How to use the routerLink directive
-- How to use the routerLinkActive directive
+- How to use the `routerLink` directive
+- How to use the `routerLinkActive` directive
 
 ## RouterLink
 
-You may have noticed the links in the routing examples to switch between views. They use the <a href="https://angular.io/api/router/RouterLink" >routerLink</a> directive. The routerLink takes a property of a path that can be static or built dynamically based on properties on the component.
+You may have noticed the links in the routing examples to switch between views. They use the <a href="https://angular.io/api/router/RouterLink">routerLink</a> directive. The `routerLink` takes a property of a path that can be static or built dynamically based on properties on the component.
 
 ### Static routerLink Segments
 
@@ -78,7 +43,7 @@ The following is an example of a hard coded path:
 
 ### Dynamic routerLink Segments
 
-The following is an example of a path being built from different pieces of data. In reusable components we'll often want to dynamically create paths based on a piece of datas unique property values.
+The following is an example of a path being built from different pieces of data. In reusable components we’ll often want to dynamically create paths based on a piece of data’s unique property values.
 
 @sourceref ./dynamic-path.html
 @codepen
@@ -86,7 +51,7 @@ The following is an example of a path being built from different pieces of data.
 
 ## RouterLinkActive
 
-The <a href="https://angular.io/api/router/RouterLinkActive" >routerLinkActive</a> directive lets you add a CSS class to an element when the link's route becomes active. Angular looks at the path to determine if the route is active and will return true if any of the path matches, meaning when a path contains a "child" segment the route active status will still return true. If exact specificity is needed, `[routerLinkActiveOptions]="{exact: true}"` can be used.
+The <a href="https://angular.io/api/router/RouterLinkActive">routerLinkActive</a> directive lets you add a CSS class to an element when the link's route becomes active. Angular looks at the path to determine if the route is active and will return true if any of the path matches, meaning when a path contains a "child" segment the route active status will still return true. If exact specificity is needed, `[routerLinkActiveOptions]="{exact: true}"` can be used.
 
 ### Adding a Basic Active Class
 
@@ -96,26 +61,49 @@ The <a href="https://angular.io/api/router/RouterLinkActive" >routerLinkActive</
 
 ### Adding an Active Class with Options
 
-Using `{exact: true}` will only set the class if the path match is exactly equal. `{exact: true}` can also be applied to parents of routerlinks
+Using `{exact: true}` will only set the class if the path match is exactly equal. `{exact: true}` can also be applied to parents of `routerLink`s.
 
 @sourceref ./router-link-active-options.html
 @codepen
-@highlight 24-25,27-30, only
+@highlight 24-25,27-28,30, only
 
 ### Adding an Active Class with Template Variable
 
-RouterLinkActive can also be used to set <a href="https://angular.io/api/router/RouterLinkActive#template-variable-references">template variables</a> to check the active status of the route. In this example we're creating a template variable `myroutervariable` to represent our route and it's active state for logic in our template.
+`RouterLinkActive` can also be used to set <a href="https://angular.io/api/router/RouterLinkActive#template-variable-references">template variables</a> to check the active status of the route. In this example, we’re creating a template variable `userLink` to represent our route and its active state for logic in our template.
 
 @sourceref ./router-link-active-template.html
 @codepen
-@highlight 27-31, only
+@highlight 27-28, 32, only
+
+## Technical requirements
+
+Create a navigation menu that will route to our home and restaurant components when clicked, as well as show an `active` class on the `li` element when the route is active.
+
+## Setup
+
+Make your changes in the **src/app/app.component.html** file. The markup structure should look like this:
+
+@diff ../4-adding-routing/app.component.html ./app.component.problem.html
+
+## How to verify your solution is correct
+
+You will know you’ve completed the exercise correctly when you can click the nav items to
+see the UI change and see the active class on the current nav item.
+
+![Place My Order App working nav](../static/img/angular/pmo-working-nav.gif 'Place My Order App working nav')
+
+✏️ Update the spec file **src/app/app.component.spec.ts** to be:
+
+@diff ../4-adding-routing/app.component.spec.ts ./app.component.spec.ts only
 
 ## Solution
+
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 <details>
 <summary>Click to see the solution</summary>
 ✏️ Update **src/app/app.component.html** to:
 
-@diff ../4-adding-routing/app.component.html ./app.component.html
+@diff ./app.component.problem.html ./app.component.solution.html
 
 </details>
