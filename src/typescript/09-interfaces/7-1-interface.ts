@@ -8,10 +8,10 @@ interface Dinosaur {
 
 //function with interface describing parameter
 function trackDino(dino: Dinosaur) {
-  console.log(dino.location);
+  console.info(dino.location);
 }
 
-let blue = {
+const blue = {
   name: 'blue',
   breed: 'Velociraptor',
   height: 7,
