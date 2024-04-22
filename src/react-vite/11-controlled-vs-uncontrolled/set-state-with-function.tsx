@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import { useState } from "react"
 
 const landmarks = [
-  { id: '0b90c705', name: 'Eiffel Tower' },
-  { id: '5be758c1', name: 'Machu Picchu' },
-  { id: '206025c3', name: 'Taj Mahal' },
+  { id: "0b90c705", name: "Eiffel Tower" },
+  { id: "5be758c1", name: "Machu Picchu" },
+  { id: "206025c3", name: "Taj Mahal" },
 ]
 
 type SelectedItems = Record<string, number>
 
 const Selected: React.FC = () => {
-  const [selected, setSelected] = useState<SelectedItems>({});
+  const [selected, setSelected] = useState<SelectedItems>({})
 
   function handleSelectedChange(name: string, isSelected: boolean) {
     setSelected((currentSelectedItems) => {
@@ -28,19 +28,21 @@ const Selected: React.FC = () => {
   }
 
   return (
-    <form>{
-      landmarks.map((landmark) => {
+    <form>
+      {landmarks.map((landmark) => {
         return (
           <label key={landmark.id}>
             {landmark.name}:
             <input
-              checked={selected[landmark.name]}
-              onChange={(event) => handleSelectedChange(landmark.name, event.target.checked)}
               type="checkbox"
+              checked={selected[landmark.name]}
+              onChange={(event) =>
+                handleSelectedChange(landmark.name, event.target.checked)
+              }
             />
           </label>
         )
-      })
-    }</form>
+      })}
+    </form>
   )
 }

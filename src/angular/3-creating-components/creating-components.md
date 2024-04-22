@@ -47,11 +47,11 @@ This will create a new component for us and import it in our root module.
 |   |   ├── new-component-name/
 |   |       |── new-component-name.component.ts
 |   |       |── new-component-name.component.spec.ts
-|   |       |── new-component-name.component.less
+|   |       |── new-component-name.component.css
 |   |       |── new-component-name.component.html
 ```
 
-Generated components have the same structure - a name.component.ts file that will contain the boilerplate code for the Angular component class. This class will also have a component decorator pointing to the name.component.less file for styles, and the name.component.html file for it’s template. Styles and templates can also be written inline in the decorator with backticks to escape the code using the keys `style` and `template`.
+Generated components have the same structure - a name.component.ts file that will contain the boilerplate code for the Angular component class. This class will also have a component decorator pointing to the name.component.css file for styles, and the name.component.html file for it’s template. Styles and templates can also be written inline in the decorator with backticks to escape the code using the keys `style` and `template`.
 
 ## Binding data to components
 

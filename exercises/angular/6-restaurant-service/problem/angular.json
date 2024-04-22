@@ -7,7 +7,6 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "less",
           "standalone": false
         },
         "@schematics/angular:directive": {
@@ -31,7 +30,6 @@
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "less",
             "assets": [
               "src/favicon.ico",
               "src/assets",
@@ -42,8 +40,8 @@
               }
             ],
             "styles": [
-              "src/styles.less",
-              "./node_modules/place-my-order-assets/less/styles.less"
+              "src/styles.css",
+              "./node_modules/place-my-order-assets/css/place-my-order-assets.css"
             ],
             "scripts": []
           },
@@ -103,13 +101,12 @@
               "zone.js/testing"
             ],
             "tsConfig": "tsconfig.spec.json",
-            "inlineStyleLanguage": "less",
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.less"
+              "src/styles.css"
             ],
             "scripts": []
           }

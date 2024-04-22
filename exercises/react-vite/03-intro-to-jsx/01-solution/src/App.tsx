@@ -1,4 +1,4 @@
-import './App.css'
+import "./App.css"
 
 function App() {
   return (
@@ -22,9 +22,7 @@ function App() {
             $$$
             <br />
             Hours: M-F 10am-11pm
-            <span className="open-now">
-              Open Now
-            </span>
+            <span className="open-now">Open Now</span>
           </div>
           <a className="btn" href="/restaurants/poutine-palace">
             Details

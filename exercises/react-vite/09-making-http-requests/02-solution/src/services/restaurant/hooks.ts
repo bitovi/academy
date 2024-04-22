@@ -1,18 +1,18 @@
-import { useEffect, useState } from 'react'
-import type { City, State } from './interfaces'
+import type { City, State } from "./interfaces"
+import { useEffect, useState } from "react"
 
 interface StatesResponse {
-  data: State[] | null;
-  error: Error | null;
-  isPending: boolean;
+  data: State[] | null
+  error: Error | null
+  isPending: boolean
 }
 
 export function useCities(state: string): City[] {
   const cities = [
-    { name: 'Madison', state: 'WI' },
-    { name: 'Springfield', state: 'IL' },
+    { name: "Madison", state: "WI" },
+    { name: "Springfield", state: "IL" },
   ]
-  return cities.filter(city => {
+  return cities.filter((city) => {
     return city.state === state
   })
 }
@@ -39,7 +39,7 @@ export function useStates(): StatesResponse {
       })
     }
     fetchData()
-  }, []);
+  }, [])
 
   return response
 }

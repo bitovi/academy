@@ -5,7 +5,7 @@ import { Item } from '../order.component';
 @Component({
   selector: 'pmo-menu-items',
   templateUrl: './menu-items.component.html',
-  styleUrl: './menu-items.component.less',
+  styleUrl: './menu-items.component.css',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -43,7 +43,7 @@ export class MenuItemsComponent implements ControlValueAccessor {
     this.value = value;
   }
 
-  updateItems(item: Item): void {
+  updateItem(item: Item): void {
     const index = this._value?.indexOf(item) ?? -1;
     if (index !== -1) {
       this._value?.splice(index, 1);

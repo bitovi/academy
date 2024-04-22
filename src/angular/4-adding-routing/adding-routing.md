@@ -64,29 +64,7 @@ This example shows one route redirecting to another:
 
 As our applications grow, it doesn’t make sense to load all the code at once. Thanks to <a href="https://angular.io/guide/lazy-loading-ngmodules">lazy loading</a>, we can wait to render modules until a specific route requiring them is hit.
 
-<!-- [//]: # @sourceref ./lazyload-route.html
-[//]: # @codepen
-[//]: # @highlight 120, only -->
-
-```typescript
-const routes: Routes = [
-  { path: 'about', component: AboutComponent },
-  { path: 'team',  redirectTo: '/about', pathMatch: 'full' },
-  {
-    path: 'products',
-    loadChildren: () => {
-      return import('./products/products.module').then(m => m.ProductsModule)
-    }
-  },
-  { path: '**', component: PageNotFoundComponent }
-];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-class AppRoutingModule { }
-```
+@sourceref ./lazyload-route.ts
 @highlight 4-9
 
 ## <base-href>

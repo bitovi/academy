@@ -227,7 +227,9 @@ Go ahead and put your new component in the order component.
 
 ## Problem 4: Attaching event handlers to item checkboxes
 
-Next, we want to know when a checkbox has been checked or unchecked, and update an array called `selectedItems` containing all checked items.
+Next, we want to know when a checkbox has been checked or unchecked.
+
+Before communicating between `MenuItemsComponent` and its parent `OrderComponent`, `MenuItemsComponent` will need to attach an event handler - a function - to the `change` event of the item checkboxes.
 
 ## P4: What you need to know
 
@@ -241,16 +243,7 @@ Event binding in Angular follows a simple pattern - the event name in parenthesi
 
 ## P4: Technical requirements
 
-Create a function in the `MenuItemsComponent` called `updateItems` that fires whenever a checkbox is checked and takes a parameter of the item that has been checked. In the `updateItems` function use the following code to update the `selectedItems` array:
-
-```typescript
-let index = this.selectedItems.indexOf(item);
-if (index > -1) {
-  this.selectedItems.splice(index, 1);
-} else {
-  this.selectedItems.push(item);
-}
-```
+Create a function in the `MenuItemsComponent` called `updateItem` that fires whenever a checkbox is checked and takes a parameter of the item that has been checked.
 
 ## P4: How to verify your solution is correct
 
@@ -272,11 +265,14 @@ if (index > -1) {
 
 </details>
 
-## Problem 5: Update `OrderFormComponent` with the `selectedItems` array from `MenuItemsComponent`
+## Problem 5: Update `OrderFormComponent` with the emitted `Item` from `MenuItemsComponent`
 
 Now we want to let the form know what the selected items are as they change so we can update the order total accordingly.
 
 ## P5: What you need to know
+
+- How to emit a value to a parent component
+- How to programmatically update a `FormControl`’s value (you learned this in previous sections! ✔️)
 
 ## Emitting Data to Parent Components
 
@@ -288,22 +284,15 @@ The parent component is listening for a change on the child component’s proper
 @codepen
 @highlight 31-33,44-46,65,70,78-80,only
 
-## Programmatically updating `FormArray` values
-
-When we have a FormArray we need to update programmatically with a value we can use the <a href="https://angular.io/api/forms/FormArray#patchvalue">`patchValue`</a> or <a href="https://angular.io/api/forms/FormArray#setvalue">`setValue`</a> methods on the `FormArray` class.
-
-The difference between these two FormArray’s methods is that `setValue` replaces the current array with the new value, and `patchValue` updates the array with the new values, trying to update values where possible.
-
-@sourceref ./form-patch-value.html
-@codepen
-@highlight 25-28,60-64,only
-
-- How to emit a value to a parent component (you learned this in the section above! ✔️)
-- How to programmatically update a `FormArray`’s value (you learned this in the section above! ✔️)
-
 ## P5: Technical requirements
 
-Create an `itemsChanged` EventEmitter property that emits the `selectedItems` value every time it changes, and in the parent OrderForm component update the `items` FormControl with the value.
+Create an `itemChanged` EventEmitter property that emits the checked/unchecked `Item` value every time it changes, and in the parent OrderComponent update the `items` FormControl with the updated `Item`s array using the provided `getChange` function.
+
+## P5: Setup
+
+✏️ Update the **src/app/order/order.component.ts** file to be:
+
+@diff ./order.component-solution.ts ./child-component/order.component-get-change.ts only
 
 ## P5: How to verify your solution is correct
 
@@ -325,7 +314,7 @@ Create an `itemsChanged` EventEmitter property that emits the `selectedItems` va
 
 ✏️ Update **src/app/order/order.component.ts**
 
-@diff ./order.component-solution.ts ./child-component/order-2.component.ts only
+@diff ./child-component/order.component-get-change.ts ./child-component/order-2.component.ts only
 
 </details>
 

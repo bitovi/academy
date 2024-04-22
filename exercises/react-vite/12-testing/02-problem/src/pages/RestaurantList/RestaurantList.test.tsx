@@ -1,13 +1,20 @@
-import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event'
-import { MemoryRouter } from 'react-router-dom';
-import { describe, expect, it, vi } from 'vitest';
+import "@testing-library/jest-dom"
+import type { ReactNode } from "react"
+import { render, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
+import { MemoryRouter } from "react-router-dom"
+import { describe, expect, it, vi } from "vitest"
 
-import RestaurantList from './RestaurantList';
+import RestaurantList from "./RestaurantList"
+
+import {
+  useCities,
+  useRestaurants,
+  useStates,
+} from "../../services/restaurant/hooks"
 
 // Mock the hooks used in the component
-vi.mock('../../services/restaurant/hooks', () => ({
+vi.mock("../../services/restaurant/hooks", () => ({
   useCities: vi.fn(() => {
     return {
       data: null,
@@ -29,59 +36,93 @@ vi.mock('../../services/restaurant/hooks', () => ({
       isPending: false,
     }
   }),
-}));
-
-import { useCities, useRestaurants, useStates } from '../../services/restaurant/hooks'
+}))
 
 // Wrap component with MemoryRouter to mock routing
-const renderWithRouter = (ui, { route = '/' } = {}) => {
-  window.history.pushState({}, 'Test page', route)
-  return render(ui, { wrapper: MemoryRouter });
-};
+const renderWithRouter = (ui: ReactNode, { route = "/" } = {}) => {
+  window.history.pushState({}, "Test page", route)
+  return render(ui, { wrapper: MemoryRouter })
+}
 
-describe('RestaurantList component', () => {
-  it('renders the Restaurants header', () => {
-    render(<RestaurantList />);
-    expect(screen.getByText(/Restaurants/i)).toBeInTheDocument();
-  });
+describe("RestaurantList component", () => {
+  it("renders the Restaurants header", () => {
+    render(<RestaurantList />)
+    expect(screen.getByText(/Restaurants/i)).toBeInTheDocument()
+  })
 
-  it('renders state and city dropdowns', () => {
+  it("renders state and city dropdowns", () => {
     render(<RestaurantList />)
     expect(screen.getByLabelText(/State/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/City/i)).toBeInTheDocument()
   })
 
-  it('renders correctly with initial states', () => {
-    useStates.mockReturnValue({ data: null, isPending: true, error: null });
-    useCities.mockReturnValue({ data: null, isPending: false, error: null });
-    useRestaurants.mockReturnValue({ data: null, isPending: false, error: null });
+  it("renders correctly with initial states", () => {
+    useStates.mockReturnValue({ data: null, isPending: true, error: null })
+    useCities.mockReturnValue({ data: null, isPending: false, error: null })
+    useRestaurants.mockReturnValue({
+      data: null,
+      isPending: false,
+      error: null,
+    })
 
-    render(<RestaurantList />);
+    render(<RestaurantList />)
 
-    expect(screen.getByText(/Restaurants/)).toBeInTheDocument();
-    expect(screen.getByText(/Loading states…/)).toBeInTheDocument();
-  });
+    expect(screen.getByText(/Restaurants/)).toBeInTheDocument()
+    expect(screen.getByText(/Loading states…/)).toBeInTheDocument()
+  })
 
-  it('displays error messages correctly', () => {
-    useStates.mockReturnValue({ data: null, isPending: false, error: { message: 'Error loading states' } });
-    useCities.mockReturnValue({ data: null, isPending: false, error: { message: 'Error loading cities' } });
-    useRestaurants.mockReturnValue({ data: null, isPending: false, error: { message: 'Error loading restaurants' } });
+  it("displays error messages correctly", () => {
+    useStates.mockReturnValue({
+      data: null,
+      isPending: false,
+      error: { message: "Error loading states" },
+    })
+    useCities.mockReturnValue({
+      data: null,
+      isPending: false,
+      error: { message: "Error loading cities" },
+    })
+    useRestaurants.mockReturnValue({
+      data: null,
+      isPending: false,
+      error: { message: "Error loading restaurants" },
+    })
 
-    render(<RestaurantList />);
+    render(<RestaurantList />)
 
-    expect(screen.getByText(/Error loading states/)).toBeInTheDocument();
-  });
+    expect(screen.getByText(/Error loading states/)).toBeInTheDocument()
+  })
 
-  it('renders restaurants correctly', async () => {
-    useStates.mockReturnValue({ data: [{ short: 'CA', name: 'California' }], isPending: false, error: null });
-    useCities.mockReturnValue({ data: [{ name: 'Los Angeles' }], isPending: false, error: null });
-    useRestaurants.mockReturnValue({ data: [{ _id: '1', slug: 'test-restaurant', name: 'Test Restaurant', address: '123 Test St', images: { thumbnail: 'test.jpg' } }], isPending: false, error: null });
+  it("renders restaurants correctly", async () => {
+    useStates.mockReturnValue({
+      data: [{ short: "CA", name: "California" }],
+      isPending: false,
+      error: null,
+    })
+    useCities.mockReturnValue({
+      data: [{ name: "Los Angeles" }],
+      isPending: false,
+      error: null,
+    })
+    useRestaurants.mockReturnValue({
+      data: [
+        {
+          _id: "1",
+          slug: "test-restaurant",
+          name: "Test Restaurant",
+          address: "123 Test St",
+          images: { thumbnail: "test.jpg" },
+        },
+      ],
+      isPending: false,
+      error: null,
+    })
 
-    renderWithRouter(<RestaurantList />);
+    renderWithRouter(<RestaurantList />)
 
-    await userEvent.selectOptions(screen.getByLabelText(/State/), 'CA');
-    await userEvent.selectOptions(screen.getByLabelText(/City/), 'Los Angeles');
+    await userEvent.selectOptions(screen.getByLabelText(/State/), "CA")
+    await userEvent.selectOptions(screen.getByLabelText(/City/), "Los Angeles")
 
-    expect(screen.getByText('Test Restaurant')).toBeInTheDocument();
-  });
-});
+    expect(screen.getByText("Test Restaurant")).toBeInTheDocument()
+  })
+})

@@ -1,6 +1,6 @@
-import { Outlet } from 'react-router-dom'
-import RestaurantList from './pages/RestaurantList'
-import './App.css'
+import { Outlet } from "react-router-dom"
+import RestaurantList from "./pages/RestaurantList"
+import "./App.css"
 
 function App() {
   return (

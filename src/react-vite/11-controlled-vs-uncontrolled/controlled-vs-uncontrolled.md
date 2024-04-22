@@ -21,151 +21,110 @@ In this section, we will:
 
 Now that we have our `RestaurantOrder` page, let’s start building the form for placing an order!
 
-We’ll start with checkboxes to select menu items, with a message that warns users when no items
-are selected and a total that shows the sum of the selected items.
+We’ll start with checkboxes to select menu items, with a message that warns users when no items are selected and a total that shows the sum of the selected items.
 
 ### Controlled vs. uncontrolled inputs
 
-React has special handling for `<input>` components that allow developers to create “controlled” or
-“uncontrolled” inputs. An input is **uncontrolled** when its `value` (or `checked`) prop is not
-set, and it does not have a handler set for the `onChange` prop; an initial value may be set using
-the `defaultValue` prop.
+React has special handling for `<input>` components that allow developers to create “controlled” or “uncontrolled” inputs. An input is **uncontrolled** when its `value` (or `checked`) prop is not set, and it does not have a handler set for the `onChange` prop; an initial value may be set using the `defaultValue` prop.
 
-An input is **controlled** when both its `value` (or `checked`) and `onChange` props have values
-set. The term “controlled” refers to the fact that the value of the input is controlled by React.
-Most of the time, we want our `<input>` components to be controlled with their value stored in a state
-variable.
+An input is **controlled** when both its `value` (or `checked`) and `onChange` props have values set. The term “controlled” refers to the fact that the value of the input is controlled by React. Most of the time, we want our `<input>` components to be controlled with their value stored in a state variable.
 
-**Note:** If an `<input>` only has the `value` or `onChange` prop set, React will log a warning to the
-console in development mode.
+**Note:** If an `<input>` only has the `value` or `onChange` prop set, React will log a warning to the console in development mode.
 
 Let’s take a look at an example of a controlled input:
 
 @sourceref ./controlled.tsx
-@highlight 6-10, only
+@highlight 8-12, only
 
-Controlled components aren’t allowed to have a value of `null` or `undefined`. To set an input with
-“no value,” use an empty string: `""`.
+Controlled components aren’t allowed to have a value of `null` or `undefined`. To set an input with “no value,” use an empty string: `""`.
 
 ### Working with change events
 
-In the previous example, the `<input>` prop `onChange` had its value set to a function known as an
-“event handler.”
+In the previous example, the `<input>` prop `onChange` had its value set to a function known as an “event handler.”
 
 @sourceref ./controlled.tsx
-@highlight 7-8, only
+@highlight 10, only
 
-When an event occurs, such as a user typing in an input field, an `event` object is
-passed to the event handler function. This event object contains various properties
-and methods that provide information about the event.
+When an event occurs, such as a user typing in an input field, an `event` object is passed to the event handler function. This event object contains various properties and methods that provide information about the event.
 
-One such property is `target`, which is a reference to the DOM element that triggered
-the event. In the case of an input field, target would refer to the specific `<input>`
-element where the user is typing.
+One such property is `target`, which is a reference to the DOM element that triggered the event. In the case of an input field, target would refer to the specific `<input>` element where the user is typing.
 
-The property `event.target.value` is particularly important when dealing with input
-fields. The value property here holds the current content of the input field. It
-represents what the user has entered or selected. When you access `event.target.value`
-in your event handler function, you’re essentially retrieving the latest input
-provided by the user. This is commonly used to update the state of the component with
-the new input value, ensuring that the component’s state is in sync with what the user
-is entering.
+The property `event.target.value` is particularly important when dealing with input fields. The value property here holds the current content of the input field. It represents what the user has entered or selected. When you access `event.target.value` in your event handler function, you’re essentially retrieving the latest input provided by the user. This is commonly used to update the state of the component with the new input value, ensuring that the component’s state is in sync with what the user is entering.
 
-For most input types, you’ll want to use `event.target.value` to get the value entered.
-But there are exceptions! For `<input type="checkbox">`, you’ll want to use
-`event.target.checked` instead:
+For most input types, you’ll want to use `event.target.value` to get the value entered. But there are exceptions! For `<input type="checkbox">`, you’ll want to use `event.target.checked` instead:
 
 ```tsx
+import { useState } from "react"
+
 const TodoItem: React.FC = () => {
   const [isCompleted, setIsCompleted] = useState(false)
   return (
     <label>
       <input
+        type="checkbox"
         checked={isCompleted}
         onChange={(event) => setIsCompleted(event.target.checked)}
-        type="checkbox"
       />
       Completed
     </label>
   )
 }
 ```
-@highlight 7-8, only
+
+@highlight 9-10, only
 
 ### Using TypeScript’s `Record` interface
 
-In our upcoming exercise, we want to store information in a JavaScript object. We also want to use
-TypeScript so we can constrain the types used as keys and values.
+In our upcoming exercise, we want to store information in a JavaScript object. We also want to use TypeScript so we can constrain the types used as keys and values.
 
-TypeScript provides a handy
-interface named `Record` that we can use. `Record` is a generic interface that requires two types:
-the first is the type of the keys, and the second is the type of the values.
+TypeScript provides a handy interface named `Record` that we can use. `Record` is a generic interface that requires two types: the first is the type of the keys, and the second is the type of the values.
 
-For example, if we’re recording the items in a list that are selected, we might capture the item’s
-name and whether or not it’s selected like this:
+For example, if we’re recording the items in a list that are selected, we might capture the item’s name and whether or not it’s selected like this:
 
 @sourceref ./typescript-record-interface.tsx
 @highlight 9, 12, only
 
-We’ve explicitly defined the type of `useState` as a `Record<string, boolean>`; all the keys must be
-strings, and all the values must be booleans. Fortunately, JavaScript’s `object` implements the
-`Record` interface, so we can set the default value to an empty `object` instance. Now let’s see how
-we can use a `Record` to store state data.
+We’ve explicitly defined the type of `useState` as a `Record<string, boolean>`; all the keys must be strings, and all the values must be booleans. Fortunately, JavaScript’s `object` implements the `Record` interface, so we can set the default value to an empty `object` instance. Now let’s see how we can use a `Record` to store state data.
 
 ### Setting state using an updater function
 
-One challenge we face when using an `object` for state is that we probably need to merge the current
-state value with the new state value. Why? Imagine we have a state object that already has multiple
-keys and values, and we need to add a new key and value.
+One challenge we face when using an `object` for state is that we probably need to merge the current state value with the new state value. Why? Imagine we have a state object that already has multiple keys and values, and we need to add a new key and value.
 
-Well, we’re in luck! React already has a solution for this: the setter function returned by `useState`
-will accept an “updater function” that’s passed the “current” state value and should return the “next”
-state value.
+Well, we’re in luck! React already has a solution for this: the setter function returned by `useState` will accept an “updater function” that’s passed the “current” state value and should return the “next” state value.
 
 @sourceref ./set-state-with-function.tsx
 @highlight 14-15, 26, 39, only
 
-In the example above, the `onChange` event handler calls `handleSelectedChange`, which accepts a
-name `string` and a `boolean`.
+In the example above, the `onChange` event handler calls `handleSelectedChange`, which accepts a name `string` and a `boolean`.
 
-In turn, `handleSelectedChange` calls `setSelected` with an updater function as the argument.
-The updater function accepts the `currentSelectedItems` argument, which is the object with the
-currently-selected items _before_ our checkbox was checked.
+In turn, `handleSelectedChange` calls `setSelected` with an updater function as the argument. The updater function accepts the `currentSelectedItems` argument, which is the object with the currently-selected items _before_ our checkbox was checked.
 
-We will dig into _how_ we create the `updatedSelectedItems` object in just a bit, but for now
-let’s take note that we create a new `updatedSelectedItems` object and return it from our
-updater function. This gives React the updated `selected` state and allows React to re-render
-the component.
+We will dig into _how_ we create the `updatedSelectedItems` object in just a bit, but for now let’s take note that we create a new `updatedSelectedItems` object and return it from our updater function. This gives React the updated `selected` state and allows React to re-render the component.
 
 ### Updating reference types and rendering
 
-Now let’s explain how the updater function works in the example above. The
-updater function **does not mutate** the current object, then return it; instead, it makes a new
-object and populates it with the contents of the current object.
+Now let’s explain how the updater function works in the example above. The updater function **does not mutate** the current object, then return it; instead, it makes a new object and populates it with the contents of the current object.
 
-This is an important detail because, after the updater function runs, React will compare the
-values of the current and next objects to determine if they are different. If they are
-**different**, React will re-render the `Selected` component; if they are the same, then React
-will do nothing.
+This is an important detail because, after the updater function runs, React will compare the values of the current and next objects to determine if they are different. If they are **different**, React will re-render the `Selected` component; if they are the same, then React will do nothing.
 
-The same rules apply when state is an array: create a new array, then update the contents of the new
-array.
+The same rules apply when state is an array: create a new array, then update the contents of the new array.
 
 ```tsx
 // Adding an item when state (`current`) is an array.
-setSelectedOrders(current => {
-  const next = [...current, newOrder];
-  return next;
-});
+setSelectedOrders((current) => {
+  const next = [...current, newOrder]
+  return next
+})
 
 // Replacing an item when state (`current`) is an array.
-setUpdatedRestaurant(current => {
+setUpdatedRestaurant((current) => {
   const next = [
-    ...current.filter(item => item.id !== updatedRestaurant.id),
-    updatedRestaurant
-  ];
-  return next;
-});
+    ...current.filter((item) => item.id !== updatedRestaurant.id),
+    updatedRestaurant,
+  ]
+
+  return next
+})
 ```
 
 OK, that was a lot. Let’s start making some code changes so we can select menu items for an order.
@@ -194,9 +153,9 @@ These tests will pass when the solution has been implemented properly.
 Hint: The `items` state will look like this when populated:
 
 ```tsx
-{
-  "Menu item 1 name": 1.23,// Menu item 1 price
-  "Menu item 2 name": 4.56,// Menu item 2 price
+const items = {
+  "Menu item 1 name": 1.23, // Menu item 1 price
+  "Menu item 2 name": 4.56, // Menu item 2 price
 }
 ```
 
@@ -217,49 +176,40 @@ Hint: The `items` state will look like this when populated:
 
 ## Objective 2: Create a reusable text field component
 
-The order form is going to be made up of many input fields with labels. Rather than repeat multiple
-input components over and over, let’s compose that structure in a single component named `FormTextField`.
-Creating this component will involve using some of what we’ve learned from prior lessons.
+The order form is going to be made up of many input fields with labels. Rather than repeat multiple input components over and over, let’s compose that structure in a single component named `FormTextField`. Creating this component will involve using some of what we’ve learned from prior lessons.
 
 ### The `useId()` Hook
 
-Since the value of every `id` attribute in an HTML document must be unique,
-this Hook is useful in creating a unique identifier string that can be used
-as the value for an `id` prop.
+Since the value of every `id` attribute in an HTML document must be unique, this Hook is useful in creating a unique identifier string that can be used as the value for an `id` prop.
 
-Let’s say you’re rendering a component that has a `label` that needs to be
-associated with an `input`:
+Let’s say you’re rendering a component that has a `label` that needs to be associated with an `input`:
 
 ```html
-<label for="name">
-  Name
-</label>
-<input id="name" type="text">
+<label for="name"> Name </label> <input id="name" type="text" />
 ```
+
 @highlight 1, 4
 
-Every ID has to be unique in an HTML page, but `name` might clash with another
-element in a page. To avoid this issue in React, we can get a unique ID with
-`useId()`:
+Every ID has to be unique in an HTML page, but `name` might clash with another element in a page. To avoid this issue in React, we can get a unique ID with `useId()`:
 
 ```tsx
-import { useId } from 'react'
+import { useId } from "react"
 
 const Form: React.FC = () => {
-  const id = useId();
+  const id = useId()
 
   return (
-    <label htmlFor={id}>
-      Name
-    </label>
-    <input id={id} type="text" />
+    <>
+      <label htmlFor={id}>Name</label>
+      <input id={id} type="text" />
+    </>
   )
 }
 ```
+
 @highlight 1, 4, 7, 10
 
-The value of `useId` is guaranteed to be unique within the component where it is
-used; this ideal for linking related components together.
+The value of `useId` is guaranteed to be unique within the component where it is used; this ideal for linking related components together.
 
 ### Setup 2
 
@@ -308,9 +258,7 @@ Hint: The `onChange` prop type can be defined as `(data: string) => void`
 
 ## Objective 3: Integrate `FormTextField` into `RestaurantOrder`
 
-Finally we’ll update the form to incorporate the `FormTextField` component so users can create and
-submit an order to the restaurant. We need to fill the form with input fields and handle the submit
-button.
+Finally we’ll update the form to incorporate the `FormTextField` component so users can create and submit an order to the restaurant. We need to fill the form with input fields and handle the submit button.
 
 ### Setup 3
 

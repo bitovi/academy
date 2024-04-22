@@ -1,9 +1,9 @@
-import { Link, Outlet, useMatch } from 'react-router-dom';
-import './App.css';
+import { Link, Outlet, useMatch } from "react-router-dom"
+import "./App.css"
 
 function App() {
-  const homeMatch = useMatch('/');
-  const restaurantsMatch = useMatch('/restaurants');
+  const homeMatch = useMatch("/")
+  const restaurantsMatch = useMatch("/restaurants")
 
   return (
     <>
@@ -11,11 +11,11 @@ function App() {
         <nav>
           <h1>place-my-order.com</h1>
           <ul>
-            <li className={homeMatch ? 'active' : ''}>
-              <Link to='/'>Home</Link>
+            <li className={homeMatch ? "active" : ""}>
+              <Link to="/">Home</Link>
             </li>
-            <li className={restaurantsMatch ? 'active' : ''}>
-              <Link to='/restaurants'>Restaurants</Link>
+            <li className={restaurantsMatch ? "active" : ""}>
+              <Link to="/restaurants">Restaurants</Link>
             </li>
           </ul>
         </nav>
@@ -23,7 +23,7 @@ function App() {
 
       <Outlet />
     </>
-  );
+  )
 }
 
-export default App;
+export default App
