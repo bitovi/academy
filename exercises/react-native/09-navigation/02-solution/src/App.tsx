@@ -24,7 +24,7 @@ export type RestaurantsStackParamList = {
   StateList: undefined
   CityList: {
     state: {
-      name: string 
+      name: string
       short: string
     }
   }

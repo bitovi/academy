@@ -12,17 +12,18 @@ const user = {
 
 const Settings: FC = () => {
   const { mode, setMode } = useThemeMode()
-  
+
   return (
     <Screen>
       <Card>
         <Typography variant="heading">Welcome back, {user.name}</Typography>
       </Card>
       <Card>
-        <Typography variant="heading">
-          Dark Mode
-        </Typography>
-        <Switch value={mode === "dark"} onChange={() => setMode(mode === "light" ? "dark" : "light")}/>
+        <Typography variant="heading">Dark Mode</Typography>
+        <Switch
+          value={mode === "dark"}
+          onChange={() => setMode(mode === "light" ? "dark" : "light")}
+        />
       </Card>
     </Screen>
   )

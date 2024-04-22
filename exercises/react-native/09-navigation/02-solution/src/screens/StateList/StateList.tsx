@@ -29,20 +29,20 @@ const StateList: FC = () => {
     <Screen>
       {states?.length > 0 ? (
         <FlatList
-        data={states}
-        renderItem={({ item: stateItem }) => (
-          <Button
-            onPress={() => {
-              navigation.navigate("CityList", {
-                state: stateItem,
-              })
-            }}
-          >
-            {stateItem.name}
-          </Button>
-        )}
-        keyExtractor={(item) => item.short}
-      />
+          data={states}
+          renderItem={({ item: stateItem }) => (
+            <Button
+              onPress={() => {
+                navigation.navigate("CityList", {
+                  state: stateItem,
+                })
+              }}
+            >
+              {stateItem.name}
+            </Button>
+          )}
+          keyExtractor={(item) => item.short}
+        />
       ) : (
         <Typography>No states found</Typography>
       )}
