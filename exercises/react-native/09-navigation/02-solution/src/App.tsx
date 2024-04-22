@@ -1,5 +1,5 @@
 import type { FC } from "react"
-import { SafeAreaView } from "react-native"
+import { Pressable, SafeAreaView } from "react-native"
 import { NavigationContainer } from "@react-navigation/native"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import Icon from "react-native-vector-icons/Ionicons"
@@ -7,6 +7,62 @@ import Icon from "react-native-vector-icons/Ionicons"
 import ThemeProvider, { useTheme } from "./design/theme/ThemeProvider"
 import StateList from "./screens/StateList"
 import Settings from "./screens/Settings"
+import CityList from "./screens/CityList"
+import Box from "./design/Box"
+import Typography from "./design/Typography"
+import { createStackNavigator } from "@react-navigation/stack"
+
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace ReactNavigation {
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    interface RootParamList extends RestaurantsStackParamList {}
+  }
+}
+
+export type RestaurantsStackParamList = {
+  StateList: undefined
+  CityList: {
+    state: {
+      name: string 
+      short: string
+    }
+  }
+}
+
+const RestaurantsStack = createStackNavigator<RestaurantsStackParamList>()
+const RestaurantsNavigator: FC = () => {
+  return (
+    <RestaurantsStack.Navigator
+      initialRouteName="StateList"
+      screenOptions={{
+        header: ({ route, navigation }) => {
+          if (!navigation.canGoBack()) return null
+
+          return (
+            <Pressable onPress={navigation.goBack}>
+              <Box
+                padding="m"
+                style={{ flexDirection: "row", gap: 8, alignItems: "center" }}
+              >
+                <Icon name="arrow-back" size={20} />
+                <Typography variant="heading">
+                  {/* @ts-ignore */}
+                  {[route.params?.city?.name, route.params?.state?.name]
+                    .filter(Boolean)
+                    .join(", ")}
+                </Typography>
+              </Box>
+            </Pressable>
+          )
+        },
+      }}
+    >
+      <RestaurantsStack.Screen name="StateList" component={StateList} />
+      <RestaurantsStack.Screen name="CityList" component={CityList} />
+    </RestaurantsStack.Navigator>
+  )
+}
 
 const AppTabs = createBottomTabNavigator()
 export const AppNavigator: FC = () => {
@@ -42,7 +98,7 @@ export const AppNavigator: FC = () => {
     >
       <AppTabs.Screen
         name="Restaurants"
-        component={StateList}
+        component={RestaurantsNavigator}
         options={{ title: "Place My Order" }}
       />
       <AppTabs.Screen
