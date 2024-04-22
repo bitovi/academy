@@ -22,7 +22,7 @@ Interfaces are a powerful way to enforce types and document what our code provid
 
 An interface in TypeScript is a way to define the shape an entity should adhere to. An interface defines the members: properties, methods, and events. It may be easy to think of it as the signature of an API. It’s worth noting that interfaces aren’t transpiled into our output JavaScript; they’re only used for typechecking during the development process.
 
-@sourceref ./7-1-interface.ts
+@sourceref ./9-1-interface.ts
 @codepen
 
 ### Setup 1
@@ -68,7 +68,7 @@ Make sure you have this solution implemented correctly before moving on to the n
 
 Sometimes all properties on an object don’t need to be required, so using the ``?`` tells the TypeScript compiler which properties aren’t required.
 
-@sourceref ./7-2-optional.ts
+@sourceref ./9-2-optional.ts
 @highlight 4
 @codepen
 
@@ -119,7 +119,7 @@ Make sure you have this solution implemented correctly before moving on to the n
 
 In the case that a class needs to follow an object structure, we can use interfaces to define that 'contract'.
 
-@sourceref ./7-3-classes.ts
+@sourceref ./9-3-classes.ts
 @codepen
 
 ### Type assertion
@@ -128,12 +128,12 @@ We briefly mentioned type assertion when talk about types, but when dealing with
 
 For instance, consider the following code:
 
-@sourceref ./7-4-1-type-assertion.ts
+@sourceref ./9-4-1-type-assertion.ts
 @codepen
 
 When we create empty object literals in TypeScript, they are inferred to be objects with zero properties. To fix this, we can use type assertions to let the compiler explicitly know what we want from our object.
 
-@sourceref ./7-4-2-type-assertion.ts
+@sourceref ./9-4-2-type-assertion.ts
 @codepen
 
 ## Objective: The use of interface for functions
@@ -142,19 +142,19 @@ When we create empty object literals in TypeScript, they are inferred to be obje
 
 Interfaces are incredibly useful in describing the shape of objects we want to use in multiple situations. The following functions both require a ``Dinosaur`` object shape we’ve defined in the ``Dinosaur`` interface.
 
-@sourceref ./7-5-1-functions.ts
+@sourceref ./9-5-1-functions.ts
 @codepen
 
 ### Interfaces describing functions
 
 We can also use interfaces to describe functions, basically creating reusable types for functions. On the left side (in parenthesis) we list the parameters, and to the right of the colon we state the return type.
 
-@sourceref ./7-5-2-describefuncs.ts
+@sourceref ./9-5-2-describefuncs.ts
 @codepen
 
 It’s possible to use the `type` keyword as an interface to describe a function.
 
-@sourceref ./7-5-3-describefuncs-type.ts
+@sourceref ./9-5-3-describefuncs-type.ts
 @codepen
 
 ### Setup 3

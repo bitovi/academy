@@ -20,64 +20,78 @@ In this part, we will:
 
 In TypeScript, we’re able to annotate function parameters to better guard our code. If the following, `add` is called  with two parameters that are not numbers TypeScript’s compiler will throw an error when compiled.
 
-```typescript
-function add(x: number, y: number): number {
-  return x + y;
-}
-
-add(1, 'three');
-//Argument of type 'string' is not assignable to parameter of type 'number'.
-```
+@sourceref ./7-1-1-parameters.ts
+@codepen
 
 We can also annotate what a function should return.
 
-```typescript
-function returnNumber(): number {
-    return '1';
-}
-//Type 'string' is not assignable to type 'number'.
-
-function returnNumber(): number {
-    return 1;
-}
-//works!
-```
+@sourceref ./7-1-2-return.ts
+@codepen
 
 ### Optional parameters
 
 Sometimes when writing functions, we don’t need every parameter to be satisfied. TypeScript allows us to mark optional parameters (or properties) with a ``?`` so the compiler will not error if an optional param isn’t passed.
 
-```typescript
-function buildDinosaur(name: string, breed: string, teeth?: number): void {
-  if (teeth) {
-    console.log(`${name} is a ${breed} and has ${teeth} teeth.`);
-  }
-  else {
-    console.log(`${name} is a ${breed}.`);
-  }
-}
-
-let newDino = buildDinosaur('Blue', 'Velociraptor', 80);
-//works
-let otherDino = buildDinosaur('Delta', 'Velociraptor');
-//also works
-let otherOtherDino = buildDinosaur('Charlie');
-//error an argument for 'breed' was not provided
-```
+@sourceref ./7-2-optional.ts
+@codepen
 
 ### Rest parameters
 
 Rest parameters are a way to pass in an unknown number of arguments to a function. Rest params are signaled to the transpiler by passing an ellipsis (...) followed by the parameter name.
 
-```typescript
-function buildDinosaur(breed: string, ...dna: string[]): void {
-  console.log(`The ${breed} has dna from ${dna.join(', ')}`)
-}
+@sourceref ./7-3-rest.ts
+@codepen
 
-buildDinosaur('Indominous Rex', 'Velociraptor', 'Tyrannosaurus rex', 'Therizinosaurus', 'cuttlefish');
-//logs "The Indominous Rex has dna from Velociraptor,
-//      Tyrannosaurus rex, Therizinosaurus, cuttlefish"
+### Setup
+
+✏️ Create **src/functions/dnaCost.ts** and update it to be:
+
+@sourceref ../../../exercises/typescript/07-functions/01-problem/src/dnaCost.ts
+
+### Exercise
+
+The following function in `dnaCost.ts` calculates the cost of synthesizing
+a DNA sequence to make a dinosaur. It calculates the cost by adding a `baseCost` plus
+the length of the DNA sequence:
+
+Now scientists want to mix the DNA of multiple dinosaurs.
+Open the `dnaCost.ts` file and modify this function to:
+1. take an unknown amount of sequences;
+2. return the sum of `baseCost` and the length of each sequence.
+
+### Verify
+
+✏️ Create **src/functions/dnaCost.test.ts** and update it to be:
+
+@sourceref ../../../exercises/typescript/07-functions/01-problem/src/dnaCost.test.ts
+
+✏️ Run the following to verify your solution:
+
+```shell
+npm run test
 ```
+
+### Solution
+
+<details>
+<summary>Click to see the solution</summary>
+
+✏️ Update `dnaCost.ts` to add each sequence to the
+base cost.  This solution uses [Array.prototype.reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce):
+
+@sourceref ./../../../exercises/typescript/07-functions/01-solution/src/dnaCost.ts
+@highlight 1-4
+
+You’ll notice that specifying a return type is not necessary.  This is
+because TypeScript can infer the return value from the arguments.
+
+The following is another
+valid solution:
+
+@sourceref ./../../../exercises/typescript/07-functions/01-solution/src/dnaCost2.ts
+@highlight 1-4
+
+</details>
 
 ### `this` parameters
 
@@ -87,7 +101,7 @@ JavaScript functions can be called or created with a dynamic `this`. For example
 const dog = {
   name: 'fido',
   bark: function() {
-    console.log(this.name + 'says woof');
+    console.info(this.name + 'says woof');
   }
 };
 const address = {street: '2 State St'};
@@ -99,84 +113,11 @@ dog.bark.call(address); //logs "undefined says woof"
 Compiling with the `--strictBindCallApply` flag allows you to
 specify the `this` type:
 
-```typescript
-const dog = {
-  name: 'fido',
-  bark: function(this: {name: string}) {
-    console.log(this.name, 'says woof');
-  }
-};
-const address = {street: '2 State St'};
-
-dog.bark.call(dog);
-dog.bark.call(address);
-```
+@sourceref ./7-4-this.ts
+@codepen
 @highlight 3
 
 Line 10 will error with: `Property 'name' is missing in type '{ street: string; }' but required in type '{ name: string; }'.`
-
-### Exercise: DNA Cost
-
-The following function in `dnaCost.ts` calculates the cost of synthesizing
-a DNA sequence to make a dinosaur. It calculates the cost by adding a `baseCost` plus
-the length of the DNA sequence:
-
-@sourceref ../../../exercises/typescript/07-functions/01-problem/src/dnaCost.ts
-@codepen
-
-Now scientists want to mix the DNA of multiple dinosaurs.
-Open the `dnaCost.ts` file and modify this function to:
-1. take an unknown amount of sequences;
-2. return the sum of `baseCost` and the length of each sequence.
-
-```ts
-let raptorDNA = 'CGGCA';
-let cuttlefishDNA = 'GATTACA';
-let viperDNA = 'ATTAC';
-
-let indoraptorCost = dnaCost(5000,raptorDNA, cuttlefishDNA, viperDNA);
-
-console.log(indoraptorCost);
-// Logs 5017
-```
-
-### Verify your solution
-
-✏️ Run the following to verify your solution:
-
-```shell
-npm run test
-```
-
-### The solution
-
-<details>
-<summary>Click to see the solution</summary>
-
-✏️ Update `dnaCost.ts` to add each sequence to the
-base cost.  This solution uses [Array.prototype.reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce):
-
-@sourceref ./../../../exercises/typescript/07-functions/01-solution/src/dnaCost.ts
-
-You’ll notice that specifying a return type is not necessary.  This is
-because TypeScript can infer the return value from the arguments.
-
-The following is another
-valid solution:
-
-@highlight 1-4
-
-```ts
-export function dnaCost(baseCost: number, ...sequences: string[]) {
-  let sum = baseCost;
-  sequences.forEach(sequence => sum += sequence.length);
-  return sum
-}
-```
-
-@highlight 1-4
-
-</details>
 
 ## Next steps
 
