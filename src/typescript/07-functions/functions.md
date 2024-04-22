@@ -20,26 +20,26 @@ In this part, we will:
 
 In TypeScript, we’re able to annotate function parameters to better guard our code. If the following, `add` is called  with two parameters that are not numbers TypeScript’s compiler will throw an error when compiled.
 
-@sourceref ./7-1-1-parameters.ts
+@sourceref ./7-1-parameters.ts
 @codepen
 
 We can also annotate what a function should return.
 
-@sourceref ./7-1-2-return.ts
+@sourceref ./7-2-return.ts
 @codepen
 
 ### Optional parameters
 
 Sometimes when writing functions, we don’t need every parameter to be satisfied. TypeScript allows us to mark optional parameters (or properties) with a ``?`` so the compiler will not error if an optional param isn’t passed.
 
-@sourceref ./7-2-optional.ts
+@sourceref ./7-3-optional.ts
 @codepen
 
 ### Rest parameters
 
 Rest parameters are a way to pass in an unknown number of arguments to a function. Rest params are signaled to the transpiler by passing an ellipsis (...) followed by the parameter name.
 
-@sourceref ./7-3-rest.ts
+@sourceref ./7-4-rest.ts
 @codepen
 
 ### Setup
@@ -113,7 +113,7 @@ dog.bark.call(address); //logs "undefined says woof"
 Compiling with the `--strictBindCallApply` flag allows you to
 specify the `this` type:
 
-@sourceref ./7-4-this.ts
+@sourceref ./7-5-this.ts
 @codepen
 @highlight 3
 
