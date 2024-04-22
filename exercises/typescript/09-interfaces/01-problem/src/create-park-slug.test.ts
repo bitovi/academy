@@ -3,8 +3,8 @@ import { describe, it } from "node:test";
 import type DinoPark from "./dino-park";
 import createParkSlug from "./create-park-slug";
 
-describe("Importer", () => {
-  it("should return a greeting", () => {
+describe("Create Park Slug", () => {
+  it("should return a slug", () => {
     const DinoPark: DinoPark = {
       name: "Fun Park",
       address: {
