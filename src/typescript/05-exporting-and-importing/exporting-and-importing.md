@@ -13,6 +13,7 @@ In this section, you will:
 - Export values from a file
 - Import values from another file
 - Learn why named exports are preferred over default exports
+- Learn how to import and export functions between modules
 
 ## Objective 1: Export and import values
 
