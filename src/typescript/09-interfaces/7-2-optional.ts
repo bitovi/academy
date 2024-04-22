@@ -6,10 +6,10 @@ interface Dinosaur {
 }
 
 function trackDino(dino: Dinosaur) {
-  console.log(dino.location);
+  console.info(dino.location);
 }
 
-let blue = {name: 'blue', breed: 'Velociraptor', location: 'Section B'};
+const blue = {name: 'blue', breed: 'Velociraptor', location: 'Section B'};
 //works
 trackDino(blue);
 //Logs "Section B"

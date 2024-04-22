@@ -4,19 +4,19 @@ interface Dinosaur {
   location: string;
 }
 
-let dinoA = {
+const dinoA = {
   name: 'Blue',
   breed: 'Velociraptor',
   location: 'Section B'
 };
 
-let dinoB = {
+const dinoB = {
   name: 'Sally',
   location: 'Section C'
 };
 
 function dinoCatcher(dinosaur: Dinosaur) {
-  console.log(`Caught ${dinosaur.name} at ${dinosaur.location}`);
+  console.info(`Caught ${dinosaur.name} at ${dinosaur.location}`);
 }
 
 dinoCatcher(dinoA);

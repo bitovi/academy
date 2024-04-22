@@ -1,4 +1,4 @@
-var myObj = {};
+const myObj = {};
 myObj.name = 'Blue';
 //property 'name' does not exist on type '{}'
 myObj.height = 6;

@@ -6,12 +6,12 @@ interface Dinosaur {
 }
 
 
-class ClonedDino implements Dinosaur {
+class DinoWithRoar implements Dinosaur {
   name: string;
   breed: string;
   height?: number;
   location: string;
   roar(): void {
-    console.log('roar');
+    console.info('roar');
   };
 }
