@@ -51,9 +51,6 @@ async function crawl(directory) {
       await silence(() =>
         fs.rm(path.join(directory, module, project, "tsconfig.node.json")),
       )
-      await silence(() =>
-        fs.rm(path.join(directory, module, project, ".eslintrc.cjs")),
-      )
 
       await silence(() =>
         fs.cp(
@@ -61,25 +58,36 @@ async function crawl(directory) {
           path.join(directory, module, project, "tsconfig.json"),
         ),
       )
-
       await silence(() =>
         fs.cp(
           path.join(source, ".gitignore"),
           path.join(directory, module, project, ".gitignore"),
         ),
       )
+      await silence(() =>
+        fs.cp(
+          path.join(source, ".eslintrc.cjs"),
+          path.join(directory, module, project, ".eslintrc.cjs"),
+        ),
+      )
+      await silence(() =>
+        fs.cp(
+          path.join(source, ".prettierrc.cjs"),
+          path.join(directory, module, project, ".prettierrc.cjs"),
+        ),
+      )
 
       const packageName = path.join(directory, module, project, "package.json")
       let packageFile = JSON.parse(await fs.readFile(packageName, "utf-8"))
 
-      packageFile.scripts = packageSource.scripts
-      packageFile.eslintConfig = packageSource.eslintConfig
-      packageFile.prettier = packageSource.prettier
-
+      delete packageFile.eslintConfig
+      delete packageFile.prettier
       delete packageFile.devDependencies["@typescript-eslint/eslint-plugin"]
       delete packageFile.devDependencies["@typescript-eslint/parser"]
       delete packageFile.devDependencies["eslint-plugin-react-hooks"]
       delete packageFile.devDependencies["eslint-plugin-react-refresh"]
+
+      packageFile.scripts = packageSource.scripts
 
       packageFile.devDependencies["@bitovi/eslint-config"] =
         packageSource.devDependencies["@bitovi/eslint-config"]
