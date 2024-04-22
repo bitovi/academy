@@ -1,22 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react"
 
 function WebSocketComponent() {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([])
 
   useEffect(() => {
-    const socket = new WebSocket('wss://chat.donejs.com/');
+    const socket = new WebSocket("wss://chat.donejs.com/")
 
     socket.onmessage = (event) => {
-      setMessages(previousMessages => {
-        return [ ...previousMessages, event.data ];
-      });
-    };
+      setMessages((previousMessages) => {
+        return [...previousMessages, event.data]
+      })
+    }
 
     return () => {
       // Clean up (tear down) the socket connection
-      return socket.close();
-    };
-  }, []);
+      return socket.close()
+    }
+  }, [])
 
   return (
     <ol>
@@ -24,7 +24,7 @@ function WebSocketComponent() {
         <li key={message}>{message}</li>
       ))}
     </ol>
-  );
+  )
 }
 
-export default WebSocketComponent;
+export default WebSocketComponent

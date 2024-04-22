@@ -16,8 +16,7 @@ In this section, we will:
 
 ## Objective: Create a React component
 
-Our `App` component currently shows our restaurant list, but eventually we’ll want to show other page content.
-Let’s prepare now by moving all of the JSX from `App` to a new component called `RestaurantList`.
+Our `App` component currently shows our restaurant list, but eventually we’ll want to show other page content. Let’s prepare now by moving all of the JSX from `App` to a new component called `RestaurantList`.
 
 In our Place My Order app, we want to:
 
@@ -33,11 +32,7 @@ So far, we have placed all of our JSX inside the `App` function. Notice two thin
 
 ```tsx
 function App() {
-  return (
-    <main>
-      Some page content
-    </main>
-  );
+  return <main>Some page content</main>
 }
 ```
 
@@ -49,19 +44,13 @@ React makes it relatively straightforward to create new components. Let’s lear
 
 Let’s start by creating a component from a commonly reused element, the button.
 
-First, React component names **must** start with a capital letter, so we can call this `Button`. By
-convention component names use PascalCase when naming components, so longer component names will
-look like `IconButton`. Avoid hyphens and underscores.
+First, React component names **must** start with a capital letter, so we can call this `Button`. By convention component names use PascalCase when naming components, so longer component names will look like `IconButton`. Avoid hyphens and underscores.
 
 Second, our component must return either `null` or something renderable, like JSX. The return value of our components is almost always JSX, though JavaScript primitives like `string` and `number` are also valid. Components cannot return complex types like arrays or objects.
 
 ```tsx
 const Button = () => {
-  return (
-    <button className="button primary">
-      Activate me
-    </button>
-  );
+  return <button className="button primary">Activate me</button>
 }
 ```
 
@@ -75,7 +64,7 @@ const App = () => {
       <Button />
       <Button />
     </main>
-  );
+  )
 }
 ```
 
@@ -85,10 +74,10 @@ The JSX syntax allows function components to look like HTML, but underneath they
 
 You can think of components as fancy functions.
 
-While you shouldn’t do the following, you could:
+While you can't actually do the following, this is functionally similar to what React is doing for you.
 
 ```tsx
-import type React from "react";
+import type React from "react"
 
 const App: React.FC = () => {
   return (
@@ -97,17 +86,11 @@ const App: React.FC = () => {
       {Button()}
       {Button()}
     </main>
-  );
+  )
 }
 ```
 
-Did you notice the `React.FC` that was used in the previous example to type the `App` const? Because
-we're using TypeScript with our project, we can apply types to help make sure the function component
-is properly formed. React provides the type `FC` (an abbreviation for "function component") that can
-be applied to a function component. This type defines the arguments and return value that a function
-component must implement.
-
-Now you’re ready to create your first component.
+Did you notice the `React.FC` that was used in the previous example to type the `App` const? Because we're using TypeScript with our project, we can apply types to help make sure the function component is properly formed. React provides the type `FC` (an abbreviation for "function component") that can be applied to a function component. This type defines the arguments and return value that a function component must implement.
 
 ### Setup
 
