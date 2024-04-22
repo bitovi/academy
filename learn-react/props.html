@@ -125,7 +125,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-react.html"
-							title="Learn React by building the feature-rich Place My Order application in this beginner React guide. This hands-on course will introduce you to fundamental React concepts! By the end of this course, you will have a strong understanding of JSX, functional components, styling, state management, Hooks, data fetching, routing, and testing.">
+							title="Learn React by building the feature-rich Place My Order application in this beginner React guide. This hands-on course will introduce you to fundamental React concepts! By the end of this course, you will have a strong understanding of JSX, function components, styling, state management, Hooks, data fetching, routing, and testing.">
 							Learn React
 						</a>
 						
@@ -537,143 +537,121 @@ covering CanJS core libraries.">
 <li>Pass props from a parent component to a child component</li>
 </ul>
 <h2>Objective: Use props to make more maintainable components</h2>
-<p>We’ve taken a great step to make our code more readable and our app more maintainable
-by creating the <code>RestaurantList</code> component.</p>
-<p>Let’s keep the good refactoring rolling by creating a <code>ListItem</code> component to house
-the JSX used to render each restaurant in the list.</p>
+<p>We’ve taken a great step to make our code more readable and our app more maintainable by creating the <code>RestaurantList</code> component.</p>
+<p>Let’s keep the good refactoring rolling by creating a <code>ListItem</code> component to house the JSX used to render each restaurant in the list.</p>
 <h3>Using component props</h3>
-<p>In React, props (short for “properties”) are how we pass data from a parent
-component to a child component. Since functional React components are fundamentally
-JavaScript functions, you can think of props like the arguments you pass to
-a function.</p>
-<p>Also note that React component props are not the same as the &quot;properties&quot; that exist on a DOM
-element.</p>
-<p>To receive props, functional components must implement a React API that
-allows an optional argument of type <code>object</code> that’s named <code>props</code>.</p>
-<p>The properties on the props object—individually called a “prop”—can include
-whatever data the child component needs to make
-the component work. The property values can be any type, including functions and
-other React components.</p>
-<p>We’re using TypeScript in our project, so we can create an <code>interface</code> for props
-and use it in the definition of a functional component.</p>
-<p>Let’s create a <code>SubmitButton</code>
-component to see props in action:</p>
+<p>In React, props (short for “properties”) are how we pass data from a parent component to a child component. Since function React components are fundamentally JavaScript functions, you can think of props like the arguments you pass to a function.</p>
+<p>Also note that React component props are not the same as the &quot;properties&quot; that exist on a DOM element.</p>
+<p>To receive props, function components must implement a React API that allows an optional argument of type <code>object</code> that’s named <code>props</code>.</p>
+<p>The properties on the props object—individually called a “prop”—can include whatever data the child component needs to make the component work. The property values can be any type, including functions and other React components.</p>
+<p>We’re using TypeScript in our project, so we can create an <code>interface</code> for props and use it in the definition of a function component.</p>
+<p>Let’s create a <code>SubmitButton</code> component to see props in action:</p>
 <pre><code class="language-tsx">interface SubmitButtonProps {
-  label: string;
-  onClick: () =&gt; void;
+  label: string
+  onClick: () =&gt; void
 }
 
 const SubmitButton: React.FC&lt;SubmitButtonProps&gt; = (props) =&gt; {
-  const { label, onClick } = props;
-  return &lt;button onClick={onClick} type=&quot;submit&quot;&gt;{label}&lt;/button&gt;;
+  const { label, onClick } = props
+  return (
+    &lt;button onClick={onClick} type=&quot;submit&quot;&gt;
+      {label}
+    &lt;/button&gt;
+  )
 }
 </code></pre>
-<p>In this example, <code>SubmitButtonProps</code> is an interface that defines the types for
-<code>label</code> (a string) and <code>onClick</code> (a function). Our <code>SubmitButton</code> component then
-uses these props to display a button with a label and a click action.</p>
+<div line-highlight='6-7, only'></div>
+<p>In this example, <code>SubmitButtonProps</code> is an interface that defines the types for <code>label</code> (a string) and <code>onClick</code> (a function). Our <code>SubmitButton</code> component then uses these props to display a button with a label and a click action.</p>
 <p>The example above illustrates how props are passed to component as an argument.</p>
-<p>However, more commonly (and for the rest of this course) you will see props
-destructured in the function parameters:</p>
+<p>However, more commonly (and for the rest of this course) you will see props destructured in the function parameters:</p>
 <pre><code class="language-tsx">interface SubmitButtonProps {
-  label: string;
-  onClick: () =&gt; void;
+  label: string
+  onClick: () =&gt; void
 }
 
 const SubmitButton: React.FC&lt;SubmitButtonProps&gt; = ({ label, onClick }) =&gt; {
-  return &lt;button onClick={onClick}&gt;{label}&lt;/button&gt;;
+  return &lt;button onClick={onClick}&gt;{label}&lt;/button&gt;
 }
 </code></pre>
-<div line-highlight='6 only'></div>
+<div line-highlight='6, only'></div>
 <h3>Passing component props</h3>
-<p>Now, how do we use this <code>SubmitButton</code>?
-In <a href="intro-to-jsx.html">JSX syntax</a> a component’s props look like an HTML tag’s
-&quot;attributes&quot; and accept a value.</p>
+<p>Now, how do we use this <code>SubmitButton</code>? In <a href="intro-to-jsx.html">JSX syntax</a> a component’s props look like an HTML tag’s &quot;attributes&quot; and accept a value.</p>
 <ul>
 <li>If a prop’s value type is a string then the prop value is set using quotes.</li>
 <li>Any other type of prop value is set using braces with the value inside.</li>
 </ul>
-<p>In the
-example below, the <code>label</code> prop accepts a string. so the value is surrounded
-by double quotes. The <code>onClick</code> prop accepts a function, so the function value
-is surrounded by braces.</p>
+<p>In the example below, the <code>label</code> prop accepts a string. so the value is surrounded by double quotes. The <code>onClick</code> prop accepts a function, so the function value is surrounded by braces.</p>
 <p>Here’s how to use our <code>SubmitButton</code>:</p>
-<pre><code class="language-tsx">&lt;SubmitButton
-  label=&quot;Activate&quot;
-  onClick={() =&gt; alert(&quot;Activated!&quot;)}
-/&gt;
+<pre><code class="language-tsx">const content = (
+  &lt;SubmitButton label=&quot;Activate&quot; onClick={() =&gt; alert(&quot;Activated!&quot;)} /&gt;
+)
 </code></pre>
-<p>In the example above, we’re setting the <code>label</code> prop to the string “Activate” and the
-<code>onClick</code> prop to a function that displays an alert.</p>
+<p>In the example above, we’re setting the <code>label</code> prop to the string “Activate” and the <code>onClick</code> prop to a function that displays an alert.</p>
 <h3>Reserved prop names</h3>
 <p>There are two prop names that you cannot use and are reserved by React:</p>
 <ul>
 <li><p><code>children</code>: this prop is automatically provided by React to every component. We will see this prop in later examples.</p></li>
-<li><p><code>key</code>: this prop is one you’ve seen before in the <a href="intro-to-jsx.html#the-key-prop">Introduction to JSX
-module</a>! It’s not actually part of the component’s props in a
-traditional sense. Instead, it’s used by React itself to manage lists of elements and identify
-which items have changed, been added, or been removed.</p></li>
+<li><p><code>key</code>: this prop is one you’ve seen before in the <a href="intro-to-jsx.html#the-key-prop">Introduction to JSX module</a>! It’s not actually part of the component’s props in a traditional sense. Instead, it’s used by React itself to manage lists of elements and identify which items have changed, been added, or been removed.</p></li>
 </ul>
 <h3>Setup</h3>
 <p>✏️ Create <strong>src/pages/RestaurantList/ListItem.tsx</strong> and update it to contain:</p>
 <pre><code class="language-tsx">interface ListItemProps {
-    address?: {
-        city: string;
-        state: string;
-        street: string;
-        zip: string;
-    };
-    name: string;
-    slug: string;
-    thumbnail: string;
+  address?: {
+    city: string
+    state: string
+    street: string
+    zip: string
+  }
+  name: string
+  slug: string
+  thumbnail: string
 }
 
 const ListItem: React.FC&lt;ListItemProps&gt; = () =&gt; {
-    return (
-        &lt;&gt;
-        &lt;/&gt;
-    )
+  return &lt;&gt;&lt;/&gt;
 }
 
 export default ListItem
+
 </code></pre>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to import <code>ListItem</code>:</p>
-<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
-import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import ListItem from './ListItem'
+<pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
+import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
+import ListItem from &quot;./ListItem&quot;
 
 const RestaurantList: React.FC = () =&gt; {
   const restaurants = {
     data: [
       {
-        name: 'Cheese Curd City',
-        slug: 'cheese-curd-city',
+        name: &quot;Cheese Curd City&quot;,
+        slug: &quot;cheese-curd-city&quot;,
         images: {
           thumbnail: CheeseThumbnail,
         },
         address: {
-          street: '2451 W Washburne Ave',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53295',
+          street: &quot;2451 W Washburne Ave&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53295&quot;,
         },
-        _id: 'Ar0qBJHxM3ecOhcr',
+        _id: &quot;Ar0qBJHxM3ecOhcr&quot;,
       },
       {
-        name: 'Poutine Palace',
-        slug: 'poutine-palace',
+        name: &quot;Poutine Palace&quot;,
+        slug: &quot;poutine-palace&quot;,
         images: {
           thumbnail: PoutineThumbnail,
         },
         address: {
-          street: '230 W Kinzie Street',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53205',
+          street: &quot;230 W Kinzie Street&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53205&quot;,
         },
-        _id: '3ZOZyTY1LH26LnVw',
+        _id: &quot;3ZOZyTY1LH26LnVw&quot;,
       },
-    ]
-  };
+    ],
+  }
 
   return (
     &lt;&gt;
@@ -715,76 +693,114 @@ const RestaurantList: React.FC = () =&gt; {
 }
 
 export default RestaurantList
+
 </code></pre>
  <div line-highlight="3,only"></div>
 <h3>Verify</h3>
 <p>These tests will pass when the solution has been implemented properly.</p>
 <p>✏️ Create <strong>src/pages/RestaurantList/ListItem.test.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
-import ListItem from './ListItem';
+<pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
+import { render, screen } from &quot;@testing-library/react&quot;
+import { describe, expect, it } from &quot;vitest&quot;
+import ListItem from &quot;./ListItem&quot;
 
-describe('ListItem component', () =&gt; {
-  it('renders the restaurant image', () =&gt; {
-    render(&lt;ListItem slug=&quot;test-slug&quot; name=&quot;Test Name&quot; thumbnail=&quot;test-thumbnail.jpg&quot; /&gt;);
-    const img = screen.getByRole('img');
-    expect(img).toHaveAttribute('src', 'test-thumbnail.jpg');
-    expect(img).toHaveAttribute('width', '100');
-    expect(img).toHaveAttribute('height', '100');
-  });
+describe(&quot;ListItem component&quot;, () =&gt; {
+  it(&quot;renders the restaurant image&quot;, () =&gt; {
+    render(
+      &lt;ListItem
+        slug=&quot;test-slug&quot;
+        name=&quot;Test Name&quot;
+        thumbnail=&quot;test-thumbnail.jpg&quot;
+      /&gt;,
+    )
+    const img = screen.getByRole(&quot;img&quot;)
+    expect(img).toHaveAttribute(&quot;src&quot;, &quot;test-thumbnail.jpg&quot;)
+    expect(img).toHaveAttribute(&quot;width&quot;, &quot;100&quot;)
+    expect(img).toHaveAttribute(&quot;height&quot;, &quot;100&quot;)
+  })
 
-  it('renders the address', () =&gt; {
+  it(&quot;renders the address&quot;, () =&gt; {
     const address = {
-      city: 'Test City',
-      state: 'Test State',
-      street: 'Test Street',
-      zip: '12345',
-    };
+      city: &quot;Test City&quot;,
+      state: &quot;Test State&quot;,
+      street: &quot;Test Street&quot;,
+      zip: &quot;12345&quot;,
+    }
 
-    render(&lt;ListItem slug=&quot;test-slug&quot; name=&quot;Test Name&quot; address={address} thumbnail=&quot;test-thumbnail.jpg&quot; /&gt;);
+    render(
+      &lt;ListItem
+        slug=&quot;test-slug&quot;
+        name=&quot;Test Name&quot;
+        address={address}
+        thumbnail=&quot;test-thumbnail.jpg&quot;
+      /&gt;,
+    )
 
-    const addressDiv = screen.getByText(/Test Street/i).closest('div');
-    expect(addressDiv).toHaveTextContent('Test Street');
-    expect(addressDiv).toHaveTextContent('Test City, Test State 12345');
-  });
+    const addressDiv = screen.getByText(/Test Street/i).closest(&quot;div&quot;)
+    expect(addressDiv).toHaveTextContent(&quot;Test Street&quot;)
+    expect(addressDiv).toHaveTextContent(&quot;Test City, Test State 12345&quot;)
+  })
 
-  it('does not render the address section when address is not provided', () =&gt; {
-    render(&lt;ListItem slug=&quot;test-slug&quot; name=&quot;Test Name&quot; thumbnail=&quot;test-thumbnail.jpg&quot; /&gt;);
+  it(&quot;does not render the address section when address is not provided&quot;, () =&gt; {
+    render(
+      &lt;ListItem
+        slug=&quot;test-slug&quot;
+        name=&quot;Test Name&quot;
+        thumbnail=&quot;test-thumbnail.jpg&quot;
+      /&gt;,
+    )
 
     // Check that address-related text is not in the document
-    expect(screen.queryByText('Test Street')).not.toBeInTheDocument();
-    expect(screen.queryByText(/Test City, Test State 12345/)).not.toBeInTheDocument();
-  });
+    expect(screen.queryByText(&quot;Test Street&quot;)).not.toBeInTheDocument()
+    expect(
+      screen.queryByText(/Test City, Test State 12345/),
+    ).not.toBeInTheDocument()
+  })
 
-  it('renders the hours and price information', () =&gt; {
-    render(&lt;ListItem slug=&quot;test-slug&quot; name=&quot;Test Name&quot; thumbnail=&quot;test-thumbnail.jpg&quot; /&gt;);
-    const hoursPriceDiv = screen.getByText(/\$\$\$/i).closest('div');
-    expect(hoursPriceDiv).toHaveTextContent('$$$');
-    expect(hoursPriceDiv).toHaveTextContent('Hours: M-F 10am-11pm');
-  });
+  it(&quot;renders the hours and price information&quot;, () =&gt; {
+    render(
+      &lt;ListItem
+        slug=&quot;test-slug&quot;
+        name=&quot;Test Name&quot;
+        thumbnail=&quot;test-thumbnail.jpg&quot;
+      /&gt;,
+    )
+    const hoursPriceDiv = screen.getByText(/\$\$\$/i).closest(&quot;div&quot;)
+    expect(hoursPriceDiv).toHaveTextContent(&quot;$$$&quot;)
+    expect(hoursPriceDiv).toHaveTextContent(&quot;Hours: M-F 10am-11pm&quot;)
+  })
 
-  it('indicates if the restaurant is open now', () =&gt; {
-    render(&lt;ListItem slug=&quot;test-slug&quot; name=&quot;Test Name&quot; thumbnail=&quot;test-thumbnail.jpg&quot; /&gt;);
-    expect(screen.getByText('Open Now')).toBeInTheDocument();
-  });
+  it(&quot;indicates if the restaurant is open now&quot;, () =&gt; {
+    render(
+      &lt;ListItem
+        slug=&quot;test-slug&quot;
+        name=&quot;Test Name&quot;
+        thumbnail=&quot;test-thumbnail.jpg&quot;
+      /&gt;,
+    )
+    expect(screen.getByText(&quot;Open Now&quot;)).toBeInTheDocument()
+  })
 
-  it('renders the details button with correct link', () =&gt; {
-    render(&lt;ListItem slug=&quot;test-slug&quot; name=&quot;Test Name&quot; thumbnail=&quot;test-thumbnail.jpg&quot; /&gt;);
-    const detailsButton = screen.getByRole('link');
-    expect(detailsButton).toHaveAttribute('href', '/restaurants/test-slug');
-    expect(screen.getByText('Details')).toBeInTheDocument();
-  });
-});
+  it(&quot;renders the details button with correct link&quot;, () =&gt; {
+    render(
+      &lt;ListItem
+        slug=&quot;test-slug&quot;
+        name=&quot;Test Name&quot;
+        thumbnail=&quot;test-thumbnail.jpg&quot;
+      /&gt;,
+    )
+    const detailsButton = screen.getByRole(&quot;link&quot;)
+    expect(detailsButton).toHaveAttribute(&quot;href&quot;, &quot;/restaurants/test-slug&quot;)
+    expect(screen.getByText(&quot;Details&quot;)).toBeInTheDocument()
+  })
+})
 
 </code></pre>
 <h3>Exercise</h3>
 <ul>
 <li>Update <code>ListItem</code> to accept props with restaurant data.</li>
-<li>Alter <code>ListItem</code> to return the JSX for a single item in <code>restaurants.data</code>,
-use props for the variable data.</li>
-<li>Refactor <code>RestaurantList</code> to use <code>ListItem</code> to render the items in
-<code>restaurants.data</code>.</li>
+<li>Alter <code>ListItem</code> to return the JSX for a single item in <code>restaurants.data</code>, use props for the variable data.</li>
+<li>Refactor <code>RestaurantList</code> to use <code>ListItem</code> to render the items in <code>restaurants.data</code>.</li>
 </ul>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/05-props/01-problem?file=src/pages/RestaurantList/ListItem.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/05-props/01-problem?file=src/pages/RestaurantList/ListItem.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
 <h3>Solution</h3>
@@ -792,89 +808,95 @@ use props for the variable data.</li>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/pages/RestaurantList/ListItem.tsx</strong> to be:</p>
 <pre><code class="language-tsx">interface ListItemProps {
-    address?: {
-        city: string;
-        state: string;
-        street: string;
-        zip: string;
-    };
-    name: string;
-    slug: string;
-    thumbnail: string;
+  address?: {
+    city: string
+    state: string
+    street: string
+    zip: string
+  }
+  name: string
+  slug: string
+  thumbnail: string
 }
 
-const ListItem: React.FC&lt;ListItemProps&gt; = ({ address, name, slug, thumbnail }) =&gt; {
-    return (
-        &lt;&gt;
-            &lt;div className=&quot;restaurant&quot;&gt;
-                &lt;img src={thumbnail} alt=&quot;&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
-                &lt;h3&gt;{name}&lt;/h3&gt;
+const ListItem: React.FC&lt;ListItemProps&gt; = ({
+  address,
+  name,
+  slug,
+  thumbnail,
+}) =&gt; {
+  return (
+    &lt;&gt;
+      &lt;div className=&quot;restaurant&quot;&gt;
+        &lt;img src={thumbnail} alt=&quot;&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+        &lt;h3&gt;{name}&lt;/h3&gt;
 
-                {address &amp;&amp; (
-                    &lt;div className=&quot;address&quot;&gt;
-                        {address.street}
-                        &lt;br /&gt;
-                        {address.city}, {address.state} {address.zip}
-                    &lt;/div&gt;
-                )}
+        {address &amp;&amp; (
+          &lt;div className=&quot;address&quot;&gt;
+            {address.street}
+            &lt;br /&gt;
+            {address.city}, {address.state} {address.zip}
+          &lt;/div&gt;
+        )}
 
-                &lt;div className=&quot;hours-price&quot;&gt;
-                    $$$
-                    &lt;br /&gt;
-                    Hours: M-F 10am-11pm
-                    &lt;span className=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
-                &lt;/div&gt;
+        &lt;div className=&quot;hours-price&quot;&gt;
+          $$$
+          &lt;br /&gt;
+          Hours: M-F 10am-11pm
+          &lt;span className=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
+        &lt;/div&gt;
 
-                &lt;a className=&quot;btn&quot; href={`/restaurants/${slug}`}&gt;
-                    Details
-                &lt;/a&gt;
-                &lt;br /&gt;
-            &lt;/div&gt;
-        &lt;/&gt;
-    )
+        &lt;a className=&quot;btn&quot; href={`/restaurants/${slug}`}&gt;
+          Details
+        &lt;/a&gt;
+        &lt;br /&gt;
+      &lt;/div&gt;
+    &lt;/&gt;
+  )
 }
 
 export default ListItem
+
 </code></pre>
- <div line-highlight="13,16-18,20-26,28-33,35-39,only"></div>
+ <div line-highlight="13-23,25-31,33-38,40-46,only"></div>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
-import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import ListItem from './ListItem'
+<pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
+import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
+import ListItem from &quot;./ListItem&quot;
 
 const RestaurantList: React.FC = () =&gt; {
   const restaurants = {
     data: [
       {
-        name: 'Cheese Curd City',
-        slug: 'cheese-curd-city',
+        name: &quot;Cheese Curd City&quot;,
+        slug: &quot;cheese-curd-city&quot;,
         images: {
           thumbnail: CheeseThumbnail,
         },
         address: {
-          street: '2451 W Washburne Ave',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53295',
+          street: &quot;2451 W Washburne Ave&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53295&quot;,
         },
-        _id: 'Ar0qBJHxM3ecOhcr',
+        _id: &quot;Ar0qBJHxM3ecOhcr&quot;,
       },
       {
-        name: 'Poutine Palace',
-        slug: 'poutine-palace',
+        name: &quot;Poutine Palace&quot;,
+        slug: &quot;poutine-palace&quot;,
         images: {
           thumbnail: PoutineThumbnail,
         },
         address: {
-          street: '230 W Kinzie Street',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53205',
+          street: &quot;230 W Kinzie Street&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53205&quot;,
         },
-        _id: '3ZOZyTY1LH26LnVw',
+        _id: &quot;3ZOZyTY1LH26LnVw&quot;,
       },
-    ]
-  };
+    ],
+  }
 
   return (
     &lt;&gt;
@@ -899,6 +921,7 @@ const RestaurantList: React.FC = () =&gt; {
 }
 
 export default RestaurantList
+
 </code></pre>
  <div line-highlight="45-51,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/05-props/01-solution?file=src/pages/RestaurantList/ListItem.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/05-props/01-solution?file=src/pages/RestaurantList/ListItem.tsx">CodeSandbox</a>.</p>

@@ -125,7 +125,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-react.html"
-							title="Learn React by building the feature-rich Place My Order application in this beginner React guide. This hands-on course will introduce you to fundamental React concepts! By the end of this course, you will have a strong understanding of JSX, functional components, styling, state management, Hooks, data fetching, routing, and testing.">
+							title="Learn React by building the feature-rich Place My Order application in this beginner React guide. This hands-on course will introduce you to fundamental React concepts! By the end of this course, you will have a strong understanding of JSX, function components, styling, state management, Hooks, data fetching, routing, and testing.">
 							Learn React
 						</a>
 						
@@ -536,8 +536,7 @@ covering CanJS core libraries.">
 <li>Review how React components are (fundamentally) functions</li>
 </ul>
 <h2>Objective: Create a React component</h2>
-<p>Our <code>App</code> component currently shows our restaurant list, but eventually we’ll want to show other page content.
-Let’s prepare now by moving all of the JSX from <code>App</code> to a new component called <code>RestaurantList</code>.</p>
+<p>Our <code>App</code> component currently shows our restaurant list, but eventually we’ll want to show other page content. Let’s prepare now by moving all of the JSX from <code>App</code> to a new component called <code>RestaurantList</code>.</p>
 <p>In our Place My Order app, we want to:</p>
 <ul>
 <li>Create our first brand new React component (RestaurantList)</li>
@@ -550,27 +549,17 @@ Let’s prepare now by moving all of the JSX from <code>App</code> to a new comp
 <li>It returns something renderable (JSX)</li>
 </ol>
 <pre><code class="language-tsx">function App() {
-  return (
-    &lt;main&gt;
-      Some page content
-    &lt;/main&gt;
-  );
+  return &lt;main&gt;Some page content&lt;/main&gt;
 }
 </code></pre>
 <p>In React, we call this a component. When you create a component in React, you are creating building blocks that can be composed, reordered, and reused much like HTML elements.</p>
 <p>React makes it relatively straightforward to create new components. Let’s learn to build our own.</p>
 <h3>Component structure</h3>
 <p>Let’s start by creating a component from a commonly reused element, the button.</p>
-<p>First, React component names <strong>must</strong> start with a capital letter, so we can call this <code>Button</code>. By
-convention component names use PascalCase when naming components, so longer component names will
-look like <code>IconButton</code>. Avoid hyphens and underscores.</p>
+<p>First, React component names <strong>must</strong> start with a capital letter, so we can call this <code>Button</code>. By convention component names use PascalCase when naming components, so longer component names will look like <code>IconButton</code>. Avoid hyphens and underscores.</p>
 <p>Second, our component must return either <code>null</code> or something renderable, like JSX. The return value of our components is almost always JSX, though JavaScript primitives like <code>string</code> and <code>number</code> are also valid. Components cannot return complex types like arrays or objects.</p>
 <pre><code class="language-tsx">const Button = () =&gt; {
-  return (
-    &lt;button className=&quot;button primary&quot;&gt;
-      Activate me
-    &lt;/button&gt;
-  );
+  return &lt;button className=&quot;button primary&quot;&gt;Activate me&lt;/button&gt;
 }
 </code></pre>
 <p>Components are like small containers which can be reused throughout your application. The <code>Button</code> component above returns JSX and could then be rendered and reused by another component like <code>App</code> below.</p>
@@ -581,14 +570,14 @@ look like <code>IconButton</code>. Avoid hyphens and underscores.</p>
       &lt;Button /&gt;
       &lt;Button /&gt;
     &lt;/main&gt;
-  );
+  )
 }
 </code></pre>
 <h3>React components are functions</h3>
 <p>The JSX syntax allows function components to look like HTML, but underneath they are still functions. The return of each component is unique and you can use the same component multiple times.</p>
 <p>You can think of components as fancy functions.</p>
-<p>While you shouldn’t do the following, you could:</p>
-<pre><code class="language-tsx">import type React from &quot;react&quot;;
+<p>While you can't actually do the following, this is functionally similar to what React is doing for you.</p>
+<pre><code class="language-tsx">import type React from &quot;react&quot;
 
 const App: React.FC = () =&gt; {
   return (
@@ -597,70 +586,68 @@ const App: React.FC = () =&gt; {
       {Button()}
       {Button()}
     &lt;/main&gt;
-  );
+  )
 }
 </code></pre>
-<p>Did you notice the <code>React.FC</code> that was used in the previous example to type the <code>App</code> const? Because
-we're using TypeScript with our project, we can apply types to help make sure the function component
-is properly formed. React provides the type <code>FC</code> (an abbreviation for &quot;function component&quot;) that can
-be applied to a function component. This type defines the arguments and return value that a function
-component must implement.</p>
-<p>Now you’re ready to create your first component.</p>
+<p>Did you notice the <code>React.FC</code> that was used in the previous example to type the <code>App</code> const? Because we're using TypeScript with our project, we can apply types to help make sure the function component is properly formed. React provides the type <code>FC</code> (an abbreviation for &quot;function component&quot;) that can be applied to a function component. This type defines the arguments and return value that a function component must implement.</p>
 <h3>Setup</h3>
 <p>It’s best practice to create a new folder that will contain all of the related files for that component, including test and CSS files.</p>
 <p>✏️ Create <strong>src/pages/</strong> (folder)</p>
 <p>✏️ Create <strong>src/pages/RestaurantList/</strong> (folder)</p>
 <p>✏️ Create <strong>src/pages/RestaurantList/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./RestaurantList&quot;
+
 </code></pre>
 <p>✏️ Create <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
-import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
+<pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
+import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
 
 const RestaurantList: React.FC = () =&gt; {
+  return &lt;&gt;&lt;/&gt;
 }
 
 export default RestaurantList
+
 </code></pre>
 <p>✏️ Update <strong>src/App.tsx</strong></p>
-<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
-import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import RestaurantList from './pages/RestaurantList'
-import './App.css'
+<pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
+import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
+import RestaurantList from &quot;./pages/RestaurantList&quot;
+import &quot;./App.css&quot;
 
 function App() {
   const restaurants = {
     data: [
       {
-        name: 'Cheese Curd City',
-        slug: 'cheese-curd-city',
+        name: &quot;Cheese Curd City&quot;,
+        slug: &quot;cheese-curd-city&quot;,
         images: {
           thumbnail: CheeseThumbnail,
         },
         address: {
-          street: '2451 W Washburne Ave',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53295',
+          street: &quot;2451 W Washburne Ave&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53295&quot;,
         },
-        _id: 'Ar0qBJHxM3ecOhcr',
+        _id: &quot;Ar0qBJHxM3ecOhcr&quot;,
       },
       {
-        name: 'Poutine Palace',
-        slug: 'poutine-palace',
+        name: &quot;Poutine Palace&quot;,
+        slug: &quot;poutine-palace&quot;,
         images: {
           thumbnail: PoutineThumbnail,
         },
         address: {
-          street: '230 W Kinzie Street',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53205',
+          street: &quot;230 W Kinzie Street&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53205&quot;,
         },
-        _id: '3ZOZyTY1LH26LnVw',
+        _id: &quot;3ZOZyTY1LH26LnVw&quot;,
       },
-    ]
-  };
+    ],
+  }
 
   return (
     &lt;&gt;
@@ -707,85 +694,98 @@ export default App
  <div line-highlight="3,only"></div>
 <h3>Verify</h3>
 <p>✏️ Create <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+<pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
+import { render, screen } from &quot;@testing-library/react&quot;
+import { describe, expect, it } from &quot;vitest&quot;
 
-import RestaurantList from './RestaurantList';
+import RestaurantList from &quot;./RestaurantList&quot;
 
-describe('RestaurantList component', () =&gt; {
-  it('renders the Restaurants header', () =&gt; {
-    render(&lt;RestaurantList /&gt;);
-    expect(screen.getByText(/Restaurants/i)).toBeInTheDocument();
-  });
+describe(&quot;RestaurantList component&quot;, () =&gt; {
+  it(&quot;renders the Restaurants header&quot;, () =&gt; {
+    render(&lt;RestaurantList /&gt;)
+    expect(screen.getByText(/Restaurants/i)).toBeInTheDocument()
+  })
 
-  it('renders the restaurant images', () =&gt; {
-    render(&lt;RestaurantList /&gt;);
-    const images = screen.getAllByRole('img');
-    expect(images[0]).toHaveAttribute('src', expect.stringContaining('2-thumbnail.jpg'));
-    expect(images[0]).toHaveAttribute('width', '100');
-    expect(images[0]).toHaveAttribute('height', '100');
-    expect(images[1]).toHaveAttribute('src', expect.stringContaining('4-thumbnail.jpg'));
-    expect(images[1]).toHaveAttribute('width', '100');
-    expect(images[1]).toHaveAttribute('height', '100');
-  });
+  it(&quot;renders the restaurant images&quot;, () =&gt; {
+    render(&lt;RestaurantList /&gt;)
+    const images = screen.getAllByRole(&quot;img&quot;)
+    expect(images[0]).toHaveAttribute(
+      &quot;src&quot;,
+      expect.stringContaining(&quot;2-thumbnail.jpg&quot;),
+    )
+    expect(images[0]).toHaveAttribute(&quot;width&quot;, &quot;100&quot;)
+    expect(images[0]).toHaveAttribute(&quot;height&quot;, &quot;100&quot;)
+    expect(images[1]).toHaveAttribute(
+      &quot;src&quot;,
+      expect.stringContaining(&quot;4-thumbnail.jpg&quot;),
+    )
+    expect(images[1]).toHaveAttribute(&quot;width&quot;, &quot;100&quot;)
+    expect(images[1]).toHaveAttribute(&quot;height&quot;, &quot;100&quot;)
+  })
 
-  it('renders the addresses', () =&gt; {
-    render(&lt;RestaurantList /&gt;);
-    const addressDivs = screen.getAllByText(/Washburne Ave|Kinzie Street/i);
-    expect(addressDivs[0]).toHaveTextContent('2451 W Washburne Ave');
-    expect(addressDivs[0]).toHaveTextContent('Green Bay, WI 53295');
-    expect(addressDivs[1]).toHaveTextContent('230 W Kinzie Street');
-    expect(addressDivs[1]).toHaveTextContent('Green Bay, WI 53205');
-  });
+  it(&quot;renders the addresses&quot;, () =&gt; {
+    render(&lt;RestaurantList /&gt;)
+    const addressDivs = screen.getAllByText(/Washburne Ave|Kinzie Street/i)
+    expect(addressDivs[0]).toHaveTextContent(&quot;2451 W Washburne Ave&quot;)
+    expect(addressDivs[0]).toHaveTextContent(&quot;Green Bay, WI 53295&quot;)
+    expect(addressDivs[1]).toHaveTextContent(&quot;230 W Kinzie Street&quot;)
+    expect(addressDivs[1]).toHaveTextContent(&quot;Green Bay, WI 53205&quot;)
+  })
 
-  it('renders the hours and price information for each restaurant', () =&gt; {
-    render(&lt;RestaurantList /&gt;);
-    const hoursPriceDivs = screen.getAllByText(/\$\$\$/i);
-    hoursPriceDivs.forEach(div =&gt; {
-      expect(div).toHaveTextContent('$$$');
-      expect(div).toHaveTextContent('Hours: M-F 10am-11pm');
-    });
-  });
+  it(&quot;renders the hours and price information for each restaurant&quot;, () =&gt; {
+    render(&lt;RestaurantList /&gt;)
+    const hoursPriceDivs = screen.getAllByText(/\$\$\$/i)
+    hoursPriceDivs.forEach((div) =&gt; {
+      expect(div).toHaveTextContent(&quot;$$$&quot;)
+      expect(div).toHaveTextContent(&quot;Hours: M-F 10am-11pm&quot;)
+    })
+  })
 
-  it('indicates if the restaurant is open now for each restaurant', () =&gt; {
-    render(&lt;RestaurantList /&gt;);
-    const openNowTags = screen.getAllByText('Open Now');
-    expect(openNowTags.length).toBeGreaterThan(0);
-  });
+  it(&quot;indicates if the restaurant is open now for each restaurant&quot;, () =&gt; {
+    render(&lt;RestaurantList /&gt;)
+    const openNowTags = screen.getAllByText(&quot;Open Now&quot;)
+    expect(openNowTags.length).toBeGreaterThan(0)
+  })
 
-  it('renders the details buttons with correct links for each restaurant', () =&gt; {
-    render(&lt;RestaurantList /&gt;);
-    const detailsButtons = screen.getAllByRole('link');
-    expect(detailsButtons[0]).toHaveAttribute('href', '/restaurants/cheese-curd-city');
-    expect(detailsButtons[1]).toHaveAttribute('href', '/restaurants/poutine-palace');
-    detailsButtons.forEach(button =&gt; {
-      expect(button).toHaveTextContent('Details');
-    });
-  });
-});
+  it(&quot;renders the details buttons with correct links for each restaurant&quot;, () =&gt; {
+    render(&lt;RestaurantList /&gt;)
+    const detailsButtons = screen.getAllByRole(&quot;link&quot;)
+    expect(detailsButtons[0]).toHaveAttribute(
+      &quot;href&quot;,
+      &quot;/restaurants/cheese-curd-city&quot;,
+    )
+    expect(detailsButtons[1]).toHaveAttribute(
+      &quot;href&quot;,
+      &quot;/restaurants/poutine-palace&quot;,
+    )
+    detailsButtons.forEach((button) =&gt; {
+      expect(button).toHaveTextContent(&quot;Details&quot;)
+    })
+  })
+})
 
 </code></pre>
 <p>✏️ Update <strong>src/App.test.tsx</strong> to be a simple smoke test:</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+<pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
+import { render, screen } from &quot;@testing-library/react&quot;
+import { describe, expect, it, vi } from &quot;vitest&quot;
 
-import App from './App';
+import App from &quot;./App&quot;
 
 // Mocking RestaurantList component
-vi.mock('./pages/RestaurantList', () =&gt; ({
+vi.mock(&quot;./pages/RestaurantList&quot;, () =&gt; ({
   __esModule: true,
   default: () =&gt; &lt;div&gt;Mocked Restaurant List&lt;/div&gt;,
-}));
+}))
 
-describe('App Component', () =&gt; {
+describe(&quot;App Component&quot;, () =&gt; {
   // Testing if the App component renders without crashing
-  it('renders without crashing', () =&gt; {
-    render(&lt;App /&gt;);
-    expect(screen.getByText('Mocked Restaurant List')).toBeInTheDocument();
-  });
-});
+  it(&quot;renders without crashing&quot;, () =&gt; {
+    render(&lt;App /&gt;)
+    expect(screen.getByText(&quot;Mocked Restaurant List&quot;)).toBeInTheDocument()
+  })
+})
+
 </code></pre>
  <div line-highlight="3,7-11,13-15,17,only"></div>
 <h3>Exercise</h3>
@@ -798,8 +798,8 @@ describe('App Component', () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/App.tsx</strong></p>
-<pre><code class="language-tsx">import RestaurantList from './pages/RestaurantList'
-import './App.css'
+<pre><code class="language-tsx">import RestaurantList from &quot;./pages/RestaurantList&quot;
+import &quot;./App.css&quot;
 
 function App() {
   return (
@@ -814,42 +814,42 @@ export default App
 </code></pre>
  <div line-highlight="7,only"></div>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong></p>
-<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
-import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
+<pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
+import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
 
 const RestaurantList: React.FC = () =&gt; {
   const restaurants = {
     data: [
       {
-        name: 'Cheese Curd City',
-        slug: 'cheese-curd-city',
+        name: &quot;Cheese Curd City&quot;,
+        slug: &quot;cheese-curd-city&quot;,
         images: {
           thumbnail: CheeseThumbnail,
         },
         address: {
-          street: '2451 W Washburne Ave',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53295',
+          street: &quot;2451 W Washburne Ave&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53295&quot;,
         },
-        _id: 'Ar0qBJHxM3ecOhcr',
+        _id: &quot;Ar0qBJHxM3ecOhcr&quot;,
       },
       {
-        name: 'Poutine Palace',
-        slug: 'poutine-palace',
+        name: &quot;Poutine Palace&quot;,
+        slug: &quot;poutine-palace&quot;,
         images: {
           thumbnail: PoutineThumbnail,
         },
         address: {
-          street: '230 W Kinzie Street',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53205',
+          street: &quot;230 W Kinzie Street&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53205&quot;,
         },
-        _id: '3ZOZyTY1LH26LnVw',
+        _id: &quot;3ZOZyTY1LH26LnVw&quot;,
       },
-    ]
-  };
+    ],
+  }
 
   return (
     &lt;&gt;
@@ -891,6 +891,7 @@ const RestaurantList: React.FC = () =&gt; {
 }
 
 export default RestaurantList
+
 </code></pre>
  <div line-highlight="5-36,38-46,48-54,56-61,63-74,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/04-components/01-solution?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/04-components/01-solution?file=src/App.tsx">CodeSandbox</a>.</p>

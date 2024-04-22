@@ -125,7 +125,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-react.html"
-							title="Learn React by building the feature-rich Place My Order application in this beginner React guide. This hands-on course will introduce you to fundamental React concepts! By the end of this course, you will have a strong understanding of JSX, functional components, styling, state management, Hooks, data fetching, routing, and testing.">
+							title="Learn React by building the feature-rich Place My Order application in this beginner React guide. This hands-on course will introduce you to fundamental React concepts! By the end of this course, you will have a strong understanding of JSX, function components, styling, state management, Hooks, data fetching, routing, and testing.">
 							Learn React
 						</a>
 						
@@ -543,192 +543,209 @@ covering CanJS core libraries.">
 <p>JSX is used by React developers to define the user interface.</p>
 <p>JSX is a special syntax designed to look almost identical to HTML. Developers define the UI using JSX. React transforms that JSX into the HTML the browser displays. JSX can be written alongside standard JavaScript, which makes for a powerful programming environment.</p>
 <h4>Basic JSX looks like HTML</h4>
-<pre><code class="language-tsx">const greeting = &lt;h1&gt;Hello, world!&lt;/h1&gt;;
+<pre><code class="language-tsx">const greeting = &lt;h1&gt;Hello, world!&lt;/h1&gt;
 </code></pre>
-<p>This code snippet creates a simple JSX element, an <code>&lt;h1&gt;</code> header, with the text “Hello, world!”
-This is similar to writing HTML, but it’s actually JSX inside a JavaScript file.</p>
+<p>This code snippet creates a simple JSX element: an <code>&lt;h1&gt;</code> header with the text “Hello, world!” This is similar to writing HTML, but it’s actually JSX inside a JavaScript file.</p>
 <h3>Embedding a JavaScript expression in JSX</h3>
-<pre><code class="language-tsx">const name = 'Alice';
-const greeting = &lt;h1&gt;Hello, {name}!&lt;/h1&gt;;
+<pre><code class="language-tsx">const name = &quot;Alice&quot;
+const greeting = &lt;h1&gt;Hello, {name}!&lt;/h1&gt;
 </code></pre>
-<p>Here, we embed a JavaScript expression <code>{name}</code> within JSX.
-The value of the name variable is displayed within the <code>&lt;h1&gt;</code> tag.</p>
+<p>Here, we embed a JavaScript expression <code>{name}</code> within JSX. The value of the name variable is displayed within the <code>&lt;h1&gt;</code> tag.</p>
 <h3>Combining JSX with standard JavaScript</h3>
-<pre><code class="language-tsx">function Welcome(name) {
-  return &lt;h1&gt;Hello, {name}&lt;/h1&gt;;
+<pre><code class="language-tsx">function welcome(name) {
+  return &lt;h1&gt;Hello, {name}&lt;/h1&gt;
 }
 
-const welcomeMessage = Welcome('Alice');
+const welcomeMessage = welcome(&quot;Alice&quot;)
 </code></pre>
-<p>This example illustrates a regular JavaScript function being called with a single argument.
-The <code>Welcome</code> function returns JSX, showing how JSX can be seamlessly integrated within
-standard JavaScript functions.</p>
+<p>This example illustrates a regular JavaScript function being called with a single argument. The <code>welcome</code> function returns JSX, showing how JSX can be seamlessly integrated within standard JavaScript functions.</p>
 <h3>JSX transpiled</h3>
-<p>React has a procedural <code>React.createElement</code> syntax, but most applications do not use it directly.
-Instead, views are defined and maintained in JSX and will automatically be transpiled into the
-equivalent <code>React.createElement</code> calls at build-time.</p>
-<pre><code class="language-tsx">function Welcome(name) {
-  return React.createElement('h1', null, `Hello, ${name}!`);
+<p>React has a procedural <code>React.createElement</code> syntax, but most applications do not use it directly. Instead, views are defined and maintained in JSX and will automatically be transpiled into the equivalent <code>React.createElement</code> calls at build-time.</p>
+<pre><code class="language-tsx">function welcome(name) {
+  return React.createElement(&quot;h1&quot;, null, `Hello, ${name}!`)
 }
 
-const welcomeMessage = Welcome('Alice');
+const welcomeMessage = welcome(&quot;Alice&quot;)
 </code></pre>
-<p>This transformation is handled by tools like Vite during the build process,
-allowing us to write more readable and maintainable code using JSX.</p>
+<p>This transformation is handled by tools like Vite during the build process, allowing us to write more readable and maintainable code using JSX.</p>
 <h3>Differences between JSX and HTML</h3>
 <p>JSX looks a lot like HTML, and that’s intentional. Browsers understand HTML, JavaScript, and CSS. Eventually, anything we build has to be converted into one of those 3 syntaxes. Since our UI code will eventually end up as HTML, using JSX means it will be easier to understand and debug the end result in the browser.</p>
 <p>However, JSX is converted into JavaScript and therefore is not an exact mirror of HTML. Some of the most noticeable differences include:</p>
 <h4>HTML has attributes, JSX has props</h4>
 <p>This nomenclature difference is because they are technically different, though they might appear to be the same visually.</p>
 <p>When talking about the HTML below, you might say that the <code>href</code> attribute is a URL:</p>
-<pre><code class="language-html">&lt;a href=&quot;https://www.bitovi.com/academy/&quot;&gt;
-  Bitovi Academy
-&lt;/a&gt;
+<pre><code class="language-html">&lt;a href=&quot;https://www.bitovi.com/academy/&quot;&gt;Bitovi Academy&lt;/a&gt;
 </code></pre>
 <p>The above is valid JSX too, but we would say that the <code>href</code> <em>prop</em> is being passed into the anchor element.</p>
 <h4>Tags must close</h4>
 <p>In HTML, some elements are self-closing and don’t need a closing tag.</p>
 <p>For example: the <code>img</code> element is a self-closing element:</p>
-<pre><code class="language-html">&lt;img alt=&quot;&quot; src=&quot;image.png&quot;&gt;
+<pre><code class="language-html">&lt;img alt=&quot;&quot; src=&quot;image.png&quot; /&gt;
 </code></pre>
 <p>In JSX, no elements are self-closing, which means that <em>all</em> elements must have a closing tag, like the <code>img</code> below:</p>
-<pre><code class="language-tsx">&lt;img alt=&quot;&quot; src=&quot;image.png&quot; /&gt;
+<pre><code class="language-html">&lt;img alt=&quot;&quot; src=&quot;image.png&quot; /&gt;
 </code></pre>
 <h4>Writing comments</h4>
-<p>In HTML, comments are written using the <code>&lt;!-- --&gt;</code> syntax, seen below.
-Anything inside these comment tags is ignored by the browser and is not rendered or executed.</p>
+<p>In HTML, comments are written using the <code>&lt;!-- --&gt;</code> syntax, seen below. Anything inside these comment tags is ignored by the browser and is not rendered or executed.</p>
 <pre><code class="language-html">&lt;p&gt;
   &lt;!-- This is an HTML comment --&gt;
   Visible content
 &lt;/p&gt;
 </code></pre>
-<p>In JSX, comments follow the JavaScript comment syntax. Since JSX is transpiled into JavaScript,
-you must use JavaScript’s {/* */} syntax for comments within the JSX part of your code.</p>
-<pre><code class="language-tsx">&lt;p&gt;
-  {/* This is a JSX comment */}
-  Visible content
-&lt;/p&gt;
+<p>In JSX, comments follow the JavaScript comment syntax. Since JSX is transpiled into JavaScript, you must use JavaScript’s {/* */} syntax for comments within the JSX part of your code.</p>
+<pre><code class="language-tsx">const content = (
+  &lt;p&gt;
+    {/* This is a JSX comment */}
+    Visible content
+  &lt;/p&gt;
+)
 </code></pre>
 <h4>Reserved words are renamed</h4>
-<p>The HTML attributes <code>class</code> and <code>for</code> are reserved words in JavaScript.
-In JSX, these are renamed to <code>className</code> and <code>htmlFor</code>, respectively.</p>
-<pre><code class="language-tsx">&lt;p className=&quot;form-field&quot;&gt;
-  &lt;label htmlFor=&quot;name-input&quot;&gt;Name:&lt;/label&gt;
-  &lt;input id=&quot;name-input&quot; /&gt;
-&lt;/p&gt;
+<p>The HTML attributes <code>class</code> and <code>for</code> are reserved words in JavaScript. In JSX, these are renamed to <code>className</code> and <code>htmlFor</code>, respectively.</p>
+<pre><code class="language-tsx">const content = (
+  &lt;p className=&quot;form-field&quot;&gt;
+    &lt;label htmlFor=&quot;name-input&quot;&gt;Name:&lt;/label&gt;
+    &lt;input id=&quot;name-input&quot; /&gt;
+  &lt;/p&gt;
+)
 </code></pre>
 <h4>Style prop</h4>
-<p>In HTML, the appearance of most elements can be altered using the <code>style</code> attribute. React supports
-a <code>style</code> prop, but it accepts an object, not a string. The style object has properties whose names
-are camel-case versions of their CSS counterparts: &quot;font-style&quot; becomes <code>fontStyle</code>.</p>
-<pre><code class="language-tsx">&lt;p style={{ fontStyle: &quot;italic&quot; }}&gt;
-  Restaurants
-&lt;/p&gt;
+<p>In HTML, the appearance of most elements can be altered using the <code>style</code> attribute. React supports a <code>style</code> prop, but it accepts an object, not a string. The style object has properties whose names are camel-case versions of their CSS counterparts. IE: &quot;font-style&quot; becomes <code>fontStyle</code>.</p>
+<pre><code class="language-tsx">const content = &lt;p style={{ fontStyle: &quot;italic&quot; }}&gt;Restaurants&lt;/p&gt;
 </code></pre>
 <p>As we go through this training, you’ll learn additional differences.</p>
+<h4>Convention: Parenthesis</h4>
+<p>When dealing with JSX that needs multiple lines, the convention is to wrap it in parethesis. This helps keep your JSX clean and clear, rather than mixing it with the javascript around it.</p>
+<pre><code class="language-tsx">function Form() {
+  return (
+    &lt;p className=&quot;form-field&quot;&gt;
+      &lt;label htmlFor=&quot;name-input&quot;&gt;Name:&lt;/label&gt;
+      &lt;input id=&quot;name-input&quot; /&gt;
+    &lt;/p&gt;
+  )
+}
+</code></pre>
+<h4>Convention: Implicit Returns</h4>
+<p>When creating functions that have no logic and just return JSX, especially when they're an argument to a function, the convention is to use an arrow function with an implicit return. This is nearly always coupled with the parenthesis convention, too. (Don't worry: you'll learn about <code>.map</code> in the next objective.)</p>
+<pre><code class="language-tsx">const data = [&quot;one&quot;, &quot;two&quot;]
+
+function List() {
+  return (
+    &lt;div&gt;
+      {data.map((name) =&gt; (
+        &lt;li key={name}&gt;{name}&lt;/li&gt;
+      ))}
+    &lt;/div&gt;
+  )
+}
+</code></pre>
 <h3>Setup 1</h3>
-<p>We’ve created an assets package with images and CSS you’ll need to build the application. Install the <code>place-my-order-assets</code> package.</p>
+<p>We’ve created an assets package with images and styles you’ll need to build the application. Install the <code>place-my-order-assets</code> package.</p>
 <p>✏️ Run:</p>
 <pre><code class="language-shell">npm install place-my-order-assets@0
 </code></pre>
-<p>✏️ Remove the contents of the <strong>src/App.css</strong> file so it’s completely blank.</p>
 <p>✏️ Update <strong>src/index.css</strong> to be:</p>
 <pre><code class="language-css">@import &quot;place-my-order-assets/css/place-my-order-assets.css&quot;;
+
 </code></pre>
  <div line-highlight="1,only"></div>
 <h3>Verify 1</h3>
 <p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+<pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
+import { render, screen } from &quot;@testing-library/react&quot;
+import { describe, expect, it } from &quot;vitest&quot;
 
-import App from './App';
+import App from &quot;./App&quot;
 
-describe('App component', () =&gt; {
-  it('renders the Restaurants header', () =&gt; {
-    render(&lt;App /&gt;);
-    expect(screen.getByText(/Restaurants/i)).toBeInTheDocument();
-  });
+describe(&quot;App component&quot;, () =&gt; {
+  it(&quot;renders the Restaurants header&quot;, () =&gt; {
+    render(&lt;App /&gt;)
+    expect(screen.getByText(/Restaurants/i)).toBeInTheDocument()
+  })
 
-  it('renders the restaurant image', () =&gt; {
-    render(&lt;App /&gt;);
-    const img = screen.getByRole('img');
-    expect(img).toHaveAttribute('src', '/node_modules/place-my-order-assets/images/4-thumbnail.jpg');
-    expect(img).toHaveAttribute('width', '100');
-    expect(img).toHaveAttribute('height', '100');
-  });
+  it(&quot;renders the restaurant image&quot;, () =&gt; {
+    render(&lt;App /&gt;)
+    const img = screen.getByRole(&quot;img&quot;)
+    expect(img).toHaveAttribute(
+      &quot;src&quot;,
+      &quot;/node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+    )
+    expect(img).toHaveAttribute(&quot;width&quot;, &quot;100&quot;)
+    expect(img).toHaveAttribute(&quot;height&quot;, &quot;100&quot;)
+  })
 
-  it('renders the address', () =&gt; {
-    render(&lt;App /&gt;);
-    const addressDiv = screen.getByText(/230 W Kinzie Street/i).closest('div');
-    expect(addressDiv).toHaveTextContent('230 W Kinzie Street');
-    expect(addressDiv).toHaveTextContent('Green Bay, WI 53205');
-  });
+  it(&quot;renders the address&quot;, () =&gt; {
+    render(&lt;App /&gt;)
+    const addressDiv = screen.getByText(/230 W Kinzie Street/i).closest(&quot;div&quot;)
+    expect(addressDiv).toHaveTextContent(&quot;230 W Kinzie Street&quot;)
+    expect(addressDiv).toHaveTextContent(&quot;Green Bay, WI 53205&quot;)
+  })
 
-  it('renders the hours and price information', () =&gt; {
-    render(&lt;App /&gt;);
-    const hoursPriceDiv = screen.getByText(/\$\$\$/i).closest('div');
-    expect(hoursPriceDiv).toHaveTextContent('$$$');
-    expect(hoursPriceDiv).toHaveTextContent('Hours: M-F 10am-11pm');
-  });
+  it(&quot;renders the hours and price information&quot;, () =&gt; {
+    render(&lt;App /&gt;)
+    const hoursPriceDiv = screen.getByText(/\$\$\$/i).closest(&quot;div&quot;)
+    expect(hoursPriceDiv).toHaveTextContent(&quot;$$$&quot;)
+    expect(hoursPriceDiv).toHaveTextContent(&quot;Hours: M-F 10am-11pm&quot;)
+  })
 
-  it('indicates if the restaurant is open now', () =&gt; {
-    render(&lt;App /&gt;);
-    expect(screen.getByText('Open Now')).toBeInTheDocument();
-  });
+  it(&quot;indicates if the restaurant is open now&quot;, () =&gt; {
+    render(&lt;App /&gt;)
+    expect(screen.getByText(&quot;Open Now&quot;)).toBeInTheDocument()
+  })
 
-  it('renders the details button with correct link', () =&gt; {
-    render(&lt;App /&gt;);
-    const detailsButton = screen.getByRole('link');
-    expect(detailsButton).toHaveAttribute('href', '/restaurants/poutine-palace');
-    expect(screen.getByText('Details')).toBeInTheDocument();
-  });
-});
+  it(&quot;renders the details button with correct link&quot;, () =&gt; {
+    render(&lt;App /&gt;)
+    const detailsButton = screen.getByRole(&quot;link&quot;)
+    expect(detailsButton).toHaveAttribute(&quot;href&quot;, &quot;/restaurants/poutine-palace&quot;)
+    expect(screen.getByText(&quot;Details&quot;)).toBeInTheDocument()
+  })
+})
 
 </code></pre>
- <div line-highlight="8,10,13-19,21-26,28-33,35-38,40-45,only"></div>
+ <div line-highlight="8,10,13-22,24-29,31-36,38-41,43-48,only"></div>
 <p>✏️ Run:</p>
 <pre><code class="language-shell">npm run test
 </code></pre>
 <p>Note that we won’t be able to write an automated test that verifies the styles and images appear as desired, so you will have to test those manually.</p>
 <h3>Exercise 1</h3>
-<p>Take the below HTML and convert it to JSX:</p>
+<p>Take the below HTML and convert it to JSX in <code>app.tsx</code>:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
-    &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
-    &lt;div class=&quot;restaurant&quot;&gt;
-        &lt;img
-            alt=&quot;&quot;
-            src=&quot;/node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;
-            width=&quot;100&quot;
-            height=&quot;100&quot;
-        &gt;
-        &lt;h3&gt;&lt;!-- NAME GOES HERE --&gt;&lt;/h3&gt;
-        &lt;div class=&quot;address&quot;&gt;
-            230 W Kinzie Street
-            &lt;br&gt;
-            Green Bay, WI 53205
-        &lt;/div&gt;
-        &lt;div class=&quot;hours-price&quot;&gt;
-            $$$
-            &lt;br&gt;
-            Hours: M-F 10am-11pm
-            &lt;span class=&quot;open-now&quot;&gt;
-                Open Now
-            &lt;/span&gt;
-        &lt;/div&gt;
-        &lt;a class=&quot;btn&quot; href=&quot;/restaurants/poutine-palace&quot;&gt;
-            Details
-        &lt;/a&gt;
-        &lt;br&gt;
+  &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
+  &lt;div class=&quot;restaurant&quot;&gt;
+    &lt;img
+      alt=&quot;&quot;
+      src=&quot;/node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;
+      width=&quot;100&quot;
+      height=&quot;100&quot;
+    &gt;
+    &lt;h3&gt;&lt;!-- NAME GOES HERE --&gt;&lt;/h3&gt;
+    &lt;div class=&quot;address&quot;&gt;
+      230 W Kinzie Street
+      &lt;br&gt;
+      Green Bay, WI 53205
     &lt;/div&gt;
+    &lt;div class=&quot;hours-price&quot;&gt;
+      $$$
+      &lt;br&gt;
+      Hours: M-F 10am-11pm
+      &lt;span class=&quot;open-now&quot;&gt;
+        Open Now
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;/restaurants/poutine-palace&quot;&gt;
+      Details
+    &lt;/a&gt;
+    &lt;br&gt;
+  &lt;/div&gt;
 &lt;/div&gt;
+
 </code></pre>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/01-problem?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/01-problem?file=src/App.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
 <h3>Solution 1</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import './App.css'
+<pre><code class="language-tsx">import &quot;./App.css&quot;
 
 function App() {
   return (
@@ -752,9 +769,7 @@ function App() {
             $$$
             &lt;br /&gt;
             Hours: M-F 10am-11pm
-            &lt;span className=&quot;open-now&quot;&gt;
-              Open Now
-            &lt;/span&gt;
+            &lt;span className=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
           &lt;/div&gt;
           &lt;a className=&quot;btn&quot; href=&quot;/restaurants/poutine-palace&quot;&gt;
             Details
@@ -769,7 +784,7 @@ function App() {
 export default App
 
 </code></pre>
- <div line-highlight="6-34,only"></div>
+ <div line-highlight="6-32,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/01-solution?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/01-solution?file=src/App.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Objective 2: Expressions and loops in JSX</h2>
@@ -782,29 +797,29 @@ export default App
 </ul>
 <h3>Using JavaScript variables and expressions in JSX</h3>
 <p>JSX is dynamic. You can insert values from variables and objects into your JSX as we did with the image URL in the previous section.</p>
-<pre><code class="language-tsx">const name = 'Bitovi'
+<pre><code class="language-tsx">const name = &quot;Bitovi&quot;
 
-&lt;p&gt;Welcome to {name}!&lt;/p&gt;
+const content = &lt;p&gt;Welcome to {name}!&lt;/p&gt;
 </code></pre>
 <p>In the code above, use the <code>{name}</code> syntax to tell JSX that to render the value stored in the <code>name</code> variable (i.e. <code>&quot;Bitovi&quot;</code>) into our view.</p>
 <p>You can take this a step further by interpolating multiple values, and using JavaScript functions to transform data on the fly. Anything that goes inside <code>{}</code> is executed as normal JavaScript. These are the same rules as the brackets on a prop: any JavaScript expression is valid inside the curly brackets.</p>
 <pre><code class="language-tsx">const person = {
-  name: 'mike',
-  profession: 'programmer',
-};
+  name: &quot;mike&quot;,
+  profession: &quot;programmer&quot;,
+}
 
 const content = (
   &lt;main&gt;
-    &lt;h1&gt;Hi I'm {person.name.toUpperCase()}!&lt;/h1&gt;
-    &lt;p&gt;I'm a {person.profession} living in Philadelphia.&lt;/p&gt;
+    &lt;h1&gt;Hi I’m {person.name.toUpperCase()}!&lt;/h1&gt;
+    &lt;p&gt;I’m a {person.profession} living in Philadelphia.&lt;/p&gt;
   &lt;/main&gt;
-);
+)
 </code></pre>
-<div line-highlight='7,8'></div>
+<div line-highlight='8,9'></div>
 <h3>JSX is a syntax extension for JavaScript</h3>
-<p>Remember, JSX is an alternative syntax for normal JavaScript—it is not magic. This means that you can use JSX as a normal value.</p>
-<pre><code class="language-tsx">const header = &lt;h1&gt;Hello World&lt;/h1&gt;;
-const body = &lt;p&gt;My name is {'Mike'}&lt;/p&gt;;
+<p>Remember, JSX is an alternative syntax for normal JavaScript—it is not magic. This means that you can use JSX as a normal value, too.</p>
+<pre><code class="language-tsx">const header = &lt;h1&gt;Hello World&lt;/h1&gt;
+const body = &lt;p&gt;My name is {&quot;Mike&quot;}&lt;/p&gt;
 
 function MyPage() {
   return (
@@ -812,10 +827,8 @@ function MyPage() {
       {header}
       {body}
     &lt;/main&gt;
-  );
+  )
 }
-
-ReactDOM.render(&lt;MyPage /&gt;, document.getElementById('root'));
 </code></pre>
 <div class='codepen' data-codepen='react'></div>
 <p>If rendered, <code>page</code> will output:</p>
@@ -825,47 +838,49 @@ ReactDOM.render(&lt;MyPage /&gt;, document.getElementById('root'));
 &lt;/main&gt;
 </code></pre>
 <p>If this surprises you, remember that underneath the syntactic sugar, JSX is nothing more than <code>React.createElement</code> calls:</p>
-<pre><code class="language-tsx">const header = React.createElement('h1', null, 'Hello World');
-const body = React.createElement('p', null, `Hello ${'Mike'}`);
+<pre><code class="language-tsx">const header = React.createElement(&quot;h1&quot;, null, &quot;Hello World&quot;)
+const body = React.createElement(&quot;p&quot;, null, `My name is ${&quot;Mike&quot;}`)
 
-const page = React.createElement('main', null, [header, body]);
+const page = React.createElement(&quot;main&quot;, null, [header, body])
 </code></pre>
 <h3>Working with conditionals and loops in JSX</h3>
 <p>Only expressions which return a value may be interpolated. This includes static values, variables and calls to functions. It does not include control-flow statements such as <code>if</code>, <code>case</code>, <code>for</code>, <code>while</code>. These can either be abstracted behind a function, which is then called within the JSX or be re-written in a JSX-friendly way.</p>
 <p>To put it simply: only things that you could pass into a function can be used inside the brackets.</p>
 <h4>Using conditionals</h4>
 <p>Conditions can be re-written using the ternary operator.</p>
-<pre><code class="language-tsx">// This does not work
-&lt;p&gt;
-  {
-    if (a === b) { // Control flow does not belong in JSX
-      &quot;a and b are equal&quot;
-    } else {
-      &quot;a and b are different&quot;
+<pre><code class="language-tsx-error">// This does not work
+const content = (
+  &lt;p&gt;
+    {
+      if (a === b) { // Control flow does not belong in JSX
+        &quot;a and b are equal&quot;
+      } else {
+        &quot;a and b are different&quot;
+      }
     }
-  }
-&lt;/p&gt;
-
-// But the same can be accomplished with ternaries
-&lt;p&gt;
-  {a === b // Ternaries are expressions. They return a value.
-    ? 'a and b are equal'
-    : 'a and b are different'}
-&lt;/p&gt;
+  &lt;/p&gt;
+)
+</code></pre>
+<pre><code class="language-tsx">// But the same can be accomplished with ternaries
+const content = (
+  &lt;p&gt;
+    {a === b // Ternaries are expressions.
+      ? &quot;a and b are equal&quot;
+      : &quot;a and b are different&quot;}
+  &lt;/p&gt;
+)
 </code></pre>
 <p>If ternaries seem excessive for any particular case, you can write all your logic in a separate function and invoke it from within JSX.</p>
-<pre><code class="language-tsx">function outputResult() {
-  return a === b
-    ? 'a and b are equal'
-    : 'a and b are different';
+<pre><code class="language-tsx">function makeResult() {
+  return a === b ? &quot;a and b are equal&quot; : &quot;a and b are different&quot;
 }
 
-&lt;p&gt;{outputResult()}&lt;/p&gt;
+const content = &lt;p&gt;{makeResult()}&lt;/p&gt;
 </code></pre>
 <h4>Using loops</h4>
 <p>JSX does not support traditional loop statements like <code>for</code>, <code>while</code>, or <code>do...while</code> directly within JSX.</p>
 <p>The example below will <strong>not</strong> work:</p>
-<pre><code class="language-tsx">const names = ['Alfa', 'Bravo', 'Charlie'];
+<pre><code class="language-tsx-error">const names = ['Alfa', 'Bravo', 'Charlie'];
 
 // This does not work
 const content = (
@@ -877,24 +892,20 @@ const content = (
       }
     }
   &lt;/ul&gt;
-);
+)
 </code></pre>
 <p>The <code>Array.map()</code> function is the most common and idiomatic way to render lists in JSX.
 It’s especially useful for rendering arrays of data as HTML elements.</p>
-<pre><code class="language-tsx">const names = ['Alfa', 'Bravo', 'Charlie'];
+<pre><code class="language-tsx">const names = [&quot;Alfa&quot;, &quot;Bravo&quot;, &quot;Charlie&quot;]
 
 // This will work
 const content = (
   &lt;ul&gt;
     {names.map((name) =&gt; {
-      return (
-        &lt;li key={name}&gt;
-          {name}
-        &lt;/li&gt;
-      );
+      return &lt;li key={name}&gt;{name}&lt;/li&gt;
     })}
   &lt;/ul&gt;
-);
+)
 </code></pre>
 <p>That will produce the following HTML:</p>
 <pre><code class="language-html">&lt;ul&gt;
@@ -903,35 +914,27 @@ const content = (
   &lt;li&gt;Charlie&lt;/li&gt;
 &lt;/ul&gt;
 </code></pre>
-<p>There are lots of ways to iterate over arrays in JavaScript with functions like <code>Array.map</code>, <code>Array.filter</code>, and <code>Array.reduce</code>.
-These all work in JSX!</p>
+<p>There are lots of ways to iterate over arrays in JavaScript with functions like <code>Array.map</code>, <code>Array.filter</code>, and <code>Array.reduce</code>. These all work in JSX!</p>
 <h5><span id="the-key-prop">The <code>key</code> prop</span></h5>
 <p>Did you notice the <code>key</code> prop in the example above?</p>
-<p>When rendering a list of elements, React needs a way to uniquely identify each element. This helps React
-understand which items have changed, been added, or removed, which is crucial for efficient re-rendering.</p>
-<p>Each key should be a unique identifier among siblings. Keys should be stable (not change over time), predictable
-(generated in a predictable manner), and unique (no two elements in the list should have the same key).</p>
-<p>It’s often convenient to use IDs from your data as keys. For example, if our data had <code>id</code> properties for each name,
-then we could use those as the <code>key</code> prop, even if there were duplicate names in the array:</p>
+<p>When rendering a list of elements, React needs a way to uniquely identify each element. This helps React understand which items have changed, been added, or removed, which is crucial for efficient re-rendering.</p>
+<p>Each key should be a unique identifier among siblings. Keys should be stable (not change over time), predictable (generated in a predictable manner), and unique (no two elements in the list should have the same key).</p>
+<p>It’s often convenient to use IDs from your data as keys. For example, if our data had <code>id</code> properties for each name, then we could use those as the <code>key</code> prop, even if there were duplicate names in the array:</p>
 <pre><code class="language-tsx">const names = [
-  { id: '550e8400', name: 'Alfa' },
-  { id: 'f47ac10b', name: 'Bravo' },
-  { id: '5a3c9dd9', name: 'Alfa' },
-  { id: '3d3f6f4d', name: 'Charlie' },
-  { id: 'aab3fcba', name: 'Delta' },
-];
+  { id: &quot;550e8400&quot;, name: &quot;Alfa&quot; },
+  { id: &quot;f47ac10b&quot;, name: &quot;Bravo&quot; },
+  { id: &quot;5a3c9dd9&quot;, name: &quot;Alfa&quot; },
+  { id: &quot;3d3f6f4d&quot;, name: &quot;Charlie&quot; },
+  { id: &quot;aab3fcba&quot;, name: &quot;Delta&quot; },
+]
 
 const content = (
   &lt;ul&gt;
     {names.map(({ id, name }) =&gt; {
-      return (
-        &lt;li key={id}&gt;
-          {name}
-        &lt;/li&gt;
-      );
+      return &lt;li key={id}&gt;{name}&lt;/li&gt;
     })}
   &lt;/ul&gt;
-);
+)
 </code></pre>
 <p>That will produce the following HTML:</p>
 <pre><code class="language-html">&lt;ul&gt;
@@ -942,50 +945,47 @@ const content = (
   &lt;li&gt;Delta&lt;/li&gt;
 &lt;/ul&gt;
 </code></pre>
-<p>🔦 <em>During development, If you forget to provide a <code>key</code> prop for items in an array React will log
-the following error to the browser's console:</em></p>
-<p><img alt="A browser console with the error message 'Warning: Each child in a list should have a
-unique 'key' prop." src="../../../static/img/react-vite/03-intro-to-jsx/react-missing-key-error.png"
-style="width:100%" /></p>
+<p>🔦 <em>During development, If you forget to provide a <code>key</code> prop for items in an array React will log the following error to the browser's console:</em></p>
+<p><img alt="A browser console with the error message 'Warning: Each child in a list should have a unique 'key' prop." src="../../../static/img/react-vite/03-intro-to-jsx/react-missing-key-error.png" style="width:100%" /></p>
 <h3>Setup 2</h3>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
-import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import './App.css'
+<pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
+import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
+import &quot;./App.css&quot;
 
 function App() {
   const restaurants = {
     data: [
       {
-        name: 'Cheese Curd City',
-        slug: 'cheese-curd-city',
+        name: &quot;Cheese Curd City&quot;,
+        slug: &quot;cheese-curd-city&quot;,
         images: {
           thumbnail: CheeseThumbnail,
         },
         address: {
-          street: '2451 W Washburne Ave',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53295',
+          street: &quot;2451 W Washburne Ave&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53295&quot;,
         },
-        _id: 'Ar0qBJHxM3ecOhcr',
+        _id: &quot;Ar0qBJHxM3ecOhcr&quot;,
       },
       {
-        name: 'Poutine Palace',
-        slug: 'poutine-palace',
+        name: &quot;Poutine Palace&quot;,
+        slug: &quot;poutine-palace&quot;,
         images: {
           thumbnail: PoutineThumbnail,
         },
         address: {
-          street: '230 W Kinzie Street',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53205',
+          street: &quot;230 W Kinzie Street&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53205&quot;,
         },
-        _id: '3ZOZyTY1LH26LnVw',
+        _id: &quot;3ZOZyTY1LH26LnVw&quot;,
       },
-    ]
-  };
+    ],
+  }
 
   return (
     &lt;&gt;
@@ -1008,9 +1008,7 @@ function App() {
             $$$
             &lt;br /&gt;
             Hours: M-F 10am-11pm
-            &lt;span className=&quot;open-now&quot;&gt;
-              Open Now
-            &lt;/span&gt;
+            &lt;span className=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
           &lt;/div&gt;
           &lt;a className=&quot;btn&quot; href=&quot;/restaurants/poutine-palace&quot;&gt;
             Details
@@ -1029,66 +1027,78 @@ export default App
 <h3>Verify 2</h3>
 <p>Add these tests into your application to verify you have met the acceptance criteria. Note how React Testing Library allows our tests to specify exact elements.</p>
 <p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+<pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
+import { render, screen } from &quot;@testing-library/react&quot;
+import { describe, expect, it } from &quot;vitest&quot;
 
-import App from './App';
+import App from &quot;./App&quot;
 
-describe('App component', () =&gt; {
-  it('renders the Restaurants header', () =&gt; {
-    render(&lt;App /&gt;);
-    expect(screen.getByText(/Restaurants/i)).toBeInTheDocument();
-  });
+describe(&quot;App component&quot;, () =&gt; {
+  it(&quot;renders the Restaurants header&quot;, () =&gt; {
+    render(&lt;App /&gt;)
+    expect(screen.getByText(/Restaurants/i)).toBeInTheDocument()
+  })
 
-  it('renders the restaurant images', () =&gt; {
-    render(&lt;App /&gt;);
-    const images = screen.getAllByRole('img');
-    expect(images[0]).toHaveAttribute('src', expect.stringContaining('2-thumbnail.jpg'));
-    expect(images[0]).toHaveAttribute('width', '100');
-    expect(images[0]).toHaveAttribute('height', '100');
-    expect(images[1]).toHaveAttribute('src', expect.stringContaining('4-thumbnail.jpg'));
-    expect(images[1]).toHaveAttribute('width', '100');
-    expect(images[1]).toHaveAttribute('height', '100');
-  });
+  it(&quot;renders the restaurant images&quot;, () =&gt; {
+    render(&lt;App /&gt;)
+    const images = screen.getAllByRole(&quot;img&quot;)
+    expect(images[0]).toHaveAttribute(
+      &quot;src&quot;,
+      expect.stringContaining(&quot;2-thumbnail.jpg&quot;),
+    )
+    expect(images[0]).toHaveAttribute(&quot;width&quot;, &quot;100&quot;)
+    expect(images[0]).toHaveAttribute(&quot;height&quot;, &quot;100&quot;)
+    expect(images[1]).toHaveAttribute(
+      &quot;src&quot;,
+      expect.stringContaining(&quot;4-thumbnail.jpg&quot;),
+    )
+    expect(images[1]).toHaveAttribute(&quot;width&quot;, &quot;100&quot;)
+    expect(images[1]).toHaveAttribute(&quot;height&quot;, &quot;100&quot;)
+  })
 
-  it('renders the addresses', () =&gt; {
-    render(&lt;App /&gt;);
-    const addressDivs = screen.getAllByText(/Washburne Ave|Kinzie Street/i);
-    expect(addressDivs[0]).toHaveTextContent('2451 W Washburne Ave');
-    expect(addressDivs[0]).toHaveTextContent('Green Bay, WI 53295');
-    expect(addressDivs[1]).toHaveTextContent('230 W Kinzie Street');
-    expect(addressDivs[1]).toHaveTextContent('Green Bay, WI 53205');
-  });
+  it(&quot;renders the addresses&quot;, () =&gt; {
+    render(&lt;App /&gt;)
+    const addressDivs = screen.getAllByText(/Washburne Ave|Kinzie Street/i)
+    expect(addressDivs[0]).toHaveTextContent(&quot;2451 W Washburne Ave&quot;)
+    expect(addressDivs[0]).toHaveTextContent(&quot;Green Bay, WI 53295&quot;)
+    expect(addressDivs[1]).toHaveTextContent(&quot;230 W Kinzie Street&quot;)
+    expect(addressDivs[1]).toHaveTextContent(&quot;Green Bay, WI 53205&quot;)
+  })
 
-  it('renders the hours and price information for each restaurant', () =&gt; {
-    render(&lt;App /&gt;);
-    const hoursPriceDivs = screen.getAllByText(/\$\$\$/i);
-    hoursPriceDivs.forEach(div =&gt; {
-      expect(div).toHaveTextContent('$$$');
-      expect(div).toHaveTextContent('Hours: M-F 10am-11pm');
-    });
-  });
+  it(&quot;renders the hours and price information for each restaurant&quot;, () =&gt; {
+    render(&lt;App /&gt;)
+    const hoursPriceDivs = screen.getAllByText(/\$\$\$/i)
+    hoursPriceDivs.forEach((div) =&gt; {
+      expect(div).toHaveTextContent(&quot;$$$&quot;)
+      expect(div).toHaveTextContent(&quot;Hours: M-F 10am-11pm&quot;)
+    })
+  })
 
-  it('indicates if the restaurant is open now for each restaurant', () =&gt; {
-    render(&lt;App /&gt;);
-    const openNowTags = screen.getAllByText('Open Now');
-    expect(openNowTags.length).toBeGreaterThan(0);
-  });
+  it(&quot;indicates if the restaurant is open now for each restaurant&quot;, () =&gt; {
+    render(&lt;App /&gt;)
+    const openNowTags = screen.getAllByText(&quot;Open Now&quot;)
+    expect(openNowTags.length).toBeGreaterThan(0)
+  })
 
-  it('renders the details buttons with correct links for each restaurant', () =&gt; {
-    render(&lt;App /&gt;);
-    const detailsButtons = screen.getAllByRole('link');
-    expect(detailsButtons[0]).toHaveAttribute('href', '/restaurants/cheese-curd-city');
-    expect(detailsButtons[1]).toHaveAttribute('href', '/restaurants/poutine-palace');
-    detailsButtons.forEach(button =&gt; {
-      expect(button).toHaveTextContent('Details');
-    });
-  });
-});
+  it(&quot;renders the details buttons with correct links for each restaurant&quot;, () =&gt; {
+    render(&lt;App /&gt;)
+    const detailsButtons = screen.getAllByRole(&quot;link&quot;)
+    expect(detailsButtons[0]).toHaveAttribute(
+      &quot;href&quot;,
+      &quot;/restaurants/cheese-curd-city&quot;,
+    )
+    expect(detailsButtons[1]).toHaveAttribute(
+      &quot;href&quot;,
+      &quot;/restaurants/poutine-palace&quot;,
+    )
+    detailsButtons.forEach((button) =&gt; {
+      expect(button).toHaveTextContent(&quot;Details&quot;)
+    })
+  })
+})
 
 </code></pre>
- <div line-highlight="13,15-21,24,26-30,33,35-39,42,44-45,48,50-55,only"></div>
+ <div line-highlight="13,15-16,18,20-27,30,32-36,39,41-45,48,50-51,54,56-67,only"></div>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/02-problem?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/02-problem?file=src/App.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
 <h3>Exercise 2</h3>
 <ul>
@@ -1101,43 +1111,43 @@ describe('App component', () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/App.tsx</strong></p>
-<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
-import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import './App.css'
+<pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
+import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
+import &quot;./App.css&quot;
 
 function App() {
   const restaurants = {
     data: [
       {
-        name: 'Cheese Curd City',
-        slug: 'cheese-curd-city',
+        name: &quot;Cheese Curd City&quot;,
+        slug: &quot;cheese-curd-city&quot;,
         images: {
           thumbnail: CheeseThumbnail,
         },
         address: {
-          street: '2451 W Washburne Ave',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53295',
+          street: &quot;2451 W Washburne Ave&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53295&quot;,
         },
-        _id: 'Ar0qBJHxM3ecOhcr',
+        _id: &quot;Ar0qBJHxM3ecOhcr&quot;,
       },
       {
-        name: 'Poutine Palace',
-        slug: 'poutine-palace',
+        name: &quot;Poutine Palace&quot;,
+        slug: &quot;poutine-palace&quot;,
         images: {
           thumbnail: PoutineThumbnail,
         },
         address: {
-          street: '230 W Kinzie Street',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53205',
+          street: &quot;230 W Kinzie Street&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53205&quot;,
         },
-        _id: '3ZOZyTY1LH26LnVw',
+        _id: &quot;3ZOZyTY1LH26LnVw&quot;,
       },
-    ]
-  };
+    ],
+  }
 
   return (
     &lt;&gt;

@@ -125,7 +125,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-react.html"
-							title="Learn React by building the feature-rich Place My Order application in this beginner React guide. This hands-on course will introduce you to fundamental React concepts! By the end of this course, you will have a strong understanding of JSX, functional components, styling, state management, Hooks, data fetching, routing, and testing.">
+							title="Learn React by building the feature-rich Place My Order application in this beginner React guide. This hands-on course will introduce you to fundamental React concepts! By the end of this course, you will have a strong understanding of JSX, function components, styling, state management, Hooks, data fetching, routing, and testing.">
 							Learn React
 						</a>
 						
@@ -540,152 +540,131 @@ covering CanJS core libraries.">
 </ul>
 <h2>Objective 1: Add checkboxes to order menu items</h2>
 <p>Now that we have our <code>RestaurantOrder</code> page, let’s start building the form for placing an order!</p>
-<p>We’ll start with checkboxes to select menu items, with a message that warns users when no items
-are selected and a total that shows the sum of the selected items.</p>
+<p>We’ll start with checkboxes to select menu items, with a message that warns users when no items are selected and a total that shows the sum of the selected items.</p>
 <h3>Controlled vs. uncontrolled inputs</h3>
-<p>React has special handling for <code>&lt;input&gt;</code> components that allow developers to create “controlled” or
-“uncontrolled” inputs. An input is <strong>uncontrolled</strong> when its <code>value</code> (or <code>checked</code>) prop is not
-set, and it does not have a handler set for the <code>onChange</code> prop; an initial value may be set using
-the <code>defaultValue</code> prop.</p>
-<p>An input is <strong>controlled</strong> when both its <code>value</code> (or <code>checked</code>) and <code>onChange</code> props have values
-set. The term “controlled” refers to the fact that the value of the input is controlled by React.
-Most of the time, we want our <code>&lt;input&gt;</code> components to be controlled with their value stored in a state
-variable.</p>
-<p><strong>Note:</strong> If an <code>&lt;input&gt;</code> only has the <code>value</code> or <code>onChange</code> prop set, React will log a warning to the
-console in development mode.</p>
+<p>React has special handling for <code>&lt;input&gt;</code> components that allow developers to create “controlled” or “uncontrolled” inputs. An input is <strong>uncontrolled</strong> when its <code>value</code> (or <code>checked</code>) prop is not set, and it does not have a handler set for the <code>onChange</code> prop; an initial value may be set using the <code>defaultValue</code> prop.</p>
+<p>An input is <strong>controlled</strong> when both its <code>value</code> (or <code>checked</code>) and <code>onChange</code> props have values set. The term “controlled” refers to the fact that the value of the input is controlled by React. Most of the time, we want our <code>&lt;input&gt;</code> components to be controlled with their value stored in a state variable.</p>
+<p><strong>Note:</strong> If an <code>&lt;input&gt;</code> only has the <code>value</code> or <code>onChange</code> prop set, React will log a warning to the console in development mode.</p>
 <p>Let’s take a look at an example of a controlled input:</p>
-<pre><code class="language-tsx">const ControlledInput: React.FC = () =&gt; {
-  const [name, setName] = useState(&quot;&quot;);
+<pre><code class="language-tsx">import { useState } from &quot;react&quot;
+
+const ControlledInput: React.FC = () =&gt; {
+  const [name, setName] = useState(&quot;&quot;)
   return (
     &lt;label&gt;
       Name:
       &lt;input
-        onChange={(event) =&gt; setName(event.target.value)}
         type=&quot;text&quot;
+        onChange={(event) =&gt; setName(event.target.value)}
         value={name}
       /&gt;
     &lt;/label&gt;
   )
 }
+
 </code></pre>
-<div line-highlight='6-10, only'></div>
-<p>Controlled components aren’t allowed to have a value of <code>null</code> or <code>undefined</code>. To set an input with
-“no value,” use an empty string: <code>&quot;&quot;</code>.</p>
+<div line-highlight='8-12, only'></div>
+<p>Controlled components aren’t allowed to have a value of <code>null</code> or <code>undefined</code>. To set an input with “no value,” use an empty string: <code>&quot;&quot;</code>.</p>
 <h3>Working with change events</h3>
-<p>In the previous example, the <code>&lt;input&gt;</code> prop <code>onChange</code> had its value set to a function known as an
-“event handler.”</p>
-<pre><code class="language-tsx">const ControlledInput: React.FC = () =&gt; {
-  const [name, setName] = useState(&quot;&quot;);
+<p>In the previous example, the <code>&lt;input&gt;</code> prop <code>onChange</code> had its value set to a function known as an “event handler.”</p>
+<pre><code class="language-tsx">import { useState } from &quot;react&quot;
+
+const ControlledInput: React.FC = () =&gt; {
+  const [name, setName] = useState(&quot;&quot;)
   return (
     &lt;label&gt;
       Name:
       &lt;input
-        onChange={(event) =&gt; setName(event.target.value)}
         type=&quot;text&quot;
+        onChange={(event) =&gt; setName(event.target.value)}
         value={name}
       /&gt;
     &lt;/label&gt;
   )
 }
+
 </code></pre>
-<div line-highlight='7-8, only'></div>
-<p>When an event occurs, such as a user typing in an input field, an <code>event</code> object is
-passed to the event handler function. This event object contains various properties
-and methods that provide information about the event.</p>
-<p>One such property is <code>target</code>, which is a reference to the DOM element that triggered
-the event. In the case of an input field, target would refer to the specific <code>&lt;input&gt;</code>
-element where the user is typing.</p>
-<p>The property <code>event.target.value</code> is particularly important when dealing with input
-fields. The value property here holds the current content of the input field. It
-represents what the user has entered or selected. When you access <code>event.target.value</code>
-in your event handler function, you’re essentially retrieving the latest input
-provided by the user. This is commonly used to update the state of the component with
-the new input value, ensuring that the component’s state is in sync with what the user
-is entering.</p>
-<p>For most input types, you’ll want to use <code>event.target.value</code> to get the value entered.
-But there are exceptions! For <code>&lt;input type=&quot;checkbox&quot;&gt;</code>, you’ll want to use
-<code>event.target.checked</code> instead:</p>
-<pre><code class="language-tsx">const TodoItem: React.FC = () =&gt; {
+<div line-highlight='10, only'></div>
+<p>When an event occurs, such as a user typing in an input field, an <code>event</code> object is passed to the event handler function. This event object contains various properties and methods that provide information about the event.</p>
+<p>One such property is <code>target</code>, which is a reference to the DOM element that triggered the event. In the case of an input field, target would refer to the specific <code>&lt;input&gt;</code> element where the user is typing.</p>
+<p>The property <code>event.target.value</code> is particularly important when dealing with input fields. The value property here holds the current content of the input field. It represents what the user has entered or selected. When you access <code>event.target.value</code> in your event handler function, you’re essentially retrieving the latest input provided by the user. This is commonly used to update the state of the component with the new input value, ensuring that the component’s state is in sync with what the user is entering.</p>
+<p>For most input types, you’ll want to use <code>event.target.value</code> to get the value entered. But there are exceptions! For <code>&lt;input type=&quot;checkbox&quot;&gt;</code>, you’ll want to use <code>event.target.checked</code> instead:</p>
+<pre><code class="language-tsx">import { useState } from &quot;react&quot;
+
+const TodoItem: React.FC = () =&gt; {
   const [isCompleted, setIsCompleted] = useState(false)
   return (
     &lt;label&gt;
       &lt;input
+        type=&quot;checkbox&quot;
         checked={isCompleted}
         onChange={(event) =&gt; setIsCompleted(event.target.checked)}
-        type=&quot;checkbox&quot;
       /&gt;
       Completed
     &lt;/label&gt;
   )
 }
 </code></pre>
-<div line-highlight='7-8, only'></div>
+<div line-highlight='9-10, only'></div>
 <h3>Using TypeScript’s <code>Record</code> interface</h3>
-<p>In our upcoming exercise, we want to store information in a JavaScript object. We also want to use
-TypeScript so we can constrain the types used as keys and values.</p>
-<p>TypeScript provides a handy
-interface named <code>Record</code> that we can use. <code>Record</code> is a generic interface that requires two types:
-the first is the type of the keys, and the second is the type of the values.</p>
-<p>For example, if we’re recording the items in a list that are selected, we might capture the item’s
-name and whether or not it’s selected like this:</p>
-<pre><code class="language-tsx">import React, { useState } from 'react';
+<p>In our upcoming exercise, we want to store information in a JavaScript object. We also want to use TypeScript so we can constrain the types used as keys and values.</p>
+<p>TypeScript provides a handy interface named <code>Record</code> that we can use. <code>Record</code> is a generic interface that requires two types: the first is the type of the keys, and the second is the type of the values.</p>
+<p>For example, if we’re recording the items in a list that are selected, we might capture the item’s name and whether or not it’s selected like this:</p>
+<pre><code class="language-tsx">import { useState } from &quot;react&quot;
 
 const landmarks = [
-    { id: '0b90c705', name: 'Eiffel Tower' },
-    { id: '5be758c1', name: 'Machu Picchu' },
-    { id: '206025c3', name: 'Taj Mahal' },
+  { id: &quot;0b90c705&quot;, name: &quot;Eiffel Tower&quot; },
+  { id: &quot;5be758c1&quot;, name: &quot;Machu Picchu&quot; },
+  { id: &quot;206025c3&quot;, name: &quot;Taj Mahal&quot; },
 ]
 
 type SelectedItems = Record&lt;string, number&gt;
 
 const Selected: React.FC = () =&gt; {
-    const [selected, setSelected] = useState&lt;SelectedItems&gt;({});
+  const [selected, setSelected] = useState&lt;SelectedItems&gt;({})
 
-    function handleChange(name: string, isSelected: boolean) {
-        setSelected((current) =&gt; ({ ...current, [name]: isSelected }))
-    }
+  function handleChange(name: string, isSelected: boolean) {
+    setSelected((current) =&gt; ({ ...current, [name]: isSelected }))
+  }
 
-    return (
-        &lt;form&gt;{
-            landmarks.map((landmark) =&gt; {
-                return (
-                    &lt;label key={landmark.id}&gt;{landmark.name}:
-                        &lt;input
-                            checked={selected[landmark.name]}
-                            onChange={(event) =&gt; handleChange(landmark.name, event.target.checked)}
-                            type=&quot;checkbox&quot;
-                        /&gt;
-                    &lt;/label&gt;
-                )
-            })
-        }&lt;/form&gt;
-    )
+  return (
+    &lt;form&gt;
+      {landmarks.map((landmark) =&gt; {
+        return (
+          &lt;label key={landmark.id}&gt;
+            {landmark.name}:
+            &lt;input
+              type=&quot;checkbox&quot;
+              checked={selected[landmark.name]}
+              onChange={(event) =&gt;
+                handleChange(landmark.name, event.target.checked)
+              }
+            /&gt;
+          &lt;/label&gt;
+        )
+      })}
+    &lt;/form&gt;
+  )
 }
+
 </code></pre>
 <div line-highlight='9, 12, only'></div>
-<p>We’ve explicitly defined the type of <code>useState</code> as a <code>Record&lt;string, boolean&gt;</code>; all the keys must be
-strings, and all the values must be booleans. Fortunately, JavaScript’s <code>object</code> implements the
-<code>Record</code> interface, so we can set the default value to an empty <code>object</code> instance. Now let’s see how
-we can use a <code>Record</code> to store state data.</p>
+<p>We’ve explicitly defined the type of <code>useState</code> as a <code>Record&lt;string, boolean&gt;</code>; all the keys must be strings, and all the values must be booleans. Fortunately, JavaScript’s <code>object</code> implements the <code>Record</code> interface, so we can set the default value to an empty <code>object</code> instance. Now let’s see how we can use a <code>Record</code> to store state data.</p>
 <h3>Setting state using an updater function</h3>
-<p>One challenge we face when using an <code>object</code> for state is that we probably need to merge the current
-state value with the new state value. Why? Imagine we have a state object that already has multiple
-keys and values, and we need to add a new key and value.</p>
-<p>Well, we’re in luck! React already has a solution for this: the setter function returned by <code>useState</code>
-will accept an “updater function” that’s passed the “current” state value and should return the “next”
-state value.</p>
-<pre><code class="language-tsx">import React, { useState } from 'react';
+<p>One challenge we face when using an <code>object</code> for state is that we probably need to merge the current state value with the new state value. Why? Imagine we have a state object that already has multiple keys and values, and we need to add a new key and value.</p>
+<p>Well, we’re in luck! React already has a solution for this: the setter function returned by <code>useState</code> will accept an “updater function” that’s passed the “current” state value and should return the “next” state value.</p>
+<pre><code class="language-tsx">import { useState } from &quot;react&quot;
 
 const landmarks = [
-  { id: '0b90c705', name: 'Eiffel Tower' },
-  { id: '5be758c1', name: 'Machu Picchu' },
-  { id: '206025c3', name: 'Taj Mahal' },
+  { id: &quot;0b90c705&quot;, name: &quot;Eiffel Tower&quot; },
+  { id: &quot;5be758c1&quot;, name: &quot;Machu Picchu&quot; },
+  { id: &quot;206025c3&quot;, name: &quot;Taj Mahal&quot; },
 ]
 
 type SelectedItems = Record&lt;string, number&gt;
 
 const Selected: React.FC = () =&gt; {
-  const [selected, setSelected] = useState&lt;SelectedItems&gt;({});
+  const [selected, setSelected] = useState&lt;SelectedItems&gt;({})
 
   function handleSelectedChange(name: string, isSelected: boolean) {
     setSelected((currentSelectedItems) =&gt; {
@@ -704,57 +683,49 @@ const Selected: React.FC = () =&gt; {
   }
 
   return (
-    &lt;form&gt;{
-      landmarks.map((landmark) =&gt; {
+    &lt;form&gt;
+      {landmarks.map((landmark) =&gt; {
         return (
           &lt;label key={landmark.id}&gt;
             {landmark.name}:
             &lt;input
-              checked={selected[landmark.name]}
-              onChange={(event) =&gt; handleSelectedChange(landmark.name, event.target.checked)}
               type=&quot;checkbox&quot;
+              checked={selected[landmark.name]}
+              onChange={(event) =&gt;
+                handleSelectedChange(landmark.name, event.target.checked)
+              }
             /&gt;
           &lt;/label&gt;
         )
-      })
-    }&lt;/form&gt;
+      })}
+    &lt;/form&gt;
   )
 }
+
 </code></pre>
 <div line-highlight='14-15, 26, 39, only'></div>
-<p>In the example above, the <code>onChange</code> event handler calls <code>handleSelectedChange</code>, which accepts a
-name <code>string</code> and a <code>boolean</code>.</p>
-<p>In turn, <code>handleSelectedChange</code> calls <code>setSelected</code> with an updater function as the argument.
-The updater function accepts the <code>currentSelectedItems</code> argument, which is the object with the
-currently-selected items <em>before</em> our checkbox was checked.</p>
-<p>We will dig into <em>how</em> we create the <code>updatedSelectedItems</code> object in just a bit, but for now
-let’s take note that we create a new <code>updatedSelectedItems</code> object and return it from our
-updater function. This gives React the updated <code>selected</code> state and allows React to re-render
-the component.</p>
+<p>In the example above, the <code>onChange</code> event handler calls <code>handleSelectedChange</code>, which accepts a name <code>string</code> and a <code>boolean</code>.</p>
+<p>In turn, <code>handleSelectedChange</code> calls <code>setSelected</code> with an updater function as the argument. The updater function accepts the <code>currentSelectedItems</code> argument, which is the object with the currently-selected items <em>before</em> our checkbox was checked.</p>
+<p>We will dig into <em>how</em> we create the <code>updatedSelectedItems</code> object in just a bit, but for now let’s take note that we create a new <code>updatedSelectedItems</code> object and return it from our updater function. This gives React the updated <code>selected</code> state and allows React to re-render the component.</p>
 <h3>Updating reference types and rendering</h3>
-<p>Now let’s explain how the updater function works in the example above. The
-updater function <strong>does not mutate</strong> the current object, then return it; instead, it makes a new
-object and populates it with the contents of the current object.</p>
-<p>This is an important detail because, after the updater function runs, React will compare the
-values of the current and next objects to determine if they are different. If they are
-<strong>different</strong>, React will re-render the <code>Selected</code> component; if they are the same, then React
-will do nothing.</p>
-<p>The same rules apply when state is an array: create a new array, then update the contents of the new
-array.</p>
+<p>Now let’s explain how the updater function works in the example above. The updater function <strong>does not mutate</strong> the current object, then return it; instead, it makes a new object and populates it with the contents of the current object.</p>
+<p>This is an important detail because, after the updater function runs, React will compare the values of the current and next objects to determine if they are different. If they are <strong>different</strong>, React will re-render the <code>Selected</code> component; if they are the same, then React will do nothing.</p>
+<p>The same rules apply when state is an array: create a new array, then update the contents of the new array.</p>
 <pre><code class="language-tsx">// Adding an item when state (`current`) is an array.
-setSelectedOrders(current =&gt; {
-  const next = [...current, newOrder];
-  return next;
-});
+setSelectedOrders((current) =&gt; {
+  const next = [...current, newOrder]
+  return next
+})
 
 // Replacing an item when state (`current`) is an array.
-setUpdatedRestaurant(current =&gt; {
+setUpdatedRestaurant((current) =&gt; {
   const next = [
-    ...current.filter(item =&gt; item.id !== updatedRestaurant.id),
-    updatedRestaurant
-  ];
-  return next;
-});
+    ...current.filter((item) =&gt; item.id !== updatedRestaurant.id),
+    updatedRestaurant,
+  ]
+
+  return next
+})
 </code></pre>
 <p>OK, that was a lot. Let’s start making some code changes so we can select menu items for an order.</p>
 <h3>Setup 1</h3>
@@ -767,199 +738,202 @@ import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
 type OrderItems = Record&lt;string, number&gt;
 
 const RestaurantOrder: React.FC = () =&gt; {
-    const params = useParams() as { slug: string }
+  const params = useParams() as { slug: string }
 
-    const restaurant = useRestaurant(params.slug)
+  const restaurant = useRestaurant(params.slug)
 
-    if (restaurant.isPending) {
-        return (
-            &lt;p aria-live=&quot;polite&quot; className=&quot;loading&quot;&gt;
-                Loading restaurant…
-            &lt;/p&gt;
-        )
-    }
-
-    if (restaurant.error) {
-        return (
-            &lt;p aria-live=&quot;polite&quot; className=&quot;error&quot;&gt;
-                Error loading restaurant: {restaurant.error.message}
-            &lt;/p&gt;
-        )
-    }
-
-    if (!restaurant.data) {
-        return &lt;p aria-live=&quot;polite&quot;&gt;No restaurant found.&lt;/p&gt;;
-    }
-
-    const subtotal = 0 // Use calculateTotal here.
-
+  if (restaurant.isPending) {
     return (
-        &lt;&gt;
-            &lt;RestaurantHeader restaurant={restaurant.data} /&gt;
-
-            &lt;div className=&quot;order-form&quot;&gt;
-                &lt;h3&gt;Order from {restaurant.data.name}!&lt;/h3&gt;
-
-                &lt;form&gt;
-                    {subtotal === 0 &amp;&amp; (
-                        &lt;p className=&quot;info text-error&quot;&gt;Please choose an item.&lt;/p&gt;
-                    )}
-
-                    &lt;h4&gt;Lunch Menu&lt;/h4&gt;
-                    &lt;ul className=&quot;list-group&quot;&gt;
-                        {restaurant.data.menu.lunch.map(({ name, price }) =&gt; (
-                            &lt;li key={name} className=&quot;list-group-item&quot;&gt;
-                                &lt;label&gt;
-                                    &lt;input
-                                        type=&quot;checkbox&quot;
-                                    /&gt;
-                                    {name}
-                                    &lt;span className=&quot;badge&quot;&gt;{price}&lt;/span&gt;
-                                &lt;/label&gt;
-                            &lt;/li&gt;
-                        ))}
-                    &lt;/ul&gt;
-
-                    &lt;h4&gt;Dinner menu&lt;/h4&gt;
-                    &lt;ul className=&quot;list-group&quot;&gt;
-                        {restaurant.data.menu.dinner.map(({ name, price }) =&gt; (
-                            &lt;li key={name} className=&quot;list-group-item&quot;&gt;
-                                &lt;label&gt;
-                                    &lt;input
-                                        type=&quot;checkbox&quot;
-                                    /&gt;
-                                    {name}
-                                    &lt;span className=&quot;badge&quot;&gt;{price}&lt;/span&gt;
-                                &lt;/label&gt;
-                            &lt;/li&gt;
-                        ))}
-                    &lt;/ul&gt;
-
-                    &lt;div className=&quot;submit&quot;&gt;
-                        &lt;h4&gt;Total: ${subtotal ? subtotal.toFixed(2) : &quot;0.00&quot;}&lt;/h4&gt;
-                    &lt;/div&gt;
-                &lt;/form&gt;
-            &lt;/div&gt;
-        &lt;/&gt;
+      &lt;p aria-live=&quot;polite&quot; className=&quot;loading&quot;&gt;
+        Loading restaurant…
+      &lt;/p&gt;
     )
+  }
+
+  if (restaurant.error) {
+    return (
+      &lt;p aria-live=&quot;polite&quot; className=&quot;error&quot;&gt;
+        Error loading restaurant: {restaurant.error.message}
+      &lt;/p&gt;
+    )
+  }
+
+  if (!restaurant.data) {
+    return &lt;p aria-live=&quot;polite&quot;&gt;No restaurant found.&lt;/p&gt;
+  }
+
+  const subtotal = 0 // Use calculateTotal here.
+
+  return (
+    &lt;&gt;
+      &lt;RestaurantHeader restaurant={restaurant.data} /&gt;
+
+      &lt;div className=&quot;order-form&quot;&gt;
+        &lt;h3&gt;Order from {restaurant.data.name}!&lt;/h3&gt;
+
+        &lt;form&gt;
+          {subtotal === 0 &amp;&amp; (
+            &lt;p className=&quot;info text-error&quot;&gt;Please choose an item.&lt;/p&gt;
+          )}
+
+          &lt;h4&gt;Lunch Menu&lt;/h4&gt;
+          &lt;ul className=&quot;list-group&quot;&gt;
+            {restaurant.data.menu.lunch.map(({ name, price }) =&gt; (
+              &lt;li key={name} className=&quot;list-group-item&quot;&gt;
+                &lt;label&gt;
+                  &lt;input type=&quot;checkbox&quot; /&gt;
+                  {name}
+                  &lt;span className=&quot;badge&quot;&gt;{price}&lt;/span&gt;
+                &lt;/label&gt;
+              &lt;/li&gt;
+            ))}
+          &lt;/ul&gt;
+
+          &lt;h4&gt;Dinner menu&lt;/h4&gt;
+          &lt;ul className=&quot;list-group&quot;&gt;
+            {restaurant.data.menu.dinner.map(({ name, price }) =&gt; (
+              &lt;li key={name} className=&quot;list-group-item&quot;&gt;
+                &lt;label&gt;
+                  &lt;input type=&quot;checkbox&quot; /&gt;
+                  {name}
+                  &lt;span className=&quot;badge&quot;&gt;{price}&lt;/span&gt;
+                &lt;/label&gt;
+              &lt;/li&gt;
+            ))}
+          &lt;/ul&gt;
+
+          &lt;div className=&quot;submit&quot;&gt;
+            &lt;h4&gt;Total: ${subtotal ? subtotal.toFixed(2) : &quot;0.00&quot;}&lt;/h4&gt;
+          &lt;/div&gt;
+        &lt;/form&gt;
+      &lt;/div&gt;
+    &lt;/&gt;
+  )
 }
 
 function calculateTotal(items: OrderItems) {
-    return Object.values(items).reduce((total, itemPrice) =&gt; {
-        return total + itemPrice
-    }, 0)
+  return Object.values(items).reduce((total, itemPrice) =&gt; {
+    return total + itemPrice
+  }, 0)
 }
 
 export default RestaurantOrder
+
 </code></pre>
- <div line-highlight="1,6,33,42-45,47-60,62-75,77-80,86-90,only"></div>
+ <div line-highlight="1,6,33,42-45,47-58,60-71,73-76,82-86,only"></div>
 <h3>Verify 1</h3>
 <p>These tests will pass when the solution has been implemented properly.</p>
 <p>✏️ Update <strong>src/pages/RestaurantOrder/RestaurantOrder.test.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { ReactNode } from 'react';
-import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event'
-import { MemoryRouter } from 'react-router-dom';
-import { describe, expect, it, vi } from 'vitest';
-import RestaurantOrder from './RestaurantOrder';
+<pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
+import type { ReactNode } from &quot;react&quot;
+import { render, screen } from &quot;@testing-library/react&quot;
+import userEvent from &quot;@testing-library/user-event&quot;
+import { MemoryRouter } from &quot;react-router-dom&quot;
+import { describe, expect, it, vi } from &quot;vitest&quot;
+import RestaurantOrder from &quot;./RestaurantOrder&quot;
+
+import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
 
 // Mock the hooks and components used in RestaurantOrder
-vi.mock('../../services/restaurant/hooks', () =&gt; ({
-  useRestaurant: vi.fn()
-}));
+vi.mock(&quot;../../services/restaurant/hooks&quot;, () =&gt; ({
+  useRestaurant: vi.fn(),
+}))
 
-vi.mock('../../components/RestaurantHeader', () =&gt; ({
+vi.mock(&quot;../../components/RestaurantHeader&quot;, () =&gt; ({
   default: vi.fn(() =&gt; (
-    &lt;div data-testid=&quot;mock-restaurant-header&quot;&gt;
-      Mock RestaurantHeader
-    &lt;/div&gt;
-  ))
-}));
-
-import { useRestaurant } from '../../services/restaurant/hooks';
+    &lt;div data-testid=&quot;mock-restaurant-header&quot;&gt;Mock RestaurantHeader&lt;/div&gt;
+  )),
+}))
 
 const mockRestaurantData = {
   data: {
-    _id: '1',
-    name: 'Test Restaurant',
-    slug: 'test-restaurant',
-    images: { owner: 'owner.jpg' },
+    _id: &quot;1&quot;,
+    name: &quot;Test Restaurant&quot;,
+    slug: &quot;test-restaurant&quot;,
+    images: { owner: &quot;owner.jpg&quot; },
     menu: {
       lunch: [
-        { name: 'Lunch Item 1', price: 10 },
-        { name: 'Lunch Item 2', price: 15 }
+        { name: &quot;Lunch Item 1&quot;, price: 10 },
+        { name: &quot;Lunch Item 2&quot;, price: 15 },
       ],
       dinner: [
-        { name: 'Dinner Item 1', price: 20 },
-        { name: 'Dinner Item 2', price: 25 }
-      ]
+        { name: &quot;Dinner Item 1&quot;, price: 20 },
+        { name: &quot;Dinner Item 2&quot;, price: 25 },
+      ],
     },
   },
   isPending: false,
-  error: null
-};
+  error: null,
+}
 
-const renderWithRouter = (ui: ReactNode, { route = '/restaurants/test-restaurant' } = {}) =&gt; {
-  window.history.pushState({}, 'Test page', route)
-  return render(
-    ui,
-    { wrapper: ({ children }) =&gt; &lt;MemoryRouter initialEntries={[route]}&gt;{children}&lt;/MemoryRouter&gt; }
-  );
-};
+const renderWithRouter = (
+  ui: ReactNode,
+  { route = &quot;/restaurants/test-restaurant&quot; } = {},
+) =&gt; {
+  window.history.pushState({}, &quot;Test page&quot;, route)
+  return render(ui, {
+    wrapper: ({ children }) =&gt; (
+      &lt;MemoryRouter initialEntries={[route]}&gt;{children}&lt;/MemoryRouter&gt;
+    ),
+  })
+}
 
-describe('RestaurantOrder component', () =&gt; {
-  it('renders loading state', () =&gt; {
-    useRestaurant.mockReturnValue({ data: null, isPending: true, error: null });
-    renderWithRouter(&lt;RestaurantOrder /&gt;);
-    expect(screen.getByText(/Loading restaurant…/i)).toBeInTheDocument();
-  });
+describe(&quot;RestaurantOrder component&quot;, () =&gt; {
+  it(&quot;renders loading state&quot;, () =&gt; {
+    useRestaurant.mockReturnValue({ data: null, isPending: true, error: null })
+    renderWithRouter(&lt;RestaurantOrder /&gt;)
+    expect(screen.getByText(/Loading restaurant…/i)).toBeInTheDocument()
+  })
 
-  it('renders error state', () =&gt; {
-    useRestaurant.mockReturnValue({ data: null, isPending: false, error: { message: 'Error loading' } });
-    renderWithRouter(&lt;RestaurantOrder /&gt;);
-    expect(screen.getByText(/Error loading restaurant/i)).toBeInTheDocument();
-  });
+  it(&quot;renders error state&quot;, () =&gt; {
+    useRestaurant.mockReturnValue({
+      data: null,
+      isPending: false,
+      error: { message: &quot;Error loading&quot; },
+    })
+    renderWithRouter(&lt;RestaurantOrder /&gt;)
+    expect(screen.getByText(/Error loading restaurant/i)).toBeInTheDocument()
+  })
 
-  it('renders no restaurant found state', () =&gt; {
-    useRestaurant.mockReturnValue({ data: null, isPending: false, error: null });
-    renderWithRouter(&lt;RestaurantOrder /&gt;);
-    expect(screen.getByText(/No restaurant found/i)).toBeInTheDocument();
-  });
+  it(&quot;renders no restaurant found state&quot;, () =&gt; {
+    useRestaurant.mockReturnValue({ data: null, isPending: false, error: null })
+    renderWithRouter(&lt;RestaurantOrder /&gt;)
+    expect(screen.getByText(/No restaurant found/i)).toBeInTheDocument()
+  })
 
-  it('renders the RestaurantHeader when data is available', () =&gt; {
-    useRestaurant.mockReturnValue(mockRestaurantData);
-    renderWithRouter(&lt;RestaurantOrder /&gt;);
+  it(&quot;renders the RestaurantHeader when data is available&quot;, () =&gt; {
+    useRestaurant.mockReturnValue(mockRestaurantData)
+    renderWithRouter(&lt;RestaurantOrder /&gt;)
 
-    expect(screen.getByTestId('mock-restaurant-header')).toBeInTheDocument();
-  });
+    expect(screen.getByTestId(&quot;mock-restaurant-header&quot;)).toBeInTheDocument()
+  })
 
-  it('renders the order form when restaurant data is available', () =&gt; {
-    useRestaurant.mockReturnValue(mockRestaurantData);
-    render(&lt;RestaurantOrder /&gt;);
+  it(&quot;renders the order form when restaurant data is available&quot;, () =&gt; {
+    useRestaurant.mockReturnValue(mockRestaurantData)
+    render(&lt;RestaurantOrder /&gt;)
 
-    expect(screen.getByTestId('mock-restaurant-header')).toBeInTheDocument();
-    expect(screen.getByText('Order from Test Restaurant!')).toBeInTheDocument();
-    expect(screen.getAllByRole('checkbox').length).toBe(4); // 2 lunch + 2 dinner items
-  });
+    expect(screen.getByTestId(&quot;mock-restaurant-header&quot;)).toBeInTheDocument()
+    expect(screen.getByText(&quot;Order from Test Restaurant!&quot;)).toBeInTheDocument()
+    expect(screen.getAllByRole(&quot;checkbox&quot;).length).toBe(4) // 2 lunch + 2 dinner items
+  })
 
-  it('updates subtotal when menu items are selected', async () =&gt; {
-    useRestaurant.mockReturnValue(mockRestaurantData);
-    render(&lt;RestaurantOrder /&gt;);
+  it(&quot;updates subtotal when menu items are selected&quot;, async () =&gt; {
+    useRestaurant.mockReturnValue(mockRestaurantData)
+    render(&lt;RestaurantOrder /&gt;)
 
-    const checkboxes = screen.getAllByRole('checkbox');
-    await userEvent.click(checkboxes[0]); // Select 'Lunch Item 1' (price: 10)
+    const checkboxes = screen.getAllByRole(&quot;checkbox&quot;)
+    await userEvent.click(checkboxes[0]) // Select 'Lunch Item 1' (price: 10)
 
-    expect(screen.getByText('Total: $10.00')).toBeInTheDocument();
+    expect(screen.getByText(&quot;Total: $10.00&quot;)).toBeInTheDocument()
 
-    await userEvent.click(checkboxes[2]); // Select 'Dinner Item 1' (price: 20)
+    await userEvent.click(checkboxes[2]) // Select 'Dinner Item 1' (price: 20)
 
-    expect(screen.getByText('Total: $30.00')).toBeInTheDocument();
-  });
-});
+    expect(screen.getByText(&quot;Total: $30.00&quot;)).toBeInTheDocument()
+  })
+})
 
 </code></pre>
- <div line-highlight="4,15-20,30-39,79-81,83-86,88-90,92-93,95,97,99-100,only"></div>
+ <div line-highlight="4,28-37,85-87,89-92,94-96,98-99,101,103,105-106,only"></div>
 <h3>Exercise 1</h3>
 <ul>
 <li>Call <code>useState()</code> and use the <code>OrderItems</code> interface to create an <code>items</code> state.</li>
@@ -968,9 +942,9 @@ describe('RestaurantOrder component', () =&gt; {
 <li>Update <code>subtotal</code> to use the <code>calculateTotal()</code> helper function.</li>
 </ul>
 <p>Hint: The <code>items</code> state will look like this when populated:</p>
-<pre><code class="language-tsx">{
-  &quot;Menu item 1 name&quot;: 1.23,// Menu item 1 price
-  &quot;Menu item 2 name&quot;: 4.56,// Menu item 2 price
+<pre><code class="language-tsx">const items = {
+  &quot;Menu item 1 name&quot;: 1.23, // Menu item 1 price
+  &quot;Menu item 2 name&quot;: 4.56, // Menu item 2 price
 }
 </code></pre>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/01-problem?file=src/pages/RestaurantOrder/RestaurantOrder.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/01-problem?file=src/pages/RestaurantOrder/RestaurantOrder.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
@@ -986,215 +960,238 @@ import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
 type OrderItems = Record&lt;string, number&gt;
 
 const RestaurantOrder: React.FC = () =&gt; {
-    const params = useParams() as { slug: string }
+  const params = useParams() as { slug: string }
 
-    const restaurant = useRestaurant(params.slug)
+  const restaurant = useRestaurant(params.slug)
 
-    const [items, setItems] = useState&lt;OrderItems&gt;({})
+  const [items, setItems] = useState&lt;OrderItems&gt;({})
 
-    if (restaurant.isPending) {
-        return (
-            &lt;p aria-live=&quot;polite&quot; className=&quot;loading&quot;&gt;
-                Loading restaurant…
-            &lt;/p&gt;
-        )
-    }
-
-    if (restaurant.error) {
-        return (
-            &lt;p aria-live=&quot;polite&quot; className=&quot;error&quot;&gt;
-                Error loading restaurant: {restaurant.error.message}
-            &lt;/p&gt;
-        )
-    }
-
-    if (!restaurant.data) {
-        return &lt;p aria-live=&quot;polite&quot;&gt;No restaurant found.&lt;/p&gt;;
-    }
-
-    const setItem = (itemId: string, isChecked: boolean, itemPrice: number) =&gt; {
-        return setItems((currentItems) =&gt; {
-            const updatedItems = {
-                ...currentItems,
-            }
-            if (isChecked) {
-                updatedItems[itemId] = itemPrice;
-            } else {
-                delete updatedItems[itemId]
-            }
-            return updatedItems
-        })
-    }
-
-    const subtotal = calculateTotal(items)
-
+  if (restaurant.isPending) {
     return (
-        &lt;&gt;
-            &lt;RestaurantHeader restaurant={restaurant.data} /&gt;
-
-            &lt;div className=&quot;order-form&quot;&gt;
-                &lt;h3&gt;Order from {restaurant.data.name}!&lt;/h3&gt;
-
-                &lt;form&gt;
-                    {subtotal === 0 &amp;&amp; (
-                        &lt;p className=&quot;info text-error&quot;&gt;Please choose an item.&lt;/p&gt;
-                    )}
-
-                    &lt;h4&gt;Lunch Menu&lt;/h4&gt;
-                    &lt;ul className=&quot;list-group&quot;&gt;
-                        {restaurant.data.menu.lunch.map(({ name, price }) =&gt; (
-                            &lt;li key={name} className=&quot;list-group-item&quot;&gt;
-                                &lt;label&gt;
-                                    &lt;input
-                                        checked={name in items}
-                                        onChange={(event) =&gt; setItem(name, event.target.checked, price)}
-                                        type=&quot;checkbox&quot;
-                                    /&gt;
-                                    {name}
-                                    &lt;span className=&quot;badge&quot;&gt;{price}&lt;/span&gt;
-                                &lt;/label&gt;
-                            &lt;/li&gt;
-                        ))}
-                    &lt;/ul&gt;
-
-                    &lt;h4&gt;Dinner menu&lt;/h4&gt;
-                    &lt;ul className=&quot;list-group&quot;&gt;
-                        {restaurant.data.menu.dinner.map(({ name, price }) =&gt; (
-                            &lt;li key={name} className=&quot;list-group-item&quot;&gt;
-                                &lt;label&gt;
-                                    &lt;input
-                                        checked={name in items}
-                                        onChange={(event) =&gt; setItem(name, event.target.checked, price)}
-                                        type=&quot;checkbox&quot;
-                                    /&gt;
-                                    {name}
-                                    &lt;span className=&quot;badge&quot;&gt;{price}&lt;/span&gt;
-                                &lt;/label&gt;
-                            &lt;/li&gt;
-                        ))}
-                    &lt;/ul&gt;
-
-                    &lt;div className=&quot;submit&quot;&gt;
-                        &lt;h4&gt;Total: ${subtotal ? subtotal.toFixed(2) : &quot;0.00&quot;}&lt;/h4&gt;
-                    &lt;/div&gt;
-                &lt;/form&gt;
-            &lt;/div&gt;
-        &lt;/&gt;
+      &lt;p aria-live=&quot;polite&quot; className=&quot;loading&quot;&gt;
+        Loading restaurant…
+      &lt;/p&gt;
     )
+  }
+
+  if (restaurant.error) {
+    return (
+      &lt;p aria-live=&quot;polite&quot; className=&quot;error&quot;&gt;
+        Error loading restaurant: {restaurant.error.message}
+      &lt;/p&gt;
+    )
+  }
+
+  if (!restaurant.data) {
+    return &lt;p aria-live=&quot;polite&quot;&gt;No restaurant found.&lt;/p&gt;
+  }
+
+  const setItem = (itemId: string, isChecked: boolean, itemPrice: number) =&gt; {
+    return setItems((currentItems) =&gt; {
+      const updatedItems = {
+        ...currentItems,
+      }
+      if (isChecked) {
+        updatedItems[itemId] = itemPrice
+      } else {
+        delete updatedItems[itemId]
+      }
+      return updatedItems
+    })
+  }
+
+  const subtotal = calculateTotal(items)
+
+  return (
+    &lt;&gt;
+      &lt;RestaurantHeader restaurant={restaurant.data} /&gt;
+
+      &lt;div className=&quot;order-form&quot;&gt;
+        &lt;h3&gt;Order from {restaurant.data.name}!&lt;/h3&gt;
+
+        &lt;form&gt;
+          {subtotal === 0 &amp;&amp; (
+            &lt;p className=&quot;info text-error&quot;&gt;Please choose an item.&lt;/p&gt;
+          )}
+
+          &lt;h4&gt;Lunch Menu&lt;/h4&gt;
+          &lt;ul className=&quot;list-group&quot;&gt;
+            {restaurant.data.menu.lunch.map(({ name, price }) =&gt; (
+              &lt;li key={name} className=&quot;list-group-item&quot;&gt;
+                &lt;label&gt;
+                  &lt;input
+                    checked={name in items}
+                    onChange={(event) =&gt;
+                      setItem(name, event.target.checked, price)
+                    }
+                    type=&quot;checkbox&quot;
+                  /&gt;
+                  {name}
+                  &lt;span className=&quot;badge&quot;&gt;{price}&lt;/span&gt;
+                &lt;/label&gt;
+              &lt;/li&gt;
+            ))}
+          &lt;/ul&gt;
+
+          &lt;h4&gt;Dinner menu&lt;/h4&gt;
+          &lt;ul className=&quot;list-group&quot;&gt;
+            {restaurant.data.menu.dinner.map(({ name, price }) =&gt; (
+              &lt;li key={name} className=&quot;list-group-item&quot;&gt;
+                &lt;label&gt;
+                  &lt;input
+                    checked={name in items}
+                    onChange={(event) =&gt;
+                      setItem(name, event.target.checked, price)
+                    }
+                    type=&quot;checkbox&quot;
+                  /&gt;
+                  {name}
+                  &lt;span className=&quot;badge&quot;&gt;{price}&lt;/span&gt;
+                &lt;/label&gt;
+              &lt;/li&gt;
+            ))}
+          &lt;/ul&gt;
+
+          &lt;div className=&quot;submit&quot;&gt;
+            &lt;h4&gt;Total: ${subtotal ? subtotal.toFixed(2) : &quot;0.00&quot;}&lt;/h4&gt;
+          &lt;/div&gt;
+        &lt;/form&gt;
+      &lt;/div&gt;
+    &lt;/&gt;
+  )
 }
 
 function calculateTotal(items: OrderItems) {
-    return Object.values(items).reduce((total, itemPrice) =&gt; {
-        return total + itemPrice
-    }, 0)
+  return Object.values(items).reduce((total, itemPrice) =&gt; {
+    return total + itemPrice
+  }, 0)
 }
 
 export default RestaurantOrder
+
 </code></pre>
- <div line-highlight="13,35-47,49,69-70,86-87,only"></div>
+ <div line-highlight="13,35-47,49,68-74,87-93,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/01-solution?file=src/pages/RestaurantOrder/RestaurantOrder.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/01-solution?file=src/pages/RestaurantOrder/RestaurantOrder.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Objective 2: Create a reusable text field component</h2>
-<p>The order form is going to be made up of many input fields with labels. Rather than repeat multiple
-input components over and over, let’s compose that structure in a single component named <code>FormTextField</code>.
-Creating this component will involve using some of what we’ve learned from prior lessons.</p>
+<p>The order form is going to be made up of many input fields with labels. Rather than repeat multiple input components over and over, let’s compose that structure in a single component named <code>FormTextField</code>. Creating this component will involve using some of what we’ve learned from prior lessons.</p>
 <h3>The <code>useId()</code> Hook</h3>
-<p>Since the value of every <code>id</code> attribute in an HTML document must be unique,
-this Hook is useful in creating a unique identifier string that can be used
-as the value for an <code>id</code> prop.</p>
-<p>Let’s say you’re rendering a component that has a <code>label</code> that needs to be
-associated with an <code>input</code>:</p>
-<pre><code class="language-html">&lt;label for=&quot;name&quot;&gt;
-  Name
-&lt;/label&gt;
-&lt;input id=&quot;name&quot; type=&quot;text&quot;&gt;
+<p>Since the value of every <code>id</code> attribute in an HTML document must be unique, this Hook is useful in creating a unique identifier string that can be used as the value for an <code>id</code> prop.</p>
+<p>Let’s say you’re rendering a component that has a <code>label</code> that needs to be associated with an <code>input</code>:</p>
+<pre><code class="language-html">&lt;label for=&quot;name&quot;&gt; Name &lt;/label&gt; &lt;input id=&quot;name&quot; type=&quot;text&quot; /&gt;
 </code></pre>
 <div line-highlight='1, 4'></div>
-<p>Every ID has to be unique in an HTML page, but <code>name</code> might clash with another
-element in a page. To avoid this issue in React, we can get a unique ID with
-<code>useId()</code>:</p>
-<pre><code class="language-tsx">import { useId } from 'react'
+<p>Every ID has to be unique in an HTML page, but <code>name</code> might clash with another element in a page. To avoid this issue in React, we can get a unique ID with <code>useId()</code>:</p>
+<pre><code class="language-tsx">import { useId } from &quot;react&quot;
 
 const Form: React.FC = () =&gt; {
-  const id = useId();
+  const id = useId()
 
   return (
-    &lt;label htmlFor={id}&gt;
-      Name
-    &lt;/label&gt;
-    &lt;input id={id} type=&quot;text&quot; /&gt;
+    &lt;&gt;
+      &lt;label htmlFor={id}&gt;Name&lt;/label&gt;
+      &lt;input id={id} type=&quot;text&quot; /&gt;
+    &lt;/&gt;
   )
 }
 </code></pre>
 <div line-highlight='1, 4, 7, 10'></div>
-<p>The value of <code>useId</code> is guaranteed to be unique within the component where it is
-used; this ideal for linking related components together.</p>
+<p>The value of <code>useId</code> is guaranteed to be unique within the component where it is used; this ideal for linking related components together.</p>
 <h3>Setup 2</h3>
 <p>✏️ Create <strong>src/components/FormTextField/FormTextField.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { useId } from &quot;react&quot;
 
-const FormTextField: React.FC&lt;{
-}&gt; = ({  }) =&gt; {
-    return (
-        &lt;div className=&quot;form-group&quot;&gt;
-            &lt;label className=&quot;control-label&quot;&gt;
-                Label:
-            &lt;/label&gt;
+const FormTextField: React.FC&lt;{}&gt; = ({}) =&gt; {
+  return (
+    &lt;div className=&quot;form-group&quot;&gt;
+      &lt;label className=&quot;control-label&quot;&gt;Label:&lt;/label&gt;
 
-            &lt;input
-                className=&quot;form-control&quot;
-            /&gt;
-        &lt;/div&gt;
-    )
+      &lt;input className=&quot;form-control&quot; /&gt;
+    &lt;/div&gt;
+  )
 }
 
 export default FormTextField
+
 </code></pre>
 <p>✏️ Create <strong>src/components/FormTextField/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./FormTextField&quot;
+
 </code></pre>
 <h3>Verify 2</h3>
 <p>These tests will pass when the solution has been implemented properly.</p>
 <p>✏️ Create <strong>src/components/FormTextField/FormTextField.test.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { describe, expect, it, vi } from 'vitest';
-import FormTextField from './FormTextField';
+<pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
+import { render, screen } from &quot;@testing-library/react&quot;
+import userEvent from &quot;@testing-library/user-event&quot;
+import { describe, expect, it, vi } from &quot;vitest&quot;
+import FormTextField from &quot;./FormTextField&quot;
 
-describe('FormTextField component', () =&gt; {
-  const mockOnChange = vi.fn();
-  
-  it('renders with correct label and type', () =&gt; {
-    render(&lt;FormTextField label=&quot;Test Label&quot; type=&quot;text&quot; value=&quot;&quot; onChange={mockOnChange} /&gt;);
-    
-    expect(screen.getByLabelText(/Test Label:/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/Test Label:/i)).toHaveAttribute('type', 'text');
-  });
+describe(&quot;FormTextField component&quot;, () =&gt; {
+  const mockOnChange = vi.fn()
 
-  it('renders with the correct value', () =&gt; {
-    render(&lt;FormTextField label=&quot;Test Label&quot; type=&quot;text&quot; value=&quot;Test Value&quot; onChange={mockOnChange} /&gt;);
-    
-    expect(screen.getByLabelText(/Test Label:/i)).toHaveValue('Test Value');
-  });
+  it(&quot;renders with correct label and type&quot;, () =&gt; {
+    render(
+      &lt;FormTextField
+        label=&quot;Test Label&quot;
+        type=&quot;text&quot;
+        value=&quot;&quot;
+        onChange={mockOnChange}
+      /&gt;,
+    )
 
-  it('calls onChange prop when input changes', async () =&gt; {
-    render(&lt;FormTextField label=&quot;Test Label&quot; type=&quot;text&quot; value=&quot;&quot; onChange={mockOnChange} /&gt;);
-    
-    await userEvent.type(screen.getByLabelText(/Test Label:/i), 'New');
-    
-    expect(mockOnChange).toHaveBeenCalledTimes(3);
-    expect(mockOnChange).toHaveBeenCalledWith('N');
-    expect(mockOnChange).toHaveBeenCalledWith('e');
-    expect(mockOnChange).toHaveBeenCalledWith('w');
-  });
+    expect(screen.getByLabelText(/Test Label:/i)).toBeInTheDocument()
+    expect(screen.getByLabelText(/Test Label:/i)).toHaveAttribute(
+      &quot;type&quot;,
+      &quot;text&quot;,
+    )
+  })
 
-  it('respects different input types', () =&gt; {
-    render(&lt;FormTextField label=&quot;Email&quot; type=&quot;email&quot; value=&quot;&quot; onChange={mockOnChange} /&gt;);
-    
-    expect(screen.getByLabelText(/Email:/i)).toHaveAttribute('type', 'email');
-  });
-});
+  it(&quot;renders with the correct value&quot;, () =&gt; {
+    render(
+      &lt;FormTextField
+        label=&quot;Test Label&quot;
+        type=&quot;text&quot;
+        value=&quot;Test Value&quot;
+        onChange={mockOnChange}
+      /&gt;,
+    )
+
+    expect(screen.getByLabelText(/Test Label:/i)).toHaveValue(&quot;Test Value&quot;)
+  })
+
+  it(&quot;calls onChange prop when input changes&quot;, async () =&gt; {
+    render(
+      &lt;FormTextField
+        label=&quot;Test Label&quot;
+        type=&quot;text&quot;
+        value=&quot;&quot;
+        onChange={mockOnChange}
+      /&gt;,
+    )
+
+    await userEvent.type(screen.getByLabelText(/Test Label:/i), &quot;New&quot;)
+
+    expect(mockOnChange).toHaveBeenCalledTimes(3)
+    expect(mockOnChange).toHaveBeenCalledWith(&quot;N&quot;)
+    expect(mockOnChange).toHaveBeenCalledWith(&quot;e&quot;)
+    expect(mockOnChange).toHaveBeenCalledWith(&quot;w&quot;)
+  })
+
+  it(&quot;respects different input types&quot;, () =&gt; {
+    render(
+      &lt;FormTextField
+        label=&quot;Email&quot;
+        type=&quot;email&quot;
+        value=&quot;&quot;
+        onChange={mockOnChange}
+      /&gt;,
+    )
+
+    expect(screen.getByLabelText(/Email:/i)).toHaveAttribute(&quot;type&quot;, &quot;email&quot;)
+  })
+})
+
 </code></pre>
 <div line-highlight='10-39, only'></div>
 <h3>Exercise 2</h3>
@@ -1214,42 +1211,42 @@ describe('FormTextField component', () =&gt; {
 <pre><code class="language-tsx">import { useId } from &quot;react&quot;
 
 const FormTextField: React.FC&lt;{
-    label: string
-    onChange: (data: string) =&gt; void
-    type: string
-    value: string
+  label: string
+  onChange: (data: string) =&gt; void
+  type: string
+  value: string
 }&gt; = ({ label, type, value, onChange }) =&gt; {
-    const id = useId()
+  const id = useId()
 
-    return (
-        &lt;div className=&quot;form-group&quot;&gt;
-            &lt;label className=&quot;control-label&quot; htmlFor={id}&gt;
-                {label}:
-            &lt;/label&gt;
+  return (
+    &lt;div className=&quot;form-group&quot;&gt;
+      &lt;label className=&quot;control-label&quot; htmlFor={id}&gt;
+        {label}:
+      &lt;/label&gt;
 
-            &lt;input
-                className=&quot;form-control&quot;
-                id={id}
-                onChange={(event) =&gt; onChange(event.target.value)}
-                type={type}
-                value={value}
-            /&gt;
-        &lt;/div&gt;
-    )
+      &lt;input
+        className=&quot;form-control&quot;
+        id={id}
+        onChange={(event) =&gt; onChange(event.target.value)}
+        type={type}
+        value={value}
+      /&gt;
+    &lt;/div&gt;
+  )
 }
 
 export default FormTextField
+
 </code></pre>
- <div line-highlight="4-9,13-14,19-22,only"></div>
+ <div line-highlight="3-9,13-15,17-23,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/02-solution?file=src/components/FormTextField/FormTextField.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/02-solution?file=src/components/FormTextField/FormTextField.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Objective 3: Integrate <code>FormTextField</code> into <code>RestaurantOrder</code></h2>
-<p>Finally we’ll update the form to incorporate the <code>FormTextField</code> component so users can create and
-submit an order to the restaurant. We need to fill the form with input fields and handle the submit
-button.</p>
+<p>Finally we’ll update the form to incorporate the <code>FormTextField</code> component so users can create and submit an order to the restaurant. We need to fill the form with input fields and handle the submit button.</p>
 <h3>Setup 3</h3>
 <p>✏️ Update <strong>src/pages/RestaurantOrder/RestaurantOrder.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { FormEvent, useState } from &quot;react&quot;
+<pre><code class="language-tsx">import type { FormEvent} from &quot;react&quot;;
+import { useState } from &quot;react&quot;
 import { useParams } from &quot;react-router-dom&quot;
 import FormTextField from &quot;../../components/FormTextField&quot;
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
@@ -1258,143 +1255,146 @@ import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
 type OrderItems = Record&lt;string, number&gt;
 
 const RestaurantOrder: React.FC = () =&gt; {
-    const params = useParams() as { slug: string }
+  const params = useParams() as { slug: string }
 
-    const restaurant = useRestaurant(params.slug)
+  const restaurant = useRestaurant(params.slug)
 
-    const [items, setItems] = useState&lt;OrderItems&gt;({})
+  const [items, setItems] = useState&lt;OrderItems&gt;({})
 
-    if (restaurant.isPending) {
-        return (
-            &lt;p aria-live=&quot;polite&quot; className=&quot;loading&quot;&gt;
-                Loading restaurant…
-            &lt;/p&gt;
-        )
-    }
-
-    if (restaurant.error) {
-        return (
-            &lt;p aria-live=&quot;polite&quot; className=&quot;error&quot;&gt;
-                Error loading restaurant: {restaurant.error.message}
-            &lt;/p&gt;
-        )
-    }
-
-    if (!restaurant.data) {
-        return &lt;p aria-live=&quot;polite&quot;&gt;No restaurant found.&lt;/p&gt;;
-    }
-
-    const setItem = (itemId: string, isChecked: boolean, itemPrice: number) =&gt; {
-        return setItems((currentItems) =&gt; {
-            const updatedItems = {
-                ...currentItems,
-            }
-            if (isChecked) {
-                updatedItems[itemId] = itemPrice;
-            } else {
-                delete updatedItems[itemId]
-            }
-            return updatedItems
-        })
-    }
-
-    const handleSubmit = (event: FormEvent) =&gt; {
-        event.preventDefault()
-        alert('Order submitted!')
-    }
-
-    const selectedCount = Object.values(items).length
-    const subtotal = calculateTotal(items)
-
+  if (restaurant.isPending) {
     return (
-        &lt;&gt;
-            &lt;RestaurantHeader restaurant={restaurant.data} /&gt;
-
-            &lt;div className=&quot;order-form&quot;&gt;
-                &lt;h3&gt;Order from {restaurant.data.name}!&lt;/h3&gt;
-
-                &lt;form onSubmit={(event) =&gt; handleSubmit(event)}&gt;
-                    {
-                        subtotal === 0
-                            ? (
-                                &lt;p className=&quot;info text-error&quot;&gt;Please choose an item.&lt;/p&gt;
-                            )
-                            : (
-                                &lt;p className=&quot;info text-success&quot;&gt;{selectedCount} selected.&lt;/p&gt;
-                            )
-                    }
-
-                    &lt;h4&gt;Lunch Menu&lt;/h4&gt;
-                    &lt;ul className=&quot;list-group&quot;&gt;
-                        {restaurant.data.menu.lunch.map(({ name, price }) =&gt; (
-                            &lt;li key={name} className=&quot;list-group-item&quot;&gt;
-                                &lt;label&gt;
-                                    &lt;input
-                                        checked={name in items}
-                                        onChange={(event) =&gt; setItem(name, event.target.checked, price)}
-                                        type=&quot;checkbox&quot;
-                                    /&gt;
-                                    {name}
-                                    &lt;span className=&quot;badge&quot;&gt;{price}&lt;/span&gt;
-                                &lt;/label&gt;
-                            &lt;/li&gt;
-                        ))}
-                    &lt;/ul&gt;
-
-                    &lt;h4&gt;Dinner menu&lt;/h4&gt;
-                    &lt;ul className=&quot;list-group&quot;&gt;
-                        {restaurant.data.menu.dinner.map(({ name, price }) =&gt; (
-                            &lt;li key={name} className=&quot;list-group-item&quot;&gt;
-                                &lt;label&gt;
-                                    &lt;input
-                                        checked={name in items}
-                                        onChange={(event) =&gt; setItem(name, event.target.checked, price)}
-                                        type=&quot;checkbox&quot;
-                                    /&gt;
-                                    {name}
-                                    &lt;span className=&quot;badge&quot;&gt;{price}&lt;/span&gt;
-                                &lt;/label&gt;
-                            &lt;/li&gt;
-                        ))}
-                    &lt;/ul&gt;
-
-                    &lt;div className=&quot;submit&quot;&gt;
-                        &lt;h4&gt;Total: ${subtotal ? subtotal.toFixed(2) : &quot;0.00&quot;}&lt;/h4&gt;
-                        &lt;button className=&quot;btn&quot; type=&quot;submit&quot;&gt;
-                            Place My Order!
-                        &lt;/button&gt;
-                    &lt;/div&gt;
-                &lt;/form&gt;
-            &lt;/div&gt;
-        &lt;/&gt;
+      &lt;p aria-live=&quot;polite&quot; className=&quot;loading&quot;&gt;
+        Loading restaurant…
+      &lt;/p&gt;
     )
+  }
+
+  if (restaurant.error) {
+    return (
+      &lt;p aria-live=&quot;polite&quot; className=&quot;error&quot;&gt;
+        Error loading restaurant: {restaurant.error.message}
+      &lt;/p&gt;
+    )
+  }
+
+  if (!restaurant.data) {
+    return &lt;p aria-live=&quot;polite&quot;&gt;No restaurant found.&lt;/p&gt;
+  }
+
+  const setItem = (itemId: string, isChecked: boolean, itemPrice: number) =&gt; {
+    return setItems((currentItems) =&gt; {
+      const updatedItems = {
+        ...currentItems,
+      }
+      if (isChecked) {
+        updatedItems[itemId] = itemPrice
+      } else {
+        delete updatedItems[itemId]
+      }
+      return updatedItems
+    })
+  }
+
+  const handleSubmit = (event: FormEvent) =&gt; {
+    event.preventDefault()
+    alert(&quot;Order submitted!&quot;)
+  }
+
+  const selectedCount = Object.values(items).length
+  const subtotal = calculateTotal(items)
+
+  return (
+    &lt;&gt;
+      &lt;RestaurantHeader restaurant={restaurant.data} /&gt;
+
+      &lt;div className=&quot;order-form&quot;&gt;
+        &lt;h3&gt;Order from {restaurant.data.name}!&lt;/h3&gt;
+
+        &lt;form onSubmit={(event) =&gt; handleSubmit(event)}&gt;
+          {subtotal === 0 ? (
+            &lt;p className=&quot;info text-error&quot;&gt;Please choose an item.&lt;/p&gt;
+          ) : (
+            &lt;p className=&quot;info text-success&quot;&gt;{selectedCount} selected.&lt;/p&gt;
+          )}
+
+          &lt;h4&gt;Lunch Menu&lt;/h4&gt;
+          &lt;ul className=&quot;list-group&quot;&gt;
+            {restaurant.data.menu.lunch.map(({ name, price }) =&gt; (
+              &lt;li key={name} className=&quot;list-group-item&quot;&gt;
+                &lt;label&gt;
+                  &lt;input
+                    checked={name in items}
+                    onChange={(event) =&gt;
+                      setItem(name, event.target.checked, price)
+                    }
+                    type=&quot;checkbox&quot;
+                  /&gt;
+                  {name}
+                  &lt;span className=&quot;badge&quot;&gt;{price}&lt;/span&gt;
+                &lt;/label&gt;
+              &lt;/li&gt;
+            ))}
+          &lt;/ul&gt;
+
+          &lt;h4&gt;Dinner menu&lt;/h4&gt;
+          &lt;ul className=&quot;list-group&quot;&gt;
+            {restaurant.data.menu.dinner.map(({ name, price }) =&gt; (
+              &lt;li key={name} className=&quot;list-group-item&quot;&gt;
+                &lt;label&gt;
+                  &lt;input
+                    checked={name in items}
+                    onChange={(event) =&gt;
+                      setItem(name, event.target.checked, price)
+                    }
+                    type=&quot;checkbox&quot;
+                  /&gt;
+                  {name}
+                  &lt;span className=&quot;badge&quot;&gt;{price}&lt;/span&gt;
+                &lt;/label&gt;
+              &lt;/li&gt;
+            ))}
+          &lt;/ul&gt;
+
+          &lt;div className=&quot;submit&quot;&gt;
+            &lt;h4&gt;Total: ${subtotal ? subtotal.toFixed(2) : &quot;0.00&quot;}&lt;/h4&gt;
+            &lt;button className=&quot;btn&quot; type=&quot;submit&quot;&gt;
+              Place My Order!
+            &lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/form&gt;
+      &lt;/div&gt;
+    &lt;/&gt;
+  )
 }
 
 function calculateTotal(items: OrderItems) {
-    return Object.values(items).reduce((total, itemPrice) =&gt; {
-        return total + itemPrice
-    }, 0)
+  return Object.values(items).reduce((total, itemPrice) =&gt; {
+    return total + itemPrice
+  }, 0)
 }
 
 export default RestaurantOrder
+
 </code></pre>
- <div line-highlight="1,3,50-53,55,65-74,112-114,only"></div>
+ <div line-highlight="1,4,51-54,56,66-67,69-70,113-115,only"></div>
 <h3>Verify 3</h3>
 <p>✏️ Update <strong>src/pages/RestaurantOrder/RestaurantOrder.test.tsx.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { ReactNode } from 'react';
-import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event'
-import { MemoryRouter } from 'react-router-dom';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import RestaurantOrder from './RestaurantOrder';
+<pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
+import type { ReactNode } from &quot;react&quot;
+import { render, screen } from &quot;@testing-library/react&quot;
+import userEvent from &quot;@testing-library/user-event&quot;
+import { MemoryRouter } from &quot;react-router-dom&quot;
+import { afterEach, beforeEach, describe, expect, it, vi } from &quot;vitest&quot;
+import RestaurantOrder from &quot;./RestaurantOrder&quot;
+
+import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
 
 // Mock the hooks and components used in RestaurantOrder
-vi.mock('../../services/restaurant/hooks', () =&gt; ({
-  useRestaurant: vi.fn()
-}));
+vi.mock(&quot;../../services/restaurant/hooks&quot;, () =&gt; ({
+  useRestaurant: vi.fn(),
+}))
 
-vi.mock('../../components/FormTextField', () =&gt; ({
+vi.mock(&quot;../../components/FormTextField&quot;, () =&gt; ({
   default: vi.fn(({ label, onChange, type, value }) =&gt; (
     &lt;div className=&quot;form-group&quot;&gt;
       &lt;label htmlFor={`form-field-${label.toLowerCase()}`}&gt;{label}&lt;/label&gt;
@@ -1407,142 +1407,151 @@ vi.mock('../../components/FormTextField', () =&gt; ({
         value={value}
       /&gt;
     &lt;/div&gt;
-  ))
-}));
+  )),
+}))
 
-vi.mock('../../components/RestaurantHeader', () =&gt; ({
+vi.mock(&quot;../../components/RestaurantHeader&quot;, () =&gt; ({
   default: vi.fn(() =&gt; (
-    &lt;div data-testid=&quot;mock-restaurant-header&quot;&gt;
-      Mock RestaurantHeader
-    &lt;/div&gt;
-  ))
-}));
+    &lt;div data-testid=&quot;mock-restaurant-header&quot;&gt;Mock RestaurantHeader&lt;/div&gt;
+  )),
+}))
 
 // Mocking the global fetch function
-const mockAlert = vi.fn();
+const mockAlert = vi.fn()
 
-global.alert = mockAlert;
+global.alert = mockAlert
 
 beforeEach(() =&gt; {
-  mockAlert.mockClear();
-});
+  mockAlert.mockClear()
+})
 
 afterEach(() =&gt; {
-  mockAlert.mockClear();
-});
-
-import { useRestaurant } from '../../services/restaurant/hooks';
+  mockAlert.mockClear()
+})
 
 const mockRestaurantData = {
   data: {
-    _id: '1',
-    name: 'Test Restaurant',
-    slug: 'test-restaurant',
-    images: { owner: 'owner.jpg' },
+    _id: &quot;1&quot;,
+    name: &quot;Test Restaurant&quot;,
+    slug: &quot;test-restaurant&quot;,
+    images: { owner: &quot;owner.jpg&quot; },
     menu: {
       lunch: [
-        { name: 'Lunch Item 1', price: 10 },
-        { name: 'Lunch Item 2', price: 15 }
+        { name: &quot;Lunch Item 1&quot;, price: 10 },
+        { name: &quot;Lunch Item 2&quot;, price: 15 },
       ],
       dinner: [
-        { name: 'Dinner Item 1', price: 20 },
-        { name: 'Dinner Item 2', price: 25 }
-      ]
+        { name: &quot;Dinner Item 1&quot;, price: 20 },
+        { name: &quot;Dinner Item 2&quot;, price: 25 },
+      ],
     },
   },
   isPending: false,
-  error: null
-};
+  error: null,
+}
 
-const renderWithRouter = (ui: ReactNode, { route = '/restaurants/test-restaurant' } = {}) =&gt; {
-  window.history.pushState({}, 'Test page', route)
-  return render(
-    ui,
-    { wrapper: ({ children }) =&gt; &lt;MemoryRouter initialEntries={[route]}&gt;{children}&lt;/MemoryRouter&gt; }
-  );
-};
+const renderWithRouter = (
+  ui: ReactNode,
+  { route = &quot;/restaurants/test-restaurant&quot; } = {},
+) =&gt; {
+  window.history.pushState({}, &quot;Test page&quot;, route)
+  return render(ui, {
+    wrapper: ({ children }) =&gt; (
+      &lt;MemoryRouter initialEntries={[route]}&gt;{children}&lt;/MemoryRouter&gt;
+    ),
+  })
+}
 
-describe('RestaurantOrder component', () =&gt; {
-  it('renders loading state', () =&gt; {
-    useRestaurant.mockReturnValue({ data: null, isPending: true, error: null });
-    renderWithRouter(&lt;RestaurantOrder /&gt;);
-    expect(screen.getByText(/Loading restaurant…/i)).toBeInTheDocument();
-  });
+describe(&quot;RestaurantOrder component&quot;, () =&gt; {
+  it(&quot;renders loading state&quot;, () =&gt; {
+    useRestaurant.mockReturnValue({ data: null, isPending: true, error: null })
+    renderWithRouter(&lt;RestaurantOrder /&gt;)
+    expect(screen.getByText(/Loading restaurant…/i)).toBeInTheDocument()
+  })
 
-  it('renders error state', () =&gt; {
-    useRestaurant.mockReturnValue({ data: null, isPending: false, error: { message: 'Error loading' } });
-    renderWithRouter(&lt;RestaurantOrder /&gt;);
-    expect(screen.getByText(/Error loading restaurant/i)).toBeInTheDocument();
-  });
+  it(&quot;renders error state&quot;, () =&gt; {
+    useRestaurant.mockReturnValue({
+      data: null,
+      isPending: false,
+      error: { message: &quot;Error loading&quot; },
+    })
+    renderWithRouter(&lt;RestaurantOrder /&gt;)
+    expect(screen.getByText(/Error loading restaurant/i)).toBeInTheDocument()
+  })
 
-  it('renders no restaurant found state', () =&gt; {
-    useRestaurant.mockReturnValue({ data: null, isPending: false, error: null });
-    renderWithRouter(&lt;RestaurantOrder /&gt;);
-    expect(screen.getByText(/No restaurant found/i)).toBeInTheDocument();
-  });
+  it(&quot;renders no restaurant found state&quot;, () =&gt; {
+    useRestaurant.mockReturnValue({ data: null, isPending: false, error: null })
+    renderWithRouter(&lt;RestaurantOrder /&gt;)
+    expect(screen.getByText(/No restaurant found/i)).toBeInTheDocument()
+  })
 
-  it('renders the RestaurantHeader when data is available', () =&gt; {
-    useRestaurant.mockReturnValue(mockRestaurantData);
-    renderWithRouter(&lt;RestaurantOrder /&gt;);
+  it(&quot;renders the RestaurantHeader when data is available&quot;, () =&gt; {
+    useRestaurant.mockReturnValue(mockRestaurantData)
+    renderWithRouter(&lt;RestaurantOrder /&gt;)
 
-    expect(screen.getByTestId('mock-restaurant-header')).toBeInTheDocument();
-  });
+    expect(screen.getByTestId(&quot;mock-restaurant-header&quot;)).toBeInTheDocument()
+  })
 
-  it('renders the order form when restaurant data is available', () =&gt; {
-    useRestaurant.mockReturnValue(mockRestaurantData);
-    render(&lt;RestaurantOrder /&gt;);
+  it(&quot;renders the order form when restaurant data is available&quot;, () =&gt; {
+    useRestaurant.mockReturnValue(mockRestaurantData)
+    render(&lt;RestaurantOrder /&gt;)
 
-    expect(screen.getByTestId('mock-restaurant-header')).toBeInTheDocument();
-    expect(screen.getByText('Order from Test Restaurant!')).toBeInTheDocument();
-    expect(screen.getAllByRole('checkbox').length).toBe(4); // 2 lunch + 2 dinner items
-  });
+    expect(screen.getByTestId(&quot;mock-restaurant-header&quot;)).toBeInTheDocument()
+    expect(screen.getByText(&quot;Order from Test Restaurant!&quot;)).toBeInTheDocument()
+    expect(screen.getAllByRole(&quot;checkbox&quot;).length).toBe(4) // 2 lunch + 2 dinner items
+  })
 
-  it('updates subtotal when menu items are selected', async () =&gt; {
-    useRestaurant.mockReturnValue(mockRestaurantData);
-    render(&lt;RestaurantOrder /&gt;);
+  it(&quot;updates subtotal when menu items are selected&quot;, async () =&gt; {
+    useRestaurant.mockReturnValue(mockRestaurantData)
+    render(&lt;RestaurantOrder /&gt;)
 
-    const checkboxes = screen.getAllByRole('checkbox');
-    await userEvent.click(checkboxes[0]); // Select 'Lunch Item 1' (price: 10)
+    const checkboxes = screen.getAllByRole(&quot;checkbox&quot;)
+    await userEvent.click(checkboxes[0]) // Select 'Lunch Item 1' (price: 10)
 
-    expect(screen.getByText('Total: $10.00')).toBeInTheDocument();
+    expect(screen.getByText(&quot;Total: $10.00&quot;)).toBeInTheDocument()
 
-    await userEvent.click(checkboxes[2]); // Select 'Dinner Item 1' (price: 20)
+    await userEvent.click(checkboxes[2]) // Select 'Dinner Item 1' (price: 20)
 
-    expect(screen.getByText('Total: $30.00')).toBeInTheDocument();
-  });
+    expect(screen.getByText(&quot;Total: $30.00&quot;)).toBeInTheDocument()
+  })
 
-  it('updates form fields', async () =&gt; {
-    renderWithRouter(&lt;RestaurantOrder /&gt;);
+  it(&quot;updates form fields&quot;, async () =&gt; {
+    renderWithRouter(&lt;RestaurantOrder /&gt;)
 
-    await userEvent.type(screen.getByTestId('form-field-name'), 'John Doe');
-    expect(screen.getByTestId('form-field-name')).toHaveValue('John Doe');
+    await userEvent.type(screen.getByTestId(&quot;form-field-name&quot;), &quot;John Doe&quot;)
+    expect(screen.getByTestId(&quot;form-field-name&quot;)).toHaveValue(&quot;John Doe&quot;)
 
-    await userEvent.type(screen.getByTestId('form-field-address'), '123 Main St');
-    expect(screen.getByTestId('form-field-address')).toHaveValue('123 Main St');
+    await userEvent.type(
+      screen.getByTestId(&quot;form-field-address&quot;),
+      &quot;123 Main St&quot;,
+    )
+    expect(screen.getByTestId(&quot;form-field-address&quot;)).toHaveValue(&quot;123 Main St&quot;)
 
-    await userEvent.type(screen.getByTestId('form-field-phone'), '555-1234');
-    expect(screen.getByTestId('form-field-phone')).toHaveValue('555-1234');
-  });
+    await userEvent.type(screen.getByTestId(&quot;form-field-phone&quot;), &quot;555-1234&quot;)
+    expect(screen.getByTestId(&quot;form-field-phone&quot;)).toHaveValue(&quot;555-1234&quot;)
+  })
 
-  it('handles form submission', async () =&gt; {
-    const submitSpy = vi.fn();
-    renderWithRouter(&lt;RestaurantOrder /&gt;);
+  it(&quot;handles form submission&quot;, async () =&gt; {
+    const submitSpy = vi.fn()
+    renderWithRouter(&lt;RestaurantOrder /&gt;)
 
-    const submitButton = screen.getByRole('button', { name: /Place My Order!/i });
-    const form = submitButton.closest('form');
-    expect(form).toBeInTheDocument(); // Ensure the form is found
+    const submitButton = screen.getByRole(&quot;button&quot;, {
+      name: /Place My Order!/i,
+    })
+    const form = submitButton.closest(&quot;form&quot;)
+    expect(form).toBeInTheDocument() // Ensure the form is found
 
     if (form) {
-      form.onsubmit = submitSpy;
+      form.onsubmit = submitSpy
     }
 
-    await userEvent.click(submitButton);
-    expect(submitSpy).toHaveBeenCalledTimes(1);
-  });
-});
+    await userEvent.click(submitButton)
+    expect(submitSpy).toHaveBeenCalledTimes(1)
+  })
+})
 
 </code></pre>
- <div line-highlight="6,14-25,34-36,38-39,41,43-44,47-49,131-132,134-135,137-138,140-142,144-146,148-150,152-154,156-159,only"></div>
+ <div line-highlight="6,16-28,35-36,38-39,41,43-44,47-49,137-138,140-141,143-147,149-151,153-155,157-161,163-165,167-170,only"></div>
 <h3>Exercise 3</h3>
 <ul>
 <li>Create state variables and setters for <code>address</code>, <code>name</code>, and <code>phone</code>.</li>
@@ -1553,7 +1562,8 @@ describe('RestaurantOrder component', () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/pages/RestaurantOrder/RestaurantOrder.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { FormEvent, useState } from &quot;react&quot;
+<pre><code class="language-tsx">import type { FormEvent} from &quot;react&quot;;
+import { useState } from &quot;react&quot;
 import { useParams } from &quot;react-router-dom&quot;
 import FormTextField from &quot;../../components/FormTextField&quot;
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
@@ -1562,149 +1572,150 @@ import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
 type OrderItems = Record&lt;string, number&gt;
 
 const RestaurantOrder: React.FC = () =&gt; {
-    const params = useParams() as { slug: string }
+  const params = useParams() as { slug: string }
 
-    const restaurant = useRestaurant(params.slug)
+  const restaurant = useRestaurant(params.slug)
 
-    const [address, setAddress] = useState&lt;string&gt;(&quot;&quot;)
-    const [items, setItems] = useState&lt;OrderItems&gt;({})
-    const [name, setName] = useState&lt;string&gt;(&quot;&quot;)
-    const [phone, setPhone] = useState&lt;string&gt;(&quot;&quot;)
+  const [address, setAddress] = useState&lt;string&gt;(&quot;&quot;)
+  const [items, setItems] = useState&lt;OrderItems&gt;({})
+  const [name, setName] = useState&lt;string&gt;(&quot;&quot;)
+  const [phone, setPhone] = useState&lt;string&gt;(&quot;&quot;)
 
-    if (restaurant.isPending) {
-        return (
-            &lt;p aria-live=&quot;polite&quot; className=&quot;loading&quot;&gt;
-                Loading restaurant…
-            &lt;/p&gt;
-        )
-    }
-
-    if (restaurant.error) {
-        return (
-            &lt;p aria-live=&quot;polite&quot; className=&quot;error&quot;&gt;
-                Error loading restaurant: {restaurant.error.message}
-            &lt;/p&gt;
-        )
-    }
-
-    if (!restaurant.data) {
-        return &lt;p aria-live=&quot;polite&quot;&gt;No restaurant found.&lt;/p&gt;;
-    }
-
-    const setItem = (itemId: string, isChecked: boolean, itemPrice: number) =&gt; {
-        return setItems((currentItems) =&gt; {
-            const updatedItems = {
-                ...currentItems,
-            }
-            if (isChecked) {
-                updatedItems[itemId] = itemPrice;
-            } else {
-                delete updatedItems[itemId]
-            }
-            return updatedItems
-        })
-    }
-
-    const handleSubmit = (event: FormEvent) =&gt; {
-        event.preventDefault()
-        alert('Order submitted!')
-    }
-
-    const selectedCount = Object.values(items).length
-    const subtotal = calculateTotal(items)
-
+  if (restaurant.isPending) {
     return (
-        &lt;&gt;
-            &lt;RestaurantHeader restaurant={restaurant.data} /&gt;
-
-            &lt;div className=&quot;order-form&quot;&gt;
-                &lt;h3&gt;Order from {restaurant.data.name}!&lt;/h3&gt;
-
-                &lt;form onSubmit={(event) =&gt; handleSubmit(event)}&gt;
-                    {
-                        subtotal === 0
-                            ? (
-                                &lt;p className=&quot;info text-error&quot;&gt;Please choose an item.&lt;/p&gt;
-                            )
-                            : (
-                                &lt;p className=&quot;info text-success&quot;&gt;{selectedCount} selected.&lt;/p&gt;
-                            )
-                    }
-
-                    &lt;h4&gt;Lunch Menu&lt;/h4&gt;
-                    &lt;ul className=&quot;list-group&quot;&gt;
-                        {restaurant.data.menu.lunch.map(({ name, price }) =&gt; (
-                            &lt;li key={name} className=&quot;list-group-item&quot;&gt;
-                                &lt;label&gt;
-                                    &lt;input
-                                        checked={name in items}
-                                        onChange={(event) =&gt; setItem(name, event.target.checked, price)}
-                                        type=&quot;checkbox&quot;
-                                    /&gt;
-                                    {name}
-                                    &lt;span className=&quot;badge&quot;&gt;{price}&lt;/span&gt;
-                                &lt;/label&gt;
-                            &lt;/li&gt;
-                        ))}
-                    &lt;/ul&gt;
-
-                    &lt;h4&gt;Dinner menu&lt;/h4&gt;
-                    &lt;ul className=&quot;list-group&quot;&gt;
-                        {restaurant.data.menu.dinner.map(({ name, price }) =&gt; (
-                            &lt;li key={name} className=&quot;list-group-item&quot;&gt;
-                                &lt;label&gt;
-                                    &lt;input
-                                        checked={name in items}
-                                        onChange={(event) =&gt; setItem(name, event.target.checked, price)}
-                                        type=&quot;checkbox&quot;
-                                    /&gt;
-                                    {name}
-                                    &lt;span className=&quot;badge&quot;&gt;{price}&lt;/span&gt;
-                                &lt;/label&gt;
-                            &lt;/li&gt;
-                        ))}
-                    &lt;/ul&gt;
-
-                    &lt;FormTextField
-                        label=&quot;Name&quot;
-                        onChange={setName}
-                        type=&quot;text&quot;
-                        value={name}
-                    /&gt;
-                    &lt;FormTextField
-                        label=&quot;Address&quot;
-                        onChange={setAddress}
-                        type=&quot;text&quot;
-                        value={address}
-                    /&gt;
-                    &lt;FormTextField
-                        label=&quot;Phone&quot;
-                        onChange={setPhone}
-                        type=&quot;tel&quot;
-                        value={phone}
-                    /&gt;
-
-                    &lt;div className=&quot;submit&quot;&gt;
-                        &lt;h4&gt;Total: ${subtotal ? subtotal.toFixed(2) : &quot;0.00&quot;}&lt;/h4&gt;
-                        &lt;button className=&quot;btn&quot; type=&quot;submit&quot;&gt;
-                            Place My Order!
-                        &lt;/button&gt;
-                    &lt;/div&gt;
-                &lt;/form&gt;
-            &lt;/div&gt;
-        &lt;/&gt;
+      &lt;p aria-live=&quot;polite&quot; className=&quot;loading&quot;&gt;
+        Loading restaurant…
+      &lt;/p&gt;
     )
+  }
+
+  if (restaurant.error) {
+    return (
+      &lt;p aria-live=&quot;polite&quot; className=&quot;error&quot;&gt;
+        Error loading restaurant: {restaurant.error.message}
+      &lt;/p&gt;
+    )
+  }
+
+  if (!restaurant.data) {
+    return &lt;p aria-live=&quot;polite&quot;&gt;No restaurant found.&lt;/p&gt;
+  }
+
+  const setItem = (itemId: string, isChecked: boolean, itemPrice: number) =&gt; {
+    return setItems((currentItems) =&gt; {
+      const updatedItems = {
+        ...currentItems,
+      }
+      if (isChecked) {
+        updatedItems[itemId] = itemPrice
+      } else {
+        delete updatedItems[itemId]
+      }
+      return updatedItems
+    })
+  }
+
+  const handleSubmit = (event: FormEvent) =&gt; {
+    event.preventDefault()
+    alert(&quot;Order submitted!&quot;)
+  }
+
+  const selectedCount = Object.values(items).length
+  const subtotal = calculateTotal(items)
+
+  return (
+    &lt;&gt;
+      &lt;RestaurantHeader restaurant={restaurant.data} /&gt;
+
+      &lt;div className=&quot;order-form&quot;&gt;
+        &lt;h3&gt;Order from {restaurant.data.name}!&lt;/h3&gt;
+
+        &lt;form onSubmit={(event) =&gt; handleSubmit(event)}&gt;
+          {subtotal === 0 ? (
+            &lt;p className=&quot;info text-error&quot;&gt;Please choose an item.&lt;/p&gt;
+          ) : (
+            &lt;p className=&quot;info text-success&quot;&gt;{selectedCount} selected.&lt;/p&gt;
+          )}
+
+          &lt;h4&gt;Lunch Menu&lt;/h4&gt;
+          &lt;ul className=&quot;list-group&quot;&gt;
+            {restaurant.data.menu.lunch.map(({ name, price }) =&gt; (
+              &lt;li key={name} className=&quot;list-group-item&quot;&gt;
+                &lt;label&gt;
+                  &lt;input
+                    checked={name in items}
+                    onChange={(event) =&gt;
+                      setItem(name, event.target.checked, price)
+                    }
+                    type=&quot;checkbox&quot;
+                  /&gt;
+                  {name}
+                  &lt;span className=&quot;badge&quot;&gt;{price}&lt;/span&gt;
+                &lt;/label&gt;
+              &lt;/li&gt;
+            ))}
+          &lt;/ul&gt;
+
+          &lt;h4&gt;Dinner menu&lt;/h4&gt;
+          &lt;ul className=&quot;list-group&quot;&gt;
+            {restaurant.data.menu.dinner.map(({ name, price }) =&gt; (
+              &lt;li key={name} className=&quot;list-group-item&quot;&gt;
+                &lt;label&gt;
+                  &lt;input
+                    checked={name in items}
+                    onChange={(event) =&gt;
+                      setItem(name, event.target.checked, price)
+                    }
+                    type=&quot;checkbox&quot;
+                  /&gt;
+                  {name}
+                  &lt;span className=&quot;badge&quot;&gt;{price}&lt;/span&gt;
+                &lt;/label&gt;
+              &lt;/li&gt;
+            ))}
+          &lt;/ul&gt;
+
+          &lt;FormTextField
+            label=&quot;Name&quot;
+            onChange={setName}
+            type=&quot;text&quot;
+            value={name}
+          /&gt;
+          &lt;FormTextField
+            label=&quot;Address&quot;
+            onChange={setAddress}
+            type=&quot;text&quot;
+            value={address}
+          /&gt;
+          &lt;FormTextField
+            label=&quot;Phone&quot;
+            onChange={setPhone}
+            type=&quot;tel&quot;
+            value={phone}
+          /&gt;
+
+          &lt;div className=&quot;submit&quot;&gt;
+            &lt;h4&gt;Total: ${subtotal ? subtotal.toFixed(2) : &quot;0.00&quot;}&lt;/h4&gt;
+            &lt;button className=&quot;btn&quot; type=&quot;submit&quot;&gt;
+              Place My Order!
+            &lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/form&gt;
+      &lt;/div&gt;
+    &lt;/&gt;
+  )
 }
 
 function calculateTotal(items: OrderItems) {
-    return Object.values(items).reduce((total, itemPrice) =&gt; {
-        return total + itemPrice
-    }, 0)
+  return Object.values(items).reduce((total, itemPrice) =&gt; {
+    return total + itemPrice
+  }, 0)
 }
 
 export default RestaurantOrder
+
 </code></pre>
- <div line-highlight="14,16-17,113-130,only"></div>
+ <div line-highlight="15,17-18,114-131,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/03-solution?file=src/pages/RestaurantOrder/RestaurantOrder.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/03-solution?file=src/pages/RestaurantOrder/RestaurantOrder.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Next steps</h2>

@@ -125,7 +125,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-react.html"
-							title="Learn React by building the feature-rich Place My Order application in this beginner React guide. This hands-on course will introduce you to fundamental React concepts! By the end of this course, you will have a strong understanding of JSX, functional components, styling, state management, Hooks, data fetching, routing, and testing.">
+							title="Learn React by building the feature-rich Place My Order application in this beginner React guide. This hands-on course will introduce you to fundamental React concepts! By the end of this course, you will have a strong understanding of JSX, function components, styling, state management, Hooks, data fetching, routing, and testing.">
 							Learn React
 						</a>
 						
@@ -536,135 +536,110 @@ covering CanJS core libraries.">
 <li>Use <code>@testing-library/user-event</code> to simulate user interactions</li>
 </ul>
 <h2>Objective 1: Write a test for rendering a component and verifying the DOM structure</h2>
-<p>How do we know when our code is working correctly? How do we know it’s still working correctly in
-the future after we make changes to it?</p>
-<p>Testing helps by verifying that given certain inputs our code generates expected outputs. So far
-we’ve copied existing tests to prove that we’ve completed the exercise correctly, now let’s dive in
-and learn about how React testing is done.</p>
-<p>The most basic test is to render a component and validate the DOM that is generated. That’s what
-we’ll do in this first section.</p>
+<p>How do we know when our code is working correctly? How do we know it’s still working correctly in the future after we make changes to it?</p>
+<p>Testing helps by verifying that given certain inputs our code generates expected outputs. So far we’ve copied existing tests to prove that we’ve completed the exercise correctly, now let’s dive in and learn about how React testing is done.</p>
+<p>The most basic test is to render a component and validate the DOM that is generated. That’s what we’ll do in this first section.</p>
 <h3>Introducing React Testing Library</h3>
-<p><a href="https://testing-library.com/docs/react-testing-library/intro/">React Testing Library</a> is a set of
-tools that helps us write robust tests for our React applications. Unlike some other testing
-libraries that focus on the internal state and implementation details of components, React Testing
-Library emphasizes testing the behavior of components as experienced by the end-users. It works
-with the DOM rendered by React components, allowing tests to cover a wide range of user interactions.</p>
+<p><a href="https://testing-library.com/docs/react-testing-library/intro/">React Testing Library</a> is a set of tools that helps us write robust tests for our React applications. Unlike some other testing libraries that focus on the internal state and implementation details of components, React Testing Library emphasizes testing the behavior of components as experienced by the end-users. It works with the DOM rendered by React components, allowing tests to cover a wide range of user interactions.</p>
 <p>React Testing Library’s north star is:</p>
 <blockquote>
 <p>The more your tests resemble the way your software is used, the more confidence they can give you.</p>
 </blockquote>
-<p>React Testing Library encourages tests that focus on how the user interacts with the application,
-rather than the implementation details of the components.</p>
+<p>React Testing Library encourages tests that focus on how the user interacts with the application, rather than the implementation details of the components.</p>
 <h3>Rendering and verifying a component in a test</h3>
-<p>OK, you're convinced that React Testing Library is a good idea, how do you use it to create tests
-for your React components?</p>
-<p>Let's take a look at an example: say we want to test a component we created named <code>EmailInputField</code>
-that renders a form field. We expect the component will generate HTML like this:</p>
+<p>OK, you're convinced that React Testing Library is a good idea, how do you use it to create tests for your React components?</p>
+<p>Let's take a look at an example: say we want to test a component we created named <code>EmailInputField</code> that renders a form field. We expect the component will generate HTML like this:</p>
 <pre><code class="language-html">&lt;div class=&quot;form-field&quot;&gt;
   &lt;label htmlFor=&quot;inputId&quot;&gt;Email:&lt;/label&gt;
   &lt;input id=&quot;inputId&quot; type=&quot;email&quot; value=&quot;test@example.com&quot; /&gt;
 &lt;/div&gt;
 </code></pre>
-<p>We want to test <code>EmailInputField</code> to make sure it generates the DOM we expect. If you're already
-familiar with testing frontend JavaScript code, the following pattern will probably be recognizable:
-each test consists of arguments to the <code>it</code> function provided by Vite. The first argument is a short
-description of what the test is verifying. The convention is that the description string takes &quot;it&quot;
-as a prefix and proceeds from there, e.g. &quot;[it] renders the correct label and value.&quot;</p>
-<p>The second argument to <code>it</code> is a callback function that is called to run the test. Inside the
-callback, invoke the React Testing Library function <code>render</code> and pass it a single argument, the JSX
-for your component including props. After <code>render</code> completes, use <code>screen</code> to query the DOM and make
-assertions about the result.</p>
+<p>We want to test <code>EmailInputField</code> to make sure it generates the DOM we expect. If you're already familiar with testing frontend JavaScript code, the following pattern will probably be recognizable: each test consists of arguments to the <code>it</code> function provided by Vite. The first argument is a short description of what the test is verifying. The convention is that the description string takes &quot;it&quot; as a prefix and proceeds from there, e.g. &quot;[it] renders the correct label and value.&quot;</p>
+<p>The second argument to <code>it</code> is a callback function that is called to run the test. Inside the callback, invoke the React Testing Library function <code>render</code> and pass it a single argument, the JSX for your component including props. After <code>render</code> completes, use <code>screen</code> to query the DOM and make assertions about the result.</p>
 <pre><code class="language-tsx">it(&quot;renders the correct label and value&quot;, () =&gt; {
-  render(&lt;EmailInputField label=&quot;Email&quot; value=&quot;test@example.com&quot; /&gt;);
-  const label = screen.getByText(&quot;Email:&quot;);
-  expect(label).toBeInTheDocument();
-});
+  render(&lt;EmailInputField label=&quot;Email&quot; value=&quot;test@example.com&quot; /&gt;)
+  const label = screen.getByText(&quot;Email:&quot;)
+  expect(label).toBeInTheDocument()
+})
 </code></pre>
-<p>In the test above, we validate that the label is correct. We use the <code>getByText</code> function to select
-a single element whose <code>textContent</code> matches the string, &quot;Email:&quot;. If you look closely you can see
-that the <code>&lt;label&gt;</code> content in the HTML has a &quot;:&quot; (colon) at the end, but the <code>label</code> prop does not,
-we can conclude that EmailInputField appends the colon — but <strong>the purpose of the test isn't how
-EmailInputField works, it's the DOM output that it returns</strong>. After we get an element, we then use
-<code>expect</code> and <code>toBeInTheDocument</code> to verify the element was rendered properly. Our test passes
-because the generated DOM is what we expect the user will perceive.</p>
+<p>In the test above, we validate that the label is correct. We use the <code>getByText</code> function to select a single element whose <code>textContent</code> matches the string, &quot;Email:&quot;. If you look closely you can see that the <code>&lt;label&gt;</code> content in the HTML has a &quot;:&quot; (colon) at the end, but the <code>label</code> prop does not, we can conclude that EmailInputField appends the colon — but <strong>the purpose of the test isn't how EmailInputField works, it's the DOM output that it returns</strong>. After we get an element, we then use <code>expect</code> and <code>toBeInTheDocument</code> to verify the element was rendered properly. Our test passes because the generated DOM is what we expect the user will perceive.</p>
 <p>We also want to validate the <code>&lt;input&gt;</code> element; let's update the test:</p>
 <pre><code class="language-tsx">it(&quot;renders the correct label and value&quot;, () =&gt; {
-  render(&lt;EmailInputField label=&quot;Email&quot; value=&quot;test@example.com&quot; /&gt;);
-  const label = screen.getByText(&quot;Email:&quot;);
-  expect(label).toBeInTheDocument();
+  render(&lt;EmailInputField label=&quot;Email&quot; value=&quot;test@example.com&quot; /&gt;)
+  const label = screen.getByText(&quot;Email:&quot;)
+  expect(label).toBeInTheDocument()
 
   // Validate the input value.
-  const input = screen.getByDisplayValue(&quot;test@example.com&quot;);
-  expect(input).toBeInTheDocument();
-});
+  const input = screen.getByDisplayValue(&quot;test@example.com&quot;)
+  expect(input).toBeInTheDocument()
+})
 </code></pre>
-<p>We've used a different query to select the <code>&lt;input&gt;</code> element: <code>getByDisplayValue</code>. It returns an
-input element whose value matches the provided string. React Testing Library has a <a href="https://testing-library.com/docs/queries/about">suite of &quot;query&quot;
-functions</a> that select elements based on
-characteristics like: role, label text, placeholder text, text, display value, alt text, and title.
-Our test continues to pass because the input's value in the DOM matches what we expect.</p>
-<p>Before we move on, let's consider the <code>type</code> prop — shouldn't we test to be sure it was applied
-properly as the input's <code>type</code> attribute? The answer is maybe. <code>type=&quot;email&quot;</code> doesn't affect the
-appearance of the field in a browser, but it might affect how the user can enter input. For example,
-a mobile device might display a special on-screen keyboard. For now, we'll hold off on writing tests
-that check attribute values and see if there is another, more user-focused way to test this
-behavior.</p>
+<p>We've used a different query to select the <code>&lt;input&gt;</code> element: <code>getByDisplayValue</code>. It returns an input element whose value matches the provided string. React Testing Library has a <a href="https://testing-library.com/docs/queries/about">suite of &quot;query&quot; functions</a> that select elements based on characteristics like: role, label text, placeholder text, text, display value, alt text, and title. Our test continues to pass because the input's value in the DOM matches what we expect.</p>
+<p>Before we move on, let's consider the <code>type</code> prop — shouldn't we test to be sure it was applied properly as the input's <code>type</code> attribute? The answer is maybe. <code>type=&quot;email&quot;</code> doesn't affect the appearance of the field in a browser, but it might affect how the user can enter input. For example, a mobile device might display a special on-screen keyboard. For now, we'll hold off on writing tests that check attribute values and see if there is another, more user-focused way to test this behavior.</p>
 <h3>Setup 1</h3>
 <p>✏️ Create <strong>src/components/FormSelect/FormSelect.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { useId } from &quot;react&quot;
 
 const FormSelect: React.FC&lt;{
-    children: React.ReactNode
-    label: string
-    onChange: (data: string) =&gt; void
-    value: string
+  children: React.ReactNode
+  label: string
+  onChange: (data: string) =&gt; void
+  value: string
 }&gt; = ({ children, label, onChange, value }) =&gt; {
-    const id = useId()
+  const id = useId()
 
-    return (
-        &lt;div className=&quot;form-group&quot;&gt;
-            &lt;label htmlFor={id} className=&quot;control-label&quot;&gt;
-                {label}:
-            &lt;/label&gt;
+  return (
+    &lt;div className=&quot;form-group&quot;&gt;
+      &lt;label htmlFor={id} className=&quot;control-label&quot;&gt;
+        {label}:
+      &lt;/label&gt;
 
-            &lt;select
-                className=&quot;form-control&quot;
-                id={id}
-                onChange={(event) =&gt; onChange(event.target.value)}
-                value={value}
-            &gt;
-                {children}
-            &lt;/select&gt;
-        &lt;/div&gt;
-    )
+      &lt;select
+        className=&quot;form-control&quot;
+        id={id}
+        onChange={(event) =&gt; onChange(event.target.value)}
+        value={value}
+      &gt;
+        {children}
+      &lt;/select&gt;
+    &lt;/div&gt;
+  )
 }
 
 export default FormSelect
+
 </code></pre>
 <p>✏️ Create <strong>src/components/FormSelect/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./FormSelect&quot;
+
 </code></pre>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { useState } from 'react'
-import { useCities, useRestaurants, useStates } from '../../services/restaurant/hooks'
-import ListItem from './ListItem'
-import FormSelect from '../../components/FormSelect'
+<pre><code class="language-tsx">import { useState } from &quot;react&quot;
+import {
+  useCities,
+  useRestaurants,
+  useStates,
+} from &quot;../../services/restaurant/hooks&quot;
+import ListItem from &quot;./ListItem&quot;
+import FormSelect from &quot;../../components/FormSelect&quot;
 
 const RestaurantList: React.FC = () =&gt; {
   const [state, setState] = useState(&quot;&quot;)
   const [city, setCity] = useState(&quot;&quot;)
 
   const statesResponse = useStates()
+
   const citiesResponse = useCities(state)
+
   const restaurantsResponse = useRestaurants(state, city)
 
-  const updateState = (newValue: string) =&gt; {
-    setState(newValue)
+  const updateState = (stateShortCode: string) =&gt; {
+    setState(stateShortCode)
     setCity(&quot;&quot;)
   }
 
-  const updateCity = (newValue: string) =&gt; {
-    setCity(newValue)
+  const updateCity = (cityName: string) =&gt; {
+    setCity(cityName)
   }
 
   return (
@@ -673,19 +648,13 @@ const RestaurantList: React.FC = () =&gt; {
         &lt;h2 className=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
 
         &lt;form className=&quot;form&quot;&gt;
-          &lt;FormSelect
-            label=&quot;State&quot;
-            onChange={updateState}
-            value={state}
-          &gt;
+          &lt;FormSelect label=&quot;State&quot; onChange={updateState} value={state}&gt;
             &lt;option key=&quot;choose_state&quot; value=&quot;&quot;&gt;
-              {
-                statesResponse.isPending
-                  ? &quot;Loading states…&quot;
-                  : statesResponse.error
-                    ? statesResponse.error.message
-                    : &quot;Choose a state&quot;
-              }
+              {statesResponse.isPending
+                ? &quot;Loading states…&quot;
+                : statesResponse.error
+                  ? statesResponse.error.message
+                  : &quot;Choose a state&quot;}
             &lt;/option&gt;
             {statesResponse.data?.map(({ short, name }) =&gt; (
               &lt;option key={short} value={short}&gt;
@@ -694,27 +663,22 @@ const RestaurantList: React.FC = () =&gt; {
             ))}
           &lt;/FormSelect&gt;
 
-          &lt;FormSelect
-            label=&quot;City&quot;
-            onChange={updateCity}
-            value={city}
-          &gt;
+          &lt;FormSelect label=&quot;City&quot; onChange={updateCity} value={city}&gt;
             &lt;option key=&quot;choose_city&quot; value=&quot;&quot;&gt;
-              {
-                state
-                  ? citiesResponse.isPending
-                    ? &quot;Loading cities…&quot;
-                    : citiesResponse.error
-                      ? citiesResponse.error.message
-                      : &quot;Choose a city&quot;
-                  : &quot;Choose a state before selecting a city&quot;
-              }
+              {state
+                ? citiesResponse.isPending
+                  ? &quot;Loading cities…&quot;
+                  : citiesResponse.error
+                    ? citiesResponse.error.message
+                    : &quot;Choose a city&quot;
+                : &quot;Choose a state before selecting a city&quot;}
             &lt;/option&gt;
-            {state &amp;&amp; citiesResponse.data?.map(({ name }) =&gt; (
-              &lt;option key={name} value={name}&gt;
-                {name}
-              &lt;/option&gt;
-            ))}
+            {state &amp;&amp;
+              citiesResponse.data?.map(({ name }) =&gt; (
+                &lt;option key={name} value={name}&gt;
+                  {name}
+                &lt;/option&gt;
+              ))}
           &lt;/FormSelect&gt;
         &lt;/form&gt;
 
@@ -730,42 +694,43 @@ const RestaurantList: React.FC = () =&gt; {
           &lt;/p&gt;
         )}
 
-        {city &amp;&amp; restaurantsResponse.data &amp;&amp; (
-          restaurantsResponse.data.length === 0 ? (
-            !restaurantsResponse.isPending &amp;&amp; (
-              &lt;p aria-live=&quot;polite&quot;&gt;No restaurants found.&lt;/p&gt;
-            )
-          ) : (
-            restaurantsResponse.data.map(({ _id, slug, name, address, images }) =&gt; (
-              &lt;ListItem
-                key={_id}
-                address={address}
-                name={name}
-                slug={slug}
-                thumbnail={images.thumbnail}
-              /&gt;
-            ))
-          )
-        )}
+        {city &amp;&amp;
+          restaurantsResponse.data &amp;&amp;
+          (restaurantsResponse.data.length === 0
+            ? !restaurantsResponse.isPending &amp;&amp; (
+                &lt;p aria-live=&quot;polite&quot;&gt;No restaurants found.&lt;/p&gt;
+              )
+            : restaurantsResponse.data.map(
+                ({ _id, slug, name, address, images }) =&gt; (
+                  &lt;ListItem
+                    key={_id}
+                    address={address}
+                    name={name}
+                    slug={slug}
+                    thumbnail={images.thumbnail}
+                  /&gt;
+                ),
+              ))}
       &lt;/div&gt;
     &lt;/&gt;
   )
 }
 
 export default RestaurantList
+
 </code></pre>
- <div line-highlight="4,14-15,19-20,29-45,47-48,50-68,70-71,only"></div>
+ <div line-highlight="8,35-45,47-48,50-62,66,only"></div>
 <h3>Verify 1</h3>
 <p>✏️ Create <strong>src/components/FormSelect/FormSelect.test.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
-import FormSelect from './FormSelect'
+<pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
+import { render, screen } from &quot;@testing-library/react&quot;
+import { describe, expect, it } from &quot;vitest&quot;
+import FormSelect from &quot;./FormSelect&quot;
 
-describe('FormSelect Component', () =&gt; {
-    it('renders correctly with given props', () =&gt; {
-        throw new Error('Test needs to be implemented')
-    })
+describe(&quot;FormSelect Component&quot;, () =&gt; {
+  it(&quot;renders correctly with given props&quot;, () =&gt; {
+    throw new Error(&quot;Test needs to be implemented&quot;)
+  })
 })
 
 </code></pre>
@@ -777,37 +742,39 @@ describe('FormSelect Component', () =&gt; {
 <li>Call <code>screen.getByRole()</code> to get other elements.</li>
 </ul>
 <p>Hint: Here’s the JSX you can use for the component:</p>
-<pre><code class="language-tsx">&lt;FormSelect label=&quot;Test Label&quot; onChange={() =&gt; { }} value=&quot;&quot;&gt;
+<pre><code class="language-tsx">const content = (
+  &lt;FormSelect label=&quot;Test Label&quot; onChange={() =&gt; {}} value=&quot;&quot;&gt;
     &lt;option value=&quot;option1&quot;&gt;Option 1&lt;/option&gt;
     &lt;option value=&quot;option2&quot;&gt;Option 2&lt;/option&gt;
-&lt;/FormSelect&gt;
+  &lt;/FormSelect&gt;
+)
 </code></pre>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/12-testing/01-problem?file=src/components/FormSelect/FormSelect.test.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/12-testing/01-problem?file=src/components/FormSelect/FormSelect.test.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
 <h3>Solution 1</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/components/FormSelect/FormSelect.test.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
-import FormSelect from './FormSelect'
+<pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
+import { render, screen } from &quot;@testing-library/react&quot;
+import { describe, expect, it } from &quot;vitest&quot;
+import FormSelect from &quot;./FormSelect&quot;
 
-describe('FormSelect Component', () =&gt; {
-    it('renders correctly with given props', () =&gt; {
-        render(
-            &lt;FormSelect label=&quot;Test Label&quot; onChange={() =&gt; { }} value=&quot;&quot;&gt;
-                &lt;option value=&quot;option1&quot;&gt;Option 1&lt;/option&gt;
-                &lt;option value=&quot;option2&quot;&gt;Option 2&lt;/option&gt;
-            &lt;/FormSelect&gt;
-        )
+describe(&quot;FormSelect Component&quot;, () =&gt; {
+  it(&quot;renders correctly with given props&quot;, () =&gt; {
+    render(
+      &lt;FormSelect label=&quot;Test Label&quot; onChange={() =&gt; {}} value=&quot;&quot;&gt;
+        &lt;option value=&quot;option1&quot;&gt;Option 1&lt;/option&gt;
+        &lt;option value=&quot;option2&quot;&gt;Option 2&lt;/option&gt;
+      &lt;/FormSelect&gt;,
+    )
 
-        // Check if label is rendered correctly
-        expect(screen.getByText(/test label/i)).toBeInTheDocument()
+    // Check if label is rendered correctly
+    expect(screen.getByText(/test label/i)).toBeInTheDocument()
 
-        // Check if select options are rendered
-        expect(screen.getByRole('option', { name: 'Option 1' })).toBeInTheDocument()
-        expect(screen.getByRole('option', { name: 'Option 2' })).toBeInTheDocument()
-    })
+    // Check if select options are rendered
+    expect(screen.getByRole(&quot;option&quot;, { name: &quot;Option 1&quot; })).toBeInTheDocument()
+    expect(screen.getByRole(&quot;option&quot;, { name: &quot;Option 2&quot; })).toBeInTheDocument()
+  })
 })
 
 </code></pre>
@@ -815,16 +782,9 @@ describe('FormSelect Component', () =&gt; {
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/12-testing/01-solution?file=src/components/FormSelect/FormSelect.test.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/12-testing/01-solution?file=src/components/FormSelect/FormSelect.test.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Objective 2: Write a test for handling user interactions</h2>
-<p>Most components can respond to events raised by user interaction, like clicking a button. How can we
-test code that responds to these interactions? We use another React Testing Library package named
-<a href="https://testing-library.com/docs/user-event/intro">user-event</a>.</p>
-<p><code>user-event</code> allows your tests to interact with your component in a browser-like manner, where a
-single user action can raise multiple events. For example, when a button is clicked, it can emit a
-focus event and then a click event. <code>user-event</code> also has some helpful functionality to prevent
-interactions that are not possible in a browser environment, such as not firing a click event from
-an element that’s hidden.</p>
-<p>All of the methods provided by <code>user-event</code> return a Promise, so we want to prefix the test callback
-function with <code>async</code> and use <code>await</code> when a <code>user-event</code> method is called.</p>
+<p>Most components can respond to events raised by user interaction, like clicking a button. How can we test code that responds to these interactions? We use another React Testing Library package named <a href="https://testing-library.com/docs/user-event/intro">user-event</a>.</p>
+<p><code>user-event</code> allows your tests to interact with your component in a browser-like manner, where a single user action can raise multiple events. For example, when a button is clicked, it can emit a focus event and then a click event. <code>user-event</code> also has some helpful functionality to prevent interactions that are not possible in a browser environment, such as not firing a click event from an element that’s hidden.</p>
+<p>All of the methods provided by <code>user-event</code> return a Promise, so we want to prefix the test callback function with <code>async</code> and use <code>await</code> when a <code>user-event</code> method is called.</p>
 <h3>Using <code>@testing-library/user-event</code> to simulate user interactions</h3>
 <p>Referring back to the HTML output by the <code>EmailInputField</code> component:</p>
 <pre><code class="language-html">&lt;div class=&quot;form-field&quot;&gt;
@@ -832,27 +792,22 @@ function with <code>async</code> and use <code>await</code> when a <code>user-ev
   &lt;input id=&quot;inputId&quot; type=&quot;email&quot; value=&quot;test@example.com&quot; /&gt;
 &lt;/div&gt;
 </code></pre>
-<p>We want to write a test to verify that what the user types is displayed as the <code>&lt;input&gt;</code>'s value.
-The user-event library includes a method named <code>keyboard</code> that we can use to send a sequence of key
-events to the <code>&lt;input&gt;</code> element. The <code>keyboard</code> method provides a good simulation of what happens
-when a user is typing. Before we use <code>keyboard</code> in a test, we need to <a href="https://testing-library.com/docs/user-event/setup#direct-apis">initialize user events with
-the <code>setup</code> method</a>. Let's look at
-the test:</p>
-<pre><code class="language-tsx">import userEvent from &quot;@testing-library/user-event&quot;;
+<p>We want to write a test to verify that what the user types is displayed as the <code>&lt;input&gt;</code>'s value. The user-event library includes a method named <code>keyboard</code> that we can use to send a sequence of key events to the <code>&lt;input&gt;</code> element. The <code>keyboard</code> method provides a good simulation of what happens when a user is typing. Before we use <code>keyboard</code> in a test, we need to <a href="https://testing-library.com/docs/user-event/setup#direct-apis">initialize user events with the <code>setup</code> method</a>. Let's look at the test:</p>
+<pre><code class="language-tsx">import userEvent from &quot;@testing-library/user-event&quot;
 
 it(&quot;captures email input&quot;, async () =&gt; {
-  const user = userEvent.setup();
+  const user = userEvent.setup()
 
-  render(&lt;EmailInputField label=&quot;Email&quot; value=&quot;&quot; /&gt;);
+  render(&lt;EmailInputField label=&quot;Email&quot; value=&quot;&quot; /&gt;)
 
-  const input = screen.getByLabelText(&quot;Email:&quot;);
-  expect(input).toBeInTheDocument();
-  expect(input).toHaveDisplayValue(&quot;&quot;); // Verify the beginning state: no value is set.
+  const input = screen.getByLabelText(&quot;Email:&quot;)
+  expect(input).toBeInTheDocument()
+  expect(input).toHaveDisplayValue(&quot;&quot;) // Verify the beginning state: no value is set.
 
-  await user.click(input);
-  await user.keyboard(&quot;test@example.com&quot;);
-  expect(input).toHaveDisplayValue(&quot;test@example.com&quot;);
-});
+  await user.click(input)
+  await user.keyboard(&quot;test@example.com&quot;)
+  expect(input).toHaveDisplayValue(&quot;test@example.com&quot;)
+})
 </code></pre>
 <p>There are some notable differences compared to the previous test:</p>
 <ul>
@@ -863,73 +818,63 @@ it(&quot;captures email input&quot;, async () =&gt; {
 <li>The input element needs to have focus before we &quot;type&quot; input; rather than using the input
 element's <code>focus</code> method, we prefer the more performant <code>user.click()</code> method.</li>
 </ul>
-<p>After <code>keyboard</code> completes, we can make assertions about the current state of the input, including
-the current value, which should have been updated with the value of the single <code>keyboard</code> argument.</p>
-<p>There is one final point to consider: testing the <code>type</code> attribute of the <code>&lt;input&gt;</code> element. We'd
-prefer to follow React Testing Library's philosophy of testing the DOM generated by a component. To
-put this into practice, we need some knowledge about different <code>&lt;input&gt;</code> type values, their effects
-on the user experience, and why we might choose one over another. Let's review what MDN has to say
-about the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email">&quot;email&quot; type
-value</a>:</p>
+<p>After <code>keyboard</code> completes, we can make assertions about the current state of the input, including the current value, which should have been updated with the value of the single <code>keyboard</code> argument.</p>
+<p>There is one final point to consider: testing the <code>type</code> attribute of the <code>&lt;input&gt;</code> element. We'd prefer to follow React Testing Library's philosophy of testing the DOM generated by a component. To put this into practice, we need some knowledge about different <code>&lt;input&gt;</code> type values, their effects on the user experience, and why we might choose one over another. Let's review what MDN has to say about the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email">&quot;email&quot; type value</a>:</p>
 <blockquote>
 <p>The input value is automatically validated to ensure that it's either empty or a
 properly-formatted email address (or list of addresses) before the form can be submitted. The
 :valid and :invalid CSS pseudo-classes are automatically applied as appropriate to visually denote
 whether the current value of the field is a valid email address or not.</p>
 </blockquote>
-<p>This is a great reason for choosing the &quot;email&quot; type rather than the &quot;text&quot; type. The &quot;email&quot; type
-prevents the user from entering an incorrectly formatted email address. This also helps guide our
-thinking — rather than testing an attribute <strong>value</strong>, we can test the input's <strong>behavior</strong>. We'll
-add another test to ensure incorrect email formats are flagged as invalid.</p>
-<pre><code class="language-tsx">it(&quot;flags an incorrectly formatted email address as invalid&quot;, async () =&gt; {
-  const user = userEvent.setup();
+<p>This is a great reason for choosing the &quot;email&quot; type rather than the &quot;text&quot; type. The &quot;email&quot; type prevents the user from entering an incorrectly formatted email address. This also helps guide our thinking — rather than testing an attribute <strong>value</strong>, we can test the input's <strong>behavior</strong>. We'll add another test to ensure incorrect email formats are flagged as invalid.</p>
+<pre><code class="language-tsx">import userEvent from &quot;@testing-library/user-event&quot;
 
-  render(&lt;EmailInputField label=&quot;Email&quot; value=&quot;&quot; /&gt;);
+it(&quot;flags an incorrectly formatted email address as invalid&quot;, async () =&gt; {
+  const user = userEvent.setup()
 
-  const input = screen.getByLabelText(&quot;Email:&quot;);
-  expect(input).toBeInTheDocument();
+  render(&lt;EmailInputField label=&quot;Email&quot; value=&quot;&quot; /&gt;)
 
-  await user.click(input);
-  await user.keyboard(&quot;test&quot;);
-  expect(input).toHaveDisplayValue(&quot;test&quot;);
+  const input = screen.getByLabelText(&quot;Email:&quot;)
+  expect(input).toBeInTheDocument()
 
-  await user.tab();
-  expect(input).not.toHaveFocus();
-  expect(input).toBeInvalid();
-});
+  await user.click(input)
+  await user.keyboard(&quot;test&quot;)
+  expect(input).toHaveDisplayValue(&quot;test&quot;)
+
+  await user.tab()
+  expect(input).not.toHaveFocus()
+  expect(input).toBeInvalid()
+})
 </code></pre>
-<p>Compared to the prior test, this one inputs a string that is not a valid email address and has three
-additional lines at the end that move focus away from the <code>&lt;input&gt;</code> element, triggering the built-in
-validation to be executed, and then asserts that the <code>&lt;input&gt;</code> has been <a href="https://github.com/testing-library/jest-dom?tab=readme-ov-file#tobeinvalid">marked as
-invalid</a>.</p>
+<p>Compared to the prior test, this one inputs a string that is not a valid email address and has three additional lines at the end that move focus away from the <code>&lt;input&gt;</code> element, triggering the built-in validation to be executed, and then asserts that the <code>&lt;input&gt;</code> has been <a href="https://github.com/testing-library/jest-dom?tab=readme-ov-file#tobeinvalid">marked as invalid</a>.</p>
 <h3>Verify 2</h3>
 <p>✏️ Update <strong>src/components/FormSelect/FormSelect.test.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { describe, expect, it, vi } from 'vitest'
-import FormSelect from './FormSelect'
+<pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
+import { render, screen } from &quot;@testing-library/react&quot;
+import userEvent from &quot;@testing-library/user-event&quot;
+import { describe, expect, it, vi } from &quot;vitest&quot;
+import FormSelect from &quot;./FormSelect&quot;
 
-describe('FormSelect Component', () =&gt; {
-    it('renders correctly with given props', () =&gt; {
-        render(
-            &lt;FormSelect label=&quot;Test Label&quot; onChange={() =&gt; { }} value=&quot;&quot;&gt;
-                &lt;option value=&quot;option1&quot;&gt;Option 1&lt;/option&gt;
-                &lt;option value=&quot;option2&quot;&gt;Option 2&lt;/option&gt;
-            &lt;/FormSelect&gt;
-        )
+describe(&quot;FormSelect Component&quot;, () =&gt; {
+  it(&quot;renders correctly with given props&quot;, () =&gt; {
+    render(
+      &lt;FormSelect label=&quot;Test Label&quot; onChange={() =&gt; {}} value=&quot;&quot;&gt;
+        &lt;option value=&quot;option1&quot;&gt;Option 1&lt;/option&gt;
+        &lt;option value=&quot;option2&quot;&gt;Option 2&lt;/option&gt;
+      &lt;/FormSelect&gt;,
+    )
 
-        // Check if label is rendered correctly
-        expect(screen.getByText(/test label/i)).toBeInTheDocument()
+    // Check if label is rendered correctly
+    expect(screen.getByText(/test label/i)).toBeInTheDocument()
 
-        // Check if select options are rendered
-        expect(screen.getByRole('option', { name: 'Option 1' })).toBeInTheDocument()
-        expect(screen.getByRole('option', { name: 'Option 2' })).toBeInTheDocument()
-    })
+    // Check if select options are rendered
+    expect(screen.getByRole(&quot;option&quot;, { name: &quot;Option 1&quot; })).toBeInTheDocument()
+    expect(screen.getByRole(&quot;option&quot;, { name: &quot;Option 2&quot; })).toBeInTheDocument()
+  })
 
-    it('calls onChange with the correct value when selection changes', async () =&gt; {
-        throw new Error('Test needs to be implemented')
-    })
+  it(&quot;calls onChange with the correct value when selection changes&quot;, async () =&gt; {
+    throw new Error(&quot;Test needs to be implemented&quot;)
+  })
 })
 
 </code></pre>
@@ -946,46 +891,46 @@ describe('FormSelect Component', () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/components/FormSelect/FormSelect.test.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { describe, expect, it, vi } from 'vitest'
-import FormSelect from './FormSelect'
+<pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
+import { render, screen } from &quot;@testing-library/react&quot;
+import userEvent from &quot;@testing-library/user-event&quot;
+import { describe, expect, it, vi } from &quot;vitest&quot;
+import FormSelect from &quot;./FormSelect&quot;
 
-describe('FormSelect Component', () =&gt; {
-    it('renders correctly with given props', () =&gt; {
-        render(
-            &lt;FormSelect label=&quot;Test Label&quot; onChange={() =&gt; { }} value=&quot;&quot;&gt;
-                &lt;option value=&quot;option1&quot;&gt;Option 1&lt;/option&gt;
-                &lt;option value=&quot;option2&quot;&gt;Option 2&lt;/option&gt;
-            &lt;/FormSelect&gt;
-        )
+describe(&quot;FormSelect Component&quot;, () =&gt; {
+  it(&quot;renders correctly with given props&quot;, () =&gt; {
+    render(
+      &lt;FormSelect label=&quot;Test Label&quot; onChange={() =&gt; {}} value=&quot;&quot;&gt;
+        &lt;option value=&quot;option1&quot;&gt;Option 1&lt;/option&gt;
+        &lt;option value=&quot;option2&quot;&gt;Option 2&lt;/option&gt;
+      &lt;/FormSelect&gt;,
+    )
 
-        // Check if label is rendered correctly
-        expect(screen.getByText(/test label/i)).toBeInTheDocument()
+    // Check if label is rendered correctly
+    expect(screen.getByText(/test label/i)).toBeInTheDocument()
 
-        // Check if select options are rendered
-        expect(screen.getByRole('option', { name: 'Option 1' })).toBeInTheDocument()
-        expect(screen.getByRole('option', { name: 'Option 2' })).toBeInTheDocument()
-    })
+    // Check if select options are rendered
+    expect(screen.getByRole(&quot;option&quot;, { name: &quot;Option 1&quot; })).toBeInTheDocument()
+    expect(screen.getByRole(&quot;option&quot;, { name: &quot;Option 2&quot; })).toBeInTheDocument()
+  })
 
-    it('calls onChange with the correct value when selection changes', async () =&gt; {
-        const handleChange = vi.fn()
-        const user = userEvent.setup()
+  it(&quot;calls onChange with the correct value when selection changes&quot;, async () =&gt; {
+    const handleChange = vi.fn()
+    const user = userEvent.setup()
 
-        render(
-            &lt;FormSelect label=&quot;Test Label&quot; onChange={handleChange} value=&quot;option1&quot;&gt;
-                &lt;option value=&quot;option1&quot;&gt;Option 1&lt;/option&gt;
-                &lt;option value=&quot;option2&quot;&gt;Option 2&lt;/option&gt;
-            &lt;/FormSelect&gt;
-        )
+    render(
+      &lt;FormSelect label=&quot;Test Label&quot; onChange={handleChange} value=&quot;option1&quot;&gt;
+        &lt;option value=&quot;option1&quot;&gt;Option 1&lt;/option&gt;
+        &lt;option value=&quot;option2&quot;&gt;Option 2&lt;/option&gt;
+      &lt;/FormSelect&gt;,
+    )
 
-        // Simulate user changing the selection
-        await user.selectOptions(screen.getByRole('combobox'), 'option2')
+    // Simulate user changing the selection
+    await user.selectOptions(screen.getByRole(&quot;combobox&quot;), &quot;option2&quot;)
 
-        // Check if onChange was called with the right value
-        expect(handleChange).toHaveBeenCalledWith('option2')
-    })
+    // Check if onChange was called with the right value
+    expect(handleChange).toHaveBeenCalledWith(&quot;option2&quot;)
+  })
 })
 
 </code></pre>

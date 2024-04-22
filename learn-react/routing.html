@@ -11,8 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn how to set up and use React Router to update the application’s user interface in response to URL changes.
-
+  <meta name="description" content="Learn how to set up and use React Router to update the application’s user interface in response to URL changes. 
 ">
   
   <!-- Google Tag Manager -->
@@ -126,7 +125,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-react.html"
-							title="Learn React by building the feature-rich Place My Order application in this beginner React guide. This hands-on course will introduce you to fundamental React concepts! By the end of this course, you will have a strong understanding of JSX, functional components, styling, state management, Hooks, data fetching, routing, and testing.">
+							title="Learn React by building the feature-rich Place My Order application in this beginner React guide. This hands-on course will introduce you to fundamental React concepts! By the end of this course, you will have a strong understanding of JSX, function components, styling, state management, Hooks, data fetching, routing, and testing.">
 							Learn React
 						</a>
 						
@@ -540,58 +539,35 @@ covering CanJS core libraries.">
 <li>Determine which route is the active route with <code>useMatch()</code>.</li>
 </ul>
 <h2>Objective 1: Defining routes and Outlets</h2>
-<p>Our goal is to split the homepage of our Place My Order application so that we only
-see the Home content on the homepage.</p>
+<p>Our goal is to split the homepage of our Place My Order application so that we only see the Home content on the homepage.</p>
 <h3>Why is routing important?</h3>
-<p>Routing is a mechanism used by single-page applications to determine what their
-user interface looks like based on the browser’s current URL. This follows the
-standard pattern for browsers where changing the URL fetches a new resource;
-however in client-rendered applications like React, there is no communication
-between the browser and server; instead, a specific component is displayed.</p>
+<p>Routing is a mechanism used by single-page applications to determine what their user interface looks like based on the browser’s current URL. This follows the standard pattern for browsers where changing the URL fetches a new resource; however in client-rendered applications like React, there is no communication between the browser and server; instead, a specific component is displayed.</p>
 <p>Routing is crucial for:</p>
 <ul>
 <li>User Experience (UX): Provides seamless navigation without page reloads.</li>
 <li>Bookmarking: Enables users to bookmark or share URLs that lead directly to a specific state of the application.</li>
 <li>Organization: Helps in structuring the application into logical views or components.</li>
 </ul>
-<p>We will use the <a href="https://reactrouter.com/">React Router</a> package to provide
-routing for the Place My Order application. This router is popular in the React
-community and a great de facto choice when building a React application.</p>
+<p>We will use the <a href="https://reactrouter.com/">React Router</a> package to provide routing for the Place My Order application. This router is popular in the React community and a great de facto choice when building a React application.</p>
 <h3>What is React Router?</h3>
-<p>React Router is the de facto standard for routing in React applications. It’s extremely popular in the React community,
-especially when not using a framework like Next.js, which comes with its own routing solution. React Router adds dynamic,
-client-side routing to React, enabling the creation of single-page applications (SPAs) that can handle different URLs and
-render different content accordingly.</p>
-<p>React Router allows applications to dynamically render different components based on the URL, all without the need for a
-page reload. This is a significant enhancement over traditional multi-page applications, where navigating to a new page
-requires a complete reload of the page’s resources.</p>
-<p>React Router’s API is declarative. Routes are defined using configuration through <code>createBrowserRouter()</code> and with components
-like <code>RouterProvider</code>, <code>Outlet</code>, and <code>Link</code>, which makes the routing rules readable and integrated seamlessly into the rest
-of the React component structure.</p>
-<p>Nested routes are a powerful feature of React Router, allowing the creation of complex application structures. You can
-define routes within routes, which is particularly useful for creating layouts that persist across multiple pages, like
-headers and footers.</p>
+<p>React Router is the de facto standard for routing in React applications. It’s extremely popular in the React community, especially when not using a framework like Next.js, which comes with its own routing solution. React Router adds dynamic, client-side routing to React, enabling the creation of single-page applications (SPAs) that can handle different URLs and render different content accordingly.</p>
+<p>React Router allows applications to dynamically render different components based on the URL, all without the need for a page reload. This is a significant enhancement over traditional multi-page applications, where navigating to a new page requires a complete reload of the page’s resources.</p>
+<p>React Router’s API is declarative. Routes are defined using configuration through <code>createBrowserRouter()</code> and with components like <code>RouterProvider</code>, <code>Outlet</code>, and <code>Link</code>, which makes the routing rules readable and integrated seamlessly into the rest of the React component structure.</p>
+<p>Nested routes are a powerful feature of React Router, allowing the creation of complex application structures. You can define routes within routes, which is particularly useful for creating layouts that persist across multiple pages, like headers and footers.</p>
 <h3>createBrowserRouter</h3>
-<p>React Router works by matching the segments of the browser’s URL path to
-components, i.e. each segment of the URL’s path corresponds to a particular
-React component based on the segment’s value. The mapping of a segment’s value
-to a component is done through a collection of <code>RouteObject</code> items that are
-passed to the router when it is initialized.</p>
-<p>The <code>createBrowserRouter</code> function is a key part of React Router. This function is
-used to create a <code>router</code> object that defines the navigation structure of our app.
-The structure is defined through a configuration object that specifies the paths
-and corresponding components. Let’s break down its usage with the example below:</p>
-<pre><code class="language-tsx">import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import AboutPage from './pages/AboutPage'
-import HomePage from './pages/HomePage'
-import App from './App.tsx'
+<p>React Router works by matching the segments of the browser’s URL path to components, i.e. each segment of the URL’s path corresponds to a particular React component based on the segment’s value. The mapping of a segment’s value to a component is done through a collection of <code>RouteObject</code> items that are passed to the router when it is initialized.</p>
+<p>The <code>createBrowserRouter</code> function is a key part of React Router. This function is used to create a <code>router</code> object that defines the navigation structure of our app. The structure is defined through a configuration object that specifies the paths and corresponding components. Let’s break down its usage with the example below:</p>
+<pre><code class="language-tsx">import React from &quot;react&quot;
+import ReactDOM from &quot;react-dom/client&quot;
+import { createBrowserRouter, RouterProvider } from &quot;react-router-dom&quot;
+import AboutPage from &quot;./pages/AboutPage&quot;
+import HomePage from &quot;./pages/HomePage&quot;
+import App from &quot;./App.tsx&quot;
 
 const router = createBrowserRouter(
   [
     {
-      path: '/',
+      path: &quot;/&quot;,
       element: &lt;App /&gt;,
       children: [
         {
@@ -599,7 +575,7 @@ const router = createBrowserRouter(
           element: &lt;HomePage /&gt;,
         },
         {
-          path: 'about',
+          path: &quot;about&quot;,
           element: &lt;AboutPage /&gt;,
         },
       ],
@@ -610,35 +586,31 @@ const router = createBrowserRouter(
   },
 )
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById(&quot;root&quot;)!).render(
   &lt;React.StrictMode&gt;
     &lt;RouterProvider router={router} /&gt;
   &lt;/React.StrictMode&gt;,
 )
+
 </code></pre>
 <div line-highlight='8-28, only'></div>
-<p>The first argument to <code>createBrowserRouter</code> is an array of route objects.
-Each route object represents a navigation route in our application, and
-it typically contains the following properties:</p>
+<p>The first argument to <code>createBrowserRouter</code> is an array of route objects. Each route object represents a navigation route in our application, and it typically contains the following properties:</p>
 <ul>
 <li><code>path</code>: A string that defines the URL path for the route.</li>
 <li><code>element</code>: A React component that will be rendered when the route’s path matches the current URL.</li>
 <li><code>children</code>: An array of nested route objects, allowing for the creation of nested URL structures.</li>
 <li><code>index</code>: A boolean for indicating that the route should act as a default or fallback route within a group of nested routes.</li>
 </ul>
-<p>The second argument to <code>createBrowserRouter</code> is an optional configuration object.
-In the code above, it sets the <code>basename</code>, which is the base URL for all locations.
-Here, it’s dynamically set based on the environment variable <code>import.meta.env.BASE_URL</code>.
-This is useful for scenarios where your application is served from a subdirectory on your server.</p>
+<p>The second argument to <code>createBrowserRouter</code> is an optional configuration object. In the code above, it sets the <code>basename</code>, which is the base URL for all locations. Here, it’s dynamically set based on the environment variable <code>import.meta.env.BASE_URL</code>. This is useful for scenarios where your application is served from a subdirectory on your server.</p>
 <h3>RouterProvider</h3>
 <p>Next, we can use <code>RouterProvider</code> to render our <code>&lt;App&gt;</code> component.
 Remember that our <code>main.tsx</code> file currently looks like this:</p>
-<pre><code class="language-tsx">import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+<pre><code class="language-tsx">import React from &quot;react&quot;
+import ReactDOM from &quot;react-dom/client&quot;
+import App from &quot;./App.tsx&quot;
+import &quot;./index.css&quot;
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById(&quot;root&quot;)!).render(
   &lt;React.StrictMode&gt;
     &lt;App /&gt;
   &lt;/React.StrictMode&gt;,
@@ -647,18 +619,18 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 </code></pre>
 <div line-highlight='8, only'></div>
 <p>Instead of only rendering our <code>&lt;App&gt;</code> component, we can use <code>&lt;RouterProvider&gt;</code>:</p>
-<pre><code class="language-tsx">import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Home from './pages/Home'
-import RestaurantList from './pages/RestaurantList'
-import App from './App.tsx'
-import './index.css'
+<pre><code class="language-tsx">import React from &quot;react&quot;
+import ReactDOM from &quot;react-dom/client&quot;
+import { createBrowserRouter, RouterProvider } from &quot;react-router-dom&quot;
+import Home from &quot;./pages/Home&quot;
+import RestaurantList from &quot;./pages/RestaurantList&quot;
+import App from &quot;./App.tsx&quot;
+import &quot;./index.css&quot;
 
 const router = createBrowserRouter(
   [
     {
-      path: '/',
+      path: &quot;/&quot;,
       element: &lt;App /&gt;,
       children: [
         {
@@ -666,7 +638,7 @@ const router = createBrowserRouter(
           element: &lt;Home /&gt;,
         },
         {
-          path: 'restaurants',
+          path: &quot;restaurants&quot;,
           element: &lt;RestaurantList /&gt;,
         },
       ],
@@ -677,28 +649,24 @@ const router = createBrowserRouter(
   },
 )
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById(&quot;root&quot;)!).render(
   &lt;React.StrictMode&gt;
     &lt;RouterProvider router={router} /&gt;
   &lt;/React.StrictMode&gt;,
 )
+
 </code></pre>
 <div line-highlight='33, only'></div>
 <p>The <code>RouterProvider</code> requires the <code>router</code> object created by <code>createBrowserRouter</code>.
 This object contains all the route configurations and settings for our application.</p>
 <h3>Outlet</h3>
-<p>The final piece of React Router API that we need to use is the <code>&lt;Outlet&gt;</code>
-component.</p>
-<p>The <code>Outlet</code> component is used within a parent route component to render its
-child route components. Think of it as a marker that tells React Router,
-“Insert the child route component here.”</p>
-<p>When you define nested routes in your route configuration above, you don’t
-immediately specify where in the parent component’s JSX the child components
-should appear. Instead, you use <code>Outlet</code> in the parent component’s JSX as a
-placeholder for where the matched child route component should be rendered.</p>
-<p>In the example below, the child component (<code>&lt;AboutPage&gt;</code> or <code>&lt;HomePage&gt;</code> from
-our <code>createBrowserRouter</code> example) would be rendered inside the <code>&lt;main&gt;</code> element:</p>
-<pre><code class="language-tsx">const Layout = () =&gt; {
+<p>The final piece of React Router API that we need to use is the <code>&lt;Outlet&gt;</code> component.</p>
+<p>The <code>Outlet</code> component is used within a parent route component to render its child route components. Think of it as a marker that tells React Router, “Insert the child route component here.”</p>
+<p>When you define nested routes in your route configuration above, you don’t immediately specify where in the parent component’s JSX the child components should appear. Instead, you use <code>Outlet</code> in the parent component’s JSX as a placeholder for where the matched child route component should be rendered.</p>
+<p>In the example below, the child component (<code>&lt;AboutPage&gt;</code> or <code>&lt;HomePage&gt;</code> from our <code>createBrowserRouter</code> example) would be rendered inside the <code>&lt;main&gt;</code> element:</p>
+<pre><code class="language-tsx">import { Outlet } from &quot;react-router-dom&quot;
+
+const Layout = () =&gt; {
   return (
     &lt;&gt;
       &lt;header&gt;My awesome site&lt;/header&gt;
@@ -707,49 +675,50 @@ our <code>createBrowserRouter</code> example) would be rendered inside the <code
       &lt;/main&gt;
       &lt;footer&gt;©&lt;/footer&gt;
     &lt;/&gt;
-  );
-};
+  )
+}
 </code></pre>
-<div line-highlight='6'></div>
+<div line-highlight='8'></div>
 <h3>Setup 1</h3>
-<p>To get starting with React Router in our application,
-let’s install <code>react-router-dom</code> with npm:</p>
+<p>To get starting with React Router in our application, let’s install <code>react-router-dom</code> with npm:</p>
 <p>✏️ Run:</p>
 <pre><code class="language-shell">npm install react-router-dom@6
 </code></pre>
 <p>✏️ Create <strong>src/pages/Home/</strong> (folder)</p>
 <p>✏️ Create <strong>src/pages/Home/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./Home&quot;
+
 </code></pre>
 <p>✏️ Create <strong>src/pages/Home/Home.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import HeroImage from &quot;place-my-order-assets/images/homepage-hero.jpg&quot;
 
 const Home: React.FC = () =&gt; {
-    return (
-        &lt;div className=&quot;homepage&quot; style={{ margin: &quot;auto&quot; }}&gt;
-            &lt;img
-                alt=&quot;Restaurant table with glasses.&quot;
-                height=&quot;380&quot;
-                src={HeroImage}
-                width=&quot;250&quot;
-            /&gt;
+  return (
+    &lt;div className=&quot;homepage&quot; style={{ margin: &quot;auto&quot; }}&gt;
+      &lt;img
+        alt=&quot;Restaurant table with glasses.&quot;
+        height=&quot;380&quot;
+        src={HeroImage}
+        width=&quot;250&quot;
+      /&gt;
 
-            &lt;h1&gt;Ordering food has never been easier&lt;/h1&gt;
+      &lt;h1&gt;Ordering food has never been easier&lt;/h1&gt;
 
-            &lt;p&gt;
-                We make it easier than ever to order gourmet food from your favorite
-                local restaurants.
-            &lt;/p&gt;
-        &lt;/div&gt;
-    )
+      &lt;p&gt;
+        We make it easier than ever to order gourmet food from your favorite
+        local restaurants.
+      &lt;/p&gt;
+    &lt;/div&gt;
+  )
 }
 
 export default Home
+
 </code></pre>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { Outlet } from 'react-router-dom'
-import RestaurantList from './pages/RestaurantList'
-import './App.css'
+<pre><code class="language-tsx">import { Outlet } from &quot;react-router-dom&quot;
+import RestaurantList from &quot;./pages/RestaurantList&quot;
+import &quot;./App.css&quot;
 
 function App() {
   return (
@@ -774,18 +743,19 @@ function App() {
 }
 
 export default App
+
 </code></pre>
  <div line-highlight="1,8-20,only"></div>
 <p>✏️ Update <strong>src/main.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Home from './pages/Home'
-import RestaurantList from './pages/RestaurantList'
-import App from './App.tsx'
-import './index.css'
+<pre><code class="language-tsx">import React from &quot;react&quot;
+import ReactDOM from &quot;react-dom/client&quot;
+import { createBrowserRouter, RouterProvider } from &quot;react-router-dom&quot;
+import Home from &quot;./pages/Home&quot;
+import RestaurantList from &quot;./pages/RestaurantList&quot;
+import App from &quot;./App.tsx&quot;
+import &quot;./index.css&quot;
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById(&quot;root&quot;)!).render(
   &lt;React.StrictMode&gt;
     &lt;App /&gt;
   &lt;/React.StrictMode&gt;,
@@ -795,83 +765,82 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
  <div line-highlight="3-5,only"></div>
 <h3>Verify 1</h3>
 <p>✏️ Create <strong>src/pages/Home/Home.test.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+<pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
+import { render, screen } from &quot;@testing-library/react&quot;
+import { describe, expect, it } from &quot;vitest&quot;
 
-import Home from './Home';
+import Home from &quot;./Home&quot;
 
-describe('Home component', () =&gt; {
-  it('renders the image with correct attributes', () =&gt; {
-    render(&lt;Home /&gt;);
-    const image = screen.getByAltText(/Restaurant table with glasses./i);
-    expect(image).toBeInTheDocument();
-    expect(image).toHaveAttribute('width', '250');
-    expect(image).toHaveAttribute('height', '380');
-  });
+describe(&quot;Home component&quot;, () =&gt; {
+  it(&quot;renders the image with correct attributes&quot;, () =&gt; {
+    render(&lt;Home /&gt;)
+    const image = screen.getByAltText(/Restaurant table with glasses./i)
+    expect(image).toBeInTheDocument()
+    expect(image).toHaveAttribute(&quot;width&quot;, &quot;250&quot;)
+    expect(image).toHaveAttribute(&quot;height&quot;, &quot;380&quot;)
+  })
 
-  it('renders the title', () =&gt; {
-    render(&lt;Home /&gt;);
-    const titleElement = screen.getByText(/Ordering food has never been easier/i);
-    expect(titleElement).toBeInTheDocument();
-  });
+  it(&quot;renders the title&quot;, () =&gt; {
+    render(&lt;Home /&gt;)
+    const titleElement = screen.getByText(
+      /Ordering food has never been easier/i,
+    )
+    expect(titleElement).toBeInTheDocument()
+  })
 
-  it('renders the description paragraph', () =&gt; {
-    render(&lt;Home /&gt;);
-    const description = screen.getByText(/We make it easier/i);
-    expect(description).toBeInTheDocument();
-  });
-});
+  it(&quot;renders the description paragraph&quot;, () =&gt; {
+    render(&lt;Home /&gt;)
+    const description = screen.getByText(/We make it easier/i)
+    expect(description).toBeInTheDocument()
+  })
+})
 
 </code></pre>
 <p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { ReactNode } from 'react';
-import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import { describe, expect, it } from 'vitest';
+<pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
+import type { ReactNode } from &quot;react&quot;
+import { render, screen } from &quot;@testing-library/react&quot;
+import { MemoryRouter } from &quot;react-router-dom&quot;
+import { describe, expect, it } from &quot;vitest&quot;
 
-import App from './App';
+import App from &quot;./App&quot;
 
 // Wrap App with MemoryRouter to mock routing
-const renderWithRouter = (ui: ReactNode, { route = '/' } = {}) =&gt; {
-  window.history.pushState({}, 'Test page', route)
-  return render(ui, { wrapper: MemoryRouter });
-};
+const renderWithRouter = (ui: ReactNode, { route = &quot;/&quot; } = {}) =&gt; {
+  window.history.pushState({}, &quot;Test page&quot;, route)
+  return render(ui, { wrapper: MemoryRouter })
+}
 
-describe('App component', () =&gt; {
-  it('renders without crashing', () =&gt; {
-    renderWithRouter(&lt;App /&gt;);
-    expect(screen.getByText(/place-my-order.com/i)).toBeInTheDocument();
-  });
+describe(&quot;App component&quot;, () =&gt; {
+  it(&quot;renders without crashing&quot;, () =&gt; {
+    renderWithRouter(&lt;App /&gt;)
+    expect(screen.getByText(/place-my-order.com/i)).toBeInTheDocument()
+  })
 
-  it('contains the navigation bar with correct links', () =&gt; {
-    renderWithRouter(&lt;App /&gt;);
-    expect(screen.getByText('Home')).toBeInTheDocument();
-    expect(screen.getByText('Restaurants')).toBeInTheDocument();
+  it(&quot;contains the navigation bar with correct links&quot;, () =&gt; {
+    renderWithRouter(&lt;App /&gt;)
+    expect(screen.getByText(&quot;Home&quot;)).toBeInTheDocument()
+    expect(screen.getByText(&quot;Restaurants&quot;)).toBeInTheDocument()
 
-    const homeLink = screen.getByText('Home').closest('a');
-    expect(homeLink).toHaveAttribute('href', '/');
+    const homeLink = screen.getByText(&quot;Home&quot;).closest(&quot;a&quot;)
+    expect(homeLink).toHaveAttribute(&quot;href&quot;, &quot;/&quot;)
 
-    const restaurantsLink = screen.getByText('Restaurants').closest('a');
-    expect(restaurantsLink).toHaveAttribute('href', '/restaurants');
-  });
-});
+    const restaurantsLink = screen.getByText(&quot;Restaurants&quot;).closest(&quot;a&quot;)
+    expect(restaurantsLink).toHaveAttribute(&quot;href&quot;, &quot;/restaurants&quot;)
+  })
+})
 
 </code></pre>
- <div line-highlight="1,4-5,9-13,15,17-18,21-24,26-27,29-31,only"></div>
+ <div line-highlight="2,4-5,9-13,15,17-18,21-24,26-27,29-31,only"></div>
 <h3>Exercise 1</h3>
-<p>Create routes for the <code>&lt;Home&gt;</code> component and <code>&lt;RestaurantList&gt;</code> component.
-When the route is <code>&quot;&quot;</code>, the <code>&lt;Home&gt;</code> component should display, and when
-the route is <code>/restaurants</code> then the <code>&lt;RestaurantList&gt;</code> component should
-display. These changes should be made in <code>src/App.tsx</code> and <code>src/main.tsx</code>.</p>
+<p>Create routes for the <code>&lt;Home&gt;</code> component and <code>&lt;RestaurantList&gt;</code> component. When the route is <code>&quot;&quot;</code>, the <code>&lt;Home&gt;</code> component should display, and when the route is <code>/restaurants</code> then the <code>&lt;RestaurantList&gt;</code> component should display. These changes should be made in <code>src/App.tsx</code> and <code>src/main.tsx</code>.</p>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-problem?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-problem?file=src/App.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
 <h3>Solution 1</h3>
 <p><details></p>
 <p><summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { Outlet } from 'react-router-dom'
-import './App.css'
+<pre><code class="language-tsx">import { Outlet } from &quot;react-router-dom&quot;
+import &quot;./App.css&quot;
 
 function App() {
   return (
@@ -896,21 +865,22 @@ function App() {
 }
 
 export default App
+
 </code></pre>
  <div line-highlight="21,only"></div>
 <p>✏️ Update <strong>src/main.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Home from './pages/Home'
-import RestaurantList from './pages/RestaurantList'
-import App from './App.tsx'
-import './index.css'
+<pre><code class="language-tsx">import React from &quot;react&quot;
+import ReactDOM from &quot;react-dom/client&quot;
+import { createBrowserRouter, RouterProvider } from &quot;react-router-dom&quot;
+import Home from &quot;./pages/Home&quot;
+import RestaurantList from &quot;./pages/RestaurantList&quot;
+import App from &quot;./App.tsx&quot;
+import &quot;./index.css&quot;
 
 const router = createBrowserRouter(
   [
     {
-      path: '/',
+      path: &quot;/&quot;,
       element: &lt;App /&gt;,
       children: [
         {
@@ -918,7 +888,7 @@ const router = createBrowserRouter(
           element: &lt;Home /&gt;,
         },
         {
-          path: 'restaurants',
+          path: &quot;restaurants&quot;,
           element: &lt;RestaurantList /&gt;,
         },
       ],
@@ -929,55 +899,55 @@ const router = createBrowserRouter(
   },
 )
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById(&quot;root&quot;)!).render(
   &lt;React.StrictMode&gt;
     &lt;RouterProvider router={router} /&gt;
   &lt;/React.StrictMode&gt;,
 )
+
 </code></pre>
  <div line-highlight="9-28,33,35,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-solution?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-solution?file=src/App.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Objective 2: Creating (active) links between pages</h2>
-<p>Next, we want to update Place My Order to include links in our <code>&lt;header&gt;</code> so we can navigate between pages.
-Each link should show its active state when it matches the currently-selected page.</p>
+<p>Next, we want to update Place My Order to include links in our <code>&lt;header&gt;</code> so we can navigate between pages. Each link should show its active state when it matches the currently-selected page.</p>
 <h3>Link</h3>
-<p>The <code>Link</code> component is a basic building block in React Router. It allows
-you to create links in our application that navigate to different routes
-(or paths) defined in our React application.</p>
-<p>Use the <code>Link</code> component similarly to how you use an <code>&lt;a&gt;</code> element in HTML.
-Instead of using <code>href</code>, you use <code>to</code> to specify the path.</p>
-<pre><code class="language-tsx">&lt;Link to=&quot;/about&quot;&gt;
-    About
-&lt;/Link&gt;
+<p>The <code>Link</code> component is a basic building block in React Router. It allows you to create links in our application that navigate to different routes (or paths) defined in our React application.</p>
+<p>Use the <code>Link</code> component similarly to how you use an <code>&lt;a&gt;</code> element in HTML. Instead of using <code>href</code>, you use <code>to</code> to specify the path.</p>
+<pre><code class="language-tsx">import { Link } from &quot;react-router-dom&quot;
+
+const content = &lt;Link to=&quot;/about&quot;&gt;About&lt;/Link&gt;
 </code></pre>
-<p>When users click on this link, they are directed to the <code>/about</code> route in
-your application, without causing a full page reload.</p>
+<p>When users click on this link, they are directed to the <code>/about</code> route in your application, without causing a full page reload.</p>
 <h3>Match based on the current route</h3>
 <p>If you want to style another element based on the current route, you’ll need
 to use the <code>useMatches</code> function:</p>
-<pre><code class="language-tsx">import { useMatch } from 'react-router-dom';
+<pre><code class="language-tsx">import { useMatch } from &quot;react-router-dom&quot;
 
 function App() {
-  const aboutMatch = useMatch('/about');
-  const contactMatch = useMatch('/contact');
+  const aboutMatch = useMatch(&quot;/about&quot;)
+  const contactMatch = useMatch(&quot;/contact&quot;)
 
   return (
     &lt;&gt;
-      &lt;p&gt;{aboutMatch ? 'Current page is /about' : 'About page is not a match'}&lt;/p&gt;
-      &lt;p&gt;{contactMatch ? 'Current page is /contact' : 'Contact page is not a match'}&lt;/p&gt;
+      &lt;p&gt;
+        {aboutMatch ? &quot;Current page is /about&quot; : &quot;About page is not a match&quot;}
+      &lt;/p&gt;
+      &lt;p&gt;
+        {contactMatch
+          ? &quot;Current page is /contact&quot;
+          : &quot;Contact page is not a match&quot;}
+      &lt;/p&gt;
     &lt;/&gt;
-  );
+  )
 }
 </code></pre>
-<div line-highlight='4-5, 9-10'></div>
-<p>In the example above, <code>aboutMatch</code> will be an object with details about the route if
-the current route is <code>/about</code>; otherwise, <code>useMatch</code> will return <code>undefined</code> if the
-current route is something else.</p>
+<div line-highlight='4-5, 9-11'></div>
+<p>In the example above, <code>aboutMatch</code> will be an object with details about the route if the current route is <code>/about</code>; otherwise, <code>useMatch</code> will return <code>undefined</code> if the current route is something else.</p>
 <h3>Setup 2</h3>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { Link, Outlet, useMatch } from 'react-router-dom'
-import './App.css'
+<pre><code class="language-tsx">import { Link, Outlet, useMatch } from &quot;react-router-dom&quot;
+import &quot;./App.css&quot;
 
 function App() {
   return (
@@ -1002,67 +972,68 @@ function App() {
 }
 
 export default App
+
 </code></pre>
  <div line-highlight="1,only"></div>
 <h3>Verify 2</h3>
 <p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { ReactNode } from 'react';
-import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import { describe, expect, it } from 'vitest';
+<pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
+import type { ReactNode } from &quot;react&quot;
+import { render, screen } from &quot;@testing-library/react&quot;
+import { MemoryRouter } from &quot;react-router-dom&quot;
+import { describe, expect, it } from &quot;vitest&quot;
 
-import App from './App';
+import App from &quot;./App&quot;
 
 // Wrap App with MemoryRouter to mock routing
-const renderWithRouter = (ui: ReactNode, { route = '/' } = {}) =&gt; {
-  window.history.pushState({}, 'Test page', route)
-  return render(ui, { wrapper: MemoryRouter });
-};
+const renderWithRouter = (ui: ReactNode, { route = &quot;/&quot; } = {}) =&gt; {
+  window.history.pushState({}, &quot;Test page&quot;, route)
+  return render(ui, { wrapper: MemoryRouter })
+}
 
-describe('App component', () =&gt; {
-  it('renders without crashing', () =&gt; {
-    renderWithRouter(&lt;App /&gt;);
-    expect(screen.getByText(/place-my-order.com/i)).toBeInTheDocument();
-  });
+describe(&quot;App component&quot;, () =&gt; {
+  it(&quot;renders without crashing&quot;, () =&gt; {
+    renderWithRouter(&lt;App /&gt;)
+    expect(screen.getByText(/place-my-order.com/i)).toBeInTheDocument()
+  })
 
-  it('contains the navigation bar with correct links', () =&gt; {
-    renderWithRouter(&lt;App /&gt;);
-    expect(screen.getByText('Home')).toBeInTheDocument();
-    expect(screen.getByText('Restaurants')).toBeInTheDocument();
+  it(&quot;contains the navigation bar with correct links&quot;, () =&gt; {
+    renderWithRouter(&lt;App /&gt;)
+    expect(screen.getByText(&quot;Home&quot;)).toBeInTheDocument()
+    expect(screen.getByText(&quot;Restaurants&quot;)).toBeInTheDocument()
 
-    const homeLink = screen.getByText('Home').closest('a');
-    expect(homeLink).toHaveAttribute('href', '/');
+    const homeLink = screen.getByText(&quot;Home&quot;).closest(&quot;a&quot;)
+    expect(homeLink).toHaveAttribute(&quot;href&quot;, &quot;/&quot;)
 
-    const restaurantsLink = screen.getByText('Restaurants').closest('a');
-    expect(restaurantsLink).toHaveAttribute('href', '/restaurants');
-  });
+    const restaurantsLink = screen.getByText(&quot;Restaurants&quot;).closest(&quot;a&quot;)
+    expect(restaurantsLink).toHaveAttribute(&quot;href&quot;, &quot;/restaurants&quot;)
+  })
 
   it('highlights &quot;Home&quot; link as active when on the home page', () =&gt; {
-    renderWithRouter(&lt;App /&gt;, { route: '/' });
-    expect(screen.getByText('Home').closest('li')).toHaveClass('active');
-    expect(screen.getByText('Restaurants').closest('li')).not.toHaveClass('active');
-  });
-});
+    renderWithRouter(&lt;App /&gt;, { route: &quot;/&quot; })
+    expect(screen.getByText(&quot;Home&quot;).closest(&quot;li&quot;)).toHaveClass(&quot;active&quot;)
+    expect(screen.getByText(&quot;Restaurants&quot;).closest(&quot;li&quot;)).not.toHaveClass(
+      &quot;active&quot;,
+    )
+  })
+})
 
 </code></pre>
- <div line-highlight="33-37,only"></div>
+ <div line-highlight="33-39,only"></div>
 <h3>Exercise 2</h3>
 <ul>
 <li>Create links to the <code>/</code> (<code>Home</code>) and <code>/restaurants</code> (<code>RestaurantList</code>) pages.</li>
 <li>When the current page is Home, give the parent <code>&lt;li&gt;</code> of the link an <code>active</code> class.</li>
 <li>Likewise, on the <code>RestaurantList</code> page, the parent <code>&lt;li&gt;</code> of the <code>/restaurants</code> link should have an <code>active</code> class.</li>
 </ul>
-<p>In the <code>&lt;App&gt;</code> component, we want to use React Router to add
-navigation links inside the <code>&lt;nav&gt;</code> component. Here’s an example
-of what the DOM should look like when the home page is active:</p>
+<p>In the <code>&lt;App&gt;</code> component, we want to use React Router to add navigation links inside the <code>&lt;nav&gt;</code> component. Here’s an example of what the DOM should look like when the home page is active:</p>
 <pre><code class="language-html">&lt;ul&gt;
-    &lt;li class=&quot;active&quot;&gt;
-        &lt;a href='/'&gt;Home&lt;/a&gt;
-    &lt;/li&gt;
-    &lt;li&gt;
-        &lt;a href='/restaurants'&gt;Restaurants&lt;/a&gt;
-    &lt;/li&gt;
+  &lt;li class=&quot;active&quot;&gt;
+    &lt;a href=&quot;/&quot;&gt;Home&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href=&quot;/restaurants&quot;&gt;Restaurants&lt;/a&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 </code></pre>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/02-problem?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/02-problem?file=src/App.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
@@ -1070,12 +1041,12 @@ of what the DOM should look like when the home page is active:</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { Link, Outlet, useMatch } from 'react-router-dom';
-import './App.css';
+<pre><code class="language-tsx">import { Link, Outlet, useMatch } from &quot;react-router-dom&quot;
+import &quot;./App.css&quot;
 
 function App() {
-  const homeMatch = useMatch('/');
-  const restaurantsMatch = useMatch('/restaurants');
+  const homeMatch = useMatch(&quot;/&quot;)
+  const restaurantsMatch = useMatch(&quot;/restaurants&quot;)
 
   return (
     &lt;&gt;
@@ -1083,11 +1054,11 @@ function App() {
         &lt;nav&gt;
           &lt;h1&gt;place-my-order.com&lt;/h1&gt;
           &lt;ul&gt;
-            &lt;li className={homeMatch ? 'active' : ''}&gt;
-              &lt;Link to='/'&gt;Home&lt;/Link&gt;
+            &lt;li className={homeMatch ? &quot;active&quot; : &quot;&quot;}&gt;
+              &lt;Link to=&quot;/&quot;&gt;Home&lt;/Link&gt;
             &lt;/li&gt;
-            &lt;li className={restaurantsMatch ? 'active' : ''}&gt;
-              &lt;Link to='/restaurants'&gt;Restaurants&lt;/Link&gt;
+            &lt;li className={restaurantsMatch ? &quot;active&quot; : &quot;&quot;}&gt;
+              &lt;Link to=&quot;/restaurants&quot;&gt;Restaurants&lt;/Link&gt;
             &lt;/li&gt;
           &lt;/ul&gt;
         &lt;/nav&gt;
@@ -1095,10 +1066,11 @@ function App() {
 
       &lt;Outlet /&gt;
     &lt;/&gt;
-  );
+  )
 }
 
-export default App;
+export default App
+
 </code></pre>
  <div line-highlight="5-6,14-15,17-18,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/02-solution?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/02-solution?file=src/App.tsx">CodeSandbox</a>.</p>
@@ -1143,7 +1115,7 @@ export default App;
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-vite/06-routing/routing.md"},"description":"Learn how to set up and use React Router to update the application’s user interface in response to URL changes.\n\n","name":"learn-react/routing","title":"Routing in React","type":"page","parent":"learn-react","order":6,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-vite/06-routing/routing.md"},"description":"Learn how to set up and use React Router to update the application’s user interface in response to URL changes. \n","name":"learn-react/routing","title":"Routing in React","type":"page","parent":"learn-react","order":6,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     

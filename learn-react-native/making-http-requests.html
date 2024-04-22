@@ -353,17 +353,17 @@ client-side source code.</p>
 </code></pre>
 <div line-highlight='1'></div>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
-import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import { useEffect, useState } from 'react'
-import ListItem from './ListItem'
-import { useCities } from '../../services/restaurant/hooks'
-import { State } from '../../services/restaurant/interfaces'
+<pre><code class="language-tsx">import type { State } from &quot;../../services/restaurant/interfaces&quot;
+import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
+import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
+import { useEffect, useState } from &quot;react&quot;
+import ListItem from &quot;./ListItem&quot;
+import { useCities } from &quot;../../services/restaurant/hooks&quot;
 
 interface StatesResponse {
-  data: State[] | null;
-  error: Error | null;
-  isPending: boolean;
+  data: State[] | null
+  error: Error | null
+  isPending: boolean
 }
 
 const RestaurantList: React.FC = () =&gt; {
@@ -371,8 +371,8 @@ const RestaurantList: React.FC = () =&gt; {
   const [city, setCity] = useState(&quot;&quot;)
 
   const states = [
-    { name: 'Illinois', short: 'IL' },
-    { name: 'Wisconsin', short: 'WI' },
+    { name: &quot;Illinois&quot;, short: &quot;IL&quot; },
+    { name: &quot;Wisconsin&quot;, short: &quot;WI&quot; },
   ]
 
   const cities = useCities(state)
@@ -380,35 +380,35 @@ const RestaurantList: React.FC = () =&gt; {
   const restaurants = {
     data: [
       {
-        name: 'Cheese Curd City',
-        slug: 'cheese-curd-city',
+        name: &quot;Cheese Curd City&quot;,
+        slug: &quot;cheese-curd-city&quot;,
         images: {
           thumbnail: CheeseThumbnail,
         },
         address: {
-          street: '2451 W Washburne Ave',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53295',
+          street: &quot;2451 W Washburne Ave&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53295&quot;,
         },
-        _id: 'Ar0qBJHxM3ecOhcr',
+        _id: &quot;Ar0qBJHxM3ecOhcr&quot;,
       },
       {
-        name: 'Poutine Palace',
-        slug: 'poutine-palace',
+        name: &quot;Poutine Palace&quot;,
+        slug: &quot;poutine-palace&quot;,
         images: {
           thumbnail: PoutineThumbnail,
         },
         address: {
-          street: '230 W Kinzie Street',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53205',
+          street: &quot;230 W Kinzie Street&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53205&quot;,
         },
-        _id: '3ZOZyTY1LH26LnVw',
+        _id: &quot;3ZOZyTY1LH26LnVw&quot;,
       },
-    ]
-  };
+    ],
+  }
 
   const updateState = (stateShortCode: string) =&gt; {
     setState(stateShortCode)
@@ -432,17 +432,15 @@ const RestaurantList: React.FC = () =&gt; {
             &lt;select
               className=&quot;form-control&quot;
               id=&quot;stateSelect&quot;
-              onChange={event =&gt; updateState(event.target.value)}
+              onChange={(event) =&gt; updateState(event.target.value)}
               value={state}
             &gt;
               &lt;option key=&quot;choose_state&quot; value=&quot;&quot;&gt;
-                {
-                  statesResponse.isPending
-                    ? &quot;Loading states…&quot;
-                    : statesResponse.error
-                      ? statesResponse.error.message
-                      : &quot;Choose a state&quot;
-                }
+                {statesResponse.isPending
+                  ? &quot;Loading states…&quot;
+                  : statesResponse.error
+                    ? statesResponse.error.message
+                    : &quot;Choose a state&quot;}
               &lt;/option&gt;
               {statesResponse.data?.map(({ short, name }) =&gt; (
                 &lt;option key={short} value={short}&gt;
@@ -454,15 +452,21 @@ const RestaurantList: React.FC = () =&gt; {
 
           &lt;div className=&quot;form-group&quot;&gt;
             City:
-            {state ? cities.map(({ name }) =&gt; (
-              &lt;button key={name} onClick={() =&gt; updateCity(name)} type=&quot;button&quot;&gt;
-                {name}
-              &lt;/button&gt;
-            )) : &lt;&gt; Choose a state before selecting a city&lt;/&gt;}
+            {state ? (
+              cities.map(({ name }) =&gt; (
+                &lt;button
+                  key={name}
+                  onClick={() =&gt; updateCity(name)}
+                  type=&quot;button&quot;
+                &gt;
+                  {name}
+                &lt;/button&gt;
+              ))
+            ) : (
+              &lt;&gt; Choose a state before selecting a city&lt;/&gt;
+            )}
             &lt;hr /&gt;
-            &lt;p&gt;
-              Current city: {city || &quot;(none)&quot;}
-            &lt;/p&gt;
+            &lt;p&gt;Current city: {city || &quot;(none)&quot;}&lt;/p&gt;
           &lt;/div&gt;
         &lt;/form&gt;
 
@@ -485,8 +489,9 @@ const RestaurantList: React.FC = () =&gt; {
 }
 
 export default RestaurantList
+
 </code></pre>
- <div line-highlight="3,6,8-11,74-97,130,only"></div>
+ <div line-highlight="1,4,8-11,74-91,93-95,107,134,only"></div>
 <h4>Install the Place My Order API</h4>
 <p>Before we begin requesting data from our API, we need to install the
 <code>place-my-order-api</code> module, which will generate fake restaurant data and
@@ -501,12 +506,20 @@ serve it from port <code>7070</code>.</p>
   &quot;version&quot;: &quot;0.0.0&quot;,
   &quot;type&quot;: &quot;module&quot;,
   &quot;scripts&quot;: {
-    &quot;api&quot;: &quot;place-my-order-api --port 7070&quot;,
-    &quot;dev&quot;: &quot;vite&quot;,
-    &quot;build&quot;: &quot;tsc &amp;&amp; vite build&quot;,
-    &quot;lint&quot;: &quot;eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0&quot;,
+    &quot;typecheck&quot;: &quot;tsc&quot;,
+    &quot;eslint&quot;: &quot;eslint vite.config.ts src&quot;,
+    &quot;prettier&quot;: &quot;prettier --check vite.config.ts src&quot;,
     &quot;test&quot;: &quot;vitest&quot;,
-    &quot;preview&quot;: &quot;vite preview&quot;
+    &quot;dev&quot;: &quot;vite&quot;,
+    &quot;build&quot;: &quot;tsc &amp;&amp; vite build&quot;
+  },
+  &quot;eslintConfig&quot;: {
+    &quot;root&quot;: true,
+    &quot;extends&quot;: &quot;@bitovi/eslint-config/react&quot;
+  },
+  &quot;prettier&quot;: {
+    &quot;semi&quot;: false,
+    &quot;trailingComma&quot;: &quot;all&quot;
   },
   &quot;dependencies&quot;: {
     &quot;place-my-order-api&quot;: &quot;^1.3.0&quot;,
@@ -516,18 +529,16 @@ serve it from port <code>7070</code>.</p>
     &quot;react-router-dom&quot;: &quot;^6.22.0&quot;
   },
   &quot;devDependencies&quot;: {
+    &quot;@bitovi/eslint-config&quot;: &quot;^1.8.0&quot;,
     &quot;@testing-library/jest-dom&quot;: &quot;^6.4.2&quot;,
     &quot;@testing-library/react&quot;: &quot;^14.2.1&quot;,
     &quot;@testing-library/user-event&quot;: &quot;^14.5.2&quot;,
     &quot;@types/react&quot;: &quot;^18.2.43&quot;,
     &quot;@types/react-dom&quot;: &quot;^18.2.17&quot;,
-    &quot;@typescript-eslint/eslint-plugin&quot;: &quot;^6.14.0&quot;,
-    &quot;@typescript-eslint/parser&quot;: &quot;^6.14.0&quot;,
     &quot;@vitejs/plugin-react&quot;: &quot;^4.2.1&quot;,
     &quot;eslint&quot;: &quot;^8.55.0&quot;,
-    &quot;eslint-plugin-react-hooks&quot;: &quot;^4.6.0&quot;,
-    &quot;eslint-plugin-react-refresh&quot;: &quot;^0.4.5&quot;,
     &quot;jsdom&quot;: &quot;^24.0.0&quot;,
+    &quot;prettier&quot;: &quot;^3.2.5&quot;,
     &quot;typescript&quot;: &quot;^5.2.2&quot;,
     &quot;vite&quot;: &quot;^5.0.8&quot;,
     &quot;vitest&quot;: &quot;^1.2.2&quot;
@@ -543,98 +554,112 @@ serve it from port <code>7070</code>.</p>
 You should see a JSON list of restaurant data. It will be helpful to have a second terminal tab to run the <code>api</code> command from.</p>
 <h3>Verify</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
-import { act, render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+<pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
+import { act, render, screen } from &quot;@testing-library/react&quot;
+import { describe, expect, it, vi } from &quot;vitest&quot;
 
-import * as restaurantHooks from '../../services/restaurant/hooks'
-import RestaurantList from './RestaurantList';
+import * as restaurantHooks from &quot;../../services/restaurant/hooks&quot;
+import RestaurantList from &quot;./RestaurantList&quot;
 
 // Mocking necessary modules
-vi.mock('../../services/restaurant/hooks')
+vi.mock(&quot;../../services/restaurant/hooks&quot;)
 
 // Mocking the global fetch function
-const mockFetch = vi.fn();
+const mockFetch = vi.fn()
 
-global.fetch = mockFetch;
+global.fetch = mockFetch
 
 beforeEach(() =&gt; {
-  mockFetch.mockClear();
+  mockFetch.mockClear()
 
   mockFetch.mockResolvedValueOnce({
     ok: true,
-    json: () =&gt; Promise.resolve({ message: 'success' }),
-    statusText: 'OK',
+    json: () =&gt; Promise.resolve({ message: &quot;success&quot; }),
+    statusText: &quot;OK&quot;,
     status: 200,
-  });
-});
+  })
+})
 
 afterEach(() =&gt; {
-  mockFetch.mockClear();
-});
+  mockFetch.mockClear()
+})
 
-describe('RestaurantList component', () =&gt; {
+describe(&quot;RestaurantList component&quot;, () =&gt; {
   beforeEach(async () =&gt; {
-    vi.spyOn(restaurantHooks, 'useCities').mockReturnValue([
-      { name: 'Green Bay' },
-      { name: 'Madison' },
+    vi.spyOn(restaurantHooks, &quot;useCities&quot;).mockReturnValue([
+      { name: &quot;Green Bay&quot; },
+      { name: &quot;Madison&quot; },
     ])
-    render(&lt;RestaurantList /&gt;);
+    render(&lt;RestaurantList /&gt;)
     await act(() =&gt; {})
   })
 
-  it('renders the Restaurants header', () =&gt; {
-    expect(screen.getByText(/Restaurants/i)).toBeInTheDocument();
-  });
+  it(&quot;renders the Restaurants header&quot;, () =&gt; {
+    expect(screen.getByText(/Restaurants/i)).toBeInTheDocument()
+  })
 
-  it('renders the restaurant images', () =&gt; {
-    const images = screen.getAllByRole('img');
-    expect(images[0]).toHaveAttribute('src', expect.stringContaining('2-thumbnail.jpg'));
-    expect(images[0]).toHaveAttribute('width', '100');
-    expect(images[0]).toHaveAttribute('height', '100');
-    expect(images[1]).toHaveAttribute('src', expect.stringContaining('4-thumbnail.jpg'));
-    expect(images[1]).toHaveAttribute('width', '100');
-    expect(images[1]).toHaveAttribute('height', '100');
-  });
+  it(&quot;renders the restaurant images&quot;, () =&gt; {
+    const images = screen.getAllByRole(&quot;img&quot;)
+    expect(images[0]).toHaveAttribute(
+      &quot;src&quot;,
+      expect.stringContaining(&quot;2-thumbnail.jpg&quot;),
+    )
+    expect(images[0]).toHaveAttribute(&quot;width&quot;, &quot;100&quot;)
+    expect(images[0]).toHaveAttribute(&quot;height&quot;, &quot;100&quot;)
+    expect(images[1]).toHaveAttribute(
+      &quot;src&quot;,
+      expect.stringContaining(&quot;4-thumbnail.jpg&quot;),
+    )
+    expect(images[1]).toHaveAttribute(&quot;width&quot;, &quot;100&quot;)
+    expect(images[1]).toHaveAttribute(&quot;height&quot;, &quot;100&quot;)
+  })
 
-  it('renders the addresses', () =&gt; {
-    const addressDivs = screen.getAllByText(/Washburne Ave|Kinzie Street/i);
-    expect(addressDivs[0]).toHaveTextContent('2451 W Washburne Ave');
-    expect(addressDivs[0]).toHaveTextContent('Green Bay, WI 53295');
-    expect(addressDivs[1]).toHaveTextContent('230 W Kinzie Street');
-    expect(addressDivs[1]).toHaveTextContent('Green Bay, WI 53205');
-  });
+  it(&quot;renders the addresses&quot;, () =&gt; {
+    const addressDivs = screen.getAllByText(/Washburne Ave|Kinzie Street/i)
+    expect(addressDivs[0]).toHaveTextContent(&quot;2451 W Washburne Ave&quot;)
+    expect(addressDivs[0]).toHaveTextContent(&quot;Green Bay, WI 53295&quot;)
+    expect(addressDivs[1]).toHaveTextContent(&quot;230 W Kinzie Street&quot;)
+    expect(addressDivs[1]).toHaveTextContent(&quot;Green Bay, WI 53205&quot;)
+  })
 
-  it('renders the hours and price information for each restaurant', () =&gt; {
-    const hoursPriceDivs = screen.getAllByText(/\$\$\$/i);
-    hoursPriceDivs.forEach(div =&gt; {
-      expect(div).toHaveTextContent('$$$');
-      expect(div).toHaveTextContent('Hours: M-F 10am-11pm');
-    });
-  });
+  it(&quot;renders the hours and price information for each restaurant&quot;, () =&gt; {
+    const hoursPriceDivs = screen.getAllByText(/\$\$\$/i)
+    hoursPriceDivs.forEach((div) =&gt; {
+      expect(div).toHaveTextContent(&quot;$$$&quot;)
+      expect(div).toHaveTextContent(&quot;Hours: M-F 10am-11pm&quot;)
+    })
+  })
 
-  it('indicates if the restaurant is open now for each restaurant', () =&gt; {
-    const openNowTags = screen.getAllByText('Open Now');
-    expect(openNowTags.length).toBeGreaterThan(0);
-  });
+  it(&quot;indicates if the restaurant is open now for each restaurant&quot;, () =&gt; {
+    const openNowTags = screen.getAllByText(&quot;Open Now&quot;)
+    expect(openNowTags.length).toBeGreaterThan(0)
+  })
 
-  it('renders the details buttons with correct links for each restaurant', () =&gt; {
-    const detailsButtons = screen.getAllByRole('link');
-    expect(detailsButtons[0]).toHaveAttribute('href', '/restaurants/cheese-curd-city');
-    expect(detailsButtons[1]).toHaveAttribute('href', '/restaurants/poutine-palace');
-    detailsButtons.forEach(button =&gt; {
-      expect(button).toHaveTextContent('Details');
-    });
-  });
+  it(&quot;renders the details buttons with correct links for each restaurant&quot;, () =&gt; {
+    const detailsButtons = screen.getAllByRole(&quot;link&quot;)
+    expect(detailsButtons[0]).toHaveAttribute(
+      &quot;href&quot;,
+      &quot;/restaurants/cheese-curd-city&quot;,
+    )
+    expect(detailsButtons[1]).toHaveAttribute(
+      &quot;href&quot;,
+      &quot;/restaurants/poutine-palace&quot;,
+    )
+    detailsButtons.forEach((button) =&gt; {
+      expect(button).toHaveTextContent(&quot;Details&quot;)
+    })
+  })
 
-  it('renders ListItem components for each restaurant', () =&gt; {
-    const restaurantNames = screen.getAllByText(/Cheese Curd City|Poutine Palace/)
+  it(&quot;renders ListItem components for each restaurant&quot;, () =&gt; {
+    const restaurantNames = screen.getAllByText(
+      /Cheese Curd City|Poutine Palace/,
+    )
     expect(restaurantNames.length).toBe(2)
   })
-});
+})
 
 </code></pre>
- <div line-highlight="2-3,5,8-9,11-12,14,16-17,19-23,27-29,32-36,38,89,only"></div>
+ <div line-highlight="2-3,5,8-9,11-12,14,16-17,19-23,27-29,32-36,38,103,only"></div>
 <h3>Exercise</h3>
 <ul>
 <li>Update <code>RestaurantList.tsx</code> to call <code>useState()</code> and use the <code>StateResponse</code> interface.</li>
@@ -645,17 +670,17 @@ describe('RestaurantList component', () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
-import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import { useEffect, useState } from 'react'
-import ListItem from './ListItem'
-import { useCities } from '../../services/restaurant/hooks'
-import { State } from '../../services/restaurant/interfaces'
+<pre><code class="language-tsx">import type { State } from &quot;../../services/restaurant/interfaces&quot;
+import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
+import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
+import { useEffect, useState } from &quot;react&quot;
+import ListItem from &quot;./ListItem&quot;
+import { useCities } from &quot;../../services/restaurant/hooks&quot;
 
 interface StatesResponse {
-  data: State[] | null;
-  error: Error | null;
-  isPending: boolean;
+  data: State[] | null
+  error: Error | null
+  isPending: boolean
 }
 
 const RestaurantList: React.FC = () =&gt; {
@@ -683,42 +708,42 @@ const RestaurantList: React.FC = () =&gt; {
       })
     }
     fetchData()
-  }, []);
+  }, [])
 
   const cities = useCities(state)
 
   const restaurants = {
     data: [
       {
-        name: 'Cheese Curd City',
-        slug: 'cheese-curd-city',
+        name: &quot;Cheese Curd City&quot;,
+        slug: &quot;cheese-curd-city&quot;,
         images: {
           thumbnail: CheeseThumbnail,
         },
         address: {
-          street: '2451 W Washburne Ave',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53295',
+          street: &quot;2451 W Washburne Ave&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53295&quot;,
         },
-        _id: 'Ar0qBJHxM3ecOhcr',
+        _id: &quot;Ar0qBJHxM3ecOhcr&quot;,
       },
       {
-        name: 'Poutine Palace',
-        slug: 'poutine-palace',
+        name: &quot;Poutine Palace&quot;,
+        slug: &quot;poutine-palace&quot;,
         images: {
           thumbnail: PoutineThumbnail,
         },
         address: {
-          street: '230 W Kinzie Street',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53205',
+          street: &quot;230 W Kinzie Street&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53205&quot;,
         },
-        _id: '3ZOZyTY1LH26LnVw',
+        _id: &quot;3ZOZyTY1LH26LnVw&quot;,
       },
-    ]
-  };
+    ],
+  }
 
   const updateState = (stateShortCode: string) =&gt; {
     setState(stateShortCode)
@@ -742,17 +767,15 @@ const RestaurantList: React.FC = () =&gt; {
             &lt;select
               className=&quot;form-control&quot;
               id=&quot;stateSelect&quot;
-              onChange={event =&gt; updateState(event.target.value)}
+              onChange={(event) =&gt; updateState(event.target.value)}
               value={state}
             &gt;
               &lt;option key=&quot;choose_state&quot; value=&quot;&quot;&gt;
-                {
-                  statesResponse.isPending
-                    ? &quot;Loading states…&quot;
-                    : statesResponse.error
-                      ? statesResponse.error.message
-                      : &quot;Choose a state&quot;
-                }
+                {statesResponse.isPending
+                  ? &quot;Loading states…&quot;
+                  : statesResponse.error
+                    ? statesResponse.error.message
+                    : &quot;Choose a state&quot;}
               &lt;/option&gt;
               {statesResponse.data?.map(({ short, name }) =&gt; (
                 &lt;option key={short} value={short}&gt;
@@ -764,15 +787,21 @@ const RestaurantList: React.FC = () =&gt; {
 
           &lt;div className=&quot;form-group&quot;&gt;
             City:
-            {state ? cities.map(({ name }) =&gt; (
-              &lt;button key={name} onClick={() =&gt; updateCity(name)} type=&quot;button&quot;&gt;
-                {name}
-              &lt;/button&gt;
-            )) : &lt;&gt; Choose a state before selecting a city&lt;/&gt;}
+            {state ? (
+              cities.map(({ name }) =&gt; (
+                &lt;button
+                  key={name}
+                  onClick={() =&gt; updateCity(name)}
+                  type=&quot;button&quot;
+                &gt;
+                  {name}
+                &lt;/button&gt;
+              ))
+            ) : (
+              &lt;&gt; Choose a state before selecting a city&lt;/&gt;
+            )}
             &lt;hr /&gt;
-            &lt;p&gt;
-              Current city: {city || &quot;(none)&quot;}
-            &lt;/p&gt;
+            &lt;p&gt;Current city: {city || &quot;(none)&quot;}&lt;/p&gt;
           &lt;/div&gt;
         &lt;/form&gt;
 
@@ -795,6 +824,7 @@ const RestaurantList: React.FC = () =&gt; {
 }
 
 export default RestaurantList
+
 </code></pre>
  <div line-highlight="18-22,24-28,30,32-39,only"></div>
 <p></details></p>
@@ -830,16 +860,16 @@ manages its own state and shares this logic across multiple components, somethin
 that would be difficult or impossible with traditional class-based components.</p>
 <h3>Setup</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
-import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import { useState } from 'react'
-import ListItem from './ListItem'
-import { useCities, useStates } from '../../services/restaurant/hooks'
+<pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
+import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
+import { useState } from &quot;react&quot;
+import ListItem from &quot;./ListItem&quot;
+import { useCities, useStates } from &quot;../../services/restaurant/hooks&quot;
 
 interface StatesResponse {
-  data: State[] | null;
-  error: Error | null;
-  isPending: boolean;
+  data: State[] | null
+  error: Error | null
+  isPending: boolean
 }
 
 const RestaurantList: React.FC = () =&gt; {
@@ -867,42 +897,42 @@ const RestaurantList: React.FC = () =&gt; {
       })
     }
     fetchData()
-  }, []);
+  }, [])
 
   const cities = useCities(state)
 
   const restaurants = {
     data: [
       {
-        name: 'Cheese Curd City',
-        slug: 'cheese-curd-city',
+        name: &quot;Cheese Curd City&quot;,
+        slug: &quot;cheese-curd-city&quot;,
         images: {
           thumbnail: CheeseThumbnail,
         },
         address: {
-          street: '2451 W Washburne Ave',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53295',
+          street: &quot;2451 W Washburne Ave&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53295&quot;,
         },
-        _id: 'Ar0qBJHxM3ecOhcr',
+        _id: &quot;Ar0qBJHxM3ecOhcr&quot;,
       },
       {
-        name: 'Poutine Palace',
-        slug: 'poutine-palace',
+        name: &quot;Poutine Palace&quot;,
+        slug: &quot;poutine-palace&quot;,
         images: {
           thumbnail: PoutineThumbnail,
         },
         address: {
-          street: '230 W Kinzie Street',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53205',
+          street: &quot;230 W Kinzie Street&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53205&quot;,
         },
-        _id: '3ZOZyTY1LH26LnVw',
+        _id: &quot;3ZOZyTY1LH26LnVw&quot;,
       },
-    ]
-  };
+    ],
+  }
 
   const updateState = (stateShortCode: string) =&gt; {
     setState(stateShortCode)
@@ -926,17 +956,15 @@ const RestaurantList: React.FC = () =&gt; {
             &lt;select
               className=&quot;form-control&quot;
               id=&quot;stateSelect&quot;
-              onChange={event =&gt; updateState(event.target.value)}
+              onChange={(event) =&gt; updateState(event.target.value)}
               value={state}
             &gt;
               &lt;option key=&quot;choose_state&quot; value=&quot;&quot;&gt;
-                {
-                  statesResponse.isPending
-                    ? &quot;Loading states…&quot;
-                    : statesResponse.error
-                      ? statesResponse.error.message
-                      : &quot;Choose a state&quot;
-                }
+                {statesResponse.isPending
+                  ? &quot;Loading states…&quot;
+                  : statesResponse.error
+                    ? statesResponse.error.message
+                    : &quot;Choose a state&quot;}
               &lt;/option&gt;
               {statesResponse.data?.map(({ short, name }) =&gt; (
                 &lt;option key={short} value={short}&gt;
@@ -948,15 +976,21 @@ const RestaurantList: React.FC = () =&gt; {
 
           &lt;div className=&quot;form-group&quot;&gt;
             City:
-            {state ? cities.map(({ name }) =&gt; (
-              &lt;button key={name} onClick={() =&gt; updateCity(name)} type=&quot;button&quot;&gt;
-                {name}
-              &lt;/button&gt;
-            )) : &lt;&gt; Choose a state before selecting a city&lt;/&gt;}
+            {state ? (
+              cities.map(({ name }) =&gt; (
+                &lt;button
+                  key={name}
+                  onClick={() =&gt; updateCity(name)}
+                  type=&quot;button&quot;
+                &gt;
+                  {name}
+                &lt;/button&gt;
+              ))
+            ) : (
+              &lt;&gt; Choose a state before selecting a city&lt;/&gt;
+            )}
             &lt;hr /&gt;
-            &lt;p&gt;
-              Current city: {city || &quot;(none)&quot;}
-            &lt;/p&gt;
+            &lt;p&gt;Current city: {city || &quot;(none)&quot;}&lt;/p&gt;
           &lt;/div&gt;
         &lt;/form&gt;
 
@@ -979,34 +1013,36 @@ const RestaurantList: React.FC = () =&gt; {
 }
 
 export default RestaurantList
+
 </code></pre>
  <div line-highlight="3,5,only"></div>
 <p>✏️ Update <strong>src/services/restaurant/hooks.ts</strong> to be:</p>
-<pre><code class="language-ts">import { useEffect, useState } from 'react'
-import type { City, State } from './interfaces'
+<pre><code class="language-ts">import type { City, State } from &quot;./interfaces&quot;
+import { useEffect, useState } from &quot;react&quot;
 
 export function useCities(state: string): City[] {
   const cities = [
-    { name: 'Madison', state: 'WI' },
-    { name: 'Springfield', state: 'IL' },
+    { name: &quot;Madison&quot;, state: &quot;WI&quot; },
+    { name: &quot;Springfield&quot;, state: &quot;IL&quot; },
   ]
-  return cities.filter(city =&gt; {
+  return cities.filter((city) =&gt; {
     return city.state === state
   })
 }
+
 </code></pre>
  <div line-highlight="1-2,only"></div>
 <h3>Verify</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
-import { act, render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+<pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
+import { act, render, screen } from &quot;@testing-library/react&quot;
+import { describe, expect, it, vi } from &quot;vitest&quot;
 
-import * as restaurantHooks from '../../services/restaurant/hooks'
-import RestaurantList from './RestaurantList';
+import * as restaurantHooks from &quot;../../services/restaurant/hooks&quot;
+import RestaurantList from &quot;./RestaurantList&quot;
 
 // Mock the hooks used in the component
-vi.mock('../../services/restaurant/hooks', () =&gt; ({
+vi.mock(&quot;../../services/restaurant/hooks&quot;, () =&gt; ({
   useCities: vi.fn(() =&gt; {
     return {
       data: null,
@@ -1021,115 +1057,130 @@ vi.mock('../../services/restaurant/hooks', () =&gt; ({
       isPending: false,
     }
   }),
-}));
+}))
 
-describe('RestaurantList component', () =&gt; {
+describe(&quot;RestaurantList component&quot;, () =&gt; {
   beforeEach(async () =&gt; {
-    vi.spyOn(restaurantHooks, 'useCities').mockReturnValue([
-      { name: 'Green Bay' },
-      { name: 'Madison' },
+    vi.spyOn(restaurantHooks, &quot;useCities&quot;).mockReturnValue([
+      { name: &quot;Green Bay&quot; },
+      { name: &quot;Madison&quot; },
     ])
-    render(&lt;RestaurantList /&gt;);
+    render(&lt;RestaurantList /&gt;)
     await act(() =&gt; {})
   })
 
-  it('renders the Restaurants header', () =&gt; {
-    expect(screen.getByText(/Restaurants/i)).toBeInTheDocument();
-  });
+  it(&quot;renders the Restaurants header&quot;, () =&gt; {
+    expect(screen.getByText(/Restaurants/i)).toBeInTheDocument()
+  })
 
-  it('renders the restaurant images', () =&gt; {
-    const images = screen.getAllByRole('img');
-    expect(images[0]).toHaveAttribute('src', expect.stringContaining('2-thumbnail.jpg'));
-    expect(images[0]).toHaveAttribute('width', '100');
-    expect(images[0]).toHaveAttribute('height', '100');
-    expect(images[1]).toHaveAttribute('src', expect.stringContaining('4-thumbnail.jpg'));
-    expect(images[1]).toHaveAttribute('width', '100');
-    expect(images[1]).toHaveAttribute('height', '100');
-  });
+  it(&quot;renders the restaurant images&quot;, () =&gt; {
+    const images = screen.getAllByRole(&quot;img&quot;)
+    expect(images[0]).toHaveAttribute(
+      &quot;src&quot;,
+      expect.stringContaining(&quot;2-thumbnail.jpg&quot;),
+    )
+    expect(images[0]).toHaveAttribute(&quot;width&quot;, &quot;100&quot;)
+    expect(images[0]).toHaveAttribute(&quot;height&quot;, &quot;100&quot;)
+    expect(images[1]).toHaveAttribute(
+      &quot;src&quot;,
+      expect.stringContaining(&quot;4-thumbnail.jpg&quot;),
+    )
+    expect(images[1]).toHaveAttribute(&quot;width&quot;, &quot;100&quot;)
+    expect(images[1]).toHaveAttribute(&quot;height&quot;, &quot;100&quot;)
+  })
 
-  it('renders the addresses', () =&gt; {
-    const addressDivs = screen.getAllByText(/Washburne Ave|Kinzie Street/i);
-    expect(addressDivs[0]).toHaveTextContent('2451 W Washburne Ave');
-    expect(addressDivs[0]).toHaveTextContent('Green Bay, WI 53295');
-    expect(addressDivs[1]).toHaveTextContent('230 W Kinzie Street');
-    expect(addressDivs[1]).toHaveTextContent('Green Bay, WI 53205');
-  });
+  it(&quot;renders the addresses&quot;, () =&gt; {
+    const addressDivs = screen.getAllByText(/Washburne Ave|Kinzie Street/i)
+    expect(addressDivs[0]).toHaveTextContent(&quot;2451 W Washburne Ave&quot;)
+    expect(addressDivs[0]).toHaveTextContent(&quot;Green Bay, WI 53295&quot;)
+    expect(addressDivs[1]).toHaveTextContent(&quot;230 W Kinzie Street&quot;)
+    expect(addressDivs[1]).toHaveTextContent(&quot;Green Bay, WI 53205&quot;)
+  })
 
-  it('renders the hours and price information for each restaurant', () =&gt; {
-    const hoursPriceDivs = screen.getAllByText(/\$\$\$/i);
-    hoursPriceDivs.forEach(div =&gt; {
-      expect(div).toHaveTextContent('$$$');
-      expect(div).toHaveTextContent('Hours: M-F 10am-11pm');
-    });
-  });
+  it(&quot;renders the hours and price information for each restaurant&quot;, () =&gt; {
+    const hoursPriceDivs = screen.getAllByText(/\$\$\$/i)
+    hoursPriceDivs.forEach((div) =&gt; {
+      expect(div).toHaveTextContent(&quot;$$$&quot;)
+      expect(div).toHaveTextContent(&quot;Hours: M-F 10am-11pm&quot;)
+    })
+  })
 
-  it('indicates if the restaurant is open now for each restaurant', () =&gt; {
-    const openNowTags = screen.getAllByText('Open Now');
-    expect(openNowTags.length).toBeGreaterThan(0);
-  });
+  it(&quot;indicates if the restaurant is open now for each restaurant&quot;, () =&gt; {
+    const openNowTags = screen.getAllByText(&quot;Open Now&quot;)
+    expect(openNowTags.length).toBeGreaterThan(0)
+  })
 
-  it('renders the details buttons with correct links for each restaurant', () =&gt; {
-    const detailsButtons = screen.getAllByRole('link');
-    expect(detailsButtons[0]).toHaveAttribute('href', '/restaurants/cheese-curd-city');
-    expect(detailsButtons[1]).toHaveAttribute('href', '/restaurants/poutine-palace');
-    detailsButtons.forEach(button =&gt; {
-      expect(button).toHaveTextContent('Details');
-    });
-  });
+  it(&quot;renders the details buttons with correct links for each restaurant&quot;, () =&gt; {
+    const detailsButtons = screen.getAllByRole(&quot;link&quot;)
+    expect(detailsButtons[0]).toHaveAttribute(
+      &quot;href&quot;,
+      &quot;/restaurants/cheese-curd-city&quot;,
+    )
+    expect(detailsButtons[1]).toHaveAttribute(
+      &quot;href&quot;,
+      &quot;/restaurants/poutine-palace&quot;,
+    )
+    detailsButtons.forEach((button) =&gt; {
+      expect(button).toHaveTextContent(&quot;Details&quot;)
+    })
+  })
 
-  it('renders ListItem components for each restaurant', () =&gt; {
-    const restaurantNames = screen.getAllByText(/Cheese Curd City|Poutine Palace/)
+  it(&quot;renders ListItem components for each restaurant&quot;, () =&gt; {
+    const restaurantNames = screen.getAllByText(
+      /Cheese Curd City|Poutine Palace/,
+    )
     expect(restaurantNames.length).toBe(2)
   })
-});
+})
 
 </code></pre>
  <div line-highlight="8-24,only"></div>
 <p>✏️ Update <strong>src/services/restaurant/hooks.test.ts</strong> to be:</p>
-<pre><code class="language-ts">import { renderHook, waitFor } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
-import { useCities, useStates } from './hooks';
+<pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react&quot;
+import { describe, expect, it, vi } from &quot;vitest&quot;
+import { useCities, useStates } from &quot;./hooks&quot;
 
-describe('useCities Hook', () =&gt; {
-    it('should return cities from Wisconsin when state is WI', () =&gt; {
-        const { result } = renderHook(() =&gt; useCities('WI'));
-        expect(result.current).toHaveLength(1);
-        expect(result.current[0].name).toBe('Madison');
-    });
+describe(&quot;useCities Hook&quot;, () =&gt; {
+  it(&quot;should return cities from Wisconsin when state is WI&quot;, () =&gt; {
+    const { result } = renderHook(() =&gt; useCities(&quot;WI&quot;))
+    expect(result.current).toHaveLength(1)
+    expect(result.current[0].name).toBe(&quot;Madison&quot;)
+  })
 
-    it('should return cities from Illinois when state is IL', () =&gt; {
-        const { result } = renderHook(() =&gt; useCities('IL'));
-        expect(result.current).toHaveLength(1);
-        expect(result.current[0].name).toBe('Springfield');
-    });
+  it(&quot;should return cities from Illinois when state is IL&quot;, () =&gt; {
+    const { result } = renderHook(() =&gt; useCities(&quot;IL&quot;))
+    expect(result.current).toHaveLength(1)
+    expect(result.current[0].name).toBe(&quot;Springfield&quot;)
+  })
 
-    it('should return no cities for an unknown state', () =&gt; {
-        const { result } = renderHook(() =&gt; useCities('CA'));
-        expect(result.current).toHaveLength(0);
-    });
-});
+  it(&quot;should return no cities for an unknown state&quot;, () =&gt; {
+    const { result } = renderHook(() =&gt; useCities(&quot;CA&quot;))
+    expect(result.current).toHaveLength(0)
+  })
+})
 
-describe('useStates Hook', () =&gt; {
-    beforeEach(async () =&gt; {
-        // Mocking the fetch function
-        global.fetch = vi.fn();
+describe(&quot;useStates Hook&quot;, () =&gt; {
+  beforeEach(async () =&gt; {
+    // Mocking the fetch function
+    global.fetch = vi.fn()
+  })
+
+  it(&quot;should set the states data on successful fetch&quot;, async () =&gt; {
+    const mockStates = [{ name: &quot;State1&quot; }, { name: &quot;State2&quot; }]
+    fetch.mockResolvedValueOnce({
+      json: () =&gt; Promise.resolve({ data: mockStates }),
     })
 
-    it('should set the states data on successful fetch', async () =&gt; {
-        const mockStates = [{ name: 'State1' }, { name: 'State2' }];
-        fetch.mockResolvedValueOnce({
-            json: () =&gt; Promise.resolve({ data: mockStates }),
-        });
+    const { result } = renderHook(() =&gt; useStates())
 
-        const { result } = renderHook(() =&gt; useStates());
+    await waitFor(() =&gt; {
+      expect(result.current.isPending).toBe(false)
+      expect(result.current.data).toEqual(mockStates)
+      expect(result.current.error).toBeNull()
+    })
+  })
+})
 
-        await waitFor(() =&gt; {
-            expect(result.current.isPending).toBe(false);
-            expect(result.current.data).toEqual(mockStates);
-            expect(result.current.error).toBeNull();
-        });
-    });
-});
 </code></pre>
  <div line-highlight="1-3,24-28,30-34,36,38-44,only"></div>
 <h3>Exercise</h3>
@@ -1141,11 +1192,11 @@ describe('useStates Hook', () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
-import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import { useState } from 'react'
-import { useCities, useStates } from '../../services/restaurant/hooks'
-import ListItem from './ListItem'
+<pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
+import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
+import { useState } from &quot;react&quot;
+import { useCities, useStates } from &quot;../../services/restaurant/hooks&quot;
+import ListItem from &quot;./ListItem&quot;
 
 const RestaurantList: React.FC = () =&gt; {
   const [state, setState] = useState(&quot;&quot;)
@@ -1158,35 +1209,35 @@ const RestaurantList: React.FC = () =&gt; {
   const restaurants = {
     data: [
       {
-        name: 'Cheese Curd City',
-        slug: 'cheese-curd-city',
+        name: &quot;Cheese Curd City&quot;,
+        slug: &quot;cheese-curd-city&quot;,
         images: {
           thumbnail: CheeseThumbnail,
         },
         address: {
-          street: '2451 W Washburne Ave',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53295',
+          street: &quot;2451 W Washburne Ave&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53295&quot;,
         },
-        _id: 'Ar0qBJHxM3ecOhcr',
+        _id: &quot;Ar0qBJHxM3ecOhcr&quot;,
       },
       {
-        name: 'Poutine Palace',
-        slug: 'poutine-palace',
+        name: &quot;Poutine Palace&quot;,
+        slug: &quot;poutine-palace&quot;,
         images: {
           thumbnail: PoutineThumbnail,
         },
         address: {
-          street: '230 W Kinzie Street',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53205',
+          street: &quot;230 W Kinzie Street&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53205&quot;,
         },
-        _id: '3ZOZyTY1LH26LnVw',
+        _id: &quot;3ZOZyTY1LH26LnVw&quot;,
       },
-    ]
-  };
+    ],
+  }
 
   const updateState = (stateShortCode: string) =&gt; {
     setState(stateShortCode)
@@ -1210,17 +1261,15 @@ const RestaurantList: React.FC = () =&gt; {
             &lt;select
               className=&quot;form-control&quot;
               id=&quot;stateSelect&quot;
-              onChange={event =&gt; updateState(event.target.value)}
+              onChange={(event) =&gt; updateState(event.target.value)}
               value={state}
             &gt;
               &lt;option key=&quot;choose_state&quot; value=&quot;&quot;&gt;
-                {
-                  statesResponse.isPending
-                    ? &quot;Loading states…&quot;
-                    : statesResponse.error
-                      ? statesResponse.error.message
-                      : &quot;Choose a state&quot;
-                }
+                {statesResponse.isPending
+                  ? &quot;Loading states…&quot;
+                  : statesResponse.error
+                    ? statesResponse.error.message
+                    : &quot;Choose a state&quot;}
               &lt;/option&gt;
               {statesResponse.data?.map(({ short, name }) =&gt; (
                 &lt;option key={short} value={short}&gt;
@@ -1232,15 +1281,21 @@ const RestaurantList: React.FC = () =&gt; {
 
           &lt;div className=&quot;form-group&quot;&gt;
             City:
-            {state ? cities.map(({ name }) =&gt; (
-              &lt;button key={name} onClick={() =&gt; updateCity(name)} type=&quot;button&quot;&gt;
-                {name}
-              &lt;/button&gt;
-            )) : &lt;&gt; Choose a state before selecting a city&lt;/&gt;}
+            {state ? (
+              cities.map(({ name }) =&gt; (
+                &lt;button
+                  key={name}
+                  onClick={() =&gt; updateCity(name)}
+                  type=&quot;button&quot;
+                &gt;
+                  {name}
+                &lt;/button&gt;
+              ))
+            ) : (
+              &lt;&gt; Choose a state before selecting a city&lt;/&gt;
+            )}
             &lt;hr /&gt;
-            &lt;p&gt;
-              Current city: {city || &quot;(none)&quot;}
-            &lt;/p&gt;
+            &lt;p&gt;Current city: {city || &quot;(none)&quot;}&lt;/p&gt;
           &lt;/div&gt;
         &lt;/form&gt;
 
@@ -1263,24 +1318,25 @@ const RestaurantList: React.FC = () =&gt; {
 }
 
 export default RestaurantList
+
 </code></pre>
  <div line-highlight="11,only"></div>
 <p>✏️ Update <strong>src/services/restaurant/hooks.ts</strong> to be:</p>
-<pre><code class="language-ts">import { useEffect, useState } from 'react'
-import type { City, State } from './interfaces'
+<pre><code class="language-ts">import type { City, State } from &quot;./interfaces&quot;
+import { useEffect, useState } from &quot;react&quot;
 
 interface StatesResponse {
-  data: State[] | null;
-  error: Error | null;
-  isPending: boolean;
+  data: State[] | null
+  error: Error | null
+  isPending: boolean
 }
 
 export function useCities(state: string): City[] {
   const cities = [
-    { name: 'Madison', state: 'WI' },
-    { name: 'Springfield', state: 'IL' },
+    { name: &quot;Madison&quot;, state: &quot;WI&quot; },
+    { name: &quot;Springfield&quot;, state: &quot;IL&quot; },
   ]
-  return cities.filter(city =&gt; {
+  return cities.filter((city) =&gt; {
     return city.state === state
   })
 }
@@ -1307,10 +1363,11 @@ export function useStates(): StatesResponse {
       })
     }
     fetchData()
-  }, []);
+  }, [])
 
   return response
 }
+
 </code></pre>
  <div line-highlight="4-7,18,20-25,27-31,33,35-42,44-45,only"></div>
 <p></details></p>
@@ -1339,11 +1396,11 @@ key-value pairs are separated by the <code>&amp;</code> symbol.</p>
 </ul>
 <h3>Setup</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
-import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import { useState } from 'react'
-import { useCities, useStates } from '../../services/restaurant/hooks'
-import ListItem from './ListItem'
+<pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
+import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
+import { useState } from &quot;react&quot;
+import { useCities, useStates } from &quot;../../services/restaurant/hooks&quot;
+import ListItem from &quot;./ListItem&quot;
 
 const RestaurantList: React.FC = () =&gt; {
   const [state, setState] = useState(&quot;&quot;)
@@ -1356,35 +1413,35 @@ const RestaurantList: React.FC = () =&gt; {
   const restaurants = {
     data: [
       {
-        name: 'Cheese Curd City',
-        slug: 'cheese-curd-city',
+        name: &quot;Cheese Curd City&quot;,
+        slug: &quot;cheese-curd-city&quot;,
         images: {
           thumbnail: CheeseThumbnail,
         },
         address: {
-          street: '2451 W Washburne Ave',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53295',
+          street: &quot;2451 W Washburne Ave&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53295&quot;,
         },
-        _id: 'Ar0qBJHxM3ecOhcr',
+        _id: &quot;Ar0qBJHxM3ecOhcr&quot;,
       },
       {
-        name: 'Poutine Palace',
-        slug: 'poutine-palace',
+        name: &quot;Poutine Palace&quot;,
+        slug: &quot;poutine-palace&quot;,
         images: {
           thumbnail: PoutineThumbnail,
         },
         address: {
-          street: '230 W Kinzie Street',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53205',
+          street: &quot;230 W Kinzie Street&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53205&quot;,
         },
-        _id: '3ZOZyTY1LH26LnVw',
+        _id: &quot;3ZOZyTY1LH26LnVw&quot;,
       },
-    ]
-  };
+    ],
+  }
 
   const updateState = (stateShortCode: string) =&gt; {
     setState(stateShortCode)
@@ -1408,17 +1465,15 @@ const RestaurantList: React.FC = () =&gt; {
             &lt;select
               className=&quot;form-control&quot;
               id=&quot;stateSelect&quot;
-              onChange={event =&gt; updateState(event.target.value)}
+              onChange={(event) =&gt; updateState(event.target.value)}
               value={state}
             &gt;
               &lt;option key=&quot;choose_state&quot; value=&quot;&quot;&gt;
-                {
-                  statesResponse.isPending
-                    ? &quot;Loading states…&quot;
-                    : statesResponse.error
-                      ? statesResponse.error.message
-                      : &quot;Choose a state&quot;
-                }
+                {statesResponse.isPending
+                  ? &quot;Loading states…&quot;
+                  : statesResponse.error
+                    ? statesResponse.error.message
+                    : &quot;Choose a state&quot;}
               &lt;/option&gt;
               {statesResponse.data?.map(({ short, name }) =&gt; (
                 &lt;option key={short} value={short}&gt;
@@ -1435,25 +1490,24 @@ const RestaurantList: React.FC = () =&gt; {
             &lt;select
               className=&quot;form-control&quot;
               id=&quot;citySelect&quot;
-              onChange={event =&gt; updateCity(event.target.value)}
+              onChange={(event) =&gt; updateCity(event.target.value)}
               value={city}
             &gt;
               &lt;option key=&quot;choose_city&quot; value=&quot;&quot;&gt;
-                {
-                  state
-                    ? citiesResponse.isPending
-                      ? &quot;Loading cities…&quot;
-                      : citiesResponse.error
-                        ? citiesResponse.error.message
-                        : &quot;Choose a city&quot;
-                    : &quot;Choose a state before selecting a city&quot;
-                }
+                {state
+                  ? citiesResponse.isPending
+                    ? &quot;Loading cities…&quot;
+                    : citiesResponse.error
+                      ? citiesResponse.error.message
+                      : &quot;Choose a city&quot;
+                  : &quot;Choose a state before selecting a city&quot;}
               &lt;/option&gt;
-              {state &amp;&amp; citiesResponse.data?.map(({ name }) =&gt; (
-                &lt;option key={name} value={name}&gt;
-                  {name}
-                &lt;/option&gt;
-              ))}
+              {state &amp;&amp;
+                citiesResponse.data?.map(({ name }) =&gt; (
+                  &lt;option key={name} value={name}&gt;
+                    {name}
+                  &lt;/option&gt;
+                ))}
             &lt;/select&gt;
           &lt;/div&gt;
         &lt;/form&gt;
@@ -1477,19 +1531,22 @@ const RestaurantList: React.FC = () =&gt; {
 }
 
 export default RestaurantList
+
 </code></pre>
- <div line-highlight="91-116,only"></div>
+ <div line-highlight="89-113,only"></div>
 <h3>Verify</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
-import { act, render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event'
-import { describe, expect, it, vi } from 'vitest';
+<pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
+import { act, render, screen } from &quot;@testing-library/react&quot;
+import userEvent from &quot;@testing-library/user-event&quot;
+import { describe, expect, it, vi } from &quot;vitest&quot;
 
-import RestaurantList from './RestaurantList';
+import RestaurantList from &quot;./RestaurantList&quot;
+
+import { useCities, useStates } from &quot;../../services/restaurant/hooks&quot;
 
 // Mock the hooks used in the component
-vi.mock('../../services/restaurant/hooks', () =&gt; ({
+vi.mock(&quot;../../services/restaurant/hooks&quot;, () =&gt; ({
   useCities: vi.fn(() =&gt; {
     return {
       data: null,
@@ -1504,123 +1561,141 @@ vi.mock('../../services/restaurant/hooks', () =&gt; ({
       isPending: false,
     }
   }),
-}));
+}))
 
-import { useCities, useStates } from '../../services/restaurant/hooks'
-
-describe('RestaurantList component', () =&gt; {
-  it('renders the Restaurants header', async () =&gt; {
-    render(&lt;RestaurantList /&gt;);
+describe(&quot;RestaurantList component&quot;, () =&gt; {
+  it(&quot;renders the Restaurants header&quot;, async () =&gt; {
+    render(&lt;RestaurantList /&gt;)
     await act(() =&gt; {})
-    expect(screen.getByText(/Restaurants/i)).toBeInTheDocument();
-  });
+    expect(screen.getByText(/Restaurants/i)).toBeInTheDocument()
+  })
 
-  it('renders state and city dropdowns', async () =&gt; {
+  it(&quot;renders state and city dropdowns&quot;, async () =&gt; {
     render(&lt;RestaurantList /&gt;)
     await act(() =&gt; {})
     expect(screen.getByLabelText(/State/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/City/i)).toBeInTheDocument()
   })
 
-  it('renders correctly with initial states', async () =&gt; {
-    useStates.mockReturnValue({ data: null, isPending: true, error: null });
-    useCities.mockReturnValue({ data: null, isPending: false, error: null });
+  it(&quot;renders correctly with initial states&quot;, async () =&gt; {
+    useStates.mockReturnValue({ data: null, isPending: true, error: null })
+    useCities.mockReturnValue({ data: null, isPending: false, error: null })
 
-    render(&lt;RestaurantList /&gt;);
+    render(&lt;RestaurantList /&gt;)
     await act(() =&gt; {})
 
-    expect(screen.getByText(/Restaurants/)).toBeInTheDocument();
-    expect(screen.getByText(/Loading states…/)).toBeInTheDocument();
-  });
+    expect(screen.getByText(/Restaurants/)).toBeInTheDocument()
+    expect(screen.getByText(/Loading states…/)).toBeInTheDocument()
+  })
 
-  it('displays error messages correctly', async () =&gt; {
-    useStates.mockReturnValue({ data: null, isPending: false, error: { message: 'Error loading states' } });
-    useCities.mockReturnValue({ data: null, isPending: false, error: { message: 'Error loading cities' } });
-
-    render(&lt;RestaurantList /&gt;);
-    await act(() =&gt; {})
-
-    expect(screen.getByText(/Error loading states/)).toBeInTheDocument();
-  });
-
-  it('renders restaurants correctly', async () =&gt; {
-    useStates.mockReturnValue({ data: [{ short: 'CA', name: 'California' }], isPending: false, error: null });
-    useCities.mockReturnValue({ data: [{ name: 'Los Angeles' }], isPending: false, error: null });
-
-    render(&lt;RestaurantList /&gt;);
-    await act(() =&gt; {})
-
-    await userEvent.selectOptions(screen.getByLabelText(/State/), 'CA');
-    await userEvent.selectOptions(screen.getByLabelText(/City/), 'Los Angeles');
-
-    expect(screen.getByText('Cheese Curd City')).toBeInTheDocument();
-  });
-});
-
-</code></pre>
- <div line-highlight="3,26,29,35-39,42-44,46-47,49-50,53-55,57-58,60,63-65,67-68,70-71,73,only"></div>
-<p>✏️ Update <strong>src/services/restaurant/hooks.test.ts</strong> to be:</p>
-<pre><code class="language-ts">import { renderHook, waitFor } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
-import { useCities, useStates } from './hooks';
-
-describe('useCities Hook', () =&gt; {
-    beforeEach(() =&gt; {
-        global.fetch = vi.fn();
-    });
-
-    it('initial state of useCities', async () =&gt; {
-        vi.mocked(fetch).mockResolvedValueOnce({
-            json: async () =&gt; ({ data: null }),
-        });
-
-        const { result } = renderHook(() =&gt; useCities('someState'));
-        await waitFor(() =&gt; {
-            expect(result.current.isPending).toBe(true);
-            expect(result.current.data).toBeNull();
-            expect(result.current.error).toBeNull();
-        });
-    });
-
-    it('fetches cities successfully', async () =&gt; {
-        const mockCities = [{ id: 1, name: 'City1' }, { id: 2, name: 'City2' }];
-        vi.mocked(fetch).mockResolvedValueOnce({
-            json: async () =&gt; ({ data: mockCities }),
-        });
-
-        const { result } = renderHook(() =&gt; useCities('someState'));
-
-        await waitFor(() =&gt; {
-            expect(result.current.data).toEqual(mockCities);
-            expect(result.current.isPending).toBe(false);
-            expect(result.current.error).toBeNull();
-        });
-    });
-});
-
-describe('useStates Hook', () =&gt; {
-    beforeEach(async () =&gt; {
-        // Mocking the fetch function
-        global.fetch = vi.fn();
+  it(&quot;displays error messages correctly&quot;, async () =&gt; {
+    useStates.mockReturnValue({
+      data: null,
+      isPending: false,
+      error: { message: &quot;Error loading states&quot; },
+    })
+    useCities.mockReturnValue({
+      data: null,
+      isPending: false,
+      error: { message: &quot;Error loading cities&quot; },
     })
 
-    it('should set the states data on successful fetch', async () =&gt; {
-        const mockStates = [{ name: 'State1' }, { name: 'State2' }];
-        fetch.mockResolvedValueOnce({
-            json: () =&gt; Promise.resolve({ data: mockStates }),
-        });
+    render(&lt;RestaurantList /&gt;)
+    await act(() =&gt; {})
 
-        const { result } = renderHook(() =&gt; useStates());
+    expect(screen.getByText(/Error loading states/)).toBeInTheDocument()
+  })
 
-        await waitFor(() =&gt; {
-            expect(result.current.isPending).toBe(false);
-            expect(result.current.data).toEqual(mockStates);
-            expect(result.current.error).toBeNull();
-        });
-    });
-});
+  it(&quot;renders restaurants correctly&quot;, async () =&gt; {
+    useStates.mockReturnValue({
+      data: [{ short: &quot;CA&quot;, name: &quot;California&quot; }],
+      isPending: false,
+      error: null,
+    })
+    useCities.mockReturnValue({
+      data: [{ name: &quot;Los Angeles&quot; }],
+      isPending: false,
+      error: null,
+    })
+
+    render(&lt;RestaurantList /&gt;)
+    await act(() =&gt; {})
+
+    await userEvent.selectOptions(screen.getByLabelText(/State/), &quot;CA&quot;)
+    await userEvent.selectOptions(screen.getByLabelText(/City/), &quot;Los Angeles&quot;)
+
+    expect(screen.getByText(&quot;Cheese Curd City&quot;)).toBeInTheDocument()
+  })
+})
+
 </code></pre>
- <div line-highlight="6,10-12,15,17-18,23-27,29,31-32,34-35,42,49,53-54,56-57,only"></div>
+ <div line-highlight="3,8,29,35-39,42-44,46-47,49-50,53-57,59-62,65-66,68,71-81,83-84,86-87,89,only"></div>
+<p>✏️ Update <strong>src/services/restaurant/hooks.test.ts</strong> to be:</p>
+<pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react&quot;
+import { describe, expect, it, vi } from &quot;vitest&quot;
+import { useCities, useStates } from &quot;./hooks&quot;
+
+describe(&quot;useCities Hook&quot;, () =&gt; {
+  beforeEach(() =&gt; {
+    global.fetch = vi.fn()
+  })
+
+  it(&quot;initial state of useCities&quot;, async () =&gt; {
+    vi.mocked(fetch).mockResolvedValueOnce({
+      json: async () =&gt; ({ data: null }),
+    })
+
+    const { result } = renderHook(() =&gt; useCities(&quot;someState&quot;))
+    await waitFor(() =&gt; {
+      expect(result.current.isPending).toBe(true)
+      expect(result.current.data).toBeNull()
+      expect(result.current.error).toBeNull()
+    })
+  })
+
+  it(&quot;fetches cities successfully&quot;, async () =&gt; {
+    const mockCities = [
+      { id: 1, name: &quot;City1&quot; },
+      { id: 2, name: &quot;City2&quot; },
+    ]
+    vi.mocked(fetch).mockResolvedValueOnce({
+      json: async () =&gt; ({ data: mockCities }),
+    })
+
+    const { result } = renderHook(() =&gt; useCities(&quot;someState&quot;))
+
+    await waitFor(() =&gt; {
+      expect(result.current.data).toEqual(mockCities)
+      expect(result.current.isPending).toBe(false)
+      expect(result.current.error).toBeNull()
+    })
+  })
+})
+
+describe(&quot;useStates Hook&quot;, () =&gt; {
+  beforeEach(async () =&gt; {
+    // Mocking the fetch function
+    global.fetch = vi.fn()
+  })
+
+  it(&quot;should set the states data on successful fetch&quot;, async () =&gt; {
+    const mockStates = [{ name: &quot;State1&quot; }, { name: &quot;State2&quot; }]
+    fetch.mockResolvedValueOnce({
+      json: () =&gt; Promise.resolve({ data: mockStates }),
+    })
+
+    const { result } = renderHook(() =&gt; useStates())
+
+    await waitFor(() =&gt; {
+      expect(result.current.isPending).toBe(false)
+      expect(result.current.data).toEqual(mockStates)
+      expect(result.current.error).toBeNull()
+    })
+  })
+})
+
+</code></pre>
+ <div line-highlight="6,10-12,15,17-18,23-30,32,34-35,37-38,45,52,56-57,59-60,only"></div>
 <h3>Exercise</h3>
 <p>Update our useCities Hook to fetch cities from the Place My Order API, given a selected state.</p>
 <p>When calling the Place My Order API, include the <code>state</code> query parameter:</p>
@@ -1630,11 +1705,11 @@ describe('useStates Hook', () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
-import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import { useState } from 'react'
-import { useCities, useStates } from '../../services/restaurant/hooks'
-import ListItem from './ListItem'
+<pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
+import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
+import { useState } from &quot;react&quot;
+import { useCities, useStates } from &quot;../../services/restaurant/hooks&quot;
+import ListItem from &quot;./ListItem&quot;
 
 const RestaurantList: React.FC = () =&gt; {
   const [state, setState] = useState(&quot;&quot;)
@@ -1647,35 +1722,35 @@ const RestaurantList: React.FC = () =&gt; {
   const restaurants = {
     data: [
       {
-        name: 'Cheese Curd City',
-        slug: 'cheese-curd-city',
+        name: &quot;Cheese Curd City&quot;,
+        slug: &quot;cheese-curd-city&quot;,
         images: {
           thumbnail: CheeseThumbnail,
         },
         address: {
-          street: '2451 W Washburne Ave',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53295',
+          street: &quot;2451 W Washburne Ave&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53295&quot;,
         },
-        _id: 'Ar0qBJHxM3ecOhcr',
+        _id: &quot;Ar0qBJHxM3ecOhcr&quot;,
       },
       {
-        name: 'Poutine Palace',
-        slug: 'poutine-palace',
+        name: &quot;Poutine Palace&quot;,
+        slug: &quot;poutine-palace&quot;,
         images: {
           thumbnail: PoutineThumbnail,
         },
         address: {
-          street: '230 W Kinzie Street',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53205',
+          street: &quot;230 W Kinzie Street&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53205&quot;,
         },
-        _id: '3ZOZyTY1LH26LnVw',
+        _id: &quot;3ZOZyTY1LH26LnVw&quot;,
       },
-    ]
-  };
+    ],
+  }
 
   const updateState = (stateShortCode: string) =&gt; {
     setState(stateShortCode)
@@ -1699,17 +1774,15 @@ const RestaurantList: React.FC = () =&gt; {
             &lt;select
               className=&quot;form-control&quot;
               id=&quot;stateSelect&quot;
-              onChange={event =&gt; updateState(event.target.value)}
+              onChange={(event) =&gt; updateState(event.target.value)}
               value={state}
             &gt;
               &lt;option key=&quot;choose_state&quot; value=&quot;&quot;&gt;
-                {
-                  statesResponse.isPending
-                    ? &quot;Loading states…&quot;
-                    : statesResponse.error
-                      ? statesResponse.error.message
-                      : &quot;Choose a state&quot;
-                }
+                {statesResponse.isPending
+                  ? &quot;Loading states…&quot;
+                  : statesResponse.error
+                    ? statesResponse.error.message
+                    : &quot;Choose a state&quot;}
               &lt;/option&gt;
               {statesResponse.data?.map(({ short, name }) =&gt; (
                 &lt;option key={short} value={short}&gt;
@@ -1726,25 +1799,24 @@ const RestaurantList: React.FC = () =&gt; {
             &lt;select
               className=&quot;form-control&quot;
               id=&quot;citySelect&quot;
-              onChange={event =&gt; updateCity(event.target.value)}
+              onChange={(event) =&gt; updateCity(event.target.value)}
               value={city}
             &gt;
               &lt;option key=&quot;choose_city&quot; value=&quot;&quot;&gt;
-                {
-                  state
-                    ? citiesResponse.isPending
-                      ? &quot;Loading cities…&quot;
-                      : citiesResponse.error
-                        ? citiesResponse.error.message
-                        : &quot;Choose a city&quot;
-                    : &quot;Choose a state before selecting a city&quot;
-                }
+                {state
+                  ? citiesResponse.isPending
+                    ? &quot;Loading cities…&quot;
+                    : citiesResponse.error
+                      ? citiesResponse.error.message
+                      : &quot;Choose a city&quot;
+                  : &quot;Choose a state before selecting a city&quot;}
               &lt;/option&gt;
-              {state &amp;&amp; citiesResponse.data?.map(({ name }) =&gt; (
-                &lt;option key={name} value={name}&gt;
-                  {name}
-                &lt;/option&gt;
-              ))}
+              {state &amp;&amp;
+                citiesResponse.data?.map(({ name }) =&gt; (
+                  &lt;option key={name} value={name}&gt;
+                    {name}
+                  &lt;/option&gt;
+                ))}
             &lt;/select&gt;
           &lt;/div&gt;
         &lt;/form&gt;
@@ -1768,22 +1840,23 @@ const RestaurantList: React.FC = () =&gt; {
 }
 
 export default RestaurantList
+
 </code></pre>
  <div line-highlight="13,only"></div>
 <p>✏️ Update <strong>src/services/restaurant/hooks.ts</strong> to be:</p>
-<pre><code class="language-ts">import { useEffect, useState } from 'react'
-import type { City, State } from './interfaces'
+<pre><code class="language-ts">import type { City, State } from &quot;./interfaces&quot;
+import { useEffect, useState } from &quot;react&quot;
 
 interface CitiesResponse {
-  data: City[] | null;
-  error: Error | null;
-  isPending: boolean;
+  data: City[] | null
+  error: Error | null
+  isPending: boolean
 }
 
 interface StatesResponse {
-  data: State[] | null;
-  error: Error | null;
-  isPending: boolean;
+  data: State[] | null
+  error: Error | null
+  isPending: boolean
 }
 
 export function useCities(state: string): CitiesResponse {
@@ -1795,9 +1868,12 @@ export function useCities(state: string): CitiesResponse {
 
   useEffect(() =&gt; {
     const fetchData = async () =&gt; {
-      const response = await fetch(`${import.meta.env.VITE_PMO_API}/cities?state=${state}`, {
-        method: &quot;GET&quot;,
-      })
+      const response = await fetch(
+        `${import.meta.env.VITE_PMO_API}/cities?state=${state}`,
+        {
+          method: &quot;GET&quot;,
+        },
+      )
 
       const data = await response.json()
 
@@ -1808,7 +1884,7 @@ export function useCities(state: string): CitiesResponse {
       })
     }
     fetchData()
-  }, [state]);
+  }, [state])
 
   return response
 }
@@ -1835,12 +1911,13 @@ export function useStates(): StatesResponse {
       })
     }
     fetchData()
-  }, []);
+  }, [])
 
   return response
 }
+
 </code></pre>
- <div line-highlight="4-5,12-13,16-17,25,38,45-47,50-51,53-54,56,58-64,67-68,only"></div>
+ <div line-highlight="4-5,12-13,16-17,25-30,41,48-50,53-54,59,61-67,70-71,only"></div>
 <p></details></p>
 <h2>Objective 4: Create an <code>apiRequest</code> helper and use it in the Hooks.</h2>
 <p>In this section, we will learn how to:</p>
@@ -1901,43 +1978,48 @@ to consume in our Hooks or components.</p>
 <h3>Setup</h3>
 <p>✏️ Create <strong>src/services/api.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export async function apiRequest&lt;Data = never, Params = unknown&gt;({
-    method,
-    params,
-    path,
+  method,
+  params,
+  path,
 }: {
-    method: string
-    params?: Params
-    path: string
-}): Promise&lt;{ data: Data | null, error: Error | null }&gt; {
+  method: string
+  params?: Params
+  path: string
+}): Promise&lt;{ data: Data | null; error: Error | null }&gt; {
+  return {
+    data: null,
+    error: null,
+  }
 }
 
 export function stringifyQuery(input: Record&lt;string, string&gt;): string {
-    const output: string[] = []
+  const output: string[] = []
 
-    for (const [key, value] of Object.entries(input)) {
-        if (typeof value !== &quot;undefined&quot; &amp;&amp; value !== null) {
-            output.push(`${key}=${value}`)
-        }
+  for (const [key, value] of Object.entries(input)) {
+    if (typeof value !== &quot;undefined&quot; &amp;&amp; value !== null) {
+      output.push(`${key}=${value}`)
     }
+  }
 
-    return output.join(&quot;&amp;&quot;)
+  return output.join(&quot;&amp;&quot;)
 }
+
 </code></pre>
 <p>✏️ Update <strong>src/services/restaurant/hooks.ts</strong> to be:</p>
-<pre><code class="language-ts">import { useEffect, useState } from 'react'
-import { apiRequest } from '../api'
-import type { City, State } from './interfaces'
+<pre><code class="language-ts">import type { City, State } from &quot;./interfaces&quot;
+import { useEffect, useState } from &quot;react&quot;
+import { apiRequest } from &quot;../api&quot;
 
 interface CitiesResponse {
-  data: City[] | null;
-  error: Error | null;
-  isPending: boolean;
+  data: City[] | null
+  error: Error | null
+  isPending: boolean
 }
 
 interface StatesResponse {
-  data: State[] | null;
-  error: Error | null;
-  isPending: boolean;
+  data: State[] | null
+  error: Error | null
+  isPending: boolean
 }
 
 export function useCities(state: string): CitiesResponse {
@@ -1949,9 +2031,12 @@ export function useCities(state: string): CitiesResponse {
 
   useEffect(() =&gt; {
     const fetchData = async () =&gt; {
-      const response = await fetch(`${import.meta.env.VITE_PMO_API}/cities?state=${state}`, {
-        method: &quot;GET&quot;,
-      })
+      const response = await fetch(
+        `${import.meta.env.VITE_PMO_API}/cities?state=${state}`,
+        {
+          method: &quot;GET&quot;,
+        },
+      )
 
       const data = await response.json()
 
@@ -1962,7 +2047,7 @@ export function useCities(state: string): CitiesResponse {
       })
     }
     fetchData()
-  }, [state]);
+  }, [state])
 
   return response
 }
@@ -1989,167 +2074,180 @@ export function useStates(): StatesResponse {
       })
     }
     fetchData()
-  }, []);
+  }, [])
 
   return response
 }
+
 </code></pre>
- <div line-highlight="2,only"></div>
+ <div line-highlight="3,only"></div>
 <h3>Verify</h3>
 <p>✏️ Create <strong>src/services/api.test.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">import { apiRequest, stringifyQuery } from './api';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+<pre><code class="language-ts">import { apiRequest, stringifyQuery } from &quot;./api&quot;
+import { afterEach, beforeEach, describe, expect, it, vi } from &quot;vitest&quot;
 
 // Mocking the global fetch function
-const mockFetch = vi.fn();
+const mockFetch = vi.fn()
 
-global.fetch = mockFetch;
+global.fetch = mockFetch
 
 beforeEach(() =&gt; {
-  mockFetch.mockClear();
-});
+  mockFetch.mockClear()
+})
 
 afterEach(() =&gt; {
-  mockFetch.mockClear();
-});
+  mockFetch.mockClear()
+})
 
-describe('apiRequest function', () =&gt; {
-  it('should handle a successful request', async () =&gt; {
+describe(&quot;apiRequest function&quot;, () =&gt; {
+  it(&quot;should handle a successful request&quot;, async () =&gt; {
     // Mock the fetch response
     mockFetch.mockResolvedValueOnce({
       ok: true,
-      json: () =&gt; Promise.resolve({ message: 'success' }),
-      statusText: 'OK',
+      json: () =&gt; Promise.resolve({ message: &quot;success&quot; }),
+      statusText: &quot;OK&quot;,
       status: 200,
-    });
+    })
 
     const response = await apiRequest({
-      method: 'GET',
-      path: '/test',
-    });
+      method: &quot;GET&quot;,
+      path: &quot;/test&quot;,
+    })
 
-    expect(response).toEqual({ data: { message: 'success' }, error: null });
-    expect(mockFetch).toHaveBeenCalledWith(`${import.meta.env.VITE_PMO_API}/test?`, { method: 'GET' });
-  });
+    expect(response).toEqual({ data: { message: &quot;success&quot; }, error: null })
+    expect(mockFetch).toHaveBeenCalledWith(
+      `${import.meta.env.VITE_PMO_API}/test?`,
+      { method: &quot;GET&quot; },
+    )
+  })
 
-  it('should handle a failed request', async () =&gt; {
+  it(&quot;should handle a failed request&quot;, async () =&gt; {
     // Mock the fetch response
     mockFetch.mockResolvedValueOnce({
       ok: false,
-      json: () =&gt; Promise.resolve({ message: 'error' }),
-      statusText: 'Bad Request',
+      json: () =&gt; Promise.resolve({ message: &quot;error&quot; }),
+      statusText: &quot;Bad Request&quot;,
       status: 400,
-    });
+    })
 
     const response = await apiRequest({
-      method: 'GET',
-      path: '/test',
-    });
+      method: &quot;GET&quot;,
+      path: &quot;/test&quot;,
+    })
 
-    expect(response).toEqual({ data: { message: 'error' }, error: new Error('400 (Bad Request)') });
-  });
+    expect(response).toEqual({
+      data: { message: &quot;error&quot; },
+      error: new Error(&quot;400 (Bad Request)&quot;),
+    })
+  })
 
-  it('should handle network errors', async () =&gt; {
+  it(&quot;should handle network errors&quot;, async () =&gt; {
     // Mock a network error
-    mockFetch.mockRejectedValueOnce(new Error('Network Error'));
+    mockFetch.mockRejectedValueOnce(new Error(&quot;Network Error&quot;))
 
     const response = await apiRequest({
-      method: 'GET',
-      path: '/test',
-    });
+      method: &quot;GET&quot;,
+      path: &quot;/test&quot;,
+    })
 
-    expect(response).toEqual({ data: null, error: new Error('Network Error') });
-  });
-});
+    expect(response).toEqual({ data: null, error: new Error(&quot;Network Error&quot;) })
+  })
+})
 
-describe('stringifyQuery function', () =&gt; {
-  it('should correctly stringify query parameters', () =&gt; {
-    const query = stringifyQuery({ foo: 'bar', baz: 'qux' });
-    expect(query).toBe('foo=bar&amp;baz=qux');
-  });
+describe(&quot;stringifyQuery function&quot;, () =&gt; {
+  it(&quot;should correctly stringify query parameters&quot;, () =&gt; {
+    const query = stringifyQuery({ foo: &quot;bar&quot;, baz: &quot;qux&quot; })
+    expect(query).toBe(&quot;foo=bar&amp;baz=qux&quot;)
+  })
 
-  it('should omit undefined and null values', () =&gt; {
-    const query = stringifyQuery({ foo: 'bar', baz: null, qux: undefined });
-    expect(query).toBe('foo=bar');
-  });
-});
+  it(&quot;should omit undefined and null values&quot;, () =&gt; {
+    const query = stringifyQuery({ foo: &quot;bar&quot;, baz: null, qux: undefined })
+    expect(query).toBe(&quot;foo=bar&quot;)
+  })
+})
 
 </code></pre>
 <p>✏️ Update <strong>src/services/restaurant/hooks.test.ts</strong> to be:</p>
-<pre><code class="language-ts">import { renderHook, waitFor } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { apiRequest } from '../api'
-import { useCities, useStates } from './hooks';
+<pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react&quot;
+import { beforeEach, describe, expect, it, vi } from &quot;vitest&quot;
+import { apiRequest } from &quot;../api&quot;
+import { useCities, useStates } from &quot;./hooks&quot;
 
 // Mock the apiRequest function
-vi.mock('../api', () =&gt; ({
+vi.mock(&quot;../api&quot;, () =&gt; ({
   apiRequest: vi.fn(),
-}));
+}))
 
-describe('Hooks', () =&gt; {
+describe(&quot;Hooks&quot;, () =&gt; {
   beforeEach(() =&gt; {
-    vi.resetAllMocks();
-  });
+    vi.resetAllMocks()
+  })
 
-  describe('useCities hook', () =&gt; {
-    it('should return cities data successfully', async () =&gt; {
-      const mockCities = [{ id: 1, name: 'City1' }, { id: 2, name: 'City2' }];
-      apiRequest.mockResolvedValue({ data: { data: mockCities }, error: null });
+  describe(&quot;useCities hook&quot;, () =&gt; {
+    it(&quot;should return cities data successfully&quot;, async () =&gt; {
+      const mockCities = [
+        { id: 1, name: &quot;City1&quot; },
+        { id: 2, name: &quot;City2&quot; },
+      ]
+      apiRequest.mockResolvedValue({ data: { data: mockCities }, error: null })
 
-      const { result } = renderHook(() =&gt; useCities('test-state'));
-
-      await waitFor(() =&gt; {
-        expect(result.current.isPending).toBeFalsy();
-        expect(result.current.data).toEqual(mockCities);
-        expect(result.current.error).toBeNull();
-      });
-    });
-
-    it('should handle error when fetching cities data', async () =&gt; {
-      const mockError = new Error('Error fetching cities');
-      apiRequest.mockResolvedValue({ data: null, error: mockError });
-
-      const { result } = renderHook(() =&gt; useCities('test-state'));
+      const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
 
       await waitFor(() =&gt; {
-        expect(result.current.isPending).toBeFalsy();
-        expect(result.current.data).toBeNull();
-        expect(result.current.error).toEqual(mockError);
-      });
-    });
-  });
+        expect(result.current.isPending).toBeFalsy()
+        expect(result.current.data).toEqual(mockCities)
+        expect(result.current.error).toBeNull()
+      })
+    })
 
-  describe('useStates hook', () =&gt; {
-    it('should return states data successfully', async () =&gt; {
-      const mockStates = [{ id: 1, name: 'State1' }, { id: 2, name: 'State2' }];
-      apiRequest.mockResolvedValue({ data: { data: mockStates }, error: null });
+    it(&quot;should handle error when fetching cities data&quot;, async () =&gt; {
+      const mockError = new Error(&quot;Error fetching cities&quot;)
+      apiRequest.mockResolvedValue({ data: null, error: mockError })
 
-      const { result } = renderHook(() =&gt; useStates());
+      const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
 
       await waitFor(() =&gt; {
-        expect(result.current.isPending).toBeFalsy();
-        expect(result.current.data).toEqual(mockStates);
-        expect(result.current.error).toBeNull();
-      });
-    });
+        expect(result.current.isPending).toBeFalsy()
+        expect(result.current.data).toBeNull()
+        expect(result.current.error).toEqual(mockError)
+      })
+    })
+  })
 
-    it('should handle error when fetching states data', async () =&gt; {
-      const mockError = new Error('Error fetching states');
-      apiRequest.mockResolvedValue({ data: null, error: mockError });
+  describe(&quot;useStates hook&quot;, () =&gt; {
+    it(&quot;should return states data successfully&quot;, async () =&gt; {
+      const mockStates = [
+        { id: 1, name: &quot;State1&quot; },
+        { id: 2, name: &quot;State2&quot; },
+      ]
+      apiRequest.mockResolvedValue({ data: { data: mockStates }, error: null })
 
-      const { result } = renderHook(() =&gt; useStates());
+      const { result } = renderHook(() =&gt; useStates())
 
       await waitFor(() =&gt; {
-        expect(result.current.isPending).toBeFalsy();
-        expect(result.current.data).toBeNull();
-        expect(result.current.error).toEqual(mockError);
-      });
-    });
-  });
-});
+        expect(result.current.isPending).toBeFalsy()
+        expect(result.current.data).toEqual(mockStates)
+        expect(result.current.error).toBeNull()
+      })
+    })
+
+    it(&quot;should handle error when fetching states data&quot;, async () =&gt; {
+      const mockError = new Error(&quot;Error fetching states&quot;)
+      apiRequest.mockResolvedValue({ data: null, error: mockError })
+
+      const { result } = renderHook(() =&gt; useStates())
+
+      await waitFor(() =&gt; {
+        expect(result.current.isPending).toBeFalsy()
+        expect(result.current.data).toBeNull()
+        expect(result.current.error).toEqual(mockError)
+      })
+    })
+  })
+})
 
 </code></pre>
- <div line-highlight="2-3,6-9,11-14,16-19,21,23-27,30-32,34,36-40,42,44-47,49,51-55,58-60,62,64-68,70,only"></div>
+ <div line-highlight="2-3,6-9,11,13,16-22,24,26-30,33-35,37,39-43,47-53,55,57-61,64-66,68,70-74,only"></div>
 <h3>Exercise</h3>
 <ul>
 <li>Implement the <code>apiRequest</code> helper function to handle errors returned and thrown from <code>fetch()</code>.</li>
@@ -2166,63 +2264,70 @@ describe('Hooks', () =&gt; {
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/services/api.ts</strong> to be:</p>
 <pre><code class="language-ts">export async function apiRequest&lt;Data = never, Params = unknown&gt;({
-    method,
-    params,
-    path,
+  method,
+  params,
+  path,
 }: {
-    method: string
-    params?: Params
-    path: string
-}): Promise&lt;{ data: Data | null, error: Error | null }&gt; {
-    try {
-        const query = params ? stringifyQuery(params) : &quot;&quot;
-        const response = await fetch(`${import.meta.env.VITE_PMO_API}${path}?${query}`, {
-            method,
-        })
+  method: string
+  params?: Params
+  path: string
+}): Promise&lt;{ data: Data | null; error: Error | null }&gt; {
+  try {
+    const query = params ? stringifyQuery(params) : &quot;&quot;
+    const response = await fetch(
+      `${import.meta.env.VITE_PMO_API}${path}?${query}`,
+      {
+        method,
+      },
+    )
 
-        const data = await response.json()
-        const error = response.ok ? null : new Error(`${response.status} (${response.statusText})`)
+    const data = await response.json()
+    const error = response.ok
+      ? null
+      : new Error(`${response.status} (${response.statusText})`)
 
-        return {
-            data: data,
-            error: error,
-        }
-    } catch (error) {
-        return {
-            data: null,
-            error: error instanceof Error ? error : new Error('An unknown error occurred'),
-        }
+    return {
+      data: data,
+      error: error,
     }
+  } catch (error) {
+    return {
+      data: null,
+      error:
+        error instanceof Error ? error : new Error(&quot;An unknown error occurred&quot;),
+    }
+  }
 }
 
 export function stringifyQuery(input: Record&lt;string, string&gt;): string {
-    const output: string[] = []
+  const output: string[] = []
 
-    for (const [key, value] of Object.entries(input)) {
-        if (typeof value !== &quot;undefined&quot; &amp;&amp; value !== null) {
-            output.push(`${key}=${value}`)
-        }
+  for (const [key, value] of Object.entries(input)) {
+    if (typeof value !== &quot;undefined&quot; &amp;&amp; value !== null) {
+      output.push(`${key}=${value}`)
     }
+  }
 
-    return output.join(&quot;&amp;&quot;)
+  return output.join(&quot;&amp;&quot;)
 }
+
 </code></pre>
- <div line-highlight="10-14,16-17,19-21,23-27,37-38,only"></div>
+ <div line-highlight="10-17,19-22,24-26,28-33,43,only"></div>
 <p>✏️ Update <strong>src/services/restaurant/hooks.ts</strong> to be:</p>
-<pre><code class="language-ts">import { useEffect, useState } from 'react'
-import { apiRequest } from '../api'
-import type { City, State } from './interfaces'
+<pre><code class="language-ts">import type { City, State } from &quot;./interfaces&quot;
+import { useEffect, useState } from &quot;react&quot;
+import { apiRequest } from &quot;../api&quot;
 
 interface CitiesResponse {
-  data: City[] | null;
-  error: Error | null;
-  isPending: boolean;
+  data: City[] | null
+  error: Error | null
+  isPending: boolean
 }
 
 interface StatesResponse {
-  data: State[] | null;
-  error: Error | null;
-  isPending: boolean;
+  data: State[] | null
+  error: Error | null
+  isPending: boolean
 }
 
 export function useCities(state: string): CitiesResponse {
@@ -2235,11 +2340,11 @@ export function useCities(state: string): CitiesResponse {
   useEffect(() =&gt; {
     const fetchData = async () =&gt; {
       const { data, error } = await apiRequest&lt;CitiesResponse&gt;({
-          method: &quot;GET&quot;,
-          path: &quot;/cities&quot;,
-          params: {
-              state: state
-          },
+        method: &quot;GET&quot;,
+        path: &quot;/cities&quot;,
+        params: {
+          state: state,
+        },
       })
 
       setResponse({
@@ -2249,7 +2354,7 @@ export function useCities(state: string): CitiesResponse {
       })
     }
     fetchData()
-  }, [state]);
+  }, [state])
 
   return response
 }
@@ -2264,8 +2369,8 @@ export function useStates(): StatesResponse {
   useEffect(() =&gt; {
     const fetchData = async () =&gt; {
       const { data, error } = await apiRequest&lt;StatesResponse&gt;({
-          method: &quot;GET&quot;,
-          path: &quot;/states&quot;,
+        method: &quot;GET&quot;,
+        path: &quot;/states&quot;,
       })
 
       setResponse({
@@ -2275,12 +2380,13 @@ export function useStates(): StatesResponse {
       })
     }
     fetchData()
-  }, []);
+  }, [])
 
   return response
 }
+
 </code></pre>
- <div line-highlight="26-31,36,55-57,62,only"></div>
+ <div line-highlight="26,28-30,36,55-57,62,64,only"></div>
 <p></details></p>
 <h2>Objective 5: Fetch restaurant data</h2>
 <p>In this section, we will:</p>
@@ -2295,11 +2401,15 @@ return restaurants in the selected city.:</p>
 style="border: solid 1px black; max-width: 800px;"/></p>
 <h3>Setup</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
-import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import { useState } from 'react'
-import { useCities, useRestaurants, useStates } from '../../services/restaurant/hooks'
-import ListItem from './ListItem'
+<pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
+import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
+import { useState } from &quot;react&quot;
+import {
+  useCities,
+  useRestaurants,
+  useStates,
+} from &quot;../../services/restaurant/hooks&quot;
+import ListItem from &quot;./ListItem&quot;
 
 const RestaurantList: React.FC = () =&gt; {
   const [state, setState] = useState(&quot;&quot;)
@@ -2312,35 +2422,35 @@ const RestaurantList: React.FC = () =&gt; {
   const restaurants = {
     data: [
       {
-        name: 'Cheese Curd City',
-        slug: 'cheese-curd-city',
+        name: &quot;Cheese Curd City&quot;,
+        slug: &quot;cheese-curd-city&quot;,
         images: {
           thumbnail: CheeseThumbnail,
         },
         address: {
-          street: '2451 W Washburne Ave',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53295',
+          street: &quot;2451 W Washburne Ave&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53295&quot;,
         },
-        _id: 'Ar0qBJHxM3ecOhcr',
+        _id: &quot;Ar0qBJHxM3ecOhcr&quot;,
       },
       {
-        name: 'Poutine Palace',
-        slug: 'poutine-palace',
+        name: &quot;Poutine Palace&quot;,
+        slug: &quot;poutine-palace&quot;,
         images: {
           thumbnail: PoutineThumbnail,
         },
         address: {
-          street: '230 W Kinzie Street',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53205',
+          street: &quot;230 W Kinzie Street&quot;,
+          city: &quot;Green Bay&quot;,
+          state: &quot;WI&quot;,
+          zip: &quot;53205&quot;,
         },
-        _id: '3ZOZyTY1LH26LnVw',
+        _id: &quot;3ZOZyTY1LH26LnVw&quot;,
       },
-    ]
-  };
+    ],
+  }
 
   const updateState = (stateShortCode: string) =&gt; {
     setState(stateShortCode)
@@ -2364,17 +2474,15 @@ const RestaurantList: React.FC = () =&gt; {
             &lt;select
               className=&quot;form-control&quot;
               id=&quot;stateSelect&quot;
-              onChange={event =&gt; updateState(event.target.value)}
+              onChange={(event) =&gt; updateState(event.target.value)}
               value={state}
             &gt;
               &lt;option key=&quot;choose_state&quot; value=&quot;&quot;&gt;
-                {
-                  statesResponse.isPending
-                    ? &quot;Loading states…&quot;
-                    : statesResponse.error
-                      ? statesResponse.error.message
-                      : &quot;Choose a state&quot;
-                }
+                {statesResponse.isPending
+                  ? &quot;Loading states…&quot;
+                  : statesResponse.error
+                    ? statesResponse.error.message
+                    : &quot;Choose a state&quot;}
               &lt;/option&gt;
               {statesResponse.data?.map(({ short, name }) =&gt; (
                 &lt;option key={short} value={short}&gt;
@@ -2391,25 +2499,24 @@ const RestaurantList: React.FC = () =&gt; {
             &lt;select
               className=&quot;form-control&quot;
               id=&quot;citySelect&quot;
-              onChange={event =&gt; updateCity(event.target.value)}
+              onChange={(event) =&gt; updateCity(event.target.value)}
               value={city}
             &gt;
               &lt;option key=&quot;choose_city&quot; value=&quot;&quot;&gt;
-                {
-                  state
-                    ? citiesResponse.isPending
-                      ? &quot;Loading cities…&quot;
-                      : citiesResponse.error
-                        ? citiesResponse.error.message
-                        : &quot;Choose a city&quot;
-                    : &quot;Choose a state before selecting a city&quot;
-                }
+                {state
+                  ? citiesResponse.isPending
+                    ? &quot;Loading cities…&quot;
+                    : citiesResponse.error
+                      ? citiesResponse.error.message
+                      : &quot;Choose a city&quot;
+                  : &quot;Choose a state before selecting a city&quot;}
               &lt;/option&gt;
-              {state &amp;&amp; citiesResponse.data?.map(({ name }) =&gt; (
-                &lt;option key={name} value={name}&gt;
-                  {name}
-                &lt;/option&gt;
-              ))}
+              {state &amp;&amp;
+                citiesResponse.data?.map(({ name }) =&gt; (
+                  &lt;option key={name} value={name}&gt;
+                    {name}
+                  &lt;/option&gt;
+                ))}
             &lt;/select&gt;
           &lt;/div&gt;
         &lt;/form&gt;
@@ -2426,31 +2533,32 @@ const RestaurantList: React.FC = () =&gt; {
           &lt;/p&gt;
         )}
 
-        {city &amp;&amp; restaurantsResponse.data &amp;&amp; (
-          restaurantsResponse.data.length === 0 ? (
-            !restaurantsResponse.isPending &amp;&amp; (
-              &lt;p aria-live=&quot;polite&quot;&gt;No restaurants found.&lt;/p&gt;
-            )
-          ) : (
-            restaurantsResponse.data.map(({ _id, slug, name, address, images }) =&gt; (
-              &lt;ListItem
-                key={_id}
-                address={address}
-                name={name}
-                slug={slug}
-                thumbnail={images.thumbnail}
-              /&gt;
-            ))
-          )
-        )}
+        {city &amp;&amp;
+          restaurantsResponse.data &amp;&amp;
+          (restaurantsResponse.data.length === 0
+            ? !restaurantsResponse.isPending &amp;&amp; (
+                &lt;p aria-live=&quot;polite&quot;&gt;No restaurants found.&lt;/p&gt;
+              )
+            : restaurantsResponse.data.map(
+                ({ _id, slug, name, address, images }) =&gt; (
+                  &lt;ListItem
+                    key={_id}
+                    address={address}
+                    name={name}
+                    slug={slug}
+                    thumbnail={images.thumbnail}
+                  /&gt;
+                ),
+              ))}
       &lt;/div&gt;
     &lt;/&gt;
   )
 }
 
 export default RestaurantList
+
 </code></pre>
- <div line-highlight="4,120-123,126-130,132-148,only"></div>
+ <div line-highlight="4-8,121-124,127-131,133-149,only"></div>
 <p>✏️ Update <strong>src/services/restaurant/interfaces.ts</strong> to be:</p>
 <pre><code class="language-ts">export interface City {
   name: string
@@ -2458,58 +2566,59 @@ export default RestaurantList
 }
 
 interface Item {
-  name: string;
-  price: number;
+  name: string
+  price: number
 }
 
 interface Menu {
-  dinner: Item[];
-  lunch: Item[];
+  dinner: Item[]
+  lunch: Item[]
 }
 
 interface Address {
-  city: string;
-  state: string;
-  street: string;
-  zip: string;
+  city: string
+  state: string
+  street: string
+  zip: string
 }
 
 interface Images {
-  banner: string;
-  owner: string;
-  thumbnail: string;
+  banner: string
+  owner: string
+  thumbnail: string
 }
 
 export interface Restaurant {
-  _id: string;
-  address?: Address;
-  images: Images;
-  menu: Menu;
-  name: string;
-  slug: string;
+  _id: string
+  address?: Address
+  images: Images
+  menu: Menu
+  name: string
+  slug: string
 }
 
 export interface State {
   name: string
   short: string
 }
+
 </code></pre>
  <div line-highlight="6,8,11-14,16-21,23-27,29-36,39,41,only"></div>
 <p>✏️ Update <strong>src/services/restaurant/hooks.ts</strong> to be:</p>
-<pre><code class="language-ts">import { useEffect, useState } from 'react'
-import { apiRequest } from '../api'
-import type { City, Restaurant, State } from './interfaces'
+<pre><code class="language-ts">import type { City, Restaurant, State } from &quot;./interfaces&quot;
+import { useEffect, useState } from &quot;react&quot;
+import { apiRequest } from &quot;../api&quot;
 
 interface CitiesResponse {
-  data: City[] | null;
-  error: Error | null;
-  isPending: boolean;
+  data: City[] | null
+  error: Error | null
+  isPending: boolean
 }
 
 interface StatesResponse {
-  data: State[] | null;
-  error: Error | null;
-  isPending: boolean;
+  data: State[] | null
+  error: Error | null
+  isPending: boolean
 }
 
 export function useCities(state: string): CitiesResponse {
@@ -2522,11 +2631,11 @@ export function useCities(state: string): CitiesResponse {
   useEffect(() =&gt; {
     const fetchData = async () =&gt; {
       const { data, error } = await apiRequest&lt;CitiesResponse&gt;({
-          method: &quot;GET&quot;,
-          path: &quot;/cities&quot;,
-          params: {
-              state: state
-          },
+        method: &quot;GET&quot;,
+        path: &quot;/cities&quot;,
+        params: {
+          state: state,
+        },
       })
 
       setResponse({
@@ -2536,7 +2645,7 @@ export function useCities(state: string): CitiesResponse {
       })
     }
     fetchData()
-  }, [state]);
+  }, [state])
 
   return response
 }
@@ -2551,8 +2660,8 @@ export function useStates(): StatesResponse {
   useEffect(() =&gt; {
     const fetchData = async () =&gt; {
       const { data, error } = await apiRequest&lt;StatesResponse&gt;({
-          method: &quot;GET&quot;,
-          path: &quot;/states&quot;,
+        method: &quot;GET&quot;,
+        path: &quot;/states&quot;,
       })
 
       setResponse({
@@ -2562,25 +2671,32 @@ export function useStates(): StatesResponse {
       })
     }
     fetchData()
-  }, []);
+  }, [])
 
   return response
 }
+
 </code></pre>
- <div line-highlight="3,only"></div>
+ <div line-highlight="1,only"></div>
 <h3>Verify</h3>
 <p>If you’ve implemented the solution correctly, when you use the select boxes to choose state
 and city, you should see a list of just restaurants from the selected city returned.</p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event'
-import { describe, expect, it, vi } from 'vitest';
+<pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
+import { render, screen } from &quot;@testing-library/react&quot;
+import userEvent from &quot;@testing-library/user-event&quot;
+import { describe, expect, it, vi } from &quot;vitest&quot;
 
-import RestaurantList from './RestaurantList';
+import RestaurantList from &quot;./RestaurantList&quot;
+
+import {
+  useCities,
+  useRestaurants,
+  useStates,
+} from &quot;../../services/restaurant/hooks&quot;
 
 // Mock the hooks used in the component
-vi.mock('../../services/restaurant/hooks', () =&gt; ({
+vi.mock(&quot;../../services/restaurant/hooks&quot;, () =&gt; ({
   useCities: vi.fn(() =&gt; {
     return {
       data: null,
@@ -2602,162 +2718,212 @@ vi.mock('../../services/restaurant/hooks', () =&gt; ({
       isPending: false,
     }
   }),
-}));
+}))
 
-import { useCities, useRestaurants, useStates } from '../../services/restaurant/hooks'
+describe(&quot;RestaurantList component&quot;, () =&gt; {
+  it(&quot;renders the Restaurants header&quot;, () =&gt; {
+    render(&lt;RestaurantList /&gt;)
+    expect(screen.getByText(/Restaurants/i)).toBeInTheDocument()
+  })
 
-describe('RestaurantList component', () =&gt; {
-  it('renders the Restaurants header', () =&gt; {
-    render(&lt;RestaurantList /&gt;);
-    expect(screen.getByText(/Restaurants/i)).toBeInTheDocument();
-  });
-
-  it('renders state and city dropdowns', () =&gt; {
+  it(&quot;renders state and city dropdowns&quot;, () =&gt; {
     render(&lt;RestaurantList /&gt;)
     expect(screen.getByLabelText(/State/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/City/i)).toBeInTheDocument()
   })
 
-  it('renders correctly with initial states', () =&gt; {
-    useStates.mockReturnValue({ data: null, isPending: true, error: null });
-    useCities.mockReturnValue({ data: null, isPending: false, error: null });
-    useRestaurants.mockReturnValue({ data: null, isPending: false, error: null });
+  it(&quot;renders correctly with initial states&quot;, () =&gt; {
+    useStates.mockReturnValue({ data: null, isPending: true, error: null })
+    useCities.mockReturnValue({ data: null, isPending: false, error: null })
+    useRestaurants.mockReturnValue({
+      data: null,
+      isPending: false,
+      error: null,
+    })
 
-    render(&lt;RestaurantList /&gt;);
+    render(&lt;RestaurantList /&gt;)
 
-    expect(screen.getByText(/Restaurants/)).toBeInTheDocument();
-    expect(screen.getByText(/Loading states…/)).toBeInTheDocument();
-  });
+    expect(screen.getByText(/Restaurants/)).toBeInTheDocument()
+    expect(screen.getByText(/Loading states…/)).toBeInTheDocument()
+  })
 
-  it('displays error messages correctly', () =&gt; {
-    useStates.mockReturnValue({ data: null, isPending: false, error: { message: 'Error loading states' } });
-    useCities.mockReturnValue({ data: null, isPending: false, error: { message: 'Error loading cities' } });
-    useRestaurants.mockReturnValue({ data: null, isPending: false, error: { message: 'Error loading restaurants' } });
+  it(&quot;displays error messages correctly&quot;, () =&gt; {
+    useStates.mockReturnValue({
+      data: null,
+      isPending: false,
+      error: { message: &quot;Error loading states&quot; },
+    })
+    useCities.mockReturnValue({
+      data: null,
+      isPending: false,
+      error: { message: &quot;Error loading cities&quot; },
+    })
+    useRestaurants.mockReturnValue({
+      data: null,
+      isPending: false,
+      error: { message: &quot;Error loading restaurants&quot; },
+    })
 
-    render(&lt;RestaurantList /&gt;);
+    render(&lt;RestaurantList /&gt;)
 
-    expect(screen.getByText(/Error loading states/)).toBeInTheDocument();
-  });
+    expect(screen.getByText(/Error loading states/)).toBeInTheDocument()
+  })
 
-  it('renders restaurants correctly', async () =&gt; {
-    useStates.mockReturnValue({ data: [{ short: 'CA', name: 'California' }], isPending: false, error: null });
-    useCities.mockReturnValue({ data: [{ name: 'Los Angeles' }], isPending: false, error: null });
-    useRestaurants.mockReturnValue({ data: [{ _id: '1', slug: 'test-restaurant', name: 'Test Restaurant', address: '123 Test St', images: { thumbnail: 'test.jpg' } }], isPending: false, error: null });
+  it(&quot;renders restaurants correctly&quot;, async () =&gt; {
+    useStates.mockReturnValue({
+      data: [{ short: &quot;CA&quot;, name: &quot;California&quot; }],
+      isPending: false,
+      error: null,
+    })
+    useCities.mockReturnValue({
+      data: [{ name: &quot;Los Angeles&quot; }],
+      isPending: false,
+      error: null,
+    })
+    useRestaurants.mockReturnValue({
+      data: [
+        {
+          _id: &quot;1&quot;,
+          slug: &quot;test-restaurant&quot;,
+          name: &quot;Test Restaurant&quot;,
+          address: &quot;123 Test St&quot;,
+          images: { thumbnail: &quot;test.jpg&quot; },
+        },
+      ],
+      isPending: false,
+      error: null,
+    })
 
-    render(&lt;RestaurantList /&gt;);
+    render(&lt;RestaurantList /&gt;)
 
-    await userEvent.selectOptions(screen.getByLabelText(/State/), 'CA');
-    await userEvent.selectOptions(screen.getByLabelText(/City/), 'Los Angeles');
+    await userEvent.selectOptions(screen.getByLabelText(/State/), &quot;CA&quot;)
+    await userEvent.selectOptions(screen.getByLabelText(/City/), &quot;Los Angeles&quot;)
 
-    expect(screen.getByText('Test Restaurant')).toBeInTheDocument();
-  });
-});
+    expect(screen.getByText(&quot;Test Restaurant&quot;)).toBeInTheDocument()
+  })
+})
 
 </code></pre>
- <div line-highlight="2,17,25-30,33,36,41,47,50,58,61,71,78,only"></div>
+ <div line-highlight="2,8-12,23,31,35-36,40,45,51,54,66,68,73,77-80,91-93,96-111,118,only"></div>
 <p>✏️ Update <strong>src/services/restaurant/hooks.test.ts</strong> to be:</p>
-<pre><code class="language-ts">import { renderHook, waitFor } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { apiRequest } from '../api'
-import { useCities, useRestaurants, useStates } from './hooks';
+<pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react&quot;
+import { beforeEach, describe, expect, it, vi } from &quot;vitest&quot;
+import { apiRequest } from &quot;../api&quot;
+import { useCities, useRestaurants, useStates } from &quot;./hooks&quot;
 
 // Mock the apiRequest function
-vi.mock('../api', () =&gt; ({
+vi.mock(&quot;../api&quot;, () =&gt; ({
   apiRequest: vi.fn(),
-}));
+}))
 
-describe('Hooks', () =&gt; {
+describe(&quot;Hooks&quot;, () =&gt; {
   beforeEach(() =&gt; {
-    vi.resetAllMocks();
-  });
+    vi.resetAllMocks()
+  })
 
-  describe('useCities hook', () =&gt; {
-    it('should return cities data successfully', async () =&gt; {
-      const mockCities = [{ id: 1, name: 'City1' }, { id: 2, name: 'City2' }];
-      apiRequest.mockResolvedValue({ data: { data: mockCities }, error: null });
+  describe(&quot;useCities hook&quot;, () =&gt; {
+    it(&quot;should return cities data successfully&quot;, async () =&gt; {
+      const mockCities = [
+        { id: 1, name: &quot;City1&quot; },
+        { id: 2, name: &quot;City2&quot; },
+      ]
+      apiRequest.mockResolvedValue({ data: { data: mockCities }, error: null })
 
-      const { result } = renderHook(() =&gt; useCities('test-state'));
-
-      await waitFor(() =&gt; {
-        expect(result.current.isPending).toBeFalsy();
-        expect(result.current.data).toEqual(mockCities);
-        expect(result.current.error).toBeNull();
-      });
-    });
-
-    it('should handle error when fetching cities data', async () =&gt; {
-      const mockError = new Error('Error fetching cities');
-      apiRequest.mockResolvedValue({ data: null, error: mockError });
-
-      const { result } = renderHook(() =&gt; useCities('test-state'));
+      const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
 
       await waitFor(() =&gt; {
-        expect(result.current.isPending).toBeFalsy();
-        expect(result.current.data).toBeNull();
-        expect(result.current.error).toEqual(mockError);
-      });
-    });
-  });
+        expect(result.current.isPending).toBeFalsy()
+        expect(result.current.data).toEqual(mockCities)
+        expect(result.current.error).toBeNull()
+      })
+    })
 
-  describe('useRestaurants hook', () =&gt; {
-    it('should return restaurants data successfully', async () =&gt; {
-      const mockRestaurants = [{ id: 1, name: 'Restaurant1' }, { id: 2, name: 'Restaurant2' }];
-      apiRequest.mockResolvedValue({ data: { data: mockRestaurants }, error: null });
+    it(&quot;should handle error when fetching cities data&quot;, async () =&gt; {
+      const mockError = new Error(&quot;Error fetching cities&quot;)
+      apiRequest.mockResolvedValue({ data: null, error: mockError })
 
-      const { result } = renderHook(() =&gt; useRestaurants('test-state', 'test-city'));
+      const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
 
       await waitFor(() =&gt; {
-        expect(result.current.isPending).toBeFalsy();
-        expect(result.current.data).toEqual(mockRestaurants);
-        expect(result.current.error).toBeNull();
-      });
-    });
+        expect(result.current.isPending).toBeFalsy()
+        expect(result.current.data).toBeNull()
+        expect(result.current.error).toEqual(mockError)
+      })
+    })
+  })
 
-    it('should handle error when fetching restaurants data', async () =&gt; {
-      const mockError = new Error('Error fetching restaurants');
-      apiRequest.mockResolvedValue({ data: null, error: mockError });
+  describe(&quot;useRestaurants hook&quot;, () =&gt; {
+    it(&quot;should return restaurants data successfully&quot;, async () =&gt; {
+      const mockRestaurants = [
+        { id: 1, name: &quot;Restaurant1&quot; },
+        { id: 2, name: &quot;Restaurant2&quot; },
+      ]
+      apiRequest.mockResolvedValue({
+        data: { data: mockRestaurants },
+        error: null,
+      })
 
-      const { result } = renderHook(() =&gt; useRestaurants('test-state', 'test-city'));
-
-      await waitFor(() =&gt; {
-        expect(result.current.isPending).toBeFalsy();
-        expect(result.current.data).toBeNull();
-        expect(result.current.error).toEqual(mockError);
-      });
-    });
-  });
-
-  describe('useStates hook', () =&gt; {
-    it('should return states data successfully', async () =&gt; {
-      const mockStates = [{ id: 1, name: 'State1' }, { id: 2, name: 'State2' }];
-      apiRequest.mockResolvedValue({ data: { data: mockStates }, error: null });
-
-      const { result } = renderHook(() =&gt; useStates());
+      const { result } = renderHook(() =&gt;
+        useRestaurants(&quot;test-state&quot;, &quot;test-city&quot;),
+      )
 
       await waitFor(() =&gt; {
-        expect(result.current.isPending).toBeFalsy();
-        expect(result.current.data).toEqual(mockStates);
-        expect(result.current.error).toBeNull();
-      });
-    });
+        expect(result.current.isPending).toBeFalsy()
+        expect(result.current.data).toEqual(mockRestaurants)
+        expect(result.current.error).toBeNull()
+      })
+    })
 
-    it('should handle error when fetching states data', async () =&gt; {
-      const mockError = new Error('Error fetching states');
-      apiRequest.mockResolvedValue({ data: null, error: mockError });
+    it(&quot;should handle error when fetching restaurants data&quot;, async () =&gt; {
+      const mockError = new Error(&quot;Error fetching restaurants&quot;)
+      apiRequest.mockResolvedValue({ data: null, error: mockError })
 
-      const { result } = renderHook(() =&gt; useStates());
+      const { result } = renderHook(() =&gt;
+        useRestaurants(&quot;test-state&quot;, &quot;test-city&quot;),
+      )
 
       await waitFor(() =&gt; {
-        expect(result.current.isPending).toBeFalsy();
-        expect(result.current.data).toBeNull();
-        expect(result.current.error).toEqual(mockError);
-      });
-    });
-  });
-});
+        expect(result.current.isPending).toBeFalsy()
+        expect(result.current.data).toBeNull()
+        expect(result.current.error).toEqual(mockError)
+      })
+    })
+  })
+
+  describe(&quot;useStates hook&quot;, () =&gt; {
+    it(&quot;should return states data successfully&quot;, async () =&gt; {
+      const mockStates = [
+        { id: 1, name: &quot;State1&quot; },
+        { id: 2, name: &quot;State2&quot; },
+      ]
+      apiRequest.mockResolvedValue({ data: { data: mockStates }, error: null })
+
+      const { result } = renderHook(() =&gt; useStates())
+
+      await waitFor(() =&gt; {
+        expect(result.current.isPending).toBeFalsy()
+        expect(result.current.data).toEqual(mockStates)
+        expect(result.current.error).toBeNull()
+      })
+    })
+
+    it(&quot;should handle error when fetching states data&quot;, async () =&gt; {
+      const mockError = new Error(&quot;Error fetching states&quot;)
+      apiRequest.mockResolvedValue({ data: null, error: mockError })
+
+      const { result } = renderHook(() =&gt; useStates())
+
+      await waitFor(() =&gt; {
+        expect(result.current.isPending).toBeFalsy()
+        expect(result.current.data).toBeNull()
+        expect(result.current.error).toEqual(mockError)
+      })
+    })
+  })
+})
 
 </code></pre>
- <div line-highlight="4,44-47,49,53,58-59,62,79-80,82-84,88,92-98,only"></div>
+ <div line-highlight="4,47-51,53-55,58-60,64,69-70,73-75,81,90,95-96,98-100,104,108-114,only"></div>
 <h3>Exercise</h3>
 <ul>
 <li>Implement a <code>useRestaurants</code> Hook to fetch restaurant data.</li>
@@ -2769,9 +2935,13 @@ describe('Hooks', () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { useState } from 'react'
-import { useCities, useRestaurants, useStates } from '../../services/restaurant/hooks'
-import ListItem from './ListItem'
+<pre><code class="language-tsx">import { useState } from &quot;react&quot;
+import {
+  useCities,
+  useRestaurants,
+  useStates,
+} from &quot;../../services/restaurant/hooks&quot;
+import ListItem from &quot;./ListItem&quot;
 
 const RestaurantList: React.FC = () =&gt; {
   const [state, setState] = useState(&quot;&quot;)
@@ -2805,17 +2975,15 @@ const RestaurantList: React.FC = () =&gt; {
             &lt;select
               className=&quot;form-control&quot;
               id=&quot;stateSelect&quot;
-              onChange={event =&gt; updateState(event.target.value)}
+              onChange={(event) =&gt; updateState(event.target.value)}
               value={state}
             &gt;
               &lt;option key=&quot;choose_state&quot; value=&quot;&quot;&gt;
-                {
-                  statesResponse.isPending
-                    ? &quot;Loading states…&quot;
-                    : statesResponse.error
-                      ? statesResponse.error.message
-                      : &quot;Choose a state&quot;
-                }
+                {statesResponse.isPending
+                  ? &quot;Loading states…&quot;
+                  : statesResponse.error
+                    ? statesResponse.error.message
+                    : &quot;Choose a state&quot;}
               &lt;/option&gt;
               {statesResponse.data?.map(({ short, name }) =&gt; (
                 &lt;option key={short} value={short}&gt;
@@ -2832,25 +3000,24 @@ const RestaurantList: React.FC = () =&gt; {
             &lt;select
               className=&quot;form-control&quot;
               id=&quot;citySelect&quot;
-              onChange={event =&gt; updateCity(event.target.value)}
+              onChange={(event) =&gt; updateCity(event.target.value)}
               value={city}
             &gt;
               &lt;option key=&quot;choose_city&quot; value=&quot;&quot;&gt;
-                {
-                  state
-                    ? citiesResponse.isPending
-                      ? &quot;Loading cities…&quot;
-                      : citiesResponse.error
-                        ? citiesResponse.error.message
-                        : &quot;Choose a city&quot;
-                    : &quot;Choose a state before selecting a city&quot;
-                }
+                {state
+                  ? citiesResponse.isPending
+                    ? &quot;Loading cities…&quot;
+                    : citiesResponse.error
+                      ? citiesResponse.error.message
+                      : &quot;Choose a city&quot;
+                  : &quot;Choose a state before selecting a city&quot;}
               &lt;/option&gt;
-              {state &amp;&amp; citiesResponse.data?.map(({ name }) =&gt; (
-                &lt;option key={name} value={name}&gt;
-                  {name}
-                &lt;/option&gt;
-              ))}
+              {state &amp;&amp;
+                citiesResponse.data?.map(({ name }) =&gt; (
+                  &lt;option key={name} value={name}&gt;
+                    {name}
+                  &lt;/option&gt;
+                ))}
             &lt;/select&gt;
           &lt;/div&gt;
         &lt;/form&gt;
@@ -2867,52 +3034,53 @@ const RestaurantList: React.FC = () =&gt; {
           &lt;/p&gt;
         )}
 
-        {city &amp;&amp; restaurantsResponse.data &amp;&amp; (
-          restaurantsResponse.data.length === 0 ? (
-            !restaurantsResponse.isPending &amp;&amp; (
-              &lt;p aria-live=&quot;polite&quot;&gt;No restaurants found.&lt;/p&gt;
-            )
-          ) : (
-            restaurantsResponse.data.map(({ _id, slug, name, address, images }) =&gt; (
-              &lt;ListItem
-                key={_id}
-                address={address}
-                name={name}
-                slug={slug}
-                thumbnail={images.thumbnail}
-              /&gt;
-            ))
-          )
-        )}
+        {city &amp;&amp;
+          restaurantsResponse.data &amp;&amp;
+          (restaurantsResponse.data.length === 0
+            ? !restaurantsResponse.isPending &amp;&amp; (
+                &lt;p aria-live=&quot;polite&quot;&gt;No restaurants found.&lt;/p&gt;
+              )
+            : restaurantsResponse.data.map(
+                ({ _id, slug, name, address, images }) =&gt; (
+                  &lt;ListItem
+                    key={_id}
+                    address={address}
+                    name={name}
+                    slug={slug}
+                    thumbnail={images.thumbnail}
+                  /&gt;
+                ),
+              ))}
       &lt;/div&gt;
     &lt;/&gt;
   )
 }
 
 export default RestaurantList
+
 </code></pre>
- <div line-highlight="13,only"></div>
+ <div line-highlight="17,only"></div>
 <p>✏️ Update <strong>src/services/restaurant/hooks.ts</strong> to be:</p>
-<pre><code class="language-ts">import { useEffect, useState } from 'react'
-import { apiRequest } from '../api'
-import type { City, Restaurant, State } from './interfaces'
+<pre><code class="language-ts">import type { City, Restaurant, State } from &quot;./interfaces&quot;
+import { useEffect, useState } from &quot;react&quot;
+import { apiRequest } from &quot;../api&quot;
 
 interface CitiesResponse {
-  data: City[] | null;
-  error: Error | null;
-  isPending: boolean;
+  data: City[] | null
+  error: Error | null
+  isPending: boolean
 }
 
 interface RestaurantsResponse {
-  data: Restaurant[] | null;
-  error: Error | null;
-  isPending: boolean;
+  data: Restaurant[] | null
+  error: Error | null
+  isPending: boolean
 }
 
 interface StatesResponse {
-  data: State[] | null;
-  error: Error | null;
-  isPending: boolean;
+  data: State[] | null
+  error: Error | null
+  isPending: boolean
 }
 
 export function useCities(state: string): CitiesResponse {
@@ -2925,11 +3093,11 @@ export function useCities(state: string): CitiesResponse {
   useEffect(() =&gt; {
     const fetchData = async () =&gt; {
       const { data, error } = await apiRequest&lt;CitiesResponse&gt;({
-          method: &quot;GET&quot;,
-          path: &quot;/cities&quot;,
-          params: {
-              state: state
-          },
+        method: &quot;GET&quot;,
+        path: &quot;/cities&quot;,
+        params: {
+          state: state,
+        },
       })
 
       setResponse({
@@ -2939,12 +3107,15 @@ export function useCities(state: string): CitiesResponse {
       })
     }
     fetchData()
-  }, [state]);
+  }, [state])
 
   return response
 }
 
-export function useRestaurants(state: string, city: string): RestaurantsResponse {
+export function useRestaurants(
+  state: string,
+  city: string,
+): RestaurantsResponse {
   const [response, setResponse] = useState&lt;RestaurantsResponse&gt;({
     data: null,
     error: null,
@@ -2954,12 +3125,12 @@ export function useRestaurants(state: string, city: string): RestaurantsResponse
   useEffect(() =&gt; {
     const fetchData = async () =&gt; {
       const { data, error } = await apiRequest&lt;RestaurantsResponse&gt;({
-          method: &quot;GET&quot;,
-          path: &quot;/restaurants&quot;,
-          params: {
-              &quot;filter[address.state]&quot;: state,
-              &quot;filter[address.city]&quot;: city,
-          },
+        method: &quot;GET&quot;,
+        path: &quot;/restaurants&quot;,
+        params: {
+          &quot;filter[address.state]&quot;: state,
+          &quot;filter[address.city]&quot;: city,
+        },
       })
 
       setResponse({
@@ -2969,7 +3140,7 @@ export function useRestaurants(state: string, city: string): RestaurantsResponse
       })
     }
     fetchData()
-  }, [state, city]);
+  }, [state, city])
 
   return response
 }
@@ -2984,8 +3155,8 @@ export function useStates(): StatesResponse {
   useEffect(() =&gt; {
     const fetchData = async () =&gt; {
       const { data, error } = await apiRequest&lt;StatesResponse&gt;({
-          method: &quot;GET&quot;,
-          path: &quot;/states&quot;,
+        method: &quot;GET&quot;,
+        path: &quot;/states&quot;,
       })
 
       setResponse({
@@ -2995,12 +3166,13 @@ export function useStates(): StatesResponse {
       })
     }
     fetchData()
-  }, []);
+  }, [])
 
   return response
 }
+
 </code></pre>
- <div line-highlight="11-12,19-20,52-53,61,63-67,77,80,84-87,89-90,92,94,96-102,105-106,only"></div>
+ <div line-highlight="11-12,19-20,52-56,64,66-70,80,83,87-90,92-93,95,97,99-105,108-109,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>TODO</p>

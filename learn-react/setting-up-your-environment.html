@@ -125,7 +125,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-react.html"
-							title="Learn React by building the feature-rich Place My Order application in this beginner React guide. This hands-on course will introduce you to fundamental React concepts! By the end of this course, you will have a strong understanding of JSX, functional components, styling, state management, Hooks, data fetching, routing, and testing.">
+							title="Learn React by building the feature-rich Place My Order application in this beginner React guide. This hands-on course will introduce you to fundamental React concepts! By the end of this course, you will have a strong understanding of JSX, function components, styling, state management, Hooks, data fetching, routing, and testing.">
 							Learn React
 						</a>
 						
@@ -528,11 +528,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>How to follow this course</h2>
-<p>This course will walk you through building an application with React. Each page of the guide is based on building a new feature, and may have multiple “objectives” to complete. Each objective will be explained and include the requirements and any setup steps needed. Most objectives will also include unit tests to update to verify when you have implemented the solution correctly.</p>
-<p>The ✏️ icon will be used to indicate when commands need to be run or when files need to be created or updated.</p>
-<p>If you have any issues or suggestions as you move through this training, we’d love for you to submit a <a href="https://github.com/bitovi/academy/issues/new">GitHub issue</a> for it! 💖</p>
-<h2>Overview</h2>
+    <h2>Overview</h2>
 <p>In this section, we will:</p>
 <ul>
 <li>Learn about Node.js</li>
@@ -543,54 +539,35 @@ covering CanJS core libraries.">
 </ul>
 <h2>Objective 1: Install prerequisites</h2>
 <h3>Install a code editor</h3>
-<p>There are a variety of code editors that support React, the most popular is
-Microsoft’s <a href="https://code.visualstudio.com/">Visual Studio Code</a>. VS Code is available for
-most operating systems and has extensive support for React and JSX including:
-code completion, code highlighting, and linting. It’s also used by cloud
-environments like CodeSandbox and StackBlitz, making it easy to switch among
-different runtime environments.</p>
-<p>The following VS Code extensions will help you format your code consistently:
-<a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">ESLint</a>, <a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier -
-Code formatter</a></p>
+<p>There are a variety of code editors that support React, the most popular is Microsoft’s <a href="https://code.visualstudio.com/">Visual Studio Code</a>. VS Code is available for most operating systems and has extensive support for React and JSX including: code completion, code highlighting, and linting. It’s also used by cloud environments like CodeSandbox and StackBlitz, making it easy to switch among different runtime environments.</p>
+<p>These VS Code extensions will help you format your code consistently:</p>
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">ESLint</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</a></li>
+</ul>
 <h3>Install Node.js and npm</h3>
-<p>Our solution requires the <a href="https://nodejs.org/">Node.js</a> JavaScript runtime
-environment. Node.js and its included package manager <code>npm</code> will be used to do a
-variety of tasks including: installing required packages, running the
-development server, executing tests, and building the application for
-deployment.</p>
+<p>Our solution requires the <a href="https://nodejs.org/">Node.js</a> JavaScript runtime environment. Node.js and its included package manager <code>npm</code> will be used to do a variety of tasks including: installing required packages, running the development server, executing tests, and building the application for deployment.</p>
 <h3>Setup 1</h3>
-<p>This course requires Node.js version 18 or 20 (we suggest using the long-term
-support release of version 20).</p>
-<p><a href="https://nodejs.org/en/download">Download the Node.js installer</a> for your operating system.
-Any installation of Node.js will also include npm.</p>
-<p>Alternatively, you can <a href="https://nodejs.org/en/download/package-manager">install Node.js via package manager</a>.</p>
-<p>During the installation process you may be prompted to make selections or install prerequisites, use
-the default selections and proceed with the installation.</p>
+<p>This course requires Node.js version 18 or 20 (we suggest using the long-term support release of version 20).</p>
+<p>The simplest approach is to download the <a href="https://nodejs.org/en/download">Node.js installer</a> for your operating system. Any installation of Node.js will also include npm.</p>
+<p>Alternatively, you can <a href="https://nodejs.org/en/download/package-manager">install Node.js via package manager</a>; this is the reccomendation for most professional setups.</p>
+<p>During the installation process you may be prompted to make selections or install prerequisites, use the default selections and proceed with the installation.</p>
 <p>The installation process can take 10 to 15 minutes to complete.</p>
 <h3>Verify 1</h3>
 <p>✏️ Run the following command in a terminal to verify Node.js is installed correctly.</p>
-<p>🔦 <em>If you encounter an error running <code>node --version</code> you may need to restart for node to be
-completely installed.</em></p>
+<p>🔦 <em>If you encounter an error running <code>node --version</code> you may need to restart for node to be completely installed.</em></p>
 <pre><code class="language-shell">node --version
 </code></pre>
-<p>The output of the command will be the current version of Node.js, we expect it
-to start with either &quot;v18&quot; or &quot;v20&quot;.</p>
+<p>The output of the command will be the current version of Node.js, we expect it to start with either &quot;v18&quot; or &quot;v20&quot;.</p>
 <p>✏️ Run the following command in a terminal to verify <code>npm</code> is installed correctly:</p>
 <pre><code class="language-shell">npm --version
 </code></pre>
-<p>The output of the command will be the current version of <code>npm</code>, we expect it
-to start with either &quot;9&quot; or &quot;10&quot;.</p>
+<p>The output of the command will be the current version of <code>npm</code>, we expect it to start with either &quot;9&quot; or &quot;10&quot;.</p>
 <h2>Objective 2: Generate the “Place My Order” application</h2>
-<p>Create a new React application named “Place My Order” that supports TypeScript
-and can be served and tested.</p>
+<p>Create a new React application named “Place My Order” that supports TypeScript and can be served and tested.</p>
 <h3>Use Vite to generate a new React application</h3>
-<p>For this course we will use <a href="https://vitejs.dev">Vite</a> to manage our React
-project. Vite is a Node.js application that simplifies the creation,
-development, testing, and building of web application frontends. We will use a
-Vite &quot;template&quot; to specify that we are creating a React project with support for
-TypeScript.</p>
-<p>After generating the React app the following folders and files will be included
-in the &quot;place-my-order&quot; folder:</p>
+<p>For this course we will use <a href="https://vitejs.dev">Vite</a> to manage our React project. Vite is a Node.js application that simplifies the creation, development, testing, and building of web application frontends. We will use a Vite &quot;template&quot; to specify that we are creating a React project with support for TypeScript.</p>
+<p>After generating the React app the following folders and files will be included in the &quot;place-my-order&quot; folder:</p>
 <pre><code class="language-code">├── public/
 ├── src/
 │   ├── assets/
@@ -604,75 +581,54 @@ in the &quot;place-my-order&quot; folder:</p>
 ├── tsconfig.json
 ├── vite.config.ts
 </code></pre>
-<p><strong>/public</strong> contains static assets which will be served up as part of your
-website. You can include stylesheets, images and other static files.</p>
-<p><strong>/src</strong> is where all your React components should be stored alongside any logic
-for your app. This will already be seeded with a small sample app.</p>
-<p><strong>index.html</strong> will render React by default.</p>
-<p><strong>main.tsx</strong> is the entry point of the React application. This is where our
-application is initialized and mounted in the DOM.</p>
-<p><strong>App.tsx</strong> the contents displayed as the application’s root <code>/</code> web page.</p>
+<p><strong>/public</strong> contains static assets which will be served up as part of your website. You can include stylesheets, images and other static files.</p>
+<p><strong>/src</strong> is where all your React components should be stored alongside any logic for your app. This will already be seeded with a small sample app.</p>
+<p><strong>index.html</strong> is the entry point for your users. This is what loads <code>main.tsx</code>.</p>
+<p><strong>main.tsx</strong> is the entry point of the React application. This is where our application is initialized and mounted in the DOM.</p>
+<p><strong>App.tsx</strong> is your React application itself.</p>
 <h3>Setup 2</h3>
-<p>✏️ Open a terminal and move to a location where you want to generate your React
-application, then execute the following command:</p>
+<p>✏️ Open a terminal and move to a location where you want to generate your React application, then execute the following command:</p>
 <pre><code class="language-shell">npm create vite@5 place-my-order -- --template react-ts
 </code></pre>
-<p>The command runs <code>npm</code> with <code>vite</code> to create a new application named
-&quot;place-my-order&quot;. Vite will use its &quot;react-ts&quot; template to generate the React
-application with <a href="https://www.typescriptlang.org/">TypeScript</a> support.</p>
-<p>Now <code>cd</code> into the new directory created for the application and install the
-required packages:</p>
+<p>The command runs <code>npm</code>, using <code>vite</code> to create a new application named &quot;place-my-order&quot;. Vite will use its &quot;react-ts&quot; template to generate the React application with <a href="https://www.typescriptlang.org/">TypeScript</a> support.</p>
+<p>Now <code>cd</code> into the new directory created for the application and install the required packages:</p>
 <pre><code class="language-shell">cd place-my-order
 npm install
 </code></pre>
 <h3>Verify 2</h3>
-<p>Once you have completed the previous step you will be able to start the development server and see
-the default welcome page.</p>
-<p>The development server is a useful tool. When it starts, it
-<a href="https://en.wikipedia.org/wiki/Source-to-source_compiler">transpiles</a> the TypeScript and JSX code
-into JavaScript and bundles it for delivery to the browser. It also watches for changes to the
-source code, and when they occur, it repeats the process, then causes the browser to reload with
-those changes.</p>
+<p>Once you have completed the previous step you will be able to start the development server and see the default welcome page.</p>
+<p>The development server is a useful tool. When it starts, it <a href="https://en.wikipedia.org/wiki/Source-to-source_compiler">transpiles</a> the TypeScript and JSX code into JavaScript and bundles it for delivery to the browser. It also watches for changes to the source code, and when they occur, it repeats the process, then causes the browser to reload with those changes.</p>
 <p>✏️ Run the command:</p>
 <pre><code class="language-shell">npm run dev
 </code></pre>
-<p>The server will output the &quot;Local&quot; URL for the dev server, copy and paste it
-into a browser. The browser will display a welcome page with &quot;Vite + React.&quot;</p>
+<p>The server will output the &quot;Local&quot; URL for the dev server, copy and paste it into a browser. The browser will display a welcome page with &quot;Vite + React.&quot;</p>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/02-solution?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/02-solution?file=src/App.tsx">CodeSandbox</a>.</p>
 <h2>Objective 3: Add testing infrastructure</h2>
 <h3>Testing code with React Testing Library</h3>
-<p>We will create unit tests for our application using the <a href="https://testing-library.com/docs/react-testing-library/intro/">React Testing
-Library</a>. The
-unit tests for components will be focused on verifying that a component creates
-the correct DOM output based on the state the component is provided. We also
-need to create tests for any React custom Hooks we create to ensure they provide
-the expected results.</p>
+<p>We will create unit tests for our application using the <a href="https://testing-library.com/docs/react-testing-library/intro/">React Testing Library</a>. The unit tests for components will be focused on verifying that a component creates the correct DOM output based on the state the component is provided. We also need to create tests for any React custom Hooks we create to ensure they provide the expected results.</p>
 <h3>Setup 3</h3>
-<p>Before we can create or execute any tests, run the following command to
-install the packages related to the React Testing Library:</p>
+<p>Before we can create or execute any tests, run the following command to install the packages related to the React Testing Library:</p>
 <p>✏️ Run:</p>
-<pre><code class="language-shell">npm install --save-dev @testing-library/jest-dom@6 @testing-library/react@14 @testing-library/user-event@14 jsdom@24 vitest@1
+<pre><code class="language-shell">npm install --save-dev vitest@1 @testing-library/react@14 @testing-library/user-event@14 @testing-library/jest-dom@6 jsdom@24
 </code></pre>
 <p>✏️ Update <strong>vite.config.ts</strong> to be:</p>
 <pre><code class="language-ts">/// &lt;reference types=&quot;vitest&quot; /&gt;
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from &quot;vite&quot;
+import react from &quot;@vitejs/plugin-react&quot;
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   test: {
     css: false,
-    environment: 'jsdom',
+    environment: &quot;jsdom&quot;,
     globals: true,
   },
 })
 
 </code></pre>
  <div line-highlight="1,8-12,"></div>
-<p>Once the packages are installed and the config file is updated, open the &quot;package.json&quot; file (in the
-project’s root) and add the &quot;test&quot; line to the <code>scripts</code> object; this simplifies
-running tests using Vite.</p>
+<p>Once the packages are installed and the config file is updated, open the &quot;package.json&quot; file (in the project’s root) and add the &quot;test&quot; line to the <code>scripts</code> object; this simplifies running tests using Vite.</p>
 <p>✏️ Update <strong>package.json</strong> to be:</p>
 <pre><code class="language-json">{
   &quot;name&quot;: &quot;place-my-order&quot;,
@@ -680,10 +636,10 @@ running tests using Vite.</p>
   &quot;version&quot;: &quot;0.0.0&quot;,
   &quot;type&quot;: &quot;module&quot;,
   &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;vitest&quot;,
     &quot;dev&quot;: &quot;vite&quot;,
     &quot;build&quot;: &quot;tsc &amp;&amp; vite build&quot;,
     &quot;lint&quot;: &quot;eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0&quot;,
-    &quot;test&quot;: &quot;vitest&quot;,
     &quot;preview&quot;: &quot;vite preview&quot;
   },
   &quot;dependencies&quot;: {
@@ -691,18 +647,16 @@ running tests using Vite.</p>
     &quot;react-dom&quot;: &quot;^18.2.0&quot;
   },
   &quot;devDependencies&quot;: {
+    &quot;@bitovi/eslint-config&quot;: &quot;^1.8.0&quot;,
     &quot;@testing-library/jest-dom&quot;: &quot;^6.4.2&quot;,
     &quot;@testing-library/react&quot;: &quot;^14.2.1&quot;,
     &quot;@testing-library/user-event&quot;: &quot;^14.5.2&quot;,
     &quot;@types/react&quot;: &quot;^18.2.43&quot;,
     &quot;@types/react-dom&quot;: &quot;^18.2.17&quot;,
-    &quot;@typescript-eslint/eslint-plugin&quot;: &quot;^6.14.0&quot;,
-    &quot;@typescript-eslint/parser&quot;: &quot;^6.14.0&quot;,
     &quot;@vitejs/plugin-react&quot;: &quot;^4.2.1&quot;,
     &quot;eslint&quot;: &quot;^8.55.0&quot;,
-    &quot;eslint-plugin-react-hooks&quot;: &quot;^4.6.0&quot;,
-    &quot;eslint-plugin-react-refresh&quot;: &quot;^0.4.5&quot;,
     &quot;jsdom&quot;: &quot;^24.0.0&quot;,
+    &quot;prettier&quot;: &quot;^3.2.5&quot;,
     &quot;typescript&quot;: &quot;^5.2.2&quot;,
     &quot;vite&quot;: &quot;^5.0.8&quot;,
     &quot;vitest&quot;: &quot;^1.2.2&quot;
@@ -710,10 +664,9 @@ running tests using Vite.</p>
 }
 
 </code></pre>
-<div line-highlight='10, only'></div>
+<div line-highlight='7, only'></div>
 <h3>Verify 3</h3>
-<p>After completing the previous steps you will be able to run unit tests.
-Execute the command:</p>
+<p>After completing the previous steps you will be able to run unit tests. Execute the command:</p>
 <pre><code class="language-shell">npm run test
 </code></pre>
 <p>and &quot;No test files found&quot; will be written to the console.</p>
@@ -726,44 +679,139 @@ Execute the command:</p>
     Screen capture of the completed exercise.
   </figcaption>
 </figure>
-<h3>Verify 4</h3>
-<p>✏️ Create <strong>src/App.test.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+<h3>Setup 4</h3>
+<p>Before we begin adding any content, its a good idea to clean up generated files and add code quality tools.</p>
+<p>Remove these generated files that we won't need. Some projects do need them, but this one won't.</p>
+<ul>
+<li><code>public/vite.svg</code></li>
+<li><code>src/assets</code></li>
+<li><code>src/App.css</code></li>
+<li><code>tsconfig.node.json</code></li>
+<li><code>.eslintrc.cjs</code></li>
+</ul>
+<p>✏️ Uninstall unneeded packages and Install our eslint config and prettier:</p>
+<pre><code class="language-shell">npm uninstall @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react-hooks eslint-plugin-react-refresh
+npm install --save-dev @bitovi/eslint-config prettier
+</code></pre>
+<p>✏️ Update <strong>tsconfig.json</strong> to be:</p>
+<pre><code class="language-json">{
+  &quot;compilerOptions&quot;: {
+    &quot;module&quot;: &quot;ESNext&quot;,
+    &quot;moduleResolution&quot;: &quot;bundler&quot;,
+    &quot;target&quot;: &quot;ES2020&quot;,
+    &quot;lib&quot;: [&quot;ES2020&quot;, &quot;DOM&quot;, &quot;DOM.Iterable&quot;],
+    &quot;jsx&quot;: &quot;react-jsx&quot;,
 
-import App from './App';
+    &quot;incremental&quot;: true,
+    &quot;strict&quot;: true,
+    &quot;noEmit&quot;: true,
 
-describe('App component', () =&gt; {
-  it('renders correctly and contains the expected text', () =&gt; {
-    render(&lt;App /&gt;);
-    expect(screen.getByText('Place My Order App: Coming Soon!')).toBeInTheDocument();
-  });
-});
+    &quot;allowImportingTsExtensions&quot;: true,
+    &quot;allowJs&quot;: false,
+    &quot;allowSyntheticDefaultImports&quot;: true,
+    &quot;esModuleInterop&quot;: true,
+    &quot;forceConsistentCasingInFileNames&quot;: true,
+    &quot;isolatedModules&quot;: true,
+    &quot;noFallthroughCasesInSwitch&quot;: true,
+    &quot;noImplicitReturns&quot;: true,
+    &quot;noUnusedLocals&quot;: true,
+    &quot;noUnusedParameters&quot;: true,
+    &quot;resolveJsonModule&quot;: true,
+    &quot;skipLibCheck&quot;: true,
+    &quot;useDefineForClassFields&quot;: true
+  },
+  &quot;include&quot;: [&quot;src&quot;]
+}
 
 </code></pre>
+<p>✏️ Update <strong>package.json</strong> to be:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;place-my-order&quot;,
+  &quot;private&quot;: true,
+  &quot;version&quot;: &quot;0.0.0&quot;,
+  &quot;type&quot;: &quot;module&quot;,
+  &quot;scripts&quot;: {
+    &quot;typecheck&quot;: &quot;tsc&quot;,
+    &quot;eslint&quot;: &quot;eslint vite.config.ts src&quot;,
+    &quot;prettier&quot;: &quot;prettier --check vite.config.ts src&quot;,
+    &quot;test&quot;: &quot;vitest&quot;,
+    &quot;dev&quot;: &quot;vite&quot;,
+    &quot;build&quot;: &quot;tsc &amp;&amp; vite build&quot;
+  },
+  &quot;eslintConfig&quot;: {
+    &quot;root&quot;: true,
+    &quot;extends&quot;: &quot;@bitovi/eslint-config/react&quot;
+  },
+  &quot;prettier&quot;: {
+    &quot;semi&quot;: false,
+    &quot;trailingComma&quot;: &quot;all&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;react&quot;: &quot;^18.2.0&quot;,
+    &quot;react-dom&quot;: &quot;^18.2.0&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;@bitovi/eslint-config&quot;: &quot;^1.8.0&quot;,
+    &quot;@testing-library/jest-dom&quot;: &quot;^6.4.2&quot;,
+    &quot;@testing-library/react&quot;: &quot;^14.2.1&quot;,
+    &quot;@testing-library/user-event&quot;: &quot;^14.5.2&quot;,
+    &quot;@types/react&quot;: &quot;^18.2.43&quot;,
+    &quot;@types/react-dom&quot;: &quot;^18.2.17&quot;,
+    &quot;@vitejs/plugin-react&quot;: &quot;^4.2.1&quot;,
+    &quot;eslint&quot;: &quot;^8.55.0&quot;,
+    &quot;jsdom&quot;: &quot;^24.0.0&quot;,
+    &quot;prettier&quot;: &quot;^3.2.5&quot;,
+    &quot;typescript&quot;: &quot;^5.2.2&quot;,
+    &quot;vite&quot;: &quot;^5.0.8&quot;,
+    &quot;vitest&quot;: &quot;^1.2.2&quot;
+  }
+}
+
+</code></pre>
+ <div line-highlight="7-9,12,14-16,18-21,25,only"></div>
+<h3>Verify 4</h3>
+<p>✏️ Create <strong>src/App.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
+import { render, screen } from &quot;@testing-library/react&quot;
+import { describe, expect, it } from &quot;vitest&quot;
+
+import App from &quot;./App&quot;
+
+describe(&quot;App component&quot;, () =&gt; {
+  it(&quot;renders correctly and contains the expected text&quot;, () =&gt; {
+    render(&lt;App /&gt;)
+    expect(
+      screen.getByText(&quot;Place My Order App: Coming Soon!&quot;),
+    ).toBeInTheDocument()
+  })
+})
+
+</code></pre>
+<p>✏️ Run the new code quality scripts.</p>
+<pre><code class="language-shell">npm run typecheck
+npm run eslint
+npm run prettier
+</code></pre>
+<p>These scripts will pass when the solution has been implemented properly.</p>
 <h3>Exercise 4</h3>
-<p>This exercise will finish the objective of creating a new React application with
-TypeScript support that can be served and tested. To complete the exercise make
-code changes to accomplish the following:</p>
+<p>This exercise will finish the objective of creating a new React application with TypeScript support that can be served and tested. To complete the exercise make code changes to accomplish the following:</p>
 <ul>
-<li>The root <code>/</code> web page shall display a single heading element with the text
-&quot;Place My Order App: Coming Soon!&quot;</li>
+<li>The root <code>/</code> web page shall display a single heading element with the text &quot;Place My Order App: Coming Soon!&quot;</li>
+<li>Make sure you remove the references to assets at the top, since they're no longer in use. (If you have the reccomended VS Code plugins installed, it should warn you about these!)</li>
+<li>Resolve any error from the code quality scripts.</li>
 </ul>
 <h3>Solution 4</h3>
 <p><details></p>
 <p><summary>Click to see the solution</summary></p>
 <ol>
 <li>In your code editor open the file <code>src/App.tsx</code></li>
-<li>Delete all the <code>import</code> lines <strong>except</strong> <code>import &quot;./App.css&quot;;</code>.</li>
+<li>Delete all the <code>import</code> lines.</li>
 <li>Delete the line <code>const [count, setCount] = useState(0)</code></li>
 <li>Replace the value of the return statement to be a single <code>&lt;h1&gt;</code> element</li>
 <li>The source code of App.tsx should now look like the example below.</li>
 </ol>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import './App.css'
-
-function App() {
+<pre><code class="language-tsx">const App: React.FC = () =&gt; {
   return (
     &lt;&gt;
       &lt;h1&gt;Place My Order App: Coming Soon!&lt;/h1&gt;
@@ -774,7 +822,7 @@ function App() {
 export default App
 
 </code></pre>
- <div line-highlight="6,only"></div>
+ <div line-highlight="1,4,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/04-solution?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/04-solution?file=src/App.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Next steps</h2>
