@@ -6,7 +6,7 @@ using it to make a basic tabs widget. We strongly suggest finishing [learn-advan
 
 @body
 
-## Before You Begin
+## Before you begin
 
 <a href="https://discord.gg/J7ejFsZnJ4" style="display:flex;align-items:center">
 <img src="./static/img/discord.png"
@@ -25,7 +25,7 @@ The end result of this training is to build a basic, [progressively enhanced](ht
 
 <img src="./static/img/dog-tabs.png" width="50%"/>
 
-We will be creating simple versions of many of jQuery's most useful methods:
+We will be creating simple versions of many of jQuery’s most useful methods:
 
 ```js
 $ = function (selector) {
@@ -89,6 +89,6 @@ Creating jQuery requires meta programming
 (functions that take functions that return functions). We encourage participants to
 finish the [learn-advanced-javascript] course before beginning this training.
 
-## Next Steps
+## Next steps
 
 ✏️ Head over to the [first lesson](learn-dom-jquery/functional-utilities.html) to get set up and start learning about functional utilities.

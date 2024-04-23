@@ -7,11 +7,11 @@
 
 ## Overview
 
-Due to syntax similarity, let's do a quick recap on using index signatures to define object types. Then we will dive into what mapped types are and how to define them, followed by practical applciations of mapped types. Finally, we will work through exercises building out some commonly used mapped types.
+Due to syntax similarity, let’s do a quick recap on using index signatures to define object types. Then we will dive into what mapped types are and how to define them, followed by practical applciations of mapped types. Finally, we will work through exercises building out some commonly used mapped types.
 
 ## Index Signatures
 
-Index signatures are a way to define object types when you know the general shape of any object but nothing more specific than the key type and the value type. Let's imagine we have an object that looks something like this:
+Index signatures are a way to define object types when you know the general shape of any object but nothing more specific than the key type and the value type. Let’s imagine we have an object that looks something like this:
 
 ```js
 const bag = {
@@ -41,15 +41,15 @@ An index signature consists of two parts:
 
 - Defines the type of the property
 
-One thing to be aware of with defining types using index signature is the value may or may **not** be there, but typescript makes it seem as though it's always present.
+One thing to be aware of with defining types using index signature is the value may or may **not** be there, but typescript makes it seem as though it’s always present.
 
 ```ts
 const bag: Bag = {
   maxPotion: 2,
 };
 
-bag.maxPotion; // Ts says it's a number
-bag.maxRevive; // Ts says it's a number... but it's not there...
+bag.maxPotion; // TS says it’s a number
+bag.maxRevive; // TS says it’s a number... but it’s not there...
 ```
 @highlight 5-6
 
@@ -64,8 +64,8 @@ const bag: BagWithUndefinedUnion = {
   maxPotion: 2,
 };
 
-bag.maxPotion; // Ts says it's a number | undefined
-bag.maxRevive; // Ts says it's a number | undefined
+bag.maxPotion; // TS says it’s a number | undefined
+bag.maxRevive; // TS says it’s a number | undefined
 ```
 @highlight 2, 5-7
 
@@ -91,7 +91,7 @@ const bagWithPokeball: BagWithRequiredValue = {
 ```
 @highlight 6-9, 11-14
 
-When defining required properties, the required properties cannot violate the index signature types. In the example above `pokeball: number` conforms to `[itemName: string]: number`; however, if we change pokeball to be of type `string` TypeScript doesn’t allow it, since it's a `string` indexing another `string`.
+When defining required properties, the required properties cannot violate the index signature types. In the example above `pokeball: number` conforms to `[itemName: string]: number`; however, if we change pokeball to be of type `string` TypeScript doesn’t allow it, since it’s a `string` indexing another `string`.
 
 ```ts
 type BagWithRequiredValue = {
@@ -129,7 +129,7 @@ These three types have a strange relationship
 - `symbol` is a proper subset of `string`
 - `number` and symbol are mutually exclusive
 
-In order for TypeScript to provide type safety, it has to be able to differentiate between the keys passed in. If the indexer's values have the same types, it doesn’t matter.
+In order for TypeScript to provide type safety, it has to be able to differentiate between the keys passed in. If the indexer’s values have the same types, it doesn’t matter.
 
 ```ts
 type IndexerDifferentSameValue = {
@@ -206,7 +206,7 @@ const bulbasaurWithString = firstThreePokemon["0"];
 
 ### Readonly Property Modifier
 
-While the optional syntax (`?`) isn't supported on index signature types, the index signature syntax does allow for the `readonly` modifier. The `readonly` modifier marks a property as immutable on an object meaning it cannot be re-assigned once set. If we wanted to make our `PokemonNameList` type above unchangeable we could do it by putting the `readonly` modifier at the beginning of the declaration.
+While the optional syntax (`?`) isn’t supported on index signature types, the index signature syntax does allow for the `readonly` modifier. The `readonly` modifier marks a property as immutable on an object meaning it cannot be re-assigned once set. If we wanted to make our `PokemonNameList` type above unchangeable we could do it by putting the `readonly` modifier at the beginning of the declaration.
 
 ```ts
 type ReadonlyPokemonNameList = {
@@ -263,7 +263,7 @@ console.log(firstThreePokemon.length); // 3
 
 ## Mapped Types
 
-Mapped types are another way to generate types in TypeScript. Mapped types are a way to iterate through each key of an object type to create new types for those keys. Mapped types are generic types that extend upon the index signature syntax. The best way to understand it is to see it in action. Let's take a look at a utility type that uses mapped types – `Partial<T>`.
+Mapped types are another way to generate types in TypeScript. Mapped types are a way to iterate through each key of an object type to create new types for those keys. Mapped types are generic types that extend upon the index signature syntax. The best way to understand it is to see it in action. Let’s take a look at a utility type that uses mapped types – `Partial<T>`.
 
 ```ts
 type Pokemon = {
@@ -301,7 +301,7 @@ type PartialPokemon = {
 };
 ```
 
-Since we know what `keyof Pokemon` evaluates too, let's substitute that out.
+Since we know what `keyof Pokemon` evaluates too, let’s substitute that out.
 
 ```ts
 type PartialPokemon = {
@@ -310,7 +310,7 @@ type PartialPokemon = {
 ```
 @highlight 2
 
-`P` serves as a variable for mapping and can be named anything, let's name it something more semantically relevant.
+`P` serves as a variable for mapping and can be named anything, let’s name it something more semantically relevant.
 
 ```ts
 type PartialPokemon = {
@@ -341,7 +341,7 @@ type ParitalPokemon = {
 
 ### Property Modifiers
 
-We saw it a little bit when looking at `Partial` but mapped types give us the opportunity to change two things about the properties of the type we are creating – whether or not it's optional and whether or not it's immutable. Like types defined with an index signature, the properties of a mapped type can be made immutable by applying the `readonly` modifier. Using the `readonly` modifier in a mapped type is exactly how the `Readonly` utility type in Typescript works.
+We saw it a little bit when looking at `Partial` but mapped types give us the opportunity to change two things about the properties of the type we are creating – whether or not it’s optional and whether or not it’s immutable. Like types defined with an index signature, the properties of a mapped type can be made immutable by applying the `readonly` modifier. Using the `readonly` modifier in a mapped type is exactly how the `Readonly` utility type in TypeScript works.
 
 ```ts
 /**
@@ -418,9 +418,9 @@ type MakeBag<T extends { item: string; amount: number }> = {
 type Bag = MakeBag<Items>;
 ```
 
-### Let's Make our own!
+### Let’s Make our own!
 
-So far we’ve seen some mapped types that TypeScript provides for us in its utility types, so let's walk through making our own. In this case, let’s look at creating a `Pokemon` class whose constructor takes the types of the Pokemon. So far in the examples leading up to this, the type property of a Pokemon has been defined as a union `"Normal" | "Fire" | ...`, but Pokemon can have more than one type, in fact, they can have up to two, like, in the case of Charizard – Fire and Flying. To create our class we want a single pokemon type (either a `PokemonType` or a `[PokemonType]`) or tuple that provides these options.
+So far we’ve seen some mapped types that TypeScript provides for us in its utility types, so let’s walk through making our own. In this case, let’s look at creating a `Pokemon` class whose constructor takes the types of the Pokemon. So far in the examples leading up to this, the type property of a Pokemon has been defined as a union `"Normal" | "Fire" | ...`, but Pokemon can have more than one type, in fact, they can have up to two, like, in the case of Charizard – Fire and Flying. To create our class we want a single pokemon type (either a `PokemonType` or a `[PokemonType]`) or tuple that provides these options.
 
 ```ts
 const pikachu = new Pokemon("Electric");
@@ -528,7 +528,7 @@ type Numberfied = ToNumber<{ level: string; age: string }>; // {level: number; a
 
 Exercise 2:
 
-Let's recreate the `Pick` utility type. `_Pick` should take two generics, some object `T` and a string literal union that is
+Let’s recreate the `Pick` utility type. `_Pick` should take two generics, some object `T` and a string literal union that is
 some subset of keys from `T` as `K`.
 
 ```ts

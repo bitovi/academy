@@ -65,7 +65,7 @@ make.a = function() {
 
 /* end make util code */
 
-// Test code. There's no need to edit the following:
+// Test code. There’s no need to edit the following:
 QUnit.test("make works", function(){
 	var h1 = make.h1();
 	h1.innerHTML = 'Hello World';
@@ -128,7 +128,7 @@ const make = {};
 
 /* end make util code */
 
-// Test code. There's no need to edit the following:
+// Test code. There’s no need to edit the following:
 QUnit.test("make works", function(){
 	var h1 = make.h1();
 	h1.innerHTML = 'Hello World';

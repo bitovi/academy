@@ -44,7 +44,7 @@ is the list of todos that will be managed by the custom element.
   <div on:click="doSomethingWith(this)" />
   ```
 
-## The Solution
+## The solution
 
 <details>
 <summary>Click to see the solution</summary>

@@ -8,7 +8,7 @@
     // create a string of As the length of the incrementing number
     map((length) => Array(length).fill('A').join(''))
   );
-  x$.subscribe((value) => console.log('x: ' + value));
+  x$.subscribe((value) => console.info('x: ' + value));
 
   // logs:
   // x:

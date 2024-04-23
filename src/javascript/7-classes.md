@@ -195,7 +195,7 @@ console.log( goldblum.run() ) //logs "running at 6"
 @codepen
 @highlight 10
 
-The keyword [super](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super) can be used to call functions on a class's (or object's) parent. This is how you call "base" methods.
+The keyword [super](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super) can be used to call functions on a class's (or object’s) parent. This is how you call "base" methods.
 
 ```js
 class ParkEmployee {

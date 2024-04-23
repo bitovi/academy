@@ -13,7 +13,7 @@
     }
 
     // emits the values every 2 seconds in order
-    const pseudoFormValueStream = zip(of('', 'Truffle Noodles', 'Charred Octopus', ''), interval(2000)).pipe(map(([val, num]) => val));
+    const pseudoFormValueStream = zip(of('', 'Truffle Noodles', 'Charred Octopus', ''), interval(2000)).pipe(map(([value, num]) => value));
 
     // stream that makes a "request" if provided a menu item name or returns "No Item Selected"
     const pseudoPriceStream = pseudoFormValueStream.pipe(mergeMap((selectedItem) => {
@@ -25,7 +25,7 @@
     }));
 
     pseudoPriceStream.subscribe((price) => {
-        console.log('Price Of Selected Item: ' + price);
+        console.info('Price Of Selected Item: ' + price);
     })
 
     // logs:

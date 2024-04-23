@@ -10,8 +10,7 @@ with Jira.
 <a href="https://www.bitovi.com/events/program-management-webinar">
 <div>Upcoming Event</div>
 <div>
-On Wednesday, January 24 at 11AM CT, attend a free 2.5-hour hands-on 
-of some of the techniques in this training. <br/>
+Join us on Tuesday, March 26th from 12-2pm CT for a free, hands-on workshop. <br/>
 <span>Register here.</span>
 </div>
 <img src="../static/img/program-management-with-jira/home/training-thumbnail.png"/>
@@ -69,7 +68,7 @@ Watch the following instead of reading the rest of the page:
 In this training, you will learn how to <span class="color-blue bold">build</span>, 
 <span class="color-green bold">maintain</span>, and 
 <span class="color-purple bold">report</span> <span class="color-teal bold">accurate</span> and 
-<span class="color-red bold italic">actionable</span> <span class="color-gray bold">multi-team</span> plans with Jira. Let's break each part of that down:
+<span class="color-red bold italic">actionable</span> <span class="color-gray bold">multi-team</span> plans with Jira. Let’s break each part of that down:
 
 - <span class="color-blue bold">Build</span> - How to take ideas, flesh them out, estimate them, and put them into future plans.
 - <span class="color-green bold">Maintain</span> - How to keep a plan up to date as development completes and things change.
@@ -93,7 +92,7 @@ This training will leave you with a solid understanding of Jira too. However, th
 - Exploring alternate solutions
 - Adding more resources
 
-We call this process “breaking the long poles”. First, you'll build a plan:
+We call this process “breaking the long poles”. First, you’ll build a plan:
 
 <img src="../static/img/program-management-with-jira/home/identify-longpole.png"
 	class="content-400-800-shadow"/>
@@ -165,7 +164,7 @@ __[learn-agile-program-management-with-jira/reporting Generate easy-to-digest su
 <img src="../static/img/program-management-with-jira/home/reporting.png"
 	class="content-400-800-shadow"/>
 
-Sounds good? Great. Let's get started!
+Sounds good? Great. Let’s get started!
 
 ## A template, not a temple
 

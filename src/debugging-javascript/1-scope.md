@@ -35,7 +35,7 @@ a()()()();
 
 ## What you need to know
 
-Chrome's developer tools allow you to inspect variables in the scope. For example,
+Chrome’s developer tools allow you to inspect variables in the scope. For example,
 consider the following code from the [learn-advanced-javascript/closures] training:
 
 
@@ -64,7 +64,7 @@ c2();
 ```
 @codepen
 
-Chrome's developers tools allows you to inspect variables in the scope as follows:
+Chrome’s developers tools allows you to inspect variables in the scope as follows:
 
 <img src="../static/img/debugging/full-closure.png" width="90%" style="border: solid 1px black"/>
 

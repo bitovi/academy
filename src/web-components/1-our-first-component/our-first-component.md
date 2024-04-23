@@ -37,7 +37,7 @@ It looks like this:
 1. Add the tag to the page.
 1. Use `setTimeout` to change the name as described in the Problem section above.
 
-## What You Need to Know
+## What you need to know
 
 ### Using custom elements
 
@@ -56,7 +56,7 @@ Custom elements can be used the same way that regular elements can; with one bon
     // OR provide HTML like this
     otherElement.innerHTML = `<my-greeting></my-greeting>`;
     ```
-* And the __bonus__, call their constructors (you can't do this with normal elements):
+* And the __bonus__, call their constructors (you can’t do this with normal elements):
 
     ```js
     let element = new MyGreeting();
@@ -65,7 +65,7 @@ Custom elements can be used the same way that regular elements can; with one bon
     document.body.appendChild(element);
     ```
 
-Let's create our first element by adding it to the HTML.
+Let’s create our first element by adding it to the HTML.
 
 ```html
 <my-greeting></my-greeting>
@@ -76,7 +76,7 @@ Click the "Run in your browser" button above and notice that... nothing happens.
 
 ### Registering our tag
 
-The [custom elements API](https://html.spec.whatwg.org/multipage/custom-elements.html) provides a way to hook into the browser's HTML parser and receive callbacks whenever a certain tag is encountered. Think about that; your code can run before the page has even finished loading (provided your script has run). That's a lot of power.
+The [custom elements API](https://html.spec.whatwg.org/multipage/custom-elements.html) provides a way to hook into the browser’s HTML parser and receive callbacks whenever a certain tag is encountered. Think about that; your code can run before the page has even finished loading (provided your script has run). That’s a lot of power.
 
 Custom elements are classes that extend [HTMLElement](https://html.spec.whatwg.org/multipage/dom.html#elements-in-the-dom). This is the base class from which all elements, both built-in and custom, derive. For example the `<progress>` element is an instance of `HTMLProgressElement`.
 
@@ -88,7 +88,7 @@ class MyGreeting extends HTMLElement {
 }
 ```
 
-Once you've extended HTMLElement you then need to give it a tag name and pass that, along with the class into `customElements.define()`. Since we want to print __Hello world__ we can do that in the constructor:
+Once you’ve extended HTMLElement you then need to give it a tag name and pass that, along with the class into `customElements.define()`. Since we want to print __Hello world__ we can do that in the constructor:
 
 ```html
 <my-greeting></my-greeting>
@@ -116,7 +116,7 @@ In this exercise we are doing both.
 
 #### attributeChangeCallback
 
-In order to understand attributes in custom elements we'll learn about our first lifecycle callback. `attributeChangedCallback` is a method you define on your element class. It will be called back with the name of the attribute, as well as the new and old value.
+In order to understand attributes in custom elements we’ll learn about our first lifecycle callback. `attributeChangedCallback` is a method you define on your element class. It will be called back with the name of the attribute, as well as the new and old value.
 
 ```js
 class MyGreeting extends HTMLElement {
@@ -126,7 +126,7 @@ class MyGreeting extends HTMLElement {
 }
 ```
 
-*However*, in order to get attribute change notification you __must__ define which attributes should be observed. This means that you aren't notified when any arbitrary attribute is added; only those you predefine. This is a performance optimization tradeoff that was made when designing the API.
+*However*, in order to get attribute change notification you __must__ define which attributes should be observed. This means that you aren’t notified when any arbitrary attribute is added; only those you predefine. This is a performance optimization tradeoff that was made when designing the API.
 
 To define which attributes should be observed you add a static getter `observedAttributes` on the class.
 

@@ -7,10 +7,10 @@
 
 ## Overview
 
-This guide goes through Bitovi's process for performing technology
+This guide goes through Bitovi’s process for performing technology
 consulting. This guide is for:
 
-- Bitovi consultants to know how to manage each part of an application's lifecycle.
+- Bitovi consultants to know how to manage each part of an application’s lifecycle.
 - Bitovi clients looking to understand how we operate.
 - Bitovi community members wanting to learn technology consulting.
 
@@ -38,6 +38,6 @@ Additional skills important for consulting are included after the core curriculu
 
 - [learn-technology-consulting/ending-a-project]
 
-## Next Steps
+## Next steps
 
 ✏️ Head over to the [first lesson](learn-technology-consulting/values.html) to learn how to prioritize your effort.

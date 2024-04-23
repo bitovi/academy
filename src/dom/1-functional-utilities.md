@@ -1,6 +1,6 @@
 @page learn-dom-jquery/functional-utilities Functional Utilities
 @parent learn-dom-jquery 1
-@description Create some of jQuery's functional utility methods.
+@description Create some of jQuery’s functional utility methods.
 
 @body
 
@@ -90,7 +90,7 @@ QUnit.test("$.extend", function () {
 
 ### What you need to know
 
-- Loop through an object's enumerable properties with a [for-in loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in):
+- Loop through an object’s enumerable properties with a [for-in loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in):
 
   ```js
   var obj = { foo: "bar", zed: "ted" };
@@ -123,7 +123,7 @@ QUnit.test("$.extend", function () {
   @codepen
 
 - Use [Object.prototype.hasOwnProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty) to detect if an object has
-  the specified property as it's own property:
+  the specified property as it’s own property:
 
   ```js
   var obj = { foo: "bar" };

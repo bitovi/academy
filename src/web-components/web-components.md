@@ -5,7 +5,7 @@
 
 This course covers the essentials for building [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components).
 
-## Before You Begin
+## Before you begin
 
 <a href="https://discord.gg/J7ejFsZnJ4">
 <img src="./static/img/discord.png"
@@ -42,6 +42,6 @@ The end result of this training will be a [CTA Bus tracker](http://www.ctabustra
 
 <img width="746" alt="CTA bus tracker web component" src="https://user-images.githubusercontent.com/361671/58019488-a36c9080-7ad3-11e9-84cc-e60cced008af.png">
 
-## Next Steps
+## Next steps
 
 ✏️ Head over to the [first lesson](learn-web-components/why-wc.html) and learn more about Web Components.

@@ -26,7 +26,7 @@ An easier way to allow consumers of your component to have *complete* control is
 1. Use named slots to allow the `header` slot to be provided by the user.
 1. Add custom styles to style the new header.
 
-## Technical Requirements
+## Technical requirements
 
 Use this markup as the header that is passed into the component:
 
@@ -44,14 +44,14 @@ color: wheat;
 text-align: center;
 ```
 
-## What You Need to Know
+## What you need to know
 
 - How the slot element works.
 - How to give slots names to allow multiple slotted content.
 
 ### Slots
 
-The [slot](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) has a curious effect when used within shadow DOM. It will take DOM within the custom element's children and *inject* (but not move) those nodes as children of itself.
+The [slot](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) has a curious effect when used within shadow DOM. It will take DOM within the custom element’s children and *inject* (but not move) those nodes as children of itself.
 
 Default content can be specified by nesting DOM inside of the `<slot>` element.
 

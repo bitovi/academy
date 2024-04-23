@@ -104,6 +104,6 @@ In NgRx, Effects will:
 > Note that for a given Action, Effects will always happen after the state has been updated by the Reducer.
 
 
-## Next Steps
+## Next steps
 
 Now that we’ve taken a good look at the bigger picture, let’s dive in and set our environment up so we can get our hands dirty with some coding!

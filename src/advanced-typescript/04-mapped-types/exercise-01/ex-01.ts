@@ -9,7 +9,7 @@
  * type Numberfied = ToNumber<{level: string; age: string;}> // {level: number; age: number}
  * ```
  */
-type To<T, K> = any; // TODO: don't use any
+type To<T, K> = any; // TODO: don’t use any
 
 const initialState = {
   name: "",

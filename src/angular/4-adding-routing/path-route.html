@@ -22,11 +22,11 @@ const { Routes, RouterModule } = ng.router;
   template: `
     <ul class="nav">
       <li routerLinkActive="active">
-        <a routerLink="/about" >About</a>
+        <a routerLink="/about">About</a>
       </li>
       <li routerLinkActive="active">
-          <a routerLink="" >Home</a>
-        </li>
+        <a routerLink="">Home</a>
+      </li>
     </ul>
     <router-outlet></router-outlet>
   `
@@ -74,7 +74,7 @@ class AppRoutingModule { }
   imports: [
     BrowserModule,
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   bootstrap: [AppComponent],
   providers: []

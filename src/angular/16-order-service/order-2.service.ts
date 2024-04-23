@@ -27,7 +27,7 @@ export interface Order {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class OrderService {
   constructor(private httpClient: HttpClient) {}

@@ -22,10 +22,13 @@ const { ReactiveFormsModule, FormGroup, FormBuilder } = ng.forms;
     <p>A home component!</p>
     <label>
       Custom input:
-      <input type="text" (change)="customChange($event)">
+      <input
+        (change)="customChange($event)"
+        type="text"
+      />
     </label>
     
-    <form [formGroup]="myQuickForm">
+    <form [formGroup]="userForm">
       <label>
         First name:
         <input type="text" formControlName="firstName">
@@ -42,21 +45,21 @@ const { ReactiveFormsModule, FormGroup, FormBuilder } = ng.forms;
   `
 })
 class AppComponent implements OnInit {
-  myQuickForm: FormGroup;
+  userForm: FormGroup;
 
   constructor(private fb:FormBuilder) {}
 
   ngOnInit(): void {
-    this.myQuickForm = this.fb.group({
+    this.userForm = this.fb.group({
       firstName: {value: '', disabled: false},
       lastName: {value: '', disabled: false},
       email: {value: '', disabled: false}
     });
   }
 
-  customChange(ev): void {
-    const newVal = ev.currentTarget.value;
-    const formControl = this.myQuickForm.get('firstName');
+  customChange(event): void {
+    const newVal = event.currentTarget.value;
+    const formControl = this.userForm.get('firstName');
     formControl.patchValue(newVal);
   }
 }

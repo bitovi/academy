@@ -32,7 +32,7 @@ function throwError(message: string): never {
 }
 ```
 
-…and when TypeScript has exhausted all possible cases and determines a block of code won't run:
+…and when TypeScript has exhausted all possible cases and determines a block of code won’t run:
 
 ```ts
 function primaryColorsToHexMessage(primaryColor: "red" | "blue" | "yellow") {
@@ -119,7 +119,7 @@ const wild = createBattle("wild-pokemon-battle"); // Type is WildPokemonBattle
 ```
 @highlight 1,3-5,7-8, 
 
-The magic here happens in the `Battle` conditional type. In `Battle` we look for whichever `BattleType` is passed in. If it's `"wild-pokemon-battle"` we resolve to `WildPokemonBattle`, otherwise we resolve to `TrainerBattle`. Another cool feature of conditional types is that they are nestable. To demonstrate this, let’s take this battle situation a step further and make a couple of adjustments. Let’s add a third battle type.
+The magic here happens in the `Battle` conditional type. In `Battle` we look for whichever `BattleType` is passed in. If it’s `"wild-pokemon-battle"` we resolve to `WildPokemonBattle`, otherwise we resolve to `TrainerBattle`. Another cool feature of conditional types is that they are nestable. To demonstrate this, let’s take this battle situation a step further and make a couple of adjustments. Let’s add a third battle type.
 
 ```ts
 type TrainerBattle = {
@@ -179,7 +179,7 @@ Below is the definition of `NonNullable`.
 type NonNullable<T> = T extends null | undefined ? never : T;
 ```
 
-The definition may look complicated, but as we did with mapped types, let’s remove some of the noise and break it down bit by bit to see how this works. Let's start by placing the union into `NonNullable` directly.
+The definition may look complicated, but as we did with mapped types, let’s remove some of the noise and break it down bit by bit to see how this works. Let’s start by placing the union into `NonNullable` directly.
 
 ```ts
 type StringOrNumber = NonNullable<string | number | undefined | null>;
@@ -228,7 +228,7 @@ The refinement aspects of conditional types become even stronger when used in co
 emitBattleStart("wild-pokemon-battle", { challengingPokemon: "onix" });
 ```
 
-Before we start looking at the `emitBattle` function let's make our types a little more functional. Instead of having `BattleTypes` separated from the rest of the battle types, we could use them as literals on our battle types to create a discriminating union.
+Before we start looking at the `emitBattle` function let’s make our types a little more functional. Instead of having `BattleTypes` separated from the rest of the battle types, we could use them as literals on our battle types to create a discriminating union.
 
 ```ts
 type TrainerBattle = {
@@ -281,7 +281,7 @@ function emitBattleStart<BattleType extends PokemonBattles["battleType"]>(
 
 The next part is where it gets tricky. Somehow we need to get the correct object shape for the battle information. We can break it down like this. First, we need to select the member of the `PokemonBattles` union that corresponds to the `BattleType` from the first parameter of the function. Second, we need to remove the `battleType` key from that type. And finally, we need to map over the new keys, making sure they have the same values.
 
-Starting with the first step, let's find a way to select the correct member of the `PokemonBattles` union. We can accomplish this with our good friend conditional types. We can use generics to give our `BattleInformation` type access to the `PokemonBattles` union and the `BattleType` and inside it uses a conditional type to refine the union to being the battle type we’re after.
+Starting with the first step, let’s find a way to select the correct member of the `PokemonBattles` union. We can accomplish this with our good friend conditional types. We can use generics to give our `BattleInformation` type access to the `PokemonBattles` union and the `BattleType` and inside it uses a conditional type to refine the union to being the battle type we’re after.
 
 ```ts
 type BattleInformation<BattleType, Battle> = Battle extends {
@@ -313,7 +313,7 @@ Next, we need a way to get rid of the `battleType` key from this new type. Lucki
 Exclude<keyof Battle, "battleType">;
 ```
 
-Our final step is to map over these and reconstruct the type. To do this, let's define a `FormatBattle` type that does this for us and pass our refined `Battle` type into it.
+Our final step is to map over these and reconstruct the type. To do this, let’s define a `FormatBattle` type that does this for us and pass our refined `Battle` type into it.
 
 ```ts
 type FormatBattle<Battle> = {
@@ -348,7 +348,7 @@ emitBattleStart(
 ```
 @highlight 3, 7-13
 
-That said, we can take it a little bit further and add an alias and default to help make the typing a bit more semantic. It feels a little weird needing to pass in `PokemonBattles`, and the functionality of the type and how it's used seem to differ a bit. One extra type we can resolve this. Let’s update `BattleInformation` to alias our conditional mapping and give a more semantically relevant name like `GetBattleInformation`.
+That said, we can take it a little bit further and add an alias and default to help make the typing a bit more semantic. It feels a little weird needing to pass in `PokemonBattles`, and the functionality of the type and how it’s used seem to differ a bit. One extra type we can resolve this. Let’s update `BattleInformation` to alias our conditional mapping and give a more semantically relevant name like `GetBattleInformation`.
 
 ```ts
 type FormatBattle<Battle> = {
@@ -412,14 +412,14 @@ type ReturnType<T extends (...args: any) => any> = T extends (
   : any;
 ```
 
-Conditional type's refinement makes it a powerful utility. We’ve seen how conditional types can be used to simplify function signatures and create robust types for complex functions. Conditional types and `infer` will play a big role in our last section: template literal types.
+Conditional type’s refinement makes it a powerful utility. We’ve seen how conditional types can be used to simplify function signatures and create robust types for complex functions. Conditional types and `infer` will play a big role in our last section: template literal types.
 
 ## Exercises
 
 ### Exercise 1
 
 We used exclude in one of the examples in the content of this section.
-Let's take a moment to create the type ourselves. Exlude takes two generics
+Let’s take a moment to create the type ourselves. Exlude takes two generics
 `T` and `U` and removes the memebers in `U` from `T`.
 
 ```ts
@@ -448,7 +448,7 @@ type WildPokemonBattleNoBattleType = _Exclude<
 
 ### Exercise 2
 
-Let's build out an example similar to `ArrayElement` provided by the TypeScript documentation (No cheating by looking it up!)
+Let’s build out an example similar to `ArrayElement` provided by the TypeScript documentation (No cheating by looking it up!)
 
 `Flatten` should a new type that unnests arrays by one level.
 

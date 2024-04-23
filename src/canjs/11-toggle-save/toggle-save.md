@@ -30,7 +30,7 @@ changes. Also, disable the checkbox while the update is happening.
   ```
 
 
-## The Solution
+## The solution
 
 <details>
 <summary>Click to see the solution</summary>

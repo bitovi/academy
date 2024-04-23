@@ -217,7 +217,7 @@ In this section, we will:
   <div *ngIf="expression">Show this</div>
   ```
 
-## The Solution
+## The solution
 
 <details>
 <summary>Click to see the solution</summary>

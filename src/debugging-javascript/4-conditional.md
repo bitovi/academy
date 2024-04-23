@@ -42,7 +42,7 @@ for(var i = 0; i < 2000; i++) {
 ```
 
 Chrome lets you add conditional breakpoints that break when an expression evaluates to
-_truthy_.  Right click the line number you'd like to break on and enter the
+_truthy_.  Right click the line number you’d like to break on and enter the
 expression.
 
 <img src="../static/img/debugging/conditional.png"/>

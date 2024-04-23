@@ -7,11 +7,11 @@
 
 ## Overview
 
-Every project comes to an end, and hopefully yours is ending sucessfully if you've followed this training! This section offers some advice on how you can make the most of the capital you've aquired during the project, and set yourself up well for future opportunities.
+Every project comes to an end, and hopefully yours is ending sucessfully if you’ve followed this training! This section offers some advice on how you can make the most of the capital you’ve aquired during the project, and set yourself up well for future opportunities.
 
 ## Client Feedback
 
-The most important task is collecting feedback on how the project went from the client's team and stakeholders. The big question here should be, "how did we do on goals?" While there should be no surprises here, it's important to listen to and document their feedback. These will provide critical learnings for how you can deliver more value on future projects.
+The most important task is collecting feedback on how the project went from the client’s team and stakeholders. The big question here should be, "how did we do on goals?" While there should be no surprises here, it’s important to listen to and document their feedback. These will provide critical learnings for how you can deliver more value on future projects.
 
 ## Post-mortem
 
@@ -35,11 +35,11 @@ Testimonials can be used on your website, shared on your social media, or used a
 
 ### _Referrals_
 
-If client stakeholders had a good experience working with you, they should be willing to refer you to friends and colleagues that may need similiar services. Don't be afraid to reach out and ask them for a referal!
+If client stakeholders had a good experience working with you, they should be willing to refer you to friends and colleagues that may need similiar services. Don’t be afraid to reach out and ask them for a referal!
 
 ### _Social Media_
 
-Ask the client to post a recommendation for your work on their social media. This will give you exposure to a new audience you previously weren't connected to.
+Ask the client to post a recommendation for your work on their social media. This will give you exposure to a new audience you previously weren’t connected to.
 
 ### _Case studies_
 

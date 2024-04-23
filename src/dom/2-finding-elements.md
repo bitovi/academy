@@ -249,7 +249,7 @@ $ = function (selector) {
   ```
   @codepen
 
-Many of jQuery's methods either get or set depending on the number of arguments.
+Many of jQuery’s methods either get or set depending on the number of arguments.
 
 <details>
 <summary>Click to see test code</summary>
@@ -351,7 +351,7 @@ QUnit.test("$.fn.val", function () {
 
 ### What you need to know
 
-- The `.value` property can be used to read and write an [input](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element's value.
+- The `.value` property can be used to read and write an [input](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element’s value.
 
 ### The solution
 
@@ -471,7 +471,7 @@ QUnit.test("$.fn.text", function () {
 
   $("#qunit-fixture span").text("<input/>");
 
-  equal($("#qunit-fixture input").length, 0, "there's no input");
+  equal($("#qunit-fixture input").length, 0, "there’s no input");
 
   equal(
     $("#qunit-fixture span").text(),
@@ -488,8 +488,8 @@ QUnit.test("$.fn.text", function () {
 - [textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent)
   can get and set the text content of an element.
 
-For an _extra challenge_, don't use `textContent` and recursively collect
-the `textContent`. For that, you'll need to know:
+For an _extra challenge_, don’t use `textContent` and recursively collect
+the `textContent`. For that, you’ll need to know:
 
 - Use [document.createTextNode](https://developer.mozilla.org/en-US/docs/Web/API/Document/createTextNode)
   to create a text node.

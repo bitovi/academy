@@ -42,7 +42,7 @@ var eqeq = function(value1, value2){
 
 
 // The following functions might be useful to
-// eqeq().  You'll have to implement them yourself.
+// eqeq().  You’ll have to implement them yourself.
 
 // Returns true if the value is `null` or `undefined`
 var isNullOrUndefined = function(value) {
@@ -57,14 +57,14 @@ var toPrimitive = function(value) {
 
 // Given an object and a property on the object, this
 // will return the property value as long as the property
-// is not on `Object.prototype`. If you don't know what
+// is not on `Object.prototype`. If you don’t know what
 // this means, copy it from the answer key :-).
 var getDefinedPropertyNotOnObjectPrototype = function(obj, prop) {
 
 }
 
 
-// Test code.  There's no need to edit the following:
+// Test code.  There’s no need to edit the following:
 QUnit.module("Double Equal", {});
 
 QUnit.test("Types the same", function(){

@@ -1,13 +1,17 @@
 .main-content {
   div.code-toolbar {
+    pre[data-line] {
+      padding: 1px;
+    }
     line-height: 0;
+    margin-top: 25px;
     > .toolbar {
       line-height: 0;
-      border-left: 1px solid #dfdfdf;
-      border-bottom: 1px solid #dfdfdf;
+      border: 1px solid #dfdfdf;
       background: #eeeeee;
-      top: 0px;
+      top: -25px;
       right: 0;
+      opacity: 1;
       > .toolbar-item {
         line-height: 0;
         &:not(:last-child) {
@@ -20,11 +24,10 @@
         opacity: 1;
       }
     }
-
   }
   div.code-toolbar {
-    .toolbar a, 
-    .toolbar button, 
+    .toolbar a,
+    .toolbar button,
     .toolbar span {
       background: #eee;
       background: rgba(238, 238, 238, 1);
@@ -34,9 +37,9 @@
       box-shadow: none;
       border-radius: 0;
       cursor: pointer;
-      @media(hover: hover) {
+      @media (hover: hover) {
         &:hover {
-          background: rgba(238, 238, 238, .6);
+          background: rgba(238, 238, 238, 0.6);
           color: #4078c0;
         }
       }
@@ -51,7 +54,7 @@
   .demo {
     .tab-content {
       div.code-toolbar {
-        >.toolbar{
+        > .toolbar {
           top: 0px;
           right: 1px;
           border-top: 1px solid #dfdfdf;

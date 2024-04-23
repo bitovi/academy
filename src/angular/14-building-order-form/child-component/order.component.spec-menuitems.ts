@@ -179,7 +179,7 @@ describe('OrderComponent', () => {
     expect(changeSpy).toHaveBeenCalled();
   });
 
-  it('should update items FormControl when updateItems is called', () => {
+  it('should update items FormControl when updateItem is called', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     const childInput = compiled

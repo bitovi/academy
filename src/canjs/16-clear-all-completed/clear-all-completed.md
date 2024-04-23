@@ -20,7 +20,7 @@ Make the "Clear completed" button work. When the button is clicked, It should de
    <div on:click="doSomething()"> ... </div>
    ```
 
-## The Solution
+## The solution
 
 <details>
 <summary>Click to see the solution</summary>

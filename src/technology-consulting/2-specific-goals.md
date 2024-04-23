@@ -12,7 +12,7 @@ The primary goal of a technology consultant is to add value to your client.
 The primary goal of your client _should_ be to add value to
 their customers. Which is why the next lesson is on [learn-technology-consulting/prioritization prioritization] techniques and methodologies that must also be designed to add value to customers.
 
-But before that can be accomplished, a consultant's first step in managing a project is to establish clear goals
+But before that can be accomplished, a consultant’s first step in managing a project is to establish clear goals
 that are well understood by everyone throughout
 the organization. When everyone understands the goals of the product or company, they
 are more likely to make decisions, large or small, that contribute effectively to the product or company.
@@ -29,8 +29,8 @@ A [Mission Statement](https://en.wikipedia.org/wiki/Mission_statement) is a
 single sentence that describes what the project aspires to be. It should include
 a description of how value is added to customers.
 
-Write the product or company's Mission Statement here:
-<textarea placeholder="What is the product or company's mission statement?" style="width: 640px"></textarea>
+Write the product or company’s Mission Statement here:
+<textarea placeholder="What is the product or company’s mission statement?" style="width: 640px"></textarea>
 
 Examples:
 
@@ -60,11 +60,11 @@ Example:
 ## Strategy Statement
 
 A strategy statement outlines how you will achieve the
-project's goals (performance indicators). It should describe the competitive
+project’s goals (performance indicators). It should describe the competitive
 advantage the project is looking to create.
 
 Write an example strategy statement here:
-<textarea placeholder="What is the strategy for accomplishing the project's goals?" style="width: 640px"></textarea>
+<textarea placeholder="What is the strategy for accomplishing the project’s goals?" style="width: 640px"></textarea>
 
 Example:
 

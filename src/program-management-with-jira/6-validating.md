@@ -79,13 +79,13 @@ We hope to increase our revenue by 2x the amount spent on Marketing ads.
 
 We pulled the following data:
 
-*   50% of users that go on our site complete a purchase
+*   10% of users that go on our site complete a purchase
     
 *   Lifetime customer value is $100
     
 *   Our average cart price is $50.
     
-*   Historically we spend $50 on ads, we get 100 more visitors.
+*   Historically, we spend $50 on ads, we get 10 more visitors.
     
 
 We received 30 requests for promotions from our customer support and sales channels over the last 3 months.
@@ -179,7 +179,7 @@ Sometimes the value or value confidence can actually go down, and that is ok! Th
 Exercise
 --------
 
-In this exercise, you will be validating your initiative.  Unfortunately, Itsy Bitsy isn't real.  So you won't be able to survey real customers or look at existing data. But, you are able to make up data that you would be able to find.  And, you're able to search the web for competitors and public data.
+In this exercise, you will be validating your initiative.  Unfortunately, Itsy Bitsy isn’t real.  So you won’t be able to survey real customers or look at existing data. But, you are able to make up data that you would be able to find.  And, you’re able to search the web for competitors and public data.
 
 ### Step 1: Identify validation opportunities
 

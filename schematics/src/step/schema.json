@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "SchematicsStep",
+  "title": "Step Schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "description": "The name of the step.",
+      "type": "string",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      }
+    }
+  }
+}

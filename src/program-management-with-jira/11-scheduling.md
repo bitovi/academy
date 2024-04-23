@@ -15,7 +15,7 @@ Advanced Roadmaps.
 
 The Auto-schedule feature can move epics into sprints based on dependencies and 
 team velocities. Once an initiative is commited to, you can use the Auto-schedule 
-to place the initiative's epics after work in progress.
+to place the initiative’s epics after work in progress.
 
 For more information on the Auto-scheduler read: [https://support.atlassian.com/jira-software-cloud/docs/how-does-the-auto-scheduler-in-advanced-roadmaps-work/ "How does the auto-scheduler in advanced roadmaps work."]
 

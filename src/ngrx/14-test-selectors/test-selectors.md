@@ -32,7 +32,7 @@ The `--watch` switch will rerun your tests whenever a code file changes. You can
 
 ## Description
 
-When testing Selectors, we will mock the Login State and verify that each Selector returns the expected result. Like testing the Reducer, we don't need a `TestBed` since there shouldn't be any dependencies when dealing with Selectors since they are pure functions.
+When testing Selectors, we will mock the Login State and verify that each Selector returns the expected result. Like testing the Reducer, we don’t need a `TestBed` since there shouldn’t be any dependencies when dealing with Selectors since they are pure functions.
 
 
 ## Update `login.selectors.spec.ts`

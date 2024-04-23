@@ -380,7 +380,7 @@ describe('RestaurantComponent', () => {
     const stateOption = compiled.querySelector(
       'select[formcontrolname="state"] option:nth-child(2)'
     ) as HTMLInputElement;
-    expect(stateOption.textContent).toEqual(' Missouri ');
+    expect(stateOption.textContent?.trim()).toEqual('Missouri');
     expect(stateOption.value).toEqual('MO');
   }));
 
@@ -414,7 +414,7 @@ describe('RestaurantComponent', () => {
     const cityOption = compiled.querySelector(
       'select[formcontrolname="city"] option:nth-child(2)'
     ) as HTMLInputElement;
-    expect(cityOption.textContent).toEqual(' Sacramento ');
+    expect(cityOption.textContent?.trim()).toEqual('Sacramento');
     expect(cityOption.value).toEqual('Sacramento');
   }));
 
@@ -437,7 +437,7 @@ describe('RestaurantComponent', () => {
     expect(cityFormControl2?.enabled).toBe(true);
   }));
 
-  it('should reset list of cities when new state is selected', fakeAsync((): void => {
+  it('should reset list of restaurants when new state is selected', fakeAsync((): void => {
     fixture.detectChanges(); // detecting changes for createForm func to be called
 
     let restaurantOutput!: Data<Restaurant>;

@@ -25,18 +25,18 @@ class ObsService {
 
   getObs(): Observable<number> {
     return new Observable<number>(observer => {
-      console.log('New subscription created');
+      console.info('New subscription created');
       let count = 0;
       
       const interval = setInterval(() => {
         count++;
-        console.log("incrementing", count); 
+        console.info("incrementing", count); 
         observer.next(count);
       }, 1000);
     
       return () => {
-        clearInterval(interval);
-        console.log('unsubscribed');
+        clearIntervalue(interval);
+        console.info('unsubscribed');
       }
     })
   }
@@ -45,29 +45,31 @@ class ObsService {
 @Component({
   selector: 'my-app',
   template: `
-    <destroy-component *ngIf="yayComponent"></destroy-component>
-    <button (click)="removeComponent()" *ngIf="yayComponent">remove component</button>
-    <p *ngIf="!yayComponent">I am a very sad empty component now</p>
+    <destroy-component *ngIf="showComponent"></destroy-component>
+    <button (click)="removeComponent()" *ngIf="showComponent">
+      Remove component
+    </button>
+    <p *ngIf="!showComponent">The component has been removed.</p>
   `
 })
 class AppComponent {
-  yayComponent: boolean = true;
+  showComponent: boolean = true;
   
   constructor() {}
 
   removeComponent(): void {
-    this.yayComponent = false;
+    this.showComponent = false;
   }
 }
 
 @Component({
   selector: 'destroy-component',
   template: `
-    <p>This component will be destroyed. Rawr.</p>
-    <button (click)="startObservable()">start observable</button>
+    <p>This component will be destroyed. 🪄</p>
+    <button (click)="startObservable()">Start observable</button>
 
     <p>{{ myDisplayValue }}</p>
-    `
+  `
 })
 class DestroyComponent implements OnDestroy {
   private onDestroy$ = new Subject<void>();
@@ -76,17 +78,17 @@ class DestroyComponent implements OnDestroy {
   constructor(private obsService: ObsService) {}
 
   startObservable(): void {
-    // subscribing to a service that emits observable values every second.
+    // Subscribing to a service that emits observable values every second.
     this.obsService.getObs()
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) => {
-        console.log('new value', val);
-        this.myDisplayValue = val;
+      .subscribe((value) => {
+        console.info('new value', value);
+        this.myDisplayValue = value;
       });
   }
 
   ngOnDestroy(): void {
-    console.log('destroying component');
+    console.info('destroying component');
     this.onDestroy$.next();
     this.onDestroy$.complete();
   }

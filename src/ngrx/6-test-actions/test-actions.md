@@ -10,9 +10,9 @@
 
 ## Overview
 
-1. Verify `LoginActions.logout` Action dispatches when calling `DashboardComponent`'s `logout()`.
+1. Verify `LoginActions.logout` Action dispatches when calling `DashboardComponent`’s `logout()`.
 
-2. Verify `LoginActions.login` Action dispatches with form payload when calling `LoginComponent`'s `login()`.
+2. Verify `LoginActions.login` Action dispatches with form payload when calling `LoginComponent`’s `login()`.
 
 
 ## Running Tests
@@ -32,14 +32,14 @@ The `--watch` switch will rerun your tests whenever a code file changes. You can
 
 Each implementation section will be paired with a testing section. These testing sections will go over the basics of how to test the implementation and use of NgRx. Before continuing, you should have an intermediate understanding of the following:
 
-1. [Angular TestBeds](https://angular.io/guide/testing-utility-apis) - Although `TestBeds` aren't required for testing Angular applications, and [there are ways to test NgRx without a TestBed](https://ngrx.io/guide/store/testing#testing-without-testbed), we use `TestBeds` throughout this course.
+1. [Angular TestBeds](https://angular.io/guide/testing-utility-apis) - Although `TestBeds` aren’t required for testing Angular applications, and [there are ways to test NgRx without a TestBed](https://ngrx.io/guide/store/testing#testing-without-testbed), we use `TestBeds` throughout this course.
 
 2. [Jasmine Unit Tests](https://github.com/jasmine/jasmine#a-javascript-testing-framework) - Throughout this course, we will be using [Jasmine to test our application](https://jasmine.github.io/tutorials/your_first_suite). Although the syntax will differ slightly between different testing tools such as [Mocha](https://mochajs.org/) and [Jest](https://jestjs.io/), the concepts used throughout this course will apply to whatever solution you use in your future projects.
 
 
 ## Description
 
-In this section, we will write unit tests involving Actions. When testing Actions, we don't typically test Actions directly. Instead, we test their use in Components, Effects, and Reducers.
+In this section, we will write unit tests involving Actions. When testing Actions, we don’t typically test Actions directly. Instead, we test their use in Components, Effects, and Reducers.
 Throughout this course we will cover all these situations. For this section, we will verify that Actions are dispatched when expected by checking their use in Components.
 
 ## Update `dashboard.component.spec.ts`
@@ -76,7 +76,7 @@ Next we will verify that the expected Action was dispatched after `logout()` is 
 @diff ./dashboard.component.spec-spy-on-store.ts ./dashboard.component.spec.ts only
 </details>
 
-> Note that there are 2 more pending `TODO`s in `src/app/dashboard/dashboard.component.spec.ts` that will be resolved in upcoming sections. For now we'll only be testing our Actions.
+> Note that there are 2 more pending `TODO`s in `src/app/dashboard/dashboard.component.spec.ts` that will be resolved in upcoming sections. For now we’ll only be testing our Actions.
 
 
 ## Update `login.component.spec.ts`

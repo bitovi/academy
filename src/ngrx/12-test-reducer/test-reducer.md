@@ -30,12 +30,12 @@ The `--watch` switch will rerun your tests whenever a code file changes. You can
 
 ## Description
 
-When testing a Reducer, we will test each of its `on()` handlers by verifying each pure function returns the expected value given an Action and a Login State (typically the `initialState`). Unlike the previous testing sections, when testing the Reducer, we don't need a `TestBed` since there shouldn't be any dependencies when dealing with the Reducer.
+When testing a Reducer, we will test each of its `on()` handlers by verifying each pure function returns the expected value given an Action and a Login State (typically the `initialState`). Unlike the previous testing sections, when testing the Reducer, we don’t need a `TestBed` since there shouldn’t be any dependencies when dealing with the Reducer.
 
 
 ## Update `login.selectors.spec.ts`
 
-Before we can test our Reducer, our tests involving our Selectors are failing. This is because we've changed the shape and initial value of our Login State. To continue, we need to update them. Copy the following code to replace the contents of `src/app/store/login/login.selectors.spec.ts`:
+Before we can test our Reducer, our tests involving our Selectors are failing. This is because we’ve changed the shape and initial value of our Login State. To continue, we need to update them. Copy the following code to replace the contents of `src/app/store/login/login.selectors.spec.ts`:
 
 <details>
 <summary>src/app/store/login/login.selectors.spec.ts</summary>

@@ -6,7 +6,7 @@ ready to develop projects in TypeScript.
 
 @body
 
-## Before You Begin
+## Before you begin
 
 <a href="https://discord.gg/J7ejFsZnJ4">
 <img src="./static/img/discord.png"
@@ -69,6 +69,6 @@ Angular and many other frameworks use TypeScript to take advantage of its typech
   }
   ```
 
-## Next Steps
+## Next steps
 
 ✏️ Head over to the [first lesson](learn-typescript/why-typescript.html) and get your environment setup.

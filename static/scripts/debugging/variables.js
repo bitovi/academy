@@ -5,7 +5,7 @@ makeDVariables = "g";
 
 getAnimalLetter = function(){
     getAnimalLetter = function(){
-        throw "don't cheat!";
+        throw "don’t cheat!";
     };
     return String.fromCharCode(98);
 };

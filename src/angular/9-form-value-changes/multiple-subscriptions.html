@@ -24,7 +24,7 @@ const { takeUntil } = rxjs.operators;
   template: `
     <ul class="nav">
       <li routerLinkActive="active">
-        <a routerLink="/about" >About</a>
+        <a routerLink="/about">About</a>
       </li>
     </ul>
     <router-outlet></router-outlet>
@@ -94,14 +94,14 @@ class HomeComponent implements OnInit, OnDestroy {
 
     this.myObservable$
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) => {
-        this.myDisplayValue = val;
+      .subscribe((value) => {
+        this.myDisplayValue = value;
       });
 
     this.myOtherObservable$
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) => {
-        this.myOtherDisplayValue = val;
+      .subscribe((value) => {
+        this.myOtherDisplayValue = value;
       });
   }
 

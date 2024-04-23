@@ -67,7 +67,7 @@ Use the following CodePen to complete this exercise:
 
 ### What you need to know
 
-- `$.fn` is an alias for the collection's constructor's prototype.
+- `$.fn` is an alias for the collection’s constructor’s prototype.
 
 ### The solution
 

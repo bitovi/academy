@@ -1,7 +1,7 @@
 @page learn-rxjs/cvc CVC
 @parent learn-rxjs 7
 
-@description Apply what you've learned from previous sections to the `cvc` field.
+@description Apply what you’ve learned from previous sections to the `cvc` field.
 
 @body
 
@@ -50,7 +50,7 @@ Finally:
 You already know everything you need to know. Apply what you learned from
 `cardNumber$`, `cardError$` and `showCardError$` to `cvc$`, `cvcError$`, and `showCVCError$`.
 
-## The Solution
+## The solution
 
 <details>
 <summary>Click to see the solution</summary>

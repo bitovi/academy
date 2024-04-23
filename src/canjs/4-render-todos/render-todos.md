@@ -43,7 +43,7 @@
 - Use [https://canjs.com/doc/can-stache.helpers.if.html {{#if(value)}}] to do `if/else` branching in `can-stache`.
 - Use [https://canjs.com/doc/can-stache.helpers.for-of.html {{#for(of)}}] to do looping in `can-stache`.
 
-## The Solution
+## The solution
 
 <details>
 <summary>Click to see the solution</summary>

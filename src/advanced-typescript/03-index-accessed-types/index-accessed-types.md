@@ -147,7 +147,7 @@ Index accessed types really shine when deriving types from other types. Imagine 
 </table>
 </div>
 
-Ideally, we’d like a generic factory to create requests for multiple crud-ish entities, like a `HatchedPokemon` or a `Trainer`, to reduce the duplicated logic in our code. One way we could accomplish this is by constraining the type of entity passed into our factory to some base `Entity` type that describes what all entities must have, in our case, this is an `id` value, and then having all the methods returned by the factory use the type of that `Entity`'s id.
+Ideally, we’d like a generic factory to create requests for multiple crud-ish entities, like a `HatchedPokemon` or a `Trainer`, to reduce the duplicated logic in our code. One way we could accomplish this is by constraining the type of entity passed into our factory to some base `Entity` type that describes what all entities must have, in our case, this is an `id` value, and then having all the methods returned by the factory use the type of that `Entity`’s id.
 
 ```ts
 type Entity = { id: number };
@@ -183,7 +183,7 @@ type Requests<T extends Entity> = {
 
 Using index accessed types we have resolved this issue and any future issue like it down the road.
 
-As we've seen, indexed access types are a powerful feature from TypeScript which helps our typing become more flexible and dynamic. Like generics, they will become a staple in our types as we progress through other TypeScript features.
+As we’ve seen, indexed access types are a powerful feature from TypeScript which helps our typing become more flexible and dynamic. Like generics, they will become a staple in our types as we progress through other TypeScript features.
 
 ## Exercises
 

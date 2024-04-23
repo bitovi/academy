@@ -42,7 +42,7 @@ function minLengthArray(min: number): ValidatorFn {
 @Component({
   selector: 'pmo-order',
   templateUrl: './order.component.html',
-  styleUrls: ['./order.component.less'],
+  styleUrl: './order.component.css',
 })
 export class OrderComponent implements OnInit, OnDestroy {
   orderForm?: FormGroup<OrderForm>;
@@ -103,8 +103,8 @@ export class OrderComponent implements OnInit, OnDestroy {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
     this.orderForm?.controls.items.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) => {
-        this.orderTotal = this.itemTotal.transform(val);
+      .subscribe((value) => {
+        this.orderTotal = this.itemTotal.transform(value);
       });
   }
 

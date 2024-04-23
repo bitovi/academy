@@ -179,7 +179,7 @@ Product teams can determine the timeframe they wish to compare.
 
 **Strengths**
 
-`Projected Value` calculates in absolute terms. It's trying to calculate how much real value, in dollars or other currency, this feature expects to return. As _Additional Revenue_ can be itself calculated in a wide variety of ways, this framework can be rather flexible. Teams can model `Additional Revenue` however they want.
+`Projected Value` calculates in absolute terms. It’s trying to calculate how much real value, in dollars or other currency, this feature expects to return. As _Additional Revenue_ can be itself calculated in a wide variety of ways, this framework can be rather flexible. Teams can model `Additional Revenue` however they want.
 
 The other benefit is that this method can be used to analyze past predictions. While it can be hard to analyze any single initiative’s additional value, taking a batch of initiatives and seeing how much better a product has done is possible.
 

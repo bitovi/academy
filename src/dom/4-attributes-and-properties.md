@@ -72,7 +72,7 @@ QUnit.test("$.fn.attr", function () {
   equal(
     $("#qunit-fixture span").attr("foo"),
     "BAR",
-    "read the first item in the collection's attr"
+    "read the first item in the collection’s attr"
   );
 });
 ```
@@ -215,8 +215,8 @@ QUnit.test("$.fn.css", function () {
 
 ### The problem
 
-[collection.addClass](https://api.jquery.com/addclass/) adds a class to each element's `className`.
-[collection.removeClass](https://api.jquery.com/removeclass/) removes a class to each element's `className`.
+[collection.addClass](https://api.jquery.com/addclass/) adds a class to each element’s `className`.
+[collection.removeClass](https://api.jquery.com/removeclass/) removes a class to each element’s `className`.
 
 The following changes the `<div>` from green to red after one second.
 
@@ -282,7 +282,7 @@ QUnit.test("$.fn.addClass and $.fn.removeClass", function () {
 
 ### What you need to know
 
-- An element's [classList](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList)
+- An element’s [classList](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList)
   lets you add and remove class names on it.
 
   ```html

@@ -35,7 +35,7 @@ Generics are a great way to reuse strongly typed code and create powerful abstra
 
 ## With Constraints
 
-Generics by themselves are a great way to encapsulate logic when we don’t really care what shape that type has. Take for example `Array`. Arrays are a list of things. It doesn’t matter what things are in it since when we do interact with items in an array we provide the logic to handle those items, making the array indifferent to what’s inside. Sometimes though, we do care about the shape of the thing being passed in or at least part of it. Take a `greeter` function, say we want it to greet something by name whether it be a bird, dog, person, cat, or pokemon. Reuse of logic across types screams generics. So what happens if we try to implement `greeter` using plain generics? Well, let's try.
+Generics by themselves are a great way to encapsulate logic when we don’t really care what shape that type has. Take for example `Array`. Arrays are a list of things. It doesn’t matter what things are in it since when we do interact with items in an array we provide the logic to handle those items, making the array indifferent to what’s inside. Sometimes though, we do care about the shape of the thing being passed in or at least part of it. Take a `greeter` function, say we want it to greet something by name whether it be a bird, dog, person, cat, or pokemon. Reuse of logic across types screams generics. So what happens if we try to implement `greeter` using plain generics? Well, let’s try.
 
 ```ts
 function greeter<T>(thingToGreet: T): void {
@@ -129,7 +129,7 @@ Moving into the upcoming lessons, constraining generics will be a common tool we
 
 ### Exercise 1
 
-Update the `Keys` type to act as a type alias for `keyof`. With this type, we don't want to allow `string`s, `number`s and `boolean`s to be passed
+Update the `Keys` type to act as a type alias for `keyof`. With this type, we don’t want to allow `string`s, `number`s and `boolean`s to be passed
 into the `Keys` type (`Keys<string>`, `Keys<number>`, etc. should not be allowed). So that the following is true
 
 ```ts
@@ -191,16 +191,16 @@ type RandomAttacks = Keys<typeof randomAttacks>; // 'quickAttack' | 'thunder'
 
 ### Exercise 2
 
-Now that we have a `Keys` type let's put it to work. Imagine we have the following types:
+Now that we have a `Keys` type let’s put it to work. Imagine we have the following types:
 
 @sourceref ./types.ts
 
 Below is a function called `getStarterPokemonInfomation` that
-takes two generics. We would like to be able to pass in any of our three starters objects and a starter's name to get the
+takes two generics. We would like to be able to pass in any of our three starters objects and a starter’s name to get the
 data for that pokemon. Update the generics definition in the function to allow for this to happen.
 
 > **Before you Start**
-> Don't worry about adding a return type to the function, focus only on the definition of the generics
+> Don’t worry about adding a return type to the function, focus only on the definition of the generics
 
 ```ts
 type FireStarterPokemon = {

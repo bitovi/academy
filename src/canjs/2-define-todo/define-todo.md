@@ -88,7 +88,7 @@ QUnit.equal(todo.complete, true, "toggleComplete works");
   @codepen
   @highlight 3-10
 
-## The Solution
+## The solution
 
 <details>
 <summary>Click to see the solution</summary>

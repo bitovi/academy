@@ -2,12 +2,12 @@ type Keys<T extends object> = keyof T;
 
 /* Exercise 2
  *
- * Now that we have a `Keys` type let's put it to work. Below is a function called `getStarterPokemonInfomation` that
- * takes two generics. We would like to be able to pass in any of our three starters objects and a starter's name to get the
+ * Now that we have a `Keys` type let’s put it to work. Below is a function called `getStarterPokemonInfomation` that
+ * takes two generics. We would like to be able to pass in any of our three starters objects and a starter’s name to get the
  * data for that pokemon. Update the generics definition in the function to allow for this to happen.
  *
  * > **Before you Start**
- * > Don't worry about adding a return type to the function, focus only on the definition of the generics
+ * > Don’t worry about adding a return type to the function, focus only on the definition of the generics
  *
  * ```ts
  * type FireStarterPokemon = {

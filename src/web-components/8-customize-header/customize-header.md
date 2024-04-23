@@ -8,11 +8,11 @@
 
 In this part we will:
 
-- Use CSS custom properties to allow users of our component to modify the component's encapsulated styles.
+- Use CSS custom properties to allow users of our component to modify the component’s encapsulated styles.
 
 ## Problem
 
-We want the users of our component to be able to customize the styling. For example we think they should be able to change the header's `background-color` and the heading's `text-transform`.
+We want the users of our component to be able to customize the styling. For example we think they should be able to change the header’s `background-color` and the heading's `text-transform`.
 
 Open up the styling for this component by providing supported CSS custom properties. In the end a custom header should look something like this:
 
@@ -23,16 +23,16 @@ Open up the styling for this component by providing supported CSS custom propert
 ## How to Solve This Problem
 
 1. Style the `bus-tracker` using custom properties in the global CSS.
-1. Change the `bus-tracker` component's own CSS to use those properties in the `header` and `header h1` elements.
+1. Change the `bus-tracker` component’s own CSS to use those properties in the `header` and `header h1` elements.
 
-## Technical Requirements
+## Technical requirements
 
 Use the following CSS property names and values:
 
-- `--header-background` - Pick any color you want. I'll use `salmon`.
+- `--header-background` - Pick any color you want. I’ll use `salmon`.
 - `--header-text-transform` - Use `capitalize`.
 
-## What You Need to Know
+## What you need to know
 
 - How to define CSS custom properties.
 - How to use CSS custom properties to set the value of styles.

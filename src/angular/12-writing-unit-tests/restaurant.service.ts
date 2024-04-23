@@ -19,9 +19,10 @@ export interface City {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class RestaurantService {
+
   constructor(private httpClient: HttpClient) {}
 
   getRestaurants(
@@ -51,7 +52,7 @@ export class RestaurantService {
     );
   }
 
-  getRestaurant(slug: string) {
+  getRestaurant(slug: string): Observable<Restaurant> {
     return this.httpClient.get<Restaurant>(
       environment.apiUrl + '/restaurants/' + slug
     );

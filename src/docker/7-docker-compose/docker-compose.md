@@ -23,7 +23,7 @@ $ docker run \
 -v "$(pwd)"/src:/app/src \
 my-node-app:dev
 ```
-That's a lot of typing and memorization to run a container. Docker compose condenses all of this into one command: `docker-compose up`.
+That’s a lot of typing and memorization to run a container. Docker compose condenses all of this into one command: `docker-compose up`.
 
 ## Docker Compose
 Docker Compose is a cli included with Docker that provides a declarative way to building and running multiple Docker containers. When Docker Compose manages a container, it is called a "service".
@@ -82,7 +82,7 @@ my-app_1  | Example app listening at http://localhost:8000
 You can press `ctrl+c` or run `docker-compose down` from a separate tab to kill your container(s). 
 
 ## Replacing docker build
-Now that we've replaced `docker run` with `docker-compose up`, Let's update `docker-compose.yml` to allow Docker Compose to manage builds too.
+Now that we’ve replaced `docker run` with `docker-compose up`, Let’s update `docker-compose.yml` to allow Docker Compose to manage builds too.
 ```yaml
 version: "3.8"
 services:
@@ -98,7 +98,7 @@ services:
     environment:
       PORT: ${MY_PORT}
 ```
-We've added a `build` section to our `my-app` service.
+We’ve added a `build` section to our `my-app` service.
 * `context: .` tells Docker Compose where to find the Dockerfile
 * `target: ${MY_ENV}` tells Docker to build either a dev or prod image
 Run `docker-compose build` to build a fresh copy of `my-node-app`.
@@ -108,13 +108,13 @@ Now we can control how our image is built and run from `.env`.
 
 Changing `MY_ENV=dev` to `MY_ENV=prod` will cause `docker-compose up` to create a container in the production mode. If an image does not exist, `docker-compose up` will automatically run `docker-compose build` for us! 
 
-## Let's add more containers!
-Let's add a MySQL database and ensure it is running before starting the `my-app` service.
+## Let’s add more containers!
+Let’s add a MySQL database and ensure it is running before starting the `my-app` service.
 
-We'll use the `mysql:5.7` image from [Dockerhub](https://hub.docker.com/_/mysql).
+We’ll use the `mysql:5.7` image from [Dockerhub](https://hub.docker.com/_/mysql).
 
 ### .env
-The Dockerhub page specifies several required environment variables to pass in to the container. We'll add these to `.env`
+The Dockerhub page specifies several required environment variables to pass in to the container. We’ll add these to `.env`
 ```yaml
 # My App
 MY_ENV=prod
@@ -127,7 +127,7 @@ MYSQL_USER=my_user
 MYSQL_PASSWORD=S3cure!_user
 ```
 ### docker-compose.yml
-The `db` service we're adding below should be intuitive based on what's been covered so far. The exception is the `volumes:` section.
+The `db` service we’re adding below should be intuitive based on what’s been covered so far. The exception is the `volumes:` section.
 ```yaml
 version: "3.8"
 services:
@@ -173,7 +173,7 @@ volumes:
 ```
 
 ### Test
-Finally, let's start everything up
+Finally, let’s start everything up
 ```bash
 $ docker-compose up
 Creating network "nodeapp_default" with the default driver

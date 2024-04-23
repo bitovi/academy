@@ -37,7 +37,7 @@ Get all `todos` from the service layer using the "connected" `Todo` type.
   }
   ```
 
-## The Solution
+## The solution
 
 <details>
 <summary>Click to see the solution</summary>

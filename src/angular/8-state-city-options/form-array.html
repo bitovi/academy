@@ -19,32 +19,32 @@ const { ReactiveFormsModule, FormControl, FormGroup, FormArray } = ng.forms;
 @Component({
   selector: 'my-app',
   template: `
-  <p>A home component!</p>
-  <form [formGroup]="usersForm" (ngSubmit)="onSubmit()">
-    <p>This form can handle creating many users at once!</p>
-    <ng-container 
-    *ngFor="let userFormGroup of usersForm.controls.users.controls; 
-    let i = index">
-      <div [formGroup]="userFormGroup">
-        <label>
-          First name:
-          <input type="text" formControlName="firstName">
-        </label>
-        <label>
-          Last name:
-          <input type="text" formControlName="lastName">
-        </label>
-        <label>
-          Email:
-          <input type="text" formControlName="email">
-        </label>
-      </div>
-    </ng-container>
-    <button type="submit">see form value</button>
-  </form>
-  <button (click)="addGroup()">add group</button>
+    <p>A home component!</p>
+    <form [formGroup]="usersForm" (ngSubmit)="onSubmit()">
+      <p>This form can handle creating many users at once!</p>
+      <ng-container 
+      *ngFor="let userFormGroup of usersForm.controls.users.controls; 
+      let i = index">
+        <div [formGroup]="userFormGroup">
+          <label>
+            First name:
+            <input type="text" formControlName="firstName">
+          </label>
+          <label>
+            Last name:
+            <input type="text" formControlName="lastName">
+          </label>
+          <label>
+            Email:
+            <input type="text" formControlName="email">
+          </label>
+        </div>
+      </ng-container>
+      <button type="submit">see form value</button>
+    </form>
+    <button (click)="addGroup()">add group</button>
 
-  {{ formValue | json }}
+    {{ formValue | json }}
   `
 })
 class AppComponent {

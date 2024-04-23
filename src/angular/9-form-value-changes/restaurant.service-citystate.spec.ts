@@ -7,7 +7,7 @@ import { Restaurant } from './restaurant';
 import { ResponseData, RestaurantService } from './restaurant.service';
 
 describe('RestaurantService', () => {
-  let httpMock: HttpTestingController;
+  let httpTestingController: HttpTestingController;
   let service: RestaurantService;
 
   beforeEach(() => {
@@ -15,7 +15,7 @@ describe('RestaurantService', () => {
       imports: [HttpClientTestingModule],
     });
 
-    httpMock = TestBed.inject(HttpTestingController);
+    httpTestingController = TestBed.inject(HttpTestingController);
     service = TestBed.inject(RestaurantService);
   });
 
@@ -23,7 +23,7 @@ describe('RestaurantService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should make a get request to restaurants', () => {
+  it('should make a GET request to restaurants', () => {
     const mockRestaurants = {
       data: [
         {
@@ -92,12 +92,12 @@ describe('RestaurantService', () => {
     });
 
     const url = 'http://localhost:7070/restaurants';
-    const req = httpMock.expectOne(url);
+    const req = httpTestingController.expectOne(url);
 
     expect(req.request.method).toEqual('GET');
     req.flush(mockRestaurants);
 
-    httpMock.verify();
+    httpTestingController.verify();
   });
 
   it('can set proper properties on restaurant type', () => {
@@ -129,11 +129,11 @@ describe('RestaurantService', () => {
       },
       _id: 'xugqxQIX5dfgdgTLBv',
     };
-    // will error if interface isn't implemented correctly
+    // will error if interface isn’t implemented correctly
     expect(true).toBe(true);
   });
 
-  it('should make a get request to states', () => {
+  it('should make a GET request to states', () => {
     const mockStates = {
       data: [{ name: 'Missouri', short: 'MO' }],
     };
@@ -143,15 +143,15 @@ describe('RestaurantService', () => {
     });
 
     const url = 'http://localhost:7070/states';
-    const req = httpMock.expectOne(url);
+    const req = httpTestingController.expectOne(url);
 
     expect(req.request.method).toEqual('GET');
     req.flush(mockStates);
 
-    httpMock.verify();
+    httpTestingController.verify();
   });
 
-  it('should make a get request to cities', () => {
+  it('should make a GET request to cities', () => {
     const mockCities = {
       data: [{ name: 'Kansas City', state: 'MO' }],
     };
@@ -161,10 +161,10 @@ describe('RestaurantService', () => {
     });
 
     const url = 'http://localhost:7070/cities?state=MO';
-    const req = httpMock.expectOne(url);
+    const req = httpTestingController.expectOne(url);
     expect(req.request.method).toEqual('GET');
     req.flush(mockCities);
 
-    httpMock.verify();
+    httpTestingController.verify();
   });
 });

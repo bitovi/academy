@@ -3,6 +3,7 @@
   <ng-container *ngIf="restaurants.length">
     <div class="restaurant" *ngFor="let restaurant of restaurants">
       <img
+        alt=""
         src="{{ restaurant.images.thumbnail | imageUrl }}"
         width="100"
         height="100"

@@ -17,7 +17,7 @@ export interface Data<T> {
 @Component({
   selector: 'pmo-restaurant',
   templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less'],
+  styleUrl: './restaurant.component.css',
 })
 export class RestaurantComponent implements OnInit, OnDestroy {
   form: FormGroup<{
@@ -72,36 +72,34 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
     this.form.controls.state.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) => {
+      .subscribe((value) => {
         this.restaurants.value = [];
-        if (val) {
+        if (value) {
           // only enable city if state has value
           this.form.controls.city.enable({
-            onlySelf: true,
             emitEvent: false,
           });
 
           // if state has a value and has changed, clear previous city value
-          if (state !== val) {
+          if (state !== value) {
             this.form.controls.city.setValue('');
           }
 
-          // fetch cities based on state val
-          this.getCities(val);
+          // fetch cities based on state value
+          this.getCities(value);
         } else {
           // disable city if no value
           this.form.controls.city.disable({
-            onlySelf: true,
             emitEvent: false,
           });
         }
-        state = val;
+        state = value;
       });
 
     this.form.controls.city.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) => {
-        if (val) {
+      .subscribe((value) => {
+        if (value) {
           this.getRestaurants();
         }
       });
@@ -128,7 +126,6 @@ export class RestaurantComponent implements OnInit, OnDestroy {
         this.cities.value = res.data;
         this.cities.isPending = false;
         this.form.controls.city.enable({
-          onlySelf: true,
           emitEvent: false,
         });
       });

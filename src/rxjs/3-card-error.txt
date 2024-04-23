@@ -1,4 +1,4 @@
-Hello and welcome to Bitovi Academy's Learn RxJS training.
+Hello and welcome to Bitovi Academy’s Learn RxJS training.
 
 This course covers showing an error message if the card number is 
 not correct. This exercise is a lot like the previous one.

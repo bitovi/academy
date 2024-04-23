@@ -1,8 +1,8 @@
-Welcome to part 5 of Bitovi academies learn docker training. Last chapter we wrote our Dockerfile, In this video we're going to build and run our image.
+Welcome to part 5 of Bitovi academies learn docker training. Last chapter we wrote our Dockerfile, In this video we’re going to build and run our image.
 
-To build it in to an image, we'll use the `docker build` command.
+To build it in to an image, we’ll use the `docker build` command.
 
-From a terminal, we're going to run
+From a terminal, we’re going to run
 
 `docker build -t my-node-app .`
 `docker build -t my-node-app:test .`

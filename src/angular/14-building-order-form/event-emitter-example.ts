@@ -30,9 +30,9 @@ export class Zippy {
 })
 class App {
   opened(message) {
-    console.log(message) //-> OPEN
+    console.info(message) //-> OPEN
   };
   closed(message) {
-    console.log(message) //-> CLOSE
+    console.info(message) //-> CLOSE
   }
 }

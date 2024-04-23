@@ -43,8 +43,8 @@ window.PACKAGES = packages;
       if (articleScroll) {
         articleContainer.scrollTop = articleScroll;
       } else if (window.location.hash) {
-        //if there's no state before and the URL has a hash eg. #collecting-data
-        //then let's scroll to #collecting-data element
+        //if there’s no state before and the URL has a hash eg. #collecting-data
+        //then let’s scroll to #collecting-data element
         var element = document.querySelector(window.location.hash);
         if (element) {
           articleContainer.scrollTop = element.offsetTop - 60; // ~60px for the navigation height
@@ -53,7 +53,7 @@ window.PACKAGES = packages;
     }
     setArticleScroll();
 
-    // If there's a scroll before page load, we ignore saving the spot
+    // If there’s a scroll before page load, we ignore saving the spot
     // and instead try to force the original position
     articleContainer.addEventListener("scroll", function () {
       if (windowLoaded) {
@@ -90,9 +90,9 @@ window.PACKAGES = packages;
   };
 
   var openModal = function () {
-    console.log("You're deleting the Subscription Modal, aren't you?");
+    console.log("You’re deleting the Subscription Modal, aren’t you?");
     console.log(
-      "That's okay; looking for a job? Once you finish the course, head over to https://www.bitovi.com/jobs"
+      "That’s okay; looking for a job? Once you finish the course, head over to https://www.bitovi.com/jobs"
     );
 
     const modal = document.getElementById("email-modal");
@@ -118,7 +118,7 @@ window.PACKAGES = packages;
     document.querySelector &&
     document.querySelector(".sidebar-left > ul > li.expanded > ul > li.current")
   ) {
-    // ^ if we're on an internal page of the current academy lesson
+    // ^ if we’re on an internal page of the current academy lesson
     if (
       !/(^|;)\s*academyemailprovided=true(;|$)/g.test(
         decodeURIComponent(document.cookie)
@@ -126,7 +126,7 @@ window.PACKAGES = packages;
       location.hostname !== "localhost" &&
       location.hostname !== "127.0.0.1"
     ) {
-      // ^ if the email-already-entered cookie doesn't exist
+      // ^ if the email-already-entered cookie doesn’t exist
       setTimeout(openModal, 2 * 1000); // after 2 sec, open the modal
     }
   }

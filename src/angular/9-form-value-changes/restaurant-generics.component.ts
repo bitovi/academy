@@ -12,7 +12,7 @@ export interface Data {
 @Component({
   selector: 'pmo-restaurant',
   templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less'],
+  styleUrl: './restaurant.component.css',
 })
 export class RestaurantComponent implements OnInit, OnDestroy {
   form: FormGroup<{
@@ -57,14 +57,14 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
     this.form.controls.state.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) => {
-        console.log('state', val);
+      .subscribe((value) => {
+        console.info('state', value);
       });
 
     this.form.controls.city.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) => {
-        console.log('city', val);
+      .subscribe((value) => {
+        console.info('city', value);
       });
   }
 

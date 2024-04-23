@@ -6,3 +6,4 @@ ignore-patterns:
 ignores:
 - steal-tools
 - q
+- http-server

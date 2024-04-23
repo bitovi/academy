@@ -1,6 +1,6 @@
 @page learn-advanced-javascript/prototypes Prototypes
 @parent learn-advanced-javascript 6
-@description Demystify .prototype and .\_proto\_! We'll cover what the "new" and "instanceof" operators are actually doing behind the scenes, and what prototype-based inheritance looks like in memory.
+@description Demystify .prototype and .\_proto\_! We’ll cover what the "new" and "instanceof" operators are actually doing behind the scenes, and what prototype-based inheritance looks like in memory.
 
 @body
 
@@ -86,7 +86,7 @@ QUnit.test('NEW works', function(){
 The `new` operator does three things:
 
 1. Creates a new object.
-2. Assigns the object's `__proto__` to the constructor function's `prototype`.
+2. Assigns the object’s `__proto__` to the constructor function’s `prototype`.
 3. Calls the `constructorFn` constructor function with the object as `this`.  
 
 
@@ -202,7 +202,7 @@ QUnit.test('INSTANCEOF works', function() {
 The [instanceof](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof)
 operator returns true if the prototype property of a constructor appears anywhere in the prototype chain of an object.  
 
-A constructor function's prototype is not an instance of the constructor function:
+A constructor function’s prototype is not an instance of the constructor function:
 
 ```js
 var Person = function(name) {

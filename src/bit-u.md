@@ -302,13 +302,13 @@ a.quote-link:hover{
 <div class="container">
   <div class="hero-banner">
     <h1>Level up your front-end skills</h1>
-    <h2>Whether you're a beginner or experienced professional, Academy courses have something to help you perfect your design, development, or management skills.</h2>
+    <h2>Whether you’re a beginner or experienced professional, Academy courses have something to help you perfect your design, development, or management skills.</h2>
     <a class="button button-large button-red" href="#courses-section">Browse our courses</a>
   </div>
   <div class="academy-section academy-logos">
     <a href="./learn-advanced-javascript.html"><img class="academy-course-logo" src="./static/img/javascript.png"></a>
     <a href="./learn-angular.html"><img class="academy-course-logo" src="./static/img/angular.png"></a>
-    <a href="./learn-dom-jquery.html"><img class="academy-course-logo" src="./static/img/jquery-logo.png"></a>
+    <a href="./learn-react.html"><img class="academy-course-logo" src="./static/img/react.png"></a>
     <a href="./learn-rxjs.html"><img class="academy-course-logo" src="./static/img/rxjs.png"></a>
     <a href="./learn-typescript.html"><img class="academy-course-logo" src="./static/img/ts-logo.png"/></a>
   </div>
@@ -328,13 +328,13 @@ a.quote-link:hover{
           <h4>Get help when you need it</h4>
           <p>Our team of expert front-end developers is only a Discord message away.</p>
         </div>
-       <a class="button discord-button full-width" href="https://discord.gg/J7ejFsZnJ4" ><img src="./static/img/discord-logo.svg" height="20">Join our Community Discord</a>
+       <a class="button discord-button full-width" href="https://discord.gg/J7ejFsZnJ4"><img src="./static/img/discord-logo.svg" height="20">Join our Community Discord</a>
       </div>
       <div class="academy-card">
         <div class="academy-card--top">
           <img class="card-image" src="./static/img/academy-3.png" width="75">
           <h4>Leverage battle-tested trainings</h4>
-          <p>The same trainings materials have been sharpened over the past decade and delivered to enterprise front-end teams at Sony, Lowes, Walmart, and more. Free and <a class="link" href="https://github.com/bitovi/academy" >open source</a>.</p>
+          <p>The same trainings materials have been sharpened over the past decade and delivered to enterprise front-end teams at Sony, Lowes, Walmart, and more. Free and <a class="link" href="https://github.com/bitovi/academy">open source</a>.</p>
         </div>
         <a class="button full-width" href="#live-events-section">See our live events</a>
       </div>
@@ -344,15 +344,15 @@ a.quote-link:hover{
     <h3>What people are saying about us</h3>
     <div class="academy-cards-container">
       <div class="academy-card academy-card--red">
-          <p><a class="quote-link" href="https://www.meetup.com/DoneJS-Chicago/events/260347973/#commentsTitle" >“Really enjoyed this class! The instructor, Justin, was phenomenal, and the content was both challenging and engaging. Even though framework usage is ubiquitous these days, it's rewarding to understand exactly how libraries interact with the DOM on a granular level. I am looking forward to more Bitovi events in the future.”</a></p>
+          <p><a class="quote-link" href="https://www.meetup.com/DoneJS-Chicago/events/260347973/#commentsTitle">“Really enjoyed this class! The instructor, Justin, was phenomenal, and the content was both challenging and engaging. Even though framework usage is ubiquitous these days, it’s rewarding to understand exactly how libraries interact with the DOM on a granular level. I am looking forward to more Bitovi events in the future.”</a></p>
           <p class="quote-author">- Patrick Gallagher</p>
       </div>
       <div class="academy-card academy-card--blue">
-        <p><a class="quote-link" href="https://www.meetup.com/DoneJS-Chicago/events/260347973/#commentsTitle" >“Bitovi, thanks for sharing this elite training with me. Thank you for your warmth and company, Maryann, Mike, Michael, Cherif, and Oscar, and thank you Justin for making this (another) memorable time. We went so far beyond "training" it was (as Michael would say) "sick." My best wishes of success to all.”</a></p>
+        <p><a class="quote-link" href="https://www.meetup.com/DoneJS-Chicago/events/260347973/#commentsTitle">“Bitovi, thanks for sharing this elite training with me. Thank you for your warmth and company, Maryann, Mike, Michael, Cherif, and Oscar, and thank you Justin for making this (another) memorable time. We went so far beyond "training" it was (as Michael would say) "sick." My best wishes of success to all.”</a></p>
         <p class="quote-author">- Carson Wilson</p>
       </div>
       <div class="academy-card academy-card--orange">
-        <p><a class="quote-link" href="https://www.meetup.com/DoneJS-Chicago/events/260347973/#commentsTitle" >“Highly recommended! Very solid training materials which dig deep into the fundamentals of JavaScript. Justin is great at explaining complex concepts clearly and simply. I have learned a lot. Looking forward to more events!”</a></p>
+        <p><a class="quote-link" href="https://www.meetup.com/DoneJS-Chicago/events/260347973/#commentsTitle">“Highly recommended! Very solid training materials which dig deep into the fundamentals of JavaScript. Justin is great at explaining complex concepts clearly and simply. I have learned a lot. Looking forward to more events!”</a></p>
         <p class="quote-author">- Shaung</p>
       </div>
     </div>
@@ -366,11 +366,11 @@ a.quote-link:hover{
             <img src="./static/img/react.png" width="70">
           </div>
           <h4>React</h4>
-          <p>Build a feature-rich Tic-Tac-Toe game in this beginner React guide.</p>
+          <p>Build a multi-page, real-time ordering app in this beginner React guide.</p>
           <div class="width100">
-            <p class='detail'><strong>Audience:</strong> Intermediate JS developers, new React developers</p>
-            <p class='detail'><strong>Goal:</strong> Learn the basics of React </p>
-            <p class='detail'><strong>Time:</strong> 6 hours</p>
+            <p class='detail'><strong>Audience:</strong> Intermediate JS developers who are new to React.</p>
+            <p class='detail'><strong>Goal:</strong> Learn the basics of React.</p>
+            <p class='detail'><strong>Time:</strong> 10 hours</p>
           </div>
           <a href="./learn-react.html" class="button button-grey full-width">Take this course</a>
       </div>
@@ -393,7 +393,7 @@ a.quote-link:hover{
             <img src="./static/img/angular.png" height="70">
           </div>
           <h4>Angular</h4>
-          <p>Build a multipage, realtime ordering app with Angular. Learn
+          <p>Build a multi-page, real-time ordering app with Angular. Learn
           FormBuilder and FormGroup. Write tests
           too!</p>
           <div class="width100">
@@ -496,7 +496,7 @@ with Jira.</p>
           <p>Learn all the hard but important stuff you should know when programming JavaScript.</p>
           <div class="width100">
             <p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
-            <p class='detail'><strong>Goal:</strong> Understand what's going on "under the hood".</p>
+            <p class='detail'><strong>Goal:</strong> Understand what’s going on "under the hood".</p>
             <p class='detail'><strong>Time:</strong> 6 hours</p>
           </div>
           <a href="./learn-advanced-javascript.html" class="button button-grey full-width">Take this course</a>
@@ -510,7 +510,7 @@ with Jira.</p>
   meta programming too!</p>
           <div class="width100">
             <p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
-            <p class='detail'><strong>Goal:</strong> Understand the DOM enough to build widgets frameworks can't.</p>
+            <p class='detail'><strong>Goal:</strong> Understand the DOM enough to build widgets frameworks can’t.</p>
             <p class='detail'><strong>Time:</strong> 10 hours</p>
           </div>
           <a href="./learn-dom-jquery.html" class="button button-grey full-width">Take this course</a>
@@ -567,7 +567,7 @@ with Jira.</p>
         </div>
         <h4>Your Course Here</h4>
         <p>Got an idea for a course? Let us know by submitting an issue.</p>
-        <a class="button full-width" style="color: white" href="https://github.com/bitovi/academy/issues/new" >Submit your idea</a>
+        <a class="button full-width" style="color: white" href="https://github.com/bitovi/academy/issues/new">Submit your idea</a>
       </div>
       <div class="academy-card course">
         <div class="course-logo">

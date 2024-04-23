@@ -58,7 +58,7 @@ describe('Login Reducer', () => {
 
       const result = reducer(initialState, action);
 
-      // Shouldn't update state at all
+      // Shouldn’t update state at all
       expect(result).toBe(initialState);
     });
   });

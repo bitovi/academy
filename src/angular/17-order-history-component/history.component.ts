@@ -9,7 +9,7 @@ interface Data<T> {
 @Component({
   selector: 'pmo-history',
   templateUrl: './history.component.html',
-  styleUrls: ['./history.component.less'],
+  styleUrl: './history.component.css',
 })
 export class HistoryComponent implements OnInit, OnDestroy {
   constructor() {}

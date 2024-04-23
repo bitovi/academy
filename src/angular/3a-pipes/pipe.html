@@ -12,18 +12,18 @@
 const { Component, VERSION, Pipe, PipeTransform } = ng.core;
 
 
-@Pipe({name: 'exponentialStrength'})
-class ExponentialStrengthPipe implements PipeTransform {
-  transform(value: number, exponent: number): number {
-    return Math.pow(value, isNaN(exponent) ? 1 : exponent);
+@Pipe({ name: 'currencyFormat' })
+export class CurrencyFormatPipe implements PipeTransform {
+  transform(value: number, symbol: string = '$'): string {
+    return `${symbol}${value / 100}`;
   }
 }
 
 @Component({
   selector: 'my-app',
   template: `
-  <h2>Power Booster</h2>
-  <p>Super power boost: {{2 | exponentialStrength: 10}}</p>
+    <h2>Prices</h2>
+    <p>USD price: {{ 1522 | currencyFormat:'$' }}</p>
   `
 })
 class AppComponent {
@@ -39,7 +39,7 @@ const { CommonModule } = ng.common;
 @NgModule({
   imports: [ BrowserModule,
   CommonModule],
-  declarations: [AppComponent, ExponentialStrengthPipe],
+  declarations: [AppComponent, CurrencyFormatPipe],
   bootstrap: [AppComponent],
   providers: []
 })

@@ -14,20 +14,20 @@ const { Component, VERSION } = ng.core;
 @Component({
   selector: 'my-app',
   template: `
-  <div [ngClass]="'first second'">...</div>
+    <div [ngClass]="'first second'">...</div>
 
-  <div [ngClass]="['first', 'second']">...</div>
+    <div [ngClass]="['first', 'second']">...</div>
 
-  <div [ngClass]="{'first': true, 'second': true, 'third': false}">...</div>
+    <div [ngClass]="{'first': true, 'second': true, 'third': false}">...</div>
 
-  <div [ngClass]="stringExp|arrayExp|objExp">...</div>
+    <div [ngClass]="stringExp|arrayExp|objExp">...</div>
 
-  <div [ngClass]="{'class1 class2 class3' : true}">...</div>
+    <div [ngClass]="{'class1 class2 class3' : true}">...</div>
 
-  <div [ngClass]="{'my-active-class' : classIsActive}">
-    Setting classes
-  </div>
-  <button (click)="classIsActive = classIsActive ? false: true">set class active</button> 
+    <div [ngClass]="{'my-active-class' : classIsActive}">
+      Setting classes
+    </div>
+    <button (click)="classIsActive = classIsActive ? false: true">set class active</button> 
   `
 })
 class AppComponent {

@@ -1,9 +1,9 @@
-Hello and welcome to Bitovi Academy's Learn TypeScript training.
+Hello and welcome to Bitovi Academy’s Learn TypeScript training.
 
 This video is an overview of the entire TypeScript course.
 
-Before we start, it's important to make sure everyone knows about Bitovi's
-Community Discord.  It's a great place to get help on these exercises, and
+Before we start, it’s important to make sure everyone knows about Bitovi’s
+Community Discord.  It’s a great place to get help on these exercises, and
 talk tech with likeminded folks.
 
 So as I mentioned, this course is about TypeScript. TypeScript
@@ -23,5 +23,5 @@ Specifically, we will:
 - Use interfaces to get "loosely" coupled types.
 - Use generics to support types as arguments.
 
-Once you've completed this course, you will be able to
+Once you’ve completed this course, you will be able to
 start building apps in TypeScript.

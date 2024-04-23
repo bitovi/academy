@@ -2,7 +2,7 @@
  * Exercise 1
  *
  * Update the `Keys` type to act as a type alias for `keyof`. With this type,
- * we don't want to allow `string`s, `number`s and `boolean`s to be passed
+ * we don’t want to allow `string`s, `number`s and `boolean`s to be passed
  * into the `Keys` type  (`Keys<string>`, `Keys<number>`, etc. should not be allowed). So that given
  * the following types...
  *

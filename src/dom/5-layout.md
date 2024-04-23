@@ -213,7 +213,7 @@ QUnit.test("$.fn.offset", function () {
 ### What you need to know
 
 - [getBoundingClientRect](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect)
-  gives an element's position relative to the window.
+  gives an element’s position relative to the window.
 - [pageXOffset](https://developer.mozilla.org/en-US/docs/Web/API/Window/pageXOffset) and
   [pageYOffset](https://developer.mozilla.org/en-US/docs/Web/API/Window/pageYOffset) give how far
   the window has been scrolled.

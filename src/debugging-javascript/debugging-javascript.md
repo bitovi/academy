@@ -4,7 +4,7 @@
 
 @body
 
-## Before You Begin
+## Before you begin
 
 <a href="https://discord.gg/J7ejFsZnJ4">
 <img src="./static/img/discord.png"
@@ -33,7 +33,7 @@ If you find bugs in this training or have suggestions, create an [issue](https:/
 
   <img src="./static/img/debugging/stack.png" width="300px" style="border: solid 1px black"/>
 
-- [learn-to-debug-javascript/prototypes] - Learn how to explore an object's proto chain.  
+- [learn-to-debug-javascript/prototypes] - Learn how to explore an object’s proto chain.  
 
   <div style="border: solid 1px black; width: 300px;
   background-image: url('./static/img/debugging/prototype.png');

@@ -22,7 +22,7 @@
 There should be a Selector that obtains the `userId` from the Login State.
 
 
-## P1: What You Need to Know
+## P1: What you need to know
 
 NgRx Selectors are `pure` functions used for [obtaining slices of state](https://ngrx.io/guide/store/selectors#using-a-selector-for-one-piece-of-state).
 
@@ -32,7 +32,7 @@ NgRx provide 2 helper functions when creating Selectors:
 
 2. [createSelector](https://ngrx.io/api/store/createSelector) - Uses other Selectors to obtain slices of state. The first arguments are any other Selectors used for this new Selector. The last argument of this function is a `pure` function commonly referred to as a **projector**.
 
-The NgRx schematics take care of creating our Login Selector, and it's up to us to create additional Selectors using that generated Feature Selector to obtain slices of that state:
+The NgRx schematics take care of creating our Login Selector, and it’s up to us to create additional Selectors using that generated Feature Selector to obtain slices of that state:
 
 ```ts
 import { createFeatureSelector, createSelector } from '@ngrx/store';

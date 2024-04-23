@@ -4,6 +4,7 @@
   <ng-container *ngIf="restaurants.value.length">
     <div class="restaurant" *ngFor="let restaurant of restaurants.value">
       <img
+        alt=""
         src="{{ restaurant.images.thumbnail | imageUrl }}"
         width="100"
         height="100"

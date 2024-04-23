@@ -14,7 +14,7 @@ const { Component, VERSION, Input } = ng.core;
 @Component({
   selector: 'my-child',
   template: `
-    My parent's name is {{parentName}}
+    My parent’s name is {{parentName}}
   `
 })
 class ChildComponent {
@@ -26,9 +26,9 @@ class ChildComponent {
 @Component({
   selector: 'my-app',
   template: `
-  <my-child parentName="Bob"></my-child>
+    <my-child parentName="Bob"></my-child>
 
-  <my-child [parentName]="momName"></my-child>
+    <my-child [parentName]="momName"></my-child>
   `
 })
 class AppComponent {

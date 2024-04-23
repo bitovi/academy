@@ -1,0 +1,3 @@
+{
+  "startCommand": "npx concurrently -k \"npm:api\" \"npm:dev\""
+}
