@@ -1,23 +1,23 @@
 @page learn-typescript/generics Generics
 @parent learn-typescript 12
+@outline 3
 
 @description Learn about what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript.
 
 @body
 
-
 ## Overview
 
-In this part, we will:
+In this section, we will:
 
-- Understand the purpose and basics of generic functions
-- Understand how to make generic classes
-- Understand how to make recursive generic classes
-- Create a TreeNode recursive generic class
+- Explore the fundamentals and objectives of generic functions
+- Learn to construct generic classes
+- Delve into creating recursive generic classes
+- Develop a TreeNode class with recursive generics
 
-## Basic Generics
+## Objective 1: Basic Generics
 
-Generics are a way of writing abstract code that allows the determination of types to be handled when the code is used. Generics let us reuse code for different types and improve maintainability. Lets see how with a small example.
+Generics are a way of writing abstract code that allows the determination of types to be handled when the code is used. Generics let us reuse code for different types and improve maintainability. Let's see how with a small example.
 
 Consider a function that wraps a value in an object:
 
@@ -36,7 +36,7 @@ let hiObj = wrapAsValue("hi"); //-> {value: "hi"}
 
 And you might want to pass those objects to other functions:
 
-```js
+```typescript
 function getDollars(obj: {value: number}){
     return "$"+obj.value.toFixed(2)
 }
@@ -108,12 +108,12 @@ getDollars(hiObj);
 
 ```
 @codepen
-@highlight 1-6,only
+@highlight 1, 5, only
 
 The `<MyType>` part of the `wrapAsValue` definition is the __Generics__
-part. This `<MyType>` allows us to capture the type the user provides, so that we can use that information later. In this case, we are using it to specify that the
+part. This `<MyType>` allows us to capture the type the user provides so that we can use that information later. In this case, we are using it to specify that the
 return type is an object with a `MyType` `value`
-property (`{value: MyType}`). This allows us to traffic that type information in one side of the function and out the other.
+property (`{value: MyType}`). This allows us to traffic that type of information in one side of the function and out the other.
 
 We can call generic functions in two ways:
 
@@ -132,18 +132,17 @@ We can call generic functions in two ways:
   Notice that we didn’t explicitly pass the type n the angle brackets (`<>`). Instead,
   the compiler just looked at the value `"hi"` and set `MyType` to `string`.
 
+## Objective 2: Generic Classes
 
-
-
-## Generic Classes ##
-
-Generic classes are quite common.  For example, [learn-rxjs/basics#observables-vs-subjects RxJS] subjects are a generic class that can publish values of a particular type:
+Generic classes are quite common.
 
 ```typescript
 const cardNumber = new Subject<string>();
 
 cardNumber.next("1234")
 ```
+
+In the example above, [learn-rxjs/basics#observables-vs-subjects RxJS] subjects are a generic class that can publish values of a particular type
 
 Let’s look at making a basic class to collect a list of things.
 
@@ -154,19 +153,15 @@ class Collection {
     this.list.push(thing);
   }
 }
+
+let myList = Collection();
+myList.push(25);
+myList.push('25')
 ```
 @codepen
 
 The good - we can push any type to this list.  
 The bad - we can push any type to this list.
-
-```typescript
-let myList = Collection();
-myList.push(25);
-myList.push('25');
-```
-@codepen
-
 
 `myList` now holds an assortment of types and will be a likely source of
 runtime errors.
@@ -185,49 +180,13 @@ class GenericCollection<T> {
 
 Now when we initialize this class we can specify a type to use.
 
-```typescript
-class GenericCollection<T> {
-  private list: T[] = [];
-  pushItem(thing:T) {
-    this.list.push(thing);
-  }
-}
-
-let myListOfStrings = new GenericCollection<string>();
-myListOfStrings.pushItem('booop');
-myListOfStrings.pushItem(5);
-//error Argument type of '5' is not assignable to parameter of type 'string'
-
-
-let myListOfNumbers = new GenericCollection<number>();
-myListOfNumbers.pushItem(5);
-myListOfNumbers.pushItem('boop');
-//error Argument type of '"boop"' is not assignable to parameter of type 'number'
-
-interface Dinosaur {
-  name: string;
-  breed: string;
-  teeth: number;
-}
-
-let myListOfDinosaurs = new GenericCollection<Dinosaur>();
-let otherDino = {
-  name: 'Blue',
-  breed: 'Velociraptor',
-  teeth: 100
-}
-
-myListOfDinosaurs.pushItem(otherDino);
-
-myListOfDinosaurs.pushItem({name: 'Charlie'});
-//error Argument type '{ name: string; }' is not assignable to parameter of type 'Dinosaur'.
-```
+@sourceref ./generic-collection-class.ts
 @codepen
-@highlight 8,14,25
+@highlight 1, 8,14,25, only
 
+In the example above, we are utilizing generics to inform `GenericCollection` what type it is receiving. `string`, `number`, and `Dinosaur`. 
 
-
-## Recursive Generic Classes
+## Objective 3: Recursive Generic Classes
 
 A great example of the power of generics is creating a linked list with type
 safety.  We will create a simple linked list that supports:
@@ -240,111 +199,60 @@ safety.  We will create a simple linked list that supports:
 We can use it with strings like:
 
 ```typescript
-var linkedList = new LinkedList<string>();
+const linkedList = new LinkedList<string>();
 
 linkedList.unshift("a");
 linkedList.unshift("b");
 
+console.info( linkedList.shift() ) //logs "b"
 
-console.log( linkedList.shift() ) //logs "b"
-
-console.log( linkedList.shift() ) //logs "a"
+console.info( linkedList.shift() ) //logs "a"
 ```
 
 Or with numbers like:
 
 ```typescript
-var linkedList = new LinkedList<number>();
+const linkedList = new LinkedList<number>();
 
 linkedList.unshift(100);
 linkedList.unshift(200);
 
-console.log( linkedList.head ) //logs 200
-
-console.log( linkedList.tail ) //logs 100
+console.info( linkedList.head ) //logs 200
+console.info( linkedList.tail ) //logs 100
 ```
 
 The implementation looks like this:
 
-```typescript
-// Define node that has a value and points to the
-// next item in the list.
-class LinkedListNode<T> {
-	value: T;
-	next?: LinkedListNode<T>;
-
-	constructor(val: T) {
-		this.value = val;
-		this.next = null;
-	}
-}
-
-class LinkedList<T> {
-	private _head: LinkedListNode<T>;
-	private _tail: LinkedListNode<T>;
-
-	// Adds to the start of the list.
-	unshift(value: T) {
-		var node = new LinkedListNode(value);
-
-		// The existing head is now next.
-		if(this._head) {
-			node.next = this._head;
-		}
-
-		this._head = node;
-
-		// If there wasn’t a tail, this is the first node
-		if(!this._tail) {
-			this._tail = node;
-		}
-	}
-	// removes first
-	shift(){
-		let value: T;
-
-		// If there was a head,
-		// set head to whatever is after it.
-		if(this._head) {
-			value = this._head.value;
-			this._head = this._head.next;
-		}
-
-		// If there is no more head, the
-		// list is empty.
-		if(!this._head) {
-			this._tail = null;
-		}
-		return value;
-	}
-
-	get head() { return this._head.value }
-	get tail() {return this._tail.value }
-}
-```
+@sourceref ./linked-list-class.ts
 
 Thanks to generics we’re able to use the same ``LinkedList`` class in multiple different scenarios with any type.
 
-## Exercise: `TreeNode`
+### Setup
 
-### The Problem
+✏️ Create **src/generics/tree-node.ts** and update it to be:
 
-Update the `6-tree-node.ts` file to create a recursive `TreeNode` class that can house a `value` and be used to create a tree structure of `left` and `right` nodes.
+@sourceref ../../../exercises/typescript/12-generics/01-problem/src/tree-node.ts
+
+### Verify
+
+✏️ Create **src/generics/tree-node.test.ts** and update it to be:
+
+@sourceref ../../../exercises/typescript/12-generics/01-problem/src/tree-node.test.ts
+
+Run the following to verify your solution:
+
+```shell
+npm run test
+```
+
+### Exercise
+
+Update the `tree-node.ts` file to create a recursive `TreeNode` class that can house a `value` and be used to create a tree structure of `left` and `right` nodes.
 
 For example, we will be able to create a `TreeNode` with a root value and
 comparison function as follows:
 
-```typescript
-function stringComparison(v1: string, v2: string): number {
-	if(v1 > v2) {
-		return 1;
-	} else {
-		return -1;
-	}
-};
-
-let root = new TreeNode<string>("Jennifer", stringComparison);
-```
+@sourceref ../../../exercises/typescript/12-generics/01-problem/src/example.ts
 
 Then we can add values to `root` like:
 
@@ -370,61 +278,21 @@ root.right.value      //-> "Tom"
 root.right.left.value //-> "Matthew"
 ```
 
-### Verify Your Solution
+<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-generics/01-problem?file=src/tree-node.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-generics/01-problem?file=src/tree-node.ts) to do this exercise in an online code editor.
 
-
-✏️ Run the following to verify your solution:
-
-```shell
-npm run 6-generics
-```
-
-
-### The solution
+### Solution
 
 <details>
 <summary>Click to see the solution</summary>
 
-✏️ Update `6-tree-node.ts` to the following:
+Update `tree-node.ts` to the following:
 
-```typescript
-interface Comparison<T> {
-    (v1:T,v2: T): number;
-}
+@sourceref ../../../exercises/typescript/12-generics/01-solution/src/tree-node.ts
+@highlight 5-9, 11, 16, only
 
-class TreeNode<T> {
-
-	value: T;
-	compare: Comparison<T>;
-	left?: TreeNode<T>;
-	right?: TreeNode<T>;
-
-	constructor(val: T, compare: Comparison<T> ) {
-		this.value = val;
-		this.compare = compare;
-	}
-
-	add(val: T){
-		if( this.compare(this.value, val) >= 1 ) {
-			if(this.left == null) {
-				this.left = new TreeNode(val, this.compare);
-			} else {
-				this.left.add(val);
-			}
-
-		} else {
-			if(this.right == null) {
-				this.right = new TreeNode(val, this.compare);
-			} else {
-				this.right.add(val);
-			}
-		}
-	}
-}
-
-export default TreeNode;
-```
-
-@highlight 7-10,12, 17
-
+As we use generics in line 5, to utilize it in the rest of the `TreeNode` Class
 </details>
+
+## Next steps
+
+Next, let’s take a look at [utility types](./utility-types.html) for type transformations.
