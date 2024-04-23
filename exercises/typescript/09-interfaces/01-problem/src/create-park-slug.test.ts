@@ -1,20 +1,18 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import type DinoPark from "./dino-park";
-import createParkSlug from "./create-park-slug";
+import { createParkSlug } from "./create-park-slug";
 
-describe("Create Park Slug", () => {
-  it("should return a slug", () => {
-    const DinoPark: DinoPark = {
-      name: "Fun Park",
+describe("Interfaces", () => {
+  it("createParkSlug", function () {
+    let result = createParkSlug({
+      name: "Isla Sorna Park",
       address: {
-        street: "123 Park Lane",
-        city: "Dino",
-        state: "World",
+        street: "123 Main",
+        city: "Sandusky",
+        state: "Ohio",
         zip: "12345",
       },
-    };
-    const message = createParkSlug(DinoPark);
-    assert.strictEqual(message, "Fun-Park", "message should be correct");
+    });
+    assert.equal(result, "Isla-Sorna-Park", "slug works");
   });
 });

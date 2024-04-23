@@ -14,13 +14,13 @@ In this section, we will:
 - Set optional properties
 - Use the power of interfaces in classes and functions
 
-## Objective: The use of interface for objects
+## Objective: The use of an interface for objects
 
 Interfaces are a powerful way to enforce types and document what our code provides. Interfaces used in classes allow "loose coupling" while providing a shape. Multiple classes can use interfaces in many different ways. This section will cover how to write interfaces, setting optional properties, and the power of using interfaces in classes and functions.
 
 ### Interfaces in TypeScript
 
-An interface in TypeScript is a way to define the shape an entity should adhere to. An interface defines the members: properties, methods, and events. It may be easy to think of it as the signature of an API. It’s worth noting that interfaces aren’t transpiled into our output JavaScript; they’re only used for typechecking during the development process.
+An interface in TypeScript is a way to define the shape an entity should adhere to. An interface defines the members: properties, methods, and events. It may be easy to think of it as the signature of an API. It’s worth noting that interfaces aren’t transpired into our output JavaScript; they’re only used for type-checking during the development process.
 
 @sourceref ./9-1-interface.ts
 @codepen
@@ -31,9 +31,15 @@ An interface in TypeScript is a way to define the shape an entity should adhere 
 
 @sourceref ../../../exercises/typescript/09-interfaces/01-problem/src/address.ts
 
+### Verify 1
+
+✏️ Create **src/interfaces/address.test.ts** and update it to be:
+
+@sourceref ../../../exercises/typescript/09-interfaces/01-problem/src/address.test.ts
+
 ### Exercise 1
 
-We’re going to write some interfaces to set up for the next problem. Edit the files `address.ts` to create an interface to define a ``Address`` object shown below:
+We’re going to write some interfaces to set up for the next problem. Edit the file `address.ts` to create an interface to define an ``Address`` object shown below:
 
 ```javascript
  const address = {
@@ -50,7 +56,7 @@ Hint: the interface should have properties and types:
   - ``state``(string)
   - ``zip`` (string)
 
-### Solution
+### Solution 1
 
 <details>
 <summary>Click to see the solution</summary>
@@ -77,6 +83,12 @@ Sometimes all properties on an object don’t need to be required, so using the 
 ✏️ Create **src/interfaces/dino-park.ts** and update it to be:
 
 @sourceref ../../../exercises/typescript/09-interfaces/01-problem/src/dino-park.ts
+
+### Verify 2
+
+✏️ Create **src/interfaces/dino-park.test.ts** and update it to be:
+
+@sourceref ../../../exercises/typescript/09-interfaces/01-problem/src/dino-park.test.ts
 
 ### Exercise 2
 
@@ -124,7 +136,7 @@ In the case that a class needs to follow an object structure, we can use interfa
 
 ### Type assertion
 
-We briefly mentioned type assertion when talk about types, but when dealing with interfaces, it can be a great tool for making sure our code behaves in the way we expect.
+We briefly mentioned type assertion when talking about types, but when dealing with interfaces, it can be a great tool for making sure our code behaves in the way we expect.
 
 For instance, consider the following code:
 
@@ -136,7 +148,7 @@ When we create empty object literals in TypeScript, they are inferred to be obje
 @sourceref ./9-4-2-type-assertion.ts
 @codepen
 
-## Objective: The use of interface for functions
+## Objective: The use of an interface for functions
 
 ### Interfaces in functions
 
@@ -147,7 +159,7 @@ Interfaces are incredibly useful in describing the shape of objects we want to u
 
 ### Interfaces describing functions
 
-We can also use interfaces to describe functions, basically creating reusable types for functions. On the left side (in parenthesis) we list the parameters, and to the right of the colon we state the return type.
+We can also use interfaces to describe functions, basically creating reusable types for functions. On the left side (in parenthesis) we list the parameters, and to the right of the colon, we state the return type.
 
 @sourceref ./9-5-2-describefuncs.ts
 @codepen

@@ -2,13 +2,14 @@ import assert from 'node:assert';
 import { describe, it } from 'node:test';
 import {dnaCost} from "./dnaCost";
 
-describe('DNA Cost', () => {
-	it('should return the cost', () => {
-    let raptorDNA = 'CGGCA';
-    let cuttlefishDNA = 'GATTACA';
-    let viperDNA = 'ATTAC';
+describe('Functions: dnaCost', () => {
 
-		const cost = dnaCost(5000,raptorDNA, cuttlefishDNA, viperDNA);
-    assert.strictEqual(cost, 5017, "Cost should be 5017");
+	it('can be called with two arguments', () => {
+		assert.equal( dnaCost(2500, 'abc'), 2503);
 	});
+
+	it('can be called with many arguments', () => {
+		assert.equal( dnaCost(2500, 'abc', 'de', 'f'), 2506);
+	});
+
 });
