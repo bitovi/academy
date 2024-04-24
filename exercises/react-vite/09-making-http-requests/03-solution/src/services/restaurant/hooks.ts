@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react'
-import type { City, State } from './interfaces'
+import type { City, State } from "./interfaces"
+import { useEffect, useState } from "react"
 
 interface CitiesResponse {
-  data: City[] | null;
-  error: Error | null;
-  isPending: boolean;
+  data: City[] | null
+  error: Error | null
+  isPending: boolean
 }
 
 interface StatesResponse {
-  data: State[] | null;
-  error: Error | null;
-  isPending: boolean;
+  data: State[] | null
+  error: Error | null
+  isPending: boolean
 }
 
 export function useCities(state: string): CitiesResponse {
@@ -22,9 +22,12 @@ export function useCities(state: string): CitiesResponse {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`${import.meta.env.VITE_PMO_API}/cities?state=${state}`, {
-        method: "GET",
-      })
+      const response = await fetch(
+        `${import.meta.env.VITE_PMO_API}/cities?state=${state}`,
+        {
+          method: "GET",
+        },
+      )
 
       const data = await response.json()
 
@@ -35,7 +38,7 @@ export function useCities(state: string): CitiesResponse {
       })
     }
     fetchData()
-  }, [state]);
+  }, [state])
 
   return response
 }
@@ -62,7 +65,7 @@ export function useStates(): StatesResponse {
       })
     }
     fetchData()
-  }, []);
+  }, [])
 
   return response
 }
