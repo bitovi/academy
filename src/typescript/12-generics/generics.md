@@ -8,7 +8,7 @@
 
 ## Overview
 
-In this section, we will:
+In this section, you will:
 
 - Explore the fundamentals and objectives of generic functions
 - Learn to construct generic classes
@@ -174,7 +174,7 @@ const cardNumber = new Subject<string>();
 cardNumber.next("1234")
 ```
 
-In the example above, [learn-rxjs/basics#observables-vs-subjects RxJS] subjects are a generic class that can publish values of a particular type
+In the example above, [learn-rxjs/basics#observables-vs-subjects RxJS] subjects are a generic class that can publish values of a particular type.
 
 Let’s look at making a basic class to collect a list of things.
 
@@ -188,7 +188,7 @@ class Collection {
 
 let myList = Collection();
 myList.push(25);
-myList.push('25')
+myList.push('25');
 ```
 @codepen
 
@@ -214,7 +214,7 @@ Now when we initialize this class we can specify a type to use.
 
 @sourceref ./generic-collection-class.ts
 @codepen
-@highlight 1, 8,14,25, only
+@highlight 1, 8,14,25
 
 In the example above, we are utilizing generics to inform `GenericCollection` what type it is receiving. `string`, `number`, and `Dinosaur`. 
 
@@ -257,7 +257,7 @@ The implementation looks like this:
 
 @sourceref ./linked-list-class.ts
 
-Thanks to generics we’re able to use the same ``LinkedList`` class in multiple different scenarios with any type.
+Thanks to generics, we’re able to use the same ``LinkedList`` class in multiple different scenarios with any type.
 
 ### Setup 2
 
@@ -317,12 +317,12 @@ root.right.left.value //-> "Matthew"
 <details>
 <summary>Click to see the solution</summary>
 
-Update `tree-node.ts` to the following:
+✏️ Update `tree-node.ts` to the following:
 
 @sourceref ../../../exercises/typescript/12-generics/02-solution/src/tree-node.ts
 @highlight 5-9, 11, 16, only
 
-As we use generics in line 5, to utilize it in the rest of the `TreeNode` Class
+As we use generics in line 5, we allow the `TreeNode` class to be flexible and reusable, accommodating different types of data and comparison logic.
 </details>
 
 ## Next steps

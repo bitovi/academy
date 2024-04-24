@@ -8,21 +8,31 @@
 
 ## Overview
 
-In this section, we will:
+In this section, you will:
 
 - Write interfaces
 - Set optional properties
 - Use the power of interfaces in classes and functions
 
-## Objective: The use of an interface for objects
+## Objective 1: Define interfaces for objects
 
 Interfaces are a powerful way to enforce types and document what our code provides. Interfaces used in classes allow "loose coupling" while providing a shape. Multiple classes can use interfaces in many different ways. This section will cover how to write interfaces, setting optional properties, and the power of using interfaces in classes and functions.
 
 ### Interfaces in TypeScript
 
-An interface in TypeScript is a way to define the shape an entity should adhere to. An interface defines the members: properties, methods, and events. It may be easy to think of it as the signature of an API. It’s worth noting that interfaces aren’t transpired into our output JavaScript; they’re only used for type-checking during the development process.
+An interface in TypeScript is a way to define the shape an entity should adhere to. An interface defines the members: properties, methods, and events. It may be easy to think of it as the signature of an API. It’s worth noting that interfaces aren’t transpiled into our output JavaScript; they’re only used for type-checking during the development process.
 
 @sourceref ./9-1-interface.ts
+@codepen
+
+Make sure you have this solution implemented correctly before moving on to the next exercise.
+
+### Optional properties
+
+Sometimes all properties on an object don’t need to be required, so using the ``?`` tells the TypeScript compiler which properties aren’t required.
+
+@sourceref ./9-2-optional.ts
+@highlight 4
 @codepen
 
 ### Setup 1
@@ -31,26 +41,51 @@ An interface in TypeScript is a way to define the shape an entity should adhere 
 
 @sourceref ../../../exercises/typescript/09-interfaces/01-problem/src/address.ts
 
+✏️ Create **src/interfaces/dino-park.ts** and update it to be:
+
+@sourceref ../../../exercises/typescript/09-interfaces/01-problem/src/dino-park.ts
+
+
+
 ### Verify 1
 
 ✏️ Create **src/interfaces/address.test.ts** and update it to be:
 
 @sourceref ../../../exercises/typescript/09-interfaces/01-problem/src/address.test.ts
 
+✏️ Create **src/interfaces/dino-park.test.ts** and update it to be:
+
+@sourceref ../../../exercises/typescript/09-interfaces/01-problem/src/dino-park.test.ts
+
 ### Exercise 1
 
-We’re going to write some interfaces to set up for the next problem. Edit the file `address.ts` to create an interface to define an ``Address`` object shown below:
+We’re going to write some interfaces to set up for the next problem. Edit the files `address.ts` and `dino-park.ts` to create an interface to define an ``Address`` and ``DinoPark`` object shown below:
 
 ```javascript
- const address = {
+const address = {
+  street: '',
+  city: '',
+  state: '',
+  zip: ''
+};
+
+const park = {
+  name: '',
+  image: '',
+  address: {
     street: '',
     city: '',
     state: '',
     zip: ''
   }
+};
 ```
 
 Hint: the interface should have properties and types:
+
+- ``name`` (string)
+- ``image`` (string) (optional)
+- ``address``
   - ``street`` (string)
   - ``city`` (string)
   - ``state``(string)
@@ -65,58 +100,6 @@ Hint: the interface should have properties and types:
 
 @sourceref ../../../exercises/typescript/09-interfaces/01-solution/src/address.ts
 @highlight 2-5
-
-</details>
-
-Make sure you have this solution implemented correctly before moving on to the next exercise.
-
-### Optional properties
-
-Sometimes all properties on an object don’t need to be required, so using the ``?`` tells the TypeScript compiler which properties aren’t required.
-
-@sourceref ./9-2-optional.ts
-@highlight 4
-@codepen
-
-### Setup 2
-
-✏️ Create **src/interfaces/dino-park.ts** and update it to be:
-
-@sourceref ../../../exercises/typescript/09-interfaces/01-problem/src/dino-park.ts
-
-### Verify 2
-
-✏️ Create **src/interfaces/dino-park.test.ts** and update it to be:
-
-@sourceref ../../../exercises/typescript/09-interfaces/01-problem/src/dino-park.test.ts
-
-### Exercise 2
-
-We’re going to write some interfaces to set up for the next problem. Edit the files `dino-park.ts` to create an interface to define a ``DinoPark`` object shown below:
-
-```javascript
-cost park = {
-  name: '',
-  image: '',
-  address: {
-    street: '',
-    city: '',
-    state: '',
-    zip: ''
-  }
-}
-```
-
-Hint: the interface should have properties and types:
-
-- ``name`` (string)
-- ``image`` (string) (optional)
-- ``address`` (Address)
-
-### Solution 2
-
-<details>
-<summary>Click to see the solution</summary>
 
 ✏️ Update `dino-park.ts` to the following:
 
@@ -148,7 +131,7 @@ When we create empty object literals in TypeScript, they are inferred to be obje
 @sourceref ./9-4-2-type-assertion.ts
 @codepen
 
-## Objective: The use of an interface for functions
+## Objective 2: Define interfaces for functions
 
 ### Interfaces in functions
 
@@ -169,13 +152,13 @@ It’s possible to use the `type` keyword as an interface to describe a function
 @sourceref ./9-5-3-describefuncs-type.ts
 @codepen
 
-### Setup 3
+### Setup 2
 
 ✏️ Create **src/interfaces/create-park-slug.ts** and update it to be:
 
 @sourceref ../../../exercises/typescript/09-interfaces/01-problem/src/create-park-slug.ts
 
-### Verify 3
+### Verify 2
 
 ✏️ Create **src/interfaces/create-park-slug.test.ts** and update it to be:
 
@@ -187,11 +170,11 @@ It’s possible to use the `type` keyword as an interface to describe a function
 npm run test
 ```
 
-### Exercise 3
+### Exercise 2
 
 In the `create-park-slug.ts` file edit the ``createParkSlug`` function to take a parameter that is the interface ```DinoPark``` created previously and returns a slug for the park by replacing any spaces with dashes. Ex. the park "Isla Sorna Park" should return the slug `Isla-Sorna-Park`.
 
-### Solution 3
+### Solution 2
 
 <details>
 <summary>Click to see the solution</summary>
