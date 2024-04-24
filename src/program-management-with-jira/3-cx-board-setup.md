@@ -86,12 +86,12 @@ The following video shows how to:
    issueType = Initiative ORDER BY Rank ASC
    ```
 
-2. <code>[1:21](https://youtu.be/KZGr3EB5bsA?t=81)</code> Create a Kanban Board sourced from the Filter
-3. <code>[2:05](https://youtu.be/KZGr3EB5bsA?t=125)</code> Create the Boards Columns with the following names:
+2. <code>[1:21](https://youtu.be/65C9f6OR4G0?t=81)</code> Create a Kanban Board sourced from the Filter
+3. <code>[2:05](https://youtu.be/65C9f6OR4G0?t=125)</code> Create the Boards Columns with the following names:
    
    _Refinement, Refined, Estimating / Validating, Ready, In Progress, QA, UAT, Done_
    
-4. <code>[2:58](https://youtu.be/KZGr3EB5bsA?t=178)</code> Add statuses to the right columns. The "Column to Status" mapping is as follows:
+4. <code>[2:58](https://youtu.be/65C9f6OR4G0?t=178)</code> Add statuses to the right columns. The "Column to Status" mapping is as follows:
 
    - _Kanban Backlog_ - `IDEA`
    - Refinement - `Refinement`
@@ -103,7 +103,7 @@ The following video shows how to:
    - UAT - `UAT`
    - Done - `Done`
 
-5. <code>[4:00](https://youtu.be/KZGr3EB5bsA?t=240)</code> Fixing duplicate statuses
+5. <code>[4:00](https://youtu.be/65C9f6OR4G0?t=240)</code> Fixing duplicate statuses
 
 <iframe class="block-16-by-9" src="https://www.youtube.com/embed/65C9f6OR4G0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
