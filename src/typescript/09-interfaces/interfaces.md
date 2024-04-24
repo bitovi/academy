@@ -91,6 +91,8 @@ Hint: the interface should have properties and types:
   - ``state``(string)
   - ``zip`` (string)
 
+<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/01-problem?file=src/address.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/01-problem?file=src/address.ts) to do this exercise in an online code editor.
+
 ### Solution 1
 
 <details>
@@ -105,6 +107,8 @@ Hint: the interface should have properties and types:
 
 @sourceref ../../../exercises/typescript/09-interfaces/01-solution/src/dino-park.ts
 @highlight 4-6
+
+<strong>Have issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/01-solution?file=src/address.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/01-solution?file=src/address.ts).
 
 </details>
 
@@ -174,6 +178,8 @@ npm run test
 
 In the `create-park-slug.ts` file edit the ``createParkSlug`` function to take a parameter that is the interface ```DinoPark``` created previously and returns a slug for the park by replacing any spaces with dashes. Ex. the park "Isla Sorna Park" should return the slug `Isla-Sorna-Park`.
 
+<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/01-problem?file=src/create-park-slug.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/01-problem?file=src/create-park-slug.ts) to do this exercise in an online code editor.
+
 ### Solution 2
 
 <details>
@@ -183,6 +189,8 @@ In the `create-park-slug.ts` file edit the ``createParkSlug`` function to take a
 
 @sourceref ../../../exercises/typescript/09-interfaces/01-solution/src/create-park-slug.ts
 @highlight 3-4
+
+<strong>Have issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/01-solution?file=src/create-park-slug.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/01-solution?file=src/create-park-slug.ts).
 
 </details>
 

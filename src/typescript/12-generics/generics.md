@@ -10,10 +10,10 @@
 
 In this section, you will:
 
-- Explore the fundamentals and objectives of generic functions
-- Learn to construct generic classes
-- Delve into creating recursive generic classes
-- Develop a TreeNode class with recursive generics
+- Understand the fundamentals and objectives of generic functions
+- Create generic classes
+- Combine recursion with generic classes
+- Create recursive generics
 
 ## Objective 1: Basic Generics
 
@@ -154,7 +154,7 @@ Update the `return-last.ts` file to inform the function that it will be acceptin
 
 <strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-generics/01-problem?file=src/return-last.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-generics/01-problem?file=src/return-last.ts) to do this exercise in an online code editor.
 
-### Solution 2
+### Solution 1
 
 <details>
 <summary>Click to see the solution</summary>
@@ -326,7 +326,7 @@ root.right.left.value //-> "Matthew"
 @sourceref ../../../exercises/typescript/12-generics/02-solution/src/tree-node.ts
 @highlight 5-9, 11, 16, only
 
-As we use generics in line 5, we allow the `TreeNode` class to be flexible and reusable, accommodating different types of data and comparison logic.
+The use of generics in line 5, allows the `TreeNode` class to be flexible and reusable, accommodating different types of data and comparison logic.
 </details>
 
 ## Next steps
