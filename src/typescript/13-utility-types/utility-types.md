@@ -1,5 +1,6 @@
 @page learn-typescript/utility-types Utility Types
 @parent learn-typescript 13
+@outline 3
 
 @description Learn About the Utility Types provided by TypeScript
 
@@ -7,11 +8,10 @@
 
 ## Overview
 
-Utility Types are built-in helper Types meant for common Type transformations.
+In this section, you will:
 
-In this section you will see a small description for the most used Utility Types.
-
-We are going to repeat the interface Dinosaur below throughout the examples.
+- Review popular utility types
+- We are going to repeat the interface Dinosaur below throughout the examples.
 
 ```typescript
 enum Diet {
@@ -27,16 +27,18 @@ interface Dinosaur {
 }
 ```
 
-## Partial&lt;Type&gt;
+## Objective: Utility Types
+
+### Partial&lt;Type&gt;
 
 All properties of `Type`, but optional.
-Partial is often used when you need to partially update an object. See `example` below.
+Partial is often used when you need to partially update an object. See the `example` below.
 
 ```typescript
-type AnotherDinosaur = Partial<Dinosaur>;
+type PartialDinosaur = Partial<Dinosaur>;
 
-// AnotherDinosaur is equivalent to:
-interface YetAnotherDinosaur {
+// PartialDinosaur is equivalent to:
+interface YetPartialDinosaur {
   species?: string;
   diet?: Diet;
   age?: number;
@@ -59,19 +61,19 @@ const newDino: Dinosaur = updateDinosaur(dino1, {
 });
 ```
 
-## Required&lt;Type&gt;
+### Required&lt;Type&gt;
 
 All properties of `Type`, but required. For instance, you might use it when you are able to initialize all the properties of an object and want to avoid checking for null/undefined for the optional properties.
 
 ```typescript
-type AnotherDinosaur = Required<Dinosaur>;
+type RequiredDinosaur = Required<Dinosaur>;
 
-// AnotherDinosaur is equivalent to:
-interface YetAnotherDinosaur extends Dinosaur {
+// RequiredDinosaur is equivalent to:
+interface YetRequiredDinosaur extends Dinosaur {
   age: number; // turning age property to required
 }
 
-const trex: AnotherDinosaur = {
+const trex: RequiredDinosaur = {
   species: "Tyrannosaurus rex",
   diet: Diet.Carnivore,
   age: 30,
@@ -82,7 +84,45 @@ if (trex.age > 30) {
 }
 ```
 
-## Readonly&lt;Type&gt;
+### Setup
+
+✏️ Create **src/utility-types/utility-types.ts** and update it to be:
+
+@sourceref ../../../exercises/typescript/13-utility-types/01-problem/src/utility-types.ts
+
+### Verify
+
+✏️ Create **src/utility-types/utility-types.test.ts** and update it to be:
+
+@sourceref ../../../exercises/typescript/13-utility-types/01-problem/src/utility-types.test.ts
+
+Run the following to verify your solution:
+
+```shell
+npm run test
+```
+
+
+### Exercise
+
+Update the `utility-types.ts` in order to create a new `Tyrannosaurus` type that enforces diet property to be `Diet.Carnivore` and all `Dinosaur` properties are required. Remember to take advantage of Utility Types and use the existing `Dinosaur` Type when creating the new `Tyrannosaurus` Type.
+
+<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/01-problem?file=src/utility-types.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/01-problem?file=src/utility-types.ts) to do this exercise in an online code editor.
+
+### solution
+
+<details>
+<summary>Click to see the solution</summary>
+
+✏️ Update `utility-types.ts` to the following:
+
+@sourceref ../../../exercises/typescript/13-utility-types/01-solution/src/utility-types.ts
+@highlight 13
+
+<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/01-solution?file=src/utility-types.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/01-solution?file=src/utility-types.ts) to do this exercise in an online code editor.
+</details>
+
+### Readonly&lt;Type&gt;
 
 All properties of `Type`, but they are readonly. Use it to prevent objects from being mutated.
 
@@ -105,9 +145,9 @@ dino.age += 1;
 // Oops! TypeScript error
 ```
 
-## Record&lt;Keys,Type&gt;
+### Record&lt;Keys, Type&gt;
 
-Shortcut for defining properties keys and values. Particularly useful when you have a type in which multiple keys share the same value `Type`, so you could avoid repeating the pattern `key: type;`
+Shortcut for defining properties keys and values. Particularly useful when you have a type in which multiple keys share the same value `Type`, so you can avoid repeating the pattern `key: type;`
 
 ```typescript
 let dinosCollection: Record<string, Dinosaur> = {
@@ -124,9 +164,9 @@ let dinosCollection: Record<string, Dinosaur> = {
 };
 ```
 
-## Pick&lt;Type, Keys&gt;
+### Pick&lt;Type, Keys&gt;
 
-Selects only the properties defined in Keys. Useful if you want a subset of `Type`
+Select only the properties defined in Keys. Useful if you want a subset of `Type`
 
 ```typescript
 type LesserDinosaur = Pick<Dinosaur, "species" | "age">;
@@ -140,7 +180,7 @@ let lesserDino: LesserDinosaur = {
 };
 ```
 
-## Omit&lt;Type, Keys&gt;
+### Omit&lt;Type, Keys&gt;
 
 Selects all properties but the ones defined in Keys. Useful if you want a subset of `Type`
 
@@ -156,7 +196,7 @@ lesserDino.species = "Tyrannosaurus rex";
 // species and age properties are gone!
 ```
 
-## Exclude&lt;Type, ExcludedUnion&gt;
+### Exclude&lt;Type, ExcludedUnion&gt;
 
 Removes from `Type` if is assignable to `Union`. Useful if you want a subset of `Type`
 
@@ -170,7 +210,7 @@ const dino: SpeciesGone = "Triceratops horridus";
 // Only rex remains now!
 ```
 
-## Extract&lt;Type, Union&gt;
+### Extract&lt;Type, Union&gt;
 
 Extracts from `Type` if is assignable to `Union`
 
@@ -196,7 +236,7 @@ type CommonKeys = Extract<keyof Mammal, keyof Dinosaur>;
 // type CommonKeys = 'species' | 'diet'
 ```
 
-## NonNullable&lt;Type&gt;
+### NonNullable&lt;Type&gt;
 
 Excludes `null` and `undefined` from `Type`. Prevent any runtime errors from occurring because we forgot to assign to a property.
 
@@ -207,7 +247,7 @@ type NNSpecies = NonNullable<Species>;
 // equivalent to type NNSpecies = 'Tyrannosaurus rex' | 'Triceratops horridus'
 ```
 
-## ReturnType&lt;Type&gt;
+### ReturnType&lt;Type&gt;
 
 Gets the type from the return type of a function `Type`
 
@@ -221,7 +261,7 @@ type D2 = ReturnType<() => Dinosaur>;
 // type D2 = Dinosaur
 ```
 
-## More on Utility Types
+### More on Utility Types
 
 There are other built-in Utility Types:
 
@@ -238,65 +278,4 @@ There are other built-in Utility Types:
   - Capitalize&lt;StringType&gt;
   - Uncapitalize&lt;StringType&gt;
 
-If you would like to dive deeper onto them, check the [official documentation](https://www.typescriptlang.org/docs/handbook/utility-types.html "The TypeScript Handbook") for TypeScript.
-
-## Exercise: Create a new Type from existing Type
-
-### The Problem
-
-Update the `9-utility-types.ts` in order to create a new `Tyrannosaurus` type that enforces diet property to be `Diet.Carnivore` and all `Dinosaur` properties to be required. Remember to take advantage of Utility Types and using existing `Dinosaur` Type when creating the new `Tyrannosaurus` Type.
-
-```typescript
-interface Dinosaur {
-  species: string;
-  diet: Diet;
-  age?: number;
-}
-
-enum Diet {
-  "Carnivore",
-  "Herbivore",
-  "Omnivore",
-}
-
-type Tyrannosaurus = Dinosaur;
-
-export { Diet, Tyrannosaurus };
-```
-
-### Verify Your Solution
-
-✏️ Run the following to verify your solution:
-
-```shell
-npm run 9-utility-types
-```
-
-### The solution
-
-<details>
-<summary>Click to see the solution</summary>
-
-✏️ Update `9-utility-types.ts` to the following:
-
-```typescript
-interface Dinosaur {
-  species: string;
-  diet: Diet;
-  age?: number;
-}
-
-enum Diet {
-  "Carnivore",
-  "Herbivore",
-  "Omnivore",
-}
-
-type Tyrannosaurus = Required<Dinosaur & { diet: Diet.Carnivore }>;
-
-export { Diet, Tyrannosaurus };
-```
-
-@highlight 13
-
-</details>
+If you would like to dive deeper into them, check the [official documentation](https://www.typescriptlang.org/docs/handbook/utility-types.html "The TypeScript Handbook") for TypeScript.
