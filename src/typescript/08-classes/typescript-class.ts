@@ -1,4 +1,3 @@
-//class way
 class ParkEmployee {
   name: string;
   constructor(name) {
@@ -8,9 +7,7 @@ class ParkEmployee {
   sayHi() {
     console.log(`Hi, my name is ${this.name}`);
   }
-
 }
 
-let raptorGuy = new ParkEmployee('Owen');
+let raptorGuy = new ParkEmployee("Owen");
 raptorGuy.sayHi();
-//Logs "Hi, my name is Owen"
