@@ -575,7 +575,9 @@ covering CanJS core libraries.">
 <p>The following is the <a href="https://docs.google.com/presentation/d/1KG7_VD7lmkW06NP7G1_uolDN3zLr10P35fJZVfF12EE/edit?usp=sharing">Google Slides presentation</a>
 for much of this material:</p>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQlxJmGH4esEPn8WK-nQbQxRZJXKuQZbbMw1uT06VqZJ02P_rnOhoS__HXbfqeXDRd9BViLgT3oCl5w/embed?start=false&loop=false&delayms=3000" frameborder="0" class="block-16-by-9" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-<p>Note, there is another presentation below!</p>
+<blockquote>
+<p><strong>NOTE:</strong> The presentation on how to split initiatives into epics is below!</p>
+</blockquote>
 <h2>Why estimate</h2>
 <p>Estimating software is a notoriously fraught process, especially earlier in the process. Not only can estimates be off by orders of magnitude, but there’s sometimes career jeopardy. Providing an estimate and not delivering on it can be seen as a failure.</p>
 <p>Despite this, evaluating the cost and benefits of an initiative is exactly what a product team needs to do if it’s going to make wise decisions on what initiatives to pursue. Some form of cost estimate is needed.</p>
@@ -668,7 +670,8 @@ for much of this material:</p>
 </div>
 </div>
 <h2>Estimating Epics</h2>
-<p>Once you have a list of epics, you should review with the team to ensure the plan makes sense. It’s also a good idea to talk through how to restructure the work to maximize early customer value and avoid risk. We will discuss this more in <a href="https://bitovi.atlassian.net/wiki/spaces/PM/pages/368476911/Breaking+Long+Poles">Breaking Long Poles [Rough Draft/In Progress]</a>.</p>
+<p>Once you have a list of epics, you should review with the team to ensure the plan makes sense. It’s also a good idea to talk through how to restructure the work to maximize early customer value and avoid risk. We will discuss this more in
+<a href="breaking-long-poles.html" title="Learn how to recognize which work will take the longest, and ways to break things up.">breaking long poles</a>.</p>
 <p>Once the plan makes sense, it’s time to estimate each epic. For this training, we are going to be using <code>Story Points</code> and <code>Confidence</code>. We go through each epic and write the <code>Story Points</code> and <code>Confidence</code> in square brackets next to the epic like <code>[15 50%]</code>.</p>
 <p>For example, after estimating the promotion initiative’s “shell” epics, the <strong>Epic</strong> section of the initiative looks like this:</p>
 <div class='jira-issue'>
@@ -784,7 +787,7 @@ initiative’s epics with:</p>
 <iframe class="block-16-by-9" src="https://www.youtube.com/embed/dFldN5ugf74" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 <p>The following sub-sections detail the process in writing:</p>
 <h3>Determine Team Velocities</h3>
-<p>To size the epics, we first need to decide how much of the team’s velocity will be used for this initiative. You can look up a team’s velocity in the <a href="https://support.atlassian.com/jira-software-cloud/docs/view-and-understand-the-velocity-chart/">“Reports / Velocity Chart” report of Jira</a>. Click reports, then click velocity chart.</p>
+<p>To size the epics, we first need to decide how much of the team’s velocity will be used for this initiative. <a href="https://support.atlassian.com/jira-software-cloud/docs/view-and-understand-the-velocity-chart/">“Reports / Velocity Chart” report of Jira</a>. Provides an in-depth explanation of velocity charts in Jira.In short, to see a velocity chart, click reports, then click velocity chart.</p>
 <p><img src="../static/img/program-management-with-jira/estimating/reports.png" class="content-400-800-shadow"/></p>
 <p>You can get past sprint velocities from the table below the velocity chart:</p>
 <p><img src="../static/img/program-management-with-jira/estimating/velocities-list.png" class="content-400-800-shadow"/></p>
@@ -808,7 +811,7 @@ initiative’s epics with:</p>
 <p>Next, update the confidence and story points sliders in the app to match the <code>Story points median</code> and <code>Story points confidence</code> values of your epic.</p>
 <p><img src="../static/img/program-management-with-jira/estimating/sliders.png" class="content-400-800-shadow"/></p>
 <p>Finally, locate the 90% likelihood values:</p>
-<p><img src="../static/img/program-management-with-jira/estimating/points-and-due-date.png" class="content-400-800-shadow"/></p>
+<p><img src="../static/img/program-management-with-jira/estimating/likelihood-selected.png" class="content-400-800-shadow"/></p>
 <p>Enter the adjusted story points in the epic’s <code>Story points</code> field:</p>
 <p><img src="../static/img/program-management-with-jira/estimating/points-in-plan.png" class="content-400-800-shadow"/></p>
 <p>Set the epic’s <code>End date</code>:</p>
@@ -822,14 +825,14 @@ initiative’s epics with:</p>
 </ul>
 <p>After doing this for all of the Promotion example’s epics, it will result in the following:</p>
 <p><img src="../static/img/program-management-with-jira/estimating/final-epic-plan.png" class="content-400-800-shadow"/></p>
-<p>Yay!!!! Now we have our first glimpse at what it will take to get this work done. It looks like it will take about 2.5 months. If Marketing wants it done 3 months from now, with all the other work we have going on, we might have to make some adjustments. We will look to do that in <a href="https://bitovi.atlassian.net/wiki/spaces/PM/pages/368476911/Breaking+Long+Poles">Breaking Long Poles [Rough Draft/In Progress]</a> .</p>
+<p>Yay!!!! Now we have our first glimpse at what it will take to get this work done. It looks like it will take about 2.5 months. If Marketing wants it done 3 months from now, with all the other work we have going on, we might have to make some adjustments. We will look to do that in <a href="breaking-long-poles.html" title="Learn how to recognize which work will take the longest, and ways to break things up.">Breaking long poles</a>.</p>
 <h2>Benefits of a statistical approach</h2>
 <p>The statistical approach outlined above has several benefits when compared to taking a single “time” estimate:</p>
 <ul>
 <li><p>It makes getting estimates easier.</p>
 <p>Engineers often resist giving estimates. They will often hide a “fudge factor” within the estimate, but the degree to which they do can greatly depend on the engineer. Asking an engineer to estimate an epic, when they can also provide a very low confidence, often helps move conversations along more quickly.</p></li>
 <li><p>It highlights uncertainty.</p>
-<p>Often, it’s the epics that have the lowest confidence that lengthen the end-to-end time of delivery. By identifying those epics, program managers can adjust plans to reign in uncertainty. We will see this in action in <a href="https://bitovi.atlassian.net/wiki/spaces/PM/pages/368476911/Breaking+Long+Poles">Breaking Long Poles [Rough Draft/In Progress]</a> .</p></li>
+<p>Often, it’s the epics that have the lowest confidence that lengthen the end-to-end time of delivery. By identifying those epics, program managers can adjust plans to reign in uncertainty. We will see this in action in <a href="breaking-long-poles.html" title="Learn how to recognize which work will take the longest, and ways to break things up.">Breaking long poles</a>.</p></li>
 <li><p>It’s more accurate.<br />
 This approach models work how work is actually done.</p></li>
 </ul>
