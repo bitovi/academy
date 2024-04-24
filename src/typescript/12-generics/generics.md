@@ -117,18 +117,22 @@ property (`{value: MyType}`). This allows us to traffic that type of information
 
 We can call generic functions in two ways:
 
-- We can explicitly pass the type:
+We can explicitly pass the type:
+
   ```typescript
    wrapAsValue<number>(4)
   ```
+
   Notice that `<number>` acts as a special set of arguments. Instead of
   arguments passed like `func(arg1, arg2, arg3)`, generic type arguments
   are passed like `func<Type1, Type2, Type3>`.
 
-- The type can be inferred:
+The type can be inferred:
+
   ```typescript
   wrapAsValue("hi")
   ```
+
   Notice that we didn’t explicitly pass the type n the angle brackets (`<>`). Instead,
   the compiler just looked at the value `"hi"` and set `MyType` to `string`.
 
