@@ -59,6 +59,10 @@ Open the `dnaCost.ts` file and modify this function to:
 1. take an unknown amount of sequences;
 2. return the sum of `baseCost` and the length of each sequence.
 
+<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/07-functions/01-problem?file=src/dnaCost.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/07-functions/01-problem?file=src/dnaCost.ts) to do this exercise in an online code editor.
+
+
+
 ### Verify
 
 ✏️ Create **src/functions/dnaCost.test.ts** and update it to be:
@@ -90,6 +94,8 @@ valid solution:
 
 @sourceref ./../../../exercises/typescript/07-functions/01-solution/src/dnaCost2.ts
 @highlight 1-4
+
+<strong>Have issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/07-functions/01-solution?file=src/dnaCost.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/07-functions/01-solution?file=src/dnaCost.ts).
 
 </details>
 
