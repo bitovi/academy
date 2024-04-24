@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn to use classes and inheritance in TypeScript, about the &#x60;constructor&#x60; method, and how to use public, private, protected, and readonly modifiers. 
+  <meta name="description" content="Learn how to use classes and inheritance in TypeScript. 
 ">
   
   <!-- Google Tag Manager -->
@@ -229,7 +229,7 @@
            						expanded">
 						<a class="page"
 							href="classes.html"
-							title="Learn to use classes and inheritance in TypeScript, about the constructor method, and how to use public, private, protected, and readonly modifiers.">
+							title="Learn how to use classes and inheritance in TypeScript.">
 							Classes
 						</a>
 						
@@ -517,7 +517,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn to use classes and inheritance in TypeScript, about the <code>constructor</code> method, and how to use public, private, protected, and readonly modifiers.</p>
+    <p>Learn how to use classes and inheritance in TypeScript.</p>
 
 </section>
 
@@ -531,19 +531,19 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
-<p>For those newer to Object-oriented programming, classes are special functions that help us abstract our code. Classes can define function expressions and function declarations. This section will cover:</p>
+<p>In this section, you will:</p>
 <ul>
-<li>Using classes in TypeScript,</li>
-<li>The Constructor method,</li>
-<li>How to inherit classes,</li>
-<li>The use of public, private, protected, and readonly modifiers, and</li>
+<li>Using classes in TypeScript.</li>
+<li>The Constructor method.</li>
 <li>How to manage <code>this</code> in classes.</li>
+<li>How to inherit classes.</li>
+<li>The use of public, private, protected, and readonly modifiers</li>
 </ul>
-<h2>Classes in JavaScript</h2>
-<p>In ECMAScript 2015, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">classes</a> are available as syntactic sugar over the existing prototype-based <strong>constructor functions</strong>. A
-simple class might look like:</p>
+<h2>Objective 1: Create a class</h2>
+<h3>Classes in JavaScript</h3>
+<p>In ECMAScript 2015, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">classes</a> are available as syntactic sugar over the existing prototype-based <strong>constructor functions</strong>. A class may look like:</p>
 <pre><code class="language-js">class ParkEmployee {
-  constructor(name){
+  constructor(name) {
     this.name = name;
   }
   sayHi() {
@@ -553,17 +553,18 @@ simple class might look like:</p>
 
 let raptorGuy = new ParkEmployee(&quot;Owen&quot;);
 raptorGuy.sayHi();
-//Logs &quot;Hi, my name is Owen&quot;
+
 </code></pre>
 <div class='codepen'></div>
-<p>For more information on JavaScript classes, checkout the
+<p>The <code>ParkEmployee</code> class can be instantiated with a <code>name</code> field, and contains a <code>sayHi()</code> method.</p>
+<p>So when <code>raptorGuy.sayHi()</code> is called, since <code>ParkEmployee</code> was instantiated with <code>new ParkEmployee(&quot;Owen&quot;)</code> it logs <code>Hi, my name is Owen</code>.</p>
+<p>For more information on JavaScript classes, check out the
 <a href="../learn-advanced-javascript/classes.html" title="Learn about JavaScript classes">Advanced JavaScript Classes Training</a>. The next sections will cover features TypeScript adds to JavaScript.</p>
-<h2>Classes in TypeScript</h2>
-<p>Classes in TypeScript look just like classes in JavaScript; however, there are additional features
+<h3>Classes in TypeScript</h3>
+<p>Classes in TypeScript look like classes in JavaScript; however, there are additional features
 that add type safety.</p>
-<p>In the following TypeScript class example, the <code>name</code> member is defined on line 3. We’ll look at setting the name via the constructor next.</p>
-<pre><code class="language-ts">//class way
-class ParkEmployee {
+<p>In the following TypeScript class example, the <code>name</code> field is defined on line 3. We’ll look at setting the <code>name</code> via the constructor next.</p>
+<pre><code class="language-ts">class ParkEmployee {
   name: string;
   constructor(name) {
     this.name = name;
@@ -572,18 +573,17 @@ class ParkEmployee {
   sayHi() {
     console.log(`Hi, my name is ${this.name}`);
   }
-
 }
 
-let raptorGuy = new ParkEmployee('Owen');
+let raptorGuy = new ParkEmployee(&quot;Owen&quot;);
 raptorGuy.sayHi();
-//Logs &quot;Hi, my name is Owen&quot;
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='3'></div>
-<h2>Constructor</h2>
-<p>The constructor method is how to initialize a new object with members. The constructor is called when we instantiate a new object from calling a class with the <code>new</code> keyword - it constructs and returns a new object for us with properties we gave it.</p>
+<div line-highlight='2'></div>
+<p>The functionality is identical to the TypeScript class's Javascript counterpart, however, the <code>name</code> field has been given a specific type: <code>string</code>. This ensures that the constructor will only accept a <code>string</code> value as input.</p>
+<h3>Constructor</h3>
+<p>The constructor method is how to initialize a new object with fields. The constructor is called when we instantiate a new object from calling a class with the <code>new</code> keyword - it constructs and returns a new object for us with properties we gave it.</p>
 <pre><code class="language-ts">class Dinosaur {
   name: string;
   constructor(name: string) {
@@ -597,8 +597,8 @@ console.log(dino.name);
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='3'></div>
-<p>When declaring members, it’s also possible to instantiate a value on them.</p>
+<div line-highlight='3, only'></div>
+<p>When declaring fields, it’s also possible to instantiate a value on them.</p>
 <pre><code class="language-ts">class Dinosaur {
   name: string;
   age = 0;
@@ -613,8 +613,8 @@ console.log(dino.age);
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='3'></div>
-<p>Using the constructor to set public members is quite a common pattern, which is why TypeScript also provides a shorthand.</p>
+<div line-highlight='3, only'></div>
+<p>Using the constructor to set <code>public</code> fields is quite a common pattern, which is why TypeScript also provides a shorthand.</p>
 <pre><code class="language-ts">class Dinosaur {
   constructor(public name: string) {}
 }
@@ -624,12 +624,160 @@ console.log(dino.name);
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='2'></div>
+<div line-highlight='2, only'></div>
 <blockquote>
-<p><strong>Note:</strong> We will see how to create private members later.</p>
+<p><strong>Note:</strong> We will see how to create <code>private</code> fields later.</p>
 </blockquote>
-<h2>Inheritance</h2>
-<p>Inheritance is a way to extend functionality of existing classes. If the derived class contains its own constructor function, it MUST call a super method with params matching that of its parent class. Super is a call to the parent constructor method to ensure the properties are set for the parent. The following shows accessing the move method from the parent class and adding run and talk methods to the child class.</p>
+<h3>Statics</h3>
+<p>When you need a property to be shared across multiple instances, you can use a <strong>static</strong> property. These are shared by all instances of the class as well as inheriting classes. Both fields and methods on a class can be static. Each instance accesses the static value through prepending the name of the class.</p>
+<p>This example shows the use of a static property <code>cageInstances</code> to count the number of instances of <code>DinoCage</code>:</p>
+<pre><code class="language-ts">class DinoCage {
+  static cageInstances = 0;
+  constructor() {
+    DinoCage.cageInstances++;
+  }
+}
+
+var paddock1 = new DinoCage();
+var paddock2 = new DinoCage();
+console.log(DinoCage.cageInstances);
+//Logs &quot;2&quot;
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='2,10'></div>
+<h3>This and arrow <code>=&gt;</code> functions</h3>
+<p>If you’re familiar with ES6, you may know that using the arrow <code>=&gt;</code> captures the context of <code>this</code> where it’s used. The functionality is the same in TypeScript.</p>
+<pre><code class="language-typescript">class DinoBuilder {
+  dinoName = 'Trex';
+  yawn() {
+    setTimeout(function() {
+      console.log(`${this.dinoName} yawned.`);
+    }, 50);
+  }
+}
+
+var dino = new DinoBuilder();
+dino.yawn();
+</code></pre>
+<div line-highlight='4'></div>
+<div class='codepen'></div>
+<p>For example, in the above code block there is no <code>=&gt;</code>, thus the <code>yawn()</code> method can't access the class <code>DinoBuilder</code>'s <code>dinoName</code> property; there's no way it reaches <code>DinoBuilder's</code> <code>this</code> context.</p>
+<p>As a result, when the instance of <code>dino</code> invokes its <code>yawn()</code> method what is logged is <code>undefined yawned</code>.</p>
+<pre><code class="language-typescript">class DinoBuilder {
+  dinoName = 'Trex';
+  yawn() {
+    setTimeout(() =&gt; {
+      console.log(`${this.dinoName} yawned.`);
+    }, 50);
+  }
+}
+
+var dino = new DinoBuilder();
+dino.yawn();
+</code></pre>
+<div line-highlight='4'></div>
+<div class='codepen'></div>
+<p>In the above example <code>setTimeout</code> instead uses <code>=&gt;</code>.</p>
+<p>Now the <code>yawn()</code> method can access <code>this</code> context of the <code>DinoBuilder</code> class. So the invoked <code>yawn()</code> method will now log <code>Trex yawned</code></p>
+<pre><code class="language-typescript">class DinoBuilder {
+  dinoName = 'Trex';
+  roar() {
+    console.log(`${this.dinoName} roared.`);
+  }
+}
+
+var dino = new DinoBuilder();
+
+setTimeout(dino.roar, 50);
+</code></pre>
+<div line-highlight='3'></div>
+<div class='codepen'></div>
+<p>Like our first example of this section, there is no <code>=&gt;</code> thus <code>roar()</code> has no access to <code>DinoBuilder</code>'s <code>this</code> context.</p>
+<p>The <code>setTimeout(dino.roar, 50)</code> will output <code>undefined roared</code> as it has currently been implemented.</p>
+<pre><code class="language-typescript">class DinoBuilder {
+  dinoName = 'Trex';
+  roar = () =&gt; {
+    console.log(`${this.dinoName} roared.`);
+  }
+}
+
+var dino = new DinoBuilder();
+
+setTimeout(dino.roar, 50);
+</code></pre>
+<div line-highlight='3'></div>
+<div class='codepen'></div>
+<p>While the syntax is a bit different from our second example, this still uses the power of arrow functions.</p>
+<p>With the <code>=&gt;</code>, the <code>roar</code> method reaches the <code>DinoBuilder</code>'s <code>this</code> context. So <code>roar</code> outputs <code>Trex roared</code>.</p>
+<h3>Setup 1</h3>
+<p>✏️ Create <strong>hello-dino.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">function DinoKeeper(name) {
+  this.name = name;
+}
+
+DinoKeeper.prototype.sayHi = function () {
+  return this.name + ' says &quot;hi&quot;';
+};
+
+let employee1 = new DinoKeeper(&quot;Joe&quot;);
+employee1.sayHi();
+//Joe says &quot;hi&quot;
+
+</code></pre>
+<h3>Verify 1</h3>
+<p>Create <strong>hello-dino.test.ts</strong> should look like:</p>
+<pre><code class="language-ts">import DinoKeeper from &quot;./hello-dino&quot;;
+import { strict as assert } from &quot;assert&quot;;
+import { describe, it } from &quot;node:test&quot;;
+
+describe(&quot;Classes: DinoKeeper&quot;, () =&gt; {
+  it(&quot;basics work&quot;, () =&gt; {
+    var dinoKeeper = new DinoKeeper(&quot;Joe&quot;);
+    assert.equal(dinoKeeper.sayHi(), `Joe says &quot;hi&quot;`);
+  });
+
+  it(&quot;typing works&quot;, () =&gt; {
+    var dinoKeeper = new DinoKeeper(&quot;Joe&quot;) as DinoKeeper;
+    assert.equal(dinoKeeper.sayHi(), `Joe says &quot;hi&quot;`);
+  });
+});
+
+</code></pre>
+<p>✏️ Run the following to verify your solution:</p>
+<pre><code class="language-shell">npm run test
+</code></pre>
+<h3>Exercise 1</h3>
+<p>In this exercise, we will take an old-school JavaScript class and convert it to a shiny new TypeScript class.</p>
+<h3>Solution 1</h3>
+<p><details>
+<summary>Solution</summary></p>
+<p>✏️ Update  <strong>hello-dino.ts</strong> to look like:</p>
+<pre><code class="language-ts">class DinoKeeper {
+  name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+
+  sayHi(): string {
+    return `${this.name} says &quot;hi&quot;`;
+  }
+}
+let employee1 = new DinoKeeper(&quot;Joe&quot;);
+employee1.sayHi();
+//Logs &quot;Joe says &quot;hi&quot;&quot;
+
+export default DinoKeeper;
+
+</code></pre>
+ <div line-highlight="1-2,4-6,8-10,14,16,"></div>
+<div line-highlight='1-2, 4, 8-9,11, 16'></div>
+<p></details></p>
+<h2>Objective 2: Extend a class</h2>
+<h3>Inheritance</h3>
+<p>Inheritance is a way to extend functionality of existing classes. If the derived class contains its own constructor function, it MUST call a <code>super</code> method with params matching that of its parent class.</p>
+<p>The <code>super</code> is a call to the parent constructor method to ensure the properties are set for the parent. The following shows accessing the move method from the parent class and adding run and talk methods to the child class.</p>
 <pre><code class="language-ts">class Dinosaur {
   constructor(public name: string) {}
 
@@ -661,28 +809,9 @@ blue.run();
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='9,11'></div>
-<h2>Statics</h2>
-<p>When you need a property to be shared across multiple instances, you can use a <strong>static</strong> property. These are shared by all instances of the class as well as inheriting classes. Both members and methods on a class can be static. Each instance accesses the static value through prepending the name of the class.</p>
-<p>This example shows the use of a static property <code>cageInstances</code> to count the number of instances of <code>DinoCage</code>:</p>
-<pre><code class="language-ts">class DinoCage {
-  static cageInstances = 0;
-  constructor() {
-    DinoCage.cageInstances++;
-  }
-}
-
-var paddock1 = new DinoCage();
-var paddock2 = new DinoCage();
-console.log(DinoCage.cageInstances);
-//Logs &quot;2&quot;
-
-</code></pre>
-<div class='codepen'></div>
-<div line-highlight='2,10'></div>
-<h2>Public modifier</h2>
-<p>In TypeScript all members are public by default, meaning they are publicly accessible.</p>
+<h3>Public modifier</h3>
+<p>In TypeScript, all fields are <code>public</code> by default, meaning they can be accessed from outside the class.</p>
 <pre><code class="language-ts">class Dinosaur {
-  //will be public by default
   name: string;
   constructor(name: string) {
     this.name = name;
@@ -692,17 +821,113 @@ console.log(DinoCage.cageInstances);
   }
 }
 
-let myDino = new Dinosaur('Mildred');
+let myDino = new Dinosaur(&quot;Mildred&quot;);
 console.log(myDino.name);
-//Logs &quot;Mildred&quot;
 myDino.walk(7);
-//Logs &quot;Mildred walked 7 feet.&quot;
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='3'></div>
-<h2>Private modifier</h2>
-<p>Members marked private are unable to be accessed from outside their containing class.</p>
+<div line-highlight='2, 6, 12, 13'></div>
+<p>The highlighted property <code>name</code> can be accessed as the instance of <code>Dinosaur</code>. As explained above, by default all fields are <code>public</code> by default, so even without the <code>public</code> keyword it will be accessible.</p>
+<p>It is possible to can be explicit as we are being for the <code>walk</code> method, in a more populated class with many modifiers, or due to code style standards in a repo there are scenarios where using the <code>public</code> keyword is necessary.</p>
+<p>For the instance of <code>Dinosaur</code>; <code>myDino</code>, both the <code>name</code> field and <code>walk</code> method are can be accessed externally, so <code>myDino.name</code> will return <code>Mildred</code> and <code>myDino.walk(7)</code> will return <code>Mildred walked 7 feet</code>.</p>
+<h3>Setup 2</h3>
+<p>✏️ Create <strong>specialist.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">class DinoKeeper {
+  name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+
+  sayHi(): string {
+    return `${this.name} says &quot;hi&quot;`;
+  }
+}
+let employee1 = new DinoKeeper(&quot;Joe&quot;);
+employee1.sayHi();
+
+class Specialist {}
+export default Specialist;
+
+</code></pre>
+<p>For example, you should be able to use <code>Specialist</code> as follows:</p>
+<h3>Verify 2</h3>
+<p>Create <strong>specialist.test.ts</strong> should look like:</p>
+<pre><code class="language-ts">import Specialist from &quot;./specialist&quot;;
+import { strict as assert } from &quot;assert&quot;;
+import { describe, it } from &quot;node:test&quot;;
+
+function removeSpaces(str: string) {
+  return str.replace(/\s+/g, &quot; &quot;);
+}
+
+describe(&quot;Classes: Specialist&quot;, () =&gt; {
+  it(&quot;basics work&quot;, () =&gt; {
+    let employee2 = new Specialist(&quot;Owen&quot;, 14);
+    assert.equal(employee2.sayHi(), `Owen says &quot;hi&quot;`);
+    assert.equal(
+      removeSpaces(employee2.safetyQuote()),
+      removeSpaces(`Never turn your back to the cage.
+                Trust me, I have 14 years of experience`)
+    );
+  });
+});
+
+</code></pre>
+<p>✏️ Run the following to verify your solution:</p>
+<pre><code class="language-shell">npm run test
+</code></pre>
+<h3>Exercise 2</h3>
+<p>In this exercise, we will write a new <code>Specialist</code> class.
+This new <code>Specialist</code> class should:</p>
+<ul>
+<li>Inherit from <code>DinoKeeper</code>.</li>
+<li>Accept an additional <code>experience</code> public field that is a number</li>
+<li>Have a <code>safetyQuote</code> method that returns <code>&quot;Never turn your back to the cage. Trust me, I have ${experience} years of experience&quot;</code>.</li>
+</ul>
+<pre><code class="language-typescript">let employee2 = new Specialist('Owen', 14);
+employee2.sayHi(); //Owen says 'hi'
+employee2.safetyQuote();
+//Logs &quot;Never turn your back to the cage. Trust me, I have 14 years of experience&quot;
+</code></pre>
+<h3>Solution 2</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>specialist.ts</strong> to look like:</p>
+<pre><code class="language-ts">class DinoKeeper {
+  name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+
+  sayHi(): string {
+    return `${this.name} says &quot;hi&quot;`;
+  }
+}
+let employee1 = new DinoKeeper(&quot;Joe&quot;);
+employee1.sayHi();
+
+class Specialist extends DinoKeeper {
+  constructor(name: string, public experience: number) {
+    super(name);
+  }
+
+  safetyQuote() {
+    return `Never turn your back to the cage.
+    Trust me, I have ${this.experience} years of experience`;
+  }
+}
+export default Specialist;
+
+</code></pre>
+ <div line-highlight="15-18,20-24,"></div>
+<div line-highlight='3-6, 8-11'></div>
+<p></details></p>
+<h2>Objective 3: Additional assignment modifiers</h2>
+<h3>Private modifier</h3>
+<p>Fields marked <code>private</code> are unable to be accessed from outside their containing class.</p>
 <pre><code class="language-ts">class Dinosaur {
   public name: string;
   private dna: string;
@@ -722,8 +947,9 @@ scaryDino.dna;
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='3,13'></div>
-<h2>Protected modifier</h2>
-<p>Protected modifiers are similar to private modifiers in that they can’t be accessed but they CAN be accessed by deriving classes. The following example shows an inherited class that can access it’s parent protected property <code>teethCount</code>:</p>
+<h3>Protected modifier</h3>
+<p><code>Protected</code> modifiers are similar to <code>private</code> modifiers in that they can’t be accessed from outside of the class. The main exception is that <code>protected</code> properties are also accessible by classes that inherit from it.</p>
+<p>The following example shows an inherited class that can access its parent <code>protected</code> property <code>teethCount</code>:</p>
 <pre><code class="language-ts">class Dinosaur {
   public name: string;
   private dna: string;
@@ -749,8 +975,8 @@ class GeneticallyModifiedDinosaur extends Dinosaur {
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='4,19'></div>
-<h2>Readonly modifier</h2>
-<p>Readonly modifiers allow properties to be read, but not changed after initialization. Read-only members can be accessed outside the class, but their value can’t be changed.</p>
+<h3>Readonly modifier</h3>
+<p><code>Readonly</code> modifiers allow properties to be read, but not changed after initialization. <code>Readonly</code> fields can be accessed outside the class, but their value can’t be changed.</p>
 <pre><code class="language-ts">class Leoplurodon {
   readonly location: string;
   readonly numberOfFlippers = 4;
@@ -769,165 +995,8 @@ firstStop.location = &quot;On a bridge&quot;; // error! location is readonly.
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='2,10'></div>
-<h2>This and <code>=&gt;</code> Functions</h2>
-<p>If you’re familiar with ES6, you may know that using the fat arrow (=&gt;) captures the context of <code>this</code> where it’s used. The functionality is the same in TypeScript.</p>
-<p>Wrong <code>this</code>:</p>
-<pre><code class="language-typescript">class DinoBuilder {
-  dinoName = 'Trex';
-  yawn() {
-    setTimeout(function() {
-      console.log(`${this.dinoName} yawned.`);
-    }, 50);
-  }
-}
-
-var dino = new DinoBuilder();
-dino.yawn();
-// Logs &quot;undefined yawned&quot;
-</code></pre>
-<div line-highlight='4'></div>
-<div class='codepen'></div>
-<p>Right <code>this</code>:</p>
-<pre><code class="language-typescript">class DinoBuilder {
-  dinoName = 'Trex';
-  yawn() {
-    setTimeout(() =&gt; {
-      console.log(`${this.dinoName} yawned.`);
-    }, 50);
-  }
-}
-
-var dino = new DinoBuilder();
-dino.yawn();
-// Logs &quot;Trex yawned&quot;
-</code></pre>
-<div line-highlight='4'></div>
-<div class='codepen'></div>
-<p>Wrong <code>this</code>:</p>
-<pre><code class="language-typescript">class DinoBuilder {
-  dinoName = 'Trex';
-  roar() {
-    console.log(`${this.dinoName} roared.`);
-  }
-}
-
-var dino = new DinoBuilder();
-
-setTimeout(dino.roar, 50);
-// Logs &quot;undefined roared&quot;
-</code></pre>
-<div line-highlight='3'></div>
-<div class='codepen'></div>
-<p>Right <code>this</code>:</p>
-<pre><code class="language-typescript">class DinoBuilder {
-  dinoName = 'Trex';
-  roar = () =&gt; {
-    console.log(`${this.dinoName} roared.`);
-  }
-}
-
-var dino = new DinoBuilder();
-
-setTimeout(dino.roar, 50);
-// Logs &quot;Trex roared&quot;
-</code></pre>
-<div line-highlight='3'></div>
-<div class='codepen'></div>
-<h2>Exercise: Create a Class</h2>
-<h3>The Problem</h3>
-<p>In this exercise, we will take an old-school JavaScript class and convert it to a
-shiny new TypeScript class.</p>
-<p>Edit the file <code>4a-classes-hello-dino.ts</code> to recreate the <code>DinoKeeper</code> using TypeScript classes.</p>
-<pre><code class="language-typescript">function DinoKeeper(name) {
-  this.name = name;
-}
-
-DinoKeeper.prototype.sayHi = function() {
-  return this.name + ' says &quot;hi&quot;';
-}
-
-let employee1 = new DinoKeeper('Joe');
-employee1.sayHi();
-//Joe says &quot;hi&quot;
-</code></pre>
-<h3>Hint</h3>
-<p>If you run:</p>
-<pre><code class="language-bash">tsc 4a-classes-hello-dino.ts
-</code></pre>
-<p>Your code should transpile to look like the above prototype version! <strong>Delete</strong> the compiled js file before running the tests in the next step.</p>
-<h3>Verify your solution</h3>
-<p>✏️ Run the following to verify your solution:</p>
-<pre><code class="language-shell">npm run 4a-classes
-</code></pre>
-<h3>The solution</h3>
-<p><details>
-<summary>Solution</summary></p>
-<p>✏️ Update <code>4a-classes-hello-dino.ts</code> to the following:</p>
-<pre><code class="language-typescript">class DinoKeeper {
-  name: string;
-
-  constructor(name: string) {
-    this.name = name;
-  }
-
-  sayHi(): string {
-    return `${this.name} says &quot;hi&quot;`;
-  }
-}
-let employee1 = new DinoKeeper('Joe');
-employee1.sayHi();
-//Logs &quot;Joe says &quot;hi&quot;&quot;
-
-export default DinoKeeper;
-</code></pre>
-<p></details></p>
-<div line-highlight='1-2, 4, 8-9,11, 16'></div>
-<h2>Exercise: Extend a Class</h2>
-<h3>The Problem</h3>
-<p>Edit <code>4b-specialist.ts</code> to write a new <code>Specialist</code> class:</p>
-<pre><code class="language-ts">import DinoKeeper from &quot;./4a-classes-hello-dino&quot;;
-
-class Specialist {
-
-}
-export default Specialist;
-</code></pre>
-<p><code>Specialist</code> should:</p>
-<ul>
-<li>Inherit from <code>DinoKeeper</code>. This new class should</li>
-<li>Accept an additional <code>experience</code> public member that is a number</li>
-<li>Have a <code>safetyQuote</code> method that returns <code>&quot;Never turn your back to the cage. Trust me, I have ${experience} years of experience&quot;</code>.</li>
-</ul>
-<p>For example, you should be able to use <code>Specialist</code> as folows:</p>
-<pre><code class="language-typescript">let employee2 = new Specialist('Owen', 14);
-employee2.sayHi(); //Owen says 'hi'
-employee2.safetyQuote();
-//Logs &quot;Never turn your back to the cage. Trust me, I have 14 years of experience&quot;
-</code></pre>
-<h3>Verify Your Solution</h3>
-<p>✏️ Run the following to verify the solution:</p>
-<pre><code class="language-shell">npm run 4b-classes
-</code></pre>
-<h3>The solution</h3>
-<p><details>
-<summary>Click to see the solution</summary></p>
-<p>✏️ Update <code>4b-specialist.ts</code> to the following:</p>
-<pre><code class="language-typescript">import DinoKeeper from &quot;./4a-classes-hello-dino&quot;;
-
-class Specialist extends DinoKeeper {
-  constructor(name: string, public experience: number) {
-    super(name);
-  }
-
-  safetyQuote() {
-    return `Never turn your back to the cage.
-    Trust me, I have ${this.experience} years of experience`;
-  }
-}
-export default Specialist;
-</code></pre>
-<div line-highlight='3-6, 8-11'></div>
-<p></details></p>
+<h2>Next Steps</h2>
+<p>Next on the chopping block is working with Interfaces in Typescript.</p>
 
 </section>
 
@@ -966,7 +1035,7 @@ export default Specialist;
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/typescript/08-classes/classes.md"},"description":"Learn to use classes and inheritance in TypeScript, about the `constructor` method, and how to use public, private, protected, and readonly modifiers. \n","name":"learn-typescript/classes","title":"Classes","type":"page","parent":"learn-typescript","order":8,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/typescript/08-classes/classes.md"},"description":"Learn how to use classes and inheritance in TypeScript. \n","name":"learn-typescript/classes","title":"Classes","type":"page","parent":"learn-typescript","order":8,"outline":{"depth":3},"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     
