@@ -612,20 +612,20 @@ Open the <code>dnaCost.ts</code> file and modify this function to:</p>
 <li>take an unknown amount of sequences;</li>
 <li>return the sum of <code>baseCost</code> and the length of each sequence.</li>
 </ol>
+<p><strong>Have issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/07-functions/01-problem?file=src/dnaCost.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/07-functions/01-problem?file=src/dnaCost.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
 <h3>Verify</h3>
 <p>✏️ Create <strong>src/functions/dnaCost.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import assert from &quot;node:assert&quot;;
 import { describe, it } from &quot;node:test&quot;;
 import { dnaCost } from &quot;./dnaCost&quot;;
 
-describe(&quot;DNA Cost&quot;, () =&gt; {
-  it(&quot;should return the cost&quot;, () =&gt; {
-    let raptorDNA = &quot;CGGCA&quot;;
-    let cuttlefishDNA = &quot;GATTACA&quot;;
-    let viperDNA = &quot;ATTAC&quot;;
+describe(&quot;Functions: dnaCost&quot;, () =&gt; {
+  it(&quot;can be called with two arguments&quot;, () =&gt; {
+    assert.equal(dnaCost(2500, &quot;abc&quot;), 2503);
+  });
 
-    const cost = dnaCost(5000, raptorDNA, cuttlefishDNA, viperDNA);
-    assert.strictEqual(cost, 5017, &quot;Cost should be 5017&quot;);
+  it(&quot;can be called with many arguments&quot;, () =&gt; {
+    assert.equal(dnaCost(2500, &quot;abc&quot;, &quot;de&quot;, &quot;f&quot;), 2506);
   });
 });
 
@@ -657,6 +657,7 @@ valid solution:</p>
 }
 </code></pre>
 <div line-highlight='1-4'></div>
+<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/07-functions/01-solution?file=src/dnaCost.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/07-functions/01-solution?file=src/dnaCost.ts">CodeSandbox</a>.</p>
 <p></details></p>
 <h3><code>this</code> parameters</h3>
 <p>JavaScript functions can be called or created with a dynamic <code>this</code>. For example:</p>

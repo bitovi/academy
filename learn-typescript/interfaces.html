@@ -531,16 +531,16 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
-<p>In this section, we will:</p>
+<p>In this section, you will:</p>
 <ul>
 <li>Write interfaces</li>
 <li>Set optional properties</li>
 <li>Use the power of interfaces in classes and functions</li>
 </ul>
-<h2>Objective: The use of interface for objects</h2>
+<h2>Objective 1: Define interfaces for objects</h2>
 <p>Interfaces are a powerful way to enforce types and document what our code provides. Interfaces used in classes allow &quot;loose coupling&quot; while providing a shape. Multiple classes can use interfaces in many different ways. This section will cover how to write interfaces, setting optional properties, and the power of using interfaces in classes and functions.</p>
 <h3>Interfaces in TypeScript</h3>
-<p>An interface in TypeScript is a way to define the shape an entity should adhere to. An interface defines the members: properties, methods, and events. It may be easy to think of it as the signature of an API. It’s worth noting that interfaces aren’t transpiled into our output JavaScript; they’re only used for typechecking during the development process.</p>
+<p>An interface in TypeScript is a way to define the shape an entity should adhere to. An interface defines the members: properties, methods, and events. It may be easy to think of it as the signature of an API. It’s worth noting that interfaces aren’t transpiled into our output JavaScript; they’re only used for type-checking during the development process.</p>
 <pre><code class="language-ts">//interface describing object
 interface Dinosaur {
   name: string;
@@ -564,43 +564,6 @@ trackDino(blue);
 //Logs &quot;Section B&quot;
 </code></pre>
 <div class='codepen'></div>
-<h3>Setup 1</h3>
-<p>✏️ Create <strong>src/interfaces/address.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">interface Address {}
-
-export default Address;
-</code></pre>
-<h3>Exercise 1</h3>
-<p>We’re going to write some interfaces to set up for the next problem. Edit the files <code>address.ts</code> to create an interface to define a <code>Address</code> object shown below:</p>
-<pre><code class="language-javascript"> const address = {
-    street: '',
-    city: '',
-    state: '',
-    zip: ''
-  }
-</code></pre>
-<p>Hint: the interface should have properties and types:</p>
-<ul>
-<li><code>street</code> (string)</li>
-<li><code>city</code> (string)</li>
-<li><code>state</code>(string)</li>
-<li><code>zip</code> (string)</li>
-</ul>
-<h3>Solution</h3>
-<p><details>
-<summary>Click to see the solution</summary></p>
-<p>✏️ Update <code>address.ts</code> to the following:</p>
-<pre><code class="language-ts">interface Address {
-  street: string;
-  city: string;
-  state: string;
-  zip: string
-}
-
-export default Address;
-</code></pre>
-<div line-highlight='2-5'></div>
-<p></details></p>
 <p>Make sure you have this solution implemented correctly before moving on to the next exercise.</p>
 <h3>Optional properties</h3>
 <p>Sometimes all properties on an object don’t need to be required, so using the <code>?</code> tells the TypeScript compiler which properties aren’t required.</p>
@@ -622,7 +585,12 @@ trackDino(blue);
 </code></pre>
 <div line-highlight='4'></div>
 <div class='codepen'></div>
-<h3>Setup 2</h3>
+<h3>Setup 1</h3>
+<p>✏️ Create <strong>src/interfaces/address.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">interface Address {}
+
+export default Address;
+</code></pre>
 <p>✏️ Create <strong>src/interfaces/dino-park.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import Address from &quot;./address&quot;;
 
@@ -630,9 +598,87 @@ interface DinoPark {}
 
 export default DinoPark;
 </code></pre>
-<h3>Exercise 2</h3>
-<p>We’re going to write some interfaces to set up for the next problem. Edit the files <code>dino-park.ts</code> to create an interface to define a <code>DinoPark</code> object shown below:</p>
-<pre><code class="language-javascript">cost park = {
+<h3>Verify 1</h3>
+<p>✏️ Create <strong>src/interfaces/address.test.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import assert from &quot;node:assert&quot;;
+import { describe, it } from &quot;node:test&quot;;
+import type Address from &quot;./address&quot;;
+
+describe(&quot;Interfaces&quot;, () =&gt; {
+  function checkAddress(address: Address) {
+    var keys = Object.keys(address);
+    assert.deepEqual(keys, [&quot;street&quot;, &quot;city&quot;, &quot;state&quot;, &quot;zip&quot;]);
+  }
+
+  it(&quot;Address&quot;, () =&gt; {
+    checkAddress({
+      street: &quot;123 Main&quot;,
+      city: &quot;Sandusky&quot;,
+      state: &quot;Ohio&quot;,
+      zip: &quot;12345&quot;,
+    });
+  });
+});
+
+</code></pre>
+<p>✏️ Create <strong>src/interfaces/dino-park.test.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import assert from &quot;node:assert&quot;;
+import { describe, it } from &quot;node:test&quot;;
+import type DinoPark from &quot;./dino-park&quot;;
+import type Address from &quot;./address&quot;;
+
+describe(&quot;Interfaces&quot;, () =&gt; {
+  function checkAddress(address: Address) {
+    var keys = Object.keys(address);
+    assert.deepEqual(keys, [&quot;street&quot;, &quot;city&quot;, &quot;state&quot;, &quot;zip&quot;]);
+  }
+
+  it(&quot;DinoPark&quot;, () =&gt; {
+    function checkFullDinoPark(dinoPark: DinoPark) {
+      var keys = Object.keys(dinoPark);
+      assert.deepEqual(keys, [&quot;name&quot;, &quot;image&quot;, &quot;address&quot;], &quot;has an image&quot;);
+      checkAddress(dinoPark.address);
+    }
+
+    checkFullDinoPark({
+      name: &quot;Isla Sorna Park&quot;,
+      image: &quot;http://dino.com/pic.jpg&quot;,
+      address: {
+        street: &quot;123 Main&quot;,
+        city: &quot;Sandusky&quot;,
+        state: &quot;Ohio&quot;,
+        zip: &quot;12345&quot;,
+      },
+    });
+
+    function checkPartialDinoPark(dinoPark: DinoPark) {
+      var keys = Object.keys(dinoPark);
+      assert.deepEqual(keys, [&quot;name&quot;, &quot;address&quot;], &quot;optional image&quot;);
+      checkAddress(dinoPark.address);
+    }
+    checkPartialDinoPark({
+      name: &quot;Isla Sorna Park&quot;,
+      address: {
+        street: &quot;123 Main&quot;,
+        city: &quot;Sandusky&quot;,
+        state: &quot;Ohio&quot;,
+        zip: &quot;12345&quot;,
+      },
+    });
+  });
+});
+
+</code></pre>
+<h3>Exercise 1</h3>
+<p>We’re going to write some interfaces to set up for the next problem. Edit the files <code>address.ts</code> and <code>dino-park.ts</code> to create an interface to define an <code>Address</code> and <code>DinoPark</code> object shown below:</p>
+<pre><code class="language-javascript">const address = {
+  street: '',
+  city: '',
+  state: '',
+  zip: ''
+};
+
+const park = {
   name: '',
   image: '',
   address: {
@@ -641,17 +687,35 @@ export default DinoPark;
     state: '',
     zip: ''
   }
-}
+};
 </code></pre>
 <p>Hint: the interface should have properties and types:</p>
 <ul>
 <li><code>name</code> (string)</li>
 <li><code>image</code> (string) (optional)</li>
-<li><code>address</code> (Address)</li>
+<li><code>address</code>
+<ul>
+<li><code>street</code> (string)</li>
+<li><code>city</code> (string)</li>
+<li><code>state</code>(string)</li>
+<li><code>zip</code> (string)</li>
+</ul></li>
 </ul>
-<h3>Solution 2</h3>
+<p><strong>Have issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/01-problem?file=src/address.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/01-problem?file=src/address.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
+<h3>Solution 1</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
+<p>✏️ Update <code>address.ts</code> to the following:</p>
+<pre><code class="language-ts">interface Address {
+  street: string;
+  city: string;
+  state: string;
+  zip: string
+}
+
+export default Address;
+</code></pre>
+<div line-highlight='2-5'></div>
 <p>✏️ Update <code>dino-park.ts</code> to the following:</p>
 <pre><code class="language-ts">import Address from &quot;./address&quot;;
 
@@ -664,6 +728,7 @@ interface DinoPark {
 export default DinoPark;
 </code></pre>
 <div line-highlight='4-6'></div>
+<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/01-solution?file=src/address.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/01-solution?file=src/address.ts">CodeSandbox</a>.</p>
 <p></details></p>
 <p>Make sure you have this solution implemented correctly before moving on to the next exercise.</p>
 <h3>Classes implementing interfaces</h3>
@@ -688,7 +753,7 @@ class DinoWithRoar implements Dinosaur {
 </code></pre>
 <div class='codepen'></div>
 <h3>Type assertion</h3>
-<p>We briefly mentioned type assertion when talk about types, but when dealing with interfaces, it can be a great tool for making sure our code behaves in the way we expect.</p>
+<p>We briefly mentioned type assertion when talking about types, but when dealing with interfaces, it can be a great tool for making sure our code behaves in the way we expect.</p>
 <p>For instance, consider the following code:</p>
 <pre><code class="language-ts">const myObj = {};
 myObj.name = 'Blue';
@@ -708,7 +773,7 @@ myObj.name = 'Blue';
 myObj.height = 6;
 </code></pre>
 <div class='codepen'></div>
-<h2>Objective: The use of interface for functions</h2>
+<h2>Objective 2: Define interfaces for functions</h2>
 <h3>Interfaces in functions</h3>
 <p>Interfaces are incredibly useful in describing the shape of objects we want to use in multiple situations. The following functions both require a <code>Dinosaur</code> object shape we’ve defined in the <code>Dinosaur</code> interface.</p>
 <pre><code class="language-ts">interface Dinosaur {
@@ -740,7 +805,7 @@ dinoCatcher(dinoB);
 </code></pre>
 <div class='codepen'></div>
 <h3>Interfaces describing functions</h3>
-<p>We can also use interfaces to describe functions, basically creating reusable types for functions. On the left side (in parenthesis) we list the parameters, and to the right of the colon we state the return type.</p>
+<p>We can also use interfaces to describe functions, basically creating reusable types for functions. On the left side (in parenthesis) we list the parameters, and to the right of the colon, we state the return type.</p>
 <pre><code class="language-ts">interface DinoDNAMixer {
   (dino1: string, dino2: string, spliceIdx: number): string;
 }
@@ -763,33 +828,31 @@ interface DinoFactory {
 }
 </code></pre>
 <div class='codepen'></div>
-<h3>Setup 3</h3>
+<h3>Setup 2</h3>
 <p>✏️ Create <strong>src/interfaces/create-park-slug.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">
 export default function createParkSlug(dinoPark) {
   return dinoPark.name.replace(/ /g, '-');
 }
 </code></pre>
-<h3>Verify 3</h3>
+<h3>Verify 2</h3>
 <p>✏️ Create <strong>src/interfaces/create-park-slug.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import assert from &quot;node:assert&quot;;
 import { describe, it } from &quot;node:test&quot;;
-import type DinoPark from &quot;./dino-park&quot;;
-import createParkSlug from &quot;./create-park-slug&quot;;
+import { createParkSlug } from &quot;./create-park-slug&quot;;
 
-describe(&quot;Create Park Slug&quot;, () =&gt; {
-  it(&quot;should return a slug&quot;, () =&gt; {
-    const DinoPark: DinoPark = {
-      name: &quot;Fun Park&quot;,
+describe(&quot;Interfaces&quot;, () =&gt; {
+  it(&quot;createParkSlug&quot;, function () {
+    let result = createParkSlug({
+      name: &quot;Isla Sorna Park&quot;,
       address: {
-        street: &quot;123 Park Lane&quot;,
-        city: &quot;Dino&quot;,
-        state: &quot;World&quot;,
+        street: &quot;123 Main&quot;,
+        city: &quot;Sandusky&quot;,
+        state: &quot;Ohio&quot;,
         zip: &quot;12345&quot;,
       },
-    };
-    const message = createParkSlug(DinoPark);
-    assert.strictEqual(message, &quot;Fun-Park&quot;, &quot;message should be correct&quot;);
+    });
+    assert.equal(result, &quot;Isla-Sorna-Park&quot;, &quot;slug works&quot;);
   });
 });
 
@@ -797,9 +860,10 @@ describe(&quot;Create Park Slug&quot;, () =&gt; {
 <p>✏️ Run the following to verify your solution:</p>
 <pre><code class="language-shell">npm run test
 </code></pre>
-<h3>Exercise 3</h3>
+<h3>Exercise 2</h3>
 <p>In the <code>create-park-slug.ts</code> file edit the <code>createParkSlug</code> function to take a parameter that is the interface <code>DinoPark</code> created previously and returns a slug for the park by replacing any spaces with dashes. Ex. the park &quot;Isla Sorna Park&quot; should return the slug <code>Isla-Sorna-Park</code>.</p>
-<h3>Solution 3</h3>
+<p><strong>Have issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/01-problem?file=src/create-park-slug.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/01-problem?file=src/create-park-slug.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
+<h3>Solution 2</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <code>create-park-slug.ts</code> to the following:</p>
@@ -810,6 +874,7 @@ export function createParkSlug(dinoPark: DinoPark) {
 }
 </code></pre>
 <div line-highlight='3-4'></div>
+<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/01-solution?file=src/create-park-slug.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/01-solution?file=src/create-park-slug.ts">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, let’s take a look at <a href="./keyof-typeof.html">keyof and typeof</a> to create new types from types.</p>
