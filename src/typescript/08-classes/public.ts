@@ -1,5 +1,4 @@
 class Dinosaur {
-  //will be public by default
   name: string;
   constructor(name: string) {
     this.name = name;
@@ -9,8 +8,6 @@ class Dinosaur {
   }
 }
 
-let myDino = new Dinosaur('Mildred');
+let myDino = new Dinosaur("Mildred");
 console.log(myDino.name);
-//Logs "Mildred"
 myDino.walk(7);
-//Logs "Mildred walked 7 feet."

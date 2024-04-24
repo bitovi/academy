@@ -35,8 +35,7 @@ for much of this material:
 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQlxJmGH4esEPn8WK-nQbQxRZJXKuQZbbMw1uT06VqZJ02P_rnOhoS__HXbfqeXDRd9BViLgT3oCl5w/embed?start=false&loop=false&delayms=3000" frameborder="0" class="block-16-by-9" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
-Note, there is another presentation below!
-
+> **NOTE:** The presentation on how to split initiatives into epics is below!
 
 Why estimate
 ------------
@@ -195,7 +194,8 @@ The presentation walks through breaking down the initiative into the following 8
 Estimating Epics
 ----------------
 
-Once you have a list of epics, you should review with the team to ensure the plan makes sense. It’s also a good idea to talk through how to restructure the work to maximize early customer value and avoid risk. We will discuss this more in [Breaking Long Poles \[Rough Draft/In Progress\]](https://bitovi.atlassian.net/wiki/spaces/PM/pages/368476911/Breaking+Long+Poles).
+Once you have a list of epics, you should review with the team to ensure the plan makes sense. It’s also a good idea to talk through how to restructure the work to maximize early customer value and avoid risk. We will discuss this more in 
+[learn-agile-program-management-with-jira/breaking-long-poles breaking long poles].
 
 Once the plan makes sense, it’s time to estimate each epic. For this training, we are going to be using `Story Points` and `Confidence`. We go through each epic and write the `Story Points` and `Confidence` in square brackets next to the epic like `[15 50%]`.
 
@@ -382,7 +382,7 @@ The following sub-sections detail the process in writing:
 
 ### Determine Team Velocities
 
-To size the epics, we first need to decide how much of the team’s velocity will be used for this initiative. You can look up a team’s velocity in the [“Reports / Velocity Chart” report of Jira](https://support.atlassian.com/jira-software-cloud/docs/view-and-understand-the-velocity-chart/). Click reports, then click velocity chart.
+To size the epics, we first need to decide how much of the team’s velocity will be used for this initiative. [“Reports / Velocity Chart” report of Jira](https://support.atlassian.com/jira-software-cloud/docs/view-and-understand-the-velocity-chart/). Provides an in-depth explanation of velocity charts in Jira.In short, to see a velocity chart, click reports, then click velocity chart.
 
 <img src="../static/img/program-management-with-jira/estimating/reports.png" class="content-400-800-shadow"/>
 
@@ -432,7 +432,7 @@ Finally, locate the 90% likelihood values:
 
 
 
-<img src="../static/img/program-management-with-jira/estimating/points-and-due-date.png" class="content-400-800-shadow"/>
+<img src="../static/img/program-management-with-jira/estimating/likelihood-selected.png" class="content-400-800-shadow"/>
 
 Enter the adjusted story points in the epic’s `Story points` field:
 
@@ -460,7 +460,7 @@ After doing this for all of the Promotion example’s epics, it will result in t
 <img src="../static/img/program-management-with-jira/estimating/final-epic-plan.png" class="content-400-800-shadow"/>
 
 
-Yay!!!! Now we have our first glimpse at what it will take to get this work done. It looks like it will take about 2.5 months. If Marketing wants it done 3 months from now, with all the other work we have going on, we might have to make some adjustments. We will look to do that in [Breaking Long Poles \[Rough Draft/In Progress\]](https://bitovi.atlassian.net/wiki/spaces/PM/pages/368476911/Breaking+Long+Poles) .
+Yay!!!! Now we have our first glimpse at what it will take to get this work done. It looks like it will take about 2.5 months. If Marketing wants it done 3 months from now, with all the other work we have going on, we might have to make some adjustments. We will look to do that in [learn-agile-program-management-with-jira/breaking-long-poles Breaking long poles].
 
 Benefits of a statistical approach
 ----------------------------------
@@ -473,7 +473,7 @@ The statistical approach outlined above has several benefits when compared to ta
     
 *   It highlights uncertainty.
     
-    Often, it’s the epics that have the lowest confidence that lengthen the end-to-end time of delivery. By identifying those epics, program managers can adjust plans to reign in uncertainty. We will see this in action in [Breaking Long Poles \[Rough Draft/In Progress\]](https://bitovi.atlassian.net/wiki/spaces/PM/pages/368476911/Breaking+Long+Poles) .
+    Often, it’s the epics that have the lowest confidence that lengthen the end-to-end time of delivery. By identifying those epics, program managers can adjust plans to reign in uncertainty. We will see this in action in [learn-agile-program-management-with-jira/breaking-long-poles Breaking long poles].
     
 *   It’s more accurate.  
     This approach models work how work is actually done.
