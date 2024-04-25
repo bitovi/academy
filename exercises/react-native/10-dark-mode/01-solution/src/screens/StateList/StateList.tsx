@@ -38,10 +38,11 @@ const StateList: FC = () => {
         <Typography>No states found</Typography>
       )}
       <Card>
-        <Typography variant="heading">
-          Dark Mode
-        </Typography>
-        <Switch value={mode === "dark"} onChange={() => setMode(mode === "light" ? "dark" : "light")}/>
+        <Typography variant="heading">Dark Mode</Typography>
+        <Switch
+          value={mode === "dark"}
+          onChange={() => setMode(mode === "light" ? "dark" : "light")}
+        />
       </Card>
     </Screen>
   )

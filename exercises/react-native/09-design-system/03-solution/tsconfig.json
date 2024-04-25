@@ -1,3 +1,23 @@
 {
-  "extends": "@react-native/typescript-config/tsconfig.json"
+  "extends": "@react-native/typescript-config/tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "composite": true,
+    "incremental": true,
+    "strict": true,
+    "noEmit": true,
+
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "skipLibCheck": true,
+    "useDefineForClassFields": true
+  },
+  "include": ["*.ts", "src"],
+  "exclude": ["node_modules"]
 }

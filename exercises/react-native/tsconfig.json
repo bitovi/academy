@@ -18,6 +18,6 @@
     "skipLibCheck": true,
     "useDefineForClassFields": true
   },
-  "include": ["*.ts", "src"],
+  "include": ["*/*/src"],
   "exclude": ["node_modules"]
 }

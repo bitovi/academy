@@ -10,7 +10,9 @@ const App: FC = () => {
       <SafeAreaView style={{ height: "100%" }}>
         <ScrollView>
           <View>
-            <Typography variant="heading">Place My Order: Coming Soon To...</Typography>
+            <Typography variant="heading">
+              Place My Order: Coming Soon To...
+            </Typography>
             <StateList />
           </View>
         </ScrollView>
