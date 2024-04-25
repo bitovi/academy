@@ -1,21 +1,24 @@
 @page learn-typescript/keyof-typeof Keyof and Typeof
 @parent learn-typescript 11
+@outline 3
 
-@description Learn how to use `keyof` and `typeof` to create new types from types and objects!
+@description Learn how to use `keyof` and `typeof` to create new types from types and objects.
 
 @body
 
 ## Overview
 
-In this part, we will:
+In this section, you will:
 
-- Learn how `keyof` works
-- Learn how `typeof` works
-- See how they can be used together
+- Learn use the `keyof` operator.
+- Learn use the `typeof` operator.
+- See how the to use these two operators both independently and in conjunction.
 
-## Keyof
+## Objective 1: How to use keyof and typeof
 
-The `keyof` operators takes an object type and produces a union of its keys. Take for example the following type:
+### Keyof
+
+The `keyof` operator takes an object type and produces a union of its keys. Take for example the following type:
 
 ```ts
 type Dino = {
@@ -25,13 +28,13 @@ type Dino = {
 };
 ```
 
-If we were to create a new type called `Dino` using `keyof` we would see `"name" | "type" | "age"`
+If we were to create a new type called `Dino` using `keyof` we would see `"name" | "type" | "age"`.
 
 ```ts
 type DinoKeys = keyof Dino; // "name" | "type" | "age"
 ```
 
-If the type is declared using an index signature, the type of the index will be used
+If the type is declared using an index signature, the type of the index will be used.
 
 ```ts
 type ArraylikeDinos = { [index: number]: Dino };
@@ -54,9 +57,9 @@ type Keys = keyof ArraylikeDinos; // number
 >
 > Both `a[1]` and `a["1"]` evaluate to the same thing (`"world"`).
 
-By itself, `keyof` may not seem all too interesting. However, it becomes powerful when used in tandem with other TypeScript features like Mapped Types and Generics which we will see in the future.
+By itself, `keyof` may not seem all too interesting. However, it becomes powerful when used in tandem with other TypeScript features like Generics which we will see in the future.
 
-## Typeof
+### Typeof
 
 `typeof` is a way to create a type from a value. It can be used on values and properties of those values. `typeof` is useful for creating type queries and capturing types that aren’t strictly defined.
 
@@ -67,12 +70,19 @@ const tRex = {
   weightInKilograms: 7_000,
 };
 
-let stegosaurus: typeof tRex; // {name: string; type: string; weightInKilograms: number;}
+let stegosaurus: typeof tRex; 
 
-type Dinosaur = typeof tRex; // {name: string; type: string; weightInKilograms: number;}
+type Dinosaur = typeof tRex; 
+```
+@highlight 7, 9
+
+Thanks to the use of `typeof`, the variable `stegosaurus` and the type `Dinosaur` both now have the type:
+
+```ts
+`{name: string; type: string; weightInKilograms: number;}`
 ```
 
-There are some shortcomings to this approach since its looking at a single value, and the type returned isn’t as specific as it could be. Take for example `type` and `weightInKilograms` if we were to define the `Dinosaur` type ourselves we would want to restrict and expand those properties into something like this:
+There are some shortcomings to this approach since it's looking at a single value, and the type returned isn’t as specific as it could be. Take for example `type` and `weightInKilograms`, if we were to define the `Dinosaur` type ourselves we would want to restrict and expand those properties into something like this:
 
 ```ts
 interface Dinosaur {
@@ -82,16 +92,14 @@ interface Dinosaur {
 }
 ```
 
-`typeof` is often used in conjunction with `ReturnType`, a utility type (learn more about utility types: [learn-typescript/utility-types]) provided by TypeScript, as a way to type out the return of a function. Say for example we have a function defined somewhere and we need to give a type for a value that is returned from the function. We could achieve this using `ReturnType`
+The `typeof` is often used in conjunction with `ReturnType`, a utility type (learn more about utility types: [learn-typescript/utility-types]) provided by TypeScript, as a way to type out the return of a function. Say, for example, we have a function defined somewhere and we need to give a type for a value that is returned from the function. We could achieve this using `ReturnType`
 
 ```ts
-// Some function in a module
 const createDinosaur = (): Carnivore | Herbivore => {
-  // implementation details
+  /** implementation details */
   return dino;
 };
 
-// Some other module
 type Dinosaur = ReturnType<typeof createDinosaur>;
 
 const dinoFight = (dino1: Dinosaur, dino2: Dinosaur): Dinosaur => {
@@ -99,7 +107,7 @@ const dinoFight = (dino1: Dinosaur, dino2: Dinosaur): Dinosaur => {
 };
 ```
 
-> Don’t worry about the angle brackets right now (`<>`) those are how [learn-typescript/generics] are declared in TypeScript, we will go more indepth on those later. For now just think of it as us telling TypeScript that we want the return type of the thing in the brackets.
+> Don’t worry about the angle brackets right now (`<>`) those are how [learn-typescript/generics] are declared in TypeScript, we will go more in depth on those later. For now just think of it as us telling TypeScript that we want the return type of the thing in the brackets.
 
 You might be thinking using `typeof` for something like this is overkill, instead, you could just jump into the module find the types and import them. While that might be true for this simple example, with more complex and generic return types it becomes more of a hassle. Additionally, the return type of a function may not be defined, opting to leverage TypeScript’s type inference like below.
 
@@ -115,30 +123,91 @@ const getDinoFacts = () => {
   };
 };
 
-/**
- *{name: string, size: {weight: {amount: number; unit: string;}}, facts: string[]}
- */
 type DinoFacts = ReturnType<typeof getDinoFacts>;
 ```
+@highlight 12
 
-There are two `typeof`s to be aware of in TypeScript – the JavaScript one and the TypeScript one. The difference between them is the context in which they are used. If it is being used in an expression context, (used as a part of your code) it is the JavaScript `typeof` and will return a string with one of nine JavaScript types. And if it’s used in a type context (as part of your type declarations) it’s the TypeScript `typeof` and will refer to the type of whatever values follow it.
+For the example above, given the `typeof DinoFacts`, the `ReturnType` is now: 
 
-`typeof` cannot be called on everything; there are some restrictions. `typeof` can only be called on identifiers and any of their properties.
+```ts
+`{name: string, size: {weight: {amount: number; unit: string;}}, facts: string[]}`
+```
+
+In TypeScript, you'll encounter two different usages of `typeof`—one from JavaScript and another specific to TypeScript. Understanding when and how each is used is crucial for effective type management and code clarity.
+
+**JavaScript** `typeof`: This version of `typeof` is used within code expressions. When you apply `typeof` to a variable, TypeScript treats it as the JavaScript operator, returning a string that represents the variable’s primitive type.
+
+For example, `typeof "hello"` results in `"string"`, and `typeof 42` results in `"number"`. This is consistent with JavaScript’s behavior, where typeof is typically used to determine the type of a runtime value.
+
+**TypeScript** `typeof`: When `typeof` is used in a type context—specifically, in type declarations or annotations—it behaves differently. Here, `typeof` is used to capture and use the type of a variable rather than its value.
+
+For instance, if you have `const x = "hello"`, using `type Y = typeof x` in TypeScript will set Y as the type `"string"`, effectively using the type of `x` rather than its value.
+
+It’s important to note that typeof in TypeScript, particularly in type contexts, has its limitations. You can only use typeof on identifiers (such as variable names) and their properties. Attempting to use typeof on more complex expressions or certain values directly will not work as expected and can lead to errors.
 
 ```ts
 const dinosaur = { name: "velociraptor", type: "carnivore" };
 
-type Dinosaur = typeof dinosaur; // {name: string; type: string;}
-type DinotName = typeof dinosaur.name; // string
+type Dinosaur = typeof dinosaur; 
+type DinoName = typeof dinosaur.name; 
 
-type DinoFacts = typeof getHothFacts(); // ERROR: Expression expected
+type DinoFacts = typeof getDinoFacts();
+```
+@highlight 6
+
+So to review, the type `Dinosaur` will now have the `typeof dinosaur`: `{name: string; type: string;}`.
+
+The type `DinoName` will have the `typeof dinosaur.name`. The `name` property of `dinosaur` has the type of `string`, thus `DinoName`'s type is `string`.
+
+So what type will `DinoFacts` have? As mentioned before, `typeof` cannot be called on everything; the `getDinoFacts()` function is neither an identifier or property. As a result we get an error: `ERROR: Expression expected`.
+
+
+### Setup 1
+
+✏️ Create **keyof-typeof-dinofacts.ts** and update it to be:
+
+@sourceref ../../../exercises/typescript/11-keyof-typeof/01-problem/src/keyof-typeof/keyof-typeof-dinofacts.ts
+@codepen
+
+### Verify 1
+
+✏️ Create **keyof-typeof-dinofacts.test.ts** and update it to be:
+
+@sourceref ../../../exercises/typescript/11-keyof-typeof/01-problem/src/keyof-typeof/keyof-typeof-dinofacts.test.ts
+@codepen
+
+```shell
+npm run test
 ```
 
-Like `keyof`, `typeof` by itself may not seem interesting, but its utility lies when used in conjunction with other TypeScript features like `ReturnType` and even `keyof`.
+### Exercise 1
 
-## Keyof Typeof
+Update the `DinosaurFactObject` and `Dinosaur` type to gain type safety on the `getDinoFact` function. The function should, given a dinosaur's name (`velociraptor` or `t-rex`) and the `dinosaurFacts` object return the correct facts about the dinosaur.
 
-`typeof` and `keyof` can be used together when you want to use `keyof` but only have a value to use rather than a concrete type.
+- Replace `DinosaurFactObject`'s `any` with a type that represents the `dinosaurFacts`
+- Replace `Dinosaur`'s `any` with a type that allows for any of the keys in the dinosaur fact object
+- The `getDinofact` should, given a `facts` object and `dino` name, return the facts for that creature.
+  
+> **NOTE:** Don’t worry about the `DinosaurFactObject[Dinosaur]` type in the return of the function signature. That’s called an index-signature which we will get into later on.
+
+
+### Solution 1
+
+<details>
+<summary>Click to see the solution</summary>
+
+✏️ Update  **keyof-typeof-dinofacts.ts** to look like:
+
+@diff ../../../exercises/typescript/11-keyof-typeof/01-problem/src/keyof-typeof/keyof-typeof-dinofacts.ts ../../../exercises/typescript/11-keyof-typeof/01-solution/src/keyof-typeof/keyof-typeof-dinofacts.ts
+@highlight 6-27,32,37
+
+</details>
+
+## Objective 2: Use the `keyof` and `typeof` operators together
+
+### Keyof and Typeof
+
+The `keyof`, `typeof` operators independently may not seem interesting, but their utility lies when used in conjunction with each other. For example, we may want the `keyof` a value, such as the `carnivore` object below. The problem is the `keyof` operator only works on types; thankfully, the `typeof` operator is to grant us the type of `carnivore`.
 
 ```ts
 const carnivore = {
@@ -152,11 +221,14 @@ type CarnivoreKeys = keyof typeof carnivore;
 let carnivoreKey: CarnivoreKeys;
 
 carnivoreKey = "name";
-carnivoreKey = "Some value"; // ERROR: Type '"Some value"' is not assignable to type '"name" | "type" | "weightInKilograms"'
+carnivoreKey = "Some value";
 carnivoreKey = "type";
 ```
+@highlight 12
 
-A strange, but the common occurrence of this is an enum (learn more about enums: [learn-typescript/types#enum]). Enums in TypeScript are types before the code is compiled and an object during execution. If we run into a situation where we want to get the keys of an enum, the only way to do so is to use `keyof` and `typeof` together
+Note that in the above example assigning `"Some value"` to `carnivoreKey` will generate an error: `ERROR: Type '"Some value"' is not assignable to type '"name" | "type" | "weightInKilograms"'`
+
+A strange, but common occurrence of this is an (enum [learn-typescript/types#enum]). Enums in TypeScript are types before the code is compiled and an object during execution. If we run into a situation where we want to get the keys of an enum, the only way to do so is to use `keyof` and `typeof` together:
 
 ```ts
 enum DinosaurColors {
@@ -169,79 +241,53 @@ enum DinosaurColors {
   black = "0x000000",
 }
 
-type DinosaurColorsKeys = keyof typeof DinosaurColors; // “blue” | “green” | “red” …
+type DinosaurColorsKeys = keyof typeof DinosaurColors; 
 ```
 
-## Exercises
+in above, used in conjunction, `keyof` and `typeof` give `DinosaurColorKeys` the typing: 
+`“blue” | “green” | “red” | "purple | "yellow" | "white" | "black"`
 
-### Exercise 1
+In this case, `keyof typeof` definitely saves a lot of effort.
 
-Update the `DinosaurFactObject` and `Dinosaur` type to gain type safety on the `getDinoFact` function. The function should, given a dinosaurs name (`velociraptor` or `t-rex`) and the `dinosaurFacts` object return the correct facts about the dinosaur.
 
-> **NOTE:** Don’t worry about the `DinosaurFactObject[Dinosaur]` type in the return of the function signature. That’s called an index-signature which we will get into later on.
+### Setup 2
 
-@sourceref ./8-exercise-1.ts
+✏️ Create **keyof-typeof-colorshex.ts** and update it to be:
+
+@sourceref ../../../exercises/typescript/11-keyof-typeof/02-problem/src/keyof-typeof/keyof-typeof-colorshex.ts
 @codepen
 
-### Verify Your Solution
+### Verify 2
 
-✏️ Run the following to verify your solution:
+✏️ Create **keyof-typeof-colorshex.test.ts** and update it to be:
+
+@sourceref ../../../exercises/typescript/11-keyof-typeof/02-problem/src/keyof-typeof/keyof-typeof-colorshex.test.ts
+@codepen
 
 ```shell
-npm run 5c-keyof-typeof-ex1
+npm run test
 ```
-
-### The solution
-
-<details>
-<summary>Click to see the solution</summary>
-
-Update the `DinosaurFactObject` and `Dinosaur` type to gain type safety on the `getDinoFact` function
-
-@sourceref ./8-solution-exercise-1.ts
-
-Another way to achieve the same solution.
-
-@highlight 6-27,32,37
-
-```ts
-export type DinosaurFactObject = typeof dinosaurFacts;
-
-export type Dinosaur = keyof typeof dinosaurFacts;
-```
-
-@highlight 1,3
-
-
-
-</details>
 
 ### Exercise 2
 
 Update the `ColorsAsEasyReadName` type so that it represents the keys of the enum (eg `'red'`, `'blue'`, and `'green'`)and then add all the necessary types to the `getColorValue` function signature.
 
-The `getColorValue` function should take a one of the easily readable names and return the hex string equivalent
+- The `getColorValue` function should take one of color names, or `ColorsAsEasyReadName` and return the hex string equivalent
+- Replace `ColorAsEasyReadName`'s `any` with a type so that it represents the keys of the enum (eg 'red', 'blue', and 'green')
+- Fix the TypeScript errors by updating `getColorValue`'s `ReturnType`. Replace the `any` with the proper type.
 
-@sourceref ./8-exercise-2.ts
-@codepen
-
-### Verify Your Solution
-
-✏️ Run the following to verify your solution:
-
-```shell
-npm run 5d-keyof-typeof-ex2
-```
-
-### The solution
+### Solution 2
 
 <details>
 <summary>Click to see the solution</summary>
 
-Update the `ColorsAsEasyReadName` type so that it represents the keys of the enum (eg 'red', 'blue', and 'green')and then add all the necessary types to the `getColorValue` function signature.
+✏️ Update  **keyof-typeof-colorshex.ts** to look like:
 
-@sourceref ./8-solution-exercise-2.ts
+@diff ../../../exercises/typescript/11-keyof-typeof/02-problem/src/keyof-typeof/keyof-typeof-colorshex.ts ../../../exercises/typescript/11-keyof-typeof/02-solution/src/keyof-typeof/keyof-typeof-colorshex.ts
+@highlight 6-27,32,37
 
 </details>
 
-@highlight 16, 21
+## Next Steps
+
+The next section will cover [generics](./generics.html), which are useful both maintainable and flexible TypeScript code.
