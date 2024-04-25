@@ -1,4 +1,4 @@
-import { Diet, Tyrannosaurus } from "./utility-types";
+import { Diet, Tyrannosaurus } from "./required";
 import { describe, it } from "node:test";
 
 type TyrannosaurusMock = {
