@@ -2,7 +2,7 @@
 @parent learn-typescript 13
 @outline 3
 
-@description Learn about the utility types provided by TypeScript
+@description Learn about the utility types provided by TypeScript.
 
 @body
 
@@ -14,19 +14,17 @@ In this section, you will:
 - Make properties optional with `Partial<Type>`
 - Make properties required with `Required<Type>`
 - Set properties as immutable with `Readonly<Type>`
+- Remove nullability with `NonNullable<Type>`
 - Map keys to a type with `Record<Keys, Type>`
+- Select included subtypes with `Extract<Type, Union>`
+- Exclude values from a type with `Exclude<Type, ExcludedUnion>`
 - Include specific properties with `Pick<Type, Keys>`
 - Exclude specific properties with `Omit<Type, Keys>`
-- Exclude values from a type with `Exclude<Type, ExcludedUnion>`
-- Select included subtypes with `Extract<Type, Union>`
-- Remove nullability with `NonNullable<Type>`
 - Get function return type with `ReturnType<Type>`
 
-## Objective 1: Utility Types
+## Objective 1: Property existence modifiers
 
-Utility types are generic helpers that have been created to help assist with common type transformations. We could accomplish implementing all of our types without utility types, however, these are provided by TypeScript to help with the common use cases. Through that, utility types allow us to quickly and easily build different types to enhance our type safety. This will make the code more comprehensible and concise.
-
-## Objective 2: Partial&lt;Type&gt;
+### Partial&lt;Type&gt;
 
 All properties of `Type`, but optional. Partial is often used when you need to partially update an object. See the example below.
 
@@ -73,7 +71,7 @@ const newDino: Dinosaur = updateDinosaur(dino1, {
 
 In the code above, the second parameter for the function `updateDinosaur` is partial `Dinosaur`. This allows us to pass in a `Dinosaur` object with one or more of the key-value pairs. 
 
-## Objective 3: Required&lt;Type&gt;
+### Required&lt;Type&gt;
 
 All properties of `Type`, but required. For instance, you might use it when you can initialize all the properties of an object and want to avoid checking for null/undefined for the optional properties.
 
@@ -111,44 +109,7 @@ if (trex.age > 30) {
 
 In the code above, we are declaring `trex` to type `RequiredDinosaur`. This will help us skip the check if age is null step because it is a required property
 
-### Setup
-
-✏️ Create **src/utility-types/required.ts** and update it to be:
-
-@sourceref ../../../exercises/typescript/13-utility-types/01-problem/src/required.ts
-
-### Verify
-
-✏️ Create **src/utility-types/required.test.ts** and update it to be:
-
-@sourceref ../../../exercises/typescript/13-utility-types/01-problem/src/required.test.ts
-
-Run the following to verify your solution:
-
-```shell
-npm run test
-```
-
-### Exercise
-
-Update the file `required.ts` to create a new `Tyrannosaurus` type that enforces diet property to be `Diet.Carnivore` and all `Dinosaur` properties are required. Remember to take advantage of utility types and use the existing `Dinosaur` Type when creating the new `Tyrannosaurus` Type.
-
-<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/01-problem?file=src/required.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/01-problem?file=src/required.ts) to do this exercise in an online code editor.
-
-### Solution
-
-<details>
-<summary>Click to see the solution</summary>
-
-✏️ Update `required.ts` to the following:
-
-@sourceref ../../../exercises/typescript/13-utility-types/01-solution/src/required.ts
-@highlight 13
-
-<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/01-solution?file=src/required.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/01-solution?file=src/required.ts) to do this exercise in an online code editor.
-</details>
-
-## Objective 4: Readonly&lt;Type&gt;
+### Readonly&lt;Type&gt;
 
 All properties of `Type`, but they are readonly. Use it to prevent objects from being mutated.
 
@@ -184,7 +145,21 @@ dino.age += 1;
 
 In the code above, we are declaring `dino` to type `ReadOnlyDinosaur`. This will prevent us from assigning a new value because it is a read-only object.
 
-## Objective 5: Record&lt;Keys, Type&gt;
+### NonNullable&lt;Type&gt;
+
+Excludes `null` and `undefined` from `Type`. Prevent any runtime errors from occurring because we forgot to assign to a property.
+
+```typescript
+type Species = "Tyrannosaurus rex" | "Triceratops horridus" | null | undefined;
+
+type NNSpecies = NonNullable<Species>;
+// Could also be written as type NNSpecies = 'Tyrannosaurus rex' | 'Triceratops horridus'
+```
+@highlight 3
+
+In the code above, `NNSpecies` will not allow `null` or `undefined`.
+
+## Objective 2: Record&lt;Keys, Type&gt;
 
 Shortcut for defining properties keys and values. Particularly useful when you have a type in which multiple keys share the same value `Type`, so you can avoid repeating the pattern `key: type;`
 
@@ -217,80 +192,7 @@ const dinosCollection: Record<string, Dinosaur> = {
 
 In the code above, `dinosCollection` is equivalent to `{[key: string]: Dinosaur }`
 
-## Objective 6: Pick&lt;Type, Keys&gt;
-
-Select only the properties defined in Keys. Useful if you want a subset of `Type`.
-
-```typescript
-enum Diet {
-  "Carnivore",
-  "Herbivore",
-  "Omnivore",
-};
-
-interface Dinosaur {
-  species: string;
-  diet: Diet;
-  age?: number; // the question mark signals that this property is optional
-};
-
-type LesserDinosaur = Pick<Dinosaur, "species" | "age">;
-
-const lesserDino: LesserDinosaur = {
-  species: "Tyrannosaurus rex",
-  age: 27,
-};
-```
-@highlight 13, 16, 17, only
-
-In the code above, if there is an attempt to add `diet` to `lesserDino` then TypeScript will throw an error. Object literal may only specify known properties, and `diet` does not exist in type `LesserDinosaur`.
-
-## Objective 7: Omit&lt;Type, Keys&gt;
-
-Selects all properties but the ones defined in Keys. Useful if you want a subset of `Type`
-
-```typescript
-enum Diet {
-  "Carnivore",
-  "Herbivore",
-  "Omnivore",
-};
-
-interface Dinosaur {
-  species: string;
-  diet: Diet;
-  age?: number; // the question mark signals that this property is optional
-};
-
-type LesserDinosaur = Omit<Dinosaur, "species" | "age">;
-
-const lesserDino: LesserDinosaur = {
-  diet: Diet.Carnivore,
-};
-
-lesserDino.species = "Tyrannosaurus rex";
-```
-@highlight 13, 16, 19, only
-
-In the code above, if there is an attempt to add `species` to `lesserDino` then TypeScript will throw an error. Property `species` do not exist on type `LesserDinosaur`.
-Both `species` and `age` key properties are gone!
-
-## Objective 8: Exclude&lt;Type, ExcludedUnion&gt;
-
-Removes from `Type` if is assignable to `Union`. Useful if you want a subset of `Type`
-
-```typescript
-type Species = "Tyrannosaurus rex" | "Triceratops horridus";
-
-type SpeciesGone = Exclude<Species, "Triceratops horridus">; 
-
-const dino: SpeciesGone = "Triceratops horridus";
-```
-@highlight 3, 5
-
-In the code above, `SpeciesGone` is `Species` minus `Triceratops horridus`. Type `Triceratops horridus` is not assignable to the variable `dino`.
-
-## Objective 9: Extract&lt;Type, Union&gt;
+## Objective 3: Extract&lt;Type, Union&gt;
 
 Extracts from `Type` if is assignable to `Union`
 
@@ -330,21 +232,84 @@ In the code above, `SpeciesGone` will only have `Triceratops horridus`. This pre
 
 We can also extract common keys between 2 Types like what is happening to `CommonKeys`. 
 
-## Objective 10: NonNullable&lt;Type&gt;
+## Objective 4: Exclude&lt;Type, ExcludedUnion&gt;
 
-Excludes `null` and `undefined` from `Type`. Prevent any runtime errors from occurring because we forgot to assign to a property.
+Removes from `Type` if is assignable to `Union`. Useful if you want a subset of `Type`
 
 ```typescript
-type Species = "Tyrannosaurus rex" | "Triceratops horridus" | null | undefined;
+type Species = "Tyrannosaurus rex" | "Triceratops horridus";
 
-type NNSpecies = NonNullable<Species>;
-// Could also be written as type NNSpecies = 'Tyrannosaurus rex' | 'Triceratops horridus'
+type SpeciesGone = Exclude<Species, "Triceratops horridus">; 
+
+const dino: SpeciesGone = "Triceratops horridus";
 ```
-@highlight 3
+@highlight 3, 5
 
-In the code above, `NNSpecies` will not allow `null` or `undefined`.
+In the code above, `SpeciesGone` is `Species` minus `Triceratops horridus`. Type `Triceratops horridus` is not assignable to the variable `dino`.
 
-## Objective 11: ReturnType&lt;Type&gt;
+## Objective 5: Include and exclude specific properties
+
+### Pick&lt;Type, Keys&gt;
+
+Select only the properties defined in Keys. Useful if you want a subset of `Type`.
+
+```typescript
+enum Diet {
+  "Carnivore",
+  "Herbivore",
+  "Omnivore",
+};
+
+interface Dinosaur {
+  species: string;
+  diet: Diet;
+  age?: number; // the question mark signals that this property is optional
+};
+
+type LesserDinosaur = Pick<Dinosaur, "species" | "age">;
+
+const lesserDino: LesserDinosaur = {
+  species: "Tyrannosaurus rex",
+  age: 27,
+};
+```
+@highlight 13, 16, 17, only
+
+In the code above, if there is an attempt to add `diet` to `lesserDino` then TypeScript will throw an error. Object literal may only specify known properties, and `diet` does not exist in type `LesserDinosaur`.
+
+### Omit&lt;Type, Keys&gt;
+
+Selects all properties but the ones defined in Keys. Useful if you want a subset of `Type`
+
+```typescript
+enum Diet {
+  "Carnivore",
+  "Herbivore",
+  "Omnivore",
+};
+
+interface Dinosaur {
+  species: string;
+  diet: Diet;
+  age?: number; // the question mark signals that this property is optional
+};
+
+type LesserDinosaur = Omit<Dinosaur, "species" | "age">;
+
+const lesserDino: LesserDinosaur = {
+  diet: Diet.Carnivore,
+};
+
+lesserDino.species = "Tyrannosaurus rex";
+```
+@highlight 13, 16, 19, only
+
+In the code above, if there is an attempt to add `species` to `lesserDino` then TypeScript will throw an error. Property `species` do not exist on type `LesserDinosaur`.
+Both `species` and `age` key properties are gone!
+
+## Objective 11: Function utility types
+
+### ReturnType&lt;Type&gt;
 
 Gets the type from the return type of a function `Type`
 
@@ -371,7 +336,7 @@ type D2 = ReturnType<() => Dinosaur>;
 
 In the code above, `D1` and `D2` are both types `Dinosaur`.
 
-## Objective 12: More on Utility Types
+## Next steps
 
 There are other built-in Utility Types:
 
@@ -387,4 +352,4 @@ There are other built-in Utility Types:
   - [Capitalize&lt;StringType&gt;](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html#uppercasestringtype)
   - [Uncapitalize&lt;StringType&gt;](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html#uppercasestringtype)
 
-If you would like to dive deeper into them, check the [official documentation](https://www.typescriptlang.org/docs/handbook/utility-types.html "The TypeScript Handbook") for TypeScript.
+If you would like to dive deeper into them, check the [official documentation](https://www.typescriptlang.org/docs/handbook/utility-types.html) for TypeScript.
