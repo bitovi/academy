@@ -1,5 +1,6 @@
 @page learn-typescript/types Types
 @parent learn-typescript 6
+@outline 3
 
 @description Learn how to declare types in TypeScript.
 
@@ -11,13 +12,11 @@ In this section, you will:
 
 - Discover how to declare the various types used in TypeScript
 - Discuss how types can be inferred
-- Show how to assert types
 - Spot and correct basic type mistakes
+- Show how to assert types
 - Create a typed variable
 
-## Objective: Fix type errors
-
-### Basic type
+## Objective 1: Fix basic type errors
 
 Types explain what we can and can’t do with a value, take for example numbers and strings. In JavaScript, on strings, we have access to `.length`, on a number we do not. Types also determine what will happen when we apply operators to values. For example, for the `+` operator, what does the following do?
 
@@ -29,7 +28,7 @@ Some might say it adds `a` and `b` together, others that it concatenates `a` and
 
 > **Note:** If you are familiar with JavaScript’s primitive types you may recognize some of the names coming up. The types `string` `boolean` and `number` should feel familiar. These types are the same in TypeScript as they are in JavaScript and are at times referred to as primitive types.
 
-#### Boolean
+### Boolean
 
 `boolean` is a type that can only be `true` or `false`.
 
@@ -38,7 +37,7 @@ let isCarnivore: boolean = true;
 let isHerbivore: boolean = false;
 ```
 
-#### Number
+### Number
 
 `number` is used for numbers. If you are familiar with other typed languages, like `c++` you may be familiar with specific number types like `unsigned int` and `float`. In JavaScript and TypeScript, there is only `number`.
 
@@ -47,7 +46,7 @@ let teeth: number = 100;
 let hex: number = 0xf00d;
 ```
 
-#### String
+### String
 
 `string` is used for a collection of characters like words.
 
@@ -55,7 +54,7 @@ let hex: number = 0xf00d;
 let name: string = "Leoplurodon";
 ```
 
-#### Literals
+### Literals
 
 In TypeScript, there is a subset within string, number, and boolean which allows us to refine the specificity of the type. These are called type literals. A string literal is a single string for example:
 
@@ -66,14 +65,17 @@ type StringLiteralExample = "hello";
 If we were to assign a variable to this `StringLiteralExample` type we declared, we would see the only value it can be is `"hello"`.
 
 ```typescript
-let invalid: StringLiteralExample = "a"; // ERROR
-let valid: StringLiteralExample = "hello"; // No issues
+let invalid: StringLiteralExample = "a"; 
+let valid: StringLiteralExample = "hello";
 ```
+@highlight 1
+
+In this case, `invalid` will return return an error.
 
 What we have done is restricted the string type to be only the single string `"hello"`. The same can be done with `number`s, and less helpfully, `boolean`s. Literals like this are very powerful when used in conjunction with type unions. Allowing us to expand our subset to include multiple values.
 
 ```typescript
-type Dinos = "Stegosaurus" | "Triceratops" | "Velociraptor"; //|… any additional dinos
+type Dinos = "Stegosaurus" | "Triceratops" | "Velociraptor"; 
 ```
 
 <div style='text-align:center'>
@@ -84,34 +86,100 @@ type Dinos = "Stegosaurus" | "Triceratops" | "Velociraptor"; //|… any addition
 
 While we spent the time going over what a literal is. For the remainder of this section (and sections to come), we will not make the distinction between type literals and types since literals are types.
 
-#### Array
+### Array
+
+An `array` contains a list of properties, this list of properties can be typed.
 
 ```typescript
-let list: number[] = [1, 2, 3];
+let numberList: number[] = [1, 2, 3];
 
-let raptors: Array<string> = ["Blue", "Charlie", "Delta"];
+let raptorNames: Array<string> = ["Blue", "Charlie", "Delta"];
 ```
 
-#### Object
+`numberList` will only contain accept `numbers` into it's array variable, while `raptorNames` will only accept strings. If we wanted to be even more specific:
+
+```typescript
+type Dinos = "Stegosaurus" | "Triceratops" | "Velociraptor"; 
+
+let raptors: Array<Dinos> = ["Steogosaurus", "Triceratops", "Delta"]
+```
+
+The `raptors` variable now only accepts what's provided by the string literal `Dinos`. 
+
+But wait! There's something wrong with the array we've provided raptors, one of these things is not like the other. Since `Delta` isn't apart of the string literal provided we'll get the error: `Type '"Delta"' is not assignable to type 'Dinos'.`
+
+### Object
+
+Another basic JavaScript type, `objects`, can be used to more descriptively type a variable. 
 
 ```typescript
 let user: { name: string; age: number } = { name: "Justin", age: 36 };
 ```
 
-> **Note:** Later we will learn about [learn-typescript/interfaces], which are
-> a better way of describing objects because the description
-> can be reused.
+Later we will learn about [learn-typescript/interfaces], which are
+a better way of describing `objects` because the description
+can be reused.
 
-#### Tuple
+### Setup 1
+
+✏️ Create **fix-errors.ts** and update it to be:
+
+@sourceref ../../../exercises/typescript/06-types/01-problem/src/types/fix-errors.ts
+
+### Verify 1
+
+Create **fix-errors.test.ts** and update it to be:
+
+@sourceref ../../../exercises/typescript/06-types/01-problem/src/types/fix-errors.test.ts
+
+✏️ Run the following to verify your solution:
+
+```shell
+npm run test
+```
+
+### Exercise 1
+
+In this exercise, we will learn to spot and correct basic type errors by
+fixing the type errors.
+
+- In **fix-errors.ts.** update values that have errors so they match the provided type.
+
+### Solution 1
+
+<details>
+<summary>Solution</summary>
+
+✏️ Update **fix-errors.ts** to look like:
+
+@diff ../../../exercises/typescript/06-types/01-problem/src/types/fix-errors.ts ../../../exercises/typescript/06-types/01-solution/src/types/fix-errors.ts
+
+</details>
+
+## Objective 2: More types and typed variables
+
+### Tuple
+
+A `tuple` is typed array with pre-defined length. Each index is capable of having its own type.
 
 ```typescript
-let sillyList: [number, string];
+type Dinos = "Stegosaurus" | "Triceratops" | "Velociraptor"; 
 
-sillyList = [5, "boop"]; //typescript is happy
+let sillyList: [number, string, Dinos];
 
-sillyList = ["boop", 5]; //will error
+sillyList = [5, "boop", "Stegosaurus"]; 
+
+sillyList = ["boop", "Stegosaurus", 5];
 ```
-<a id="enum"></a>
+
+First we give `sillyList` the assignment `[5, "boop", "Stegosaurus"]`, based on the `tuple` we've provided `[number, string, Dinos]` it looks like we're following the typing rules, so there'll be no errors.
+
+Then, we mutate `sillyList` to be `["boop", "Stegosaurus", 5]` everything's out of order, but we only get two type errors here. 
+
+For `boop`: `Type 'string' is not assignable to type 'number'.` 
+and for `5`: `Type 'number' is not assignable to type 'Dinos'.` 
+
+Both of these make sense, and while we intended `Stegosaurus` to line up with its StringLiteral typing provided by `Dinos`, it still is a `string`.
 
 ### Intersections
 
@@ -263,7 +331,7 @@ function getTotalDistanceAbleToTravel(dinos: Dinosaur[]): number {
 
 This solves our function signature problem and allows us to pass any collection of dinosaurs to our function. However, this introduces two new problems.
 
-#### Object creation
+### Object creation
 
 The first problem comes when creating a dinosaur object. Union types simplify creating an object — we need to pass it keys from any of the types in the union. The only keys that are required are the ones that are shared across all types in the union. 
 
@@ -325,7 +393,7 @@ We get an error that says:
 
 This translates to, “you said it’d be an `AirDinosaur`, but you gave me some stuff, not on `AirDinosaur`". This solves our first problem of creating objects.
 
-#### Object use
+### Object use
 
 The second problem with our solution comes with using our typed parameter in our function. Which looks like this (in case it slipped the mind)
 
@@ -365,7 +433,7 @@ function getTotalDistanceAbleToTravel(dinos: Dinosaur[]): number {
 
 > **Note:** notice that we never check for `nextDino.type` to be `land`. We don’t have to! TypeScript is smart enough to figure out that there are only three types land, water, and air and since we have checked for the first two (air and water) it knows if it gets through those conditionals the type is land.
 
-#### Enum
+### Enum
 
 Enums allow the aliasing of names to a list of numeric values. Like most indexing, enums start their first member at 0.
 
@@ -399,7 +467,7 @@ enum Month {
 let may = Month[5];
 ```
 
-#### Unknown
+### Unknown
 
 Unknown describes a variable where we may not know the type. Variables defined with the `unknown` type can later be narrowed to more specific types using `typeof` checks or comparisons.
 
@@ -422,7 +490,7 @@ if (typeof value === "string") {
 }
 ```
 
-#### Any
+### Any
 
 Any is useful when we want to opt-out of type checking. Using the `any` type will disable all compile-time checks including access to properties and functions. 
 
@@ -436,7 +504,7 @@ my3rdPartyData.invalidFunction(3);
 ```
 @highlight 4
 
-#### Void
+### Void
 
 No type at all - commonly used with functions that don’t return a value.
 
@@ -446,11 +514,11 @@ function buttonClick(): void {
 }
 ```
 
-#### Null & undefined
+### Null & undefined
 
 Null and Undefined are two separate types, and subtypes of all other types, meaning they can be assigned to another type like string or number unless the <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html">--strictNullChecks</a> flag is used.
 
-#### Never
+### Never
 
 The never type represents a value that will never occur.
 
@@ -509,7 +577,7 @@ str = multiplier(10, 20);
 
 Type inference can be a very helpful tool in refactoring code and helping better document expectations for our code.
 
-#### Type assertions
+### Type assertions
 
 Type assertions are a way to override the inferring of types. There are two different syntaxes, angle-brackets and as.
 
@@ -525,65 +593,13 @@ let otherLength: number = (otherValue as string).length;
 
 The `as` syntax is usually preferred because the `<type>` conflicts with JSX syntax.
 
-### Exercise: Fix type errors
-
-#### The Problem
-
-In this exercise, we will learn to spot and correct basic type errors by
-fixing the type errors.
-
-#### Setup
-
-✏️ Create **fix-errors.ts** and update it to be:
-
-@sourceref ../../../exercises/typescript/06-types/01-problem/src/types/fix-errors.ts
-
-
-#### Verify
-
-Create **fix-errors.test.ts** should look like:
-
-@sourceref ../../../exercises/typescript/06-types/01-problem/src/types/fix-errors.test.ts
-
-
-#### Verify your solution
-
-✏️ Run the following to verify your solution:
-
-```shell
-npm run test
-```
-
-#### The solution
-
-<details>
-<summary>Click to see the solution</summary>
-
-✏️ Update **fix-errors.ts** to look like:
-
-@diff ../../../exercises/typescript/06-types/01-problem/src/types/fix-errors.ts ../../../exercises/typescript/06-types/01-solution/src/types/fix-errors.ts
-
-</details>
-
-### Exercise: Date it
-
-#### The problem
+### Setup 2
 
 ✏️ Create the file **date-exports.ts**
 
 @sourceref ../../../exercises/typescript/06-types/02-problem/src/types/date-exports.ts
 
-In this exercise, we will create our own typed variable by:
-
-- Create a `let` variable that takes a type of Date.
-- Assign that variable to an instance of `Date`
-- Export that variable as the default export.
-
-#### What you need to know
-
-- Use `new Date()` to create an instance of Date.
-
-#### Verify
+### Verify 2
 
 Create **date-exports.test.ts** and update it to be:
 
@@ -593,7 +609,16 @@ Create **date-exports.test.ts** and update it to be:
 npm run test
 ```
 
-#### The solution
+### Excercise 2
+
+In this exercise, we will create our own typed variable by:
+
+- Create a `let` variable that takes a type of Date.
+- Assign that variable to an instance of `Date`
+- Export that variable as the default export.
+- Use `new Date()` to create an instance of Date.
+
+### Solution 2
 
 <details>
 <summary>Click to see the solution</summary>
@@ -603,3 +628,7 @@ npm run test
 @diff ../../../exercises/typescript/06-types/02-problem/src/types/date-exports.ts ../../../exercises/typescript/06-types/02-solution/src/types/date-exports.ts
 
 </details>
+
+## Next Steps
+
+Next up, we'll be using TypeScript to annotate [functions](./functions.html).
