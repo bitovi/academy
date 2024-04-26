@@ -332,3 +332,8 @@ The use of generics in line 5, allows the `TreeNode` class to be flexible and re
 ## Next steps
 
 Next, let’s take a look at [utility types](./utility-types.html) for type transformations.
+
+
+
+
+I am having a problem trying to test a compiler failure. For example, I am trying to test the Readonly<>, but to test it, we should test if the typescript throws an error. Does anyone have ideas on how to test this?
