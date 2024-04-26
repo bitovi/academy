@@ -2,10 +2,10 @@ import {
   NonEditablePerson,
   UpdateablePerson,
   FullyDefinedPerson,
-} from "./partial-required-readonly";
+} from "./property-existence";
 import { describe, it } from "node:test";
 
-describe("partial-required-readonly tests", () => {
+describe("property-existence tests", () => {
   it("partial typing works", () => {
     const personToUpdate1: UpdateablePerson = {
       team: "React",
