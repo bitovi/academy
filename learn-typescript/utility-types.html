@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn About the Utility Types provided by TypeScript 
+  <meta name="description" content="Learn about the utility types provided by TypeScript. 
 ">
   
   <!-- Google Tag Manager -->
@@ -291,7 +291,7 @@
            						expanded">
 						<a class="page"
 							href="utility-types.html"
-							title="Learn About the Utility Types provided by TypeScript">
+							title="Learn about the utility types provided by TypeScript.">
 							Utility Types
 						</a>
 						
@@ -517,7 +517,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn About the Utility Types provided by TypeScript</p>
+    <p>Learn about the utility types provided by TypeScript.</p>
 
 </section>
 
@@ -531,32 +531,43 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
-<p>Utility Types are built-in helper Types meant for common Type transformations.</p>
-<p>In this section you will see a small description for the most used Utility Types.</p>
-<p>We are going to repeat the interface Dinosaur below throughout the examples.</p>
+<p>In this section, you will:</p>
+<ul>
+<li>Understand the purpose of utility types</li>
+<li>Make properties optional with <code>Partial&lt;Type&gt;</code></li>
+<li>Make properties required with <code>Required&lt;Type&gt;</code></li>
+<li>Set properties as immutable with <code>Readonly&lt;Type&gt;</code></li>
+<li>Remove nullability with <code>NonNullable&lt;Type&gt;</code></li>
+<li>Map keys to a type with <code>Record&lt;Keys, Type&gt;</code></li>
+<li>Select included subtypes with <code>Extract&lt;Type, Union&gt;</code></li>
+<li>Exclude values from a type with <code>Exclude&lt;Type, ExcludedUnion&gt;</code></li>
+<li>Include specific properties with <code>Pick&lt;Type, Keys&gt;</code></li>
+<li>Exclude specific properties with <code>Omit&lt;Type, Keys&gt;</code></li>
+<li>Get function return type with <code>ReturnType&lt;Type&gt;</code></li>
+</ul>
+<h2>Objective 1: Property existence modifiers</h2>
+<h3>Partial&lt;Type&gt;</h3>
+<p>All properties of <code>Type</code>, but optional. Partial is often used when you need to partially update an object. See the example below.</p>
 <pre><code class="language-typescript">enum Diet {
   &quot;Carnivore&quot;,
   &quot;Herbivore&quot;,
   &quot;Omnivore&quot;,
-}
+};
 
 interface Dinosaur {
   species: string;
   diet: Diet;
   age?: number; // the question mark signals that this property is optional
-}
-</code></pre>
-<h2>Partial&lt;Type&gt;</h2>
-<p>All properties of <code>Type</code>, but optional.
-Partial is often used when you need to partially update an object. See <code>example</code> below.</p>
-<pre><code class="language-typescript">type AnotherDinosaur = Partial&lt;Dinosaur&gt;;
+};
 
-// AnotherDinosaur is equivalent to:
-interface YetAnotherDinosaur {
+type PartialDinosaur = Partial&lt;Dinosaur&gt;;
+
+// PartialDinosaur is equivalent to:
+interface YetPartialDinosaur {
   species?: string;
   diet?: Diet;
   age?: number;
-}
+};
 
 // example
 function updateDinosaur(
@@ -564,58 +575,107 @@ function updateDinosaur(
   fieldsToUpdate: Partial&lt;Dinosaur&gt;
 ): Dinosaur {
   return { ...dino, ...fieldsToUpdate };
-}
+};
 
 const oldDino: Dinosaur = {
   species: &quot;Tyrannosaurus rex&quot;,
   diet: Diet.Carnivore,
 };
+
 const newDino: Dinosaur = updateDinosaur(dino1, {
   diet: Diet.Omnivore,
 });
 </code></pre>
-<h2>Required&lt;Type&gt;</h2>
-<p>All properties of <code>Type</code>, but required. For instance, you might use it when you are able to initialize all the properties of an object and want to avoid checking for null/undefined for the optional properties.</p>
-<pre><code class="language-typescript">type AnotherDinosaur = Required&lt;Dinosaur&gt;;
+<div line-highlight='25, 35, only'></div>
+<p>In the code above, the second parameter for the function <code>updateDinosaur</code> is partial <code>Dinosaur</code>. This allows us to pass in a <code>Dinosaur</code> object with one or more of the key-value pairs.</p>
+<h3>Required&lt;Type&gt;</h3>
+<p>All properties of <code>Type</code>, but required. For instance, you might use it when you can initialize all the properties of an object and want to avoid checking for null/undefined for the optional properties.</p>
+<pre><code class="language-typescript">enum Diet {
+  &quot;Carnivore&quot;,
+  &quot;Herbivore&quot;,
+  &quot;Omnivore&quot;,
+};
 
-// AnotherDinosaur is equivalent to:
-interface YetAnotherDinosaur extends Dinosaur {
+interface Dinosaur {
+  species: string;
+  diet: Diet;
+  age?: number; // the question mark signals that this property is optional
+};
+
+type RequiredDinosaur = Required&lt;Dinosaur&gt;;
+
+// RequiredDinosaur is equivalent to:
+interface YetRequiredDinosaur extends Dinosaur {
   age: number; // turning age property to required
-}
+};
 
-const trex: AnotherDinosaur = {
+const trex: RequiredDinosaur = {
   species: &quot;Tyrannosaurus rex&quot;,
   diet: Diet.Carnivore,
   age: 30,
 };
 
 if (trex.age &gt; 30) {
-  // there is no need to check if age is null because it is a required property
-}
+  // do something
+};
 </code></pre>
-<h2>Readonly&lt;Type&gt;</h2>
+<div line-highlight='13, 20, 26, only'></div>
+<p>In the code above, we are declaring <code>trex</code> to type <code>RequiredDinosaur</code>. This will help us skip the check if age is null step because it is a required property</p>
+<h3>Readonly&lt;Type&gt;</h3>
 <p>All properties of <code>Type</code>, but they are readonly. Use it to prevent objects from being mutated.</p>
-<pre><code class="language-typescript">type NamableDinosaur = { name: string } &amp; Dinosaur; // this is an intersection between { name: string } and Dinosaur. Think { name: string } + Dinosaur
-type AnotherDinosaur = Readonly&lt;NamableDinosaur&gt;;
+<pre><code class="language-typescript">enum Diet {
+  &quot;Carnivore&quot;,
+  &quot;Herbivore&quot;,
+  &quot;Omnivore&quot;,
+};
 
-// Meet Bruno, another dinosaur
-let dino: AnotherDinosaur = {
+interface Dinosaur {
+  species: string;
+  diet: Diet;
+  age?: number; // the question mark signals that this property is optional
+};
+
+type NamableDinosaur = { name: string } &amp; Dinosaur; // this is an intersection between { name: string } and Dinosaur. Think { name: string } + Dinosaur
+type ReadOnlyDinosaur = Readonly&lt;NamableDinosaur&gt;;
+
+// Meet Bruno, read-only dinosaur
+const dino: ReadOnlyDinosaur = {
   name: &quot;Bruno&quot;,
   age: 27,
   species: &quot;Tyrannosaurus rex&quot;,
   diet: Diet.Carnivore,
 };
-dino.age = 0;
 
 // Today is its birthday! Let`s attempt to increase its age:
 dino.age += 1;
-// Cannot assign to 'age' because it is a read-only property.
 // Oops! TypeScript error
 </code></pre>
-<h2>Record&lt;Keys,Type&gt;</h2>
-<p>Shortcut for defining properties keys and values. Particularly useful when you have a type in which multiple keys share the same value <code>Type</code>, so you could avoid repeating the pattern <code>key: type;</code></p>
-<pre><code class="language-typescript">let dinosCollection: Record&lt;string, Dinosaur&gt; = {
-  // Record&lt;string, Dinosaur&gt; is equivalent to { [key: string]: Dinosaur }
+<div line-highlight='14, 17, 25, only'></div>
+<p>In the code above, we are declaring <code>dino</code> to type <code>ReadOnlyDinosaur</code>. This will prevent us from assigning a new value because it is a read-only object.</p>
+<h3>NonNullable&lt;Type&gt;</h3>
+<p>Excludes <code>null</code> and <code>undefined</code> from <code>Type</code>. Prevent any runtime errors from occurring because we forgot to assign to a property.</p>
+<pre><code class="language-typescript">type Species = &quot;Tyrannosaurus rex&quot; | &quot;Triceratops horridus&quot; | null | undefined;
+
+type NNSpecies = NonNullable&lt;Species&gt;;
+// Could also be written as type NNSpecies = 'Tyrannosaurus rex' | 'Triceratops horridus'
+</code></pre>
+<div line-highlight='3'></div>
+<p>In the code above, <code>NNSpecies</code> will not allow <code>null</code> or <code>undefined</code>.</p>
+<h2>Objective 2: Record&lt;Keys, Type&gt;</h2>
+<p>Shortcut for defining properties keys and values. Particularly useful when you have a type in which multiple keys share the same value <code>Type</code>, so you can avoid repeating the pattern <code>key: type;</code></p>
+<pre><code class="language-typescript">enum Diet {
+  &quot;Carnivore&quot;,
+  &quot;Herbivore&quot;,
+  &quot;Omnivore&quot;,
+};
+
+interface Dinosaur {
+  species: string;
+  diet: Diet;
+  age?: number; // the question mark signals that this property is optional
+};
+
+const dinosCollection: Record&lt;string, Dinosaur&gt; = {
   // Could also be written as Record&lt;'trex' | 'triceratops', Dinosaur&gt;
   trex: {
     species: &quot;Tyrannosaurus rex&quot;,
@@ -627,142 +687,143 @@ dino.age += 1;
   },
 };
 </code></pre>
-<h2>Pick&lt;Type, Keys&gt;</h2>
-<p>Selects only the properties defined in Keys. Useful if you want a subset of <code>Type</code></p>
-<pre><code class="language-typescript">type LesserDinosaur = Pick&lt;Dinosaur, &quot;species&quot; | &quot;age&quot;&gt;;
+<div line-highlight='13'></div>
+<p>In the code above, <code>dinosCollection</code> is equivalent to <code>{[key: string]: Dinosaur }</code></p>
+<h2>Objective 3: Extract&lt;Type, Union&gt;</h2>
+<p>Extracts from <code>Type</code> if is assignable to <code>Union</code></p>
+<pre><code class="language-typescript">enum Diet {
+  &quot;Carnivore&quot;,
+  &quot;Herbivore&quot;,
+  &quot;Omnivore&quot;,
+};
 
-let lesserDino: LesserDinosaur = {
+interface Dinosaur {
+  species: string;
+  diet: Diet;
+  age?: number; // the question mark signals that this property is optional
+};
+
+type Species = &quot;Tyrannosaurus rex&quot; | &quot;Triceratops horridus&quot;;
+
+type SpeciesGone = Extract&lt;Species, &quot;Triceratops horridus&quot;&gt;; 
+
+const dino: SpeciesGone = &quot;Triceratops horridus&quot;;
+
+interface Mammal {
+  species: string;
+  diet: Diet;
+  weight: number;
+};
+
+type CommonKeys = Extract&lt;keyof Mammal, keyof Dinosaur&gt;;
+// Could also be written as:
+// type CommonKeys = keyof Mammal &amp; keyof Dinosaur;
+// or:
+// type CommonKeys = 'species' | 'diet'
+</code></pre>
+<div line-highlight='8, 9, 15, 17, 20, 21, 25, only'></div>
+In the code above, `SpeciesGone` will only have `Triceratops horridus`. This prevents `dino` to be assign `Tyrannosaurus rex`. 
+<p>We can also extract common keys between 2 Types like what is happening to <code>CommonKeys</code>.</p>
+<h2>Objective 4: Exclude&lt;Type, ExcludedUnion&gt;</h2>
+<p>Removes from <code>Type</code> if is assignable to <code>Union</code>. Useful if you want a subset of <code>Type</code></p>
+<pre><code class="language-typescript">type Species = &quot;Tyrannosaurus rex&quot; | &quot;Triceratops horridus&quot;;
+
+type SpeciesGone = Exclude&lt;Species, &quot;Triceratops horridus&quot;&gt;; 
+
+const dino: SpeciesGone = &quot;Triceratops horridus&quot;;
+</code></pre>
+<div line-highlight='3, 5'></div>
+<p>In the code above, <code>SpeciesGone</code> is <code>Species</code> minus <code>Triceratops horridus</code>. Type <code>Triceratops horridus</code> is not assignable to the variable <code>dino</code>.</p>
+<h2>Objective 5: Include and exclude specific properties</h2>
+<h3>Pick&lt;Type, Keys&gt;</h3>
+<p>Select only the properties defined in Keys. Useful if you want a subset of <code>Type</code>.</p>
+<pre><code class="language-typescript">enum Diet {
+  &quot;Carnivore&quot;,
+  &quot;Herbivore&quot;,
+  &quot;Omnivore&quot;,
+};
+
+interface Dinosaur {
+  species: string;
+  diet: Diet;
+  age?: number; // the question mark signals that this property is optional
+};
+
+type LesserDinosaur = Pick&lt;Dinosaur, &quot;species&quot; | &quot;age&quot;&gt;;
+
+const lesserDino: LesserDinosaur = {
   species: &quot;Tyrannosaurus rex&quot;,
   age: 27,
-  // diet: Diet.Carnivore, &lt;- if this line was present, then the error below would be thrown by typescript
-  // Type '{ species: string; age: number; diet: Diet; }' is not assignable to type 'LesserDinosaur'.
-  //  Object literal may only specify known properties, and 'diet' does not exist in type 'LesserDinosaur'.
 };
 </code></pre>
-<h2>Omit&lt;Type, Keys&gt;</h2>
+<div line-highlight='13, 16, 17, only'></div>
+<p>In the code above, if there is an attempt to add <code>diet</code> to <code>lesserDino</code> then TypeScript will throw an error. Object literal may only specify known properties, and <code>diet</code> does not exist in type <code>LesserDinosaur</code>.</p>
+<h3>Omit&lt;Type, Keys&gt;</h3>
 <p>Selects all properties but the ones defined in Keys. Useful if you want a subset of <code>Type</code></p>
-<pre><code class="language-typescript">type LesserDinosaur = Omit&lt;Dinosaur, &quot;species&quot; | &quot;age&quot;&gt;;
+<pre><code class="language-typescript">enum Diet {
+  &quot;Carnivore&quot;,
+  &quot;Herbivore&quot;,
+  &quot;Omnivore&quot;,
+};
+
+interface Dinosaur {
+  species: string;
+  diet: Diet;
+  age?: number; // the question mark signals that this property is optional
+};
+
+type LesserDinosaur = Omit&lt;Dinosaur, &quot;species&quot; | &quot;age&quot;&gt;;
 
 const lesserDino: LesserDinosaur = {
   diet: Diet.Carnivore,
 };
 
 lesserDino.species = &quot;Tyrannosaurus rex&quot;;
-// Property 'species' does not exist on type 'LesserDinosaur'.
-// species and age properties are gone!
 </code></pre>
-<h2>Exclude&lt;Type, ExcludedUnion&gt;</h2>
-<p>Removes from <code>Type</code> if is assignable to <code>Union</code>. Useful if you want a subset of <code>Type</code></p>
-<pre><code class="language-typescript">type Species = &quot;Tyrannosaurus rex&quot; | &quot;Triceratops horridus&quot;;
+<div line-highlight='13, 16, 19, only'></div>
+<p>In the code above, if there is an attempt to add <code>species</code> to <code>lesserDino</code> then TypeScript will throw an error. Property <code>species</code> do not exist on type <code>LesserDinosaur</code>.
+Both <code>species</code> and <code>age</code> key properties are gone!</p>
+<h2>Objective 11: Function utility types</h2>
+<h3>ReturnType&lt;Type&gt;</h3>
+<p>Gets the type from the return type of a function <code>Type</code></p>
+<pre><code class="language-typescript">enum Diet {
+  &quot;Carnivore&quot;,
+  &quot;Herbivore&quot;,
+  &quot;Omnivore&quot;,
+};
 
-type SpeciesGone = Exclude&lt;Species, &quot;Triceratops horridus&quot;&gt;; // SpeciesGone is Species minus Triceratops horridus
-
-const dino: SpeciesGone = &quot;Triceratops horridus&quot;;
-// Type '&quot;Triceratops horridus&quot;' is not assignable to type '&quot;Tyrannosaurus rex&quot;'.
-// Only rex remains now!
-</code></pre>
-<h2>Extract&lt;Type, Union&gt;</h2>
-<p>Extracts from <code>Type</code> if is assignable to <code>Union</code></p>
-<pre><code class="language-typescript">type Species = &quot;Tyrannosaurus rex&quot; | &quot;Triceratops horridus&quot;;
-
-type SpeciesGone = Extract&lt;Species, &quot;Triceratops horridus&quot;&gt;; // in this case, equivalent to type SpeciesGone = 'Triceratops horridus'
-
-const dino: SpeciesGone = &quot;Triceratops horridus&quot;;
-// Only triceratops remains now!
-
-// we can also extract common keys between 2 Types
-interface Mammal {
+interface Dinosaur {
   species: string;
   diet: Diet;
-  weight: number;
-}
+  age?: number; // the question mark signals that this property is optional
+};
 
-type CommonKeys = Extract&lt;keyof Mammal, keyof Dinosaur&gt;;
-// which is equivalent to:
-// type CommonKeys = keyof Mammal &amp; keyof Dinosaur;
-// or:
-// type CommonKeys = 'species' | 'diet'
-</code></pre>
-<h2>NonNullable&lt;Type&gt;</h2>
-<p>Excludes <code>null</code> and <code>undefined</code> from <code>Type</code>. Prevent any runtime errors from occurring because we forgot to assign to a property.</p>
-<pre><code class="language-typescript">type Species = &quot;Tyrannosaurus rex&quot; | &quot;Triceratops horridus&quot; | null | undefined;
-
-type NNSpecies = NonNullable&lt;Species&gt;;
-// equivalent to type NNSpecies = 'Tyrannosaurus rex' | 'Triceratops horridus'
-</code></pre>
-<h2>ReturnType&lt;Type&gt;</h2>
-<p>Gets the type from the return type of a function <code>Type</code></p>
-<pre><code class="language-typescript">declare function getDinosaur(): Dinosaur;
+declare function getDinosaur(): Dinosaur;
 
 type D1 = ReturnType&lt;typeof getDinosaur&gt;;
-// type D1 = Dinosaur
 
 type D2 = ReturnType&lt;() =&gt; Dinosaur&gt;;
-// type D2 = Dinosaur
 </code></pre>
-<h2>More on Utility Types</h2>
+<div line-highlight='15, 18'></div>
+<p>In the code above, <code>D1</code> and <code>D2</code> are both types <code>Dinosaur</code>.</p>
+<h2>Next steps</h2>
 <p>There are other built-in Utility Types:</p>
 <ul>
-<li><p>Parameters&lt;Type&gt;</p></li>
-<li><p>ConstructorParameters&lt;Type&gt;</p></li>
-<li><p>InstanceType&lt;Type&gt;</p></li>
-<li><p>ThisParameterType&lt;Type&gt;</p></li>
-<li><p>OmitThisParameter&lt;Type&gt;</p></li>
-<li><p>ThisType&lt;Type&gt;</p></li>
-<li><p>Intrinsic String Manipulation Types</p>
+<li><a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype">Parameters&lt;Type&gt;</a></li>
+<li><a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#constructorparameterstype">ConstructorParameters&lt;Type&gt;</a></li>
+<li><a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#instancetypetype">InstanceType&lt;Type&gt;</a></li>
+<li><a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#thisparametertypetype">ThisParameterType&lt;Type&gt;</a></li>
+<li><a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#omitthisparametertype">OmitThisParameter&lt;Type&gt;</a></li>
+<li><a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#thistypetype">ThisType&lt;Type&gt;</a></li>
+<li>Intrinsic String Manipulation Types
 <ul>
-<li>Uppercase&lt;StringType&gt;</li>
-<li>Lowercase&lt;StringType&gt;</li>
-<li>Capitalize&lt;StringType&gt;</li>
-<li>Uncapitalize&lt;StringType&gt;</li>
+<li><a href="https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html#uppercasestringtype">Uppercase&lt;StringType&gt;</a></li>
+<li><a href="https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html#uppercasestringtype">Lowercase&lt;StringType&gt;</a></li>
+<li><a href="https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html#uppercasestringtype">Capitalize&lt;StringType&gt;</a></li>
+<li><a href="https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html#uppercasestringtype">Uncapitalize&lt;StringType&gt;</a></li>
 </ul></li>
 </ul>
-<p>If you would like to dive deeper onto them, check the <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html" title="The TypeScript Handbook">official documentation</a> for TypeScript.</p>
-<h2>Exercise: Create a new Type from existing Type</h2>
-<h3>The Problem</h3>
-<p>Update the <code>9-utility-types.ts</code> in order to create a new <code>Tyrannosaurus</code> type that enforces diet property to be <code>Diet.Carnivore</code> and all <code>Dinosaur</code> properties to be required. Remember to take advantage of Utility Types and using existing <code>Dinosaur</code> Type when creating the new <code>Tyrannosaurus</code> Type.</p>
-<pre><code class="language-typescript">interface Dinosaur {
-  species: string;
-  diet: Diet;
-  age?: number;
-}
-
-enum Diet {
-  &quot;Carnivore&quot;,
-  &quot;Herbivore&quot;,
-  &quot;Omnivore&quot;,
-}
-
-type Tyrannosaurus = Dinosaur;
-
-export { Diet, Tyrannosaurus };
-</code></pre>
-<h3>Verify Your Solution</h3>
-<p>✏️ Run the following to verify your solution:</p>
-<pre><code class="language-shell">npm run 9-utility-types
-</code></pre>
-<h3>The solution</h3>
-<p><details>
-<summary>Click to see the solution</summary></p>
-<p>✏️ Update <code>9-utility-types.ts</code> to the following:</p>
-<pre><code class="language-typescript">interface Dinosaur {
-  species: string;
-  diet: Diet;
-  age?: number;
-}
-
-enum Diet {
-  &quot;Carnivore&quot;,
-  &quot;Herbivore&quot;,
-  &quot;Omnivore&quot;,
-}
-
-type Tyrannosaurus = Required&lt;Dinosaur &amp; { diet: Diet.Carnivore }&gt;;
-
-export { Diet, Tyrannosaurus };
-</code></pre>
-<div line-highlight='13'></div>
-<p></details></p>
+<p>If you would like to dive deeper into them, check the <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html">official documentation</a> for TypeScript.</p>
 
 </section>
 
@@ -801,7 +862,7 @@ export { Diet, Tyrannosaurus };
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/typescript/13-utility-types/utility-types.md"},"description":"Learn About the Utility Types provided by TypeScript \n","name":"learn-typescript/utility-types","title":"Utility Types","type":"page","parent":"learn-typescript","order":13,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/typescript/13-utility-types/utility-types.md"},"description":"Learn about the utility types provided by TypeScript. \n","name":"learn-typescript/utility-types","title":"Utility Types","type":"page","parent":"learn-typescript","order":13,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
