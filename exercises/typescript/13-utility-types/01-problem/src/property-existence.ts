@@ -7,8 +7,8 @@ type Person = {
   team: "React" | "Angular" | "backend";
 };
 
-export type UpdateablePerson = Partial<Person>;
+export type UpdateablePerson = Person; 
 
-export type FullyDefinedPerson = Required<Person>;
+export type FullyDefinedPerson = Person;
 
-export type NonEditablePerson = Readonly<Person>;
+export type NonEditablePerson = Person; 
