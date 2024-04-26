@@ -533,7 +533,6 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this section, you will:</p>
 <ul>
-<li>Understand the purpose of utility types</li>
 <li>Make properties optional with <code>Partial&lt;Type&gt;</code></li>
 <li>Make properties required with <code>Required&lt;Type&gt;</code></li>
 <li>Set properties as immutable with <code>Readonly&lt;Type&gt;</code></li>
@@ -661,6 +660,96 @@ type NNSpecies = NonNullable&lt;Species&gt;;
 </code></pre>
 <div line-highlight='3'></div>
 <p>In the code above, <code>NNSpecies</code> will not allow <code>null</code> or <code>undefined</code>.</p>
+<h3>Setup 1</h3>
+<p>✏️ Create <strong>src/utility-types/property-existence.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">type Person = {
+  role: &quot;developer&quot;;
+  email?: string;
+  id: number;
+  firstName: string;
+  lastName: string;
+  team: &quot;React&quot; | &quot;Angular&quot; | &quot;backend&quot;;
+};
+
+export type UpdateablePerson = Person; 
+
+export type FullyDefinedPerson = Person;
+
+export type NonEditablePerson = Person; 
+</code></pre>
+<h3>Verify 1</h3>
+<p>✏️ Create <strong>src/utility-types/property-existence.test.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import {
+  NonEditablePerson,
+  UpdateablePerson,
+  FullyDefinedPerson,
+} from &quot;./property-existence&quot;;
+import { describe, it } from &quot;node:test&quot;;
+
+describe(&quot;property-existence tests&quot;, () =&gt; {
+  it(&quot;partial typing works&quot;, () =&gt; {
+    const personToUpdate1: UpdateablePerson = {
+      team: &quot;React&quot;,
+    };
+  });
+  it(&quot;required typing works&quot;, () =&gt; {
+    // @ts-expect-error
+    const fullyDefinedPerson: FullyDefinedPerson = {
+      role: &quot;developer&quot;,
+      id: 5,
+      firstName: &quot;string&quot;,
+      lastName: &quot;string&quot;,
+      team: &quot;React&quot;,
+    };
+  });
+  it(&quot;readonly typing works&quot;, () =&gt; {
+    const nonEditablePerson: NonEditablePerson = {
+      role: &quot;developer&quot;,
+      email: &quot;string&quot;,
+      id: 5,
+      firstName: &quot;string&quot;,
+      lastName: &quot;string&quot;,
+      team: &quot;React&quot;,
+    };
+
+    // @ts-expect-error
+    nonEditablePerson.firstName = &quot;somethingelse&quot;;
+  });
+});
+</code></pre>
+<p>✏️ Run the following to verify your solution:</p>
+<pre><code class="language-shell">npm run test
+</code></pre>
+<h3>Exercise 1</h3>
+<p>Update the <code>property-existence.ts</code> file so that:</p>
+<ul>
+<li><code>UpdateablePerson</code> allows all properties to be optional</li>
+<li><code>FullyDefinedPerson</code> ensures that all properties are defined</li>
+<li><code>NonEditablePerson</code> won't allow any update to a property</li>
+</ul>
+<p><strong>Have issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/01-problem?file=src/property-existence.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/01-problem?file=src/property-existence.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
+<h3>Solution 1</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <code>property-existence.ts</code> to the following:</p>
+<pre><code class="language-ts">type Person = {
+  role: &quot;developer&quot;;
+  email?: string;
+  id: number;
+  firstName: string;
+  lastName: string;
+  team: &quot;React&quot; | &quot;Angular&quot; | &quot;backend&quot;;
+};
+
+export type UpdateablePerson = Partial&lt;Person&gt;;
+
+export type FullyDefinedPerson = Required&lt;Person&gt;;
+
+export type NonEditablePerson = Readonly&lt;Person&gt;;
+</code></pre>
+<div line-highlight='10, 12, 14, only'></div>
+<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/01-solution?file=src/property-existence.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/01-solution?file=src/property-existence.ts">CodeSandbox</a>.
+</details></p>
 <h2>Objective 2: Record&lt;Keys, Type&gt;</h2>
 <p>Shortcut for defining properties keys and values. Particularly useful when you have a type in which multiple keys share the same value <code>Type</code>, so you can avoid repeating the pattern <code>key: type;</code></p>
 <pre><code class="language-typescript">enum Diet {
@@ -689,6 +778,120 @@ const dinosCollection: Record&lt;string, Dinosaur&gt; = {
 </code></pre>
 <div line-highlight='13'></div>
 <p>In the code above, <code>dinosCollection</code> is equivalent to <code>{[key: string]: Dinosaur }</code></p>
+<h3>Setup 2</h3>
+<p>✏️ Create <strong>src/utility-types/record.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export type Person =
+  | {
+      role: &quot;developer&quot;;
+      email: string;
+      id: number;
+      firstName: string;
+      lastName: string;
+      team: &quot;React&quot; | &quot;Angular&quot; | &quot;backend&quot;;
+    }
+  | {
+      role: &quot;user&quot;;
+      email: string;
+      id: number;
+      firstName: string;
+      lastName: string;
+      isVerified: boolean;
+    };
+
+export type PersonMap = unknown;
+</code></pre>
+<h3>Verify 2</h3>
+<p>✏️ Create <strong>src/utility-types/record.test.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import type { Person, PersonMap } from &quot;./record&quot;;
+import { describe, it } from &quot;node:test&quot;;
+
+describe(&quot;record tests&quot;, () =&gt; {
+  it(&quot;typing works&quot;, () =&gt; {
+    const people: Person[] = [
+      {
+        role: &quot;developer&quot;,
+        email: &quot;email@developer.com&quot;,
+        firstName: &quot;Dev&quot;,
+        lastName: &quot;Eloper&quot;,
+        team: &quot;React&quot;,
+        id: 1,
+      },
+      {
+        role: &quot;developer&quot;,
+        email: &quot;jane@developer.com&quot;,
+        firstName: &quot;Dev&quot;,
+        lastName: &quot;Eloper&quot;,
+        team: &quot;React&quot;,
+        id: 2,
+      },
+      {
+        role: &quot;user&quot;,
+        email: &quot;user1@developer.com&quot;,
+        firstName: &quot;Great&quot;,
+        lastName: &quot;User&quot;,
+        isVerified: false,
+        id: 3,
+      },
+      {
+        role: &quot;user&quot;,
+        email: &quot;user2@developer.com&quot;,
+        firstName: &quot;Super&quot;,
+        lastName: &quot;User&quot;,
+        isVerified: false,
+        id: 4,
+      },
+    ];
+
+    const userMap = people.reduce((acc, person) =&gt; {
+      acc[person.id] = { ...person };
+      return acc;
+    }, {} as PersonMap);
+  });
+});
+</code></pre>
+<p>✏️ Run the following to verify your solution:</p>
+<pre><code class="language-shell">npm run test
+</code></pre>
+<h3>Exercise 2</h3>
+<p>Update the <code>record.ts</code> file to create a new object type in which the keys are the IDs of the users and the values are the User type. Currently, the <code>PersonMap</code> type is <code>unknown</code>. Which utility type can we use here in conjunction with the Person type to create the appropriate PersonMap type?</p>
+<p>Our PersonMap should look like this:</p>
+<pre><code class="language-typescript">const data: PersonMap = {
+    1: {
+        role: ...
+        email: ...
+        firstName: ...
+        ...
+    }
+}
+</code></pre>
+<p><strong>Have issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/02-problem?file=src/record.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/02-problem?file=src/record.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
+<h3>Solution 2</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <code>record.ts</code> to the following:</p>
+<pre><code class="language-ts">export type Person =
+  | {
+      role: &quot;developer&quot;;
+      email: string;
+      id: number;
+      firstName: string;
+      lastName: string;
+      team: &quot;React&quot; | &quot;Angular&quot; | &quot;backend&quot;;
+    }
+  | {
+      role: &quot;user&quot;;
+      email: string;
+      id: number;
+      firstName: string;
+      lastName: string;
+      isVerified: boolean;
+    };
+
+export type PersonMap = Record&lt;Person[&quot;id&quot;], Person&gt;;
+</code></pre>
+<div line-highlight='19, only'></div>
+<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/02-solution?file=src/record.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/02-solution?file=src/record.ts">CodeSandbox</a>.
+</details></p>
 <h2>Objective 3: Extract&lt;Type, Union&gt;</h2>
 <p>Extracts from <code>Type</code> if is assignable to <code>Union</code></p>
 <pre><code class="language-typescript">enum Diet {
@@ -724,6 +927,83 @@ type CommonKeys = Extract&lt;keyof Mammal, keyof Dinosaur&gt;;
 <div line-highlight='8, 9, 15, 17, 20, 21, 25, only'></div>
 In the code above, `SpeciesGone` will only have `Triceratops horridus`. This prevents `dino` to be assign `Tyrannosaurus rex`. 
 <p>We can also extract common keys between 2 Types like what is happening to <code>CommonKeys</code>.</p>
+<h3>Setup 3</h3>
+<p>✏️ Create <strong>src/utility-types/extract.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">type Person =
+  | {
+      role: &quot;developer&quot;;
+      email: string;
+      id: number;
+      firstName: string;
+      lastName: string;
+      team: &quot;React&quot; | &quot;Angular&quot; | &quot;backend&quot;;
+    }
+  | {
+      role: &quot;user&quot;;
+      email: string;
+      id: number;
+      firstName: string;
+      lastName: string;
+      isVerified: boolean;
+    };
+
+export type Developer = unknown;
+</code></pre>
+<h3>Verify 3</h3>
+<p>✏️ Create <strong>src/utility-types/extract.test.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import {
+  Developer
+} from &quot;./extract&quot;;
+import { describe, it } from &quot;node:test&quot;;
+
+describe(&quot;extract tests&quot;, () =&gt; {
+  it(&quot;typing works&quot;, () =&gt; {
+    const newDev: Developer = {
+      role: &quot;developer&quot;,
+      email: &quot;email@developer.com&quot;,
+      firstName: &quot;Dev&quot;,
+      lastName: &quot;Eloper&quot;,
+      team: &quot;React&quot;,
+      id: 4,
+      // @ts-expect-error
+      isVerified: true,
+    };
+  });
+});
+</code></pre>
+<p>✏️ Run the following to verify your solution:</p>
+<pre><code class="language-shell">npm run test
+</code></pre>
+<h3>Exercise 3</h3>
+<p>Update the <code>extract.ts</code> file to use the utility type <code>extract</code> on the existing Person type. Extract one of the two possible types from Person to create a new type, Developer.</p>
+<p><strong>Have issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/03-problem?file=src/extract.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/03-problem?file=src/extract.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
+<h3>Solution 3</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <code>extract.ts</code> to the following:</p>
+<pre><code class="language-ts">type Person =
+  | {
+      role: &quot;developer&quot;;
+      email: string;
+      id: number;
+      firstName: string;
+      lastName: string;
+      team: &quot;React&quot; | &quot;Angular&quot; | &quot;backend&quot;;
+    }
+  | {
+      role: &quot;user&quot;;
+      email: string;
+      id: number;
+      firstName: string;
+      lastName: string;
+      isVerified: boolean;
+    };
+
+export type Developer = Extract&lt;Person, { role: &quot;developer&quot; }&gt;;
+</code></pre>
+<div line-highlight='19, only'></div>
+<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/03-solution?file=src/extract.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/03-solution?file=src/extract.ts">CodeSandbox</a>.
+</details></p>
 <h2>Objective 4: Exclude&lt;Type, ExcludedUnion&gt;</h2>
 <p>Removes from <code>Type</code> if is assignable to <code>Union</code>. Useful if you want a subset of <code>Type</code></p>
 <pre><code class="language-typescript">type Species = &quot;Tyrannosaurus rex&quot; | &quot;Triceratops horridus&quot;;
@@ -734,6 +1014,99 @@ const dino: SpeciesGone = &quot;Triceratops horridus&quot;;
 </code></pre>
 <div line-highlight='3, 5'></div>
 <p>In the code above, <code>SpeciesGone</code> is <code>Species</code> minus <code>Triceratops horridus</code>. Type <code>Triceratops horridus</code> is not assignable to the variable <code>dino</code>.</p>
+<h3>Setup 4</h3>
+<p>✏️ Create <strong>src/utility-types/exclude.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">type Person =
+  | {
+      role: &quot;developer&quot;;
+      email: string;
+      id: number;
+      firstName: string;
+      lastName: string;
+      team: &quot;React&quot; | &quot;Angular&quot; | &quot;backend&quot;;
+    }
+  | {
+      role: &quot;user&quot;;
+      email: string;
+      id: number;
+      firstName: string;
+      lastName: string;
+      isVerified: boolean;
+    };
+
+type Developer = Extract&lt;Person, { role: &quot;developer&quot; }&gt;;
+
+export interface FrontendDeveloper {
+  team: string;
+}
+</code></pre>
+<h3>Verify 4</h3>
+<p>✏️ Create <strong>src/utility-types/exclude.test.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import {
+  FrontendDeveloper
+} from &quot;./exclude&quot;;
+import { describe, it } from &quot;node:test&quot;;
+
+describe(&quot;exclude tests&quot;, () =&gt; {
+  it(&quot;typing works&quot;, () =&gt; {
+    const brandNewDev: FrontendDeveloper = {
+      email: &quot;newHire@developer.com&quot;,
+      team: &quot;React&quot;,
+      firstName: &quot;June&quot;,
+      lastName: &quot;Jones&quot;,
+      id: 8,
+      role: &quot;developer&quot;,
+    };
+    
+    const incorrectDev: FrontendDeveloper = {
+      email: &quot;newHire@developer.com&quot;,
+      // @ts-expect-error
+      team: &quot;backend&quot;,
+      firstName: &quot;June&quot;,
+      lastName: &quot;Jones&quot;,
+      id: 8,
+      role: &quot;developer&quot;,
+    };
+  });
+});
+</code></pre>
+<p>✏️ Run the following to verify your solution:</p>
+<pre><code class="language-shell">npm run test
+</code></pre>
+<h3>Exercise 4</h3>
+<p>Update the <code>exclude.ts</code> file to create a new type, <code>FrontendDeveloper</code> that excludes the <code>backend</code> value from the team property. Build on the <code>Developer</code> type we previously created.</p>
+<p><strong>Have issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/04-problem?file=src/exclude.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/04-problem?file=src/exclude.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
+<h3>Solution 4</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <code>exclude.ts</code> to the following:</p>
+<pre><code class="language-ts">type Person =
+  | {
+      role: &quot;developer&quot;;
+      email: string;
+      id: number;
+      firstName: string;
+      lastName: string;
+      team: &quot;React&quot; | &quot;Angular&quot; | &quot;backend&quot;;
+    }
+  | {
+      role: &quot;user&quot;;
+      email: string;
+      id: number;
+      firstName: string;
+      lastName: string;
+      isVerified: boolean;
+    };
+
+type Developer = Extract&lt;Person, { role: &quot;developer&quot; }&gt;;
+
+export interface FrontendDeveloper extends Developer {
+  team: Exclude&lt;Developer[&quot;team&quot;], &quot;backend&quot;&gt;;
+}
+</code></pre>
+<div line-highlight='21-23, only'></div>
+<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/04-solution?file=src/exclude.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/04-solution?file=src/exclude.ts">CodeSandbox</a>.
+</details></p>
 <h2>Objective 5: Include and exclude specific properties</h2>
 <h3>Pick&lt;Type, Keys&gt;</h3>
 <p>Select only the properties defined in Keys. Useful if you want a subset of <code>Type</code>.</p>
@@ -783,7 +1156,97 @@ lesserDino.species = &quot;Tyrannosaurus rex&quot;;
 <div line-highlight='13, 16, 19, only'></div>
 <p>In the code above, if there is an attempt to add <code>species</code> to <code>lesserDino</code> then TypeScript will throw an error. Property <code>species</code> do not exist on type <code>LesserDinosaur</code>.
 Both <code>species</code> and <code>age</code> key properties are gone!</p>
-<h2>Objective 11: Function utility types</h2>
+<h3>Setup 5</h3>
+<p>✏️ Create <strong>src/utility-types/include-exclude-properties.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">type Person =
+  | {
+      role: &quot;developer&quot;;
+      email: string;
+      id: number;
+      firstName: string;
+      lastName: string;
+      team: &quot;React&quot; | &quot;Angular&quot; | &quot;backend&quot;;
+    }
+  | {
+      role: &quot;user&quot;;
+      email: string;
+      id: number;
+      firstName: string;
+      lastName: string;
+      isVerified: boolean;
+    };
+
+type Developer = Extract&lt;Person, { role: &quot;developer&quot; }&gt;;
+
+interface FrontendDeveloper extends Developer {
+  team: Exclude&lt;Developer[&quot;team&quot;], &quot;backend&quot;&gt;;
+}
+
+export interface AdminDeveloper extends FrontendDeveloper {}
+</code></pre>
+<h3>Verify 5</h3>
+<p>✏️ Create <strong>src/utility-types/include-exclude-properties.test.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import { AdminDeveloper } from &quot;./include-exclude-properties&quot;;
+import { describe, it } from &quot;node:test&quot;;
+
+describe(&quot;include-exclude-properties tests&quot;, () =&gt; {
+  it(&quot;typing works&quot;, () =&gt; {
+    const myAdmin: AdminDeveloper = {
+      permissions: [&quot;readData&quot;, &quot;writeData&quot;],
+      email: &quot;admin@developer.com&quot;,
+      team: &quot;React&quot;,
+      firstName: &quot;Admin&quot;,
+      lastName: &quot;Jones&quot;,
+      id: 8,
+    };
+
+    // @ts-expect-error
+    myAdmin.role;
+  });
+});
+</code></pre>
+<p>✏️ Run the following to verify your solution:</p>
+<pre><code class="language-shell">npm run test
+</code></pre>
+<h3>Exercise 5</h3>
+<p>Update the <code>include-exclude-properties.ts</code> file to expand on the implementation of <code>FrontendDeveloper</code> to create a new type, <code>AdminDeveloper</code> where the <code>role</code> property should be replaced by a <code>permissions</code> array.</p>
+<p><strong>Have issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/05-problem?file=src/include-exclude-properties.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/05-problem?file=src/include-exclude-properties.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
+<h3>Solution 5</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <code>include-exclude-properties.ts</code> to the following:</p>
+<pre><code class="language-ts">type Person =
+  | {
+      role: &quot;developer&quot;;
+      email: string;
+      id: number;
+      firstName: string;
+      lastName: string;
+      team: &quot;React&quot; | &quot;Angular&quot; | &quot;backend&quot;;
+    }
+  | {
+      role: &quot;user&quot;;
+      email: string;
+      id: number;
+      firstName: string;
+      lastName: string;
+      isVerified: boolean;
+    };
+
+type Developer = Extract&lt;Person, { role: &quot;developer&quot; }&gt;;
+
+interface FrontendDeveloper extends Developer {
+  team: Exclude&lt;Developer[&quot;team&quot;], &quot;backend&quot;&gt;;
+}
+
+export interface AdminDeveloper extends Omit&lt;FrontendDeveloper, &quot;role&quot;&gt; {
+  permissions: string[];
+}
+</code></pre>
+<div line-highlight='25-27, only'></div>
+<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/05-solution?file=src/include-exclude-properties.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/05-solution?file=src/include-exclude-properties.ts">CodeSandbox</a>.
+</details></p>
+<h2>Objective 6: Function utility types</h2>
 <h3>ReturnType&lt;Type&gt;</h3>
 <p>Gets the type from the return type of a function <code>Type</code></p>
 <pre><code class="language-typescript">enum Diet {
@@ -804,7 +1267,7 @@ type D1 = ReturnType&lt;typeof getDinosaur&gt;;
 
 type D2 = ReturnType&lt;() =&gt; Dinosaur&gt;;
 </code></pre>
-<div line-highlight='15, 18'></div>
+<div line-highlight='15, 17'></div>
 <p>In the code above, <code>D1</code> and <code>D2</code> are both types <code>Dinosaur</code>.</p>
 <h2>Next steps</h2>
 <p>There are other built-in Utility Types:</p>

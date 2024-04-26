@@ -655,6 +655,9 @@ describe(&quot;Generics&quot;, () =&gt; {
 });
 
 </code></pre>
+<p>✏️ Run the following to verify your solution:</p>
+<pre><code class="language-shell">npm run test
+</code></pre>
 <h3>Exercise 1</h3>
 <p>Update the <code>return-last.ts</code> file to inform the function that it will be accepting an array of a certain type and return a single element of the same - type.</p>
 <p><strong>Have issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-generics/01-problem?file=src/return-last.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-generics/01-problem?file=src/return-last.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
@@ -669,7 +672,8 @@ describe(&quot;Generics&quot;, () =&gt; {
 </code></pre>
 <div line-highlight='1'></div>
 <p>We use <code>&lt;T&gt;</code> to set up the generic. In the Parenthesis, we use <code>T[]</code> to inform the user we are accepting an array of a certain type. Finally, we use <code>): T{</code> to let us be aware what is the return type.</p>
-<p></details></p>
+<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-generics/01-solution?file=src/return-last.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-generics/01-solution?file=src/return-last.ts">CodeSandbox</a>.
+</details></p>
 <h2>Objective 2: Generic Classes</h2>
 <p>Generic classes are quite common.</p>
 <pre><code class="language-typescript">const cardNumber = new Subject&lt;string&gt;();
