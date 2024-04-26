@@ -1,8 +1,3 @@
-/**
- * EX 1: Update the `DinosaurFactObject` and `Dinosaur` type to gain type safety on the `getDinoFact`
- * function. The function should, given a dinosaurs name (`velociraptor` or `t-rex`) and the `dinosaurFacts` object
- * return the correct facts about the dinosaur.
- */
 const dinosaurFacts = {
   "t-rex": {
     latinName: "Tyrannosaurus rex",
@@ -26,22 +21,10 @@ const dinosaurFacts = {
   },
 };
 
-/**
- * Replace `any` with a type that represents the `dinosaurFacts` object above
- */
 type DinosaurFactObject = typeof dinosaurFacts;
 
-/**
- * Replace `any` with a type that allows for any of the keys in the dinosaur fact object
- */
 type Dinosaur = keyof DinosaurFactObject;
 
-/**
- * This function should, given a facts object and dinosaur name, return the facts for that creature.
- *
- * > NOTE: Don’t worry about the `DinosaurFactObject[Dinosaur]` type in the return of the function signature. That’s called
- * an index-signature which we will get into later on.
- */
 export const getDinoFact = (
   facts: DinosaurFactObject,
   dino: Dinosaur
