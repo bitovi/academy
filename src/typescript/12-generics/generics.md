@@ -230,46 +230,7 @@ Now when we initialize this class we can specify a type to use.
 
 In the example above, we are utilizing generics to inform `GenericCollection` what type it is receiving. `string`, `number`, and `Dinosaur`. 
 
-## Objective 3: Recursive Generic Classes
-
-A great example of the power of generics is creating a linked list with type
-safety.  We will create a simple linked list that supports:
-
-- Adding values to the front of the list with `linkedList.unshift(value)`.
-- Removing and returning the front values with `linkedList.shift()`.
-- Reading the front of the list with `linkedList.head`.
-- Reading the end of the list with `linkedList.tail`.
-
-We can use it with strings like:
-
-```typescript
-const linkedList = new LinkedList<string>();
-
-linkedList.unshift("a");
-linkedList.unshift("b");
-
-console.info( linkedList.shift() ) //logs "b"
-
-console.info( linkedList.shift() ) //logs "a"
-```
-
-Or with numbers like:
-
-```typescript
-const linkedList = new LinkedList<number>();
-
-linkedList.unshift(100);
-linkedList.unshift(200);
-
-console.info( linkedList.head ) //logs 200
-console.info( linkedList.tail ) //logs 100
-```
-
-The implementation looks like this:
-
-@sourceref ./linked-list-class.ts
-
-Thanks to generics, we’re able to use the same ``LinkedList`` class in multiple different scenarios with any type.
+A great example of the power of generics is creating a recursive data structure like a tree. In the following exercise, we will create a `TreeNode` class that can house a generic `value` and be used to create a tree structure of `left` and `right` nodes of the same generic type.
 
 ### Setup 2
 
