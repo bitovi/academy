@@ -15,6 +15,7 @@ In this section, you will:
 - Spot and correct basic type mistakes
 - Show how to assert types
 - Create a typed variable
+- Learn how to effectively use type unions and intersections
 
 ## Objective 1: Fix basic type errors
 
@@ -180,6 +181,168 @@ For `boop`: `Type 'string' is not assignable to type 'number'.`
 and for `5`: `Type 'number' is not assignable to type 'Dinos'.` 
 
 Both of these make sense, and while we intended `Stegosaurus` to line up with its StringLiteral typing provided by `Dinos`, it still is a `string`.
+
+### Enum
+
+Enums allow the aliasing of names to a list of numeric values. Like most indexing, enums start their first member at 0.
+
+```typescript
+enum Color {
+  Red,
+  Green,
+  Blue,
+}
+let greenColor: Color = Color.Green;
+```
+
+Enums can have their first value manually set, or manually set all values
+
+```typescript
+enum Month {
+  January = 1,
+  February,
+  March,
+  April,
+  May,
+  June,
+}
+let feb = Month[2];
+
+enum Month {
+  January = 1,
+  March = 3,
+  May = 5,
+}
+let may = Month[5];
+```
+
+### Unknown
+
+Unknown describes a variable where we may not know the type. Variables defined with the `unknown` type can later be narrowed to more specific types using `typeof` checks or comparisons.
+
+Note that variables of type `unknown` have no accessible properties or functions.
+
+```typescript
+let value: unknown = 5;
+
+value = "words";
+value.length; // Will give "Object is of type unknown" error
+
+// Will give "Type unknown is not assignable to type string" error
+const value2: string = value;
+
+// Check type using typeof
+if (typeof value === "string") {
+  // Can successfully narrow
+  const stringValue: string = value;
+  console.log("Length is", stringValue.length);
+}
+```
+
+### Any
+
+Any is useful when we want to opt-out of type checking. Using the `any` type will disable all compile-time checks including access to properties and functions. 
+
+This is mostly useful for third-party data structures that we do not know the shape of, or when incrementally opting in to types. Otherwise, in TypeScript, it is not advised to use the`any` type, do you best to provide typing for data that you're using.
+
+```typescript
+let my3rdPartyData: any = 5;
+my3rdPartyData = "five";
+
+my3rdPartyData.invalidFunction(3); 
+```
+@highlight 4
+
+### Void
+
+No type at all - commonly used with functions that don’t return a value.
+
+```typescript
+function buttonClick(): void {
+  console.log("I clicked a button that returns nothing");
+}
+```
+
+### Null & undefined
+
+Null and Undefined are two separate types, and subtypes of all other types, meaning they can be assigned to another type like string or number unless the <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html">--strictNullChecks</a> flag is used.
+
+### Never
+
+The never type represents a value that will never occur.
+
+```typescript
+function error(message: string): never {
+  throw new Error(message);
+}
+```
+@highlight 2
+
+When an error is thrown in the scope of a function that function doesn't return, so this is an instance where `never` is an appropriate return type.
+
+### Type inference
+
+When we don’t provide explicit types for our variables, TypeScript will do its best to infer the types, and it’s very good at it. The following code will not compile due to type inference.
+
+```typescript
+let name = "Sally";
+let height = 6;
+name = height;
+//Type 'number' is not assignable to type 'string'
+```
+
+Type can also be inferred from complex objects.
+
+```typescript
+let person = {
+  name: "Sally",
+  height: 6,
+  address: {
+    number: 555,
+    street: "Rodeo Drive",
+  },
+};
+person.name = "Cecilia";
+//works
+person.name = 6;
+//Type '6' is not assignable to type 'string'.
+person.address.number = "five fifty-five";
+//Type '"five fifty-five"' is not assignable to type 'number'.
+```
+
+TypeScript will infer the return value of a function as well.
+
+```typescript
+function multiplier(a: number, b: number) {
+  return a * b;
+}
+var multiplied: number = multiplier(2, 3);
+//works
+
+var str: string;
+str = multiplier(10, 20);
+//Type 'number' is not assignable to type 'string'.
+```
+
+Type inference can be a very helpful tool in refactoring code and helping better document expectations for our code.
+
+### Type assertions
+
+Type assertions are a way to override the inferring of types. There are two different syntaxes, angle-brackets and as.
+
+```typescript
+let someValue: any = "this is a string";
+
+let strLength: number = (<string>someValue).length;
+
+let otherValue: any = "this is a string";
+
+let otherLength: number = (otherValue as string).length;
+```
+
+The `as` syntax is usually preferred because the `<type>` conflicts with JSX syntax.
+
+## Objective 3: Intersections and Unions
 
 ### Intersections
 
@@ -433,201 +596,51 @@ function getTotalDistanceAbleToTravel(dinos: Dinosaur[]): number {
 
 > **Note:** notice that we never check for `nextDino.type` to be `land`. We don’t have to! TypeScript is smart enough to figure out that there are only three types land, water, and air and since we have checked for the first two (air and water) it knows if it gets through those conditionals the type is land.
 
-### Enum
+### Setup 3
 
-Enums allow the aliasing of names to a list of numeric values. Like most indexing, enums start their first member at 0.
+✏️ Create the following files:
 
-```typescript
-enum Color {
-  Red,
-  Green,
-  Blue,
-}
-let greenColor: Color = Color.Green;
-```
+- **food.ts**
 
-Enums can have their first value manually set, or manually set all values
+@sourceref ../../../exercises/typescript/06-types/03-problem/src/types/food.ts
 
-```typescript
-enum Month {
-  January = 1,
-  February,
-  March,
-  April,
-  May,
-  June,
-}
-let feb = Month[2];
+- **character.ts**
 
-enum Month {
-  January = 1,
-  March = 3,
-  May = 5,
-}
-let may = Month[5];
-```
+@sourceref ../../../exercises/typescript/06-types/03-problem/src/types/character.ts
 
-### Unknown
+### Verify 3
 
-Unknown describes a variable where we may not know the type. Variables defined with the `unknown` type can later be narrowed to more specific types using `typeof` checks or comparisons.
+Create **unions-and-intersections.test.ts** and update it to be:
 
-Note that variables of type `unknown` have no accessible properties or functions.
-
-```typescript
-let value: unknown = 5;
-
-value = "words";
-value.length; // Will give "Object is of type unknown" error
-
-// Will give "Type unknown is not assignable to type string" error
-const value2: string = value;
-
-// Check type using typeof
-if (typeof value === "string") {
-  // Can successfully narrow
-  const stringValue: string = value;
-  console.log("Length is", stringValue.length);
-}
-```
-
-### Any
-
-Any is useful when we want to opt-out of type checking. Using the `any` type will disable all compile-time checks including access to properties and functions. 
-
-This is mostly useful for third-party data structures that we do not know the shape of, or when incrementally opting in to types. Otherwise, in TypeScript, it is not advised to use the`any` type, do you best to provide typing for data that you're using.
-
-```typescript
-let my3rdPartyData: any = 5;
-my3rdPartyData = "five";
-
-my3rdPartyData.invalidFunction(3); 
-```
-@highlight 4
-
-### Void
-
-No type at all - commonly used with functions that don’t return a value.
-
-```typescript
-function buttonClick(): void {
-  console.log("I clicked a button that returns nothing");
-}
-```
-
-### Null & undefined
-
-Null and Undefined are two separate types, and subtypes of all other types, meaning they can be assigned to another type like string or number unless the <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html">--strictNullChecks</a> flag is used.
-
-### Never
-
-The never type represents a value that will never occur.
-
-```typescript
-function error(message: string): never {
-  throw new Error(message);
-}
-```
-@highlight 2
-
-When an error is thrown in the scope of a function that function doesn't return, so this is an instance where `never` is an appropriate return type.
-
-### Type inference
-
-When we don’t provide explicit types for our variables, TypeScript will do its best to infer the types, and it’s very good at it. The following code will not compile due to type inference.
-
-```typescript
-let name = "Sally";
-let height = 6;
-name = height;
-//Type 'number' is not assignable to type 'string'
-```
-
-Type can also be inferred from complex objects.
-
-```typescript
-let person = {
-  name: "Sally",
-  height: 6,
-  address: {
-    number: 555,
-    street: "Rodeo Drive",
-  },
-};
-person.name = "Cecilia";
-//works
-person.name = 6;
-//Type '6' is not assignable to type 'string'.
-person.address.number = "five fifty-five";
-//Type '"five fifty-five"' is not assignable to type 'number'.
-```
-
-TypeScript will infer the return value of a function as well.
-
-```typescript
-function multiplier(a: number, b: number) {
-  return a * b;
-}
-var multiplied: number = multiplier(2, 3);
-//works
-
-var str: string;
-str = multiplier(10, 20);
-//Type 'number' is not assignable to type 'string'.
-```
-
-Type inference can be a very helpful tool in refactoring code and helping better document expectations for our code.
-
-### Type assertions
-
-Type assertions are a way to override the inferring of types. There are two different syntaxes, angle-brackets and as.
-
-```typescript
-let someValue: any = "this is a string";
-
-let strLength: number = (<string>someValue).length;
-
-let otherValue: any = "this is a string";
-
-let otherLength: number = (otherValue as string).length;
-```
-
-The `as` syntax is usually preferred because the `<type>` conflicts with JSX syntax.
-
-### Setup 2
-
-✏️ Create the file **date-exports.ts**
-
-@sourceref ../../../exercises/typescript/06-types/02-problem/src/types/date-exports.ts
-
-### Verify 2
-
-Create **date-exports.test.ts** and update it to be:
-
-@sourceref ../../../exercises/typescript/06-types/02-problem/src/types/date-exports.test.ts
+@sourceref ../../../exercises/typescript/06-types/03-problem/src/types/unions-and-intersections.test.ts
 
 ```shell
 npm run test
 ```
 
-### Excercise 2
+### Exercise 3
 
-In this exercise, we will create our own typed variable by:
+In this exercise, we will fix the TypeScript errors by using a combination of type unions and intersections.
 
-- Create a `let` variable that takes a type of Date.
-- Assign that variable to an instance of `Date`
-- Export that variable as the default export.
-- Use `new Date()` to create an instance of Date.
+- In **food.ts**, update the `Dish` type so that the TypeScript errors are resolved for `sushi`, `taco`, and `curry`. The `fusion` type is expected to give an error.
 
-### Solution 2
+- In **character.ts**, update the `Character` type so that the TypeScript errors are resolved for `fighter`, `mage`, and `thief`. The `paladin` and `civilian` type are expected to give errors.
+
+### Solution 3
 
 <details>
 <summary>Click to see the solution</summary>
 
-✏️ Update **date-export.ts** to create, assign, and export a date variable.
+✏️ Update **food.ts** so that `Dish` is a union of `Sushi`, `Taco`, and `Curry`.
 
-@diff ../../../exercises/typescript/06-types/02-problem/src/types/date-exports.ts ../../../exercises/typescript/06-types/02-solution/src/types/date-exports.ts
+@diff ../../../exercises/typescript/06-types/03-problem/src/types/food.ts ../../../exercises/typescript/06-types/03-solution/src/types/food.ts
+
+✏️ Update **character.ts** so that `Character` is an intersection of `BaseCharacter` and a union of `Warrior`, `Wizard`, and `Rogue`.
+
+@diff ../../../exercises/typescript/06-types/03-problem/src/types/character.ts ../../../exercises/typescript/06-types/03-solution/src/types/character.ts
 
 </details>
+
 
 ## Next Steps
 

@@ -148,6 +148,12 @@ The type can be inferred:
 
 @sourceref ../../../exercises/typescript/12-generics/01-problem/src/return-last.test.ts
 
+✏️ Run the following to verify your solution:
+
+```shell
+npm run test
+```
+
 ### Exercise 1
 
 Update the `return-last.ts` file to inform the function that it will be accepting an array of a certain type and return a single element of the same - type.
@@ -166,6 +172,8 @@ Update `return-last.ts` to the following:
 
 We use `<T>` to set up the generic. In the Parenthesis, we use `T[]` to inform the user we are accepting an array of a certain type. Finally, we use `): T{` to let us be aware what is the return type.   
 
+
+<strong>Have issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-generics/01-solution?file=src/return-last.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-generics/01-solution?file=src/return-last.ts).
 </details>
 
 ## Objective 2: Generic Classes
