@@ -538,6 +538,7 @@ covering CanJS core libraries.">
 <li>Spot and correct basic type mistakes</li>
 <li>Show how to assert types</li>
 <li>Create a typed variable</li>
+<li>Learn how to effectively use type unions and intersections</li>
 </ul>
 <h2>Objective 1: Fix basic type errors</h2>
 <p>Types explain what we can and can’t do with a value, take for example numbers and strings. In JavaScript, on strings, we have access to <code>.length</code>, on a number we do not. Types also determine what will happen when we apply operators to values. For example, for the <code>+</code> operator, what does the following do?</p>
@@ -691,6 +692,123 @@ sillyList = [&quot;boop&quot;, &quot;Stegosaurus&quot;, 5];
 <p>For <code>boop</code>: <code>Type 'string' is not assignable to type 'number'.</code>
 and for <code>5</code>: <code>Type 'number' is not assignable to type 'Dinos'.</code></p>
 <p>Both of these make sense, and while we intended <code>Stegosaurus</code> to line up with its StringLiteral typing provided by <code>Dinos</code>, it still is a <code>string</code>.</p>
+<h3>Enum</h3>
+<p>Enums allow the aliasing of names to a list of numeric values. Like most indexing, enums start their first member at 0.</p>
+<pre><code class="language-typescript">enum Color {
+  Red,
+  Green,
+  Blue,
+}
+let greenColor: Color = Color.Green;
+</code></pre>
+<p>Enums can have their first value manually set, or manually set all values</p>
+<pre><code class="language-typescript">enum Month {
+  January = 1,
+  February,
+  March,
+  April,
+  May,
+  June,
+}
+let feb = Month[2];
+
+enum Month {
+  January = 1,
+  March = 3,
+  May = 5,
+}
+let may = Month[5];
+</code></pre>
+<h3>Unknown</h3>
+<p>Unknown describes a variable where we may not know the type. Variables defined with the <code>unknown</code> type can later be narrowed to more specific types using <code>typeof</code> checks or comparisons.</p>
+<p>Note that variables of type <code>unknown</code> have no accessible properties or functions.</p>
+<pre><code class="language-typescript">let value: unknown = 5;
+
+value = &quot;words&quot;;
+value.length; // Will give &quot;Object is of type unknown&quot; error
+
+// Will give &quot;Type unknown is not assignable to type string&quot; error
+const value2: string = value;
+
+// Check type using typeof
+if (typeof value === &quot;string&quot;) {
+  // Can successfully narrow
+  const stringValue: string = value;
+  console.log(&quot;Length is&quot;, stringValue.length);
+}
+</code></pre>
+<h3>Any</h3>
+<p>Any is useful when we want to opt-out of type checking. Using the <code>any</code> type will disable all compile-time checks including access to properties and functions.</p>
+<p>This is mostly useful for third-party data structures that we do not know the shape of, or when incrementally opting in to types. Otherwise, in TypeScript, it is not advised to use the<code>any</code> type, do you best to provide typing for data that you're using.</p>
+<pre><code class="language-typescript">let my3rdPartyData: any = 5;
+my3rdPartyData = &quot;five&quot;;
+
+my3rdPartyData.invalidFunction(3); 
+</code></pre>
+<div line-highlight='4'></div>
+<h3>Void</h3>
+<p>No type at all - commonly used with functions that don’t return a value.</p>
+<pre><code class="language-typescript">function buttonClick(): void {
+  console.log(&quot;I clicked a button that returns nothing&quot;);
+}
+</code></pre>
+<h3>Null &amp; undefined</h3>
+<p>Null and Undefined are two separate types, and subtypes of all other types, meaning they can be assigned to another type like string or number unless the <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html">--strictNullChecks</a> flag is used.</p>
+<h3>Never</h3>
+<p>The never type represents a value that will never occur.</p>
+<pre><code class="language-typescript">function error(message: string): never {
+  throw new Error(message);
+}
+</code></pre>
+<div line-highlight='2'></div>
+<p>When an error is thrown in the scope of a function that function doesn't return, so this is an instance where <code>never</code> is an appropriate return type.</p>
+<h3>Type inference</h3>
+<p>When we don’t provide explicit types for our variables, TypeScript will do its best to infer the types, and it’s very good at it. The following code will not compile due to type inference.</p>
+<pre><code class="language-typescript">let name = &quot;Sally&quot;;
+let height = 6;
+name = height;
+//Type 'number' is not assignable to type 'string'
+</code></pre>
+<p>Type can also be inferred from complex objects.</p>
+<pre><code class="language-typescript">let person = {
+  name: &quot;Sally&quot;,
+  height: 6,
+  address: {
+    number: 555,
+    street: &quot;Rodeo Drive&quot;,
+  },
+};
+person.name = &quot;Cecilia&quot;;
+//works
+person.name = 6;
+//Type '6' is not assignable to type 'string'.
+person.address.number = &quot;five fifty-five&quot;;
+//Type '&quot;five fifty-five&quot;' is not assignable to type 'number'.
+</code></pre>
+<p>TypeScript will infer the return value of a function as well.</p>
+<pre><code class="language-typescript">function multiplier(a: number, b: number) {
+  return a * b;
+}
+var multiplied: number = multiplier(2, 3);
+//works
+
+var str: string;
+str = multiplier(10, 20);
+//Type 'number' is not assignable to type 'string'.
+</code></pre>
+<p>Type inference can be a very helpful tool in refactoring code and helping better document expectations for our code.</p>
+<h3>Type assertions</h3>
+<p>Type assertions are a way to override the inferring of types. There are two different syntaxes, angle-brackets and as.</p>
+<pre><code class="language-typescript">let someValue: any = &quot;this is a string&quot;;
+
+let strLength: number = (&lt;string&gt;someValue).length;
+
+let otherValue: any = &quot;this is a string&quot;;
+
+let otherLength: number = (otherValue as string).length;
+</code></pre>
+<p>The <code>as</code> syntax is usually preferred because the <code>&lt;type&gt;</code> conflicts with JSX syntax.</p>
+<h2>Objective 3: Intersections and Unions</h2>
 <h3>Intersections</h3>
 <p>There are many different ways to create new types from existing ones in TS. Intersections allow us to create a type containing all the properties of multiple types together. Put another way; Intersections combine multiple types into one. Let’s imagine we have the following types.</p>
 <pre><code class="language-ts">type Person = {
@@ -890,170 +1008,266 @@ function getTotalDistanceAbleToTravel(dinos: Dinosaur[]): number {
 <blockquote>
 <p><strong>Note:</strong> notice that we never check for <code>nextDino.type</code> to be <code>land</code>. We don’t have to! TypeScript is smart enough to figure out that there are only three types land, water, and air and since we have checked for the first two (air and water) it knows if it gets through those conditionals the type is land.</p>
 </blockquote>
-<h3>Enum</h3>
-<p>Enums allow the aliasing of names to a list of numeric values. Like most indexing, enums start their first member at 0.</p>
-<pre><code class="language-typescript">enum Color {
-  Red,
-  Green,
-  Blue,
+<h3>Setup 3</h3>
+<p>✏️ Create the following files:</p>
+<ul>
+<li><strong>food.ts</strong></li>
+</ul>
+<pre><code class="language-ts">interface Sushi {
+  cuisine: &quot;Japanese&quot;;
+  fish: string;
 }
-let greenColor: Color = Color.Green;
-</code></pre>
-<p>Enums can have their first value manually set, or manually set all values</p>
-<pre><code class="language-typescript">enum Month {
-  January = 1,
-  February,
-  March,
-  April,
-  May,
-  June,
-}
-let feb = Month[2];
 
-enum Month {
-  January = 1,
-  March = 3,
-  May = 5,
+interface Taco {
+  cuisine: &quot;Mexican&quot;;
+  meat: string;
 }
-let may = Month[5];
-</code></pre>
-<h3>Unknown</h3>
-<p>Unknown describes a variable where we may not know the type. Variables defined with the <code>unknown</code> type can later be narrowed to more specific types using <code>typeof</code> checks or comparisons.</p>
-<p>Note that variables of type <code>unknown</code> have no accessible properties or functions.</p>
-<pre><code class="language-typescript">let value: unknown = 5;
 
-value = &quot;words&quot;;
-value.length; // Will give &quot;Object is of type unknown&quot; error
-
-// Will give &quot;Type unknown is not assignable to type string&quot; error
-const value2: string = value;
-
-// Check type using typeof
-if (typeof value === &quot;string&quot;) {
-  // Can successfully narrow
-  const stringValue: string = value;
-  console.log(&quot;Length is&quot;, stringValue.length);
+interface Curry {
+  cuisine: &quot;Indian&quot;;
+  spicy: number;
 }
-</code></pre>
-<h3>Any</h3>
-<p>Any is useful when we want to opt-out of type checking. Using the <code>any</code> type will disable all compile-time checks including access to properties and functions.</p>
-<p>This is mostly useful for third-party data structures that we do not know the shape of, or when incrementally opting in to types. Otherwise, in TypeScript, it is not advised to use the<code>any</code> type, do you best to provide typing for data that you're using.</p>
-<pre><code class="language-typescript">let my3rdPartyData: any = 5;
-my3rdPartyData = &quot;five&quot;;
 
-my3rdPartyData.invalidFunction(3); 
-</code></pre>
-<div line-highlight='4'></div>
-<h3>Void</h3>
-<p>No type at all - commonly used with functions that don’t return a value.</p>
-<pre><code class="language-typescript">function buttonClick(): void {
-  console.log(&quot;I clicked a button that returns nothing&quot;);
-}
-</code></pre>
-<h3>Null &amp; undefined</h3>
-<p>Null and Undefined are two separate types, and subtypes of all other types, meaning they can be assigned to another type like string or number unless the <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html">--strictNullChecks</a> flag is used.</p>
-<h3>Never</h3>
-<p>The never type represents a value that will never occur.</p>
-<pre><code class="language-typescript">function error(message: string): never {
-  throw new Error(message);
-}
-</code></pre>
-<div line-highlight='2'></div>
-<p>When an error is thrown in the scope of a function that function doesn't return, so this is an instance where <code>never</code> is an appropriate return type.</p>
-<h3>Type inference</h3>
-<p>When we don’t provide explicit types for our variables, TypeScript will do its best to infer the types, and it’s very good at it. The following code will not compile due to type inference.</p>
-<pre><code class="language-typescript">let name = &quot;Sally&quot;;
-let height = 6;
-name = height;
-//Type 'number' is not assignable to type 'string'
-</code></pre>
-<p>Type can also be inferred from complex objects.</p>
-<pre><code class="language-typescript">let person = {
-  name: &quot;Sally&quot;,
-  height: 6,
-  address: {
-    number: 555,
-    street: &quot;Rodeo Drive&quot;,
-  },
+type Dish = never;
+
+const sushi: Dish = {
+  cuisine: &quot;Japanese&quot;,
+  fish: &quot;Tuna&quot;,
 };
-person.name = &quot;Cecilia&quot;;
-//works
-person.name = 6;
-//Type '6' is not assignable to type 'string'.
-person.address.number = &quot;five fifty-five&quot;;
-//Type '&quot;five fifty-five&quot;' is not assignable to type 'number'.
+
+const taco: Dish = {
+  cuisine: &quot;Mexican&quot;,
+  meat: &quot;Chicken&quot;,
+};
+
+const curry: Dish = {
+  cuisine: &quot;Indian&quot;,
+  spicy: 10,
+};
+
+// This should be an error, spicy doesn't exist on the Sushi interface!
+const fusion: Dish = {
+  cuisine: &quot;Japanese&quot;,
+  // @ts-expect-error
+  spicy: 5,
+};
+
+export { sushi, taco, curry, fusion };
+
 </code></pre>
-<p>TypeScript will infer the return value of a function as well.</p>
-<pre><code class="language-typescript">function multiplier(a: number, b: number) {
-  return a * b;
+<ul>
+<li><strong>character.ts</strong></li>
+</ul>
+<pre><code class="language-ts">interface BaseCharacter {
+  strength: number;
+  dexterity: number;
+  intelligence: number;
 }
-var multiplied: number = multiplier(2, 3);
-//works
 
-var str: string;
-str = multiplier(10, 20);
-//Type 'number' is not assignable to type 'string'.
+interface Warrior {
+  weapon: &quot;Sword&quot;;
+}
+
+interface Wizard {
+  weapon: &quot;Staff&quot;;
+  magic: true;
+}
+
+interface Rogue {
+  weapon: &quot;Bow&quot;;
+}
+
+type Character = never;
+
+const fighter: Character = {
+  strength: 15,
+  dexterity: 10,
+  intelligence: 8,
+  weapon: &quot;Sword&quot;,
+};
+
+const mage: Character = {
+  strength: 5,
+  dexterity: 8,
+  intelligence: 15,
+  weapon: &quot;Staff&quot;,
+  magic: true,
+};
+
+const thief: Character = {
+  strength: 10,
+  dexterity: 15,
+  intelligence: 8,
+  weapon: &quot;Bow&quot;,
+};
+
+// This should be an error, a sword character cannot be magic!
+const paladin: Character = {
+  strength: 15,
+  dexterity: 10,
+  intelligence: 8,
+  weapon: &quot;Sword&quot;,
+  // @ts-expect-error
+  magic: true,
+};
+
+// This should be an error, a weapon is required on the Character type!
+// @ts-expect-error
+const civilian: Character = {
+  strength: 8,
+  dexterity: 8,
+  intelligence: 8,
+};
+
+export { fighter, mage, thief, paladin, civilian };
+
 </code></pre>
-<p>Type inference can be a very helpful tool in refactoring code and helping better document expectations for our code.</p>
-<h3>Type assertions</h3>
-<p>Type assertions are a way to override the inferring of types. There are two different syntaxes, angle-brackets and as.</p>
-<pre><code class="language-typescript">let someValue: any = &quot;this is a string&quot;;
-
-let strLength: number = (&lt;string&gt;someValue).length;
-
-let otherValue: any = &quot;this is a string&quot;;
-
-let otherLength: number = (otherValue as string).length;
-</code></pre>
-<p>The <code>as</code> syntax is usually preferred because the <code>&lt;type&gt;</code> conflicts with JSX syntax.</p>
-<h3>Setup 2</h3>
-<p>✏️ Create the file <strong>date-exports.ts</strong></p>
-<pre><code class="language-ts">let date;
-
-export default date;
-
-</code></pre>
-<h3>Verify 2</h3>
-<p>Create <strong>date-exports.test.ts</strong> and update it to be:</p>
+<h3>Verify 3</h3>
+<p>Create <strong>unions-and-intersections.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import assert from &quot;node:assert&quot;;
-import &quot;mocha&quot;;
-import date from &quot;./date-exports&quot;;
+import { describe, it } from &quot;node:test&quot;;
+import { fighter, mage, thief, paladin, civilian } from &quot;./character&quot;;
+import { sushi, taco, curry, fusion } from &quot;./food&quot;;
 
-import { readFileSync } from &quot;fs&quot;;
-import { join } from &quot;path&quot;;
-
-describe(&quot;types tests&quot;, () =&gt; {
-  it(&quot;exports a date&quot;, function () {
-    assert.ok(date instanceof Date, &quot;date instance&quot;);
+describe(&quot;unions and intersections tests&quot;, () =&gt; {
+  it(&quot;characters.ts works as expected&quot;, function () {
+    assert.ok(fighter.weapon === &quot;Sword&quot;, &quot;works&quot;);
+    assert.ok(mage.weapon === &quot;Staff&quot;, &quot;works&quot;);
+    assert.ok(thief.weapon === &quot;Bow&quot;, &quot;works&quot;);
+    assert.ok(paladin.weapon === &quot;Sword&quot;, &quot;works&quot;);
+    assert.ok(civilian.strength === 8, &quot;works&quot;);
   });
 
-  it(&quot;labels variable as Date&quot;, function () {
-    var source = &quot;&quot; + readFileSync(join(__dirname, &quot;2b-date-export.ts&quot;));
-    assert.ok(/\:\s*Date/.test(source), &quot;defines something as a date&quot;);
+  it(&quot;food.ts works as expected&quot;, function () {
+    assert.ok(sushi.cuisine === &quot;Japanese&quot;, &quot;works&quot;);
+    assert.ok(taco.cuisine === &quot;Mexican&quot;, &quot;works&quot;);
+    assert.ok(curry.cuisine === &quot;Indian&quot;, &quot;works&quot;);
+    assert.ok(fusion.cuisine === &quot;Japanese&quot;, &quot;works&quot;);
   });
 });
 
 </code></pre>
 <pre><code class="language-shell">npm run test
 </code></pre>
-<h3>Excercise 2</h3>
-<p>In this exercise, we will create our own typed variable by:</p>
+<h3>Exercise 3</h3>
+<p>In this exercise, we will fix the TypeScript errors by using a combination of type unions and intersections.</p>
 <ul>
-<li>Create a <code>let</code> variable that takes a type of Date.</li>
-<li>Assign that variable to an instance of <code>Date</code></li>
-<li>Export that variable as the default export.</li>
-<li>Use <code>new Date()</code> to create an instance of Date.</li>
+<li><p>In <strong>food.ts</strong>, update the <code>Dish</code> type so that the TypeScript errors are resolved for <code>sushi</code>, <code>taco</code>, and <code>curry</code>. The <code>fusion</code> type is expected to give an error.</p></li>
+<li><p>In <strong>character.ts</strong>, update the <code>Character</code> type so that the TypeScript errors are resolved for <code>fighter</code>, <code>mage</code>, and <code>thief</code>. The <code>paladin</code> and <code>civilian</code> type are expected to give errors.</p></li>
 </ul>
-<h3>Solution 2</h3>
+<h3>Solution 3</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update <strong>date-export.ts</strong> to create, assign, and export a date variable.</p>
-<pre><code class="language-ts">let date: Date;
-date = new Date(&quot;6-11-1993&quot;);
-export default date;
+<p>✏️ Update <strong>food.ts</strong> so that <code>Dish</code> is a union of <code>Sushi</code>, <code>Taco</code>, and <code>Curry</code>.</p>
+<pre><code class="language-ts">interface Sushi {
+  cuisine: &quot;Japanese&quot;;
+  fish: string;
+}
+
+interface Taco {
+  cuisine: &quot;Mexican&quot;;
+  meat: string;
+}
+
+interface Curry {
+  cuisine: &quot;Indian&quot;;
+  spicy: number;
+}
+
+type Dish = Sushi | Taco | Curry;
+
+const sushi: Dish = {
+  cuisine: &quot;Japanese&quot;,
+  fish: &quot;Tuna&quot;,
+};
+
+const taco: Dish = {
+  cuisine: &quot;Mexican&quot;,
+  meat: &quot;Chicken&quot;,
+};
+
+const curry: Dish = {
+  cuisine: &quot;Indian&quot;,
+  spicy: 10,
+};
+
+// This should be an error, spicy doesn't exist on the Sushi interface!
+const fusion: Dish = {
+  cuisine: &quot;Japanese&quot;,
+  // @ts-expect-error
+  spicy: 5,
+};
+
+export { sushi, taco, curry, fusion };
 
 </code></pre>
- <div line-highlight="1-2,"></div>
+ <div line-highlight="16,"></div>
+<p>✏️ Update <strong>character.ts</strong> so that <code>Character</code> is an intersection of <code>BaseCharacter</code> and a union of <code>Warrior</code>, <code>Wizard</code>, and <code>Rogue</code>.</p>
+<pre><code class="language-ts">interface BaseCharacter {
+  strength: number;
+  dexterity: number;
+  intelligence: number;
+}
+
+interface Warrior {
+  weapon: &quot;Sword&quot;;
+}
+
+interface Wizard {
+  weapon: &quot;Staff&quot;;
+  magic: true;
+}
+
+interface Rogue {
+  weapon: &quot;Bow&quot;;
+}
+
+type Character = BaseCharacter &amp; (Warrior | Wizard | Rogue);
+
+const fighter: Character = {
+  strength: 15,
+  dexterity: 10,
+  intelligence: 8,
+  weapon: &quot;Sword&quot;,
+};
+
+const mage: Character = {
+  strength: 5,
+  dexterity: 8,
+  intelligence: 15,
+  weapon: &quot;Staff&quot;,
+  magic: true,
+};
+
+const thief: Character = {
+  strength: 10,
+  dexterity: 15,
+  intelligence: 8,
+  weapon: &quot;Bow&quot;,
+};
+
+// This should be an error, a sword character cannot be magic!
+const paladin: Character = {
+  strength: 15,
+  dexterity: 10,
+  intelligence: 8,
+  weapon: &quot;Sword&quot;,
+  // @ts-expect-error
+  magic: true,
+};
+
+// This should be an error, a weapon is required on the Character type!
+// @ts-expect-error
+const civilian: Character = {
+  strength: 8,
+  dexterity: 8,
+  intelligence: 8,
+};
+
+export { fighter, mage, thief, paladin, civilian };
+
+</code></pre>
+ <div line-highlight="20,"></div>
 <p></details></p>
 <h2>Next Steps</h2>
 <p>Next up, we'll be using TypeScript to annotate <a href="./functions.html">functions</a>.</p>
