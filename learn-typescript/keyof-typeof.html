@@ -3,7 +3,7 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/typescript/11-keyof-typeof/keyof-typeof.md
+	source: src/typescript/10-keyof-typeof/keyof-typeof.md
 	@page learn-typescript/keyof-typeof
 ######################################################################## -->
 <html lang="en">
@@ -520,13 +520,31 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this section, you will:</p>
 <ul>
-<li>Learn use the <code>keyof</code> operator.</li>
-<li>Learn use the <code>typeof</code> operator.</li>
-<li>See how the to use these two operators both independently and in conjunction.</li>
+<li>Use the <code>keyof</code> operator.</li>
+<li>Use the <code>typeof</code> operator.</li>
+<li>Use these two operators together.</li>
 </ul>
-<h2>Objective 1: How to use keyof and typeof</h2>
-<h3>Keyof</h3>
-<p>The <code>keyof</code> operator takes an object type and produces a union of its keys. Take for example the following type:</p>
+<h2>Objective 1: Use <code>keyof</code> and <code>typeof</code></h2>
+<h3>Index signatures</h3>
+<p>Before we discuss <code>keyof</code> and <code>typeof</code>, we need to learn about index signatures.</p>
+<p>An index signature defines the structure of an object where you don’t know the property names beforehand, but you do know the type of the values those properties will hold.
+The index signature specifies the type for the keys (typically strings or numbers) and the type for their corresponding values.</p>
+<p>Suppose you want to create an object that stores the number of times a word appears in a document.
+You can use a string index signature since the word will be a <code>string</code>, and the count will be a <code>number</code>:</p>
+<pre><code class="language-typescript">interface WordCount {
+  [word: string]: number;
+}
+
+const myWordCounts: WordCount = {
+  &quot;hello&quot;: 2,
+  &quot;world&quot;: 1,
+  &quot;typescript&quot;: 3
+};
+</code></pre>
+<div line-highlight='2'></div>
+<p>In this example, <code>myWordCounts</code> is an object that can have any number of properties where each key is a <code>string</code> and each value is a <code>number</code>.</p>
+<h3>The <code>keyof</code> type operator</h3>
+<p>The <code>keyof</code> operator takes an object type and produces a union of its keys. For example, take the following type:</p>
 <pre><code class="language-ts">type Dino = {
   name: string;
   type: &quot;herbivore&quot; | &quot;carnivore&quot;;
@@ -542,7 +560,7 @@ covering CanJS core libraries.">
 type Keys = keyof ArraylikeDinos; // number
 </code></pre>
 <blockquote>
-<p><strong>Note</strong>: As you may remember from previously, TypeScript is a superset of JavaScript and has to conform to its rules. This can cause keyof to behave in a non-intuitive way in certain situations. Take the following:</p>
+<p><strong>Note</strong>: As you may remember from previously, TypeScript is a superset of JavaScript and has to conform to its rules. This can cause <code>keyof</code> to behave in a non-intuitive way in certain situations. Take the following:</p>
 <pre><code class="language-ts">type VisitedParkMapping = { [parkName: string]: boolean };
 type M = keyof VisitedParkMapping;
 </code></pre>
@@ -551,9 +569,11 @@ type M = keyof VisitedParkMapping;
 </code></pre>
 <p>Both <code>a[1]</code> and <code>a[&quot;1&quot;]</code> evaluate to the same thing (<code>&quot;world&quot;</code>).</p>
 </blockquote>
-<p>By itself, <code>keyof</code> may not seem all too interesting. However, it becomes powerful when used in tandem with other TypeScript features like Generics which we will see in the future.</p>
-<h3>Typeof</h3>
-<p><code>typeof</code> is a way to create a type from a value. It can be used on values and properties of those values. <code>typeof</code> is useful for creating type queries and capturing types that aren’t strictly defined.</p>
+<p>By itself, <code>keyof</code> may not seem all too interesting. However, it becomes powerful when used in tandem with other TypeScript features (like <a href="generics.html" title="Learn about what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript.">Generics</a>) which we will see in the future.</p>
+<h3>The <code>typeof</code> type operator</h3>
+<p>The <code>typeof</code> operator is a way to create a type from a value.
+It can be used on values and properties of those values.
+<code>typeof</code> is useful for creating type queries and capturing types that aren’t strictly defined.</p>
 <pre><code class="language-ts">const tRex = {
   name: &quot;tyrannosaurus rex&quot;,
   type: &quot;carnivore&quot;,
@@ -566,16 +586,22 @@ type Dinosaur = typeof tRex;
 </code></pre>
 <div line-highlight='7, 9'></div>
 <p>Thanks to the use of <code>typeof</code>, the variable <code>stegosaurus</code> and the type <code>Dinosaur</code> both now have the type:</p>
-<pre><code class="language-ts">`{name: string; type: string; weightInKilograms: number;}`
+<pre><code class="language-ts">{
+  name: string;
+  type: string;
+  weightInKilograms: number;
+}
 </code></pre>
-<p>There are some shortcomings to this approach since it's looking at a single value, and the type returned isn’t as specific as it could be. Take for example <code>type</code> and <code>weightInKilograms</code>, if we were to define the <code>Dinosaur</code> type ourselves we would want to restrict and expand those properties into something like this:</p>
+<p>There are some shortcomings to this approach since it’s looking at a single value, and the type returned isn’t as specific as it could be. For example, take <code>type</code> and <code>weightInKilograms</code>, if we were to define the <code>Dinosaur</code> type ourselves we would want to restrict and expand those properties into something like this:</p>
 <pre><code class="language-ts">interface Dinosaur {
   name: string;
   side: &quot;carnivore&quot; | &quot;herbivore&quot;;
   weightInKilograms: number | &quot;unknown&quot;;
 }
 </code></pre>
-<p>The <code>typeof</code> is often used in conjunction with <code>ReturnType</code>, a utility type (learn more about utility types: <a href="utility-types.html" title="Learn about the utility types provided by TypeScript.">Utility Types</a>) provided by TypeScript, as a way to type out the return of a function. Say, for example, we have a function defined somewhere and we need to give a type for a value that is returned from the function. We could achieve this using <code>ReturnType</code></p>
+<p>The <code>typeof</code> is often used together with <code>ReturnType</code>, a <a href="utility-types.html" title="Learn about the utility types provided by TypeScript.">utility type</a> provided by TypeScript, as a way to type out the return of a function.
+Say, for example, we have a function defined somewhere and we need to give a type for a value that is returned from the function.
+We could achieve this using <code>ReturnType</code>:</p>
 <pre><code class="language-ts">const createDinosaur = (): Carnivore | Herbivore =&gt; {
   /** implementation details */
   return dino;
@@ -588,7 +614,7 @@ const dinoFight = (dino1: Dinosaur, dino2: Dinosaur): Dinosaur =&gt; {
 };
 </code></pre>
 <blockquote>
-<p>Don’t worry about the angle brackets right now (<code>&lt;&gt;</code>) those are how <a href="generics.html" title="Learn about what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript.">Generics</a> are declared in TypeScript, we will go more in depth on those later. For now just think of it as us telling TypeScript that we want the return type of the thing in the brackets.</p>
+<p>Don’t worry about the angle brackets right now (<code>&lt;&gt;</code>). Those are how <a href="generics.html" title="Learn about what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript.">Generics</a> are declared in TypeScript, which we will go more in-depth on those later. For now, just think of it as us telling TypeScript that we want the return type of the thing in the brackets.</p>
 </blockquote>
 <p>You might be thinking using <code>typeof</code> for something like this is overkill, instead, you could just jump into the module find the types and import them. While that might be true for this simple example, with more complex and generic return types it becomes more of a hassle. Additionally, the return type of a function may not be defined, opting to leverage TypeScript’s type inference like below.</p>
 <pre><code class="language-ts">const getDinoFacts = () =&gt; {
@@ -606,9 +632,18 @@ type DinoFacts = ReturnType&lt;typeof getDinoFacts&gt;;
 </code></pre>
 <div line-highlight='12'></div>
 <p>For the example above, given the <code>typeof DinoFacts</code>, the <code>ReturnType</code> is now:</p>
-<pre><code class="language-ts">`{name: string, size: {weight: {amount: number; unit: string;}}, facts: string[]}`
+<pre><code class="language-ts">{
+  name: string,
+  size: {
+    weight: {
+      amount: number;
+      unit: string;
+    }
+  },
+  facts: string[]
+}
 </code></pre>
-<p>In TypeScript, you'll encounter two different usages of <code>typeof</code>—one from JavaScript and another specific to TypeScript. Understanding when and how each is used is crucial for effective type management and code clarity.</p>
+<p>In TypeScript, you’ll encounter two different usages of <code>typeof</code>—one from JavaScript and another specific to TypeScript. Understanding when and how each is used is crucial for effective type management and code clarity.</p>
 <p><strong>JavaScript</strong> <code>typeof</code>: This version of <code>typeof</code> is used within code expressions. When you apply <code>typeof</code> to a variable, TypeScript treats it as the JavaScript operator, returning a string that represents the variable’s primitive type.</p>
 <p>For example, <code>typeof &quot;hello&quot;</code> results in <code>&quot;string&quot;</code>, and <code>typeof 42</code> results in <code>&quot;number&quot;</code>. This is consistent with JavaScript’s behavior, where typeof is typically used to determine the type of a runtime value.</p>
 <p><strong>TypeScript</strong> <code>typeof</code>: When <code>typeof</code> is used in a type context—specifically, in type declarations or annotations—it behaves differently. Here, <code>typeof</code> is used to capture and use the type of a variable rather than its value.</p>
@@ -623,10 +658,10 @@ type DinoFacts = typeof getDinoFacts();
 </code></pre>
 <div line-highlight='6'></div>
 <p>So to review, the type <code>Dinosaur</code> will now have the <code>typeof dinosaur</code>: <code>{name: string; type: string;}</code>.</p>
-<p>The type <code>DinoName</code> will have the <code>typeof dinosaur.name</code>. The <code>name</code> property of <code>dinosaur</code> has the type of <code>string</code>, thus <code>DinoName</code>'s type is <code>string</code>.</p>
+<p>The type <code>DinoName</code> will have the <code>typeof dinosaur.name</code>. The <code>name</code> property of <code>dinosaur</code> has the type of <code>string</code>, thus <code>DinoName</code>’s type is <code>string</code>.</p>
 <p>So what type will <code>DinoFacts</code> have? As mentioned before, <code>typeof</code> cannot be called on everything; the <code>getDinoFacts()</code> function is neither an identifier or property. As a result we get an error: <code>ERROR: Expression expected</code>.</p>
 <h3>Setup 1</h3>
-<p>✏️ Create <strong>keyof-typeof-dinofacts.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/keyof-typeof/dinofacts.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export const dinosaurFacts = {
   &quot;t-rex&quot;: {
     latinName: &quot;Tyrannosaurus rex&quot;,
@@ -662,11 +697,10 @@ export const getDinoFact = (
 };
 
 </code></pre>
-<div class='codepen'></div>
 <h3>Verify 1</h3>
-<p>✏️ Create <strong>keyof-typeof-dinofacts.test.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">import { strict as assert } from &quot;assert&quot;;
-import { getDinoFact, dinosaurFacts } from &quot;./keyof-typeof-dinofacts&quot;;
+<p>✏️ Create <strong>src/keyof-typeof/dinofacts.test.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import assert from 'node:assert/strict';
+import { getDinoFact, dinosaurFacts } from &quot;./dinofacts&quot;;
 
 describe(&quot;Keyof Typeof Exercise 1&quot;, () =&gt; {
   it(&quot;gets dino facts&quot;, () =&gt; {
@@ -683,24 +717,19 @@ describe(&quot;Keyof Typeof Exercise 1&quot;, () =&gt; {
 });
 
 </code></pre>
-<div class='codepen'></div>
-<pre><code class="language-shell">npm run test
-</code></pre>
 <h3>Exercise 1</h3>
-<p>Update the <code>DinosaurFactObject</code> and <code>Dinosaur</code> type to gain type safety on the <code>getDinoFact</code> function. The function should, given a dinosaur's name (<code>velociraptor</code> or <code>t-rex</code>) and the <code>dinosaurFacts</code> object return the correct facts about the dinosaur.</p>
+<p>Update the <code>DinosaurFactObject</code> and <code>Dinosaur</code> type to gain type safety on the <code>getDinoFact</code> function. The function should, given a dinosaur’s name (<code>velociraptor</code> or <code>t-rex</code>) and the <code>dinosaurFacts</code> object, return the correct facts about the dinosaur.</p>
 <ul>
-<li>Replace <code>DinosaurFactObject</code>'s <code>any</code> with a type that represents the <code>dinosaurFacts</code></li>
-<li>Replace <code>Dinosaur</code>'s <code>any</code> with a type that allows for any of the keys in the dinosaur fact object</li>
+<li>Replace <code>DinosaurFactObject</code>’s <code>any</code> with a type that represents the <code>dinosaurFacts</code>.</li>
+<li>Replace <code>Dinosaur</code>’s <code>any</code> with a type that allows for any of the keys in the dinosaur fact object.</li>
 <li>The <code>getDinofact</code> should, given a <code>facts</code> object and <code>dino</code> name, return the facts for that creature.</li>
 </ul>
-<blockquote>
-<p><strong>NOTE:</strong> Don’t worry about the <code>DinosaurFactObject[Dinosaur]</code> type in the return of the function signature. That’s called an index-signature which we will get into later on.</p>
-</blockquote>
 <h3>Solution 1</h3>
+<p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update  <strong>keyof-typeof-dinofacts.ts</strong> to look like:</p>
-<pre><code class="language-ts">const dinosaurFacts = {
+<p>✏️ Update <strong>src/keyof-typeof/dinofacts.ts</strong> to be:</p>
+<pre><code class="language-ts">export const dinosaurFacts = {
   &quot;t-rex&quot;: {
     latinName: &quot;Tyrannosaurus rex&quot;,
     nickName: &quot;T-rex&quot;,
@@ -735,12 +764,13 @@ export const getDinoFact = (
 };
 
 </code></pre>
- <div line-highlight="1,24,26,"></div>
-<div line-highlight='6-27,32,37'></div>
+ <div line-highlight="24,26,only"></div>
 <p></details></p>
-<h2>Objective 2: Use the <code>keyof</code> and <code>typeof</code> operators together</h2>
-<h3>Keyof and Typeof</h3>
-<p>The <code>keyof</code>, <code>typeof</code> operators independently may not seem interesting, but their utility lies when used in conjunction with each other. For example, we may want the <code>keyof</code> a value, such as the <code>carnivore</code> object below. The problem is the <code>keyof</code> operator only works on types; thankfully, the <code>typeof</code> operator is to grant us the type of <code>carnivore</code>.</p>
+<h2>Objective 2: Create a union type of an object’s keys</h2>
+<h3>Using the <code>keyof</code> and <code>typeof</code> operators together</h3>
+<p>The <code>keyof</code> and <code>typeof</code> operators independently may not seem interesting, but their utility lies when used together with each other.
+For example, we may want the <code>keyof</code> a value, such as the <code>carnivore</code> object below.
+The problem is the <code>keyof</code> operator only works on types; thankfully, the <code>typeof</code> operator is to grant us the type of <code>carnivore</code>.</p>
 <pre><code class="language-ts">const carnivore = {
   name: &quot;velociraptor&quot;,
   type: &quot;carnivore&quot;,
@@ -756,8 +786,12 @@ carnivoreKey = &quot;Some value&quot;;
 carnivoreKey = &quot;type&quot;;
 </code></pre>
 <div line-highlight='12'></div>
-<p>Note that in the above example assigning <code>&quot;Some value&quot;</code> to <code>carnivoreKey</code> will generate an error: <code>ERROR: Type '&quot;Some value&quot;' is not assignable to type '&quot;name&quot; | &quot;type&quot; | &quot;weightInKilograms&quot;'</code></p>
-<p>A strange, but common occurrence of this is an (enum <a href="types.html#enum" title="Learn how to declare types in TypeScript.">Types</a>). Enums in TypeScript are types before the code is compiled and an object during execution. If we run into a situation where we want to get the keys of an enum, the only way to do so is to use <code>keyof</code> and <code>typeof</code> together:</p>
+<p>Note that in the above example assigning <code>&quot;Some value&quot;</code> to <code>carnivoreKey</code> will generate an error:</p>
+<pre><code>ERROR: Type '&quot;Some value&quot;' is not assignable to type '&quot;name&quot; | &quot;type&quot; | &quot;weightInKilograms&quot;'
+</code></pre>
+<p>A strange but common occurrence of this is an <a href="types.html#enum" title="Learn how to declare types in TypeScript.">enum</a>.
+Enums in TypeScript are types before the code is compiled but then objects during execution.
+If we run into a situation where we want to get the keys of an enum, the only way to do so is to use <code>keyof</code> and <code>typeof</code> together:</p>
 <pre><code class="language-ts">enum DinosaurColors {
   blue = &quot;0x0000FF&quot;,
   green = &quot;0x00FF00&quot;,
@@ -770,11 +804,12 @@ carnivoreKey = &quot;type&quot;;
 
 type DinosaurColorsKeys = keyof typeof DinosaurColors; 
 </code></pre>
-<p>in above, used in conjunction, <code>keyof</code> and <code>typeof</code> give <code>DinosaurColorKeys</code> the typing:
+<div line-highlight='11'></div>
+<p>In the code above, <code>keyof</code> and <code>typeof</code> used together give <code>DinosaurColorKeys</code> the typing:
 <code>“blue” | “green” | “red” | &quot;purple | &quot;yellow&quot; | &quot;white&quot; | &quot;black&quot;</code></p>
 <p>In this case, <code>keyof typeof</code> definitely saves a lot of effort.</p>
 <h3>Setup 2</h3>
-<p>✏️ Create <strong>keyof-typeof-colorshex.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/keyof-typeof/colorshex.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export enum ColorsToHex {
   red = &quot;0xFF0000&quot;,
   green = &quot;0x00FF00&quot;,
@@ -788,12 +823,11 @@ export const getColorValue = (color: ColorsAsEasyReadName): any =&gt; {
 };
 
 </code></pre>
-<div class='codepen'></div>
 <h3>Verify 2</h3>
-<p>✏️ Create <strong>keyof-typeof-colorshex.test.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">import { strict as assert } from &quot;assert&quot;;
+<p>✏️ Create <strong>src/keyof-typeof/colorshex.test.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import assert from 'node:assert/strict';
 
-import { getColorValue, ColorsToHex } from &quot;./keyof-typeof-colorshex&quot;;
+import { getColorValue, ColorsToHex } from &quot;./colorshex&quot;;
 
 describe(&quot;Keyof Typeof Exercise 2&quot;, () =&gt; {
   it(&quot;gets dino colors&quot;, () =&gt; {
@@ -804,20 +838,18 @@ describe(&quot;Keyof Typeof Exercise 2&quot;, () =&gt; {
 });
 
 </code></pre>
-<div class='codepen'></div>
-<pre><code class="language-shell">npm run test
-</code></pre>
 <h3>Exercise 2</h3>
 <p>Update the <code>ColorsAsEasyReadName</code> type so that it represents the keys of the enum (eg <code>'red'</code>, <code>'blue'</code>, and <code>'green'</code>)and then add all the necessary types to the <code>getColorValue</code> function signature.</p>
 <ul>
-<li>The <code>getColorValue</code> function should take one of color names, or <code>ColorsAsEasyReadName</code> and return the hex string equivalent</li>
-<li>Replace <code>ColorAsEasyReadName</code>'s <code>any</code> with a type so that it represents the keys of the enum (eg 'red', 'blue', and 'green')</li>
-<li>Fix the TypeScript errors by updating <code>getColorValue</code>'s <code>ReturnType</code>. Replace the <code>any</code> with the proper type.</li>
+<li>The <code>getColorValue</code> function should take one of color names, or <code>ColorsAsEasyReadName</code> and return the hex string equivalent.</li>
+<li>Replace <code>ColorAsEasyReadName</code>’s <code>any</code> with a type so that it represents the keys of the enum (eg 'red', 'blue', and 'green').</li>
+<li>Fix the TypeScript errors by updating <code>getColorValue</code>’s <code>ReturnType</code>. Replace the <code>any</code> with the proper type.</li>
 </ul>
 <h3>Solution 2</h3>
+<p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update  <strong>keyof-typeof-colorshex.ts</strong> to look like:</p>
+<p>✏️ Update <strong>src/keyof-typeof/colorshex.ts</strong> to be:</p>
 <pre><code class="language-ts">export enum ColorsToHex {
   red = &quot;0xFF0000&quot;,
   green = &quot;0x00FF00&quot;,
@@ -831,11 +863,10 @@ export const getColorValue = (color: ColorsAsEasyReadName): string =&gt; {
 };
 
 </code></pre>
- <div line-highlight="7,9,"></div>
-<div line-highlight='6-27,32,37'></div>
+ <div line-highlight="7,9,only"></div>
 <p></details></p>
-<h2>Next Steps</h2>
-<p>The next section will cover <a href="./generics.html">generics</a>, which are useful both maintainable and flexible TypeScript code.</p>
+<h2>Next steps</h2>
+<p>The next section will cover <a href="./generics.html">generics</a>, which are useful for writing both maintainable and flexible TypeScript code.</p>
 
 </section>
 
@@ -874,7 +905,7 @@ export const getColorValue = (color: ColorsAsEasyReadName): string =&gt; {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/typescript/11-keyof-typeof/keyof-typeof.md"},"description":"Learn how to use `keyof` and `typeof` to create new types from types and objects. \n","name":"learn-typescript/keyof-typeof","title":"Keyof and Typeof","type":"page","parent":"learn-typescript","order":11,"outline":{"depth":3},"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/typescript/10-keyof-typeof/keyof-typeof.md"},"description":"Learn how to use `keyof` and `typeof` to create new types from types and objects. \n","name":"learn-typescript/keyof-typeof","title":"Keyof and Typeof","type":"page","parent":"learn-typescript","order":11,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
