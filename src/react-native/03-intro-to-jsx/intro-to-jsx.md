@@ -30,7 +30,7 @@ React has a procedural `React.createElement` syntax, but most applications do no
 
 #### HTML differences
 
-JSX looks a lot like HTML, and that's intentional. Browsers understand HTML, JavaScript, and CSS. Eventually, anything we build has to be converted into one of those 3 syntaxes. Since our UI code will eventually end up as HTML, using JSX means it will be easier to understand and debug the end result in the browser.
+JSX looks a lot like HTML, and that’s intentional. Browsers understand HTML, JavaScript, and CSS. Eventually, anything we build has to be converted into one of those 3 syntaxes. Since our UI code will eventually end up as HTML, using JSX means it will be easier to understand and debug the end result in the browser.
 
 However, JSX is converted into JavaScript and therefore is not an exact mirror of HTML. Some of the most noticeable differences include:
 
@@ -51,7 +51,7 @@ __Reserved words are renamed.__ The HTML attributes "class" and "for" are reserv
 <input className="input" id="name-input" />
 ```
 
-As we go through this training, you'll learn additional differences.
+As we go through this training, you’ll learn additional differences.
 
 ## Exercise 1
 
@@ -64,7 +64,7 @@ As we go through this training, you'll learn additional differences.
 
 ### Setup
 
-We've created an assets package with images and CSS you'll need to build the application. Install the `place-my-order-assets` package.
+We’ve created an assets package with images and CSS you’ll need to build the application. Install the `place-my-order-assets` package.
 
 ✏️ Run:
 
@@ -80,7 +80,7 @@ npm install place-my-order-assets
 
 ### Verify
 
-You should have already installed Vitest in the previous section. If you haven't done so already, create a test file at `src/App.test.tsx` and copy the following tests into your test file.
+You should have already installed Vitest in the previous section. If you haven’t done so already, create a test file at `src/App.test.tsx` and copy the following tests into your test file.
 
 ✏️ Copy: 
 
@@ -91,7 +91,7 @@ You should have already installed Vitest in the previous section. If you haven't
 npm run test
 ```
 
-Note that we won't be able to write an automated test that verifies the styles and images appear as desired, so you will have to test those manually.
+Note that we won’t be able to write an automated test that verifies the styles and images appear as desired, so you will have to test those manually.
 
 ### Exercise
 

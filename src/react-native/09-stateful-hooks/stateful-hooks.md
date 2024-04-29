@@ -1,7 +1,7 @@
 @page learn-react-native/stateful-hooks Managing State in React
 @parent learn-react-native 9
 
-@description Work with React's useState Hook to manage a component's state.
+@description Work with React’s useState Hook to manage a component’s state.
 
 @body
 
@@ -84,7 +84,7 @@ These tests will pass when the solution has been implemented properly.
 ## Objective 2: Manage component state using Hooks
 
 When users make choices that need to be maintained or that affect other parts of
-the UI, we need to use `state`. That's a pretty abstract concept so let's look
+the UI, we need to use `state`. That’s a pretty abstract concept so let’s look
 at a concrete example from the Place My Order Restaurants tab.
 
 There are two dropdown lists — "State" which has a list of U.S. states, and
@@ -117,7 +117,7 @@ setter function that is used to update the state value. In the following code,
 the value and setter are being used to update changes in a select component.
 
 
-Every time a `useState`'s setter is invoked with a new value, React compares the
+Every time a `useState`’s setter is invoked with a new value, React compares the
 new value with the current value. If the values are the same, nothing happens;
 **if the values are different, React will rerender the component** so the new
 state value can be used to update the component. In the example above, when the
@@ -128,7 +128,7 @@ is updated with the current value.
 
 `ChangeEvent` is a type provided by React’s TypeScript definitions. It’s used to
 type the `event` object that you receive when an event occurs, like a change in
-a form field. In TypeScript, when you're working with event handlers in React,
+a form field. In TypeScript, when you’re working with event handlers in React,
 you often need to specify the type of the event object to get the full benefits
 of TypeScript’s type checking.
 

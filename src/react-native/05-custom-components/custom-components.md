@@ -25,7 +25,7 @@ function App() {
 
 In React, we call this a component. When you create a component in React, you are creating building blocks that can be composed, reordered, and reused much like HTML elements.
 
-React makes it relatively straightforward to create new components. Let's learn to build our own.
+React makes it relatively straightforward to create new components. Let’s learn to build our own.
 
 ## Objective 1: Create a React component
 
@@ -33,7 +33,7 @@ React makes it relatively straightforward to create new components. Let's learn 
 
 #### Component structure
 
-Let's start by creating a component from a commonly reused element, the button.
+Let’s start by creating a component from a commonly reused element, the button.
 
 First, our component names must start with a capital letter, so we can call this `Button`. While its not required, the common practice is to use PascalCase when naming components so longer component names will look like `IconButton`.
 
@@ -69,7 +69,7 @@ function App() {
 
 The JSX syntax allows function components to look like HTML, but underneath they are still functions. The return of each component is unique and you can use the same component multiple times.
 
-Components are just fancy functions. While you shouldn't do the following, you could.
+Components are just fancy functions. While you shouldn’t do the following, you could.
 
 ```jsx
 function App() {
@@ -83,11 +83,11 @@ function App() {
 }
 ```
 
-Now you're ready to create your first component.
+Now you’re ready to create your first component.
 
 ### Setup
 
-It's best practice to create a new folder that will contain all of the related files for that component, including test and CSS files.
+It’s best practice to create a new folder that will contain all of the related files for that component, including test and CSS files.
 
 ✏️ Create **src/pages** (folder)
 
@@ -110,7 +110,7 @@ It's best practice to create a new folder that will contain all of the related f
 
 ### Exercise
 
-Our `App` component can only show our home page content. Eventually, we'll want to show other page content. Prepare now by moving all of the JSX in `App` to a new component called `Home`.
+Our `App` component can only show our home page content. Eventually, we’ll want to show other page content. Prepare now by moving all of the JSX in `App` to a new component called `Home`.
 
 Once the `Home` component is complete, add `<Home />` to the JSX response of `App`.
 
@@ -127,4 +127,4 @@ Once the `Home` component is complete, add `<Home />` to the JSX response of `Ap
 
 ## Next steps
 
-Next we'll learn to pass arguments to our components through props.
+Next we’ll learn to pass arguments to our components through props.

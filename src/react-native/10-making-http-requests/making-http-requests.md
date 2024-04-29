@@ -203,7 +203,7 @@ Putting stateful logic into a custom Hook has numerous benefits:
 You might find yourself repeating the same logic in different components—for
 example, fetching data from an API, handling form input, or managing a subscription.
 By refactoring this logic into a custom Hook, you can easily reuse this functionality
-across multiple components, keeping your code DRY (Don't Repeat Yourself).
+across multiple components, keeping your code DRY (Don’t Repeat Yourself).
 
 **Separation of concerns:** Custom Hooks allow you to separate complex logic from the
 component logic. This makes your main component code cleaner and more focused on
