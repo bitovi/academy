@@ -222,7 +222,7 @@ type StringOrNumber = string | number;
 ```
 @highlight 1
 
-The refinement aspects of conditional types become even stronger when used in conjunction with other TypeScript features we’ve seen so far. Let’s do a little more tweaking to our types from the `createBattle` example above and define a function called `emitBattleStart` that can take a battle name and a payload that corresponds to the properties in the named typed.
+The refinement aspects of conditional types become even stronger when used together with other TypeScript features we’ve seen so far. Let’s do a little more tweaking to our types from the `createBattle` example above and define a function called `emitBattleStart` that can take a battle name and a payload that corresponds to the properties in the named typed.
 
 ```ts
 emitBattleStart("wild-pokemon-battle", { challengingPokemon: "onix" });

@@ -37,11 +37,11 @@ scripts
 └── codesandbox-link-helpers.js
 ```
 
-It is also possible to override the source using `--source`. The `--source` option accepts globs for pattern matching. It’s default is set to look for all the exercise files within the advanced typescript course.
+It is also possible to override the source using `--source`. The `--source` option accepts globs for pattern matching. It’s default is set to look for all the exercise files within the advanced TypeScript course.
 
 > #### **Heads Up:**
 >
-> Some parts of this script cater to the `/advanced-typescript` section of this repo. This means if a different soruce is passed in, it will work, but it might be a bit different. Take for example the following:
+> Some parts of this script cater to the `/advanced-typescript` section of this repo. This means if a different soruce is passed in, it will work, but it might be a bit different. For example, take the following:
 >
 > ```js
 > const advancedTypeScriptSectionInfo = filePath.split(

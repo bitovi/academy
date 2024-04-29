@@ -41,7 +41,7 @@ An index signature consists of two parts:
 
 - Defines the type of the property
 
-One thing to be aware of with defining types using index signature is the value may or may **not** be there, but typescript makes it seem as though it’s always present.
+One thing to be aware of with defining types using index signature is the value may or may **not** be there, but TypeScript makes it seem as though it’s always present.
 
 ```ts
 const bag: Bag = {
@@ -401,7 +401,7 @@ type TMItem = {
 type Items = PokeballItem | BerryItem | TMItem;
 ```
 
-We’d like to make a bag type with properties on it matching the name of the item property on each of the `Items` and having that be a function to return the amount (so `bag.berries` is a function with this shape `() => number`). To do this we must do two things -- constrain the generic and remap via `as`.
+We’d like to make a bag type with properties on it matching the name of the item property on each of the `Items` and having that be a function to return the amount (so `bag.berries` is a function with this shape `() => number`). To do this we must do two things — constrain the generic and remap via `as`.
 
 ```ts
 type MakeBag<T extends { item: string; amount: number }> = {
