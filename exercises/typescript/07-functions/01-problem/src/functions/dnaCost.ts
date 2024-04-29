@@ -5,4 +5,4 @@ export function dnaCost(baseCost, sequence) {
 let raptorCost = dnaCost(5000,"CGGCA");
 
 console.log(raptorCost);
-//Logs 5005
+// Logs 5005

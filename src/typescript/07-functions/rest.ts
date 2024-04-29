@@ -3,5 +3,5 @@ function buildDinosaur(breed: string, ...dna: string[]): void {
 }
 
 buildDinosaur('Indominous Rex', 'Velociraptor', 'Tyrannosaurus rex', 'Therizinosaurus', 'cuttlefish');
-//logs "The Indominous Rex has dna from Velociraptor,
+// Logs "The Indominous Rex has dna from Velociraptor,
 //      Tyrannosaurus rex, Therizinosaurus, cuttlefish"
