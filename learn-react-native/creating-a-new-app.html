@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/react-native/03-creating-a-new-app/creating-a-new-app.md
+	@page learn-react-native/creating-a-new-app
+######################################################################## -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
+  <meta name="description" content="Learn how to use JSX to define your UI in React. 
+">
+  
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
+  <title>Bitovi Academy - Creating a New Application</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
+  </div>
+
+  <div class="content">
+	
+		<div class="sidebar-left">
+  
+    
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-advanced-javascript.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-dom-jquery.html"
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-to-debug-javascript.html"
+							title="This course covers the basics of JavaScript debugging.">
+							Debug JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-typescript.html"
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
+							Learn TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../learn-react-native.html"
+							title="TODO">
+							Learn React Native
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="intro-to-react-native.html"
+							title="Discover why React Native is a great choice for modern mobile application development, and maybe more.">
+							Introduction to React Native
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="setting-up-your-environment.html"
+							title="Learn how to set up a React Native environment on your computer.">
+							Setting Up Your Environment
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="creating-a-new-app.html"
+							title="Learn how to use JSX to define your UI in React.">
+							Creating a New Application
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="intro-to-jsx.html"
+							title="TODO">
+							Introduction to JSX
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="intro-to-testing.html"
+							title="TODO">
+							Introduction to Testing
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="building-custom-components.html"
+							title="TODO">
+							Building Custom Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="debugging-devtools.html"
+							title="TODO">
+							Debugging and DevTools
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="styling.html"
+							title="TODO">
+							Styling in React Native
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="react-context.html"
+							title="TODO">
+							Using React Context
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="managing-state.html"
+							title="TODO">
+							Managing State with useState
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="navigation.html"
+							title="TODO">
+							Navigation in React Native
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="storing-state.html"
+							title="TODO">
+							Storing State in Navigation Parameters
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="making-http-requests.html"
+							title="TODO">
+							Making HTTP Requests
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="user-inputs.html"
+							title="TODO">
+							Handling User Inputs
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="using-asyncstorage.html"
+							title="TODO">
+							Using AsyncStorage [Session Data]
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="security-and-auth.html"
+							title="TODO">
+							Security and Authentication
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="offline-support.html"
+							title="TODO">
+							Adding Offline Support
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="google-maps.html"
+							title="TODO">
+							Integrating Maps
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="performance-optimization.html"
+							title="TODO">
+							Performance and Optimization
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="building.html"
+							title="TODO">
+							Building React Native Apps
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="publishing-and-updating.html"
+							title="TODO">
+							Publishing and Updating
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-web-components.html"
+							title="">
+							Learn Web Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-agile-program-management-with-jira.html"
+							title="Learn how to build, maintain, and report on accurate multi-team plans with Jira.">
+							Agile Program Management With Jira
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-rxjs.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							Learn RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-technology-consulting.html"
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
+							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-react.html"
+							title="Learn React by building the feature-rich Place My Order application in this beginner React guide. This hands-on course will introduce you to fundamental React concepts! By the end of this course, you will have a strong understanding of JSX, function components, styling, state management, Hooks, data fetching, routing, and testing.">
+							Learn React
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-ngrx.html"
+							title="Learn how to manage state in an Angular application using NgRx.">
+							Learn NgRx
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-graphql.html"
+							title="Build a backend application for property rentals using Node JS, GraphQL and Apollo Server.         Learn about using ORMs like Mongoose and Prisma with a NoSQL Mongo database!
+Write testcases testing created endpoints.">
+							Learn Graphql
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a Node.js app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-angular.html"
+							title="Learn how to build a moderately complex application with Angular.">
+							Learn Angular
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../advanced-typescript.html"
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
+							Advanced TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+  
+  <p class="border">
+      <a href="..#courses">View More Courses</a>
+      <a class='bit-academy-fullscreen' title='fullscreen' href="javascript://">[ ]</a>
+  </p>
+</div>
+
+	
+	<article class="main">
+    <div class="main-content">
+  		
+  			<section class="title">
+	<h1>Creating a New Application <code>page</code></h1>
+</section>
+
+  		
+
+  		
+  			
+  				<section class="description">
+    <p>Learn how to use JSX to define your UI in React.</p>
+
+</section>
+
+  			
+  		
+
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
+    <h2>Overview</h2>
+<p>In this section, we will:</p>
+<ul>
+<li>Learn to use JSX to define our UI</li>
+<li>Install project assets</li>
+<li>Create our first component</li>
+<li>Add variables to JSX</li>
+<li>Work with loops in JSX</li>
+</ul>
+<h2>Objective 1: Creating a UI with JSX</h2>
+<h3>Key concepts</h3>
+<h4>What is JSX?</h4>
+<p>JSX is used by React developers to define the user interface.</p>
+<p>JSX is a special syntax designed to look almost identical to HTML. Developers define the UI using JSX. React transforms that JSX into the HTML the browser displays. JSX can be written alongside standard JavaScript, which makes for a powerful programming environment.</p>
+<p>React has a procedural <code>React.createElement</code> syntax, but most applications do not use it directly. Instead, views are defined and maintained in JSX and will automatically be transpiled into the equivalent <code>React.createElement</code> calls at build-time.</p>
+<h4>HTML differences</h4>
+<p>JSX looks a lot like HTML, and that's intentional. Browsers understand HTML, JavaScript, and CSS. Eventually, anything we build has to be converted into one of those 3 syntaxes. Since our UI code will eventually end up as HTML, using JSX means it will be easier to understand and debug the end result in the browser.</p>
+<p>However, JSX is converted into JavaScript and therefore is not an exact mirror of HTML. Some of the most noticeable differences include:</p>
+<p><strong>Say &quot;props&quot; instead of &quot;attributes.&quot;</strong> This nomenclature difference is because they are technically different, though visually they appear the same. When the following image tag appears in HTML, the &quot;src&quot; is called an <em>attribute</em>. In JSX, the &quot;src&quot; is a <em>prop</em> or <em>property</em>.</p>
+<pre><code class="language-jsx">&lt;img src=&quot;image.png&quot;&gt;
+</code></pre>
+<p><strong>Tags must close</strong></p>
+<p>In HTML, you <em>should</em> close your tags, but its not mandatory. JSX requires that tags close. This means that an opening tag <code>&lt;div&gt;</code> should have a corresponding closing tag <code>&lt;/div&gt;</code>. Some elements use self-closing tags using an ending slash like <code>&lt;img /&gt;</code> and <code>&lt;br /&gt;</code>.</p>
+<p><strong>Reserved words are renamed.</strong> The HTML attributes &quot;class&quot; and &quot;for&quot; are reserved words in JavaScript. These had to be renamed to &quot;className&quot; and &quot;htmlFor&quot; respectively.</p>
+<pre><code class="language-jsx">&lt;label className=&quot;label&quot; htmlFor=&quot;name-input&quot;&gt;Name:&lt;/input&gt;
+&lt;input className=&quot;input&quot; id=&quot;name-input&quot; /&gt;
+</code></pre>
+<p>As we go through this training, you'll learn additional differences.</p>
+<h2>Exercise 1</h2>
+<h3>Acceptance criteria</h3>
+<ul>
+<li>Create the homepage using JSX</li>
+<li>Match the design below</li>
+</ul>
+<p><img src="../static/img/react-vite/03-intro-to-jsx/mock-homepage.jpg" alt="mockup" style="border: solid 1px black; max-width: 640px;"/></p>
+<h3>Setup</h3>
+<p>We've created an assets package with images and CSS you'll need to build the application. Install the <code>place-my-order-assets</code> package.</p>
+<p>✏️ Run:</p>
+<pre><code class="language-shell">npm install place-my-order-assets
+</code></pre>
+<p>✏️ Remove the contents of the <strong>src/App.css</strong> file so it’s completely blank.</p>
+<p>✏️ Update <strong>src/index.css</strong> to be:</p>
+<h3>Verify</h3>
+<p>You should have already installed Vitest in the previous section. If you haven't done so already, create a test file at <code>src/App.test.tsx</code> and copy the following tests into your test file.</p>
+<p>✏️ Copy:</p>
+<p>✏️ Run:</p>
+<pre><code class="language-shell">npm run test
+</code></pre>
+<p>Note that we won't be able to write an automated test that verifies the styles and images appear as desired, so you will have to test those manually.</p>
+<h3>Exercise</h3>
+<p>Take the below HTML and convert it to JSX:</p>
+<h3>Solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/App.tsx</strong></p>
+<p>TODO:</p>
+<p></details></p>
+<h2>Objective 2: Loops in JSX</h2>
+<h3>Key concepts</h3>
+<ul>
+<li>JSX Interpolation</li>
+<li>Loops in JSX</li>
+</ul>
+<h2>JSX Interpolation</h2>
+<p>JSX is dynamic. You can insert values from variables and objects into your JSX as we did with the image URL in the previous section.</p>
+<pre><code class="language-jsx">const name = 'Bitovi';
+
+&lt;div className=&quot;button primary&quot;&gt;Welcome to {name}!&lt;/div&gt;;
+</code></pre>
+<p>In the code above, use the <code>{name}</code> syntax to tell JSX that to render the value stored in the <code>name</code> variable (i.e. <code>&quot;Bitovi&quot;</code>) into our view.</p>
+<p>You can take this a step further by interpolating multiple values, and using JavaScript functions to transform data on the fly. Anything that goes inside <code>{}</code> is executed as normal JavaScript. These are the same rules as the brackets on a prop: any JavaScript expression is valid inside the curly brackets.</p>
+<pre><code class="language-jsx">const person = {
+  name: 'mike',
+  profession: 'programmer',
+};
+
+&lt;div className=&quot;button primary&quot;&gt;
+  &lt;h1&gt;Hi I'm {person.name.toUpperCase()}!&lt;/h1&gt;
+  &lt;p&gt;I'm a {person.profession} living in Philadelphia&lt;/p&gt;
+&lt;/div&gt;;
+</code></pre>
+<h3>JSX is JavaScript</h3>
+<p>Remember, JSX is simply an alternative syntax for normal JavaScript—it is not magic. This means that you can use JSX as a normal value.</p>
+<pre><code class="language-jsx">const header = &lt;h1&gt;Hello World&lt;/h1&gt;;
+const body = &lt;p&gt;My name is {'Mike'}&lt;/p&gt;;
+
+function MyPage() {
+  return (
+    &lt;div&gt;
+      {header}
+      {body}
+    &lt;/div&gt;
+  );
+}
+
+ReactDOM.render(&lt;MyPage /&gt;, document.getElementById('root'));
+</code></pre>
+<div class='codepen' data-codepen='react'></div>
+<p>If rendered, <code>page</code> will output:</p>
+<pre><code class="language-html">&lt;div&gt;
+  &lt;h1&gt;Hello World&lt;/h1&gt;
+  &lt;p&gt;My name is Mike&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<p>If this surprises you, remember that underneath the syntactic sugar, JSX is nothing more than <code>React.createElement</code> calls:</p>
+<pre><code class="language-js">const header = React.createElement('h1', null, 'Hello World');
+const body = React.createElement('p', null, `Hello ${'Mike'}`);
+
+const page = React.createElement('div', null, [header, body]);
+</code></pre>
+<h3>Conditions and loops</h3>
+<p>Only expressions which return a value may be interpolated. This includes static values, variables and calls to functions. It does not include control-flow statements such as <code>if</code>, <code>case</code>, <code>for</code>, <code>while</code>. These can either be abstracted behind a function, which is then called within the JSX or be re-written in a JSX-friendly way.</p>
+<p>To put it simply: only things that you could pass into a function can be used inside the brackets.</p>
+<h4>Using Conditions</h4>
+<p>Conditions can be re-written using the ternary operator.</p>
+<pre><code class="language-jsx">// This does not work
+&lt;div&gt;
+  {
+    if (a === b) { // Control flow does not belong in JSX
+      &quot;a and b are equal&quot;
+    } else {
+      &quot;a and b are different&quot;
+    }
+  }
+&lt;/div&gt;
+
+// But the same can be accomplished with ternaries
+&lt;div&gt;
+  {a === b // Ternaries are expressions. They return a value.
+    ? 'a and b are equal'
+    : 'a and b are different'}
+&lt;/div&gt;
+</code></pre>
+<p>If ternaries seem excessive for any particular case, you can write all your logic in a separate function and invoke it from within JSX.</p>
+<pre><code class="language-jsx">&lt;div&gt;{outputResult()}&lt;/div&gt;
+</code></pre>
+<h4>Using Loops</h4>
+<pre><code class="language-jsx">// This does not work
+&lt;div&gt;
+  {
+    for (let n of [1, 2, 3, 4]) { // Control flow does not belong in JSX
+      &lt;span&gt;n&lt;/span&gt;
+    }
+  }
+&lt;/div&gt;
+</code></pre>
+<p>If you want to iterate within JSX, use methods such as <code>Array.map</code>, <code>Array.filter</code> and <code>Array.reduce</code>:</p>
+<p><em>✏️ Note: Due to how React stores elements in memory, list items require a stable <code>key</code> to identify them in the Virtual DOM. You can learn more in the <a href="https://react.dev/learn/rendering-lists#why-does-react-need-keys">React docs</a></em></p>
+<pre><code class="language-jsx">// Mapping values to JSX elements
+&lt;div&gt;
+  {[1, 2, 3, 4].map((n, index) =&gt; (
+    &lt;span key={index}&gt;{n}&lt;/span&gt;
+  ))}
+&lt;/div&gt;
+</code></pre>
+<p>Mapping over the array above will render as the following HTML.</p>
+<pre><code class="language-html">&lt;div&gt;
+  &lt;span&gt;1&lt;/span&gt;
+  &lt;span&gt;2&lt;/span&gt;
+  &lt;span&gt;3&lt;/span&gt;
+  &lt;span&gt;4&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<h2>Exercise 2</h2>
+<h3>Acceptance Criteria</h3>
+<ul>
+<li>Set the H1 tag to &quot;Ordering food has never been easier&quot;</li>
+<li>Display a list of restaurants: 'Cheese Curd City' &amp; 'Poutine Palace'</li>
+</ul>
+<h3>Requirements</h3>
+<ul>
+<li>Use the proper <code>ul</code> and <code>li</code> tags to create the list</li>
+<li>List items should have a unique key</li>
+</ul>
+<h3>Setup</h3>
+<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<h3>Verify</h3>
+<p>Add these tests into your application to verify you have met the acceptance criteria. Note how React Testing Library allows our tests to specify exact elements.</p>
+<p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
+<h3>Solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/App.tsx</strong></p>
+<p></details></p>
+<h2>Next steps</h2>
+<p>Next we will learn about building out a React application with components.</p>
+
+</section>
+
+  			
+  			<bit-prev-next class="footer" list-selector=".sidebar-left ul li.parent.expanded ul"></bit-prev-next>
+  		
+    </div>
+
+    
+      <div class="sidebar-right">
+        <div class="content-nav on-this-page-container">
+          <h6>On this page...</h6>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
+        </div>
+        <div class="pullout discord">
+          <h6>Get help</h6>
+          <p>If you need <a href="https://discord.gg/J7ejFsZnJ4">help</a> with an exercise, please reach out to us on
+             <a href="https://discord.gg/J7ejFsZnJ4">Discord</a></p>
+        </div>
+        <div class="pullout bug">
+          <p>If you find a bug, please
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com</a></p>
+        </div>
+      </div>
+    
+
+	</article>
+</div>
+
+
+
+  <footer></footer>
+
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/react-native/03-creating-a-new-app/creating-a-new-app.md"},"description":"Learn how to use JSX to define your UI in React. \n","name":"learn-react-native/creating-a-new-app","title":"Creating a New Application","type":"page","parent":"learn-react-native","order":3,"outline":{"depth":3},"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+    </script>
+
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-2302003-12');
+    </script>
+
+  </div>
+  <div id="email-modal" role="dialog" aria-modal="true" aria-labelledby="dialog_label" style="display: none;">
+    <div aria-hidden="true" class="email-modal-backdrop"></div>
+    <div role="region" class="email-modal-content">
+      <h2 id="dialog_label">Join the Bitovi Newsletter</h2>
+      <p>
+        Do you want to receive updates about new Bitovi Academy courses, Bitovi open source projects, and dev community news? If so, please provide your email. We won’t spam you or give it away for any reason!<br />
+        <i style="font-size: 0.8rem;">By providing your email you agree to receive communications from Bitovi</i>
+      </p>
+      <div id="academy-hubspot-form-embed"></div>
+      <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+      <button id="email-modal-close" title="dismiss"><img src="../static/img/close.svg" height="24" width="24"></button>
+    </div>
+  </div>
+</body>
+</html>
