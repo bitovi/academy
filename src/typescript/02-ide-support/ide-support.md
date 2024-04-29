@@ -7,11 +7,12 @@
 
 ## Overview
 
-In this section we’ll look at IDEs that have great TypeScript support for building TypeScript projects.
+In this section, we’ll look at IDEs that have great TypeScript support for building TypeScript projects.
 
 ## IDEs
 
-Integrated Development Environments (IDEs) have come a long way in supporting modern web development. With little to no configuration IDEs offer built-in debugging, git integration, command line usage, and robust packages for additional add-ons.
+Integrated Development Environments (IDEs) have come a long way in supporting modern web development.
+With little to no configuration, IDEs offer built-in debugging, git integration, command line usage, and robust packages for additional add-ons.
 
 ### Visual Studio Code
 
@@ -27,6 +28,12 @@ Integrated Development Environments (IDEs) have come a long way in supporting mo
 
 ### StackBlitz
 
-<a href="https://stackblitz.com/">StackBlitz</a> is a web IDE that's quick to set up. This can be run entirely from the browser while providing linting and more, similar to VS Code. You can start a project easily, but to save your work you'll need a GitHub account to sign in.
+<a href="https://stackblitz.com/">StackBlitz</a> is a web IDE that’s quick to set up.
+It can be run entirely from the browser and it provides features such as linting, code suggestions, etc.
+You can start a project easily, but you’ll need to sign in with a GitHub account to save your work.
 
 <img src="../static/img/stackblitz-screenshot.png" width="100%" alt="Screenshot of a TypeScript file in StackBlitz. When the name of a variable is hovered over, StackBlitz displays a popover with the interface of the variable." />
+
+## Next steps
+
+Next, let’s [set up your local environment](./setting-up-your-environment.html) and create a new TypeScript project.
