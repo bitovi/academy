@@ -1,6 +1,6 @@
-import { strict as assert } from "assert";
+import assert from 'node:assert/strict';
 
-import { getColorValue, ColorsToHex } from "./keyof-typeof-colorshex";
+import { getColorValue, ColorsToHex } from "./colorshex";
 
 describe("Keyof Typeof Exercise 2", () => {
   it("gets dino colors", () => {

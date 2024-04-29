@@ -1,5 +1,5 @@
-import { strict as assert } from "assert";
-import { getDinoFact, dinosaurFacts } from "./keyof-typeof-dinofacts";
+import assert from 'node:assert/strict';
+import { getDinoFact, dinosaurFacts } from "./dinofacts";
 
 describe("Keyof Typeof Exercise 1", () => {
   it("gets dino facts", () => {
