@@ -14,6 +14,7 @@ In this section, you will:
 - Use npm to initialize a new Node application
 - Add TypeScript to a project
 - Use `ts-node` to run TypeScript
+- Write TypeScript tests in a Node project
 
 ## Objective 1: Install prerequisites
 
@@ -167,7 +168,7 @@ before running it.
 
 Once we have `ts-node` installed, we can use `npx` again to run the `ts-node` binary.
 
-### Setup 3
+### Setup 4
 
 ✏️ Run the following command to add the `ts-node` package to your project:
 
@@ -181,19 +182,21 @@ npm install --save-dev ts-node@10
 mkdir -p src/hello-world
 ```
 
-✏️ Create **src/hello-world/hello-world.ts** and update it to be:
+✏️ Create **src/hello-world/greetings.ts** and update it to be:
 
-@sourceref ../../../exercises/typescript/02-setting-up-your-environment/04-solution/src/hello-world/hello-world.ts
+@sourceref ../../../exercises/typescript/03-setting-up-your-environment/04-solution/src/hello-world/greetings.ts
 
 ### Verify 4
 
 ✏️ Run the following command to run the TypeScript code:
 
-```
-npx ts-node src/hello-world/hello-world.ts
+```shell
+npx ts-node src/hello-world/greetings.ts
 ```
 
-After running this command, you should see:
+### Solution 4
+
+After running the command above, you should see:
 
 ```
 Greeting: Hello, World
@@ -201,9 +204,9 @@ Greeting: Hello, World
 
 Congrats! You’ve written and run your first TypeScript application.
 
-<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/02-setting-up-your-environment/04-solution?file=src/hello-world/hello-world.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/02-setting-up-your-environment/04-solution?file=src/hello-world/hello-world.ts).
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/03-setting-up-your-environment/04-solution?file=src/hello-world/greetings.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/03-setting-up-your-environment/04-solution?file=src/hello-world/greetings.ts).
 
-## Bonus challenge
+### Bonus challenge
 
 Change the `user` variable to a number and compile again. What do you think will happen?
 
@@ -211,9 +214,67 @@ You should see an error message.
 
 <details>
 <summary>View the error message.</summary>
+
+```
+TSError: ⨯ Unable to compile TypeScript:
+src/hello-world/greetings.ts:7:35 - error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.
+
+7 console.info('Greeting:', greeter(user));
+                                    ~~~~
+```
+
 <a href="../static/img/typescript-error-compiling.png"><img alt="A screenshot of an Integrated Development Environment (IDE) showing TypeScript code. The code attempts to greet a user by displaying “Hello,” followed by a user’s name. However, a numeric value is passed instead of a string, causing a compilation error highlighted in the terminal at the bottom." src="../static/img/typescript-error-compiling.png" width="100%"/></a>
 </details>
 
+## Objective 5: Create your first test file
+
+### Writing TypeScript tests in a Node project
+
+Out of the box, Node.js _does_ have support for writing tests.
+We will use its built-in assertion library and test-runner for our TypeScript tests.
+
+### Setup 5
+
+✏️ Create **src/hello-world/greetings.test.ts** and update it to be:
+
+@sourceref ../../../exercises/typescript/03-setting-up-your-environment/05-solution/src/hello-world/greetings.test.ts
+
+✏️ Update **package.json** to be:
+
+@diff ../../../exercises/typescript/03-setting-up-your-environment/04-solution/package.json ../../../exercises/typescript/03-setting-up-your-environment/05-solution/package.json
+
+### Verify 5
+
+Run the tests in your terminal:
+
+```shell
+npm run test
+```
+
+### Solution 5
+
+After running the command above, you should see something like:
+
+```
+> learn-typescript@1.0.0 test
+> node --require ts-node/register --test src/**/**.test.**
+
+▶ Hello world
+  ✔ should run successfully (0.137542ms)
+▶ Hello world (0.96625ms)
+
+ℹ tests 1
+ℹ suites 1
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 540.290334
+```
+
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/03-setting-up-your-environment/05-solution?file=src/hello-world/greetings.test.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/03-setting-up-your-environment/05-solution?file=src/hello-world/greetings.test.ts).
+
 ## Next steps
 
-Next, let’s [configure our TypeScript](./configuration.html) project.
+Next we will learn how to import and export functions between [learn-typescript/modules].
