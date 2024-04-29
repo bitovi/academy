@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn how to annotate functions parameters and return values, use different parameter types available. 
+  <meta name="description" content="Learn how to annotate functions parameters and return values, use different parameter types, and bind &#x60;this&#x60;. 
 ">
   
   <!-- Google Tag Manager -->
@@ -201,7 +201,7 @@
            						expanded">
 						<a class="page"
 							href="functions.html"
-							title="Learn how to annotate functions parameters and return values, use different parameter types available.">
+							title="Learn how to annotate functions parameters and return values, use different parameter types, and bind this.">
 							Functions
 						</a>
 						
@@ -504,7 +504,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn how to annotate functions parameters and return values, use different parameter types available.</p>
+    <p>Learn how to annotate functions parameters and return values, use different parameter types, and bind <code>this</code>.</p>
 
 </section>
 
@@ -520,33 +520,35 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this part, we will:</p>
 <ul>
-<li>Annotate functions parameters and return values</li>
-<li>Use optional parameters &amp; rest parameters</li>
-<li>Update a function with TypeScript annotations</li>
+<li>Annotate functions parameters and return values.</li>
+<li>Use optional parameters &amp; rest parameters.</li>
+<li>Update a function with TypeScript annotations.</li>
+<li>Understand <code>this</code> in TypeScript.</li>
 </ul>
-<h2>Objective: Annotating Functions</h2>
-<h3>Functions in TypeScript</h3>
-<p>In TypeScript, we’re able to annotate function parameters to better guard our code. If the following, <code>add</code> is called  with two parameters that are not numbers TypeScript’s compiler will throw an error when compiled.</p>
+<h2>Objective 1: Annotate functions</h2>
+<h3>Annotating function parameters</h3>
+<p>In TypeScript, we’re able to annotate function parameters to better guard our code.</p>
+<p>In the following example, the <code>add</code> function is called with two parameters that are not numbers, so TypeScript’s compiler will throw an error when compiled:</p>
 <pre><code class="language-ts">function add(x: number, y: number) {
   return x + y;
 }
 
 add(1, 'three');
-//Argument of type 'string' is not assignable to parameter of type 'number'.
+// Error: Argument of type 'string' is not assignable to parameter of type 'number'.ts(2345)
 </code></pre>
-<div class='codepen'></div>
+<h3>Annotating function return values</h3>
 <p>We can also annotate what a function should return.</p>
 <pre><code class="language-ts">function returnNumber(): number {
   return '1';
 }
-//Type 'string' is not assignable to type 'number'.
-
-function returnNumber(): number {
+// Error: Type 'string' is not assignable to type 'number'.ts(2322)
+</code></pre>
+<p>Of course, this works when fixed:</p>
+<pre><code class="language-ts">function returnNumber(): number {
   return 1;
 }
-//works!
+// Works!
 </code></pre>
-<div class='codepen'></div>
 <h3>Optional parameters</h3>
 <p>Sometimes when writing functions, we don’t need every parameter to be satisfied. TypeScript allows us to mark optional parameters (or properties) with a <code>?</code> so the compiler will not error if an optional param isn’t passed.</p>
 <pre><code class="language-ts">function buildDinosaur(name: string, breed: string, teeth?: number): void {
@@ -559,25 +561,24 @@ function returnNumber(): number {
 }
 
 let newDino = buildDinosaur('Blue', 'Velociraptor', 80);
-//works
+// Works
 let otherDino = buildDinosaur('Delta', 'Velociraptor');
-//also works
+// Also works
 let otherOtherDino = buildDinosaur('Charlie');
-//error an argument for 'breed' was not provided
+// Expected 2-3 arguments, but got 1.ts(2554)
+// Error: An argument for 'breed' was not provided.
 </code></pre>
-<div class='codepen'></div>
 <h3>Rest parameters</h3>
-<p>Rest parameters are a way to pass in an unknown number of arguments to a function. Rest params are signaled to the transpiler by passing an ellipsis (...) followed by the parameter name.</p>
+<p>Rest parameters are a way to pass in an unknown number of arguments to a function. Rest params are signaled to the transpiler by passing an ellipsis (<code>...</code>) followed by the parameter name.</p>
 <pre><code class="language-ts">function buildDinosaur(breed: string, ...dna: string[]): void {
   console.info(`The ${breed} has dna from ${dna.join(', ')}`)
 }
 
 buildDinosaur('Indominous Rex', 'Velociraptor', 'Tyrannosaurus rex', 'Therizinosaurus', 'cuttlefish');
-//logs &quot;The Indominous Rex has dna from Velociraptor,
+// Logs &quot;The Indominous Rex has dna from Velociraptor,
 //      Tyrannosaurus rex, Therizinosaurus, cuttlefish&quot;
 </code></pre>
-<div class='codepen'></div>
-<h3>Setup</h3>
+<h3>Setup 1</h3>
 <p>✏️ Create <strong>src/functions/dnaCost.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export function dnaCost(baseCost, sequence) {
     return baseCost + sequence.length;
@@ -586,23 +587,12 @@ buildDinosaur('Indominous Rex', 'Velociraptor', 'Tyrannosaurus rex', 'Therizinos
 let raptorCost = dnaCost(5000,&quot;CGGCA&quot;);
 
 console.log(raptorCost);
-//Logs 5005
+// Logs 5005
 
 </code></pre>
-<h3>Exercise</h3>
-<p>The following function in <code>dnaCost.ts</code> calculates the cost of synthesizing
-a DNA sequence to make a dinosaur. It calculates the cost by adding a <code>baseCost</code> plus
-the length of the DNA sequence:</p>
-<p>Now scientists want to mix the DNA of multiple dinosaurs.
-Open the <code>dnaCost.ts</code> file and modify this function to:</p>
-<ol>
-<li>take an unknown amount of sequences;</li>
-<li>return the sum of <code>baseCost</code> and the length of each sequence.</li>
-</ol>
-<p><strong>Have issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/07-functions/01-problem?file=src/dnaCost.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/07-functions/01-problem?file=src/dnaCost.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Verify</h3>
+<h3>Verify 1</h3>
 <p>✏️ Create <strong>src/functions/dnaCost.test.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">import assert from &quot;node:assert&quot;;
+<pre><code class="language-ts">import assert from &quot;node:assert/strict&quot;;
 import { describe, it } from &quot;node:test&quot;;
 import { dnaCost } from &quot;./dnaCost&quot;;
 
@@ -617,37 +607,58 @@ describe(&quot;Functions: dnaCost&quot;, () =&gt; {
 });
 
 </code></pre>
-<p>✏️ Run the following to verify your solution:</p>
-<pre><code class="language-shell">npm run test
-</code></pre>
-<h3>Solution</h3>
+<h3>Exercise 1</h3>
+<p>The <code>dnaCost</code> function in <code>dnaCost.ts</code> calculates the cost of synthesizing
+a DNA sequence to make a dinosaur. It calculates the cost by adding a <code>baseCost</code> plus
+the length of the DNA sequence.</p>
+<p>Now scientists want to mix the DNA of multiple dinosaurs.
+Open the <code>dnaCost.ts</code> file and modify this function to:</p>
+<ol>
+<li>Take an unknown amount of sequences.</li>
+<li>Return the sum of <code>baseCost</code> and the length of each sequence.</li>
+</ol>
+<p><strong>Have issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/07-functions/01-problem?file=src/functions/dnaCost.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/07-functions/01-problem?file=src/functions/dnaCost.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
+<h3>Solution 1</h3>
+<p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <code>dnaCost.ts</code> to add each sequence to the
 base cost.  This solution uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce">Array.prototype.reduce</a>:</p>
-<pre><code class="language-ts">export function dnaCost(baseCost:number, ...sequences: string[]) {
-  return sequences.reduce(
-    (sum, sequence)=&gt; sum + sequence.length,
-    baseCost );
+<pre><code class="language-ts">export function dnaCost(baseCost: number, ...sequences: string[]) {
+  return sequences.reduce((sum, sequence) =&gt; {
+    return sum + sequence.length;
+  }, baseCost);
 }
 
 </code></pre>
-<div line-highlight='1-4'></div>
+ <div line-highlight="1-4,only"></div>
 <p>You’ll notice that specifying a return type is not necessary.  This is
 because TypeScript can infer the return value from the arguments.</p>
 <p>The following is another
 valid solution:</p>
 <pre><code class="language-ts">export function dnaCost(baseCost: number, ...sequences: string[]) {
   let sum = baseCost;
-  sequences.forEach(sequence =&gt; sum += sequence.length);
-  return sum
+  sequences.forEach(sequence =&gt; {
+    return sum += sequence.length;
+  });
+  return sum;
 }
 </code></pre>
-<div line-highlight='1-4'></div>
-<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/07-functions/01-solution?file=src/dnaCost.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/07-functions/01-solution?file=src/dnaCost.ts">CodeSandbox</a>.</p>
+ <div line-highlight="1-6,only"></div>
+<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/07-functions/01-solution?file=src/functions/dnaCost.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/07-functions/01-solution?file=src/functions/dnaCost.ts">CodeSandbox</a>.</p>
 <p></details></p>
-<h3><code>this</code> parameters</h3>
-<p>JavaScript functions can be called or created with a dynamic <code>this</code>. For example:</p>
+<h2>Objective 2: Use <code>this</code> in TypeScript</h2>
+<h3>Understanding <code>this</code></h3>
+<p>The value of this within a function depends on how the function is called:</p>
+<ul>
+<li>Global context: If a function is called in the global scope, <code>this</code> refers to the global object (<code>window</code> in browsers, <code>global</code> in Node.js). However, in strict mode, <code>this</code> will be <code>undefined</code>.</li>
+<li>Object context: When a function is called as a method of an object, <code>this</code> refers to the object.</li>
+<li>Class context: In a class, <code>this</code> refers to the instance of the class.</li>
+<li>Event handlers: In DOM event handlers, <code>this</code> typically refers to the element that received the event, unless the function is an arrow function, which does not bind its own <code>this</code>.</li>
+<li>Arrow functions: Arrow functions do not bind their own <code>this</code>; they inherit <code>this</code> from the enclosing execution context.</li>
+</ul>
+<p>The dynamic nature of this means that its value can change based on how and where a function is called. This can lead to issues, especially when functions that use this are passed around as callbacks.</p>
+<p>For instance:</p>
 <pre><code class="language-js">const dog = {
   name: 'fido',
   bark: function() {
@@ -656,9 +667,11 @@ valid solution:</p>
 };
 const address = {street: '2 State St'};
 
-dog.bark.call(dog);     //logs &quot;fido says woof&quot;;
-dog.bark.call(address); //logs &quot;undefined says woof&quot;
+dog.bark.call(dog);     // Logs &quot;fido says woof&quot;;
+dog.bark.call(address); // Logs &quot;undefined says woof&quot;
 </code></pre>
+<p>In the example above, <code>dog.bark</code> is called with two very different types of objects, the second of which (<code>address</code>) doesn’t have a <code>name</code> property.</p>
+<h3>Using <code>strictBindCallApply</code></h3>
 <p>Compiling with the <code>--strictBindCallApply</code> flag allows you to
 specify the <code>this</code> type:</p>
 <pre><code class="language-ts">const dog = {
@@ -672,9 +685,10 @@ const address = {street: '2 State St'};
 dog.bark.call(dog);
 dog.bark.call(address);
 </code></pre>
-<div class='codepen'></div>
 <div line-highlight='3'></div>
-<p>Line 10 will error with: <code>Property 'name' is missing in type '{ street: string; }' but required in type '{ name: string; }'.</code></p>
+<p>Line 10 will error with:</p>
+<pre><code>Property 'name' is missing in type '{ street: string; }' but required in type '{ name: string; }'.
+</code></pre>
 <h2>Next steps</h2>
 <p>Next, let’s take a look at <a href="./classes.html">classes</a> in TypeScript.</p>
 
@@ -715,7 +729,7 @@ dog.bark.call(address);
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/typescript/07-functions/functions.md"},"description":"Learn how to annotate functions parameters and return values, use different parameter types available. \n","name":"learn-typescript/functions","title":"Functions","type":"page","parent":"learn-typescript","order":7,"outline":{"depth":3},"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/typescript/07-functions/functions.md"},"description":"Learn how to annotate functions parameters and return values, use different parameter types, and bind `this`. \n","name":"learn-typescript/functions","title":"Functions","type":"page","parent":"learn-typescript","order":7,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
