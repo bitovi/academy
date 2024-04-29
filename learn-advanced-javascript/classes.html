@@ -493,9 +493,9 @@ ParkEmployee.prototype.sayHi = function() {
   console.log(&quot;Hi, my name is &quot; + this.name);
 }
 
-let raptorGuy = new ParkEmployee(&quot;Owen&quot;);
+const raptorGuy = new ParkEmployee(&quot;Owen&quot;);
 raptorGuy.sayHi();
-//Logs &quot;Hi, my name is Owen&quot;
+// Logs &quot;Hi, my name is Owen&quot;
 </code></pre>
 <div class='codepen'></div>
 <p>In ECMAScript 2015, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">classes</a> are available as syntactic sugar over the existing prototype-based <strong>constructor functions</strong>. You
@@ -509,9 +509,9 @@ can write the previous example with <code>class</code> as follows:</p>
   }
 }
 
-let raptorGuy = new ParkEmployee(&quot;Owen&quot;);
+const raptorGuy = new ParkEmployee(&quot;Owen&quot;);
 raptorGuy.sayHi();
-//Logs &quot;Hi, my name is Owen&quot;
+// Logs &quot;Hi, my name is Owen&quot;
 </code></pre>
 <div class='codepen'></div>
 <h2>Getters, Setters and Method Definitions</h2>
@@ -538,12 +538,12 @@ value:</p>
   }
 }
 
-let employee = new ParkEmployee(&quot;Ellie&quot;,&quot;Sattler&quot;);
+const employee = new ParkEmployee(&quot;Ellie&quot;,&quot;Sattler&quot;);
 
 employee.fullName = &quot;John Hammond&quot;;
 
 employee.sayHi();
-//Logs &quot;Hi, my name is John Hammond&quot;
+// Logs &quot;Hi, my name is John Hammond&quot;
 </code></pre>
 <div class='codepen'></div>
 <p>Method definitions are functions written without
@@ -583,7 +583,7 @@ For example, the following creates a <code>ParkEmployee.mathematician()</code> m
 
 let goldblum = ParkEmployee.mathematician();
 raptorGuy.sayHi();
-//Logs &quot;Hi, my name is Ian&quot;
+// Logs &quot;Hi, my name is Ian&quot;
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='2-4'></div>
@@ -602,9 +602,9 @@ and <code>age</code> initialized to <code>36</code>:</p>
   }
 }
 
-let raptorGuy = new ParkEmployee(&quot;Owen&quot;);
+const raptorGuy = new ParkEmployee(&quot;Owen&quot;);
 console.log( raptorGuy.age );
-//Logs 36
+// Logs 36
 </code></pre>
 <div line-highlight='2-3'></div>
 <div class='codepen'></div>
@@ -627,15 +627,15 @@ class Mathematician extends ParkEmployee {
 
 const goldblum = new Mathematician(3);
 
-console.log( goldblum.run() ) //logs &quot;running at 3&quot;
+console.log( goldblum.run() ) // Logs &quot;running at 3&quot;
 
 goldblum.mustGoFaster();
 
-console.log( goldblum.run() ) //logs &quot;running at 6&quot;
+console.log( goldblum.run() ) // Logs &quot;running at 6&quot;
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='10'></div>
-<p>The keyword <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super">super</a> can be used to call functions on a class's (or object’s) parent. This is how you call &quot;base&quot; methods.</p>
+<p>The keyword <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super">super</a> can be used to call functions on a class’s (or object’s) parent. This is how you call &quot;base&quot; methods.</p>
 <pre><code class="language-js">class ParkEmployee {
   constructor( runningSpeed ) {
     this.runningSpeed = runningSpeed;
@@ -662,11 +662,11 @@ class Mathematician extends ParkEmployee {
 
 const goldblum = new Mathematician(&quot;ian&quot;, 3);
 
-console.log( goldblum.run() ) //logs &quot;ian running at 3&quot;
+console.log( goldblum.run() ) // Logs &quot;ian running at 3&quot;
 
 goldblum.mustGoFaster();
 
-console.log( goldblum.run() ) //logs &quot;ian running at 6&quot;
+console.log( goldblum.run() ) // Logs &quot;ian running at 6&quot;
 </code></pre>
 <div line-highlight='14,18'></div>
 <div class='codepen'></div>

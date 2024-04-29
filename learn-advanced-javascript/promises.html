@@ -519,7 +519,7 @@ a <code>response</code> object is provided.</p>
 <pre><code class="language-js">const request = fetch(&quot;https://dog.ceo/api/breeds/list/all&quot;);
 
 request.then( function(response){
-  console.log(response.status) //logs 200
+  console.log(response.status) // Logs 200
 });
 </code></pre>
 <div class='codepen'></div>
@@ -550,7 +550,7 @@ the value is resolved with <code>then</code> and log a message.</p>
 })
 
 numberPromise.then( function( number ){
-  console.log(&quot;number &quot;+ number); //logs &quot;number 0.###&quot;
+  console.log(&quot;number &quot;+ number); // Logs &quot;number 0.###&quot;
 } );
 </code></pre>
 <div class='codepen'></div>
@@ -602,7 +602,7 @@ const groupNamePromise = new MyPromise( function( resolve ){
 })
 
 groupNamePromise.then( function( groupName ){
-  console.log(&quot;groupName&quot;, groupName); //logs &quot;groupName Bitovi&quot;
+  console.log(&quot;groupName&quot;, groupName); // Logs &quot;groupName Bitovi&quot;
 } );
 </code></pre>
 <div class='codepen'></div>
@@ -706,7 +706,7 @@ const countPromise = breedsPromise.then( function toCount(breeds) {
 });
 
 countPromise.then( (count) =&gt; {
-  console.log(&quot;delay&quot;, new Date() - startTime ); //logs 3000
+  console.log(&quot;delay&quot;, new Date() - startTime ); // Logs 3000
   console.log(&quot;count&quot;, count);             
 })
 </code></pre>
