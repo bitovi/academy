@@ -8,13 +8,13 @@ class GenericCollection<T> {
 const myListOfStrings = new GenericCollection<string>();
 myListOfStrings.pushItem('booop');
 myListOfStrings.pushItem(5);
-//error Argument type of '5' is not assignable to parameter of type 'string'
+// Error Argument type of '5' is not assignable to parameter of type 'string'
 
 
 const myListOfNumbers = new GenericCollection<number>();
 myListOfNumbers.pushItem(5);
 myListOfNumbers.pushItem('boop');
-//error Argument type of '"boop"' is not assignable to parameter of type 'number'
+// Error Argument type of '"boop"' is not assignable to parameter of type 'number'
 
 interface Dinosaur {
   name: string;
@@ -32,4 +32,4 @@ const otherDino = {
 myListOfDinosaurs.pushItem(otherDino);
 
 myListOfDinosaurs.pushItem({name: 'Charlie'});
-//error Argument type '{ name: string; }' is not assignable to parameter of type 'Dinosaur'.
+// Error Argument type '{ name: string; }' is not assignable to parameter of type 'Dinosaur'.
