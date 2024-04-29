@@ -6,11 +6,11 @@ class DinoKeeper {
   }
 
   sayHi(): string {
-    return `${this.name} says "hi"`;
+    return `${this.name} says “hi”`;
   }
 }
-let employee1 = new DinoKeeper("Joe");
+const employee1 = new DinoKeeper("Joe");
 employee1.sayHi();
-//Logs "Joe says "hi""
+// Logs "Joe says “hi”"
 
 export default DinoKeeper;

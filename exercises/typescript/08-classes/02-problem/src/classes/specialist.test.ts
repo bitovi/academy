@@ -1,5 +1,5 @@
 import Specialist from "./specialist";
-import { strict as assert } from "assert";
+import assert from 'node:assert/strict';
 import { describe, it } from "node:test";
 
 function removeSpaces(str: string) {
@@ -8,8 +8,8 @@ function removeSpaces(str: string) {
 
 describe("Classes: Specialist", () => {
   it("basics work", () => {
-    let employee2 = new Specialist("Owen", 14);
-    assert.equal(employee2.sayHi(), `Owen says "hi"`);
+    const employee2 = new Specialist("Owen", 14);
+    assert.equal(employee2.sayHi(), `Owen says “hi”`);
     assert.equal(
       removeSpaces(employee2.safetyQuote()),
       removeSpaces(`Never turn your back to the cage.

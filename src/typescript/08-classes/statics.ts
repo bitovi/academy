@@ -7,5 +7,5 @@ class DinoCage {
 
 var paddock1 = new DinoCage();
 var paddock2 = new DinoCage();
-console.log(DinoCage.cageInstances);
-//Logs "2"
+console.info(DinoCage.cageInstances);
+// Logs "2"

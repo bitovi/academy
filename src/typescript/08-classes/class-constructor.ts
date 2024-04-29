@@ -6,5 +6,5 @@ class Dinosaur {
 }
 
 let dino = new Dinosaur('Billy');
-console.log(dino.name);
-//Logs "Billy"
+console.info(dino.name);
+// Logs "Billy"
