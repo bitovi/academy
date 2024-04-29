@@ -1,4 +1,4 @@
-const dinosaurFacts = {
+export const dinosaurFacts = {
   "t-rex": {
     latinName: "Tyrannosaurus rex",
     nickName: "T-rex",
