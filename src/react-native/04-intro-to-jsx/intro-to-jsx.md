@@ -12,7 +12,7 @@ In this section, you will:
 
 - TODO
 
-## Objective 1: Variables
+## Objective 1: Create a UI with JSX
 
 TODO
 
@@ -22,15 +22,15 @@ TODO
 
 ### Setup 1
 
-✏️ Update **src/App.tsx** to the following:
+✏️ Update **src/App.tsx** to be:
 
-@sourceref ../../../exercises/react-native/03-creating-a-new-app/04-solution/App.tsx
+@diff ../../../exercises/react-native/03-creating-a-new-app/04-solution/App.tsx ../../../exercises/react-native/04-intro-to-jsx/01-problem/App.tsx only
 
 ### Verify 1
 
-✏️ Update **src/App.test.tsx** to the following:
+✏️ Update **src/App.test.tsx** to be:
 
-@diff ../../../exercises/react-native/03-creating-a-new-app/04-solution/App.test.tsx ../../../exercises/react-native/04-intro-to-jsx/01-solution/App.test.tsx only
+@diff ../../../exercises/react-native/03-creating-a-new-app/04-solution/App.test.tsx ../../../exercises/react-native/04-intro-to-jsx/01-problem/App.test.tsx only
 
 ### Exercise 1
 
@@ -43,12 +43,13 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 <details>
 <summary>Click to see the solution</summary>
 
-✏️ Update **src/App.tsx** to the following:
+✏️ Update **src/App.tsx** to be:
+
 @diff ../../../exercises/react-native/03-creating-a-new-app/04-solution/App.tsx ../../../exercises/react-native/04-intro-to-jsx/01-solution/App.tsx only
 
 </details>
 
-## Objective 2: Conditions and loops
+## Objective 2: Expressions and loops in JSX
 
 TODO
 
@@ -58,15 +59,15 @@ TODO
 
 ### Setup 2
 
-✏️ Update **src/App.tsx** to the following:
+✏️ Update **src/App.tsx** to be:
 
-@sourceref ../../../exercises/react-native/04-intro-to-jsx/01-solution/App.tsx
+@diff ../../../exercises/react-native/04-intro-to-jsx/01-solution/App.tsx ../../../exercises/react-native/04-intro-to-jsx/02-problem/App.tsx only
 
 ### Verify 2
 
-✏️ Update **src/App.test.tsx** to the following:
+✏️ Update **src/App.test.tsx** to be:
 
-@diff ../../../exercises/react-native/04-intro-to-jsx/01-solution/App.test.tsx ../../../exercises/react-native/04-intro-to-jsx/02-solution/App.test.tsx only
+@diff ../../../exercises/react-native/04-intro-to-jsx/01-solution/App.test.tsx ../../../exercises/react-native/04-intro-to-jsx/02-problem/App.test.tsx only
 
 ### Exercise 2
 
@@ -79,11 +80,12 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 <details>
 <summary>Click to see the solution</summary>
 
-✏️ Update **src/App.tsx** to the following:
+✏️ Update **src/App.tsx** to be:
+
 @diff ../../../exercises/react-native/04-intro-to-jsx/01-solution/App.tsx ../../../exercises/react-native/04-intro-to-jsx/02-solution/App.tsx only
 
 </details>
 
 ## Next steps
 
-Next is [learn-react-native/intro-to-testing].
+Next, we will learn the [basics of testing](./intro-to-testing.html) React Native applications.
