@@ -41,18 +41,16 @@ const thief: Character = {
   weapon: "Bow",
 };
 
-// This should be an error, a sword character cannot be magic!
 const paladin: Character = {
   strength: 15,
   dexterity: 10,
   intelligence: 8,
   weapon: "Sword",
-  // @ts-expect-error
+  // @ts-expect-error: a sword character cannot be magic!
   magic: true,
 };
 
-// This should be an error, a weapon is required on the Character type!
-// @ts-expect-error
+// @ts-expect-error: a weapon is required on the Character type!
 const civilian: Character = {
   strength: 8,
   dexterity: 8,

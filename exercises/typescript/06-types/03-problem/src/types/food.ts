@@ -30,10 +30,9 @@ const curry: Dish = {
   spicy: 10,
 };
 
-// This should be an error, spicy doesn't exist on the Sushi interface!
 const fusion: Dish = {
   cuisine: "Japanese",
-  // @ts-expect-error
+  // @ts-expect-error: spicy doesn’t exist on the Sushi interface!
   spicy: 5,
 };
 
