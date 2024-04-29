@@ -1,10 +1,10 @@
-import assert from "node:assert";
+import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { createParkSlug } from "./create-park-slug";
+import { createParkSlug } from "./slug";
 
 describe("Interfaces", () => {
   it("createParkSlug", function () {
-    let result = createParkSlug({
+    const result = createParkSlug({
       name: "Isla Sorna Park",
       address: {
         street: "123 Main",

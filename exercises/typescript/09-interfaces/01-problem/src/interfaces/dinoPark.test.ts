@@ -1,6 +1,6 @@
-import assert from "node:assert";
+import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import type DinoPark from "./dino-park";
+import type DinoPark from "./dinoPark";
 import type Address from "./address";
 
 describe("Interfaces", () => {
