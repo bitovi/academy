@@ -170,9 +170,9 @@
            						
            						">
 						<a class="page"
-							href="exporting-and-importing.html"
+							href="modules.html"
 							title="Learn how to export and import values from a file.">
-							Exporting and Importing
+							Modules
 						</a>
 						
 					</li>
@@ -237,8 +237,6 @@
 						
 					</li>
 				
-			
-		
 			
 		
 			
@@ -595,45 +593,7 @@ It looks like this one:</p>
 Here is a <a href="https://eslint.org/docs/rules/">list of ESLint rules</a>. Take some time getting to know them!</p>
 <p>For more information on TypeScript with ESLint, we can refer to the <a href="https://github.com/typescript-eslint/typescript-eslint">typescript-eslint repository</a>.</p>
 <h2>Next steps</h2>
-<p>Next we will learn how to import and export functions between <a href="modules.html" title="Modules
-Modules
-Modules are a way of grouping code to be executed within their own scope, opposed to a global scope. Modules give us a way to write DRY code, scope our variables, re-use parts of our code, are more easily tested, and mostly help us avoid writing applications full of that dreadful spaghetti code. In TypeScript, modules are categorized into two types - internal(called namespaces) and external(just called modules).
-Exporting
-To be able to use our declarations in other areas of our codebase, we can export them using the export keyword.
-export interface Dinosaur {
-  name: string;
-  location: string;
-  teeth: number;
-}
-
-Export statements
-We can also rename our declarations when exporting if need be
-interface Dinosaur {
-  name: string;
-  location: string;
-  teeth: number;
-}
-
-export { Dinosaur as InGenDinosaur }
-
-Default exports
-Modules can export ONE default export using the keyword default.
-Security.ts
-declare let s: Security;
-
-export default s;
-
-App.ts
-import s from &quot;Security&quot;;
-
-s.alert('the grid is down')
-
-Re-exports
-Importing
-import { Dinosaur } from &quot;./Dinosaur&quot;;
-
-// or
-import { Dinosaur as InGenDinosaur } from &quot;./Dinosaur&quot;;">Modules</a>.</p>
+<p>Next we will learn how to import and export functions between <a href="modules.html" title="Learn how to export and import values from a file.">Modules</a>.</p>
 
 </section>
 

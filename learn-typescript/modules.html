@@ -3,7 +3,7 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/typescript/10-modules/modules.md
+	source: src/typescript/05-modules/modules.md
 	@page learn-typescript/modules
 ######################################################################## -->
 <html lang="en">
@@ -11,68 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Modules 
-
-## Modules
-
-Modules are a way of grouping code to be executed within their own scope, opposed to a global scope. Modules give us a way to write DRY code, scope our variables, re-use parts of our code, are more easily tested, and mostly help us avoid writing applications full of that dreadful spaghetti code. In TypeScript, modules are categorized into two types - internal(called namespaces) and external(just called modules).
-
-### Exporting
-
-To be able to use our declarations in other areas of our codebase, we can export them using the export keyword.
-
-&#x60;&#x60;&#x60;javascript
-export interface Dinosaur {
-  name: string;
-  location: string;
-  teeth: number;
-}
-&#x60;&#x60;&#x60;
-
-#### Export statements
-
-We can also rename our declarations when exporting if need be
-
-&#x60;&#x60;&#x60;javascript
-interface Dinosaur {
-  name: string;
-  location: string;
-  teeth: number;
-}
-
-export { Dinosaur as InGenDinosaur }
-&#x60;&#x60;&#x60;
-
-#### Default exports
-
-Modules can export ONE default export using the keyword default.
-
-Security.ts
-&#x60;&#x60;&#x60;javascript
-declare let s: Security;
-
-export default s;
-&#x60;&#x60;&#x60;
-
-App.ts
-&#x60;&#x60;&#x60;javascript
-import s from &quot;Security&quot;;
-
-s.alert(&#x27;the grid is down&#x27;)
-&#x60;&#x60;&#x60;
-
-#### Re-exports
-
-
-### Importing
-
-&#x60;&#x60;&#x60;javascript
-import { Dinosaur } from &quot;./Dinosaur&quot;;
-
-// or
-import { Dinosaur as InGenDinosaur } from &quot;./Dinosaur&quot;;
-&#x60;&#x60;&#x60;
-
+  <meta name="description" content="Learn how to export and import values from a file. 
 ">
   
   <!-- Google Tag Manager -->
@@ -227,14 +166,17 @@ import { Dinosaur as InGenDinosaur } from &quot;./Dinosaur&quot;;
 		
 			
 				
-					<li class="
-           						
-           						">
+					<li class="current
+           						parent
+           						expanded">
 						<a class="page"
-							href="exporting-and-importing.html"
+							href="modules.html"
 							title="Learn how to export and import values from a file.">
-							Exporting and Importing
+							Modules
 						</a>
+						
+							
+
 						
 					</li>
 				
@@ -298,8 +240,6 @@ import { Dinosaur as InGenDinosaur } from &quot;./Dinosaur&quot;;
 						
 					</li>
 				
-			
-		
 			
 		
 			
@@ -562,46 +502,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Modules</p>
-<h2>Modules</h2>
-<p>Modules are a way of grouping code to be executed within their own scope, opposed to a global scope. Modules give us a way to write DRY code, scope our variables, re-use parts of our code, are more easily tested, and mostly help us avoid writing applications full of that dreadful spaghetti code. In TypeScript, modules are categorized into two types - internal(called namespaces) and external(just called modules).</p>
-<h3>Exporting</h3>
-<p>To be able to use our declarations in other areas of our codebase, we can export them using the export keyword.</p>
-<pre><code class="language-javascript">export interface Dinosaur {
-  name: string;
-  location: string;
-  teeth: number;
-}
-</code></pre>
-<h4>Export statements</h4>
-<p>We can also rename our declarations when exporting if need be</p>
-<pre><code class="language-javascript">interface Dinosaur {
-  name: string;
-  location: string;
-  teeth: number;
-}
-
-export { Dinosaur as InGenDinosaur }
-</code></pre>
-<h4>Default exports</h4>
-<p>Modules can export ONE default export using the keyword default.</p>
-<p>Security.ts</p>
-<pre><code class="language-javascript">declare let s: Security;
-
-export default s;
-</code></pre>
-<p>App.ts</p>
-<pre><code class="language-javascript">import s from &quot;Security&quot;;
-
-s.alert('the grid is down')
-</code></pre>
-<h4>Re-exports</h4>
-<h3>Importing</h3>
-<pre><code class="language-javascript">import { Dinosaur } from &quot;./Dinosaur&quot;;
-
-// or
-import { Dinosaur as InGenDinosaur } from &quot;./Dinosaur&quot;;
-</code></pre>
+    <p>Learn how to export and import values from a file.</p>
 
 </section>
 
@@ -612,6 +513,199 @@ import { Dinosaur as InGenDinosaur } from &quot;./Dinosaur&quot;;
   			
   				
   			
+  			
+  				<section class="body">
+    <h2>Overview</h2>
+<p>In this section, you will:</p>
+<ul>
+<li>Export values from a file.</li>
+<li>Import values from another file.</li>
+<li>Learn why named exports are preferred over default exports.</li>
+<li>Import and export functions between modules.</li>
+</ul>
+<h2>Objective 1: Export and import values</h2>
+<p>A fundamental part of writing code is creating values that you can use across multiple files.
+Modules are a way of grouping code to be executed within their own scope, opposed to a global scope.
+Modules give us a way to write DRY code, scope our variables, re-use parts of our code, test our code in discrete units, and avoid writing applications full of dreadful spaghetti code.
+Let’s break down how to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export">export</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">import</a> values in TypeScript.</p>
+<p>In TypeScript, you can export any type of value: variables, functions, classes, interfaces, etc.</p>
+<p>There are two types of exports: default exports and named exports.</p>
+<h3>Default exports</h3>
+<p>Imagine we have a <code>config.ts</code> file:</p>
+<pre><code class="language-ts">const config = {
+    name: &quot;Bitovi Academy&quot;,
+    url: &quot;https://www.bitovi.com/academy/&quot;,
+};
+
+export default config;
+</code></pre>
+<div line-highlight='6'></div>
+<p>In the example above, we create a <code>config</code> variable and then use <code>export default</code> to export it.</p>
+<p>Then, we could consume the value in another file:</p>
+<pre><code class="language-ts">import appConfig from &quot;./config.ts&quot;;
+
+const appName = appConfig.name;
+</code></pre>
+<div line-highlight='1'></div>
+<p>In the code above, the <code>appConfig</code> variable is the same as the <code>config</code> variable exported from <code>config.ts</code>.
+Note that the <code>appConfig</code> variable name does not need to match the name in the file that has the <code>export</code>.</p>
+<h3>Named exports</h3>
+<p>Named exports are called that because there is an explicit name in the file with the <code>export</code>.</p>
+<p>Let’s imagine we have a <code>helpers.ts</code> file:</p>
+<pre><code class="language-ts">function clampNumber(value: number, min: number, max: number): number {
+    return Math.min(Math.max(value, min), max);
+}
+
+export {
+    constrain: clampNumber,
+};
+</code></pre>
+<div line-highlight='5-7'></div>
+<p>In the example above, we export a <code>constrain</code> function from our <code>helpers.ts</code> file. Note that the local function name is called something else (<code>clampNumber</code>) and we export it with a specific name (<code>constrain</code>).</p>
+<p>We can import the <code>constrain</code> function like so:</p>
+<pre><code class="language-ts">import { constrain } from &quot;./helpers.ts&quot;;
+
+const constrained = constrain(-18, 0, 100);
+</code></pre>
+<div line-highlight='1'></div>
+<p>In the code above, we can import the <code>constrain</code> function by name from <code>helpers.ts</code> and use it in our code.</p>
+<h4>Shorthand</h4>
+<p>If the name of the function in the file matches what you want to export it as, you can use this shorthand in your export statement:</p>
+<pre><code class="language-ts">function constrain(value: number, min: number, max: number): number {
+    return Math.min(Math.max(value, min), max);
+}
+
+export {
+    constrain,
+};
+</code></pre>
+<div line-highlight='1, 6'></div>
+<h4>Renaming with <code>as</code></h4>
+<p>We can also rename our declarations when exporting if need be</p>
+<pre><code class="language-typescript">function clampNumber(value: number, min: number, max: number): number {
+    return Math.min(Math.max(value, min), max);
+}
+
+export {
+    clampNumber as constrain,
+};
+</code></pre>
+<h4>Exporting in place</h4>
+<p>You can also export values from where they’re declared in the file, without a separate <code>export</code> statement:</p>
+<pre><code class="language-ts">export function constrain(value: number, min: number, max: number): number {
+    return Math.min(Math.max(value, min), max);
+}
+</code></pre>
+<div line-highlight='1'></div>
+<h3>Default exports vs. named exports</h3>
+<p>While you can use both in projects and some APIs may require you to use one type of export vs. the other, we recommend you use named exports in all of the code you write.</p>
+<p>Here’s why:</p>
+<p><strong>Consistency:</strong> Named exports enforce consistency. The name of the export has to be used wherever it’s imported unless explicitly renamed. This consistency makes it easier to trace through code and understand what is being imported and used.</p>
+<p><strong>Explicitness and clarity:</strong> Since you have to explicitly list what you are importing, it provides a clear overview of what dependencies a module has. This explicitness improves readability and maintainability of the code.</p>
+<p><strong>Better tooling support:</strong> Many IDEs and tools have easier times with auto-completion and refactoring when using named exports. This can lead to more efficient coding and a lower chance of errors.</p>
+<h3>Importing types</h3>
+<p>From time to time, you may need to only import the <code>type</code> from another file and not the full implementation.
+TypeScript provides a special syntax, <code>import type</code>, which is used specifically to import type declarations.
+This can help to make the import intention clearer and can also have some performance benefits during compilation.</p>
+<p>Let’s imagine we have a <code>user.ts</code> file:</p>
+<pre><code class="language-ts">export type User = {
+  age: number;
+  name: string;
+};
+
+export const createUser = (name: string, age: number): User =&gt; {
+  return { name, age };
+};
+</code></pre>
+<div line-highlight='1, only'></div>
+<p>In the code above, we defined a <code>User</code> type and a <code>createUser</code> function.
+The <code>User</code> type describes the shape of user objects.</p>
+<p>We can import just the <code>User</code> type (and use it) like so:</p>
+<pre><code class="language-ts">import type { User } from './user';
+import { createUser } from './user';
+
+const logUser = (user: User): void =&gt; {
+  console.info(`User: ${user.name}, Age: ${user.age}`);
+};
+
+const user = createUser('Alice', 30);
+logUser(user);
+</code></pre>
+<div line-highlight='1, 4, only'></div>
+<p>In the code above, the <code>User</code> type import will not be included in the JavaScript output after compilation (because it’s only used for static type checking by TypeScript).</p>
+<p>Use <code>import type</code> whenever you are importing types like interfaces, types, or type aliases from another module and you do not need to import any runtime variables, classes, or functions.
+This not only makes your imports cleaner and more specific, but it also optimizes your project’s output size and compilation time.</p>
+<h3>Setup</h3>
+<p>✏️ Create <strong>src/modules/exporter.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">function greeter(person: string) {
+    return &quot;Hello, &quot; + person;
+}
+
+// Exercise: export greeter
+</code></pre>
+<p>✏️ Create <strong>src/modules/importer.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">// Exercise: import greeter
+
+export default function () {
+    return greeter(&quot;Earth&quot;);
+}
+</code></pre>
+<h3>Verify</h3>
+<p>✏️ Create <strong>src/modules/importer.test.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import assert from 'node:assert/strict';
+import { describe, it } from 'node:test';
+import getMessageWithGreeting from &quot;./importer&quot;;
+
+describe('Importer', () =&gt; {
+    it('should return a greeting', () =&gt; {
+        const message = getMessageWithGreeting();
+        assert.strictEqual(message, &quot;Hello, Earth&quot;, &quot;message should be correct&quot;);
+    });
+});
+</code></pre>
+<h3>Exercise</h3>
+<p>Use your knowledge of named exports and imports to do the following:</p>
+<ul>
+<li>Export <code>greeter</code> from <code>exporter.ts</code></li>
+<li>Import <code>greeter</code> in <code>importer.ts</code></li>
+</ul>
+<p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/05-modules/01-problem?file=src/modules/exporter.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/05-modules/01-problem?file=src/modules/exporter.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
+<h3>Solution</h3>
+<p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/modules/exporter.ts</strong> to be:</p>
+<pre><code class="language-ts">function greeter(person: string) {
+    return &quot;Hello, &quot; + person;
+}
+
+export {
+    greeter,
+};
+</code></pre>
+ <div line-highlight="5-7,only"></div>
+<p>✏️ Update <strong>src/modules/importer.ts</strong> to be:</p>
+<pre><code class="language-ts">import { greeter } from &quot;./exporter&quot;
+
+export default function () {
+    return greeter(&quot;Earth&quot;);
+}
+
+</code></pre>
+ <div line-highlight="1,only"></div>
+<p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/05-modules/01-solution?file=src/modules/exporter.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/05-modules/01-solution?file=src/modules/exporter.ts">CodeSandbox</a>.</p>
+<p></details></p>
+<h3>Bonus exploration</h3>
+<p>What does your IDE show when you try to:</p>
+<ul>
+<li>Hover over <code>greeter</code>?</li>
+<li>Pass a number to <code>greeter</code>?</li>
+</ul>
+<h2>Next steps</h2>
+<p>Next, let’s learn how to <a href="./types.html">declare types</a> in TypeScript.</p>
+
+</section>
+
   			
   			<bit-prev-next class="footer" list-selector=".sidebar-left ul li.parent.expanded ul"></bit-prev-next>
   		
@@ -647,7 +741,7 @@ import { Dinosaur as InGenDinosaur } from &quot;./Dinosaur&quot;;
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/typescript/10-modules/modules.md"},"description":"Modules \n\n## Modules\n\nModules are a way of grouping code to be executed within their own scope, opposed to a global scope. Modules give us a way to write DRY code, scope our variables, re-use parts of our code, are more easily tested, and mostly help us avoid writing applications full of that dreadful spaghetti code. In TypeScript, modules are categorized into two types - internal(called namespaces) and external(just called modules).\n\n### Exporting\n\nTo be able to use our declarations in other areas of our codebase, we can export them using the export keyword.\n\n```javascript\nexport interface Dinosaur {\n  name: string;\n  location: string;\n  teeth: number;\n}\n```\n\n#### Export statements\n\nWe can also rename our declarations when exporting if need be\n\n```javascript\ninterface Dinosaur {\n  name: string;\n  location: string;\n  teeth: number;\n}\n\nexport { Dinosaur as InGenDinosaur }\n```\n\n#### Default exports\n\nModules can export ONE default export using the keyword default.\n\nSecurity.ts\n```javascript\ndeclare let s: Security;\n\nexport default s;\n```\n\nApp.ts\n```javascript\nimport s from \"Security\";\n\ns.alert('the grid is down')\n```\n\n#### Re-exports\n\n\n### Importing\n\n```javascript\nimport { Dinosaur } from \"./Dinosaur\";\n\n// or\nimport { Dinosaur as InGenDinosaur } from \"./Dinosaur\";\n```\n\n","name":"learn-typescript/modules","title":"Modules","type":"page","parent":"learn-typescript","order":10,"hide":true,"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/typescript/05-modules/modules.md"},"description":"Learn how to export and import values from a file. \n","name":"learn-typescript/modules","title":"Modules","type":"page","parent":"learn-typescript","order":5,"outline":{"depth":2},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
