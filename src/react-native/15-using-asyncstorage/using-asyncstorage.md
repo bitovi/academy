@@ -1,4 +1,4 @@
-@page learn-react-native/using-asyncstorage Using AsyncStorage [Session Data]
+@page learn-react-native/using-asyncstorage Using AsyncStorage
 @parent learn-react-native 15
 @outline 3
 
