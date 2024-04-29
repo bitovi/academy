@@ -10,14 +10,16 @@
 
 In this section, you will:
 
-- Understand the fundamentals and objectives of generic functions
-- Create generic classes
-- Combine recursion with generic classes
-- Create recursive generics
+- Understand the fundamentals and objectives of generic functions.
+- Create generic classes.
+- Combine recursion with generic classes.
+- Create recursive generics.
 
 ## Objective 1: Basic Generics
 
-Generics are a way of writing abstract code that allows the determination of types to be handled when the code is used. Generics let us reuse code for different types and improve maintainability. Let's see how with a small example.
+### Introducing generics
+
+Generics are a way of writing abstract code that allows the determination of types to be handled when the code is used. Generics let us reuse code for different types and improve maintainability. Let’s see how with a small example.
 
 Consider a function that wraps a value in an object:
 
@@ -107,7 +109,6 @@ getMessage(hiObj);
 getDollars(hiObj);
 
 ```
-@codepen
 @highlight 1, 5, only
 
 The `<MyType>` part of the `wrapAsValue` definition is the __Generics__
@@ -140,43 +141,39 @@ The type can be inferred:
 
 ✏️ Create **src/generics/return-last.ts** and update it to be:
 
-@sourceref ../../../exercises/typescript/12-generics/01-problem/src/return-last.ts
+@sourceref ../../../exercises/typescript/11-generics/01-problem/src/return-last.ts
 
 ### Verify 1
 
 ✏️ Create **src/generics/return-last.test.ts** and update it to be:
 
-@sourceref ../../../exercises/typescript/12-generics/01-problem/src/return-last.test.ts
-
-✏️ Run the following to verify your solution:
-
-```shell
-npm run test
-```
+@sourceref ../../../exercises/typescript/11-generics/01-problem/src/return-last.test.ts
 
 ### Exercise 1
 
 Update the `return-last.ts` file to inform the function that it will be accepting an array of a certain type and return a single element of the same - type.
 
-<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-generics/01-problem?file=src/return-last.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-generics/01-problem?file=src/return-last.ts) to do this exercise in an online code editor.
+<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-problem?file=src/return-last.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-problem?file=src/return-last.ts) to do this exercise in an online code editor.
 
 ### Solution 1
+
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 <details>
 <summary>Click to see the solution</summary>
 
 Update `return-last.ts` to the following:
 
-@sourceref ../../../exercises/typescript/12-generics/01-solution/src/return-last.ts
-@highlight 1
+@diff ../../../exercises/typescript/11-generics/01-problem/src/return-last.ts ../../../exercises/typescript/11-generics/01-solution/src/return-last.ts only
 
 We use `<T>` to set up the generic. In the Parenthesis, we use `T[]` to inform the user we are accepting an array of a certain type. Finally, we use `): T{` to let us be aware what is the return type.   
 
-
-<strong>Have issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-generics/01-solution?file=src/return-last.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-generics/01-solution?file=src/return-last.ts).
+<strong>Have issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-solution?file=src/return-last.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-solution?file=src/return-last.ts).
 </details>
 
 ## Objective 2: Generic Classes
+
+### Using generics with classes
 
 Generic classes are quite common.
 
@@ -202,7 +199,6 @@ let myList = Collection();
 myList.push(25);
 myList.push('25');
 ```
-@codepen
 
 The good - we can push any type to this list.  
 The bad - we can push any type to this list.
@@ -220,12 +216,10 @@ class GenericCollection<T> {
   }
 }
 ```
-@codepen
 
 Now when we initialize this class we can specify a type to use.
 
 @sourceref ./generic-collection-class.ts
-@codepen
 @highlight 1, 8,14,25
 
 In the example above, we are utilizing generics to inform `GenericCollection` what type it is receiving. `string`, `number`, and `Dinosaur`. 
@@ -236,19 +230,13 @@ A great example of the power of generics is creating a recursive data structure 
 
 ✏️ Create **src/generics/tree-node.ts** and update it to be:
 
-@sourceref ../../../exercises/typescript/12-generics/02-problem/src/tree-node.ts
+@sourceref ../../../exercises/typescript/11-generics/02-problem/src/tree-node.ts
 
 ### Verify 2
 
 ✏️ Create **src/generics/tree-node.test.ts** and update it to be:
 
-@sourceref ../../../exercises/typescript/12-generics/02-problem/src/tree-node.test.ts
-
-Run the following to verify your solution:
-
-```shell
-npm run test
-```
+@sourceref ../../../exercises/typescript/11-generics/02-problem/src/tree-node.test.ts
 
 ### Exercise 2
 
@@ -257,19 +245,19 @@ Update the `tree-node.ts` file to create a recursive `TreeNode` class that can h
 For example, we will be able to create a `TreeNode` with a root value and
 comparison function as follows:
 
-@sourceref ../../../exercises/typescript/12-generics/02-problem/src/example.ts
+@sourceref ../../../exercises/typescript/11-generics/02-problem/src/example.ts
 
 Then we can add values to `root` like:
 
 ```typescript
-root.add("Chasen");
+root.add("Taylor");
 ```
 
-This will add `Chasen` to a `left` `TreeNode` of `root` because
-the `stringComparison` will return `1` (`Jennifer > Chasen`):
+This will add `Taylor` to a `left` `TreeNode` of `root` because
+the `stringComparison` will return `1` (`Jennifer > Taylor`):
 
 ```typescript
-root.left.value //-> "Chasen"
+root.left.value //-> "Taylor"
 ```
 
 As we add other values, they will be added to either the right or left nodes
@@ -283,17 +271,18 @@ root.right.value      //-> "Tom"
 root.right.left.value //-> "Matthew"
 ```
 
-<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-generics/02-problem?file=src/tree-node.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-generics/02-problem?file=src/tree-node.ts) to do this exercise in an online code editor.
+<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/02-problem?file=src/tree-node.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/02-problem?file=src/tree-node.ts) to do this exercise in an online code editor.
 
 ### Solution 2
+
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 <details>
 <summary>Click to see the solution</summary>
 
 ✏️ Update `tree-node.ts` to the following:
 
-@sourceref ../../../exercises/typescript/12-generics/02-solution/src/tree-node.ts
-@highlight 5-9, 11, 16, only
+@diff ../../../exercises/typescript/11-generics/02-problem/src/tree-node.ts ../../../exercises/typescript/11-generics/02-solution/src/tree-node.ts only
 
 The use of generics in line 5, allows the `TreeNode` class to be flexible and reusable, accommodating different types of data and comparison logic.
 </details>
@@ -302,7 +291,4 @@ The use of generics in line 5, allows the `TreeNode` class to be flexible and re
 
 Next, let’s take a look at [utility types](./utility-types.html) for type transformations.
 
-
-
-
-I am having a problem trying to test a compiler failure. For example, I am trying to test the Readonly<>, but to test it, we should test if the typescript throws an error. Does anyone have ideas on how to test this?
+<!-- TODO: I am having a problem trying to test a compiler failure. For example, I am trying to test the Readonly<>, but to test it, we should test if the TypeScript throws an error. Does anyone have ideas on how to test this? -->

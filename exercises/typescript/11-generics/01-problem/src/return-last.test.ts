@@ -1,6 +1,6 @@
 import { returnLast } from "./return-last";
 import { describe, it } from "node:test";
-import { strict as assert } from "assert";
+import assert from 'node:assert/strict';
 
 describe("Generics", () => {
   it("Returns last element with a string", () => {
