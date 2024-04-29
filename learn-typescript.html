@@ -516,28 +516,49 @@ covering CanJS core libraries.">
   				<section class="body">
     <h2>Before you begin</h2>
 <p><a href="https://discord.gg/J7ejFsZnJ4">
-<img src="./static/img/discord.png"
+<img alt="" src="./static/img/discord.png"
 style="float:left; margin:20px" width="57"/> <span style="margin-top: 10px;display: inline-block;">Click here to join the<br/>Bitovi Community Discord</span></a></p>
 <p>Join the Bitovi Community Discord to get help on Bitovi Academy courses or other
 Angular, React, CanJS and JavaScript problems.</p>
 <p>Please ask questions related to TypeScript in the <a href="https://discord.gg/qxqgyGquk7">TypeScript chat room</a>.</p>
 <p>If you find bugs in this training or have suggestions, create an <a href="https://github.com/bitovi/academy/issues">issue</a> or email <code>contact@bitovi.com</code>.</p>
-<p><img src="./static/img/typescript/logo.svg" width="50%"/></p>
+<p><img alt="TypeScript" src="./static/img/typescript/logo.svg" width="50%"/></p>
 <p>TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.</p>
-<p>Angular and many other frameworks use TypeScript to take advantage of its typechecking magic. While TypeScript may mean a bit of a learning curve for new developers, this guide covers the basics of TypeScript and work through examples to learn to harness the power of TypeScript.</p>
+<p>Many front-end frameworks use TypeScript to take advantage of its typechecking magic. While TypeScript may mean a bit of a learning curve for new developers, this guide covers the basics of TypeScript and work through examples to learn to harness the power of TypeScript.</p>
+<h2>How to follow this course</h2>
+<p>This course will teach you about TypeScript concepts and have an environment for you to practice in. Running the tests will catch any problems if the code was not written correctly or as expected. Pay close attention to how you name and save the files.</p>
+<p>The ✏️ icon will be used to indicate when commands need to be run or when files need to be created or updated.</p>
+<p>If you have any issues or suggestions as you move through this training, we’d love for you to submit a <a href="https://github.com/bitovi/academy/issues/new">GitHub issue</a> for it! 💖</p>
 <h2>Outline</h2>
-<ul>
-<li>Why TypeScript - learn what TypeScript is and how to compile it.</li>
-<li>IDE Support - configure TypeScript and learn about different IDEs that help support TypeScript development.</li>
-<li>Types - understand basic types and how to enforce them.
+<h3>Why TypeScript?</h3>
+<p>Learn what TypeScript is and why it’s valuable on a project.</p>
+<h3>IDE support</h3>
+<p>Learn about different IDEs that help support TypeScript development.</p>
+<h3>Setting up your environment</h3>
+<p>Install prerequisites and create a new Node project with TypeScript.</p>
+<h3>Exporting and importing</h3>
+<p>Export values from files and import them in other files.</p>
+<pre><code class="language-ts">function clampNumber(value: number, min: number, max: number): number {
+    return Math.min(Math.max(value, min), max);
+}
+
+export {
+    constrain: clampNumber,
+};
+</code></pre>
+<div line-highlight='5-7'></div>
+<h3>Types</h3>
+<p>Understand basic types and how to enforce them.</p>
 <pre><code class="language-typescript">let isCarnivore: boolean;
-</code></pre></li>
-<li>Functions - how to annotate functions parameters and return values, different parameter types available, and how to bind <code>this</code>.
+</code></pre>
+<h3>Functions</h3>
+<p>Annotate functions parameters and return values, use different parameter types, and bind <code>this</code>.</p>
 <pre><code class="language-typescript">function add(x: number, y: number): number {
   return x + y;
 }
-</code></pre></li>
-<li>Classes - using classes and inheritance in TypeScript, explaining the <code>constructor</code> method, and using public, private, protected, and readonly modifiers.
+</code></pre>
+<h3>Classes</h3>
+<p>Learn how to use classes and inheritance in TypeScript, understand the <code>constructor</code> method, and use the <code>public</code>, <code>private</code>, <code>protected</code>, and <code>readonly</code> modifiers.</p>
 <pre><code class="language-typescript">class Human {
   constructor(public firstName: string, public lastName: string) {}
 
@@ -545,26 +566,45 @@ Angular, React, CanJS and JavaScript problems.</p>
     return `${this.firstName} ${this.lastName}`;
   }
 }
-</code></pre></li>
-<li>Interfaces - writing Interfaces, setting optional properties, and the power of using interfaces in classes and functions.
+</code></pre>
+<h3>Interfaces</h3>
+<p>Learn how to write Interfaces, set optional properties, and use interfaces in classes and functions.</p>
 <pre><code class="language-typescript">interface Dinosaur {
   name: string;
   breed: string;
   height: number;
   location: string;
 }
-</code></pre></li>
-<li>Generics - explaining what generics are, why they are useful, and how to create a linked list using generics in TypeScript.
+</code></pre>
+<h3>Using <code>keyof</code> and <code>typeof</code></h3>
+<p>Learn how to use <code>keyof</code> and <code>typeof</code> to create new types from types and objects.</p>
+<pre><code class="language-typescript">type Dino = {
+  name: string;
+  type: &quot;herbivore&quot; | &quot;carnivore&quot;;
+  age: number;
+};
+
+type DinoKeys = keyof Dino; // &quot;name&quot; | &quot;type&quot; | &quot;age&quot;
+</code></pre>
+<div line-highlight='7'></div>
+<h3>Generics</h3>
+<p>Learn about what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript.</p>
 <pre><code class="language-typescript">class GenericCollection&lt;T&gt; {
   private list: T[];
   pushItem(thing:T) {
     this.list.push(thing);
   }
 }
-</code></pre></li>
-</ul>
+</code></pre>
+<h3>Utility Types</h3>
+<p>Use utility types provided by TypeScript.</p>
+<pre><code class="language-typescript">type Species = &quot;Tyrannosaurus rex&quot; | &quot;Triceratops horridus&quot; | null | undefined;
+
+type NNSpecies = NonNullable&lt;Species&gt;;
+</code></pre>
+<div line-highlight='3'></div>
 <h2>Next steps</h2>
-<p>✏️ Head over to the <a href="learn-typescript/why-typescript.html">first lesson</a> and get your environment setup.</p>
+<p>✏️ Head over to the <a href="learn-typescript/why-typescript.html">first lesson</a> to learn about why TypeScript is valuable on projects.</p>
 
 </section>
 
