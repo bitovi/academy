@@ -209,7 +209,7 @@ var Person = function(name) {
 	this.name = name;
 }
 
-console.log( Person.prototype instanceof Person ) //logs: false
+console.log( Person.prototype instanceof Person ) // Logs: false
 ```
 
 ### The solution
