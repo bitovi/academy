@@ -8,4 +8,4 @@ We’ll do this by creating a `log`
 helper that creates an operator that logs emitted values WITHOUT
 creating side effects.
 
-The "not creating side effects" things is important here. Lets see why.
+The "not creating side effects" things is important here. Let’s see why.
