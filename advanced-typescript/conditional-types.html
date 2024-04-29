@@ -594,7 +594,7 @@ type NonNullable&lt;T&gt; = T extends null | undefined ? never : T;
 <pre><code class="language-ts">type StringOrNumber = string | number;
 </code></pre>
 <div line-highlight='1'></div>
-<p>The refinement aspects of conditional types become even stronger when used in conjunction with other TypeScript features we’ve seen so far. Let’s do a little more tweaking to our types from the <code>createBattle</code> example above and define a function called <code>emitBattleStart</code> that can take a battle name and a payload that corresponds to the properties in the named typed.</p>
+<p>The refinement aspects of conditional types become even stronger when used together with other TypeScript features we’ve seen so far. Let’s do a little more tweaking to our types from the <code>createBattle</code> example above and define a function called <code>emitBattleStart</code> that can take a battle name and a payload that corresponds to the properties in the named typed.</p>
 <pre><code class="language-ts">emitBattleStart(&quot;wild-pokemon-battle&quot;, { challengingPokemon: &quot;onix&quot; });
 </code></pre>
 <p>Before we start looking at the <code>emitBattle</code> function let’s make our types a little more functional. Instead of having <code>BattleTypes</code> separated from the rest of the battle types, we could use them as literals on our battle types to create a discriminating union.</p>

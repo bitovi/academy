@@ -468,7 +468,7 @@ covering CanJS core libraries.">
 <ul>
 <li>Defines the type of the property</li>
 </ul>
-<p>One thing to be aware of with defining types using index signature is the value may or may <strong>not</strong> be there, but typescript makes it seem as though it’s always present.</p>
+<p>One thing to be aware of with defining types using index signature is the value may or may <strong>not</strong> be there, but TypeScript makes it seem as though it’s always present.</p>
 <pre><code class="language-ts">const bag: Bag = {
   maxPotion: 2,
 };
@@ -749,7 +749,7 @@ type TMItem = {
 
 type Items = PokeballItem | BerryItem | TMItem;
 </code></pre>
-<p>We’d like to make a bag type with properties on it matching the name of the item property on each of the <code>Items</code> and having that be a function to return the amount (so <code>bag.berries</code> is a function with this shape <code>() =&gt; number</code>). To do this we must do two things -- constrain the generic and remap via <code>as</code>.</p>
+<p>We’d like to make a bag type with properties on it matching the name of the item property on each of the <code>Items</code> and having that be a function to return the amount (so <code>bag.berries</code> is a function with this shape <code>() =&gt; number</code>). To do this we must do two things — constrain the generic and remap via <code>as</code>.</p>
 <pre><code class="language-ts">type MakeBag&lt;T extends { item: string; amount: number }&gt; = {
   [Item in keyof T as T[&quot;item&quot;]]: () =&gt; T[&quot;amount&quot;];
 };

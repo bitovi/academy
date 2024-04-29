@@ -457,7 +457,7 @@ type Items = &quot;potion&quot; | &quot;revive&quot;;
 
 type BagItems = `${ItemTypes} ${Items}`; //&quot;regular potion&quot; | &quot;regular revive&quot; | &quot;max potion&quot; | &quot;max revive&quot;
 </code></pre>
-<p>Template literal types can even be used in conjunction with generics, conditional types, and <code>infer</code>, allowing us to pull string literal types apart. Take the <code>PokemonEgg</code> example from above, since they all have a defined shape <code>&lt;PokemonName&gt;-egg</code> we can use that knowledge to create <code>PokemonNames</code> from <code>PokemonEgg</code>.</p>
+<p>Template literal types can even be used together with generics, conditional types, and <code>infer</code>, allowing us to pull string literal types apart. Take the <code>PokemonEgg</code> example from above, since they all have a defined shape <code>&lt;PokemonName&gt;-egg</code> we can use that knowledge to create <code>PokemonNames</code> from <code>PokemonEgg</code>.</p>
 <pre><code class="language-ts">type FromEgg&lt;S extends string&gt; = S extends `${infer PokemonName}-egg`
   ? PokemonName
   : never;
