@@ -1,9 +1,10 @@
 ignore-patterns:
-- /academy
-- /src/**/*.*
-- "!/src/**/scripts/*.*"
+  - /academy
+  - /src/**/*.*
+  - "!/src/**/scripts/*.*"
+  - /exercise-src
 
 ignores:
-- steal-tools
-- q
-- http-server
+  - steal-tools
+  - q
+  - http-server
