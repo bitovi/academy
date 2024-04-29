@@ -63,7 +63,7 @@ type InvalidExample2 = Pokemon[GymLeader];
 
 ### Multiple Types as Indices
 
-When TypeScript sees more than one type being passed in it will create a union of the property types -- `keyof` and string unions illustrate this.
+When TypeScript sees more than one type being passed in it will create a union of the property types — `keyof` and string unions illustrate this.
 
 ```ts
 type PokemonTypeOrPower = Pokemon["power" | "type"]; // number | "fire" | "water" | "grass"
@@ -94,7 +94,7 @@ type PokemonMoveName = Pokemon["firstMove"]["name"]; // string
 
 ### With Generics
 
-Index accessed types also work with generics, lets's take a look at an example they may seem familiar if you did the exercises from the last section
+Index accessed types also work with generics, let’s take a look at an example they may seem familiar if you did the exercises from the last section
 
 ```ts
 function getStarterPokemonInfomation<Starters, Name extends keyof Starters>(
