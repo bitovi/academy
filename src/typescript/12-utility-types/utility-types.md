@@ -2,7 +2,7 @@
 @parent learn-typescript 13
 @outline 3
 
-@description Learn about the utility types provided by TypeScript.
+@description Use utility types provided by TypeScript.
 
 @body
 
@@ -10,20 +10,20 @@
 
 In this section, you will:
 
-- Make properties optional with `Partial<Type>`
-- Make properties required with `Required<Type>`
-- Set properties as immutable with `Readonly<Type>`
-- Remove nullability with `NonNullable<Type>`
-- Map keys to a type with `Record<Keys, Type>`
-- Select included subtypes with `Extract<Type, Union>`
-- Exclude values from a type with `Exclude<Type, ExcludedUnion>`
-- Include specific properties with `Pick<Type, Keys>`
-- Exclude specific properties with `Omit<Type, Keys>`
-- Get function return type with `ReturnType<Type>`
+- Make properties optional with `Partial<Type>`.
+- Make properties required with `Required<Type>`.
+- Set properties as immutable with `Readonly<Type>`.
+- Remove nullability with `NonNullable<Type>`.
+- Map keys to a type with `Record<Keys, Type>`.
+- Select included subtypes with `Extract<Type, Union>`.
+- Exclude values from a type with `Exclude<Type, ExcludedUnion>`.
+- Include specific properties with `Pick<Type, Keys>`.
+- Exclude specific properties with `Omit<Type, Keys>`.
+- Get function return type with `ReturnType<Type>`.
 
 ## Objective 1: Property existence modifiers
 
-### Partial&lt;Type&gt;
+### Using `Partial<Type>`
 
 All properties of `Type`, but optional. Partial is often used when you need to partially update an object. See the example below.
 
@@ -37,7 +37,7 @@ enum Diet {
 interface Dinosaur {
   species: string;
   diet: Diet;
-  age?: number; // the question mark signals that this property is optional
+  age?: number;
 };
 
 type PartialDinosaur = Partial<Dinosaur>;
@@ -70,7 +70,7 @@ const newDino: Dinosaur = updateDinosaur(dino1, {
 
 In the code above, the second parameter for the function `updateDinosaur` is partial `Dinosaur`. This allows us to pass in a `Dinosaur` object with one or more of the key-value pairs. 
 
-### Required&lt;Type&gt;
+### Using `Required<Type>`
 
 All properties of `Type`, but required. For instance, you might use it when you can initialize all the properties of an object and want to avoid checking for null/undefined for the optional properties.
 
@@ -84,7 +84,7 @@ enum Diet {
 interface Dinosaur {
   species: string;
   diet: Diet;
-  age?: number; // the question mark signals that this property is optional
+  age?: number;
 };
 
 type RequiredDinosaur = Required<Dinosaur>;
@@ -108,7 +108,7 @@ if (trex.age > 30) {
 
 In the code above, we are declaring `trex` to type `RequiredDinosaur`. This will help us skip the check if age is null step because it is a required property
 
-### Readonly&lt;Type&gt;
+### Using `Readonly<Type>`
 
 All properties of `Type`, but they are readonly. Use it to prevent objects from being mutated.
 
@@ -122,7 +122,7 @@ enum Diet {
 interface Dinosaur {
   species: string;
   diet: Diet;
-  age?: number; // the question mark signals that this property is optional
+  age?: number;
 };
 
 type NamableDinosaur = { name: string } & Dinosaur; // this is an intersection between { name: string } and Dinosaur. Think { name: string } + Dinosaur
@@ -136,7 +136,7 @@ const dino: ReadOnlyDinosaur = {
   diet: Diet.Carnivore,
 };
 
-// Today is its birthday! Let`s attempt to increase its age:
+// Today is its birthday! Let’s attempt to increase its age:
 dino.age += 1;
 // Oops! TypeScript error
 ```
@@ -144,7 +144,7 @@ dino.age += 1;
 
 In the code above, we are declaring `dino` to type `ReadOnlyDinosaur`. This will prevent us from assigning a new value because it is a read-only object.
 
-### NonNullable&lt;Type&gt;
+### Using `NonNullable<Type>`
 
 Excludes `null` and `undefined` from `Type`. Prevent any runtime errors from occurring because we forgot to assign to a property.
 
@@ -162,43 +162,40 @@ In the code above, `NNSpecies` will not allow `null` or `undefined`.
 
 ✏️ Create **src/utility-types/property-existence.ts** and update it to be:
 
-@sourceref ../../../exercises/typescript/13-utility-types/01-problem/src/property-existence.ts
+@sourceref ../../../exercises/typescript/12-utility-types/01-problem/src/property-existence.ts
 
 ### Verify 1
 
 ✏️ Create **src/utility-types/property-existence.test.ts** and update it to be:
 
-@sourceref ../../../exercises/typescript/13-utility-types/01-problem/src/property-existence.test.ts
-
-✏️ Run the following to verify your solution:
-
-```shell
-npm run test
-```
+@sourceref ../../../exercises/typescript/12-utility-types/01-problem/src/property-existence.test.ts
 
 ### Exercise 1
 
 Update the `property-existence.ts` file so that:
  - `UpdateablePerson` allows all properties to be optional
  - `FullyDefinedPerson` ensures that all properties are defined
- - `NonEditablePerson` won't allow any update to a property
+ - `NonEditablePerson` won’t allow any update to a property
 
-<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/01-problem?file=src/property-existence.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/01-problem?file=src/property-existence.ts) to do this exercise in an online code editor.
+<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/01-problem?file=src/property-existence.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/01-problem?file=src/property-existence.ts) to do this exercise in an online code editor.
 
 ### Solution 1
+
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 <details>
 <summary>Click to see the solution</summary>
 
 ✏️ Update `property-existence.ts` to the following:
 
-@sourceref ../../../exercises/typescript/13-utility-types/01-solution/src/property-existence.ts
-@highlight 10, 12, 14, only
+@diff ../../../exercises/typescript/12-utility-types/01-problem/src/property-existence.ts ../../../exercises/typescript/12-utility-types/01-solution/src/property-existence.ts only
 
-<strong>Have issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/01-solution?file=src/property-existence.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/01-solution?file=src/property-existence.ts).
+<strong>Have issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/01-solution?file=src/property-existence.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/01-solution?file=src/property-existence.ts).
 </details>
 
-## Objective 2: Record&lt;Keys, Type&gt;
+## Objective 2: Construct an object type
+
+### Using `Record<Keys, Type>`
 
 Shortcut for defining properties keys and values. Particularly useful when you have a type in which multiple keys share the same value `Type`, so you can avoid repeating the pattern `key: type;`
 
@@ -212,7 +209,7 @@ enum Diet {
 interface Dinosaur {
   species: string;
   diet: Diet;
-  age?: number; // the question mark signals that this property is optional
+  age?: number;
 };
 
 const dinosCollection: Record<string, Dinosaur> = {
@@ -235,23 +232,17 @@ In the code above, `dinosCollection` is equivalent to `{[key: string]: Dinosaur 
 
 ✏️ Create **src/utility-types/record.ts** and update it to be:
 
-@sourceref ../../../exercises/typescript/13-utility-types/02-problem/src/record.ts
+@sourceref ../../../exercises/typescript/12-utility-types/02-problem/src/record.ts
 
 ### Verify 2
 
 ✏️ Create **src/utility-types/record.test.ts** and update it to be:
 
-@sourceref ../../../exercises/typescript/13-utility-types/02-problem/src/record.test.ts
-
-✏️ Run the following to verify your solution:
-
-```shell
-npm run test
-```
+@sourceref ../../../exercises/typescript/12-utility-types/02-problem/src/record.test.ts
 
 ### Exercise 2
 
-Update the `record.ts` file to create a new object type in which the keys are the IDs of the users and the values are the User type. Currently, the `PersonMap` type is `unknown`. Which utility type can we use here in conjunction with the Person type to create the appropriate PersonMap type?
+Update the `record.ts` file to create a new object type in which the keys are the IDs of the users and the values are the User type. Currently, the `PersonMap` type is `unknown`. Which utility type can we use here together with the Person type to create the appropriate PersonMap type?
 
 Our PersonMap should look like this:
 
@@ -266,22 +257,25 @@ const data: PersonMap = {
 }
 ```
 
-<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/02-problem?file=src/record.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/02-problem?file=src/record.ts) to do this exercise in an online code editor.
+<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/02-problem?file=src/record.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/02-problem?file=src/record.ts) to do this exercise in an online code editor.
 
 ### Solution 2
+
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 <details>
 <summary>Click to see the solution</summary>
 
 ✏️ Update `record.ts` to the following:
 
-@sourceref ../../../exercises/typescript/13-utility-types/02-solution/src/record.ts
-@highlight 19, only
+@diff ../../../exercises/typescript/12-utility-types/02-problem/src/record.ts ../../../exercises/typescript/12-utility-types/02-solution/src/record.ts only
 
-<strong>Have issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/02-solution?file=src/record.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/02-solution?file=src/record.ts).
+<strong>Have issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/02-solution?file=src/record.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/02-solution?file=src/record.ts).
 </details>
 
-## Objective 3: Extract&lt;Type, Union&gt;
+## Objective 3: Construct a new type by extracting from another type
+
+### Using `Extract<Type, Union>`
 
 Extracts from `Type` if is assignable to `Union`
 
@@ -295,7 +289,7 @@ enum Diet {
 interface Dinosaur {
   species: string;
   diet: Diet;
-  age?: number; // the question mark signals that this property is optional
+  age?: number;
 };
 
 type Species = "Tyrannosaurus rex" | "Triceratops horridus";
@@ -325,40 +319,37 @@ We can also extract common keys between 2 Types like what is happening to `Commo
 
 ✏️ Create **src/utility-types/extract.ts** and update it to be:
 
-@sourceref ../../../exercises/typescript/13-utility-types/03-problem/src/extract.ts
+@sourceref ../../../exercises/typescript/12-utility-types/03-problem/src/extract.ts
 
 ### Verify 3
 
 ✏️ Create **src/utility-types/extract.test.ts** and update it to be:
 
-@sourceref ../../../exercises/typescript/13-utility-types/03-problem/src/extract.test.ts
-
-✏️ Run the following to verify your solution:
-
-```shell
-npm run test
-```
+@sourceref ../../../exercises/typescript/12-utility-types/03-problem/src/extract.test.ts
 
 ### Exercise 3
 
-Update the `extract.ts` file to use the utility type `extract` on the existing Person type. Extract one of the two possible types from Person to create a new type, Developer.
+Update the `extract.ts` file to use the utility type `extract` on the existing Person type. Extract one of the two possible types from Person to create a new type, `Developer`.
 
-<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/03-problem?file=src/extract.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/03-problem?file=src/extract.ts) to do this exercise in an online code editor.
+<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/03-problem?file=src/extract.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/03-problem?file=src/extract.ts) to do this exercise in an online code editor.
 
 ### Solution 3
+
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 <details>
 <summary>Click to see the solution</summary>
 
 ✏️ Update `extract.ts` to the following:
 
-@sourceref ../../../exercises/typescript/13-utility-types/03-solution/src/extract.ts
-@highlight 19, only
+@diff ../../../exercises/typescript/12-utility-types/03-problem/src/extract.ts ../../../exercises/typescript/12-utility-types/03-solution/src/extract.ts only
 
-<strong>Have issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/03-solution?file=src/extract.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/03-solution?file=src/extract.ts).
+<strong>Have issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/03-solution?file=src/extract.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/03-solution?file=src/extract.ts).
 </details>
 
-## Objective 4: Exclude&lt;Type, ExcludedUnion&gt;
+## Objective 4: Construct a new type by excluding types from another type
+
+### Using `Exclude<Type, ExcludedUnion>`
 
 Removes from `Type` if is assignable to `Union`. Useful if you want a subset of `Type`
 
@@ -377,42 +368,37 @@ In the code above, `SpeciesGone` is `Species` minus `Triceratops horridus`. Type
 
 ✏️ Create **src/utility-types/exclude.ts** and update it to be:
 
-@sourceref ../../../exercises/typescript/13-utility-types/04-problem/src/exclude.ts
+@sourceref ../../../exercises/typescript/12-utility-types/04-problem/src/exclude.ts
 
 ### Verify 4
 
 ✏️ Create **src/utility-types/exclude.test.ts** and update it to be:
 
-@sourceref ../../../exercises/typescript/13-utility-types/04-problem/src/exclude.test.ts
-
-✏️ Run the following to verify your solution:
-
-```shell
-npm run test
-```
+@sourceref ../../../exercises/typescript/12-utility-types/04-problem/src/exclude.test.ts
 
 ### Exercise 4
 
 Update the `exclude.ts` file to create a new type, `FrontendDeveloper` that excludes the `backend` value from the team property. Build on the `Developer` type we previously created.
 
-<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/04-problem?file=src/exclude.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/04-problem?file=src/exclude.ts) to do this exercise in an online code editor.
+<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/04-problem?file=src/exclude.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/04-problem?file=src/exclude.ts) to do this exercise in an online code editor.
 
 ### Solution 4
+
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 <details>
 <summary>Click to see the solution</summary>
 
 ✏️ Update `exclude.ts` to the following:
 
-@sourceref ../../../exercises/typescript/13-utility-types/04-solution/src/exclude.ts
-@highlight 21-23, only
+@diff ../../../exercises/typescript/12-utility-types/04-problem/src/exclude.ts ../../../exercises/typescript/12-utility-types/04-solution/src/exclude.ts only
 
-<strong>Have issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/04-solution?file=src/exclude.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/04-solution?file=src/exclude.ts).
+<strong>Have issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/04-solution?file=src/exclude.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/04-solution?file=src/exclude.ts).
 </details>
 
 ## Objective 5: Include and exclude specific properties
 
-### Pick&lt;Type, Keys&gt;
+### Using `Pick<Type, Keys>`
 
 Select only the properties defined in Keys. Useful if you want a subset of `Type`.
 
@@ -426,7 +412,7 @@ enum Diet {
 interface Dinosaur {
   species: string;
   diet: Diet;
-  age?: number; // the question mark signals that this property is optional
+  age?: number;
 };
 
 type LesserDinosaur = Pick<Dinosaur, "species" | "age">;
@@ -440,7 +426,7 @@ const lesserDino: LesserDinosaur = {
 
 In the code above, if there is an attempt to add `diet` to `lesserDino` then TypeScript will throw an error. Object literal may only specify known properties, and `diet` does not exist in type `LesserDinosaur`.
 
-### Omit&lt;Type, Keys&gt;
+### Using `Omit<Type, Keys>`
 
 Selects all properties but the ones defined in Keys. Useful if you want a subset of `Type`
 
@@ -454,7 +440,7 @@ enum Diet {
 interface Dinosaur {
   species: string;
   diet: Diet;
-  age?: number; // the question mark signals that this property is optional
+  age?: number;
 };
 
 type LesserDinosaur = Omit<Dinosaur, "species" | "age">;
@@ -474,43 +460,37 @@ Both `species` and `age` key properties are gone!
 
 ✏️ Create **src/utility-types/include-exclude-properties.ts** and update it to be:
 
-@sourceref ../../../exercises/typescript/13-utility-types/05-problem/src/include-exclude-properties.ts
+@sourceref ../../../exercises/typescript/12-utility-types/05-problem/src/include-exclude-properties.ts
 
 ### Verify 5
 
 ✏️ Create **src/utility-types/include-exclude-properties.test.ts** and update it to be:
 
-@sourceref ../../../exercises/typescript/13-utility-types/05-problem/src/include-exclude-properties.test.ts
-
-✏️ Run the following to verify your solution:
-
-```shell
-npm run test
-```
+@sourceref ../../../exercises/typescript/12-utility-types/05-problem/src/include-exclude-properties.test.ts
 
 ### Exercise 5
 
 Update the `include-exclude-properties.ts` file to expand on the implementation of `FrontendDeveloper` to create a new type, `AdminDeveloper` where the `role` property should be replaced by a `permissions` array.
 
-<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/05-problem?file=src/include-exclude-properties.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/05-problem?file=src/include-exclude-properties.ts) to do this exercise in an online code editor.
+<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/05-problem?file=src/include-exclude-properties.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/05-problem?file=src/include-exclude-properties.ts) to do this exercise in an online code editor.
 
 ### Solution 5
+
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 <details>
 <summary>Click to see the solution</summary>
 
 ✏️ Update `include-exclude-properties.ts` to the following:
 
-@sourceref ../../../exercises/typescript/13-utility-types/05-solution/src/include-exclude-properties.ts
-@highlight 25-27, only
+@diff ../../../exercises/typescript/12-utility-types/05-problem/src/include-exclude-properties.ts ../../../exercises/typescript/12-utility-types/05-solution/src/include-exclude-properties.ts only
 
-
-<strong>Have issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/05-solution?file=src/include-exclude-properties.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/13-utility-types/05-solution?file=src/include-exclude-properties.ts).
+<strong>Have issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/05-solution?file=src/include-exclude-properties.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/05-solution?file=src/include-exclude-properties.ts).
 </details>
 
 ## Objective 6: Function utility types
 
-### ReturnType&lt;Type&gt;
+### Using `ReturnType<Type>`
 
 Gets the type from the return type of a function `Type`
 
@@ -524,7 +504,7 @@ enum Diet {
 interface Dinosaur {
   species: string;
   diet: Diet;
-  age?: number; // the question mark signals that this property is optional
+  age?: number;
 };
 
 declare function getDinosaur(): Dinosaur;
@@ -539,18 +519,18 @@ In the code above, `D1` and `D2` are both types `Dinosaur`.
 
 ## Next steps
 
-There are other built-in Utility Types:
+There are other built-in utility types:
 
-- [Parameters&lt;Type&gt;](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)
-- [ConstructorParameters&lt;Type&gt;](https://www.typescriptlang.org/docs/handbook/utility-types.html#constructorparameterstype)
-- [InstanceType&lt;Type&gt;](https://www.typescriptlang.org/docs/handbook/utility-types.html#instancetypetype)
-- [ThisParameterType&lt;Type&gt;](https://www.typescriptlang.org/docs/handbook/utility-types.html#thisparametertypetype)
-- [OmitThisParameter&lt;Type&gt;](https://www.typescriptlang.org/docs/handbook/utility-types.html#omitthisparametertype)
-- [ThisType&lt;Type&gt;](https://www.typescriptlang.org/docs/handbook/utility-types.html#thistypetype)
-- Intrinsic String Manipulation Types
-  - [Uppercase&lt;StringType&gt;](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html#uppercasestringtype)
-  - [Lowercase&lt;StringType&gt;](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html#uppercasestringtype)
-  - [Capitalize&lt;StringType&gt;](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html#uppercasestringtype)
-  - [Uncapitalize&lt;StringType&gt;](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html#uppercasestringtype)
+- [`Parameters<Type>`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)
+- [`ConstructorParameters<Type>`](https://www.typescriptlang.org/docs/handbook/utility-types.html#constructorparameterstype)
+- [`InstanceType<Type>`](https://www.typescriptlang.org/docs/handbook/utility-types.html#instancetypetype)
+- [`ThisParameterType<Type>`](https://www.typescriptlang.org/docs/handbook/utility-types.html#thisparametertypetype)
+- [`OmitThisParameter<Type>`](https://www.typescriptlang.org/docs/handbook/utility-types.html#omitthisparametertype)
+- [`ThisType<Type>`](https://www.typescriptlang.org/docs/handbook/utility-types.html#thistypetype)
+- Intrinsic string-manipulation types:
+  - [`Uppercase<StringType>`](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html#uppercasestringtype)
+  - [`Lowercase<StringType>`](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html#uppercasestringtype)
+  - [`Capitalize<StringType>`](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html#uppercasestringtype)
+  - [`Uncapitalize<StringType>`](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html#uppercasestringtype)
 
 If you would like to dive deeper into them, check the [official documentation](https://www.typescriptlang.org/docs/handbook/utility-types.html) for TypeScript.
