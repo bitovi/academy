@@ -9,7 +9,7 @@ using it to make a basic tabs widget. We strongly suggest finishing [learn-advan
 ## Before you begin
 
 <a href="https://discord.gg/J7ejFsZnJ4" style="display:flex;align-items:center">
-<img src="./static/img/discord.png"
+<img alt="" src="./static/img/discord.png"
   style="float:left; margin:20px" width="57"/> <span style="display: inline-block;">Click here to join the<br/>Bitovi Community Discord</span></a>
 
 Join the Bitovi Community Discord to get help on Bitovi Academy courses or other
