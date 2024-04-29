@@ -8,8 +8,9 @@ function buildDinosaur(name: string, breed: string, teeth?: number): void {
 }
 
 let newDino = buildDinosaur('Blue', 'Velociraptor', 80);
-//works
+// Works
 let otherDino = buildDinosaur('Delta', 'Velociraptor');
-//also works
+// Also works
 let otherOtherDino = buildDinosaur('Charlie');
-//error an argument for 'breed' was not provided
+// Expected 2-3 arguments, but got 1.ts(2554)
+// Error: An argument for 'breed' was not provided.
