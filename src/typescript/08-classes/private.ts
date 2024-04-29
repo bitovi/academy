@@ -6,10 +6,9 @@ class Dinosaur {
     this.dna = dna;
   }
   public walk(distanceInFeet: number): void {
-    console.log(`${this.name} walked ${distanceInFeet} feet.`);
+    console.info(`${this.name} walked ${distanceInFeet} feet.`);
   }
 }
 
 let scaryDino = new Dinosaur('Indominous', 'cuttlefish');
-scaryDino.dna;
-//Property 'dna' is private and only accessible within class 'Dinosaur'.
+scaryDino.dna; // Error: Property 'dna' is private and only accessible within class 'Dinosaur'.ts(2341)

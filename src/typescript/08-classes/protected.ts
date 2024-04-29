@@ -6,16 +6,16 @@ class Dinosaur {
 
 // EFFECT ON INSTANCES
 var indominusRex = new Dinosaur();
-indominusRex.name; // okay
-indominusRex.dna; // ERROR : private
-indominusRex.teethCount; // ERROR : protected
+indominusRex.name; // Okay
+indominusRex.dna; // Error: Property 'dna' is private and only accessible within class 'Dinosaur'.ts(2341)
+indominusRex.teethCount; // Error: Property 'teethCount' does not exist on type 'Dinosaur'.ts(2339)
 
 // EFFECT ON CHILD CLASSES
 class GeneticallyModifiedDinosaur extends Dinosaur {
   constructor() {
     super();
-    this.name; // okay
-    this.dna; // ERROR: private
-    this.teethCount; // okay
+    this.name; // Okay
+    this.dna; // Error: Property 'dna' is private and only accessible within class 'Dinosaur'.ts(2341)
+    this.teethCount; // Okay
   }
 }

@@ -7,8 +7,8 @@ class Leoplurodon {
   }
 
   updateLocation(location: string): void {
-    this.location = location; // Cannot assign to 'location' because it is a read-only property.ts(2540)
+    this.location = location; // Error: Cannot assign to 'location' because it is a read-only property.ts(2540)
   }
 }
 let firstStop = new Leoplurodon("On the way to Candy Mountain");
-firstStop.location = "On a bridge"; // error! location is readonly.
+firstStop.location = "On a bridge"; // Error: Cannot assign to 'location' because it is a read-only property.ts(2540)
