@@ -5,7 +5,6 @@ interface Dinosaur {
   location: string;
 }
 
-
 class DinoWithRoar implements Dinosaur {
   name: string;
   breed: string;

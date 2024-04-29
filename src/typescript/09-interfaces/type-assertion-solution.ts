@@ -4,5 +4,5 @@ interface Dinosaur {
 }
 
 const myObj = {} as Dinosaur;
-myObj.name = 'Blue';
-myObj.height = 6;
+myObj.name = 'Blue'; // Okay now
+myObj.height = 6;// Okay now

@@ -9,7 +9,11 @@ function trackDino(dino: Dinosaur) {
   console.info(dino.location);
 }
 
-const blue = {name: 'blue', breed: 'Velociraptor', location: 'Section B'};
-//works
+const blue = {
+  name: 'blue',
+  breed: 'Velociraptor',
+  location: 'Section B',
+};
+// Works
 trackDino(blue);
-//Logs "Section B"
+// Logs "Section B"

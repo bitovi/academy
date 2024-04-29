@@ -20,7 +20,8 @@ function dinoCatcher(dinosaur: Dinosaur) {
 }
 
 dinoCatcher(dinoA);
-//works!
+// Works!
+
 dinoCatcher(dinoB);
-//Argument of type '{ name: string; location: string; }' is not assignable to parameter of type 'Dinosaur'.
-//Property 'breed' is missing in type '{ name: string; location: string; }'.
+// Error: Argument of type '{ name: string; location: string; }' is not assignable to parameter of type 'Dinosaur'.
+// Property 'breed' is missing in type '{ name: string; location: string; }'.
