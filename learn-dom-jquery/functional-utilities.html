@@ -555,7 +555,7 @@ object onto the <code>target</code> object.</p>
 <li><p>Loop through an object’s enumerable properties with a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in">for-in loop</a>:</p>
 <pre><code class="language-js">var obj = { foo: &quot;bar&quot;, zed: &quot;ted&quot; };
 for (var prop in obj) {
-  console.log(prop); //logs &quot;foo&quot; then &quot;zed&quot;
+  console.log(prop); // Logs &quot;foo&quot; then &quot;zed&quot;
 }
 </code></pre></li>
 </ul>
@@ -564,7 +564,7 @@ for (var prop in obj) {
 <li><p>Read a property with a string using the <code>[]</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors">member operator</a>.</p>
 <pre><code class="language-js">var obj = { foo: &quot;bar&quot; };
 var prop = &quot;foo&quot;;
-console.log(obj[prop]); //logs &quot;bar&quot;
+console.log(obj[prop]); // Logs &quot;bar&quot;
 </code></pre></li>
 </ul>
 <div class='codepen' data-codepen=''></div>
@@ -573,7 +573,7 @@ console.log(obj[prop]); //logs &quot;bar&quot;
 <pre><code class="language-js">var obj = {};
 var prop = &quot;foo&quot;;
 obj[prop] = &quot;bar&quot;;
-console.log(obj.prop); //logs &quot;bar&quot;
+console.log(obj.prop); // Logs &quot;bar&quot;
 </code></pre></li>
 </ul>
 <div class='codepen' data-codepen=''></div>
@@ -581,7 +581,7 @@ console.log(obj.prop); //logs &quot;bar&quot;
 <li><p>Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty">Object.prototype.hasOwnProperty</a> to detect if an object has
 the specified property as it’s own property:</p>
 <pre><code class="language-js">var obj = { foo: &quot;bar&quot; };
-console.log(obj.hasOwnProperty(&quot;foo&quot;)); //logs true
+console.log(obj.hasOwnProperty(&quot;foo&quot;)); // Logs true
 </code></pre></li>
 </ul>
 <div class='codepen' data-codepen=''></div>
@@ -630,7 +630,7 @@ console.log(obj.hasOwnProperty(&quot;foo&quot;)); //logs true
 <ul>
 <li><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString">Object.prototype.toString</a> called on built-in types returns the object class name:</p>
 <pre><code class="language-js">console.log(Object.prototype.toString.call(new Date()));
-//logs &quot;[object Date]&quot;
+// Logs &quot;[object Date]&quot;
 </code></pre></li>
 </ul>
 <div class='codepen' data-codepen=''></div>
@@ -677,7 +677,7 @@ array. A value is array-like if:</p>
 <ul>
 <li>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in">in operator </a> returns <code>true</code> if the specified property is in the specified object or its prototype chain.
 <pre><code class="language-js">var obj = { foo: &quot;bar&quot; };
-console.log(&quot;foo&quot; in obj); //logs true
+console.log(&quot;foo&quot; in obj); // Logs true
 </code></pre></li>
 </ul>
 <div class='codepen' data-codepen=''></div>
@@ -871,7 +871,7 @@ var dog = {
 };
 
 var dogSpeak = $.proxy(dog.speak, dog);
-dogSpeak(&quot;ruff&quot;); //logs 'fido says ruff'
+dogSpeak(&quot;ruff&quot;); // Logs 'fido says ruff'
 </code></pre>
 <div class='codepen'></div>
 <p><details>
@@ -906,7 +906,7 @@ var dog = {
   },
 };
 
-dog.speak.apply(cat, []); //logs &quot;sparky says woof&quot;
+dog.speak.apply(cat, []); // Logs &quot;sparky says woof&quot;
 </code></pre></li>
 </ul>
 <h3>The solution</h3>

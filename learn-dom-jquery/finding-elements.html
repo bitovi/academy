@@ -670,7 +670,7 @@ obj[&quot;1&quot;] = &quot;y&quot;;
 &lt;script type=&quot;module&quot;&gt;
   import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
   var dogs = $(&quot;.dogs li&quot;);
-  console.log(dogs.html()); //logs &quot;&lt;b&gt;f&lt;/b&gt;ido&quot;
+  console.log(dogs.html()); // Logs &quot;&lt;b&gt;f&lt;/b&gt;ido&quot;
 &lt;/script&gt;
 </code></pre></li>
 </ul>
@@ -746,7 +746,7 @@ to set the html contents of an element.</li>
 &lt;script type=&quot;module&quot;&gt;
   import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
 
-  console.log($(&quot;.first&quot;).val()); //log &quot;first&quot;
+  console.log($(&quot;.first&quot;).val()); // Log &quot;first&quot;
   $(&quot;.second&quot;).val(&quot;SECOND&quot;);
 &lt;/script&gt;
 </code></pre>
@@ -793,7 +793,7 @@ to set the html contents of an element.</li>
 <p></details></p>
 <h2>Exercise: <code>$(selector)</code></h2>
 <h3>The problem</h3>
-<p>Lets remove the need to use <code>new</code> when using <code>$</code>.</p>
+<p>Let’s remove the need to use <code>new</code> when using <code>$</code>.</p>
 <p><details>
 <summary>Click to see test code</summary></p>
 <pre><code class="language-js">QUnit.test(&quot;$(selector)&quot;, function () {
@@ -848,7 +848,7 @@ console.log(sponge instanceof Animal); //-&gt; true
 &lt;script type=&quot;module&quot;&gt;
   import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
   var $ul = $(&quot;.dogs&quot;);
-  console.log($ul.text()); //logs &quot;\n\tfido\n\trover\n&quot;
+  console.log($ul.text()); // Logs &quot;\n\tfido\n\trover\n&quot;
 
   var dogs = $(&quot;.dogs li&quot;);
   dogs.text(&quot;&lt;b&gt;rover&lt;/b&gt;&quot;); //-&gt; dogs
@@ -1084,7 +1084,7 @@ $([first, second])
   };
 };
 var logMe = makeLogger(&quot;me&quot;);
-logMe(); //logs &quot;me&quot;
+logMe(); // Logs &quot;me&quot;
 </code></pre></li>
 </ul>
 <div class='codepen' data-codepen=''></div>
