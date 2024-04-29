@@ -72,7 +72,7 @@ req.flush(mockStates);
 
 ### Avoiding the unexpected
 
-When testing service methods in isolation, it’s better to ensure we don't have unexpected effects. `HttpTestingController`’s `verify` method ensures there are no unmatched requests that were not handled.
+When testing service methods in isolation, it’s better to ensure we don’t have unexpected effects. `HttpTestingController`’s `verify` method ensures there are no unmatched requests that were not handled.
 
 ```typescript
 httpTestingController.verify();
