@@ -9,7 +9,7 @@
 
 <p>
   <a href="https://discord.gg/J7ejFsZnJ4">
-    <img src="./static/img/discord.png" style="float:left; margin:20px" width="57"/>
+    <img alt="" src="./static/img/discord.png" style="float:left; margin:20px" width="57"/>
     <span style="margin-top: 10px;display: inline-block;">
       Click here to join the
       <br/>
