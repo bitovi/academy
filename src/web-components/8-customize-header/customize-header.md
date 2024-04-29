@@ -12,7 +12,7 @@ In this part we will:
 
 ## Problem
 
-We want the users of our component to be able to customize the styling. For example we think they should be able to change the header’s `background-color` and the heading's `text-transform`.
+We want the users of our component to be able to customize the styling. For example we think they should be able to change the header’s `background-color` and the heading’s `text-transform`.
 
 Open up the styling for this component by providing supported CSS custom properties. In the end a custom header should look something like this:
 
