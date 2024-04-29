@@ -706,7 +706,7 @@ covering CanJS core libraries.">
 <pre><code class="language-typescript">req.flush(mockStates);
 </code></pre>
 <h3>Avoiding the unexpected</h3>
-<p>When testing service methods in isolation, it’s better to ensure we don't have unexpected effects. <code>HttpTestingController</code>’s <code>verify</code> method ensures there are no unmatched requests that were not handled.</p>
+<p>When testing service methods in isolation, it’s better to ensure we don’t have unexpected effects. <code>HttpTestingController</code>’s <code>verify</code> method ensures there are no unmatched requests that were not handled.</p>
 <pre><code class="language-typescript">httpTestingController.verify();
 </code></pre>
 <h3>Putting it all together</h3>
