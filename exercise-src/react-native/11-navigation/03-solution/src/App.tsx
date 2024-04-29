@@ -14,46 +14,7 @@ import Box from "./design/Box"
 import Typography from "./design/Typography"
 import { createStackNavigator } from "@react-navigation/stack"
 
-declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace ReactNavigation {
-    // eslint-disable-next-line @typescript-eslint/no-empty-interface
-    interface RootParamList extends RestaurantsStackParamList {}
-  }
-}
-
-export type RestaurantsStackParamList = {
-  StateList: undefined
-  CityList: {
-    state: {
-      name: string
-      short: string
-    }
-  }
-  RestaurantList: {
-    state: {
-      name: string
-      short: string
-    }
-    city: {
-      name: string
-      state: string
-    }
-  }
-  RestaurantDetails: {
-    state: {
-      name: string
-      short: string
-    }
-    city: {
-      name: string
-      state: string
-    }
-    slug: string
-  }
-}
-
-const RestaurantsStack = createStackNavigator<RestaurantsStackParamList>()
+const RestaurantsStack = createStackNavigator()
 const RestaurantsNavigator: FC = () => {
   return (
     <RestaurantsStack.Navigator

@@ -20,17 +20,7 @@ declare global {
   }
 }
 
-export type RestaurantsStackParamList = {
-  StateList: undefined
-  CityList: {
-    state: {
-      name: string
-      short: string
-    }
-  }
-}
-
-const RestaurantsStack = createStackNavigator<RestaurantsStackParamList>()
+const RestaurantsStack = createStackNavigator()
 const RestaurantsNavigator: FC = () => {
   return (
     <RestaurantsStack.Navigator

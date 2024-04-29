@@ -6,7 +6,7 @@ import Screen from "../../design/Screen"
 import Typography from "../../design/Typography"
 import Button from "../../design/Button"
 
-export type State = {
+export interface State {
   name: string
   short: string
 }
@@ -27,25 +27,21 @@ const StateList: FC = () => {
 
   return (
     <Screen>
-      {states?.length > 0 ? (
-        <FlatList
-          data={states}
-          renderItem={({ item: stateItem }) => (
-            <Button
-              onPress={() => {
-                navigation.navigate("CityList", {
-                  state: stateItem,
-                })
-              }}
-            >
-              {stateItem.name}
-            </Button>
-          )}
-          keyExtractor={(item) => item.short}
-        />
-      ) : (
-        <Typography>No states found</Typography>
-      )}
+      <FlatList
+        data={states}
+        renderItem={({ item: stateItem }) => (
+          <Button
+            onPress={() => {
+              navigation.navigate("CityList", {
+                state: stateItem,
+              })
+            }}
+          >
+            {stateItem.name}
+          </Button>
+        )}
+        keyExtractor={(item) => item.short}
+      />
     </Screen>
   )
 }
