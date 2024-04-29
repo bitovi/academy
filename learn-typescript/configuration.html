@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn about TypeScript Configurations and Linting 
+  <meta name="description" content="Learn about TypeScript configuration and linting. 
 ">
   
   <!-- Google Tag Manager -->
@@ -162,22 +162,6 @@
 				
 			
 		
-			
-				
-					<li class="current
-           						parent
-           						expanded">
-						<a class="page"
-							href="configuration.html"
-							title="Learn about TypeScript Configurations and Linting">
-							Configuration
-						</a>
-						
-							
-
-						
-					</li>
-				
 			
 		
 			
@@ -517,7 +501,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn about TypeScript Configurations and Linting</p>
+    <p>Learn about TypeScript configuration and linting.</p>
 
 </section>
 
@@ -611,7 +595,45 @@ It looks like this one:</p>
 Here is a <a href="https://eslint.org/docs/rules/">list of ESLint rules</a>. Take some time getting to know them!</p>
 <p>For more information on TypeScript with ESLint, we can refer to the <a href="https://github.com/typescript-eslint/typescript-eslint">typescript-eslint repository</a>.</p>
 <h2>Next steps</h2>
-<p>Next we will learn how to <a href="./exporting-and-importing.html">import and export</a> functions between modules.</p>
+<p>Next we will learn how to import and export functions between <a href="modules.html" title="Modules
+Modules
+Modules are a way of grouping code to be executed within their own scope, opposed to a global scope. Modules give us a way to write DRY code, scope our variables, re-use parts of our code, are more easily tested, and mostly help us avoid writing applications full of that dreadful spaghetti code. In TypeScript, modules are categorized into two types - internal(called namespaces) and external(just called modules).
+Exporting
+To be able to use our declarations in other areas of our codebase, we can export them using the export keyword.
+export interface Dinosaur {
+  name: string;
+  location: string;
+  teeth: number;
+}
+
+Export statements
+We can also rename our declarations when exporting if need be
+interface Dinosaur {
+  name: string;
+  location: string;
+  teeth: number;
+}
+
+export { Dinosaur as InGenDinosaur }
+
+Default exports
+Modules can export ONE default export using the keyword default.
+Security.ts
+declare let s: Security;
+
+export default s;
+
+App.ts
+import s from &quot;Security&quot;;
+
+s.alert('the grid is down')
+
+Re-exports
+Importing
+import { Dinosaur } from &quot;./Dinosaur&quot;;
+
+// or
+import { Dinosaur as InGenDinosaur } from &quot;./Dinosaur&quot;;">Modules</a>.</p>
 
 </section>
 
@@ -650,7 +672,7 @@ Here is a <a href="https://eslint.org/docs/rules/">list of ESLint rules</a>. Tak
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/typescript/04-configuration/configuration.md"},"description":"Learn about TypeScript Configurations and Linting \n","name":"learn-typescript/configuration","title":"Configuration","type":"page","parent":"learn-typescript","order":4,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/typescript/04-configuration/configuration.md"},"description":"Learn about TypeScript configuration and linting. \n","name":"learn-typescript/configuration","title":"Configuration","type":"page","parent":"learn-typescript","order":4,"hide":true,"comment":" ","pathToRoot":"../.."};
     </script>
 
     
