@@ -156,7 +156,7 @@ If you’ve implemented everything correctly, you should now be able to create a
 
 @diff ../14-building-order-form/order.component.spec-final.ts ./order.component.spec.ts only
 
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 ## P3: What you need to know
 

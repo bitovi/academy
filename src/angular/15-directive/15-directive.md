@@ -173,7 +173,7 @@ ng g directive onlyNumbers
 
 @sourceref ./only-numbers.directive.spec.ts
 
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 ## Solution
 

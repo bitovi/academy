@@ -98,7 +98,7 @@ see the UI change and see the active class on the current nav item.
 
 ## Solution
 
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 <details>
 <summary>Click to see the solution</summary>
