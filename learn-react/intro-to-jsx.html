@@ -641,7 +641,7 @@ const welcomeMessage = welcome(&quot;Alice&quot;)
 }
 </code></pre>
 <h4>Convention: Implicit Returns</h4>
-<p>When creating functions that have no logic and just return JSX, especially when they're an argument to a function, the convention is to use an arrow function with an implicit return. This is nearly always coupled with the parenthesis convention, too. (Don't worry: you'll learn about <code>.map</code> in the next objective.)</p>
+<p>When creating functions that have no logic and just return JSX, especially when they're an argument to a function, the convention is to use an arrow function with an implicit return. This is nearly always coupled with the parenthesis convention, too. (Don’t worry: you’ll learn about <code>.map</code> in the next objective.)</p>
 <pre><code class="language-tsx">const data = [&quot;one&quot;, &quot;two&quot;]
 
 function List() {
@@ -960,7 +960,7 @@ const content = (
   &lt;li&gt;Delta&lt;/li&gt;
 &lt;/ul&gt;
 </code></pre>
-<p>🔦 <em>During development, If you forget to provide a <code>key</code> prop for items in an array React will log the following error to the browser's console:</em></p>
+<p>🔦 <em>During development, If you forget to provide a <code>key</code> prop for items in an array React will log the following error to the browser’s console:</em></p>
 <p><img alt="A browser console with the error message 'Warning: Each child in a list should have a unique 'key' prop." src="../../../static/img/react-vite/03-intro-to-jsx/react-missing-key-error.png" style="width:100%" /></p>
 <h3>Setup 2</h3>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
