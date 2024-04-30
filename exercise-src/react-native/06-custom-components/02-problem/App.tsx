@@ -13,19 +13,20 @@ const states = [
 ]
 
 export type ListItemProps = {
-  key: string
-  name: string
+  //Exercise: Implement ListItem Props 
 }
 
-export const ListItem: FC<ListItemProps> = ({ name }) => {
-  return <Text>{name}</Text>
+export const ListItem: FC = ({}) => {
+  return (
+    // Exercise: Implement ListItem component
+  )
 }
 
 export const StateList: FC = () => {
   return (
     <View>
       {states?.length > 0 ? (
-        states.map((state) => <ListItem key={state.short} name={state.name} />)
+        states.map((state) => <Text key={state.short}>{state.name}</Text>)
       ) : (
         <Text>No states found</Text>
       )}
