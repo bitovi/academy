@@ -10,6 +10,7 @@
     "dev": "bit-docs -dw",
     "build": "bit-docs -df",
     "rebuild-assets": "bit-docs -dfs",
+    "generate": "node ./exercise-src/generate.mjs",
     "clean": "rm -rf academy",
     "deploy": "node scripts/hubspot-deploy",
     "start": "concurrently -k \"npm:dev\" \"http-server -c -1\""
