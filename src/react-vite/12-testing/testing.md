@@ -34,9 +34,9 @@ React Testing Library encourages tests that focus on how the user interacts with
 
 ### Rendering and verifying a component in a test
 
-OK, you're convinced that React Testing Library is a good idea, how do you use it to create tests for your React components?
+OK, you’re convinced that React Testing Library is a good idea, how do you use it to create tests for your React components?
 
-Let's take a look at an example: say we want to test a component we created named `EmailInputField` that renders a form field. We expect the component will generate HTML like this:
+Let’s take a look at an example: say we want to test a component we created named `EmailInputField` that renders a form field. We expect the component will generate HTML like this:
 
 ```html
 <div class="form-field">
@@ -45,7 +45,7 @@ Let's take a look at an example: say we want to test a component we created name
 </div>
 ```
 
-We want to test `EmailInputField` to make sure it generates the DOM we expect. If you're already familiar with testing frontend JavaScript code, the following pattern will probably be recognizable: each test consists of arguments to the `it` function provided by Vite. The first argument is a short description of what the test is verifying. The convention is that the description string takes "it" as a prefix and proceeds from there, e.g. "[it] renders the correct label and value."
+We want to test `EmailInputField` to make sure it generates the DOM we expect. If you’re already familiar with testing frontend JavaScript code, the following pattern will probably be recognizable: each test consists of arguments to the `it` function provided by Vite. The first argument is a short description of what the test is verifying. The convention is that the description string takes "it" as a prefix and proceeds from there, e.g. "[it] renders the correct label and value."
 
 The second argument to `it` is a callback function that is called to run the test. Inside the callback, invoke the React Testing Library function `render` and pass it a single argument, the JSX for your component including props. After `render` completes, use `screen` to query the DOM and make assertions about the result.
 
@@ -57,9 +57,9 @@ it("renders the correct label and value", () => {
 })
 ```
 
-In the test above, we validate that the label is correct. We use the `getByText` function to select a single element whose `textContent` matches the string, "Email:". If you look closely you can see that the `<label>` content in the HTML has a ":" (colon) at the end, but the `label` prop does not, we can conclude that EmailInputField appends the colon — but **the purpose of the test isn't how EmailInputField works, it's the DOM output that it returns**. After we get an element, we then use `expect` and `toBeInTheDocument` to verify the element was rendered properly. Our test passes because the generated DOM is what we expect the user will perceive.
+In the test above, we validate that the label is correct. We use the `getByText` function to select a single element whose `textContent` matches the string, "Email:". If you look closely you can see that the `<label>` content in the HTML has a ":" (colon) at the end, but the `label` prop does not, we can conclude that EmailInputField appends the colon — but **the purpose of the test isn’t how EmailInputField works, it’s the DOM output that it returns**. After we get an element, we then use `expect` and `toBeInTheDocument` to verify the element was rendered properly. Our test passes because the generated DOM is what we expect the user will perceive.
 
-We also want to validate the `<input>` element; let's update the test:
+We also want to validate the `<input>` element; let’s update the test:
 
 ```tsx
 it("renders the correct label and value", () => {
@@ -73,9 +73,9 @@ it("renders the correct label and value", () => {
 })
 ```
 
-We've used a different query to select the `<input>` element: `getByDisplayValue`. It returns an input element whose value matches the provided string. React Testing Library has a [suite of "query" functions](https://testing-library.com/docs/queries/about) that select elements based on characteristics like: role, label text, placeholder text, text, display value, alt text, and title. Our test continues to pass because the input's value in the DOM matches what we expect.
+We’ve used a different query to select the `<input>` element: `getByDisplayValue`. It returns an input element whose value matches the provided string. React Testing Library has a [suite of "query" functions](https://testing-library.com/docs/queries/about) that select elements based on characteristics like: role, label text, placeholder text, text, display value, alt text, and title. Our test continues to pass because the input’s value in the DOM matches what we expect.
 
-Before we move on, let's consider the `type` prop — shouldn't we test to be sure it was applied properly as the input's `type` attribute? The answer is maybe. `type="email"` doesn't affect the appearance of the field in a browser, but it might affect how the user can enter input. For example, a mobile device might display a special on-screen keyboard. For now, we'll hold off on writing tests that check attribute values and see if there is another, more user-focused way to test this behavior.
+Before we move on, let’s consider the `type` prop — shouldn’t we test to be sure it was applied properly as the input’s `type` attribute? The answer is maybe. `type="email"` doesn’t affect the appearance of the field in a browser, but it might affect how the user can enter input. For example, a mobile device might display a special on-screen keyboard. For now, we’ll hold off on writing tests that check attribute values and see if there is another, more user-focused way to test this behavior.
 
 ### Setup 1
 
@@ -149,7 +149,7 @@ Referring back to the HTML output by the `EmailInputField` component:
 </div>
 ```
 
-We want to write a test to verify that what the user types is displayed as the `<input>`'s value. The user-event library includes a method named `keyboard` that we can use to send a sequence of key events to the `<input>` element. The `keyboard` method provides a good simulation of what happens when a user is typing. Before we use `keyboard` in a test, we need to [initialize user events with the `setup` method](https://testing-library.com/docs/user-event/setup#direct-apis). Let's look at the test:
+We want to write a test to verify that what the user types is displayed as the `<input>`’s value. The user-event library includes a method named `keyboard` that we can use to send a sequence of key events to the `<input>` element. The `keyboard` method provides a good simulation of what happens when a user is typing. Before we use `keyboard` in a test, we need to [initialize user events with the `setup` method](https://testing-library.com/docs/user-event/setup#direct-apis). Let’s look at the test:
 
 ```tsx
 import userEvent from "@testing-library/user-event"
@@ -176,18 +176,18 @@ There are some notable differences compared to the previous test:
 - The callback function argument of `it` is prefaced with `async`.
 - We need to `await` both the `click`, and `keyboard` methods to let them complete.
 - The input element needs to have focus before we "type" input; rather than using the input
-  element's `focus` method, we prefer the more performant `user.click()` method.
+  element’s `focus` method, we prefer the more performant `user.click()` method.
 
 After `keyboard` completes, we can make assertions about the current state of the input, including the current value, which should have been updated with the value of the single `keyboard` argument.
 
-There is one final point to consider: testing the `type` attribute of the `<input>` element. We'd prefer to follow React Testing Library's philosophy of testing the DOM generated by a component. To put this into practice, we need some knowledge about different `<input>` type values, their effects on the user experience, and why we might choose one over another. Let's review what MDN has to say about the ["email" type value](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email):
+There is one final point to consider: testing the `type` attribute of the `<input>` element. We'd prefer to follow React Testing Library's philosophy of testing the DOM generated by a component. To put this into practice, we need some knowledge about different `<input>` type values, their effects on the user experience, and why we might choose one over another. Let’s review what MDN has to say about the ["email" type value](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email):
 
-> The input value is automatically validated to ensure that it's either empty or a
+> The input value is automatically validated to ensure that it’s either empty or a
 > properly-formatted email address (or list of addresses) before the form can be submitted. The
 > :valid and :invalid CSS pseudo-classes are automatically applied as appropriate to visually denote
 > whether the current value of the field is a valid email address or not.
 
-This is a great reason for choosing the "email" type rather than the "text" type. The "email" type prevents the user from entering an incorrectly formatted email address. This also helps guide our thinking — rather than testing an attribute **value**, we can test the input's **behavior**. We'll add another test to ensure incorrect email formats are flagged as invalid.
+This is a great reason for choosing the "email" type rather than the "text" type. The "email" type prevents the user from entering an incorrectly formatted email address. This also helps guide our thinking — rather than testing an attribute **value**, we can test the input’s **behavior**. We’ll add another test to ensure incorrect email formats are flagged as invalid.
 
 ```tsx
 import userEvent from "@testing-library/user-event"
