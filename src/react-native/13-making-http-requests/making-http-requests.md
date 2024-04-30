@@ -22,11 +22,43 @@ TODO
 
 ### Setup 1
 
-TODO
+✏️ Update **src/screens/CityList/CityList.tsx** to be:
+
+@diff ../../../exercises/react-native/12-navigation-params/01-solution/src/screens/CityList/CityList.tsx ../../../exercises/react-native/13-http-requests/01-problem/src/screens/CityList/CityList.tsx only
+
+✏️ Update **src/screens/RestaurantDetails/RestaurantDetails.tsx** to be:
+
+@diff ../../../exercises/react-native/12-navigation-params/01-solution/src/screens/RestaurantDetails/RestaurantDetails.tsx ../../../exercises/react-native/13-http-requests/01-problem/src/screens/RestaurantDetails/RestaurantDetails.tsx only
+
+✏️ Update **src/screens/RestaurantList/RestaurantList.tsx** to be:
+
+@diff ../../../exercises/react-native/12-navigation-params/01-solution/src/screens/RestaurantList/RestaurantList.tsx ../../../exercises/react-native/13-http-requests/01-problem/src/screens/RestaurantList/RestaurantList.tsx only
+
+✏️ Update **src/screens/StateList/StateList.tsx** to be:
+
+@diff ../../../exercises/react-native/12-navigation-params/01-solution/src/screens/StateList/StateList.tsx ../../../exercises/react-native/13-http-requests/01-problem/src/screens/StateList/StateList.tsx only
+
+✏️ Create **src/services/pmo/api/index.ts**.
+
+✏️ Create **src/services/pmo/api/api.ts**.
+
+✏️ Create **src/services/pmo/restaurant/index.ts**.
+
+✏️ Create **src/services/pmo/restaurant/hooks.ts**.
+
+✏️ Create **src/services/pmo/restaurant/interfaces.ts**.
+
+
 
 ### Verify 1
 
-TODO
+✏️ Create **src/services/pmo/api/api.test.tx** and update it to be:
+
+@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/api/api.test.ts
+
+✏️ Create **src/services/pmo/restaurant/hooks.test.ts** and update it to be:
+
+@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/restaurant/hooks.test.ts
 
 ### Exercise 1
 
@@ -39,7 +71,41 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 <details>
 <summary>Click to see the solution</summary>
 
-TODO
+✏️ Update **src/screens/CityList/CityList.tsx** to be:
+
+@diff ../../../exercises/react-native/13-http-requests/01-problem/src/screens/CityList/CityList.tsx ../../../exercises/react-native/13-http-requests/01-solution/src/screens/CityList/CityList.tsx only
+
+✏️ Update **src/screens/RestaurantDetails/RestaurantDetails.tsx** to be:
+
+@diff ../../../exercises/react-native/13-http-requests/01-problem/src/screens/RestaurantDetails/RestaurantDetails.tsx ../../../exercises/react-native/13-http-requests/01-solution/src/screens/RestaurantDetails/RestaurantDetails.tsx only
+
+✏️ Update **src/screens/RestaurantList/RestaurantList.tsx** to be:
+
+@diff ../../../exercises/react-native/13-http-requests/01-problem/src/screens/RestaurantList/RestaurantList.tsx ../../../exercises/react-native/13-http-requests/01-solution/src/screens/RestaurantList/RestaurantList.tsx only
+
+✏️ Update **src/screens/StateList/StateList.tsx** to be:
+
+@diff ../../../exercises/react-native/13-http-requests/01-problem/src/screens/StateList/StateList.tsx ../../../exercises/react-native/13-http-requests/01-solution/src/screens/StateList/StateList.tsx only
+
+✏️ Update **src/services/pmo/api/index.ts** to be:
+
+@sourceref ../../../exercises/react-native/13-http-requests/01-solution/src/services/pmo/api/index.ts
+
+✏️ Create **src/services/pmo/api/api.ts**.
+
+@sourceref ../../../exercises/react-native/13-http-requests/01-solution/src/services/pmo/api/api.ts
+
+✏️ Create **src/services/pmo/restaurant/index.ts**.
+
+@sourceref ../../../exercises/react-native/13-http-requests/01-solution/src/services/pmo/restaurant/index.ts
+
+✏️ Create **src/services/pmo/restaurant/hooks.ts**.
+
+@sourceref ../../../exercises/react-native/13-http-requests/01-solution/src/services/pmo/restaurant/hooks.ts
+
+✏️ Create **src/services/pmo/restaurant/interfaces.ts**.
+
+@sourceref ../../../exercises/react-native/13-http-requests/01-solution/src/services/pmo/restaurant/interfaces.ts
 
 </details>
 

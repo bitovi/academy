@@ -1,5 +1,5 @@
 import { renderHook, waitFor } from "@testing-library/react-native"
-import * as api from "../api/api"
+import * as api from "./api"
 import { useStates, useCities, useRestaurants } from "./hooks"
 
 jest.mock("@react-native-async-storage/async-storage", () =>
