@@ -12,7 +12,7 @@ In this section, you will:
 
 - TODO
 
-## Objective 1: TODO
+## Objective 1: Devtools setup
 
 TODO
 
@@ -22,7 +22,9 @@ TODO
 
 ### Setup 1
 
-TODO
+✏️ Update **src/package.json** to be:
+
+@diff ../../../exercises/react-native/06-custom-components/03-solution/package.json ../../../exercises/react-native/07-debugging/01-solution/package.json only
 
 ### Verify 1
 
@@ -45,4 +47,4 @@ TODO
 
 ## Next steps
 
-TODO
+Next learn-react-native/styling Styling
