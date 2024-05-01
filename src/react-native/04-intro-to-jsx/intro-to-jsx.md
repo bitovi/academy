@@ -22,12 +22,6 @@ Now that we have our project set up, let’s update our page to look like the de
 
 TODO
 
-### Setup 1
-
-✏️ Update **src/App.tsx** to be:
-
-@diff ../../../exercises/react-native/03-creating-a-new-app/04-solution/App.tsx ../../../exercises/react-native/04-intro-to-jsx/01-problem/App.tsx only
-
 ### Verify 1
 
 ✏️ Update **src/App.test.tsx** to be:
@@ -65,12 +59,6 @@ Next, we want to render a list of states name in our application:
 ### Concept TODO
 
 TODO
-
-### Setup 2
-
-✏️ Update **src/App.tsx** to be:
-
-@diff ../../../exercises/react-native/04-intro-to-jsx/01-solution/App.tsx ../../../exercises/react-native/04-intro-to-jsx/02-problem/App.tsx only
 
 ### Verify 2
 
