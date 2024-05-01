@@ -683,24 +683,154 @@ covering CanJS core libraries.">
 <ul>
 <li>TODO</li>
 </ul>
-<h2>Objective 1: TODO</h2>
-<p>TODO</p>
+<h2>Objective 1: Create a UI with JSX</h2>
+<p>Now that we have our project set up, let’s update our page to look like the design below:</p>
+<p><img alt="Screenshot of a mobile application interface text “Place My Order: Coming Soon To...” and “Illinois“." src="../../static/img/react-native/04-intro-to-jsx/01-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
 <h3>Concept TODO</h3>
 <p>TODO</p>
-<h3>Setup 1</h3>
-<p>TODO</p>
 <h3>Verify 1</h3>
-<p>TODO</p>
+<p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+import App from &quot;./App&quot;
+
+describe(&quot;App&quot;, () =&gt; {
+  it(&quot;renders&quot;, async () =&gt; {
+    render(&lt;App /&gt;)
+    expect(screen.getByText(/Place my order/i)).toBeOnTheScreen()
+  })
+  it(&quot;renders a state&quot;, async () =&gt; {
+    render(&lt;App /&gt;)
+    expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
+  })
+})
+
+</code></pre>
+ <div line-highlight="9-12,only"></div>
 <h3>Exercise 1</h3>
-<p>TODO</p>
+<ul>
+<li>Use JSX to dynamically display the state name from the object variable.</li>
+</ul>
+<p>Hint: the state object will look like this:</p>
+<pre><code class="language-typescript">const state = { name: &quot;Illinois&quot;, short: &quot;IL&quot; }
+</code></pre>
 <h3>Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { JSX } from &quot;react&quot;
+import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
+
+const state = { name: &quot;Illinois&quot;, short: &quot;IL&quot; }
+
+function App(): JSX.Element {
+  return (
+    &lt;SafeAreaView&gt;
+      &lt;ScrollView&gt;
+        &lt;View&gt;
+          &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
+        &lt;/View&gt;
+        &lt;View&gt;
+          &lt;Text&gt;{state.name}&lt;/Text&gt;
+        &lt;/View&gt;
+      &lt;/ScrollView&gt;
+    &lt;/SafeAreaView&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="1,4,6,13-15,only"></div>
+<p></details></p>
+<h2>Objective 2: Expressions and loops in JSX</h2>
+<p>Next, we want to render a list of states name in our application:</p>
+<p><img alt="Screenshot of a mobile application interface text “Place My Order: Coming Soon To...”, “Illinois“, and “Wisconsin“." src="../../static/img/react-native/04-intro-to-jsx/02-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
+<h3>Concept TODO</h3>
 <p>TODO</p>
+<h3>Verify 2</h3>
+<p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+import App from &quot;./App&quot;
+
+describe(&quot;App&quot;, () =&gt; {
+  it(&quot;renders&quot;, async () =&gt; {
+    render(&lt;App /&gt;)
+    expect(screen.getByText(/Place my order/i)).toBeOnTheScreen()
+  })
+  it(&quot;renders states&quot;, async () =&gt; {
+    render(&lt;App /&gt;)
+    expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
+    expect(screen.getByText(/Wisconsin/i)).toBeOnTheScreen()
+  })
+})
+
+</code></pre>
+ <div line-highlight="9,12,only"></div>
+<h3>Exercise 2</h3>
+<ul>
+<li>Update the existing JSX to render the list of state names.</li>
+<li>Use <code>Array.map()</code> to iterate over the <code>states</code>.</li>
+<li>Make sure to use <code>key</code> inside the <code>.map()</code>.</li>
+<li>Render <code>&lt;Text&gt;No states found&lt;/Text&gt;</code> if, hypothetically, there weren’t any states.</li>
+</ul>
+<p>Hint: the states array will look like this:</p>
+<pre><code class="language-typescript">const states = [
+  {
+    name: &quot;Illinois&quot;,
+    short: &quot;IL&quot;,
+  },
+  {
+    name: &quot;Wisconsin&quot;,
+    short: &quot;WI&quot;,
+  },
+]
+</code></pre>
+<h3>Solution 2</h3>
+<p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { JSX } from &quot;react&quot;
+import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
+
+const states = [
+  {
+    name: &quot;Illinois&quot;,
+    short: &quot;IL&quot;,
+  },
+  {
+    name: &quot;Wisconsin&quot;,
+    short: &quot;WI&quot;,
+  },
+]
+
+function App(): JSX.Element {
+  return (
+    &lt;SafeAreaView&gt;
+      &lt;ScrollView&gt;
+        &lt;View&gt;
+          &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
+        &lt;/View&gt;
+        &lt;View&gt;
+          {states?.length &gt; 0 ? (
+            states.map((state) =&gt; &lt;Text key={state.short}&gt;{state.name}&lt;/Text&gt;)
+          ) : (
+            &lt;Text&gt;No states found&lt;/Text&gt;
+          )}
+        &lt;/View&gt;
+      &lt;/ScrollView&gt;
+    &lt;/SafeAreaView&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="4-13,23-27,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
-<p>TODO</p>
+<p>Next, we will learn the <a href="intro-to-testing.html" title="TODO">Introduction to Testing</a> React Native applications.</p>
 
 </section>
 
