@@ -185,7 +185,7 @@ Now, let’s updated our generated app to include our own header:
 
 Before we begin adding any content, its a good idea to clean up generated files and add code quality tools.
 
-Remove these generated files that we won't need. Some projects do need them, but this one won't.
+Remove these generated files that we won’t need. Some projects do need them, but this one won’t.
 
 - `public/vite.svg`
 - `src/assets`

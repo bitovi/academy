@@ -74,7 +74,7 @@ The JSX syntax allows function components to look like HTML, but underneath they
 
 You can think of components as fancy functions.
 
-While you can't actually do the following, this is functionally similar to what React is doing for you.
+While you can’t actually do the following, this is functionally similar to what React is doing for you.
 
 ```tsx
 import type React from "react"
