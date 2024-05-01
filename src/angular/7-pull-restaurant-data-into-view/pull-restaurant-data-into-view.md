@@ -87,7 +87,7 @@ You should be able see a list of all restaurants when you navigate to <a href="h
 
 ## P1: Solution
 
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 <details>
 <summary>Click to see the solution</summary>
@@ -143,7 +143,7 @@ You should be able see a list of restaurants when you navigate to <a href="http:
 
 ## P2: Solution
 
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 <details>
 <summary>Click to see the solution</summary>

@@ -225,7 +225,7 @@ $ = function (selector) {
   <script type="module">
     import "https://unpkg.com/jquery@3/dist/jquery.js";
     var dogs = $(".dogs li");
-    console.log(dogs.html()); //logs "<b>f</b>ido"
+    console.log(dogs.html()); // Logs "<b>f</b>ido"
   </script>
   ```
 
@@ -317,7 +317,7 @@ QUnit.test("$.fn.html", function () {
 <script type="module">
   import "https://unpkg.com/jquery@3/dist/jquery.js";
 
-  console.log($(".first").val()); //log "first"
+  console.log($(".first").val()); // Log "first"
   $(".second").val("SECOND");
 </script>
 ```
@@ -378,7 +378,7 @@ QUnit.test("$.fn.val", function () {
 
 ### The problem
 
-Lets remove the need to use `new` when using `$`.
+Let’s remove the need to use `new` when using `$`.
 
 <details>
 <summary>Click to see test code</summary>
@@ -451,7 +451,7 @@ $ = function (selector) {
 <script type="module">
   import "https://unpkg.com/jquery@3/dist/jquery.js";
   var $ul = $(".dogs");
-  console.log($ul.text()); //logs "\n\tfido\n\trover\n"
+  console.log($ul.text()); // Logs "\n\tfido\n\trover\n"
 
   var dogs = $(".dogs li");
   dogs.text("<b>rover</b>"); //-> dogs
@@ -744,7 +744,7 @@ Use meta programming techniques to reduce the duplicate code in the
     };
   };
   var logMe = makeLogger("me");
-  logMe(); //logs "me"
+  logMe(); // Logs "me"
   ```
   @codepen
 

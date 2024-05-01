@@ -21,9 +21,9 @@ ParkEmployee.prototype.sayHi = function() {
   console.log("Hi, my name is " + this.name);
 }
 
-let raptorGuy = new ParkEmployee("Owen");
+const raptorGuy = new ParkEmployee("Owen");
 raptorGuy.sayHi();
-//Logs "Hi, my name is Owen"
+// Logs "Hi, my name is Owen"
 ```
 @codepen
 
@@ -41,9 +41,9 @@ class ParkEmployee {
   }
 }
 
-let raptorGuy = new ParkEmployee("Owen");
+const raptorGuy = new ParkEmployee("Owen");
 raptorGuy.sayHi();
-//Logs "Hi, my name is Owen"
+// Logs "Hi, my name is Owen"
 ```
 @codepen
 
@@ -75,12 +75,12 @@ class ParkEmployee {
   }
 }
 
-let employee = new ParkEmployee("Ellie","Sattler");
+const employee = new ParkEmployee("Ellie","Sattler");
 
 employee.fullName = "John Hammond";
 
 employee.sayHi();
-//Logs "Hi, my name is John Hammond"
+// Logs "Hi, my name is John Hammond"
 ```
 @codepen
 
@@ -131,7 +131,7 @@ class ParkEmployee {
 
 let goldblum = ParkEmployee.mathematician();
 raptorGuy.sayHi();
-//Logs "Hi, my name is Ian"
+// Logs "Hi, my name is Ian"
 ```
 @codepen
 @highlight 2-4
@@ -155,9 +155,9 @@ class ParkEmployee {
   }
 }
 
-let raptorGuy = new ParkEmployee("Owen");
+const raptorGuy = new ParkEmployee("Owen");
 console.log( raptorGuy.age );
-//Logs 36
+// Logs 36
 ```
 @highlight 2-3
 @codepen
@@ -186,16 +186,16 @@ class Mathematician extends ParkEmployee {
 
 const goldblum = new Mathematician(3);
 
-console.log( goldblum.run() ) //logs "running at 3"
+console.log( goldblum.run() ) // Logs "running at 3"
 
 goldblum.mustGoFaster();
 
-console.log( goldblum.run() ) //logs "running at 6"
+console.log( goldblum.run() ) // Logs "running at 6"
 ```
 @codepen
 @highlight 10
 
-The keyword [super](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super) can be used to call functions on a class's (or object’s) parent. This is how you call "base" methods.
+The keyword [super](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super) can be used to call functions on a class’s (or object’s) parent. This is how you call "base" methods.
 
 ```js
 class ParkEmployee {
@@ -224,11 +224,11 @@ class Mathematician extends ParkEmployee {
 
 const goldblum = new Mathematician("ian", 3);
 
-console.log( goldblum.run() ) //logs "ian running at 3"
+console.log( goldblum.run() ) // Logs "ian running at 3"
 
 goldblum.mustGoFaster();
 
-console.log( goldblum.run() ) //logs "ian running at 6"
+console.log( goldblum.run() ) // Logs "ian running at 6"
 ```
 @highlight 14,18
 @codepen

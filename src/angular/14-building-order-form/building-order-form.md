@@ -41,7 +41,7 @@ When you navigate to the `/order` path from a restaurant detail page you should 
 
 @diff ../13-nested-routes/app.component.spec.ts ./app.component.spec.ts only
 
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 ## P1: Solution
 

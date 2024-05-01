@@ -36,7 +36,7 @@ type Items = "potion" | "revive";
 type BagItems = `${ItemTypes} ${Items}`; //"regular potion" | "regular revive" | "max potion" | "max revive"
 ```
 
-Template literal types can even be used in conjunction with generics, conditional types, and `infer`, allowing us to pull string literal types apart. Take the `PokemonEgg` example from above, since they all have a defined shape `<PokemonName>-egg` we can use that knowledge to create `PokemonNames` from `PokemonEgg`.
+Template literal types can even be used together with generics, conditional types, and `infer`, allowing us to pull string literal types apart. Take the `PokemonEgg` example from above, since they all have a defined shape `<PokemonName>-egg` we can use that knowledge to create `PokemonNames` from `PokemonEgg`.
 
 ```ts
 type FromEgg<S extends string> = S extends `${infer PokemonName}-egg`

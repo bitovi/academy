@@ -40,7 +40,7 @@ QUnit.equal(todo.complete, true, "toggleComplete works");
 
   var instance = new MyType();
 
-  console.log( instance instanceof MyType ) //logs true
+  console.log( instance instanceof MyType ) // Logs true
   ```
   @codepen
 - The [https://canjs.com/doc/can-define.types.type.html type] behavior defines a property’s type like:
@@ -52,7 +52,7 @@ QUnit.equal(todo.complete, true, "toggleComplete works");
       age: {type: "number"}
   });
 
-  console.log( new Person({age: "3"}).age ) //logs 3
+  console.log( new Person({age: "3"}).age ) // Logs 3
   ```
   @codepen
   @highlight 3-5, 7
@@ -66,7 +66,7 @@ QUnit.equal(todo.complete, true, "toggleComplete works");
       age: {default: 3}
   });
 
-  console.log( new Person().age ) //logs 3
+  console.log( new Person().age ) // Logs 3
   ```
   @codepen
   @highlight 4, 7
@@ -83,7 +83,7 @@ QUnit.equal(todo.complete, true, "toggleComplete works");
   });
 
   var instance = new Type();
-  instance.methodName() //logs "run method"
+  instance.methodName() // Logs "run method"
   ```
   @codepen
   @highlight 3-10

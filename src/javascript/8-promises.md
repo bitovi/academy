@@ -58,7 +58,7 @@ a `response` object is provided.
 const request = fetch("https://dog.ceo/api/breeds/list/all");
 
 request.then( function(response){
-  console.log(response.status) //logs 200
+  console.log(response.status) // Logs 200
 });
 ```
 @codepen
@@ -102,7 +102,7 @@ const numberPromise = new Promise( function( resolve ){
 })
 
 numberPromise.then( function( number ){
-  console.log("number "+ number); //logs "number 0.###"
+  console.log("number "+ number); // Logs "number 0.###"
 } );
 ```
 @codepen
@@ -159,7 +159,7 @@ const groupNamePromise = new MyPromise( function( resolve ){
 })
 
 groupNamePromise.then( function( groupName ){
-  console.log("groupName", groupName); //logs "groupName Bitovi"
+  console.log("groupName", groupName); // Logs "groupName Bitovi"
 } );
 ```
 @codepen
@@ -285,7 +285,7 @@ const countPromise = breedsPromise.then( function toCount(breeds) {
 });
 
 countPromise.then( (count) => {
-  console.log("delay", new Date() - startTime ); //logs 3000
+  console.log("delay", new Date() - startTime ); // Logs 3000
   console.log("count", count);             
 })
 ```

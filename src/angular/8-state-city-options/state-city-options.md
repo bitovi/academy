@@ -168,7 +168,7 @@ When you visit <a href="http://localhost:4200/restaurants">localhost:4200/restau
 
 ## The solution
 
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 <details>
 <summary>Click to see the solution</summary>

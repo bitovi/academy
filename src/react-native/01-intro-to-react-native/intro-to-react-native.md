@@ -1,8 +1,48 @@
 @page learn-react-native/intro-to-react-native Introduction to React Native
 @parent learn-react-native 1
+@outline 3
 
-@description Discover why React Native is a great choice for modern mobile application development, and maybe more.
+@description TODO
 
 @body
 
 ## Overview
+
+In this section, you will:
+
+- TODO
+
+## Objective 1: TODO
+
+TODO
+
+### Concept TODO
+
+TODO
+
+### Setup 1
+
+TODO
+
+### Verify 1
+
+TODO
+
+### Exercise 1
+
+TODO
+
+### Solution 1
+
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
+
+<details>
+<summary>Click to see the solution</summary>
+
+TODO
+
+</details>
+
+## Next steps
+
+TODO
