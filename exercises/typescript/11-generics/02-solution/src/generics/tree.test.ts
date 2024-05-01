@@ -8,7 +8,7 @@ describe("Generics", () => {
       return v1 - v2;
     }
 
-    let root = new TreeNode<number>(100, numberComparison);
+    const root = new TreeNode<number>(100, numberComparison);
 
     root.add(50);
 
@@ -30,7 +30,7 @@ describe("Generics", () => {
       }
     }
 
-    let root = new TreeNode<string>("Jennifer", stringComparison);
+    const root = new TreeNode<string>("Jennifer", stringComparison);
 
     root.add("Taylor");
 
