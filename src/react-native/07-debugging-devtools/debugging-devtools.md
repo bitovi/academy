@@ -10,40 +10,33 @@
 
 In this section, you will:
 
-- TODO
+- [resource](https://reactnative.dev/docs/debugging)
 
-## Objective 1: Devtools setup
+## Objective: Devtools setup
 
-TODO
+We will be setting up dev tools to help us debug and inspect the UI:
+
+<img alt="Screenshot of a connected dev tool“." src="../../static/img/react-native/07-debugging-devtools/dev-tool-connected.png"/>
+
 
 ### Concept TODO
 
 TODO
 
-### Setup 1
+### Setup
 
 ✏️ Update **src/package.json** to be:
 
 @diff ../../../exercises/react-native/06-custom-components/03-solution/package.json ../../../exercises/react-native/07-debugging/01-solution/package.json only
 
-### Verify 1
+Since we have a new package let's run the following command.
 
-TODO
+```shell
+npm i
+```
 
-### Exercise 1
+### Verify
 
-TODO
-
-### Solution 1
-
-If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
-
-<details>
-<summary>Click to see the solution</summary>
-
-TODO
-
-</details>
 
 ## Next steps
 
