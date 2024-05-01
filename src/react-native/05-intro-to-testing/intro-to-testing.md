@@ -12,7 +12,7 @@ In this section, you will:
 
 - TODO
 
-## Objective 1: TODO
+## Objective: Testing in React Native
 
 TODO
 
@@ -20,29 +20,6 @@ TODO
 
 TODO
 
-### Setup 1
-
-TODO
-
-### Verify 1
-
-TODO
-
-### Exercise 1
-
-TODO
-
-### Solution 1
-
-If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
-
-<details>
-<summary>Click to see the solution</summary>
-
-TODO
-
-</details>
-
 ## Next steps
 
-TODO
+Next we will learn about [building custom components](./building-custom-components.html) to make our React Native application more modular.
