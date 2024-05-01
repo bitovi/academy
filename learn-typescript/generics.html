@@ -538,8 +538,8 @@ covering CanJS core libraries.">
 <li>Combine recursion with generic classes.</li>
 <li>Create recursive generics.</li>
 </ul>
-<h2>Objective 1: Basic Generics</h2>
-<h3>Introducing generics</h3>
+<h2>Objective 1: The basics of generics</h2>
+<h3>The problem generics solve</h3>
 <p>Generics are a way of writing abstract code that allows the determination of types to be handled when the code is used. Generics let us reuse code for different types and improve maintainability. Let’s see how with a small example.</p>
 <p>Consider a function that wraps a value in an object:</p>
 <pre><code class="language-js">function wrapAsValue(value) {
@@ -547,107 +547,112 @@ covering CanJS core libraries.">
 }
 </code></pre>
 <p>Ideally, you’d want to use this function to wrap all sorts of values:</p>
-<pre><code class="language-js">let fourObj = wrapAsValue(4);  //-&gt; {value: 4}
-let hiObj = wrapAsValue(&quot;hi&quot;); //-&gt; {value: &quot;hi&quot;}
+<pre><code class="language-js">const fourWrapped = wrapAsValue(4);  //-&gt; {value: 4}
+const hiWrapped = wrapAsValue(&quot;hi&quot;); //-&gt; {value: &quot;hi&quot;}
 </code></pre>
 <p>And you might want to pass those objects to other functions:</p>
-<pre><code class="language-typescript">function getDollars(obj: {value: number}){
-    return &quot;$&quot;+obj.value.toFixed(2)
+<pre><code class="language-typescript">function getDollars(object: {value: number}){
+    return &quot;$&quot; + object.value.toFixed(2)
 }
 
-function getMessage(obj: {value: string}) {
-    return obj.value + &quot; world&quot;;
+function getMessage(object: {value: string}) {
+    return object.value + &quot; world&quot;;
 }
 
-getDollars(fourObj); //-&gt; &quot;$4.00&quot;
-getMessage(hiObj);   //-&gt; &quot;hi world&quot;
+getDollars(fourWrapped); //-&gt; &quot;$4.00&quot;
+getMessage(hiWrapped);   //-&gt; &quot;hi world&quot;
 </code></pre>
 <p><strong>But watch out!</strong>  The following will <strong>not</strong> error until <em>runtime</em>
 because strings do not have a <code>toFixed()</code> method.</p>
-<pre><code class="language-js">getDollars(hiObj);  
+<pre><code class="language-js">getDollars(hiWrapped);  
 </code></pre>
-<p>You don’t see a compile time error because <code>hiObj</code> object looks like <code>{value: any}</code> to TypeScript.</p>
+<p>You don’t see a compile time error because <code>hiWrapped</code> object looks like <code>{value: any}</code> to TypeScript.</p>
 <p>Getting a compile time error can be solved in a variety of <strong>inelegant</strong> ways:</p>
-<ul>
-<li>Way 1 - Define the type of the variables:
-<pre><code class="language-typescript">let fourObj: {value: number} = wrapAsValue(4);
-let hiObj:   {value: string} = wrapAsValue(&quot;hi&quot;);
-</code></pre></li>
-<li>Way 2 - Write multiple functions:
+<p><strong>Way 1:</strong> Define the type of the variables:</p>
+<pre><code class="language-typescript">const fourWrapped: {value: number} = wrapAsValue(4);
+const hiWrapped:   {value: string} = wrapAsValue(&quot;hi&quot;);
+</code></pre>
+<p>The main drawback here is the redundancy and verbosity introduced by having to manually specify the type of each variable.
+This approach lacks scalability as every new variable type requires explicit type declaration, which can be tedious and error-prone, especially in larger codebases where the number of variable types can increase significantly.</p>
+<p><strong>Way 2:</strong> Write multiple functions:</p>
 <pre><code class="language-typescript">function wrapStringAsValue(value: string) {
   return {value: value};
 }
 function wrapNumberAsValue(value: number) {
   return {value: value};
 }
-</code></pre></li>
-<li>Way 3 - Overload <code>wrapAsValue</code> signatures:
+</code></pre>
+<p>This approach suffers from significant code duplication, with each function wrapping a different type of value in the same manner, which violates the DRY (Don’t Repeat Yourself) principle.
+Additionally, this method adds a maintenance burden.
+For every new type that needs to be wrapped, a new function must be created, which can lead to increased code complexity and potential inconsistencies in function implementation across different types.</p>
+<p><strong>Way 3:</strong> Overload <code>wrapAsValue</code> signatures:</p>
 <pre><code class="language-typescript">function wrapAsValue(value: string): {value: string};
 function wrapAsValue(value: number): {value: number};
 function wrapAsValue(value: any) {
     return {value: value};
 }
-</code></pre></li>
-</ul>
+</code></pre>
+<p>The use of function overloading here introduces complexity by requiring you to manage multiple function signatures, complicating both the use and documentation of the function.
+Additionally, the implementation leverages the <code>any</code> type for a catch-all method, which undermines TypeScript’s robust type-checking by allowing <em>any</em> type to be passed, potentially leading to runtime errors that are difficult to detect during compilation, thereby reducing the effectiveness of using TypeScript.</p>
+<h3>Introducing generics</h3>
 <p>With <strong>generics</strong>, this problem can be solved more simply:</p>
 <pre><code class="language-typescript">function wrapAsValue&lt;MyType&gt;(value: MyType): {value: MyType} {
     return {value: value};
 }
 
-let fourObj = wrapAsValue&lt;number&gt;(4);
-let hiObj = wrapAsValue(&quot;hi&quot;);
+const fourWrapped = wrapAsValue&lt;number&gt;(4);
+const hiWrapped = wrapAsValue(&quot;hi&quot;);
 
-
-function getDollars(obj: {value: number}){
-    return &quot;$&quot;+obj.value.toFixed(2)
+function getDollars(object: {value: number}){
+    return &quot;$&quot;+object.value.toFixed(2)
 }
 
-function getMessage(obj: {value: string}) {
-    return obj.value + &quot; world&quot;;
+function getMessage(object: {value: string}) {
+    return object.value + &quot; world&quot;;
 }
 
-getDollars(fourObj);
-getMessage(hiObj);
-getDollars(hiObj);
-
+getDollars(fourWrapped);
+getMessage(hiWrapped);
+getDollars(hiWrapped);
 </code></pre>
 <div line-highlight='1, 5, only'></div>
 <p>The <code>&lt;MyType&gt;</code> part of the <code>wrapAsValue</code> definition is the <strong>Generics</strong>
 part. This <code>&lt;MyType&gt;</code> allows us to capture the type the user provides so that we can use that information later. In this case, we are using it to specify that the
 return type is an object with a <code>MyType</code> <code>value</code>
 property (<code>{value: MyType}</code>). This allows us to traffic that type of information in one side of the function and out the other.</p>
-<p>We can call generic functions in two ways:</p>
-<p>We can explicitly pass the type:</p>
+<h3>Calling generic functions</h3>
+<p>We can call generic functions in two ways.</p>
+<p>First, we can explicitly pass the type:</p>
 <pre><code class="language-typescript"> wrapAsValue&lt;number&gt;(4)
 </code></pre>
 <p>Notice that <code>&lt;number&gt;</code> acts as a special set of arguments. Instead of
 arguments passed like <code>func(arg1, arg2, arg3)</code>, generic type arguments
 are passed like <code>func&lt;Type1, Type2, Type3&gt;</code>.</p>
-<p>The type can be inferred:</p>
+<p>Second, the type can be inferred:</p>
 <pre><code class="language-typescript">wrapAsValue(&quot;hi&quot;)
 </code></pre>
 <p>Notice that we didn’t explicitly pass the type n the angle brackets (<code>&lt;&gt;</code>). Instead,
 the compiler just looked at the value <code>&quot;hi&quot;</code> and set <code>MyType</code> to <code>string</code>.</p>
 <h3>Setup 1</h3>
-<p>✏️ Create <strong>src/generics/return-last.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">export function returnLast(arr) {
-  return arr[arr.length - 1];
+<p>✏️ Create <strong>src/generics/last.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export function returnLast(array) {
+  return array[array.length - 1];
 }
 
 </code></pre>
 <h3>Verify 1</h3>
-<p>✏️ Create <strong>src/generics/return-last.test.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/generics/last.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { returnLast } from &quot;./return-last&quot;;
 import { describe, it } from &quot;node:test&quot;;
 import assert from 'node:assert/strict';
 
 describe(&quot;Generics&quot;, () =&gt; {
-  it(&quot;Returns last element with a string&quot;, () =&gt; {
+  it(&quot;returns last element with a string&quot;, () =&gt; {
     const lastString = returnLast&lt;string&gt;([&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]);
 
     assert.equal(typeof lastString, &quot;string&quot;, &quot;It returns a string&quot;);
   });
-  it(&quot;Returns last element with a number&quot;, () =&gt; {
+  it(&quot;returns last element with a number&quot;, () =&gt; {
     const lastNumber = returnLast&lt;number&gt;([1, 2, 3]);
 
     assert.equal(typeof lastNumber, &quot;number&quot;, &quot;It returns a string&quot;);
@@ -656,23 +661,25 @@ describe(&quot;Generics&quot;, () =&gt; {
 
 </code></pre>
 <h3>Exercise 1</h3>
-<p>Update the <code>return-last.ts</code> file to inform the function that it will be accepting an array of a certain type and return a single element of the same - type.</p>
-<p><strong>Have issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-problem?file=src/return-last.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-problem?file=src/return-last.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
+<p>Update the <code>last.ts</code> file to inform the function that it will be accepting an array of a certain type and return a single element of the same type.</p>
+<p><strong>Have issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-problem?file=src/generics/last.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-problem?file=src/generics/last.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
 <h3>Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>Update <code>return-last.ts</code> to the following:</p>
-<pre><code class="language-ts">export function returnLast&lt;T&gt;(arr: T[]): T {
-  return arr[arr.length - 1];
+<p>✏️ Update <strong>src/generics/last.ts</strong> to be:</p>
+<pre><code class="language-ts">export function returnLast&lt;T&gt;(array: T[]): T {
+  return array[array.length - 1];
 }
 
 </code></pre>
  <div line-highlight="1,only"></div>
-<p>We use <code>&lt;T&gt;</code> to set up the generic. In the Parenthesis, we use <code>T[]</code> to inform the user we are accepting an array of a certain type. Finally, we use <code>): T{</code> to let us be aware what is the return type.</p>
-<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-solution?file=src/return-last.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-solution?file=src/return-last.ts">CodeSandbox</a>.
+<p>We use <code>&lt;T&gt;</code> to set up the generic.
+In the parenthesis, we use <code>T[]</code> to inform the user we are accepting an array of a certain type.
+Finally, we use <code>): T{</code> to let us be aware what is the return type.</p>
+<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-solution?file=src/generics/last.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-solution?file=src/generics/last.ts">CodeSandbox</a>.
 </details></p>
-<h2>Objective 2: Generic Classes</h2>
+<h2>Objective 2: Generics in classes</h2>
 <h3>Using generics with classes</h3>
 <p>Generic classes are quite common.</p>
 <pre><code class="language-typescript">const cardNumber = new Subject&lt;string&gt;();
@@ -688,7 +695,7 @@ cardNumber.next(&quot;1234&quot;)
   }
 }
 
-let myList = Collection();
+const myList = Collection();
 myList.push(25);
 myList.push('25');
 </code></pre>
@@ -717,7 +724,6 @@ myListOfStrings.pushItem('booop');
 myListOfStrings.pushItem(5);
 // Error Argument type of '5' is not assignable to parameter of type 'string'
 
-
 const myListOfNumbers = new GenericCollection&lt;number&gt;();
 myListOfNumbers.pushItem(5);
 myListOfNumbers.pushItem('boop');
@@ -741,11 +747,11 @@ myListOfDinosaurs.pushItem(otherDino);
 myListOfDinosaurs.pushItem({name: 'Charlie'});
 // Error Argument type '{ name: string; }' is not assignable to parameter of type 'Dinosaur'.
 </code></pre>
-<div line-highlight='1, 8,14,25'></div>
-<p>In the example above, we are utilizing generics to inform <code>GenericCollection</code> what type it is receiving. <code>string</code>, <code>number</code>, and <code>Dinosaur</code>.</p>
+<div line-highlight='1, 8, 13, 24'></div>
+<p>In the example above, we are utilizing generics to inform <code>GenericCollection</code> what type it is receiving: <code>string</code>, <code>number</code>, or <code>Dinosaur</code>.</p>
 <p>A great example of the power of generics is creating a recursive data structure like a tree. In the following exercise, we will create a <code>TreeNode</code> class that can house a generic <code>value</code> and be used to create a tree structure of <code>left</code> and <code>right</code> nodes of the same generic type.</p>
 <h3>Setup 2</h3>
-<p>✏️ Create <strong>src/generics/tree-node.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/generics/tree.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">interface Comparison&lt;T&gt; {
   (v1: T, v2: T): number;
 }
@@ -782,7 +788,7 @@ export default TreeNode;
 
 </code></pre>
 <h3>Verify 2</h3>
-<p>✏️ Create <strong>src/generics/tree-node.test.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/generics/tree.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import TreeNode from &quot;./tree-node&quot;;
 import { describe, it } from &quot;node:test&quot;;
 import assert from 'node:assert/strict';
@@ -793,7 +799,7 @@ describe(&quot;Generics&quot;, () =&gt; {
       return v1 - v2;
     }
 
-    let root = new TreeNode&lt;number&gt;(100, numberComparison);
+    const root = new TreeNode&lt;number&gt;(100, numberComparison);
 
     root.add(50);
 
@@ -815,7 +821,7 @@ describe(&quot;Generics&quot;, () =&gt; {
       }
     }
 
-    let root = new TreeNode&lt;string&gt;(&quot;Jennifer&quot;, stringComparison);
+    const root = new TreeNode&lt;string&gt;(&quot;Jennifer&quot;, stringComparison);
 
     root.add(&quot;Taylor&quot;);
 
@@ -834,21 +840,60 @@ describe(&quot;Generics&quot;, () =&gt; {
 });
 </code></pre>
 <h3>Exercise 2</h3>
-<p>Update the <code>tree-node.ts</code> file to create a recursive <code>TreeNode</code> class that can house a <code>value</code> and be used to create a tree structure of <code>left</code> and <code>right</code> nodes.</p>
+<p>Update the <code>tree.ts</code> file to create a recursive <code>TreeNode</code> class that can house a <code>value</code> and be used to create a tree structure of <code>left</code> and <code>right</code> nodes.</p>
 <p>For example, we will be able to create a <code>TreeNode</code> with a root value and
 comparison function as follows:</p>
 <pre><code class="language-ts">import TreeNode from &quot;./tree-node&quot;;
+import { describe, it } from &quot;node:test&quot;;
+import assert from 'node:assert/strict';
 
-function stringComparison(v1: string, v2: string): number {
-  if(v1 &gt; v2) {
-      return 1;
-  } else {
-      return -1;
-  }
-};
+describe(&quot;Generics&quot;, () =&gt; {
+  it(&quot;TreeNode can add numbers&quot;, () =&gt; {
+    function numberComparison(v1: number, v2: number) {
+      return v1 - v2;
+    }
 
-const root = new TreeNode&lt;string&gt;(&quot;Jennifer&quot;, stringComparison);
+    const root = new TreeNode&lt;number&gt;(100, numberComparison);
+
+    root.add(50);
+
+    assert.equal(root.left?.value, 50, &quot;50 to the left of 100&quot;);
+
+    root.add(150);
+    root.add(125);
+
+    assert.equal(root.right?.value, 150, &quot;150 to the right of 100&quot;);
+    assert.equal(root.right?.left?.value, 125, &quot;125 to the left of 150&quot;);
+  });
+
+  it(&quot;TreeNode can specify string&quot;, () =&gt; {
+    function stringComparison(v1: string, v2: string): number {
+      if (v1 &gt; v2) {
+        return 1;
+      } else {
+        return -1;
+      }
+    }
+
+    const root = new TreeNode&lt;string&gt;(&quot;Jennifer&quot;, stringComparison);
+
+    root.add(&quot;Taylor&quot;);
+
+    assert.equal(root.left?.value, &quot;Taylor&quot;, &quot;Taylor to the left of Jennifer&quot;);
+
+    root.add(&quot;Tom&quot;);
+    root.add(&quot;Matthew&quot;);
+
+    assert.equal(root.right?.value, &quot;Tom&quot;, &quot;Tom to the right of Jennifer&quot;);
+    assert.equal(
+      root.right?.left?.value,
+      &quot;Matthew&quot;,
+      &quot;Matthew to the left of Tom&quot;
+    );
+  });
+});
 </code></pre>
+<div line-highlight='25-33, only'></div>
 <p>Then we can add values to <code>root</code> like:</p>
 <pre><code class="language-typescript">root.add(&quot;Taylor&quot;);
 </code></pre>
@@ -864,12 +909,12 @@ root.add(&quot;Matthew&quot;);
 root.right.value      //-&gt; &quot;Tom&quot;
 root.right.left.value //-&gt; &quot;Matthew&quot;
 </code></pre>
-<p><strong>Have issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/02-problem?file=src/tree-node.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/02-problem?file=src/tree-node.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
+<p><strong>Have issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/02-problem?file=src/generics/tree.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/02-problem?file=src/generics/tree.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
 <h3>Solution 2</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update <code>tree-node.ts</code> to the following:</p>
+<p>✏️ Update <strong>src/generics/tree.ts</strong> to be:</p>
 <pre><code class="language-ts">interface Comparison&lt;T&gt; {
   (v1: T, v2: T): number;
 }
@@ -906,11 +951,11 @@ export default TreeNode;
 
 </code></pre>
  <div line-highlight="5-9,11,16,only"></div>
-<p>The use of generics in line 5, allows the <code>TreeNode</code> class to be flexible and reusable, accommodating different types of data and comparison logic.
-</details></p>
+<p>The use of generics in line 5 allows the <code>TreeNode</code> class to be flexible and reusable, accommodating different types of data and comparison logic.</p>
+<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/02-solution?file=src/generics/tree.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/02-solution?file=src/generics/tree.ts">CodeSandbox</a>.</p>
+<p></details></p>
 <h2>Next steps</h2>
 <p>Next, let’s take a look at <a href="./utility-types.html">utility types</a> for type transformations.</p>
-<!-- TODO: I am having a problem trying to test a compiler failure. For example, I am trying to test the Readonly<>, but to test it, we should test if the TypeScript throws an error. Does anyone have ideas on how to test this? -->
 
 </section>
 
