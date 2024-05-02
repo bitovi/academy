@@ -11,7 +11,8 @@
     "prettier": "prettier --check *.ts *.tsx *.js",
     "depcheck": "depcheck .",
     "precheck": "npm run typecheck && npm run eslint && npm run prettier && npm run test && npm run depcheck",
-    "devtools": "react-devtools"
+    "devtools": "react-devtools",
+    "debugger": "npx react-native start --experimental-debugger"
   },
   "dependencies": {
     "react": "18.2.0",
