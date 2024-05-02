@@ -719,7 +719,7 @@ const welcomeMessage = welcome(&quot;Alice&quot;)
 const welcomeMessage = welcome(&quot;Alice&quot;)
 </code></pre>
 <p>This transformation is handled by tools like Metro during the build process, allowing us to write more readable and maintainable code using JSX.</p>
-<h3>Differences between JSX and HTML</h3>
+<h3>Differences between JSX and XML</h3>
 <p>While JSX syntactically resembles XML or HTML, there are several key differences in how they are used and processed. Understanding these differences is crucial for developers transitioning from XML’s strict standards or HTML’s looser structure.</p>
 <p>Here are some of the most noticeable differences between JSX and XML:</p>
 <h4>XML has attributes, JSX has props</h4>
@@ -840,8 +840,169 @@ export default App
 <h2>Objective 2: Expressions and loops in JSX</h2>
 <p>Next, we want to render a list of states name in our application:</p>
 <p><img alt="Screenshot of a mobile application interface text “Place My Order: Coming Soon To...”, “Illinois“, and “Wisconsin“." src="../../static/img/react-native/04-intro-to-jsx/02-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
-<h3>Concept TODO</h3>
-<p>TODO</p>
+<p>To do so, we‘ll learn about:</p>
+<ul>
+<li>Using JavaScript variables and expressions in JSX.</li>
+<li>Working with conditionals and loops in JSX.</li>
+</ul>
+<h3>Using JavaScript variables and expressions in JSX</h3>
+<p>JSX is dynamic. You can insert values from variables and objects into your JSX as we did with the state name in the previous section.</p>
+<pre><code class="language-tsx">const name = &quot;Bitovi&quot;
+
+const content = &lt;Text&gt;Welcome to {name}!&lt;/Text&gt;
+</code></pre>
+<p>In the code above, use the <code>{name}</code> syntax to tell JSX to render the value stored in the <code>name</code> variable (i.e. <code>&quot;Bitovi&quot;</code>) into our view.</p>
+<p>You can take this a step further by interpolating multiple values and using JavaScript functions to transform data on the fly. Anything that goes inside <code>{}</code> is executed as normal JavaScript. These are the same rules as the brackets on a prop: any JavaScript expression is valid inside the curly brackets.</p>
+<pre><code class="language-tsx">const person = {
+  name: &quot;mike&quot;,
+  profession: &quot;programmer&quot;,
+}
+
+const content = (
+  &lt;View&gt;
+    &lt;Text&gt;Hi I’m {person.name.toUpperCase()}!&lt;/Text&gt;
+    &lt;Text&gt;I’m a {person.profession} living in Philadelphia.&lt;/Text&gt;
+  &lt;/View&gt;
+)
+</code></pre>
+<div line-highlight='8,9'></div>
+<h3>JSX is a syntax extension for JavaScript</h3>
+<p>Remember, JSX is an alternative syntax for normal JavaScript—it is not magic. This means that you can use JSX as a normal value, too.</p>
+<pre><code class="language-tsx">const header = &lt;Text&gt;Hello World&lt;/Text&gt;
+const body = &lt;Text&gt;My name is {&quot;Mike&quot;}&lt;/Text&gt;
+
+function MyPage() {
+  return (
+    &lt;View&gt;
+      {header}
+      {body}
+    &lt;/View&gt;
+  )
+}
+</code></pre>
+<p>If rendered, the <code>screen</code> will output:</p>
+<pre><code class="language-jsx">&lt;View&gt;
+  &lt;Text&gt;Hello World&lt;/Text&gt;
+  &lt;Text&gt;My name is Mike&lt;/Text&gt;
+&lt;/View&gt;
+</code></pre>
+<p>If this surprises you, remember that underneath the syntactic sugar, JSX is nothing more than <code>React.createElement</code> calls:</p>
+<pre><code class="language-tsx">const header = React.createElement(&quot;Text&quot;, null, &quot;Hello World&quot;)
+const body = React.createElement(&quot;Text&quot;, null, `My name is ${&quot;Mike&quot;}`)
+
+const page = React.createElement(&quot;View&quot;, null, [header, body])
+</code></pre>
+<h3>Working with conditionals and loops in JSX</h3>
+<p>Only expressions that return a value may be interpolated. This includes static values, variables and calls to functions. It does not include control-flow statements such as <code>if</code>, <code>case</code>, <code>for</code>, <code>while</code>. These can either be abstracted behind a function, which is then called within the JSX or be re-written in a JSX-friendly way.</p>
+<p>To put it simply: only things that you could pass into a function can be used inside the brackets.</p>
+<h4>Using conditionals</h4>
+<p>Conditions can be rewritten using the ternary operator.</p>
+<p>The example below will <strong>not</strong> work:</p>
+<pre><code class="language-tsx">const content = (
+  &lt;Text&gt;
+    {
+      if (a === b) { // Control flow does not belong in JSX
+        &quot;a and b are equal&quot;
+      } else {
+        &quot;a and b are different&quot;
+      }
+    }
+  &lt;/Text&gt;
+)
+</code></pre>
+<p>But the same can be accomplished with ternaries in the following example:</p>
+<pre><code class="language-tsx">const content = (
+  &lt;Text&gt;
+    {a === b // Ternaries are expressions.
+      ? &quot;a and b are equal&quot;
+      : &quot;a and b are different&quot;}
+  &lt;/Text&gt;
+)
+</code></pre>
+<p>If ternaries seem excessive for any particular case, you can write all your logic in a separate function and invoke it from within JSX.</p>
+<pre><code class="language-tsx">function makeResult() {
+  return a === b ? &quot;a and b are equal&quot; : &quot;a and b are different&quot;
+}
+
+const content = &lt;Text&gt;{makeResult()}&lt;/Text&gt;
+</code></pre>
+<h4>Using loops</h4>
+<p>JSX does not support traditional loop statements like <code>for</code>, <code>while</code>, or <code>do...while</code> directly within JSX.</p>
+<p>The example below will <strong>not</strong> work:</p>
+<pre><code class="language-tsx">const names = ['Alfa', 'Bravo', 'Charlie'];
+
+const content = (
+  &lt;View&gt;
+    {
+      // Control flow does not belong in JSX
+      for (let name of names) {
+        &lt;Text&gt;name&lt;/Text&gt;
+      }
+    }
+  &lt;/View&gt;
+)
+</code></pre>
+<p>The <code>Array.map()</code> function is the most common and idiomatic way to render lists in JSX.
+It’s especially useful for rendering arrays of data as components.</p>
+<pre><code class="language-tsx">const names = [&quot;Alfa&quot;, &quot;Bravo&quot;, &quot;Charlie&quot;]
+
+const content = (
+  &lt;View&gt;
+    {names.map((name) =&gt; {
+      return &lt;Text key={name}&gt;{name}&lt;/Text&gt;
+    })}
+  &lt;/View&gt;
+)
+</code></pre>
+<p>That will produce the following React Native views:</p>
+<pre><code class="language-jsx">&lt;View&gt;
+  &lt;Text&gt;Alfa&lt;/Text&gt;
+  &lt;Text&gt;Bravo&lt;/Text&gt;
+  &lt;Text&gt;Charlie&lt;/Text&gt;
+&lt;/View&gt;
+</code></pre>
+<p>There are lots of ways to iterate over arrays in JavaScript with functions like <code>Array.map</code>, <code>Array.filter</code>, and <code>Array.reduce</code>. These all work in JSX!</p>
+<h5><Text id="the-key-prop">The <code>key</code> prop</Text></h5>
+<p>Did you notice the <code>key</code> prop in the example above?</p>
+<p>When rendering a list of elements, React needs a way to uniquely identify each element. This helps React understand which items have changed, been added, or removed, which is crucial for efficient re-rendering.</p>
+<p>Each key should be a unique identifier among siblings. Keys should be stable (not change over time), predictable (generated in a predictable manner), and unique (no two elements in the list should have the same key).</p>
+<p>It’s often convenient to use IDs from your data as keys. For example, if our data had <code>id</code> properties for each name, then we could use those as the <code>key</code> prop, even if there were duplicate names in the array:</p>
+<pre><code class="language-tsx">const names = [
+  { id: &quot;550e8400&quot;, name: &quot;Alfa&quot; },
+  { id: &quot;f47ac10b&quot;, name: &quot;Bravo&quot; },
+  { id: &quot;5a3c9dd9&quot;, name: &quot;Alfa&quot; },
+  { id: &quot;3d3f6f4d&quot;, name: &quot;Charlie&quot; },
+  { id: &quot;aab3fcba&quot;, name: &quot;Delta&quot; },
+]
+
+const content = (
+  &lt;View&gt;
+    {names.map(({ id, name }) =&gt; {
+      return &lt;Text key={id}&gt;{name}&lt;/Text&gt;
+    })}
+  &lt;/View&gt;
+)
+</code></pre>
+<p>That will produce the following React Native views:</p>
+<pre><code class="language-jsx">&lt;View&gt;
+  &lt;Text&gt;Alfa&lt;/Text&gt;
+  &lt;Text&gt;Bravo&lt;/Text&gt;
+  &lt;Text&gt;Alfa&lt;/Text&gt;
+  &lt;Text&gt;Charlie&lt;/Text&gt;
+  &lt;Text&gt;Delta&lt;/Text&gt;
+&lt;/View&gt;
+</code></pre>
+<p>During development, if you forget to provide a <code>key</code> prop for items in an array, React Native will log the following error to the console:</p>
+<pre><code class="language-zsh">ERROR Warning: Each child in a list should have a unique &quot;key&quot; prop.
+
+Check the render method of 'App'. See https://reactjs.org/link/warning-keys for more information.
+  at Text (http://10.0.2.2:8081/index.bundle//&amp;platform=android&amp;dev=true&amp;lazy=true&amp;minify=false&amp;app=com.solution&amp;modulesOnly=false&amp;runModule=true:66390:27)
+  in App
+  in RCTView (created by View)
+  in View (created by AppContainer)
+  in RCTView (created by View) in View (created by AppContainer)
+  in AppContainer in solution
+</code></pre>
 <h3>Verify 2</h3>
 <p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
