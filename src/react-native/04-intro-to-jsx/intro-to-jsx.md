@@ -10,10 +10,10 @@
 
 In this section, you will:
 
-- Learn the basics of JSX
-- Discover the differences between JSX and HTML
-- Use JavaScript variables and expressions in JSX
-- Work with conditionals and loops in JSX
+- Learn the basics of JSX.
+- Discover the differences between JSX and XML.
+- Use JavaScript variables and expressions in JSX.
+- Work with conditionals and loops in JSX.
 
 ## Objective 1: Create a UI with JSX
 
@@ -23,17 +23,19 @@ Now that we have our project set up, let’s update our page to look like the de
 
 ### What is JSX?
 
-JSX is used by React Native developers to define the user interface.
+In React Native development, JSX is utilized to define the user interface of mobile applications.
 
-JSX is a special syntax designed to look almost identical to HTML. Developers define the UI using JSX. React transforms that JSX into the HTML the browser displays. JSX can be written alongside standard JavaScript, which makes for a powerful programming environment.
+JSX stands for JavaScript XML, allowing you to write UI components that look similar to XML or HTML in their structure but work within the JavaScript environment. React Native transforms JSX into native components that are displayed on the mobile device. JSX can be combined seamlessly with JavaScript, which makes for a powerful programming environment.
 
-#### Basic JSX looks like HTML
+#### Basic JSX looks like XML
 
 ```tsx
 const greeting = <Text>Hello, world!</Text>
 ```
 
-This code snippet creates a simple JSX element: a `<Text>` header with the text “Hello, world!” This is similar to writing HTML, but it’s JSX inside a JavaScript file.
+In this example, a <Text> component is used to render the text “Hello, world!”
+
+While this appears similar to XML or HTML, it is JSX used in a React Native project within a JavaScript file.
 
 ### Embedding a JavaScript expression in JSX
 
@@ -42,7 +44,7 @@ const name = "Alice"
 const greeting = <Text>Hello, {name}!</Text>
 ```
 
-Here, we embed a JavaScript expression `{name}` within JSX. The value of the name variable is displayed within the `<Text>` tag.
+Here, we embed a JavaScript expression `{name}` within JSX. The value of the name variable is displayed within the `<Text>` component.
 
 ### Combining JSX with standard JavaScript
 
@@ -68,49 +70,41 @@ function welcome(name) {
 const welcomeMessage = welcome("Alice")
 ```
 
-This transformation is handled by tools like Vite during the build process, allowing us to write more readable and maintainable code using JSX.
+This transformation is handled by tools like Metro during the build process, allowing us to write more readable and maintainable code using JSX.
 
 ### Differences between JSX and HTML
 
-JSX looks a lot like HTML, and that’s intentional. Browsers understand HTML, JavaScript, and CSS. Eventually, anything we build has to be converted into one of those 3 syntaxes. Since our UI code will eventually end up as HTML, using JSX means it will be easier to understand and debug the end result in the browser.
+While JSX syntactically resembles XML or HTML, there are several key differences in how they are used and processed. Understanding these differences is crucial for developers transitioning from XML’s strict standards or HTML’s looser structure.
 
-However, JSX is converted into JavaScript and therefore is not an exact mirror of HTML. Some of the most noticeable differences include:
+Here are some of the most noticeable differences between JSX and XML:
 
-#### HTML has attributes, JSX has props
+#### XML has attributes, JSX has props
 
-This nomenclature difference is because they are technically different, though they might appear to be the same visually.
+In XML, attributes are used to provide additional information about elements, and they are always treated as strings. This makes XML straightforward but less flexible in terms of integrating dynamic content directly within the markup.
 
-When talking about the HTML below, you might say that the `href` attribute is a URL:
+For example, consider an XML element representing a user:
 
-```html
-<a href="https://www.bitovi.com/academy/">Bitovi Academy</a>
+```xml
+<user age="37" isActive="true" name="Jane Doe"></user>
 ```
 
-The above is valid JSX too, but we would say that the `href` _prop_ is being passed into the anchor element.
+JSX allows props (short for properties) to be much more than just strings. Props in JSX can be any JavaScript expression, including any other JavaScript primitive, object, function, etc.
 
-#### Tags must close
-
-In HTML, some elements are self-closing and don’t need a closing tag.
-
-For example: the `img` element is a self-closing element: 
-
-```html
-<img alt="" src="image.png" />
+```jsx
+const userElement = (
+  <User age={37} isActive={true} name={"Mary Jackson"} />
+);
 ```
 
-In JSX, no elements are self-closing, which means that _all_ elements must have a closing tag, like the `img` below:
-
-```html
-<img alt="" src="image.png" />
-```
+In the code above, the `age`, `isActive`, and `name` props are all passed into the `User` component.
 
 #### Writing comments
 
-In HTML, comments are written using the `<!-- -->` syntax, seen below. Anything inside these comment tags is ignored by the browser and is not rendered or executed.
+In XML, comments are written using the `<!-- -->` syntax, seen below. Anything inside these comment components is ignored by the browser and is not rendered or executed.
 
-```html
+```xml
 <p>
-  <!-- This is an HTML comment -->
+  <!-- This is an XML comment -->
   Visible content
 </p>
 ```
@@ -119,47 +113,36 @@ In JSX, comments follow the JavaScript comment syntax. Since JSX is transpiled i
 
 ```tsx
 const content = (
-  <p>
+  <Text>
     {/* This is a JSX comment */}
     Visible content
-  </p>
-)
-```
-
-#### Reserved words are renamed
-
-The HTML attributes `class` and `for` are reserved words in JavaScript. In JSX, these are renamed to `className` and `htmlFor`, respectively.
-
-```tsx
-const content = (
-  <p className="form-field">
-    <label htmlFor="name-input">Name:</label>
-    <input id="name-input" />
-  </p>
+  </Text>
 )
 ```
 
 #### Style prop
 
-In HTML, the appearance of most elements can be altered using the `style` attribute. React supports a `style` prop, but it accepts an object, not a string. The style object has properties whose names are camel-case versions of their CSS counterparts. IE: "font-style" becomes `fontStyle`.
+In XML, the appearance of most elements can be altered using the `style` attribute. React supports a `style` prop, but it accepts an object, not a string. The style object has properties whose names are camel-case versions of their CSS counterparts. IE: "font-style" becomes `fontStyle`.
 
 ```tsx
-const content = <p style={{ fontStyle: "italic" }}>Restaurants</p>
+const content = <Text style={{ fontStyle: "italic" }}>Restaurants</Text>
 ```
 
 As we go through this training, you’ll learn additional differences.
 
 #### Convention: Parenthesis
 
-When dealing with JSX that needs multiple lines, the convention is to wrap it in parethesis. This helps keep your JSX clean and clear, rather than mixing it with the javascript around it.
+When dealing with JSX that needs multiple lines, the convention is to wrap it in parentheses. This helps keep your JSX clean and clear, rather than mixing it with the Javascript around it.
 
 ```tsx
 function Form() {
   return (
-    <p className="form-field">
-      <label htmlFor="name-input">Name:</label>
-      <input id="name-input" />
-    </p>
+    <View>
+      <Text>
+        Name:
+      </Text>
+      <TextInput placeholder="Enter your name" />
+    </View>
   )
 }
 ```
@@ -173,11 +156,13 @@ const data = ["one", "two"]
 
 function List() {
   return (
-    <div>
+    <View>
       {data.map((name) => (
-        <li key={name}>{name}</li>
+        <View key={name}>
+          {name}
+        </View>
       ))}
-    </div>
+    </View>
   )
 }
 ```
