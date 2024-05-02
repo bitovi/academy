@@ -11,7 +11,7 @@
     "build": "bit-docs -df",
     "rebuild-assets": "bit-docs -dfs",
     "generate": "node ./exercise-src/generate.mjs",
-    "clean": "rm -rf academy",
+    "clean": "rm -rf academy && git clean -Xdf exercises",
     "deploy": "node scripts/hubspot-deploy",
     "start": "concurrently -k \"npm:dev\" \"http-server -c -1\""
   },
