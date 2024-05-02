@@ -681,13 +681,107 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this section, you will:</p>
 <ul>
-<li>TODO</li>
+<li>Learn the basics of JSX.</li>
+<li>Discover the differences between JSX and XML.</li>
+<li>Use JavaScript variables and expressions in JSX.</li>
+<li>Work with conditionals and loops in JSX.</li>
 </ul>
 <h2>Objective 1: Create a UI with JSX</h2>
 <p>Now that we have our project set up, let’s update our page to look like the design below:</p>
 <p><img alt="Screenshot of a mobile application interface text “Place My Order: Coming Soon To...” and “Illinois“." src="../../static/img/react-native/04-intro-to-jsx/01-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
-<h3>Concept TODO</h3>
-<p>TODO</p>
+<h3>What is JSX?</h3>
+<p>In React Native development, JSX is utilized to define the user interface of mobile applications.</p>
+<p>JSX stands for JavaScript XML, allowing you to write UI components that look similar to XML or HTML in their structure but work within the JavaScript environment. React Native transforms JSX into native components that are displayed on the mobile device. JSX can be combined seamlessly with JavaScript, which makes for a powerful programming environment.</p>
+<h4>Basic JSX looks like XML</h4>
+<pre><code class="language-tsx">const greeting = &lt;Text&gt;Hello, world!&lt;/Text&gt;
+</code></pre>
+<p>In this example, a <Text> component is used to render the text “Hello, world!”</p>
+<p>While this appears similar to XML or HTML, it is JSX used in a React Native project within a JavaScript file.</p>
+<h3>Embedding a JavaScript expression in JSX</h3>
+<pre><code class="language-tsx">const name = &quot;Alice&quot;
+const greeting = &lt;Text&gt;Hello, {name}!&lt;/Text&gt;
+</code></pre>
+<p>Here, we embed a JavaScript expression <code>{name}</code> within JSX. The value of the name variable is displayed within the <code>&lt;Text&gt;</code> component.</p>
+<h3>Combining JSX with standard JavaScript</h3>
+<pre><code class="language-tsx">function welcome(name) {
+  return &lt;Text&gt;Hello, {name}&lt;/Text&gt;
+}
+
+const welcomeMessage = welcome(&quot;Alice&quot;)
+</code></pre>
+<p>This example illustrates a regular JavaScript function being called with a single argument. The <code>welcome</code> function returns JSX, showing how JSX can be seamlessly integrated within standard JavaScript functions.</p>
+<h3>JSX transpiled</h3>
+<p>React Native has a procedural <code>React.createElement</code> syntax, but most applications do not use it directly. Instead, views are defined and maintained in JSX and will automatically be transpiled into the equivalent <code>React.createElement</code> calls at build-time.</p>
+<pre><code class="language-tsx">function welcome(name) {
+  return React.createElement(&quot;Text&quot;, null, `Hello, ${name}!`)
+}
+
+const welcomeMessage = welcome(&quot;Alice&quot;)
+</code></pre>
+<p>This transformation is handled by tools like Metro during the build process, allowing us to write more readable and maintainable code using JSX.</p>
+<h3>Differences between JSX and HTML</h3>
+<p>While JSX syntactically resembles XML or HTML, there are several key differences in how they are used and processed. Understanding these differences is crucial for developers transitioning from XML’s strict standards or HTML’s looser structure.</p>
+<p>Here are some of the most noticeable differences between JSX and XML:</p>
+<h4>XML has attributes, JSX has props</h4>
+<p>In XML, attributes are used to provide additional information about elements, and they are always treated as strings. This makes XML straightforward but less flexible in terms of integrating dynamic content directly within the markup.</p>
+<p>For example, consider an XML element representing a user:</p>
+<pre><code class="language-xml">&lt;user age=&quot;37&quot; isActive=&quot;true&quot; name=&quot;Jane Doe&quot;&gt;&lt;/user&gt;
+</code></pre>
+<p>JSX allows props (short for properties) to be much more than just strings. Props in JSX can be any JavaScript expression, including any other JavaScript primitive, object, function, etc.</p>
+<pre><code class="language-jsx">const userElement = (
+  &lt;User age={37} isActive={true} name={&quot;Mary Jackson&quot;} /&gt;
+);
+</code></pre>
+<p>In the code above, the <code>age</code>, <code>isActive</code>, and <code>name</code> props are all passed into the <code>User</code> component.</p>
+<h4>Writing comments</h4>
+<p>In XML, comments are written using the <code>&lt;!-- --&gt;</code> syntax, seen below. Anything inside these comment components is ignored by the browser and is not rendered or executed.</p>
+<pre><code class="language-xml">&lt;p&gt;
+  &lt;!-- This is an XML comment --&gt;
+  Visible content
+&lt;/p&gt;
+</code></pre>
+<p>In JSX, comments follow the JavaScript comment syntax. Since JSX is transpiled into JavaScript, you must use JavaScript’s {/* */} syntax for comments within the JSX part of your code.</p>
+<pre><code class="language-tsx">const content = (
+  &lt;Text&gt;
+    {/* This is a JSX comment */}
+    Visible content
+  &lt;/Text&gt;
+)
+</code></pre>
+<h4>Style prop</h4>
+<p>In XML, the appearance of most elements can be altered using the <code>style</code> attribute. React supports a <code>style</code> prop, but it accepts an object, not a string. The style object has properties whose names are camel-case versions of their CSS counterparts. IE: &quot;font-style&quot; becomes <code>fontStyle</code>.</p>
+<pre><code class="language-tsx">const content = &lt;Text style={{ fontStyle: &quot;italic&quot; }}&gt;Restaurants&lt;/Text&gt;
+</code></pre>
+<p>As we go through this training, you’ll learn additional differences.</p>
+<h4>Convention: Parenthesis</h4>
+<p>When dealing with JSX that needs multiple lines, the convention is to wrap it in parentheses. This helps keep your JSX clean and clear, rather than mixing it with the Javascript around it.</p>
+<pre><code class="language-tsx">function Form() {
+  return (
+    &lt;View&gt;
+      &lt;Text&gt;
+        Name:
+      &lt;/Text&gt;
+      &lt;TextInput placeholder=&quot;Enter your name&quot; /&gt;
+    &lt;/View&gt;
+  )
+}
+</code></pre>
+<h4>Convention: Implicit Returns</h4>
+<p>When creating functions that have no logic and just return JSX, especially when they're an argument to a function, the convention is to use an arrow function with an implicit return. This is nearly always coupled with the parenthesis convention, too. (Don’t worry: you’ll learn about <code>.map</code> in the next objective.)</p>
+<pre><code class="language-tsx">const data = [&quot;one&quot;, &quot;two&quot;]
+
+function List() {
+  return (
+    &lt;View&gt;
+      {data.map((name) =&gt; (
+        &lt;View key={name}&gt;
+          {name}
+        &lt;/View&gt;
+      ))}
+    &lt;/View&gt;
+  )
+}
+</code></pre>
 <h3>Verify 1</h3>
 <p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
@@ -869,7 +963,7 @@ export default App
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-native/04-intro-to-jsx/intro-to-jsx.md"},"description":"TODO \n","name":"learn-react-native/intro-to-jsx","title":"Introduction to JSX","type":"page","parent":"learn-react-native","order":4,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-native/04-intro-to-jsx/intro-to-jsx.md"},"description":"TODO \n","name":"learn-react-native/intro-to-jsx","title":"Introduction to JSX","type":"page","parent":"learn-react-native","order":4,"outline":{"depth":2},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
