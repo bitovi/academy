@@ -8,7 +8,7 @@ function App(): JSX.Element {
     <SafeAreaView>
       <ScrollView>
         <View>
-          <Text>Place My Order: Coming Soon To...</Text>
+          <Text>Place My Order: Coming Soon!</Text>
         </View>
         <View>
           <Text>{state.name}</Text>

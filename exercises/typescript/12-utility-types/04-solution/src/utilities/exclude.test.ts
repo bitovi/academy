@@ -1,7 +1,5 @@
-import {
-  FrontendDeveloper
-} from "./exclude";
 import { describe, it } from "node:test";
+import { FrontendDeveloper } from "./exclude";
 
 describe("exclude tests", () => {
   it("typing works", () => {
