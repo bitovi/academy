@@ -203,12 +203,12 @@ Next, we want to render a list of states name in our application:
 
 To do so, we‘ll learn about:
 
-- Using JavaScript variables and expressions in JSX
-- Working with conditionals and loops in JSX
+- Using JavaScript variables and expressions in JSX.
+- Working with conditionals and loops in JSX.
 
 ### Using JavaScript variables and expressions in JSX
 
-JSX is dynamic. You can insert values from variables and objects into your JSX as we did with the image URL in the previous section.
+JSX is dynamic. You can insert values from variables and objects into your JSX as we did with the state name in the previous section.
 
 ```tsx
 const name = "Bitovi"
@@ -255,7 +255,7 @@ function MyPage() {
 
 If rendered, the `screen` will output:
 
-```xml
+```jsx
 <View>
   <Text>Hello World</Text>
   <Text>My name is Mike</Text>
@@ -281,8 +281,9 @@ To put it simply: only things that you could pass into a function can be used in
 
 Conditions can be rewritten using the ternary operator.
 
+The example below will **not** work:
+
 ```tsx
-// This does not work
 const content = (
   <Text>
     {
@@ -296,8 +297,9 @@ const content = (
 )
 ```
 
+But the same can be accomplished with ternaries in the following example:
+
 ```tsx
-// But the same can be accomplished with ternaries
 const content = (
   <Text>
     {a === b // Ternaries are expressions.
@@ -326,7 +328,6 @@ The example below will **not** work:
 ```tsx
 const names = ['Alfa', 'Bravo', 'Charlie'];
 
-// This does not work
 const content = (
   <View>
     {
@@ -340,12 +341,11 @@ const content = (
 ```
 
 The `Array.map()` function is the most common and idiomatic way to render lists in JSX.
-It’s especially useful for rendering arrays of data as xml elements.
+It’s especially useful for rendering arrays of data as components.
 
 ```tsx
 const names = ["Alfa", "Bravo", "Charlie"]
 
-// This will work
 const content = (
   <View>
     {names.map((name) => {
@@ -355,9 +355,9 @@ const content = (
 )
 ```
 
-That will produce the following xml:
+That will produce the following React Native views:
 
-```xml
+```jsx
 <View>
   <Text>Alfa</Text>
   <Text>Bravo</Text>
@@ -395,9 +395,9 @@ const content = (
 )
 ```
 
-That will produce the following XML:
+That will produce the following React Native views:
 
-```xml
+```jsx
 <View>
   <Text>Alfa</Text>
   <Text>Bravo</Text>
@@ -407,9 +407,19 @@ That will produce the following XML:
 </View>
 ```
 
-🔦 _During development, If you forget to provide a `key` prop for items in an array React Native will log the following error to the browser’s console:_
+During development, if you forget to provide a `key` prop for items in an array, React Native will log the following error to the console:
 
-<img alt="A browser console with the error message 'Warning: Each child in a list should have a unique 'key' prop." src="../../../static/img/react-native/04-intro-to-jsx/react-native-missing-key-error.png" style="width:100%" />
+```zsh
+ERROR Warning: Each child in a list should have a unique "key" prop.
+
+Check the render method of 'App'. See https://reactjs.org/link/warning-keys for more information.
+  at Text (http://10.0.2.2:8081/index.bundle//&platform=android&dev=true&lazy=true&minify=false&app=com.solution&modulesOnly=false&runModule=true:66390:27)
+  in App
+  in RCTView (created by View)
+  in View (created by AppContainer)
+  in RCTView (created by View) in View (created by AppContainer)
+  in AppContainer in solution
+```
 
 ### Verify 2
 
