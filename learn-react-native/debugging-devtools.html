@@ -681,26 +681,146 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this section, you will:</p>
 <ul>
-<li>TODO</li>
+<li><a href="https://reactnative.dev/docs/debugging">resource</a></li>
 </ul>
-<h2>Objective 1: TODO</h2>
-<p>TODO</p>
+<h2>Objective 1: React DevTools</h2>
+<p>We will be setting up React DevTools to help us inspect the UI:</p>
+<p><strong>React DevTools</strong></p>
+<p><img alt="Screenshot of React DevTools inspecting a component tree. It shows a structured hierarchy of all the components in the view. There is also a Profiler tab." src="../../static/img/react-native/07-debugging-devtools/dev-tool-connected.png" style="max-width: 100%;"/></p>
 <h3>Concept TODO</h3>
 <p>TODO</p>
 <h3>Setup 1</h3>
-<p>TODO</p>
+<p>✏️ Run:</p>
+<pre><code class="language-shell">npm install react-devtools
+</code></pre>
+<p>✏️ Update <strong>src/package.json</strong> to be:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;solution&quot;,
+  &quot;version&quot;: &quot;0.0.1&quot;,
+  &quot;private&quot;: true,
+  &quot;scripts&quot;: {
+    &quot;android&quot;: &quot;react-native run-android&quot;,
+    &quot;depcheck&quot;: &quot;depcheck .&quot;,
+    &quot;devtools&quot;: &quot;react-devtools&quot;,
+    &quot;ios&quot;: &quot;react-native run-ios&quot;,
+    &quot;lint&quot;: &quot;eslint *.ts *.tsx *.js&quot;,
+    &quot;precheck&quot;: &quot;npm run typecheck &amp;&amp; npm run eslint &amp;&amp; npm run prettier &amp;&amp; npm run test &amp;&amp; npm run depcheck&quot;,
+    &quot;prettier&quot;: &quot;prettier --check *.ts *.tsx *.js&quot;,
+    &quot;start&quot;: &quot;react-native start&quot;,
+    &quot;test&quot;: &quot;jest&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;react&quot;: &quot;18.2.0&quot;,
+    &quot;react-native&quot;: &quot;0.73.6&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;@babel/core&quot;: &quot;^7.20.0&quot;,
+    &quot;@babel/preset-env&quot;: &quot;^7.20.0&quot;,
+    &quot;@babel/runtime&quot;: &quot;^7.20.0&quot;,
+    &quot;@bitovi/eslint-config&quot;: &quot;^1.8.0&quot;,
+    &quot;@react-native/babel-preset&quot;: &quot;0.73.21&quot;,
+    &quot;@react-native/eslint-config&quot;: &quot;0.73.2&quot;,
+    &quot;@react-native/metro-config&quot;: &quot;0.73.5&quot;,
+    &quot;@react-native/typescript-config&quot;: &quot;0.73.1&quot;,
+    &quot;@testing-library/react-native&quot;: &quot;^12.4.5&quot;,
+    &quot;@types/jest&quot;: &quot;^29.5.12&quot;,
+    &quot;@types/react&quot;: &quot;^18.2.6&quot;,
+    &quot;@types/react-test-renderer&quot;: &quot;^18.0.0&quot;,
+    &quot;babel-jest&quot;: &quot;^29.6.3&quot;,
+    &quot;depcheck&quot;: &quot;^1.4.7&quot;,
+    &quot;eslint&quot;: &quot;^8.19.0&quot;,
+    &quot;jest&quot;: &quot;^29.6.3&quot;,
+    &quot;prettier&quot;: &quot;2.8.8&quot;,
+    &quot;react-devtools&quot;: &quot;^5.1.0&quot;,
+    &quot;react-test-renderer&quot;: &quot;18.2.0&quot;,
+    &quot;typescript&quot;: &quot;5.0.4&quot;
+  },
+  &quot;engines&quot;: {
+    &quot;node&quot;: &quot;&gt;=18&quot;
+  }
+}
+
+</code></pre>
+ <div line-highlight="8,38,only"></div>
 <h3>Verify 1</h3>
+<p>While the application is running execute the command:</p>
+<pre><code class="language-shell">npm run devtools
+</code></pre>
+<p>This should open a separate window that looks like the following image:</p>
+<p><img alt="Screenshot of a window with options for React Native and React DOM. The React Native section suggests opening the in-app developer menu. A notification at the top states the server is waiting for React to connect." src="../../static/img/react-native/07-debugging-devtools/dev-tool-not-connected.png" style="max-width: 100%;"/></p>
+<p>At this point, the DevTool is not connected. To connect the DevTool to the application, run the following command to pull up the dev menu:</p>
+<pre><code class="language-shell">adb shell input keyevent 82
+</code></pre>
+<p>This will refresh the connection.</p>
+<h2>Objective 2: React Native Debugger</h2>
+<p>We will be setting up React Native Debugger to help us debug:</p>
+<p><strong>React Native Debugger</strong></p>
+<p><img alt="Screenshot of the React Native JavaScript Inspector interface. It includes common DevTools tabs such as Console, Sources, Memory, and Profiler." src="../../static/img/react-native/07-debugging-devtools/react-native-debugger.png" style="max-width: 100%;"/></p>
+<h3>Concept TODO</h3>
 <p>TODO</p>
-<h3>Exercise 1</h3>
-<p>TODO</p>
-<h3>Solution 1</h3>
-<p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
-<p><details>
-<summary>Click to see the solution</summary></p>
-<p>TODO</p>
-<p></details></p>
+<h3>Setup 2</h3>
+<p>✏️ Update <strong>src/package.json</strong> to be:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;solution&quot;,
+  &quot;version&quot;: &quot;0.0.1&quot;,
+  &quot;private&quot;: true,
+  &quot;scripts&quot;: {
+    &quot;android&quot;: &quot;react-native run-android&quot;,
+    &quot;debugger&quot;: &quot;npx react-native start --experimental-debugger&quot;,
+    &quot;depcheck&quot;: &quot;depcheck .&quot;,
+    &quot;devtools&quot;: &quot;react-devtools&quot;,
+    &quot;ios&quot;: &quot;react-native run-ios&quot;,
+    &quot;lint&quot;: &quot;eslint *.ts *.tsx *.js&quot;,
+    &quot;precheck&quot;: &quot;npm run typecheck &amp;&amp; npm run eslint &amp;&amp; npm run prettier &amp;&amp; npm run test &amp;&amp; npm run depcheck&quot;,
+    &quot;prettier&quot;: &quot;prettier --check *.ts *.tsx *.js&quot;,
+    &quot;start&quot;: &quot;react-native start&quot;,
+    &quot;test&quot;: &quot;jest&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;react&quot;: &quot;18.2.0&quot;,
+    &quot;react-native&quot;: &quot;0.73.6&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;@babel/core&quot;: &quot;^7.20.0&quot;,
+    &quot;@babel/preset-env&quot;: &quot;^7.20.0&quot;,
+    &quot;@babel/runtime&quot;: &quot;^7.20.0&quot;,
+    &quot;@bitovi/eslint-config&quot;: &quot;^1.8.0&quot;,
+    &quot;@react-native/babel-preset&quot;: &quot;0.73.21&quot;,
+    &quot;@react-native/eslint-config&quot;: &quot;0.73.2&quot;,
+    &quot;@react-native/metro-config&quot;: &quot;0.73.5&quot;,
+    &quot;@react-native/typescript-config&quot;: &quot;0.73.1&quot;,
+    &quot;@testing-library/react-native&quot;: &quot;^12.4.5&quot;,
+    &quot;@types/jest&quot;: &quot;^29.5.12&quot;,
+    &quot;@types/react&quot;: &quot;^18.2.6&quot;,
+    &quot;@types/react-test-renderer&quot;: &quot;^18.0.0&quot;,
+    &quot;babel-jest&quot;: &quot;^29.6.3&quot;,
+    &quot;depcheck&quot;: &quot;^1.4.7&quot;,
+    &quot;eslint&quot;: &quot;^8.19.0&quot;,
+    &quot;jest&quot;: &quot;^29.6.3&quot;,
+    &quot;prettier&quot;: &quot;2.8.8&quot;,
+    &quot;react-devtools&quot;: &quot;^5.1.0&quot;,
+    &quot;react-test-renderer&quot;: &quot;18.2.0&quot;,
+    &quot;typescript&quot;: &quot;5.0.4&quot;
+  },
+  &quot;engines&quot;: {
+    &quot;node&quot;: &quot;&gt;=18&quot;
+  }
+}
+
+</code></pre>
+ <div line-highlight="7,only"></div>
+<h3>Verify 2</h3>
+<p>Execute the command:</p>
+<pre><code class="language-shell">npm run debugger
+</code></pre>
+<p>The application should be running in Android Studio. Open the terminal and run the following command:</p>
+<pre><code class="language-shell">adb shell input keyevent 82
+</code></pre>
+<p>This will open up the dev menu. It should look like the following image:</p>
+<p><img alt="Screenshot of the emulator displaying the React Native Developer Menu. The screen lists various options like Reload, Open Debugger, Change Bundle Location, Show Element Inspector, Disable Fast Refresh, Show Perf Monitor, Settings, and Enable Sampling Profiler." src="../../static/img/react-native/07-debugging-devtools/in-app-dev-menu.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
+<p>Clicking on <code>Open Debugger</code> will open up a separate window for debugging.</p>
 <h2>Next steps</h2>
-<p>TODO</p>
+<p>Next, let’s learn about different ways to apply <a href="styling.html" title="TODO">Styling</a> to React Native applications.</p>
 
 </section>
 
