@@ -4,14 +4,14 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "start": "react-native start",
-    "test": "jest",
-    "lint": "eslint *.ts *.tsx *.js",
-    "prettier": "prettier --check *.ts *.tsx *.js",
     "depcheck": "depcheck .",
+    "devtools": "react-devtools",
+    "ios": "react-native run-ios",
+    "lint": "eslint *.ts *.tsx *.js",
     "precheck": "npm run typecheck && npm run eslint && npm run prettier && npm run test && npm run depcheck",
-    "devtools": "react-devtools"
+    "prettier": "prettier --check *.ts *.tsx *.js",
+    "start": "react-native start",
+    "test": "jest"
   },
   "dependencies": {
     "react": "18.2.0",
