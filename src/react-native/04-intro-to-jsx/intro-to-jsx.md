@@ -171,7 +171,7 @@ function List() {
 
 ✏️ Update **src/App.test.tsx** to be:
 
-@diff ../../../exercises/react-native/03-creating-a-new-app/04-solution/App.test.tsx ../../../exercises/react-native/04-intro-to-jsx/01-problem/App.test.tsx only
+@diff ../../../exercises/react-native/03-creating-a-new-app/03-solution/App.test.tsx ../../../exercises/react-native/04-intro-to-jsx/01-problem/App.test.tsx only
 
 ### Exercise 1
 
@@ -191,7 +191,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 <summary>Click to see the solution</summary>
 
 ✏️ Update **src/App.tsx** to be:
-@diff ../../../exercises/react-native/03-creating-a-new-app/04-solution/App.tsx ../../../exercises/react-native/04-intro-to-jsx/01-solution/App.tsx only
+@diff ../../../exercises/react-native/03-creating-a-new-app/03-solution/App.tsx ../../../exercises/react-native/04-intro-to-jsx/01-solution/App.tsx only
 
 </details>
 
