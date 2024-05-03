@@ -12,28 +12,48 @@ The source files used to generate the final files are located in `exercise-src`.
 
 ## Generating
 
-To generate all courses, run
+To generate all courses, run:
 
 ```shell
 npm run generate
 ```
 
-To generate a specific course, run
+To generate a specific course, run:
 
 ```shell
 npm run generate <course name>
 ```
 
-To generate a specific module in a given course, run
+To generate a specific module in a given course, run:
 
 ```shell
 npm run generate <course name> <module name>
 ```
 
-To generate a specific project in a specific module in a specific course, run
+To generate a specific project in a specific module in a specific course, run:
 
 ```shell
 npm run generate <course name> <module name> <project name>
+```
+
+### Example
+
+If you were working on solution 4 in module 3 of the React Native course (`/exercise-src/react-native/03-creating-a-new-app/04-solution`), you could generate just the relevant project by running:
+
+```shell
+npm run generate react-native 03-creating-a-new-app 04-solution
+```
+
+However, you might need to compare that project to the previous one, so you could generate all the projects in module three by running:
+
+```shell
+npm run generate react-native 03-creating-a-new-app
+```
+
+You could also generate the set of modules and projects for the React Native course by running:
+
+```shell
+npm run generate react-native
 ```
 
 ## Content
