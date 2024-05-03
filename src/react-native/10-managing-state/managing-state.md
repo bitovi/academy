@@ -39,7 +39,13 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 <details>
 <summary>Click to see the solution</summary>
 
-TODO
+✏️ Update **src/screens/StateList/StateList.tsx** to be:
+
+@diff ../../../exercises/react-native/09-design-system/03-solution/src/screens/StateList/StateList.tsx ../../../exercises/react-native/10-managing-state/01-solution/src/screens/StateList/StateList.tsx only
+
+✏️ Update **src/screens/StateList/StateList.tsx** to be:
+
+@diff ../../../exercises/react-native/09-design-system/03-solution/src/design/theme/ThemeProvider.tsx ../../../exercises/react-native/10-managing-state/01-solution/src/design/theme/ThemeProvider.tsx only
 
 </details>
 
