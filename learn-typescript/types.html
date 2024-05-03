@@ -785,6 +785,17 @@ my3rdPartyData.invalidFunction(3);
 <h3>Null &amp; undefined</h3>
 <p>The <code>null</code> and <code>undefined</code> types match JavaScript.
 They are also subtypes of all other types, meaning they can be assigned to another type like <code>string</code> or <code>number</code>, unless the <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html"><code>--strictNullChecks</code></a> flag is used.</p>
+<p>Without <code>--strictNullChecks</code>, the following code is valid:</p>
+<pre><code class="language-typescript">let num: number = null;
+num = undefined;
+num = 5;
+</code></pre>
+<p>With <code>--strictNullChecks</code>, the following code will require explicit typing:</p>
+<pre><code class="language-typescript">// --strictNullChecks
+let num: number | null | undefined = null;
+num = undefined;
+num = 5;
+</code></pre>
 <h3>Never</h3>
 <p>The <code>never</code> type represents a value that will never occur.</p>
 <pre><code class="language-typescript">function error(message: string): never {
