@@ -1,5 +1,5 @@
-import React from 'react';
-import {SafeAreaView, ScrollView, Text, View} from 'react-native';
+import type React from "react"
+import { SafeAreaView, ScrollView, Text, View } from "react-native"
 
 function App(): React.JSX.Element {
   return (
@@ -10,7 +10,7 @@ function App(): React.JSX.Element {
         </View>
       </ScrollView>
     </SafeAreaView>
-  );
+  )
 }
 
-export default App;
+export default App
