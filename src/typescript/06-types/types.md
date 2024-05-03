@@ -308,6 +308,23 @@ function buttonClick(): void {
 The `null` and `undefined` types match JavaScript.
 They are also subtypes of all other types, meaning they can be assigned to another type like `string` or `number`, unless the <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html">`--strictNullChecks`</a> flag is used.
 
+Without `--strictNullChecks`, the following code is valid:
+
+```typescript
+let num: number = null;
+num = undefined;
+num = 5;
+```
+
+With `--strictNullChecks`, the following code will require explicit typing:
+
+```typescript
+// --strictNullChecks
+let num: number | null | undefined = null;
+num = undefined;
+num = 5;
+```
+
 ### Never
 
 The `never` type represents a value that will never occur.

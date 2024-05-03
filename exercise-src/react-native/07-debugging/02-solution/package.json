@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "debugger": "npx react-native start --experimental-debugger",
     "depcheck": "depcheck .",
     "devtools": "react-devtools",
     "ios": "react-native run-ios",
