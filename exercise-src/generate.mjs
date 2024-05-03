@@ -1,10 +1,11 @@
 import fs from "node:fs/promises"
 import path from "node:path"
 
-const courseName = process.argv[2]
-const moduleName = process.argv[3]
-const projectName = process.argv[4]
-if (courseName) {
+if (process.argv.length > 2) {
+  const courseName = process.argv[2]
+  const moduleName = process.argv[3]
+  const projectName = process.argv[4]
+
   await generateCourse(courseName, moduleName, projectName)
 } else {
   const courses = await getCourses()
@@ -31,11 +32,11 @@ async function getCourses() {
 }
 
 async function generateCourse(courseName, buildModuleName, buildProjectName) {
-  const sequence = await getSequence(courseName)
   console.log(`Generating ${courseName}`)
 
   const build = {}
 
+  const sequence = await getCourseSequence(courseName)
   for (const { moduleName, projectName, source, target } of sequence) {
     const building =
       !buildModuleName ||
@@ -54,7 +55,7 @@ async function generateCourse(courseName, buildModuleName, buildProjectName) {
   }
 }
 
-async function getSequence(courseName) {
+async function getCourseSequence(courseName) {
   const dirname = import.meta.dirname
   const sourceBase = path.join(dirname, courseName)
   const targetBase = path.join(dirname, "..", "exercises", courseName)
