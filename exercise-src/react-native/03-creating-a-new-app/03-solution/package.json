@@ -6,6 +6,7 @@
     "typecheck": "tsc --noEmit",
     "eslint": "eslint *.ts *.tsx *.js",
     "prettier": "prettier --check *.ts *.tsx *.js",
+    "prettier:fix": "prettier --write *.ts *.tsx *.js",
     "depcheck": "depcheck .",
     "precheck": "npm run typecheck && npm run eslint && npm run prettier && npm run depcheck && npm run test",
     "android": "react-native run-android",

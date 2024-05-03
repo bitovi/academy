@@ -19,7 +19,7 @@ React Native has a built-in command line interface. Rather than install and mana
 ✏️ Open a terminal and move to a location where you want to generate your React application, then execute the following command:
 
 ```shell
-npx react-native@latest init PlaceMyOrder
+npx react-native@0.73 init PlaceMyOrder
 ```
 
 The command runs `npx`, using `react-native` to create a new React Native application named "PlaceMyOrder with [TypeScript](https://www.typescriptlang.org/) support.
@@ -39,6 +39,7 @@ Once you have completed the previous step you will be able to start the developm
 The development server is a useful tool. When it starts, it [transpiles](https://en.wikipedia.org/wiki/Source-to-source_compiler) the TypeScript and JSX code into JavaScript and bundles it for delivery to the device. It also watches for changes to the source code, and when they occur, it repeats the process, then causes the device to reload with those changes.
 
 ✏️ Start the virtual device you created in the previous module.
+
 ✏️ Run the command:
 
 ```shell
@@ -80,13 +81,13 @@ npm install --save-dev @testing-library/react-native@12 @types/jest@29
 
 @sourceref ../../../exercises/react-native/03-creating-a-new-app/02-solution/jest-setup.ts
 
-✏️ Delete the unneeded generated files inside `__tests__`.
+✏️ Delete the unneeded generated folder `__tests__`.
 
 ✏️ Create **App.test.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-native/03-creating-a-new-app/02-solution/App.test.tsx
 
-✏️ Replace the contents of **App.tsx** and update it to be:
+✏️ Update **App.tsx** to be:
 
 @sourceref ../../../exercises/react-native/03-creating-a-new-app/02-solution/App.tsx
 
@@ -100,9 +101,9 @@ npm run test
 
 and "Test Suites: 1 passed, 1 total" will be written to the console.
 
-## Objective 3: Cleanup the generated code and add helpers
+## Objective 3: Clean up the generated code and add helpers
 
-Before we begin adding any content, its a good idea to clean up generated files and add code quality tools.
+Before we begin adding any content, it’s a good idea to clean up generated files and add code quality tools.
 
 ### Setup 3
 
@@ -115,13 +116,13 @@ npm install --save-dev @bitovi/eslint-config depcheck
 ✏️ Update **package.json** to be:
 
 @sourceref ../../../exercises/react-native/03-creating-a-new-app/03-solution/package.json
-@highlight 6-10, only
+@highlight 6-11, only
 
-✏️ Create **.prettierrc.js** to be:
+✏️ Create **.prettierrc.js** and update it to be:
 
 @sourceref ../../../exercises/react-native/03-creating-a-new-app/03-solution/.prettierrc.js
 
-✏️ Create **.depcheckrc** to be:
+✏️ Create **.depcheckrc** and update it to be:
 
 @sourceref ../../../exercises/react-native/03-creating-a-new-app/03-solution/.depcheckrc
 
@@ -134,15 +135,13 @@ npm install --save-dev @bitovi/eslint-config depcheck
 @sourceref ../../../exercises/react-native/03-creating-a-new-app/03-solution/metro.config.js
 @highlight 1, only
 
-✏️ Now that we have prettier and eslint set up, we need to make sure our code is following the new standards. If you installed the [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) VS Code plugins, all you have to do is open and save each file, and VS Code will make the necessary changes. Fix these files:
+✏️ Now that we have prettier and eslint set up, we need to make sure our code is following the new standards. You can apply most of the rules automatically. Run:
 
-- metro.config.js
-- babel.config.js
-- jest.config.js
-- jest-setup.ts
-- index.js
-- App.tsx
-- App.test.tsx
+```shell
+npm run prettier:fix
+```
+
+Note: If you installed the [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) VS Code plugins and enable "format on save" in the settings, VS Code will make the necessary changes any time you save a file too!
 
 ### Verify 3
 

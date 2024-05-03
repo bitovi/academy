@@ -29,7 +29,7 @@ These VS Code extensions will help you format your code consistently:
 
 Our solution requires the [Node.js](https://nodejs.org/) JavaScript runtime environment. Node.js and its included package manager `npm` will be used to do a variety of tasks including: installing required packages, running the development server, executing tests, and building the application for deployment.
 
-### Install React Native and Dependencies
+### Install React Native and dependencies
 
 There are several dependencies used to create, build, and deploy a React Native application, and the specifics vary based on your development OS (MacOS, Windows, or Linux) and target OS (Android or iOS). Building for iOS require a MacOS computer, so this training only focuses on building for Android, though most of the techniques apply to all targets. Expo Go is a very convenient way to build simple React Native apps, though we will be using the official React Native CLI for this course, due to Expo Go's limitations.
 
@@ -72,21 +72,6 @@ This course also requires several React Native dependencies, depending on your o
 Follow the setup instructions for [React Native CLI Quickstart for your development OS and an Android target OS](https://reactnative.dev/docs/environment-setup?guide=native&platform=android), including setting up a virtual device.
 
 The installation process can take 30 minutes or more to complete.
-
-### Verify 2
-
-✏️ Start the virtual device you created in the setup.
-✏️ Run the following commands in a terminal to verify React Native is installed correctly.
-
-```shell
-npx react-native@latest init AwesomeProject
-cd AwesomeProject
-npm start
-```
-
-Once the start command has finished, press `a` to start the Android app. It should open in your virtual device with the message "Welcome to React Native!".
-
-We will be creating the real app in the next module, so you can delete your `AwesomeProject`.
 
 ## Next steps
 
