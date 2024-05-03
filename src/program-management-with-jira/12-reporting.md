@@ -195,7 +195,7 @@ It can be nice to see an initiative’s timing as it flow from development, to Q
       
     Note: Epics without a QA or UAT label are assumed to be development epics.  
     
-2.  Check the “Break out Dev, QA and UAT”
+2.  Select the “Work breakdown” option
     
     <img src="../static/img/program-management-with-jira/reporting/check-breakout.png"
   class="content-400-800-shadow"/>

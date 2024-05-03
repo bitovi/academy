@@ -5,7 +5,7 @@ import {
 } from "./property-existence";
 import { describe, it } from "node:test";
 
-describe("property-existence tests", () => {
+describe("Property existence modifiers", () => {
   it("partial typing works", () => {
     const personToUpdate1: UpdateablePerson = {
       team: "React",

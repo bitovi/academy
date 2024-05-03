@@ -15,9 +15,9 @@ In this section, you will:
 - Combine recursion with generic classes.
 - Create recursive generics.
 
-## Objective 1: Basic Generics
+## Objective 1: The basics of generics
 
-### Introducing generics
+### The problem generics solve
 
 Generics are a way of writing abstract code that allows the determination of types to be handled when the code is used. Generics let us reuse code for different types and improve maintainability. Let’s see how with a small example.
 
@@ -32,58 +32,75 @@ function wrapAsValue(value) {
 Ideally, you’d want to use this function to wrap all sorts of values:
 
 ```js
-let fourObj = wrapAsValue(4);  //-> {value: 4}
-let hiObj = wrapAsValue("hi"); //-> {value: "hi"}
+const fourWrapped = wrapAsValue(4);  //-> {value: 4}
+const hiWrapped = wrapAsValue("hi"); //-> {value: "hi"}
 ```
 
 And you might want to pass those objects to other functions:
 
 ```typescript
-function getDollars(obj: {value: number}){
-    return "$"+obj.value.toFixed(2)
+function getDollars(object: {value: number}){
+    return "$" + object.value.toFixed(2)
 }
 
-function getMessage(obj: {value: string}) {
-    return obj.value + " world";
+function getMessage(object: {value: string}) {
+    return object.value + " world";
 }
 
-getDollars(fourObj); //-> "$4.00"
-getMessage(hiObj);   //-> "hi world"
+getDollars(fourWrapped); //-> "$4.00"
+getMessage(hiWrapped);   //-> "hi world"
 ```
 
 __But watch out!__  The following will __not__ error until _runtime_
  because strings do not have a `toFixed()` method.
 
 ```js
-getDollars(hiObj);  
+getDollars(hiWrapped);  
 ```
 
-You don’t see a compile time error because `hiObj` object looks like `{value: any}` to TypeScript.
+You don’t see a compile time error because `hiWrapped` object looks like `{value: any}` to TypeScript.
 
 Getting a compile time error can be solved in a variety of __inelegant__ ways:
 
-- Way 1 - Define the type of the variables:
-  ```typescript
-  let fourObj: {value: number} = wrapAsValue(4);
-  let hiObj:   {value: string} = wrapAsValue("hi");
-  ```
-- Way 2 - Write multiple functions:
-  ```typescript
-  function wrapStringAsValue(value: string) {
+**Way 1:** Define the type of the variables:
+
+```typescript
+const fourWrapped: {value: number} = wrapAsValue(4);
+const hiWrapped:   {value: string} = wrapAsValue("hi");
+```
+
+The main drawback here is the redundancy and verbosity introduced by having to manually specify the type of each variable.
+This approach lacks scalability as every new variable type requires explicit type declaration, which can be tedious and error-prone, especially in larger codebases where the number of variable types can increase significantly.
+
+**Way 2:** Write multiple functions:
+
+```typescript
+function wrapStringAsValue(value: string) {
+  return {value: value};
+}
+function wrapNumberAsValue(value: number) {
+  return {value: value};
+}
+```
+
+This approach suffers from significant code duplication, with each function wrapping a different type of value in the same manner, which violates the DRY (Don’t Repeat Yourself) principle.
+Additionally, this method adds a maintenance burden.
+For every new type that needs to be wrapped, a new function must be created, which can lead to increased code complexity and potential inconsistencies in function implementation across different types.
+
+**Way 3:** Overload `wrapAsValue` signatures:
+
+```typescript
+function wrapAsValue(value: string): {value: string};
+function wrapAsValue(value: number): {value: number};
+function wrapAsValue(value: any) {
     return {value: value};
-  }
-  function wrapNumberAsValue(value: number) {
-    return {value: value};
-  }
-  ```
-- Way 3 - Overload `wrapAsValue` signatures:
-  ```typescript
-  function wrapAsValue(value: string): {value: string};
-  function wrapAsValue(value: number): {value: number};
-  function wrapAsValue(value: any) {
-      return {value: value};
-  }
-  ```
+}
+```
+
+The use of function overloading here introduces complexity by requiring you to manage multiple function signatures, complicating both the use and documentation of the function.
+Additionally, the implementation leverages the `any` type for a catch-all method, which undermines TypeScript’s robust type-checking by allowing _any_ type to be passed, potentially leading to runtime errors that are difficult to detect during compilation, thereby reducing the effectiveness of using TypeScript.
+
+### Introducing generics
 
 With __generics__, this problem can be solved more simply:
 
@@ -92,22 +109,20 @@ function wrapAsValue<MyType>(value: MyType): {value: MyType} {
     return {value: value};
 }
 
-let fourObj = wrapAsValue<number>(4);
-let hiObj = wrapAsValue("hi");
+const fourWrapped = wrapAsValue<number>(4);
+const hiWrapped = wrapAsValue("hi");
 
-
-function getDollars(obj: {value: number}){
-    return "$"+obj.value.toFixed(2)
+function getDollars(object: {value: number}){
+    return "$"+object.value.toFixed(2)
 }
 
-function getMessage(obj: {value: string}) {
-    return obj.value + " world";
+function getMessage(object: {value: string}) {
+    return object.value + " world";
 }
 
-getDollars(fourObj);
-getMessage(hiObj);
-getDollars(hiObj);
-
+getDollars(fourWrapped);
+getMessage(hiWrapped);
+getDollars(hiWrapped);
 ```
 @highlight 1, 5, only
 
@@ -116,9 +131,11 @@ part. This `<MyType>` allows us to capture the type the user provides so that we
 return type is an object with a `MyType` `value`
 property (`{value: MyType}`). This allows us to traffic that type of information in one side of the function and out the other.
 
-We can call generic functions in two ways:
+### Calling generic functions
 
-We can explicitly pass the type:
+We can call generic functions in two ways.
+
+First, we can explicitly pass the type:
 
   ```typescript
    wrapAsValue<number>(4)
@@ -128,7 +145,7 @@ We can explicitly pass the type:
   arguments passed like `func(arg1, arg2, arg3)`, generic type arguments
   are passed like `func<Type1, Type2, Type3>`.
 
-The type can be inferred:
+Second, the type can be inferred:
 
   ```typescript
   wrapAsValue("hi")
@@ -139,21 +156,21 @@ The type can be inferred:
 
 ### Setup 1
 
-✏️ Create **src/generics/return-last.ts** and update it to be:
+✏️ Create **src/generics/last.ts** and update it to be:
 
-@sourceref ../../../exercises/typescript/11-generics/01-problem/src/return-last.ts
+@sourceref ../../../exercises/typescript/11-generics/01-problem/src/generics/last.ts
 
 ### Verify 1
 
-✏️ Create **src/generics/return-last.test.ts** and update it to be:
+✏️ Create **src/generics/last.test.ts** and update it to be:
 
-@sourceref ../../../exercises/typescript/11-generics/01-problem/src/return-last.test.ts
+@sourceref ../../../exercises/typescript/11-generics/01-problem/src/generics/last.test.ts
 
 ### Exercise 1
 
-Update the `return-last.ts` file to inform the function that it will be accepting an array of a certain type and return a single element of the same - type.
+Update the `last.ts` file to inform the function that it will be accepting an array of a certain type and return a single element of the same type.
 
-<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-problem?file=src/return-last.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-problem?file=src/return-last.ts) to do this exercise in an online code editor.
+<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-problem?file=src/generics/last.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-problem?file=src/generics/last.ts) to do this exercise in an online code editor.
 
 ### Solution 1
 
@@ -162,16 +179,18 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 <details>
 <summary>Click to see the solution</summary>
 
-Update `return-last.ts` to the following:
+✏️ Update **src/generics/last.ts** to be:
 
-@diff ../../../exercises/typescript/11-generics/01-problem/src/return-last.ts ../../../exercises/typescript/11-generics/01-solution/src/return-last.ts only
+@diff ../../../exercises/typescript/11-generics/01-problem/src/generics/last.ts ../../../exercises/typescript/11-generics/01-solution/src/generics/last.ts only
 
-We use `<T>` to set up the generic. In the Parenthesis, we use `T[]` to inform the user we are accepting an array of a certain type. Finally, we use `): T{` to let us be aware what is the return type.   
+We use `<T>` to set up the generic.
+In the parenthesis, we use `T[]` to inform the user we are accepting an array of a certain type.
+Finally, we use `): T{` to let us be aware what is the return type.   
 
-<strong>Have issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-solution?file=src/return-last.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-solution?file=src/return-last.ts).
+<strong>Have issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-solution?file=src/generics/last.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-solution?file=src/generics/last.ts).
 </details>
 
-## Objective 2: Generic Classes
+## Objective 2: Generics in classes
 
 ### Using generics with classes
 
@@ -195,7 +214,7 @@ class Collection {
   }
 }
 
-let myList = Collection();
+const myList = Collection();
 myList.push(25);
 myList.push('25');
 ```
@@ -220,32 +239,33 @@ class GenericCollection<T> {
 Now when we initialize this class we can specify a type to use.
 
 @sourceref ./generic-collection-class.ts
-@highlight 1, 8,14,25
+@highlight 1, 8, 13, 24
 
-In the example above, we are utilizing generics to inform `GenericCollection` what type it is receiving. `string`, `number`, and `Dinosaur`. 
+In the example above, we are utilizing generics to inform `GenericCollection` what type it is receiving: `string`, `number`, or `Dinosaur`. 
 
 A great example of the power of generics is creating a recursive data structure like a tree. In the following exercise, we will create a `TreeNode` class that can house a generic `value` and be used to create a tree structure of `left` and `right` nodes of the same generic type.
 
 ### Setup 2
 
-✏️ Create **src/generics/tree-node.ts** and update it to be:
+✏️ Create **src/generics/tree.ts** and update it to be:
 
-@sourceref ../../../exercises/typescript/11-generics/02-problem/src/tree-node.ts
+@sourceref ../../../exercises/typescript/11-generics/02-problem/src/generics/tree.ts
 
 ### Verify 2
 
-✏️ Create **src/generics/tree-node.test.ts** and update it to be:
+✏️ Create **src/generics/tree.test.ts** and update it to be:
 
-@sourceref ../../../exercises/typescript/11-generics/02-problem/src/tree-node.test.ts
+@sourceref ../../../exercises/typescript/11-generics/02-problem/src/generics/tree.test.ts
 
 ### Exercise 2
 
-Update the `tree-node.ts` file to create a recursive `TreeNode` class that can house a `value` and be used to create a tree structure of `left` and `right` nodes.
+Update the `tree.ts` file to create a recursive `TreeNode` class that can house a `value` and be used to create a tree structure of `left` and `right` nodes.
 
 For example, we will be able to create a `TreeNode` with a root value and
 comparison function as follows:
 
-@sourceref ../../../exercises/typescript/11-generics/02-problem/src/example.ts
+@sourceref ../../../exercises/typescript/11-generics/02-problem/src/generics/tree.test.ts
+@highlight 25-33, only
 
 Then we can add values to `root` like:
 
@@ -271,7 +291,7 @@ root.right.value      //-> "Tom"
 root.right.left.value //-> "Matthew"
 ```
 
-<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/02-problem?file=src/tree-node.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/02-problem?file=src/tree-node.ts) to do this exercise in an online code editor.
+<strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/02-problem?file=src/generics/tree.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/02-problem?file=src/generics/tree.ts) to do this exercise in an online code editor.
 
 ### Solution 2
 
@@ -280,15 +300,16 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 <details>
 <summary>Click to see the solution</summary>
 
-✏️ Update `tree-node.ts` to the following:
+✏️ Update **src/generics/tree.ts** to be:
 
-@diff ../../../exercises/typescript/11-generics/02-problem/src/tree-node.ts ../../../exercises/typescript/11-generics/02-solution/src/tree-node.ts only
+@diff ../../../exercises/typescript/11-generics/02-problem/src/generics/tree.ts ../../../exercises/typescript/11-generics/02-solution/src/generics/tree.ts only
 
-The use of generics in line 5, allows the `TreeNode` class to be flexible and reusable, accommodating different types of data and comparison logic.
+The use of generics in line 5 allows the `TreeNode` class to be flexible and reusable, accommodating different types of data and comparison logic.
+
+<strong>Have issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/02-solution?file=src/generics/tree.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/02-solution?file=src/generics/tree.ts).
+
 </details>
 
 ## Next steps
 
 Next, let’s take a look at [utility types](./utility-types.html) for type transformations.
-
-<!-- TODO: I am having a problem trying to test a compiler failure. For example, I am trying to test the Readonly<>, but to test it, we should test if the TypeScript throws an error. Does anyone have ideas on how to test this? -->
