@@ -139,7 +139,7 @@
            						">
 						<a class="page"
 							href="intro-to-react-native.html"
-							title="TODO">
+							title="Discover why React Native is a great choice for modern mobile application development.">
 							Introduction to React Native
 						</a>
 						
@@ -154,7 +154,7 @@
            						">
 						<a class="page"
 							href="setting-up-your-environment.html"
-							title="TODO">
+							title="Learn how to set up your environment for React Native development.">
 							Setting Up Your Environment
 						</a>
 						
@@ -678,29 +678,210 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
-<p>In this section, you will:</p>
-<ul>
-<li>TODO</li>
-</ul>
-<h2>Objective 1: TODO</h2>
-<p>TODO</p>
-<h3>Concept TODO</h3>
-<p>TODO</p>
+    <h2>Objective 1: Generate the “Place My Order” application</h2>
+<p>Create a new React Native application named “Place My Order” that supports TypeScript and can be emulated and tested.</p>
+<h3>Use the React Native CLI to generate a new React Native application</h3>
+<p>React Native has a built-in command line interface. Rather than install and manage a specific version of the CLI globally, we recommend you access the current version at runtime using <code>npx</code>, which ships with Node.js. With <code>npx react-native &lt;command&gt;</code>, the current stable version of the CLI will be downloaded and executed at the time the command is run.</p>
 <h3>Setup 1</h3>
-<p>TODO</p>
+<p>✏️ Open a terminal and move to a location where you want to generate your React application, then execute the following command:</p>
+<pre><code class="language-shell">npx react-native@0.73 init PlaceMyOrder
+</code></pre>
+<p>The command runs <code>npx</code>, using <code>react-native</code> to create a new React Native application named &quot;PlaceMyOrder with <a href="https://www.typescriptlang.org/">TypeScript</a> support.</p>
+<p>Now <code>cd</code> into the new directory created for the application:</p>
+<pre><code class="language-shell">cd PlaceMyOrder
+</code></pre>
+<p>When cloning a project from a git repository, it will also be necessary to run <code>npm install</code> in the directory, but the app setup has done this for us already.</p>
 <h3>Verify 1</h3>
-<p>TODO</p>
-<h3>Exercise 1</h3>
-<p>TODO</p>
-<h3>Solution 1</h3>
-<p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
-<p><details>
-<summary>Click to see the solution</summary></p>
-<p>TODO</p>
-<p></details></p>
+<p>Once you have completed the previous step you will be able to start the development server and see the default welcome page.</p>
+<p>The development server is a useful tool. When it starts, it <a href="https://en.wikipedia.org/wiki/Source-to-source_compiler">transpiles</a> the TypeScript and JSX code into JavaScript and bundles it for delivery to the device. It also watches for changes to the source code, and when they occur, it repeats the process, then causes the device to reload with those changes.</p>
+<p>✏️ Start the virtual device you created in the previous module.</p>
+<p>✏️ Run the command:</p>
+<pre><code class="language-shell">npm run start
+</code></pre>
+<p>✏️ Push <code>a</code> to run the app on the open Android virtual device.</p>
+<p>The first time you run it for a given target will take significantly longer than subsequent runs. Once open, you should see the default &quot;Welcome to React Native&quot; screen.</p>
+<figure>
+  <img alt="A mobile phone displaying the root page of the newly created application served by the dev server. The page displays a 'Welcome to React Native' header and some miscelaneous instructions that we will be disregarding." src="/static/img/react-native/03-creating-a-new-app/01-generated-app.png" width="600px" />
+  <figcaption style="font-style: italic">
+    Screen capture of the completed exercise.
+  </figcaption>
+</figure>
+<h2>Objective 2: Add testing infrastructure</h2>
+<h3>Testing code with React Testing Library</h3>
+<p>We will create unit tests for our application using the <a href="https://callstack.github.io/react-native-testing-library/">React Native Testing Library</a>. The unit tests for components will be focused on verifying that a component creates the correct output based on the state the component is provided. We also need to create tests for any React custom Hooks we create to ensure they provide the expected results.</p>
+<h3>Setup 2</h3>
+<p>Before we can create or execute any tests, run the following command to install the packages related to the React Native Testing Library:</p>
+<p>✏️ Run:</p>
+<pre><code class="language-shell">npm install --save-dev @testing-library/react-native@12 @types/jest@29
+</code></pre>
+<p>✏️ Update <strong>jest.config.js</strong> to be:</p>
+<pre><code class="language-js">module.exports = {
+  preset: 'react-native',
+  setupFilesAfterEnv: ['&lt;rootDir&gt;/jest-setup.ts'],
+};
+
+</code></pre>
+ <div line-highlight="3,"></div>
+<p>✏️ Create <strong>jest-setup.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import '@testing-library/react-native/extend-expect';
+
+</code></pre>
+<p>✏️ Delete the unneeded generated folder <code>__tests__</code>.</p>
+<p>✏️ Create <strong>App.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import {render, screen} from '@testing-library/react-native';
+import App from './App';
+
+describe('App', () =&gt; {
+  it('renders', async () =&gt; {
+    render(&lt;App /&gt;);
+    expect(screen.getByText(/Place my order/i)).toBeOnTheScreen();
+  });
+});
+
+</code></pre>
+<p>✏️ Update <strong>App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type React from 'react';
+import {SafeAreaView, ScrollView, Text, View} from 'react-native';
+
+function App(): React.JSX.Element {
+  return (
+    &lt;SafeAreaView&gt;
+      &lt;ScrollView&gt;
+        &lt;View&gt;
+          &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
+        &lt;/View&gt;
+      &lt;/ScrollView&gt;
+    &lt;/SafeAreaView&gt;
+  );
+}
+
+export default App;
+
+</code></pre>
+<h3>Verify 2</h3>
+<p>After completing the previous steps you will be able to run unit tests. Execute the command:</p>
+<pre><code class="language-shell">npm run test
+</code></pre>
+<p>and &quot;Test Suites: 1 passed, 1 total&quot; will be written to the console.</p>
+<h2>Objective 3: Clean up the generated code and add helpers</h2>
+<p>Before we begin adding any content, it’s a good idea to clean up generated files and add code quality tools.</p>
+<h3>Setup 3</h3>
+<p>✏️ Run:</p>
+<pre><code class="language-shell">npm install --save-dev @bitovi/eslint-config depcheck
+</code></pre>
+<p>✏️ Update <strong>package.json</strong> to be:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;solution&quot;,
+  &quot;version&quot;: &quot;0.0.1&quot;,
+  &quot;private&quot;: true,
+  &quot;scripts&quot;: {
+    &quot;typecheck&quot;: &quot;tsc --noEmit&quot;,
+    &quot;eslint&quot;: &quot;eslint *.ts *.tsx *.js&quot;,
+    &quot;prettier&quot;: &quot;prettier --check *.ts *.tsx *.js&quot;,
+    &quot;prettier:fix&quot;: &quot;prettier --write *.ts *.tsx *.js&quot;,
+    &quot;depcheck&quot;: &quot;depcheck .&quot;,
+    &quot;precheck&quot;: &quot;npm run typecheck &amp;&amp; npm run eslint &amp;&amp; npm run prettier &amp;&amp; npm run depcheck &amp;&amp; npm run test&quot;,
+    &quot;android&quot;: &quot;react-native run-android&quot;,
+    &quot;ios&quot;: &quot;react-native run-ios&quot;,
+    &quot;start&quot;: &quot;react-native start&quot;,
+    &quot;test&quot;: &quot;jest&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;react&quot;: &quot;18.2.0&quot;,
+    &quot;react-native&quot;: &quot;0.73.6&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;@babel/core&quot;: &quot;^7.20.0&quot;,
+    &quot;@babel/preset-env&quot;: &quot;^7.20.0&quot;,
+    &quot;@babel/runtime&quot;: &quot;^7.20.0&quot;,
+    &quot;@bitovi/eslint-config&quot;: &quot;^1.8.0&quot;,
+    &quot;@react-native/babel-preset&quot;: &quot;0.73.21&quot;,
+    &quot;@react-native/eslint-config&quot;: &quot;0.73.2&quot;,
+    &quot;@react-native/metro-config&quot;: &quot;0.73.5&quot;,
+    &quot;@react-native/typescript-config&quot;: &quot;0.73.1&quot;,
+    &quot;@testing-library/react-native&quot;: &quot;^12.4.5&quot;,
+    &quot;@types/jest&quot;: &quot;^29.5.12&quot;,
+    &quot;@types/react&quot;: &quot;^18.2.6&quot;,
+    &quot;@types/react-test-renderer&quot;: &quot;^18.0.0&quot;,
+    &quot;babel-jest&quot;: &quot;^29.6.3&quot;,
+    &quot;depcheck&quot;: &quot;^1.4.7&quot;,
+    &quot;eslint&quot;: &quot;^8.19.0&quot;,
+    &quot;jest&quot;: &quot;^29.6.3&quot;,
+    &quot;prettier&quot;: &quot;2.8.8&quot;,
+    &quot;react-test-renderer&quot;: &quot;18.2.0&quot;,
+    &quot;typescript&quot;: &quot;5.0.4&quot;
+  },
+  &quot;engines&quot;: {
+    &quot;node&quot;: &quot;&gt;=18&quot;
+  }
+}
+
+</code></pre>
+<div line-highlight='6-11, only'></div>
+<p>✏️ Create <strong>.prettierrc.js</strong> and update it to be:</p>
+<pre><code class="language-js">module.exports = {
+  trailingComma: 'all',
+  semi: false,
+};
+
+</code></pre>
+<p>✏️ Create <strong>.depcheckrc</strong> and update it to be:</p>
+<pre><code>ignore-dirs:
+  - /dist
+ignores:
+  - &quot;@types/*&quot;
+  - &quot;@babel/*&quot;
+  - &quot;@react-native/*&quot;
+  - &quot;babel-*&quot;
+  - &quot;*-babel&quot;
+
+</code></pre>
+<p>✏️ Update <strong>.eslintrc.js</strong> to be:</p>
+<pre><code class="language-js">module.exports = {
+  root: true,
+  extends: &quot;@bitovi/eslint-config/react&quot;,
+  settings: {
+    &quot;import/ignore&quot;: [&quot;node_modules/react-native/index\\.js$&quot;],
+  },
+  rules: {
+    &quot;jest/prefer-hooks-in-order&quot;: &quot;off&quot;,
+  },
+}
+
+</code></pre>
+ <div line-highlight="3-9,"></div>
+<p>✏️ Update <strong>metro.config.js</strong> to be:</p>
+<pre><code class="language-js">// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { getDefaultConfig, mergeConfig } = require(&quot;@react-native/metro-config&quot;)
+
+/**
+ * Metro configuration
+ * https://facebook.github.io/metro/docs/configuration
+ *
+ * @type {import('metro-config').MetroConfig}
+ */
+const config = {}
+
+module.exports = mergeConfig(getDefaultConfig(__dirname), config)
+
+</code></pre>
+<div line-highlight='1, only'></div>
+<p>✏️ Now that we have prettier and eslint set up, we need to make sure our code is following the new standards. You can apply most of the rules automatically. Run:</p>
+<pre><code class="language-shell">npm run prettier:fix
+</code></pre>
+<p>Note: If you installed the <a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">ESLint</a> and <a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</a> VS Code plugins and enable &quot;format on save&quot; in the settings, VS Code will make the necessary changes any time you save a file too!</p>
+<h3>Verify 3</h3>
+<p>✏️ Run the new code quality scripts.</p>
+<pre><code class="language-shell">npm run typecheck
+npm run eslint
+npm run prettier
+npm run depcheck
+</code></pre>
+<p>These scripts should all pass successfully. You can run all of these, and the tests, with</p>
+<pre><code class="language-shell">npm run precheck
+</code></pre>
 <h2>Next steps</h2>
-<p>TODO</p>
+<p>Next, let’s <a href="./intro-to-jsx.html">learn about JSX</a> to understand React’s templating language.</p>
 
 </section>
 
