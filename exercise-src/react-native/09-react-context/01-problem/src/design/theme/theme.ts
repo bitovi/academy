@@ -12,10 +12,6 @@ export interface Theme {
     screen: Palette
     primary: Palette
     secondary: Palette
-    // error: Palette
-    // warning: Palette
-    // info: Palette
-    // success: Palette
   }
   spacing: {
     none: 0
@@ -33,14 +29,7 @@ export interface Theme {
   }
 }
 
-export type ThemeMargin =
-  | keyof Theme["spacing"]
-  | [keyof Theme["spacing"], keyof Theme["spacing"]]
-export type ThemePadding =
-  | keyof Theme["spacing"]
-  | [keyof Theme["spacing"], keyof Theme["spacing"]]
-
-const light: Theme = {
+const theme: Theme = {
   palette: {
     screen: {
       main: "#ffffff",
@@ -88,30 +77,4 @@ const light: Theme = {
   },
 }
 
-const dark: Theme = {
-  ...light,
-  palette: {
-    ...light.palette,
-    screen: {
-      main: "#29292c",
-      soft: "#565659",
-      strong: "#000000",
-      contrast: "#ffffff",
-    },
-    primary: {
-      ...light.palette.primary,
-      soft: "#003a3d",
-      strong: light.palette.primary.soft,
-    },
-    secondary: {
-      ...light.palette.secondary,
-      soft: "#811e22",
-      strong: light.palette.secondary.soft,
-    },
-  },
-}
-
-export default {
-  light,
-  dark,
-}
+export default theme
