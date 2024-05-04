@@ -66,7 +66,7 @@ const oldDino: Dinosaur = {
   diet: Diet.Carnivore,
 };
 
-const newDino: Dinosaur = updateDinosaur(dino1, {
+const newDino: Dinosaur = updateDinosaur(oldDino, {
   diet: Diet.Omnivore,
 });
 ```
