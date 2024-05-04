@@ -13,17 +13,19 @@ const Screen: FC<ScreenProps> = ({ children, style, ...props }) => {
   const { palette } = useTheme()
 
   return (
-    <Box
-      padding="s"
-      style={{
-        height: "100%",
-        flex: 1,
-        backgroundColor: palette.screen.soft,
-      }}
-      {...props}
-    >
-      {children}
-    </Box>
+    <ScrollView>
+      <Box
+        padding="s"
+        style={{
+          height: "100%",
+          flex: 1,
+          backgroundColor: palette.screen.soft,
+        }}
+        {...props}
+      >
+        {children}
+      </Box>
+    </ScrollView>
   )
 }
 

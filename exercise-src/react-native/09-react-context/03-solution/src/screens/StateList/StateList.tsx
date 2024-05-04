@@ -1,15 +1,10 @@
 import type { FC } from "react"
 import ListItem from "./components/ListItem"
+import Card from "../../design/Card"
 import Screen from "../../design/Screen"
 import Typography from "../../design/Typography"
-import Card from "../../design/Card"
 
-export type State = {
-  name: string
-  short: string
-}
-
-const states: State[] = [
+const states = [
   {
     name: "Illinois",
     short: "IL",
@@ -29,7 +24,7 @@ const StateList: FC = () => {
         </Typography>
       </Card>
       {states?.length > 0 ? (
-        states.map((state) => <ListItem key={state.short} state={state} />)
+        states.map((state) => <ListItem key={state.short} name={state.name} />)
       ) : (
         <Typography>No states found</Typography>
       )}
