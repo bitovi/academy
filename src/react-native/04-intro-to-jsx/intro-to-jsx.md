@@ -2,7 +2,7 @@
 @parent learn-react-native 4
 @outline 2
 
-@description TODO
+@description Learn how to use JSX to define your UI in React.
 
 @body
 
