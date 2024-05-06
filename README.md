@@ -11,11 +11,11 @@ npm install
 ```
 
 ```sh
-npm generate
+npm run generate
 ```
 
 ```sh
-npm build
+npm run build
 ```
 
 ### Dev Server
