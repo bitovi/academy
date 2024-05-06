@@ -683,21 +683,65 @@ covering CanJS core libraries.">
 <ul>
 <li>TODO</li>
 </ul>
-<h2>Objective 1: TODO</h2>
+<h2>Objective: Styling an individual element</h2>
 <p>TODO</p>
-<h3>Concept TODO</h3>
+<h3>Creating and using a stylesheet</h3>
 <p>TODO</p>
-<h3>Setup 1</h3>
+<h3>Verify</h3>
+<p>✏️ Create <strong>src/screens/StateList/components/ListItem/ListItem.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+import ListItem from &quot;./ListItem&quot;
+
+describe(&quot;ListItem&quot;, () =&gt; {
+  it(&quot;renders&quot;, async () =&gt; {
+    render(&lt;ListItem name=&quot;One&quot; /&gt;)
+
+    const element = screen.getByText(/One/i)
+    expect(element).toBeOnTheScreen()
+
+    expect(element).toHaveStyle({
+      fontSize: 21,
+      color: &quot;white&quot;,
+      backgroundColor: &quot;darkgreen&quot;,
+      padding: 10,
+      marginVertical: 5,
+    })
+  })
+})
+
+</code></pre>
+<h3>Exercise</h3>
 <p>TODO</p>
-<h3>Verify 1</h3>
-<p>TODO</p>
-<h3>Exercise 1</h3>
-<p>TODO</p>
-<h3>Solution 1</h3>
+<h3>Solution</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>TODO</p>
+<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { StyleSheet, Text } from &quot;react-native&quot;
+
+type ListItemProps = {
+  name: string
+}
+
+const ListItem: FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
+  return &lt;Text style={styles.text}&gt;{name}&lt;/Text&gt;
+}
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 21,
+    color: &quot;white&quot;,
+    backgroundColor: &quot;darkgreen&quot;,
+    padding: 10,
+    marginVertical: 5,
+  },
+})
+
+export default ListItem
+
+</code></pre>
+ <div line-highlight="2,9,12-20,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>TODO</p>
