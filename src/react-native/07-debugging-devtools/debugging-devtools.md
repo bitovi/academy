@@ -122,7 +122,7 @@ React Native Debugger, is a feature in React Native that serves as a debugging t
 
 @diff ../../../exercises/react-native/07-debugging/01-solution/src/screens/StateList/StateList.tsx ../../../exercises/react-native/07-debugging/02-solution/src/screens/StateList/StateList.tsx only
 
-### Verify 2
+### Exercise 2
 
 Execute the command:
 
@@ -148,12 +148,8 @@ Clicking on "Open Debugger" will open up a separate window for debugging.
 
 ### Exercise 2
 
-- Add `console.log` Statements:
-  - Within the `src/screens/StateList/StateList.tsx`, insert console.log statements to print information such as variable values, function calls, or component lifecycle events.
-  - For example, you can log the values of props, states, or variables to understand their current state during runtime.
-- Insert `debugger` Statement:
-  - Identify a specific point in `src/screens/StateList/StateList.tsx` code where you want to pause execution and inspect the runtime environment.
-  - Insert the `debugger` statement at that point to create a breakpoint. This will pause execution when reached and allow you to examine the state of your application.
+Exploring the debugger:
+  - View where the `console.log("Hello World)` is being printed.
   - Step through your code using the debugger controls (step into, step over, step out) to understand its execution flow.
 
 ## Next steps
