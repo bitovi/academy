@@ -2,7 +2,7 @@
 @parent learn-react-native 3
 @outline 3
 
-@description TODO
+@description Generate a new React Native application using the CLI.
 
 @body
 
@@ -19,12 +19,12 @@ React Native has a built-in command line interface. Rather than install and mana
 ✏️ Open a terminal and move to a location where you want to generate your React application, then execute the following command:
 
 ```shell
-npx react-native@0.73 init PlaceMyOrder
+npx react-native@0.73.8 init PlaceMyOrder --version 0.73.8
 ```
 
 The command runs `npx`, using `react-native` to create a new React Native application named "PlaceMyOrder with [TypeScript](https://www.typescriptlang.org/) support.
 
-Now `cd` into the new directory created for the application:
+✏️ Now `cd` into the new directory created for the application:
 
 ```shell
 cd PlaceMyOrder
@@ -51,7 +51,7 @@ npm run start
 The first time you run it for a given target will take significantly longer than subsequent runs. Once open, you should see the default "Welcome to React Native" screen.
 
 <figure>
-  <img alt="A mobile phone displaying the root page of the newly created application served by the dev server. The page displays a 'Welcome to React Native' header and some miscelaneous instructions that we will be disregarding." src="/static/img/react-native/03-creating-a-new-app/01-generated-app.png" width="600px" />
+  <img alt="A mobile phone displaying the root page of the newly created application served by the dev server. The page displays a 'Welcome to React Native' header and some miscelaneous instructions that we will be disregarding." src="../static/img/react-native/03-creating-a-new-app/01-generated-app.png" width="600px" />
   <figcaption style="font-style: italic">
     Screen capture of the completed exercise.
   </figcaption>
@@ -75,7 +75,7 @@ npm install --save-dev @testing-library/react-native@12 @types/jest@29
 
 ✏️ Update **jest.config.js** to be:
 
-@diff ../../../exercises/react-native/03-creating-a-new-app/01-solution/jest.config.js ../../../exercises/react-native/03-creating-a-new-app/02-solution/jest.config.js
+@diff ../../../exercises/react-native/03-creating-a-new-app/01-solution/jest.config.js ../../../exercises/react-native/03-creating-a-new-app/02-solution/jest.config.js only
 
 ✏️ Create **jest-setup.ts** and update it to be:
 
@@ -110,7 +110,7 @@ Before we begin adding any content, it’s a good idea to clean up generated fil
 ✏️ Run:
 
 ```shell
-npm install --save-dev @bitovi/eslint-config depcheck
+npm install --save-dev @bitovi/eslint-config@1 depcheck@1
 ```
 
 ✏️ Update **package.json** to be:
@@ -128,7 +128,7 @@ npm install --save-dev @bitovi/eslint-config depcheck
 
 ✏️ Update **.eslintrc.js** to be:
 
-@diff ../../../exercises/react-native/03-creating-a-new-app/02-solution/.eslintrc.js ../../../exercises/react-native/03-creating-a-new-app/03-solution/.eslintrc.js
+@diff ../../../exercises/react-native/03-creating-a-new-app/02-solution/.eslintrc.js ../../../exercises/react-native/03-creating-a-new-app/03-solution/.eslintrc.js only
 
 ✏️ Update **metro.config.js** to be:
 
