@@ -17,28 +17,22 @@ to the language, along with other features that don’t exist in regular JavaScr
 JavaScript is an “untyped” or “dynamically typed” language. Type is associated with a value instead of a variable.
 JavaScript can assign variables to values of different types:
 
-```js
-let myVariable;
-
-myVariable = 1;
-myVariable = "2";
-```
-
-JavaScript can call a function with a type it doesn’t expect:
-
-```js
-function greeter(person) {
-    return "Hello, " + person;
-}
-
-let user = {name: "Justin"};
-document.body.innerHTML = greeter(user);
-```
+@sourceref ./buggy-assignment.js
 
 If there’s a bug in the code related to falsely assuming a type, it won’t throw an error until we’re already running our code.
 
 TypeScript uses **static typing**, which allows us to specify what type a variable should hold, and types are checked when the code compiles alerting us of any incorrect usages of a variable assignment.
 The concept of “static” comes from the idea of variables being static, meaning once you set a variable to a type it can’t (shouldn’t) be changed.
+
+Let’s look at that example again, but with types:
+
+@diff ./buggy-assignment.js ./buggy-assignment.ts only
+
+When the `number` type is added, TypeScript can give errors when assigning the wrong type to a variable:
+
+```
+Type 'string' is not assignable to type 'number'.ts(2322)
+```
 
 For a deeper dive into how typechecking works, the creators of TypeScript have a <a href="https://www.typescriptlang.org/docs/handbook/type-checking-javascript-files.html">typechecking handbook</a> of more specific cases as well as their inspiration for the way these features were designed.
 
@@ -51,6 +45,10 @@ This includes features like inheritance, interfaces, and access modifiers such a
 
 TypeScript’s type system is rich and includes generics, enums, hybrid types, intersection types, tuples, and much more.
 This system allows developers to write flexible, yet robust code very efficiently.
+
+Below is an example of using enums in TypeScript:
+
+@sourceref enums.ts
 
 ### Transpiling TypeScript to JavaScript
 
@@ -82,7 +80,7 @@ exports.hello = hello;
 
 ## Why use TypeScript?
 
-### Improved code quality and understandability
+### Improve readability
 
 By using types, JavaScript becomes more predictable and easier to understand.
 Types act as a form of documentation that can significantly reduce the cognitive load on developers, helping new team members to understand the codebase quicker.
@@ -104,7 +102,9 @@ function calculateTotal(price: number, tax: number): number {
 }
 ```
 
-TypeScript also offers modern (think ES6) features of JavaScript and the use of classes and interfaces to write code in an object oriented way.
+### Increases maintainability
+
+TypeScript also offers modern (think ES6) features of JavaScript and the use of classes and interfaces to write code in an object-oriented way.
 
 Here’s another example of code being more readable with types. Creating a `User` interface makes it clear what the `greet` function is expecting in the `user` object:
 
@@ -127,41 +127,44 @@ function greet(user) {
 }
 ```
 
-### Early bug detection
+### Reduces errors
 
 Typechecking is the process of verifying and enforcing the constraints of types, checking each variable, function, and expression to ensure they all fit together correctly. It’s like ensuring that you’re using the right tools for the job and putting them in the right places, so your program runs smoothly without unexpected errors.
 
-In the TypeScript code provided, an attempt is made to assign a value to `itemCount`, which is expected to be a `number`, but instead, a `string` was passed:
+JavaScript can call a function with a type it doesn’t expect:
 
-```typescript
-let itemCount: number = 'five'; // Incorrect assignment
-```
+@sourceref ./buggy-call.js
+
+In the example above, JavaScript will happily log `Hello, [object Object]`.
+
+When types are added:
+
+@diff ./buggy-call.js ./buggy-call.ts only
+
 TypeScript will throw an error at compile time:
 
-```typescript
-error TS2322: Type '"five"' is not assignable to type 'number'.
+```
+Argument of type '{ name: string; }' is not assignable to parameter of type 'string'.ts(2345)
 ```
 
 TypeScript’s compile-time checks can identify common bugs that would typically be found at runtime in plain JavaScript.
 Issues like calling a function with the wrong type of arguments, or trying to use a property that doesn’t exist on an object, can be caught early, thus saving time and reducing costs associated with debugging and fixing production bugs.
 
-### Refactoring confidence
+### Simplifies code refactoring
 
 Refactoring large codebases can be risky when you can’t be certain what impact your changes might have.
 TypeScript’s type system provides a safety net that makes it easier to make extensive changes while ensuring that no part of the system is adversely affected.
 
-### Enhanced collaboration in large teams
+### Facilitates collaboration in large teams
 
 In large development teams, ensuring code consistency and avoiding conflicts can be challenging.
 TypeScript’s explicit type system and the compilation step help enforce a level of consistency across the codebase.
 It acts as a guide to ensure that all team members are implementing features with the expected types in mind.
 
-### Enhanced IDE support
+### Integrates with modern development tools
 
 The static typing feature of TypeScript provides powerful tooling at development time in IDEs (Integrated Development Environments).
 Features like code completion, refactorings, and inline documentation become more powerful due to TypeScript’s advanced type inference and type checking.
-
-### Better integration with modern development tools
 
 TypeScript is supported by most modern development tools, including popular IDEs like Visual Studio Code, WebStorm, and others.
 These tools provide enhanced features when used with TypeScript, such as better autocomplete, inline errors, and automated refactoring tools.
