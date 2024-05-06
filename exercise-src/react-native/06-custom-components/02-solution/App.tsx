@@ -22,25 +22,23 @@ const ListItem: FC<ListItemProps> = ({ name }) => {
 
 const StateList: FC = () => {
   return (
-    <View>
+    <ScrollView>
+      <View>
+        <Text>Place My Order: Coming Soon To...</Text>
+      </View>
       {states?.length > 0 ? (
         states.map((state) => <ListItem key={state.short} name={state.name} />)
       ) : (
         <Text>No states found</Text>
       )}
-    </View>
+    </ScrollView>
   )
 }
 
 const App: FC = () => {
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <View>
-          <Text>Place My Order: Coming Soon To...</Text>
-        </View>
-        <StateList />
-      </ScrollView>
+    <SafeAreaView style={{ height: "100%", width: "100%" }}>
+      <StateList />
     </SafeAreaView>
   )
 }

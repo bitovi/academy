@@ -13,7 +13,10 @@ interface ThemeContext {
   setMode: (mode: Mode) => void
 }
 
-const Context = createContext<ThemeContext | undefined>(undefined)
+const Context = createContext<ThemeContext | undefined>({
+  mode: "light",
+  setMode: () => undefined,
+})
 
 const ThemeProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
   const [mode, setMode] = useState<Mode>(Appearance.getColorScheme() || "light")
@@ -25,20 +28,8 @@ const ThemeProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
 
 export default ThemeProvider
 
-function useThemeContext(): ThemeContext {
-  const context = useContext(Context)
-
-  if (!context) {
-    throw new Error(
-      "Theme context cannot be accessed outside of the ThemeProvider.",
-    )
-  }
-
-  return context
-}
-
 export function useTheme(): Theme {
-  const { mode } = useThemeContext()
+  const { mode } = useContext(Context)
 
   return themes[mode]
 }
@@ -47,7 +38,7 @@ export function useThemeMode(): {
   mode: Mode
   setMode: (mode: Mode) => void
 } {
-  const { mode, setMode } = useThemeContext()
+  const { mode, setMode } = useContext(Context)
 
   return {
     mode,

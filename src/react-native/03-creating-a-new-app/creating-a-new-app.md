@@ -75,7 +75,7 @@ npm install --save-dev @testing-library/react-native@12 @types/jest@29
 
 ✏️ Update **jest.config.js** to be:
 
-@diff ../../../exercises/react-native/03-creating-a-new-app/01-solution/jest.config.js ../../../exercises/react-native/03-creating-a-new-app/02-solution/jest.config.js
+@diff ../../../exercises/react-native/03-creating-a-new-app/01-solution/jest.config.js ../../../exercises/react-native/03-creating-a-new-app/02-solution/jest.config.js only
 
 ✏️ Create **jest-setup.ts** and update it to be:
 
@@ -128,7 +128,7 @@ npm install --save-dev @bitovi/eslint-config@1 depcheck@1
 
 ✏️ Update **.eslintrc.js** to be:
 
-@diff ../../../exercises/react-native/03-creating-a-new-app/02-solution/.eslintrc.js ../../../exercises/react-native/03-creating-a-new-app/03-solution/.eslintrc.js
+@diff ../../../exercises/react-native/03-creating-a-new-app/02-solution/.eslintrc.js ../../../exercises/react-native/03-creating-a-new-app/03-solution/.eslintrc.js only
 
 ✏️ Update **metro.config.js** to be:
 

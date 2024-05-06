@@ -1,6 +1,8 @@
 import type { FC } from "react"
-import { ScrollView, Text, View } from "react-native"
 import ListItem from "./components/ListItem"
+import Card from "../../design/Card"
+import Screen from "../../design/Screen"
+import Typography from "../../design/Typography"
 
 const states = [
   {
@@ -15,16 +17,18 @@ const states = [
 
 const StateList: FC = () => {
   return (
-    <ScrollView>
-      <View>
-        <Text>Place My Order: Coming Soon To...</Text>
-      </View>
+    <Screen>
+      <Card>
+        <Typography variant="heading">
+          Place My Order: Coming Soon To...
+        </Typography>
+      </Card>
       {states?.length > 0 ? (
         states.map((state) => <ListItem key={state.short} name={state.name} />)
       ) : (
-        <Text>No states found</Text>
+        <Typography>No states found</Typography>
       )}
-    </ScrollView>
+    </Screen>
   )
 }
 
