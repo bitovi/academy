@@ -33,7 +33,7 @@ const StateList: FC = () => {
         </Typography>
       </Card>
       {states?.length > 0 ? (
-        states.map((state) => <ListItem key={state.short} state={state} />)
+        states.map((state) => <ListItem key={state.short} name={state.name} />)
       ) : (
         <Typography>No states found</Typography>
       )}
