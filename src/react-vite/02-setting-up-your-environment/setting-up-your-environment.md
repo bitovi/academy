@@ -175,7 +175,7 @@ and "No test files found" will be written to the console.
 Now, let’s updated our generated app to include our own header:
 
 <figure>
-  <img alt="A web browser displaying the root page of the newly created application served by the dev server. The page displays a single level 1 heading with the text 'Place My Order App: Coming Soon!'" src="/static/img/react-vite/02-setting-up-your-environment/04-solution.png" width="600px" />
+  <img alt="A web browser displaying the root page of the newly created application served by the dev server. The page displays a single level 1 heading with the text 'Place My Order App: Coming Soon!'" src="../static/img/react-vite/02-setting-up-your-environment/04-solution.png" width="600px" />
   <figcaption style="font-style: italic">
     Screen capture of the completed exercise.
   </figcaption>
