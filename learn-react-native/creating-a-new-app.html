@@ -721,7 +721,7 @@ covering CanJS core libraries.">
 };
 
 </code></pre>
- <div line-highlight="3,"></div>
+ <div line-highlight="3,only"></div>
 <p>✏️ Create <strong>jest-setup.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import '@testing-library/react-native/extend-expect';
 
@@ -745,7 +745,7 @@ import {SafeAreaView, ScrollView, Text, View} from 'react-native';
 
 function App(): React.JSX.Element {
   return (
-    &lt;SafeAreaView&gt;
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
       &lt;ScrollView&gt;
         &lt;View&gt;
           &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
@@ -849,7 +849,7 @@ ignores:
 }
 
 </code></pre>
- <div line-highlight="3-9,"></div>
+ <div line-highlight="3-9,only"></div>
 <p>✏️ Update <strong>metro.config.js</strong> to be:</p>
 <pre><code class="language-js">// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { getDefaultConfig, mergeConfig } = require(&quot;@react-native/metro-config&quot;)

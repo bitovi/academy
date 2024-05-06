@@ -683,21 +683,773 @@ covering CanJS core libraries.">
 <ul>
 <li>TODO</li>
 </ul>
-<h2>Objective 1: TODO</h2>
-<p>TODO</p>
-<h3>Concept TODO</h3>
+<h2>Objective 1: Create a theme with shared values</h2>
 <p>TODO</p>
 <h3>Setup 1</h3>
-<p>TODO</p>
+<p>✏️ Create <strong>src/design/theme/ThemeProvider.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import type { Theme } from &quot;./theme&quot;
+
+import { createContext, useContext, useMemo } from &quot;react&quot;
+
+import theme from &quot;./theme&quot;
+
+interface ThemeContext {
+  theme: Theme
+}
+
+const ThemeProvider: FC = () =&gt; {}
+
+export default ThemeProvider
+
+export function useTheme(): Theme {}
+
+</code></pre>
+<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { SafeAreaView } from &quot;react-native&quot;
+import StateList from &quot;./screens/StateList&quot;
+import ThemeProvider from &quot;./design/theme/ThemeProvider&quot;
+
+const App: FC = () =&gt; {
+  return (
+    &lt;ThemeProvider&gt;
+      &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+        &lt;StateList /&gt;
+      &lt;/SafeAreaView&gt;
+    &lt;/ThemeProvider&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="4,8-12,only"></div>
+<p>✏️ Update <strong>src/screens/StateList/components/ListItem/ListItem.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import type { Theme } from &quot;../../../../design/theme&quot;
+
+import { StyleSheet, Text } from &quot;react-native&quot;
+import { useTheme } from &quot;../../../../design/theme&quot;
+
+type ListItemProps = {
+  name: string
+}
+
+const ListItem: FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
+  const theme = useTheme()
+  const styles = getStyles(theme)
+
+  return &lt;Text style={styles.text}&gt;{name}&lt;/Text&gt;
+}
+
+function getStyles(theme: Theme) {
+  return StyleSheet.create({
+    text: {
+      fontSize: 21,
+      color: &quot;white&quot;,
+      backgroundColor: &quot;darkgreen&quot;,
+      padding: 10,
+      marginVertical: 5,
+    },
+  })
+}
+
+export default ListItem
+
+</code></pre>
+ <div line-highlight="2,5,12-13,18-28,only"></div>
 <h3>Verify 1</h3>
-<p>TODO</p>
+<p>✏️ Create <strong>src/design/theme/ThemeProvider.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+
+import { render, screen } from &quot;@testing-library/react-native&quot;
+import { View, Text } from &quot;react-native&quot;
+
+import ThemeProvider, { useTheme } from &quot;./ThemeProvider&quot;
+
+describe(&quot;ThemeProvider Provider&quot;, () =&gt; {
+  it(&quot;renders children&quot;, async () =&gt; {
+    render(
+      &lt;ThemeProvider&gt;
+        &lt;Text&gt;Hello!&lt;/Text&gt;
+      &lt;/ThemeProvider&gt;,
+    )
+
+    expect(screen.getByText(/Hello/)).toBeOnTheScreen()
+  })
+})
+
+describe(&quot;ThemeContext context&quot;, () =&gt; {
+  const TestComponent: FC = () =&gt; {
+    const theme = useTheme()
+
+    return (
+      &lt;View&gt;
+        &lt;Text&gt;{theme.palette.primary.main}&lt;/Text&gt;
+      &lt;/View&gt;
+    )
+  }
+
+  it(&quot;context properties are accessible&quot;, async () =&gt; {
+    render(&lt;TestComponent /&gt;)
+
+    expect(screen.getByText(/#007980/)).toBeOnTheScreen()
+  })
+})
+
+</code></pre>
 <h3>Exercise 1</h3>
 <p>TODO</p>
 <h3>Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/design/theme/ThemeProvider.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import type { Theme } from &quot;./theme&quot;
+
+import { createContext, useContext, useMemo } from &quot;react&quot;
+
+import theme from &quot;./theme&quot;
+
+interface ThemeContext {
+  theme: Theme
+}
+
+const Context = createContext&lt;ThemeContext&gt;({
+  theme,
+})
+
+const ThemeProvider: FC&lt;{ children: React.ReactNode }&gt; = ({ children }) =&gt; {
+  const value = useMemo(() =&gt; ({ theme }), [])
+
+  return &lt;Context.Provider value={value}&gt;{children}&lt;/Context.Provider&gt;
+}
+
+export default ThemeProvider
+
+export function useTheme(): Theme {
+  const { theme } = useContext(Context)
+
+  return theme
+}
+
+</code></pre>
+ <div line-highlight="12-14,16-17,19-20,24-25,27-28,only"></div>
+<p>✏️ Update <strong>src/screens/StateList/components/ListItem/ListItem.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import type { Theme } from &quot;../../../../design/theme&quot;
+
+import { StyleSheet, Text } from &quot;react-native&quot;
+import { useTheme } from &quot;../../../../design/theme&quot;
+
+type ListItemProps = {
+  name: string
+}
+
+const ListItem: FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
+  const theme = useTheme()
+  const styles = getStyles(theme)
+
+  return &lt;Text style={styles.text}&gt;{name}&lt;/Text&gt;
+}
+
+function getStyles(theme: Theme) {
+  return StyleSheet.create({
+    text: {
+      fontSize: theme.typography.title.fontSize,
+      color: theme.palette.primary.contrast,
+      backgroundColor: theme.palette.primary.main,
+      padding: theme.spacing.m,
+      marginVertical: theme.spacing.s,
+    },
+  })
+}
+
+export default ListItem
+
+</code></pre>
+ <div line-highlight="21-25,only"></div>
+<p></details></p>
+<h2>Objective 2: Begin creating a design system to unify your application</h2>
 <p>TODO</p>
+<h3>Setup 2</h3>
+<p>✏️ Create <strong>src/design/Box/Box.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import type { ViewProps, ViewStyle } from &quot;react-native&quot;
+import type { Theme, ThemeMargin, ThemePadding } from &quot;../theme&quot;
+
+import { StyleSheet, View } from &quot;react-native&quot;
+
+import { useTheme } from &quot;../theme&quot;
+
+export interface BoxProps extends ViewProps {
+  margin?: ThemeMargin
+  padding?: ThemePadding
+  fullWidth?: boolean
+}
+
+const Box: FC&lt;BoxProps&gt; = ({
+  margin,
+  padding,
+  fullWidth = false,
+  style,
+  children,
+  ...props
+}) =&gt; {
+  const theme = useTheme()
+  const styles = getStyles(theme, { margin, padding, fullWidth })
+
+  return (
+    &lt;View style={StyleSheet.compose(styles.container, style)} {...props}&gt;
+      {children}
+    &lt;/View&gt;
+  )
+}
+
+export default Box
+
+function getStyles(
+  theme: Theme,
+  {
+    margin,
+    padding,
+    fullWidth,
+  }: {
+    margin?: ThemeMargin
+    padding?: ThemePadding
+    fullWidth: boolean
+  },
+): {
+  container: ViewStyle
+} {
+  return StyleSheet.create({
+    container: StyleSheet.flatten([
+      {
+        display: &quot;flex&quot;,
+      },
+      typeof margin === &quot;string&quot; &amp;&amp; { margin: theme.spacing[margin] },
+      Array.isArray(margin) &amp;&amp; {
+        marginVertical: theme.spacing[margin[0]],
+        marginHorizontal: theme.spacing[margin[1]],
+      },
+      typeof padding === &quot;string&quot; &amp;&amp; { padding: theme.spacing[padding] },
+      Array.isArray(padding) &amp;&amp; {
+        paddingVertical: theme.spacing[padding[0]],
+        paddingHorizontal: theme.spacing[padding[1]],
+      },
+      fullWidth &amp;&amp; { width: &quot;100%&quot; },
+    ]),
+  })
+}
+
+</code></pre>
+<p>✏️ Create <strong>src/design/Box/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./Box&quot;
+export * from &quot;./Box&quot;
+
+</code></pre>
+<p>✏️ Create <strong>src/design/Typography/Typography.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import type { TextProps, TextStyle } from &quot;react-native&quot;
+import type { Theme } from &quot;../theme&quot;
+
+import { Text, StyleSheet } from &quot;react-native&quot;
+
+import { useTheme } from &quot;../theme&quot;
+
+export interface TypographyProps extends TextProps {
+  variant?: keyof Theme[&quot;typography&quot;]
+}
+
+const Typography: FC&lt;TypographyProps&gt; = ({
+  style,
+  variant = &quot;body&quot;,
+  children,
+  ...props
+}) =&gt; {}
+
+export default Typography
+
+function getStyles(
+  theme: Theme,
+  variant: keyof Theme[&quot;typography&quot;],
+): {
+  text: TextStyle
+} {
+  return StyleSheet.create({
+    text: {
+      ...theme.typography[variant],
+      color: theme.palette.screen.contrast,
+    },
+  })
+}
+
+</code></pre>
+<p>✏️ Create <strong>src/design/Typography/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./Typography&quot;
+export * from &quot;./Typography&quot;
+
+</code></pre>
+<h3>Verify 2</h3>
+<p>✏️ Create <strong>src/design/Box/Box.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+
+import Typography from &quot;../Typography&quot;
+
+import Box from &quot;./Box&quot;
+
+describe(&quot;Box component&quot;, () =&gt; {
+  it(&quot;renders children components 'Hello!' without issue&quot;, () =&gt; {
+    render(
+      &lt;Box padding=&quot;s&quot; margin=&quot;s&quot;&gt;
+        &lt;Typography&gt;Hello!&lt;/Typography&gt;
+      &lt;/Box&gt;,
+    )
+
+    expect(screen.getByText(/Hello/)).toBeOnTheScreen()
+  })
+})
+
+</code></pre>
+<p>✏️ Create <strong>src/design/Typography/Typography.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+
+import Typography from &quot;./Typography&quot;
+
+describe(&quot;Typography component&quot;, () =&gt; {
+  it(&quot;renders 'Hello' when given input&quot;, () =&gt; {
+    render(&lt;Typography variant=&quot;body&quot;&gt;Hello!&lt;/Typography&gt;)
+
+    expect(screen.getByText(/Hello/)).toBeOnTheScreen()
+  })
+})
+
+</code></pre>
+<h3>Exercise 2</h3>
+<p>TODO</p>
+<h3>Solution 2</h3>
+<p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/design/Typography/Typography.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import type { TextProps, TextStyle } from &quot;react-native&quot;
+import type { Theme } from &quot;../theme&quot;
+
+import { Text, StyleSheet } from &quot;react-native&quot;
+
+import { useTheme } from &quot;../theme&quot;
+
+export interface TypographyProps extends TextProps {
+  variant?: keyof Theme[&quot;typography&quot;]
+}
+
+const Typography: FC&lt;TypographyProps&gt; = ({
+  style,
+  variant = &quot;body&quot;,
+  children,
+  ...props
+}) =&gt; {
+  const theme = useTheme()
+  const styles = getStyles(theme, variant)
+
+  return (
+    &lt;Text style={StyleSheet.compose(styles.text, style)} {...props}&gt;
+      {children}
+    &lt;/Text&gt;
+  )
+}
+
+export default Typography
+
+function getStyles(
+  theme: Theme,
+  variant: keyof Theme[&quot;typography&quot;],
+): {
+  text: TextStyle
+} {
+  return StyleSheet.create({
+    text: {
+      ...theme.typography[variant],
+      color: theme.palette.screen.contrast,
+    },
+  })
+}
+
+</code></pre>
+ <div line-highlight="18-20,22-26,43,only"></div>
+<p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { ScrollView } from &quot;react-native&quot;
+import ListItem from &quot;./components/ListItem&quot;
+import Box from &quot;../../design/Box&quot;
+import Typography from &quot;../../design/Typography&quot;
+
+const states = [
+  {
+    name: &quot;Illinois&quot;,
+    short: &quot;IL&quot;,
+  },
+  {
+    name: &quot;Wisconsin&quot;,
+    short: &quot;WI&quot;,
+  },
+]
+
+const StateList: FC = () =&gt; {
+  return (
+    &lt;ScrollView&gt;
+      &lt;Box padding=&quot;s&quot;&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;
+          Place My Order: Coming Soon To...
+        &lt;/Typography&gt;
+      &lt;/Box&gt;
+      {states?.length &gt; 0 ? (
+        states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
+      ) : (
+        &lt;Typography&gt;No states found&lt;/Typography&gt;
+      )}
+    &lt;/ScrollView&gt;
+  )
+}
+
+export default StateList
+
+</code></pre>
+ <div line-highlight="2,4-5,20-25,29,31,only"></div>
+<p></details></p>
+<h2>Objective 3: Expand your design system</h2>
+<p>TODO</p>
+<h3>Setup 3</h3>
+<p>✏️ Create <strong>src/design/Button/Button.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import type { PressableProps, ViewStyle, TextStyle } from &quot;react-native&quot;
+import type { Theme } from &quot;../theme&quot;
+
+import { StyleSheet, Pressable, Text } from &quot;react-native&quot;
+
+import { useTheme } from &quot;../theme&quot;
+
+type Variant = &quot;primary&quot; | &quot;secondary&quot; | &quot;outline&quot;
+
+export interface ButtonProps extends PressableProps {
+  variant?: Variant
+  margin?: keyof Theme[&quot;spacing&quot;]
+  padding?: keyof Theme[&quot;spacing&quot;]
+  fontSize?: TextStyle[&quot;fontSize&quot;]
+  fontWeight?: TextStyle[&quot;fontWeight&quot;]
+  disabled?: boolean
+  children: string
+}
+
+const Button: FC&lt;ButtonProps&gt; = ({
+  variant = &quot;primary&quot;,
+  margin,
+  padding,
+  fontSize = 20,
+  fontWeight = &quot;400&quot;,
+  disabled,
+  children,
+  ...props
+}) =&gt; {
+  const theme = useTheme()
+  const styles = getStyles(theme, variant)
+
+  return (
+    &lt;Pressable
+      style={StyleSheet.compose(styles.pressable, {
+        ...(margin ? { margin: theme.spacing[margin] } : {}),
+        ...(padding ? { padding: theme.spacing[padding] } : {}),
+        opacity: disabled ? 0.5 : 1,
+      })}
+      disabled={disabled}
+      {...props}
+    &gt;
+      &lt;Text
+        style={StyleSheet.compose(styles.text, {
+          fontSize,
+          fontWeight,
+        })}
+      &gt;
+        {children}
+      &lt;/Text&gt;
+    &lt;/Pressable&gt;
+  )
+}
+
+export default Button
+
+function getStyles(
+  theme: Theme,
+  variant: Variant,
+): {
+  pressable: ViewStyle
+  text: TextStyle
+} {
+  if (variant === &quot;primary&quot;) {
+    return StyleSheet.create({
+      pressable: {
+        margin: theme.spacing.s,
+        padding: theme.spacing.m,
+        borderRadius: 5,
+        backgroundColor: theme.palette.primary.main,
+      },
+      text: {
+        fontSize: 21,
+        color: theme.palette.primary.contrast,
+      },
+    })
+  }
+
+  if (variant === &quot;secondary&quot;) {
+    return StyleSheet.create({
+      pressable: {
+        margin: theme.spacing.s,
+        padding: theme.spacing.m,
+        borderRadius: 5,
+        backgroundColor: theme.palette.secondary.main,
+      },
+      text: {
+        fontSize: 21,
+        color: theme.palette.secondary.contrast,
+      },
+    })
+  }
+
+  if (variant === &quot;outline&quot;) {
+    return StyleSheet.create({
+      pressable: {
+        margin: theme.spacing.s,
+        padding: theme.spacing.m - 1,
+        borderRadius: 5,
+        borderWidth: 1,
+        backgroundColor: theme.palette.screen.main,
+        borderColor: theme.palette.screen.contrast,
+      },
+      text: {
+        fontSize: 21,
+        color: theme.palette.screen.contrast,
+      },
+    })
+  }
+
+  throw new Error(`Button: Unknown variant: ${variant}`)
+}
+
+</code></pre>
+<p>✏️ Create <strong>src/design/Button/Button.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { fireEvent, render, screen } from &quot;@testing-library/react-native&quot;
+
+import Button from &quot;./Button&quot;
+
+describe(&quot;Button component&quot;, () =&gt; {
+  it(&quot;renders title&quot;, () =&gt; {
+    const handleChangeMock = jest.fn()
+
+    render(&lt;Button onPress={handleChangeMock}&gt;Hello!&lt;/Button&gt;)
+
+    expect(screen.getByText(/Hello/)).toBeOnTheScreen()
+    fireEvent.press(screen.getByText(/Hello/i))
+    expect(handleChangeMock).toHaveBeenCalled()
+  })
+})
+
+</code></pre>
+<p>✏️ Create <strong>src/design/Button/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./Button&quot;
+export * from &quot;./Button&quot;
+
+</code></pre>
+<p>✏️ Create <strong>src/design/Card/Card.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import type { ViewStyle } from &quot;react-native&quot;
+import type { Theme } from &quot;../theme&quot;
+import type { BoxProps } from &quot;../Box&quot;
+
+import { StyleSheet } from &quot;react-native&quot;
+
+import { useTheme } from &quot;../theme&quot;
+import Box from &quot;../Box&quot;
+import Typography from &quot;../Typography&quot;
+
+export interface CardProps extends BoxProps {
+  title?: string
+}
+
+const Card: FC&lt;CardProps&gt; = ({ title, children, ...props }) =&gt; {
+  const theme = useTheme()
+  const styles = getStyles(theme)
+
+  return (
+    &lt;Box margin={[&quot;m&quot;, &quot;none&quot;]} style={styles.container} {...props}&gt;
+      {title &amp;&amp; (
+        &lt;Box padding=&quot;m&quot; style={styles.title}&gt;
+          &lt;Typography variant=&quot;title&quot;&gt;{title}&lt;/Typography&gt;
+        &lt;/Box&gt;
+      )}
+
+      &lt;Box padding=&quot;m&quot;&gt;{children}&lt;/Box&gt;
+    &lt;/Box&gt;
+  )
+}
+
+export default Card
+
+function getStyles(theme: Theme): {
+  container: ViewStyle
+  title: ViewStyle
+} {
+  return StyleSheet.create({
+    container: {
+      width: &quot;100%&quot;,
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.25,
+
+      backgroundColor: theme.palette.screen.main,
+      shadowColor: theme.palette.screen.contrast,
+    },
+    title: {
+      borderBottomWidth: 1,
+      borderBottomColor: theme.palette.screen.contrast,
+    },
+  })
+}
+
+</code></pre>
+<p>✏️ Create <strong>src/design/Card/Card.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+
+import Typography from &quot;../Typography&quot;
+
+import Card from &quot;./Card&quot;
+
+describe(&quot;Card component&quot;, () =&gt; {
+  it(&quot;renders title and children&quot;, () =&gt; {
+    render(
+      &lt;Card title=&quot;Hello!&quot;&gt;
+        &lt;Typography variant=&quot;body&quot;&gt;How are you?&lt;/Typography&gt;
+      &lt;/Card&gt;,
+    )
+
+    expect(screen.getByText(/Hello/)).toBeOnTheScreen()
+    expect(screen.getByText(/How are you?/)).toBeOnTheScreen()
+  })
+})
+
+</code></pre>
+<p>✏️ Create <strong>src/design/Card/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./Card&quot;
+export * from &quot;./Card&quot;
+
+</code></pre>
+<p>✏️ Create <strong>src/design/Screen/Screen.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { ScrollView } from &quot;react-native&quot;
+import type { BoxProps } from &quot;../Box&quot;
+
+import { useTheme } from &quot;../theme&quot;
+import Box from &quot;../Box&quot;
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ScreenProps extends BoxProps {
+  //
+}
+
+const Screen: FC&lt;ScreenProps&gt; = ({ children, style, ...props }) =&gt; {
+  const { palette } = useTheme()
+
+  return (
+    &lt;ScrollView&gt;
+      &lt;Box
+        padding=&quot;s&quot;
+        style={{
+          height: &quot;100%&quot;,
+          flex: 1,
+          backgroundColor: palette.screen.soft,
+        }}
+        {...props}
+      &gt;
+        {children}
+      &lt;/Box&gt;
+    &lt;/ScrollView&gt;
+  )
+}
+
+export default Screen
+
+</code></pre>
+<p>✏️ Create <strong>src/design/Screen/Screen.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+
+import Typography from &quot;../Typography&quot;
+
+import Screen from &quot;./Screen&quot;
+
+describe(&quot;Screen component&quot;, () =&gt; {
+  it(&quot;renders children&quot;, () =&gt; {
+    render(
+      &lt;Screen&gt;
+        &lt;Typography variant=&quot;body&quot;&gt;How are you?&lt;/Typography&gt;
+      &lt;/Screen&gt;,
+    )
+
+    expect(screen.getByText(/How are you?/)).toBeOnTheScreen()
+  })
+})
+
+</code></pre>
+<p>✏️ Create <strong>src/design/Screen/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./Box&quot;
+export * from &quot;./Box&quot;
+
+</code></pre>
+<h3>Exercise 3</h3>
+<p>TODO</p>
+<h3>Solution 3</h3>
+<p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import ListItem from &quot;./components/ListItem&quot;
+import Card from &quot;../../design/Card&quot;
+import Screen from &quot;../../design/Screen&quot;
+import Typography from &quot;../../design/Typography&quot;
+
+const states = [
+  {
+    name: &quot;Illinois&quot;,
+    short: &quot;IL&quot;,
+  },
+  {
+    name: &quot;Wisconsin&quot;,
+    short: &quot;WI&quot;,
+  },
+]
+
+const StateList: FC = () =&gt; {
+  return (
+    &lt;Screen&gt;
+      &lt;Card&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;
+          Place My Order: Coming Soon To...
+        &lt;/Typography&gt;
+      &lt;/Card&gt;
+      {states?.length &gt; 0 ? (
+        states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
+      ) : (
+        &lt;Typography&gt;No states found&lt;/Typography&gt;
+      )}
+    &lt;/Screen&gt;
+  )
+}
+
+export default StateList
+
+</code></pre>
+ <div line-highlight="3-4,20-21,25,31,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>TODO</p>
