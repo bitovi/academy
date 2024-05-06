@@ -31,8 +31,12 @@ describe("ThemeContext context", () => {
   }
 
   it("context properties are accessible", async () => {
-    render(<TestComponent />)
+    render(
+      <ThemeProvider >
+        <TestComponent />
+      </ThemeProvider>
+    )
 
-    expect(screen.getByText(/#005d63/)).toBeOnTheScreen()
+    expect(screen.getByText(/#007980/)).toBeOnTheScreen()
   })
 })
