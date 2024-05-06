@@ -67,17 +67,17 @@ TODO
 
 @sourceref ../../../exercises/react-native/09-react-context/02-problem/src/design/Box/Box.tsx
 
-✏️ Create **src/design/Box/index.tsx** and update it to be:
+✏️ Create **src/design/Box/index.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/09-react-context/02-problem/src/design/Box/index.tsx
+@sourceref ../../../exercises/react-native/09-react-context/02-problem/src/design/Box/index.ts
 
 ✏️ Create **src/design/Typography/Typography.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-native/09-react-context/02-problem/src/design/Typography/Typography.tsx
 
-✏️ Create **src/design/Typography/index.tsx** and update it to be:
+✏️ Create **src/design/Typography/index.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/09-react-context/02-problem/src/design/Typography/index.tsx
+@sourceref ../../../exercises/react-native/09-react-context/02-problem/src/design/Typography/index.ts
 
 ### Verify 2
 
@@ -124,9 +124,9 @@ TODO
 
 @sourceref ../../../exercises/react-native/09-react-context/02-problem/src/design/Button/Button.test.tsx
 
-✏️ Create **src/design/Button/index.tsx** and update it to be:
+✏️ Create **src/design/Button/index.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/09-react-context/02-problem/src/design/Button/index.tsx
+@sourceref ../../../exercises/react-native/09-react-context/02-problem/src/design/Button/index.ts
 
 ✏️ Create **src/design/Card/Card.tsx** and update it to be:
 
@@ -136,9 +136,9 @@ TODO
 
 @sourceref ../../../exercises/react-native/09-react-context/02-problem/src/design/Card/Card.test.tsx
 
-✏️ Create **src/design/Card/index.tsx** and update it to be:
+✏️ Create **src/design/Card/index.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/09-react-context/02-problem/src/design/Card/index.tsx
+@sourceref ../../../exercises/react-native/09-react-context/02-problem/src/design/Card/index.ts
 
 ✏️ Create **src/design/Screen/Screen.tsx** and update it to be:
 
@@ -148,9 +148,9 @@ TODO
 
 @sourceref ../../../exercises/react-native/09-react-context/02-problem/src/design/Screen/Screen.test.tsx
 
-✏️ Create **src/design/Screen/index.tsx** and update it to be:
+✏️ Create **src/design/Screen/index.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/09-react-context/02-problem/src/design/Box/index.tsx
+@sourceref ../../../exercises/react-native/09-react-context/02-problem/src/design/Box/index.ts
 
 ### Exercise 3
 
