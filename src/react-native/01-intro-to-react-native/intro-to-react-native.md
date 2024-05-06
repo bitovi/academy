@@ -8,69 +8,65 @@
 
 ## What is React Native?
 
-React is a front-end JavaScript library designed for building scalable and dynamic web applications. It’s renowned for its ability to break down the view layer of applications into small, reusable [components](./components.html). These components make up the core of React’s architecture, allowing for efficient and manageable development. React is versatile and can also be for creating web, mobile, and desktop apps. While this course focuses on mobile development, the concepts apply across these different environments.
+React Native is an open-source framework that allows you to build cross-platform mobile, desktop, and web applications using React, a JavaScript-based UI library.
+By leveraging JavaScript and React’s component-based architecture, React Native enables the development of applications that run on many platforms from a single codebase.
+While this course focuses on mobile development, the concepts apply across these different environments.
 
-React Native is an open source framework for building Android and iOS applications using React and the app platform’s native capabilities. With React Native, you use JavaScript to access your platform’s APIs as well as to describe the appearance and behavior of your UI using React components: bundles of reusable, nestable code.
+## Cross-platform apps
 
-### Component-based architecture
+One of the key features of React Native is its ability to run on both Android and iOS platforms with a single codebase.
+You can write the source code once and compile it into native apps that run smoothly on both operating systems.
+This significantly reduces the development time and effort compared to writing separate codebases for each platform.
 
-React’s component-based architecture is another cornerstone of its design philosophy. This architecture involves building encapsulated components that manage their own state, then composing them to make complex UIs.
+While React Native’s core development team focuses on Android and iOS, other partner companies provide support for macOS, Windows, and more.
 
-Here are the benefits of this approach:
+### React is the UI Library
 
-**Reusability and consistency:** Components are designed to be reusable, which means you can define a component once and use it in multiple places in your application. This not only saves time and effort but also ensures UI consistency across your application.
+React Native leverages React, which is a popular JavaScript library developed by Facebook for building user interfaces.
+React’s main strength is its [component-based architecture](./building-custom-components.html), which allows you to build encapsulated components that manage their state, then compose them to make complex UIs.
+In React Native, these components translate not to DOM elements, but to native mobile components, allowing for the creation of rich mobile UIs using declarative React principles.
 
-**Ease of maintenance:** In a component-based architecture, each component is isolated, meaning changes made to one component don’t directly affect others. This isolation simplifies the maintenance and troubleshooting of applications, as you can focus on individual components without worrying about unintended consequences elsewhere.
+### Written in JavaScript
 
-**Improved collaboration:** This architecture is inherently modular, which is a boon for teams. Developers can work on different components simultaneously without causing merge conflicts. It also makes it easier to integrate work from multiple developers.
+React Native uses JavaScript, one of the most widely used programming languages in the world.
+This choice opens mobile development to web developers who are already familiar with JavaScript and its ecosystem.
+JavaScript’s flexibility and the vast amount of resources and libraries available make it a prime choice for cross-platform mobile development.
 
-**Enhanced scalability:** As applications grow, managing them becomes more complex. Component-based architecture allows you to scale your application by adding new components or improving existing ones without having to refactor large parts of your codebase.
+### A bridge to native views
 
-**State encapsulation:** Components in React can hold and manage their own state. This encapsulation of state in components makes for a more predictable and easier-to-manage state management, especially in large-scale applications.
+React Native operates by using a JavaScript runtime to interpret JavaScript code, which then communicates with native platform components via a bridge.
+This bridge is responsible for sending messages between the native code and the JavaScript environment.
+This setup allows you to write in JavaScript while still having their applications render with native platform widgets, thus providing a native user experience.
 
-### JSX for templating
-
-React’s declarative nature means you define UIs as they should appear based on the current state, using JSX. This syntax allows you to write your component’s structure in a way that’s similar to HTML, differing from traditional imperative methods of UI construction.
-
-Here’s why JSX is highly regarded as a templating language:
-
-**Familiarity with HTML:** JSX closely resembles HTML, making it intuitive for anyone familiar with web development. This familiarity allows us to quickly understand and write UI code, significantly reducing the learning curve for new React developers.
-
-**Enhanced readability:** JSX promotes cleaner and more readable code. It allows you to clearly see the layout of your UI in a way that feels like writing HTML, making it easier to visualize the component’s structure and behavior.
-
-### UI as a function of data and state
-
-React maps the JSX that we write to a Virtual DOM, which is an in-memory representation of the real browser DOM. This apprach has numerous benefits in building large applications:
-
-**Predictable state-to-UI mapping:** React excels at ensuring that the UI is always a direct reflection of the application’s state. This approach means that every time there’s a change in state, React updates the Virtual DOM to reflect this change. As a developer, this gives you a predictable and straightforward way to manage UI changes, as the state drives the UI rendering.
-
-**Focus on state, not the DOM:** The Virtual DOM lets us concentrate on managing the state of the application. The UI updates automatically to mirror the current state, thanks to React’s reactive model. This significantly simplifies the development process, as you’re not manually handling the DOM updates, leading to more maintainable and readable code.
-
-**Efficient update mechanism:** React’s rendering approach leads to efficient update mechanisms in dynamic UIs. By batching these updates and only applying the necessary changes to the actual DOM, React ensures that the UI is always in sync with the state with minimal performance overhead.
-
-**Minimized reflows and repaints:** Direct DOM manipulations can be costly, especially in complex UIs. React’s Virtual DOM minimizes the direct interactions with the actual DOM, reducing costly reflows and repaints. This results in a smoother performance, particularly in applications where the UI changes frequently based on user interactions and state changes.
-
-**Consistent experience across platforms:** The principle of “UI as a function of data and state” isn’t just limited to web development with React. It extends to other environments like mobile apps with React Native. This provides a consistent development experience, where the same patterns and principles apply, regardless of the platform.
-
-## Why use React?
+## Why use React Native?
 
 ### Versatility across platforms
 
-React’s reach extends beyond traditional web applications. One of its most significant advantages is its adaptability to various platforms, most notably through React Native for mobile app development. This means you can use the same React principles to build applications not just for the web, but also natively for iOS and Android. This versatility significantly reduces the learning curve when transitioning between web and mobile development, allowing teams to share expertise and code more effectively.
+React Native dramatically reduces complexity and redundancy by enabling you to maintain a single codebase for both Android and iOS applications.
+This not only simplifies the development process but also minimizes the scope for bugs, as the same code is used across platforms, making maintenance and updates easier.
 
-### Strong community and corporate backing
+### Master one language (JavaScript)
 
-React, initially developed and maintained by Facebook (now Meta), enjoys robust corporate support. This backing ensures continuous development and long-term viability, crucial factors when choosing a technology stack.
+By using JavaScript, teams can concentrate on mastering one language across their development efforts, encompassing both mobile and web applications.
+This streamlined approach eliminates the need to switch contexts or learn multiple programming languages, thereby improving productivity and collaboration within development teams.
 
-Moreover, the React community is one of the most active and vibrant in the tech world. This thriving community contributes to a wealth of resources, including tutorials, tools, and third-party libraries, making React a rich and continuously evolving ecosystem.
+### Reuse JavaScript across mobile, web, and more
 
-### Rich ecosystem of tools and libraries
+JavaScript code written for React Native apps can often be reused for web applications, particularly when using React.
+This reuse enhances consistency across platforms and can significantly speed up development cycles, as components and business logic can be shared between mobile apps and web pages.
 
-React’s ecosystem is replete with tools and libraries that enhance and simplify development. From routing libraries like React Router to data fetching libraries like React Query and SWR, the ecosystem provides a comprehensive set of tools that cover virtually every need in modern web development.
+### Performant native views
 
-### Compatibility with any backend
+Unlike other hybrid frameworks that render code inside a webview, React Native uses real native components.
+This means that apps built with React Native are indistinguishable from those built using native SDKs in terms of performance and look and feel.
+The use of native components ensures that the user experience is as smooth as that of native apps, with access to the full capabilities of the underlying platform.
 
-React’s design as a frontend library makes it backend agnostic. This means it can be integrated seamlessly with any backend technology, whether it’s a Node.js server, a Python Django backend, or a Java Spring application. This compatibility is crucial for businesses and developers who work in diverse technical environments, as it allows for more flexibility in choosing or integrating with existing backend technologies.
+### A mature declarative UI framework
+
+React Native has been around since 2015 and has matured significantly, with a robust ecosystem and a large community.
+In contrast, Jetpack Compose and SwiftUI, which are newer native declarative frameworks for Android and iOS respectively, are still evolving.
+The maturity of React Native means it comes with extensive libraries, tools, and community support, which can accelerate development and offer solutions to a wide range of problems.
+This maturity also brings reliability and stability to development projects, making React Native a safer choice for businesses.
 
 ## Next steps
 
