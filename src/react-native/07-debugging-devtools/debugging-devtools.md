@@ -56,7 +56,7 @@ By examining the JSX code below, developers can gain insight into how React Nati
 ✏️ Run:
 
 ```shell
-npm install react-devtools
+npm install react-devtools@5 --save-dev
 ```
 
 ✏️ Update **src/package.json** to be:
