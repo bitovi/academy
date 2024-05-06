@@ -10,6 +10,14 @@ The following sections detail how to make various improvements to the site. Make
 npm install
 ```
 
+```sh
+npm run generate
+```
+
+```sh
+npm run build
+```
+
 ### Dev Server
 
 You can start a development server at `http://localhost:8080/academy/` by running:
