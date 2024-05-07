@@ -5,14 +5,14 @@ interface Dinosaur {
 }
 
 const dinoA = {
-  name: 'Blue',
-  breed: 'Velociraptor',
-  location: 'Section B'
+  name: "Blue",
+  breed: "Velociraptor",
+  location: "Section B",
 };
 
 const dinoB = {
-  name: 'Sally',
-  location: 'Section C'
+  name: "Sally",
+  location: "Section C",
 };
 
 function dinoCatcher(dinosaur: Dinosaur) {

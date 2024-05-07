@@ -5,6 +5,6 @@ class Dinosaur {
   }
 }
 
-let dino = new Dinosaur('Billy');
+let dino = new Dinosaur("Billy");
 console.info(dino.name);
 // Logs "Billy"

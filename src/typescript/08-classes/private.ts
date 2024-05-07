@@ -10,5 +10,5 @@ class Dinosaur {
   }
 }
 
-let scaryDino = new Dinosaur('Indominous', 'cuttlefish');
+let scaryDino = new Dinosaur("Indominous", "cuttlefish");
 scaryDino.dna; // Error: Property 'dna' is private and only accessible within class 'Dinosaur'.ts(2341)

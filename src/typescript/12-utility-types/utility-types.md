@@ -36,13 +36,13 @@ enum Diet {
   "Carnivore",
   "Herbivore",
   "Omnivore",
-};
+}
 
 interface Dinosaur {
   species: string;
   diet: Diet;
   age?: number;
-};
+}
 
 type PartialDinosaur = Partial<Dinosaur>;
 
@@ -51,15 +51,15 @@ interface YetPartialDinosaur {
   species?: string;
   diet?: Diet;
   age?: number;
-};
+}
 
 // example
 function updateDinosaur(
   dinosaur: Dinosaur,
-  fieldsToUpdate: Partial<Dinosaur>
+  fieldsToUpdate: Partial<Dinosaur>,
 ): Dinosaur {
   return { ...dino, ...fieldsToUpdate };
-};
+}
 
 const oldDino: Dinosaur = {
   species: "Tyrannosaurus rex",
@@ -70,10 +70,11 @@ const newDino: Dinosaur = updateDinosaur(oldDino, {
   diet: Diet.Omnivore,
 });
 ```
+
 @highlight 25, 35, only
 
 In the code above, the second parameter for the function `updateDinosaur` is a partial `Dinosaur`.
-This allows us to pass in a `Dinosaur` object with one or more of the key-value pairs, without having to pass in the entire `Dinosaur` object. 
+This allows us to pass in a `Dinosaur` object with one or more of the key-value pairs, without having to pass in the entire `Dinosaur` object.
 
 ### Using `Required<Type>`
 
@@ -85,20 +86,20 @@ enum Diet {
   "Carnivore",
   "Herbivore",
   "Omnivore",
-};
+}
 
 interface Dinosaur {
   species: string;
   diet: Diet;
   age?: number;
-};
+}
 
 type RequiredDinosaur = Required<Dinosaur>;
 
 // RequiredDinosaur is equivalent to:
 interface YetRequiredDinosaur extends Dinosaur {
   age: number; // turning age property to required
-};
+}
 
 const trex: RequiredDinosaur = {
   species: "Tyrannosaurus rex",
@@ -108,8 +109,9 @@ const trex: RequiredDinosaur = {
 
 if (trex.age > 30) {
   // do something
-};
+}
 ```
+
 @highlight 10, 13, 20, 26, only
 
 In the code above, we are declaring `trex` to type `RequiredDinosaur`. This will help us skip the check if age is null step because it is a required property
@@ -124,13 +126,13 @@ enum Diet {
   "Carnivore",
   "Herbivore",
   "Omnivore",
-};
+}
 
 interface Dinosaur {
   species: string;
   diet: Diet;
   age?: number;
-};
+}
 
 type NamableDinosaur = { name: string } & Dinosaur; // this is an intersection between { name: string } and Dinosaur. Think { name: string } + Dinosaur
 type ReadOnlyDinosaur = Readonly<NamableDinosaur>;
@@ -147,6 +149,7 @@ const dino: ReadOnlyDinosaur = {
 dino.age += 1;
 // Oops! TypeScript error
 ```
+
 @highlight 14, 17, 25, only
 
 In the code above, we are declaring `dino` to type `ReadOnlyDinosaur`. This will prevent us from assigning a new value because it is a read-only object.
@@ -162,6 +165,7 @@ type Species = "Tyrannosaurus rex" | "Triceratops horridus" | null | undefined;
 type NNSpecies = NonNullable<Species>;
 // Could also be written as type NNSpecies = 'Tyrannosaurus rex' | 'Triceratops horridus'
 ```
+
 @highlight 3
 
 In the code above, `NNSpecies` will not allow `null` or `undefined`.
@@ -181,9 +185,10 @@ In the code above, `NNSpecies` will not allow `null` or `undefined`.
 ### Exercise 1
 
 Update the `property-existence.ts` file so that:
- - `UpdateablePerson` allows all properties to be optional
- - `FullyDefinedPerson` ensures that all properties are defined
- - `NonEditablePerson` won’t allow any update to a property
+
+- `UpdateablePerson` allows all properties to be optional
+- `FullyDefinedPerson` ensures that all properties are defined
+- `NonEditablePerson` won’t allow any update to a property
 
 <strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/01-problem?file=src/utilities/property-existence.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/01-problem?file=src/utilities/property-existence.ts) to do this exercise in an online code editor.
 
@@ -199,6 +204,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 @diff ../../../exercises/typescript/12-utility-types/01-problem/src/utilities/property-existence.ts ../../../exercises/typescript/12-utility-types/01-solution/src/utilities/property-existence.ts only
 
 <strong>Have issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/01-solution?file=src/utilities/property-existence.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/01-solution?file=src/utilities/property-existence.ts).
+
 </details>
 
 ## Objective 2: Construct an object type
@@ -214,13 +220,13 @@ enum Diet {
   "Carnivore",
   "Herbivore",
   "Omnivore",
-};
+}
 
 interface Dinosaur {
   species: string;
   diet: Diet;
   age?: number;
-};
+}
 
 const dinosCollection: Record<string, Dinosaur> = {
   // Could also be written as Record<'trex' | 'triceratops', Dinosaur>
@@ -234,6 +240,7 @@ const dinosCollection: Record<string, Dinosaur> = {
   },
 };
 ```
+
 @highlight 13
 
 In the code above, `dinosCollection` is equivalent to:
@@ -292,6 +299,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 @diff ../../../exercises/typescript/12-utility-types/02-problem/src/utilities/record.ts ../../../exercises/typescript/12-utility-types/02-solution/src/utilities/record.ts only
 
 <strong>Have issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/02-solution?file=src/utilities/record.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/02-solution?file=src/utilities/record.ts).
+
 </details>
 
 ## Objective 3: Construct a new type by extracting from another type
@@ -309,6 +317,7 @@ type ID = string | number | boolean;
 
 type StringOrNumberID = Extract<ID, string | number>;
 ```
+
 @highlight 3
 
 In the code above, `StringOrNumberID` ends up being the union of `string` and `number`.
@@ -324,18 +333,19 @@ type Adult = {
   lastName: string;
   married: boolean;
   numberOfKids?: number;
-}
+};
 
 type Kid = {
   firstName: string;
   lastName: string;
   interests: string[];
   pottyTrained: boolean;
-}
+};
 
-type PersonKeys = Extract<keyof Kid, keyof Adult> 
+type PersonKeys = Extract<keyof Kid, keyof Adult>;
 //   ^? "firstName" | "lastName"
 ```
+
 @highlight 15
 
 In the code above, `PersonKeys` is the keys that both `Kid` and `Adult` have in common, which are `firstName` and `lastName`.
@@ -370,6 +380,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 @diff ../../../exercises/typescript/12-utility-types/03-problem/src/utilities/extract.ts ../../../exercises/typescript/12-utility-types/03-solution/src/utilities/extract.ts only
 
 <strong>Have issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/03-solution?file=src/utilities/extract.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/03-solution?file=src/utilities/extract.ts).
+
 </details>
 
 ## Objective 4: Construct a new type by excluding types from another type
@@ -385,6 +396,7 @@ type T2 = Exclude<T1, boolean>;
 
 const value: T2 = "Hello"; // Works
 ```
+
 @highlight 2
 
 In the code above, `Exclude<T1, boolean>` removes `boolean` from `T1`, leaving `string` and `number`.
@@ -419,6 +431,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 @diff ../../../exercises/typescript/12-utility-types/04-problem/src/utilities/exclude.ts ../../../exercises/typescript/12-utility-types/04-solution/src/utilities/exclude.ts only
 
 <strong>Have issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/04-solution?file=src/utilities/exclude.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/04-solution?file=src/utilities/exclude.ts).
+
 </details>
 
 ## Objective 5: Include and exclude specific properties
@@ -433,13 +446,13 @@ enum Diet {
   "Carnivore",
   "Herbivore",
   "Omnivore",
-};
+}
 
 interface Dinosaur {
   species: string;
   diet: Diet;
   age?: number;
-};
+}
 
 type LesserDinosaur = Pick<Dinosaur, "species" | "age">;
 
@@ -448,6 +461,7 @@ const lesserDino: LesserDinosaur = {
   age: 27,
 };
 ```
+
 @highlight 13, 16, 17, only
 
 In the code above, if there is an attempt to add `diet` to `lesserDino` then TypeScript will throw an error.
@@ -463,13 +477,13 @@ enum Diet {
   "Carnivore",
   "Herbivore",
   "Omnivore",
-};
+}
 
 interface Dinosaur {
   species: string;
   diet: Diet;
   age?: number;
-};
+}
 
 type LesserDinosaur = Omit<Dinosaur, "species" | "age">;
 
@@ -479,6 +493,7 @@ const lesserDino: LesserDinosaur = {
 
 lesserDino.species = "Tyrannosaurus rex";
 ```
+
 @highlight 13, 16, 19, only
 
 In the code above, if there is an attempt to add `species` to `lesserDino` then TypeScript will throw an error.
@@ -515,6 +530,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 @diff ../../../exercises/typescript/12-utility-types/05-problem/src/utilities/include-exclude-properties.ts ../../../exercises/typescript/12-utility-types/05-solution/src/utilities/include-exclude-properties.ts only
 
 <strong>Have issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/05-solution?file=src/utilities/include-exclude-properties.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/05-solution?file=src/utilities/include-exclude-properties.ts).
+
 </details>
 
 ## Objective 6: Function utility types
@@ -528,13 +544,13 @@ enum Diet {
   "Carnivore",
   "Herbivore",
   "Omnivore",
-};
+}
 
 interface Dinosaur {
   species: string;
   diet: Diet;
   age?: number;
-};
+}
 
 declare function getDinosaur(): Dinosaur;
 
@@ -542,6 +558,7 @@ type D1 = ReturnType<typeof getDinosaur>;
 
 type D2 = ReturnType<() => Dinosaur>;
 ```
+
 @highlight 15, 17
 
 In the code above, `D1` and `D2` are both types `Dinosaur`.
