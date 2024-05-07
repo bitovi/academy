@@ -701,25 +701,28 @@ covering CanJS core libraries.">
 <p>Let’s take a look at an example.
 Say we want to test a component we created named <code>EmailInputField</code>.</p>
 <pre><code class="language-tsx">const EmailInputField: FC&lt;Props&gt; = ({ label, value }) =&gt; {
-    const [formValue, setFormValue] = useState(value)
-  
-    return (
-      &lt;Box&gt;
-        &lt;Text nativeID=&quot;formLabel&quot;&gt;
-          {label}:
-        &lt;/Text&gt;
-        &lt;TextInput
-          accessibilityLabel=&quot;input&quot;
-          accessibilityLabelledBy=&quot;formLabel&quot;
-          value={formValue}
-          onChangeText={setFormValue}
-        /&gt;
-      &lt;/Box&gt;
-    )
-  }
-  
+  const [formValue, setFormValue] = useState(value)
+
+  return (
+    &lt;Box&gt;
+      &lt;Text nativeID=&quot;formLabel&quot;&gt;
+        {label}:
+      &lt;/Text&gt;
+      &lt;TextInput
+        accessibilityLabel=&quot;input&quot;
+        accessibilityLabelledBy=&quot;formLabel&quot;
+        value={formValue}
+        onChangeText={setFormValue}
+      /&gt;
+    &lt;/Box&gt;
+  )
+}
+
+const content = (
   &lt;EmailInputField label=&quot;Email&quot; value=&quot;test@example.com&quot; /&gt;
+)
 </code></pre>
+<div line-highlight='20, only'></div>
 <p>We want to test <code>EmailInputField</code>. If you have experience with software testing, the following pattern will probably be recognizable: each test consists of arguments to the <code>it</code> function provided by Jest. The first argument is a short description of what the test is verifying. The convention is that the description string takes &quot;it&quot; as a prefix and proceeds from there, e.g. &quot;[it] renders the correct label and value.&quot;</p>
 <p>The second argument to <code>it</code> is a callback function that is called to run the test. Inside the callback, invoke the React Native Testing Library function <code>render</code> and pass it a single argument, the JSX for your component including props. After <code>render</code> completes, use <code>screen</code> to query the React Test Renderer and make assertions about the result.</p>
 <pre><code class="language-tsx">it(&quot;renders the correct label and value&quot;, () =&gt; {
@@ -751,24 +754,26 @@ Say we want to test a component we created named <code>EmailInputField</code>.</
 <h3>Using <code>userEvent</code> to simulate user interactions</h3>
 <p>Referring back to the <code>EmailInputField</code> component:</p>
 <pre><code class="language-tsx">const EmailInputField: FC&lt;Props&gt; = ({ label, value }) =&gt; {
-    const [formValue, setFormValue] = useState(value)
-  
-    return (
-      &lt;Box&gt;
-        &lt;Text nativeID=&quot;formLabel&quot;&gt;
-          {label}:
-        &lt;/Text&gt;
-        &lt;TextInput
-          accessibilityLabel=&quot;input&quot;
-          accessibilityLabelledBy=&quot;formLabel&quot;
-          value={formValue}
-          onChangeText={setFormValue}
-        /&gt;
-      &lt;/Box&gt;
-    )
-  }
-  
+  const [formValue, setFormValue] = useState(value)
+
+  return (
+    &lt;Box&gt;
+      &lt;Text nativeID=&quot;formLabel&quot;&gt;
+        {label}:
+      &lt;/Text&gt;
+      &lt;TextInput
+        accessibilityLabel=&quot;input&quot;
+        accessibilityLabelledBy=&quot;formLabel&quot;
+        value={formValue}
+        onChangeText={setFormValue}
+      /&gt;
+    &lt;/Box&gt;
+  )
+}
+
+const content = (
   &lt;EmailInputField label=&quot;Email&quot; value=&quot;test@example.com&quot; /&gt;
+)
 </code></pre>
 <p>We want to write a test to verify that what the user types is displayed as the <code>&lt;TextInput&gt;</code>’s value. The user-event library includes a method named <code>type</code> that we can use to send a sequence of key events to the <code>&lt;TextInput&gt;</code> element. The <code>type</code> method provides a good simulation of what happens when a user is typing. Before we use <code>type</code> in a test, we need to <a href="https://callstack.github.io/react-native-testing-library/docs/user-event#setup">initialize user events with the <code>setup</code> method</a>. Let’s look at the test:</p>
 <pre><code class="language-tsx">import { userEvent, render, screen } from &quot;@testing-library/react-native&quot;
