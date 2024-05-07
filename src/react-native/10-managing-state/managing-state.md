@@ -2,7 +2,7 @@
 @parent learn-react-native 10
 @outline 3
 
-@description TODO
+@description Work with React’s useState Hook to manage a component’s state.
 
 @body
 
@@ -10,7 +10,11 @@
 
 In this section, you will:
 
-- TODO
+- Get an overview of state management.
+- Cover the fundamentals of React Hooks.
+- Review the Rules of Hooks.
+- Learn about the useState Hook.
+- Create custom Hooks.
 
 ## Objective: Toggle between light and dark mode
 
@@ -29,6 +33,14 @@ TODO
 ✏️ Update **src/design/theme/theme.ts** to be:
 
 @diff ../../../exercises/react-native/09-react-context/03-solution/src/design/theme/theme.ts ../../../exercises/react-native/10-managing-state/01-problem/src/design/theme/theme.ts only
+
+✏️ Update **src/design/theme/ThemeProvider.tsx** to be:
+
+@diff ../../../exercises/react-native/09-react-context/03-solution/src/design/theme/ThemeProvider.tsx ../../../exercises/react-native/10-managing-state/01-problem/src/design/theme/ThemeProvider.tsx only
+
+✏️ Update **src/screens/StateList/StateList.tsx** to be:
+
+@diff ../../../exercises/react-native/09-react-context/03-solution/src/screens/StateList/StateList.tsx ../../../exercises/react-native/10-managing-state/01-problem/src/screens/StateList/StateList.tsx only
 
 ### Verify
 
@@ -53,11 +65,11 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 ✏️ Update **src/screens/StateList/StateList.tsx** to be:
 
-@diff ../../../exercises/react-native/09-react-context/03-solution/src/screens/StateList/StateList.tsx ../../../exercises/react-native/10-managing-state/01-solution/src/screens/StateList/StateList.tsx only
+@diff ../../../exercises/react-native/10-managing-state/01-problem/src/screens/StateList/StateList.tsx ../../../exercises/react-native/10-managing-state/01-solution/src/screens/StateList/StateList.tsx only
 
 ✏️ Update **src/design/theme/ThemeProvider.tsx** to be:
 
-@diff ../../../exercises/react-native/09-react-context/03-solution/src/design/theme/ThemeProvider.tsx ../../../exercises/react-native/10-managing-state/01-solution/src/design/theme/ThemeProvider.tsx only
+@diff ../../../exercises/react-native/10-managing-state/01-problem/src/design/theme/ThemeProvider.tsx ../../../exercises/react-native/10-managing-state/01-solution/src/design/theme/ThemeProvider.tsx only
 
 </details>
 
