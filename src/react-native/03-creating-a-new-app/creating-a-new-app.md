@@ -6,11 +6,26 @@
 
 @body
 
+## Overview
+
+In this section, you will:
+
+- Use the React Native CLI to generate a new React Native application.
+- Test code with React Testing Library.
+- Add code quality tools.
+
 ## Objective 1: Generate the “Place My Order” application
 
 Create a new React Native application named “Place My Order” that supports TypeScript and can be emulated and tested.
 
-### Use the React Native CLI to generate a new React Native application
+<figure>
+  <img alt="A mobile phone displaying the root page of the newly created application served by the dev server. The page displays a 'Welcome to React Native' header and some miscellaneous instructions that we will be disregarding." src="../static/img/react-native/03-creating-a-new-app/01-generated-app.png" width="600px" />
+  <figcaption style="font-style: italic">
+    Screen capture of the completed exercise.
+  </figcaption>
+</figure>
+
+### Using the React Native CLI
 
 React Native has a built-in command line interface. Rather than install and manage a specific version of the CLI globally, we recommend you access the current version at runtime using `npx`, which ships with Node.js. With `npx react-native <command>`, the current stable version of the CLI will be downloaded and executed at the time the command is run.
 
@@ -19,7 +34,7 @@ React Native has a built-in command line interface. Rather than install and mana
 ✏️ Open a terminal and move to a location where you want to generate your React application, then execute the following command:
 
 ```shell
-npx react-native@0.73.8 init PlaceMyOrder --version 0.73.8
+npx react-native@0.74.1 init PlaceMyOrder --version 0.74.1
 ```
 
 The command runs `npx`, using `react-native` to create a new React Native application named "PlaceMyOrder with [TypeScript](https://www.typescriptlang.org/) support.
@@ -46,16 +61,9 @@ The development server is a useful tool. When it starts, it [transpiles](https:/
 npm run start
 ```
 
-✏️ Push `a` to run the app on the open Android virtual device.
+✏️ Press the `a` key to run the app on the open Android virtual device.
 
 The first time you run it for a given target will take significantly longer than subsequent runs. Once open, you should see the default "Welcome to React Native" screen.
-
-<figure>
-  <img alt="A mobile phone displaying the root page of the newly created application served by the dev server. The page displays a 'Welcome to React Native' header and some miscelaneous instructions that we will be disregarding." src="../static/img/react-native/03-creating-a-new-app/01-generated-app.png" width="600px" />
-  <figcaption style="font-style: italic">
-    Screen capture of the completed exercise.
-  </figcaption>
-</figure>
 
 ## Objective 2: Add testing infrastructure
 
