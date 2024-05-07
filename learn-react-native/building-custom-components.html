@@ -247,7 +247,7 @@
            						">
 						<a class="page"
 							href="styling.html"
-							title="TODO">
+							title="Learn how to use the style prop and the StyleSheet API in React Native.">
 							Styling in React Native
 						</a>
 						
@@ -683,24 +683,523 @@ covering CanJS core libraries.">
 <ul>
 <li>TODO</li>
 </ul>
-<h2>Objective 1: TODO</h2>
+<h2>Objective 1: Creating a custom component</h2>
 <p>TODO</p>
 <h3>Concept TODO</h3>
 <p>TODO</p>
 <h3>Setup 1</h3>
-<p>TODO</p>
+<p>✏️ Update <strong>App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
+
+const states = [
+  {
+    name: &quot;Illinois&quot;,
+    short: &quot;IL&quot;,
+  },
+  {
+    name: &quot;Wisconsin&quot;,
+    short: &quot;WI&quot;,
+  },
+]
+
+export const StateList: FC = () =&gt; {
+  return (
+    // Exercise: Implement StateList component
+  )
+}
+
+const App: FC = () =&gt; {
+  return (
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;ScrollView&gt;
+        &lt;View&gt;
+          &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
+        &lt;/View&gt;
+        &lt;View&gt;
+          {states?.length &gt; 0 ? (
+            states.map((state) =&gt; &lt;Text key={state.short}&gt;{state.name}&lt;/Text&gt;)
+          ) : (
+            &lt;Text&gt;No states found&lt;/Text&gt;
+          )}
+        &lt;/View&gt;
+      &lt;/ScrollView&gt;
+    &lt;/SafeAreaView&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="1,15,17,21-22,37-38,only"></div>
 <h3>Verify 1</h3>
-<p>TODO</p>
+<p>✏️ Update <strong>App.test.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+import App from &quot;./App&quot;
+import { StateList } from &quot;./App&quot;
+
+describe(&quot;App&quot;, () =&gt; {
+  it(&quot;renders&quot;, async () =&gt; {
+    render(&lt;App /&gt;)
+    expect(screen.getByText(/Place my order/i)).toBeOnTheScreen()
+  })
+  it(&quot;renders states&quot;, async () =&gt; {
+    render(&lt;App /&gt;)
+    expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
+    expect(screen.getByText(/Wisconsin/i)).toBeOnTheScreen()
+  })
+})
+
+describe(&quot;StateList&quot;, () =&gt; {
+  it(&quot;renders states&quot;, async () =&gt; {
+    render(&lt;StateList /&gt;)
+    expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
+    expect(screen.getByText(/Wisconsin/i)).toBeOnTheScreen()
+  })
+})
+
+</code></pre>
+ <div line-highlight="3,17-23,only"></div>
 <h3>Exercise 1</h3>
-<p>TODO</p>
+<ul>
+<li>Update the <code>StateList</code> component to contain the logic that iterates over the <code>states</code> list.</li>
+<li>Use the new <code>StateList</code> component inside of the <code>App</code> component.</li>
+</ul>
 <h3>Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
+
+const states = [
+  {
+    name: &quot;Illinois&quot;,
+    short: &quot;IL&quot;,
+  },
+  {
+    name: &quot;Wisconsin&quot;,
+    short: &quot;WI&quot;,
+  },
+]
+
+export const StateList: FC = () =&gt; {
+  return (
+    &lt;View&gt;
+      {states?.length &gt; 0 ? (
+        states.map((state) =&gt; &lt;Text key={state.short}&gt;{state.name}&lt;/Text&gt;)
+      ) : (
+        &lt;Text&gt;No states found&lt;/Text&gt;
+      )}
+    &lt;/View&gt;
+  )
+}
+
+const App: FC = () =&gt; {
+  return (
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;ScrollView&gt;
+        &lt;View&gt;
+          &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
+        &lt;/View&gt;
+        &lt;StateList /&gt;
+      &lt;/ScrollView&gt;
+    &lt;/SafeAreaView&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="17-23,34,only"></div>
+<p></details></p>
+<h2>Objective 2: Passing props</h2>
 <p>TODO</p>
+<h3>Concept TODO</h3>
+<p>TODO</p>
+<h3>Setup 2</h3>
+<p>✏️ Update <strong>App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
+
+const states = [
+  {
+    name: &quot;Illinois&quot;,
+    short: &quot;IL&quot;,
+  },
+  {
+    name: &quot;Wisconsin&quot;,
+    short: &quot;WI&quot;,
+  },
+]
+
+export type ListItemProps = {
+  //Exercise: Implement ListItem Props 
+}
+
+export const ListItem: FC = ({}) =&gt; {
+  return (
+    // Exercise: Implement ListItem component
+  )
+}
+
+export const StateList: FC = () =&gt; {
+  return (
+    &lt;View&gt;
+      {states?.length &gt; 0 ? (
+        states.map((state) =&gt; &lt;Text key={state.short}&gt;{state.name}&lt;/Text&gt;)
+      ) : (
+        &lt;Text&gt;No states found&lt;/Text&gt;
+      )}
+    &lt;/View&gt;
+  )
+}
+
+const App: FC = () =&gt; {
+  return (
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;ScrollView&gt;
+        &lt;View&gt;
+          &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
+        &lt;/View&gt;
+        &lt;StateList /&gt;
+      &lt;/ScrollView&gt;
+    &lt;/SafeAreaView&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="15-16,19,21,35,38,47-48,only"></div>
+<h3>Verify 2</h3>
+<p>✏️ Update <strong>App.test.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+import App from &quot;./App&quot;
+import { StateList, ListItem } from &quot;./App&quot;
+
+describe(&quot;App&quot;, () =&gt; {
+  it(&quot;renders&quot;, async () =&gt; {
+    render(&lt;App /&gt;)
+    expect(screen.getByText(/Place my order/i)).toBeOnTheScreen()
+  })
+  it(&quot;renders states&quot;, async () =&gt; {
+    render(&lt;App /&gt;)
+    expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
+    expect(screen.getByText(/Wisconsin/i)).toBeOnTheScreen()
+  })
+})
+
+describe(&quot;StateList&quot;, () =&gt; {
+  it(&quot;renders states&quot;, async () =&gt; {
+    render(&lt;StateList /&gt;)
+    expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
+    expect(screen.getByText(/Wisconsin/i)).toBeOnTheScreen()
+  })
+})
+
+describe(&quot;ListItem&quot;, () =&gt; {
+  it(&quot;renders ListItem with given name property&quot;, async () =&gt; {
+    render(&lt;ListItem name=&quot;This is a given name property.&quot; /&gt;)
+    expect(
+      screen.getByText(/This is a given name property./i, { exact: false }),
+    ).toBeOnTheScreen()
+  })
+})
+
+</code></pre>
+ <div line-highlight="3,25-32,only"></div>
+<h3>Exercise 2</h3>
+<ul>
+<li>Update the <code>ListItemProps</code> type to enforce a <code>key</code> and <code>name</code> property of the appropriate primitive type.</li>
+<li>Update the <code>ListItem</code> component to use the <code>ListItemProps</code> as its input type and return the <code>name</code> property of the a <code>state</code> index.</li>
+<li>Update the <code>StateList</code> component to use the <code>ListItem</code> component handle each state index.</li>
+</ul>
+<h3>Solution 2</h3>
+<p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
+
+const states = [
+  {
+    name: &quot;Illinois&quot;,
+    short: &quot;IL&quot;,
+  },
+  {
+    name: &quot;Wisconsin&quot;,
+    short: &quot;WI&quot;,
+  },
+]
+
+export type ListItemProps = {
+  key: string
+  name: string
+}
+
+export const ListItem: FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
+  return &lt;Text&gt;{name}&lt;/Text&gt;
+}
+
+export const StateList: FC = () =&gt; {
+  return (
+    &lt;View&gt;
+      {states?.length &gt; 0 ? (
+        states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
+      ) : (
+        &lt;Text&gt;No states found&lt;/Text&gt;
+      )}
+    &lt;/View&gt;
+  )
+}
+
+const App: FC = () =&gt; {
+  return (
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;ScrollView&gt;
+        &lt;View&gt;
+          &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
+        &lt;/View&gt;
+        &lt;StateList /&gt;
+      &lt;/ScrollView&gt;
+    &lt;/SafeAreaView&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="16-17,20-21,28,only"></div>
+<p></details></p>
+<h2>Objective 3: Organizing code: Modlets pattern</h2>
+<p>TODO</p>
+<h3>Concept TODO</h3>
+<p>TODO</p>
+<h3>Setup 3</h3>
+<p>It’s best practice to create a new folder that will contain all of the related files for each component, including test files.</p>
+<p>✏️ Update <strong>index.js</strong> to be:</p>
+<pre><code class="language-js">/**
+ * @format
+ */
+
+import { AppRegistry } from &quot;react-native&quot;
+import App from &quot;./src/App&quot;
+import { name as appName } from &quot;./app.json&quot;
+
+AppRegistry.registerComponent(appName, () =&gt; App)
+
+</code></pre>
+ <div line-highlight="6,only"></div>
+<p>✏️ Create <strong>src/</strong> (folder)</p>
+<p>✏️ Move <strong>App.tsx</strong> to <strong>src/App.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
+
+const states = [
+  {
+    name: &quot;Illinois&quot;,
+    short: &quot;IL&quot;,
+  },
+  {
+    name: &quot;Wisconsin&quot;,
+    short: &quot;WI&quot;,
+  },
+]
+
+export type ListItemProps = {
+  key: string
+  name: string
+}
+
+export const ListItem: FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
+  return &lt;Text&gt;{name}&lt;/Text&gt;
+}
+
+export const StateList: FC = () =&gt; {
+  return (
+    &lt;View&gt;
+      {states?.length &gt; 0 ? (
+        states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
+      ) : (
+        &lt;Text&gt;No states found&lt;/Text&gt;
+      )}
+    &lt;/View&gt;
+  )
+}
+
+const App: FC = () =&gt; {
+  return (
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;ScrollView&gt;
+        &lt;View&gt;
+          &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
+        &lt;/View&gt;
+        &lt;StateList /&gt;
+      &lt;/ScrollView&gt;
+    &lt;/SafeAreaView&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+<p>✏️ Create <strong>src/screens/StateList</strong> (folder)</p>
+<p>✏️ Create <strong>src/screens/StateList/StateList.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { View, Text } from &quot;react-native&quot;
+import ListItem from &quot;./components/ListItem&quot;
+
+//Exercise: Implement StateList Component
+
+export default StateList
+
+</code></pre>
+<p>✏️ Create <strong>src/screens/StateList/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./StateList&quot;
+
+</code></pre>
+<p>✏️ Create <strong>src/screens/StateList/components/ListItem</strong> (folder)</p>
+<p>✏️ Create <strong>src/screens/StateList/components/ListItem/ListItem.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { Text } from &quot;react-native&quot;
+
+//Exercise: Implement ListItem Component
+
+export default ListItem
+
+</code></pre>
+<p>✏️ Create <strong>src/screens/StateList/components/ListItem/index.tsx</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./ListItem&quot;
+
+</code></pre>
+<h3>Verify 3</h3>
+<p>✏️ Move <strong>App.test.tsx</strong> to <strong>src/App.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+import App from &quot;./App&quot;
+
+describe(&quot;App&quot;, () =&gt; {
+  it(&quot;renders&quot;, async () =&gt; {
+    render(&lt;App /&gt;)
+    expect(screen.getByText(/Place my order/i)).toBeOnTheScreen()
+  })
+  it(&quot;renders states&quot;, async () =&gt; {
+    render(&lt;App /&gt;)
+    expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
+    expect(screen.getByText(/Wisconsin/i)).toBeOnTheScreen()
+  })
+})
+
+</code></pre>
+<p>✏️ Create <strong>src/screens/StateList/StateList.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+import StateList from &quot;./StateList&quot;
+
+describe(&quot;StateList&quot;, () =&gt; {
+  it(&quot;renders states&quot;, async () =&gt; {
+    render(&lt;StateList /&gt;)
+    expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
+    expect(screen.getByText(/Wisconsin/i)).toBeOnTheScreen()
+  })
+})
+
+</code></pre>
+<p>✏️ Create <strong>src/screens/StateList/components/ListItem/ListItem.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+import ListItem from &quot;./ListItem&quot;
+
+describe(&quot;ListItem&quot;, () =&gt; {
+  it(&quot;renders ListItem with given props&quot;, async () =&gt; {
+    render(&lt;ListItem key=&quot;test&quot; name=&quot;test prop&quot; /&gt;)
+    expect(screen.getByText(/test prop/i, { exact: false })).toBeOnTheScreen()
+  })
+})
+
+</code></pre>
+<h3>Exercise 3</h3>
+<ul>
+<li>Move the <code>StateList</code> and <code>ListItem</code> component logic into the correct file.</li>
+<li>Make sure to properly update each <code>import</code> and to reference every component's essential files.</li>
+</ul>
+<h3>Solution 3</h3>
+<p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { SafeAreaView } from &quot;react-native&quot;
+import StateList from &quot;./screens/StateList&quot;
+
+const App: FC = () =&gt; {
+  return (
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;ScrollView&gt;
+        &lt;View&gt;
+          &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
+        &lt;/View&gt;
+        &lt;StateList /&gt;
+      &lt;/ScrollView&gt;
+    &lt;/SafeAreaView&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="2-3,only"></div>
+<p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { Text, View } from &quot;react-native&quot;
+import ListItem from &quot;./components/ListItem&quot;
+
+const states = [
+  {
+    name: &quot;Illinois&quot;,
+    short: &quot;IL&quot;,
+  },
+  {
+    name: &quot;Wisconsin&quot;,
+    short: &quot;WI&quot;,
+  },
+]
+
+const StateList: FC = () =&gt; {
+  return (
+    &lt;View&gt;
+      {states?.length &gt; 0 ? (
+        states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
+      ) : (
+        &lt;Text&gt;No states found&lt;/Text&gt;
+      )}
+    &lt;/View&gt;
+  )
+}
+
+export default StateList
+
+</code></pre>
+ <div line-highlight="2,5-14,16-26,only"></div>
+<p>✏️ Update <strong>src/screens/StateList/components/ListItem/ListItem.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { Text } from &quot;react-native&quot;
+
+type ListItemProps = {
+  name: string
+}
+
+const ListItem: FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
+  return &lt;Text&gt;{name}&lt;/Text&gt;
+}
+
+export default ListItem
+
+</code></pre>
+ <div line-highlight="4-6,8-10,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
-<p>TODO</p>
+<p>Next we will learn about debugging by using React Devtools [react-native/debugging-devtools].</p>
 
 </section>
 

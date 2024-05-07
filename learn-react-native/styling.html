@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="TODO 
+  <meta name="description" content="Learn how to use the &#x60;style&#x60; prop and the &#x60;StyleSheet&#x60; API in React Native. 
 ">
   
   <!-- Google Tag Manager -->
@@ -244,7 +244,7 @@
            						expanded">
 						<a class="page"
 							href="styling.html"
-							title="TODO">
+							title="Learn how to use the style prop and the StyleSheet API in React Native.">
 							Styling in React Native
 						</a>
 						
@@ -665,7 +665,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>TODO</p>
+    <p>Learn how to use the <code>style</code> prop and the <code>StyleSheet</code> API in React Native.</p>
 
 </section>
 
@@ -681,12 +681,91 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this section, you will:</p>
 <ul>
-<li>TODO</li>
+<li>Learn more about the <code>style</code> prop.</li>
+<li>Use the <code>StyleSheet</code> API in React Native.</li>
+<li>Understand why the <code>StyleSheet</code> API is preferred.</li>
+<li>Learn CSS shorthands in React Native.</li>
 </ul>
 <h2>Objective: Styling an individual element</h2>
-<p>TODO</p>
-<h3>Creating and using a stylesheet</h3>
-<p>TODO</p>
+<p>Styling is a crucial part of building visually appealing and responsive applications.
+Understanding how to effectively use the <code>style</code> prop and the <code>StyleSheet</code> APIs is fundamental for creating React Native applications.</p>
+<h3>The <code>style</code> prop</h3>
+<p>In React Native, almost every component can receive a <code>style</code> prop.
+This prop can accept a JavaScript object that defines various CSS-like properties to control the appearance of the component.</p>
+<p>There are a couple main ways how the <code>style</code> prop is generally used:</p>
+<h3>Inline styling</h3>
+<p>You can directly pass an object to the <code>style</code> prop.
+This is convenient for dynamic styles that depend on the component’s state or props, but it can be less performance-efficient for static styles.</p>
+<pre><code class="language-tsx">const InlineStyleExample = () =&gt; (
+    &lt;Text style={{ color: 'red', fontSize: 20 }}&gt;
+        Hello, React Native!
+    &lt;/Text&gt;
+);
+</code></pre>
+<p>In the code above, we pass an object to the <code>style</code> prop that uses keys similar to CSS properties.</p>
+<h3>The <code>StyleSheet</code> API</h3>
+<p>More commonly, and recommended for performance reasons, styles are defined using <code>StyleSheet.create()</code>.
+This method abstracts the style objects and validates them at the application start-up, reducing the overhead of creating styles on the fly.</p>
+<pre><code class="language-tsx">const styles = StyleSheet.create({
+  text: {
+    color: 'blue',
+    fontSize: 20,
+  }
+});
+
+const StyleSheetStyleExample = () =&gt; (
+  &lt;Text style={styles.text}&gt;Hello, StyleSheet!&lt;/Text&gt;
+);
+</code></pre>
+<p>In the code above, we call <code>StyleSheet.create()</code> with an object.
+If you’re familiar with front-end web development, the object keys are similar to classes in CSS.
+We can then reference those styles as objects we pass into the <code>style</code> prop.</p>
+<h3>Why is the <code>StyleSheet</code> API better?</h3>
+<p><code>StyleSheet</code> is a React Native API that provides an abstraction similar to CSS stylesheets.
+Using <code>StyleSheet</code> has several advantages:</p>
+<ul>
+<li><strong>Performance:</strong> Styles that are defined in <code>StyleSheet</code> are sent to the native platform once and referenced by ID instead of passing full style objects.</li>
+<li><strong>Validation:</strong> <code>StyleSheet</code> helps catch errors early by validating the styles and showing clear errors in development.</li>
+<li><strong>Reusability:</strong> Styles can be defined once and reused across components, reducing code duplication and improving maintainability.</li>
+</ul>
+<p>We will look more into reusing styles in the next module.</p>
+<h3>CSS shorthands</h3>
+<p>CSS shorthands in React Native allow developers to combine multiple related style properties into a single property.
+This not only reduces the amount of code but also helps in managing multiple style attributes efficiently.
+React Native has adapted some of these shorthand properties to suit the styling paradigms of mobile app development, which includes handling layout, padding, margin, and border styling more effectively.</p>
+<p>For example, styling <code>margin-bottom</code> and <code>margin-top</code> together can be shortened to:</p>
+<pre><code class="language-tsx">const styles = StyleSheet.create({
+  container: {
+    marginVertical: 20,
+  }
+});
+</code></pre>
+<p>This is equivalent to:</p>
+<pre><code class="language-tsx">const styles = StyleSheet.create({
+  container: {
+    marginTop: 20,
+    marginBottom: 20,
+  }
+});
+</code></pre>
+<p>Find more information about these shorthands in the <a href="https://reactnative.dev/docs/layout-props?language=typescript">Layout Props</a> documentation.</p>
+<h3>Setup</h3>
+<p>✏️ Update <strong>src/screens/StateList/components/ListItem/ListItem.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { StyleSheet, Text } from &quot;react-native&quot;
+
+type ListItemProps = {
+  name: string
+}
+
+const ListItem: FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
+  return &lt;Text&gt;{name}&lt;/Text&gt;
+}
+
+export default ListItem
+
+</code></pre>
+ <div line-highlight="2,only"></div>
 <h3>Verify</h3>
 <p>✏️ Create <strong>src/screens/StateList/components/ListItem/ListItem.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
@@ -710,13 +789,23 @@ describe(&quot;ListItem&quot;, () =&gt; {
 })
 
 </code></pre>
+ <div line-highlight="5-6,8-9,11-17,only"></div>
 <h3>Exercise</h3>
-<p>TODO</p>
+<p>Apply the following CSS styles to the <code>Text</code> view inside the <code>ListItem</code>:</p>
+<pre><code class="language-css">.text {
+    background-color: darkgreen;
+    color: white;
+    font-size: 21px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding: 10px;
+}
+</code></pre>
 <h3>Solution</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<p>✏️ Update <strong>src/screens/StateList/components/ListItem/ListItem.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
 import { StyleSheet, Text } from &quot;react-native&quot;
 
@@ -741,10 +830,10 @@ const styles = StyleSheet.create({
 export default ListItem
 
 </code></pre>
- <div line-highlight="2,9,12-20,only"></div>
+ <div line-highlight="9,12-20,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
-<p>TODO</p>
+<p>Next, let’s learn about how <a href="react-context.html" title="TODO">React Context</a> can help us build a theme system.</p>
 
 </section>
 
@@ -783,7 +872,7 @@ export default ListItem
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-native/08-styling/styling.md"},"description":"TODO \n","name":"learn-react-native/styling","title":"Styling in React Native","type":"page","parent":"learn-react-native","order":8,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-native/08-styling/styling.md"},"description":"Learn how to use the `style` prop and the `StyleSheet` API in React Native. \n","name":"learn-react-native/styling","title":"Styling in React Native","type":"page","parent":"learn-react-native","order":8,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
