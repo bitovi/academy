@@ -187,7 +187,7 @@
            						">
 						<a class="page"
 							href="intro-to-jsx.html"
-							title="Learn how to use JSX to define your UI in React.">
+							title="Learn how to use JSX to define your UI in React Native.">
 							Introduction to JSX
 						</a>
 						
@@ -678,13 +678,26 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Objective 1: Generate the “Place My Order” application</h2>
+    <h2>Overview</h2>
+<p>In this section, you will:</p>
+<ul>
+<li>Use the React Native CLI to generate a new React Native application.</li>
+<li>Test code with React Testing Library.</li>
+<li>Add code quality tools.</li>
+</ul>
+<h2>Objective 1: Generate the “Place My Order” application</h2>
 <p>Create a new React Native application named “Place My Order” that supports TypeScript and can be emulated and tested.</p>
-<h3>Use the React Native CLI to generate a new React Native application</h3>
+<figure>
+  <img alt="A mobile phone displaying the root page of the newly created application served by the dev server. The page displays a 'Welcome to React Native' header and some miscellaneous instructions that we will be disregarding." src="../static/img/react-native/03-creating-a-new-app/01-generated-app.png" width="600px" />
+  <figcaption style="font-style: italic">
+    Screen capture of the completed exercise.
+  </figcaption>
+</figure>
+<h3>Using the React Native CLI</h3>
 <p>React Native has a built-in command line interface. Rather than install and manage a specific version of the CLI globally, we recommend you access the current version at runtime using <code>npx</code>, which ships with Node.js. With <code>npx react-native &lt;command&gt;</code>, the current stable version of the CLI will be downloaded and executed at the time the command is run.</p>
 <h3>Setup 1</h3>
 <p>✏️ Open a terminal and move to a location where you want to generate your React application, then execute the following command:</p>
-<pre><code class="language-shell">npx react-native@0.73.8 init PlaceMyOrder --version 0.73.8
+<pre><code class="language-shell">npx react-native@0.74.1 init PlaceMyOrder --version 0.74.1
 </code></pre>
 <p>The command runs <code>npx</code>, using <code>react-native</code> to create a new React Native application named &quot;PlaceMyOrder with <a href="https://www.typescriptlang.org/">TypeScript</a> support.</p>
 <p>✏️ Now <code>cd</code> into the new directory created for the application:</p>
@@ -698,14 +711,8 @@ covering CanJS core libraries.">
 <p>✏️ Run the command:</p>
 <pre><code class="language-shell">npm run start
 </code></pre>
-<p>✏️ Push <code>a</code> to run the app on the open Android virtual device.</p>
+<p>✏️ Press the <code>a</code> key to run the app on the open Android virtual device.</p>
 <p>The first time you run it for a given target will take significantly longer than subsequent runs. Once open, you should see the default &quot;Welcome to React Native&quot; screen.</p>
-<figure>
-  <img alt="A mobile phone displaying the root page of the newly created application served by the dev server. The page displays a 'Welcome to React Native' header and some miscelaneous instructions that we will be disregarding." src="../static/img/react-native/03-creating-a-new-app/01-generated-app.png" width="600px" />
-  <figcaption style="font-style: italic">
-    Screen capture of the completed exercise.
-  </figcaption>
-</figure>
 <h2>Objective 2: Add testing infrastructure</h2>
 <h3>Testing code with React Testing Library</h3>
 <p>We will create unit tests for our application using the <a href="https://callstack.github.io/react-native-testing-library/">React Native Testing Library</a>. The unit tests for components will be focused on verifying that a component creates the correct output based on the state the component is provided. We also need to create tests for any React custom Hooks we create to ensure they provide the expected results.</p>
@@ -740,10 +747,10 @@ describe('App', () =&gt; {
 
 </code></pre>
 <p>✏️ Update <strong>App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type React from 'react';
+<pre><code class="language-tsx">import type { JSX } from &quot;react&quot;
 import {SafeAreaView, ScrollView, Text, View} from 'react-native';
 
-function App(): React.JSX.Element {
+function App(): JSX.Element {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
       &lt;ScrollView&gt;

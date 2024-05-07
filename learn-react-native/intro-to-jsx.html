@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn how to use JSX to define your UI in React. 
+  <meta name="description" content="Learn how to use JSX to define your UI in React Native. 
 ">
   
   <!-- Google Tag Manager -->
@@ -184,7 +184,7 @@
            						expanded">
 						<a class="page"
 							href="intro-to-jsx.html"
-							title="Learn how to use JSX to define your UI in React.">
+							title="Learn how to use JSX to define your UI in React Native.">
 							Introduction to JSX
 						</a>
 						
@@ -665,7 +665,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn how to use JSX to define your UI in React.</p>
+    <p>Learn how to use JSX to define your UI in React Native.</p>
 
 </section>
 
@@ -749,11 +749,17 @@ const welcomeMessage = welcome(&quot;Alice&quot;)
 )
 </code></pre>
 <h4>Style prop</h4>
-<p>In XML, the appearance of most elements can be altered using the <code>style</code> attribute. React supports a <code>style</code> prop, but it accepts an object, not a string. The style object has properties whose names are camel-case versions of their CSS counterparts. IE: &quot;font-style&quot; becomes <code>fontStyle</code>.</p>
-<pre><code class="language-tsx">const content = &lt;Text style={{ fontStyle: &quot;italic&quot; }}&gt;Restaurants&lt;/Text&gt;
+<p>If you’re familiar with front-end web development, you might know that the appearance of most HTML elements can be altered using the <code>style</code> attribute.</p>
+<p>React Native supports a <code>style</code> prop, but it accepts an object, not a string.
+The style object has properties whose names are camel-case versions of their CSS counterparts, e.g. <code>font-style</code> becomes <code>fontStyle</code>.</p>
+<pre><code class="language-tsx">const content = (
+  &lt;Text style={{ fontStyle: &quot;italic&quot; }}&gt;
+    Restaurants
+  &lt;/Text&gt;
+)
 </code></pre>
 <p>As we go through this training, you’ll learn additional differences.</p>
-<h4>Convention: Parenthesis</h4>
+<h4>Parenthesis (convention)</h4>
 <p>When dealing with JSX that needs multiple lines, the convention is to wrap it in parentheses. This helps keep your JSX clean and clear, rather than mixing it with the Javascript around it.</p>
 <pre><code class="language-tsx">function Form() {
   return (
@@ -761,12 +767,12 @@ const welcomeMessage = welcome(&quot;Alice&quot;)
       &lt;Text&gt;
         Name:
       &lt;/Text&gt;
-      &lt;TextInput placeholder=&quot;Enter your name&quot; /&gt;
+      &lt;TextInput value=&quot;Molly Holzschlag&quot; /&gt;
     &lt;/View&gt;
   )
 }
 </code></pre>
-<h4>Convention: Implicit Returns</h4>
+<h4>Implicit returns (convention)</h4>
 <p>When creating functions that have no logic and just return JSX, especially when they're an argument to a function, the convention is to use an arrow function with an implicit return. This is nearly always coupled with the parenthesis convention, too. (Don’t worry: you’ll learn about <code>.map</code> in the next objective.)</p>
 <pre><code class="language-tsx">const data = [&quot;one&quot;, &quot;two&quot;]
 
@@ -782,8 +788,37 @@ function List() {
   )
 }
 </code></pre>
+<h4>Using <code>View</code></h4>
+<p>TODO: Introduce this core component.</p>
+<h4>Using <code>ScrollView</code></h4>
+<p>TODO: Introduce this core component.</p>
+<h4>Using <code>SafeAreaView</code></h4>
+<p>TODO: Introduce this core component.</p>
+<h3>Setup 1</h3>
+<p>✏️ Update <strong>App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { JSX } from &quot;react&quot;
+import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
+
+const state = { name: &quot;Illinois&quot;, short: &quot;IL&quot; }
+
+function App(): JSX.Element {
+  return (
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;ScrollView&gt;
+        &lt;View&gt;
+          &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
+        &lt;/View&gt;
+      &lt;/ScrollView&gt;
+    &lt;/SafeAreaView&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="1,4,6,only"></div>
 <h3>Verify 1</h3>
-<p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
+<p>✏️ Update <strong>App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
 import App from &quot;./App&quot;
 
@@ -801,17 +836,12 @@ describe(&quot;App&quot;, () =&gt; {
 </code></pre>
  <div line-highlight="9-12,only"></div>
 <h3>Exercise 1</h3>
-<ul>
-<li>Use JSX to dynamically display the state name from the object variable.</li>
-</ul>
-<p>Hint: the state object will look like this:</p>
-<pre><code class="language-typescript">const state = { name: &quot;Illinois&quot;, short: &quot;IL&quot; }
-</code></pre>
+<p>Use JSX to dynamically display a state name from a variable that’s an object.</p>
 <h3>Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<p>✏️ Update <strong>App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { JSX } from &quot;react&quot;
 import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
 
@@ -835,12 +865,12 @@ function App(): JSX.Element {
 export default App
 
 </code></pre>
- <div line-highlight="1,4,6,13-15,only"></div>
+ <div line-highlight="13-15,only"></div>
 <p></details></p>
 <h2>Objective 2: Expressions and loops in JSX</h2>
 <p>Next, we want to render a list of states name in our application:</p>
 <p><img alt="Screenshot of a mobile application interface text “Place My Order: Coming Soon To...”, “Illinois“, and “Wisconsin“." src="../../static/img/react-native/04-intro-to-jsx/02-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
-<p>To do so, we‘ll learn about:</p>
+<p>To do so, we’ll learn about:</p>
 <ul>
 <li>Using JavaScript variables and expressions in JSX.</li>
 <li>Working with conditionals and loops in JSX.</li>
@@ -964,7 +994,7 @@ const content = (
 <p>There are lots of ways to iterate over arrays in JavaScript with functions like <code>Array.map</code>, <code>Array.filter</code>, and <code>Array.reduce</code>. These all work in JSX!</p>
 <h5><Text id="the-key-prop">The <code>key</code> prop</Text></h5>
 <p>Did you notice the <code>key</code> prop in the example above?</p>
-<p>When rendering a list of elements, React needs a way to uniquely identify each element. This helps React understand which items have changed, been added, or removed, which is crucial for efficient re-rendering.</p>
+<p>When rendering a list of elements, React Native needs a way to uniquely identify each element. This helps React Native understand which items have changed, been added, or removed, which is crucial for efficient re-rendering.</p>
 <p>Each key should be a unique identifier among siblings. Keys should be stable (not change over time), predictable (generated in a predictable manner), and unique (no two elements in the list should have the same key).</p>
 <p>It’s often convenient to use IDs from your data as keys. For example, if our data had <code>id</code> properties for each name, then we could use those as the <code>key</code> prop, even if there were duplicate names in the array:</p>
 <pre><code class="language-tsx">const names = [
@@ -1003,8 +1033,43 @@ Check the render method of 'App'. See https://reactjs.org/link/warning-keys for 
   in RCTView (created by View) in View (created by AppContainer)
   in AppContainer in solution
 </code></pre>
+<h3>Setup 2</h3>
+<p>✏️ Update <strong>App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { JSX } from &quot;react&quot;
+import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
+
+const states = [
+  {
+    name: &quot;Illinois&quot;,
+    short: &quot;IL&quot;,
+  },
+  {
+    name: &quot;Wisconsin&quot;,
+    short: &quot;WI&quot;,
+  },
+]
+
+function App(): JSX.Element {
+  return (
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;ScrollView&gt;
+        &lt;View&gt;
+          &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
+        &lt;/View&gt;
+        &lt;View&gt;
+          &lt;Text&gt;{state.name}&lt;/Text&gt;
+        &lt;/View&gt;
+      &lt;/ScrollView&gt;
+    &lt;/SafeAreaView&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="4-13,only"></div>
 <h3>Verify 2</h3>
-<p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
+<p>✏️ Update <strong>App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
 import App from &quot;./App&quot;
 
@@ -1029,23 +1094,11 @@ describe(&quot;App&quot;, () =&gt; {
 <li>Make sure to use <code>key</code> inside the <code>.map()</code>.</li>
 <li>Render <code>&lt;Text&gt;No states found&lt;/Text&gt;</code> if, hypothetically, there weren’t any states.</li>
 </ul>
-<p>Hint: the states array will look like this:</p>
-<pre><code class="language-typescript">const states = [
-  {
-    name: &quot;Illinois&quot;,
-    short: &quot;IL&quot;,
-  },
-  {
-    name: &quot;Wisconsin&quot;,
-    short: &quot;WI&quot;,
-  },
-]
-</code></pre>
 <h3>Solution 2</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<p>✏️ Update <strong>App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { JSX } from &quot;react&quot;
 import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
 
@@ -1082,7 +1135,7 @@ function App(): JSX.Element {
 export default App
 
 </code></pre>
- <div line-highlight="4-13,23-27,only"></div>
+ <div line-highlight="23-27,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, we will learn the <a href="intro-to-testing.html" title="Learn about testing solutions in React Native.">Introduction to Testing</a> React Native applications.</p>
@@ -1124,7 +1177,7 @@ export default App
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-native/04-intro-to-jsx/intro-to-jsx.md"},"description":"Learn how to use JSX to define your UI in React. \n","name":"learn-react-native/intro-to-jsx","title":"Introduction to JSX","type":"page","parent":"learn-react-native","order":4,"outline":{"depth":2},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-native/04-intro-to-jsx/intro-to-jsx.md"},"description":"Learn how to use JSX to define your UI in React Native. \n","name":"learn-react-native/intro-to-jsx","title":"Introduction to JSX","type":"page","parent":"learn-react-native","order":4,"outline":{"depth":2},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
