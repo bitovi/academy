@@ -684,6 +684,7 @@ covering CanJS core libraries.">
 <li>Install a code editor.</li>
 <li>Install Node.js and npm.</li>
 <li>Install the JDK, Android Studio, and other React Native dependencies.</li>
+<li>Launch the Android emulator.</li>
 </ul>
 <p>You must have one of these two operating systems:</p>
 <ul>
@@ -724,6 +725,9 @@ It’s also used by cloud environments like CodeSandbox and StackBlitz, making i
 <li><a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</a></li>
 </ul>
 <h2>macOS</h2>
+<blockquote>
+<p><strong>Using Windows?</strong> <a href="#windows">Skip to the Windows setup instructions.</a></p>
+</blockquote>
 <p>Follow the <a href="https://reactnative.dev/docs/environment-setup?guide=native&amp;os=macos&amp;platform=android">React Native CLI Quickstart</a> instructions for macOS.</p>
 <p>Be sure to follow the quickstart instructions for:</p>
 <ul>
@@ -737,9 +741,12 @@ It’s also used by cloud environments like CodeSandbox and StackBlitz, making i
 <p>The installation process can take 30 minutes or more to complete.</p>
 <h3>Objective 2: Install Node.js and npm</h3>
 <h4>Install Node.js and npm</h4>
-<p>Our solution requires the <a href="https://nodejs.org/">Node.js</a> JavaScript runtime environment. Node.js and its included package manager <code>npm</code> will be used to do a variety of tasks including: installing required packages, running the development server, executing tests, and building the application for deployment.</p>
-<p>This course requires Node.js version 20.
-We always suggest using the long-term support <a href="https://nodejs.org/en/about/previous-releases">release</a>.</p>
+<p>Node.js is the JavaScript runtime that uses Chrome’s V8 engine to execute JavaScript code outside of a web browser.
+In React Native projects, it is essential for running the development server, bundling the application, and executing JavaScript during both development and build processes.</p>
+<p>npm (node package manager) accompanies Node.js as the tool for managing libraries and project dependencies.
+Within React Native projects, npm is utilized to install and manage third-party packages.
+It also ensures that these packages and their dependencies maintain compatibility and functionality across different development environments.</p>
+<p>This course requires Node.js version 20, which includes npm 10.</p>
 <h4>Setup 2</h4>
 <p>✏️ Follow <a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm">npm’s instructions to install Node.js</a>.</p>
 <p>We recommend <a href="https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating">using nvm</a> to install Node because it allows you to manage multiple versions of Node for different projects.</p>
@@ -796,82 +803,137 @@ OpenJDK Runtime Environment Zulu17.48+15-CA (build 17.0.10+7-LTS)
 OpenJDK 64-Bit Server VM Zulu17.48+15-CA (build 17.0.10+7-LTS, mixed mode, sharing)
 </code></pre>
 <p>The <code>openjdk version</code> should be major version <code>17</code> (and not higher).</p>
-<h3>Objective 4: Install Android Studio</h3>
+<h3>Objective 4: Install the Android SDK</h3>
 <p>Follow the instructions in the quickstart guide.</p>
-<h3>Objective 5: Install the Android SDK</h3>
+<h4>Install the Android SDK</h4>
 <p>Follow the instructions in the quickstart guide.</p>
-<h3>Objective 6: Configure environment variables</h3>
+<h3>Objective 5: Configure environment variables</h3>
 <h4>Configure the ANDROID_HOME environment variable</h4>
 <p>Follow the instructions in the quickstart guide.</p>
+<h3>Objective 6: Launch the Android emulator</h3>
+<p><img alt="Screenshot of the Android Emulator running in Android Studio" src="../../static/img/react-native/02-setting-up-your-environment/06-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
+<h4>Setup 6</h4>
+<p>✏️ Follow the instructions in the quickstart guide to:</p>
+<ol>
+<li>See the list of available Android Virtual Devices (AVDs) by opening the “AVD Manager” from within Android Studio.</li>
+<li>Click on the green triangle button next to your AVD to launch it.</li>
+</ol>
+<p>If you have recently installed Android Studio, you will likely need to create a new AVD:</p>
+<ol>
+<li>Select “Create Virtual Device…”</li>
+<li>Pick any Phone from the list.</li>
+<li>Click “Next”.</li>
+<li>Select the UpsideDownCake API Level 34 image.</li>
+<li>Click “Next” then “Finish” to create your AVD.</li>
+</ol>
+<p>At this point you should be able to click on the green triangle button next to your AVD to launch it.</p>
 <h2>Windows</h2>
-<p>Follow the <a href="https://reactnative.dev/docs/environment-setup?guide=native&amp;os=windows&amp;platform=android">React Native CLI Quickstart</a> instructions for your operating system.</p>
-<p>Be sure to follow the quickstart instructions for:</p>
+<blockquote>
+<p><strong>Using macOS?</strong> <a href="#macos">Skip to the macOS setup instructions.</a></p>
+</blockquote>
+<p>We will follow the <a href="https://reactnative.dev/docs/environment-setup?guide=native&amp;os=windows&amp;platform=android">React Native CLI Quickstart</a> instructions for buliding Android apps on Windows.</p>
+<p>After following the objectives below, you will:</p>
 <ul>
-<li>JDK</li>
-<li>Install Android Studio</li>
-<li>Install the Android SDK</li>
-<li>Configure the ANDROID_HOME environment variable</li>
-<li>Add platform-tools to Path</li>
+<li>Install Node.js and npm.</li>
+<li>Install the Java Development Kit.</li>
+<li>Install Android Studio.</li>
+<li>Install the Android SDK.</li>
+<li>Configure the <code>ANDROID_HOME</code> environment variable.</li>
+<li>Add <code>platform-tools</code> to Path.</li>
 </ul>
-<p>We will walk through these steps in detail in the sections below.</p>
-<p>The installation process can take 30 minutes or more to complete.</p>
+<p>TODO: The installation process can take 30 minutes or more to complete.</p>
 <h3>Objective 2: Install Node.js and npm</h3>
 <h4>Node.js and npm</h4>
-<p>✏️ Follow <a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm">npm’s instructions to install Node.js</a>.</p>
+<p>Node.js is the JavaScript runtime that uses Chrome’s V8 engine to execute JavaScript code outside of a web browser.
+In React Native projects, it is essential for running the development server, bundling the application, and executing JavaScript during both development and build processes.</p>
+<p>npm (node package manager) accompanies Node.js as the tool for managing libraries and project dependencies.
+Within React Native projects, npm is utilized to install and manage third-party packages.
+It also ensures that these packages and their dependencies maintain compatibility and functionality across different development environments.</p>
+<p>This course requires Node.js version 20, which includes npm 10.</p>
 <p>We recommend <a href="https://github.com/coreybutler/nvm-windows?tab=readme-ov-file#overview">using NVM for Windows</a>
 to install Node because it allows you to manage multiple versions of Node for different projects.</p>
-<p>You can also follow <a href="https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows">Microsoft’s instructions for setting up Node.js on Windows</a>.</p>
-<p>For some of the instructions, you may need to <a href="https://www.howtogeek.com/194041/how-to-open-the-command-prompt-as-administrator-in-windows-10/">open the command prompt or PowerShell as an administrator</a>.</p>
+<h4>Setup 2</h4>
+<p>These instructions will use NVM for Windows to install Node.js and npm. This is our recommended approach.</p>
+<p>If for some reason you cannot use NVM for Windows, you can follow <a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm">npm’s instructions</a> or <a href="https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows">Microsoft’s instructions</a>.</p>
+<p>✏️ <a href="https://github.com/coreybutler/nvm-windows?tab=readme-ov-file#install-nvm-windows">Install NVM for Windows</a>.</p>
+<p>Download the latest <code>nvm-setup.exe</code> file from the <a href="https://github.com/coreybutler/nvm-windows/releases">releases page</a>.</p>
+<p>After installing NVM for Windows, open a new PowerShell window with administrator permissions.</p>
+<p>✏️ Run the following command in PowerShell to install Node 20:</p>
+<pre><code>nvm install 20
+</code></pre>
+<p>Always <a href="https://www.howtogeek.com/194041/how-to-open-the-command-prompt-as-administrator-in-windows-10/">open PowerShell as an administrator</a>.</p>
+<p>✏️ Run the following command in PowerShell to use the version of Node that you just installed:</p>
+<pre><code>nvm use 20
+</code></pre>
+<h4>Verify 2</h4>
+<p>✏️ If you installed NVM for Windows, run the following command in PowerShell to verify it’s installed correctly:</p>
+<pre><code>nvm --version
+</code></pre>
+<p>The output of the command will be the current version of NVM for Windows. It should be <code>1.1.12</code> or higher.</p>
+<p>✏️ Run the following command in a terminal to verify Node.js is installed correctly.</p>
+<pre><code class="language-shell">node --version
+</code></pre>
+<p>The output of the command will be the current version of Node.js. It should start with <code>v20</code>.</p>
+<p>✏️ Run the following command in a terminal to verify <code>npm</code> is installed correctly:</p>
+<pre><code class="language-shell">npm --version
+</code></pre>
+<p>The output of the command will be the current version of <code>npm</code>. It should start with <code>10</code>.</p>
 <h3>Objective 3: Install the Java Development Kit</h3>
 <h4>Setup 3</h4>
 <h5>Chocolatey</h5>
+<pre><code>Get-ExecutionPolicy
+</code></pre>
+<pre><code>Restricted
+</code></pre>
+<pre><code>Set-ExecutionPolicy AllSigned
+</code></pre>
+<pre><code>[A] Yes to All
+</code></pre>
+<pre><code>AllSigned
+</code></pre>
 <p>✏️ <a href="https://chocolatey.org/install">Install Chocolatey</a> before installing the JDK.</p>
+<pre><code>Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+</code></pre>
 <h5>JDK</h5>
 <p>✏️ Follow the instructions in the quickstart guide.</p>
+<pre><code>choco install -y microsoft-openjdk17
+</code></pre>
 <h4>Verify 3</h4>
-<h5>Chocolatey</h5>
-<p>✏️ Run the following command in Powershell to verify Chocolatey is installed correctly:</p>
+<p>✏️ Run the following command in PowerShell to verify Chocolatey is installed correctly:</p>
 <pre><code>choco
 </code></pre>
 <p>The output of the command should be something like:</p>
 <pre><code>Chocolatey v2.2.2
 Please run 'choco -?' or 'choco &lt;command&gt; -?' for help menu.
 </code></pre>
-<h5>JDK</h5>
-<p>✏️ Run the following command in Powershell to verify the version of Java installed:</p>
+<p>Close PowerShell and open it again!</p>
+<p>✏️ Run the following command in PowerShell to verify the version of Java installed:</p>
 <pre><code>java -version
 </code></pre>
 <p>The output of the command should be something like:</p>
-<pre><code>openjdk version &quot;17.0.10&quot; 2024-01-16 LTS
-OpenJDK Runtime Environment Microsoft-8902769 (build 17.0.10+7-LTS)
-OpenJDK 64-Bit Server VM Microsoft-8902769 (build 17.0.10+7-LTS, mixed mode, sharing)
+<pre><code>openjdk version &quot;17.0.11&quot; 2024-04-16 LTS
+OpenJDK Runtime Environment Microsoft-9388408 (build 17.0.11+9-LTS)
+OpenJDK 64-Bit Server VM Microsoft-9388408 (build 17.0.11+9-LTS, mixed mode, sharing)
 </code></pre>
 <p>The <code>openjdk version</code> should be major version <code>17</code> (and not higher).</p>
-<p>✏️ Run the following command in Powershell to verify Java is installed correctly:</p>
+<p>✏️ Run the following command in PowerShell to verify Java is installed correctly:</p>
 <pre><code>(Get-ChildItem Env:PATH).Value -split ';' | Where-Object { $_ -like '*jdk*' }
 </code></pre>
 <p>The output of the command should be something like:</p>
-<pre><code>C:\Program Files\Microsoft\jdk-17.0.10.7-hotspot\bin
+<pre><code>C:\Program Files\Microsoft\jdk-17.0.11.9-hotspot\bin
 </code></pre>
-<p>✏️ Run the following command in Powershell to verify that <code>JAVA_HOME</code> is configured correctly:</p>
+<p>✏️ Run the following command in PowerShell to verify that <code>JAVA_HOME</code> is configured correctly:</p>
 <pre><code>Get-ChildItem Env:JAVA_HOME
 </code></pre>
 <p>The output of the command should be something like:</p>
 <pre><code>Name                           Value
 ----                           -----
-JAVA_HOME                      C:\Program Files\Microsoft\jdk-17.0.10.7-hotspot\
+JAVA_HOME                      C:\Program Files\Microsoft\jdk-17.0.11.9-hotspot\
 </code></pre>
-<h3>Objective 4: Install Android Studio</h3>
+<h3>Objective 4: Install the Android SDK</h3>
 <h4>Install Android Studio</h4>
-<h4>Setup 4</h4>
-<p>✏️ Follow the instructions in the quickstart guide.</p>
-<h4>Verify 4</h4>
-<p>✏️ Run the following command in Powershell to verify that <code>ANDROID_SDK_ROOT</code> is configured correctly:</p>
-<pre><code>Get-ChildItem Env:ANDROID_SDK_ROOT
-</code></pre>
-<h3>Objective 5: Install the Android SDK</h3>
 <h4>Install the Android SDK</h4>
-<h4>Setup 5</h4>
+<h4>Setup 4</h4>
 <p>✏️ Follow the instructions in the quickstart guide.</p>
 <p>Be sure to follow each step:</p>
 <ol>
@@ -889,16 +951,21 @@ JAVA_HOME                      C:\Program Files\Microsoft\jdk-17.0.10.7-hotspot\
 <li>Make sure “34.0.0” is selected.</li>
 <li>Click “Apply” to install the SDKs.</li>
 </ol>
-<h3>Objective 6: Configure environment variables</h3>
+<h4>Verify 4</h4>
+<p>✏️ Run the following command in PowerShell to verify that <code>ANDROID_SDK_ROOT</code> is configured correctly:</p>
+<pre><code>Get-ChildItem Env:ANDROID_SDK_ROOT
+</code></pre>
+<p>TODO: This is not configured correctly on my Windows, is this an issue?</p>
+<h3>Objective 5: Configure environment variables</h3>
 <h4>Configure the ANDROID_HOME environment variable</h4>
-<h4>Setup 6</h4>
+<h4>Setup 5</h4>
 <p>✏️ Follow the instructions in the quickstart guide to:</p>
 <ul>
 <li>Configure the ANDROID_HOME environment variable.</li>
 <li>Add platform-tools to Path.</li>
 </ul>
-<h4>Verify 6</h4>
-<p>✏️ Run the following command in Powershell to verify that <code>ANDROID_HOME</code> is configured correctly:</p>
+<h4>Verify 5</h4>
+<p>✏️ Run the following command in PowerShell to verify that <code>ANDROID_HOME</code> is configured correctly:</p>
 <pre><code>Get-ChildItem Env:ANDROID_HOME
 </code></pre>
 <p>The output of the command should be something like:</p>
@@ -906,12 +973,32 @@ JAVA_HOME                      C:\Program Files\Microsoft\jdk-17.0.10.7-hotspot\
 ----                           -----
 ANDROID_HOME                   C:\Users\bitovi\AppData\Local\Android\Sdk
 </code></pre>
-<p>✏️ Run the following command in Powershell to verify that <code>platform-tools</code> is installed correctly:</p>
+<p>✏️ Run the following command in PowerShell to verify that <code>platform-tools</code> is installed correctly:</p>
 <pre><code>(Get-ChildItem Env:PATH).Value -split ';' | Where-Object { $_ -like '*platform-tools*' }
 </code></pre>
 <p>The output of the command should be something like:</p>
 <pre><code>C:\Users\bitovi\AppData\Local\Android\Sdk\platform-tools
 </code></pre>
+<h3>Objective 6: Launch the Android emulator</h3>
+<p><img alt="Screenshot of the Android Emulator running in Android Studio" src="../../static/img/react-native/02-setting-up-your-environment/06-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
+<h4>Setup 6</h4>
+<p>✏️ Follow the instructions in the quickstart guide to:</p>
+<ol>
+<li>See the list of available Android Virtual Devices (AVDs) by opening the “AVD Manager” from within Android Studio.</li>
+<li>Click on the green triangle button next to your AVD to launch it.</li>
+</ol>
+<p>If you have recently installed Android Studio, you will likely need to create a new AVD:</p>
+<ol>
+<li>Select “Create Virtual Device…”</li>
+<li>Pick any Phone from the list.</li>
+<li>Click “Next”.</li>
+<li>Select the UpsideDownCake API Level 34 image.</li>
+<li>Click “Next” then “Finish” to create your AVD.</li>
+</ol>
+<p>At this point you should be able to click on the green triangle button next to your AVD to launch it.</p>
+<blockquote>
+<p>If you don’t have HAXM installed, click on “Install HAXM” or follow <a href="https://github.com/intel/haxm/wiki/Installation-Instructions-on-Windows">Intel’s instructions</a> to set it up, then go back to the AVD Manager.</p>
+</blockquote>
 <h2>Next steps</h2>
 <p>Next, let’s <a href="./creating-a-new-app.html">create a new app</a> to begin understand React Native’s structure and capabilities.</p>
 
