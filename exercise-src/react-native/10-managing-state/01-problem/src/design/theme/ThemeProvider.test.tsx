@@ -37,8 +37,8 @@ describe("ThemeContext context", () => {
 
 describe("Theme mode", () => {
   it('toggles', async () => {
-    const { result } = renderHook(() => useThemeMode(), {wrapper: ThemeProvider})
-    
+    const { result } = renderHook(() => useThemeMode(), { wrapper: ThemeProvider })
+
     expect(result.current.mode).toBe("light")
 
     await waitFor(() => {
