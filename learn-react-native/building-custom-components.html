@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="TODO 
+  <meta name="description" content="Learn about components, the core building blocks of every React application. 
 ">
   
   <!-- Google Tag Manager -->
@@ -214,7 +214,7 @@
            						expanded">
 						<a class="page"
 							href="building-custom-components.html"
-							title="TODO">
+							title="Learn about components, the core building blocks of every React application.">
 							Building Custom Components
 						</a>
 						
@@ -665,7 +665,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>TODO</p>
+    <p>Learn about components, the core building blocks of every React application.</p>
 
 </section>
 
@@ -681,12 +681,65 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this section, you will:</p>
 <ul>
-<li>TODO</li>
+<li>Create components in React and structuring them properly.</li>
+<li>Review how React components are (fundamentally) functions.</li>
+<li>Use component props in React using TypeScript interfaces.</li>
+<li>Structure code in the Modlets pattern.</li>
 </ul>
 <h2>Objective 1: Creating a custom component</h2>
-<p>TODO</p>
-<h3>Concept TODO</h3>
-<p>TODO</p>
+<p>Our <code>App</code> component currently shows our state list, but eventually we’ll want to show other page content. Let’s prepare now by moving all of the JSX from <code>App</code> to a new component called <code>StateList</code>.</p>
+<h3>What are components?</h3>
+<p>So far, we have placed all of our JSX inside the <code>App</code> function. Notice two things about the <code>App</code> function:</p>
+<ol>
+<li><p>The name starts with a capital letter.</p></li>
+<li><p>It returns something renderable (JSX).</p></li>
+</ol>
+<pre><code class="language-tsx">function App() {
+  return &lt;Text&gt;Some page content&lt;/Text&gt;
+}
+
+</code></pre>
+<p>In React, we call this a component. When you create a component in React, you are creating building blocks that can be composed, reordered, and reused much like HTML elements.</p>
+<p>React makes it relatively straightforward to create new components. Let’s learn to build our own.</p>
+<h3>Component structure</h3>
+<p>Let’s start by creating a component from a commonly reused element, the button.</p>
+<p>First, React component names must start with a capital letter, so we can call this <code>Button</code>. By convention component names use PascalCase when naming components, so longer component names will look like <code>IconButton</code>. Avoid hyphens and underscores.</p>
+<p>Second, our component must return either <code>null</code> or something renderable, like JSX. The return value of our components is almost always JSX, though JavaScript primitives like <code>string</code> and <code>number</code> are also valid. Components cannot return complex types like arrays or objects.</p>
+<pre><code class="language-tsx">const Button = () =&gt; {
+  return &lt;Pressable&gt;Activate me&lt;/Pressable&gt;
+}
+
+</code></pre>
+<p>Components are like small containers which can be reused throughout your application. The <code>Button</code> component above returns JSX and could then be rendered and reused by another component like <code>App</code> below.</p>
+<pre><code class="language-tsx">const App = () =&gt; {
+  return (
+    &lt;&gt;
+      &lt;Button /&gt;
+      &lt;Button /&gt;
+      &lt;Button /&gt;
+    &lt;/&gt;
+  )
+}
+
+</code></pre>
+<h3>React Native components are functions</h3>
+<p>The JSX syntax allows function components to look like XML, but underneath they are still functions. The return of each component is unique and you can use the same component multiple times.</p>
+<p>You can think of components as fancy functions.</p>
+<p>While you can’t actually do the following, this is functionally similar to what React is doing for you.</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+
+const App: FC = () =&gt; {
+  return (
+    &lt;&gt;
+      {Button()}
+      {Button()}
+      {Button()}
+    &lt;/&gt;
+  )
+}
+
+</code></pre>
+<p>Did you notice the <code>FC</code> that was used in the previous example to type the <code>App</code> const? Because we're using TypeScript with our project, we can apply types to help make sure the function component is properly formed. React provides the type <code>FC</code> (Function component) that can be applied to a function component. This type defines the arguments and return value that a function component must implement.</p>
 <h3>Setup 1</h3>
 <p>✏️ Update <strong>App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
@@ -815,9 +868,59 @@ export default App
  <div line-highlight="17-23,34,only"></div>
 <p></details></p>
 <h2>Objective 2: Passing props</h2>
-<p>TODO</p>
-<h3>Concept TODO</h3>
-<p>TODO</p>
+<p>We’ve taken a great step to make our code more readable and our app more maintainable by creating the <code>StateList</code> component.</p>
+<p>Let’s keep the good refactoring rolling by creating a <code>ListItem</code> component to house the JSX used to render each state in the list.</p>
+<h3>Using component props</h3>
+<p>In React, props (short for “properties”) are how we pass data from a parent component to a child component. Since function React components are fundamentally JavaScript functions, you can think of props like the arguments you pass to a function.</p>
+<p>To clarify, props in React Native should not be confused with the properties on HTML elements in web development, even though both share the same name.</p>
+<p>To receive props, function components must implement a React API that allows an optional argument of type <code>object</code> that’s named <code>props</code>.</p>
+<p>The properties on the props object—individually called a “prop”—can include whatever data the child component needs to make the component work. The property values can be any type, including functions and other React components.</p>
+<p>We’re using TypeScript in our project, so we can create an <code>interface</code> for <code>props</code> and use it in the definition of a function component.</p>
+<p>Let’s create a <code>SubmitButton</code> component to see <code>props</code> in action:</p>
+<pre><code class="language-tsx">interface SubmitButtonProps {
+  label: string
+  onPress: () =&gt; void
+}
+
+const SubmitButton: React.FC&lt;SubmitButtonProps&gt; = (props) =&gt; {
+  const { label, onPress } = props
+  return &lt;Pressable onPress={onPress}&gt;{label}&lt;/Pressable&gt;
+}
+
+</code></pre>
+<p>In this example, <code>SubmitButtonProps</code> is an interface that defines the types for <code>label</code> (a string) and <code>onPress</code> (a function). Our <code>SubmitButton</code> component then uses these props to display a button with a label and a click action.</p>
+<p>The example above illustrates how props are passed to component as an argument.</p>
+<p>However, more commonly (and for the rest of this course) you will see props destructured in the function parameters:</p>
+<pre><code class="language-tsx">interface SubmitButtonProps {
+  label: string
+  onPress: () =&gt; void
+}
+
+const SubmitButton: React.FC&lt;SubmitButtonProps&gt; = ({ label, onPress }) =&gt; {
+  return &lt;button onPress={onPress}&gt;{label}&lt;/button&gt;
+}
+
+</code></pre>
+<h3>Passing component props</h3>
+<p>Now, how do we use this <code>SubmitButton</code>? In JSX syntax a component’s props look like an HTML tag’s &quot;attributes&quot; and accept a value.</p>
+<ul>
+<li>If a prop’s value type is a string, then the prop value is set using quotes.</li>
+<li>Any other type of prop value is set using braces with the value inside.</li>
+</ul>
+<p>In the example below, the <code>label</code> prop accepts a string. so the value is surrounded by double quotes. The <code>onPress</code> prop accepts a function, so the function value is surrounded by braces.</p>
+<p>Here’s how to use our <code>SubmitButton</code>:</p>
+<pre><code class="language-tsx">const content = (
+  &lt;SubmitButton label=&quot;Activate&quot; onPress={() =&gt; alert(&quot;Activated!&quot;)} /&gt;
+)
+
+</code></pre>
+<p>In the example above, we’re setting the <code>label</code> prop to the string “Activate” and the <code>onPress</code> prop to a function that displays an alert.</p>
+<h3>Reserved prop names</h3>
+<p>There are two prop names that you cannot use and are reserved by React:</p>
+<ul>
+<li><p><code>children</code>: this prop is automatically provided by React to every component. We will see this prop in later examples.</p></li>
+<li><p><code>key</code>: this prop is one you’ve seen before in the <a href="intro-to-jsx.html#the-key-prop">Introduction to JSX module</a>! It’s not actually part of the component’s props in a traditional sense. Instead, it’s used by React itself to manage lists of elements and identify which items have changed, been added, or been removed.</p></li>
+</ul>
 <h3>Setup 2</h3>
 <p>✏️ Update <strong>App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
@@ -974,10 +1077,130 @@ export default App
 </code></pre>
  <div line-highlight="16-17,20-21,28,only"></div>
 <p></details></p>
-<h2>Objective 3: Organizing code: Modlets pattern</h2>
-<p>TODO</p>
-<h3>Concept TODO</h3>
-<p>TODO</p>
+<h2>Objective 3: Organizing code with the Modlet pattern</h2>
+<p>Our efforts to refactor have been going swimmingly; however, the <code>App.tsx</code> file is getting a bit crowded. It's about time we take the time to organize our code, while doing so we'll also introduce a useful pattern to follow.</p>
+<h3>Modlets</h3>
+<p>Modlets are a folder/file structure that place a heavy emphasis on the idea of abstraction.</p>
+<p>They are completely self contained; each modlet is basically its own application. It has everything it needs inside of it.</p>
+<p>Each modlet is treated as a black box that can only be accessed through a single point: its index file.</p>
+<p>Modlets follow these three rules:</p>
+<ol>
+<li>Only import folders not specific files.</li>
+<li>Do not reach “up” into parent directories or “sideways” into sibling directories to import things. Only “down” to child modlets, or to designated shared modlets in a parent.</li>
+<li>Each modlet is a “black box” that controls what it exports through its index file. Anything exported in the index should be stable: Don’t change those api’s unless you have to!</li>
+</ol>
+<p>These will make sense as we go along.</p>
+<h3>Modlets example</h3>
+<p>We’re building a simple product page for an e-commerce site. It has three components:</p>
+<ul>
+<li>Product Details.</li>
+<li>Image Carousel.</li>
+<li>Add To Cart Button.</li>
+</ul>
+<p>Without a plan of how to organize our files, we might end up with something like this:</p>
+<div class="directory-list">
+<ul>
+<li>src/
+<ul>
+<li>ProductPage/
+<ul>
+<li>ProductDetails.tsx</li>
+<li>ProductDetails.module.css</li>
+<li>ProductDetails.test.ts</li>
+<li>ImageCarousel.tsx</li>
+<li>ImageCarousel.module.css</li>
+<li>placeholderImage.png</li>
+<li>AddToCartButton.tsx</li>
+<li>AddToCartButton.module.css</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<p>The same page, refactored into a modlet architecture would look like this:</p>
+<div class="directory-list">
+<ul>
+<li>src/
+<ul>
+<li>ProductPage/
+<ul>
+<li>ProductPage.tsx</li>
+<li>index.ts</li>
+<li>components/
+<ul>
+<li>ProductDetails/
+<ul>
+<li>index.ts</li>
+<li>ProductDetails.tsx</li>
+<li>ProductDetails.module.css</li>
+<li>ProductDetails.test.ts</li>
+</ul></li>
+<li>ImageCarousel/
+<ul>
+<li>index.ts</li>
+<li>ImageCarousel.tsx</li>
+<li>ImageCarousel.module.css</li>
+</ul></li>
+<li>CartButton/
+<ul>
+<li>index.ts</li>
+<li>CartButton.tsx</li>
+<li>CartButton.module.css</li>
+</ul></li>
+<li>assets/
+<ul>
+<li>placeholderImage.png</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<p>Compared to the former structure, the modlet structure is:</p>
+<ul>
+<li>Clearly organized.</li>
+<li>Location of relevant code is clear.</li>
+<li>Related functionality bundled in same folder.</li>
+</ul>
+<p>For more clarity, the <code>ProductDetails</code> component has a default export.</p>
+<pre><code class="language-tsx">const ProductDetails = (props) =&gt; {
+  return (
+    &lt;View&gt;
+      &lt;Text&gt; Here are some details about this product! &lt;/Text&gt;
+    &lt;/View&gt;
+  )
+}
+
+export default ProductDetails
+
+</code></pre>
+<p>Then, we have the index file for this modlet. It re-exports the default from the key implementation file form that modlet, in this case <code>ProdDetails</code>.</p>
+<pre><code class="language-ts">export { default } from &quot;./ProdDetails&quot;
+
+</code></pre>
+<p>With the Modlet structure, the top-level component's imports statements look as follows:</p>
+<pre><code class="language-tsx">import ProductDetails from &quot;./components/ProductDetails&quot;
+import ImageCarousel from &quot;./components/ImageCarousel&quot;
+import CartButton from &quot;./components/CartButton&quot;
+
+const ProductPage = (props) =&gt; {
+  return (
+    &lt;&gt;
+      &lt;ImageCarousel /&gt;
+      &lt;ProductDetails /&gt;
+      &lt;CartButton /&gt;
+    &lt;/&gt;
+  )
+}
+
+</code></pre>
+<ul>
+<li>Importing folders, not specific files.</li>
+<li>Modlet remains a black box.</li>
+<li>Every import is from a child of the top level modlet. Only reaching &quot;down&quot; for imports!</li>
+</ul>
+<p>Notice that we don’t import specific files, but rather the modlet we want to use.</p>
+<p>This allows the modlet to maintain control over what it exposes.</p>
+<p>Also, every import is from a child of that top level modlet. We are only reaching down to grab imports!</p>
 <h3>Setup 3</h3>
 <p>It’s best practice to create a new folder that will contain all of the related files for each component, including test files.</p>
 <p>✏️ Update <strong>index.js</strong> to be:</p>
@@ -1199,7 +1422,7 @@ export default ListItem
  <div line-highlight="4-6,8-10,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
-<p>Next we will learn about debugging by using React Devtools [react-native/debugging-devtools].</p>
+<p>Next we will learn about debugging by using <a href="./debugging-devtools.html">React Devtools</a>.</p>
 
 </section>
 
@@ -1238,7 +1461,7 @@ export default ListItem
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-native/06-building-custom-components/building-custom-components.md"},"description":"TODO \n","name":"learn-react-native/building-custom-components","title":"Building Custom Components","type":"page","parent":"learn-react-native","order":6,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-native/06-building-custom-components/building-custom-components.md"},"description":"Learn about components, the core building blocks of every React application. \n","name":"learn-react-native/building-custom-components","title":"Building Custom Components","type":"page","parent":"learn-react-native","order":6,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
