@@ -22,22 +22,6 @@ TODO
 
 ### Setup 1
 
-✏️ Update **src/screens/CityList/CityList.tsx** to be:
-
-@diff ../../../exercises/react-native/12-navigation-params/01-solution/src/screens/CityList/CityList.tsx ../../../exercises/react-native/13-http-requests/01-problem/src/screens/CityList/CityList.tsx only
-
-✏️ Update **src/screens/RestaurantDetails/RestaurantDetails.tsx** to be:
-
-@diff ../../../exercises/react-native/12-navigation-params/01-solution/src/screens/RestaurantDetails/RestaurantDetails.tsx ../../../exercises/react-native/13-http-requests/01-problem/src/screens/RestaurantDetails/RestaurantDetails.tsx only
-
-✏️ Update **src/screens/RestaurantList/RestaurantList.tsx** to be:
-
-@diff ../../../exercises/react-native/12-navigation-params/01-solution/src/screens/RestaurantList/RestaurantList.tsx ../../../exercises/react-native/13-http-requests/01-problem/src/screens/RestaurantList/RestaurantList.tsx only
-
-✏️ Update **src/screens/StateList/StateList.tsx** to be:
-
-@diff ../../../exercises/react-native/12-navigation-params/01-solution/src/screens/StateList/StateList.tsx ../../../exercises/react-native/13-http-requests/01-problem/src/screens/StateList/StateList.tsx only
-
 ✏️ Create **src/services/pmo/api/index.ts**.
 
 ✏️ Create **src/services/pmo/api/api.ts**.
