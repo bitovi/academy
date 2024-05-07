@@ -2,7 +2,7 @@
 @parent learn-react-native 4
 @outline 2
 
-@description Learn how to use JSX to define your UI in React.
+@description Learn how to use JSX to define your UI in React Native.
 
 @body
 
@@ -122,15 +122,22 @@ const content = (
 
 #### Style prop
 
-In XML, the appearance of most elements can be altered using the `style` attribute. React supports a `style` prop, but it accepts an object, not a string. The style object has properties whose names are camel-case versions of their CSS counterparts. IE: "font-style" becomes `fontStyle`.
+If you’re familiar with front-end web development, you might know that the appearance of most HTML elements can be altered using the `style` attribute.
+
+React Native supports a `style` prop, but it accepts an object, not a string.
+The style object has properties whose names are camel-case versions of their CSS counterparts, e.g. `font-style` becomes `fontStyle`.
 
 ```tsx
-const content = <Text style={{ fontStyle: "italic" }}>Restaurants</Text>
+const content = (
+  <Text style={{ fontStyle: "italic" }}>
+    Restaurants
+  </Text>
+)
 ```
 
 As we go through this training, you’ll learn additional differences.
 
-#### Convention: Parenthesis
+#### Parenthesis (convention)
 
 When dealing with JSX that needs multiple lines, the convention is to wrap it in parentheses. This helps keep your JSX clean and clear, rather than mixing it with the Javascript around it.
 
@@ -141,13 +148,13 @@ function Form() {
       <Text>
         Name:
       </Text>
-      <TextInput placeholder="Enter your name" />
+      <TextInput value="Molly Holzschlag" />
     </View>
   )
 }
 ```
 
-#### Convention: Implicit Returns
+#### Implicit returns (convention)
 
 When creating functions that have no logic and just return JSX, especially when they're an argument to a function, the convention is to use an arrow function with an implicit return. This is nearly always coupled with the parenthesis convention, too. (Don’t worry: you’ll learn about `.map` in the next objective.)
 
@@ -167,21 +174,33 @@ function List() {
 }
 ```
 
+#### Using `View`
+
+TODO: Introduce this core component.
+
+#### Using `ScrollView`
+
+TODO: Introduce this core component.
+
+#### Using `SafeAreaView`
+
+TODO: Introduce this core component.
+
+### Setup 1
+
+✏️ Update **App.tsx** to be:
+
+@diff ../../../exercises/react-native/03-creating-a-new-app/03-solution/App.tsx ../../../exercises/react-native/04-intro-to-jsx/01-problem/App.tsx only
+
 ### Verify 1
 
-✏️ Update **src/App.test.tsx** to be:
+✏️ Update **App.test.tsx** to be:
 
 @diff ../../../exercises/react-native/03-creating-a-new-app/03-solution/App.test.tsx ../../../exercises/react-native/04-intro-to-jsx/01-problem/App.test.tsx only
 
 ### Exercise 1
 
-- Use JSX to dynamically display the state name from the object variable.
-
-Hint: the state object will look like this:
-
-```typescript
-const state = { name: "Illinois", short: "IL" }
-```
+Use JSX to dynamically display a state name from a variable that’s an object.
 
 ### Solution 1
 
@@ -190,8 +209,8 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 <details>
 <summary>Click to see the solution</summary>
 
-✏️ Update **src/App.tsx** to be:
-@diff ../../../exercises/react-native/03-creating-a-new-app/03-solution/App.tsx ../../../exercises/react-native/04-intro-to-jsx/01-solution/App.tsx only
+✏️ Update **App.tsx** to be:
+@diff ../../../exercises/react-native/04-intro-to-jsx/01-problem/App.tsx ../../../exercises/react-native/04-intro-to-jsx/01-solution/App.tsx only
 
 </details>
 
@@ -201,7 +220,7 @@ Next, we want to render a list of states name in our application:
 
 <img alt="Screenshot of a mobile application interface text “Place My Order: Coming Soon To...”, “Illinois“, and “Wisconsin“." src="../../static/img/react-native/04-intro-to-jsx/02-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
 
-To do so, we‘ll learn about:
+To do so, we’ll learn about:
 
 - Using JavaScript variables and expressions in JSX.
 - Working with conditionals and loops in JSX.
@@ -371,7 +390,7 @@ There are lots of ways to iterate over arrays in JavaScript with functions like 
 
 Did you notice the `key` prop in the example above?
 
-When rendering a list of elements, React needs a way to uniquely identify each element. This helps React understand which items have changed, been added, or removed, which is crucial for efficient re-rendering.
+When rendering a list of elements, React Native needs a way to uniquely identify each element. This helps React Native understand which items have changed, been added, or removed, which is crucial for efficient re-rendering.
 
 Each key should be a unique identifier among siblings. Keys should be stable (not change over time), predictable (generated in a predictable manner), and unique (no two elements in the list should have the same key).
 
@@ -421,9 +440,15 @@ Check the render method of 'App'. See https://reactjs.org/link/warning-keys for 
   in AppContainer in solution
 ```
 
+### Setup 2
+
+✏️ Update **App.tsx** to be:
+
+@diff ../../../exercises/react-native/04-intro-to-jsx/01-solution/App.tsx ../../../exercises/react-native/04-intro-to-jsx/02-problem/App.tsx only
+
 ### Verify 2
 
-✏️ Update **src/App.test.tsx** to be:
+✏️ Update **App.test.tsx** to be:
 
 @diff ../../../exercises/react-native/04-intro-to-jsx/01-solution/App.test.tsx ../../../exercises/react-native/04-intro-to-jsx/02-problem/App.test.tsx only
 
@@ -434,21 +459,6 @@ Check the render method of 'App'. See https://reactjs.org/link/warning-keys for 
 - Make sure to use `key` inside the `.map()`.
 - Render `<Text>No states found</Text>` if, hypothetically, there weren’t any states.
 
-Hint: the states array will look like this:
-
-```typescript
-const states = [
-  {
-    name: "Illinois",
-    short: "IL",
-  },
-  {
-    name: "Wisconsin",
-    short: "WI",
-  },
-]
-```
-
 ### Solution 2
 
 If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
@@ -456,8 +466,8 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 <details>
 <summary>Click to see the solution</summary>
 
-✏️ Update **src/App.tsx** to be:
-@diff ../../../exercises/react-native/04-intro-to-jsx/01-solution/App.tsx ../../../exercises/react-native/04-intro-to-jsx/02-solution/App.tsx only
+✏️ Update **App.tsx** to be:
+@diff ../../../exercises/react-native/04-intro-to-jsx/02-problem/App.tsx ../../../exercises/react-native/04-intro-to-jsx/02-solution/App.tsx only
 
 </details>
 
