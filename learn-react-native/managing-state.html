@@ -683,21 +683,325 @@ covering CanJS core libraries.">
 <ul>
 <li>TODO</li>
 </ul>
-<h2>Objective 1: TODO</h2>
-<p>TODO</p>
+<h2>Objective: Toggle between light and dark mode</h2>
+<p>We will be setting up the application to switch between light mode and dark mode:</p>
+<div style="display: flex; flex-direction: row; gap: 2rem">
+  <img alt="Screenshot of the application when it is in light mode." src="../../static/img/react-native/10-managing-state/lightMode.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screenshot of the application when it is in dark mode." src="../../static/img/react-native/10-managing-state/darkMode.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+</div>
 <h3>Concept TODO</h3>
 <p>TODO</p>
-<h3>Setup 1</h3>
+<h3>Setup</h3>
+<p>✏️ Update <strong>src/design/theme/theme.ts</strong> to be:</p>
+<pre><code class="language-ts">import type { TextStyle } from &quot;react-native&quot;
+
+interface Palette {
+  main: string
+  soft: string
+  strong: string
+  contrast: string
+}
+
+export interface Theme {
+  palette: {
+    screen: Palette
+    primary: Palette
+    secondary: Palette
+  }
+  spacing: {
+    none: 0
+    xs: number
+    s: number
+    m: number
+    l: number
+    xl: number
+  }
+  typography: {
+    title: TextStyle
+    heading: TextStyle
+    body: TextStyle
+    label: TextStyle
+  }
+}
+
+const light: Theme = {
+  palette: {
+    screen: {
+      main: &quot;#ffffff&quot;,
+      soft: &quot;#e0e0e0&quot;,
+      strong: &quot;#ffffff&quot;,
+      contrast: &quot;#222222&quot;,
+    },
+    primary: {
+      main: &quot;#007980&quot;,
+      soft: &quot;#00a5ad&quot;,
+      strong: &quot;#006166&quot;,
+      contrast: &quot;#ffffff&quot;,
+    },
+    secondary: {
+      main: &quot;#ca2f35&quot;,
+      soft: &quot;#d93237&quot;,
+      strong: &quot;#a3262b&quot;,
+      contrast: &quot;#ffffff&quot;,
+    },
+  },
+  spacing: {
+    none: 0,
+    xs: 4,
+    s: 8,
+    m: 16,
+    l: 24,
+    xl: 40,
+  },
+  typography: {
+    title: {
+      fontSize: 21,
+      fontWeight: &quot;500&quot;,
+    },
+    heading: {
+      fontSize: 24,
+      fontWeight: &quot;500&quot;,
+    },
+    body: {
+      fontWeight: &quot;normal&quot;,
+    },
+    label: {
+      fontSize: 12,
+      fontWeight: &quot;bold&quot;,
+    },
+  },
+}
+
+const dark: Theme = {
+  ...light,
+  palette: {
+    ...light.palette,
+    screen: {
+      main: &quot;#29292c&quot;,
+      soft: &quot;#565659&quot;,
+      strong: &quot;#000000&quot;,
+      contrast: &quot;#ffffff&quot;,
+    },
+    primary: {
+      ...light.palette.primary,
+      soft: &quot;#003a3d&quot;,
+      strong: light.palette.primary.soft,
+    },
+    secondary: {
+      ...light.palette.secondary,
+      soft: &quot;#811e22&quot;,
+      strong: light.palette.secondary.soft,
+    },
+  },
+}
+
+export default {
+  light,
+  dark,
+}
+</code></pre>
+ <div line-highlight="32,80-101,103-106,only"></div>
+<h3>Verify</h3>
+<p>✏️ Update <strong>src/design/theme/theme.test.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+
+import { render, screen, renderHook, waitFor } from &quot;@testing-library/react-native&quot;
+import { View, Text } from &quot;react-native&quot;
+
+import ThemeProvider, { useTheme, useThemeMode } from &quot;./ThemeProvider&quot;
+
+describe(&quot;ThemeProvider Provider&quot;, () =&gt; {
+  it(&quot;renders children&quot;, async () =&gt; {
+    render(
+      &lt;ThemeProvider&gt;
+        &lt;Text&gt;Hello!&lt;/Text&gt;
+      &lt;/ThemeProvider&gt;,
+    )
+
+    expect(screen.getByText(/Hello/)).toBeOnTheScreen()
+  })
+})
+
+describe(&quot;ThemeContext context&quot;, () =&gt; {
+  const TestComponent: FC = () =&gt; {
+    const theme = useTheme()
+
+    return (
+      &lt;View&gt;
+        &lt;Text&gt;{theme.palette.primary.main}&lt;/Text&gt;
+      &lt;/View&gt;
+    )
+  }
+
+  it(&quot;context properties are accessible&quot;, async () =&gt; {
+    render(&lt;TestComponent /&gt;)
+
+    expect(screen.getByText(/#007980/)).toBeOnTheScreen()
+  })
+})
+
+describe(&quot;Theme mode&quot;, () =&gt; {
+  it('toggles', async () =&gt; {
+    const { result } = renderHook(() =&gt; useThemeMode(), { wrapper: ThemeProvider })
+
+    expect(result.current.mode).toBe(&quot;light&quot;)
+
+    await waitFor(() =&gt; {
+      result.current.setMode(&quot;dark&quot;);
+      expect(result.current.mode).not.toBe(&quot;light&quot;)
+    })
+
+    expect(result.current.mode).toBe(&quot;dark&quot;)
+  })
+})
+
+</code></pre>
+ <div line-highlight="3,6,38-40,42,44-47,49-51,only"></div>
+<p>✏️ Update <strong>src/screens/StateList/StateList.test.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { SwitchChangeEvent } from &quot;react-native&quot;;
+import { render, screen, fireEvent } from &quot;@testing-library/react-native&quot;;
+import StateList from &quot;./StateList&quot;;
+import { useThemeMode } from &quot;../../design/theme&quot;;
+
+const mockSetMode = jest.fn()
+
+jest.mock('../../design/theme', () =&gt; ({
+  ...jest.requireActual('../../design/theme'),
+  useThemeMode: () =&gt; ({
+    mode: 'light',
+    setMode: mockSetMode
+  }),
+}));
+
+describe(&quot;StateList&quot;, () =&gt; {
+  it(&quot;renders states&quot;, async () =&gt; {
+    render(&lt;StateList /&gt;)
+    expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
+    expect(screen.getByText(/Wisconsin/i)).toBeOnTheScreen()
+  })
+  it('should switch to dark mode', () =&gt; {
+    render(&lt;StateList /&gt;);
+    const switchElement = screen.getByRole(&quot;switch&quot;)
+    expect(switchElement.props.value).toBe(false)
+    fireEvent(switchElement, 'onChange', { nativeEvent: { value: true } } as SwitchChangeEvent);
+    expect(mockSetMode).toHaveBeenCalledWith('dark')
+  })
+})
+
+</code></pre>
+ <div line-highlight="1-2,4,6,8-14,22-28,only"></div>
+<h3>Exercise</h3>
 <p>TODO</p>
-<h3>Verify 1</h3>
-<p>TODO</p>
-<h3>Exercise 1</h3>
-<p>TODO</p>
-<h3>Solution 1</h3>
+<h3>Solution</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>TODO</p>
+<p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import ListItem from &quot;./components/ListItem&quot;
+import Screen from &quot;../../design/Screen&quot;
+import Typography from &quot;../../design/Typography&quot;
+import Card from &quot;../../design/Card&quot;
+import { useThemeMode } from &quot;../../design/theme&quot;
+import { Switch } from &quot;react-native&quot;
+
+export type State = {
+  name: string
+  short: string
+}
+
+const states: State[] = [
+  {
+    name: &quot;Illinois&quot;,
+    short: &quot;IL&quot;,
+  },
+  {
+    name: &quot;Wisconsin&quot;,
+    short: &quot;WI&quot;,
+  },
+]
+
+const StateList: FC = () =&gt; {
+  const { mode, setMode } = useThemeMode()
+
+  return (
+    &lt;Screen&gt;
+      &lt;Card&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;
+          Place My Order: Coming Soon To...
+        &lt;/Typography&gt;
+      &lt;/Card&gt;
+      {states?.length &gt; 0 ? (
+        states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
+      ) : (
+        &lt;Typography&gt;No states found&lt;/Typography&gt;
+      )}
+      &lt;Card&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;Dark Mode&lt;/Typography&gt;
+        &lt;Switch
+          value={mode === &quot;dark&quot;}
+          onChange={() =&gt; setMode(mode === &quot;light&quot; ? &quot;dark&quot; : &quot;light&quot;)}
+        /&gt;
+      &lt;/Card&gt;
+    &lt;/Screen&gt;
+  )
+}
+
+export default StateList
+
+</code></pre>
+ <div line-highlight="6-7,9-11,14,26,40-46,49,only"></div>
+<p>✏️ Update <strong>src/design/theme/ThemeProvider.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import type { Theme } from &quot;./theme&quot;
+
+import { useState, createContext, useContext, useMemo } from &quot;react&quot;
+import { Appearance } from &quot;react-native&quot;
+
+import themes from &quot;./theme&quot;
+
+type Mode = keyof typeof themes
+
+interface ThemeContext {
+  mode: Mode
+  setMode: (mode: Mode) =&gt; void
+}
+
+const Context = createContext&lt;ThemeContext | undefined&gt;({
+  mode: &quot;light&quot;,
+  setMode: () =&gt; undefined,
+})
+
+const ThemeProvider: FC&lt;{ children: React.ReactNode }&gt; = ({ children }) =&gt; {
+  const [mode, setMode] = useState&lt;Mode&gt;(Appearance.getColorScheme() || &quot;light&quot;)
+
+  const value = useMemo(() =&gt; ({ mode, setMode }), [mode])
+
+  return &lt;Context.Provider value={value}&gt;{children}&lt;/Context.Provider&gt;
+}
+
+export default ThemeProvider
+
+export function useTheme(): Theme {
+  const { mode } = useContext(Context)
+
+  return themes[mode]
+}
+
+export function useThemeMode(): {
+  mode: Mode
+  setMode: (mode: Mode) =&gt; void
+} {
+  const { mode, setMode } = useContext(Context)
+
+  return {
+    mode,
+    setMode,
+  }
+}
+
+</code></pre>
+ <div line-highlight="4-5,7,9,12-13,16-18,22,24,32,34,37-41,43-47,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>TODO</p>
