@@ -16,6 +16,22 @@ In this section, you will:
 
 TODO
 
+### What is Context?
+
+TODO
+
+### Why is Context?
+
+TODO
+
+### How is Context?
+
+TODO
+
+### Future-proofing
+
+TODO
+
 ### Setup 1
 
 ✏️ Create **src/design/theme/ThemeProvider.tsx** and update it to be:
@@ -60,6 +76,26 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 ## Objective 2: Begin creating a design system to unify your application
 
 TODO
+
+### What is a design system?
+
+TODO
+
+### Why use a design system?
+
+TODO
+
+### Organizing a design system
+
+TODO
+
+#### Atomic Design Methodology
+
+[TODO](https://atomicdesign.bradfrost.com/chapter-2/)
+
+#### But... let’s keep things simple
+
+TODO: Don't always need...
 
 ### Setup 2
 
@@ -111,6 +147,10 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 </details>
 
 ## Objective 3: Expand your design system
+
+TODO
+
+### Common elements of a design system
 
 TODO
 
