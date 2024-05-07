@@ -555,7 +555,7 @@ covering CanJS core libraries.">
 <h2>Objective 1: Add buttons to select a state</h2>
 <p>Currently, our restaurant list is a static array of restaurants. We want to work towards having a <code>&lt;select&gt;</code> dropdown for choosing a <em>state</em>, then a <em>city</em> in that state, then loading the list of restaurants for that city.</p>
 <p>To start, let’s focus on rendering buttons for each state that we can select. Then, when the button for a state is activated, we want to keep track of which state was chosen.</p>
-<p><img alt="A web page titled “Restaurants” from place-my-order.com showing two buttons labeled “Illinois” and “Wisconsin”. There is also a “Current state” paragraph that shows that no state is selected." src="../../../static/img/react-vite/08-stateful-hooks/01-solution.png" style="max-width:689px"></p>
+<p><img alt="A web page titled “Restaurants” from place-my-order.com showing two buttons labeled “Illinois” and “Wisconsin”. There is also a “Current state” paragraph that shows that no state is selected." src="../static/img/react-vite/08-stateful-hooks/01-solution.png" style="max-width:689px"></p>
 <h3>Overview of state management</h3>
 <p>State in React is a crucial concept, as it represents the parts of an app that can change over time. Each component can have its own state, allowing them to maintain and manage their own data independently. When the state changes, React re-renders the component and updates the DOM if it needs to.</p>
 <p>There are different types of state within an application:</p>
@@ -964,9 +964,9 @@ export default RestaurantList
 <p></details></p>
 <h2>Objective 2: Add buttons to select a city</h2>
 <p>Now that we have buttons for selecting the state, let’s add buttons for selecting the city:</p>
-<p><img alt="The same “Restaurants” web page from before, but this time the “Current state” is “Illinois” and there is a button for selecting “Springfield” as the city. The “Current city” is currently “none.”" src="../../../static/img/react-vite/08-stateful-hooks/02-solution-2.png" style="max-width:689px"></p>
+<p><img alt="The same “Restaurants” web page from before, but this time the “Current state” is “Illinois” and there is a button for selecting “Springfield” as the city. The “Current city” is currently “none.”" src="../static/img/react-vite/08-stateful-hooks/02-solution-2.png" style="max-width:689px"></p>
 <p>After selecting both the state and city, we will see those values reflected in our UI:</p>
-<p><img alt="The same “Restaurants” web page from before, but this time the “Current city” is set to “Springfield”." src="../../../static/img/react-vite/08-stateful-hooks/02-solution-3.png" style="max-width:689px"></p>
+<p><img alt="The same “Restaurants” web page from before, but this time the “Current city” is set to “Springfield”." src="../static/img/react-vite/08-stateful-hooks/02-solution-3.png" style="max-width:689px"></p>
 <h3>Setup 2</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be the following:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
