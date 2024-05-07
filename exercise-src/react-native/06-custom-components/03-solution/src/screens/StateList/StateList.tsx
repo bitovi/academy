@@ -1,5 +1,5 @@
 import type { FC } from "react"
-import { View, Text } from "react-native"
+import { Text, View } from "react-native"
 import ListItem from "./components/ListItem"
 
 const states = [

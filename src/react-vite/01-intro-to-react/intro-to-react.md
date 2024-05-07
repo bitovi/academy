@@ -46,7 +46,7 @@ React maps the JSX that we write to a Virtual DOM, which is an in-memory represe
 
 **Focus on state, not the DOM:** The Virtual DOM lets us concentrate on managing the state of the application. The UI updates automatically to mirror the current state, thanks to React’s reactive model. This significantly simplifies the development process, as you’re not manually handling the DOM updates, leading to more maintainable and readable code.
 
-**Efficient update mechanism:** React's rendering approach leads to efficient update mechanisms in dynamic UIs. By batching these updates and only applying the necessary changes to the actual DOM, React ensures that the UI is always in sync with the state with minimal performance overhead.
+**Efficient update mechanism:** React’s rendering approach leads to efficient update mechanisms in dynamic UIs. By batching these updates and only applying the necessary changes to the actual DOM, React ensures that the UI is always in sync with the state with minimal performance overhead.
 
 **Minimized reflows and repaints:** Direct DOM manipulations can be costly, especially in complex UIs. React’s Virtual DOM minimizes the direct interactions with the actual DOM, reducing costly reflows and repaints. This results in a smoother performance, particularly in applications where the UI changes frequently based on user interactions and state changes.
 

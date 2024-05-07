@@ -5,10 +5,10 @@ const state = { name: "Illinois", short: "IL" }
 
 function App(): JSX.Element {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ height: "100%", width: "100%" }}>
       <ScrollView>
         <View>
-          <Text>Place My Order: Coming Soon To...</Text>
+          <Text>Place My Order: Coming Soon!</Text>
         </View>
         <View>
           <Text>{state.name}</Text>

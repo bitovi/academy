@@ -1,13 +1,13 @@
 import type { FC } from "react"
-import { SafeAreaView, ScrollView, Text, View } from "react-native"
+import { SafeAreaView } from "react-native"
 import StateList from "./screens/StateList"
 
 const App: FC = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ height: "100%", width: "100%" }}>
       <ScrollView>
         <View>
-          <Text>Place My Order: Coming Soon To...</Text>
+          <Text>Place My Order: Coming Soon!</Text>
         </View>
         <StateList />
       </ScrollView>

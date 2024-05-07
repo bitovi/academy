@@ -1,0 +1,8 @@
+ignore-dirs:
+  - /dist
+ignores:
+  - "@types/*"
+  - "@babel/*"
+  - "@react-native/*"
+  - "babel-*"
+  - "*-babel"

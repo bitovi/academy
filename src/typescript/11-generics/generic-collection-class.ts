@@ -10,7 +10,6 @@ myListOfStrings.pushItem('booop');
 myListOfStrings.pushItem(5);
 // Error Argument type of '5' is not assignable to parameter of type 'string'
 
-
 const myListOfNumbers = new GenericCollection<number>();
 myListOfNumbers.pushItem(5);
 myListOfNumbers.pushItem('boop');
