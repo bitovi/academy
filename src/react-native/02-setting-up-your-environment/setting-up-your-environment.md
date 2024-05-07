@@ -198,7 +198,7 @@ Follow the instructions in the quickstart guide.
 
 ### Objective 6: Launch the Android emulator
 
-<img alt="Screenshot of the Android Emulator running in Android Studio" src="../../static/img/react-native/02-setting-up-your-environment/06-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+<img alt="Screenshot of the Android Emulator running in Android Studio" src="../static/img/react-native/02-setting-up-your-environment/06-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
 
 #### Setup 6
 
@@ -478,7 +478,7 @@ C:\Users\bitovi\AppData\Local\Android\Sdk\platform-tools
 
 ### Objective 6: Launch the Android emulator
 
-<img alt="Screenshot of the Android Emulator running in Android Studio" src="../../static/img/react-native/02-setting-up-your-environment/06-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+<img alt="Screenshot of the Android Emulator running in Android Studio" src="../static/img/react-native/02-setting-up-your-environment/06-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
 
 #### Setup 6
 
