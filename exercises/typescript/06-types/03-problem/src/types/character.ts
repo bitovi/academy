@@ -19,14 +19,14 @@ interface Rogue {
 
 type Character = never;
 
-const fighter: Character = {
+export const fighter: Character = {
   strength: 15,
   dexterity: 10,
   intelligence: 8,
   weapon: "Sword",
 };
 
-const mage: Character = {
+export const mage: Character = {
   strength: 5,
   dexterity: 8,
   intelligence: 15,
@@ -34,14 +34,14 @@ const mage: Character = {
   magic: true,
 };
 
-const thief: Character = {
+export const thief: Character = {
   strength: 10,
   dexterity: 15,
   intelligence: 8,
   weapon: "Bow",
 };
 
-const paladin: Character = {
+export const paladin: Character = {
   strength: 15,
   dexterity: 10,
   intelligence: 8,
@@ -51,10 +51,8 @@ const paladin: Character = {
 };
 
 // @ts-expect-error: a weapon is required on the Character type!
-const civilian: Character = {
+export const civilian: Character = {
   strength: 8,
   dexterity: 8,
   intelligence: 8,
 };
-
-export { fighter, mage, thief, paladin, civilian };

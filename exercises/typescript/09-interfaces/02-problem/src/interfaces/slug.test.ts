@@ -13,6 +13,6 @@ describe("Interfaces", () => {
         zip: "12345",
       },
     });
-    assert.equal(result, "Isla-Sorna-Park", "slug works");
+    assert.equal(result, "isla-sorna-park", "slug works");
   });
 });

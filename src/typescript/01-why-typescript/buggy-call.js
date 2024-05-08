@@ -1,5 +1,5 @@
 function greeter(person) {
-    return "Hello, " + person;
+  return "Hello, " + person;
 }
 
 const user = { name: "Justin" };

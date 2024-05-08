@@ -2,7 +2,7 @@ class Leoplurodon {
   readonly location: string;
   readonly numberOfFlippers = 4;
   readonly magic = true;
-  constructor (theLocation: string) {
+  constructor(theLocation: string) {
     this.location = theLocation;
   }
 
