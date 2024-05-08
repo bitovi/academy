@@ -1,16 +1,12 @@
 import type { FC } from "react"
 import type { Theme } from "./theme"
 
-import { useState, createContext, useContext, useMemo } from "react"
-import { Appearance } from "react-native"
+import { createContext, useContext, useMemo } from "react"
 
-import themes from "./theme"
-
-type Mode = keyof typeof themes
+import theme from "./theme"
 
 interface ThemeContext {
-  mode: Mode
-  setMode: (mode: Mode) => void
+  theme: Theme
 }
 
 const Context = createContext<ThemeContext>({
@@ -29,9 +25,4 @@ export function useTheme(): Theme {
   const { theme } = useContext(Context)
 
   return theme
-}
-
-export function useThemeMode() {
-
-  return
 }
