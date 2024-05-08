@@ -110,6 +110,7 @@ We’re using TypeScript in our project, so we can create an `interface` for `pr
 Let’s create a `SubmitButton` component to see `props` in action:
 
 @sourceref ./submit-button-and-props.tsx
+@highlight 4, 9-10
 
 In this example, `SubmitButtonProps` is an interface that defines the types for `label` (a string) and `onPress` (a function). Our `SubmitButton` component then uses these props to display a button with a label and a click action.
 
@@ -118,6 +119,7 @@ The example above illustrates how props are passed to component as an argument.
 However, more commonly (and for the rest of this course) you will see props destructured in the function parameters:
 
 @sourceref ./submit-button-and-props-destructured.tsx
+@highlight 9
 
 ### Passing component props
 
@@ -175,9 +177,9 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 </details>
 
-## Objective 3: Organizing code with the Modlet pattern
+## Objective 3: Organize code with the Modlet pattern
 
-Our efforts to refactor have been going swimmingly; however, the `App.tsx` file is getting a bit crowded. It's about time we take the time to organize our code, while doing so we'll also introduce a useful pattern to follow.
+Our efforts to refactor have been going swimmingly; however, the `App.tsx` file is getting a bit crowded. It’s about time we take the time to organize our code, while doing so we'll also introduce a useful pattern to follow.
 
 ### Modlets
 
@@ -209,14 +211,14 @@ Without a plan of how to organize our files, we might end up with something like
 
 - src/
   - ProductPage/
-    - ProductDetails.tsx
-    - ProductDetails.module.css
-    - ProductDetails.test.ts
+    - CartButton.tsx
+    - CartButton.test.tsx
     - ImageCarousel.tsx
-    - ImageCarousel.module.css
+    - ImageCarousel.test.tsx
     - placeholderImage.png
-    - AddToCartButton.tsx
-    - AddToCartButton.module.css
+    - ProductPage.tsx
+    - ProductDetails.tsx
+    - ProductDetails.test.ts
 
 </div>
 
@@ -229,21 +231,20 @@ The same page, refactored into a modlet architecture would look like this:
     - ProductPage.tsx
     - index.ts
     - components/
+      - assets/
+        - placeholderImage.png
       - ProductDetails/
         - index.ts
         - ProductDetails.tsx
-        - ProductDetails.module.css
         - ProductDetails.test.ts
       - ImageCarousel/
         - index.ts
         - ImageCarousel.tsx
-        - ImageCarousel.module.css
+        - ImageCarousel.test.ts
       - CartButton/
         - index.ts
         - CartButton.tsx
-        - CartButton.module.css
-      - assets/
-        - placeholderImage.png
+        - CartButton.test.ts
 
 </div>
 
@@ -253,15 +254,19 @@ Compared to the former structure, the modlet structure is:
 - Location of relevant code is clear.
 - Related functionality bundled in same folder.
 
+#### Writing Modlet components
+
 For more clarity, the `ProductDetails` component has a default export.
 
 @sourceref ./ProductDetails-implementation.tsx
 
-Then, we have the index file for this modlet. It re-exports the default from the key implementation file form that modlet, in this case `ProdDetails`.
+Then, we have the index file for this modlet. It re-exports the default from the key implementation file form that modlet, in this case `ProductDetails`.
 
 @sourceref ./sample-index.ts
 
-With the Modlet structure, the top-level component's imports statements look as follows:
+#### Importing Modlets
+
+With the Modlet structure, the top-level component’s imports statements look as follows:
 
 @sourceref ./modlet-usage.tsx
 
@@ -289,7 +294,7 @@ It’s best practice to create a new folder that will contain all of the related
 
 @sourceref ../../../exercises/react-native/06-custom-components/03-problem/src/App.tsx
 
-✏️ Create **src/screens/StateList** (folder)
+✏️ Create **src/screens/StateList/** (folder)
 
 ✏️ Create **src/screens/StateList/StateList.tsx** and update it to be:
 
@@ -299,7 +304,7 @@ It’s best practice to create a new folder that will contain all of the related
 
 @sourceref ../../../exercises/react-native/06-custom-components/03-problem/src/screens/StateList/index.ts
 
-✏️ Create **src/screens/StateList/components/ListItem** (folder)
+✏️ Create **src/screens/StateList/components/ListItem/** (folder)
 
 ✏️ Create **src/screens/StateList/components/ListItem/ListItem.tsx** and update it to be:
 
@@ -326,7 +331,7 @@ It’s best practice to create a new folder that will contain all of the related
 ### Exercise 3
 
 - Move the `StateList` and `ListItem` component logic into the correct file.
-- Make sure to properly update each `import` and to reference every component's essential files.
+- Make sure to properly update each `import` and to reference every component’s essential files.
 
 ### Solution 3
 
