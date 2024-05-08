@@ -9,8 +9,14 @@ interface ThemeContext {
   theme: Theme
 }
 
-const ThemeProvider: FC = () => {}
+// TODO
+
+const ThemeProvider: FC = () => {
+  // TODO
+}
 
 export default ThemeProvider
 
-export function useTheme(): Theme {}
+export function useTheme(): Theme {
+  // TODO
+}
