@@ -1,4 +1,5 @@
-import { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useState } from 'react';
+import { View, Text, TextInput } from 'react-native';
 
 const NameField: React.FC = () => {
   const [value, setValue] = useState<string>('')
@@ -8,9 +9,13 @@ const NameField: React.FC = () => {
   }
 
   return (
-    <label>
-      Name
-      <input onChange={handleChange} type="text" value={value} />
-    </label>
+    <View>
+      <Text>Name</Text>
+      <TextInput
+        onChangeText={handleChange}
+        value={value}
+        style={{ borderWidth: 1, borderColor: 'gray', padding: 10 }}
+      />
+    </View>
   )
 }

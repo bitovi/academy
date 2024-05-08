@@ -32,12 +32,13 @@ Imagine we have a `config.ts` file:
 
 ```ts
 const config = {
-    name: "Bitovi Academy",
-    url: "https://www.bitovi.com/academy/",
+  name: "Bitovi Academy",
+  url: "https://www.bitovi.com/academy/",
 };
 
 export default config;
 ```
+
 @highlight 6
 
 In the example above, we create a `config` variable and then use `export default` to export it.
@@ -49,6 +50,7 @@ import appConfig from "./config.ts";
 
 const appName = appConfig.name;
 ```
+
 @highlight 1
 
 In the code above, the `appConfig` variable is the same as the `config` variable exported from `config.ts`.
@@ -61,17 +63,14 @@ Named exports are called that because there is an explicit name in the file with
 Let’s imagine we have a `helpers.ts` file:
 
 ```ts
-function clampNumber(value: number, min: number, max: number): number {
-    return Math.min(Math.max(value, min), max);
+export function constrain(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max);
 }
-
-export {
-    constrain: clampNumber,
-};
 ```
+
 @highlight 5-7
 
-In the example above, we export a `constrain` function from our `helpers.ts` file. Note that the local function name is called something else (`clampNumber`) and we export it with a specific name (`constrain`).
+In the example above, we export a `constrain` function from our `helpers.ts` file.
 
 We can import the `constrain` function like so:
 
@@ -80,38 +79,10 @@ import { constrain } from "./helpers.ts";
 
 const constrained = constrain(-18, 0, 100);
 ```
+
 @highlight 1
 
 In the code above, we can import the `constrain` function by name from `helpers.ts` and use it in our code.
-
-#### Shorthand
-
-If the name of the function in the file matches what you want to export it as, you can use this shorthand in your export statement:
-
-```ts
-function constrain(value: number, min: number, max: number): number {
-    return Math.min(Math.max(value, min), max);
-}
-
-export {
-    constrain,
-};
-```
-@highlight 1, 6
-
-#### Renaming with `as`
-
-We can also rename our declarations when exporting if need be
-
-```typescript
-function clampNumber(value: number, min: number, max: number): number {
-    return Math.min(Math.max(value, min), max);
-}
-
-export {
-    clampNumber as constrain,
-};
-```
 
 #### Exporting in place
 
@@ -119,22 +90,23 @@ You can also export values from where they’re declared in the file, without a 
 
 ```ts
 export function constrain(value: number, min: number, max: number): number {
-    return Math.min(Math.max(value, min), max);
+  return Math.min(Math.max(value, min), max);
 }
 ```
+
 @highlight 1
 
 ### Default exports vs. named exports
 
-While you can use both in projects and some APIs may require you to use one type of export vs. the other, we recommend you use named exports in all of the code you write.
+While you can prefer one style of export over the other, each serves a different purpose.
 
-Here’s why:
+- Use default exports for the primary output of a module.
+- Use named exports for secondary outputs or when there is no primary output.
 
-**Consistency:** Named exports enforce consistency. The name of the export has to be used wherever it’s imported unless explicitly renamed. This consistency makes it easier to trace through code and understand what is being imported and used.
+## For example:
 
-**Explicitness and clarity:** Since you have to explicitly list what you are importing, it provides a clear overview of what dependencies a module has. This explicitness improves readability and maintainability of the code.
-
-**Better tooling support:** Many IDEs and tools have easier times with auto-completion and refactoring when using named exports. This can lead to more efficient coding and a lower chance of errors.
+- If you have a module called `AuthProvider` that exports a React component and several helper hooks, the component would be the primary (default) export and the hook would be secondary (named).
+- If you have a module called `transforms` that exports the functions `formatPercent` and `formatCurrency`, both of these would be named exports; there is no primary export.
 
 ### Importing types
 
@@ -154,6 +126,7 @@ export const createUser = (name: string, age: number): User => {
   return { name, age };
 };
 ```
+
 @highlight 1, only
 
 In the code above, we defined a `User` type and a `createUser` function.
@@ -162,16 +135,17 @@ The `User` type describes the shape of user objects.
 We can import just the `User` type (and use it) like so:
 
 ```ts
-import type { User } from './user';
-import { createUser } from './user';
+import type { User } from "./user";
+import { createUser } from "./user";
 
 const logUser = (user: User): void => {
   console.info(`User: ${user.name}, Age: ${user.age}`);
 };
 
-const user = createUser('Alice', 30);
+const user = createUser("Alice", 30);
 logUser(user);
 ```
+
 @highlight 1, 4, only
 
 In the code above, the `User` type import will not be included in the JavaScript output after compilation (because it’s only used for static type checking by TypeScript).

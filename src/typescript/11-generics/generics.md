@@ -25,48 +25,48 @@ Consider a function that wraps a value in an object:
 
 ```js
 function wrapAsValue(value) {
-    return {value: value};
+  return { value: value };
 }
 ```
 
 Ideally, you’d want to use this function to wrap all sorts of values:
 
 ```js
-const fourWrapped = wrapAsValue(4);  //-> {value: 4}
+const fourWrapped = wrapAsValue(4); //-> {value: 4}
 const hiWrapped = wrapAsValue("hi"); //-> {value: "hi"}
 ```
 
 And you might want to pass those objects to other functions:
 
 ```typescript
-function getDollars(object: {value: number}){
-    return "$" + object.value.toFixed(2)
+function getDollars(object: { value: number }) {
+  return "$" + object.value.toFixed(2);
 }
 
-function getMessage(object: {value: string}) {
-    return object.value + " world";
+function getMessage(object: { value: string }) {
+  return object.value + " world";
 }
 
 getDollars(fourWrapped); //-> "$4.00"
-getMessage(hiWrapped);   //-> "hi world"
+getMessage(hiWrapped); //-> "hi world"
 ```
 
-__But watch out!__  The following will __not__ error until _runtime_
- because strings do not have a `toFixed()` method.
+**But watch out!** The following will **not** error until _runtime_
+because strings do not have a `toFixed()` method.
 
 ```js
-getDollars(hiWrapped);  
+getDollars(hiWrapped);
 ```
 
 You don’t see a compile time error because `hiWrapped` object looks like `{value: any}` to TypeScript.
 
-Getting a compile time error can be solved in a variety of __inelegant__ ways:
+Getting a compile time error can be solved in a variety of **inelegant** ways:
 
 **Way 1:** Define the type of the variables:
 
 ```typescript
-const fourWrapped: {value: number} = wrapAsValue(4);
-const hiWrapped:   {value: string} = wrapAsValue("hi");
+const fourWrapped: { value: number } = wrapAsValue(4);
+const hiWrapped: { value: string } = wrapAsValue("hi");
 ```
 
 The main drawback here is the redundancy and verbosity introduced by having to manually specify the type of each variable.
@@ -76,10 +76,10 @@ This approach lacks scalability as every new variable type requires explicit typ
 
 ```typescript
 function wrapStringAsValue(value: string) {
-  return {value: value};
+  return { value: value };
 }
 function wrapNumberAsValue(value: number) {
-  return {value: value};
+  return { value: value };
 }
 ```
 
@@ -90,10 +90,10 @@ For every new type that needs to be wrapped, a new function must be created, whi
 **Way 3:** Overload `wrapAsValue` signatures:
 
 ```typescript
-function wrapAsValue(value: string): {value: string};
-function wrapAsValue(value: number): {value: number};
+function wrapAsValue(value: string): { value: string };
+function wrapAsValue(value: number): { value: number };
 function wrapAsValue(value: any) {
-    return {value: value};
+  return { value: value };
 }
 ```
 
@@ -102,31 +102,32 @@ Additionally, the implementation leverages the `any` type for a catch-all method
 
 ### Introducing generics
 
-With __generics__, this problem can be solved more simply:
+With **generics**, this problem can be solved more simply:
 
 ```typescript
-function wrapAsValue<MyType>(value: MyType): {value: MyType} {
-    return {value: value};
+function wrapAsValue<MyType>(value: MyType): { value: MyType } {
+  return { value: value };
 }
 
 const fourWrapped = wrapAsValue<number>(4);
 const hiWrapped = wrapAsValue("hi");
 
-function getDollars(object: {value: number}){
-    return "$"+object.value.toFixed(2)
+function getDollars(object: { value: number }) {
+  return "$" + object.value.toFixed(2);
 }
 
-function getMessage(object: {value: string}) {
-    return object.value + " world";
+function getMessage(object: { value: string }) {
+  return object.value + " world";
 }
 
 getDollars(fourWrapped);
 getMessage(hiWrapped);
 getDollars(hiWrapped);
 ```
+
 @highlight 1, 5, only
 
-The `<MyType>` part of the `wrapAsValue` definition is the __Generics__
+The `<MyType>` part of the `wrapAsValue` definition is the **Generics**
 part. This `<MyType>` allows us to capture the type the user provides so that we can use that information later. In this case, we are using it to specify that the
 return type is an object with a `MyType` `value`
 property (`{value: MyType}`). This allows us to traffic that type of information in one side of the function and out the other.
@@ -137,22 +138,22 @@ We can call generic functions in two ways.
 
 First, we can explicitly pass the type:
 
-  ```typescript
-   wrapAsValue<number>(4)
-  ```
+```typescript
+wrapAsValue<number>(4);
+```
 
-  Notice that `<number>` acts as a special set of arguments. Instead of
-  arguments passed like `func(arg1, arg2, arg3)`, generic type arguments
-  are passed like `func<Type1, Type2, Type3>`.
+Notice that `<number>` acts as a special set of arguments. Instead of
+arguments passed like `func(arg1, arg2, arg3)`, generic type arguments
+are passed like `func<Type1, Type2, Type3>`.
 
 Second, the type can be inferred:
 
-  ```typescript
-  wrapAsValue("hi")
-  ```
+```typescript
+wrapAsValue("hi");
+```
 
-  Notice that we didn’t explicitly pass the type n the angle brackets (`<>`). Instead,
-  the compiler just looked at the value `"hi"` and set `MyType` to `string`.
+Notice that we didn’t explicitly pass the type n the angle brackets (`<>`). Instead,
+the compiler just looked at the value `"hi"` and set `MyType` to `string`.
 
 ### Setup 1
 
@@ -185,9 +186,10 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 We use `<T>` to set up the generic.
 In the parenthesis, we use `T[]` to inform the user we are accepting an array of a certain type.
-Finally, we use `): T{` to let us be aware what is the return type.   
+Finally, we use `): T{` to let us be aware what is the return type.
 
 <strong>Have issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-solution?file=src/generics/last.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-solution?file=src/generics/last.ts).
+
 </details>
 
 ## Objective 2: Generics in classes
@@ -199,7 +201,7 @@ Generic classes are quite common.
 ```typescript
 const cardNumber = new Subject<string>();
 
-cardNumber.next("1234")
+cardNumber.next("1234");
 ```
 
 In the example above, [learn-rxjs/basics#observables-vs-subjects RxJS] subjects are a generic class that can publish values of a particular type.
@@ -216,7 +218,7 @@ class Collection {
 
 const myList = Collection();
 myList.push(25);
-myList.push('25');
+myList.push("25");
 ```
 
 The good - we can push any type to this list.  
@@ -225,12 +227,12 @@ The bad - we can push any type to this list.
 `myList` now holds an assortment of types and will be a likely source of
 runtime errors.
 
-Let’s build a __generic__ `Collection` class instead.
+Let’s build a **generic** `Collection` class instead.
 
 ```typescript
 class GenericCollection<T> {
   private list: T[] = [];
-  pushItem( thing:T ) {
+  pushItem(thing: T) {
     this.list.push(thing);
   }
 }
@@ -241,7 +243,7 @@ Now when we initialize this class we can specify a type to use.
 @sourceref ./generic-collection-class.ts
 @highlight 1, 8, 13, 24
 
-In the example above, we are utilizing generics to inform `GenericCollection` what type it is receiving: `string`, `number`, or `Dinosaur`. 
+In the example above, we are utilizing generics to inform `GenericCollection` what type it is receiving: `string`, `number`, or `Dinosaur`.
 
 A great example of the power of generics is creating a recursive data structure like a tree. In the following exercise, we will create a `TreeNode` class that can house a generic `value` and be used to create a tree structure of `left` and `right` nodes of the same generic type.
 
@@ -277,7 +279,7 @@ This will add `Taylor` to a `left` `TreeNode` of `root` because
 the `stringComparison` will return `1` (`Jennifer > Taylor`):
 
 ```typescript
-root.left.value //-> "Taylor"
+root.left.value; //-> "Taylor"
 ```
 
 As we add other values, they will be added to either the right or left nodes
@@ -287,8 +289,8 @@ recursively:
 root.add("Tom");
 root.add("Matthew");
 
-root.right.value      //-> "Tom"
-root.right.left.value //-> "Matthew"
+root.right.value; //-> "Tom"
+root.right.left.value; //-> "Matthew"
 ```
 
 <strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/02-problem?file=src/generics/tree.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/02-problem?file=src/generics/tree.ts) to do this exercise in an online code editor.

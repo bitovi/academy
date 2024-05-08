@@ -1,4 +1,4 @@
 
 export default function createParkSlug(dinoPark) {
-  return dinoPark.name.replace(/ /g, '-');
+  return dinoPark.name.toLowerCase().replace(/ /g, '-');
 }

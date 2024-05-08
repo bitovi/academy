@@ -6,6 +6,6 @@ class Dinosaur {
   }
 }
 
-let dino = new Dinosaur('Billy');
+let dino = new Dinosaur("Billy");
 console.info(dino.age);
 // Logs "0"

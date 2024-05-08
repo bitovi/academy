@@ -15,25 +15,23 @@ interface Curry {
 
 type Dish = Sushi | Taco | Curry;
 
-const sushi: Dish = {
+export const sushi: Dish = {
   cuisine: "Japanese",
   fish: "Tuna",
 };
 
-const taco: Dish = {
+export const taco: Dish = {
   cuisine: "Mexican",
   meat: "Chicken",
 };
 
-const curry: Dish = {
+export const curry: Dish = {
   cuisine: "Indian",
   spicy: 10,
 };
 
-const fusion: Dish = {
+export const fusion: Dish = {
   cuisine: "Japanese",
   // @ts-expect-error: spicy doesn’t exist on the Sushi interface!
   spicy: 5,
 };
-
-export { sushi, taco, curry, fusion };

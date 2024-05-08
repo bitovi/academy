@@ -224,6 +224,7 @@ src/hello-world/greetings.ts:7:35 - error TS2345: Argument of type 'number' is n
 ```
 
 <a href="../static/img/typescript-error-compiling.png"><img alt="A screenshot of an Integrated Development Environment (IDE) showing TypeScript code. The code attempts to greet a user by displaying “Hello,” followed by a user’s name. However, a numeric value is passed instead of a string, causing a compilation error highlighted in the terminal at the bottom." src="../static/img/typescript-error-compiling.png" width="100%"/></a>
+
 </details>
 
 ## Objective 5: Create your first test file

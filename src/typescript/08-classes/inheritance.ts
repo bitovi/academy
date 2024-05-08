@@ -7,7 +7,10 @@ class Dinosaur {
 }
 
 class Velociraptor extends Dinosaur {
-  constructor(name: string, public speed: number) {
+  constructor(
+    name: string,
+    public speed: number,
+  ) {
     super(name);
   }
   run(): void {
@@ -18,7 +21,7 @@ class Velociraptor extends Dinosaur {
   }
 }
 
-let blue = new Velociraptor('Blue', 55);
+let blue = new Velociraptor("Blue", 55);
 blue.move(10);
 // Logs "Blue moved 10 feet."
 blue.talk();

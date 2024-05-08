@@ -448,7 +448,7 @@ That will produce the following HTML:
 
 🔦 _During development, If you forget to provide a `key` prop for items in an array React will log the following error to the browser’s console:_
 
-<img alt="A browser console with the error message 'Warning: Each child in a list should have a unique 'key' prop." src="../../../static/img/react-vite/03-intro-to-jsx/react-missing-key-error.png" style="width:100%" />
+<img alt="A browser console with the error message 'Warning: Each child in a list should have a unique 'key' prop." src="../static/img/react-vite/03-intro-to-jsx/react-missing-key-error.png" style="width:100%" />
 
 ### Setup 2
 

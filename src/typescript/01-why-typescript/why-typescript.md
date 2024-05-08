@@ -10,7 +10,7 @@
 
 TypeScript is a programming language developed and maintained by Microsoft. It is a typed superset of JavaScript,
 which means that any valid JavaScript code is also valid TypeScript code. TypeScript adds optional static typing
-to the language, along with other features that don’t exist in regular JavaScript. 
+to the language, along with other features that don’t exist in regular JavaScript.
 
 ### Static vs. dynamic typing
 
@@ -58,7 +58,7 @@ During this process, the compiler can catch and report errors that would otherwi
 Here’s an example of TypeScript code before transpilation:
 
 ```typescript
-const world: string = 'world';
+const world: string = "world";
 
 export function hello(who: string = world): string {
   return `Hello ${who}! `;
@@ -71,9 +71,9 @@ Here’s that same code transpiled into JavaScript:
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.hello = void 0;
-const world = 'world';
+const world = "world";
 function hello(who = world) {
-    return `Hello ${who}! `;
+  return `Hello ${who}! `;
 }
 exports.hello = hello;
 ```
@@ -90,7 +90,7 @@ Here’s an example of plain JavaScript:
 
 ```js
 function calculateTotal(price, tax) {
-    return price + (price * tax);
+  return price + price * tax;
 }
 ```
 
@@ -98,7 +98,7 @@ In the TypeScript example below, the parameters and return values are labeled wi
 
 ```typescript
 function calculateTotal(price: number, tax: number): number {
-    return price + (price * tax);
+  return price + price * tax;
 }
 ```
 
@@ -110,12 +110,12 @@ Here’s another example of code being more readable with types. Creating a `Use
 
 ```typescript
 interface User {
-    name: string;
-    age: number;
+  name: string;
+  age: number;
 }
 
 function greet(user: User) {
-    console.info(`Hello, ${user.name}`);
+  console.info(`Hello, ${user.name}`);
 }
 ```
 
@@ -123,7 +123,7 @@ As opposed to JavaScript, where the `user` object could be anything!
 
 ```js
 function greet(user) {
-    console.info(`Hello, ${user.name}`);
+  console.info(`Hello, ${user.name}`);
 }
 ```
 
@@ -168,6 +168,10 @@ Features like code completion, refactorings, and inline documentation become mor
 
 TypeScript is supported by most modern development tools, including popular IDEs like Visual Studio Code, WebStorm, and others.
 These tools provide enhanced features when used with TypeScript, such as better autocomplete, inline errors, and automated refactoring tools.
+
+## TypeScript or JavaScript?
+
+Given the myriad benefits of TypeScript, we simply cannot recommend using plain JavaScript on the vast majority of modern projects. Even on legacy JavaScript projects, we usually recommend migrating to TypeScript.
 
 ## Next steps
 
