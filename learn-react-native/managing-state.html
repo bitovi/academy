@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="TODO 
+  <meta name="description" content="Work with React’s useState Hook to manage a component’s state. 
 ">
   
   <!-- Google Tag Manager -->
@@ -274,7 +274,7 @@
            						expanded">
 						<a class="page"
 							href="managing-state.html"
-							title="TODO">
+							title="Work with React’s useState Hook to manage a component’s state.">
 							Managing State with useState
 						</a>
 						
@@ -665,7 +665,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>TODO</p>
+    <p>Work with React’s useState Hook to manage a component’s state.</p>
 
 </section>
 
@@ -681,7 +681,11 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this section, you will:</p>
 <ul>
-<li>TODO</li>
+<li>Get an overview of state management.</li>
+<li>Cover the fundamentals of React Hooks.</li>
+<li>Review the Rules of Hooks.</li>
+<li>Learn about the <code>useState</code> Hook.</li>
+<li>Create custom Hooks.</li>
 </ul>
 <h2>Objective: Toggle between light and dark mode</h2>
 <p>We will be setting up the application to switch between light mode and dark mode:</p>
@@ -689,8 +693,166 @@ covering CanJS core libraries.">
   <img alt="Screenshot of the application when it is in light mode." src="../static/img/react-native/10-managing-state/lightMode.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
   <img alt="Screenshot of the application when it is in dark mode." src="../static/img/react-native/10-managing-state/darkMode.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
 </div>
-<h3>Concept TODO</h3>
-<p>TODO</p>
+<h3>Overview of state management</h3>
+<p>State in React Native is a crucial concept, as it represents the parts of an app that can change over time. Each component can have its state, allowing them to maintain and manage their data independently. When the state changes, React Native re-renders and update the native UI components if it needs to.</p>
+<p>There are different types of state within an application:</p>
+<ul>
+<li><strong>Global State:</strong> This refers to data that is shared between multiple components. In React Native, global state can be managed using Context API or state management libraries; this is covered in the previous lesson <a href="react-context.html" title="Learn how to share a common theme by creating a Context.">Using React Context</a>.</li>
+<li><strong>Local State:</strong> This is data we manage in the component that uses it. Local state is managed in React Native using the <code>useState</code> Hook.</li>
+<li><strong>UI State:</strong> This is a subset of Local State, but is limited to minor UI effects, such as the visibility of a drawer or open section of an accordion.</li>
+</ul>
+<h3>Intro to React Hooks</h3>
+<p>We’ve mentioned before that <code>useState</code> is a Hook for managing state, but what does that mean?</p>
+<p>React Hooks (referred to as just Hooks for the rest of this training) are special functions that allow us to “hook” into React Native functionality. Hooks provide us with many conveniences like sharing stateful logic between components and simplifying what would be otherwise complex components.</p>
+<p>We’ve already seen and used a Hook while building Place My Order! Do you remember this code from earlier?</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import type { Theme } from &quot;./theme&quot;
+
+import { createContext, useContext, useMemo } from &quot;react&quot;
+
+import theme from &quot;./theme&quot;
+
+interface ThemeContext {
+  theme: Theme
+}
+
+const Context = createContext&lt;ThemeContext&gt;({
+  theme,
+})
+
+const ThemeProvider: FC&lt;{ children: React.ReactNode }&gt; = ({ children }) =&gt; {
+  const value = useMemo(() =&gt; ({ theme }), [])
+
+  return &lt;Context.Provider value={value}&gt;{children}&lt;/Context.Provider&gt;
+}
+
+export default ThemeProvider
+
+export function useTheme(): Theme {
+  const { theme } = useContext(Context)
+
+  return theme
+}
+
+</code></pre>
+<div line-highlight='4, 17, 25'></div>
+<p>The <code>useContext</code> and <code>useMemo</code> Hook from <code>react</code> allowed us to optimize the performance of our applications by efficiently managing context and memoizing expensive computations respectively.</p>
+<h3>The Rules of Hooks</h3>
+<p>React Native imposes several rules around the use of Hooks:</p>
+<ul>
+<li><p><strong>First,</strong> only call Hooks from React Native function components or your custom Hooks.</p></li>
+<li><p><strong>Second,</strong> all the Hooks in a React Native function must be invoked in the same order every time the function runs, so no Hooks can occur after an <code>if</code>, <code>loop</code>, or <code>return</code> statement. Typically this means all Hooks are placed at the top of the React Native function body.</p></li>
+<li><p><strong>Third,</strong> Hooks must be named by prefixing their functionality with <code>use</code> (e.g. <code>useContext</code>).</p></li>
+</ul>
+<h3>The useState Hook</h3>
+<p>We can store the state that persists through component rendering with the <code>useState</code> Hook. You can set the initial state value when the component <strong>first</strong> renders by providing the value as an argument to the Hook. _If you do not provide a value the initial state value will be <code>undefined</code>.</p>
+<p>This example shows a <code>useState</code> Hook being set with an initial value of <code>&quot;&quot;</code>:</p>
+<pre><code class="language-tsx">import React, { ChangeEvent, useState } from 'react';
+import { View, Text, TextInput } from 'react-native';
+
+const NameField: React.FC = () =&gt; {
+  const [value, setValue] = useState&lt;string&gt;('')
+
+  const handleChange = (event: ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
+    setValue(event.target.value)
+  }
+
+  return (
+    &lt;View&gt;
+      &lt;Text&gt;Name&lt;/Text&gt;
+      &lt;TextInput
+        onChangeText={handleChange}
+        value={value}
+        style={{ borderWidth: 1, borderColor: 'gray', padding: 10 }}
+      /&gt;
+    &lt;/View&gt;
+  )
+}
+</code></pre>
+<div line-highlight='1, 5, only'></div>
+<p>As you can see in the previous example, <code>useState</code> returns an array with two elements: the first is the current state value of the Hook, and the second is a setter function that is used to update the state value.</p>
+<p>In the following code, the value is being rendered and the setter is being used to keep track of which input value the user has typed:</p>
+<pre><code class="language-tsx">import React, { ChangeEvent, useState } from 'react';
+import { View, Text, TextInput } from 'react-native';
+
+const NameField: React.FC = () =&gt; {
+  const [value, setValue] = useState&lt;string&gt;('')
+
+  const handleChange = (event: ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
+    setValue(event.target.value)
+  }
+
+  return (
+    &lt;View&gt;
+      &lt;Text&gt;Name&lt;/Text&gt;
+      &lt;TextInput
+        onChangeText={handleChange}
+        value={value}
+        style={{ borderWidth: 1, borderColor: 'gray', padding: 10 }}
+      /&gt;
+    &lt;/View&gt;
+  )
+}
+</code></pre>
+<div line-highlight='8, only'></div>
+<p>Every time a <code>useState</code>’s setter is invoked with a new value, React Native compares the new value with the current value. If the values are the same, nothing happens; <strong>if the values are different, React Native will rerender the component</strong> so the new state value can be used to update the component.</p>
+<p>In the example above, when the user types, the <code>NameField</code> component is rendered again, and the <code>TextInput</code> is updated with the current value.</p>
+<h3>What are custom Hooks?</h3>
+<p>React Native's Hooks API provides a powerful and flexible way to encapsulate and reuse functionality across our components. While React Native comes with a set of built-in Hooks, we can also create our own custom Hooks. This allows us to abstract component logic into reusable functions. Custom Hooks are particularly useful when we find ourselves repeating the same logic in multiple components.</p>
+<p>Custom Hooks are JavaScript functions that can use other React Hooks and provide a way to share logic across multiple components. Like built-in Hooks, custom Hooks must adhere to React’s rules of Hooks. The naming convention for custom Hooks is to start with <code>use</code>, like <code>useCustomHook</code>.</p>
+<h3>Why use custom Hooks?</h3>
+<p>Putting stateful logic into a custom Hook has numerous benefits:</p>
+<p><strong>Reusability:</strong> One of the primary reasons for creating custom Hooks is reusability. You might find yourself repeating the same logic in different components—for example, fetching data from an API, handling form input, or managing a subscription. By refactoring this logic into a custom Hook, you can easily reuse this functionality across multiple components, keeping your code DRY (Don’t Repeat Yourself).</p>
+<p><strong>Separation of concerns:</strong> Custom Hooks allow you to separate complex logic from the component logic. This makes your main component code cleaner and more focused on rendering UI, while the custom Hook handles the business logic or side effects. It aligns well with the principle of single responsibility, where a function or module should ideally do one thing only.</p>
+<p><strong>Easier testing and maintenance:</strong> Isolating logic into custom Hooks can make your code easier to test and maintain. Since Hooks are just JavaScript functions, they can be tested independently of any component. This isolation can lead to more robust and reliable code.</p>
+<p><strong>Simplifying components:</strong> If your component is becoming too large and difficult to understand, moving some logic to a custom Hook can simplify it. This not only improves readability but also makes it easier for other developers to grasp what the component is doing.</p>
+<h3>How to create a custom Hook</h3>
+<p>To create a custom Hook, you start by defining a function that starts with <code>use</code>. This Hook can call other Hooks and return whatever value is necessary.</p>
+<p>Let’s look at the provided Hook below that keeps track of a boolean state, and also provides a function for toggling that state:</p>
+<pre><code class="language-tsx">import { useState } from &quot;react&quot;
+
+export function useToggle(intialValue = true) {
+  const [on, setOn] = useState(intialValue)
+
+  const handleToggle = (value?: unknown) =&gt; {
+    if (typeof value === &quot;boolean&quot;) {
+      setOn(value)
+    } else {
+      setOn(!on)
+    }
+  }
+
+  return [on, handleToggle]
+}
+
+</code></pre>
+<p>In the example above, you can see that our <code>useToggle</code> Hook is a function that has an internal <code>useState</code> to keep track of the toggle’s on/off status. This Hook has a <code>handleToggle</code> function for changing its internal state. Lastly, we can see that the <code>useToggle</code> Hook returns an array with the <code>on</code> status and the <code>handleToggle</code> function.</p>
+<h3>How to use a custom Hook</h3>
+<p>How would we use this Hook? Let’s take a look at this example:</p>
+<pre><code class="language-tsx">import React from 'react';
+import { View, Text, Switch } from 'react-native';
+
+import { useToggle } from &quot;./useToggle&quot;
+
+const Toggle: React.FC = () =&gt; {
+  const [active, toggleActive] = useToggle(true);
+
+  return (
+    &lt;View&gt;
+      &lt;View&gt;
+        &lt;Switch
+          onValueChange={toggleActive}
+          value={active}
+        /&gt;
+        &lt;Text&gt;{active ? &quot;On&quot; : &quot;Off&quot;}&lt;/Text&gt;
+      &lt;/View&gt;
+    &lt;/View&gt;
+  );
+}
+</code></pre>
+<div line-highlight='4, 7, 13-14, 16, only'></div>
+<p>In this component, we call our <code>useToggle</code> Hook with the initial state (<code>true</code>). Our Hook returns the <code>active</code> state and <code>toggleActive</code> function for changing the on/off state.</p>
+<p>This is how we can create our custom <code>useToggle</code> Hook and call it in our components, just like React’s built-in Hooks!</p>
 <h3>Setup</h3>
 <p>✏️ Update <strong>src/design/theme/theme.ts</strong> to be:</p>
 <pre><code class="language-ts">import type { TextStyle } from &quot;react-native&quot;
@@ -801,6 +963,93 @@ export default {
 }
 </code></pre>
  <div line-highlight="32,80-101,103-106,only"></div>
+<p>✏️ Update <strong>src/design/theme/ThemeProvider.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import type { Theme } from &quot;./theme&quot;
+
+import { useState, createContext, useContext, useMemo } from &quot;react&quot;
+import { Appearance } from &quot;react-native&quot;
+
+import themes from &quot;./theme&quot;
+
+type Mode = keyof typeof themes
+
+interface ThemeContext {
+  mode: Mode
+  setMode: (mode: Mode) =&gt; void
+}
+
+const Context = createContext&lt;ThemeContext&gt;({
+  theme,
+})
+
+const ThemeProvider: FC&lt;{ children: React.ReactNode }&gt; = ({ children }) =&gt; {
+  const value = useMemo(() =&gt; ({ theme }), [])
+
+  return &lt;Context.Provider value={value}&gt;{children}&lt;/Context.Provider&gt;
+}
+
+export default ThemeProvider
+
+export function useTheme(): Theme {
+  const { theme } = useContext(Context)
+
+  return theme
+}
+
+export function useThemeMode() {
+
+  return
+}
+
+</code></pre>
+ <div line-highlight="4-5,7,9,12-13,16-18,34,36-37,only"></div>
+<p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import ListItem from &quot;./components/ListItem&quot;
+import Card from &quot;../../design/Card&quot;
+import Screen from &quot;../../design/Screen&quot;
+import Typography from &quot;../../design/Typography&quot;
+import { useThemeMode } from &quot;../../design/theme&quot;
+import { Switch } from &quot;react-native&quot;
+
+export type State = {
+  name: string
+  short: string
+}
+
+const states: State[] = [
+  {
+    name: &quot;Illinois&quot;,
+    short: &quot;IL&quot;,
+  },
+  {
+    name: &quot;Wisconsin&quot;,
+    short: &quot;WI&quot;,
+  },
+]
+
+const StateList: FC = () =&gt; {
+  return (
+    &lt;Screen&gt;
+      &lt;Card&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;
+          Place My Order: Coming Soon To...
+        &lt;/Typography&gt;
+      &lt;/Card&gt;
+      {states?.length &gt; 0 ? (
+        states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
+      ) : (
+        &lt;Typography&gt;No states found&lt;/Typography&gt;
+      )}
+    &lt;/Screen&gt;
+  )
+}
+
+export default StateList
+
+</code></pre>
+ <div line-highlight="6-7,9-11,14,40,only"></div>
 <h3>Verify</h3>
 <p>✏️ Update <strong>src/design/theme/theme.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
@@ -891,11 +1140,73 @@ describe(&quot;StateList&quot;, () =&gt; {
 </code></pre>
  <div line-highlight="1-2,4,6,8-14,22-28,only"></div>
 <h3>Exercise</h3>
-<p>TODO</p>
+<p>✏️ Refactoring <strong>src/design/theme/ThemeProvider.tsx</strong>:</p>
+<ul>
+<li>Update <code>Context</code> to set default values for <code>mode</code> and <code>setMode</code>.</li>
+<li>Update <code>ThemeProvider</code> to use <code>useState</code>, so the user can switch between the 2 modes.</li>
+<li>Update <code>useTheme</code> to return 1 theme based on the <code>mode</code> that is stored in the context.</li>
+<li>Update <code>useThemeMode</code> to return <code>mode</code> and <code>setMode</code>.</li>
+</ul>
+<p>✏️ Refactoring <strong>src/screens/StateList/StateList.tsx</strong>:</p>
+<ul>
+<li>Display the <code>Switch</code> component to allow users to toggle.</li>
+<li>Using the recently created <code>useThemeMode</code> Hook, combine it with the <code>Switch</code> component.</li>
+</ul>
 <h3>Solution</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/design/theme/ThemeProvider.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import type { Theme } from &quot;./theme&quot;
+
+import { useState, createContext, useContext, useMemo } from &quot;react&quot;
+import { Appearance } from &quot;react-native&quot;
+
+import themes from &quot;./theme&quot;
+
+type Mode = keyof typeof themes
+
+interface ThemeContext {
+  mode: Mode
+  setMode: (mode: Mode) =&gt; void
+}
+
+const Context = createContext&lt;ThemeContext | undefined&gt;({
+  mode: &quot;light&quot;,
+  setMode: () =&gt; undefined,
+})
+
+const ThemeProvider: FC&lt;{ children: React.ReactNode }&gt; = ({ children }) =&gt; {
+  const [mode, setMode] = useState&lt;Mode&gt;(Appearance.getColorScheme() || &quot;light&quot;)
+
+  const value = useMemo(() =&gt; ({ mode, setMode }), [mode])
+
+  return &lt;Context.Provider value={value}&gt;{children}&lt;/Context.Provider&gt;
+}
+
+export default ThemeProvider
+
+export function useTheme(): Theme {
+  const { mode } = useContext(Context)
+
+  return themes[mode]
+}
+
+export function useThemeMode(): {
+  mode: Mode
+  setMode: (mode: Mode) =&gt; void
+} {
+  const { mode, setMode } = useContext(Context)
+
+  return {
+    mode,
+    setMode,
+  }
+}
+
+</code></pre>
+ <div line-highlight="16-18,22,24,32,34,37-41,43-46,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
 import ListItem from &quot;./components/ListItem&quot;
@@ -950,58 +1261,7 @@ const StateList: FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="6-7,9-11,14,26,40-46,49,only"></div>
-<p>✏️ Update <strong>src/design/theme/ThemeProvider.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import type { Theme } from &quot;./theme&quot;
-
-import { useState, createContext, useContext, useMemo } from &quot;react&quot;
-import { Appearance } from &quot;react-native&quot;
-
-import themes from &quot;./theme&quot;
-
-type Mode = keyof typeof themes
-
-interface ThemeContext {
-  mode: Mode
-  setMode: (mode: Mode) =&gt; void
-}
-
-const Context = createContext&lt;ThemeContext | undefined&gt;({
-  mode: &quot;light&quot;,
-  setMode: () =&gt; undefined,
-})
-
-const ThemeProvider: FC&lt;{ children: React.ReactNode }&gt; = ({ children }) =&gt; {
-  const [mode, setMode] = useState&lt;Mode&gt;(Appearance.getColorScheme() || &quot;light&quot;)
-
-  const value = useMemo(() =&gt; ({ mode, setMode }), [mode])
-
-  return &lt;Context.Provider value={value}&gt;{children}&lt;/Context.Provider&gt;
-}
-
-export default ThemeProvider
-
-export function useTheme(): Theme {
-  const { mode } = useContext(Context)
-
-  return themes[mode]
-}
-
-export function useThemeMode(): {
-  mode: Mode
-  setMode: (mode: Mode) =&gt; void
-} {
-  const { mode, setMode } = useContext(Context)
-
-  return {
-    mode,
-    setMode,
-  }
-}
-
-</code></pre>
- <div line-highlight="4-5,7,9,12-13,16-19,22,24,32,34,37-41,43-47,only"></div>
+ <div line-highlight="26,40-46,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>TODO</p>
@@ -1043,7 +1303,7 @@ export function useThemeMode(): {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-native/10-managing-state/managing-state.md"},"description":"TODO \n","name":"learn-react-native/managing-state","title":"Managing State with useState","type":"page","parent":"learn-react-native","order":10,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-native/10-managing-state/managing-state.md"},"description":"Work with React’s useState Hook to manage a component’s state. \n","name":"learn-react-native/managing-state","title":"Managing State with useState","type":"page","parent":"learn-react-native","order":10,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
