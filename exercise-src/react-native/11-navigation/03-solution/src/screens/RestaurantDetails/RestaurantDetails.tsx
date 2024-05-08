@@ -1,6 +1,5 @@
+import type { StaticScreenProps } from "@react-navigation/native"
 import type { FC } from "react"
-import type { StackScreenProps } from "@react-navigation/stack"
-import type { RestaurantsStackParamList } from "../../App"
 
 import { useEffect } from "react"
 import { useNavigation } from "@react-navigation/native"
@@ -9,7 +8,9 @@ import RestaurantHeader from "../../components/RestaurantHeader"
 import Button from "../../design/Button"
 import Screen from "../../design/Screen"
 
-type Props = StackScreenProps<RestaurantsStackParamList, "RestaurantDetails">
+export type Props = StaticScreenProps<{
+  slug: string
+}>
 
 const restaurant = {
   _id: "Ar0qBJHxM3ecOhcr",
