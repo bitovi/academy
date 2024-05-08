@@ -543,72 +543,72 @@ covering CanJS core libraries.">
 <p>Generics are a way of writing abstract code that allows the determination of types to be handled when the code is used. Generics let us reuse code for different types and improve maintainability. Let’s see how with a small example.</p>
 <p>Consider a function that wraps a value in an object:</p>
 <pre><code class="language-js">function wrapAsValue(value) {
-    return {value: value};
+  return { value: value };
 }
 </code></pre>
 <p>Ideally, you’d want to use this function to wrap all sorts of values:</p>
-<pre><code class="language-js">const fourWrapped = wrapAsValue(4);  //-&gt; {value: 4}
+<pre><code class="language-js">const fourWrapped = wrapAsValue(4); //-&gt; {value: 4}
 const hiWrapped = wrapAsValue(&quot;hi&quot;); //-&gt; {value: &quot;hi&quot;}
 </code></pre>
 <p>And you might want to pass those objects to other functions:</p>
-<pre><code class="language-typescript">function getDollars(object: {value: number}){
-    return &quot;$&quot; + object.value.toFixed(2)
+<pre><code class="language-typescript">function getDollars(object: { value: number }) {
+  return &quot;$&quot; + object.value.toFixed(2);
 }
 
-function getMessage(object: {value: string}) {
-    return object.value + &quot; world&quot;;
+function getMessage(object: { value: string }) {
+  return object.value + &quot; world&quot;;
 }
 
 getDollars(fourWrapped); //-&gt; &quot;$4.00&quot;
-getMessage(hiWrapped);   //-&gt; &quot;hi world&quot;
+getMessage(hiWrapped); //-&gt; &quot;hi world&quot;
 </code></pre>
-<p><strong>But watch out!</strong>  The following will <strong>not</strong> error until <em>runtime</em>
+<p><strong>But watch out!</strong> The following will <strong>not</strong> error until <em>runtime</em>
 because strings do not have a <code>toFixed()</code> method.</p>
-<pre><code class="language-js">getDollars(hiWrapped);  
+<pre><code class="language-js">getDollars(hiWrapped);
 </code></pre>
 <p>You don’t see a compile time error because <code>hiWrapped</code> object looks like <code>{value: any}</code> to TypeScript.</p>
 <p>Getting a compile time error can be solved in a variety of <strong>inelegant</strong> ways:</p>
 <p><strong>Way 1:</strong> Define the type of the variables:</p>
-<pre><code class="language-typescript">const fourWrapped: {value: number} = wrapAsValue(4);
-const hiWrapped:   {value: string} = wrapAsValue(&quot;hi&quot;);
+<pre><code class="language-typescript">const fourWrapped: { value: number } = wrapAsValue(4);
+const hiWrapped: { value: string } = wrapAsValue(&quot;hi&quot;);
 </code></pre>
 <p>The main drawback here is the redundancy and verbosity introduced by having to manually specify the type of each variable.
 This approach lacks scalability as every new variable type requires explicit type declaration, which can be tedious and error-prone, especially in larger codebases where the number of variable types can increase significantly.</p>
 <p><strong>Way 2:</strong> Write multiple functions:</p>
 <pre><code class="language-typescript">function wrapStringAsValue(value: string) {
-  return {value: value};
+  return { value: value };
 }
 function wrapNumberAsValue(value: number) {
-  return {value: value};
+  return { value: value };
 }
 </code></pre>
 <p>This approach suffers from significant code duplication, with each function wrapping a different type of value in the same manner, which violates the DRY (Don’t Repeat Yourself) principle.
 Additionally, this method adds a maintenance burden.
 For every new type that needs to be wrapped, a new function must be created, which can lead to increased code complexity and potential inconsistencies in function implementation across different types.</p>
 <p><strong>Way 3:</strong> Overload <code>wrapAsValue</code> signatures:</p>
-<pre><code class="language-typescript">function wrapAsValue(value: string): {value: string};
-function wrapAsValue(value: number): {value: number};
+<pre><code class="language-typescript">function wrapAsValue(value: string): { value: string };
+function wrapAsValue(value: number): { value: number };
 function wrapAsValue(value: any) {
-    return {value: value};
+  return { value: value };
 }
 </code></pre>
 <p>The use of function overloading here introduces complexity by requiring you to manage multiple function signatures, complicating both the use and documentation of the function.
 Additionally, the implementation leverages the <code>any</code> type for a catch-all method, which undermines TypeScript’s robust type-checking by allowing <em>any</em> type to be passed, potentially leading to runtime errors that are difficult to detect during compilation, thereby reducing the effectiveness of using TypeScript.</p>
 <h3>Introducing generics</h3>
 <p>With <strong>generics</strong>, this problem can be solved more simply:</p>
-<pre><code class="language-typescript">function wrapAsValue&lt;MyType&gt;(value: MyType): {value: MyType} {
-    return {value: value};
+<pre><code class="language-typescript">function wrapAsValue&lt;MyType&gt;(value: MyType): { value: MyType } {
+  return { value: value };
 }
 
 const fourWrapped = wrapAsValue&lt;number&gt;(4);
 const hiWrapped = wrapAsValue(&quot;hi&quot;);
 
-function getDollars(object: {value: number}){
-    return &quot;$&quot;+object.value.toFixed(2)
+function getDollars(object: { value: number }) {
+  return &quot;$&quot; + object.value.toFixed(2);
 }
 
-function getMessage(object: {value: string}) {
-    return object.value + &quot; world&quot;;
+function getMessage(object: { value: string }) {
+  return object.value + &quot; world&quot;;
 }
 
 getDollars(fourWrapped);
@@ -623,13 +623,13 @@ property (<code>{value: MyType}</code>). This allows us to traffic that type of 
 <h3>Calling generic functions</h3>
 <p>We can call generic functions in two ways.</p>
 <p>First, we can explicitly pass the type:</p>
-<pre><code class="language-typescript"> wrapAsValue&lt;number&gt;(4)
+<pre><code class="language-typescript">wrapAsValue&lt;number&gt;(4);
 </code></pre>
 <p>Notice that <code>&lt;number&gt;</code> acts as a special set of arguments. Instead of
 arguments passed like <code>func(arg1, arg2, arg3)</code>, generic type arguments
 are passed like <code>func&lt;Type1, Type2, Type3&gt;</code>.</p>
 <p>Second, the type can be inferred:</p>
-<pre><code class="language-typescript">wrapAsValue(&quot;hi&quot;)
+<pre><code class="language-typescript">wrapAsValue(&quot;hi&quot;);
 </code></pre>
 <p>Notice that we didn’t explicitly pass the type n the angle brackets (<code>&lt;&gt;</code>). Instead,
 the compiler just looked at the value <code>&quot;hi&quot;</code> and set <code>MyType</code> to <code>string</code>.</p>
@@ -677,14 +677,14 @@ describe(&quot;Generics&quot;, () =&gt; {
 <p>We use <code>&lt;T&gt;</code> to set up the generic.
 In the parenthesis, we use <code>T[]</code> to inform the user we are accepting an array of a certain type.
 Finally, we use <code>): T{</code> to let us be aware what is the return type.</p>
-<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-solution?file=src/generics/last.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-solution?file=src/generics/last.ts">CodeSandbox</a>.
-</details></p>
+<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-solution?file=src/generics/last.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-solution?file=src/generics/last.ts">CodeSandbox</a>.</p>
+<p></details></p>
 <h2>Objective 2: Generics in classes</h2>
 <h3>Using generics with classes</h3>
 <p>Generic classes are quite common.</p>
 <pre><code class="language-typescript">const cardNumber = new Subject&lt;string&gt;();
 
-cardNumber.next(&quot;1234&quot;)
+cardNumber.next(&quot;1234&quot;);
 </code></pre>
 <p>In the example above, <a href="../learn-rxjs/basics.html#observables-vs-subjects" title="Learn the basics of RxJS.">RxJS</a> subjects are a generic class that can publish values of a particular type.</p>
 <p>Let’s look at making a basic class to collect a list of things.</p>
@@ -697,7 +697,7 @@ cardNumber.next(&quot;1234&quot;)
 
 const myList = Collection();
 myList.push(25);
-myList.push('25');
+myList.push(&quot;25&quot;);
 </code></pre>
 <p>The good - we can push any type to this list.<br />
 The bad - we can push any type to this list.</p>
@@ -706,7 +706,7 @@ runtime errors.</p>
 <p>Let’s build a <strong>generic</strong> <code>Collection</code> class instead.</p>
 <pre><code class="language-typescript">class GenericCollection&lt;T&gt; {
   private list: T[] = [];
-  pushItem( thing:T ) {
+  pushItem(thing: T) {
     this.list.push(thing);
   }
 }
@@ -714,19 +714,19 @@ runtime errors.</p>
 <p>Now when we initialize this class we can specify a type to use.</p>
 <pre><code class="language-ts">class GenericCollection&lt;T&gt; {
   private list: T[] = [];
-  pushItem(thing:T) {
+  pushItem(thing: T) {
     this.list.push(thing);
   }
 }
 
 const myListOfStrings = new GenericCollection&lt;string&gt;();
-myListOfStrings.pushItem('booop');
+myListOfStrings.pushItem(&quot;booop&quot;);
 myListOfStrings.pushItem(5);
 // Error Argument type of '5' is not assignable to parameter of type 'string'
 
 const myListOfNumbers = new GenericCollection&lt;number&gt;();
 myListOfNumbers.pushItem(5);
-myListOfNumbers.pushItem('boop');
+myListOfNumbers.pushItem(&quot;boop&quot;);
 // Error Argument type of '&quot;boop&quot;' is not assignable to parameter of type 'number'
 
 interface Dinosaur {
@@ -737,15 +737,16 @@ interface Dinosaur {
 
 const myListOfDinosaurs = new GenericCollection&lt;Dinosaur&gt;();
 const otherDino = {
-  name: 'Blue',
-  breed: 'Velociraptor',
-  teeth: 100
-}
+  name: &quot;Blue&quot;,
+  breed: &quot;Velociraptor&quot;,
+  teeth: 100,
+};
 
 myListOfDinosaurs.pushItem(otherDino);
 
-myListOfDinosaurs.pushItem({name: 'Charlie'});
+myListOfDinosaurs.pushItem({ name: &quot;Charlie&quot; });
 // Error Argument type '{ name: string; }' is not assignable to parameter of type 'Dinosaur'.
+
 </code></pre>
 <div line-highlight='1, 8, 13, 24'></div>
 <p>In the example above, we are utilizing generics to inform <code>GenericCollection</code> what type it is receiving: <code>string</code>, <code>number</code>, or <code>Dinosaur</code>.</p>
@@ -899,15 +900,15 @@ describe(&quot;Generics&quot;, () =&gt; {
 </code></pre>
 <p>This will add <code>Taylor</code> to a <code>left</code> <code>TreeNode</code> of <code>root</code> because
 the <code>stringComparison</code> will return <code>1</code> (<code>Jennifer &gt; Taylor</code>):</p>
-<pre><code class="language-typescript">root.left.value //-&gt; &quot;Taylor&quot;
+<pre><code class="language-typescript">root.left.value; //-&gt; &quot;Taylor&quot;
 </code></pre>
 <p>As we add other values, they will be added to either the right or left nodes
 recursively:</p>
 <pre><code class="language-js">root.add(&quot;Tom&quot;);
 root.add(&quot;Matthew&quot;);
 
-root.right.value      //-&gt; &quot;Tom&quot;
-root.right.left.value //-&gt; &quot;Matthew&quot;
+root.right.value; //-&gt; &quot;Tom&quot;
+root.right.left.value; //-&gt; &quot;Matthew&quot;
 </code></pre>
 <p><strong>Have issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/02-problem?file=src/generics/tree.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/02-problem?file=src/generics/tree.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
 <h3>Solution 2</h3>

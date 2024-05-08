@@ -13,7 +13,6 @@
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.
 
-
 ">
   
   <!-- Google Tag Manager -->
@@ -553,13 +552,9 @@ Angular, React, CanJS and JavaScript problems.</p>
 <p>Install prerequisites and create a new Node project with TypeScript.</p>
 <h3>Exporting and importing</h3>
 <p>Export values from files and import them in other files.</p>
-<pre><code class="language-ts">function clampNumber(value: number, min: number, max: number): number {
-    return Math.min(Math.max(value, min), max);
+<pre><code class="language-ts">export function constrain(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max);
 }
-
-export {
-    constrain: clampNumber,
-};
 </code></pre>
 <div line-highlight='5-7'></div>
 <h3>Types</h3>
@@ -575,7 +570,10 @@ export {
 <h3>Classes</h3>
 <p>Learn how to use classes and inheritance in TypeScript, understand the <code>constructor</code> method, and use the <code>public</code>, <code>private</code>, <code>protected</code>, and <code>readonly</code> modifiers.</p>
 <pre><code class="language-typescript">class Human {
-  constructor(public firstName: string, public lastName: string) {}
+  constructor(
+    public firstName: string,
+    public lastName: string,
+  ) {}
 
   getFullName(): string {
     return `${this.firstName} ${this.lastName}`;
@@ -606,7 +604,7 @@ type DinoKeys = keyof Dino; // &quot;name&quot; | &quot;type&quot; | &quot;age&q
 <p>Learn about what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript.</p>
 <pre><code class="language-typescript">class GenericCollection&lt;T&gt; {
   private list: T[];
-  pushItem(thing:T) {
+  pushItem(thing: T) {
     this.list.push(thing);
   }
 }
@@ -658,7 +656,7 @@ type NNSpecies = NonNullable&lt;Species&gt;;
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/typescript/typescript.md"},"description":"This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.\n\n\n","name":"learn-typescript","title":"Learn TypeScript","type":"page","parent":"bit-academy","order":4,"comment":" ","pathToRoot":".."};
+      var docObject = {"src":{"path":"src/typescript/typescript.md"},"description":"This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.\n\n","name":"learn-typescript","title":"Learn TypeScript","type":"page","parent":"bit-academy","order":4,"comment":" ","pathToRoot":".."};
     </script>
 
     

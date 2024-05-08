@@ -546,50 +546,60 @@ covering CanJS core libraries.">
   return x + y;
 }
 
-add(1, 'three');
+add(1, &quot;three&quot;);
 // Error: Argument of type 'string' is not assignable to parameter of type 'number'.ts(2345)
+
 </code></pre>
 <h3>Annotating function return values</h3>
 <p>We can also annotate what a function should return.</p>
 <pre><code class="language-ts">function returnNumber(): number {
-  return '1';
+  return &quot;1&quot;;
 }
 // Error: Type 'string' is not assignable to type 'number'.ts(2322)
+
 </code></pre>
 <p>Of course, this works when fixed:</p>
 <pre><code class="language-ts">function returnNumber(): number {
   return 1;
 }
 // Works!
+
 </code></pre>
 <h3>Optional parameters</h3>
 <p>Sometimes when writing functions, we don’t need every parameter to be satisfied. TypeScript allows us to mark optional parameters (or properties) with a <code>?</code> so the compiler will not error if an optional param isn’t passed.</p>
 <pre><code class="language-ts">function buildDinosaur(name: string, breed: string, teeth?: number): void {
   if (teeth) {
     console.info(`${name} is a ${breed} and has ${teeth} teeth.`);
-  }
-  else {
+  } else {
     console.info(`${name} is a ${breed}.`);
   }
 }
 
-let newDino = buildDinosaur('Blue', 'Velociraptor', 80);
+let newDino = buildDinosaur(&quot;Blue&quot;, &quot;Velociraptor&quot;, 80);
 // Works
-let otherDino = buildDinosaur('Delta', 'Velociraptor');
+let otherDino = buildDinosaur(&quot;Delta&quot;, &quot;Velociraptor&quot;);
 // Also works
-let otherOtherDino = buildDinosaur('Charlie');
+let otherOtherDino = buildDinosaur(&quot;Charlie&quot;);
 // Expected 2-3 arguments, but got 1.ts(2554)
 // Error: An argument for 'breed' was not provided.
+
 </code></pre>
 <h3>Rest parameters</h3>
 <p>Rest parameters are a way to pass in an unknown number of arguments to a function. Rest params are signaled to the transpiler by passing an ellipsis (<code>...</code>) followed by the parameter name.</p>
 <pre><code class="language-ts">function buildDinosaur(breed: string, ...dna: string[]): void {
-  console.info(`The ${breed} has dna from ${dna.join(', ')}`)
+  console.info(`The ${breed} has dna from ${dna.join(&quot;, &quot;)}`);
 }
 
-buildDinosaur('Indominous Rex', 'Velociraptor', 'Tyrannosaurus rex', 'Therizinosaurus', 'cuttlefish');
+buildDinosaur(
+  &quot;Indominous Rex&quot;,
+  &quot;Velociraptor&quot;,
+  &quot;Tyrannosaurus rex&quot;,
+  &quot;Therizinosaurus&quot;,
+  &quot;cuttlefish&quot;,
+);
 // Logs &quot;The Indominous Rex has dna from Velociraptor,
 //      Tyrannosaurus rex, Therizinosaurus, cuttlefish&quot;
+
 </code></pre>
 <h3>Setup 1</h3>
 <p>✏️ Create <strong>src/functions/dnaCost.ts</strong> and update it to be:</p>
@@ -636,7 +646,7 @@ Open the <code>dnaCost.ts</code> file and modify this function to:</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <code>dnaCost.ts</code> to add each sequence to the
-base cost.  This solution uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce">Array.prototype.reduce</a>:</p>
+base cost. This solution uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce">Array.prototype.reduce</a>:</p>
 <pre><code class="language-ts">export function dnaCost(baseCost: number, ...sequences: string[]) {
   return sequences.reduce((sum, sequence) =&gt; {
     return sum + sequence.length;
@@ -645,7 +655,7 @@ base cost.  This solution uses <a href="https://developer.mozilla.org/en-US/docs
 
 </code></pre>
  <div line-highlight="1-4,only"></div>
-<p>You’ll notice that specifying a return type is not necessary.  This is
+<p>You’ll notice that specifying a return type is not necessary. This is
 because TypeScript can infer the return value from the arguments.</p>
 <p>The following is another
 valid solution:</p>
@@ -673,14 +683,14 @@ valid solution:</p>
 <p>The dynamic nature of this means that its value can change based on how and where a function is called. This can lead to issues, especially when functions that use this are passed around as callbacks.</p>
 <p>For instance:</p>
 <pre><code class="language-js">const dog = {
-  name: 'fido',
-  bark: function() {
-    console.info(this.name + 'says woof');
-  }
+  name: &quot;fido&quot;,
+  bark: function () {
+    console.info(this.name + &quot;says woof&quot;);
+  },
 };
-const address = {street: '2 State St'};
+const address = { street: &quot;2 State St&quot; };
 
-dog.bark.call(dog);     // Logs &quot;fido says woof&quot;;
+dog.bark.call(dog); // Logs &quot;fido says woof&quot;;
 dog.bark.call(address); // Logs &quot;undefined says woof&quot;
 </code></pre>
 <p>In the example above, <code>dog.bark</code> is called with two very different types of objects, the second of which (<code>address</code>) doesn’t have a <code>name</code> property.</p>
@@ -688,15 +698,16 @@ dog.bark.call(address); // Logs &quot;undefined says woof&quot;
 <p>Compiling with the <code>--strictBindCallApply</code> flag allows you to
 specify the <code>this</code> type:</p>
 <pre><code class="language-ts">const dog = {
-  name: 'fido',
-  bark: function(this: {name: string}) {
-    console.info(this.name, 'says woof');
-  }
+  name: &quot;fido&quot;,
+  bark: function (this: { name: string }) {
+    console.info(this.name, &quot;says woof&quot;);
+  },
 };
-const address = {street: '2 State St'};
+const address = { street: &quot;2 State St&quot; };
 
 dog.bark.call(dog);
 dog.bark.call(address);
+
 </code></pre>
 <div line-highlight='3'></div>
 <p>Line 10 will error with:</p>

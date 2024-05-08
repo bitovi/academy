@@ -549,9 +549,9 @@ You can use a string index signature since the word will be a <code>string</code
 }
 
 const myWordCounts: WordCount = {
-  &quot;hello&quot;: 2,
-  &quot;world&quot;: 1,
-  &quot;typescript&quot;: 3
+  hello: 2,
+  world: 1,
+  typescript: 3,
 };
 </code></pre>
 <div line-highlight='2'></div>
@@ -593,9 +593,9 @@ It can be used on values and properties of those values.
   weightInKilograms: 7_000,
 };
 
-let stegosaurus: typeof tRex; 
+let stegosaurus: typeof tRex;
 
-type Dinosaur = typeof tRex; 
+type Dinosaur = typeof tRex;
 </code></pre>
 <div line-highlight='7, 9'></div>
 <p>Thanks to the use of <code>typeof</code>, the variable <code>stegosaurus</code> and the type <code>Dinosaur</code> both now have the type:</p>
@@ -664,8 +664,8 @@ type DinoFacts = ReturnType&lt;typeof getDinoFacts&gt;;
 <p>It’s important to note that typeof in TypeScript, particularly in type contexts, has its limitations. You can only use typeof on identifiers (such as variable names) and their properties. Attempting to use typeof on more complex expressions or certain values directly will not work as expected and can lead to errors.</p>
 <pre><code class="language-ts">const dinosaur = { name: &quot;velociraptor&quot;, type: &quot;carnivore&quot; };
 
-type Dinosaur = typeof dinosaur; 
-type DinoName = typeof dinosaur.name; 
+type Dinosaur = typeof dinosaur;
+type DinoName = typeof dinosaur.name;
 
 type DinoFacts = typeof getDinoFacts();
 </code></pre>
@@ -698,14 +698,14 @@ type DinoFacts = typeof getDinoFacts();
   },
 };
 
-type DinosaurFactObject = any;
+type DinosaurFacts = any;
 
 type Dinosaur = any;
 
 export const getDinoFact = (
-  facts: DinosaurFactObject,
+  facts: DinosaurFacts,
   dino: Dinosaur
-): DinosaurFactObject[Dinosaur] =&gt; {
+): DinosaurFacts[Dinosaur] =&gt; {
   return facts[dino];
 };
 
@@ -731,9 +731,9 @@ describe(&quot;Keyof Typeof Exercise 1&quot;, () =&gt; {
 
 </code></pre>
 <h3>Exercise 1</h3>
-<p>Update the <code>DinosaurFactObject</code> and <code>Dinosaur</code> type to gain type safety on the <code>getDinoFact</code> function. The function should, given a dinosaur’s name (<code>velociraptor</code> or <code>t-rex</code>) and the <code>dinosaurFacts</code> object, return the correct facts about the dinosaur.</p>
+<p>Update the <code>DinosaurFacts</code> and <code>Dinosaur</code> type to gain type safety on the <code>getDinoFact</code> function. The function should, given a dinosaur’s name (<code>velociraptor</code> or <code>t-rex</code>) and the <code>dinosaurFacts</code> object, return the correct facts about the dinosaur.</p>
 <ul>
-<li>Replace <code>DinosaurFactObject</code>’s <code>any</code> with a type that represents the <code>dinosaurFacts</code>.</li>
+<li>Replace <code>DinosaurFacts</code>’s <code>any</code> with a type that represents the <code>dinosaurFacts</code>.</li>
 <li>Replace <code>Dinosaur</code>’s <code>any</code> with a type that allows for any of the keys in the dinosaur fact object.</li>
 <li>The <code>getDinofact</code> should, given a <code>facts</code> object and <code>dino</code> name, return the facts for that creature.</li>
 </ul>
@@ -765,14 +765,14 @@ describe(&quot;Keyof Typeof Exercise 1&quot;, () =&gt; {
   },
 };
 
-type DinosaurFactObject = typeof dinosaurFacts;
+type DinosaurFacts = typeof dinosaurFacts;
 
-type Dinosaur = keyof DinosaurFactObject;
+type Dinosaur = keyof DinosaurFacts;
 
 export const getDinoFact = (
-  facts: DinosaurFactObject,
+  facts: DinosaurFacts,
   dino: Dinosaur
-): DinosaurFactObject[Dinosaur] =&gt; {
+): DinosaurFacts[Dinosaur] =&gt; {
   return facts[dino];
 };
 
@@ -815,7 +815,7 @@ If we run into a situation where we want to get the keys of an enum, the only wa
   black = &quot;0x000000&quot;,
 }
 
-type DinosaurColorsKeys = keyof typeof DinosaurColors; 
+type DinosaurColorsKeys = keyof typeof DinosaurColors;
 </code></pre>
 <div line-highlight='11'></div>
 <p>In the code above, <code>keyof</code> and <code>typeof</code> used together give <code>DinosaurColorKeys</code> the typing:
@@ -823,38 +823,38 @@ type DinosaurColorsKeys = keyof typeof DinosaurColors;
 <p>In this case, <code>keyof typeof</code> definitely saves a lot of effort.</p>
 <h3>Setup 2</h3>
 <p>✏️ Create <strong>src/keyof-typeof/colorshex.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">export enum ColorsToHex {
+<pre><code class="language-ts">export enum Colors {
   red = &quot;0xFF0000&quot;,
   green = &quot;0x00FF00&quot;,
   blue = &quot;0x0000FF&quot;,
 }
 
-type ColorsAsEasyReadName = any;
+type ColorNames = any;
 
-export const getColorValue = (color: ColorsAsEasyReadName): any =&gt; {
-  return ColorsToHex[color];
+export const getColorValue = (color: ColorNames): any =&gt; {
+  return Colors[color];
 };
 
 </code></pre>
 <h3>Verify 2</h3>
 <p>✏️ Create <strong>src/keyof-typeof/colorshex.test.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">import assert from 'node:assert/strict';
+<pre><code class="language-ts">import assert from &quot;node:assert/strict&quot;;
 
-import { getColorValue, ColorsToHex } from &quot;./colorshex&quot;;
+import { getColorValue, Colors } from &quot;./colorshex&quot;;
 
 describe(&quot;Keyof Typeof Exercise 2&quot;, () =&gt; {
   it(&quot;gets dino colors&quot;, () =&gt; {
-    assert.equal(getColorValue(&quot;red&quot;), ColorsToHex.red);
-    assert.equal(getColorValue(&quot;green&quot;), ColorsToHex.green);
-    assert.equal(getColorValue(&quot;blue&quot;), ColorsToHex.blue);
+    assert.equal(getColorValue(&quot;red&quot;), Colors.red);
+    assert.equal(getColorValue(&quot;green&quot;), Colors.green);
+    assert.equal(getColorValue(&quot;blue&quot;), Colors.blue);
   });
 });
 
 </code></pre>
 <h3>Exercise 2</h3>
-<p>Update the <code>ColorsAsEasyReadName</code> type so that it represents the keys of the enum (eg <code>'red'</code>, <code>'blue'</code>, and <code>'green'</code>)and then add all the necessary types to the <code>getColorValue</code> function signature.</p>
+<p>Update the <code>ColorNames</code> type so that it represents the keys of the enum (eg <code>'red'</code>, <code>'blue'</code>, and <code>'green'</code>)and then add all the necessary types to the <code>getColorValue</code> function signature.</p>
 <ul>
-<li>The <code>getColorValue</code> function should take one of color names, or <code>ColorsAsEasyReadName</code> and return the hex string equivalent.</li>
+<li>The <code>getColorValue</code> function should take one of color names, or <code>ColorNames</code> and return the hex string equivalent.</li>
 <li>Replace <code>ColorAsEasyReadName</code>’s <code>any</code> with a type so that it represents the keys of the enum (eg 'red', 'blue', and 'green').</li>
 <li>Fix the TypeScript errors by updating <code>getColorValue</code>’s <code>ReturnType</code>. Replace the <code>any</code> with the proper type.</li>
 </ul>
@@ -863,16 +863,16 @@ describe(&quot;Keyof Typeof Exercise 2&quot;, () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/keyof-typeof/colorshex.ts</strong> to be:</p>
-<pre><code class="language-ts">export enum ColorsToHex {
+<pre><code class="language-ts">export enum Colors {
   red = &quot;0xFF0000&quot;,
   green = &quot;0x00FF00&quot;,
   blue = &quot;0x0000FF&quot;,
 }
 
-type ColorsAsEasyReadName = keyof typeof ColorsToHex;
+type ColorNames = keyof typeof Colors;
 
-export const getColorValue = (color: ColorsAsEasyReadName): string =&gt; {
-  return ColorsToHex[color];
+export const getColorValue = (color: ColorNames): string =&gt; {
+  return Colors[color];
 };
 
 </code></pre>

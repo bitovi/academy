@@ -548,8 +548,8 @@ Let’s break down how to <a href="https://developer.mozilla.org/en-US/docs/Web/
 <h3>Default exports</h3>
 <p>Imagine we have a <code>config.ts</code> file:</p>
 <pre><code class="language-ts">const config = {
-    name: &quot;Bitovi Academy&quot;,
-    url: &quot;https://www.bitovi.com/academy/&quot;,
+  name: &quot;Bitovi Academy&quot;,
+  url: &quot;https://www.bitovi.com/academy/&quot;,
 };
 
 export default config;
@@ -567,16 +567,12 @@ Note that the <code>appConfig</code> variable name does not need to match the na
 <h3>Named exports</h3>
 <p>Named exports are called that because there is an explicit name in the file with the <code>export</code>.</p>
 <p>Let’s imagine we have a <code>helpers.ts</code> file:</p>
-<pre><code class="language-ts">function clampNumber(value: number, min: number, max: number): number {
-    return Math.min(Math.max(value, min), max);
+<pre><code class="language-ts">export function constrain(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max);
 }
-
-export {
-    constrain: clampNumber,
-};
 </code></pre>
 <div line-highlight='5-7'></div>
-<p>In the example above, we export a <code>constrain</code> function from our <code>helpers.ts</code> file. Note that the local function name is called something else (<code>clampNumber</code>) and we export it with a specific name (<code>constrain</code>).</p>
+<p>In the example above, we export a <code>constrain</code> function from our <code>helpers.ts</code> file.</p>
 <p>We can import the <code>constrain</code> function like so:</p>
 <pre><code class="language-ts">import { constrain } from &quot;./helpers.ts&quot;;
 
@@ -584,40 +580,24 @@ const constrained = constrain(-18, 0, 100);
 </code></pre>
 <div line-highlight='1'></div>
 <p>In the code above, we can import the <code>constrain</code> function by name from <code>helpers.ts</code> and use it in our code.</p>
-<h4>Shorthand</h4>
-<p>If the name of the function in the file matches what you want to export it as, you can use this shorthand in your export statement:</p>
-<pre><code class="language-ts">function constrain(value: number, min: number, max: number): number {
-    return Math.min(Math.max(value, min), max);
-}
-
-export {
-    constrain,
-};
-</code></pre>
-<div line-highlight='1, 6'></div>
-<h4>Renaming with <code>as</code></h4>
-<p>We can also rename our declarations when exporting if need be</p>
-<pre><code class="language-typescript">function clampNumber(value: number, min: number, max: number): number {
-    return Math.min(Math.max(value, min), max);
-}
-
-export {
-    clampNumber as constrain,
-};
-</code></pre>
 <h4>Exporting in place</h4>
 <p>You can also export values from where they’re declared in the file, without a separate <code>export</code> statement:</p>
 <pre><code class="language-ts">export function constrain(value: number, min: number, max: number): number {
-    return Math.min(Math.max(value, min), max);
+  return Math.min(Math.max(value, min), max);
 }
 </code></pre>
 <div line-highlight='1'></div>
 <h3>Default exports vs. named exports</h3>
-<p>While you can use both in projects and some APIs may require you to use one type of export vs. the other, we recommend you use named exports in all of the code you write.</p>
-<p>Here’s why:</p>
-<p><strong>Consistency:</strong> Named exports enforce consistency. The name of the export has to be used wherever it’s imported unless explicitly renamed. This consistency makes it easier to trace through code and understand what is being imported and used.</p>
-<p><strong>Explicitness and clarity:</strong> Since you have to explicitly list what you are importing, it provides a clear overview of what dependencies a module has. This explicitness improves readability and maintainability of the code.</p>
-<p><strong>Better tooling support:</strong> Many IDEs and tools have easier times with auto-completion and refactoring when using named exports. This can lead to more efficient coding and a lower chance of errors.</p>
+<p>While you can prefer one style of export over the other, each serves a different purpose.</p>
+<ul>
+<li>Use default exports for the primary output of a module.</li>
+<li>Use named exports for secondary outputs or when there is no primary output.</li>
+</ul>
+<h2>For example:</h2>
+<ul>
+<li>If you have a module called <code>AuthProvider</code> that exports a React component and several helper hooks, the component would be the primary (default) export and the hook would be secondary (named).</li>
+<li>If you have a module called <code>transforms</code> that exports the functions <code>formatPercent</code> and <code>formatCurrency</code>, both of these would be named exports; there is no primary export.</li>
+</ul>
 <h3>Importing types</h3>
 <p>From time to time, you may need to only import the <code>type</code> from another file and not the full implementation.
 TypeScript provides a special syntax, <code>import type</code>, which is used specifically to import type declarations.
@@ -636,14 +616,14 @@ export const createUser = (name: string, age: number): User =&gt; {
 <p>In the code above, we defined a <code>User</code> type and a <code>createUser</code> function.
 The <code>User</code> type describes the shape of user objects.</p>
 <p>We can import just the <code>User</code> type (and use it) like so:</p>
-<pre><code class="language-ts">import type { User } from './user';
-import { createUser } from './user';
+<pre><code class="language-ts">import type { User } from &quot;./user&quot;;
+import { createUser } from &quot;./user&quot;;
 
 const logUser = (user: User): void =&gt; {
   console.info(`User: ${user.name}, Age: ${user.age}`);
 };
 
-const user = createUser('Alice', 30);
+const user = createUser(&quot;Alice&quot;, 30);
 logUser(user);
 </code></pre>
 <div line-highlight='1, 4, only'></div>
@@ -690,15 +670,12 @@ describe('Importer', () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/modules/exporter.ts</strong> to be:</p>
-<pre><code class="language-ts">function greeter(person: string) {
-    return &quot;Hello, &quot; + person;
+<pre><code class="language-ts">export function greeter(person: string) {
+  return &quot;Hello, &quot; + person;
 }
 
-export {
-    greeter,
-};
 </code></pre>
- <div line-highlight="5-7,only"></div>
+ <div line-highlight="1-2,only"></div>
 <p>✏️ Update <strong>src/modules/importer.ts</strong> to be:</p>
 <pre><code class="language-ts">import { greeter } from &quot;./exporter&quot;
 

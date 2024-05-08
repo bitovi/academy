@@ -541,6 +541,7 @@ JavaScript can assign variables to values of different types:</p>
 
 myVariable = 1;
 myVariable = &quot;2&quot;;
+
 </code></pre>
 <p>If there’s a bug in the code related to falsely assuming a type, it won’t throw an error until we’re already running our code.</p>
 <p>TypeScript uses <strong>static typing</strong>, which allows us to specify what type a variable should hold, and types are checked when the code compiles alerting us of any incorrect usages of a variable assignment.
@@ -550,6 +551,7 @@ The concept of “static” comes from the idea of variables being static, meani
 
 myVariable = 1;
 myVariable = &quot;2&quot;;
+
 </code></pre>
  <div line-highlight="1,only"></div>
 <p>When the <code>number</code> type is added, TypeScript can give errors when assigning the wrong type to a variable:</p>
@@ -564,30 +566,31 @@ This includes features like inheritance, interfaces, and access modifiers such a
 This system allows developers to write flexible, yet robust code very efficiently.</p>
 <p>Below is an example of using enums in TypeScript:</p>
 <pre><code class="language-ts">enum Direction {
-    Up,
-    Down,
-    Left,
-    Right
+  Up,
+  Down,
+  Left,
+  Right,
 }
 
 function move(direction: Direction): string {
-    switch (direction) {
-        case Direction.Up:
-        case Direction.Down:
-            return &quot;Vertical movement!&quot;;
-        case Direction.Left:
-        case Direction.Right:
-            return &quot;Horizontal movement!&quot;;
-    }
+  switch (direction) {
+    case Direction.Up:
+    case Direction.Down:
+      return &quot;Vertical movement!&quot;;
+    case Direction.Left:
+    case Direction.Right:
+      return &quot;Horizontal movement!&quot;;
+  }
 }
 
 console.info(move(Direction.Up)); // Output: Vertical movement!
+
 </code></pre>
 <h3>Transpiling TypeScript to JavaScript</h3>
 <p>TypeScript code is converted into plain JavaScript through a process called transpilation.
 During this process, the compiler can catch and report errors that would otherwise only be caught at runtime when using plain JavaScript.</p>
 <p>Here’s an example of TypeScript code before transpilation:</p>
-<pre><code class="language-typescript">const world: string = 'world';
+<pre><code class="language-typescript">const world: string = &quot;world&quot;;
 
 export function hello(who: string = world): string {
   return `Hello ${who}! `;
@@ -597,9 +600,9 @@ export function hello(who: string = world): string {
 <pre><code class="language-js">&quot;use strict&quot;;
 Object.defineProperty(exports, &quot;__esModule&quot;, { value: true });
 exports.hello = void 0;
-const world = 'world';
+const world = &quot;world&quot;;
 function hello(who = world) {
-    return `Hello ${who}! `;
+  return `Hello ${who}! `;
 }
 exports.hello = hello;
 </code></pre>
@@ -610,49 +613,51 @@ Types act as a form of documentation that can significantly reduce the cognitive
 This can lead to a more maintainable and scalable project.</p>
 <p>Here’s an example of plain JavaScript:</p>
 <pre><code class="language-js">function calculateTotal(price, tax) {
-    return price + (price * tax);
+  return price + price * tax;
 }
 </code></pre>
 <p>In the TypeScript example below, the parameters and return values are labeled with types, which makes the code more readable:</p>
 <pre><code class="language-typescript">function calculateTotal(price: number, tax: number): number {
-    return price + (price * tax);
+  return price + price * tax;
 }
 </code></pre>
 <h3>Increases maintainability</h3>
 <p>TypeScript also offers modern (think ES6) features of JavaScript and the use of classes and interfaces to write code in an object-oriented way.</p>
 <p>Here’s another example of code being more readable with types. Creating a <code>User</code> interface makes it clear what the <code>greet</code> function is expecting in the <code>user</code> object:</p>
 <pre><code class="language-typescript">interface User {
-    name: string;
-    age: number;
+  name: string;
+  age: number;
 }
 
 function greet(user: User) {
-    console.info(`Hello, ${user.name}`);
+  console.info(`Hello, ${user.name}`);
 }
 </code></pre>
 <p>As opposed to JavaScript, where the <code>user</code> object could be anything!</p>
 <pre><code class="language-js">function greet(user) {
-    console.info(`Hello, ${user.name}`);
+  console.info(`Hello, ${user.name}`);
 }
 </code></pre>
 <h3>Reduces errors</h3>
 <p>Typechecking is the process of verifying and enforcing the constraints of types, checking each variable, function, and expression to ensure they all fit together correctly. It’s like ensuring that you’re using the right tools for the job and putting them in the right places, so your program runs smoothly without unexpected errors.</p>
 <p>JavaScript can call a function with a type it doesn’t expect:</p>
 <pre><code class="language-js">function greeter(person) {
-    return &quot;Hello, &quot; + person;
+  return &quot;Hello, &quot; + person;
 }
 
 const user = { name: &quot;Justin&quot; };
 console.info(greeter(user));
+
 </code></pre>
 <p>In the example above, JavaScript will happily log <code>Hello, [object Object]</code>.</p>
 <p>When types are added:</p>
 <pre><code class="language-ts">function greeter(person: string) {
-    return &quot;Hello, &quot; + person;
+  return &quot;Hello, &quot; + person;
 }
 
 const user = { name: &quot;Justin&quot; };
 console.info(greeter(user));
+
 </code></pre>
  <div line-highlight="1,only"></div>
 <p>TypeScript will throw an error at compile time:</p>
@@ -672,6 +677,8 @@ It acts as a guide to ensure that all team members are implementing features wit
 Features like code completion, refactorings, and inline documentation become more powerful due to TypeScript’s advanced type inference and type checking.</p>
 <p>TypeScript is supported by most modern development tools, including popular IDEs like Visual Studio Code, WebStorm, and others.
 These tools provide enhanced features when used with TypeScript, such as better autocomplete, inline errors, and automated refactoring tools.</p>
+<h2>TypeScript or JavaScript?</h2>
+<p>Given the myriad benefits of TypeScript, we simply cannot recommend using plain JavaScript on the vast majority of modern projects. Even on legacy JavaScript projects, we usually recommend migrating to TypeScript.</p>
 <h2>Next steps</h2>
 <p>Next, let’s take a look at <a href="./ide-support.html">IDEs</a> support building TypeScript projects.</p>
 

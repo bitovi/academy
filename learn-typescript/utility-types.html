@@ -554,13 +554,13 @@ See the example below:</p>
   &quot;Carnivore&quot;,
   &quot;Herbivore&quot;,
   &quot;Omnivore&quot;,
-};
+}
 
 interface Dinosaur {
   species: string;
   diet: Diet;
   age?: number;
-};
+}
 
 type PartialDinosaur = Partial&lt;Dinosaur&gt;;
 
@@ -569,15 +569,15 @@ interface YetPartialDinosaur {
   species?: string;
   diet?: Diet;
   age?: number;
-};
+}
 
 // example
 function updateDinosaur(
   dinosaur: Dinosaur,
-  fieldsToUpdate: Partial&lt;Dinosaur&gt;
+  fieldsToUpdate: Partial&lt;Dinosaur&gt;,
 ): Dinosaur {
   return { ...dino, ...fieldsToUpdate };
-};
+}
 
 const oldDino: Dinosaur = {
   species: &quot;Tyrannosaurus rex&quot;,
@@ -598,20 +598,20 @@ You might use it when you can initialize all the properties of an object and wan
   &quot;Carnivore&quot;,
   &quot;Herbivore&quot;,
   &quot;Omnivore&quot;,
-};
+}
 
 interface Dinosaur {
   species: string;
   diet: Diet;
   age?: number;
-};
+}
 
 type RequiredDinosaur = Required&lt;Dinosaur&gt;;
 
 // RequiredDinosaur is equivalent to:
 interface YetRequiredDinosaur extends Dinosaur {
   age: number; // turning age property to required
-};
+}
 
 const trex: RequiredDinosaur = {
   species: &quot;Tyrannosaurus rex&quot;,
@@ -621,7 +621,7 @@ const trex: RequiredDinosaur = {
 
 if (trex.age &gt; 30) {
   // do something
-};
+}
 </code></pre>
 <div line-highlight='10, 13, 20, 26, only'></div>
 <p>In the code above, we are declaring <code>trex</code> to type <code>RequiredDinosaur</code>. This will help us skip the check if age is null step because it is a required property</p>
@@ -632,13 +632,13 @@ Use it to prevent objects from being mutated.</p>
   &quot;Carnivore&quot;,
   &quot;Herbivore&quot;,
   &quot;Omnivore&quot;,
-};
+}
 
 interface Dinosaur {
   species: string;
   diet: Diet;
   age?: number;
-};
+}
 
 type NamableDinosaur = { name: string } &amp; Dinosaur; // this is an intersection between { name: string } and Dinosaur. Think { name: string } + Dinosaur
 type ReadOnlyDinosaur = Readonly&lt;NamableDinosaur&gt;;
@@ -753,8 +753,8 @@ export type FullyDefinedPerson = Required&lt;Person&gt;;
 export type NonEditablePerson = Readonly&lt;Person&gt;;
 </code></pre>
  <div line-highlight="10,12,14,only"></div>
-<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/01-solution?file=src/utilities/property-existence.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/01-solution?file=src/utilities/property-existence.ts">CodeSandbox</a>.
-</details></p>
+<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/01-solution?file=src/utilities/property-existence.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/01-solution?file=src/utilities/property-existence.ts">CodeSandbox</a>.</p>
+<p></details></p>
 <h2>Objective 2: Construct an object type</h2>
 <h3>Using <code>Record&lt;Keys, Type&gt;</code></h3>
 <p>Shortcut for defining an object where the keys are all one type and the values are all one type.</p>
@@ -763,13 +763,13 @@ export type NonEditablePerson = Readonly&lt;Person&gt;;
   &quot;Carnivore&quot;,
   &quot;Herbivore&quot;,
   &quot;Omnivore&quot;,
-};
+}
 
 interface Dinosaur {
   species: string;
   diet: Diet;
   age?: number;
-};
+}
 
 const dinosCollection: Record&lt;string, Dinosaur&gt; = {
   // Could also be written as Record&lt;'trex' | 'triceratops', Dinosaur&gt;
@@ -902,8 +902,8 @@ Which utility type can we use here together with the <code>Person</code> type to
 export type PersonMap = Record&lt;Person[&quot;id&quot;], Person&gt;;
 </code></pre>
  <div line-highlight="19,only"></div>
-<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/02-solution?file=src/utilities/record.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/02-solution?file=src/utilities/record.ts">CodeSandbox</a>.
-</details></p>
+<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/02-solution?file=src/utilities/record.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/02-solution?file=src/utilities/record.ts">CodeSandbox</a>.</p>
+<p></details></p>
 <h2>Objective 3: Construct a new type by extracting from another type</h2>
 <h3>Using <code>Extract&lt;Type, Union&gt;</code></h3>
 <p>Extracts from <code>Type</code> all types that are assignable to <code>Union</code>.
@@ -924,16 +924,16 @@ See this example:</p>
   lastName: string;
   married: boolean;
   numberOfKids?: number;
-}
+};
 
 type Kid = {
   firstName: string;
   lastName: string;
   interests: string[];
   pottyTrained: boolean;
-}
+};
 
-type PersonKeys = Extract&lt;keyof Kid, keyof Adult&gt; 
+type PersonKeys = Extract&lt;keyof Kid, keyof Adult&gt;;
 //   ^? &quot;firstName&quot; | &quot;lastName&quot;
 </code></pre>
 <div line-highlight='15'></div>
@@ -1011,8 +1011,8 @@ describe(&quot;extract tests&quot;, () =&gt; {
 export type Developer = Extract&lt;Person, { role: &quot;developer&quot; }&gt;;
 </code></pre>
  <div line-highlight="19,only"></div>
-<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/03-solution?file=src/utilities/extract.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/03-solution?file=src/utilities/extract.ts">CodeSandbox</a>.
-</details></p>
+<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/03-solution?file=src/utilities/extract.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/03-solution?file=src/utilities/extract.ts">CodeSandbox</a>.</p>
+<p></details></p>
 <h2>Objective 4: Construct a new type by excluding types from another type</h2>
 <h3>Using <code>Exclude&lt;Type, ExcludedUnion&gt;</code></h3>
 <p>Excludes from <code>Type</code> all types that are assignable to <code>ExcludedUnion</code>.
@@ -1111,8 +1111,8 @@ export interface FrontendDeveloper extends Developer {
 }
 </code></pre>
  <div line-highlight="21-22,only"></div>
-<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/04-solution?file=src/utilities/exclude.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/04-solution?file=src/utilities/exclude.ts">CodeSandbox</a>.
-</details></p>
+<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/04-solution?file=src/utilities/exclude.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/04-solution?file=src/utilities/exclude.ts">CodeSandbox</a>.</p>
+<p></details></p>
 <h2>Objective 5: Include and exclude specific properties</h2>
 <h3>Using <code>Pick&lt;Type, Keys&gt;</code></h3>
 <p>Creates a type by picking the set of properties <code>Keys</code> from <code>Type</code>.
@@ -1121,13 +1121,13 @@ Useful if you want a subset of <code>Type</code>.</p>
   &quot;Carnivore&quot;,
   &quot;Herbivore&quot;,
   &quot;Omnivore&quot;,
-};
+}
 
 interface Dinosaur {
   species: string;
   diet: Diet;
   age?: number;
-};
+}
 
 type LesserDinosaur = Pick&lt;Dinosaur, &quot;species&quot; | &quot;age&quot;&gt;;
 
@@ -1146,13 +1146,13 @@ Useful if you want a subset of <code>Type</code>.</p>
   &quot;Carnivore&quot;,
   &quot;Herbivore&quot;,
   &quot;Omnivore&quot;,
-};
+}
 
 interface Dinosaur {
   species: string;
   diet: Diet;
   age?: number;
-};
+}
 
 type LesserDinosaur = Omit&lt;Dinosaur, &quot;species&quot; | &quot;age&quot;&gt;;
 
@@ -1252,8 +1252,8 @@ export interface AdminDeveloper extends Omit&lt;FrontendDeveloper, &quot;role&qu
 }
 </code></pre>
  <div line-highlight="25-27,only"></div>
-<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/05-solution?file=src/utilities/include-exclude-properties.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/05-solution?file=src/utilities/include-exclude-properties.ts">CodeSandbox</a>.
-</details></p>
+<p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/05-solution?file=src/utilities/include-exclude-properties.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/05-solution?file=src/utilities/include-exclude-properties.ts">CodeSandbox</a>.</p>
+<p></details></p>
 <h2>Objective 6: Function utility types</h2>
 <h3>Using <code>ReturnType&lt;Type&gt;</code></h3>
 <p>Gets the return type of a function <code>Type</code>.</p>
@@ -1261,13 +1261,13 @@ export interface AdminDeveloper extends Omit&lt;FrontendDeveloper, &quot;role&qu
   &quot;Carnivore&quot;,
   &quot;Herbivore&quot;,
   &quot;Omnivore&quot;,
-};
+}
 
 interface Dinosaur {
   species: string;
   diet: Diet;
   age?: number;
-};
+}
 
 declare function getDinosaur(): Dinosaur;
 
