@@ -19,10 +19,10 @@ function getStyles(theme: Theme) {
   return StyleSheet.create({
     text: {
       fontSize: 21,
-      color: "white",
-      backgroundColor: "darkgreen",
-      padding: 10,
-      marginVertical: 5,
+      color: "#ffffff",
+      backgroundColor: "#007980",
+      padding: 16,
+      marginVertical: 8,
     },
   })
 }
