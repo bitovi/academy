@@ -22,16 +22,25 @@ TODO
 
 ### Setup 1
 
-✏️ Create **src/services/pmo/api/index.ts**.
+✏️ Create **src/services/pmo/api/index.ts** and update it to be:
 
-✏️ Create **src/services/pmo/api/api.ts**.
+@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/api/index.ts
 
-✏️ Create **src/services/pmo/restaurant/index.ts**.
+✏️ Create **src/services/pmo/api/api.ts** and update it to be:
 
-✏️ Create **src/services/pmo/restaurant/hooks.ts**.
+@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/api/api.ts
 
-✏️ Create **src/services/pmo/restaurant/interfaces.ts**.
+✏️ Create **src/services/pmo/restaurant/index.ts** and update it to be:
 
+@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/restaurant/index.ts
+
+✏️ Create **src/services/pmo/restaurant/hooks.ts** and update it to be:
+
+@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/restaurant/hooks.ts
+
+✏️ Create **src/services/pmo/restaurant/interfaces.ts** and update it to be:
+
+@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/restaurant/interfaces.ts
 
 
 ### Verify 1
