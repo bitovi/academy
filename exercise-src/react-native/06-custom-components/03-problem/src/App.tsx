@@ -36,12 +36,7 @@ export const StateList: FC = () => {
 const App: FC = () => {
   return (
     <SafeAreaView style={{ height: "100%", width: "100%" }}>
-      <ScrollView>
-        <View>
-          <Text>Place My Order: Coming Soon!</Text>
-        </View>
-        <StateList />
-      </ScrollView>
+      <StateList />
     </SafeAreaView>
   )
 }
