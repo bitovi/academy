@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="TODO 
+  <meta name="description" content="Learn how to share a common theme by creating a Context. 
 ">
   
   <!-- Google Tag Manager -->
@@ -259,7 +259,7 @@
            						expanded">
 						<a class="page"
 							href="react-context.html"
-							title="TODO">
+							title="Learn how to share a common theme by creating a Context.">
 							Using React Context
 						</a>
 						
@@ -665,7 +665,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>TODO</p>
+    <p>Learn how to share a common theme by creating a Context.</p>
 
 </section>
 
@@ -681,10 +681,332 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this section, you will:</p>
 <ul>
-<li>TODO</li>
+<li>Create a theme with shared values</li>
+<li>Understand the what, why, and how of React Context</li>
+<li>Create a design system to unify the application</li>
 </ul>
 <h2>Objective 1: Create a theme with shared values</h2>
-<p>TODO</p>
+<p>Now that we understand how to style our components, let's style everything! However, this very quickly becomes a maintenance nightmare. We want to use the color <code>#007980</code> for most of our highlights, but occasionally use <code>#ca2f35</code>. What if we decide to change <code>#007980</code> to <code>#00a5ad</code>?</p>
+<p>We need a shared theme. Not only will this allow us to keep things in sync and stop repeating ourselves, it will allow us to use common lanuage to describe our colors and other parameters of our styling.</p>
+<p>Before we get too far into our style system though, we need to talk about how we will share it. While we could put it in a module that we import any time we need it, this would make it difficult to make dynamic changes to our styles, like dark mode. Instead, we can use <strong>React Context</strong>.</p>
+<h3>What is Context?</h3>
+<p>React Context is a feature in React that allows you to share data between components without having to explicitly pass props through every level of the component tree. It's particularly useful for passing down global data, such as themes, user authentication, or language preferences, to components deep in the tree.</p>
+<h3>How do you use Context?</h3>
+<p>Context consists of three parts:</p>
+<ol>
+<li>Context: Think of the context as a box of things. The box needs to be available to all who want to use it.</li>
+<li>Provider: The provider puts things into the box. Whatever data it handles is only available to its children.</li>
+<li>Consumer: The consumer takes things out of the box. It can only access the providers above it in the component hierarchy.</li>
+</ol>
+<h4>Context</h4>
+<p>First we create a definition of what information will be stored, then we get the object that we'll use to store it. The <code>createContext</code> function also accepts a default value, to be provided whenever we access the context without a provider. In this case, we've decided to not specify a default value.</p>
+<pre><code class="language-tsx">import {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from &quot;react&quot;
+
+interface User {
+  username: string
+  token: string
+}
+
+interface AuthContext {
+  signIn: (username: string, password: string) =&gt; Promise&lt;void&gt;
+  signOut: () =&gt; Promise&lt;void&gt;
+  user?: User
+}
+
+const Context = createContext&lt;AuthContext | undefined&gt;(undefined)
+
+const App: React.FC = () =&gt; {
+  const [user, setUser] = useState&lt;User&gt;()
+
+  const signIn = useCallback(async (username: string, password: string) =&gt; {
+    setUser({ username, token: password })
+  }, [])
+
+  const signOut = useCallback(async () =&gt; {
+    setUser(undefined)
+  }, [])
+
+  const value = useMemo(
+    () =&gt; ({ signIn, signOut, user }),
+    [signIn, signOut, user],
+  )
+
+  return (
+    &lt;Context.Provider value={value}&gt;
+      &lt;User /&gt;
+    &lt;/Context.Provider&gt;
+  )
+}
+
+const User: React.FC = ({ children }) =&gt; {
+  const context = useContext(Context)
+
+  return (
+    &lt;div&gt;
+      {context?.user ? `Welcome ${context.user.username}!` : &quot;Please sign in.&quot;}
+    &lt;/div&gt;
+  )
+}
+
+</code></pre>
+<div line-highlight='14-20, only'></div>
+<h4>Provider</h4>
+<p>The Provider is how we actually tell React to store our data. We can render the provider anywhere in our tree, and the data will be accessible anywhere inside. To keep things performant, we will usually want to memoize these values. (Don't worry if <code>useState</code> looks odd. We'll be covering this shortly.)</p>
+<pre><code class="language-tsx">import {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from &quot;react&quot;
+
+interface User {
+  username: string
+  token: string
+}
+
+interface AuthContext {
+  signIn: (username: string, password: string) =&gt; Promise&lt;void&gt;
+  signOut: () =&gt; Promise&lt;void&gt;
+  user?: User
+}
+
+const Context = createContext&lt;AuthContext | undefined&gt;(undefined)
+
+const App: React.FC = () =&gt; {
+  const [user, setUser] = useState&lt;User&gt;()
+
+  const signIn = useCallback(async (username: string, password: string) =&gt; {
+    setUser({ username, token: password })
+  }, [])
+
+  const signOut = useCallback(async () =&gt; {
+    setUser(undefined)
+  }, [])
+
+  const value = useMemo(
+    () =&gt; ({ signIn, signOut, user }),
+    [signIn, signOut, user],
+  )
+
+  return (
+    &lt;Context.Provider value={value}&gt;
+      &lt;User /&gt;
+    &lt;/Context.Provider&gt;
+  )
+}
+
+const User: React.FC = ({ children }) =&gt; {
+  const context = useContext(Context)
+
+  return (
+    &lt;div&gt;
+      {context?.user ? `Welcome ${context.user.username}!` : &quot;Please sign in.&quot;}
+    &lt;/div&gt;
+  )
+}
+
+</code></pre>
+<div line-highlight='33-42, only'></div>
+<h4>Consumer</h4>
+<p>We can <code>useContext</code> to access the data from our closest Provider.</p>
+<pre><code class="language-tsx">import {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from &quot;react&quot;
+
+interface User {
+  username: string
+  token: string
+}
+
+interface AuthContext {
+  signIn: (username: string, password: string) =&gt; Promise&lt;void&gt;
+  signOut: () =&gt; Promise&lt;void&gt;
+  user?: User
+}
+
+const Context = createContext&lt;AuthContext | undefined&gt;(undefined)
+
+const App: React.FC = () =&gt; {
+  const [user, setUser] = useState&lt;User&gt;()
+
+  const signIn = useCallback(async (username: string, password: string) =&gt; {
+    setUser({ username, token: password })
+  }, [])
+
+  const signOut = useCallback(async () =&gt; {
+    setUser(undefined)
+  }, [])
+
+  const value = useMemo(
+    () =&gt; ({ signIn, signOut, user }),
+    [signIn, signOut, user],
+  )
+
+  return (
+    &lt;Context.Provider value={value}&gt;
+      &lt;User /&gt;
+    &lt;/Context.Provider&gt;
+  )
+}
+
+const User: React.FC = ({ children }) =&gt; {
+  const context = useContext(Context)
+
+  return (
+    &lt;div&gt;
+      {context?.user ? `Welcome ${context.user.username}!` : &quot;Please sign in.&quot;}
+    &lt;/div&gt;
+  )
+}
+
+</code></pre>
+<div line-highlight='46, only'></div>
+<h3>Future-proofing your Context</h3>
+<p>This simple approach poses a few problems, however.</p>
+<ul>
+<li>Every time the provider is used, the component must be careful to create the memoized (and potentially very complicated) value.</li>
+<li>If the structure of the data changes, you will have to update the code every place you used the provide and every place you used the consumer.</li>
+</ul>
+<p>To help keep things clean in the future, it is best practice to keep this Context object contained within this file, to avoid exporting it, and instead to export custom wrappers around each piece.</p>
+<h4>Provider</h4>
+<p>We can create a custom <code>AuthProvider</code> that hides all the complicated logic from other components. Sometimes a custom provider will even take props (such as an access token), though this one doesn't require any.</p>
+<pre><code class="language-tsx">import {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from &quot;react&quot;
+
+interface User {
+  username: string
+  token: string
+}
+
+interface AuthContext {
+  signIn: (username: string, password: string) =&gt; Promise&lt;void&gt;
+  signOut: () =&gt; Promise&lt;void&gt;
+  user?: User
+}
+
+const Context = createContext&lt;AuthContext | undefined&gt;(undefined)
+
+const AuthProvider: React.FC&lt;{ children: React.ReactNode }&gt; = ({
+  children,
+}) =&gt; {
+  const [user, setUser] = useState&lt;User&gt;()
+
+  const signIn = useCallback(async (username: string, password: string) =&gt; {
+    setUser({ username, token: password })
+  }, [])
+
+  const signOut = useCallback(async () =&gt; {
+    setUser(undefined)
+  }, [])
+
+  const value = useMemo(
+    () =&gt; ({
+      signIn,
+      signOut,
+      user,
+    }),
+    [user],
+  )
+
+  return &lt;Context.Provider value={value}&gt;{children}&lt;/Context.Provider&gt;
+}
+
+export default AuthProvider
+
+export function useUser() {
+  const { user } = useContext(Context)
+
+  return user
+}
+
+export function useAuthentication() {
+  const { signIn, signOut } = useContext(Context)
+
+  return { signIn, signOut }
+}
+
+</code></pre>
+<div line-highlight='22-45, only'></div>
+<h4>Consumer</h4>
+<p>Instead of calling <code>useContext</code> everywhere and needing to understand the structure of the context, we can provide custom hooks that return the specific parts of the context that we need. If we change the context structure, all we have to do is update these hooks to return the same data as before and no other code has to change.</p>
+<pre><code class="language-tsx">import {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from &quot;react&quot;
+
+interface User {
+  username: string
+  token: string
+}
+
+interface AuthContext {
+  signIn: (username: string, password: string) =&gt; Promise&lt;void&gt;
+  signOut: () =&gt; Promise&lt;void&gt;
+  user?: User
+}
+
+const Context = createContext&lt;AuthContext | undefined&gt;(undefined)
+
+const AuthProvider: React.FC&lt;{ children: React.ReactNode }&gt; = ({
+  children,
+}) =&gt; {
+  const [user, setUser] = useState&lt;User&gt;()
+
+  const signIn = useCallback(async (username: string, password: string) =&gt; {
+    setUser({ username, token: password })
+  }, [])
+
+  const signOut = useCallback(async () =&gt; {
+    setUser(undefined)
+  }, [])
+
+  const value = useMemo(
+    () =&gt; ({
+      signIn,
+      signOut,
+      user,
+    }),
+    [user],
+  )
+
+  return &lt;Context.Provider value={value}&gt;{children}&lt;/Context.Provider&gt;
+}
+
+export default AuthProvider
+
+export function useUser() {
+  const { user } = useContext(Context)
+
+  return user
+}
+
+export function useAuthentication() {
+  const { signIn, signOut } = useContext(Context)
+
+  return { signIn, signOut }
+}
+
+</code></pre>
+<div line-highlight='49-59, only'></div>
 <h3>Setup 1</h3>
 <p>✏️ Create <strong>src/design/theme/ThemeProvider.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
@@ -698,11 +1020,17 @@ interface ThemeContext {
   theme: Theme
 }
 
-const ThemeProvider: FC = () =&gt; {}
+// TODO
+
+const ThemeProvider: FC = () =&gt; {
+  // TODO
+}
 
 export default ThemeProvider
 
-export function useTheme(): Theme {}
+export function useTheme(): Theme {
+  // TODO
+}
 
 </code></pre>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
@@ -737,8 +1065,7 @@ type ListItemProps = {
 }
 
 const ListItem: FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
-  const theme = useTheme()
-  const styles = getStyles(theme)
+  const styles = getStyles()
 
   return &lt;Text style={styles.text}&gt;{name}&lt;/Text&gt;
 }
@@ -758,7 +1085,7 @@ function getStyles(theme: Theme) {
 export default ListItem
 
 </code></pre>
- <div line-highlight="2,5,12-13,18-28,only"></div>
+ <div line-highlight="2,5,12,17-27,only"></div>
 <h3>Verify 1</h3>
 <p>✏️ Create <strong>src/design/theme/ThemeProvider.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
@@ -800,7 +1127,10 @@ describe(&quot;ThemeContext context&quot;, () =&gt; {
 
 </code></pre>
 <h3>Exercise 1</h3>
-<p>TODO</p>
+<ul>
+<li>Update <code>ThemeProvider</code> to provide data according to the provided <code>ThemeContext</code>.</li>
+<li>Update <code>ListItem</code> to use the values from our context.</li>
+</ul>
 <h3>Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
@@ -817,9 +1147,7 @@ interface ThemeContext {
   theme: Theme
 }
 
-const Context = createContext&lt;ThemeContext&gt;({
-  theme,
-})
+const Context = createContext&lt;ThemeContext&gt;({ theme })
 
 const ThemeProvider: FC&lt;{ children: React.ReactNode }&gt; = ({ children }) =&gt; {
   const value = useMemo(() =&gt; ({ theme }), [])
@@ -836,7 +1164,7 @@ export function useTheme(): Theme {
 }
 
 </code></pre>
- <div line-highlight="12-14,16-17,19-20,24-25,27-28,only"></div>
+ <div line-highlight="12,14-15,17,23,25,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/components/ListItem/ListItem.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
 import type { Theme } from &quot;../../../../design/theme&quot;
@@ -870,10 +1198,18 @@ function getStyles(theme: Theme) {
 export default ListItem
 
 </code></pre>
- <div line-highlight="21-25,only"></div>
+ <div line-highlight="12-13,21-25,only"></div>
 <p></details></p>
 <h2>Objective 2: Begin creating a design system to unify your application</h2>
-<p>TODO</p>
+<p>If we continue down this path, our entire codebase will become littered with <code>theme.typography.*</code>, <code>theme.palette.*</code>, etc. What if we decide to change the color pattern of one of our components? We'd have to update every place we used that pattern. Instead, we'll create a design system.</p>
+<h3>What is a design system?</h3>
+<p>A design system is a collection of reusable components, guidelines, and principles that together help ensure consistency, efficiency, and scalability in designing and building digital products. It serves as a single source of truth for design and development teams, providing them with a set of predefined rules and assets to create cohesive user experiences across different platforms and devices.</p>
+<h3>Organizing a design system</h3>
+<p>If you ask 3 designers and 3 developers how best to organize a design system, you'll get 9 different answers...</p>
+<h4>Atomic Design Methodology</h4>
+<p>The most prolific organization method is <a href="https://atomicdesign.bradfrost.com/chapter-2/">Atomic Design</a>. If you want to learn more about design systems, Atomic Design by Brad Frost is the perfect place to start.</p>
+<h4>But... let’s keep things simple</h4>
+<p>Atomic Design is a great system, but it can be overkill for many projects. For this project, we're going to keep things much more simple: We'll have the shared theme we created in the previous objective, and we'll create a small collection of exported components.</p>
 <h3>Setup 2</h3>
 <p>✏️ Create <strong>src/design/Box/Box.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
@@ -968,7 +1304,9 @@ const Typography: FC&lt;TypographyProps&gt; = ({
   variant = &quot;body&quot;,
   children,
   ...props
-}) =&gt; {}
+}) =&gt; {
+  // TODO
+}
 
 export default Typography
 
@@ -1028,7 +1366,11 @@ describe(&quot;Typography component&quot;, () =&gt; {
 
 </code></pre>
 <h3>Exercise 2</h3>
-<p>TODO</p>
+<p>We've provided a basic <code>Box</code> component for you; because of the flexibility of the margin, padding, etc, a component like this can get complicated very quickly.</p>
+<ul>
+<li>Your first task is to finish the <code>Typography</code> component using the same patterns.</li>
+<li>Your second task is to update <code>StateList</code> to use <code>Box</code> and <code>Typography</code> instead of <code>View</code> and <code>Text</code>.</li>
+</ul>
 <h3>Solution 2</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
@@ -1079,7 +1421,7 @@ function getStyles(
 }
 
 </code></pre>
- <div line-highlight="18-20,22-26,43,only"></div>
+ <div line-highlight="19-20,22-26,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
 import { ScrollView } from &quot;react-native&quot;
@@ -1121,7 +1463,15 @@ export default StateList
  <div line-highlight="2,4-5,21-30,only"></div>
 <p></details></p>
 <h2>Objective 3: Expand your design system</h2>
-<p>TODO</p>
+<p>Now that we have the basics of a design system, we can expand it however we need. There are some basic components that most design systems will need:</p>
+<ol>
+<li>Page/Screen/etc. A main view of the app, which will often have a prop like <code>title</code>.</li>
+<li>Form components like TextInput, Select, Button. Almost every app will need forms of some kind.</li>
+<li>Typography. The basic text component, to make it easier to standardize text size and color.</li>
+<li>Grid. Most apps will need to control placement of elements on the screen.</li>
+<li>Card. While this is a specific design pattern, it has become very ubiquitous lately.</li>
+</ol>
+<p>Beyond these, you'll find all kinds of UI components like Tabs, Modal, Icon, Navigation, Badge, Progress, etc.</p>
 <h3>Setup 3</h3>
 <p>✏️ Create <strong>src/design/Button/Button.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
@@ -1406,7 +1756,10 @@ export * from &quot;./Box&quot;
 
 </code></pre>
 <h3>Exercise 3</h3>
-<p>TODO</p>
+<p>We've provided three new design components for you: <code>Button</code>, <code>Card</code>, and <code>Screen</code>.</p>
+<ul>
+<li>Update <code>StateList</code> to use our new <code>Screen</code> and <code>Card</code> components. (We'll use <code>Button</code> later.)</li>
+</ul>
 <h3>Solution 3</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
@@ -1452,7 +1805,7 @@ export default StateList
  <div line-highlight="3-4,20-21,25,31,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
-<p>TODO</p>
+<p>Next, let’s learn about how we can add dark mode with <a href="managing-state.html" title="TODO">useState</a>.</p>
 
 </section>
 
@@ -1491,7 +1844,7 @@ export default StateList
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-native/09-react-context/react-context.md"},"description":"TODO \n","name":"learn-react-native/react-context","title":"Using React Context","type":"page","parent":"learn-react-native","order":9,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-native/09-react-context/react-context.md"},"description":"Learn how to share a common theme by creating a Context. \n","name":"learn-react-native/react-context","title":"Using React Context","type":"page","parent":"learn-react-native","order":9,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
