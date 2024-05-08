@@ -839,25 +839,25 @@ const states = [
 
 export const StateList: FC = () =&gt; {
   return (
-    &lt;View&gt;
-      {states?.length &gt; 0 ? (
-        states.map((state) =&gt; &lt;Text key={state.short}&gt;{state.name}&lt;/Text&gt;)
-      ) : (
-        &lt;Text&gt;No states found&lt;/Text&gt;
-      )}
-    &lt;/View&gt;
+    &lt;ScrollView&gt;
+      &lt;View&gt;
+        &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
+      &lt;/View&gt;
+      &lt;View&gt;
+        {states?.length &gt; 0 ? (
+          states.map((state) =&gt; &lt;Text key={state.short}&gt;{state.name}&lt;/Text&gt;)
+        ) : (
+          &lt;Text&gt;No states found&lt;/Text&gt;
+        )}
+      &lt;/View&gt;
+    &lt;/ScrollView&gt;
   )
 }
 
 const App: FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
-      &lt;ScrollView&gt;
-        &lt;View&gt;
-          &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
-        &lt;/View&gt;
-        &lt;StateList /&gt;
-      &lt;/ScrollView&gt;
+      &lt;StateList /&gt;
     &lt;/SafeAreaView&gt;
   )
 }
@@ -865,7 +865,7 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="17-23,34,only"></div>
+ <div line-highlight="17-28,35,only"></div>
 <p></details></p>
 <h2>Objective 2: Passing props</h2>
 <p>We’ve taken a great step to make our code more readable and our app more maintainable by creating the <code>StateList</code> component.</p>
@@ -949,25 +949,25 @@ export const ListItem: FC = ({}) =&gt; {
 
 export const StateList: FC = () =&gt; {
   return (
-    &lt;View&gt;
-      {states?.length &gt; 0 ? (
-        states.map((state) =&gt; &lt;Text key={state.short}&gt;{state.name}&lt;/Text&gt;)
-      ) : (
-        &lt;Text&gt;No states found&lt;/Text&gt;
-      )}
-    &lt;/View&gt;
+    &lt;ScrollView&gt;
+      &lt;View&gt;
+        &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
+      &lt;/View&gt;
+      &lt;View&gt;
+        {states?.length &gt; 0 ? (
+          states.map((state) =&gt; &lt;Text key={state.short}&gt;{state.name}&lt;/Text&gt;)
+        ) : (
+          &lt;Text&gt;No states found&lt;/Text&gt;
+        )}
+      &lt;/View&gt;
+    &lt;/ScrollView&gt;
   )
 }
 
 const App: FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
-      &lt;ScrollView&gt;
-        &lt;View&gt;
-          &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
-        &lt;/View&gt;
-        &lt;StateList /&gt;
-      &lt;/ScrollView&gt;
+      &lt;StateList /&gt;
     &lt;/SafeAreaView&gt;
   )
 }
@@ -975,7 +975,7 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="15-16,19,21,35,38,47-48,only"></div>
+ <div line-highlight="15-16,19,21,40,43,47-48,only"></div>
 <h3>Verify 2</h3>
 <p>✏️ Update <strong>App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
@@ -1049,25 +1049,25 @@ export const ListItem: FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
 
 export const StateList: FC = () =&gt; {
   return (
-    &lt;View&gt;
-      {states?.length &gt; 0 ? (
-        states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
-      ) : (
-        &lt;Text&gt;No states found&lt;/Text&gt;
-      )}
-    &lt;/View&gt;
+    &lt;ScrollView&gt;
+      &lt;View&gt;
+        &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
+      &lt;/View&gt;
+      &lt;View&gt;
+        {states?.length &gt; 0 ? (
+          states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
+        ) : (
+          &lt;Text&gt;No states found&lt;/Text&gt;
+        )}
+      &lt;/View&gt;
+    &lt;/ScrollView&gt;
   )
 }
 
 const App: FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
-      &lt;ScrollView&gt;
-        &lt;View&gt;
-          &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
-        &lt;/View&gt;
-        &lt;StateList /&gt;
-      &lt;/ScrollView&gt;
+      &lt;StateList /&gt;
     &lt;/SafeAreaView&gt;
   )
 }
@@ -1075,7 +1075,7 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="16-17,20-21,28,only"></div>
+ <div line-highlight="16-17,20-21,32,only"></div>
 <p></details></p>
 <h2>Objective 3: Organizing code with the Modlet pattern</h2>
 <p>Our efforts to refactor have been going swimmingly; however, the <code>App.tsx</code> file is getting a bit crowded. It's about time we take the time to organize our code, while doing so we'll also introduce a useful pattern to follow.</p>
@@ -1256,12 +1256,7 @@ export const StateList: FC = () =&gt; {
 const App: FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
-      &lt;ScrollView&gt;
-        &lt;View&gt;
-          &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
-        &lt;/View&gt;
-        &lt;StateList /&gt;
-      &lt;/ScrollView&gt;
+      &lt;StateList /&gt;
     &lt;/SafeAreaView&gt;
   )
 }
@@ -1352,18 +1347,13 @@ describe(&quot;ListItem&quot;, () =&gt; {
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { SafeAreaView } from &quot;react-native&quot;
+import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
 import StateList from &quot;./screens/StateList&quot;
 
 const App: FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
-      &lt;ScrollView&gt;
-        &lt;View&gt;
-          &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
-        &lt;/View&gt;
-        &lt;StateList /&gt;
-      &lt;/ScrollView&gt;
+      &lt;StateList /&gt;
     &lt;/SafeAreaView&gt;
   )
 }
@@ -1371,10 +1361,10 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="2-3,only"></div>
+ <div line-highlight="3,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { Text, View } from &quot;react-native&quot;
+import { ScrollView, Text, View } from &quot;react-native&quot;
 import ListItem from &quot;./components/ListItem&quot;
 
 const states = [
@@ -1390,20 +1380,25 @@ const states = [
 
 const StateList: FC = () =&gt; {
   return (
-    &lt;View&gt;
-      {states?.length &gt; 0 ? (
-        states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
-      ) : (
-        &lt;Text&gt;No states found&lt;/Text&gt;
-      )}
-    &lt;/View&gt;
+    &lt;ScrollView&gt;
+      &lt;View&gt;
+        &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
+      &lt;/View&gt;
+      &lt;View&gt;
+        {states?.length &gt; 0 ? (
+          states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
+        ) : (
+          &lt;Text&gt;No states found&lt;/Text&gt;
+        )}
+      &lt;/View&gt;
+    &lt;/ScrollView&gt;
   )
 }
 
 export default StateList
 
 </code></pre>
- <div line-highlight="2,5-14,16-26,only"></div>
+ <div line-highlight="2,5-14,16-31,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/components/ListItem/ListItem.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
 import { Text } from &quot;react-native&quot;

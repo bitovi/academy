@@ -853,7 +853,7 @@ covering CanJS core libraries.">
  <div line-highlight="7,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { View, Text } from &quot;react-native&quot;
+import { ScrollView, Text, View } from &quot;react-native&quot;
 import ListItem from &quot;./components/ListItem&quot;
 
 const states = [
@@ -872,20 +872,25 @@ const StateList: FC = () =&gt; {
   debugger
 
   return (
-    &lt;View&gt;
-      {states?.length &gt; 0 ? (
-        states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
-      ) : (
-        &lt;Text&gt;No states found&lt;/Text&gt;
-      )}
-    &lt;/View&gt;
+    &lt;ScrollView&gt;
+      &lt;View&gt;
+        &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
+      &lt;/View&gt;
+      &lt;View&gt;
+        {states?.length &gt; 0 ? (
+          states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
+        ) : (
+          &lt;Text&gt;No states found&lt;/Text&gt;
+        )}
+      &lt;/View&gt;
+    &lt;/ScrollView&gt;
   )
 }
 
 export default StateList
 
 </code></pre>
- <div line-highlight="2,17-18,only"></div>
+ <div line-highlight="17-18,only"></div>
 <h3>Exercise 2</h3>
 <p>Execute the command:</p>
 <p>✏️ Run:</p>
