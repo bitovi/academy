@@ -38,6 +38,10 @@ TODO
 
 ### Verify 1
 
+✏️ Update **src/App.test.tsx** to be:
+
+@diff ../../../exercises/react-native/10-managing-state/01-solution/src/App.test.tsx ../../../exercises/react-native/11-navigation/01-problem/src/App.test.tsx only
+
 ✏️ Create **src/screens/Settings/Settings.test.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-native/11-navigation/01-problem/src/screens/Settings/Settings.test.tsx
@@ -93,9 +97,13 @@ TODO
 
 ### Verify 2
 
+✏️ Update **src/screens/StateList/StateList.test.tsx** to be:
+
+@diff ../../../exercises/react-native/11-navigation/01-problem/src/screens/StateList/StateList.test.tsx ../../../exercises/react-native/11-navigation/02-problem/src/screens/StateList/StateList.test.tsx only
+
 ✏️ Create **src/screens/CityList/CityList.test.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-native/11-navigation/02-problem/src/screens/CityList/CityList.tsx
+@sourceref ../../../exercises/react-native/11-navigation/02-problem/src/screens/CityList/CityList.test.tsx
 
 ### Exercise 2
 
@@ -167,6 +175,10 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 @sourceref ../../../exercises/react-native/11-navigation/03-problem/src/screens/RestaurantList/index.ts
 
 ### Verify 3
+
+✏️ Update **src/screens/CityList/CityList.test.tsx** to be:
+
+@diff ../../../exercises/react-native/11-navigation/02-solution/src/screens/CityList/CityList.test.tsx ../../../exercises/react-native/11-navigation/03-problem/src/screens/CityList/CityList.test.tsx only
 
 ✏️ Create **src/components/RestaurantHeader/RestaurantHeader.test.tsx** and update it to be:
 

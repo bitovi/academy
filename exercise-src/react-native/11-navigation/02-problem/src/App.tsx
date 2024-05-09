@@ -17,10 +17,10 @@ const RestaurantsStack = createStackNavigator()
 const RestaurantsNavigator: FC = () => {
   return (
     <RestaurantsStack.Navigator
-    initialRouteName="StateList"
-    screenOptions={{
-      header: ({ route, navigation }) => {
-        {/* Exercise: Add logic for back navigation*/}
+      initialRouteName="StateList"
+      screenOptions={{
+       header: ({ route, navigation }) => {
+          {/* Exercise: Add logic for back navigation*/}
         return (
           <Pressable onPress={}>
             <Box
@@ -39,7 +39,6 @@ const RestaurantsNavigator: FC = () => {
   >
     {/*Exercise: Add Navigator Children for StateList and CityList */}
   </RestaurantsStack.Navigator>
-   
   )
 }
 
