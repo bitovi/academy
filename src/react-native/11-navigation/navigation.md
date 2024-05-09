@@ -16,9 +16,6 @@ In this section, you will:
 
 <div style="display: flex; flex-direction: row; gap: 2rem">
   <img alt="Screen Shot of the StateList in Navigation" src="../static/img/react-native/11-navigation/NavigationStateList.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
-  <img alt="Screen Shot of the CityList in Navigation" src="../static/img/react-native/11-navigation/NavigationCityList.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
-  <img alt="Screen Shot of the RestaurantList in Navigation" src="../static/img/react-native/11-navigation/NavigationRestaurantList.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
-  <img alt="Screen Shot of the RestaurantDetails in Navigation" src="../static/img/react-native/11-navigation/NavigationRestaurantDetails.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
 </div>
 
 ### Concept TODO
@@ -65,6 +62,10 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 </details>
 
 ## Objective 2: Using React Native stack navigation
+
+<div style="display: flex; flex-direction: row; gap: 2rem">
+  <img alt="Screen Shot of the CityList in Navigation" src="../static/img/react-native/11-navigation/NavigationCityList.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+</div>
 
 TODO
 
@@ -119,6 +120,11 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 </details>
 
 ## Objective 3: Add Restaurant List and Restaurant Details pages with links
+
+<div style="display: flex; flex-direction: row; gap: 2rem">
+  <img alt="Screen Shot of the RestaurantList in Navigation" src="../static/img/react-native/11-navigation/NavigationRestaurantList.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screen Shot of the RestaurantDetails in Navigation" src="../static/img/react-native/11-navigation/NavigationRestaurantDetails.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+</div>
 
 ### Setup 3
 
