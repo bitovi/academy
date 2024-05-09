@@ -1,0 +1,28 @@
+import type { FC } from "react"
+import { View, Text, Pressable } from "react-native"
+import { useNavigation } from "@react-navigation/native"
+import type { StackScreenProps } from "@react-navigation/stack"
+
+import { ShopStackParamList } from "./StackRoute"
+
+type ProfileProps = StackScreenProps<ShopStackParamList, "UserProfile">
+
+const UserProfile: FC<ProfileProps> = ({ route }) => {
+  const { user } = route.params
+  const navigation = useNavigation()
+
+  return (
+    <View>
+      <Text variant="heading">
+        Hello! {user.firstName} {user.lastName}. Is your {user.email} correct?
+      </Text>
+      <Pressable
+        onPress={() => {
+          navigation.navigate("Storefront", { user, slug: "mainPage" })
+        }}
+      >
+        Shop Here!
+      </Pressable>
+    </View>
+  )
+}
