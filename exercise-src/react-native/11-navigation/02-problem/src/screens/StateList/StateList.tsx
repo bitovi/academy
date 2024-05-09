@@ -30,9 +30,7 @@ const StateList: FC = () => {
         data={states}
         renderItem={({ item: stateItem }) => (
           <Button
-            onPress={() => {
-              navigation.navigate("CityList")
-            }}
+            onPress={() => console.warn(`${stateItem.name}`)}
           >
             {stateItem.name}
           </Button>

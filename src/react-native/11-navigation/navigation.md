@@ -14,7 +14,12 @@ In this section, you will:
 
 ## Objective 1: Using React Native bottom tab navigation
 
-TODO
+<div style="display: flex; flex-direction: row; gap: 2rem">
+  <img alt="Screen Shot of the StateList in Navigation" src="../static/img/react-native/11-navigation/NavigationStateList.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screen Shot of the CityList in Navigation" src="../static/img/react-native/11-navigation/NavigationCityList.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screen Shot of the RestaurantList in Navigation" src="../static/img/react-native/11-navigation/NavigationRestaurantList.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screen Shot of the RestaurantDetails in Navigation" src="../static/img/react-native/11-navigation/NavigationRestaurantDetails.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+</div>
 
 ### Concept TODO
 
@@ -34,10 +39,6 @@ TODO
 
 @sourceref ../../../exercises/react-native/11-navigation/01-problem/src/screens/Settings/index.ts
 
-✏️ Update **src/screens/StateList/StateList.tsx** to be:
-
-@diff ../../../exercises/react-native/10-managing-state/01-solution/src/screens/StateList/StateList.tsx ../../../exercises/react-native/11-navigation/01-problem/src/screens/StateList/StateList.tsx
-
 ### Verify 1
 
 ✏️ Create **src/screens/Settings/Settings.test.tsx** and update it to be:
@@ -47,7 +48,8 @@ TODO
 ### Exercise 1
 
 - For the `tabBarIcon` property on `AppTabs.Navigator` update the `Icon` component's name property to be based on the given route.
-- Add a screen tab for Restaurants (for the `StateList` component) and for `Settings` component.
+- Add a screen tab for Restaurants (the `StateList` component) and for `Settings` component.
+- Add the `NavigationContainer` and  `AppNavigator` to the `App` component.
 
 ### Solution 1
 
@@ -97,6 +99,7 @@ TODO
 ### Exercise 2
 
 - Using `RestaurantsStack` implement a `Navigator` with two screens, one for `StateList` and one for `CityList`.
+- Use `navigation` in the `StateList` component, to link `StateList` to the `CityList` screen.
 
 ### Solution 2
 
@@ -109,6 +112,10 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 @diff ../../../exercises/react-native/11-navigation/02-problem/src/App.tsx ../../../exercises/react-native/11-navigation/02-solution/src/App.tsx only
 
+✏️ Update **src/screens/StateList/StateList.tsx** to be:
+
+@diff ../../../exercises/react-native/11-navigation/02-problem/src/screens/StateList/StateList.tsx ../../../exercises/react-native/11-navigation/02-solution/src/screens/StateList/StateList.tsx only
+
 </details>
 
 ## Objective 3: Add Restaurant List and Restaurant Details pages with links
@@ -117,7 +124,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 ✏️ Update **src/App.tsx** to be:
 
-@diff ../../../exercises/react-native/11-navigation/03-solution/src/App.tsx ../../../exercises/react-native/11-navigation/03-problem/src/App.tsx only
+@diff ../../../exercises/react-native/11-navigation/02-solution/src/App.tsx ../../../exercises/react-native/11-navigation/03-problem/src/App.tsx only
 
 ✏️ Create **src/components/RestaurantHeader/** (folder)
 
@@ -128,6 +135,10 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 ✏️ Create **src/components/RestaurantHeader/index.ts** and update it to be:
 
 @sourceref ../../../exercises/react-native/11-navigation/03-problem/src/components/RestaurantHeader/index.ts
+
+✏️ Update **src/screens/CityList/CityList.tsx** to be:
+
+@diff ../../../exercises/react-native/11-navigation/02-solution/src/screens/CityList/CityList.tsx ../../../exercises/react-native/11-navigation/03-problem/src/screens/CityList/CityList.tsx only
 
 ✏️ Create **src/screens/RestaurantDetails/** (folder)
 
@@ -167,6 +178,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 ### Exercise 3
 
 - Add `RestaurantList` and `RestaurantDetails` to the `StackNavigator`
+- Use `navigation` in the `CityList` component, to link `CityList` to the `RestaurantList` screen.
 - Use `navigation` in the `RestaurantList` component, to link `RestaurantList` to the `RestaurantDetails` screen.
 
 ### Solution 3
@@ -179,6 +191,10 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 ✏️ Update **src/App.tsx** to be:
 
 @diff ../../../exercises/react-native/11-navigation/03-problem/src/App.tsx ../../../exercises/react-native/11-navigation/03-solution/src/App.tsx only
+
+✏️ Update **src/screens/CityList/CityList.tsx** to be:
+
+@diff ../../../exercises/react-native/11-navigation/03-problem/src/screens/CityList/CityList.tsx ../../../exercises/react-native/11-navigation/03-solution/src/screens/CityList/CityList.tsx only
 
 ✏️ Update **src/screens/RestaurantList/RestaurantList.tsx** to be:
 

@@ -1,5 +1,6 @@
 import type { FC } from "react"
 import { FlatList } from "react-native"
+import { useNavigation } from "@react-navigation/native"
 
 import Screen from "../../design/Screen"
 import Button from "../../design/Button"
@@ -15,14 +16,16 @@ const cities: City[] = [
 ]
 
 const CityList: FC = () => {
+  const navigation = useNavigation()
+
+  //Exercise: Use navigation to navigate to RestaurantList
+
   return (
     <Screen>
       <FlatList
         data={cities}
         renderItem={({ item: cityItem }) => (
-          <Button
-            onPress={() => console.warn(`${cityItem.name}`)}
-          >
+          <Button onPress={() => console.warn(`${cityItem.name}`)}>
             {cityItem.name}
           </Button>
         )}

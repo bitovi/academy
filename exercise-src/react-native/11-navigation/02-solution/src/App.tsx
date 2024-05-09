@@ -12,13 +12,6 @@ import Box from "./design/Box"
 import Typography from "./design/Typography"
 import { createStackNavigator } from "@react-navigation/stack"
 
-declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace ReactNavigation {
-    // eslint-disable-next-line @typescript-eslint/no-empty-interface
-    interface RootParamList extends RestaurantsStackParamList {}
-  }
-}
 
 const RestaurantsStack = createStackNavigator()
 const RestaurantsNavigator: FC = () => {

@@ -12,18 +12,34 @@ import Box from "./design/Box"
 import Typography from "./design/Typography"
 import { createStackNavigator } from "@react-navigation/stack"
 
-declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace ReactNavigation {
-    // eslint-disable-next-line @typescript-eslint/no-empty-interface
-    interface RootParamList extends RestaurantsStackParamList {}
-  }
-}
 
 const RestaurantsStack = createStackNavigator()
 const RestaurantsNavigator: FC = () => {
   return (
-   //Exercise: Implement Stack Navigator that includes CityList and StateList
+    <RestaurantsStack.Navigator
+    initialRouteName="StateList"
+    screenOptions={{
+      header: ({ route, navigation }) => {
+        {/* Exercise: Add logic for back navigation*/}
+        return (
+          <Pressable onPress={}>
+            <Box
+              padding="m"
+              style={{ flexDirection: "row", gap: 8, alignItems: "center" }}
+            >
+              <Icon name="arrow-back" size={20} />
+              <Typography variant="heading">
+                Choose a location
+              </Typography>
+            </Box>
+          </Pressable>
+        )
+      },
+    }}
+  >
+    {/*Exercise: Add Navigator Children for StateList and CityList */}
+  </RestaurantsStack.Navigator>
+   
   )
 }
 
