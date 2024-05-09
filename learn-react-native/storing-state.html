@@ -683,24 +683,284 @@ covering CanJS core libraries.">
 <ul>
 <li>TODO</li>
 </ul>
-<h2>Objective 1: TODO</h2>
-<p>TODO</p>
+<h2>Objective 1: Intro to navigation parameters</h2>
 <h3>Concept TODO</h3>
 <p>TODO</p>
 <h3>Setup 1</h3>
-<p>TODO</p>
+<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { Pressable, SafeAreaView } from &quot;react-native&quot;
+import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import Icon from &quot;react-native-vector-icons/Ionicons&quot;
+
+import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
+import StateList from &quot;./screens/StateList&quot;
+import Settings from &quot;./screens/Settings&quot;
+import RestaurantDetails from &quot;./screens/RestaurantDetails&quot;
+import RestaurantList from &quot;./screens/RestaurantList&quot;
+import CityList from &quot;./screens/CityList&quot;
+import Box from &quot;./design/Box&quot;
+import Typography from &quot;./design/Typography&quot;
+import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace ReactNavigation {
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    interface RootParamList extends RestaurantsStackParamList {}
+  }
+}
+
+export type RestaurantsStackParamList = {
+  StateList: undefined
+  CityList: {
+    state: {
+      name: string
+      short: string
+    }
+  }
+  RestaurantList: {
+    state: {
+      name: string
+      short: string
+    }
+    city: {
+      name: string
+      state: string
+    }
+  }
+  RestaurantDetails: {
+    state: {
+      name: string
+      short: string
+    }
+    city: {
+      name: string
+      state: string
+    }
+    slug: string
+  }
+}
+
+const RestaurantsStack = createStackNavigator&lt;RestaurantsStackParamList&gt;()
+const RestaurantsNavigator: FC = () =&gt; {
+  return (
+    &lt;RestaurantsStack.Navigator
+      initialRouteName=&quot;StateList&quot;
+      screenOptions={{
+        header: ({ route, navigation }) =&gt; {
+          if (!navigation.canGoBack()) return null
+
+          return (
+            &lt;Pressable onPress={navigation.goBack}&gt;
+              &lt;Box
+                padding=&quot;m&quot;
+                style={{ flexDirection: &quot;row&quot;, gap: 8, alignItems: &quot;center&quot; }}
+              &gt;
+                &lt;Icon name=&quot;arrow-back&quot; size={20} /&gt;
+                &lt;Typography variant=&quot;heading&quot;&gt;
+                  {/* @ts-ignore */}
+                  {[route.params?.city?.name, route.params?.state?.name]
+                    .filter(Boolean)
+                    .join(&quot;, &quot;)}
+                &lt;/Typography&gt;
+              &lt;/Box&gt;
+            &lt;/Pressable&gt;
+          )
+        },
+      }}
+    &gt;
+      &lt;RestaurantsStack.Screen name=&quot;StateList&quot; component={StateList} /&gt;
+      &lt;RestaurantsStack.Screen name=&quot;CityList&quot; component={CityList} /&gt;
+      &lt;RestaurantsStack.Screen
+        name=&quot;RestaurantList&quot;
+        component={RestaurantList}
+      /&gt;
+      &lt;RestaurantsStack.Screen
+        name=&quot;RestaurantDetails&quot;
+        component={RestaurantDetails}
+      /&gt;
+    &lt;/RestaurantsStack.Navigator&gt;
+  )
+}
+
+const AppTabs = createBottomTabNavigator()
+export const AppNavigator: FC = () =&gt; {
+  const theme = useTheme()
+
+  return (
+    &lt;AppTabs.Navigator
+      initialRouteName=&quot;RestaurantsStack&quot;
+      screenOptions={({ route }) =&gt; ({
+        headerStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        headerTitleStyle: {
+          color: theme.palette.screen.contrast,
+          ...theme.typography.title,
+        },
+        tabBarStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        tabBarActiveTintColor: theme.palette.primary.strong,
+        tabBarInactiveTintColor: theme.palette.screen.contrast,
+        tabBarIcon: ({ focused, color }) =&gt; {
+          let icon = &quot;settings&quot;
+          if (route.name === &quot;Settings&quot;) {
+            icon = focused ? &quot;settings&quot; : &quot;settings-outline&quot;
+          } else if (route.name === &quot;Restaurants&quot;) {
+            icon = focused ? &quot;restaurant&quot; : &quot;restaurant-outline&quot;
+          }
+
+          return &lt;Icon name={icon} size={20} color={color} /&gt;
+        },
+      })}
+    &gt;
+      &lt;AppTabs.Screen
+        name=&quot;Restaurants&quot;
+        component={RestaurantsNavigator}
+        options={{ title: &quot;Place My Order&quot; }}
+      /&gt;
+      &lt;AppTabs.Screen
+        name=&quot;Settings&quot;
+        component={Settings}
+        options={{ title: &quot;Settings&quot; }}
+      /&gt;
+    &lt;/AppTabs.Navigator&gt;
+  )
+}
+
+const App: FC = () =&gt; {
+  return (
+    &lt;ThemeProvider&gt;
+      &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+        &lt;NavigationContainer&gt;
+          &lt;AppNavigator /&gt;
+        &lt;/NavigationContainer&gt;
+      &lt;/SafeAreaView&gt;
+    &lt;/ThemeProvider&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="17-22,25-53,56,142,154,only"></div>
+<p>✏️ Update <strong>src/screens/CityList/CityList.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { FlatList } from &quot;react-native&quot;
+import type { StackScreenProps } from &quot;@react-navigation/stack&quot;
+
+import type { RestaurantsStackParamList } from &quot;../../App&quot;
+import Screen from &quot;../../design/Screen&quot;
+import Button from &quot;../../design/Button&quot;
+
+const cities = [
+  { name: &quot;Madison&quot;, state: &quot;WI&quot; },
+  { name: &quot;Springfield&quot;, state: &quot;IL&quot; },
+]
+
+type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;CityList&quot;&gt;
+
+const CityList: FC&lt;Props&gt; = ({ route }) =&gt; {
+  const navigation = useNavigation()
+
+  return (
+    &lt;Screen&gt;
+      &lt;FlatList
+        data={cities}
+        renderItem={({ item: cityItem }) =&gt; (
+          &lt;Button onPress={() =&gt; navigation.navigate(&quot;RestaurantList&quot;)}&gt;
+            {cityItem.name}
+          &lt;/Button&gt;
+        )}
+        keyExtractor={(item) =&gt; item.name}
+      /&gt;
+    &lt;/Screen&gt;
+  )
+}
+
+export default CityList
+
+</code></pre>
+ <div line-highlight="3,5,9,14,16-17,24,only"></div>
 <h3>Verify 1</h3>
-<p>TODO</p>
+<p>✏️ Update <strong>src/screens/CityList/CityList.test.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+
+import CityList from &quot;./CityList&quot;
+
+jest.mock(&quot;@react-native-async-storage/async-storage&quot;, () =&gt;
+  require(&quot;@react-native-async-storage/async-storage/jest/async-storage-mock&quot;),
+)
+
+describe(&quot;CityList component&quot;, () =&gt; {
+  it(&quot;renders city List&quot;, () =&gt; {
+    render(&lt;CityList /&gt;)
+
+    expect(screen.getByText(/Madison/i)).toBeOnTheScreen()
+    expect(screen.getByText(/Springfield/i)).toBeOnTheScreen()
+  })
+})
+
+</code></pre>
 <h3>Exercise 1</h3>
 <p>TODO</p>
 <h3>Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>TODO</p>
+<p>✏️ Update <strong>src/screens/CityList/CityList.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { FlatList } from &quot;react-native&quot;
+import { useNavigation } from &quot;@react-navigation/native&quot;
+import type { StackScreenProps } from &quot;@react-navigation/stack&quot;
+
+import type { RestaurantsStackParamList } from &quot;../../App&quot;
+import Screen from &quot;../../design/Screen&quot;
+import Button from &quot;../../design/Button&quot;
+
+const cities = [
+  { name: &quot;Madison&quot;, state: &quot;WI&quot; },
+  { name: &quot;Springfield&quot;, state: &quot;IL&quot; },
+]
+
+type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;CityList&quot;&gt;
+
+const CityList: FC&lt;Props&gt; = ({ route }) =&gt; {
+  const { state } = route.params
+  const navigation = useNavigation()
+
+  return (
+    &lt;Screen&gt;
+      &lt;FlatList
+        data={cities}
+        renderItem={({ item: cityItem }) =&gt; (
+          &lt;Button
+            onPress={() =&gt;
+              navigation.navigate(&quot;RestaurantList&quot;, {
+                state,
+                city: cityItem,
+              })
+            }
+          &gt;
+            {cityItem.name}
+          &lt;/Button&gt;
+        )}
+        keyExtractor={(item) =&gt; item.name}
+      /&gt;
+    &lt;/Screen&gt;
+  )
+}
+
+export default CityList
+
+</code></pre>
+ <div line-highlight="3,18,26-33,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
-<p>TODO</p>
+<p>Next, we'll cover an essential part of nearly all web applications: <a href="./making-http-requests.html">Making HTTP Requests</a>.</p>
 
 </section>
 
