@@ -1,0 +1,88 @@
+import type { FC } from "react"
+import { Pressable, SafeAreaView } from "react-native"
+import { NavigationContainer } from "@react-navigation/native"
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import Icon from "react-native-vector-icons/Ionicons"
+
+import ThemeProvider, { useTheme } from "./design/theme/ThemeProvider"
+import StateList from "./screens/StateList"
+import Settings from "./screens/Settings"
+import CityList from "./screens/CityList"
+import Box from "./design/Box"
+import Typography from "./design/Typography"
+import { createStackNavigator } from "@react-navigation/stack"
+
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace ReactNavigation {
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    interface RootParamList extends RestaurantsStackParamList {}
+  }
+}
+
+const RestaurantsStack = createStackNavigator()
+const RestaurantsNavigator: FC = () => {
+  return (
+   //Exercise: Implement Stack Navigator that includes CityList and StateList
+  )
+}
+
+const AppTabs = createBottomTabNavigator()
+export const AppNavigator: FC = () => {
+  const theme = useTheme()
+
+  return (
+    <AppTabs.Navigator
+      initialRouteName="RestaurantsStack"
+      screenOptions={({ route }) => ({
+        headerStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        headerTitleStyle: {
+          color: theme.palette.screen.contrast,
+          ...theme.typography.title,
+        },
+        tabBarStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        tabBarActiveTintColor: theme.palette.primary.strong,
+        tabBarInactiveTintColor: theme.palette.screen.contrast,
+        tabBarIcon: ({ focused, color }) => {
+          let icon = "settings"
+          if (route.name === "Settings") {
+            icon = focused ? "settings" : "settings-outline"
+          } else if (route.name === "Restaurants") {
+            icon = focused ? "restaurant" : "restaurant-outline"
+          }
+
+          return <Icon name={icon} size={20} color={color} />
+        },
+      })}
+    >
+      <AppTabs.Screen
+        name="Restaurants"
+        component={RestaurantsNavigator}
+        options={{ title: "Place My Order" }}
+      />
+      <AppTabs.Screen
+        name="Settings"
+        component={Settings}
+        options={{ title: "Settings" }}
+      />
+    </AppTabs.Navigator>
+  )
+}
+
+const App: FC = () => {
+  return (
+    <ThemeProvider>
+      <SafeAreaView style={{ height: "100%", width: "100%" }}>
+        <NavigationContainer>
+          <AppNavigator />
+        </NavigationContainer>
+      </SafeAreaView>
+    </ThemeProvider>
+  )
+}
+
+export default App
