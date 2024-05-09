@@ -5,7 +5,6 @@ import { useEffect } from "react"
 import { useNavigation } from "@react-navigation/native"
 
 import RestaurantHeader from "../../components/RestaurantHeader"
-import Button from "../../design/Button"
 import Screen from "../../design/Screen"
 
 export type Props = StaticScreenProps<{
@@ -27,8 +26,7 @@ const restaurant = {
   },
 }
 
-const RestaurantDetails: FC<Props> = ({ route }) => {
-  const { slug } = route.params
+const RestaurantDetails: FC<Props> = () => {
   const navigation = useNavigation()
   useEffect(() => {
     if (restaurant) {
@@ -39,14 +37,6 @@ const RestaurantDetails: FC<Props> = ({ route }) => {
   return (
     <Screen>
       <RestaurantHeader restaurant={restaurant} />
-
-      <Button
-        onPress={() => {
-          navigation.navigate("OrderCreate", { slug: slug })
-        }}
-      >
-        Place an order
-      </Button>
     </Screen>
   )
 }
