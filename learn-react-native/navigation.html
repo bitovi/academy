@@ -1048,7 +1048,6 @@ import { FlatList } from &quot;react-native&quot;
 import { useNavigation } from &quot;@react-navigation/native&quot;
 
 import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
 import Button from &quot;../../design/Button&quot;
 
 export interface State {
@@ -1077,9 +1076,7 @@ const StateList: FC = () =&gt; {
         renderItem={({ item: stateItem }) =&gt; (
           &lt;Button
             onPress={() =&gt; {
-              navigation.navigate(&quot;CityList&quot;, {
-                state: stateItem,
-              })
+              navigation.navigate(&quot;CityList&quot;)
             }}
           &gt;
             {stateItem.name}
@@ -1094,7 +1091,7 @@ const StateList: FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="2-3,7,9,26,30-44,only"></div>
+ <div line-highlight="2-3,6,8,25,29-41,only"></div>
 <p>✏️ Create <strong>src/screens/CityList/CityList.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
 import { FlatList } from &quot;react-native&quot;
@@ -1224,10 +1221,7 @@ const RestaurantsNavigator: FC = () =&gt; {
               &gt;
                 &lt;Icon name=&quot;arrow-back&quot; size={20} /&gt;
                 &lt;Typography variant=&quot;heading&quot;&gt;
-                  {/* @ts-ignore */}
-                  {[route.params?.city?.name, route.params?.state?.name]
-                    .filter(Boolean)
-                    .join(&quot;, &quot;)}
+                  Choose a location
                 &lt;/Typography&gt;
               &lt;/Box&gt;
             &lt;/Pressable&gt;
@@ -1302,7 +1296,7 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="26-30,32-47,49,51-53,86,88,only"></div>
+ <div line-highlight="26-30,32-44,46,48-50,83,85,only"></div>
 <p></details></p>
 <h2>Objective 3: Add Restaurant List and Restaurant Details pages with links</h2>
 <h3>Setup 3</h3>
@@ -1316,8 +1310,6 @@ import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
 import StateList from &quot;./screens/StateList&quot;
 import Settings from &quot;./screens/Settings&quot;
-import RestaurantDetails from &quot;./screens/RestaurantDetails&quot;
-import RestaurantList from &quot;./screens/RestaurantList&quot;
 import CityList from &quot;./screens/CityList&quot;
 import Box from &quot;./design/Box&quot;
 import Typography from &quot;./design/Typography&quot;
@@ -1340,10 +1332,7 @@ const RestaurantsNavigator: FC = () =&gt; {
               &gt;
                 &lt;Icon name=&quot;arrow-back&quot; size={20} /&gt;
                 &lt;Typography variant=&quot;heading&quot;&gt;
-                  {/* @ts-ignore */}
-                  {[route.params?.city?.name, route.params?.state?.name]
-                    .filter(Boolean)
-                    .join(&quot;, &quot;)}
+                  Choose a location
                 &lt;/Typography&gt;
               &lt;/Box&gt;
             &lt;/Pressable&gt;
@@ -1419,7 +1408,7 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="47,only"></div>
+ <div line-highlight="42,only"></div>
 <p>✏️ Create <strong>src/components/RestaurantHeader/</strong> (folder)</p>
 <p>✏️ Create <strong>src/components/RestaurantHeader/RestaurantHeader.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import type { Theme } from &quot;../../design/theme&quot;
@@ -1532,8 +1521,7 @@ const restaurant = {
   },
 }
 
-const RestaurantDetails: FC&lt;Props&gt; = ({ route }) =&gt; {
-  const { slug } = route.params
+const RestaurantDetails: FC&lt;Props&gt; = () =&gt; {
   const navigation = useNavigation()
   useEffect(() =&gt; {
     if (restaurant) {
@@ -1601,10 +1589,8 @@ const restaurants = [
   },
 ]
 
-const RestaurantList: FC&lt;Props&gt; = ({ route }) =&gt; {
+const RestaurantList: FC&lt;Props&gt; = () =&gt; {
   const navigation = useNavigation()
-
-  const { state, city } = route.params
 
   const navigateToDetails = (slug: string) =&gt; {
     //Exercise: Implement navigation to RestaurantDetails
@@ -1794,10 +1780,7 @@ const RestaurantsNavigator: FC = () =&gt; {
               &gt;
                 &lt;Icon name=&quot;arrow-back&quot; size={20} /&gt;
                 &lt;Typography variant=&quot;heading&quot;&gt;
-                  {/* @ts-ignore */}
-                  {[route.params?.city?.name, route.params?.state?.name]
-                    .filter(Boolean)
-                    .join(&quot;, &quot;)}
+                  Choose a location
                 &lt;/Typography&gt;
               &lt;/Box&gt;
             &lt;/Pressable&gt;
@@ -1880,7 +1863,7 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="47-49,51-53,95,100,only"></div>
+ <div line-highlight="10-11,44-46,48-50,92,97,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { StaticScreenProps } from &quot;@react-navigation/native&quot;
 import type { FC } from &quot;react&quot;
@@ -1926,17 +1909,11 @@ const restaurants = [
   },
 ]
 
-const RestaurantList: FC&lt;Props&gt; = ({ route }) =&gt; {
+const RestaurantList: FC&lt;Props&gt; = () =&gt; {
   const navigation = useNavigation()
 
-  const { state, city } = route.params
-
-  const navigateToDetails = (slug: string) =&gt; {
-    navigation.navigate(&quot;RestaurantDetails&quot;, {
-      state,
-      city,
-      slug,
-    })
+  const navigateToDetails = () =&gt; {
+    navigation.navigate(&quot;RestaurantDetails&quot;)
   }
 
   return (
@@ -1959,7 +1936,7 @@ const RestaurantList: FC&lt;Props&gt; = ({ route }) =&gt; {
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="51-55,only"></div>
+ <div line-highlight="48-49,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Now that we understand how to use React Native Navigation, we'll supplement that knowledge by <a href="./storing-state.html">storing state in Navigation Parameters</a>.</p>
