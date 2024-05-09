@@ -683,24 +683,1286 @@ covering CanJS core libraries.">
 <ul>
 <li>TODO</li>
 </ul>
-<h2>Objective 1: TODO</h2>
+<h2>Objective 1: Using React Native bottom tab navigation</h2>
 <p>TODO</p>
 <h3>Concept TODO</h3>
 <p>TODO</p>
 <h3>Setup 1</h3>
-<p>TODO</p>
+<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { SafeAreaView } from &quot;react-native&quot;
+import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import Icon from &quot;react-native-vector-icons/Ionicons&quot;
+
+import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
+
+const AppTabs = createBottomTabNavigator()
+export const AppNavigator: FC = () =&gt; {
+  const theme = useTheme()
+
+  return (
+    &lt;AppTabs.Navigator
+      initialRouteName=&quot;RestaurantsStack&quot;
+      screenOptions={({ route }) =&gt; ({
+        headerStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        headerTitleStyle: {
+          color: theme.palette.screen.contrast,
+          ...theme.typography.title,
+        },
+        tabBarStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        tabBarActiveTintColor: theme.palette.primary.strong,
+        tabBarInactiveTintColor: theme.palette.screen.contrast,
+        tabBarIcon: ({ focused, color }) =&gt; {
+          //Exercise: Update the Icon component's name property based on the route
+          return &lt;Icon name={icon} size={20} color={color} /&gt;
+        },
+      })}
+    &gt;
+      {/*Exercise: Add the Screens for both the Restaurants and Setting tabs */}
+    &lt;/AppTabs.Navigator&gt;
+  )
+}
+
+const App: FC = () =&gt; {
+  return (
+    &lt;ThemeProvider&gt;
+      &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+        &lt;NavigationContainer&gt;
+          &lt;AppNavigator /&gt;
+        &lt;/NavigationContainer&gt;
+      &lt;/SafeAreaView&gt;
+    &lt;/ThemeProvider&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="3-5,7,9-11,14-36,41,44-46,49-50,only"></div>
+<p>✏️ Create <strong>src/screens/Settings/Settings.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { Switch } from &quot;react-native&quot;
+
+import Screen from &quot;../../design/Screen&quot;
+import Typography from &quot;../../design/Typography&quot;
+import Card from &quot;../../design/Card&quot;
+import { useThemeMode } from &quot;../../design/theme&quot;
+
+const user = {
+  name: &quot;Your Name&quot;,
+}
+
+const Settings: FC = () =&gt; {
+  const { mode, setMode } = useThemeMode()
+
+  return (
+    &lt;Screen&gt;
+      &lt;Card&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;Welcome back, {user.name}&lt;/Typography&gt;
+      &lt;/Card&gt;
+      &lt;Card&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;Dark Mode&lt;/Typography&gt;
+        &lt;Switch
+          value={mode === &quot;dark&quot;}
+          onChange={() =&gt; setMode(mode === &quot;light&quot; ? &quot;dark&quot; : &quot;light&quot;)}
+        /&gt;
+      &lt;/Card&gt;
+    &lt;/Screen&gt;
+  )
+}
+
+export default Settings
+
+</code></pre>
+<p>✏️ Create <strong>src/screens/Settings/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./Settings&quot;
+
+</code></pre>
+<p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import ListItem from &quot;./components/ListItem&quot;
+import Screen from &quot;../../design/Screen&quot;
+import Typography from &quot;../../design/Typography&quot;
+
+export type State = {
+  name: string
+  short: string
+}
+
+const states: State[] = [
+  {
+    name: &quot;Illinois&quot;,
+    short: &quot;IL&quot;,
+  },
+  {
+    name: &quot;Wisconsin&quot;,
+    short: &quot;WI&quot;,
+  },
+]
+
+const StateList: FC = () =&gt; {
+  return (
+    &lt;Screen&gt;
+      {states?.length &gt; 0 ? (
+        states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
+      ) : (
+        &lt;Typography&gt;No states found&lt;/Typography&gt;
+      )}
+    &lt;/Screen&gt;
+  )
+}
+
+export default StateList
+
+</code></pre>
 <h3>Verify 1</h3>
-<p>TODO</p>
+<p>✏️ Create <strong>src/screens/Settings/Settings.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import type { SwitchChangeEvent } from &quot;react-native&quot;;
+
+import { fireEvent, render, screen } from &quot;@testing-library/react-native&quot;
+import { NavigationContainer } from &quot;@react-navigation/native&quot;
+
+import Settings from &quot;./Settings&quot;
+
+const mockSetMode = jest.fn()
+
+jest.mock('../../design/theme', () =&gt; ({
+  ...jest.requireActual('../../design/theme'),
+  useThemeMode: () =&gt; ({
+    mode: 'light',
+    setMode: mockSetMode
+  }),
+}));
+
+describe(&quot;Settings component&quot;, () =&gt; {
+  it(&quot;renders Settings Page&quot;, async () =&gt; {
+    render(
+      &lt;NavigationContainer&gt;
+        &lt;Settings /&gt;
+      &lt;/NavigationContainer&gt;,
+    )
+    expect(screen.getByText(/welcome/i)).toBeOnTheScreen()
+  })
+  it('should switch to dark mode', () =&gt; {
+    render(
+      &lt;NavigationContainer&gt;
+        &lt;Settings /&gt;
+      &lt;/NavigationContainer&gt;,
+    )
+    const switchElement = screen.getByRole(&quot;switch&quot;)
+    expect(switchElement.props.value).toBe(false)
+    fireEvent(switchElement, 'onChange', { nativeEvent: { value: true } } as SwitchChangeEvent);
+    expect(mockSetMode).toHaveBeenCalledWith('dark')
+  })
+})
+
+</code></pre>
 <h3>Exercise 1</h3>
-<p>TODO</p>
+<ul>
+<li>For the <code>tabBarIcon</code> property on <code>AppTabs.Navigator</code> update the <code>Icon</code> component's name property to be based on the given route.</li>
+<li>Add a screen tab for Restaurants (for the <code>StateList</code> component) and for <code>Settings</code> component.</li>
+</ul>
 <h3>Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { SafeAreaView } from &quot;react-native&quot;
+import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import Icon from &quot;react-native-vector-icons/Ionicons&quot;
+
+import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
+import StateList from &quot;./screens/StateList&quot;
+import Settings from &quot;./screens/Settings&quot;
+
+const AppTabs = createBottomTabNavigator()
+export const AppNavigator: FC = () =&gt; {
+  const theme = useTheme()
+
+  return (
+    &lt;AppTabs.Navigator
+      initialRouteName=&quot;RestaurantsStack&quot;
+      screenOptions={({ route }) =&gt; ({
+        headerStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        headerTitleStyle: {
+          color: theme.palette.screen.contrast,
+          ...theme.typography.title,
+        },
+        tabBarStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        tabBarActiveTintColor: theme.palette.primary.strong,
+        tabBarInactiveTintColor: theme.palette.screen.contrast,
+        tabBarIcon: ({ focused, color }) =&gt; {
+          let icon = &quot;settings&quot;
+          if (route.name === &quot;Settings&quot;) {
+            icon = focused ? &quot;settings&quot; : &quot;settings-outline&quot;
+          } else if (route.name === &quot;Restaurants&quot;) {
+            icon = focused ? &quot;restaurant&quot; : &quot;restaurant-outline&quot;
+          }
+
+          return &lt;Icon name={icon} size={20} color={color} /&gt;
+        },
+      })}
+    &gt;
+      &lt;AppTabs.Screen
+        name=&quot;Restaurants&quot;
+        component={StateList}
+        options={{ title: &quot;Place My Order&quot; }}
+      /&gt;
+      &lt;AppTabs.Screen
+        name=&quot;Settings&quot;
+        component={Settings}
+        options={{ title: &quot;Settings&quot; }}
+      /&gt;
+    &lt;/AppTabs.Navigator&gt;
+  )
+}
+
+const App: FC = () =&gt; {
+  return (
+    &lt;ThemeProvider&gt;
+      &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+        &lt;NavigationContainer&gt;
+          &lt;AppNavigator /&gt;
+        &lt;/NavigationContainer&gt;
+      &lt;/SafeAreaView&gt;
+    &lt;/ThemeProvider&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="8-9,32-37,43-52,only"></div>
+<p></details></p>
+<h2>Objective 2: Using React Native stack navigation</h2>
 <p>TODO</p>
+<h3>Concept TODO</h3>
+<p>TODO</p>
+<h3>Setup 2</h3>
+<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { Pressable, SafeAreaView } from &quot;react-native&quot;
+import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import Icon from &quot;react-native-vector-icons/Ionicons&quot;
+
+import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
+import StateList from &quot;./screens/StateList&quot;
+import Settings from &quot;./screens/Settings&quot;
+import CityList from &quot;./screens/CityList&quot;
+import Box from &quot;./design/Box&quot;
+import Typography from &quot;./design/Typography&quot;
+import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace ReactNavigation {
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    interface RootParamList extends RestaurantsStackParamList {}
+  }
+}
+
+const RestaurantsStack = createStackNavigator()
+const RestaurantsNavigator: FC = () =&gt; {
+  return (
+   //Exercise: Implement Stack Navigator that includes CityList and StateList
+  )
+}
+
+const AppTabs = createBottomTabNavigator()
+export const AppNavigator: FC = () =&gt; {
+  const theme = useTheme()
+
+  return (
+    &lt;AppTabs.Navigator
+      initialRouteName=&quot;RestaurantsStack&quot;
+      screenOptions={({ route }) =&gt; ({
+        headerStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        headerTitleStyle: {
+          color: theme.palette.screen.contrast,
+          ...theme.typography.title,
+        },
+        tabBarStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        tabBarActiveTintColor: theme.palette.primary.strong,
+        tabBarInactiveTintColor: theme.palette.screen.contrast,
+        tabBarIcon: ({ focused, color }) =&gt; {
+          let icon = &quot;settings&quot;
+          if (route.name === &quot;Settings&quot;) {
+            icon = focused ? &quot;settings&quot; : &quot;settings-outline&quot;
+          } else if (route.name === &quot;Restaurants&quot;) {
+            icon = focused ? &quot;restaurant&quot; : &quot;restaurant-outline&quot;
+          }
+
+          return &lt;Icon name={icon} size={20} color={color} /&gt;
+        },
+      })}
+    &gt;
+      &lt;AppTabs.Screen
+        name=&quot;Restaurants&quot;
+        component={RestaurantsNavigator}
+        options={{ title: &quot;Place My Order&quot; }}
+      /&gt;
+      &lt;AppTabs.Screen
+        name=&quot;Settings&quot;
+        component={Settings}
+        options={{ title: &quot;Settings&quot; }}
+      /&gt;
+    &lt;/AppTabs.Navigator&gt;
+  )
+}
+
+const App: FC = () =&gt; {
+  return (
+    &lt;ThemeProvider&gt;
+      &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+        &lt;NavigationContainer&gt;
+          &lt;AppNavigator /&gt;
+        &lt;/NavigationContainer&gt;
+      &lt;/SafeAreaView&gt;
+    &lt;/ThemeProvider&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="2,10-13,15-20,23-24,26,64,74,77,85-86,only"></div>
+<p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { FlatList } from &quot;react-native&quot;
+import { useNavigation } from &quot;@react-navigation/native&quot;
+
+import Screen from &quot;../../design/Screen&quot;
+import Typography from &quot;../../design/Typography&quot;
+import Button from &quot;../../design/Button&quot;
+
+export interface State {
+  name: string
+  short: string
+}
+
+const states: State[] = [
+  {
+    name: &quot;Illinois&quot;,
+    short: &quot;IL&quot;,
+  },
+  {
+    name: &quot;Wisconsin&quot;,
+    short: &quot;WI&quot;,
+  },
+]
+
+const StateList: FC = () =&gt; {
+  const navigation = useNavigation()
+
+  return (
+    &lt;Screen&gt;
+      &lt;FlatList
+        data={states}
+        renderItem={({ item: stateItem }) =&gt; (
+          &lt;Button
+            onPress={() =&gt; {
+              navigation.navigate(&quot;CityList&quot;, {
+                state: stateItem,
+              })
+            }}
+          &gt;
+            {stateItem.name}
+          &lt;/Button&gt;
+        )}
+        keyExtractor={(item) =&gt; item.short}
+      /&gt;
+    &lt;/Screen&gt;
+  )
+}
+
+export default StateList
+
+</code></pre>
+ <div line-highlight="2-3,7,9,26,30-44,only"></div>
+<p>✏️ Create <strong>src/screens/CityList/CityList.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { FlatList } from &quot;react-native&quot;
+
+import Screen from &quot;../../design/Screen&quot;
+import Button from &quot;../../design/Button&quot;
+
+export interface City {
+  name: string
+  state: string
+}
+
+const cities: City[] = [
+  { name: &quot;Madison&quot;, state: &quot;WI&quot; },
+  { name: &quot;Springfield&quot;, state: &quot;IL&quot; },
+]
+
+const CityList: FC = () =&gt; {
+  return (
+    &lt;Screen&gt;
+      &lt;FlatList
+        data={cities}
+        renderItem={({ item: cityItem }) =&gt; (
+          &lt;Button
+            onPress={() =&gt; console.warn(`${cityItem.name}`)}
+          &gt;
+            {cityItem.name}
+          &lt;/Button&gt;
+        )}
+        keyExtractor={(item) =&gt; item.name}
+      /&gt;
+    &lt;/Screen&gt;
+  )
+}
+
+export default CityList
+
+</code></pre>
+<p>✏️ Create <strong>src/screens/CityList/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./CityList&quot;
+
+</code></pre>
+<h3>Verify 2</h3>
+<p>✏️ Create <strong>src/screens/CityList/CityList.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { FlatList } from &quot;react-native&quot;
+
+import Screen from &quot;../../design/Screen&quot;
+import Button from &quot;../../design/Button&quot;
+
+export interface City {
+  name: string
+  state: string
+}
+
+const cities: City[] = [
+  { name: &quot;Madison&quot;, state: &quot;WI&quot; },
+  { name: &quot;Springfield&quot;, state: &quot;IL&quot; },
+]
+
+const CityList: FC = () =&gt; {
+  return (
+    &lt;Screen&gt;
+      &lt;FlatList
+        data={cities}
+        renderItem={({ item: cityItem }) =&gt; (
+          &lt;Button
+            onPress={() =&gt; console.warn(`${cityItem.name}`)}
+          &gt;
+            {cityItem.name}
+          &lt;/Button&gt;
+        )}
+        keyExtractor={(item) =&gt; item.name}
+      /&gt;
+    &lt;/Screen&gt;
+  )
+}
+
+export default CityList
+
+</code></pre>
+<h3>Exercise 2</h3>
+<ul>
+<li>Using <code>RestaurantsStack</code> implement a <code>Navigator</code> with two screens, one for <code>StateList</code> and one for <code>CityList</code>.</li>
+</ul>
+<h3>Solution 2</h3>
+<p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { Pressable, SafeAreaView } from &quot;react-native&quot;
+import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import Icon from &quot;react-native-vector-icons/Ionicons&quot;
+
+import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
+import StateList from &quot;./screens/StateList&quot;
+import Settings from &quot;./screens/Settings&quot;
+import CityList from &quot;./screens/CityList&quot;
+import Box from &quot;./design/Box&quot;
+import Typography from &quot;./design/Typography&quot;
+import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace ReactNavigation {
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    interface RootParamList extends RestaurantsStackParamList {}
+  }
+}
+
+const RestaurantsStack = createStackNavigator()
+const RestaurantsNavigator: FC = () =&gt; {
+  return (
+    &lt;RestaurantsStack.Navigator
+      initialRouteName=&quot;StateList&quot;
+      screenOptions={{
+        header: ({ route, navigation }) =&gt; {
+          if (!navigation.canGoBack()) return null
+
+          return (
+            &lt;Pressable onPress={navigation.goBack}&gt;
+              &lt;Box
+                padding=&quot;m&quot;
+                style={{ flexDirection: &quot;row&quot;, gap: 8, alignItems: &quot;center&quot; }}
+              &gt;
+                &lt;Icon name=&quot;arrow-back&quot; size={20} /&gt;
+                &lt;Typography variant=&quot;heading&quot;&gt;
+                  {/* @ts-ignore */}
+                  {[route.params?.city?.name, route.params?.state?.name]
+                    .filter(Boolean)
+                    .join(&quot;, &quot;)}
+                &lt;/Typography&gt;
+              &lt;/Box&gt;
+            &lt;/Pressable&gt;
+          )
+        },
+      }}
+    &gt;
+      &lt;RestaurantsStack.Screen name=&quot;StateList&quot; component={StateList} /&gt;
+      &lt;RestaurantsStack.Screen name=&quot;CityList&quot; component={CityList} /&gt;
+    &lt;/RestaurantsStack.Navigator&gt;
+  )
+}
+
+const AppTabs = createBottomTabNavigator()
+export const AppNavigator: FC = () =&gt; {
+  const theme = useTheme()
+
+  return (
+    &lt;AppTabs.Navigator
+      initialRouteName=&quot;RestaurantsStack&quot;
+      screenOptions={({ route }) =&gt; ({
+        headerStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        headerTitleStyle: {
+          color: theme.palette.screen.contrast,
+          ...theme.typography.title,
+        },
+        tabBarStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        tabBarActiveTintColor: theme.palette.primary.strong,
+        tabBarInactiveTintColor: theme.palette.screen.contrast,
+        tabBarIcon: ({ focused, color }) =&gt; {
+          let icon = &quot;settings&quot;
+          if (route.name === &quot;Settings&quot;) {
+            icon = focused ? &quot;settings&quot; : &quot;settings-outline&quot;
+          } else if (route.name === &quot;Restaurants&quot;) {
+            icon = focused ? &quot;restaurant&quot; : &quot;restaurant-outline&quot;
+          }
+
+          return &lt;Icon name={icon} size={20} color={color} /&gt;
+        },
+      })}
+    &gt;
+      &lt;AppTabs.Screen
+        name=&quot;Restaurants&quot;
+        component={RestaurantsNavigator}
+        options={{ title: &quot;Place My Order&quot; }}
+      /&gt;
+      &lt;AppTabs.Screen
+        name=&quot;Settings&quot;
+        component={Settings}
+        options={{ title: &quot;Settings&quot; }}
+      /&gt;
+    &lt;/AppTabs.Navigator&gt;
+  )
+}
+
+const App: FC = () =&gt; {
+  return (
+    &lt;ThemeProvider&gt;
+      &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+        &lt;NavigationContainer&gt;
+          &lt;AppNavigator /&gt;
+        &lt;/NavigationContainer&gt;
+      &lt;/SafeAreaView&gt;
+    &lt;/ThemeProvider&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="26-30,32-47,49,51-53,86,88,only"></div>
+<p></details></p>
+<h2>Objective 3: Add Restaurant List and Restaurant Details pages with links</h2>
+<h3>Setup 3</h3>
+<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { Pressable, SafeAreaView } from &quot;react-native&quot;
+import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import Icon from &quot;react-native-vector-icons/Ionicons&quot;
+
+import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
+import StateList from &quot;./screens/StateList&quot;
+import Settings from &quot;./screens/Settings&quot;
+import RestaurantDetails from &quot;./screens/RestaurantDetails&quot;
+import RestaurantList from &quot;./screens/RestaurantList&quot;
+import CityList from &quot;./screens/CityList&quot;
+import Box from &quot;./design/Box&quot;
+import Typography from &quot;./design/Typography&quot;
+import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+
+const RestaurantsStack = createStackNavigator()
+const RestaurantsNavigator: FC = () =&gt; {
+  return (
+    &lt;RestaurantsStack.Navigator
+      initialRouteName=&quot;StateList&quot;
+      screenOptions={{
+        header: ({ route, navigation }) =&gt; {
+          if (!navigation.canGoBack()) return null
+
+          return (
+            &lt;Pressable onPress={navigation.goBack}&gt;
+              &lt;Box
+                padding=&quot;m&quot;
+                style={{ flexDirection: &quot;row&quot;, gap: 8, alignItems: &quot;center&quot; }}
+              &gt;
+                &lt;Icon name=&quot;arrow-back&quot; size={20} /&gt;
+                &lt;Typography variant=&quot;heading&quot;&gt;
+                  {/* @ts-ignore */}
+                  {[route.params?.city?.name, route.params?.state?.name]
+                    .filter(Boolean)
+                    .join(&quot;, &quot;)}
+                &lt;/Typography&gt;
+              &lt;/Box&gt;
+            &lt;/Pressable&gt;
+          )
+        },
+      }}
+    &gt;
+      &lt;RestaurantsStack.Screen name=&quot;StateList&quot; component={StateList} /&gt;
+      &lt;RestaurantsStack.Screen name=&quot;CityList&quot; component={CityList} /&gt;
+      {/* Exercise: Add RestaurantList and RestaurantDetails to the StackNavigator */}
+    &lt;/RestaurantsStack.Navigator&gt;
+  )
+}
+
+const AppTabs = createBottomTabNavigator()
+export const AppNavigator: FC = () =&gt; {
+  const theme = useTheme()
+
+  return (
+    &lt;AppTabs.Navigator
+      initialRouteName=&quot;RestaurantsStack&quot;
+      screenOptions={({ route }) =&gt; ({
+        headerStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        headerTitleStyle: {
+          color: theme.palette.screen.contrast,
+          ...theme.typography.title,
+        },
+        tabBarStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        tabBarActiveTintColor: theme.palette.primary.strong,
+        tabBarInactiveTintColor: theme.palette.screen.contrast,
+        tabBarIcon: ({ focused, color }) =&gt; {
+          let icon = &quot;settings&quot;
+          if (route.name === &quot;Settings&quot;) {
+            icon = focused ? &quot;settings&quot; : &quot;settings-outline&quot;
+          } else if (route.name === &quot;Restaurants&quot;) {
+            icon = focused ? &quot;restaurant&quot; : &quot;restaurant-outline&quot;
+          }
+
+          return &lt;Icon name={icon} size={20} color={color} /&gt;
+        },
+      })}
+    &gt;
+      &lt;AppTabs.Screen
+        name=&quot;Restaurants&quot;
+        component={RestaurantsNavigator}
+        options={{ title: &quot;Place My Order&quot; }}
+      /&gt;
+      &lt;AppTabs.Screen
+        name=&quot;Settings&quot;
+        component={Settings}
+        options={{ title: &quot;Settings&quot; }}
+      /&gt;
+    &lt;/AppTabs.Navigator&gt;
+  )
+}
+
+const App: FC = () =&gt; {
+  return (
+    &lt;ThemeProvider&gt;
+      &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+        &lt;NavigationContainer&gt;
+          &lt;AppNavigator /&gt;
+        &lt;/NavigationContainer&gt;
+      &lt;/SafeAreaView&gt;
+    &lt;/ThemeProvider&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="47,only"></div>
+<p>✏️ Create <strong>src/components/RestaurantHeader/</strong> (folder)</p>
+<p>✏️ Create <strong>src/components/RestaurantHeader/RestaurantHeader.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import type { Theme } from &quot;../../design/theme&quot;
+import type { Restaurant } from &quot;../../services/pmo/restaurant&quot;
+import type { TextStyle, ViewStyle } from &quot;react-native&quot;
+
+import { ImageBackground, StyleSheet } from &quot;react-native&quot;
+import Typography from &quot;../../design/Typography&quot;
+import Box from &quot;../../design/Box&quot;
+import { useTheme } from &quot;../../design/theme&quot;
+
+const assetsUrl = process.env.PMO_ASSETS
+
+type Props = {
+  restaurant: Restaurant | null
+}
+
+const RestaurantHeader: React.FC&lt;Props&gt; = ({ restaurant }) =&gt; {
+  const theme = useTheme()
+  const styles = getStyles(theme)
+
+  return (
+    &lt;Box&gt;
+      &lt;ImageBackground
+        style={styles.heroBackground}
+        source={{ uri: `${assetsUrl}/${restaurant?.images.banner}` }}
+      &gt;
+        &lt;Box padding={[&quot;xs&quot;, &quot;m&quot;]} margin={[&quot;s&quot;, &quot;none&quot;]} style={styles.hero}&gt;
+          &lt;Typography variant=&quot;heading&quot; style={styles.heroText}&gt;
+            {restaurant?.name}
+          &lt;/Typography&gt;
+        &lt;/Box&gt;
+      &lt;/ImageBackground&gt;
+
+      &lt;Box padding=&quot;m&quot;&gt;
+        {restaurant?.address &amp;&amp; (
+          &lt;Typography variant=&quot;body&quot;&gt;
+            {restaurant.address.street}
+            {restaurant.address.city}, {restaurant.address.state}{&quot; &quot;}
+            {restaurant.address.zip}
+          &lt;/Typography&gt;
+        )}
+
+        &lt;Typography variant=&quot;body&quot;&gt;
+          $$$ Hours: M-F 10am-11pm Open Now
+        &lt;/Typography&gt;
+      &lt;/Box&gt;
+    &lt;/Box&gt;
+  )
+}
+
+function getStyles(theme: Theme): {
+  heroBackground: ViewStyle
+  hero: ViewStyle
+  heroText: TextStyle
+} {
+  return StyleSheet.create({
+    heroBackground: {
+      width: &quot;100%&quot;,
+      maxWidth: 768,
+      height: 180,
+      margin: &quot;auto&quot;,
+      justifyContent: &quot;flex-end&quot;,
+      alignItems: &quot;flex-start&quot;,
+    },
+    hero: {
+      backgroundColor: theme.palette.secondary.main + &quot;bb&quot;,
+    },
+    heroText: {
+      color: theme.palette.secondary.contrast,
+      fontSize: 32,
+    },
+  })
+}
+
+export default RestaurantHeader
+
+</code></pre>
+<p>✏️ Create <strong>src/components/RestaurantHeader/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./RestaurantHeader&quot;
+
+</code></pre>
+<p>✏️ Create <strong>src/screens/RestaurantDetails/</strong> (folder)</p>
+<p>✏️ Create <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import type { StaticScreenProps } from &quot;@react-navigation/native&quot;
+import type { FC } from &quot;react&quot;
+
+import { useEffect } from &quot;react&quot;
+import { useNavigation } from &quot;@react-navigation/native&quot;
+
+import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
+import Screen from &quot;../../design/Screen&quot;
+
+export type Props = StaticScreenProps&lt;{
+  slug: string
+}&gt;
+
+const restaurant = {
+  _id: &quot;Ar0qBJHxM3ecOhcr&quot;,
+  name: &quot;Cheese Curd City&quot;,
+  slug: &quot;cheese-curd-city&quot;,
+  images: {
+    // thumbnail: CheeseThumbnail,
+  },
+  address: {
+    street: &quot;2451 W Washburne Ave&quot;,
+    city: &quot;Green Bay&quot;,
+    state: &quot;WI&quot;,
+    zip: &quot;53295&quot;,
+  },
+}
+
+const RestaurantDetails: FC&lt;Props&gt; = ({ route }) =&gt; {
+  const { slug } = route.params
+  const navigation = useNavigation()
+  useEffect(() =&gt; {
+    if (restaurant) {
+      navigation.setOptions({ title: `${restaurant.name}` })
+    }
+  }, [restaurant, navigation])
+
+  return (
+    &lt;Screen&gt;
+      &lt;RestaurantHeader restaurant={restaurant} /&gt;
+    &lt;/Screen&gt;
+  )
+}
+
+export default RestaurantDetails
+
+</code></pre>
+<p>✏️ Create <strong>src/screens/RestaurantDetails/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./RestaurantDetails&quot;
+
+</code></pre>
+<p>✏️ Create <strong>src/screens/RestaurantList/</strong> (folder)</p>
+<p>✏️ Create <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import type { StaticScreenProps } from &quot;@react-navigation/native&quot;
+import type { FC } from &quot;react&quot;
+
+import { FlatList } from &quot;react-native&quot;
+import { useNavigation } from &quot;@react-navigation/native&quot;
+import Box from &quot;../../design/Box&quot;
+import Button from &quot;../../design/Button&quot;
+
+export type Props = StaticScreenProps&lt;{
+  state: string
+  city: string
+}&gt;
+
+const restaurants = [
+  {
+    name: &quot;Cheese Curd City&quot;,
+    slug: &quot;cheese-curd-city&quot;,
+    images: {
+      // thumbnail: CheeseThumbnail,
+    },
+    address: {
+      street: &quot;2451 W Washburne Ave&quot;,
+      city: &quot;Green Bay&quot;,
+      state: &quot;WI&quot;,
+      zip: &quot;53295&quot;,
+    },
+    _id: &quot;Ar0qBJHxM3ecOhcr&quot;,
+  },
+  {
+    name: &quot;Poutine Palace&quot;,
+    slug: &quot;poutine-palace&quot;,
+    images: {
+      // thumbnail: PoutineThumbnail,
+    },
+    address: {
+      street: &quot;230 W Kinzie Street&quot;,
+      city: &quot;Green Bay&quot;,
+      state: &quot;WI&quot;,
+      zip: &quot;53205&quot;,
+    },
+    _id: &quot;3ZOZyTY1LH26LnVw&quot;,
+  },
+]
+
+const RestaurantList: FC&lt;Props&gt; = ({ route }) =&gt; {
+  const navigation = useNavigation()
+
+  const { state, city } = route.params
+
+  const navigateToDetails = (slug: string) =&gt; {
+    //Exercise: Implement navigation to RestaurantDetails
+  }
+
+  return (
+    &lt;&gt;
+      &lt;Box padding=&quot;s&quot;&gt;
+        &lt;FlatList
+          data={restaurants}
+          renderItem={({ item: restaurant }) =&gt; (
+            &lt;Button onPress={() =&gt; navigateToDetails(restaurant.slug)}&gt;
+              {restaurant.name}
+            &lt;/Button&gt;
+          )}
+          keyExtractor={(item) =&gt; item._id}
+        /&gt;
+      &lt;/Box&gt;
+    &lt;/&gt;
+  )
+}
+
+export default RestaurantList
+
+</code></pre>
+<p>✏️ Create <strong>src/screens/RestaurantList/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./RestaurantList&quot;
+
+</code></pre>
+<h3>Verify 3</h3>
+<p>✏️ Create <strong>src/components/RestaurantHeader/RestaurantHeader.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+import RestaurantHeader from &quot;./RestaurantHeader&quot;
+import { restaurantWithAddress, restaurantWithoutAddress } from &quot;./mocks&quot;
+
+describe(&quot;RestaurantHeader component&quot;, () =&gt; {
+  it(&quot;renders the restaurant name&quot;, () =&gt; {
+    render(&lt;RestaurantHeader restaurant={restaurantWithAddress} /&gt;)
+    expect(screen.getByText(/Test Restaurant/)).toBeOnTheScreen()
+  })
+
+  it(&quot;renders the restaurant address when provided&quot;, () =&gt; {
+    render(&lt;RestaurantHeader restaurant={restaurantWithAddress} /&gt;)
+
+    expect(screen.getByText(/123 Test St/i, { exact: false })).toBeOnTheScreen()
+    expect(
+      screen.getByText(restaurantWithAddress.address.street, { exact: false }),
+    ).toBeOnTheScreen()
+    expect(
+      screen.getByText(
+        `${restaurantWithAddress.address.city}, ${restaurantWithAddress.address.state} ${restaurantWithAddress.address.zip}`,
+        { exact: false },
+      ),
+    ).toBeOnTheScreen()
+  })
+
+  it(&quot;does not render an address when not provided&quot;, () =&gt; {
+    render(&lt;RestaurantHeader restaurant={restaurantWithoutAddress} /&gt;)
+    expect(
+      screen.queryByText(restaurantWithAddress.address.street),
+    ).not.toBeOnTheScreen()
+  })
+
+  it(&quot;renders static details like price and hours&quot;, () =&gt; {
+    render(&lt;RestaurantHeader restaurant={restaurantWithAddress} /&gt;)
+
+    expect(screen.getByText(/\$\$\$/i)).toBeOnTheScreen()
+    expect(screen.getByText(&quot;$$$&quot;, { exact: false })).toBeOnTheScreen()
+    expect(
+      screen.getByText(&quot;Hours: M-F 10am-11pm&quot;, { exact: false }),
+    ).toBeOnTheScreen()
+  })
+
+  it('renders the &quot;Open Now&quot; text', () =&gt; {
+    render(&lt;RestaurantHeader restaurant={restaurantWithAddress} /&gt;)
+    expect(screen.getByText(&quot;Open Now&quot;, { exact: false })).toBeOnTheScreen()
+  })
+})
+
+</code></pre>
+<p>✏️ Create <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+
+import RestaurantDetails from &quot;./RestaurantDetails&quot;
+
+const params = {
+  slug: &quot;test&quot;,
+} as const
+
+jest.mock(&quot;@react-navigation/native&quot;, () =&gt; {
+  const actualNav = jest.requireActual(&quot;@react-navigation/native&quot;)
+  return {
+    ...actualNav,
+    useNavigation: () =&gt; ({
+      navigate: jest.fn(),
+      setOptions: jest.fn(),
+    }),
+  }
+})
+jest.mock(&quot;@react-native-async-storage/async-storage&quot;, () =&gt;
+  require(&quot;@react-native-async-storage/async-storage/jest/async-storage-mock&quot;),
+)
+
+describe(&quot;RestaurantDetails component&quot;, () =&gt; {
+  it(&quot;renders the RestaurantHeader and content when data is available&quot;, () =&gt; {
+    render(&lt;RestaurantDetails route={{ params }} /&gt;)
+
+    expect(screen.getByText(&quot;Cheese Curd City&quot;)).toBeOnTheScreen()
+  })
+})
+
+</code></pre>
+<p>✏️ Create <strong>src/screens/RestaurantList/RestaurantList.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { render, screen } from &quot;@testing-library/react-native&quot;
+
+import RestaurantList from &quot;./RestaurantList&quot;
+
+const params = {
+  state: {
+    short: &quot;&quot;,
+    name: &quot;&quot;,
+  },
+  city: {
+    name: &quot;&quot;,
+    state: &quot;&quot;,
+  },
+}
+
+jest.mock(&quot;@react-native-async-storage/async-storage&quot;, () =&gt;
+  require(&quot;@react-native-async-storage/async-storage/jest/async-storage-mock&quot;),
+)
+
+describe(&quot;RestaurantList component&quot;, () =&gt; {
+  it(&quot;renders restaurant List&quot;, () =&gt; {
+    render(
+      &lt;NavigationContainer&gt;
+        &lt;RestaurantList route={{params}} /&gt;
+      &lt;/NavigationContainer&gt;
+    )
+    expect(screen.getByText(/Cheese Curd City/i)).toBeOnTheScreen()
+    expect(screen.getByText(/Poutine Palace/i)).toBeOnTheScreen()
+  })
+})
+
+</code></pre>
+<h3>Exercise 3</h3>
+<ul>
+<li>Add <code>RestaurantList</code> and <code>RestaurantDetails</code> to the <code>StackNavigator</code></li>
+<li>Use <code>navigation</code> in the <code>RestaurantList</code> component, to link <code>RestaurantList</code> to the <code>RestaurantDetails</code> screen.</li>
+</ul>
+<h3>Solution 3</h3>
+<p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { Pressable, SafeAreaView } from &quot;react-native&quot;
+import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import Icon from &quot;react-native-vector-icons/Ionicons&quot;
+
+import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
+import StateList from &quot;./screens/StateList&quot;
+import Settings from &quot;./screens/Settings&quot;
+import RestaurantDetails from &quot;./screens/RestaurantDetails&quot;
+import RestaurantList from &quot;./screens/RestaurantList&quot;
+import CityList from &quot;./screens/CityList&quot;
+import Box from &quot;./design/Box&quot;
+import Typography from &quot;./design/Typography&quot;
+import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+
+const RestaurantsStack = createStackNavigator()
+const RestaurantsNavigator: FC = () =&gt; {
+  return (
+    &lt;RestaurantsStack.Navigator
+      initialRouteName=&quot;StateList&quot;
+      screenOptions={{
+        header: ({ route, navigation }) =&gt; {
+          if (!navigation.canGoBack()) return null
+
+          return (
+            &lt;Pressable onPress={navigation.goBack}&gt;
+              &lt;Box
+                padding=&quot;m&quot;
+                style={{ flexDirection: &quot;row&quot;, gap: 8, alignItems: &quot;center&quot; }}
+              &gt;
+                &lt;Icon name=&quot;arrow-back&quot; size={20} /&gt;
+                &lt;Typography variant=&quot;heading&quot;&gt;
+                  {/* @ts-ignore */}
+                  {[route.params?.city?.name, route.params?.state?.name]
+                    .filter(Boolean)
+                    .join(&quot;, &quot;)}
+                &lt;/Typography&gt;
+              &lt;/Box&gt;
+            &lt;/Pressable&gt;
+          )
+        },
+      }}
+    &gt;
+      &lt;RestaurantsStack.Screen name=&quot;StateList&quot; component={StateList} /&gt;
+      &lt;RestaurantsStack.Screen name=&quot;CityList&quot; component={CityList} /&gt;
+      &lt;RestaurantsStack.Screen
+        name=&quot;RestaurantList&quot;
+        component={RestaurantList}
+      /&gt;
+      &lt;RestaurantsStack.Screen
+        name=&quot;RestaurantDetails&quot;
+        component={RestaurantDetails}
+      /&gt;
+    &lt;/RestaurantsStack.Navigator&gt;
+  )
+}
+
+const AppTabs = createBottomTabNavigator()
+export const AppNavigator: FC = () =&gt; {
+  const theme = useTheme()
+
+  return (
+    &lt;AppTabs.Navigator
+      initialRouteName=&quot;RestaurantsStack&quot;
+      screenOptions={({ route }) =&gt; ({
+        headerStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        headerTitleStyle: {
+          color: theme.palette.screen.contrast,
+          ...theme.typography.title,
+        },
+        tabBarStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        tabBarActiveTintColor: theme.palette.primary.strong,
+        tabBarInactiveTintColor: theme.palette.screen.contrast,
+        tabBarIcon: ({ focused, color }) =&gt; {
+          let icon = &quot;settings&quot;
+          if (route.name === &quot;Settings&quot;) {
+            icon = focused ? &quot;settings&quot; : &quot;settings-outline&quot;
+          } else if (route.name === &quot;Restaurants&quot;) {
+            icon = focused ? &quot;restaurant&quot; : &quot;restaurant-outline&quot;
+          }
+
+          return &lt;Icon name={icon} size={20} color={color} /&gt;
+        },
+      })}
+    &gt;
+      &lt;AppTabs.Screen
+        name=&quot;Restaurants&quot;
+        component={RestaurantsNavigator}
+        options={{ title: &quot;Place My Order&quot; }}
+      /&gt;
+      &lt;AppTabs.Screen
+        name=&quot;Settings&quot;
+        component={Settings}
+        options={{ title: &quot;Settings&quot; }}
+      /&gt;
+    &lt;/AppTabs.Navigator&gt;
+  )
+}
+
+const App: FC = () =&gt; {
+  return (
+    &lt;ThemeProvider&gt;
+      &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+        &lt;NavigationContainer&gt;
+          &lt;AppNavigator /&gt;
+        &lt;/NavigationContainer&gt;
+      &lt;/SafeAreaView&gt;
+    &lt;/ThemeProvider&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="47-49,51-53,95,100,only"></div>
+<p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { StaticScreenProps } from &quot;@react-navigation/native&quot;
+import type { FC } from &quot;react&quot;
+
+import { FlatList } from &quot;react-native&quot;
+import { useNavigation } from &quot;@react-navigation/native&quot;
+import Box from &quot;../../design/Box&quot;
+import Button from &quot;../../design/Button&quot;
+
+export type Props = StaticScreenProps&lt;{
+  state: string
+  city: string
+}&gt;
+
+const restaurants = [
+  {
+    name: &quot;Cheese Curd City&quot;,
+    slug: &quot;cheese-curd-city&quot;,
+    images: {
+      // thumbnail: CheeseThumbnail,
+    },
+    address: {
+      street: &quot;2451 W Washburne Ave&quot;,
+      city: &quot;Green Bay&quot;,
+      state: &quot;WI&quot;,
+      zip: &quot;53295&quot;,
+    },
+    _id: &quot;Ar0qBJHxM3ecOhcr&quot;,
+  },
+  {
+    name: &quot;Poutine Palace&quot;,
+    slug: &quot;poutine-palace&quot;,
+    images: {
+      // thumbnail: PoutineThumbnail,
+    },
+    address: {
+      street: &quot;230 W Kinzie Street&quot;,
+      city: &quot;Green Bay&quot;,
+      state: &quot;WI&quot;,
+      zip: &quot;53205&quot;,
+    },
+    _id: &quot;3ZOZyTY1LH26LnVw&quot;,
+  },
+]
+
+const RestaurantList: FC&lt;Props&gt; = ({ route }) =&gt; {
+  const navigation = useNavigation()
+
+  const { state, city } = route.params
+
+  const navigateToDetails = (slug: string) =&gt; {
+    navigation.navigate(&quot;RestaurantDetails&quot;, {
+      state,
+      city,
+      slug,
+    })
+  }
+
+  return (
+    &lt;&gt;
+      &lt;Box padding=&quot;s&quot;&gt;
+        &lt;FlatList
+          data={restaurants}
+          renderItem={({ item: restaurant }) =&gt; (
+            &lt;Button onPress={() =&gt; navigateToDetails(restaurant.slug)}&gt;
+              {restaurant.name}
+            &lt;/Button&gt;
+          )}
+          keyExtractor={(item) =&gt; item._id}
+        /&gt;
+      &lt;/Box&gt;
+    &lt;/&gt;
+  )
+}
+
+export default RestaurantList
+
+</code></pre>
+ <div line-highlight="51-55,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
-<p>TODO</p>
+<p>Now that we understand how to use React Native Navigation, we'll supplement that knowledge by <a href="./storing-state.html">storing state in Navigation Parameters</a>.</p>
 
 </section>
 
