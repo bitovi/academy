@@ -1,9 +1,13 @@
+import type { StackScreenProps } from "@react-navigation/stack"
+import type { RestaurantsStackParamList } from "../../App"
 import type { FC } from "react"
 
 import { FlatList } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import Box from "../../design/Box"
 import Button from "../../design/Button"
+
+type Props = StackScreenProps<RestaurantsStackParamList, "RestaurantList">
 
 const restaurants = [
   {
@@ -36,11 +40,11 @@ const restaurants = [
   },
 ]
 
-const RestaurantList: FC = () => {
+const RestaurantList: FC<Props> = () => {
   const navigation = useNavigation()
 
-  const navigateToDetails = (slug: string) => {
-    //Exercise: Implement navigation to RestaurantDetails
+  const navigateToDetails = () => {
+    navigation.navigate("RestaurantDetails")
   }
 
   return (
