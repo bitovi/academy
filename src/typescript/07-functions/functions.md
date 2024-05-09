@@ -37,7 +37,7 @@ Of course, this works when fixed:
 
 ### Optional parameters
 
-Sometimes when writing functions, we don’t need every parameter to be satisfied. TypeScript allows us to mark optional parameters (or properties) with a ``?`` so the compiler will not error if an optional param isn’t passed.
+Sometimes when writing functions, we don’t need every parameter to be satisfied. TypeScript allows us to mark optional parameters (or properties) with a `?` so the compiler will not error if an optional param isn’t passed.
 
 @sourceref ./optional.ts
 
@@ -67,6 +67,7 @@ the length of the DNA sequence.
 
 Now scientists want to mix the DNA of multiple dinosaurs.
 Open the `dnaCost.ts` file and modify this function to:
+
 1. Take an unknown amount of sequences.
 2. Return the sum of `baseCost` and the length of each sequence.
 
@@ -80,11 +81,11 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 <summary>Click to see the solution</summary>
 
 ✏️ Update `dnaCost.ts` to add each sequence to the
-base cost.  This solution uses [Array.prototype.reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce):
+base cost. This solution uses [Array.prototype.reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce):
 
 @diff ./../../../exercises/typescript/07-functions/01-problem/src/functions/dnaCost.ts ./../../../exercises/typescript/07-functions/01-solution/src/functions/dnaCost.ts only
 
-You’ll notice that specifying a return type is not necessary.  This is
+You’ll notice that specifying a return type is not necessary. This is
 because TypeScript can infer the return value from the arguments.
 
 The following is another
@@ -114,14 +115,14 @@ For instance:
 
 ```js
 const dog = {
-  name: 'fido',
-  bark: function() {
-    console.info(this.name + 'says woof');
-  }
+  name: "fido",
+  bark: function () {
+    console.info(this.name + "says woof");
+  },
 };
-const address = {street: '2 State St'};
+const address = { street: "2 State St" };
 
-dog.bark.call(dog);     // Logs "fido says woof";
+dog.bark.call(dog); // Logs "fido says woof";
 dog.bark.call(address); // Logs "undefined says woof"
 ```
 

@@ -15,7 +15,9 @@ const Typography: FC<TypographyProps> = ({
   variant = "body",
   children,
   ...props
-}) => {}
+}) => {
+  // TODO
+}
 
 export default Typography
 

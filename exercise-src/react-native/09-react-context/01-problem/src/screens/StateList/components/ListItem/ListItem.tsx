@@ -9,8 +9,7 @@ type ListItemProps = {
 }
 
 const ListItem: FC<ListItemProps> = ({ name }) => {
-  const theme = useTheme()
-  const styles = getStyles(theme)
+  const styles = getStyles()
 
   return <Text style={styles.text}>{name}</Text>
 }
@@ -19,10 +18,10 @@ function getStyles(theme: Theme) {
   return StyleSheet.create({
     text: {
       fontSize: 21,
-      color: "white",
-      backgroundColor: "darkgreen",
-      padding: 10,
-      marginVertical: 5,
+      color: "#ffffff",
+      backgroundColor: "#007980",
+      padding: 16,
+      marginVertical: 8,
     },
   })
 }

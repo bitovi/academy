@@ -11,6 +11,6 @@ class DinoWithRoar implements Dinosaur {
   height?: number;
   location: string;
   roar(): void {
-    console.info('roar');
-  };
+    console.info("roar");
+  }
 }

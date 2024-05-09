@@ -21,13 +21,13 @@ export const dinosaurFacts = {
   },
 };
 
-type DinosaurFactObject = any;
+type DinosaurFacts = any;
 
 type Dinosaur = any;
 
 export const getDinoFact = (
-  facts: DinosaurFactObject,
+  facts: DinosaurFacts,
   dino: Dinosaur
-): DinosaurFactObject[Dinosaur] => {
+): DinosaurFacts[Dinosaur] => {
   return facts[dino];
 };

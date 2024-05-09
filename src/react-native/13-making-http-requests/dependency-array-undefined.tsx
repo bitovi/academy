@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Pressable, Text } from "react-native";
 
 function UpdateLogger() {
     const [count, setCount] = useState(0);
@@ -8,9 +9,11 @@ function UpdateLogger() {
     }); // No dependency array, runs on every update
 
     return (
-        <button onClick={() => setCount(count + 1)}>
-            Increment
-        </button>
+        <Pressable onPress={() => setCount(count + 1)}>
+            <Text>
+                Increment
+            </Text>
+        </Pressable>
     );
 }
 

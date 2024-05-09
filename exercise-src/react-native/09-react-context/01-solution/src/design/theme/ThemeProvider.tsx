@@ -9,9 +9,7 @@ interface ThemeContext {
   theme: Theme
 }
 
-const Context = createContext<ThemeContext>({
-  theme,
-})
+const Context = createContext<ThemeContext>({ theme })
 
 const ThemeProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
   const value = useMemo(() => ({ theme }), [])

@@ -40,6 +40,7 @@ Let’s take a look at an example.
 Say we want to test a component we created named `EmailInputField`.
 
 @sourceref ./EmailInputField.tsx
+@highlight 20, only
 
 We want to test `EmailInputField`. If you have experience with software testing, the following pattern will probably be recognizable: each test consists of arguments to the `it` function provided by Jest. The first argument is a short description of what the test is verifying. The convention is that the description string takes "it" as a prefix and proceeds from there, e.g. "[it] renders the correct label and value."
 

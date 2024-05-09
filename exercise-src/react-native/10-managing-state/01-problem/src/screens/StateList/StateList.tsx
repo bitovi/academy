@@ -1,8 +1,8 @@
 import type { FC } from "react"
 import ListItem from "./components/ListItem"
+import Card from "../../design/Card"
 import Screen from "../../design/Screen"
 import Typography from "../../design/Typography"
-import Card from "../../design/Card"
 import { useThemeMode } from "../../design/theme"
 import { Switch } from "react-native"
 
@@ -23,8 +23,6 @@ const states: State[] = [
 ]
 
 const StateList: FC = () => {
-  const { mode, setMode } = useThemeMode()
-
   return (
     <Screen>
       <Card>
@@ -33,17 +31,10 @@ const StateList: FC = () => {
         </Typography>
       </Card>
       {states?.length > 0 ? (
-        states.map((state) => <ListItem key={state.short} state={state} />)
+        states.map((state) => <ListItem key={state.short} name={state.name} />)
       ) : (
         <Typography>No states found</Typography>
       )}
-      <Card>
-        <Typography variant="heading">Dark Mode</Typography>
-        <Switch
-          value={mode === "dark"}
-          onChange={() => setMode(mode === "light" ? "dark" : "light")}
-        />
-      </Card>
     </Screen>
   )
 }
