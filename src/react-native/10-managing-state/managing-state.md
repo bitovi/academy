@@ -171,4 +171,4 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 ## Next steps
 
-Next, we will learn how to switch screens with [learn-react-native/navigation] React Native applications.
+Next, we will learn how to switch screens with [learn-react-native/navigation].
