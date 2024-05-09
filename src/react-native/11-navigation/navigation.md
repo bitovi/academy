@@ -62,7 +62,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 </details>
 
-## Objective 2: Using React Native Stack Navigation
+## Objective 2: Using React Native stack navigation
 
 TODO
 
