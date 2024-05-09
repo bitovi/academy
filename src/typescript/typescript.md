@@ -3,7 +3,6 @@
 @description This course covers the basic essentials of TypeScript. At the end, you should be
 ready to develop projects in TypeScript.
 
-
 @body
 
 ## Before you begin
@@ -18,7 +17,6 @@ Angular, React, CanJS and JavaScript problems.
 Please ask questions related to TypeScript in the [TypeScript chat room](https://discord.gg/qxqgyGquk7).
 
 If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/academy/issues) or email `contact@bitovi.com`.
-
 
 <img alt="TypeScript" src="./static/img/typescript/logo.svg" width="50%"/>
 
@@ -53,14 +51,11 @@ Install prerequisites and create a new Node project with TypeScript.
 Export values from files and import them in other files.
 
 ```ts
-function clampNumber(value: number, min: number, max: number): number {
-    return Math.min(Math.max(value, min), max);
+export function constrain(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max);
 }
-
-export {
-    constrain: clampNumber,
-};
 ```
+
 @highlight 5-7
 
 ### Types
@@ -83,11 +78,14 @@ function add(x: number, y: number): number {
 
 ### Classes
 
-Learn how to use classes and inheritance in TypeScript, understand the ``constructor`` method, and use the `public`, `private`, `protected`, and `readonly` modifiers.
+Learn how to use classes and inheritance in TypeScript, understand the `constructor` method, and use the `public`, `private`, `protected`, and `readonly` modifiers.
 
 ```typescript
 class Human {
-  constructor(public firstName: string, public lastName: string) {}
+  constructor(
+    public firstName: string,
+    public lastName: string,
+  ) {}
 
   getFullName(): string {
     return `${this.firstName} ${this.lastName}`;
@@ -121,6 +119,7 @@ type Dino = {
 
 type DinoKeys = keyof Dino; // "name" | "type" | "age"
 ```
+
 @highlight 7
 
 ### Generics
@@ -130,7 +129,7 @@ Learn about what Generics are, why they are useful, and how to create a linked l
 ```typescript
 class GenericCollection<T> {
   private list: T[];
-  pushItem(thing:T) {
+  pushItem(thing: T) {
     this.list.push(thing);
   }
 }
@@ -145,6 +144,7 @@ type Species = "Tyrannosaurus rex" | "Triceratops horridus" | null | undefined;
 
 type NNSpecies = NonNullable<Species>;
 ```
+
 @highlight 3
 
 ## Next steps

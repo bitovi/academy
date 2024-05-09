@@ -10,9 +10,11 @@
     "dev": "bit-docs -dw",
     "build": "bit-docs -df",
     "rebuild-assets": "bit-docs -dfs",
-    "clean": "rm -rf academy",
+    "generate": "node ./exercise-src/generate.mjs",
+    "clean": "rm -rf academy && git clean -Xdf exercises",
     "deploy": "node scripts/hubspot-deploy",
-    "start": "concurrently -k \"npm:dev\" \"http-server -c -1\""
+    "start": "concurrently -k \"npm:dev\" \"http-server -c -1\"",
+    "test": "node ./exercises/tests.mjs"
   },
   "bit-docs": {
     "dependencies": {

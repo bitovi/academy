@@ -32,11 +32,12 @@ interface WordCount {
 }
 
 const myWordCounts: WordCount = {
-  "hello": 2,
-  "world": 1,
-  "typescript": 3
+  hello: 2,
+  world: 1,
+  typescript: 3,
 };
 ```
+
 @highlight 2
 
 In this example, `myWordCounts` is an object that can have any number of properties where each key is a `string` and each value is a `number`.
@@ -97,10 +98,11 @@ const tRex = {
   weightInKilograms: 7_000,
 };
 
-let stegosaurus: typeof tRex; 
+let stegosaurus: typeof tRex;
 
-type Dinosaur = typeof tRex; 
+type Dinosaur = typeof tRex;
 ```
+
 @highlight 7, 9
 
 Thanks to the use of `typeof`, the variable `stegosaurus` and the type `Dinosaur` both now have the type:
@@ -158,9 +160,10 @@ const getDinoFacts = () => {
 
 type DinoFacts = ReturnType<typeof getDinoFacts>;
 ```
+
 @highlight 12
 
-For the example above, given the `typeof DinoFacts`, the `ReturnType` is now: 
+For the example above, given the `typeof DinoFacts`, the `ReturnType` is now:
 
 ```ts
 {
@@ -190,11 +193,12 @@ It’s important to note that typeof in TypeScript, particularly in type context
 ```ts
 const dinosaur = { name: "velociraptor", type: "carnivore" };
 
-type Dinosaur = typeof dinosaur; 
-type DinoName = typeof dinosaur.name; 
+type Dinosaur = typeof dinosaur;
+type DinoName = typeof dinosaur.name;
 
 type DinoFacts = typeof getDinoFacts();
 ```
+
 @highlight 6
 
 So to review, the type `Dinosaur` will now have the `typeof dinosaur`: `{name: string; type: string;}`.
@@ -217,12 +221,12 @@ So what type will `DinoFacts` have? As mentioned before, `typeof` cannot be call
 
 ### Exercise 1
 
-Update the `DinosaurFactObject` and `Dinosaur` type to gain type safety on the `getDinoFact` function. The function should, given a dinosaur’s name (`velociraptor` or `t-rex`) and the `dinosaurFacts` object, return the correct facts about the dinosaur.
+Update the `DinosaurFacts` and `Dinosaur` type to gain type safety on the `getDinoFact` function. The function should, given a dinosaur’s name (`velociraptor` or `t-rex`) and the `dinosaurFacts` object, return the correct facts about the dinosaur.
 
-- Replace `DinosaurFactObject`’s `any` with a type that represents the `dinosaurFacts`.
+- Replace `DinosaurFacts`’s `any` with a type that represents the `dinosaurFacts`.
 - Replace `Dinosaur`’s `any` with a type that allows for any of the keys in the dinosaur fact object.
 - The `getDinofact` should, given a `facts` object and `dino` name, return the facts for that creature.
-  
+
 ### Solution 1
 
 If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
@@ -259,6 +263,7 @@ carnivoreKey = "name";
 carnivoreKey = "Some value";
 carnivoreKey = "type";
 ```
+
 @highlight 12
 
 Note that in the above example assigning `"Some value"` to `carnivoreKey` will generate an error:
@@ -282,11 +287,12 @@ enum DinosaurColors {
   black = "0x000000",
 }
 
-type DinosaurColorsKeys = keyof typeof DinosaurColors; 
+type DinosaurColorsKeys = keyof typeof DinosaurColors;
 ```
+
 @highlight 11
 
-In the code above, `keyof` and `typeof` used together give `DinosaurColorKeys` the typing: 
+In the code above, `keyof` and `typeof` used together give `DinosaurColorKeys` the typing:
 `“blue” | “green” | “red” | "purple | "yellow" | "white" | "black"`
 
 In this case, `keyof typeof` definitely saves a lot of effort.
@@ -305,9 +311,9 @@ In this case, `keyof typeof` definitely saves a lot of effort.
 
 ### Exercise 2
 
-Update the `ColorsAsEasyReadName` type so that it represents the keys of the enum (eg `'red'`, `'blue'`, and `'green'`)and then add all the necessary types to the `getColorValue` function signature.
+Update the `ColorNames` type so that it represents the keys of the enum (eg `'red'`, `'blue'`, and `'green'`)and then add all the necessary types to the `getColorValue` function signature.
 
-- The `getColorValue` function should take one of color names, or `ColorsAsEasyReadName` and return the hex string equivalent.
+- The `getColorValue` function should take one of color names, or `ColorNames` and return the hex string equivalent.
 - Replace `ColorAsEasyReadName`’s `any` with a type so that it represents the keys of the enum (eg 'red', 'blue', and 'green').
 - Fix the TypeScript errors by updating `getColorValue`’s `ReturnType`. Replace the `any` with the proper type.
 

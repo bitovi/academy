@@ -77,9 +77,10 @@ type StringLiteralExample = "hello";
 If we were to assign a variable with this `StringLiteralExample` type we declared, we would see the only value it can be is `"hello"`.
 
 ```typescript
-const invalid: StringLiteralExample = "a"; 
+const invalid: StringLiteralExample = "a";
 const valid: StringLiteralExample = "hello";
 ```
+
 @highlight 1
 
 In this case, `invalid` will return an error.
@@ -91,7 +92,7 @@ Literals like this are very powerful when used together with type unions.
 They allow us to expand our subset to include multiple values.
 
 ```typescript
-type Dinos = "Stegosaurus" | "Triceratops" | "Velociraptor"; 
+type Dino = "Stegosaurus" | "Triceratops" | "Velociraptor";
 ```
 
 <div style='text-align:center'>
@@ -117,22 +118,37 @@ The `numberList` array will only contain `number` values, while `raptorNames` wi
 If we wanted to be even more specific:
 
 ```typescript
-type Dinos = "Stegosaurus" | "Triceratops" | "Velociraptor"; 
+type Dino = "Stegosaurus" | "Triceratops" | "Velociraptor";
 
-const raptors: Array<Dinos> = ["Steogosaurus", "Triceratops", "Delta"]
+const raptors: Array<Dino> = ["Steogosaurus", "Triceratops", "Delta"];
 ```
 
-The `raptors` variable now only accepts what’s provided by the string literal `Dinos`. 
+The `raptors` variable now only accepts what’s provided by the string literal `Dino`.
 
 But wait! There’s something wrong with the array we’ve provided in `raptors`. One of these things is not like the other. Since `Delta` isn’t a part of the string literal provided, we’ll get the error:
 
 ```bash
-Type '"Delta"' is not assignable to type 'Dinos'.
+Type '"Delta"' is not assignable to type 'Dino'.
 ```
+
+#### Which one should you use?
+
+The bracket notation (`Dino[]`) is much cleaner and easier to read, but is also easy to miss in a large definition, as in this example:
+
+```typescript
+type Dinos = {
+  type: "land";
+  name: string;
+  distanceAbleToWalk: number;
+  legLength: number;
+}[];
+```
+
+Because of this, we recommend using bracket notation for simple types and using the full array notation for complex types.
 
 ### Object
 
-Another basic JavaScript type, Object, can be used to more descriptively type a variable. 
+Another basic JavaScript type, Object, can be used to more descriptively type a variable.
 
 ```typescript
 const user: { name: string; age: number } = { name: "Justin", age: 36 };
@@ -198,23 +214,23 @@ A “tuple” is a typed array with a pre-defined length.
 Each index is capable of having its own type.
 
 ```typescript
-type Dinos = "Stegosaurus" | "Triceratops" | "Velociraptor"; 
+type Dino = "Stegosaurus" | "Triceratops" | "Velociraptor";
 
-let dinoTuple: [number, string, Dinos];
+let dinoTuple: [number, string, Dino];
 
-dinoTuple = [5, "boop", "Stegosaurus"]; 
+dinoTuple = [5, "boop", "Stegosaurus"];
 
 dinoTuple = ["boop", "Stegosaurus", 5];
 ```
 
-First we give `dinoTuple` the assignment `[5, "boop", "Stegosaurus"]`, based on the `tuple` we’ve provided `[number, string, Dinos]` it looks like we're following the typing rules, so there’ll be no errors.
+First we give `dinoTuple` the assignment `[5, "boop", "Stegosaurus"]`, based on the `tuple` we’ve provided `[number, string, Dino]` it looks like we're following the typing rules, so there’ll be no errors.
 
-Then, we mutate `dinoTuple` to be `["boop", "Stegosaurus", 5]` everything’s out of order, but we only get two type errors here. 
+Then, we mutate `dinoTuple` to be `["boop", "Stegosaurus", 5]` everything’s out of order, but we only get two type errors here.
 
-For `boop`: `Type 'string' is not assignable to type 'number'.` 
-and for `5`: `Type 'number' is not assignable to type 'Dinos'.` 
+For `boop`: `Type 'string' is not assignable to type 'number'.`
+and for `5`: `Type 'number' is not assignable to type 'Dino'.`
 
-Both of these make sense, and while we intended `Stegosaurus` to line up with its StringLiteral typing provided by `Dinos`, it still is a `string`.
+Both of these make sense, and while we intended `Stegosaurus` to line up with its StringLiteral typing provided by `Dino`, it still is a `string`.
 
 ### Enum
 
@@ -226,6 +242,7 @@ enum Color {
   Green,
   Blue,
 }
+
 const greenColor: Color = Color.Green;
 ```
 
@@ -240,6 +257,7 @@ enum Month {
   May,
   June,
 }
+
 const feb = Month[2];
 ```
 
@@ -251,7 +269,29 @@ enum Month {
   March = 3,
   May = 5,
 }
+
 const may = Month[5];
+```
+
+#### String unions as enums
+
+An alternative to full enums is to use a union of strings. This has a few benefits:
+
+- It doesn't require an import to use.
+- It preserves the human-readable values for debugging.
+
+Example:
+
+```typescript
+// instead of
+enum Color {
+  Red,
+  Green,
+  Blue,
+}
+
+// try
+type Color = "Red" | "Green" | "Blue";
 ```
 
 ### Unknown
@@ -280,7 +320,7 @@ if (typeof value === "string") {
 ### Any
 
 The `any` type is useful when we want to opt-out of type checking.
-Using the `any` type will disable all compile-time checks, including access to properties and functions. 
+Using the `any` type will disable all compile-time checks, including access to properties and functions.
 
 This is mostly useful for third-party data structures that we do not know the shape of, or when incrementally opting in to types.
 Otherwise, it is not advised to use the`any` type, so do your best to provide typing for data that you’re using.
@@ -289,8 +329,9 @@ Otherwise, it is not advised to use the`any` type, so do your best to provide ty
 let my3rdPartyData: any = 5;
 my3rdPartyData = "five";
 
-my3rdPartyData.invalidFunction(3); 
+my3rdPartyData.invalidFunction(3);
 ```
+
 @highlight 4
 
 ### Void
@@ -303,11 +344,6 @@ function buttonClick(): void {
 }
 ```
 
-### Null & undefined
-
-The `null` and `undefined` types match JavaScript.
-They are also subtypes of all other types, meaning they can be assigned to another type like `string` or `number`, unless the <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html">`--strictNullChecks`</a> flag is used.
-
 ### Never
 
 The `never` type represents a value that will never occur.
@@ -317,6 +353,7 @@ function error(message: string): never {
   throw new Error(message);
 }
 ```
+
 @highlight 2
 
 When an error is thrown in the scope of a function that function doesn’t return, so this is an instance where `never` is an appropriate return type.
@@ -351,12 +388,47 @@ person.address.number = "five fifty-five";
 // Type '"five fifty-five"' is not assignable to type 'number'.
 ```
 
+#### Dangers of type inference
+
+Be forewarned that type inference can come with some dangers. Among others, any string-like value will be inferred as a string. This can have unintended consequences when you intend those types to be more specific. For example:
+
+```typescript
+type Dino = "Stegosaurus" | "Triceratops" | "Velociraptor";
+
+const dinosaur = {
+  name: "Sally",
+  kind: "Stegosaurus",
+};
+
+// this is allowed, but shouldn't be
+dinosaur.kind = "Unicorn";
+```
+
+One solution is to use an assertion:
+
+```typescript
+type Dino = "Stegosaurus" | "Triceratops" | "Velociraptor";
+
+const dinosaur = {
+  name: "Sally",
+  kind: "Stegosaurus" as Dino,
+};
+
+// this is not allowed
+dinosaur.kind = "Unicorn";
+```
+
+Another would be to avoid inference altogether.
+
+### Type inference for functions
+
 TypeScript will infer the return value of functions as well.
 
 ```typescript
 function multiplier(a: number, b: number) {
   return a * b;
 }
+
 var multiplied: number = multiplier(2, 3);
 // Works
 
@@ -365,21 +437,15 @@ str = multiplier(10, 20);
 // Type 'number' is not assignable to type 'string'.
 ```
 
-Type inference can be a very helpful tool in refactoring code and helping better document expectations for our code.
+Type inference can be a very helpful tool in refactoring code and helping better document expectations for our code. However, many code bases require explicit return types on all functions or on exported functions.
+
+- It acts as another test, validating that your function returns what you expect.
+- It ensures your function API is stable.
+- It makes type errors easier to debug.
 
 ### Type assertions
 
-Type assertions are a way to override the inferring of types.
-
-There are two different syntaxes. The first, angle brackets:
-
-```typescript
-const someValue: any = "this is a string";
-
-const strLength: number = (<string>someValue).length;
-```
-
-The second, the `as` keyword:
+Type assertions are a way to override the inferring of types, with the `as` keyword:
 
 ```typescript
 const otherValue: any = "this is a string";
@@ -387,7 +453,7 @@ const otherValue: any = "this is a string";
 const otherLength: number = (otherValue as string).length;
 ```
 
-The `as` syntax is usually preferred because the angle bracket syntax (`<type>`) conflicts with JSX syntax.
+Type assertions should be used sparingly, however.
 
 ## Objective 3: Intersections and Unions
 
@@ -449,8 +515,8 @@ type DinosaurCareTaker = Person &
 There are a couple of things to be aware of when using type intersections. One is that order doesn’t matter since the intersection operator (`&`) is associative. This means the following two types (`A` and `B`) are the same.
 
 ```ts
-type A = A1 & A2;
-type B = A2 & A1;
+type A = Foo & Bar;
+type B = Bar & Foo;
 ```
 
 One catch with intersections is giving them types that can’t be reconciled together. For example, creating a type from the intersection of two string unions:
@@ -477,10 +543,11 @@ type Object2 = {
 
 type Intersection = Object1 & Object2;
 ```
+
 @highlight 3, 8
 
 In this case, the shared key is `age`, while the differing types are `number` and `string`.
-Both of these will appear to work, however, when used, the `Intersection` type will be `never` and you’ll get an error reading something along the lines of:
+Both of these will appear to work, however, when used, the `Intersection` type will be `never` at the `age` key and you’ll get an error along the lines of:
 
 ```
 Type 'Intersection' is not assignable to type 'never'.ts(2322)
@@ -551,9 +618,9 @@ This solves our function signature problem and allows us to pass any collection 
 
 ### Object creation
 
-The first problem comes when creating a dinosaur object. Union types simplify creating an object — we need to pass it keys from any of the types in the union. The only keys that are required are the ones that are shared across all types in the union. 
+The first problem comes when creating a dinosaur object. Union types simplify creating an object — we need to pass it keys from any of the types in the union. The only keys that are required are the ones that are shared across all types in the union.
 
-In our case, the only shared key across `LandDinosaur`, `AirDinosaur`, and `WaterDinosaur` is `name`; anything else is fair game to add as long as the keys are from the same type. 
+In our case, the only shared key across `LandDinosaur`, `AirDinosaur`, and `WaterDinosaur` is `name`; anything else is fair game to add as long as the keys are from the same type.
 
 This means we can get type-safe objects that don’t make a lot of sense. Take, for example, this `pterodactyl` object.
 
@@ -567,9 +634,9 @@ const pterodactyl: Dinosaur = {
 };
 ```
 
-According to TypeScript, type-wise, it is correct, but it doesn’t really make a lot of sense since pterodactyls don’t have fins, and in the context of our types and the function we’re trying to write should only have a `distanceAbleToFly` property rather than an additional `distanceAbleToSwim`. 
+According to TypeScript, type-wise, it is correct, but it doesn’t really make a lot of sense since pterodactyls don’t have fins, and in the context of our types and the function we’re trying to write should only have a `distanceAbleToFly` property rather than an additional `distanceAbleToSwim`.
 
-A common solution is to update our types a little to give TypeScript a hint as to what keys can go with each other. We do this by providing a common key across all types and assigning them to a type literal. 
+A common solution is to update our types a little to give TypeScript a hint as to what keys can go with each other. We do this by providing a common key across all types and assigning them to a type literal.
 
 In our case, a string literal would provide the most semantic sense, so we will use that. Let’s add a type key to our three types and try to create the pterodactyl object again.
 
@@ -628,9 +695,9 @@ function getTotalDistanceAbleToTravel(dinos: Dinosaur[]): number {
 }
 ```
 
-If we try to use `nextDino`, there will only be two properties available to us — `name` and `type`. 
+If we try to use `nextDino`, there will only be two properties available to us — `name` and `type`.
 
-This is because TypeScript has no idea which type of dinosaur has been passed to it, so the only thing it can say exists on the object is the ones that are shared across all types comprising the union. In order for us to be able to use the distance and length properties of the different dinosaurs, we need to go through a process called type narrowing. 
+This is because TypeScript has no idea which type of dinosaur has been passed to it, so the only thing it can say exists on the object is the ones that are shared across all types comprising the union. In order for us to be able to use the distance and length properties of the different dinosaurs, we need to go through a process called type narrowing.
 
 Type narrowing allows us to move from a more general type (like `Dinosaur`) to a more specific type (like `AirDinosaur`). There are many ways for us to do this, one being a type literal unique to each type which, luckily for us, we have already implemented when solving the first issue.
 
@@ -647,12 +714,16 @@ function getTotalDistanceAbleToTravel(dinos: Dinosaur[]): number {
       return total + nextDino.distanceAbleToSwim;
     }
 
-    return total + nextDino.distanceAbleToWalk;
+    if (nextDino.type === "land") {
+      return total + nextDino.distanceAbleToWalk;
+    }
+
+    return total;
   }, 0);
 }
 ```
 
-> **Note:** notice that we never check for `nextDino.type` to be `land`. We don’t have to! TypeScript is smart enough to figure out that there are only three types land, water, and air and since we have checked for the first two (air and water) it knows if it gets through those conditionals the type is land.
+> **Note:** TypeScript is smart enough to figure out that there are only three types. If we had checked for the first two (air and water), it would know that the third must be land even if we didn't have that in a condition. Including the third condition and `return total` helps future-proof our code, however.
 
 ### Setup 3
 

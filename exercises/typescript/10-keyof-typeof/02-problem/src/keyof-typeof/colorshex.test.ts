@@ -1,11 +1,11 @@
-import assert from 'node:assert/strict';
+import assert from "node:assert/strict";
 
-import { getColorValue, ColorsToHex } from "./colorshex";
+import { getColorValue, Colors } from "./colorshex";
 
 describe("Keyof Typeof Exercise 2", () => {
   it("gets dino colors", () => {
-    assert.equal(getColorValue("red"), ColorsToHex.red);
-    assert.equal(getColorValue("green"), ColorsToHex.green);
-    assert.equal(getColorValue("blue"), ColorsToHex.blue);
+    assert.equal(getColorValue("red"), Colors.red);
+    assert.equal(getColorValue("green"), Colors.green);
+    assert.equal(getColorValue("blue"), Colors.blue);
   });
 });

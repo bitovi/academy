@@ -1,12 +1,15 @@
+import type { StaticScreenProps } from "@react-navigation/native"
 import type { FC } from "react"
+
 import { FlatList } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import Box from "../../design/Box"
 import Button from "../../design/Button"
-import type { StackScreenProps } from "@react-navigation/stack"
-import type { RestaurantsStackParamList } from "../../App"
 
-type Props = StackScreenProps<RestaurantsStackParamList, "RestaurantList">
+export type Props = StaticScreenProps<{
+  state: string
+  city: string
+}>
 
 const restaurants = [
   {
@@ -39,17 +42,11 @@ const restaurants = [
   },
 ]
 
-const RestaurantList: FC<Props> = ({ route }) => {
+const RestaurantList: FC<Props> = () => {
   const navigation = useNavigation()
 
-  const { state, city } = route.params
-
-  const navigateToDetails = (slug: string) => {
-    navigation.navigate("RestaurantDetails", {
-      state,
-      city,
-      slug,
-    })
+  const navigateToDetails = () => {
+    navigation.navigate("RestaurantDetails")
   }
 
   return (

@@ -12,27 +12,27 @@ const states = [
   },
 ]
 
-const StateList: FC = () => {
+export const StateList: FC = () => {
   return (
-    <View>
-      {states?.length > 0 ? (
-        states.map((state) => <Text key={state.short}>{state.name}</Text>)
-      ) : (
-        <Text>No states found</Text>
-      )}
-    </View>
+    <ScrollView>
+      <View>
+        <Text>Place My Order: Coming Soon!</Text>
+      </View>
+      <View>
+        {states?.length > 0 ? (
+          states.map((state) => <Text key={state.short}>{state.name}</Text>)
+        ) : (
+          <Text>No states found</Text>
+        )}
+      </View>
+    </ScrollView>
   )
 }
 
 const App: FC = () => {
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <View>
-          <Text>Place My Order: Coming Soon To...</Text>
-        </View>
-        <StateList />
-      </ScrollView>
+    <SafeAreaView style={{ height: "100%", width: "100%" }}>
+      <StateList />
     </SafeAreaView>
   )
 }

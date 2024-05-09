@@ -1,5 +1,6 @@
 import type { FC } from "react"
 import { FlatList } from "react-native"
+import { useNavigation } from "@react-navigation/native"
 import type { StackScreenProps } from "@react-navigation/stack"
 
 import type { RestaurantsStackParamList } from "../../App"

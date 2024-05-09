@@ -12,10 +12,10 @@ function trackDino(dino: Dinosaur) {
 }
 
 const blue = {
-  name: 'blue',
-  breed: 'Velociraptor',
+  name: "blue",
+  breed: "Velociraptor",
   height: 7,
-  location: 'Section B'
+  location: "Section B",
 };
 trackDino(blue);
 // Logs "Section B"

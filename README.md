@@ -10,6 +10,14 @@ The following sections detail how to make various improvements to the site. Make
 npm install
 ```
 
+```sh
+npm run generate
+```
+
+```sh
+npm run build
+```
+
 ### Dev Server
 
 You can start a development server at `http://localhost:8080/academy/` by running:
@@ -42,6 +50,14 @@ npm run rebuild-assets
 ```
 
 This should take about 5 seconds.
+
+### Generating Exercises
+
+Some courses have [dynamically generated exercises](./exercise-src/README.md). These courses will have a folder in `exercise-src` and a corresponding entry in `exercises/.gitignore`. To generate the exercises, run:
+
+```sh
+npm run generate
+```
 
 ### Building
 
@@ -96,8 +112,6 @@ Once you have a 1200x630 image, you can add a `@metaogimage` tag as follows
 ```md
 @metaogimage ../static/img/program-management-with-jira/og-thumbnail.png
 ```
-
-
 
 > In the first page, please include an overview of what the course will cover as well as a links for all subsequent pages in the course.
 
@@ -187,9 +201,11 @@ Internal and external links can be created with Markdown syntax:
 
 ```md
 <!-- Internal link -->
+
 [Bitovi Academy’s RxJS training](../learn-rxjs.html)
 
 <!-- External link: -->
+
 [`mergeMap`](https://rxjs-dev.firebaseapp.com/api/operators/mergeMap)
 ```
 

@@ -24,9 +24,16 @@ An interface in TypeScript is a way to define the shape an entity should adhere 
 
 @sourceref ./interface.ts
 
+### Interfaces in function parameters
+
+Interfaces are incredibly useful in describing the shape of objects we want to use in multiple situations. The following functions both require a `Dinosaur` object shape we’ve defined in the `Dinosaur` interface.
+
+@sourceref ./functions.ts
+@highlight 18
+
 ### Optional properties
 
-Sometimes all properties on an object don’t need to be required, so using the ``?`` tells the TypeScript compiler which properties aren’t required.
+Sometimes all properties on an object don’t need to be required, so using the `?` tells the TypeScript compiler which properties aren’t required.
 
 @sourceref ./optional.ts
 @highlight 4
@@ -37,20 +44,6 @@ In the case that a class needs to follow an object structure, we can use interfa
 
 @sourceref ./classes.ts
 @highlight 1, 8
-
-### Type assertion
-
-We briefly mentioned type assertion when talking about types, but when dealing with interfaces, it can be a great tool for making sure our code behaves in the way we expect.
-
-For instance, consider the following code:
-
-@sourceref ./type-assertion-problem.ts
-
-When we create empty object literals in TypeScript, they are inferred to be objects with zero properties.
-To fix this, we can use type assertions to let the compiler explicitly know what we want from our object.
-
-@sourceref ./type-assertion-solution.ts
-@highlight 6
 
 ### Setup 1
 
@@ -74,37 +67,37 @@ To fix this, we can use type assertions to let the compiler explicitly know what
 
 ### Exercise 1
 
-We’re going to write some interfaces to set up for the next problem. Edit the files `address.ts` and `dinoPark.ts` to create an interface to define an ``Address`` and ``DinoPark`` object shown below:
+We’re going to write some interfaces to set up for the next problem. Edit the files `address.ts` and `dinoPark.ts` to create an interface to define an `Address` and `DinoPark` object shown below:
 
 ```javascript
 const address = {
-  street: '',
-  city: '',
-  state: '',
-  zip: ''
+  street: "",
+  city: "",
+  state: "",
+  zip: "",
 };
 
 const park = {
-  name: '',
-  image: '',
+  name: "",
+  image: "",
   address: {
-    street: '',
-    city: '',
-    state: '',
-    zip: ''
-  }
+    street: "",
+    city: "",
+    state: "",
+    zip: "",
+  },
 };
 ```
 
 Hint: the interface should have properties and types:
 
-- ``name`` (string)
-- ``image`` (string) (optional)
-- ``address``
-  - ``street`` (string)
-  - ``city`` (string)
-  - ``state``(string)
-  - ``zip`` (string)
+- `name` (string)
+- `image` (string) (optional)
+- `address`
+  - `street` (string)
+  - `city` (string)
+  - `state`(string)
+  - `zip` (string)
 
 <strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/01-problem?file=src/address.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/01-problem?file=src/address.ts) to do this exercise in an online code editor.
 
@@ -131,13 +124,6 @@ Make sure you have this solution implemented correctly before moving on to the n
 
 ## Objective 2: Define interfaces for functions
 
-### Interfaces in function parameters
-
-Interfaces are incredibly useful in describing the shape of objects we want to use in multiple situations. The following functions both require a ``Dinosaur`` object shape we’ve defined in the ``Dinosaur`` interface.
-
-@sourceref ./functions.ts
-@highlight 18
-
 ### Interfaces describing functions
 
 We can also use interfaces to describe functions, basically creating reusable types for functions. On the left side (in parenthesis) we list the parameters, and to the right of the colon, we state the return type.
@@ -148,7 +134,7 @@ We can also use interfaces to describe functions, basically creating reusable ty
 It’s possible to use the `type` keyword as an interface to describe a function.
 
 @sourceref ./describefuncs-type.ts
-@highlight 1, 4
+@highlight 1, 3
 
 ### Setup 2
 
@@ -164,7 +150,7 @@ It’s possible to use the `type` keyword as an interface to describe a function
 
 ### Exercise 2
 
-In the `slug.ts` file, edit the ``createParkSlug`` function to take a parameter that is the interface ```DinoPark``` created previously and returns a slug for the park by replacing any spaces with dashes.
+In the `slug.ts` file, edit the `createParkSlug` function to take a parameter that is the interface `DinoPark` created previously and returns a slug for the park by replacing any spaces with dashes.
 Example: the park `Isla Sorna Park` should return the slug `Isla-Sorna-Park`.
 
 <strong>Have issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/02-problem?file=src/interfaces/slug.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/02-problem?file=src/interfaces/slug.ts) to do this exercise in an online code editor.
