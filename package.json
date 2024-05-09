@@ -14,7 +14,7 @@
     "clean": "rm -rf academy && git clean -Xdf exercises",
     "deploy": "node scripts/hubspot-deploy",
     "start": "concurrently -k \"npm:dev\" \"http-server -c -1\"",
-    "test": "npm run generate && node ./exercises/tests.mjs"
+    "test": "node ./exercises/tests.mjs"
   },
   "bit-docs": {
     "dependencies": {
