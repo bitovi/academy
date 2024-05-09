@@ -31,10 +31,7 @@ const RestaurantsNavigator: FC = () => {
               >
                 <Icon name="arrow-back" size={20} />
                 <Typography variant="heading">
-                  {/* @ts-ignore */}
-                  {[route.params?.city?.name, route.params?.state?.name]
-                    .filter(Boolean)
-                    .join(", ")}
+                  Choose a location
                 </Typography>
               </Box>
             </Pressable>

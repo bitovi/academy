@@ -7,8 +7,6 @@ import Icon from "react-native-vector-icons/Ionicons"
 import ThemeProvider, { useTheme } from "./design/theme/ThemeProvider"
 import StateList from "./screens/StateList"
 import Settings from "./screens/Settings"
-import RestaurantDetails from "./screens/RestaurantDetails"
-import RestaurantList from "./screens/RestaurantList"
 import CityList from "./screens/CityList"
 import Box from "./design/Box"
 import Typography from "./design/Typography"
@@ -31,10 +29,7 @@ const RestaurantsNavigator: FC = () => {
               >
                 <Icon name="arrow-back" size={20} />
                 <Typography variant="heading">
-                  {/* @ts-ignore */}
-                  {[route.params?.city?.name, route.params?.state?.name]
-                    .filter(Boolean)
-                    .join(", ")}
+                  Choose a location
                 </Typography>
               </Box>
             </Pressable>

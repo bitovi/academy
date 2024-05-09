@@ -26,8 +26,7 @@ const restaurant = {
   },
 }
 
-const RestaurantDetails: FC<Props> = ({ route }) => {
-  const { slug } = route.params
+const RestaurantDetails: FC<Props> = () => {
   const navigation = useNavigation()
   useEffect(() => {
     if (restaurant) {

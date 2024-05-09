@@ -3,7 +3,6 @@ import { FlatList } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 
 import Screen from "../../design/Screen"
-import Typography from "../../design/Typography"
 import Button from "../../design/Button"
 
 export interface State {
@@ -32,9 +31,7 @@ const StateList: FC = () => {
         renderItem={({ item: stateItem }) => (
           <Button
             onPress={() => {
-              navigation.navigate("CityList", {
-                state: stateItem,
-              })
+              navigation.navigate("CityList")
             }}
           >
             {stateItem.name}
