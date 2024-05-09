@@ -12,7 +12,7 @@ In this section, you will:
 
 - TODO
 
-## Objective 1: TODO
+## Objective: Add `fetch` requests
 
 TODO
 
@@ -20,7 +20,30 @@ TODO
 
 TODO
 
-### Setup 1
+### Setup
+
+Before we begin requesting data from our API, we need to install the `place-my-order-api` module, which will generate fake restaurant data and serve it from port `7070`.
+
+✏️ Run:
+
+```bash
+npm install place-my-order-api@1
+```
+
+✏️ Next add an API script to your `package.json`
+
+@sourceref ../../../exercises/react-vite/09-making-http-requests/02-solution/package.json
+@highlight 7, only
+
+✏️ In a **new** terminal window, start the API server by running:
+
+```bash
+npm run api
+```
+
+Double check the API by navigating to <a href="http://localhost:7070/restaurants">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data.
+
+It will be helpful to have a third terminal tab for the `npm run api` command.
 
 ✏️ Create **src/services/pmo/api/index.ts** and update it to be:
 
@@ -43,7 +66,7 @@ TODO
 @sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/restaurant/interfaces.ts
 
 
-### Verify 1
+### Verify
 
 ✏️ Create **src/services/pmo/api/api.test.tx** and update it to be:
 
@@ -53,11 +76,11 @@ TODO
 
 @sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/restaurant/hooks.test.ts
 
-### Exercise 1
+### Exercise
 
 TODO
 
-### Solution 1
+### Solution
 
 If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
@@ -80,25 +103,13 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 @diff ../../../exercises/react-native/13-http-requests/01-problem/src/screens/StateList/StateList.tsx ../../../exercises/react-native/13-http-requests/01-solution/src/screens/StateList/StateList.tsx only
 
-✏️ Update **src/services/pmo/api/index.ts** to be:
-
-@sourceref ../../../exercises/react-native/13-http-requests/01-solution/src/services/pmo/api/index.ts
-
 ✏️ Create **src/services/pmo/api/api.ts**.
 
-@sourceref ../../../exercises/react-native/13-http-requests/01-solution/src/services/pmo/api/api.ts
+@diff ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/api/api.ts ../../../exercises/react-native/13-http-requests/01-solution/src/services/pmo/api/api.ts
 
-✏️ Create **src/services/pmo/restaurant/index.ts**.
+✏️ Update **src/services/pmo/restaurant/hooks.ts** to be:
 
-@sourceref ../../../exercises/react-native/13-http-requests/01-solution/src/services/pmo/restaurant/index.ts
-
-✏️ Create **src/services/pmo/restaurant/hooks.ts**.
-
-@sourceref ../../../exercises/react-native/13-http-requests/01-solution/src/services/pmo/restaurant/hooks.ts
-
-✏️ Create **src/services/pmo/restaurant/interfaces.ts**.
-
-@sourceref ../../../exercises/react-native/13-http-requests/01-solution/src/services/pmo/restaurant/interfaces.ts
+@diff ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/restaurant/hooks.ts ../../../exercises/react-native/13-http-requests/01-solution/src/services/pmo/restaurant/hooks.ts only
 
 </details>
 
