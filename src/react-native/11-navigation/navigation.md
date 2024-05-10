@@ -12,7 +12,6 @@ In this section, you will:
 
 - Understand why navigation is important
 - Be introduced to deep linking
-- Learn about stack-based navigation
 - Understand the navigation lifecycle
 - Implement a bottom tab navigation pattern
 - Learn about the difference between stack and native stack navigation
