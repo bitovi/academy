@@ -222,4 +222,4 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 ## Next steps
 
-Now that we understand how to use React Native Navigation, we'll supplement that knowledge by [storing state in Navigation Parameters](./storing-state.html).
+Now that we understand how to use React Native Navigation, we'll supplement that knowledge by [storing state in Navigation Parameters](./navigation-params.html).

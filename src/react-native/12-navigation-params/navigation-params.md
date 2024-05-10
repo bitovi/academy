@@ -1,8 +1,8 @@
-@page learn-react-native/storing-state Storing State in Navigation Parameters
+@page learn-react-native/navigation-params Storing State in Navigation Parameters
 @parent learn-react-native 12
 @outline 3
 
-@description TODO
+@description Maintain the React state with React Native Navigation Parameters
 
 @body
 
@@ -10,13 +10,19 @@
 
 In this section, you will:
 
-- TODO
+- Strongly type the navigation parameters of an application.
+- Maintain and pass the state using route params through navigation.
 
 ## Objective 1: Intro to navigation parameters
 
-### Concept TODO
+Now that we've already successfully added navigation between our different screen components, our new goal is to pass information between each screen.
 
-TODO
+### Parameter list
+
+The 
+
+@sourceref ./Stack.tsx
+@highlight 1, 5, only
 
 ### Setup 1
 
