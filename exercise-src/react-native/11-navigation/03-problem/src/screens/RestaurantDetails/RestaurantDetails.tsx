@@ -1,7 +1,6 @@
 import type { StaticScreenProps } from "@react-navigation/native"
 import type { FC } from "react"
 
-import { useEffect } from "react"
 import { useNavigation } from "@react-navigation/native"
 
 import RestaurantHeader from "../../components/RestaurantHeader"
@@ -28,11 +27,7 @@ const restaurant = {
 
 const RestaurantDetails: FC<Props> = () => {
   const navigation = useNavigation()
-  useEffect(() => {
-    if (restaurant) {
-      navigation.setOptions({ title: `${restaurant.name}` })
-    }
-  }, [restaurant, navigation])
+  navigation.setOptions({ title: `${restaurant.name}` })
 
   return (
     <Screen>

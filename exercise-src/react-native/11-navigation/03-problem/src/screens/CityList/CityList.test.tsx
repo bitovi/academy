@@ -1,3 +1,4 @@
+import { NavigationContainer } from "@react-navigation/native"
 import { render, screen } from "@testing-library/react-native"
 
 import CityList from "./CityList"
@@ -8,7 +9,11 @@ jest.mock("@react-native-async-storage/async-storage", () =>
 
 describe("CityList component", () => {
   it("renders city List", () => {
-    render(<CityList />)
+    render(
+      <NavigationContainer>
+        <CityList />
+      </NavigationContainer>,
+    )
 
     expect(screen.getByText(/Madison/i)).toBeOnTheScreen()
     expect(screen.getByText(/Springfield/i)).toBeOnTheScreen()

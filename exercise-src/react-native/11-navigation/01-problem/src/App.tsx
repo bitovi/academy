@@ -5,6 +5,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import Icon from "react-native-vector-icons/Ionicons"
 
 import ThemeProvider, { useTheme } from "./design/theme/ThemeProvider"
+import StateList from "./screens/StateList"
+import Settings from "./screens/Settings"
 
 const AppTabs = createBottomTabNavigator()
 export const AppNavigator: FC = () => {
@@ -41,9 +43,7 @@ const App: FC = () => {
   return (
     <ThemeProvider>
       <SafeAreaView style={{ height: "100%", width: "100%" }}>
-        <NavigationContainer>
-          <AppNavigator />
-        </NavigationContainer>
+        <StateList />
       </SafeAreaView>
     </ThemeProvider>
   )
