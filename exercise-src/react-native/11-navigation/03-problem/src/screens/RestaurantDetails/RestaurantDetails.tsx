@@ -1,11 +1,9 @@
 import type { StaticScreenProps } from "@react-navigation/native"
 import type { FC } from "react"
 
-import { useEffect } from "react"
 import { useNavigation } from "@react-navigation/native"
 
 import RestaurantHeader from "../../components/RestaurantHeader"
-import Button from "../../design/Button"
 import Screen from "../../design/Screen"
 
 export type Props = StaticScreenProps<{
@@ -27,26 +25,13 @@ const restaurant = {
   },
 }
 
-const RestaurantDetails: FC<Props> = ({ route }) => {
-  const { slug } = route.params
+const RestaurantDetails: FC<Props> = () => {
   const navigation = useNavigation()
-  useEffect(() => {
-    if (restaurant) {
-      navigation.setOptions({ title: `${restaurant.name}` })
-    }
-  }, [restaurant, navigation])
+  navigation.setOptions({ title: `${restaurant.name}` })
 
   return (
     <Screen>
       <RestaurantHeader restaurant={restaurant} />
-
-      <Button
-        onPress={() => {
-          navigation.navigate("OrderCreate", { slug: slug })
-        }}
-      >
-        Place an order
-      </Button>
     </Screen>
   )
 }

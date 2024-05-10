@@ -7,13 +7,53 @@ import Icon from "react-native-vector-icons/Ionicons"
 import ThemeProvider, { useTheme } from "./design/theme/ThemeProvider"
 import StateList from "./screens/StateList"
 import Settings from "./screens/Settings"
+import RestaurantDetails from "./screens/RestaurantDetails"
+import RestaurantList from "./screens/RestaurantList"
 import CityList from "./screens/CityList"
 import Box from "./design/Box"
 import Typography from "./design/Typography"
 import { createStackNavigator } from "@react-navigation/stack"
 
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace ReactNavigation {
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    interface RootParamList extends RestaurantsStackParamList {}
+  }
+}
 
-const RestaurantsStack = createStackNavigator()
+export type RestaurantsStackParamList = {
+  StateList: undefined
+  CityList: {
+    state: {
+      name: string
+      short: string
+    }
+  }
+  RestaurantList: {
+    state: {
+      name: string
+      short: string
+    }
+    city: {
+      name: string
+      state: string
+    }
+  }
+  RestaurantDetails: {
+    state: {
+      name: string
+      short: string
+    }
+    city: {
+      name: string
+      state: string
+    }
+    slug: string
+  }
+}
+
+const RestaurantsStack = createStackNavigator<RestaurantsStackParamList>()
 const RestaurantsNavigator: FC = () => {
   return (
     <RestaurantsStack.Navigator
@@ -30,7 +70,10 @@ const RestaurantsNavigator: FC = () => {
               >
                 <Icon name="arrow-back" size={20} />
                 <Typography variant="heading">
-                  Choose a location
+                  {/* @ts-ignore */}
+                  {[route.params?.city?.name, route.params?.state?.name]
+                    .filter(Boolean)
+                    .join(", ")}
                 </Typography>
               </Box>
             </Pressable>
@@ -40,6 +83,14 @@ const RestaurantsNavigator: FC = () => {
     >
       <RestaurantsStack.Screen name="StateList" component={StateList} />
       <RestaurantsStack.Screen name="CityList" component={CityList} />
+      <RestaurantsStack.Screen
+        name="RestaurantList"
+        component={RestaurantList}
+      />
+      <RestaurantsStack.Screen
+        name="RestaurantDetails"
+        component={RestaurantDetails}
+      />
     </RestaurantsStack.Navigator>
   )
 }

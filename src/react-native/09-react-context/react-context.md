@@ -18,7 +18,7 @@ In this section, you will:
 
 Now that we understand how to style our components, let's style everything! However, this very quickly becomes a maintenance nightmare. We want to use the color `#007980` for most of our highlights, but occasionally use `#ca2f35`. What if we decide to change `#007980` to `#00a5ad`?
 
-We need a shared theme. Not only will this allow us to keep things in sync and stop repeating ourselves, it will allow us to use common lanuage to describe our colors and other parameters of our styling.
+We need a shared theme. Not only will this allow us to keep things in sync and stop repeating ourselves, it will allow us to use common language to describe our colors and other parameters of our styling.
 
 Before we get too far into our style system though, we need to talk about how we will share it. While we could put it in a module that we import any time we need it, this would make it difficult to make dynamic changes to our styles, like dark mode. Instead, we can use **React Context**.
 
@@ -59,6 +59,7 @@ We can `useContext` to access the data from our closest Provider.
 
 This simple approach poses a few problems, however.
 
+- We can’t store private information in the context.
 - Every time the provider is used, the component must be careful to create the memoized (and potentially very complicated) value.
 - If the structure of the data changes, you will have to update the code every place you used the provide and every place you used the consumer.
 
@@ -134,7 +135,7 @@ If you ask 3 designers and 3 developers how best to organize a design system, yo
 
 #### Atomic Design Methodology
 
-The most prolific organization method is [Atomic Design](https://atomicdesign.bradfrost.com/chapter-2/). If you want to learn more about design systems, Atomic Design by Brad Frost is the perfect place to start.
+The most prolific organization method is Atomic Design. If you want to learn more about design systems, [Atomic Design by Brad Frost](https://atomicdesign.bradfrost.com/chapter-2/) is the perfect place to start.
 
 #### But... let’s keep things simple
 

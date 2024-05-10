@@ -29,6 +29,13 @@ export interface Theme {
   }
 }
 
+export type ThemeMargin =
+  | keyof Theme["spacing"]
+  | [keyof Theme["spacing"], keyof Theme["spacing"]]
+export type ThemePadding =
+  | keyof Theme["spacing"]
+  | [keyof Theme["spacing"], keyof Theme["spacing"]]
+
 const theme: Theme = {
   palette: {
     screen: {

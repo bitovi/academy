@@ -12,7 +12,6 @@ import Box from "./design/Box"
 import Typography from "./design/Typography"
 import { createStackNavigator } from "@react-navigation/stack"
 
-
 const RestaurantsStack = createStackNavigator()
 const RestaurantsNavigator: FC = () => {
   return (
@@ -40,6 +39,7 @@ const RestaurantsNavigator: FC = () => {
     >
       <RestaurantsStack.Screen name="StateList" component={StateList} />
       <RestaurantsStack.Screen name="CityList" component={CityList} />
+      {/* Exercise: Add RestaurantList and RestaurantDetails to the StackNavigator */}
     </RestaurantsStack.Navigator>
   )
 }

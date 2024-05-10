@@ -19,28 +19,26 @@ const RestaurantsNavigator: FC = () => {
     <RestaurantsStack.Navigator
       initialRouteName="StateList"
       screenOptions={{
-        header: ({ route, navigation }) => {
-          if (!navigation.canGoBack()) return null
-
-          return (
-            <Pressable onPress={navigation.goBack}>
-              <Box
-                padding="m"
-                style={{ flexDirection: "row", gap: 8, alignItems: "center" }}
-              >
-                <Icon name="arrow-back" size={20} />
-                <Typography variant="heading">
-                  Choose a location
-                </Typography>
-              </Box>
-            </Pressable>
-          )
-        },
-      }}
-    >
-      <RestaurantsStack.Screen name="StateList" component={StateList} />
-      <RestaurantsStack.Screen name="CityList" component={CityList} />
-    </RestaurantsStack.Navigator>
+       header: ({ route, navigation }) => {
+          {/* Exercise: Add logic for back navigation*/}
+        return (
+          <Pressable onPress={}>
+            <Box
+              padding="m"
+              style={{ flexDirection: "row", gap: 8, alignItems: "center" }}
+            >
+              <Icon name="arrow-back" size={20} />
+              <Typography variant="heading">
+                Choose a location
+              </Typography>
+            </Box>
+          </Pressable>
+        )
+      },
+    }}
+  >
+    {/*Exercise: Add Navigator Children for StateList and CityList */}
+  </RestaurantsStack.Navigator>
   )
 }
 
