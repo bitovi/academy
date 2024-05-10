@@ -154,4 +154,4 @@ Exploring the debugger:
 
 ## Next steps
 
-Next, let’s learn about different ways to apply [learn-react-native/styling Styling] to React Native applications.
+Next, let’s learn about different ways to apply [learn-react-native/styling] to React Native applications.
