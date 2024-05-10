@@ -719,19 +719,24 @@ covering CanJS core libraries.">
 </code></pre>
 <p>✏️ Update <strong>src/package.json</strong> to be:</p>
 <pre><code class="language-json">{
-  &quot;name&quot;: &quot;solution&quot;,
+  &quot;name&quot;: &quot;PlaceMyOrder&quot;,
   &quot;version&quot;: &quot;0.0.1&quot;,
   &quot;private&quot;: true,
   &quot;scripts&quot;: {
-    &quot;android&quot;: &quot;react-native run-android&quot;,
+    &quot;typecheck&quot;: &quot;tsc --noEmit&quot;,
+    &quot;eslint&quot;: &quot;eslint *.ts *.js src&quot;,
+    &quot;eslint:fix&quot;: &quot;eslint --fix *.ts *.js src&quot;,
+    &quot;prettier&quot;: &quot;prettier --check *.ts *.js *.json src&quot;,
+    &quot;prettier:fix&quot;: &quot;prettier --write *.ts *.js *.json src&quot;,
     &quot;depcheck&quot;: &quot;depcheck .&quot;,
+    &quot;test&quot;: &quot;jest --watch&quot;,
+    &quot;test:ci&quot;: &quot;jest&quot;,
+    &quot;precheck&quot;: &quot;npm run typecheck &amp;&amp; npm run eslint &amp;&amp; npm run prettier &amp;&amp; npm run depcheck &amp;&amp; npm run test&quot;,
+    &quot;clean&quot;: &quot;rm -rf tsconfig.tsbuildinfo coverage android/.gradle android/build android/app/build node_modules/.cache&quot;,
     &quot;devtools&quot;: &quot;react-devtools&quot;,
+    &quot;android&quot;: &quot;react-native run-android&quot;,
     &quot;ios&quot;: &quot;react-native run-ios&quot;,
-    &quot;lint&quot;: &quot;eslint *.ts *.tsx *.js&quot;,
-    &quot;precheck&quot;: &quot;npm run typecheck &amp;&amp; npm run eslint &amp;&amp; npm run prettier &amp;&amp; npm run test &amp;&amp; npm run depcheck&quot;,
-    &quot;prettier&quot;: &quot;prettier --check *.ts *.tsx *.js&quot;,
-    &quot;start&quot;: &quot;react-native start&quot;,
-    &quot;test&quot;: &quot;jest&quot;
+    &quot;start&quot;: &quot;react-native start --reset-cache&quot;
   },
   &quot;dependencies&quot;: {
     &quot;react&quot;: &quot;18.2.0&quot;,
@@ -760,12 +765,12 @@ covering CanJS core libraries.">
     &quot;typescript&quot;: &quot;5.0.4&quot;
   },
   &quot;engines&quot;: {
-    &quot;node&quot;: &quot;&gt;=18&quot;
+    &quot;node&quot;: &quot;&gt;=20&quot;
   }
 }
 
 </code></pre>
- <div line-highlight="8,10-11,38,only"></div>
+ <div line-highlight="16,43,only"></div>
 <h3>Verify 1</h3>
 <p>While the application is running execute the command:</p>
 <p>✏️ Run:</p>
@@ -803,20 +808,24 @@ covering CanJS core libraries.">
 <h3>Setup 2</h3>
 <p>✏️ Update <strong>src/package.json</strong> to be:</p>
 <pre><code class="language-json">{
-  &quot;name&quot;: &quot;solution&quot;,
+  &quot;name&quot;: &quot;PlaceMyOrder&quot;,
   &quot;version&quot;: &quot;0.0.1&quot;,
   &quot;private&quot;: true,
   &quot;scripts&quot;: {
-    &quot;android&quot;: &quot;react-native run-android&quot;,
-    &quot;debugger&quot;: &quot;npx react-native start --experimental-debugger&quot;,
+    &quot;typecheck&quot;: &quot;tsc --noEmit&quot;,
+    &quot;eslint&quot;: &quot;eslint *.ts *.js src&quot;,
+    &quot;eslint:fix&quot;: &quot;eslint --fix *.ts *.js src&quot;,
+    &quot;prettier&quot;: &quot;prettier --check *.ts *.js *.json src&quot;,
+    &quot;prettier:fix&quot;: &quot;prettier --write *.ts *.js *.json src&quot;,
     &quot;depcheck&quot;: &quot;depcheck .&quot;,
+    &quot;test&quot;: &quot;jest --watch&quot;,
+    &quot;test:ci&quot;: &quot;jest&quot;,
+    &quot;precheck&quot;: &quot;npm run typecheck &amp;&amp; npm run eslint &amp;&amp; npm run prettier &amp;&amp; npm run depcheck &amp;&amp; npm run test&quot;,
+    &quot;clean&quot;: &quot;rm -rf tsconfig.tsbuildinfo coverage android/.gradle android/build android/app/build node_modules/.cache&quot;,
     &quot;devtools&quot;: &quot;react-devtools&quot;,
+    &quot;android&quot;: &quot;react-native run-android&quot;,
     &quot;ios&quot;: &quot;react-native run-ios&quot;,
-    &quot;lint&quot;: &quot;eslint *.ts *.tsx *.js&quot;,
-    &quot;precheck&quot;: &quot;npm run typecheck &amp;&amp; npm run eslint &amp;&amp; npm run prettier &amp;&amp; npm run test &amp;&amp; npm run depcheck&quot;,
-    &quot;prettier&quot;: &quot;prettier --check *.ts *.tsx *.js&quot;,
-    &quot;start&quot;: &quot;react-native start&quot;,
-    &quot;test&quot;: &quot;jest&quot;
+    &quot;start&quot;: &quot;react-native start --reset-cache --experimental-debugger&quot;
   },
   &quot;dependencies&quot;: {
     &quot;react&quot;: &quot;18.2.0&quot;,
@@ -845,12 +854,12 @@ covering CanJS core libraries.">
     &quot;typescript&quot;: &quot;5.0.4&quot;
   },
   &quot;engines&quot;: {
-    &quot;node&quot;: &quot;&gt;=18&quot;
+    &quot;node&quot;: &quot;&gt;=20&quot;
   }
 }
 
 </code></pre>
- <div line-highlight="7,only"></div>
+ <div line-highlight="19,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
 import { ScrollView, Text, View } from &quot;react-native&quot;

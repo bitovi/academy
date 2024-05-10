@@ -1254,16 +1254,14 @@ import { render, screen } from &quot;@testing-library/react-native&quot;
 
 import CityList from &quot;./CityList&quot;
 
-jest.mock(&quot;@react-native-async-storage/async-storage&quot;, () =&gt;
-  require(&quot;@react-native-async-storage/async-storage/jest/async-storage-mock&quot;),
-)
-
 describe(&quot;CityList component&quot;, () =&gt; {
   it(&quot;renders city List&quot;, () =&gt; {
     render(
       &lt;NavigationContainer&gt;
-        &lt;CityList route={{ params: { state: { name: &quot;test&quot;, short: &quot;test&quot; } } }} /&gt;
-      &lt;/NavigationContainer&gt;
+        &lt;CityList
+          route={{ params: { state: { name: &quot;test&quot;, short: &quot;test&quot; } } }}
+        /&gt;
+      &lt;/NavigationContainer&gt;,
     )
     expect(screen.getByText(/Madison/i)).toBeOnTheScreen()
     expect(screen.getByText(/Springfield/i)).toBeOnTheScreen()
@@ -1271,7 +1269,7 @@ describe(&quot;CityList component&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="14-15,only"></div>
+ <div line-highlight="10-12,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { render, screen } from &quot;@testing-library/react-native&quot;

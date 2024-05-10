@@ -1291,10 +1291,6 @@ describe(&quot;StateList&quot;, () =&gt; {
 
 import CityList from &quot;./CityList&quot;
 
-jest.mock(&quot;@react-native-async-storage/async-storage&quot;, () =&gt;
-  require(&quot;@react-native-async-storage/async-storage/jest/async-storage-mock&quot;),
-)
-
 describe(&quot;CityList component&quot;, () =&gt; {
   it(&quot;renders city List&quot;, () =&gt; {
     render(&lt;CityList /&gt;)
@@ -1840,10 +1836,6 @@ import { render, screen } from &quot;@testing-library/react-native&quot;
 
 import CityList from &quot;./CityList&quot;
 
-jest.mock(&quot;@react-native-async-storage/async-storage&quot;, () =&gt;
-  require(&quot;@react-native-async-storage/async-storage/jest/async-storage-mock&quot;),
-)
-
 describe(&quot;CityList component&quot;, () =&gt; {
   it(&quot;renders city List&quot;, () =&gt; {
     render(
@@ -1858,7 +1850,7 @@ describe(&quot;CityList component&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="1,12-16,only"></div>
+ <div line-highlight="1,8-12,only"></div>
 <p>✏️ Create <strong>src/components/RestaurantHeader/RestaurantHeader.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
 import RestaurantHeader from &quot;./RestaurantHeader&quot;
@@ -1924,9 +1916,6 @@ jest.mock(&quot;@react-navigation/native&quot;, () =&gt; {
     }),
   }
 })
-jest.mock(&quot;@react-native-async-storage/async-storage&quot;, () =&gt;
-  require(&quot;@react-native-async-storage/async-storage/jest/async-storage-mock&quot;),
-)
 
 describe(&quot;RestaurantDetails component&quot;, () =&gt; {
   it(&quot;renders the RestaurantHeader and content when data is available&quot;, () =&gt; {
