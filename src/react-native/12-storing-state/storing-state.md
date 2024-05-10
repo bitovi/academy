@@ -15,7 +15,7 @@ In this section, you will:
 
 ## Objective 1: Intro to navigation parameters
 
-Now that we've successfully implemented React Navigation to our application, we can navigate between screens easily. The only remaining issue is that as it stands we lack away to pass information, or state, between screens. So our new goal for this section is passing state between screens using navigation parameters.
+Now that we've successfully implemented React Navigation in our application, we can navigate between screens easily. The only remaining issue is that we lack away to pass information, or state, between screens. So, our new goal for this section is passing state between screens using navigation parameters.
 
 ### Navigation Parameters
 
@@ -24,11 +24,11 @@ As mentioned in the previous section, since our React Native application isn't n
 @sourceref ./StackRoute.tsx
 @highlight 4-23, 25
 
-Before we get into using `route` in on each `Screen` of the `Navigator`, considering we're using TypeScript, we need to make an effort to make sure the properties for each component are properly typed. For this we name a type, the `ShopStackParamList`.
+Before we get into using `route` on each `Screen` of the `Navigator`, considering we're using TypeScript, we need to make an effort to make sure the properties for each component are properly typed. For this, we will create a type, `ShopStackParamList`.
 
-For each screen we type the expected properties that will be passed along each route. The `Home` in this case doesn't expect any parameters to be passed to it, so we leave it undefined. The `UserProfile` and `Storefront` contain a few properties.
+For each screen we will type the expected properties that will be passed along each route. The `Home` in this case doesn't expect any parameters to be passed to it, so we leave it undefined. The `UserProfile` and `Storefront` contain a few properties.
 
-Now, our `createStackNavigator` now includes a type we've made `ShopStackParamList`. Because of this, now if we provide our screen components `Props` as route params, TypeScript will be able to able to identify what parameters are accessible from the components `route.params`. 
+Now, our `createStackNavigator` includes a type we've made `ShopStackParamList`. Because of this, now if we provide our screen components `Props` as route params, TypeScript will be able to able to identify what parameters are accessible from the components `route.params`.
 
 While the `route` is accessible from the `Navigator`, in order to utilize the parameters being passed by the it we can do so within each component instead.
 
@@ -39,7 +39,7 @@ To make sure the `Props` for our component match up to what we have for our `Sta
 
 As you can see, in the `UserProfile` component, we can access the `route.params` of the component if any are provided. We grab the `user`, and are able to use it's properties throughout the component. 
 
-This includes passing the state of `user` to through `navigation`. We can add `user`, and other properties as an object for the second argument of `navigation.navigate`. Thus on the `Storefront` screen, all of those params passed will be accessible within its component.
+This includes passing the state of `user` through `navigation`. We can add `user`, and other properties as an object for the second argument of `navigation.navigate`. Thus on the `Storefront` screen, all of those params passed will be accessible within its component.
 
 ### Setup 1
 
