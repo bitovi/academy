@@ -1,16 +1,17 @@
+import { NavigationContainer } from "@react-navigation/native"
+import { createStackNavigator } from "@react-navigation/stack"
 import { render, screen } from "@testing-library/react-native"
 
 import * as restaurantHooks from "../../services/pmo/restaurant/hooks"
 
 import RestaurantOrder from "./RestaurantOrder"
-import MockApp from "../../MockApp"
 
-jest.mock("@react-native-async-storage/async-storage", () =>
-  require("@react-native-async-storage/async-storage/jest/async-storage-mock"),
-)
+const useRestaurant: jest.SpyInstance<
+  ReturnType<typeof restaurantHooks.useRestaurant>
+> = jest.spyOn(restaurantHooks, "useRestaurant")
 
 describe("RestaurantOrder component", () => {
-  // Mock the hooks and components used in RestaurantOrder
+  const MockNavigation = createStackNavigator()
 
   const mockRestaurantResponse = {
     data: {
@@ -52,14 +53,6 @@ describe("RestaurantOrder component", () => {
     },
   }
 
-  let useRestaurant: jest.SpyInstance<
-    ReturnType<typeof restaurantHooks.useRestaurant>
-  >
-  beforeEach(() => {
-    jest.resetAllMocks()
-    useRestaurant = jest.spyOn(restaurantHooks, "useRestaurant")
-  })
-
   it("renders restaurant order form", () => {
     useRestaurant.mockReturnValue({
       ...mockRestaurantResponse,
@@ -68,11 +61,17 @@ describe("RestaurantOrder component", () => {
     })
 
     render(
-      <MockApp
-        component={RestaurantOrder}
-        params={{ restaurantId: "bagel-restaurant" }}
-      />,
+      <NavigationContainer>
+        <MockNavigation.Navigator initialRouteName="test">
+          <MockNavigation.Screen
+            name="test"
+            component={RestaurantOrder}
+            initialParams={{ restaurantId: "bagel-restaurant" }}
+          />
+        </MockNavigation.Navigator>
+      </NavigationContainer>
     )
+
     expect(screen.getByText(/Lunch Menu/i)).toBeOnTheScreen()
     expect(
       screen.getByText(mockRestaurantResponse.data.menu.lunch[0].name, {
@@ -91,13 +90,20 @@ describe("RestaurantOrder component", () => {
     useRestaurant.mockReturnValue({ data: null, error: null, isPending: true })
 
     render(
-      <MockApp
-        component={RestaurantOrder}
-        params={{ restaurantId: "bagel-restaurant" }}
-      />,
+      <NavigationContainer>
+        <MockNavigation.Navigator initialRouteName="test">
+          <MockNavigation.Screen
+            name="test"
+            component={RestaurantOrder}
+            initialParams={{ restaurantId: "bagel-restaurant" }}
+          />
+        </MockNavigation.Navigator>
+      </NavigationContainer>
     )
+
     expect(screen.getByText(/Loading/i)).toBeOnTheScreen()
   })
+
   it("renders error restaurant", () => {
     useRestaurant.mockReturnValue({
       data: null,
@@ -106,10 +112,15 @@ describe("RestaurantOrder component", () => {
     })
 
     render(
-      <MockApp
-        component={RestaurantOrder}
-        params={{ restaurantId: "bagel-restaurant" }}
-      />,
+      <NavigationContainer>
+        <MockNavigation.Navigator initialRouteName="test">
+          <MockNavigation.Screen
+            name="test"
+            component={RestaurantOrder}
+            initialParams={{ restaurantId: "bagel-restaurant" }}
+          />
+        </MockNavigation.Navigator>
+      </NavigationContainer>
     )
 
     expect(

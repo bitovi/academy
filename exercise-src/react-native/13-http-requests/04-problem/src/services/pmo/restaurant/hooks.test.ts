@@ -1,19 +1,11 @@
 import { renderHook, waitFor } from "@testing-library/react-native"
-import * as api from "./api"
+import * as api from "../api/api"
 import { useStates, useCities, useRestaurants } from "./hooks"
 
-jest.mock("@react-native-async-storage/async-storage", () =>
-  require("@react-native-async-storage/async-storage/jest/async-storage-mock"),
-)
+const apiRequest: jest.SpyInstance<ReturnType<typeof api.apiRequest>> =
+  jest.spyOn(api, "apiRequest")
 
 describe("Restaurant Hooks", () => {
-  // Mock the apiRequest function
-  let apiRequest: jest.SpyInstance<ReturnType<typeof api.apiRequest>>
-  beforeEach(() => {
-    jest.resetAllMocks()
-    apiRequest = jest.spyOn(api, "apiRequest")
-  })
-
   describe("useCities hook", () => {
     it("should return cities data successfully", async () => {
       const mockCities = [
@@ -27,6 +19,7 @@ describe("Restaurant Hooks", () => {
       await waitFor(() => {
         expect(result.current.isPending).toBeFalsy()
       })
+
       expect(result.current.data).toEqual(mockCities)
       expect(result.current.error).toBeNull()
     })
@@ -37,9 +30,7 @@ describe("Restaurant Hooks", () => {
 
       const { result } = renderHook(() => useCities("test-state"))
 
-      await waitFor(() => {
-        expect(result.current.isPending).toBeFalsy()
-      })
+      await waitFor(() => expect(result.current.isPending).toBeFalsy())
       expect(result.current.data).toBeNull()
       expect(result.current.error).toEqual(mockError)
     })
@@ -57,9 +48,7 @@ describe("Restaurant Hooks", () => {
         useRestaurants("test-state", "test-city"),
       )
 
-      await waitFor(() => {
-        expect(result.current.isPending).toBeFalsy()
-      })
+      await waitFor(() => expect(result.current.isPending).toBeFalsy())
       expect(result.current.data).toEqual(mockRestaurant)
       expect(result.current.error).toBeNull()
     })
@@ -72,10 +61,7 @@ describe("Restaurant Hooks", () => {
         useRestaurants("test-state", "test-city"),
       )
 
-      await waitFor(() => {
-        expect(result.current.isPending).toBeFalsy()
-      })
-
+      await waitFor(() => expect(result.current.isPending).toBeFalsy())
       expect(result.current.data).toBeNull()
       expect(result.current.error).toEqual(mockError)
     })
@@ -96,9 +82,7 @@ describe("Restaurant Hooks", () => {
         useRestaurants("test-state", "test-city"),
       )
 
-      await waitFor(() => {
-        expect(result.current.isPending).toBeFalsy()
-      })
+      await waitFor(() => expect(result.current.isPending).toBeFalsy())
       expect(result.current.data).toEqual(mockRestaurants)
       expect(result.current.error).toBeNull()
     })
@@ -111,9 +95,7 @@ describe("Restaurant Hooks", () => {
         useRestaurants("test-state", "test-city"),
       )
 
-      await waitFor(() => {
-        expect(result.current.isPending).toBeFalsy()
-      })
+      await waitFor(() => expect(result.current.isPending).toBeFalsy())
       expect(result.current.data).toBeNull()
       expect(result.current.error).toEqual(mockError)
     })
@@ -129,9 +111,7 @@ describe("Restaurant Hooks", () => {
 
       const { result } = renderHook(() => useStates())
 
-      await waitFor(() => {
-        expect(result.current.isPending).toBeFalsy()
-      })
+      await waitFor(() => expect(result.current.isPending).toBeFalsy())
       expect(result.current.data).toEqual(mockStates)
       expect(result.current.error).toBeNull()
     })
@@ -142,9 +122,7 @@ describe("Restaurant Hooks", () => {
 
       const { result } = renderHook(() => useStates())
 
-      await waitFor(() => {
-        expect(result.current.isPending).toBeFalsy()
-      })
+      await waitFor(() => expect(result.current.isPending).toBeFalsy())
       expect(result.current.data).toBeNull()
       expect(result.current.error).toEqual(mockError)
     })
