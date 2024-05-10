@@ -303,8 +303,8 @@
            						
            						">
 						<a class="page"
-							href="storing-state.html"
-							title="TODO">
+							href="navigation-params.html"
+							title="Maintain the React state with React Native Navigation Parameters">
 							Storing State in Navigation Parameters
 						</a>
 						
@@ -988,7 +988,7 @@ const StateList: FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="5-6,10,14,16-23,25-27,31-49,only"></div>
+ <div line-highlight="5-6,10,12,14,16-23,25-27,31-49,only"></div>
 <p>✏️ Update <strong>src/screens/CityList/CityList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
 import { FlatList } from &quot;react-native&quot;
@@ -1036,7 +1036,8 @@ export default CityList
 
 </code></pre>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { StaticScreenProps } from &quot;@react-navigation/native&quot;
+<pre><code class="language-tsx">import type { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import type { RestaurantsStackParamList } from &quot;../../App&quot;
 import type { FC } from &quot;react&quot;
 
 import { FlatList } from &quot;react-native&quot;
@@ -1044,10 +1045,7 @@ import { useNavigation } from &quot;@react-navigation/native&quot;
 import Box from &quot;../../design/Box&quot;
 import Button from &quot;../../design/Button&quot;
 
-export type Props = StaticScreenProps&lt;{
-  state: string
-  city: string
-}&gt;
+type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantList&quot;&gt;
 
 const restaurants = [
   {
@@ -1080,11 +1078,16 @@ const restaurants = [
   },
 ]
 
-const RestaurantList: FC&lt;Props&gt; = () =&gt; {
+const RestaurantList: FC&lt;Props&gt; = ({ route }) =&gt; {
+  const { state, city } = route.params
   const navigation = useNavigation()
 
-  const navigateToDetails = () =&gt; {
-    navigation.navigate(&quot;RestaurantDetails&quot;)
+  const navigateToDetails = (slug) =&gt; {
+    navigation.navigate(&quot;RestaurantDetails&quot;, {
+      state,
+      city,
+      slug,
+    })
   }
 
   return (
@@ -1108,17 +1111,12 @@ export default RestaurantList
 
 </code></pre>
 <p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { StaticScreenProps } from &quot;@react-navigation/native&quot;
-import type { FC } from &quot;react&quot;
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
 
 import { useNavigation } from &quot;@react-navigation/native&quot;
 
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
 import Screen from &quot;../../design/Screen&quot;
-
-export type Props = StaticScreenProps&lt;{
-  slug: string
-}&gt;
 
 const restaurant = {
   _id: &quot;Ar0qBJHxM3ecOhcr&quot;,
@@ -1135,7 +1133,7 @@ const restaurant = {
   },
 }
 
-const RestaurantDetails: FC&lt;Props&gt; = () =&gt; {
+const RestaurantDetails: FC = () =&gt; {
   const navigation = useNavigation()
   navigation.setOptions({ title: `${restaurant.name}` })
 
