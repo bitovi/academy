@@ -13,9 +13,7 @@ const states = [
 ]
 
 export const StateList: FC = () => {
-  return (
-    // Exercise: Implement StateList component
-  )
+  // Exercise: Implement StateList component
 }
 
 const App: FC = () => {
