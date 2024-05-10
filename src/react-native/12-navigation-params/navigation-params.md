@@ -10,19 +10,11 @@
 
 In this section, you will:
 
-- Strongly type the navigation parameters of an application.
-- Maintain and pass the state using route params through navigation.
+TODO 
 
 ## Objective 1: Intro to navigation parameters
 
-Now that we've already successfully added navigation between our different screen components, our new goal is to pass information between each screen.
-
-### Parameter list
-
-The 
-
-@sourceref ./Stack.tsx
-@highlight 1, 5, only
+### Content TODO
 
 ### Setup 1
 
