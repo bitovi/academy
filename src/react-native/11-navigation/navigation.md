@@ -43,7 +43,7 @@ The React Navigation library used in this section supports deep linking and has 
 
 Now that we have an understanding of how navigation works within a stack, let's take a look at the implications of navigation on the component lifecycle.
 
-If we have a stack navigator with two screens, `ScreenA` and `ScreenB`, and navigate to `ScreenA`, then `ScreenA` will mount the component and render. If we then navigate to `ScreenB`, `ScreenA` will be unmounted and `ScreenB` will mount and render. What happens when we navigate back to `ScreenA`? `ScreenB` will unmount the component, but `ScreenA` will *not* remount. Because it stayed in the stack, it remained mounted the entier time.
+If we have a stack navigator with two screens, `ScreenA` and `ScreenB`, and navigate to `ScreenA`, then `ScreenA` will mount the component and render. If we then navigate to `ScreenB`, `ScreenA` will be unmounted and `ScreenB` will mount and render. What happens when we navigate back to `ScreenA`? `ScreenB` will unmount the component, but `ScreenA` will *not* remount. Because it stayed in the stack, it remained mounted the entire time.
 
 ### Bottom Tab Navigation
 
