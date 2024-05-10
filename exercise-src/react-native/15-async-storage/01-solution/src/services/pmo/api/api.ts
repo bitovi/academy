@@ -28,23 +28,25 @@ export async function apiRequest<
     const query = params ? stringifyQuery(params) : ""
     const requestUrl = `${baseUrl}${path}?${query}`
 
-    try {
-      const cachedResponse = await getData<LocalStorageApiRequest<Data>>(
-        keyPrefix + requestUrl,
-      )
+    if (method === "GET") {
+      try {
+        const cachedResponse = await getData<LocalStorageApiRequest<Data>>(
+          keyPrefix + requestUrl,
+        )
 
-      if (cachedResponse) {
-        const diff = Date.now() - cachedResponse.dateTime
-        //Return Cached data if it's younger than one minute
-        if (diff < 60000) {
-          return {
-            data: cachedResponse.data,
-            error: null,
+        if (cachedResponse) {
+          const diff = Date.now() - cachedResponse.dateTime
+          //Return Cached data if it's younger than one minute
+          if (diff < 60000) {
+            return {
+              data: cachedResponse.data,
+              error: null,
+            }
           }
         }
+      } catch (error) {
+        console.error("Failed to get cached value:", error)
       }
-    } catch (error) {
-      console.error("Failed to get cached value:", error)
     }
 
     const response = await fetch(requestUrl, {
@@ -61,7 +63,7 @@ export async function apiRequest<
       : new Error(`${response.status} (${response.statusText})`)
 
     if (method === "GET" && response.ok) {
-      storeData<LocalStorageApiRequest<Data>>(keyPrefix + requestUrl, {
+      await storeData<LocalStorageApiRequest<Data>>(keyPrefix + requestUrl, {
         data: data,
         dateTime: Date.now(),
       })

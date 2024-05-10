@@ -5,10 +5,6 @@ import * as restaurantHooks from "../../services/pmo/restaurant/hooks"
 
 import StateList from "./StateList"
 
-jest.mock("@react-native-async-storage/async-storage", () =>
-  require("@react-native-async-storage/async-storage/jest/async-storage-mock"),
-)
-
 describe("StateList component", () => {
   // Mock the hooks and components used in StateList
   const mockStateResponse = {
@@ -35,7 +31,7 @@ describe("StateList component", () => {
     render(
       <NavigationContainer>
         <StateList />
-      </NavigationContainer>
+      </NavigationContainer>,
     )
     expect(screen.getByText(/Michigan/i)).toBeOnTheScreen()
     expect(screen.getByText(/Wisconsin/i)).toBeOnTheScreen()
@@ -48,7 +44,7 @@ describe("StateList component", () => {
     render(
       <NavigationContainer>
         <StateList />
-      </NavigationContainer>
+      </NavigationContainer>,
     )
 
     expect(screen.getByText(/Loading/i)).toBeOnTheScreen()
@@ -63,7 +59,7 @@ describe("StateList component", () => {
     render(
       <NavigationContainer>
         <StateList />
-      </NavigationContainer>
+      </NavigationContainer>,
     )
 
     expect(screen.getByText(/Error loading states:/)).toBeOnTheScreen()
