@@ -62,7 +62,7 @@ Tab navigation pattern is one of the most common navigation patterns used in bot
 
 Often tabs in a mobile application are made up of more than just one screen. Tab navigation is often used in conjunction with stack navigation to allow for more complex navigation patterns. We will cover how to use React Navigation's stack navigation in the next section.
 
-First, let's setup our application to use tab navigation in from React Navigation. To do this, we will install the `@react-navigation/bottom-tabs` package:
+First, let's setup our application to use tab navigation from React Navigation. To do this, we will install the `@react-navigation/bottom-tabs` package:
 
 ```bash
 npm install @react-navigation/bottom-tabs
@@ -173,7 +173,13 @@ Both the stack navigator and tab navigator have an optional prop, `detachInactiv
 
 ### Stack Navigator
 
-Let's take a look at an example of using a stack navigator in React Native with React Navigation:
+Let's take a look at an example of using a stack navigator in React Native with React Navigation.
+
+First, let's setup our application to use stack navigation from React Navigation. To do this, we will install the `@react-navigation/stack` package:
+
+```bash
+npm install @react-navigation/stack
+```
 
 ```tsx
 import { createStackNavigator } from '@react-navigation/stack';
