@@ -19,7 +19,6 @@ const Screen: FC<ScreenProps> = ({ children, style, ...props }) => {
         padding="s"
         style={{
           height: "100%",
-          flex: 1,
           backgroundColor: palette.screen.soft,
         }}
         {...props}
