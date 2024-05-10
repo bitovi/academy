@@ -884,10 +884,11 @@ const CityList: FC&lt;Props&gt; = ({ route }) =&gt; {
 export default CityList
 
 </code></pre>
- <div line-highlight="3,5,9,14,16-17,24,only"></div>
+ <div line-highlight="3,5,9,14,16,24-26,only"></div>
 <h3>Verify 1</h3>
 <p>✏️ Update <strong>src/screens/CityList/CityList.test.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+<pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { render, screen } from &quot;@testing-library/react-native&quot;
 
 import CityList from &quot;./CityList&quot;
 
@@ -897,7 +898,11 @@ jest.mock(&quot;@react-native-async-storage/async-storage&quot;, () =&gt;
 
 describe(&quot;CityList component&quot;, () =&gt; {
   it(&quot;renders city List&quot;, () =&gt; {
-    render(&lt;CityList /&gt;)
+    render(
+      &lt;NavigationContainer&gt;
+        &lt;CityList /&gt;
+      &lt;/NavigationContainer&gt;,
+    )
 
     expect(screen.getByText(/Madison/i)).toBeOnTheScreen()
     expect(screen.getByText(/Springfield/i)).toBeOnTheScreen()

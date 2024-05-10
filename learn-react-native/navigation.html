@@ -684,7 +684,9 @@ covering CanJS core libraries.">
 <li>TODO</li>
 </ul>
 <h2>Objective 1: Using React Native bottom tab navigation</h2>
-<p>TODO</p>
+<div style="display: flex; flex-direction: row; gap: 2rem">
+  <img alt="Screen Shot of the StateList in Navigation" src="../static/img/react-native/11-navigation/NavigationStateList.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+</div>
 <h3>Concept TODO</h3>
 <p>TODO</p>
 <h3>Setup 1</h3>
@@ -696,6 +698,8 @@ import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quo
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
 import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
+import StateList from &quot;./screens/StateList&quot;
+import Settings from &quot;./screens/Settings&quot;
 
 const AppTabs = createBottomTabNavigator()
 export const AppNavigator: FC = () =&gt; {
@@ -732,9 +736,7 @@ const App: FC = () =&gt; {
   return (
     &lt;ThemeProvider&gt;
       &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
-        &lt;NavigationContainer&gt;
-          &lt;AppNavigator /&gt;
-        &lt;/NavigationContainer&gt;
+        &lt;StateList /&gt;
       &lt;/SafeAreaView&gt;
     &lt;/ThemeProvider&gt;
   )
@@ -743,7 +745,7 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="3-5,7,9-11,14-36,41,44-46,49-50,only"></div>
+ <div line-highlight="3-5,7,9,11-13,16-38,43,49-50,only"></div>
 <p>✏️ Create <strong>src/screens/Settings/Settings.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
 import { Switch } from &quot;react-native&quot;
@@ -783,44 +785,24 @@ export default Settings
 <pre><code class="language-ts">export { default } from &quot;./Settings&quot;
 
 </code></pre>
-<p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import ListItem from &quot;./components/ListItem&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
+<h3>Verify 1</h3>
+<p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+import App from &quot;./App&quot;
 
-export type State = {
-  name: string
-  short: string
-}
-
-const states: State[] = [
-  {
-    name: &quot;Illinois&quot;,
-    short: &quot;IL&quot;,
-  },
-  {
-    name: &quot;Wisconsin&quot;,
-    short: &quot;WI&quot;,
-  },
-]
-
-const StateList: FC = () =&gt; {
-  return (
-    &lt;Screen&gt;
-      {states?.length &gt; 0 ? (
-        states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
-      ) : (
-        &lt;Typography&gt;No states found&lt;/Typography&gt;
-      )}
-    &lt;/Screen&gt;
-  )
-}
-
-export default StateList
+describe(&quot;App&quot;, () =&gt; {
+  it(&quot;renders&quot;, async () =&gt; {
+    render(&lt;App /&gt;)
+    expect(screen.getByText(/Place my order/i)).toBeOnTheScreen()
+  })
+  it(&quot;renders states&quot;, async () =&gt; {
+    render(&lt;App /&gt;)
+    expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
+    expect(screen.getByText(/Wisconsin/i)).toBeOnTheScreen()
+  })
+})
 
 </code></pre>
-<h3>Verify 1</h3>
 <p>✏️ Create <strong>src/screens/Settings/Settings.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import type { SwitchChangeEvent } from &quot;react-native&quot;;
 
@@ -865,7 +847,8 @@ describe(&quot;Settings component&quot;, () =&gt; {
 <h3>Exercise 1</h3>
 <ul>
 <li>For the <code>tabBarIcon</code> property on <code>AppTabs.Navigator</code> update the <code>Icon</code> component's name property to be based on the given route.</li>
-<li>Add a screen tab for Restaurants (for the <code>StateList</code> component) and for <code>Settings</code> component.</li>
+<li>Add a screen tab for Restaurants (the <code>StateList</code> component) and for <code>Settings</code> component.</li>
+<li>Add the <code>NavigationContainer</code> and  <code>AppNavigator</code> to the <code>App</code> component.</li>
 </ul>
 <h3>Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
@@ -943,9 +926,12 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="8-9,32-37,43-52,only"></div>
+ <div line-highlight="32-37,43-52,61-63,only"></div>
 <p></details></p>
 <h2>Objective 2: Using React Native stack navigation</h2>
+<div style="display: flex; flex-direction: row; gap: 2rem">
+  <img alt="Screen Shot of the CityList in Navigation" src="../static/img/react-native/11-navigation/NavigationCityList.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+</div>
 <p>TODO</p>
 <h3>Concept TODO</h3>
 <p>TODO</p>
@@ -965,18 +951,33 @@ import Box from &quot;./design/Box&quot;
 import Typography from &quot;./design/Typography&quot;
 import { createStackNavigator } from &quot;@react-navigation/stack&quot;
 
-declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace ReactNavigation {
-    // eslint-disable-next-line @typescript-eslint/no-empty-interface
-    interface RootParamList extends RestaurantsStackParamList {}
-  }
-}
 
 const RestaurantsStack = createStackNavigator()
 const RestaurantsNavigator: FC = () =&gt; {
   return (
-   //Exercise: Implement Stack Navigator that includes CityList and StateList
+    &lt;RestaurantsStack.Navigator
+      initialRouteName=&quot;StateList&quot;
+      screenOptions={{
+       header: ({ route, navigation }) =&gt; {
+          {/* Exercise: Add logic for back navigation*/}
+        return (
+          &lt;Pressable onPress={}&gt;
+            &lt;Box
+              padding=&quot;m&quot;
+              style={{ flexDirection: &quot;row&quot;, gap: 8, alignItems: &quot;center&quot; }}
+            &gt;
+              &lt;Icon name=&quot;arrow-back&quot; size={20} /&gt;
+              &lt;Typography variant=&quot;heading&quot;&gt;
+                Choose a location
+              &lt;/Typography&gt;
+            &lt;/Box&gt;
+          &lt;/Pressable&gt;
+        )
+      },
+    }}
+  &gt;
+    {/*Exercise: Add Navigator Children for StateList and CityList */}
+  &lt;/RestaurantsStack.Navigator&gt;
   )
 }
 
@@ -1041,12 +1042,14 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="2,10-13,15-20,23-24,26,64,74,77,85-86,only"></div>
+ <div line-highlight="2,10-13,16-17,19-41,79,92,100-101,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
 import { FlatList } from &quot;react-native&quot;
 import { useNavigation } from &quot;@react-navigation/native&quot;
 
+import Card from &quot;../../design/Card&quot;
+import Typography from &quot;../../design/Typography&quot;
 import Screen from &quot;../../design/Screen&quot;
 import Button from &quot;../../design/Button&quot;
 
@@ -1071,13 +1074,16 @@ const StateList: FC = () =&gt; {
 
   return (
     &lt;Screen&gt;
+      &lt;Card&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;
+          Place My Order: Coming Soon To...
+        &lt;/Typography&gt;
+      &lt;/Card&gt;
       &lt;FlatList
         data={states}
         renderItem={({ item: stateItem }) =&gt; (
           &lt;Button
-            onPress={() =&gt; {
-              navigation.navigate(&quot;CityList&quot;)
-            }}
+            onPress={() =&gt; console.warn(`${stateItem.name}`)}
           &gt;
             {stateItem.name}
           &lt;/Button&gt;
@@ -1091,7 +1097,7 @@ const StateList: FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="2-3,6,8,25,29-41,only"></div>
+ <div line-highlight="2-3,8,10,27,36-46,only"></div>
 <p>✏️ Create <strong>src/screens/CityList/CityList.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
 import { FlatList } from &quot;react-native&quot;
@@ -1135,47 +1141,48 @@ export default CityList
 
 </code></pre>
 <h3>Verify 2</h3>
+<p>✏️ Update <strong>src/screens/StateList/StateList.test.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { render, screen } from &quot;@testing-library/react-native&quot;;
+import StateList from &quot;./StateList&quot;;
+
+describe(&quot;StateList&quot;, () =&gt; {
+  it(&quot;renders states&quot;, async () =&gt; {
+    render(
+      &lt;NavigationContainer&gt;
+        &lt;StateList /&gt;
+      &lt;/NavigationContainer&gt;
+    )
+    expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
+    expect(screen.getByText(/Wisconsin/i)).toBeOnTheScreen()
+  })
+})
+
+</code></pre>
+ <div line-highlight="1-2,7-11,only"></div>
 <p>✏️ Create <strong>src/screens/CityList/CityList.test.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { FlatList } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
 
-import Screen from &quot;../../design/Screen&quot;
-import Button from &quot;../../design/Button&quot;
+import CityList from &quot;./CityList&quot;
 
-export interface City {
-  name: string
-  state: string
-}
+jest.mock(&quot;@react-native-async-storage/async-storage&quot;, () =&gt;
+  require(&quot;@react-native-async-storage/async-storage/jest/async-storage-mock&quot;),
+)
 
-const cities: City[] = [
-  { name: &quot;Madison&quot;, state: &quot;WI&quot; },
-  { name: &quot;Springfield&quot;, state: &quot;IL&quot; },
-]
+describe(&quot;CityList component&quot;, () =&gt; {
+  it(&quot;renders city List&quot;, () =&gt; {
+    render(&lt;CityList /&gt;)
 
-const CityList: FC = () =&gt; {
-  return (
-    &lt;Screen&gt;
-      &lt;FlatList
-        data={cities}
-        renderItem={({ item: cityItem }) =&gt; (
-          &lt;Button
-            onPress={() =&gt; console.warn(`${cityItem.name}`)}
-          &gt;
-            {cityItem.name}
-          &lt;/Button&gt;
-        )}
-        keyExtractor={(item) =&gt; item.name}
-      /&gt;
-    &lt;/Screen&gt;
-  )
-}
-
-export default CityList
+    expect(screen.getByText(/Madison/i)).toBeOnTheScreen()
+    expect(screen.getByText(/Springfield/i)).toBeOnTheScreen()
+  })
+})
 
 </code></pre>
 <h3>Exercise 2</h3>
 <ul>
 <li>Using <code>RestaurantsStack</code> implement a <code>Navigator</code> with two screens, one for <code>StateList</code> and one for <code>CityList</code>.</li>
+<li>Use <code>navigation</code> in the <code>StateList</code> component, to link <code>StateList</code> to the <code>CityList</code> screen.</li>
 </ul>
 <h3>Solution 2</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
@@ -1196,13 +1203,6 @@ import Box from &quot;./design/Box&quot;
 import Typography from &quot;./design/Typography&quot;
 import { createStackNavigator } from &quot;@react-navigation/stack&quot;
 
-declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace ReactNavigation {
-    // eslint-disable-next-line @typescript-eslint/no-empty-interface
-    interface RootParamList extends RestaurantsStackParamList {}
-  }
-}
 
 const RestaurantsStack = createStackNavigator()
 const RestaurantsNavigator: FC = () =&gt; {
@@ -1296,9 +1296,70 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="26-30,32-44,46,48-50,83,85,only"></div>
+ <div line-highlight="22-23,25-37,39,41-43,76,78,only"></div>
+<p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { FlatList } from &quot;react-native&quot;
+import { useNavigation } from &quot;@react-navigation/native&quot;
+
+import Card from &quot;../../design/Card&quot;
+import Typography from &quot;../../design/Typography&quot;
+import Screen from &quot;../../design/Screen&quot;
+import Button from &quot;../../design/Button&quot;
+
+export interface State {
+  name: string
+  short: string
+}
+
+const states: State[] = [
+  {
+    name: &quot;Illinois&quot;,
+    short: &quot;IL&quot;,
+  },
+  {
+    name: &quot;Wisconsin&quot;,
+    short: &quot;WI&quot;,
+  },
+]
+
+const StateList: FC = () =&gt; {
+  const navigation = useNavigation()
+
+  return (
+    &lt;Screen&gt;
+      &lt;Card&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;
+          Place My Order: Coming Soon To...
+        &lt;/Typography&gt;
+      &lt;/Card&gt;
+      &lt;FlatList
+        data={states}
+        renderItem={({ item: stateItem }) =&gt; (
+          &lt;Button
+            onPress={() =&gt; {
+              navigation.navigate(&quot;CityList&quot;)
+            }}
+          &gt;
+            {stateItem.name}
+          &lt;/Button&gt;
+        )}
+        keyExtractor={(item) =&gt; item.short}
+      /&gt;
+    &lt;/Screen&gt;
+  )
+}
+
+export default StateList
+
+</code></pre>
+ <div line-highlight="40-42,only"></div>
 <p></details></p>
 <h2>Objective 3: Add Restaurant List and Restaurant Details pages with links</h2>
+<div style="display: flex; flex-direction: row; gap: 2rem">
+  <img alt="Screen Shot of the RestaurantList in Navigation" src="../static/img/react-native/11-navigation/NavigationRestaurantList.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screen Shot of the RestaurantDetails in Navigation" src="../static/img/react-native/11-navigation/NavigationRestaurantDetails.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+</div>
 <h3>Setup 3</h3>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
@@ -1491,12 +1552,53 @@ export default RestaurantHeader
 <pre><code class="language-ts">export { default } from &quot;./RestaurantHeader&quot;
 
 </code></pre>
+<p>✏️ Update <strong>src/screens/CityList/CityList.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { FlatList } from &quot;react-native&quot;
+import { useNavigation } from &quot;@react-navigation/native&quot;
+
+import Screen from &quot;../../design/Screen&quot;
+import Button from &quot;../../design/Button&quot;
+
+export interface City {
+  name: string
+  state: string
+}
+
+const cities: City[] = [
+  { name: &quot;Madison&quot;, state: &quot;WI&quot; },
+  { name: &quot;Springfield&quot;, state: &quot;IL&quot; },
+]
+
+const CityList: FC = () =&gt; {
+  const navigation = useNavigation()
+
+  //Exercise: Use navigation to navigate to RestaurantList
+
+  return (
+    &lt;Screen&gt;
+      &lt;FlatList
+        data={cities}
+        renderItem={({ item: cityItem }) =&gt; (
+          &lt;Button onPress={() =&gt; console.warn(`${cityItem.name}`)}&gt;
+            {cityItem.name}
+          &lt;/Button&gt;
+        )}
+        keyExtractor={(item) =&gt; item.name}
+      /&gt;
+    &lt;/Screen&gt;
+  )
+}
+
+export default CityList
+
+</code></pre>
+ <div line-highlight="3,19,21,28,only"></div>
 <p>✏️ Create <strong>src/screens/RestaurantDetails/</strong> (folder)</p>
 <p>✏️ Create <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import type { StaticScreenProps } from &quot;@react-navigation/native&quot;
 import type { FC } from &quot;react&quot;
 
-import { useEffect } from &quot;react&quot;
 import { useNavigation } from &quot;@react-navigation/native&quot;
 
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
@@ -1523,11 +1625,7 @@ const restaurant = {
 
 const RestaurantDetails: FC&lt;Props&gt; = () =&gt; {
   const navigation = useNavigation()
-  useEffect(() =&gt; {
-    if (restaurant) {
-      navigation.setOptions({ title: `${restaurant.name}` })
-    }
-  }, [restaurant, navigation])
+  navigation.setOptions({ title: `${restaurant.name}` })
 
   return (
     &lt;Screen&gt;
@@ -1621,6 +1719,31 @@ export default RestaurantList
 
 </code></pre>
 <h3>Verify 3</h3>
+<p>✏️ Update <strong>src/screens/CityList/CityList.test.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { render, screen } from &quot;@testing-library/react-native&quot;
+
+import CityList from &quot;./CityList&quot;
+
+jest.mock(&quot;@react-native-async-storage/async-storage&quot;, () =&gt;
+  require(&quot;@react-native-async-storage/async-storage/jest/async-storage-mock&quot;),
+)
+
+describe(&quot;CityList component&quot;, () =&gt; {
+  it(&quot;renders city List&quot;, () =&gt; {
+    render(
+      &lt;NavigationContainer&gt;
+        &lt;CityList /&gt;
+      &lt;/NavigationContainer&gt;,
+    )
+
+    expect(screen.getByText(/Madison/i)).toBeOnTheScreen()
+    expect(screen.getByText(/Springfield/i)).toBeOnTheScreen()
+  })
+})
+
+</code></pre>
+ <div line-highlight="1,12-16,only"></div>
 <p>✏️ Create <strong>src/components/RestaurantHeader/RestaurantHeader.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
 import RestaurantHeader from &quot;./RestaurantHeader&quot;
@@ -1740,6 +1863,7 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
 <h3>Exercise 3</h3>
 <ul>
 <li>Add <code>RestaurantList</code> and <code>RestaurantDetails</code> to the <code>StackNavigator</code></li>
+<li>Use <code>navigation</code> in the <code>CityList</code> component, to link <code>CityList</code> to the <code>RestaurantList</code> screen.</li>
 <li>Use <code>navigation</code> in the <code>RestaurantList</code> component, to link <code>RestaurantList</code> to the <code>RestaurantDetails</code> screen.</li>
 </ul>
 <h3>Solution 3</h3>
@@ -1864,6 +1988,48 @@ export default App
 
 </code></pre>
  <div line-highlight="10-11,44-46,48-50,92,97,only"></div>
+<p>✏️ Update <strong>src/screens/CityList/CityList.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { FlatList } from &quot;react-native&quot;
+import { useNavigation } from &quot;@react-navigation/native&quot;
+
+import Screen from &quot;../../design/Screen&quot;
+import Button from &quot;../../design/Button&quot;
+
+export interface City {
+  name: string
+  state: string
+}
+
+const cities: City[] = [
+  { name: &quot;Madison&quot;, state: &quot;WI&quot; },
+  { name: &quot;Springfield&quot;, state: &quot;IL&quot; },
+]
+
+const CityList: FC = () =&gt; {
+  const navigation = useNavigation()
+
+  const navigateToDetails = () =&gt; {
+    navigation.navigate(&quot;RestaurantList&quot;)
+  }
+
+  return (
+    &lt;Screen&gt;
+      &lt;FlatList
+        data={cities}
+        renderItem={({ item: cityItem }) =&gt; (
+          &lt;Button onPress={() =&gt; navigateToDetails()}&gt;{cityItem.name}&lt;/Button&gt;
+        )}
+        keyExtractor={(item) =&gt; item.name}
+      /&gt;
+    &lt;/Screen&gt;
+  )
+}
+
+export default CityList
+
+</code></pre>
+ <div line-highlight="21-23,30,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { StaticScreenProps } from &quot;@react-navigation/native&quot;
 import type { FC } from &quot;react&quot;
