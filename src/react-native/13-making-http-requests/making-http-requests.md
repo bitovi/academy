@@ -57,14 +57,6 @@ Double-check the API by navigating to <a href="http://localhost:7070/restaurants
 
 It will be helpful to have a third terminal tab for the `npm run api` command.
 
-✏️ Create **src/services/pmo/api/api.ts** and update it to be:
-
-@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/api/api.ts
-
-✏️ Create **src/services/pmo/api/index.ts** and update it to be:
-
-@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/api/index.ts
-
 ✏️ Create **src/services/pmo/restaurant/hooks.ts** and update it to be:
 
 @sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/restaurant/hooks.ts
@@ -87,10 +79,6 @@ It will be helpful to have a third terminal tab for the `npm run api` command.
 
 ### Verify
 
-✏️ Create **src/services/pmo/api/api.test.tx** and update it to be:
-
-@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/api/api.test.ts
-
 ✏️ Create **src/services/pmo/restaurant/hooks.test.ts** and update it to be:
 
 @sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/restaurant/hooks.test.ts
@@ -109,10 +97,6 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 <details>
 <summary>Click to see the solution</summary>
-
-✏️ Update **src/services/pmo/api/api.ts** to be:
-
-@diff ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/api/api.ts ../../../exercises/react-native/13-http-requests/01-solution/src/services/pmo/api/api.ts only
 
 ✏️ Update **src/services/pmo/restaurant/hooks.ts** to be:
 
