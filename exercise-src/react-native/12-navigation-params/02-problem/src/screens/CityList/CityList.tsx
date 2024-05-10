@@ -1,5 +1,6 @@
 import type { FC } from "react"
 import { FlatList } from "react-native"
+import { useNavigation } from "@react-navigation/native"
 import type { StackScreenProps } from "@react-navigation/stack"
 
 import type { RestaurantsStackParamList } from "../../App"
@@ -13,7 +14,7 @@ const cities = [
 
 type Props = StackScreenProps<RestaurantsStackParamList, "CityList">
 
-const CityList: FC<Props> = ({ route }) => {
+const CityList: FC = () => {
   const navigation = useNavigation()
 
   return (
