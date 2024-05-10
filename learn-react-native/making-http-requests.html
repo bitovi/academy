@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="TODO 
+  <meta name="description" content="Learn about how to make &#x60;fetch&#x60; requests and render requested data in React Native components. 
 ">
   
   <!-- Google Tag Manager -->
@@ -319,7 +319,7 @@
            						expanded">
 						<a class="page"
 							href="making-http-requests.html"
-							title="TODO">
+							title="Learn about how to make fetch requests and render requested data in React Native components.">
 							Making HTTP Requests
 						</a>
 						
@@ -665,7 +665,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>TODO</p>
+    <p>Learn about how to make <code>fetch</code> requests and render requested data in React Native components.</p>
 
 </section>
 
@@ -683,24 +683,480 @@ covering CanJS core libraries.">
 <ul>
 <li>TODO</li>
 </ul>
-<h2>Objective 1: TODO</h2>
-<p>TODO</p>
+<h2>Objective: Add <code>fetch</code> requests</h2>
 <h3>Concept TODO</h3>
 <p>TODO</p>
-<h3>Setup 1</h3>
+<h3>Setup</h3>
+<p>Before we begin requesting data from our API, we need to install the &quot;place-my-order-api&quot; module, which will generate fake restaurant data and serve it from port <code>7070</code>.</p>
+<p>✏️ Run:</p>
+<pre><code class="language-bash">npm install place-my-order-api@1
+</code></pre>
+<p>We will also need to set up our environment.</p>
+<p>✏️ Run:</p>
+<pre><code class="language-bash">npm install react-native-dotenv@3
+</code></pre>
+<p>✏️ Update <strong>babel.config.js</strong> to be:</p>
+<pre><code class="language-js">module.exports = {
+  presets: [&quot;module:@react-native/babel-preset&quot;],
+  plugins: [&quot;module:react-native-dotenv&quot;],
+}
+
+</code></pre>
+ <div line-highlight="3,"></div>
+<p>✏️ Create <strong>.env</strong> and update it to be:</p>
+<pre><code class="language-example">PMO_API=http://localhost:7070
+</code></pre>
+<p>✏️ Next add an API script to your <code>package.json</code></p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;solution&quot;,
+  &quot;version&quot;: &quot;0.0.1&quot;,
+  &quot;private&quot;: true,
+  &quot;scripts&quot;: {
+    &quot;android&quot;: &quot;react-native run-android&quot;,
+    &quot;ios&quot;: &quot;react-native run-ios&quot;,
+    &quot;start&quot;: &quot;react-native start&quot;,
+    &quot;test&quot;: &quot;jest&quot;,
+    &quot;lint&quot;: &quot;eslint *.ts *.tsx *.js&quot;,
+    &quot;prettier&quot;: &quot;prettier --check *.ts *.tsx *.js&quot;,
+    &quot;depcheck&quot;: &quot;depcheck .&quot;,
+    &quot;precheck&quot;: &quot;npm run typecheck &amp;&amp; npm run eslint &amp;&amp; npm run prettier &amp;&amp; npm run test &amp;&amp; npm run depcheck&quot;,
+    &quot;devtools&quot;: &quot;react-devtools&quot;,
+    &quot;api&quot;: &quot;npm run linkLocalhost:android &amp;&amp; place-my-order-api --port 7070&quot;,
+    &quot;linkLocalhost:android&quot;: &quot;adb reverse tcp:7070 tcp:7070&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;@react-native-async-storage/async-storage&quot;: &quot;^1.23.1&quot;,
+    &quot;@react-navigation/bottom-tabs&quot;: &quot;^6.5.20&quot;,
+    &quot;@react-navigation/native&quot;: &quot;^6.1.17&quot;,
+    &quot;@react-navigation/stack&quot;: &quot;^6.3.29&quot;,
+    &quot;react&quot;: &quot;18.2.0&quot;,
+    &quot;react-native&quot;: &quot;0.73.6&quot;,
+    &quot;react-native-dotenv&quot;: &quot;^3.4.11&quot;,
+    &quot;react-native-gesture-handler&quot;: &quot;^2.16.0&quot;,
+    &quot;react-native-safe-area-context&quot;: &quot;^4.9.0&quot;,
+    &quot;react-native-screens&quot;: &quot;^3.30.1&quot;,
+    &quot;react-native-vector-icons&quot;: &quot;^10.0.3&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;@babel/core&quot;: &quot;^7.20.0&quot;,
+    &quot;@babel/preset-env&quot;: &quot;^7.20.0&quot;,
+    &quot;@babel/runtime&quot;: &quot;^7.20.0&quot;,
+    &quot;@bitovi/eslint-config&quot;: &quot;^1.8.0&quot;,
+    &quot;place-my-order-api&quot;: &quot;^1.7.0&quot;,
+    &quot;@react-native/babel-preset&quot;: &quot;0.73.21&quot;,
+    &quot;@react-native/eslint-config&quot;: &quot;0.73.2&quot;,
+    &quot;@react-native/metro-config&quot;: &quot;0.73.5&quot;,
+    &quot;@react-native/typescript-config&quot;: &quot;0.73.1&quot;,
+    &quot;@testing-library/react-native&quot;: &quot;^12.4.5&quot;,
+    &quot;@types/jest&quot;: &quot;^29.5.12&quot;,
+    &quot;@types/react&quot;: &quot;^18.2.6&quot;,
+    &quot;@types/react-native-vector-icons&quot;: &quot;^6.4.18&quot;,
+    &quot;@types/react-test-renderer&quot;: &quot;^18.0.0&quot;,
+    &quot;babel-jest&quot;: &quot;^29.6.3&quot;,
+    &quot;depcheck&quot;: &quot;^1.4.7&quot;,
+    &quot;eslint&quot;: &quot;^8.19.0&quot;,
+    &quot;identity-obj-proxy&quot;: &quot;^3.0.0&quot;,
+    &quot;jest&quot;: &quot;^29.6.3&quot;,
+    &quot;prettier&quot;: &quot;2.8.8&quot;,
+    &quot;react-devtools&quot;: &quot;^5.1.0&quot;,
+    &quot;react-test-renderer&quot;: &quot;18.2.0&quot;,
+    &quot;typescript&quot;: &quot;5.0.4&quot;
+  },
+  &quot;engines&quot;: {
+    &quot;node&quot;: &quot;&gt;=18&quot;
+  }
+}
+
+</code></pre>
+ <div line-highlight="14-16,25,36,only"></div>
+<p>✏️ In a <strong>new</strong> terminal window, start the API server by running:</p>
+<pre><code class="language-bash">npm run api
+</code></pre>
+<p>Double-check the API by navigating to <a href="http://localhost:7070/restaurants">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data.</p>
+<p>It will be helpful to have a third terminal tab for the <code>npm run api</code> command.</p>
+<p>✏️ Create <strong>src/services/pmo/restaurant/hooks.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
+import type { State } from &quot;./interfaces&quot;
+
+interface StatesResponse {
+  data: State[] | null
+  error: Error | null
+  isPending: boolean
+}
+
+export function useStates(): StatesResponse {
+ 
+}
+
+</code></pre>
+<p>✏️ Create <strong>src/services/pmo/restaurant/interfaces.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export interface State {
+  name: string
+  short: string
+}
+
+</code></pre>
+<p>✏️ Create <strong>src/services/pmo/restaurant/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export * from &quot;./interfaces&quot;
+export * from &quot;./hooks&quot;
+
+</code></pre>
+<p>✏️ Create <strong>src/components/Loading/Loading.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import Box from &quot;../../design/Box&quot;
+import { ActivityIndicator } from &quot;react-native&quot;
+import { useTheme } from &quot;../../design/theme&quot;
+import Typography from &quot;../../design/Typography&quot;
+
+const Loading: FC = () =&gt; {
+  const theme = useTheme()
+
+  return (
+    &lt;Box padding=&quot;l&quot;&gt;
+      &lt;ActivityIndicator size=&quot;large&quot; color={theme.palette.primary.main} /&gt;
+      &lt;Typography variant=&quot;body&quot; style={{ textAlign: &quot;center&quot;, marginTop: 8 }}&gt;
+        Loading…
+      &lt;/Typography&gt;
+    &lt;/Box&gt;
+  )
+}
+
+export default Loading
+
+</code></pre>
+<p>✏️ Create <strong>src/components/Loading/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./Loading&quot;
+
+</code></pre>
+<h3>Verify</h3>
+<p>✏️ Create <strong>src/services/pmo/restaurant/hooks.test.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react-native&quot;
+import { useStates } from &quot;./hooks&quot;
+
+const oldFetch = global.fetch
+const mockFetch = jest.fn()
+beforeAll(() =&gt; {
+  global.fetch = mockFetch
+})
+afterAll(() =&gt; {
+  global.fetch = oldFetch
+})
+
+describe(&quot;Restaurant Hooks&quot;, () =&gt; {
+  describe(&quot;useStates hook&quot;, () =&gt; {
+    it(&quot;should return states data successfully&quot;, async () =&gt; {
+      const mockStates = [
+        { id: 1, name: &quot;State1&quot; },
+        { id: 2, name: &quot;State2&quot; },
+      ]
+      // Mock the fetch response
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        json: () =&gt; Promise.resolve({ message: &quot;success&quot;, data: mockStates}),
+        statusText: &quot;OK&quot;,
+        status: 200,
+      })
+
+      const { result } = renderHook(() =&gt; useStates())
+
+      await waitFor(() =&gt; {
+        expect(result.current.isPending).toBeFalsy()
+      })
+      expect(result.current.data).toEqual(mockStates)
+      expect(result.current.error).toBeNull()
+    })
+  })
+})
+
+</code></pre>
+<p>✏️ Create <strong>src/components/Loading/Loading.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+import Loading from &quot;./Loading&quot;
+
+describe(&quot;Loading component&quot;, () =&gt; {
+  it(&quot;renders 'loading' text&quot;, () =&gt; {
+    render(&lt;Loading /&gt;)
+    expect(screen.getByText(/Loading…/)).toBeOnTheScreen()
+  })
+})
+
+</code></pre>
+<h3>Exercise</h3>
 <p>TODO</p>
-<h3>Verify 1</h3>
-<p>TODO</p>
-<h3>Exercise 1</h3>
-<p>TODO</p>
-<h3>Solution 1</h3>
+<h3>Solution</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>TODO</p>
+<p>✏️ Update <strong>src/services/pmo/restaurant/hooks.ts</strong> to be:</p>
+<pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
+import type { State } from &quot;./interfaces&quot;
+
+const baseUrl = process.env.PMO_API
+
+interface StatesResponse {
+  data: State[] | null
+  error: Error | null
+  isPending: boolean
+}
+
+export function useStates(): StatesResponse {
+  const [response, setResponse] = useState&lt;StatesResponse&gt;({
+    data: null,
+    error: null,
+    isPending: true,
+  })
+
+  useEffect(() =&gt; {
+    const fetchData = async () =&gt; {
+      const response = await fetch(`${baseUrl}/states`, {
+        method: &quot;GET&quot;,
+        headers: {
+          &quot;Content-Type&quot;: &quot;application/json&quot;,
+        },
+      })
+
+      const data = await response.json()
+
+      setResponse({
+        data: data?.data || null,
+        error: null,
+        isPending: false,
+      })
+    }
+    fetchData()
+  }, [])
+
+  return response
+}
+
+</code></pre>
+ <div line-highlight="4,13-17,19-26,28,30-37,39,only"></div>
+<p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { FlatList } from &quot;react-native&quot;
+import { useNavigation } from &quot;@react-navigation/native&quot;
+
+import { useStates } from &quot;../../services/pmo/restaurant&quot;
+import Box from &quot;../../design/Box&quot;
+import Screen from &quot;../../design/Screen&quot;
+import Typography from &quot;../../design/Typography&quot;
+import Button from &quot;../../design/Button&quot;
+import Loading from &quot;../../components/Loading&quot;
+
+const StateList: FC = () =&gt; {
+  const navigation = useNavigation()
+  const { data: states, error, isPending } = useStates()
+
+  if (error) {
+    return (
+      &lt;Box padding=&quot;s&quot;&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;Error loading states: &lt;/Typography&gt;
+        &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+      &lt;/Box&gt;
+    )
+  }
+
+  if (isPending) {
+    return &lt;Loading /&gt;
+  }
+
+  return (
+    &lt;Screen&gt;
+      {states?.length &gt; 0 ? (
+        &lt;FlatList
+          data={states}
+          renderItem={({ item: stateItem }) =&gt; (
+            &lt;Button
+              onPress={() =&gt; {
+                navigation.navigate(&quot;CityList&quot;, {
+                  state: stateItem,
+                })
+              }}
+            &gt;
+              {stateItem.name}
+            &lt;/Button&gt;
+          )}
+          keyExtractor={(item) =&gt; item.short}
+        /&gt;
+      ) : (
+        &lt;Typography&gt;No states found&lt;/Typography&gt;
+      )}
+    &lt;/Screen&gt;
+  )
+}
+
+export default StateList
+
+</code></pre>
+ <div line-highlight="5-6,8,10,14,16-23,25-27,31-49,only"></div>
+<p>✏️ Update <strong>src/screens/CityList/CityList.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { FlatList } from &quot;react-native&quot;
+import { useNavigation } from &quot;@react-navigation/native&quot;
+import type { StackScreenProps } from &quot;@react-navigation/stack&quot;
+
+import type { RestaurantsStackParamList } from &quot;../../App&quot;
+import Screen from &quot;../../design/Screen&quot;
+import Button from &quot;../../design/Button&quot;
+
+const cities = [
+  { name: &quot;Madison&quot;, state: &quot;WI&quot; },
+  { name: &quot;Springfield&quot;, state: &quot;IL&quot; },
+]
+
+type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;CityList&quot;&gt;
+
+const CityList: FC&lt;Props&gt; = ({ route }) =&gt; {
+  const { state } = route.params
+  const navigation = useNavigation()
+
+  return (
+    &lt;Screen&gt;
+      &lt;FlatList
+        data={cities}
+        renderItem={({ item: cityItem }) =&gt; (
+          &lt;Button
+            onPress={() =&gt;
+              navigation.navigate(&quot;RestaurantList&quot;, {
+                state,
+                city: cityItem,
+              })
+            }
+          &gt;
+            {cityItem.name}
+          &lt;/Button&gt;
+        )}
+        keyExtractor={(item) =&gt; item.name}
+      /&gt;
+    &lt;/Screen&gt;
+  )
+}
+
+export default CityList
+
+</code></pre>
+<p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { StaticScreenProps } from &quot;@react-navigation/native&quot;
+import type { FC } from &quot;react&quot;
+
+import { FlatList } from &quot;react-native&quot;
+import { useNavigation } from &quot;@react-navigation/native&quot;
+import Box from &quot;../../design/Box&quot;
+import Button from &quot;../../design/Button&quot;
+
+export type Props = StaticScreenProps&lt;{
+  state: string
+  city: string
+}&gt;
+
+const restaurants = [
+  {
+    name: &quot;Cheese Curd City&quot;,
+    slug: &quot;cheese-curd-city&quot;,
+    images: {
+      // thumbnail: CheeseThumbnail,
+    },
+    address: {
+      street: &quot;2451 W Washburne Ave&quot;,
+      city: &quot;Green Bay&quot;,
+      state: &quot;WI&quot;,
+      zip: &quot;53295&quot;,
+    },
+    _id: &quot;Ar0qBJHxM3ecOhcr&quot;,
+  },
+  {
+    name: &quot;Poutine Palace&quot;,
+    slug: &quot;poutine-palace&quot;,
+    images: {
+      // thumbnail: PoutineThumbnail,
+    },
+    address: {
+      street: &quot;230 W Kinzie Street&quot;,
+      city: &quot;Green Bay&quot;,
+      state: &quot;WI&quot;,
+      zip: &quot;53205&quot;,
+    },
+    _id: &quot;3ZOZyTY1LH26LnVw&quot;,
+  },
+]
+
+const RestaurantList: FC&lt;Props&gt; = () =&gt; {
+  const navigation = useNavigation()
+
+  const navigateToDetails = () =&gt; {
+    navigation.navigate(&quot;RestaurantDetails&quot;)
+  }
+
+  return (
+    &lt;&gt;
+      &lt;Box padding=&quot;s&quot;&gt;
+        &lt;FlatList
+          data={restaurants}
+          renderItem={({ item: restaurant }) =&gt; (
+            &lt;Button onPress={() =&gt; navigateToDetails(restaurant.slug)}&gt;
+              {restaurant.name}
+            &lt;/Button&gt;
+          )}
+          keyExtractor={(item) =&gt; item._id}
+        /&gt;
+      &lt;/Box&gt;
+    &lt;/&gt;
+  )
+}
+
+export default RestaurantList
+
+</code></pre>
+<p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { StaticScreenProps } from &quot;@react-navigation/native&quot;
+import type { FC } from &quot;react&quot;
+
+import { useEffect } from &quot;react&quot;
+import { useNavigation } from &quot;@react-navigation/native&quot;
+
+import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
+import Screen from &quot;../../design/Screen&quot;
+
+export type Props = StaticScreenProps&lt;{
+  slug: string
+}&gt;
+
+const restaurant = {
+  _id: &quot;Ar0qBJHxM3ecOhcr&quot;,
+  name: &quot;Cheese Curd City&quot;,
+  slug: &quot;cheese-curd-city&quot;,
+  images: {
+    // thumbnail: CheeseThumbnail,
+  },
+  address: {
+    street: &quot;2451 W Washburne Ave&quot;,
+    city: &quot;Green Bay&quot;,
+    state: &quot;WI&quot;,
+    zip: &quot;53295&quot;,
+  },
+}
+
+const RestaurantDetails: FC&lt;Props&gt; = () =&gt; {
+  const navigation = useNavigation()
+  useEffect(() =&gt; {
+    if (restaurant) {
+      navigation.setOptions({ title: `${restaurant.name}` })
+    }
+  }, [restaurant, navigation])
+
+  return (
+    &lt;Screen&gt;
+      &lt;RestaurantHeader restaurant={restaurant} /&gt;
+    &lt;/Screen&gt;
+  )
+}
+
+export default RestaurantDetails
+
+</code></pre>
 <p></details></p>
 <h2>Next steps</h2>
-<p>TODO</p>
+<p>Next, we will learn how to <a href="user-inputs.html" title="TODO">Handling User Inputs</a> in React Native applications.</p>
 
 </section>
 
@@ -739,7 +1195,7 @@ covering CanJS core libraries.">
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-native/13-making-http-requests/making-http-requests.md"},"description":"TODO \n","name":"learn-react-native/making-http-requests","title":"Making HTTP Requests","type":"page","parent":"learn-react-native","order":13,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-native/13-making-http-requests/making-http-requests.md"},"description":"Learn about how to make `fetch` requests and render requested data in React Native components. \n","name":"learn-react-native/making-http-requests","title":"Making HTTP Requests","type":"page","parent":"learn-react-native","order":13,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
