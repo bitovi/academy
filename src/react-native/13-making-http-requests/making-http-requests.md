@@ -12,7 +12,7 @@ In this section, you will:
 
 - TODO
 
-## Objective 1: `fetch` states in a custom hook
+## Objective 1: Add `fetch` states in a custom hook
 
 ### Concept TODO
 
@@ -116,7 +116,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 </details>
 
-## Objective 2: `fetch` cities in a custom hook
+## Objective 2: Add `fetch` cities in a custom hook
 
 ### Setup 2
 
@@ -202,7 +202,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 </details>
 
-## Objective 4: `fetch` restaurants in a custom hook
+## Objective 4: Add `fetch` restaurants in a custom hook
 
 ### Setup 4
 
