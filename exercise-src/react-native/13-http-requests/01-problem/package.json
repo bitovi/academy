@@ -4,16 +4,16 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "start": "react-native start",
-    "test": "jest",
-    "lint": "eslint *.ts *.tsx *.js",
-    "prettier": "prettier --check *.ts *.tsx *.js",
-    "depcheck": "depcheck .",
-    "precheck": "npm run typecheck && npm run eslint && npm run prettier && npm run test && npm run depcheck",
-    "devtools": "react-devtools",
     "api": "npm run linkLocalhost:android && place-my-order-api --port 7070",
-    "linkLocalhost:android": "adb reverse tcp:7070 tcp:7070"
+    "depcheck": "depcheck .",
+    "devtools": "react-devtools",
+    "ios": "react-native run-ios",
+    "linkLocalhost:android": "adb reverse tcp:7070 tcp:7070",
+    "lint": "eslint *.ts *.tsx *.js",
+    "precheck": "npm run typecheck && npm run eslint && npm run prettier && npm run test && npm run depcheck",
+    "prettier": "prettier --check *.ts *.tsx *.js",
+    "start": "react-native start",
+    "test": "jest"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.23.1",

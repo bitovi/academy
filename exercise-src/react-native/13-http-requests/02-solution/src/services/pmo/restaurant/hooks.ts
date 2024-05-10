@@ -32,7 +32,7 @@ export function useStates(): StatesResponse {
       })
 
       const data = await response.json()
-      console.log(data)
+
       setResponse({
         data: data?.data || null,
         error: null,
@@ -65,7 +65,7 @@ export function useCities(state: string): CitiesResponse {
       )
 
       const data = await response.json()
-      console.log(data)
+
       setResponse({
         data: data?.data || null,
         error: null,
