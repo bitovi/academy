@@ -106,7 +106,7 @@ The `Tab.Screen` component takes a `name` prop that is used to identify the scre
 
 ### Setup 1
 
-✏️ Install the `@react-navigation/native` and `@react-navigation/bottom-tabs` package:
+✏️ Install the `@react-navigation/native` and `@react-navigation/bottom-tabs` packages:
 
 ```bash
 npm install @react-navigation/native @react-navigation/bottom-tabs
