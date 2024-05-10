@@ -30,27 +30,6 @@ export type RestaurantsStackParamList = {
       short: string
     }
   }
-  RestaurantList: {
-    state: {
-      name: string
-      short: string
-    }
-    city: {
-      name: string
-      state: string
-    }
-  }
-  RestaurantDetails: {
-    state: {
-      name: string
-      short: string
-    }
-    city: {
-      name: string
-      state: string
-    }
-    slug: string
-  }
 }
 
 const RestaurantsStack = createStackNavigator<RestaurantsStackParamList>()

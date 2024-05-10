@@ -6,7 +6,7 @@ describe("App", () => {
     render(<App />)
 
     const placeMyOrderText = screen.getAllByText(/Place my order/i)
-    expect(placeMyOrderText).toHaveLength(2)
+    expect(placeMyOrderText).toHaveLength(3)
   })
 
   it("renders states", async () => {
