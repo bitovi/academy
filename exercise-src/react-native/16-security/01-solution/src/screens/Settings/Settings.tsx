@@ -1,5 +1,5 @@
 import type { FC } from "react"
-
+import { Switch } from "react-native"
 import { GoogleSigninButton } from "@react-native-google-signin/google-signin"
 
 import { useAuthentication, useUser } from "../../services/auth"
@@ -7,7 +7,6 @@ import Button from "../../design/Button"
 import Screen from "../../design/Screen"
 import Typography from "../../design/Typography"
 import Card from "../../design/Card"
-import FormSwitch from "../../components/FormSwitch"
 import { useThemeMode } from "../../design/theme"
 
 const Settings: FC = () => {
@@ -27,12 +26,11 @@ const Settings: FC = () => {
           <GoogleSigninButton onPress={signIn} style={{ width: "100%" }} />
         )}
       </Card>
-
       <Card>
-        <FormSwitch
-          label="Dark Mode"
+        <Typography variant="heading">Dark Mode</Typography>
+        <Switch
           value={mode === "dark"}
-          onChange={(value) => setMode(value ? "dark" : "light")}
+          onChange={() => setMode(mode === "light" ? "dark" : "light")}
         />
       </Card>
     </Screen>

@@ -16,10 +16,6 @@ const params = {
   },
 }
 
-jest.mock("@react-native-async-storage/async-storage", () =>
-  require("@react-native-async-storage/async-storage/jest/async-storage-mock"),
-)
-
 describe("RestaurantList component", () => {
   // Mock the hooks and components used in RestaurantList
 
@@ -122,7 +118,7 @@ describe("RestaurantList component", () => {
     render(
       <NavigationContainer>
         <RestaurantList route={{ params }} />
-      </NavigationContainer>
+      </NavigationContainer>,
     )
     expect(screen.getByText(/Bagel Restaurant/i)).toBeOnTheScreen()
     expect(screen.getByText(/Brunch Barn/i)).toBeOnTheScreen()
@@ -134,7 +130,7 @@ describe("RestaurantList component", () => {
     render(
       <NavigationContainer>
         <RestaurantList route={{ params }} />
-      </NavigationContainer>
+      </NavigationContainer>,
     )
 
     expect(screen.getByText(/Loading/i)).toBeOnTheScreen()
@@ -149,7 +145,7 @@ describe("RestaurantList component", () => {
     render(
       <NavigationContainer>
         <RestaurantList route={{ params }} />
-      </NavigationContainer>
+      </NavigationContainer>,
     )
 
     expect(screen.getByText(/Error loading restaurants:/)).toBeOnTheScreen()

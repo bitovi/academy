@@ -15,7 +15,7 @@ import Box from "./design/Box"
 import Typography from "./design/Typography"
 import { createStackNavigator } from "@react-navigation/stack"
 import DataMigration from "./services/DataMigration"
-import type { City, State } from "./services/pmo/restaurant"
+import AuthProvider from "./services/auth/AuthProvider"
 import FavoritesSync from "./services/pmo/favorite"
 
 declare global {
@@ -29,15 +29,30 @@ declare global {
 export type RestaurantsStackParamList = {
   StateList: undefined
   CityList: {
-    state: State
+    state: {
+      name: string
+      short: string
+    }
   }
   RestaurantList: {
-    state: State
-    city: City
+    state: {
+      name: string
+      short: string
+    }
+    city: {
+      name: string
+      state: string
+    }
   }
   RestaurantDetails: {
-    state: State
-    city: City
+    state: {
+      name: string
+      short: string
+    }
+    city: {
+      name: string
+      state: string
+    }
     slug: string
   }
   OrderCreate: {
@@ -136,18 +151,18 @@ export const AppNavigator: FC = () => {
 
 const App: FC = () => {
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={{ height: "100%", width: "100%" }}>
-        <ThemeProvider>
+    <SafeAreaView style={{ height: "100%", width: "100%" }}>
+      <ThemeProvider>
+        <AuthProvider>
           <DataMigration>
             <NavigationContainer>
               <AppNavigator />
             </NavigationContainer>
             <FavoritesSync />
           </DataMigration>
-        </ThemeProvider>
-      </SafeAreaView>
-    </SafeAreaProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    </SafeAreaView>
   )
 }
 

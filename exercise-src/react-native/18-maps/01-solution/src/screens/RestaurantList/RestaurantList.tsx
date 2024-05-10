@@ -1,5 +1,5 @@
 import type { FC } from "react"
-import { Suspense, lazy, useState } from "react"
+import { useState } from "react"
 import { FlatList } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { useRestaurants } from "../../services/pmo/restaurant"

@@ -1,5 +1,5 @@
 {
-  "name": "solution",
+  "name": "PlaceMyOrder",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -31,6 +31,6 @@
     "typescript": "5.0.4"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   }
 }

@@ -1,10 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react-native"
-import * as api from "./api"
+import * as api from "../api/api"
 import { useStates, useCities, useRestaurants } from "./hooks"
-
-jest.mock("@react-native-async-storage/async-storage", () =>
-  require("@react-native-async-storage/async-storage/jest/async-storage-mock"),
-)
 
 describe("Restaurant Hooks", () => {
   // Mock the apiRequest function

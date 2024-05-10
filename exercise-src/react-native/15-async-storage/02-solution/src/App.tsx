@@ -149,17 +149,15 @@ export const AppNavigator: FC = () => {
 
 const App: FC = () => {
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={{ height: "100%", width: "100%" }}>
-        <ThemeProvider>
-          <DataMigration>
-            <NavigationContainer>
-              <AppNavigator />
-            </NavigationContainer>
-          </DataMigration>
-        </ThemeProvider>
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <SafeAreaView style={{ height: "100%", width: "100%" }}>
+      <ThemeProvider>
+        <DataMigration>
+          <NavigationContainer>
+            <AppNavigator />
+          </NavigationContainer>
+        </DataMigration>
+      </ThemeProvider>
+    </SafeAreaView>
   )
 }
 
