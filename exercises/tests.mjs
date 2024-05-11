@@ -15,7 +15,7 @@ function executeCommand(command, directory) {
     return new Promise((resolve, reject) => {
         exec(command, { cwd: directory }, (error, stdout, stderr) => {
             if (error) {
-                console.error(`Error executing "${command}" in ${relativeDirectory}: ${stdout}${stderr}`);
+                console.error(`\n\nError executing "${command}" in ${relativeDirectory}: ${stdout}${stderr}`);
                 reject(error);
             } else {
                 console.info(`Successfully executed "${command}" in ${relativeDirectory}`);
@@ -43,17 +43,18 @@ async function processSolutions(pageDirectory) {
         const relativeDirectory = path.relative(import.meta.dirname, solutionDirectory)
         const packageJsonPath = path.join(solutionDirectory, 'package.json');
         if (fs.existsSync(packageJsonPath)) {
+            const { scripts } = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
+            const testCommand = scripts['test:ci'] ? 'test:ci' : scripts['test'] ? 'test' : null;
+            if (!testCommand) {
+                console.info(`No tests found in ${relativeDirectory}`);
+                continue;
+            }
+
             console.info(`Found package.json in ${relativeDirectory}`);
             await executeCommand('npm ci', solutionDirectory);
-
-            const { scripts } = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
-            if (scripts['test:ci']) {
-                await executeCommand('npm run test:ci', solutionDirectory);
-            } else if (scripts['test']) {
-                await executeCommand('npm run test', solutionDirectory);
-            } else {
-                console.info('No tests found.');
-            }
+            await executeCommand(`npm run ${testCommand}`, solutionDirectory);
+            await executeCommand('rm -rf node_modules', solutionDirectory);
+            console.info("");
         }
     }
 }
@@ -86,6 +87,9 @@ async function main() {
         const courseDirectories = fs.readdirSync(basePath, { withFileTypes: true })
             .filter(directory => {
                 return directory.isDirectory();
+            })
+            .filter(directory => {
+                return !['react-vite'].includes(directory.name);
             })
             .map(directory => {
                 return path.join(basePath, directory.name);

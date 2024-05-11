@@ -14,7 +14,7 @@ class TreeNode {
   }
 
   add(val) {
-    if (this.compare(this.value, val) >= 1) {
+    if (this.compare(this.value, val) >= 0) {
       if (this.left == null) {
         this.left = new TreeNode(val, this.compare);
       } else {
