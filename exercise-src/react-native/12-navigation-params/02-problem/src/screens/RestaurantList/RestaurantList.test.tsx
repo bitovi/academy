@@ -15,10 +15,6 @@ const params = {
   slug: "slugTest",
 }
 
-jest.mock("@react-native-async-storage/async-storage", () =>
-  require("@react-native-async-storage/async-storage/jest/async-storage-mock"),
-)
-
 describe("RestaurantList component", () => {
   it("renders restaurant List", () => {
     render(
