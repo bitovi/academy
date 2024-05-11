@@ -18,16 +18,18 @@ jobs:
         with:
           node-version-file: ".nvmrc"
 
-      - name: "Install"
+      - name: Install
         run: npm ci
+      - name: Generate Exercises
+        run: npm run generate
 
       - name: depcheck
         run: npm run depcheck
+      - name: test
+        run: npm run test
 
       - name: Build
-        run: |
-          npm run generate
-          npm run build
+        run:  npm run build
 
       # main needs to deploy to github pages because images point to github.io
       - name: Deploy to GitHub Pages

@@ -15,7 +15,7 @@ function executeCommand(command, directory) {
     return new Promise((resolve, reject) => {
         exec(command, { cwd: directory }, (error, stdout, stderr) => {
             if (error) {
-                console.error(`Error executing "${command}" in ${relativeDirectory}: ${stdout}${stderr}`);
+                console.error(`\n\nError executing "${command}" in ${relativeDirectory}: ${stdout}${stderr}`);
                 reject(error);
             } else {
                 console.info(`Successfully executed "${command}" in ${relativeDirectory}`);
@@ -86,6 +86,9 @@ async function main() {
         const courseDirectories = fs.readdirSync(basePath, { withFileTypes: true })
             .filter(directory => {
                 return directory.isDirectory();
+            })
+            .filter(directory => {
+                return !['react-vite'].includes(directory.name);
             })
             .map(directory => {
                 return path.join(basePath, directory.name);
