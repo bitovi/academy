@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { View, Text, TextInput } from 'react-native';
 
 function NameStorage() {
     const [name, setName] = useState('');
@@ -8,14 +9,13 @@ function NameStorage() {
     }, [name]);
 
     return (
-        <label>
-            Name
-            <input
-                onChange={event => setName(event.target.value)}
-                type="text"
-                value={name}
+        <View>
+            <Text>Name</Text>
+            <TextInput
+            onChangeText={setName}
+            value={name}
             />
-        </label>
+        </View>
     );
 }
 

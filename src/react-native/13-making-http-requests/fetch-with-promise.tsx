@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Text } from 'react-native';
 
 function DataFetcher() {
     const [data, setData] = useState(null);
@@ -16,7 +17,7 @@ function DataFetcher() {
     }, []);
 
     return (
-        <p>{data}</p>
+        <Text>{data}</Text>
     );
 }
 
