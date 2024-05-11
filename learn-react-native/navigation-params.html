@@ -1303,10 +1303,6 @@ const params = {
   slug: &quot;slugTest&quot;,
 }
 
-jest.mock(&quot;@react-native-async-storage/async-storage&quot;, () =&gt;
-  require(&quot;@react-native-async-storage/async-storage/jest/async-storage-mock&quot;),
-)
-
 describe(&quot;RestaurantList component&quot;, () =&gt; {
   it(&quot;renders restaurant List&quot;, () =&gt; {
     render(
@@ -1320,7 +1316,7 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="6-16,26,only"></div>
+ <div line-highlight="6-16,22,only"></div>
 <h3>Exercise 2</h3>
 <p>For both the <code>CityList</code> and <code>RestaurantList</code> components:</p>
 <ul>

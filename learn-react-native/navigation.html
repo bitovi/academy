@@ -1947,10 +1947,6 @@ import { render, screen } from &quot;@testing-library/react-native&quot;
 
 import RestaurantList from &quot;./RestaurantList&quot;
 
-jest.mock(&quot;@react-native-async-storage/async-storage&quot;, () =&gt;
-  require(&quot;@react-native-async-storage/async-storage/jest/async-storage-mock&quot;),
-)
-
 describe(&quot;RestaurantList component&quot;, () =&gt; {
   it(&quot;renders restaurant List&quot;, () =&gt; {
     render(

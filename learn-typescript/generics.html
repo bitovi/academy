@@ -642,7 +642,7 @@ the compiler just looked at the value <code>&quot;hi&quot;</code> and set <code>
 </code></pre>
 <h3>Verify 1</h3>
 <p>✏️ Create <strong>src/generics/last.test.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">import { returnLast } from &quot;./return-last&quot;;
+<pre><code class="language-ts">import { returnLast } from &quot;./last&quot;;
 import { describe, it } from &quot;node:test&quot;;
 import assert from 'node:assert/strict';
 
@@ -769,7 +769,7 @@ class TreeNode {
   }
 
   add(val) {
-    if (this.compare(this.value, val) &gt;= 1) {
+    if (this.compare(this.value, val) &gt;= 0) {
       if (this.left == null) {
         this.left = new TreeNode(val, this.compare);
       } else {
@@ -790,7 +790,7 @@ export default TreeNode;
 </code></pre>
 <h3>Verify 2</h3>
 <p>✏️ Create <strong>src/generics/tree.test.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">import TreeNode from &quot;./tree-node&quot;;
+<pre><code class="language-ts">import TreeNode from &quot;./tree&quot;;
 import { describe, it } from &quot;node:test&quot;;
 import assert from 'node:assert/strict';
 
@@ -839,12 +839,13 @@ describe(&quot;Generics&quot;, () =&gt; {
     );
   });
 });
+
 </code></pre>
 <h3>Exercise 2</h3>
 <p>Update the <code>tree.ts</code> file to create a recursive <code>TreeNode</code> class that can house a <code>value</code> and be used to create a tree structure of <code>left</code> and <code>right</code> nodes.</p>
 <p>For example, we will be able to create a <code>TreeNode</code> with a root value and
 comparison function as follows:</p>
-<pre><code class="language-ts">import TreeNode from &quot;./tree-node&quot;;
+<pre><code class="language-ts">import TreeNode from &quot;./tree&quot;;
 import { describe, it } from &quot;node:test&quot;;
 import assert from 'node:assert/strict';
 
@@ -893,6 +894,7 @@ describe(&quot;Generics&quot;, () =&gt; {
     );
   });
 });
+
 </code></pre>
 <div line-highlight='25-33, only'></div>
 <p>Then we can add values to <code>root</code> like:</p>
@@ -932,7 +934,7 @@ class TreeNode&lt;T&gt; {
   }
 
   add(val: T) {
-    if (this.compare(this.value, val) &gt;= 1) {
+    if (this.compare(this.value, val) &gt;= 0) {
       if (this.left == null) {
         this.left = new TreeNode(val, this.compare);
       } else {

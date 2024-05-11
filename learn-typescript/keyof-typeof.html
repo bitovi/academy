@@ -713,6 +713,7 @@ export const getDinoFact = (
 <h3>Verify 1</h3>
 <p>✏️ Create <strong>src/keyof-typeof/dinofacts.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import assert from 'node:assert/strict';
+import { describe, it } from &quot;node:test&quot;;
 import { getDinoFact, dinosaurFacts } from &quot;./dinofacts&quot;;
 
 describe(&quot;Keyof Typeof Exercise 1&quot;, () =&gt; {
@@ -839,6 +840,7 @@ export const getColorValue = (color: ColorNames): any =&gt; {
 <h3>Verify 2</h3>
 <p>✏️ Create <strong>src/keyof-typeof/colorshex.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import assert from &quot;node:assert/strict&quot;;
+import { describe, it } from &quot;node:test&quot;;
 
 import { getColorValue, Colors } from &quot;./colorshex&quot;;
 
