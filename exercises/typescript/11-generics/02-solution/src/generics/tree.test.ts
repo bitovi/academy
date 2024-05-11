@@ -1,10 +1,10 @@
-import TreeNode from "./tree-node";
+import TreeNode from "./tree";
 import { describe, it } from "node:test";
 import assert from 'node:assert/strict';
 
 describe("Generics", () => {
   it("TreeNode can add numbers", () => {
-    function numberComparison(v1: number, v2: number) {
+    function numberComparison(v1: number, v2: number): number {
       return v1 - v2;
     }
 
@@ -32,18 +32,14 @@ describe("Generics", () => {
 
     const root = new TreeNode<string>("Jennifer", stringComparison);
 
-    root.add("Taylor");
+    root.add("Alice");
 
-    assert.equal(root.left?.value, "Taylor", "Taylor to the left of Jennifer");
+    assert.equal(root.left?.value, "Alice", "Alice to the left of Jennifer");
 
     root.add("Tom");
     root.add("Matthew");
 
     assert.equal(root.right?.value, "Tom", "Tom to the right of Jennifer");
-    assert.equal(
-      root.right?.left?.value,
-      "Matthew",
-      "Matthew to the left of Tom"
-    );
+    assert.equal(root.right?.left?.value, "Matthew", "Matthew to the left of Tom");
   });
 });
