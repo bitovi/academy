@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { View, Text } from 'react-native';
 
 const GeolocationComponent: React.FC = () => {
     const [location, setLocation] = useState(null);
@@ -12,16 +13,16 @@ const GeolocationComponent: React.FC = () => {
     }, []); // Dependency array
 
     return (
-        <main>
+        <View>
             {location ? (
-                <p>
+                <Text>
                     Latitude: {location.latitude},
                     Longitude: {location.longitude}
-                </p>
+                </Text>
             ) : (
-                <p>Requesting location…</p>
+                <Text>Requesting location…</Text>
             )}
-        </main>
+        </View>
     );
 }
 

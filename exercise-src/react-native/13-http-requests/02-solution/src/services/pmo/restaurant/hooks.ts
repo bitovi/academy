@@ -32,7 +32,7 @@ export function useStates(): StatesResponse {
       })
 
       const data = await response.json()
-      console.log(data)
+
       setResponse({
         data: data?.data || null,
         error: null,
@@ -45,7 +45,7 @@ export function useStates(): StatesResponse {
   return response
 }
 
-export function useCities(state: string): CitiesResponse {
+export function useCities(state?: string): CitiesResponse {
   const [response, setResponse] = useState<CitiesResponse>({
     data: null,
     error: null,
@@ -54,23 +54,25 @@ export function useCities(state: string): CitiesResponse {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(
-        `${baseUrl}/cities?state=${state}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
+      if(state){
+        const response = await fetch(
+          `${baseUrl}/cities?state=${state}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
           },
-        },
-      )
-
-      const data = await response.json()
-      console.log(data)
-      setResponse({
-        data: data?.data || null,
-        error: null,
-        isPending: false,
-      })
+        )
+        
+        const data = await response.json()
+        
+        setResponse({
+          data: data?.data || null,
+          error: null,
+          isPending: false,
+        })
+      }
     }
     fetchData()
   }, [state])

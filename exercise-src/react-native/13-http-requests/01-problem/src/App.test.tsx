@@ -18,6 +18,7 @@ describe("App", () => {
       { short: "IL", name: "Illinois" },
     ],
   }
+  
   it("renders", async () => {
     mockFetch
     .mockResolvedValueOnce({
@@ -26,6 +27,7 @@ describe("App", () => {
       statusText: "OK",
       status: 200,
     })
+    
     render(<App />)
 
     await waitFor(() => {

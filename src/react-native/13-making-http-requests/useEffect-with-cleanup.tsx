@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { View, FlatList, Text } from 'react-native';
 
 function WebSocketComponent() {
   const [messages, setMessages] = useState([]);
@@ -19,11 +20,15 @@ function WebSocketComponent() {
   }, []);
 
   return (
-    <ol>
-      {messages.map((message) => (
-        <li key={message}>{message}</li>
-      ))}
-    </ol>
+    <View>
+      <FlatList
+        data={messages}
+        renderItem={({ item }) => (
+          <Text>{item}</Text>
+        )}
+        keyExtractor={(item, index) => index.toString()}
+      />
+    </View>
   );
 }
 
