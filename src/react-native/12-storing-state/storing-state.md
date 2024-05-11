@@ -30,7 +30,7 @@ For each screen we will type the expected properties that will be passed along e
 
 Now, our `createStackNavigator` includes a type we've made `ShopStackParamList`. Because of this, now if we provide our screen components `Props` as route params, TypeScript will be able to able to identify what parameters are accessible from the components `route.params`.
 
-While the `route` is accessible from the `Navigator`, in order to utilize the parameters being passed by the it we can do so within each component instead.
+While the `route` is accessible from the `Navigator`, it is also accessible from the component that is being navigated to through props.
 
 @sourceref ./RouteParams.tsx
 @highlight 8, 11, 17, 21
