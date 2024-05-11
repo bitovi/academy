@@ -1,15 +1,9 @@
-import type { StaticScreenProps } from "@react-navigation/native"
 import type { FC } from "react"
 
 import { FlatList } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import Box from "../../design/Box"
 import Button from "../../design/Button"
-
-export type Props = StaticScreenProps<{
-  state: string
-  city: string
-}>
 
 const restaurants = [
   {
@@ -42,7 +36,7 @@ const restaurants = [
   },
 ]
 
-const RestaurantList: FC<Props> = () => {
+const RestaurantList: FC = () => {
   const navigation = useNavigation()
 
   const navigateToDetails = (slug: string) => {
