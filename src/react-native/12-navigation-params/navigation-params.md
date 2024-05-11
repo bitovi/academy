@@ -1,4 +1,4 @@
-@page learn-react-native/navigation params Storing State in Navigation Parameters
+@page learn-react-native/navigation-params Storing State in Navigation Parameters
 @parent learn-react-native 12
 @outline 3
 
