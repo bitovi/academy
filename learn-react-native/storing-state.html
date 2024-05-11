@@ -3,8 +3,8 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/react-native/12-navigation-params/navigation-params.md
-	@page learn-react-native/navigation-params
+	source: src/react-native/12-storing-state/storing-state.md
+	@page learn-react-native/storing-state
 ######################################################################## -->
 <html lang="en">
 <head>
@@ -299,17 +299,14 @@
 		
 			
 				
-					<li class="current
-           						parent
-           						expanded">
+					<li class="
+           						
+           						">
 						<a class="page"
 							href="navigation-params.html"
 							title="Maintain the React state with React Native Navigation Parameters">
 							Storing State in Navigation Parameters
 						</a>
-						
-							
-
 						
 					</li>
 				
@@ -317,14 +314,17 @@
 		
 			
 				
-					<li class="
-           						
-           						">
+					<li class="current
+           						parent
+           						expanded">
 						<a class="page"
 							href="storing-state.html"
 							title="Maintain the React state with React Native Navigation Parameters">
 							Storing State in Navigation Parameters
 						</a>
+						
+							
+
 						
 					</li>
 				
@@ -695,9 +695,97 @@ covering CanJS core libraries.">
   				<section class="body">
     <h2>Overview</h2>
 <p>In this section, you will:</p>
-<p>TODO</p>
+<ul>
+<li>Strongly type the navigation parameters of an application.</li>
+<li>Maintain and pass the state using route params through navigation.</li>
+</ul>
 <h2>Objective 1: Intro to navigation parameters</h2>
-<h3>Content TODO</h3>
+<p>Now that we've successfully implemented React Navigation in our application, we can navigate between screens easily. The only remaining issue is that we lack away to pass information, or state, between screens. So, our new goal for this section is passing state between screens using navigation parameters.</p>
+<h3>Navigation Parameters</h3>
+<p>As mentioned in the previous section, since our React Native application isn't navigated through URLs, we aren't able to pass the parameters through a URL. Instead, we'll be using the Stack we've already made.</p>
+<pre><code class="language-tsx">import * as React from &quot;react&quot;
+import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+
+export type ShopStackParamList = {
+  Home: undefined
+  UserProfile: {
+    user: {
+      firstName: string
+      lastName: string
+      email: string
+    }
+    theme: &quot;dark&quot; | &quot;light&quot;
+  }
+  Storefront: {
+    user: {
+      firstName: string
+      lastName: string
+      email: string
+    }
+    slug: string
+    favorites: string[]
+  }
+}
+
+const ShoppingStack = createStackNavigator&lt;ShopStackParamList&gt;()
+
+const ShopApp = () =&gt; {
+  return (
+    &lt;ShoppingStack.Navigator
+      initialRouteName=&quot;Home&quot;
+      screenOptions={{
+        headerMode: &quot;screen&quot;,
+        headerTintColor: &quot;white&quot;,
+        headerStyle: { backgroundColor: &quot;tomato&quot; },
+      }}
+    &gt;
+      &lt;ShoppingStack.Screen name=&quot;Home&quot; component={Home} /&gt;
+      &lt;ShoppingStack.Screen name=&quot;UserProfile&quot; component={UserProfile} /&gt;
+      &lt;ShoppingStack.Screen name=&quot;Storefront&quot; component={Storefront} /&gt;
+    &lt;/ShoppingStack.Navigator&gt;
+  )
+}
+
+</code></pre>
+<div line-highlight='4-23, 25'></div>
+<p>Before we get into using <code>route</code> on each <code>Screen</code> of the <code>Navigator</code>, considering we're using TypeScript, we need to make an effort to make sure the properties for each component are properly typed. For this, we will create a type, <code>ShopStackParamList</code>.</p>
+<p>For each screen we will type the expected properties that will be passed along each route. The <code>Home</code> in this case doesn't expect any parameters to be passed to it, so we leave it undefined. The <code>UserProfile</code> and <code>Storefront</code> contain a few properties.</p>
+<p>Now, our <code>createStackNavigator</code> includes a type we've made <code>ShopStackParamList</code>. Because of this, now if we provide our screen components <code>Props</code> as route params, TypeScript will be able to able to identify what parameters are accessible from the components <code>route.params</code>.</p>
+<p>While the <code>route</code> is accessible from the <code>Navigator</code>, it is also accessible from the component that is being navigated to through props.</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { View, Text, Pressable } from &quot;react-native&quot;
+import { useNavigation } from &quot;@react-navigation/native&quot;
+import type { StackScreenProps } from &quot;@react-navigation/stack&quot;
+
+import { ShopStackParamList } from &quot;./StackRoute&quot;
+
+type ProfileProps = StackScreenProps&lt;ShopStackParamList, &quot;UserProfile&quot;&gt;
+
+const UserProfile: FC&lt;ProfileProps&gt; = ({ route }) =&gt; {
+  const { user } = route.params
+  const navigation = useNavigation()
+
+  return (
+    &lt;View&gt;
+      &lt;Text variant=&quot;heading&quot;&gt;
+        Hello! {user.firstName} {user.lastName}. Is your {user.email} correct?
+      &lt;/Text&gt;
+      &lt;Pressable
+        onPress={() =&gt; {
+          navigation.navigate(&quot;Storefront&quot;, { user, slug: &quot;mainPage&quot; })
+        }}
+      &gt;
+        Shop Here!
+      &lt;/Pressable&gt;
+    &lt;/View&gt;
+  )
+}
+
+</code></pre>
+<div line-highlight='8, 11, 17, 21'></div>
+<p>To make sure the <code>Props</code> for our component match up to what we have for our <code>StackNavigator</code>, we can import the type we made and reference the <code>UserProfile</code> properties specifically.</p>
+<p>As you can see, in the <code>UserProfile</code> component, we can access the <code>route.params</code> of the component if any are provided. We grab the <code>user</code>, and are able to use it's properties throughout the component.</p>
+<p>This includes passing the state of <code>user</code> through <code>navigation</code>. We can add <code>user</code>, and other properties as an object for the second argument of <code>navigation.navigate</code>. Thus on the <code>Storefront</code> screen, all of those params passed will be accessible within its component.</p>
 <h3>Setup 1</h3>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
@@ -1496,7 +1584,7 @@ export default RestaurantList
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-native/12-navigation-params/navigation-params.md"},"description":"Maintain the React state with React Native Navigation Parameters \n","name":"learn-react-native/navigation-params","title":"Storing State in Navigation Parameters","type":"page","parent":"learn-react-native","order":12,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-native/12-storing-state/storing-state.md"},"description":"Maintain the React state with React Native Navigation Parameters \n","name":"learn-react-native/storing-state","title":"Storing State in Navigation Parameters","type":"page","parent":"learn-react-native","order":12,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
