@@ -54,6 +54,8 @@ async function processSolutions(pageDirectory) {
             } else {
                 console.info('No tests found.');
             }
+
+            await executeCommand('rm -rf node_modules', solutionDirectory);
         }
     }
 }
