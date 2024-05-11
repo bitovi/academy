@@ -1,8 +1,7 @@
-ignore-dirs:
-  - /dist
 ignores:
   - "@types/*"
   - "@babel/*"
-  - "@react-native/*"
   - "babel-*"
   - "*-babel"
+  - identity-obj-proxy
+  - react-native-dotenv

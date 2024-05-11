@@ -6,5 +6,12 @@ module.exports = {
   },
   rules: {
     "jest/prefer-hooks-in-order": "off",
+    // "@typescript-eslint/consistent-type-imports": [
+    //   "error",
+    //   {
+    //     prefer: "no-type-imports",
+    //     fixStyle: "inline-type-imports",
+    //   },
+    // ],
   },
 }

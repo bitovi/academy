@@ -5,10 +5,6 @@ import * as restaurantHooks from "../../services/pmo/restaurant/hooks"
 
 import CityList from "./CityList"
 
-jest.mock("@react-native-async-storage/async-storage", () =>
-  require("@react-native-async-storage/async-storage/jest/async-storage-mock"),
-)
-
 describe("CityList component", () => {
   // Mock the hooks and components used in CityList
 
@@ -33,8 +29,10 @@ describe("CityList component", () => {
 
     render(
       <NavigationContainer>
-        <CityList route={{ params: { state: { name: "test", short: "test" } } }} />
-      </NavigationContainer>
+        <CityList
+          route={{ params: { state: { name: "test", short: "test" } } }}
+        />
+      </NavigationContainer>,
     )
     expect(screen.getByText(/Detroit/i)).toBeOnTheScreen()
     expect(screen.getByText(/Ann Arbor/i)).toBeOnTheScreen()
@@ -45,8 +43,10 @@ describe("CityList component", () => {
 
     render(
       <NavigationContainer>
-        <CityList route={{ params: { state: { name: "test", short: "test" } } }} />
-      </NavigationContainer>
+        <CityList
+          route={{ params: { state: { name: "test", short: "test" } } }}
+        />
+      </NavigationContainer>,
     )
 
     expect(screen.getByText(/Loading/i)).toBeOnTheScreen()

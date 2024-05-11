@@ -27,7 +27,6 @@ So far we’ve only had hard-coded data for our states, cities, and restaurants.
 
 <img alt="Screenshot of the application when it makes an api call to the states endpoint and is populated the list of states." src="../static/img/react-native/13-making-http-requests/1-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
 
-
 ### Defining interfaces for `useState`
 
 When building React Native components, you may sometimes have local state variables that always change together, and thus would benefit by being in a single `useState()` variable together:
@@ -143,6 +142,7 @@ const response = await fetch(`${process.env.PMO_API}/data`, {
 
 const data = await response.json()
 ```
+
 @highlight 1
 
 Concatenating the two, this will be the equivalent of making this `fetch` request:
@@ -152,6 +152,7 @@ const response = await fetch(`//localhost:7070/data`, {
   method: "GET",
 })
 ```
+
 @highlight 1
 
 ### Setup 1
@@ -171,6 +172,7 @@ We will also need to set up our environment.
 ```bash
 npm install react-native-dotenv@3
 ```
+
 ✏️ Update **babel.config.js** to be:
 
 @diff ../../../exercises/react-native/12-navigation-params/01-solution/babel.config.js ../../../exercises/react-native/13-http-requests/01-problem/babel.config.js
@@ -306,7 +308,7 @@ Here’s a breakdown of this URL:
 
 - Update our `useCities()` Hook to fetch cities from the Place My Order API, given a selected state.
 - When calling the Place My Order API, include the `state` query parameter:
-`http://localhost:7070/cities?state=MO`
+  `http://localhost:7070/cities?state=MO`
 
 Hint: Remember to include the `state` in the dependency array of the `useEffect()` in `useCities()`.
 
@@ -483,7 +485,6 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 ✏️ Update **src/screens/RestaurantDetails/RestaurantDetails.tsx** to be:
 
 @diff ../../../exercises/react-native/13-http-requests/04-problem/src/screens/RestaurantDetails/RestaurantDetails.tsx ../../../exercises/react-native/13-http-requests/04-solution/src/screens/RestaurantDetails/RestaurantDetails.tsx only
-
 
 </details>
 

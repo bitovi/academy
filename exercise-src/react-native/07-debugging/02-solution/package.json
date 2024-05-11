@@ -1,18 +1,22 @@
 {
-  "name": "solution",
+  "name": "PlaceMyOrder",
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
-    "debugger": "npx react-native start --experimental-debugger",
+    "typecheck": "tsc --noEmit",
+    "eslint": "eslint *.ts *.js src",
+    "eslint:fix": "eslint --fix *.ts *.js src",
+    "prettier": "prettier --check *.ts *.js *.json src",
+    "prettier:fix": "prettier --write *.ts *.js *.json src",
     "depcheck": "depcheck .",
+    "test": "jest --watch",
+    "test:ci": "jest",
+    "precheck": "npm run typecheck && npm run eslint && npm run prettier && npm run depcheck && npm run test",
+    "clean": "rm -rf tsconfig.tsbuildinfo coverage android/.gradle android/build android/app/build node_modules/.cache",
     "devtools": "react-devtools",
+    "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "lint": "eslint *.ts *.tsx *.js",
-    "precheck": "npm run typecheck && npm run eslint && npm run prettier && npm run test && npm run depcheck",
-    "prettier": "prettier --check *.ts *.tsx *.js",
-    "start": "react-native start",
-    "test": "jest"
+    "start": "react-native start --reset-cache --experimental-debugger"
   },
   "dependencies": {
     "react": "18.2.0",
@@ -41,6 +45,6 @@
     "typescript": "5.0.4"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   }
 }

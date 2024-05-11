@@ -3,11 +3,6 @@ import { render, screen } from "@testing-library/react-native"
 import * as restaurantHooks from "../../services/pmo/restaurant/hooks"
 
 import RestaurantOrder from "./RestaurantOrder"
-import MockApp from "../../MockApp"
-
-jest.mock("@react-native-async-storage/async-storage", () =>
-  require("@react-native-async-storage/async-storage/jest/async-storage-mock"),
-)
 
 describe("RestaurantOrder component", () => {
   // Mock the hooks and components used in RestaurantOrder
@@ -67,12 +62,7 @@ describe("RestaurantOrder component", () => {
       isPending: false,
     })
 
-    render(
-      <MockApp
-        component={RestaurantOrder}
-        params={{ restaurantId: "bagel-restaurant" }}
-      />,
-    )
+    render(<RestaurantOrder route={{ params: { slug: "bagel-restaurant" } }} />)
     expect(screen.getByText(/Lunch Menu/i)).toBeOnTheScreen()
     expect(
       screen.getByText(mockRestaurantResponse.data.menu.lunch[0].name, {
@@ -90,12 +80,7 @@ describe("RestaurantOrder component", () => {
   it("renders loading restaurant", () => {
     useRestaurant.mockReturnValue({ data: null, error: null, isPending: true })
 
-    render(
-      <MockApp
-        component={RestaurantOrder}
-        params={{ restaurantId: "bagel-restaurant" }}
-      />,
-    )
+    render(<RestaurantOrder route={{ params: { slug: "bagel-restaurant" } }} />)
     expect(screen.getByText(/Loading/i)).toBeOnTheScreen()
   })
   it("renders error restaurant", () => {
@@ -105,12 +90,7 @@ describe("RestaurantOrder component", () => {
       isPending: false,
     })
 
-    render(
-      <MockApp
-        component={RestaurantOrder}
-        params={{ restaurantId: "bagel-restaurant" }}
-      />,
-    )
+    render(<RestaurantOrder route={{ params: { slug: "bagel-restaurant" } }} />)
 
     expect(
       screen.getByText(/Error loading restaurant order:/),

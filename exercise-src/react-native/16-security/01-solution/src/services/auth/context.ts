@@ -25,7 +25,7 @@ export function useAuthContext(): AuthContext {
   const value = useContext(Context)
 
   if (!value) {
-    throw new Error("No AuthContext provided.")
+    throw new Error("Missing AuthProvider.")
   }
 
   return value
