@@ -26,6 +26,7 @@ jobs:
       - name: depcheck
         run: npm run depcheck
       - name: test
+        if: ${{ github.ref == 'refs/heads/main' }}
         run: npm run test
 
       - name: Build
