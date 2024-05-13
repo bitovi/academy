@@ -1,4 +1,4 @@
-import { returnLast } from "./return-last";
+import { returnLast } from "./last";
 import { describe, it } from "node:test";
 import assert from 'node:assert/strict';
 

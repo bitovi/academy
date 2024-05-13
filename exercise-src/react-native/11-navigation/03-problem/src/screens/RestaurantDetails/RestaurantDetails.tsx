@@ -1,15 +1,9 @@
-import type { StaticScreenProps } from "@react-navigation/native"
 import type { FC } from "react"
 
-import { useEffect } from "react"
 import { useNavigation } from "@react-navigation/native"
 
 import RestaurantHeader from "../../components/RestaurantHeader"
 import Screen from "../../design/Screen"
-
-export type Props = StaticScreenProps<{
-  slug: string
-}>
 
 const restaurant = {
   _id: "Ar0qBJHxM3ecOhcr",
@@ -26,13 +20,9 @@ const restaurant = {
   },
 }
 
-const RestaurantDetails: FC<Props> = () => {
+const RestaurantDetails: FC = () => {
   const navigation = useNavigation()
-  useEffect(() => {
-    if (restaurant) {
-      navigation.setOptions({ title: `${restaurant.name}` })
-    }
-  }, [restaurant, navigation])
+  navigation.setOptions({ title: `${restaurant.name}` })
 
   return (
     <Screen>

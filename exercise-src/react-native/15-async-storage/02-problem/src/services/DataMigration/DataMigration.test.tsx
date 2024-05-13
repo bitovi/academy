@@ -3,9 +3,6 @@ import DataMigration from "./DataMigration"
 import Typography from "../../design/Typography"
 import * as storage from "../storage/storage"
 
-jest.mock("@react-native-async-storage/async-storage", () =>
-  require("@react-native-async-storage/async-storage/jest/async-storage-mock"),
-)
 // Mocking the global fetch function
 let mockStorageGetData: jest.SpyInstance<ReturnType<typeof storage.getData>>
 let mockStorageStoreData: jest.SpyInstance<ReturnType<typeof storage.storeData>>

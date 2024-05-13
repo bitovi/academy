@@ -4,19 +4,21 @@ import { exec } from 'child_process';
 
 /**
  * Executes a command in a given directory.
- * 
+ *
  * @param {string} command The command to execute.
  * @param {string} directory The current working directory for the command.
  * @returns {Promise<void>} A promise that resolves or rejects based on command execution success.
  */
 function executeCommand(command, directory) {
+    const relativeDirectory = path.relative(import.meta.dirname, directory)
+
     return new Promise((resolve, reject) => {
         exec(command, { cwd: directory }, (error, stdout, stderr) => {
             if (error) {
-                console.error(`Error executing ${command} in ${directory}: ${stderr}`);
+                console.error(`\n\nError executing "${command}" in ${relativeDirectory}: ${stdout}${stderr}`);
                 reject(error);
             } else {
-                console.info(`Successfully executed ${command} in ${directory}`);
+                console.info(`Successfully executed "${command}" in ${relativeDirectory}`);
                 resolve(stdout);
             }
         });
@@ -25,7 +27,7 @@ function executeCommand(command, directory) {
 
 /**
  * Process all solution folders within a page directory.
- * 
+ *
  * @param {string} pageDirectory The page directory path.
  */
 async function processSolutions(pageDirectory) {
@@ -38,18 +40,28 @@ async function processSolutions(pageDirectory) {
         });
 
     for (const solutionDirectory of solutionDirectories) {
+        const relativeDirectory = path.relative(import.meta.dirname, solutionDirectory)
         const packageJsonPath = path.join(solutionDirectory, 'package.json');
         if (fs.existsSync(packageJsonPath)) {
-            console.info(`Found package.json in ${solutionDirectory}`);
+            const { scripts } = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
+            const testCommand = scripts['test:ci'] ? 'test:ci' : scripts['test'] ? 'test' : null;
+            if (!testCommand) {
+                console.info(`No tests found in ${relativeDirectory}`);
+                continue;
+            }
+
+            console.info(`Found package.json in ${relativeDirectory}`);
             await executeCommand('npm ci', solutionDirectory);
-            await executeCommand('npm test', solutionDirectory);
+            await executeCommand(`npm run ${testCommand}`, solutionDirectory);
+            await executeCommand('rm -rf node_modules', solutionDirectory);
+            console.info("");
         }
     }
 }
 
 /**
  * Process all pages within a course directory.
- * 
+ *
  * @param {string} courseDirectory The course directory path.
  */
 async function processPages(courseDirectory) {
@@ -75,6 +87,9 @@ async function main() {
         const courseDirectories = fs.readdirSync(basePath, { withFileTypes: true })
             .filter(directory => {
                 return directory.isDirectory();
+            })
+            .filter(directory => {
+                return !['react-vite'].includes(directory.name);
             })
             .map(directory => {
                 return path.join(basePath, directory.name);
