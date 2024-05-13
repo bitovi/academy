@@ -17,6 +17,8 @@ jest.mock("./src/services/storage/storage", () =>
   require("./src/services/storage/storage.mock"),
 )
 
+jest.mock('@react-native-async-storage/async-storage', () => require('@react-native-async-storage/async-storage/jest/async-storage-mock'));
+
 const consoleError = console.error
 console.error = (message, ...args) => {
   if (

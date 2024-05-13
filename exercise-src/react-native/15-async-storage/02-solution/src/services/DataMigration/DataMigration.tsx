@@ -13,15 +13,15 @@ interface LocalStorageApiRequestV1 {
 const migrateDataV1toV2 = async (): Promise<void> => {
   const keys = await getAllKeys()
   try {
-    keys.forEach(async (key: string) => {
+    for (const key of keys) {
       if (key.startsWith(keyPrefix)) {
-        const oldData = (await getData(key)) as LocalStorageApiRequestV1
-        storeData<LocalStorageApiRequest<unknown>>(key, {
+        const oldData = await getData(key) as LocalStorageApiRequestV1;
+        await storeData<LocalStorageApiRequest<unknown>>(key, {
           ...oldData,
           dateTime: oldData.dateTime.valueOf(),
-        })
+        });
       }
-    })
+    }
   } catch (error) {
     console.error("'migrateDataV1toV2' failed with error:", error)
     await clearStorage()
