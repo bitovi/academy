@@ -44,15 +44,15 @@ async function processSolutions(pageDirectory) {
         const packageJsonPath = path.join(solutionDirectory, 'package.json');
         if (fs.existsSync(packageJsonPath)) {
             const { scripts } = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
-            const testCommand = scripts['test:ci'] ? 'test:ci' : scripts['test'] ? 'test' : null;
-            if (!testCommand) {
-                console.info(`No tests found in ${relativeDirectory}`);
+            const script = 'test';
+            if (!scripts[script]) {
+                console.info(`Script not found in ${relativeDirectory}`);
                 continue;
             }
 
             console.info(`Found package.json in ${relativeDirectory}`);
             await executeCommand('npm ci', solutionDirectory);
-            await executeCommand(`npm run ${testCommand}`, solutionDirectory);
+            await executeCommand(`npm run ${script}`, solutionDirectory);
             await executeCommand('rm -rf node_modules', solutionDirectory);
             console.info("");
         }
