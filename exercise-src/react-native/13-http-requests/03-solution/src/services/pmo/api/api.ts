@@ -1,10 +1,5 @@
 const baseUrl = process.env.PMO_API
 
-export interface LocalStorageApiRequest<T> {
-  data: T
-  dateTime: number
-}
-
 export const keyPrefix = "apiRequest-"
 
 export async function apiRequest<

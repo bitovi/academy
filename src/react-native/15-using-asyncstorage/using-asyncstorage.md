@@ -93,6 +93,10 @@ TODO
 
 @sourceref ../../../exercises/react-native/15-async-storage/02-problem/src/services/DataMigration/index.ts
 
+✏️ Update **src/services/pmo/api/api.ts** to be:
+
+@diff ../../../exercises/react-native/15-async-storage/01-solution/src/services/pmo/api/api.ts ../../../exercises/react-native/15-async-storage/02-problem/src/services/pmo/api/api.ts only
+
 ### Verify 2
 
 ✏️ Create **src/services/DataMigration/DataMigration.test.tsx** and update it to be:
