@@ -686,34 +686,6 @@ covering CanJS core libraries.">
 <li>Install the JDK, Android Studio, and other React Native dependencies.</li>
 <li>Launch the Android emulator.</li>
 </ul>
-<p>You must have one of these two operating systems:</p>
-<ul>
-<li>macOS 12 (Monterey) or newer</li>
-<li>Windows 10 (64-bit) or newer</li>
-</ul>
-<p>There are several dependencies used to create, build, and deploy a React Native application, and the specifics vary based on your development OS (macOS, Windows, or Linux) and target OS (Android or iOS). Building for iOS require a macOS computer, so this course only focuses on building for Android, though most of the techniques apply to all targets. Expo Go is a very convenient way to build simple React Native apps, though we will be using the official React Native CLI for this course, due to Expo Go's limitations.</p>
-<p>The setup steps below will walk you through installing these dependencies across both operating systems:</p>
-<ul>
-<li>Node 20 or newer</li>
-<li>npm 10 or newer</li>
-<li>JDK 17 or equivalent</li>
-<li>Android Studio</li>
-<li>Android SDK</li>
-<li>Android SDK Platform</li>
-<li>Android Virtual Device</li>
-</ul>
-<p>Specific to macOS:</p>
-<ul>
-<li>Node Version Manager (nvm)</li>
-<li>Homebrew</li>
-<li>Watchman</li>
-</ul>
-<p>Specific to Windows:</p>
-<ul>
-<li>NVM for Windows</li>
-<li>Chocolatey</li>
-<li>Performance (Intel ® HAXM or equivalent)</li>
-</ul>
 <h2>Objective 1: Install a code editor</h2>
 <h3>Installing a code editor</h3>
 <p>There are a variety of code editors that support React, the most popular is Microsoft’s <a href="https://code.visualstudio.com/">Visual Studio Code</a>.
@@ -724,6 +696,23 @@ It’s also used by cloud environments like CodeSandbox and StackBlitz, making i
 <li><a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">ESLint</a></li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</a></li>
 </ul>
+<h2>Set up the React Native CLI</h2>
+<p>There are multiple ways to develop React Native applications, including Expo Go and the React Native CLI.</p>
+<p>We recommend using the <a href="https://reactnative.dev/docs/environment-setup?guide=native">React Native CLI</a> because Expo Go has limitations that might cause you to rearchitect your application as soon as you run into them.
+For example, this course implements <a href="./security-and-auth.html">authentication</a> that requires a native dependency that cannot be used in Expo Go.</p>
+<p>You must have one of these two operating systems:</p>
+<ul>
+<li>macOS 12 (Monterey) or newer</li>
+<li>Windows 10 (64-bit) or newer</li>
+</ul>
+<p>There are several dependencies used to create, build, and deploy a React Native application, and the specifics vary based on your development OS (macOS, Windows, or Linux) and target OS (Android or iOS).
+Building for iOS require a macOS computer, so this course only focuses on building for Android, though most of the techniques apply to all targets.</p>
+<p>Follow the instructions below for:</p>
+<ul>
+<li><a href="#macos">macOS</a></li>
+<li><a href="#windows">Windows</a></li>
+</ul>
+<p><strong>Note:</strong> The download and installation process can take a couple hours to complete.</p>
 <h2>macOS</h2>
 <blockquote>
 <p><strong>Using Windows?</strong> <a href="#windows">Skip to the Windows setup instructions.</a></p>
@@ -738,7 +727,6 @@ It’s also used by cloud environments like CodeSandbox and StackBlitz, making i
 <li>Configure the ANDROID_HOME environment variable</li>
 </ul>
 <p>We will walk through these steps in detail in the sections below.</p>
-<p>The installation process can take 30 minutes or more to complete.</p>
 <h3>Objective 2: Install Node.js and npm</h3>
 <h4>Install Node.js and npm</h4>
 <p>Node.js is the JavaScript runtime that uses Chrome’s V8 engine to execute JavaScript code outside of a web browser.
@@ -752,7 +740,6 @@ It also ensures that these packages and their dependencies maintain compatibilit
 <p>We recommend <a href="https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating">using nvm</a> to install Node because it allows you to manage multiple versions of Node for different projects.</p>
 <p>During the installation process, you may be prompted to make selections or install prerequisites.
 Use the default selections and proceed with the installation.</p>
-<p>The installation process can take 10 to 15 minutes to complete.</p>
 <h4>Verify 2</h4>
 <p>✏️ Run the following command in a terminal to verify Node.js is installed correctly.</p>
 <pre><code class="language-shell">node --version
@@ -841,7 +828,6 @@ OpenJDK 64-Bit Server VM Zulu17.48+15-CA (build 17.0.10+7-LTS, mixed mode, shari
 <li>Configure the <code>ANDROID_HOME</code> environment variable.</li>
 <li>Add <code>platform-tools</code> to Path.</li>
 </ul>
-<p>TODO: The installation process can take 30 minutes or more to complete.</p>
 <h3>Objective 2: Install Node.js and npm</h3>
 <h4>Node.js and npm</h4>
 <p>Node.js is the JavaScript runtime that uses Chrome’s V8 engine to execute JavaScript code outside of a web browser.
@@ -881,21 +867,26 @@ to install Node because it allows you to manage multiple versions of Node for di
 <h3>Objective 3: Install the Java Development Kit</h3>
 <h4>Setup 3</h4>
 <h5>Chocolatey</h5>
+<p><a href="https://chocolatey.org/install">Install Chocolatey</a> before installing the JDK.</p>
+<p>✏️ Run the following command in PowerShell to check the current execution policy:</p>
 <pre><code>Get-ExecutionPolicy
 </code></pre>
-<pre><code>Restricted
-</code></pre>
+<p>If it’s set to <code>Restricted</code>, run the following:</p>
 <pre><code>Set-ExecutionPolicy AllSigned
 </code></pre>
+<p>Be sure to select <code>[A]</code> for all.</p>
 <pre><code>[A] Yes to All
 </code></pre>
+<p>Afterwards, when you run <code>Get-ExecutionPolicy</code> again, you should get:</p>
 <pre><code>AllSigned
 </code></pre>
-<p>✏️ <a href="https://chocolatey.org/install">Install Chocolatey</a> before installing the JDK.</p>
+<p>✏️ Next, download and install Chocolatey:</p>
 <pre><code>Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 </code></pre>
 <h5>JDK</h5>
-<p>✏️ Follow the instructions in the quickstart guide.</p>
+<p>✏️ Close PowerShell and open it again.</p>
+<p>This is required before installing the JDK.</p>
+<p>✏️ Run the following command in PowerShell to install JDK 17 with Chocolatey:</p>
 <pre><code>choco install -y microsoft-openjdk17
 </code></pre>
 <h4>Verify 3</h4>
@@ -906,7 +897,6 @@ to install Node because it allows you to manage multiple versions of Node for di
 <pre><code>Chocolatey v2.2.2
 Please run 'choco -?' or 'choco &lt;command&gt; -?' for help menu.
 </code></pre>
-<p>Close PowerShell and open it again!</p>
 <p>✏️ Run the following command in PowerShell to verify the version of Java installed:</p>
 <pre><code>java -version
 </code></pre>
@@ -932,7 +922,15 @@ JAVA_HOME                      C:\Program Files\Microsoft\jdk-17.0.11.9-hotspot\
 </code></pre>
 <h3>Objective 4: Install the Android SDK</h3>
 <h4>Install Android Studio</h4>
+<p>Android Studio is the official integrated development environment (IDE) for Android app development.
+It provides the necessary tools to write your app code, design interfaces, and test your apps across a variety of Android devices.</p>
+<p>You will need Android Studio to launch the Android emulator.
+While we recommend using a different <a href="#objective-1-install-a-code-editor">code editor</a> for day-to-day React Native development, you may choose to use Android Studio to write code instead.</p>
 <h4>Install the Android SDK</h4>
+<p>The Android SDK is a collection of software tools that you need to develop apps for Android devices.
+It includes libraries, a debugger, an emulator, documentation, sample code, and tutorials.
+The SDK integrates with Android Studio and provides you with APIs and tools that are necessary to develop applications that perform well on the Android platform.
+These tools help you access device features like the camera and GPS, handle user input, and manage network operations.</p>
 <h4>Setup 4</h4>
 <p>✏️ Follow the instructions in the quickstart guide.</p>
 <p>Be sure to follow each step:</p>
@@ -951,11 +949,6 @@ JAVA_HOME                      C:\Program Files\Microsoft\jdk-17.0.11.9-hotspot\
 <li>Make sure “34.0.0” is selected.</li>
 <li>Click “Apply” to install the SDKs.</li>
 </ol>
-<h4>Verify 4</h4>
-<p>✏️ Run the following command in PowerShell to verify that <code>ANDROID_SDK_ROOT</code> is configured correctly:</p>
-<pre><code>Get-ChildItem Env:ANDROID_SDK_ROOT
-</code></pre>
-<p>TODO: This is not configured correctly on my Windows, is this an issue?</p>
 <h3>Objective 5: Configure environment variables</h3>
 <h4>Configure the ANDROID_HOME environment variable</h4>
 <h4>Setup 5</h4>
