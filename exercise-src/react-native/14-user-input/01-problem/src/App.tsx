@@ -95,10 +95,7 @@ const RestaurantsNavigator: FC = () => {
         name="RestaurantDetails"
         component={RestaurantDetails}
       />
-      <RestaurantsStack.Screen
-        name="RestaurantOrder"
-        component={RestaurantOrder}
-      />
+      {/*Exercise: Add RestaurantOrder page to the stack. */}
     </RestaurantsStack.Navigator>
   )
 }
