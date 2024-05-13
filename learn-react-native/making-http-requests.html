@@ -1869,11 +1869,6 @@ const error = response.ok ? null : new Error(`${response.status} (${response.sta
 <p>✏️ Create <strong>src/services/pmo/api/api.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">const baseUrl = process.env.PMO_API
 
-export interface LocalStorageApiRequest&lt;T&gt; {
-  data: T
-  dateTime: number
-}
-
 export const keyPrefix = &quot;apiRequest-&quot;
 
 export async function apiRequest&lt;
@@ -2010,11 +2005,6 @@ describe(&quot;Restaurant Hooks&quot;, () =&gt; {
 <p>✏️ Update <strong>src/services/pmo/api/api.ts</strong> to be:</p>
 <pre><code class="language-ts">const baseUrl = process.env.PMO_API
 
-export interface LocalStorageApiRequest&lt;T&gt; {
-  data: T
-  dateTime: number
-}
-
 export const keyPrefix = &quot;apiRequest-&quot;
 
 export async function apiRequest&lt;
@@ -2077,7 +2067,7 @@ export function stringifyQuery(
 }
 
 </code></pre>
- <div line-highlight="25-27,29-35,37-40,42-44,46-51,63-64,only"></div>
+ <div line-highlight="20-22,24-30,32-35,37-39,41-46,58-59,only"></div>
 <p>✏️ Update <strong>src/services/pmo/restaurant/hooks.ts</strong> to be:</p>
 <pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
 import { apiRequest } from &quot;../api&quot;

@@ -683,24 +683,847 @@ covering CanJS core libraries.">
 <ul>
 <li>TODO</li>
 </ul>
-<h2>Objective 1: TODO</h2>
-<p>TODO</p>
+<h2>Objective 1: Learn to store data locally</h2>
 <h3>Concept TODO</h3>
 <p>TODO</p>
 <h3>Setup 1</h3>
-<p>TODO</p>
+<p>✏️ Update <strong>jest-setup.ts</strong> to be:</p>
+<pre><code class="language-ts">import &quot;@testing-library/react-native/extend-expect&quot;
+
+import &quot;react-native-gesture-handler/jestSetup&quot;
+
+jest.mock(&quot;@react-navigation/native&quot;, () =&gt; {
+  const actualNav = jest.requireActual(&quot;@react-navigation/native&quot;)
+  return {
+    ...actualNav,
+    useNavigation: () =&gt; ({
+      navigate: jest.fn(),
+      setOptions: jest.fn(),
+    }),
+  }
+})
+
+jest.mock(&quot;./src/services/storage/storage&quot;, () =&gt;
+  require(&quot;./src/services/storage/storage.mock&quot;),
+)
+
+jest.mock('@react-native-async-storage/async-storage', () =&gt; require('@react-native-async-storage/async-storage/jest/async-storage-mock'));
+
+const consoleError = console.error
+console.error = (message, ...args) =&gt; {
+  if (
+    typeof message === &quot;string&quot; &amp;&amp;
+    message.match(
+      /Warning: An update to .+ inside a test was not wrapped in act\(\.\.\.\)\./,
+    )
+  ) {
+    return
+  }
+
+  return consoleError(message, ...args)
+}
+
+</code></pre>
+ <div line-highlight="16-18,20,only"></div>
+<p>✏️ Run:</p>
+<pre><code class="language-bash">npm install @react-native-async-storage/async-storage@1
+</code></pre>
+<p>✏️ Create <strong>src/services/storage/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export * from &quot;./storage&quot;
+
+</code></pre>
+<p>✏️ Create <strong>src/services/storage/storage.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import AsyncStorage from &quot;@react-native-async-storage/async-storage&quot;
+
+export const getData = async &lt;T&gt;(key: string): Promise&lt;T | undefined&gt; =&gt; {
+
+}
+
+export const getAllKeys = (): Promise&lt;readonly string[]&gt; =&gt; {
+
+}
+
+export const storeData = &lt;T&gt;(key: string, value: T): Promise&lt;void&gt; =&gt; {
+
+}
+
+export const clearStorage = (): Promise&lt;void&gt; =&gt; {
+
+}
+
+</code></pre>
+<p>✏️ Update <strong>src/services/pmo/api/api.ts</strong> to be:</p>
+<pre><code class="language-ts">import { getData, storeData } from &quot;../../storage&quot;
+
+const baseUrl = process.env.PMO_API
+
+export interface LocalStorageApiRequest&lt;T&gt; {
+  data: T
+  dateTime: Date
+}
+
+export const keyPrefix = &quot;apiRequest-&quot;
+
+export async function apiRequest&lt;
+  Data = never,
+  Params = unknown,
+  Body = unknown,
+&gt;({
+  method,
+  params,
+  path,
+  body,
+}: {
+  method: string
+  params?: Params
+  path: string
+  body?: Body
+}): Promise&lt;{ data: Data | null; error: Error | null }&gt; {
+  try {
+    const query = params ? stringifyQuery(params) : &quot;&quot;
+    const requestUrl = `${baseUrl}${path}?${query}`
+
+    const response = await fetch(requestUrl, {
+      method,
+      headers: {
+        &quot;Content-Type&quot;: &quot;application/json&quot;,
+      },
+      body: body ? JSON.stringify(body) : undefined,
+    })
+
+    const data = await response.json()
+    const error = response.ok
+      ? null
+      : new Error(`${response.status} (${response.statusText})`)
+
+    return {
+      data: data,
+      error: error,
+    }
+  } catch (error) {
+    return {
+      data: null,
+      error:
+        error instanceof Error ? error : new Error(&quot;An unknown error occurred&quot;),
+    }
+  }
+}
+
+export function stringifyQuery(
+  input: Record&lt;string, string | null | undefined&gt;,
+): string {
+  const output: string[] = []
+
+  for (const [key, value] of Object.entries(input)) {
+    if (typeof value !== &quot;undefined&quot; &amp;&amp; value !== null) {
+      output.push(`${key}=${value}`)
+    }
+  }
+
+  return output.join(&quot;&amp;&quot;)
+}
+
+</code></pre>
+ <div line-highlight="1,5-7,69,only"></div>
 <h3>Verify 1</h3>
-<p>TODO</p>
+<p>✏️ Create <strong>src/services/storage/storage.mock.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export const getData = async &lt;T&gt;(key: string): Promise&lt;T | undefined&gt; =&gt; {
+  return undefined
+}
+
+export const getAllKeys = async (): Promise&lt;readonly string[]&gt; =&gt; {
+  return []
+}
+
+export const storeData = async &lt;T&gt;(key: string, value: T): Promise&lt;void&gt; =&gt; {
+  return undefined
+}
+
+export const clearStorage = async (): Promise&lt;void&gt; =&gt; {
+  return undefined
+}
+
+</code></pre>
+<p>✏️ Create <strong>src/services/storage/storage.test.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import AsyncStorage from &quot;@react-native-async-storage/async-storage&quot;;
+import { getData, getAllKeys, storeData, clearStorage } from &quot;./storage&quot;; // Import your functions here
+
+let mockStorageGetData: jest.SpyInstance&lt;ReturnType&lt;typeof AsyncStorage.getItem&gt;&gt;
+let mockStorageStoreData: jest.SpyInstance&lt;ReturnType&lt;typeof AsyncStorage.setItem&gt;&gt;
+let mockStorageGetKeys: jest.SpyInstance&lt;ReturnType&lt;typeof AsyncStorage.getAllKeys&gt;&gt;
+let mockStorageClear: jest.SpyInstance&lt;ReturnType&lt;typeof AsyncStorage.clear&gt;&gt;
+
+jest.unmock(&quot;./storage&quot;)
+
+describe(&quot;AsyncStorage Functions&quot;, () =&gt; {
+  beforeEach(() =&gt; {
+    jest.clearAllMocks();
+    mockStorageGetData = jest.spyOn(AsyncStorage, &quot;getItem&quot;)
+    mockStorageGetKeys = jest.spyOn(AsyncStorage, &quot;getAllKeys&quot;)
+    mockStorageStoreData = jest.spyOn(AsyncStorage, &quot;setItem&quot;)
+    mockStorageClear = jest.spyOn(AsyncStorage, &quot;clear&quot;)
+  });
+
+  it(&quot;getData function should return parsed value from AsyncStorage&quot;, async () =&gt; {
+    mockStorageGetData.mockResolvedValueOnce(JSON.stringify({ example: &quot;data&quot; }));
+
+    const data = await getData(&quot;testKey&quot;);
+
+    expect(data).toEqual({ example: &quot;data&quot; });
+    expect(AsyncStorage.getItem).toHaveBeenCalledWith(&quot;testKey&quot;);
+  });
+
+  it(&quot;getData function should return undefined if key does not exist&quot;, async () =&gt; {
+    mockStorageGetData.mockResolvedValueOnce(JSON.stringify(undefined));
+
+    const data = await getData(&quot;nonExistingKey&quot;);
+
+    expect(data).toBeUndefined();
+    expect(mockStorageGetData).toHaveBeenCalledWith(&quot;nonExistingKey&quot;);
+  });
+
+  it(&quot;getAllKeys function should return an array of keys from AsyncStorage&quot;, async () =&gt; {
+    const keys = [&quot;key1&quot;, &quot;key2&quot;, &quot;key3&quot;];
+    mockStorageGetKeys.mockResolvedValueOnce(keys);
+
+    const result = await getAllKeys();
+
+    expect(result).toEqual(keys);
+    expect(mockStorageGetKeys).toHaveBeenCalled();
+  });
+
+  it(&quot;storeData function should store data in AsyncStorage&quot;, async () =&gt; {
+    const data = { example: &quot;data&quot; };
+    const key = &quot;testKey&quot;;
+
+    await storeData(key, data);
+
+    expect(mockStorageStoreData).toHaveBeenCalledWith(key, JSON.stringify(data));
+  });
+
+  it(&quot;clearStorage function should clear AsyncStorage&quot;, async () =&gt; {
+    await clearStorage();
+
+    expect(mockStorageClear).toHaveBeenCalled();
+  });
+});
+</code></pre>
 <h3>Exercise 1</h3>
-<p>TODO</p>
+<ul>
+<li><p>store response from requests, return stored value if network failure</p></li>
+<li><p>View requests in devTools</p></li>
+<li><p>View stored data in devTools/Flipper</p></li>
+</ul>
 <h3>Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/services/pmo/api/api.ts</strong> to be:</p>
+<pre><code class="language-ts">import { getData, storeData } from &quot;../../storage&quot;
+
+const baseUrl = process.env.PMO_API
+
+export interface LocalStorageApiRequest&lt;T&gt; {
+  data: T
+  dateTime: Date
+}
+
+export const keyPrefix = &quot;apiRequest-&quot;
+
+export async function apiRequest&lt;
+  Data = never,
+  Params = unknown,
+  Body = unknown,
+&gt;({
+  method,
+  params,
+  path,
+  body,
+}: {
+  method: string
+  params?: Params
+  path: string
+  body?: Body
+}): Promise&lt;{ data: Data | null; error: Error | null }&gt; {
+  try {
+    const query = params ? stringifyQuery(params) : &quot;&quot;
+    const requestUrl = `${baseUrl}${path}?${query}`
+
+    if (method === &quot;GET&quot;) {
+      try {
+        const cachedResponse = await getData&lt;LocalStorageApiRequest&lt;Data&gt;&gt;(
+          keyPrefix + requestUrl,
+        )
+
+        if (cachedResponse) {
+          const diff = new Date().valueOf() - new Date(cachedResponse.dateTime).valueOf()
+          //Return Cached data if it's younger than one minute
+          if (diff &lt; 60000) {
+            return {
+              data: cachedResponse.data,
+              error: null,
+            }
+          }
+        }
+      } catch (error) {
+        console.error(&quot;Failed to get cached value:&quot;, error)
+      }
+    }
+
+    const response = await fetch(requestUrl, {
+      method,
+      headers: {
+        &quot;Content-Type&quot;: &quot;application/json&quot;,
+      },
+      body: body ? JSON.stringify(body) : undefined,
+    })
+
+    const data = await response.json()
+    const error = response.ok
+      ? null
+      : new Error(`${response.status} (${response.statusText})`)
+
+    if (method === &quot;GET&quot; &amp;&amp; response.ok) {
+      await storeData&lt;LocalStorageApiRequest&lt;Data&gt;&gt;(keyPrefix + requestUrl, {
+        data: data,
+        dateTime: new Date(),
+      })
+    }
+
+    return {
+      data: data,
+      error: error,
+    }
+  } catch (error) {
+    return {
+      data: null,
+      error:
+        error instanceof Error ? error : new Error(&quot;An unknown error occurred&quot;),
+    }
+  }
+}
+
+export function stringifyQuery(
+  input: Record&lt;string, string | null | undefined&gt;,
+): string {
+  const output: string[] = []
+
+  for (const [key, value] of Object.entries(input)) {
+    if (typeof value !== &quot;undefined&quot; &amp;&amp; value !== null) {
+      output.push(`${key}=${value}`)
+    }
+  }
+
+  return output.join(&quot;&amp;&quot;)
+}
+
+</code></pre>
+ <div line-highlight="31-35,37-49,65-69,81,93,only"></div>
+<p>✏️ Update <strong>src/services/storage/storage.ts</strong> to be:</p>
+<pre><code class="language-ts">import AsyncStorage from &quot;@react-native-async-storage/async-storage&quot;
+
+export const getData = async &lt;T&gt;(key: string): Promise&lt;T | undefined&gt; =&gt; {
+  const value = await AsyncStorage.getItem(key)
+  const jsonValue = value ? JSON.parse(value) : undefined
+  return jsonValue
+}
+
+export const getAllKeys = (): Promise&lt;readonly string[]&gt; =&gt; {
+  return AsyncStorage.getAllKeys()
+}
+
+export const storeData = &lt;T&gt;(key: string, value: T): Promise&lt;void&gt; =&gt; {
+  const jsonValue = JSON.stringify(value)
+  return AsyncStorage.setItem(key, jsonValue)
+}
+
+export const clearStorage = (): Promise&lt;void&gt; =&gt; {
+  return AsyncStorage.clear()
+}
+
+</code></pre>
+ <div line-highlight="4-6,10,14-15,19,only"></div>
+<p></details></p>
+<h2>Objective 2: Migrating data between versions</h2>
+<h3>Concept TODO</h3>
 <p>TODO</p>
+<h3>Setup 2</h3>
+<p>✏️ Create <strong>src/services/DataMigration/DataMigration.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import type { FC, ReactNode } from &quot;react&quot;
+import type { LocalStorageApiRequest } from &quot;../pmo/api&quot;
+import { keyPrefix } from &quot;../pmo/api&quot;
+import { useEffect, useState } from &quot;react&quot;
+import Loading from &quot;../../components/Loading&quot;
+import { getData, getAllKeys, storeData, clearStorage } from &quot;../storage&quot;
+
+interface LocalStorageApiRequestV1 {
+  data: unknown
+  dateTime: Date
+}
+
+const migrateDataV1toV2 = async (): Promise&lt;void&gt; =&gt; {
+
+}
+
+const DataMigration: FC&lt;{ children: ReactNode }&gt; = ({ children }) =&gt; {
+ 
+}
+
+export default DataMigration
+
+</code></pre>
+<p>✏️ Create <strong>src/services/DataMigration/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./DataMigration&quot;
+
+</code></pre>
+<p>✏️ Update <strong>src/services/pmo/api/api.ts</strong> to be:</p>
+<pre><code class="language-ts">import { getData, storeData } from &quot;../../storage&quot;
+
+const baseUrl = process.env.PMO_API
+
+export interface LocalStorageApiRequest&lt;T&gt; {
+  data: T
+  dateTime: number
+}
+
+export const keyPrefix = &quot;apiRequest-&quot;
+
+export async function apiRequest&lt;
+  Data = never,
+  Params = unknown,
+  Body = unknown,
+&gt;({
+  method,
+  params,
+  path,
+  body,
+}: {
+  method: string
+  params?: Params
+  path: string
+  body?: Body
+}): Promise&lt;{ data: Data | null; error: Error | null }&gt; {
+  try {
+    const query = params ? stringifyQuery(params) : &quot;&quot;
+    const requestUrl = `${baseUrl}${path}?${query}`
+
+    if (method === &quot;GET&quot;) {
+      try {
+        const cachedResponse = await getData&lt;LocalStorageApiRequest&lt;Data&gt;&gt;(
+          keyPrefix + requestUrl,
+        )
+
+        if (cachedResponse) {
+          const diff = Date.now() - cachedResponse.dateTime
+          //Return Cached data if it's younger than one minute
+          if (diff &lt; 60000) {
+            return {
+              data: cachedResponse.data,
+              error: null,
+            }
+          }
+        }
+      } catch (error) {
+        console.error(&quot;Failed to get cached value:&quot;, error)
+      }
+    }
+
+    const response = await fetch(requestUrl, {
+      method,
+      headers: {
+        &quot;Content-Type&quot;: &quot;application/json&quot;,
+      },
+      body: body ? JSON.stringify(body) : undefined,
+    })
+
+    const data = await response.json()
+    const error = response.ok
+      ? null
+      : new Error(`${response.status} (${response.statusText})`)
+
+    if (method === &quot;GET&quot; &amp;&amp; response.ok) {
+      await storeData&lt;LocalStorageApiRequest&lt;Data&gt;&gt;(keyPrefix + requestUrl, {
+        data: data,
+        dateTime: Date.now(),
+      })
+    }
+
+    return {
+      data: data,
+      error: error,
+    }
+  } catch (error) {
+    return {
+      data: null,
+      error:
+        error instanceof Error ? error : new Error(&quot;An unknown error occurred&quot;),
+    }
+  }
+}
+
+export function stringifyQuery(
+  input: Record&lt;string, string | null | undefined&gt;,
+): string {
+  const output: string[] = []
+
+  for (const [key, value] of Object.entries(input)) {
+    if (typeof value !== &quot;undefined&quot; &amp;&amp; value !== null) {
+      output.push(`${key}=${value}`)
+    }
+  }
+
+  return output.join(&quot;&amp;&quot;)
+}
+
+</code></pre>
+ <div line-highlight="7,38,68,only"></div>
+<h3>Verify 2</h3>
+<p>✏️ Create <strong>src/services/DataMigration/DataMigration.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { render, screen, waitFor } from &quot;@testing-library/react-native&quot;
+import DataMigration from &quot;./DataMigration&quot;
+import Typography from &quot;../../design/Typography&quot;
+import * as storage from &quot;../storage/storage&quot;
+
+// Mocking the global fetch function
+let mockStorageGetData: jest.SpyInstance&lt;ReturnType&lt;typeof storage.getData&gt;&gt;
+let mockStorageStoreData: jest.SpyInstance&lt;ReturnType&lt;typeof storage.storeData&gt;&gt;
+let mockStorageGetKeys: jest.SpyInstance&lt;ReturnType&lt;typeof storage.getAllKeys&gt;&gt;
+let mockStorageClear: jest.SpyInstance&lt;ReturnType&lt;typeof storage.clearStorage&gt;&gt;
+
+beforeEach(() =&gt; {
+  mockStorageGetData = jest.spyOn(storage, &quot;getData&quot;)
+  mockStorageGetKeys = jest.spyOn(storage, &quot;getAllKeys&quot;)
+  mockStorageStoreData = jest.spyOn(storage, &quot;storeData&quot;)
+  mockStorageClear = jest.spyOn(storage, &quot;clearStorage&quot;)
+
+  mockStorageGetData.mockResolvedValue(undefined)
+  mockStorageGetKeys.mockResolvedValue([
+    &quot;apiRequest-numberone&quot;,
+    &quot;otherkey-numbertwo&quot;,
+    &quot;apiRequest-numberthree&quot;,
+  ])
+})
+
+afterEach(() =&gt; {
+  jest.resetAllMocks()
+})
+
+describe(&quot;DataMigration component&quot;, () =&gt; {
+  it(&quot;renders&quot;, async () =&gt; {
+    mockStorageGetData.mockResolvedValueOnce(2)
+
+    render(
+      &lt;DataMigration&gt;
+        &lt;Typography&gt;Hello!&lt;/Typography&gt;
+      &lt;/DataMigration&gt;,
+    )
+    expect(screen.getByText(/Loading…/)).toBeOnTheScreen()
+  })
+  it(&quot;renders children after loading&quot;, async () =&gt; {
+    mockStorageGetData.mockResolvedValueOnce(2)
+    render(
+      &lt;DataMigration&gt;
+        &lt;Typography&gt;Hello!&lt;/Typography&gt;
+      &lt;/DataMigration&gt;,
+    )
+    await waitFor(() =&gt; {
+      expect(screen.getByText(/Hello!/)).toBeOnTheScreen()
+    })
+  })
+  it(&quot;updates localStorage if storage version is less than 2&quot;, async () =&gt; {
+    mockStorageGetData
+      .mockResolvedValueOnce(1)
+      .mockResolvedValueOnce({
+        data: { text: &quot;Not Important&quot; },
+        dateTime: new Date(),
+      })
+      .mockResolvedValueOnce({
+        data: { text: &quot;Still Not Important&quot; },
+        dateTime: new Date(),
+      })
+
+    render(
+      &lt;DataMigration&gt;
+        &lt;Typography&gt;Hello!&lt;/Typography&gt;
+      &lt;/DataMigration&gt;,
+    )
+    await waitFor(() =&gt; {
+      expect(screen.getByText(/Hello!/)).toBeOnTheScreen()
+    })
+
+    /*
+      With the mock data as it is, getKeys should be called once to get all the necessary keys.
+      getData will return three times, once for retrieving the version number, and twice for the two keys that need to be data migrated
+      storeData will return three times, twice for the two keys that need to be data migrated, and once more to update the version number
+      storageClear will return zero times, it's only called in the migration function if the migration function fails
+    */
+    expect(mockStorageGetKeys).toHaveReturnedTimes(1)
+    expect(mockStorageGetData).toHaveReturnedTimes(3)
+    expect(mockStorageStoreData).toHaveReturnedTimes(3)
+    expect(mockStorageClear).toHaveReturnedTimes(0)
+  })
+
+  it(&quot;ignores local storage if version is 2 or more&quot;, async () =&gt; {
+    mockStorageGetData.mockResolvedValueOnce(5)
+
+    render(
+      &lt;DataMigration&gt;
+        &lt;Typography&gt;Hello!&lt;/Typography&gt;
+      &lt;/DataMigration&gt;,
+    )
+    await waitFor(() =&gt; {
+      expect(screen.getByText(/Hello!/)).toBeOnTheScreen()
+    })
+
+    //if the local storage doesn't run for data migration, GetData will only run once to check the version number
+    expect(mockStorageGetKeys).toHaveReturnedTimes(0)
+    expect(mockStorageGetData).toHaveReturnedTimes(1)
+    expect(mockStorageStoreData).toHaveReturnedTimes(0)
+    expect(mockStorageClear).toHaveReturnedTimes(0)
+  })
+})
+
+</code></pre>
+<h3>Exercise 2</h3>
+<ul>
+<li><p>Add useEffect to root component, checks if migration needed on app load</p></li>
+<li><p>Using stored data version to determine if migration should run</p></li>
+<li><p>Change from storing whole request to just request.data</p></li>
+</ul>
+<h3>Solution 2</h3>
+<p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/services/DataMigration/DataMigration.ts</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC, ReactNode } from &quot;react&quot;
+import type { LocalStorageApiRequest } from &quot;../pmo/api&quot;
+import { keyPrefix } from &quot;../pmo/api&quot;
+import { useEffect, useState } from &quot;react&quot;
+import Loading from &quot;../../components/Loading&quot;
+import { getData, getAllKeys, storeData, clearStorage } from &quot;../storage&quot;
+
+interface LocalStorageApiRequestV1 {
+  data: unknown
+  dateTime: Date
+}
+
+const migrateDataV1toV2 = async (): Promise&lt;void&gt; =&gt; {
+  const keys = await getAllKeys()
+  try {
+    for (const key of keys) {
+      if (key.startsWith(keyPrefix)) {
+        const oldData = await getData(key) as LocalStorageApiRequestV1;
+        await storeData&lt;LocalStorageApiRequest&lt;unknown&gt;&gt;(key, {
+          ...oldData,
+          dateTime: oldData.dateTime.valueOf(),
+        });
+      }
+    }
+  } catch (error) {
+    console.error(&quot;'migrateDataV1toV2' failed with error:&quot;, error)
+    await clearStorage()
+  }
+}
+
+const DataMigration: FC&lt;{ children: ReactNode }&gt; = ({ children }) =&gt; {
+  const [isDone, setMigrationDone] = useState&lt;boolean&gt;(false)
+
+  useEffect(() =&gt; {
+    const checkMigration = async () =&gt; {
+      const appVersion = (await getData&lt;number&gt;(&quot;version&quot;)) || 1
+      if (appVersion &lt; 2) {
+        await migrateDataV1toV2()
+        await storeData&lt;number&gt;(&quot;version&quot;, 2)
+      }
+
+      setMigrationDone(true)
+    }
+
+    checkMigration()
+  }, [])
+
+  if (!isDone) {
+    return &lt;Loading /&gt;
+  }
+
+  return children
+}
+
+export default DataMigration
+
+</code></pre>
+ <div line-highlight="14-28,32,34-40,42-43,45-46,48-50,52,only"></div>
+<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { Pressable, SafeAreaView } from &quot;react-native&quot;
+import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import Icon from &quot;react-native-vector-icons/Ionicons&quot;
+
+import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
+import StateList from &quot;./screens/StateList&quot;
+import Settings from &quot;./screens/Settings&quot;
+import RestaurantDetails from &quot;./screens/RestaurantDetails&quot;
+import RestaurantList from &quot;./screens/RestaurantList&quot;
+import RestaurantOrder from &quot;./screens/RestaurantOrder&quot;
+import CityList from &quot;./screens/CityList&quot;
+import Box from &quot;./design/Box&quot;
+import Typography from &quot;./design/Typography&quot;
+import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import DataMigration from &quot;./services/DataMigration&quot;
+
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace ReactNavigation {
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    interface RootParamList extends RestaurantsStackParamList {}
+  }
+}
+
+export type RestaurantsStackParamList = {
+  StateList: undefined
+  CityList: {
+    state: {
+      name: string
+      short: string
+    }
+  }
+  RestaurantList: {
+    state: {
+      name: string
+      short: string
+    }
+    city: {
+      name: string
+      state: string
+    }
+  }
+  RestaurantDetails: {
+    state: {
+      name: string
+      short: string
+    }
+    city: {
+      name: string
+      state: string
+    }
+    slug: string
+  }
+  OrderCreate: {
+    slug: string
+  }
+}
+
+const RestaurantsStack = createStackNavigator&lt;RestaurantsStackParamList&gt;()
+const RestaurantsNavigator: FC = () =&gt; {
+  return (
+    &lt;RestaurantsStack.Navigator
+      initialRouteName=&quot;StateList&quot;
+      screenOptions={{
+        header: ({ route, navigation }) =&gt; {
+          if (!navigation.canGoBack()) return null
+
+          return (
+            &lt;Pressable onPress={navigation.goBack}&gt;
+              &lt;Box
+                padding=&quot;m&quot;
+                style={{ flexDirection: &quot;row&quot;, gap: 8, alignItems: &quot;center&quot; }}
+              &gt;
+                &lt;Icon name=&quot;arrow-back&quot; size={20} /&gt;
+                &lt;Typography variant=&quot;heading&quot;&gt;
+                  {/* @ts-ignore */}
+                  {[route.params?.city?.name, route.params?.state?.name]
+                    .filter(Boolean)
+                    .join(&quot;, &quot;)}
+                &lt;/Typography&gt;
+              &lt;/Box&gt;
+            &lt;/Pressable&gt;
+          )
+        },
+      }}
+    &gt;
+      &lt;RestaurantsStack.Screen name=&quot;StateList&quot; component={StateList} /&gt;
+      &lt;RestaurantsStack.Screen name=&quot;CityList&quot; component={CityList} /&gt;
+      &lt;RestaurantsStack.Screen
+        name=&quot;RestaurantList&quot;
+        component={RestaurantList}
+      /&gt;
+      &lt;RestaurantsStack.Screen
+        name=&quot;RestaurantDetails&quot;
+        component={RestaurantDetails}
+      /&gt;
+      &lt;RestaurantsStack.Screen name=&quot;OrderCreate&quot; component={RestaurantOrder} /&gt;
+    &lt;/RestaurantsStack.Navigator&gt;
+  )
+}
+
+const AppTabs = createBottomTabNavigator()
+export const AppNavigator: FC = () =&gt; {
+  const theme = useTheme()
+
+  return (
+    &lt;AppTabs.Navigator
+      initialRouteName=&quot;RestaurantsStack&quot;
+      screenOptions={({ route }) =&gt; ({
+        headerStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        headerTitleStyle: {
+          color: theme.palette.screen.contrast,
+          ...theme.typography.title,
+        },
+        tabBarStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        tabBarActiveTintColor: theme.palette.primary.strong,
+        tabBarInactiveTintColor: theme.palette.screen.contrast,
+        tabBarIcon: ({ focused, color }) =&gt; {
+          let icon = &quot;settings&quot;
+          if (route.name === &quot;Settings&quot;) {
+            icon = focused ? &quot;settings&quot; : &quot;settings-outline&quot;
+          } else if (route.name === &quot;Restaurants&quot;) {
+            icon = focused ? &quot;restaurant&quot; : &quot;restaurant-outline&quot;
+          }
+
+          return &lt;Icon name={icon} size={20} color={color} /&gt;
+        },
+      })}
+    &gt;
+      &lt;AppTabs.Screen
+        name=&quot;Restaurants&quot;
+        component={RestaurantsNavigator}
+        options={{ title: &quot;Place My Order&quot; }}
+      /&gt;
+      &lt;AppTabs.Screen
+        name=&quot;Settings&quot;
+        component={Settings}
+        options={{ title: &quot;Settings&quot; }}
+      /&gt;
+    &lt;/AppTabs.Navigator&gt;
+  )
+}
+
+const App: FC = () =&gt; {
+  return (
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;ThemeProvider&gt;
+        &lt;DataMigration&gt;
+          &lt;NavigationContainer&gt;
+            &lt;AppNavigator /&gt;
+          &lt;/NavigationContainer&gt;
+        &lt;/DataMigration&gt;
+      &lt;/ThemeProvider&gt;
+    &lt;/SafeAreaView&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="17,23,154-158,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
-<p>TODO</p>
+<p>Next, we will learn <a href="security-and-auth.html" title="TODO">Security and Authentication</a>.</p>
 
 </section>
 
