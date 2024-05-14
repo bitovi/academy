@@ -9,6 +9,7 @@ import { useRestaurant } from "../../services/pmo/restaurant"
 import Box from "../../design/Box"
 import Typography from "../../design/Typography"
 import Button from "../../design/Button"
+import FormTextField from "../../components/FormTextField"
 import Loading from "../../components/Loading"
 import Card from "../../design/Card"
 import Screen from "../../design/Screen"
@@ -24,7 +25,10 @@ const RestaurantOrder: FC<Props> = ({ route }) => {
 
   const { data: restaurant, error, isPending } = useRestaurant(slug)
 
+  const [address, setAddress] = useState<string>("")
   const [items, setItems] = useState<OrderItems>({})
+  const [name, setName] = useState<string>("")
+  const [phone, setPhone] = useState<string>("")
 
   useEffect(() => {
     if (restaurant) {
@@ -50,6 +54,7 @@ const RestaurantOrder: FC<Props> = ({ route }) => {
     })
   }
 
+  const selectedCount = Object.values(items).length
   const subtotal = calculateTotal(items)
 
   if (error) {
@@ -103,11 +108,21 @@ const RestaurantOrder: FC<Props> = ({ route }) => {
           ))}
         </Card>
 
-        <Card title="Order Details"></Card>
+        <Card title="Order Details">
+          <FormTextField label="Name" onChange={setName} value={name} />
+          <FormTextField
+            label="Address"
+            onChange={setAddress}
+            value={address}
+          />
+          <FormTextField label="Phone" onChange={setPhone} value={phone} />
+        </Card>
 
         <Box padding="s">
-          {subtotal === 0 && (
+          {subtotal === 0 ? (
             <Typography>Please choose an item.</Typography>
+          ) : (
+            <Typography>{selectedCount} items selected.</Typography>
           )}
         </Box>
 

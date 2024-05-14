@@ -7,10 +7,10 @@ import { useNavigation } from "@react-navigation/native"
 
 import RestaurantHeader from "../../components/RestaurantHeader"
 import Loading from "../../components/Loading"
+import Button from "../../design/Button"
 import Typography from "../../design/Typography"
 import { useRestaurant } from "../../services/pmo/restaurant"
 import Screen from "../../design/Screen"
-import Button from "../../design/Button"
 
 type Props = StackScreenProps<RestaurantsStackParamList, "RestaurantDetails">
 
@@ -45,6 +45,7 @@ const RestaurantDetails: FC<Props> = ({ route }) => {
       <Button onPress={() => console.warn("Place an order")}>
         Place an order
       </Button>
+      {/* Exercise: Add Button that links to RestaurantOrder page. */}
     </Screen>
   )
 }

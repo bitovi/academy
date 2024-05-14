@@ -24,8 +24,6 @@ const RestaurantOrder: FC<Props> = ({ route }) => {
 
   const { data: restaurant, error, isPending } = useRestaurant(slug)
 
-  const [items, setItems] = useState<OrderItems>({})
-
   useEffect(() => {
     if (restaurant) {
       navigation.setOptions({ title: `Order from ${restaurant.name}` })
@@ -36,21 +34,7 @@ const RestaurantOrder: FC<Props> = ({ route }) => {
     console.info("“Place My Order” button pressed!")
   }
 
-  const setItem = (itemId: string, isChecked: boolean, itemPrice: number) => {
-    return setItems((currentItems) => {
-      const updatedItems = {
-        ...currentItems,
-      }
-      if (isChecked) {
-        updatedItems[itemId] = itemPrice
-      } else {
-        delete updatedItems[itemId]
-      }
-      return updatedItems
-    })
-  }
-
-  const subtotal = calculateTotal(items)
+  const subtotal = 0 // Exercise: Use calculateTotal here.
 
   if (error) {
     return (
@@ -82,25 +66,11 @@ const RestaurantOrder: FC<Props> = ({ route }) => {
     >
       <Screen>
         <Card title="Lunch Menu">
-          {restaurant.menu.lunch.map(({ name, price }) => (
-            <FormSwitch
-              key={name}
-              label={`${name} ($${price})`}
-              value={name in items}
-              onChange={(value) => setItem(name, value, price)}
-            />
-          ))}
+          {/* Exercise: List food items with checkboxes. */}
         </Card>
 
         <Card title="Dinner Menu">
-          {restaurant.menu.dinner.map(({ name, price }) => (
-            <FormSwitch
-              key={name}
-              label={`${name} ($${price})`}
-              value={name in items}
-              onChange={(value) => setItem(name, value, price)}
-            />
-          ))}
+          {/* Exercise: List food items with checkboxes. */}
         </Card>
 
         <Card title="Order Details"></Card>

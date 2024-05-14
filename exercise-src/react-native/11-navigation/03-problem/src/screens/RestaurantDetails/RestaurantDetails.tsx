@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native"
 
 import RestaurantHeader from "../../components/RestaurantHeader"
 import Screen from "../../design/Screen"
+import Button from "../../design/Button"
 
 const restaurant = {
   _id: "Ar0qBJHxM3ecOhcr",
@@ -27,6 +28,9 @@ const RestaurantDetails: FC = () => {
   return (
     <Screen>
       <RestaurantHeader restaurant={restaurant} />
+      <Button onPress={() => console.warn("Place an order")}>
+        Place an order
+      </Button>
     </Screen>
   )
 }

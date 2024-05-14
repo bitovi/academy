@@ -19,7 +19,7 @@ declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace ReactNavigation {
     // eslint-disable-next-line @typescript-eslint/no-empty-interface
-    interface RootParamList extends RestaurantsStackParamList { }
+    interface RootParamList extends RestaurantsStackParamList {}
   }
 }
 
@@ -52,7 +52,7 @@ export type RestaurantsStackParamList = {
     }
     slug: string
   }
-  OrderCreate: {
+  RestaurantOrder: {
     slug: string
   }
 }
@@ -95,7 +95,10 @@ const RestaurantsNavigator: FC = () => {
         name="RestaurantDetails"
         component={RestaurantDetails}
       />
-      <RestaurantsStack.Screen name="OrderCreate" component={RestaurantOrder} />
+      <RestaurantsStack.Screen
+        name="RestaurantOrder"
+        component={RestaurantOrder}
+      />
     </RestaurantsStack.Navigator>
   )
 }

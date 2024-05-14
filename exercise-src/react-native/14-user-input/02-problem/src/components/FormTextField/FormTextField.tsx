@@ -7,27 +7,19 @@ import Typography from "../../design/Typography"
 
 type Props = {
   label: string
-  placeholder?: string
   type?: "text"
   value: string
   onChange?: (value: string) => void
 }
 
-const FormTextField: FC<Props> = ({ label, placeholder, value, onChange }) => {
+const FormTextField: FC<Props> = ({ label, value, onChange }) => {
   const id = useId()
   const theme = useTheme()
 
   return (
     <Box style={{ marginVertical: 8 }}>
-      <Typography nativeID={id} variant="label">
-        {label}
-      </Typography>
+      {/* Exercise: Create Text Label and update TextInput to work with label. */}
       <TextInput
-        accessibilityLabel="input"
-        accessibilityLabelledBy={id}
-        onChangeText={onChange}
-        value={value}
-        placeholder={placeholder}
         style={{
           flex: 1,
           paddingVertical: 0,
