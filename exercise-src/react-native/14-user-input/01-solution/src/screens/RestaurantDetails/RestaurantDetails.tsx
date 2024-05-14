@@ -1,20 +1,18 @@
-import type { FC } from "react"
-import type { StackScreenProps } from "@react-navigation/stack"
-import type { RestaurantsStackParamList } from "../../App"
-
-import { useEffect } from "react"
 import { useNavigation } from "@react-navigation/native"
+import { StackScreenProps } from "@react-navigation/stack"
+import { useEffect } from "react"
 
-import RestaurantHeader from "../../components/RestaurantHeader"
+import { RestaurantsStackParamList } from "../../App"
 import Loading from "../../components/Loading"
+import RestaurantHeader from "../../components/RestaurantHeader"
 import Button from "../../design/Button"
+import Screen from "../../design/Screen"
 import Typography from "../../design/Typography"
 import { useRestaurant } from "../../services/pmo/restaurant"
-import Screen from "../../design/Screen"
 
 type Props = StackScreenProps<RestaurantsStackParamList, "RestaurantDetails">
 
-const RestaurantDetails: FC<Props> = ({ route }) => {
+const RestaurantDetails: React.FC<Props> = ({ route }) => {
   const { slug } = route.params
   const navigation = useNavigation()
   const { data: restaurant, error, isPending } = useRestaurant(slug)

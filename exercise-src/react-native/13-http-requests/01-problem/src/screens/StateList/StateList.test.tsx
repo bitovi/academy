@@ -24,7 +24,7 @@ describe("StateList component", () => {
   it("renders State List", () => {
     useStates.mockReturnValue({
       ...mockStateResponse,
-      error: null,
+      error: undefined,
       isPending: false,
     })
 
@@ -39,7 +39,11 @@ describe("StateList component", () => {
   })
 
   it("renders loading state", () => {
-    useStates.mockReturnValue({ data: null, error: null, isPending: true })
+    useStates.mockReturnValue({
+      data: undefined,
+      error: undefined,
+      isPending: true,
+    })
 
     render(
       <NavigationContainer>

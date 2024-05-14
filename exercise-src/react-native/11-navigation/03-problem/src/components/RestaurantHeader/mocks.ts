@@ -1,6 +1,4 @@
-import type { Restaurant } from "../../services/pmo/restaurant"
-
-export const restaurantWithoutAddress: Restaurant = {
+export const restaurantWithoutAddress = {
   _id: "3ZOZyTY1LH26LnVw",
   images: {
     banner: "banner-image.jpg",
@@ -42,7 +40,7 @@ export const restaurantWithoutAddress: Restaurant = {
   slug: "poutine-palace",
 }
 
-export const restaurantWithAddress: Required<Restaurant> = {
+export const restaurantWithAddress = {
   ...restaurantWithoutAddress,
   address: {
     street: "123 Test St",

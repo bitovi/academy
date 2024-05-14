@@ -1,24 +1,25 @@
 import { useEffect, useState } from "react"
-import type { State, City } from "./interfaces"
+
+import { State, City } from "./interfaces"
 
 const baseUrl = process.env.PMO_API
 
 interface StatesResponse {
-  data: State[] | null
-  error: Error | null
+  data: State[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface CitiesResponse {
-  data: City[] | null
-  error: Error | null
+  data: City[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 export function useStates(): StatesResponse {
   const [response, setResponse] = useState<StatesResponse>({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
@@ -34,8 +35,8 @@ export function useStates(): StatesResponse {
       const data = await response.json()
 
       setResponse({
-        data: data?.data || null,
-        error: null,
+        data: data?.data || undefined,
+        error: undefined,
         isPending: false,
       })
     }
@@ -47,29 +48,26 @@ export function useStates(): StatesResponse {
 
 export function useCities(state?: string): CitiesResponse {
   const [response, setResponse] = useState<CitiesResponse>({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
   useEffect(() => {
     const fetchData = async () => {
-      if(state){
-        const response = await fetch(
-          `${baseUrl}/cities?state=${state}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
+      if (state) {
+        const response = await fetch(`${baseUrl}/cities?state=${state}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
           },
-        )
-        
+        })
+
         const data = await response.json()
-        
+
         setResponse({
-          data: data?.data || null,
-          error: null,
+          data: data?.data || undefined,
+          error: undefined,
           isPending: false,
         })
       }

@@ -8,28 +8,36 @@ on:
 jobs:
   job:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Use Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
 
       - name: Install
         run: npm ci
+      - name: depcheck
+        run: npm run depcheck
+
+      - name: Verify React Native Exercises
+        run: |
+          cd exercise-src/react-native
+          npm ci
+          npm run eslint
+          npm run prettier
+          rm -rf node_modules
+
       - name: Generate Exercises
         run: npm run generate
 
-      - name: depcheck
-        run: npm run depcheck
       - name: test
         run: npm run test
 
       - name: Build
-        run:  npm run build
+        run: npm run build
 
       # main needs to deploy to github pages because images point to github.io
       - name: Deploy to GitHub Pages

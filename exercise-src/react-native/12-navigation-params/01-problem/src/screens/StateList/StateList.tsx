@@ -1,13 +1,12 @@
-import type { FC } from "react"
-import { FlatList } from "react-native"
 import { useNavigation } from "@react-navigation/native"
-import type { StackScreenProps } from "@react-navigation/stack"
+import { StackScreenProps } from "@react-navigation/stack"
+import { FlatList } from "react-native"
 
-import type { RestaurantsStackParamList } from "../../App"
-import Card from "../../design/Card"
-import Typography from "../../design/Typography"
-import Screen from "../../design/Screen"
+import { RestaurantsStackParamList } from "../../App"
 import Button from "../../design/Button"
+import Card from "../../design/Card"
+import Screen from "../../design/Screen"
+import Typography from "../../design/Typography"
 
 export interface State {
   name: string
@@ -27,7 +26,7 @@ const states: State[] = [
 
 type Props = StackScreenProps<RestaurantsStackParamList, "StateList">
 
-const StateList: FC = () => {
+const StateList: React.FC = () => {
   const navigation = useNavigation()
 
   return (

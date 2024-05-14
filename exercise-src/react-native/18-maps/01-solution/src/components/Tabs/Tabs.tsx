@@ -1,8 +1,8 @@
 import { TextStyle, ViewStyle, Pressable, StyleSheet } from "react-native"
 
 import Box from "../../design/Box"
-import Typography from "../../design/Typography"
 import { Theme, useTheme } from "../../design/theme"
+import Typography from "../../design/Typography"
 
 export interface TabsProps {
   options: Array<{

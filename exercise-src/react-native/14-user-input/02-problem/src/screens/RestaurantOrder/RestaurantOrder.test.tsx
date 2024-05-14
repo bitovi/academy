@@ -1,8 +1,17 @@
+import { NavigationContainer } from "@react-navigation/native"
 import { render, screen } from "@testing-library/react-native"
 
 import * as restaurantHooks from "../../services/pmo/restaurant/hooks"
 
 import RestaurantOrder from "./RestaurantOrder"
+
+const route = {
+  key: "RestaurantOrder",
+  name: "RestaurantOrder",
+  params: {
+    slug: "bagel-restaurant",
+  },
+} as const
 
 describe("RestaurantOrder component", () => {
   // Mock the hooks and components used in RestaurantOrder
@@ -58,11 +67,16 @@ describe("RestaurantOrder component", () => {
   it("renders restaurant order form", () => {
     useRestaurant.mockReturnValue({
       ...mockRestaurantResponse,
-      error: null,
+      error: undefined,
       isPending: false,
     })
 
-    render(<RestaurantOrder route={{ params: { slug: "bagel-restaurant" } }} />)
+    render(
+      <NavigationContainer>
+        {/* @ts-ignore */}
+        <RestaurantOrder route={route} />
+      </NavigationContainer>,
+    )
     expect(screen.getByText(/Lunch Menu/i)).toBeOnTheScreen()
     expect(
       screen.getByText(mockRestaurantResponse.data.menu.lunch[0].name, {
@@ -82,19 +96,33 @@ describe("RestaurantOrder component", () => {
   })
 
   it("renders loading restaurant", () => {
-    useRestaurant.mockReturnValue({ data: null, error: null, isPending: true })
+    useRestaurant.mockReturnValue({
+      data: undefined,
+      error: undefined,
+      isPending: true,
+    })
 
-    render(<RestaurantOrder route={{ params: { slug: "bagel-restaurant" } }} />)
+    render(
+      <NavigationContainer>
+        {/* @ts-ignore */}
+        <RestaurantOrder route={route} />
+      </NavigationContainer>,
+    )
     expect(screen.getByText(/Loading/i)).toBeOnTheScreen()
   })
   it("renders error restaurant", () => {
     useRestaurant.mockReturnValue({
-      data: null,
+      data: undefined,
       error: { name: "Oops", message: "This is the error" },
       isPending: false,
     })
 
-    render(<RestaurantOrder route={{ params: { slug: "bagel-restaurant" } }} />)
+    render(
+      <NavigationContainer>
+        {/* @ts-ignore */}
+        <RestaurantOrder route={route} />
+      </NavigationContainer>,
+    )
 
     expect(
       screen.getByText(/Error loading restaurant order:/),

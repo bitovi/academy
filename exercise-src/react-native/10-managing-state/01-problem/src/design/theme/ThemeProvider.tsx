@@ -1,10 +1,7 @@
-import type { FC } from "react"
-import type { Theme } from "./theme"
-
 import { useState, createContext, useContext, useMemo } from "react"
 import { Appearance } from "react-native"
 
-import themes from "./theme"
+import themes, { Theme } from "./theme"
 
 type Mode = keyof typeof themes
 
@@ -17,7 +14,9 @@ const Context = createContext<ThemeContext>({
   theme,
 })
 
-const ThemeProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
+const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const value = useMemo(() => ({ theme }), [])
 
   return <Context.Provider value={value}>{children}</Context.Provider>
@@ -31,7 +30,9 @@ export function useTheme(): Theme {
   return theme
 }
 
-export function useThemeMode() {
-
-  return
+export function useThemeMode(): {
+  mode: Mode
+  setMode: (mode: Mode) => void
+} {
+  //
 }

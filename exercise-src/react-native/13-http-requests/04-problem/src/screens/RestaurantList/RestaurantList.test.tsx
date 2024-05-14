@@ -5,16 +5,21 @@ import * as restaurantHooks from "../../services/pmo/restaurant/hooks"
 
 import RestaurantList from "./RestaurantList"
 
-const params = {
-  state: {
-    short: "",
-    name: "",
+const route = {
+  key: "RestaurantList",
+  name: "RestaurantList",
+  params: {
+    state: {
+      name: "name",
+      short: "short",
+    },
+    city: {
+      name: "name",
+      state: "state",
+    },
+    slug: "test",
   },
-  city: {
-    name: "",
-    state: "",
-  },
-}
+} as const
 
 describe("RestaurantList component", () => {
   // Mock the hooks and components used in RestaurantList
@@ -111,13 +116,14 @@ describe("RestaurantList component", () => {
   it("renders restaurant List", () => {
     useRestaurants.mockReturnValue({
       ...mockRestaurantsResponse,
-      error: null,
+      error: undefined,
       isPending: false,
     })
 
     render(
       <NavigationContainer>
-        <RestaurantList route={{ params }} />
+        {/* @ts-ignore */}
+        <RestaurantList route={route} />
       </NavigationContainer>,
     )
     expect(screen.getByText(/Bagel Restaurant/i)).toBeOnTheScreen()
@@ -125,11 +131,16 @@ describe("RestaurantList component", () => {
   })
 
   it("renders loading restaurant", () => {
-    useRestaurants.mockReturnValue({ data: null, error: null, isPending: true })
+    useRestaurants.mockReturnValue({
+      data: undefined,
+      error: undefined,
+      isPending: true,
+    })
 
     render(
       <NavigationContainer>
-        <RestaurantList route={{ params }} />
+        {/* @ts-ignore */}
+        <RestaurantList route={route} />
       </NavigationContainer>,
     )
 
@@ -137,14 +148,15 @@ describe("RestaurantList component", () => {
   })
   it("renders error restaurant", () => {
     useRestaurants.mockReturnValue({
-      data: null,
+      data: undefined,
       error: { name: "Oops", message: "This is the error" },
       isPending: false,
     })
 
     render(
       <NavigationContainer>
-        <RestaurantList route={{ params }} />
+        {/* @ts-ignore */}
+        <RestaurantList route={route} />
       </NavigationContainer>,
     )
 

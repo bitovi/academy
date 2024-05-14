@@ -1,19 +1,18 @@
-import type { FC } from "react"
-import { Pressable, SafeAreaView } from "react-native"
-import { NavigationContainer } from "@react-navigation/native"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import { NavigationContainer } from "@react-navigation/native"
+import { createStackNavigator } from "@react-navigation/stack"
+import { Pressable, SafeAreaView } from "react-native"
 import Icon from "react-native-vector-icons/Ionicons"
 
+import Box from "./design/Box"
 import ThemeProvider, { useTheme } from "./design/theme/ThemeProvider"
-import StateList from "./screens/StateList"
-import Settings from "./screens/Settings"
+import Typography from "./design/Typography"
+import CityList from "./screens/CityList"
 import RestaurantDetails from "./screens/RestaurantDetails"
 import RestaurantList from "./screens/RestaurantList"
 import RestaurantOrder from "./screens/RestaurantOrder"
-import CityList from "./screens/CityList"
-import Box from "./design/Box"
-import Typography from "./design/Typography"
-import { createStackNavigator } from "@react-navigation/stack"
+import Settings from "./screens/Settings"
+import StateList from "./screens/StateList"
 import DataMigration from "./services/DataMigration"
 
 declare global {
@@ -59,7 +58,7 @@ export type RestaurantsStackParamList = {
 }
 
 const RestaurantsStack = createStackNavigator<RestaurantsStackParamList>()
-const RestaurantsNavigator: FC = () => {
+const RestaurantsNavigator: React.FC = () => {
   return (
     <RestaurantsStack.Navigator
       initialRouteName="StateList"
@@ -96,13 +95,16 @@ const RestaurantsNavigator: FC = () => {
         name="RestaurantDetails"
         component={RestaurantDetails}
       />
-      <RestaurantsStack.Screen name="RestaurantOrder" component={RestaurantOrder} />
+      <RestaurantsStack.Screen
+        name="RestaurantOrder"
+        component={RestaurantOrder}
+      />
     </RestaurantsStack.Navigator>
   )
 }
 
 const AppTabs = createBottomTabNavigator()
-export const AppNavigator: FC = () => {
+export const AppNavigator: React.FC = () => {
   const theme = useTheme()
 
   return (
@@ -147,7 +149,7 @@ export const AppNavigator: FC = () => {
   )
 }
 
-const App: FC = () => {
+const App: React.FC = () => {
   return (
     <SafeAreaView style={{ height: "100%", width: "100%" }}>
       <ThemeProvider>

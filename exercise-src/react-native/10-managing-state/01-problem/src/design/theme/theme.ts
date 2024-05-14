@@ -1,4 +1,4 @@
-import type { TextStyle } from "react-native"
+import { TextStyle } from "react-native"
 
 interface Palette {
   main: string
@@ -28,6 +28,13 @@ export interface Theme {
     label: TextStyle
   }
 }
+
+export type ThemeMargin =
+  | keyof Theme["spacing"]
+  | [keyof Theme["spacing"], keyof Theme["spacing"]]
+export type ThemePadding =
+  | keyof Theme["spacing"]
+  | [keyof Theme["spacing"], keyof Theme["spacing"]]
 
 const light: Theme = {
   palette: {

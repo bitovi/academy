@@ -1,16 +1,16 @@
-import type { FC, ReactNode } from "react"
 import { Switch } from "react-native"
+
 import Box from "../../design/Box"
-import Typography from "../../design/Typography"
 import { useTheme } from "../../design/theme"
+import Typography from "../../design/Typography"
 
 type Props = {
-  label: ReactNode
+  label: React.ReactNode
   value: boolean
   onChange: (value: boolean) => void
 }
 
-const FormSwitch: FC<Props> = ({ label, value, onChange }) => {
+const FormSwitch: React.FC<Props> = ({ label, value, onChange }) => {
   const { palette } = useTheme()
 
   return (

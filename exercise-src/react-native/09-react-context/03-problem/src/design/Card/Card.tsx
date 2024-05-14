@@ -1,19 +1,14 @@
-import type { FC } from "react"
-import type { ViewStyle } from "react-native"
-import type { Theme } from "../theme"
-import type { BoxProps } from "../Box"
+import { ViewStyle, StyleSheet } from "react-native"
 
-import { StyleSheet } from "react-native"
-
-import { useTheme } from "../theme"
-import Box from "../Box"
+import Box, { BoxProps } from "../Box"
+import { Theme, useTheme } from "../theme"
 import Typography from "../Typography"
 
 export interface CardProps extends BoxProps {
   title?: string
 }
 
-const Card: FC<CardProps> = ({ title, children, ...props }) => {
+const Card: React.FC<CardProps> = ({ title, children, ...props }) => {
   const theme = useTheme()
   const styles = getStyles(theme)
 

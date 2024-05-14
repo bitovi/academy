@@ -1,9 +1,8 @@
-import type { FC } from "react"
-import { FlatList } from "react-native"
 import { useNavigation } from "@react-navigation/native"
+import { FlatList } from "react-native"
 
-import Screen from "../../design/Screen"
 import Button from "../../design/Button"
+import Screen from "../../design/Screen"
 
 export interface City {
   name: string
@@ -15,7 +14,7 @@ const cities: City[] = [
   { name: "Springfield", state: "IL" },
 ]
 
-const CityList: FC = () => {
+const CityList: React.FC = () => {
   const navigation = useNavigation()
 
   //Exercise: Use navigation to navigate to RestaurantList

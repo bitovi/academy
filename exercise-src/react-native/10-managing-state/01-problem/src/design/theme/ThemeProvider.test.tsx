@@ -1,6 +1,9 @@
-import type { FC } from "react"
-
-import { render, screen, renderHook, waitFor } from "@testing-library/react-native"
+import {
+  render,
+  screen,
+  renderHook,
+  waitFor,
+} from "@testing-library/react-native"
 import { View, Text } from "react-native"
 
 import ThemeProvider, { useTheme, useThemeMode } from "./ThemeProvider"
@@ -18,7 +21,7 @@ describe("ThemeProvider Provider", () => {
 })
 
 describe("ThemeContext context", () => {
-  const TestComponent: FC = () => {
+  const TestComponent: React.FC = () => {
     const theme = useTheme()
 
     return (
@@ -36,13 +39,15 @@ describe("ThemeContext context", () => {
 })
 
 describe("Theme mode", () => {
-  it('toggles', async () => {
-    const { result } = renderHook(() => useThemeMode(), { wrapper: ThemeProvider })
+  it("toggles", async () => {
+    const { result } = renderHook(() => useThemeMode(), {
+      wrapper: ThemeProvider,
+    })
 
     expect(result.current.mode).toBe("light")
 
     await waitFor(() => {
-      result.current.setMode("dark");
+      result.current.setMode("dark")
       expect(result.current.mode).not.toBe("light")
     })
 

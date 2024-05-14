@@ -22,6 +22,6 @@
     "skipLibCheck": true,
     "useDefineForClassFields": true
   },
-  "include": ["*.ts", "src"],
+  "include": ["@types", "*.ts", "src"],
   "exclude": ["node_modules"]
 }

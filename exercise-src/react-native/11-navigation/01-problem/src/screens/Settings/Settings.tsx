@@ -1,16 +1,15 @@
-import type { FC } from "react"
 import { Switch } from "react-native"
 
-import Screen from "../../design/Screen"
-import Typography from "../../design/Typography"
 import Card from "../../design/Card"
+import Screen from "../../design/Screen"
 import { useThemeMode } from "../../design/theme"
+import Typography from "../../design/Typography"
 
 const user = {
   name: "Your Name",
 }
 
-const Settings: FC = () => {
+const Settings: React.FC = () => {
   const { mode, setMode } = useThemeMode()
 
   return (

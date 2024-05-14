@@ -1,7 +1,9 @@
 import { renderHook, waitFor } from "@testing-library/react-native"
-import * as api from "../api/api"
-import { useFavorites } from "./hooks"
+
 import * as storage from "../../storage/storage"
+import * as api from "../api/api"
+
+import { useFavorites } from "./hooks"
 
 describe("Favorite Hook", () => {
   // Mock the apiRequest function
@@ -33,7 +35,7 @@ describe("Favorite Hook", () => {
     it("should return list of favorites from the server", async () => {
       apiRequest.mockResolvedValue({
         data: { data: mockFavorites },
-        error: null,
+        error: undefined,
       })
 
       const { result } = renderHook(() => useFavorites("user-id"))
@@ -43,7 +45,7 @@ describe("Favorite Hook", () => {
       })
 
       expect(result.current.data).toEqual(mockFavorites)
-      expect(result.current.error).toBeNull()
+      expect(result.current.error).toBeUndefined()
     })
     it("should return list of favorites from the local storage", async () => {
       const mockLocalFavorites = {
@@ -52,7 +54,7 @@ describe("Favorite Hook", () => {
       }
       apiRequest.mockResolvedValue({
         data: { data: mockFavorites },
-        error: null,
+        error: undefined,
       })
       mockStorage.mockResolvedValue(mockLocalFavorites)
       const { result } = renderHook(() => useFavorites("user-id"))

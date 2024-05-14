@@ -5,6 +5,17 @@ import * as restaurantHooks from "../../services/pmo/restaurant/hooks"
 
 import CityList from "./CityList"
 
+const route = {
+  key: "RestaurantDetails",
+  name: "RestaurantDetails",
+  params: {
+    state: {
+      name: "name",
+      short: "short",
+    },
+  },
+} as const
+
 describe("CityList component", () => {
   // Mock the hooks and components used in CityList
 
@@ -23,15 +34,14 @@ describe("CityList component", () => {
   it("renders city List", () => {
     useCities.mockReturnValue({
       ...mockCitiesResponse,
-      error: null,
+      error: undefined,
       isPending: false,
     })
 
     render(
       <NavigationContainer>
-        <CityList
-          route={{ params: { state: { name: "test", short: "test" } } }}
-        />
+        {/* @ts-ignore */}
+        <CityList route={route} />
       </NavigationContainer>,
     )
     expect(screen.getByText(/Detroit/i)).toBeOnTheScreen()
@@ -39,13 +49,16 @@ describe("CityList component", () => {
   })
 
   it("renders loading city", () => {
-    useCities.mockReturnValue({ data: null, error: null, isPending: true })
+    useCities.mockReturnValue({
+      data: undefined,
+      error: undefined,
+      isPending: true,
+    })
 
     render(
       <NavigationContainer>
-        <CityList
-          route={{ params: { state: { name: "test", short: "test" } } }}
-        />
+        {/* @ts-ignore */}
+        <CityList route={route} />
       </NavigationContainer>,
     )
 

@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react"
-import type { State } from "./interfaces"
+
+import { State } from "./interfaces"
 
 const baseUrl = process.env.PMO_API
 
 interface StatesResponse {
-  data: State[] | null
-  error: Error | null
+  data: State[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
-export function useStates(): StatesResponse {
- 
-}
+export function useStates(): StatesResponse {}

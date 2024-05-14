@@ -24,7 +24,7 @@ describe("apiRequest function", () => {
       path: "/test",
     })
 
-    expect(response).toEqual({ data: { message: "success" }, error: null })
+    expect(response).toEqual({ data: { message: "success" }, error: undefined })
     expect(mockFetch).toHaveBeenCalledWith(`${process.env.PMO_API}/test?`, {
       method: "GET",
       body: undefined,
@@ -63,7 +63,10 @@ describe("apiRequest function", () => {
       path: "/test",
     })
 
-    expect(response).toEqual({ data: null, error: new Error("Network Error") })
+    expect(response).toEqual({
+      data: undefined,
+      error: new Error("Network Error"),
+    })
   })
 })
 
@@ -74,7 +77,7 @@ describe("stringifyQuery function", () => {
   })
 
   it("should omit undefined and null values", () => {
-    const query = stringifyQuery({ foo: "bar", baz: null, qux: undefined })
+    const query = stringifyQuery({ foo: "bar", baz: undefined, qux: undefined })
     expect(query).toBe("foo=bar")
   })
 })

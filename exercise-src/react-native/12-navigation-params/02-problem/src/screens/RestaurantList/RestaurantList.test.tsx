@@ -3,23 +3,28 @@ import { render, screen } from "@testing-library/react-native"
 
 import RestaurantList from "./RestaurantList"
 
-const params = {
-  state: {
-    short: "sT",
-    name: "stateTest",
+const route = {
+  key: "RestaurantList",
+  name: "RestaurantList",
+  params: {
+    state: {
+      name: "name",
+      short: "short",
+    },
+    city: {
+      name: "name",
+      state: "state",
+    },
+    slug: "test",
   },
-  city: {
-    name: "cityTest",
-    state: "sT",
-  },
-  slug: "slugTest",
-}
+} as const
 
 describe("RestaurantList component", () => {
   it("renders restaurant List", () => {
     render(
       <NavigationContainer>
-        <RestaurantList route={{ params }} />
+        {/* @ts-ignore */}
+        <RestaurantList route={route} />
       </NavigationContainer>,
     )
     expect(screen.getByText(/Cheese Curd City/i)).toBeOnTheScreen()

@@ -1,20 +1,24 @@
 import { render, screen } from "@testing-library/react-native"
 
-import * as restaurantHooks from "../../services/pmo/restaurant/hooks"
 import AuthProvider from "../../services/auth/AuthProvider"
+import * as restaurantHooks from "../../services/pmo/restaurant/hooks"
 
 import RestaurantDetails from "./RestaurantDetails"
 
-const params = {
-  state: {
-    name: "name",
-    short: "short",
+const route = {
+  key: "RestaurantDetails",
+  name: "RestaurantDetails",
+  params: {
+    state: {
+      name: "name",
+      short: "short",
+    },
+    city: {
+      name: "name",
+      state: "state",
+    },
+    slug: "test",
   },
-  city: {
-    name: "name",
-    state: "state",
-  },
-  slug: "test",
 } as const
 
 jest.mock("@react-navigation/native", () => {
@@ -55,13 +59,18 @@ describe("RestaurantDetails component", () => {
       coordinate: { latitude: 0, longitude: 0 },
     },
     isPending: false,
-    error: null,
+    error: undefined,
   }
   it("renders loading state", () => {
-    useRestaurant.mockReturnValue({ data: null, isPending: true, error: null })
+    useRestaurant.mockReturnValue({
+      data: undefined,
+      isPending: true,
+      error: undefined,
+    })
     render(
       <AuthProvider>
-        <RestaurantDetails route={{ params }} />
+        {/* @ts-ignore */}
+        <RestaurantDetails route={route} />
       </AuthProvider>,
     )
 
@@ -70,13 +79,14 @@ describe("RestaurantDetails component", () => {
 
   it("renders error state", () => {
     useRestaurant.mockReturnValue({
-      data: null,
+      data: undefined,
       isPending: false,
       error: { name: "Error", message: "Mock error" },
     })
     render(
       <AuthProvider>
-        <RestaurantDetails route={{ params }} />
+        {/* @ts-ignore */}
+        <RestaurantDetails route={route} />
       </AuthProvider>,
     )
     expect(
@@ -91,7 +101,8 @@ describe("RestaurantDetails component", () => {
     useRestaurant.mockReturnValue(mockRestaurantData)
     render(
       <AuthProvider>
-        <RestaurantDetails route={{ params }} />
+        {/* @ts-ignore */}
+        <RestaurantDetails route={route} />
       </AuthProvider>,
     )
 
@@ -99,10 +110,11 @@ describe("RestaurantDetails component", () => {
   })
 
   it("renders the RestaurantHeader and content when data is not available", () => {
-    useRestaurant.mockReturnValue({ ...mockRestaurantData, data: null })
+    useRestaurant.mockReturnValue({ ...mockRestaurantData, data: undefined })
     render(
       <AuthProvider>
-        <RestaurantDetails route={{ params }} />
+        {/* @ts-ignore */}
+        <RestaurantDetails route={route} />
       </AuthProvider>,
     )
 

@@ -1,9 +1,6 @@
-import type { FC } from "react"
-import type { Theme } from "./theme"
-
 import { createContext, useContext, useMemo } from "react"
 
-import theme from "./theme"
+import theme, { Theme } from "./theme"
 
 interface ThemeContext {
   theme: Theme
@@ -11,7 +8,9 @@ interface ThemeContext {
 
 const Context = createContext<ThemeContext>({ theme })
 
-const ThemeProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
+const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const value = useMemo(() => ({ theme }), [])
 
   return <Context.Provider value={value}>{children}</Context.Provider>

@@ -1,4 +1,3 @@
-import type { JSX } from "react"
 import { SafeAreaView, ScrollView, Text, View } from "react-native"
 
 const states = [
@@ -12,7 +11,7 @@ const states = [
   },
 ]
 
-function App(): JSX.Element {
+const App: React.FC = () => {
   return (
     <SafeAreaView style={{ height: "100%", width: "100%" }}>
       <ScrollView>
@@ -20,7 +19,7 @@ function App(): JSX.Element {
           <Text>Place My Order: Coming Soon!</Text>
         </View>
         <View>
-          {states?.length > 0 ? (
+          {states?.length ? (
             states.map((state) => <Text key={state.short}>{state.name}</Text>)
           ) : (
             <Text>No states found</Text>

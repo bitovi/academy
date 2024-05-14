@@ -1,20 +1,19 @@
-import type { FC } from "react"
-import { FlatList } from "react-native"
 import { useNavigation } from "@react-navigation/native"
+import { FlatList } from "react-native"
 
-import { useStates } from "../../services/pmo/restaurant"
+import Loading from "../../components/Loading"
 import Box from "../../design/Box"
+import Button from "../../design/Button"
 import Screen from "../../design/Screen"
 import Typography from "../../design/Typography"
-import Button from "../../design/Button"
-import Loading from "../../components/Loading"
+import { useStates } from "../../services/pmo/restaurant"
 
-const StateList: FC = () => {
+const StateList: React.FC = () => {
   const navigation = useNavigation()
 
   return (
     <Screen>
-      {states?.length > 0 ? (
+      {states?.length ? (
         <FlatList
           data={states}
           renderItem={({ item: stateItem }) => (

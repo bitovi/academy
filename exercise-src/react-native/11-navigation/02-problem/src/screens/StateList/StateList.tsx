@@ -1,11 +1,10 @@
-import type { FC } from "react"
-import { FlatList } from "react-native"
 import { useNavigation } from "@react-navigation/native"
+import { FlatList } from "react-native"
 
-import Card from "../../design/Card"
-import Typography from "../../design/Typography"
-import Screen from "../../design/Screen"
 import Button from "../../design/Button"
+import Card from "../../design/Card"
+import Screen from "../../design/Screen"
+import Typography from "../../design/Typography"
 
 export interface State {
   name: string
@@ -23,7 +22,7 @@ const states: State[] = [
   },
 ]
 
-const StateList: FC = () => {
+const StateList: React.FC = () => {
   const navigation = useNavigation()
 
   return (
@@ -36,9 +35,7 @@ const StateList: FC = () => {
       <FlatList
         data={states}
         renderItem={({ item: stateItem }) => (
-          <Button
-            onPress={() => console.warn(`${stateItem.name}`)}
-          >
+          <Button onPress={() => console.warn(`${stateItem.name}`)}>
             {stateItem.name}
           </Button>
         )}

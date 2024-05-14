@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import { SafeAreaView, ScrollView, Text, View } from "react-native"
 
 const states = [
@@ -13,23 +12,21 @@ const states = [
 ]
 
 export type ListItemProps = {
-  //Exercise: Implement ListItem Props 
+  //Exercise: Implement ListItem Props
 }
 
-export const ListItem: FC = ({}) => {
-  return (
-    // Exercise: Implement ListItem component
-  )
+export const ListItem: React.FC = () => {
+  // Exercise: Implement ListItem component
 }
 
-export const StateList: FC = () => {
+export const StateList: React.FC = () => {
   return (
     <ScrollView>
       <View>
         <Text>Place My Order: Coming Soon!</Text>
       </View>
       <View>
-        {states?.length > 0 ? (
+        {states?.length ? (
           states.map((state) => <Text key={state.short}>{state.name}</Text>)
         ) : (
           <Text>No states found</Text>
@@ -39,7 +36,7 @@ export const StateList: FC = () => {
   )
 }
 
-const App: FC = () => {
+const App: React.FC = () => {
   return (
     <SafeAreaView style={{ height: "100%", width: "100%" }}>
       <StateList />

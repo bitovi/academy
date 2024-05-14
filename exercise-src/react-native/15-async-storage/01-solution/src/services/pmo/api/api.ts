@@ -23,7 +23,7 @@ export async function apiRequest<
   params?: Params
   path: string
   body?: Body
-}): Promise<{ data: Data | null; error: Error | null }> {
+}): Promise<{ data: Data | undefined; error: Error | undefined }> {
   try {
     const query = params ? stringifyQuery(params) : ""
     const requestUrl = `${baseUrl}${path}?${query}`
@@ -35,12 +35,13 @@ export async function apiRequest<
         )
 
         if (cachedResponse) {
-          const diff = new Date().valueOf() - new Date(cachedResponse.dateTime).valueOf()
+          const diff =
+            new Date().valueOf() - new Date(cachedResponse.dateTime).valueOf()
           //Return Cached data if it's younger than one minute
           if (diff < 60000) {
             return {
               data: cachedResponse.data,
-              error: null,
+              error: undefined,
             }
           }
         }
@@ -59,7 +60,7 @@ export async function apiRequest<
 
     const data = await response.json()
     const error = response.ok
-      ? null
+      ? undefined
       : new Error(`${response.status} (${response.statusText})`)
 
     if (method === "GET" && response.ok) {
@@ -75,7 +76,7 @@ export async function apiRequest<
     }
   } catch (error) {
     return {
-      data: null,
+      data: undefined,
       error:
         error instanceof Error ? error : new Error("An unknown error occurred"),
     }
@@ -83,7 +84,7 @@ export async function apiRequest<
 }
 
 export function stringifyQuery(
-  input: Record<string, string | null | undefined>,
+  input: Record<string, string | undefined | undefined>,
 ): string {
   const output: string[] = []
 

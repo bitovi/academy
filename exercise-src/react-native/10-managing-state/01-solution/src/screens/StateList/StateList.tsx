@@ -1,10 +1,11 @@
-import type { FC } from "react"
-import ListItem from "./components/ListItem"
-import Screen from "../../design/Screen"
-import Typography from "../../design/Typography"
-import Card from "../../design/Card"
-import { useThemeMode } from "../../design/theme"
 import { Switch } from "react-native"
+
+import Card from "../../design/Card"
+import Screen from "../../design/Screen"
+import { useThemeMode } from "../../design/theme"
+import Typography from "../../design/Typography"
+
+import ListItem from "./components/ListItem"
 
 export type State = {
   name: string
@@ -22,7 +23,7 @@ const states: State[] = [
   },
 ]
 
-const StateList: FC = () => {
+const StateList: React.FC = () => {
   const { mode, setMode } = useThemeMode()
 
   return (
@@ -32,7 +33,7 @@ const StateList: FC = () => {
           Place My Order: Coming Soon To...
         </Typography>
       </Card>
-      {states?.length > 0 ? (
+      {states?.length ? (
         states.map((state) => <ListItem key={state.short} name={state.name} />)
       ) : (
         <Typography>No states found</Typography>

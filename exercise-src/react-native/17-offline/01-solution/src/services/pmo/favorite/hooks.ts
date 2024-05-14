@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import { apiRequest } from "../api"
+
 import { storeData, getData } from "../../storage/storage"
+import { apiRequest } from "../api"
 
 interface Favorite {
   userId: string
@@ -11,14 +12,14 @@ interface Favorite {
 }
 
 interface FavoritesResponse {
-  data: Favorite[] | null
-  error: Error | null
+  data: Favorite[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface FavoriteResponse {
-  data: Favorite | null
-  error: Error | null
+  data: Favorite | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
@@ -37,8 +38,8 @@ export const useFavorites = (
   localFavorites: LocalStorageFavorites | undefined
 } => {
   const [response, setResponse] = useState<FavoritesResponse>({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
   const [localFavorites, setLocalFavorites] = useState<
@@ -60,7 +61,7 @@ export const useFavorites = (
       })
 
       setResponse({
-        data: data?.data || null,
+        data: data?.data || undefined,
         error: error,
         isPending: false,
       })

@@ -1,9 +1,8 @@
-import type { StackScreenProps } from "@react-navigation/stack"
-import type { RestaurantsStackParamList } from "../../App"
-import type { FC } from "react"
-
-import { FlatList } from "react-native"
 import { useNavigation } from "@react-navigation/native"
+import { StackScreenProps } from "@react-navigation/stack"
+import { FlatList } from "react-native"
+
+import { RestaurantsStackParamList } from "../../App"
 import Box from "../../design/Box"
 import Button from "../../design/Button"
 
@@ -14,7 +13,12 @@ const restaurants = [
     name: "Cheese Curd City",
     slug: "cheese-curd-city",
     images: {
-      // thumbnail: CheeseThumbnail,
+      thumbnail:
+        "https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-thumbnail.jpg",
+      owner:
+        "https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-owner.jpg",
+      banner:
+        "https://www.place-my-order.com/node_modules/place-my-order-assets/images/1-banner.jpg",
     },
     address: {
       street: "2451 W Washburne Ave",
@@ -28,7 +32,12 @@ const restaurants = [
     name: "Poutine Palace",
     slug: "poutine-palace",
     images: {
-      // thumbnail: PoutineThumbnail,
+      thumbnail:
+        "https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-thumbnail.jpg",
+      owner:
+        "https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-owner.jpg",
+      banner:
+        "https://www.place-my-order.com/node_modules/place-my-order-assets/images/1-banner.jpg",
     },
     address: {
       street: "230 W Kinzie Street",
@@ -40,17 +49,9 @@ const restaurants = [
   },
 ]
 
-const RestaurantList: FC<Props> = ({ route }) => {
+const RestaurantList: React.FC<Props> = ({ route }) => {
   const { state, city } = route.params
   const navigation = useNavigation()
-
-  const navigateToDetails = (slug) => {
-    navigation.navigate("RestaurantDetails", {
-      state,
-      city,
-      slug,
-    })
-  }
 
   return (
     <>
@@ -58,7 +59,15 @@ const RestaurantList: FC<Props> = ({ route }) => {
         <FlatList
           data={restaurants}
           renderItem={({ item: restaurant }) => (
-            <Button onPress={() => navigateToDetails(restaurant.slug)}>
+            <Button
+              onPress={() =>
+                navigation.navigate("RestaurantDetails", {
+                  state,
+                  city,
+                  slug: restaurant.slug,
+                })
+              }
+            >
               {restaurant.name}
             </Button>
           )}

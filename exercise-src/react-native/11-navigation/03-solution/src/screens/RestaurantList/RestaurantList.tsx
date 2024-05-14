@@ -1,7 +1,6 @@
-import type { FC } from "react"
-
-import { FlatList } from "react-native"
 import { useNavigation } from "@react-navigation/native"
+import { FlatList } from "react-native"
+
 import Box from "../../design/Box"
 import Button from "../../design/Button"
 
@@ -10,7 +9,12 @@ const restaurants = [
     name: "Cheese Curd City",
     slug: "cheese-curd-city",
     images: {
-      // thumbnail: CheeseThumbnail,
+      thumbnail:
+        "https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-thumbnail.jpg",
+      owner:
+        "https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-owner.jpg",
+      banner:
+        "https://www.place-my-order.com/node_modules/place-my-order-assets/images/1-banner.jpg",
     },
     address: {
       street: "2451 W Washburne Ave",
@@ -24,7 +28,12 @@ const restaurants = [
     name: "Poutine Palace",
     slug: "poutine-palace",
     images: {
-      // thumbnail: PoutineThumbnail,
+      thumbnail:
+        "https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-thumbnail.jpg",
+      owner:
+        "https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-owner.jpg",
+      banner:
+        "https://www.place-my-order.com/node_modules/place-my-order-assets/images/1-banner.jpg",
     },
     address: {
       street: "230 W Kinzie Street",
@@ -36,12 +45,8 @@ const restaurants = [
   },
 ]
 
-const RestaurantList: FC = () => {
+const RestaurantList: React.FC = () => {
   const navigation = useNavigation()
-
-  const navigateToDetails = () => {
-    navigation.navigate("RestaurantDetails")
-  }
 
   return (
     <>
@@ -49,7 +54,7 @@ const RestaurantList: FC = () => {
         <FlatList
           data={restaurants}
           renderItem={({ item: restaurant }) => (
-            <Button onPress={() => navigateToDetails(restaurant.slug)}>
+            <Button onPress={() => navigation.navigate("RestaurantDetails")}>
               {restaurant.name}
             </Button>
           )}

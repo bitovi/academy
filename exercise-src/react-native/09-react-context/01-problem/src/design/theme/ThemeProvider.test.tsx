@@ -1,5 +1,3 @@
-import type { FC } from "react"
-
 import { render, screen } from "@testing-library/react-native"
 import { View, Text } from "react-native"
 
@@ -18,7 +16,7 @@ describe("ThemeProvider Provider", () => {
 })
 
 describe("ThemeContext context", () => {
-  const TestComponent: FC = () => {
+  const TestComponent: React.FC = () => {
     const theme = useTheme()
 
     return (

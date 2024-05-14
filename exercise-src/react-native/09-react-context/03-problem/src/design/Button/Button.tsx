@@ -1,10 +1,13 @@
-import type { FC } from "react"
-import type { PressableProps, ViewStyle, TextStyle } from "react-native"
-import type { Theme } from "../theme"
+import {
+  PressableProps,
+  ViewStyle,
+  TextStyle,
+  StyleSheet,
+  Pressable,
+  Text,
+} from "react-native"
 
-import { StyleSheet, Pressable, Text } from "react-native"
-
-import { useTheme } from "../theme"
+import { Theme, useTheme } from "../theme"
 
 type Variant = "primary" | "secondary" | "outline"
 
@@ -18,7 +21,7 @@ export interface ButtonProps extends PressableProps {
   children: string
 }
 
-const Button: FC<ButtonProps> = ({
+const Button: React.FC<ButtonProps> = ({
   variant = "primary",
   margin,
   padding,

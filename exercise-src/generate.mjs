@@ -1,81 +1,83 @@
-import fs from "node:fs/promises"
-import path from "node:path"
+import fs from "node:fs/promises";
+import path from "node:path";
 
 if (process.argv.length > 2) {
-  const courseName = process.argv[2]
-  const moduleName = process.argv[3]
-  const projectName = process.argv[4]
+  const courseName = process.argv[2];
+  const moduleName = process.argv[3];
+  const projectName = process.argv[4];
 
-  await generateCourse(courseName, moduleName, projectName)
+  await generateCourse(courseName, moduleName, projectName);
 } else {
-  const courses = await getCourses()
+  const courses = await getCourses();
   for (const courseName of courses) {
-    await generateCourse(courseName)
+    await generateCourse(courseName);
   }
 }
 
 async function getCourses() {
-  const courses = []
+  const courses = [];
 
-  const items = await fs.readdir(import.meta.dirname)
+  const items = await fs.readdir(import.meta.dirname);
   for (const courseName of items) {
-    const coursePath = path.join(import.meta.dirname, courseName)
-    const stats = await fs.stat(coursePath)
+    const coursePath = path.join(import.meta.dirname, courseName);
+    const stats = await fs.stat(coursePath);
     if (!stats.isDirectory()) {
-      continue
+      continue;
     }
 
-    courses.push(courseName)
+    courses.push(courseName);
   }
 
-  return courses
+  return courses;
 }
 
 async function generateCourse(courseName, buildModuleName, buildProjectName) {
-  console.log(`Generating ${courseName}`)
+  console.log(`Generating ${courseName}`);
 
-  const build = {}
+  const build = {};
 
-  const sequence = await getCourseSequence(courseName)
+  const sequence = await getCourseSequence(courseName);
   for (const { moduleName, projectName, source, target } of sequence) {
     const building =
       !buildModuleName ||
       (moduleName === buildModuleName &&
-        (!buildProjectName || projectName === buildProjectName))
+        (!buildProjectName || projectName === buildProjectName));
 
     console.log(
-      `  ${building ? "Building" : "Processing"} ${moduleName}/${projectName}`,
-    )
+      `  ${building ? "Building" : "Processing"} ${moduleName}/${projectName}`
+    );
 
-    await updateBuild(build, source, ".")
+    await updateBuild(build, source, ".");
 
     if (building) {
-      await generateBuild(build, target)
+      await generateBuild(build, target);
     }
   }
 }
 
 async function getCourseSequence(courseName) {
-  const dirname = import.meta.dirname
-  const sourceBase = path.join(dirname, courseName)
-  const targetBase = path.join(dirname, "..", "exercises", courseName)
+  const dirname = import.meta.dirname;
+  const sourceBase = path.join(dirname, courseName);
+  const targetBase = path.join(dirname, "..", "exercises", courseName);
 
-  const sequence = []
+  const sequence = [];
 
-  const modules = await fs.readdir(sourceBase)
+  const modules = await fs.readdir(sourceBase);
   for (const moduleName of modules) {
-    const modulePath = path.join(sourceBase, moduleName)
-    const stats = await fs.stat(modulePath)
+    if (moduleName === "node_modules") continue;
+
+    const modulePath = path.join(sourceBase, moduleName);
+    const stats = await fs.stat(modulePath);
     if (!stats.isDirectory()) {
-      continue
+      continue;
     }
 
-    const projects = await fs.readdir(modulePath)
+    const projects = await fs.readdir(modulePath);
     for (const projectName of projects) {
-      const projectPath = path.join(modulePath, projectName)
-      const stats = await fs.stat(projectPath)
+      const projectPath = path.join(modulePath, projectName);
+      const stats = await fs.stat(projectPath);
       if (!stats.isDirectory()) {
-        continue
+        continue;
       }
 
       sequence.push({
@@ -83,58 +85,56 @@ async function getCourseSequence(courseName) {
         projectName,
         source: path.join(sourceBase, moduleName, projectName),
         target: path.join(targetBase, moduleName, projectName),
-      })
+      });
     }
   }
 
-  return sequence
+  return sequence;
 }
 
 async function updateBuild(build, source, directory) {
-  const items = (await fs.readdir(path.join(source, directory))).filter(childPath => {
-    /*
-      This is filtering out the node_modules folder because it is ignored anyway, so
-      it doesn’t need to be copied. If we end up needing to filter out more folders
-      that are in a .gitignore, we should parse it and respect it completely.
-    */
-    return childPath !== 'node_modules';
-  })
+  const items = await fs.readdir(path.join(source, directory));
+
   for (const itemName of items) {
-    const buildPath = path.join(directory, itemName)
-    const fullPath = path.join(source, buildPath)
+    if (itemName === "node_modules") continue;
+
+    const buildPath = path.join(directory, itemName);
+    const fullPath = path.join(source, buildPath);
 
     if (itemName === ".delete") {
-      const toDelete = (await fs.readFile(fullPath, "utf-8")).trim().split("\n")
+      const toDelete = (await fs.readFile(fullPath, "utf-8"))
+        .trim()
+        .split("\n");
 
       for (const deleteName of toDelete) {
-        const deleteFile = path.join(directory, deleteName)
-        delete build[deleteFile]
+        const deleteFile = path.join(directory, deleteName);
+        delete build[deleteFile];
 
-        const deleteDirectory = path.join(deleteFile, "#").slice(0, -1)
+        const deleteDirectory = path.join(deleteFile, "#").slice(0, -1);
         for (const buildFile in build) {
           if (buildFile.startsWith(deleteDirectory)) {
-            delete build[buildFile]
+            delete build[buildFile];
           }
         }
       }
 
-      continue
+      continue;
     }
 
-    const stats = await fs.stat(fullPath)
+    const stats = await fs.stat(fullPath);
     if (stats.isDirectory()) {
-      await updateBuild(build, source, buildPath)
+      await updateBuild(build, source, buildPath);
     } else {
-      build[buildPath] = fullPath
+      build[buildPath] = fullPath;
     }
   }
 }
 
 async function generateBuild(build, target) {
   for (const [buildFile, sourceFile] of Object.entries(build)) {
-    const destFile = path.join(target, buildFile)
+    const destFile = path.join(target, buildFile);
 
-    await fs.mkdir(path.dirname(destFile), { recursive: true })
-    await fs.copyFile(sourceFile, destFile)
+    await fs.mkdir(path.dirname(destFile), { recursive: true });
+    await fs.copyFile(sourceFile, destFile);
   }
 }

@@ -1,8 +1,7 @@
-import type { FC, ReactNode } from "react"
-import type { LocalStorageApiRequest } from "../pmo/api"
-import { keyPrefix } from "../pmo/api"
 import { useEffect, useState } from "react"
+
 import Loading from "../../components/Loading"
+import { LocalStorageApiRequest, keyPrefix } from "../pmo/api"
 import { getData, getAllKeys, storeData, clearStorage } from "../storage"
 
 interface LocalStorageApiRequestV1 {
@@ -15,11 +14,11 @@ const migrateDataV1toV2 = async (): Promise<void> => {
   try {
     for (const key of keys) {
       if (key.startsWith(keyPrefix)) {
-        const oldData = await getData(key) as LocalStorageApiRequestV1;
+        const oldData = (await getData(key)) as LocalStorageApiRequestV1
         await storeData<LocalStorageApiRequest<unknown>>(key, {
           ...oldData,
           dateTime: oldData.dateTime.valueOf(),
-        });
+        })
       }
     }
   } catch (error) {
@@ -28,7 +27,9 @@ const migrateDataV1toV2 = async (): Promise<void> => {
   }
 }
 
-const DataMigration: FC<{ children: ReactNode }> = ({ children }) => {
+const DataMigration: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [isDone, setMigrationDone] = useState<boolean>(false)
 
   useEffect(() => {
@@ -49,7 +50,7 @@ const DataMigration: FC<{ children: ReactNode }> = ({ children }) => {
     return <Loading />
   }
 
-  return children
+  return <>{children}</>
 }
 
 export default DataMigration

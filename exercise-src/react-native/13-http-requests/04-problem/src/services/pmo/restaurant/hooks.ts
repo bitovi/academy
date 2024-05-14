@@ -1,35 +1,37 @@
 import { useEffect, useState } from "react"
+
 import { apiRequest } from "../api/api"
-import type { City, Restaurant, State } from "./interfaces"
+
+import { City, Restaurant, State } from "./interfaces"
 
 interface CitiesResponse {
-  data: City[] | null
-  error: Error | null
+  data: City[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface RestaurantResponse {
-  data: Restaurant | null
-  error: Error | null
+  data: Restaurant | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface RestaurantsResponse {
-  data: Restaurant[] | null
-  error: Error | null
+  data: Restaurant[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface StatesResponse {
-  data: State[] | null
-  error: Error | null
+  data: State[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 export function useCities(state: string): CitiesResponse {
   const [response, setResponse] = useState<CitiesResponse>({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
@@ -44,7 +46,7 @@ export function useCities(state: string): CitiesResponse {
       })
 
       setResponse({
-        data: data?.data || null,
+        data: data?.data || undefined,
         error: error,
         isPending: false,
       })
@@ -55,29 +57,25 @@ export function useCities(state: string): CitiesResponse {
   return response
 }
 
-export function useRestaurant(slug: string): RestaurantResponse {
-
-}
+export function useRestaurant(slug: string): RestaurantResponse {}
 
 export function useRestaurants(
   state: string,
   city: string,
-): RestaurantsResponse {
-
-}
+): RestaurantsResponse {}
 
 export function useStates(): StatesResponse {
   const [response, setResponse] = useState<StatesResponse>({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
   useEffect(() => {
     const fetchData = async () => {
       setResponse({
-        data: null,
-        error: null,
+        data: undefined,
+        error: undefined,
         isPending: true,
       })
 
@@ -87,7 +85,7 @@ export function useStates(): StatesResponse {
       })
 
       setResponse({
-        data: data?.data || null,
+        data: data?.data || undefined,
         error: error,
         isPending: false,
       })

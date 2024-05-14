@@ -1,5 +1,7 @@
 import { renderHook, waitFor } from "@testing-library/react-native"
+
 import * as api from "../api/api"
+
 import { useStates, useCities, useRestaurants } from "./hooks"
 
 describe("Restaurant Hooks", () => {
@@ -16,7 +18,10 @@ describe("Restaurant Hooks", () => {
         { id: 1, name: "City1" },
         { id: 2, name: "City2" },
       ]
-      apiRequest.mockResolvedValue({ data: { data: mockCities }, error: null })
+      apiRequest.mockResolvedValue({
+        data: { data: mockCities },
+        error: undefined,
+      })
 
       const { result } = renderHook(() => useCities("test-state"))
 
@@ -24,19 +29,19 @@ describe("Restaurant Hooks", () => {
         expect(result.current.isPending).toBeFalsy()
       })
       expect(result.current.data).toEqual(mockCities)
-      expect(result.current.error).toBeNull()
+      expect(result.current.error).toBeUndefined()
     })
 
     it("should handle error when fetching cities data", async () => {
       const mockError = new Error("Error fetching cities")
-      apiRequest.mockResolvedValue({ data: null, error: mockError })
+      apiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
       const { result } = renderHook(() => useCities("test-state"))
 
       await waitFor(() => {
         expect(result.current.isPending).toBeFalsy()
       })
-      expect(result.current.data).toBeNull()
+      expect(result.current.data).toBeUndefined()
       expect(result.current.error).toEqual(mockError)
     })
   })
@@ -46,7 +51,7 @@ describe("Restaurant Hooks", () => {
       const mockRestaurant = { id: 1, name: "Restaurant1" }
       apiRequest.mockResolvedValue({
         data: { data: mockRestaurant },
-        error: null,
+        error: undefined,
       })
 
       const { result } = renderHook(() =>
@@ -57,12 +62,12 @@ describe("Restaurant Hooks", () => {
         expect(result.current.isPending).toBeFalsy()
       })
       expect(result.current.data).toEqual(mockRestaurant)
-      expect(result.current.error).toBeNull()
+      expect(result.current.error).toBeUndefined()
     })
 
     it("should handle error when fetching restaurant data", async () => {
       const mockError = new Error("Error fetching restaurant")
-      apiRequest.mockResolvedValue({ data: null, error: mockError })
+      apiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
       const { result } = renderHook(() =>
         useRestaurants("test-state", "test-city"),
@@ -72,7 +77,7 @@ describe("Restaurant Hooks", () => {
         expect(result.current.isPending).toBeFalsy()
       })
 
-      expect(result.current.data).toBeNull()
+      expect(result.current.data).toBeUndefined()
       expect(result.current.error).toEqual(mockError)
     })
   })
@@ -85,7 +90,7 @@ describe("Restaurant Hooks", () => {
       ]
       apiRequest.mockResolvedValue({
         data: { data: mockRestaurants },
-        error: null,
+        error: undefined,
       })
 
       const { result } = renderHook(() =>
@@ -96,12 +101,12 @@ describe("Restaurant Hooks", () => {
         expect(result.current.isPending).toBeFalsy()
       })
       expect(result.current.data).toEqual(mockRestaurants)
-      expect(result.current.error).toBeNull()
+      expect(result.current.error).toBeUndefined()
     })
 
     it("should handle error when fetching restaurants data", async () => {
       const mockError = new Error("Error fetching restaurants")
-      apiRequest.mockResolvedValue({ data: null, error: mockError })
+      apiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
       const { result } = renderHook(() =>
         useRestaurants("test-state", "test-city"),
@@ -110,7 +115,7 @@ describe("Restaurant Hooks", () => {
       await waitFor(() => {
         expect(result.current.isPending).toBeFalsy()
       })
-      expect(result.current.data).toBeNull()
+      expect(result.current.data).toBeUndefined()
       expect(result.current.error).toEqual(mockError)
     })
   })
@@ -121,7 +126,10 @@ describe("Restaurant Hooks", () => {
         { id: 1, name: "State1" },
         { id: 2, name: "State2" },
       ]
-      apiRequest.mockResolvedValue({ data: { data: mockStates }, error: null })
+      apiRequest.mockResolvedValue({
+        data: { data: mockStates },
+        error: undefined,
+      })
 
       const { result } = renderHook(() => useStates())
 
@@ -129,19 +137,19 @@ describe("Restaurant Hooks", () => {
         expect(result.current.isPending).toBeFalsy()
       })
       expect(result.current.data).toEqual(mockStates)
-      expect(result.current.error).toBeNull()
+      expect(result.current.error).toBeUndefined()
     })
 
     it("should handle error when fetching states data", async () => {
       const mockError = new Error("Error fetching states")
-      apiRequest.mockResolvedValue({ data: null, error: mockError })
+      apiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
       const { result } = renderHook(() => useStates())
 
       await waitFor(() => {
         expect(result.current.isPending).toBeFalsy()
       })
-      expect(result.current.data).toBeNull()
+      expect(result.current.data).toBeUndefined()
       expect(result.current.error).toEqual(mockError)
     })
   })

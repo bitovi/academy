@@ -1,11 +1,10 @@
-import type { FC, ReactNode } from "react"
-import type { User as UserInfo } from "@react-native-google-signin/google-signin"
-import type { AuthContext } from "./context"
-
+import {
+  User as UserInfo,
+  GoogleSignin,
+} from "@react-native-google-signin/google-signin"
 import { useCallback, useEffect, useMemo, useState } from "react"
-import { GoogleSignin } from "@react-native-google-signin/google-signin"
 
-import { AuthContextProvider, useAuthContext } from "./context"
+import { AuthContext, AuthContextProvider, useAuthContext } from "./context"
 
 const googleOauthwebClientId = process.env.GOOGLE_OAUTH_CLIENT_ID
 GoogleSignin.configure({
@@ -13,8 +12,10 @@ GoogleSignin.configure({
   webClientId: googleOauthwebClientId,
 })
 
-const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [userInfo, setUserInfo] = useState<UserInfo | null>()
+const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const [userInfo, setUserInfo] = useState<UserInfo | undefined>()
 
   const signIn = useCallback(async () => {
     try {
@@ -22,7 +23,7 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
       setUserInfo(userInfo)
       return userInfo.user
     } catch (error) {
-      setUserInfo(null)
+      setUserInfo(undefined)
       console.error("GoogleSignin.signIn() error", error)
       return false
     }
@@ -31,7 +32,7 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const signOut = useCallback(async () => {
     try {
       await GoogleSignin.signOut()
-      setUserInfo(null)
+      setUserInfo(undefined)
       return true
     } catch (error) {
       console.error("GoogleSignin.signOut() error", error)
@@ -42,7 +43,7 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   useEffect(() => {
     async function run() {
       const userInfo = await GoogleSignin.getCurrentUser()
-      setUserInfo(userInfo)
+      setUserInfo(userInfo || undefined)
     }
 
     run()
@@ -52,7 +53,11 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
     () => ({
       signIn,
       signOut,
-      isAuthenticated: userInfo ? true : userInfo === null ? false : undefined,
+      isAuthenticated: userInfo
+        ? true
+        : userInfo === undefined
+        ? false
+        : undefined,
       user: userInfo?.user,
       scopes: userInfo?.scopes,
       idToken: userInfo?.idToken,

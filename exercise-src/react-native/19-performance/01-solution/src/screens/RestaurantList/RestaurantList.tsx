@@ -1,36 +1,32 @@
-import type { FC } from "react"
+import { useNavigation } from "@react-navigation/native"
+import { StackScreenProps } from "@react-navigation/stack"
 import { Suspense, lazy, useState } from "react"
 import { FlatList } from "react-native"
-import { useNavigation } from "@react-navigation/native"
-import { useRestaurants } from "../../services/pmo/restaurant"
-import Box from "../../design/Box"
+
+import { RestaurantsStackParamList } from "../../App"
 import Loading from "../../components/Loading"
-import Button from "../../design/Button"
-import Typography from "../../design/Typography"
-import type { StackScreenProps } from "@react-navigation/stack"
-import type { RestaurantsStackParamList } from "../../App"
 import Tabs from "../../components/Tabs"
+import Box from "../../design/Box"
+import Button from "../../design/Button"
 import Screen from "../../design/Screen"
+import Typography from "../../design/Typography"
+import { useRestaurants } from "../../services/pmo/restaurant"
 
 const Map = lazy(() => import("./components/Map"))
 
 type Props = StackScreenProps<RestaurantsStackParamList, "RestaurantList">
 
-const RestaurantList: FC<Props> = ({ route }) => {
+const RestaurantList: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation()
 
   const { state, city } = route.params
-  const { data, error, isPending } = useRestaurants(state.short, city.name)
+  const {
+    data: restaurants,
+    error,
+    isPending,
+  } = useRestaurants(state.short, city.name)
 
   const [tab, setTab] = useState<string>("list")
-
-  const navigateToDetails = (slug: string) => {
-    navigation.navigate("RestaurantDetails", {
-      state,
-      city,
-      slug: slug,
-    })
-  }
 
   if (error) {
     return (
@@ -65,9 +61,17 @@ const RestaurantList: FC<Props> = ({ route }) => {
         {tab === "list" && (
           <Box padding="s">
             <FlatList
-              data={data}
+              data={restaurants}
               renderItem={({ item: restaurant }) => (
-                <Button onPress={() => navigateToDetails(restaurant.slug)}>
+                <Button
+                  onPress={() =>
+                    navigation.navigate("RestaurantDetails", {
+                      state,
+                      city,
+                      slug: restaurant.slug,
+                    })
+                  }
+                >
                   {restaurant.name}
                 </Button>
               )}
@@ -75,9 +79,9 @@ const RestaurantList: FC<Props> = ({ route }) => {
             />
           </Box>
         )}
-        {tab === "map" && data && (
+        {tab === "map" && restaurants && (
           <Suspense fallback={<Loading />}>
-            <Map data={data} navigateTo={navigateToDetails} />
+            <Map restaurants={restaurants} />
           </Suspense>
         )}
       </Screen>
