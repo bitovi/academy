@@ -13,7 +13,12 @@ const restaurants = [
     name: "Cheese Curd City",
     slug: "cheese-curd-city",
     images: {
-      // thumbnail: CheeseThumbnail,
+      thumbnail:
+        "https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-thumbnail.jpg",
+      owner:
+        "https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-owner.jpg",
+      banner:
+        "https://www.place-my-order.com/node_modules/place-my-order-assets/images/1-banner.jpg",
     },
     address: {
       street: "2451 W Washburne Ave",
@@ -27,7 +32,12 @@ const restaurants = [
     name: "Poutine Palace",
     slug: "poutine-palace",
     images: {
-      // thumbnail: PoutineThumbnail,
+      thumbnail:
+        "https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-thumbnail.jpg",
+      owner:
+        "https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-owner.jpg",
+      banner:
+        "https://www.place-my-order.com/node_modules/place-my-order-assets/images/1-banner.jpg",
     },
     address: {
       street: "230 W Kinzie Street",

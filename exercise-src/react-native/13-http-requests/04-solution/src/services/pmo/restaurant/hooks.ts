@@ -5,33 +5,33 @@ import { apiRequest } from "../api/api"
 import { City, Restaurant, State } from "./interfaces"
 
 interface CitiesResponse {
-  data: City[] | null
-  error: Error | null
+  data: City[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface RestaurantResponse {
-  data: Restaurant | null
-  error: Error | null
+  data: Restaurant | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface RestaurantsResponse {
-  data: Restaurant[] | null
-  error: Error | null
+  data: Restaurant[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface StatesResponse {
-  data: State[] | null
-  error: Error | null
+  data: State[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 export function useCities(state: string): CitiesResponse {
   const [response, setResponse] = useState<CitiesResponse>({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
@@ -46,7 +46,7 @@ export function useCities(state: string): CitiesResponse {
       })
 
       setResponse({
-        data: data?.data || null,
+        data: data?.data || undefined,
         error: error,
         isPending: false,
       })
@@ -59,8 +59,8 @@ export function useCities(state: string): CitiesResponse {
 
 export function useRestaurant(slug: string): RestaurantResponse {
   const [response, setResponse] = useState<RestaurantResponse>({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
@@ -72,7 +72,7 @@ export function useRestaurant(slug: string): RestaurantResponse {
       })
 
       setResponse({
-        data: data || null,
+        data: data || undefined,
         error: error,
         isPending: false,
       })
@@ -88,8 +88,8 @@ export function useRestaurants(
   city: string,
 ): RestaurantsResponse {
   const [response, setResponse] = useState<RestaurantsResponse>({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
@@ -105,7 +105,7 @@ export function useRestaurants(
       })
 
       setResponse({
-        data: data?.data || null,
+        data: data?.data || undefined,
         error: error,
         isPending: false,
       })
@@ -118,16 +118,16 @@ export function useRestaurants(
 
 export function useStates(): StatesResponse {
   const [response, setResponse] = useState<StatesResponse>({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
   useEffect(() => {
     const fetchData = async () => {
       setResponse({
-        data: null,
-        error: null,
+        data: undefined,
+        error: undefined,
         isPending: true,
       })
 
@@ -137,7 +137,7 @@ export function useStates(): StatesResponse {
       })
 
       setResponse({
-        data: data?.data || null,
+        data: data?.data || undefined,
         error: error,
         isPending: false,
       })

@@ -16,10 +16,10 @@ export async function apiRequest<
   params?: Params
   path: string
   body?: Body
-}): Promise<{ data: Data | null; error: Error | null }> {}
+}): Promise<{ data: Data | undefined; error: Error | undefined }> {}
 
 export function stringifyQuery(
-  input: Record<string, string | null | undefined>,
+  input: Record<string, string | undefined | undefined>,
 ): string {
   const output: string[] = []
 

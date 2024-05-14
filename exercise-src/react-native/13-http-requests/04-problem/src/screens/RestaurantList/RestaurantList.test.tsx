@@ -116,7 +116,7 @@ describe("RestaurantList component", () => {
   it("renders restaurant List", () => {
     useRestaurants.mockReturnValue({
       ...mockRestaurantsResponse,
-      error: null,
+      error: undefined,
       isPending: false,
     })
 
@@ -131,7 +131,7 @@ describe("RestaurantList component", () => {
   })
 
   it("renders loading restaurant", () => {
-    useRestaurants.mockReturnValue({ data: null, error: null, isPending: true })
+    useRestaurants.mockReturnValue({ data: undefined, error: undefined, isPending: true })
 
     render(
       <NavigationContainer>
@@ -144,7 +144,7 @@ describe("RestaurantList component", () => {
   })
   it("renders error restaurant", () => {
     useRestaurants.mockReturnValue({
-      data: null,
+      data: undefined,
       error: { name: "Oops", message: "This is the error" },
       isPending: false,
     })

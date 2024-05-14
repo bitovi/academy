@@ -34,7 +34,7 @@ describe("CityList component", () => {
   it("renders city List", () => {
     useCities.mockReturnValue({
       ...mockCitiesResponse,
-      error: null,
+      error: undefined,
       isPending: false,
     })
 
@@ -49,7 +49,7 @@ describe("CityList component", () => {
   })
 
   it("renders loading city", () => {
-    useCities.mockReturnValue({ data: null, error: null, isPending: true })
+    useCities.mockReturnValue({ data: undefined, error: undefined, isPending: true })
 
     render(
       <NavigationContainer>

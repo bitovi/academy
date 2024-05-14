@@ -1,8 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react-native"
 import { SwitchChangeEvent } from "react-native"
 
-import { useThemeMode } from "../../design/theme"
-
 import StateList from "./StateList"
 
 const mockSetMode = jest.fn()

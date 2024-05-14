@@ -5,15 +5,15 @@ import { State } from "./interfaces"
 const baseUrl = process.env.PMO_API
 
 interface StatesResponse {
-  data: State[] | null
-  error: Error | null
+  data: State[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 export function useStates(): StatesResponse {
   const [response, setResponse] = useState<StatesResponse>({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
@@ -29,8 +29,8 @@ export function useStates(): StatesResponse {
       const data = await response.json()
 
       setResponse({
-        data: data?.data || null,
-        error: null,
+        data: data?.data || undefined,
+        error: undefined,
         isPending: false,
       })
     }

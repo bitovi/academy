@@ -23,7 +23,7 @@ const StateList: React.FC = () => {
           Place My Order: Coming Soon To...
         </Typography>
       </Card>
-      {states?.length > 0 ? (
+      {states?.length ? (
         states.map((state) => <ListItem key={state.short} name={state.name} />)
       ) : (
         <Typography>No states found</Typography>

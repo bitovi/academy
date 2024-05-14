@@ -1,4 +1,4 @@
-import { SafeAreaView, ScrollView, Text, View } from "react-native"
+import { SafeAreaView } from "react-native"
 
 import StateList from "./screens/StateList"
 

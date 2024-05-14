@@ -23,7 +23,7 @@ export async function apiRequest<
   params?: Params
   path: string
   body?: Body
-}): Promise<{ data: Data | null; error: Error | null }> {
+}): Promise<{ data: Data | undefined; error: Error | undefined }> {
   try {
     const query = params ? stringifyQuery(params) : ""
     const requestUrl = `${baseUrl}${path}?${query}`
@@ -38,7 +38,7 @@ export async function apiRequest<
 
     const data = await response.json()
     const error = response.ok
-      ? null
+      ? undefined
       : new Error(`${response.status} (${response.statusText})`)
 
     return {
@@ -47,7 +47,7 @@ export async function apiRequest<
     }
   } catch (error) {
     return {
-      data: null,
+      data: undefined,
       error:
         error instanceof Error ? error : new Error("An unknown error occurred"),
     }
@@ -55,7 +55,7 @@ export async function apiRequest<
 }
 
 export function stringifyQuery(
-  input: Record<string, string | null | undefined>,
+  input: Record<string, string | undefined | undefined>,
 ): string {
   const output: string[] = []
 

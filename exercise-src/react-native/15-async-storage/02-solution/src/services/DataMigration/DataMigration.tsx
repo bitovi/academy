@@ -50,7 +50,7 @@ const DataMigration: React.FC<{ children: React.ReactNode }> = ({
     return <Loading />
   }
 
-  return children
+  return <>{children}</>
 }
 
 export default DataMigration

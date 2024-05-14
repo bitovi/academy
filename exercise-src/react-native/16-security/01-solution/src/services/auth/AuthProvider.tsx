@@ -15,7 +15,7 @@ GoogleSignin.configure({
 const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [userInfo, setUserInfo] = useState<UserInfo | null>()
+  const [userInfo, setUserInfo] = useState<UserInfo | undefined>()
 
   const signIn = useCallback(async () => {
     try {
@@ -23,7 +23,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       setUserInfo(userInfo)
       return userInfo.user
     } catch (error) {
-      setUserInfo(null)
+      setUserInfo(undefined)
       console.error("GoogleSignin.signIn() error", error)
       return false
     }
@@ -32,7 +32,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const signOut = useCallback(async () => {
     try {
       await GoogleSignin.signOut()
-      setUserInfo(null)
+      setUserInfo(undefined)
       return true
     } catch (error) {
       console.error("GoogleSignin.signOut() error", error)
@@ -43,7 +43,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   useEffect(() => {
     async function run() {
       const userInfo = await GoogleSignin.getCurrentUser()
-      setUserInfo(userInfo)
+      setUserInfo(userInfo || undefined)
     }
 
     run()

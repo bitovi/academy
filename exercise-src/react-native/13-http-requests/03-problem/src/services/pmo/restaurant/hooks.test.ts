@@ -18,7 +18,7 @@ describe("Restaurant Hooks", () => {
         { id: 1, name: "City1" },
         { id: 2, name: "City2" },
       ]
-      apiRequest.mockResolvedValue({ data: { data: mockCities }, error: null })
+      apiRequest.mockResolvedValue({ data: { data: mockCities }, error: undefined })
 
       const { result } = renderHook(() => useCities("test-state"))
 
@@ -31,7 +31,7 @@ describe("Restaurant Hooks", () => {
 
     it("should handle error when fetching cities data", async () => {
       const mockError = new Error("Error fetching cities")
-      apiRequest.mockResolvedValue({ data: null, error: mockError })
+      apiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
       const { result } = renderHook(() => useCities("test-state"))
 
@@ -49,7 +49,7 @@ describe("Restaurant Hooks", () => {
         { id: 1, name: "State1" },
         { id: 2, name: "State2" },
       ]
-      apiRequest.mockResolvedValue({ data: { data: mockStates }, error: null })
+      apiRequest.mockResolvedValue({ data: { data: mockStates }, error: undefined })
 
       const { result } = renderHook(() => useStates())
 
@@ -62,7 +62,7 @@ describe("Restaurant Hooks", () => {
 
     it("should handle error when fetching states data", async () => {
       const mockError = new Error("Error fetching states")
-      apiRequest.mockResolvedValue({ data: null, error: mockError })
+      apiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
       const { result } = renderHook(() => useStates())
 

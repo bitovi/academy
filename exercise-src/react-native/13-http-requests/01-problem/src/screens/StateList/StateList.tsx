@@ -13,7 +13,7 @@ const StateList: React.FC = () => {
 
   return (
     <Screen>
-      {states?.length > 0 ? (
+      {states?.length ? (
         <FlatList
           data={states}
           renderItem={({ item: stateItem }) => (

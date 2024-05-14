@@ -22,7 +22,7 @@ export const ListItem: React.FC<ListItemProps> = ({ name }) => {
 export const StateList: React.FC = () => {
   return (
     <View>
-      {states?.length > 0 ? (
+      {states?.length ? (
         states.map((state) => <ListItem key={state.short} name={state.name} />)
       ) : (
         <Text>No states found</Text>

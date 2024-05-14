@@ -26,7 +26,7 @@ export const StateList: React.FC = () => {
         <Text>Place My Order: Coming Soon!</Text>
       </View>
       <View>
-        {states?.length > 0 ? (
+        {states?.length ? (
           states.map((state) => <Text key={state.short}>{state.name}</Text>)
         ) : (
           <Text>No states found</Text>

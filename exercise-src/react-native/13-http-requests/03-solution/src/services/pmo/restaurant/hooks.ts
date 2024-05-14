@@ -5,21 +5,21 @@ import { apiRequest } from "../api"
 import { City, State } from "./interfaces"
 
 interface CitiesResponse {
-  data: City[] | null
-  error: Error | null
+  data: City[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface StatesResponse {
-  data: State[] | null
-  error: Error | null
+  data: State[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 export function useCities(state: string): CitiesResponse {
   const [response, setResponse] = useState<CitiesResponse>({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
@@ -34,7 +34,7 @@ export function useCities(state: string): CitiesResponse {
       })
 
       setResponse({
-        data: data?.data || null,
+        data: data?.data || undefined,
         error: error,
         isPending: false,
       })
@@ -47,16 +47,16 @@ export function useCities(state: string): CitiesResponse {
 
 export function useStates(): StatesResponse {
   const [response, setResponse] = useState<StatesResponse>({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
   useEffect(() => {
     const fetchData = async () => {
       setResponse({
-        data: null,
-        error: null,
+        data: undefined,
+        error: undefined,
         isPending: true,
       })
 
@@ -66,7 +66,7 @@ export function useStates(): StatesResponse {
       })
 
       setResponse({
-        data: data?.data || null,
+        data: data?.data || undefined,
         error: error,
         isPending: false,
       })

@@ -5,8 +5,8 @@ import { State } from "./interfaces"
 const baseUrl = process.env.PMO_API
 
 interface StatesResponse {
-  data: State[] | null
-  error: Error | null
+  data: State[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
