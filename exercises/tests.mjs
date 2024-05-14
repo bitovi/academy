@@ -43,6 +43,8 @@ async function processSolutions(pageDirectory) {
         const relativeDirectory = path.relative(import.meta.dirname, solutionDirectory)
         const packageJsonPath = path.join(solutionDirectory, 'package.json');
         if (fs.existsSync(packageJsonPath)) {
+            console.info(`Found package.json in ${relativeDirectory}`);
+
             const { scripts } = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
             const script = 'test';
             if (!scripts[script]) {
@@ -50,10 +52,13 @@ async function processSolutions(pageDirectory) {
                 continue;
             }
 
-            console.info(`Found package.json in ${relativeDirectory}`);
             await executeCommand('npm ci', solutionDirectory);
             await executeCommand(`npm run ${script}`, solutionDirectory);
-            await executeCommand('rm -rf node_modules', solutionDirectory);
+            try {
+                await executeCommand('rm -rf node_modules', solutionDirectory);
+            } catch (error) {
+                console.warn('Ignoring error while deleting node_modules:', error);
+            }
             console.info("");
         }
     }
