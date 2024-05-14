@@ -19,7 +19,7 @@ declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace ReactNavigation {
     // eslint-disable-next-line @typescript-eslint/no-empty-interface
-    interface RootParamList extends RestaurantsStackParamList {}
+    interface RootParamList extends RestaurantsStackParamList { }
   }
 }
 
@@ -151,13 +151,13 @@ export const AppNavigator: FC = () => {
 
 const App: FC = () => {
   return (
-    <ThemeProvider>
-      <SafeAreaView style={{ height: "100%", width: "100%" }}>
+    <SafeAreaView style={{ height: "100%", width: "100%" }}>
+      <ThemeProvider>
         <NavigationContainer>
           <AppNavigator />
         </NavigationContainer>
-      </SafeAreaView>
-    </ThemeProvider>
+      </ThemeProvider>
+    </SafeAreaView>
   )
 }
 

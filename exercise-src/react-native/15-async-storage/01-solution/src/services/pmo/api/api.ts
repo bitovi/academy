@@ -4,7 +4,7 @@ const baseUrl = process.env.PMO_API
 
 export interface LocalStorageApiRequest<T> {
   data: T
-  dateTime: number
+  dateTime: Date
 }
 
 export const keyPrefix = "apiRequest-"
@@ -35,7 +35,7 @@ export async function apiRequest<
         )
 
         if (cachedResponse) {
-          const diff = Date.now() - cachedResponse.dateTime
+          const diff = new Date().valueOf() - new Date(cachedResponse.dateTime).valueOf()
           //Return Cached data if it's younger than one minute
           if (diff < 60000) {
             return {
@@ -65,7 +65,7 @@ export async function apiRequest<
     if (method === "GET" && response.ok) {
       await storeData<LocalStorageApiRequest<Data>>(keyPrefix + requestUrl, {
         data: data,
-        dateTime: Date.now(),
+        dateTime: new Date(),
       })
     }
 

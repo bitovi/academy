@@ -1,4 +1,11 @@
+import { getData, storeData } from "../../storage"
+
 const baseUrl = process.env.PMO_API
+
+export interface LocalStorageApiRequest<T> {
+  data: T
+  dateTime: Date
+}
 
 export const keyPrefix = "apiRequest-"
 
