@@ -337,7 +337,7 @@
            						">
 						<a class="page"
 							href="user-inputs.html"
-							title="TODO">
+							title="Use switch controls and inputs to collect information.">
 							Handling User Inputs
 						</a>
 						
@@ -701,7 +701,7 @@ covering CanJS core libraries.">
 <p>Although out of scope for this training, deep linking is a way to navigate to a specific screen or piece of content within your mobile application from an external source. For example, a user might click on a link in an email that opens a specific screen in your app. Deep linking is a powerful tool for user engagement and retention.</p>
 <p>The React Navigation library used in this section supports deep linking and has a <a href="https://reactnavigation.org/docs/deep-linking/">guide</a> on how to set up your application to be notified of incoming links.</p>
 <h3>Navigation Lifecycle</h3>
-<p>Now that we have an understanding of how navigation works within a stack, let's take a look at the implications of navigation on the component lifecycle.</p>
+<p>Now that we have an understanding of how navigation works within a stack, let’s take a look at the implications of navigation on the component lifecycle.</p>
 <p>If we have a stack navigator with two screens, <code>ScreenA</code> and <code>ScreenB</code>, and navigate to <code>ScreenA</code>, then <code>ScreenA</code> will mount the component and render. If we then navigate to <code>ScreenB</code>, <code>ScreenA</code> will be unmounted and <code>ScreenB</code> will mount and render. What happens when we navigate back to <code>ScreenA</code>? <code>ScreenB</code> will unmount the component, but <code>ScreenA</code> will <em>not</em> remount. Because it stayed in the stack, it remained mounted the entire time.</p>
 <h3>Bottom Tab Navigation</h3>
 <p>Tab navigation pattern is one of the most common navigation patterns used in both Android and iOS applications. It allows users to switch between different screens by tapping on tabs that are typically located at the bottom of the screen.</p>
@@ -742,7 +742,7 @@ export default function App() {
 }
 </code></pre>
 <div line-highlight='3-4, 22, 26-31'></div>
-<p>Let's break down the code above:</p>
+<p>Let’s break down the code above:</p>
 <h3>NavigationContainer</h3>
 <p>The <code>NavigationContainer</code> component is responsible for managing our app state and linking. This component handles the platform-specific (iOS, Android) navigation logic and provides functionality to: deep link, notify state changes, and handle back button presses.</p>
 <h3>createBottomTabNavigator</h3>
@@ -784,7 +784,7 @@ export const AppNavigator: React.FC = () =&gt; {
         tabBarActiveTintColor: theme.palette.primary.strong,
         tabBarInactiveTintColor: theme.palette.screen.contrast,
         tabBarIcon: ({ focused, color }) =&gt; {
-          //Exercise: Update the Icon component's name property based on the route
+          //Exercise: Update the Icon component’s name property based on the route
           return &lt;Icon name={icon} size={20} color={color} /&gt;
         },
       })}
@@ -909,7 +909,7 @@ describe(&quot;Settings component&quot;, () =&gt; {
 </code></pre>
 <h3>Exercise 1</h3>
 <ul>
-<li>For the <code>tabBarIcon</code> property on <code>AppTabs.Navigator</code> update the <code>Icon</code> component's name property to be based on the given route.</li>
+<li>For the <code>tabBarIcon</code> property on <code>AppTabs.Navigator</code> update the <code>Icon</code> component’s name property to be based on the given route.</li>
 <li>Add a screen tab for Restaurants (the <code>StateList</code> component) and for <code>Settings</code> component.</li>
 <li>Add the <code>NavigationContainer</code> and  <code>AppNavigator</code> to the <code>App</code> component.</li>
 </ul>
@@ -991,7 +991,7 @@ export default App
  <div line-highlight="31-36,42-51,60-62,only"></div>
 <p></details></p>
 <h2>Objective 2: Using React Native stack navigation</h2>
-<p>Now that we've covered tab navigation, let's move on to stack navigation. As mentioned in the previous section, most applications use a combination of both tab and stack navigation to create a seamless user experience.</p>
+<p>Now that we've covered tab navigation, let’s move on to stack navigation. As mentioned in the previous section, most applications use a combination of both tab and stack navigation to create a seamless user experience.</p>
 <div style="display: flex; flex-direction: row; gap: 2rem">
   <img alt="Screen Shot of the CityList in Navigation" src="../static/img/react-native/11-navigation/NavigationCityList.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
 </div>
@@ -1009,7 +1009,7 @@ export default App
 <h3>Performance</h3>
 <p>Both the stack navigator and tab navigator have an optional prop, <code>detachInactiveScreens</code>, that defaults to <code>true</code>. This boolean value indicates whether inactive screens (screens that are not currently visible) should be detached from the view hierarchy. This can improve performance by reducing the number of views that need to be rendered and maintained in memory.</p>
 <h3>Stack Navigator</h3>
-<p>Let's take a look at an example of using a stack navigator in React Native with React Navigation.</p>
+<p>Let’s take a look at an example of using a stack navigator in React Native with React Navigation.</p>
 <pre><code class="language-tsx">import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
@@ -1050,7 +1050,7 @@ function MyStack() {
 }
 </code></pre>
 <div line-highlight='1, 3, 7-36'></div>
-<p>Let's break down the code above:</p>
+<p>Let’s break down the code above:</p>
 <h3>createStackNavigator</h3>
 <p>Similar to the <code>createBottomTabNavigator</code> function, the <code>createStackNavigator</code> function creates a navigator that renders a stack of screens. The components returned from this function are the <code>Stack.Navigator</code> and <code>Stack.Screen</code> components which we use together to define our stack navigation. Unlike the tab navigator, we do not need to wrap our stack navigator in a <code>NavigationContainer</code> component.</p>
 <p>Just like the <code>Tab.Navigator</code>, the <code>Stack.Navigator</code> component takes <code>Stack.Screen</code> components as children.</p>

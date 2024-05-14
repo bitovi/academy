@@ -334,7 +334,7 @@
            						">
 						<a class="page"
 							href="user-inputs.html"
-							title="TODO">
+							title="Use switch controls and inputs to collect information.">
 							Handling User Inputs
 						</a>
 						
@@ -962,7 +962,7 @@ export async function apiRequest&lt;
         if (cachedResponse) {
           const diff =
             new Date().valueOf() - new Date(cachedResponse.dateTime).valueOf()
-          //Return Cached data if it's younger than one minute
+          // Return cached data if it’s younger than one minute
           if (diff &lt; 60000) {
             return {
               data: cachedResponse.data,
@@ -1117,7 +1117,7 @@ export async function apiRequest&lt;
 
         if (cachedResponse) {
           const diff = Date.now() - cachedResponse.dateTime
-          //Return Cached data if it's younger than one minute
+          // Return cached data if it’s younger than one minute
           if (diff &lt; 60000) {
             return {
               data: cachedResponse.data,
@@ -1259,7 +1259,7 @@ describe(&quot;DataMigration component&quot;, () =&gt; {
       With the mock data as it is, getKeys should be called once to get all the necessary keys.
       getData will return three times, once for retrieving the version number, and twice for the two keys that need to be data migrated
       storeData will return three times, twice for the two keys that need to be data migrated, and once more to update the version number
-      storageClear will return zero times, it's only called in the migration function if the migration function fails
+      storageClear will return zero times, it’s only called in the migration function if the migration function fails
     */
     expect(mockStorageGetKeys).toHaveReturnedTimes(1)
     expect(mockStorageGetData).toHaveReturnedTimes(3)
