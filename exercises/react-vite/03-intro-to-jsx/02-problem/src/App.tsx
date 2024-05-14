@@ -47,7 +47,7 @@ function App() {
             width="100"
             height="100"
           />
-          <h3>{/* NAME GOES HERE */}</h3>
+          <h3>{/* NAME GOES HERE. */}</h3>
           <div className="address">
             230 W Kinzie Street
             <br />
