@@ -1,6 +1,5 @@
 # environment
 .env
-.env.*
 
 # local db-data
 /db-data

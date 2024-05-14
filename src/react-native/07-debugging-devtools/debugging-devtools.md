@@ -22,34 +22,27 @@ We will be setting up React DevTools to help us inspect the UI:
 
 React DevTools is an extension that provides a powerful set of tools for inspecting and debugging React Native applications. It allows developers to inspect and manipulate the hierarchy of React Native components rendered in their mobile applications. With React DevTools, developers can easily identify component structures, inspect props and state, track component updates, and even modify component properties in real-time, greatly enhancing the debugging and development process for React Native projects.
 
-By examining the JSX code below, developers can gain insight into how React Native components are structured and composed. Comparing the JSX code with the React DevTools component tree allows developers to visualize how each JSX element corresponds to a component instance in the application, providing a deeper understanding of their React applications and aiding in debugging and optimization efforts. 
+By examining the JSX code below, developers can gain insight into how React Native components are structured and composed. Comparing the JSX code with the React DevTools component tree allows developers to visualize how each JSX element corresponds to a component instance in the application, providing a deeper understanding of their React applications and aiding in debugging and optimization efforts.
 
 ```jsx
 <App>
   <ScrollView>
     <View>
-      <Text>
-        Place My Order: Coming Soon To...
-      </Text>
+      <Text>Place My Order: Coming Soon To...</Text>
     </View>
     <StateList>
       <View>
         <ListItem>
-          <Text>
-            Illinois
-          </Text>
+          <Text>Illinois</Text>
         </ListItem>
         <ListItem>
-          <Text>
-            Wisconsin
-          </Text>
+          <Text>Wisconsin</Text>
         </ListItem>
       </View>
     </StateList>
   </ScrollView>
 </App>
 ```
-
 
 ### Setup 1
 
@@ -90,15 +83,18 @@ This will refresh the connection.
 ### Exercise 1
 
 Explore Components:
+
 - Use the "Components" tab to explore the hierarchical structure of the React Native components in the application.
 - Expand and collapse component trees to understand the component composition.
 - Hover over individual components to highlight them in the browser.
 
 Inspect Props and State:
+
 - Select a component from the component tree to inspect its props and state.
 - View the current props and state values, and observe how they affect the component's rendering.
 
 Modify Props:
+
 - Experiment with modifying props directly from the DevTools panel.
 - Change prop values and observe how they affect the component's appearance or behavior in real-time.
 
@@ -149,8 +145,9 @@ Clicking on "Open Debugger" will open up a separate window for debugging.
 ### Exercise 2
 
 Exploring the debugger:
-  - View where the `console.log("Hello World)` is being printed.
-  - Step through your code using the debugger controls (step into, step over, step out) to understand its execution flow.
+
+- View where the `console.log("Hello World)` is being printed.
+- Step through your code using the debugger controls (step into, step over, step out) to understand its execution flow.
 
 ## Next steps
 

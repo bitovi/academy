@@ -129,6 +129,7 @@ Warning: /opt/homebrew/bin is not in your PATH.
 - Run this command in your terminal to add Homebrew to your PATH:
     eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
+
 @highlight 6-7
 
 ##### Watchman

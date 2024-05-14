@@ -1,5 +1,5 @@
 {
-  "name": "bit-academy-react-native",
+  "name": "bit-academy-exercises-react-native",
   "private": true,
   "scripts": {
     "eslint": "eslint .",

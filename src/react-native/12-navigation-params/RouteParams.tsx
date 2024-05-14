@@ -1,6 +1,6 @@
-import { View, Text, Pressable } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { StackScreenProps } from "@react-navigation/stack"
+import { View, Text, Pressable } from "react-native"
 
 import { ShopStackParamList } from "./StackRoute"
 

@@ -43,7 +43,7 @@ The React Navigation library used in this section supports deep linking and has 
 
 Now that we have an understanding of how navigation works within a stack, let's take a look at the implications of navigation on the component lifecycle.
 
-If we have a stack navigator with two screens, `ScreenA` and `ScreenB`, and navigate to `ScreenA`, then `ScreenA` will mount the component and render. If we then navigate to `ScreenB`, `ScreenA` will be unmounted and `ScreenB` will mount and render. What happens when we navigate back to `ScreenA`? `ScreenB` will unmount the component, but `ScreenA` will *not* remount. Because it stayed in the stack, it remained mounted the entire time.
+If we have a stack navigator with two screens, `ScreenA` and `ScreenB`, and navigate to `ScreenA`, then `ScreenA` will mount the component and render. If we then navigate to `ScreenB`, `ScreenA` will be unmounted and `ScreenB` will mount and render. What happens when we navigate back to `ScreenA`? `ScreenB` will unmount the component, but `ScreenA` will _not_ remount. Because it stayed in the stack, it remained mounted the entire time.
 
 ### Bottom Tab Navigation
 
@@ -54,28 +54,28 @@ Often tabs in a mobile application are made up of more than just one screen. Tab
 Here is an example of using tab-based navigation in React Native with React Navigation:
 
 ```tsx
-import * as React from 'react';
-import { Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import * as React from "react"
+import { Text, View } from "react-native"
+import { NavigationContainer } from "@react-navigation/native"
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
 function ScreenA() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>Screen A</Text>
     </View>
-  );
+  )
 }
 
 function ScreenB() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>Screen A</Text>
     </View>
-  );
+  )
 }
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator()
 
 export default function App() {
   return (
@@ -85,9 +85,10 @@ export default function App() {
         <Tab.Screen name="Screen B" component={ScreenB} />
       </Tab.Navigator>
     </NavigationContainer>
-  );
+  )
 }
 ```
+
 @highlight 3-4, 22, 26-31
 
 Let's break down the code above:
@@ -138,7 +139,7 @@ npm install @react-navigation/native @react-navigation/bottom-tabs
 
 - For the `tabBarIcon` property on `AppTabs.Navigator` update the `Icon` component's name property to be based on the given route.
 - Add a screen tab for Restaurants (the `StateList` component) and for `Settings` component.
-- Add the `NavigationContainer` and  `AppNavigator` to the `App` component.
+- Add the `NavigationContainer` and `AppNavigator` to the `App` component.
 
 ### Solution 1
 
@@ -165,7 +166,7 @@ Now that we've covered tab navigation, let's move on to stack navigation. As men
 
 In mobile applications, navigation isn’t managed by the browser through URLs (like in web applications) but through navigation stacks. When a user navigates to a new screen, this screen is pushed onto the navigation stack. If the user navigates back, the current screen is popped off the stack, and the app returns to the previous screen.
 
-*Note: A stack is a data structure that follows the Last In, First Out (LIFO) principle.*
+_Note: A stack is a data structure that follows the Last In, First Out (LIFO) principle._
 
 React Native does not have a built-in global history stack similar to a web browser. Luckily, there is a library called React Navigation that provides a way to manage navigation in a stack-like manner.
 
@@ -188,32 +189,32 @@ Both the stack navigator and tab navigator have an optional prop, `detachInactiv
 Let's take a look at an example of using a stack navigator in React Native with React Navigation.
 
 ```tsx
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator } from "@react-navigation/stack"
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator()
 
 function MyStack() {
   return (
     <Stack.Navigator
       initialRouteName="ScreenA"
       screenOptions={{
-        headerMode: 'screen',
-        headerTintColor: 'white',
-        headerStyle: { backgroundColor: 'tomato' },
+        headerMode: "screen",
+        headerTintColor: "white",
+        headerStyle: { backgroundColor: "tomato" },
       }}
     >
       <Stack.Screen
         name="ScreenA"
         component={ScreenA}
         options={{
-          title: 'Screen A',
+          title: "Screen A",
         }}
       />
       <Stack.Screen
         name="ScreenB"
         component={ScreenB}
         options={{
-          title: 'Screen B',
+          title: "Screen B",
         }}
       />
       <Stack.Screen
@@ -224,9 +225,10 @@ function MyStack() {
         }}
       />
     </Stack.Navigator>
-  );
+  )
 }
 ```
+
 @highlight 1, 3, 7-36
 
 Let's break down the code above:
@@ -363,7 +365,6 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 ✏️ Create **src/screens/RestaurantList/RestaurantList.test.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-native/11-navigation/03-problem/src/screens/RestaurantList/RestaurantList.test.tsx
-
 
 ### Exercise 3
 

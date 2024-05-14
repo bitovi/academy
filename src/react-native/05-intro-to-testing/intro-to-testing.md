@@ -50,7 +50,7 @@ The second argument to `it` is a callback function that is called to run the tes
 
 In the test above, we validate that the label is correct. We use the `getByText` function to select a single element whose `textContent` matches the string, "Email:". If you look closely you can see that the `<Text nativeId="formLabel">` content in the component has a ":" (colon) at the end, but the `label` prop does not, we can conclude that `EmailInputField` appends the colon — but **the purpose of the test isn’t how `EmailInputField` works, it’s the screen output that it returns.**
 
-In addition, we add `{exact: false}` as a second argument for `getByText`. This will ignore extra spaces created by the component from formatting and only match focus on matching the provided text.  
+In addition, we add `{exact: false}` as a second argument for `getByText`. This will ignore extra spaces created by the component from formatting and only match focus on matching the provided text.
 
 After we get an element, we then use `expect` and `toBeOnTheScreen` to verify the element was rendered properly. Our test passes because the generated screen is what we expect the user will perceive.
 
@@ -103,9 +103,7 @@ There are some notable differences compared to the previous test:
 
 After `type` completes, we can make assertions about the current state of the input, including the current value, which should have been updated with the value of the single `type` argument.
 
-
 As we continue on with future lessons, along with the future tests we use for verify exercises, we'll explain how we and why we go about our testing approach.
-
 
 ## Next steps
 

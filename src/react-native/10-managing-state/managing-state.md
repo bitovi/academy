@@ -19,6 +19,7 @@ In this section, you will:
 ## Objective: Toggle between light and dark mode
 
 We will be setting up the application to switch between light mode and dark mode:
+
 <div style="display: flex; flex-direction: row; gap: 2rem">
   <img alt="Screenshot of the application when it is in light mode." src="../static/img/react-native/10-managing-state/lightMode.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
   <img alt="Screenshot of the application when it is in dark mode." src="../static/img/react-native/10-managing-state/darkMode.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
@@ -59,7 +60,7 @@ React Native imposes several rules around the use of Hooks:
 
 ### The useState Hook
 
-We can store the state that persists through component rendering with the `useState` Hook. You can set the initial state value when the component **first** renders by providing the value as an argument to the Hook. _If you do not provide a value the initial state value will be `undefined`.
+We can store the state that persists through component rendering with the `useState` Hook. You can set the initial state value when the component **first** renders by providing the value as an argument to the Hook. \_If you do not provide a value the initial state value will be `undefined`.
 
 This example shows a `useState` Hook being set with an initial value of `""`:
 
@@ -143,12 +144,14 @@ This is how we can create our custom `useToggle` Hook and call it in our compone
 ### Exercise
 
 ✏️ Refactoring **src/design/theme/ThemeProvider.tsx**:
+
 - Update `Context` to set default values for `mode` and `setMode`.
 - Update `ThemeProvider` to use `useState`, so the user can switch between the 2 modes.
 - Update `useTheme` to return 1 theme based on the `mode` that is stored in the context.
 - Update `useThemeMode` to return `mode` and `setMode`.
 
 ✏️ Refactoring **src/screens/StateList/StateList.tsx**:
+
 - Display the `Switch` component to allow users to toggle.
 - Using the recently created `useThemeMode` Hook, combine it with the `Switch` component.
 

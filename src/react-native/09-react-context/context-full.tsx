@@ -38,7 +38,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       signOut,
       user,
     }),
-    [user],
+    [signIn, signOut, user],
   )
 
   return <Context.Provider value={value}>{children}</Context.Provider>
