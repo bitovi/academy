@@ -5,11 +5,11 @@ import ThemeProvider from "./design/theme/ThemeProvider"
 
 const App: FC = () => {
   return (
-    <ThemeProvider>
-      <SafeAreaView style={{ height: "100%", width: "100%" }}>
+    <SafeAreaView style={{ height: "100%", width: "100%" }}>
+      <ThemeProvider>
         <StateList />
-      </SafeAreaView>
-    </ThemeProvider>
+      </ThemeProvider>
+    </SafeAreaView>
   )
 }
 

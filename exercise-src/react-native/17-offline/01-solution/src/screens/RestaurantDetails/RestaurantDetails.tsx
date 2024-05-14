@@ -68,7 +68,7 @@ const RestaurantDetails: FC<Props> = ({ route }) => {
 
       <Button
         onPress={() => {
-          navigation.navigate("OrderCreate", { slug: slug })
+          navigation.navigate("RestaurantOrder", { slug: slug })
         }}
       >
         Place an order

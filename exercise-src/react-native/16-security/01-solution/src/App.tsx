@@ -54,7 +54,7 @@ export type RestaurantsStackParamList = {
     }
     slug: string
   }
-  OrderCreate: {
+  RestaurantOrder: {
     slug: string
   }
 }
@@ -97,7 +97,7 @@ const RestaurantsNavigator: FC = () => {
         name="RestaurantDetails"
         component={RestaurantDetails}
       />
-      <RestaurantsStack.Screen name="OrderCreate" component={RestaurantOrder} />
+      <RestaurantsStack.Screen name="RestaurantOrder" component={RestaurantOrder} />
     </RestaurantsStack.Navigator>
   )
 }

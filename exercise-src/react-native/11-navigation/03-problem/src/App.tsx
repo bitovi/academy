@@ -18,7 +18,7 @@ const RestaurantsNavigator: FC = () => {
     <RestaurantsStack.Navigator
       initialRouteName="StateList"
       screenOptions={{
-        header: ({ route, navigation }) => {
+        header: ({ navigation }) => {
           if (!navigation.canGoBack()) return null
 
           return (
@@ -39,7 +39,7 @@ const RestaurantsNavigator: FC = () => {
     >
       <RestaurantsStack.Screen name="StateList" component={StateList} />
       <RestaurantsStack.Screen name="CityList" component={CityList} />
-      {/* Exercise: Add RestaurantList and RestaurantDetails to the StackNavigator */}
+      {/* Exercise: Add RestaurantList and RestaurantDetails to the StackNavigator. */}
     </RestaurantsStack.Navigator>
   )
 }
@@ -92,13 +92,13 @@ export const AppNavigator: FC = () => {
 
 const App: FC = () => {
   return (
-    <ThemeProvider>
-      <SafeAreaView style={{ height: "100%", width: "100%" }}>
+    <SafeAreaView style={{ height: "100%", width: "100%" }}>
+      <ThemeProvider>
         <NavigationContainer>
           <AppNavigator />
         </NavigationContainer>
-      </SafeAreaView>
-    </ThemeProvider>
+      </ThemeProvider>
+    </SafeAreaView>
   )
 }
 

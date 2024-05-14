@@ -15,7 +15,7 @@ import Card from "../../design/Card"
 import Screen from "../../design/Screen"
 import FormSwitch from "../../components/FormSwitch"
 
-type Props = StackScreenProps<RestaurantsStackParamList, "OrderCreate">
+type Props = StackScreenProps<RestaurantsStackParamList, "RestaurantOrder">
 
 type OrderItems = Record<string, number>
 
@@ -36,8 +36,8 @@ const RestaurantOrder: FC<Props> = ({ route }) => {
     }
   }, [restaurant, navigation])
 
-  const handleSubmit = () => {
-    alert("Order submitted!")
+  const handlePress = () => {
+    console.info("“Place My Order” button pressed!")
   }
 
   const setItem = (itemId: string, isChecked: boolean, itemPrice: number) => {
@@ -56,12 +56,6 @@ const RestaurantOrder: FC<Props> = ({ route }) => {
 
   const selectedCount = Object.values(items).length
   const subtotal = calculateTotal(items)
-
-  function calculateTotal(items: OrderItems) {
-    return Object.values(items).reduce((total, itemPrice) => {
-      return total + itemPrice
-    }, 0)
-  }
 
   if (error) {
     return (
@@ -139,11 +133,17 @@ const RestaurantOrder: FC<Props> = ({ route }) => {
         </Box>
 
         <Box padding="s">
-          <Button onPress={handleSubmit}>Place My Order!</Button>
+          <Button onPress={handlePress}>Place My Order!</Button>
         </Box>
       </Screen>
     </ScrollView>
   )
+}
+
+function calculateTotal(items: OrderItems) {
+  return Object.values(items).reduce((total, itemPrice) => {
+    return total + itemPrice
+  }, 0)
 }
 
 export default RestaurantOrder

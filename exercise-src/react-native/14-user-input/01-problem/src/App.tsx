@@ -95,7 +95,7 @@ const RestaurantsNavigator: FC = () => {
         name="RestaurantDetails"
         component={RestaurantDetails}
       />
-      {/*Exercise: Add RestaurantOrder page to the stack. */}
+      {/* Exercise: Add RestaurantOrder page to the stack. */}
     </RestaurantsStack.Navigator>
   )
 }
@@ -148,13 +148,13 @@ export const AppNavigator: FC = () => {
 
 const App: FC = () => {
   return (
-    <ThemeProvider>
-      <SafeAreaView style={{ height: "100%", width: "100%" }}>
+    <SafeAreaView style={{ height: "100%", width: "100%" }}>
+      <ThemeProvider>
         <NavigationContainer>
           <AppNavigator />
         </NavigationContainer>
-      </SafeAreaView>
-    </ThemeProvider>
+      </ThemeProvider>
+    </SafeAreaView>
   )
 }
 

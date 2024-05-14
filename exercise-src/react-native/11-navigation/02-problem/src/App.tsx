@@ -19,26 +19,26 @@ const RestaurantsNavigator: FC = () => {
     <RestaurantsStack.Navigator
       initialRouteName="StateList"
       screenOptions={{
-       header: ({ route, navigation }) => {
-          {/* Exercise: Add logic for back navigation*/}
-        return (
-          <Pressable onPress={}>
-            <Box
-              padding="m"
-              style={{ flexDirection: "row", gap: 8, alignItems: "center" }}
-            >
-              <Icon name="arrow-back" size={20} />
-              <Typography variant="heading">
-                Choose a location
-              </Typography>
-            </Box>
-          </Pressable>
-        )
-      },
-    }}
-  >
-    {/*Exercise: Add Navigator Children for StateList and CityList */}
-  </RestaurantsStack.Navigator>
+        header: ({ route, navigation }) => {
+          {/* Exercise: Add logic for back navigation*/ }
+          return (
+            <Pressable onPress={ }>
+              <Box
+                padding="m"
+                style={{ flexDirection: "row", gap: 8, alignItems: "center" }}
+              >
+                <Icon name="arrow-back" size={20} />
+                <Typography variant="heading">
+                  Choose a location
+                </Typography>
+              </Box>
+            </Pressable>
+          )
+        },
+      }}
+    >
+      {/* Exercise: Add Navigator Children for StateList and CityList. */}
+    </RestaurantsStack.Navigator>
   )
 }
 
@@ -90,13 +90,13 @@ export const AppNavigator: FC = () => {
 
 const App: FC = () => {
   return (
-    <ThemeProvider>
-      <SafeAreaView style={{ height: "100%", width: "100%" }}>
+    <SafeAreaView style={{ height: "100%", width: "100%" }}>
+      <ThemeProvider>
         <NavigationContainer>
           <AppNavigator />
         </NavigationContainer>
-      </SafeAreaView>
-    </ThemeProvider>
+      </ThemeProvider>
+    </SafeAreaView>
   )
 }
 
