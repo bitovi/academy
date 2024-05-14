@@ -1724,6 +1724,7 @@ import { useNavigation } from &quot;@react-navigation/native&quot;
 
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
 import Screen from &quot;../../design/Screen&quot;
+import Button from &quot;../../design/Button&quot;
 
 const restaurant = {
   _id: &quot;Ar0qBJHxM3ecOhcr&quot;,
@@ -1747,6 +1748,9 @@ const RestaurantDetails: FC = () =&gt; {
   return (
     &lt;Screen&gt;
       &lt;RestaurantHeader restaurant={restaurant} /&gt;
+      &lt;Button onPress={() =&gt; console.warn(&quot;Place an order&quot;)}&gt;
+        Place an order
+      &lt;/Button&gt;
     &lt;/Screen&gt;
   )
 }

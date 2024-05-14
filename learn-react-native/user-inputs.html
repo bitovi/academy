@@ -683,24 +683,1488 @@ covering CanJS core libraries.">
 <ul>
 <li>TODO</li>
 </ul>
-<h2>Objective 1: TODO</h2>
+<h2>Objective 1: Understand <code>value</code> and <code>onChange</code> data flow</h2>
 <p>TODO</p>
 <h3>Concept TODO</h3>
 <p>TODO</p>
 <h3>Setup 1</h3>
-<p>TODO</p>
+<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { Pressable, SafeAreaView } from &quot;react-native&quot;
+import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import Icon from &quot;react-native-vector-icons/Ionicons&quot;
+
+import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
+import StateList from &quot;./screens/StateList&quot;
+import Settings from &quot;./screens/Settings&quot;
+import RestaurantDetails from &quot;./screens/RestaurantDetails&quot;
+import RestaurantList from &quot;./screens/RestaurantList&quot;
+import RestaurantOrder from &quot;./screens/RestaurantOrder&quot;
+import CityList from &quot;./screens/CityList&quot;
+import Box from &quot;./design/Box&quot;
+import Typography from &quot;./design/Typography&quot;
+import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace ReactNavigation {
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    interface RootParamList extends RestaurantsStackParamList {}
+  }
+}
+
+export type RestaurantsStackParamList = {
+  StateList: undefined
+  CityList: {
+    state: {
+      name: string
+      short: string
+    }
+  }
+  RestaurantList: {
+    state: {
+      name: string
+      short: string
+    }
+    city: {
+      name: string
+      state: string
+    }
+  }
+  RestaurantDetails: {
+    state: {
+      name: string
+      short: string
+    }
+    city: {
+      name: string
+      state: string
+    }
+    slug: string
+  }
+  RestaurantOrder: {
+    slug: string
+  }
+}
+
+const RestaurantsStack = createStackNavigator&lt;RestaurantsStackParamList&gt;()
+const RestaurantsNavigator: FC = () =&gt; {
+  return (
+    &lt;RestaurantsStack.Navigator
+      initialRouteName=&quot;StateList&quot;
+      screenOptions={{
+        header: ({ route, navigation }) =&gt; {
+          if (!navigation.canGoBack()) return null
+
+          return (
+            &lt;Pressable onPress={navigation.goBack}&gt;
+              &lt;Box
+                padding=&quot;m&quot;
+                style={{ flexDirection: &quot;row&quot;, gap: 8, alignItems: &quot;center&quot; }}
+              &gt;
+                &lt;Icon name=&quot;arrow-back&quot; size={20} /&gt;
+                &lt;Typography variant=&quot;heading&quot;&gt;
+                  {/* @ts-ignore */}
+                  {[route.params?.city?.name, route.params?.state?.name]
+                    .filter(Boolean)
+                    .join(&quot;, &quot;)}
+                &lt;/Typography&gt;
+              &lt;/Box&gt;
+            &lt;/Pressable&gt;
+          )
+        },
+      }}
+    &gt;
+      &lt;RestaurantsStack.Screen name=&quot;StateList&quot; component={StateList} /&gt;
+      &lt;RestaurantsStack.Screen name=&quot;CityList&quot; component={CityList} /&gt;
+      &lt;RestaurantsStack.Screen
+        name=&quot;RestaurantList&quot;
+        component={RestaurantList}
+      /&gt;
+      &lt;RestaurantsStack.Screen
+        name=&quot;RestaurantDetails&quot;
+        component={RestaurantDetails}
+      /&gt;
+      {/*Exercise: Add RestaurantOrder page to the stack. */}
+    &lt;/RestaurantsStack.Navigator&gt;
+  )
+}
+
+const AppTabs = createBottomTabNavigator()
+export const AppNavigator: FC = () =&gt; {
+  const theme = useTheme()
+
+  return (
+    &lt;AppTabs.Navigator
+      initialRouteName=&quot;RestaurantsStack&quot;
+      screenOptions={({ route }) =&gt; ({
+        headerStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        headerTitleStyle: {
+          color: theme.palette.screen.contrast,
+          ...theme.typography.title,
+        },
+        tabBarStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        tabBarActiveTintColor: theme.palette.primary.strong,
+        tabBarInactiveTintColor: theme.palette.screen.contrast,
+        tabBarIcon: ({ focused, color }) =&gt; {
+          let icon = &quot;settings&quot;
+          if (route.name === &quot;Settings&quot;) {
+            icon = focused ? &quot;settings&quot; : &quot;settings-outline&quot;
+          } else if (route.name === &quot;Restaurants&quot;) {
+            icon = focused ? &quot;restaurant&quot; : &quot;restaurant-outline&quot;
+          }
+
+          return &lt;Icon name={icon} size={20} color={color} /&gt;
+        },
+      })}
+    &gt;
+      &lt;AppTabs.Screen
+        name=&quot;Restaurants&quot;
+        component={RestaurantsNavigator}
+        options={{ title: &quot;Place My Order&quot; }}
+      /&gt;
+      &lt;AppTabs.Screen
+        name=&quot;Settings&quot;
+        component={Settings}
+        options={{ title: &quot;Settings&quot; }}
+      /&gt;
+    &lt;/AppTabs.Navigator&gt;
+  )
+}
+
+const App: FC = () =&gt; {
+  return (
+    &lt;ThemeProvider&gt;
+      &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+        &lt;NavigationContainer&gt;
+          &lt;AppNavigator /&gt;
+        &lt;/NavigationContainer&gt;
+      &lt;/SafeAreaView&gt;
+    &lt;/ThemeProvider&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="12,55-57,98,only"></div>
+<p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import type { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import type { RestaurantsStackParamList } from &quot;../../App&quot;
+
+import { useEffect } from &quot;react&quot;
+import { useNavigation } from &quot;@react-navigation/native&quot;
+
+import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
+import Loading from &quot;../../components/Loading&quot;
+import Button from &quot;../../design/Button&quot;
+import Typography from &quot;../../design/Typography&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
+import Screen from &quot;../../design/Screen&quot;
+
+type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantDetails&quot;&gt;
+
+const RestaurantDetails: FC&lt;Props&gt; = ({ route }) =&gt; {
+  const { slug } = route.params
+  const navigation = useNavigation()
+  const { data: restaurant, error, isPending } = useRestaurant(slug)
+  useEffect(() =&gt; {
+    if (restaurant) {
+      navigation.setOptions({ title: `${restaurant.name}` })
+    }
+  }, [restaurant, navigation])
+
+  if (error) {
+    return (
+      &lt;Screen&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;
+          Error loading restaurant details:{&quot; &quot;}
+        &lt;/Typography&gt;
+        &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+      &lt;/Screen&gt;
+    )
+  }
+
+  if (isPending) {
+    return &lt;Loading /&gt;
+  }
+
+  return (
+    &lt;Screen&gt;
+      &lt;RestaurantHeader restaurant={restaurant} /&gt;
+      &lt;Button onPress={() =&gt; console.warn(&quot;Place an order&quot;)}&gt;
+        Place an order
+      &lt;/Button&gt;
+      {/* Exercise: Add Button that links to RestaurantOrder page. */}
+    &lt;/Screen&gt;
+  )
+}
+
+export default RestaurantDetails
+
+</code></pre>
+ <div line-highlight="48,only"></div>
+<p>✏️ Create <strong>src/screens/RestaurantOrder/RestaurantOrder.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import type { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import type { RestaurantsStackParamList } from &quot;../../App&quot;
+
+import { useEffect, useState } from &quot;react&quot;
+import { ScrollView } from &quot;react-native&quot;
+import { useNavigation } from &quot;@react-navigation/native&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
+import Box from &quot;../../design/Box&quot;
+import Typography from &quot;../../design/Typography&quot;
+import Button from &quot;../../design/Button&quot;
+import Loading from &quot;../../components/Loading&quot;
+import Card from &quot;../../design/Card&quot;
+import Screen from &quot;../../design/Screen&quot;
+import FormSwitch from &quot;../../components/FormSwitch&quot;
+
+type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;OrderCreate&quot;&gt;
+
+type OrderItems = Record&lt;string, number&gt;
+
+const RestaurantOrder: FC&lt;Props&gt; = ({ route }) =&gt; {
+  const navigation = useNavigation()
+  const { slug } = route.params
+
+  const { data: restaurant, error, isPending } = useRestaurant(slug)
+
+  const [items, setItems] = useState&lt;OrderItems&gt;({})
+
+  useEffect(() =&gt; {
+    if (restaurant) {
+      navigation.setOptions({ title: `Order from ${restaurant.name}` })
+    }
+  }, [restaurant, navigation])
+
+  const handleSubmit = () =&gt; {
+    alert(&quot;Order submitted!&quot;)
+  }
+
+  const setItem = (itemId: string, isChecked: boolean, itemPrice: number) =&gt; {
+    return setItems((currentItems) =&gt; {
+      const updatedItems = {
+        ...currentItems,
+      }
+      if (isChecked) {
+        updatedItems[itemId] = itemPrice
+      } else {
+        delete updatedItems[itemId]
+      }
+      return updatedItems
+    })
+  }
+
+  const selectedCount = Object.values(items).length
+  const subtotal = calculateTotal(items)
+
+  function calculateTotal(items: OrderItems) {
+    /*Exercise: Create subtotal based on selected items */
+  }
+
+  if (error) {
+    return (
+      &lt;Box padding=&quot;s&quot;&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;
+          Error loading restaurant order:{&quot; &quot;}
+        &lt;/Typography&gt;
+        &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+      &lt;/Box&gt;
+    )
+  }
+
+  if (isPending) {
+    return &lt;Loading /&gt;
+  }
+
+  if (!restaurant) {
+    return (
+      &lt;Box padding=&quot;s&quot;&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;Restaurant not found&lt;/Typography&gt;
+      &lt;/Box&gt;
+    )
+  }
+
+  return (
+    &lt;ScrollView
+      showsVerticalScrollIndicator={false}
+      alwaysBounceVertical={false}
+    &gt;
+      &lt;Screen&gt;
+        &lt;Card title=&quot;Lunch Menu&quot;&gt;
+          {/*Exercise: List food items with checkboxes */}
+        &lt;/Card&gt;
+
+        &lt;Card title=&quot;Dinner Menu&quot;&gt;
+          {/*Exercise: List food items with checkboxes */}
+        &lt;/Card&gt;
+
+        &lt;Card title=&quot;Order Details&quot;&gt;&lt;/Card&gt;
+
+        &lt;Box padding=&quot;s&quot;&gt;
+          {subtotal === 0 ? (
+            &lt;Typography&gt;Please choose an item.&lt;/Typography&gt;
+          ) : (
+            &lt;Typography&gt;{selectedCount} items selected.&lt;/Typography&gt;
+          )}
+        &lt;/Box&gt;
+
+        &lt;Box padding=&quot;s&quot;&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;
+            Total: ${subtotal.toFixed(2)}
+          &lt;/Typography&gt;
+        &lt;/Box&gt;
+
+        &lt;Box padding=&quot;s&quot;&gt;
+          &lt;Button onPress={handleSubmit}&gt;Place My Order!&lt;/Button&gt;
+        &lt;/Box&gt;
+      &lt;/Screen&gt;
+    &lt;/ScrollView&gt;
+  )
+}
+
+export default RestaurantOrder
+
+</code></pre>
+<p>✏️ Create <strong>src/screens/RestaurantOrder/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./RestaurantOrder&quot;
+
+</code></pre>
+<p>✏️ Create <strong>src/components/FormSwitch/FormSwitch.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import type { FC, ReactNode } from &quot;react&quot;
+import { Switch } from &quot;react-native&quot;
+import Box from &quot;../../design/Box&quot;
+import Typography from &quot;../../design/Typography&quot;
+import { useTheme } from &quot;../../design/theme&quot;
+
+type Props = {
+  label: ReactNode
+  value: boolean
+  onChange: (value: boolean) =&gt; void
+}
+
+const FormSwitch: FC&lt;Props&gt; = ({ label, value, onChange }) =&gt; {
+  const { palette } = useTheme()
+
+  return (
+    &lt;Box
+      style={{
+        width: &quot;100%&quot;,
+        flexDirection: &quot;row&quot;,
+        justifyContent: &quot;space-between&quot;,
+        alignItems: &quot;center&quot;,
+        marginVertical: 8,
+      }}
+    &gt;
+      &lt;Typography variant=&quot;label&quot;&gt;{label}&lt;/Typography&gt;
+      &lt;Switch
+        value={value}
+        onValueChange={onChange}
+        thumbColor={palette.primary.contrast}
+        trackColor={{
+          true: palette.primary.strong,
+          false: palette.screen.soft,
+        }}
+      &gt;&lt;/Switch&gt;
+    &lt;/Box&gt;
+  )
+}
+
+export default FormSwitch
+
+</code></pre>
+<p>✏️ Create <strong>src/components/FormSwitch/index.ts</strong> and update it to be:</p>
+<pre><code class="language-tsx">import type { FC, ReactNode } from &quot;react&quot;
+import { Switch } from &quot;react-native&quot;
+import Box from &quot;../../design/Box&quot;
+import Typography from &quot;../../design/Typography&quot;
+import { useTheme } from &quot;../../design/theme&quot;
+
+type Props = {
+  label: ReactNode
+  value: boolean
+  onChange: (value: boolean) =&gt; void
+}
+
+const FormSwitch: FC&lt;Props&gt; = ({ label, value, onChange }) =&gt; {
+  const { palette } = useTheme()
+
+  return (
+    &lt;Box
+      style={{
+        width: &quot;100%&quot;,
+        flexDirection: &quot;row&quot;,
+        justifyContent: &quot;space-between&quot;,
+        alignItems: &quot;center&quot;,
+        marginVertical: 8,
+      }}
+    &gt;
+      &lt;Typography variant=&quot;label&quot;&gt;{label}&lt;/Typography&gt;
+      &lt;Switch
+        value={value}
+        onValueChange={onChange}
+        thumbColor={palette.primary.contrast}
+        trackColor={{
+          true: palette.primary.strong,
+          false: palette.screen.soft,
+        }}
+      &gt;&lt;/Switch&gt;
+    &lt;/Box&gt;
+  )
+}
+
+export default FormSwitch
+
+</code></pre>
 <h3>Verify 1</h3>
-<p>TODO</p>
+<p>✏️ Create <strong>src/screens/RestaurantOrder/RestaurantOrder.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+
+import * as restaurantHooks from &quot;../../services/pmo/restaurant/hooks&quot;
+
+import RestaurantOrder from &quot;./RestaurantOrder&quot;
+
+describe(&quot;RestaurantOrder component&quot;, () =&gt; {
+  // Mock the hooks and components used in RestaurantOrder
+
+  const mockRestaurantResponse = {
+    data: {
+      name: &quot;Bagel Restaurant&quot;,
+      slug: &quot;bagel-restaurant&quot;,
+      images: {
+        thumbnail: &quot;node_modules/place-my-order-assets/images/3-thumbnail.jpg&quot;,
+        owner: &quot;node_modules/place-my-order-assets/images/1-owner.jpg&quot;,
+        banner: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;,
+      },
+      menu: {
+        lunch: [
+          { name: &quot;Crab Pancakes with Sorrel Syrup&quot;, price: 35.99 },
+          { name: &quot;Steamed Mussels&quot;, price: 21.99 },
+          { name: &quot;Roasted Salmon&quot;, price: 23.99 },
+        ],
+        dinner: [
+          { name: &quot;Truffle Noodles&quot;, price: 14.99 },
+          { name: &quot;Spinach Fennel Watercress Ravioli&quot;, price: 35.99 },
+          { name: &quot;Herring in Lavender Dill Reduction&quot;, price: 45.99 },
+        ],
+      },
+      address: {
+        street: &quot;285 W Adams Ave&quot;,
+        city: &quot;Detroit&quot;,
+        state: &quot;MI&quot;,
+        zip: &quot;60045&quot;,
+      },
+      coordinate: {
+        latitude: 0,
+        longitude: 0,
+      },
+      resources: {
+        thumbnail: &quot;api/resources/images/3-thumbnail.jpg&quot;,
+        owner: &quot;api/resources/images/4-owner.jpg&quot;,
+        banner: &quot;api/resources/images/1-banner.jpg&quot;,
+      },
+      _id: &quot;5NVE3Z5MXxX3O57R&quot;,
+    },
+  }
+
+  let useRestaurant: jest.SpyInstance&lt;
+    ReturnType&lt;typeof restaurantHooks.useRestaurant&gt;
+  &gt;
+  beforeEach(() =&gt; {
+    jest.resetAllMocks()
+    useRestaurant = jest.spyOn(restaurantHooks, &quot;useRestaurant&quot;)
+  })
+
+  it(&quot;renders restaurant order form&quot;, () =&gt; {
+    useRestaurant.mockReturnValue({
+      ...mockRestaurantResponse,
+      error: null,
+      isPending: false,
+    })
+
+    render(&lt;RestaurantOrder route={{ params: { slug: &quot;bagel-restaurant&quot; } }} /&gt;)
+    expect(screen.getByText(/Lunch Menu/i)).toBeOnTheScreen()
+    expect(
+      screen.getByText(mockRestaurantResponse.data.menu.lunch[0].name, {
+        exact: false,
+      }),
+    ).toBeOnTheScreen()
+    expect(screen.getByText(/Dinner Menu/i)).toBeOnTheScreen()
+    expect(
+      screen.getByText(mockRestaurantResponse.data.menu.dinner[0].name, {
+        exact: false,
+      }),
+    ).toBeOnTheScreen()
+  })
+
+  it(&quot;renders loading restaurant&quot;, () =&gt; {
+    useRestaurant.mockReturnValue({ data: null, error: null, isPending: true })
+
+    render(&lt;RestaurantOrder route={{ params: { slug: &quot;bagel-restaurant&quot; } }} /&gt;)
+    expect(screen.getByText(/Loading/i)).toBeOnTheScreen()
+  })
+  it(&quot;renders error restaurant&quot;, () =&gt; {
+    useRestaurant.mockReturnValue({
+      data: null,
+      error: { name: &quot;Oops&quot;, message: &quot;This is the error&quot; },
+      isPending: false,
+    })
+
+    render(&lt;RestaurantOrder route={{ params: { slug: &quot;bagel-restaurant&quot; } }} /&gt;)
+
+    expect(
+      screen.getByText(/Error loading restaurant order:/),
+    ).toBeOnTheScreen()
+    expect(screen.getByText(/This is the error/)).toBeOnTheScreen()
+  })
+})
+
+</code></pre>
 <h3>Exercise 1</h3>
-<p>TODO</p>
+<ul>
+<li>Add <code>RestaurantOrder</code> to the <code>NavigatorStack</code></li>
+<li>Link <code>RestaurantOrder</code> to <code>RestaurantDetails</code></li>
+<li>List restaurant food items for both lunch and dinner menus with checkboxes using <code>FormSwitchField</code></li>
+<li>Create <code>subtotal</code> based on selected items.</li>
+</ul>
 <h3>Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { Pressable, SafeAreaView } from &quot;react-native&quot;
+import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import Icon from &quot;react-native-vector-icons/Ionicons&quot;
+
+import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
+import StateList from &quot;./screens/StateList&quot;
+import Settings from &quot;./screens/Settings&quot;
+import RestaurantDetails from &quot;./screens/RestaurantDetails&quot;
+import RestaurantList from &quot;./screens/RestaurantList&quot;
+import RestaurantOrder from &quot;./screens/RestaurantOrder&quot;
+import CityList from &quot;./screens/CityList&quot;
+import Box from &quot;./design/Box&quot;
+import Typography from &quot;./design/Typography&quot;
+import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace ReactNavigation {
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    interface RootParamList extends RestaurantsStackParamList { }
+  }
+}
+
+export type RestaurantsStackParamList = {
+  StateList: undefined
+  CityList: {
+    state: {
+      name: string
+      short: string
+    }
+  }
+  RestaurantList: {
+    state: {
+      name: string
+      short: string
+    }
+    city: {
+      name: string
+      state: string
+    }
+  }
+  RestaurantDetails: {
+    state: {
+      name: string
+      short: string
+    }
+    city: {
+      name: string
+      state: string
+    }
+    slug: string
+  }
+  RestaurantOrder: {
+    slug: string
+  }
+}
+
+const RestaurantsStack = createStackNavigator&lt;RestaurantsStackParamList&gt;()
+const RestaurantsNavigator: FC = () =&gt; {
+  return (
+    &lt;RestaurantsStack.Navigator
+      initialRouteName=&quot;StateList&quot;
+      screenOptions={{
+        header: ({ route, navigation }) =&gt; {
+          if (!navigation.canGoBack()) return null
+
+          return (
+            &lt;Pressable onPress={navigation.goBack}&gt;
+              &lt;Box
+                padding=&quot;m&quot;
+                style={{ flexDirection: &quot;row&quot;, gap: 8, alignItems: &quot;center&quot; }}
+              &gt;
+                &lt;Icon name=&quot;arrow-back&quot; size={20} /&gt;
+                &lt;Typography variant=&quot;heading&quot;&gt;
+                  {/* @ts-ignore */}
+                  {[route.params?.city?.name, route.params?.state?.name]
+                    .filter(Boolean)
+                    .join(&quot;, &quot;)}
+                &lt;/Typography&gt;
+              &lt;/Box&gt;
+            &lt;/Pressable&gt;
+          )
+        },
+      }}
+    &gt;
+      &lt;RestaurantsStack.Screen name=&quot;StateList&quot; component={StateList} /&gt;
+      &lt;RestaurantsStack.Screen name=&quot;CityList&quot; component={CityList} /&gt;
+      &lt;RestaurantsStack.Screen
+        name=&quot;RestaurantList&quot;
+        component={RestaurantList}
+      /&gt;
+      &lt;RestaurantsStack.Screen
+        name=&quot;RestaurantDetails&quot;
+        component={RestaurantDetails}
+      /&gt;
+      &lt;RestaurantsStack.Screen
+        name=&quot;RestaurantOrder&quot;
+        component={RestaurantOrder}
+      /&gt;
+    &lt;/RestaurantsStack.Navigator&gt;
+  )
+}
+
+const AppTabs = createBottomTabNavigator()
+export const AppNavigator: FC = () =&gt; {
+  const theme = useTheme()
+
+  return (
+    &lt;AppTabs.Navigator
+      initialRouteName=&quot;RestaurantsStack&quot;
+      screenOptions={({ route }) =&gt; ({
+        headerStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        headerTitleStyle: {
+          color: theme.palette.screen.contrast,
+          ...theme.typography.title,
+        },
+        tabBarStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        tabBarActiveTintColor: theme.palette.primary.strong,
+        tabBarInactiveTintColor: theme.palette.screen.contrast,
+        tabBarIcon: ({ focused, color }) =&gt; {
+          let icon = &quot;settings&quot;
+          if (route.name === &quot;Settings&quot;) {
+            icon = focused ? &quot;settings&quot; : &quot;settings-outline&quot;
+          } else if (route.name === &quot;Restaurants&quot;) {
+            icon = focused ? &quot;restaurant&quot; : &quot;restaurant-outline&quot;
+          }
+
+          return &lt;Icon name={icon} size={20} color={color} /&gt;
+        },
+      })}
+    &gt;
+      &lt;AppTabs.Screen
+        name=&quot;Restaurants&quot;
+        component={RestaurantsNavigator}
+        options={{ title: &quot;Place My Order&quot; }}
+      /&gt;
+      &lt;AppTabs.Screen
+        name=&quot;Settings&quot;
+        component={Settings}
+        options={{ title: &quot;Settings&quot; }}
+      /&gt;
+    &lt;/AppTabs.Navigator&gt;
+  )
+}
+
+const App: FC = () =&gt; {
+  return (
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;ThemeProvider&gt;
+        &lt;NavigationContainer&gt;
+          &lt;AppNavigator /&gt;
+        &lt;/NavigationContainer&gt;
+      &lt;/ThemeProvider&gt;
+    &lt;/SafeAreaView&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="22,98-100,147,154-155,159-160,only"></div>
+<p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import type { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import type { RestaurantsStackParamList } from &quot;../../App&quot;
+
+import { useEffect } from &quot;react&quot;
+import { useNavigation } from &quot;@react-navigation/native&quot;
+
+import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
+import Loading from &quot;../../components/Loading&quot;
+import Button from &quot;../../design/Button&quot;
+import Typography from &quot;../../design/Typography&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
+import Screen from &quot;../../design/Screen&quot;
+
+type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantDetails&quot;&gt;
+
+const RestaurantDetails: FC&lt;Props&gt; = ({ route }) =&gt; {
+  const { slug } = route.params
+  const navigation = useNavigation()
+  const { data: restaurant, error, isPending } = useRestaurant(slug)
+  useEffect(() =&gt; {
+    if (restaurant) {
+      navigation.setOptions({ title: `${restaurant.name}` })
+    }
+  }, [restaurant, navigation])
+
+  if (error) {
+    return (
+      &lt;Screen&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;
+          Error loading restaurant details:{&quot; &quot;}
+        &lt;/Typography&gt;
+        &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+      &lt;/Screen&gt;
+    )
+  }
+
+  if (isPending) {
+    return &lt;Loading /&gt;
+  }
+
+  return (
+    &lt;Screen&gt;
+      &lt;RestaurantHeader restaurant={restaurant} /&gt;
+      &lt;Button
+        onPress={() =&gt; {
+          navigation.navigate(&quot;RestaurantOrder&quot;, { slug: slug })
+        }}
+      &gt;
+        Place an order
+      &lt;/Button&gt;
+    &lt;/Screen&gt;
+  )
+}
+
+export default RestaurantDetails
+
+</code></pre>
+ <div line-highlight="45-49,only"></div>
+<p>✏️ Update <strong>src/screens/RestaurantOrder/RestaurantOrder.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import type { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import type { RestaurantsStackParamList } from &quot;../../App&quot;
+
+import { useEffect, useState } from &quot;react&quot;
+import { ScrollView } from &quot;react-native&quot;
+import { useNavigation } from &quot;@react-navigation/native&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
+import Box from &quot;../../design/Box&quot;
+import Typography from &quot;../../design/Typography&quot;
+import Button from &quot;../../design/Button&quot;
+import Loading from &quot;../../components/Loading&quot;
+import Card from &quot;../../design/Card&quot;
+import Screen from &quot;../../design/Screen&quot;
+import FormSwitch from &quot;../../components/FormSwitch&quot;
+
+type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;OrderCreate&quot;&gt;
+
+type OrderItems = Record&lt;string, number&gt;
+
+const RestaurantOrder: FC&lt;Props&gt; = ({ route }) =&gt; {
+  const navigation = useNavigation()
+  const { slug } = route.params
+
+  const { data: restaurant, error, isPending } = useRestaurant(slug)
+
+  const [items, setItems] = useState&lt;OrderItems&gt;({})
+
+  useEffect(() =&gt; {
+    if (restaurant) {
+      navigation.setOptions({ title: `Order from ${restaurant.name}` })
+    }
+  }, [restaurant, navigation])
+
+  const handleSubmit = () =&gt; {
+    alert(&quot;Order submitted!&quot;)
+  }
+
+  const setItem = (itemId: string, isChecked: boolean, itemPrice: number) =&gt; {
+    return setItems((currentItems) =&gt; {
+      const updatedItems = {
+        ...currentItems,
+      }
+      if (isChecked) {
+        updatedItems[itemId] = itemPrice
+      } else {
+        delete updatedItems[itemId]
+      }
+      return updatedItems
+    })
+  }
+
+  const selectedCount = Object.values(items).length
+  const subtotal = calculateTotal(items)
+
+  function calculateTotal(items: OrderItems) {
+    return Object.values(items).reduce((total, itemPrice) =&gt; {
+      return total + itemPrice
+    }, 0)
+  }
+
+  if (error) {
+    return (
+      &lt;Box padding=&quot;s&quot;&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;
+          Error loading restaurant order:{&quot; &quot;}
+        &lt;/Typography&gt;
+        &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+      &lt;/Box&gt;
+    )
+  }
+
+  if (isPending) {
+    return &lt;Loading /&gt;
+  }
+
+  if (!restaurant) {
+    return (
+      &lt;Box padding=&quot;s&quot;&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;Restaurant not found&lt;/Typography&gt;
+      &lt;/Box&gt;
+    )
+  }
+
+  return (
+    &lt;ScrollView
+      showsVerticalScrollIndicator={false}
+      alwaysBounceVertical={false}
+    &gt;
+      &lt;Screen&gt;
+        &lt;Card title=&quot;Lunch Menu&quot;&gt;
+          {restaurant.menu.lunch.map(({ name, price }) =&gt; (
+            &lt;FormSwitch
+              key={name}
+              label={`${name} ($${price})`}
+              value={name in items}
+              onChange={(value) =&gt; setItem(name, value, price)}
+            /&gt;
+          ))}
+        &lt;/Card&gt;
+
+        &lt;Card title=&quot;Dinner Menu&quot;&gt;
+          {restaurant.menu.dinner.map(({ name, price }) =&gt; (
+            &lt;FormSwitch
+              key={name}
+              label={`${name} ($${price})`}
+              value={name in items}
+              onChange={(value) =&gt; setItem(name, value, price)}
+            /&gt;
+          ))}
+        &lt;/Card&gt;
+
+        &lt;Card title=&quot;Order Details&quot;&gt;&lt;/Card&gt;
+
+        &lt;Box padding=&quot;s&quot;&gt;
+          {subtotal === 0 ? (
+            &lt;Typography&gt;Please choose an item.&lt;/Typography&gt;
+          ) : (
+            &lt;Typography&gt;{selectedCount} items selected.&lt;/Typography&gt;
+          )}
+        &lt;/Box&gt;
+
+        &lt;Box padding=&quot;s&quot;&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;
+            Total: ${subtotal.toFixed(2)}
+          &lt;/Typography&gt;
+        &lt;/Box&gt;
+
+        &lt;Box padding=&quot;s&quot;&gt;
+          &lt;Button onPress={handleSubmit}&gt;Place My Order!&lt;/Button&gt;
+        &lt;/Box&gt;
+      &lt;/Screen&gt;
+    &lt;/ScrollView&gt;
+  )
+}
+
+export default RestaurantOrder
+
+</code></pre>
+ <div line-highlight="57-59,92-99,103-110,only"></div>
+<p></details></p>
+<h2>Objective 2: Custom wrappers for consistency, accessibility</h2>
 <p>TODO</p>
+<h3>Concept TODO</h3>
+<p>TODO</p>
+<h3>Setup 2</h3>
+<p>✏️ Create <strong>src/components/FormTextField/FormTextField.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { useId } from &quot;react&quot;
+import { TextInput } from &quot;react-native&quot;
+import Box from &quot;../../design/Box&quot;
+import { useTheme } from &quot;../../design/theme&quot;
+import Typography from &quot;../../design/Typography&quot;
+
+type Props = {
+  label: string
+  placeholder?: string
+  type?: &quot;text&quot;
+  value: string
+  onChange?: (value: string) =&gt; void
+}
+
+const FormTextField: FC&lt;Props&gt; = ({ label, placeholder, value, onChange }) =&gt; {
+  const id = useId()
+  const theme = useTheme()
+
+  return (
+    &lt;Box style={{ marginVertical: 8 }}&gt;
+      {/** Exercise: Create Text Label and Update Text Input to work with label */}
+      &lt;TextInput
+        style={{
+          flex: 1,
+          paddingVertical: 0,
+          borderBottomWidth: 1,
+          borderBottomColor: theme.palette.screen.contrast,
+          color: theme.palette.screen.contrast,
+        }}
+      /&gt;
+    &lt;/Box&gt;
+  )
+}
+
+export default FormTextField
+
+</code></pre>
+<p>✏️ Create <strong>src/components/FormTextField/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./FormTextField&quot;
+
+</code></pre>
+<p>✏️ Update <strong>src/screens/RestaurantOrder/RestaurantOrder.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import type { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import type { RestaurantsStackParamList } from &quot;../../App&quot;
+
+import { useEffect, useState } from &quot;react&quot;
+import { ScrollView } from &quot;react-native&quot;
+import { useNavigation } from &quot;@react-navigation/native&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
+import Box from &quot;../../design/Box&quot;
+import Typography from &quot;../../design/Typography&quot;
+import Button from &quot;../../design/Button&quot;
+import FormTextField from &quot;../../components/FormTextField&quot;
+import Loading from &quot;../../components/Loading&quot;
+import Card from &quot;../../design/Card&quot;
+import Screen from &quot;../../design/Screen&quot;
+import FormSwitch from &quot;../../components/FormSwitch&quot;
+
+type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;OrderCreate&quot;&gt;
+
+type OrderItems = Record&lt;string, number&gt;
+
+const RestaurantOrder: FC&lt;Props&gt; = ({ route }) =&gt; {
+  const navigation = useNavigation()
+  const { slug } = route.params
+
+  const { data: restaurant, error, isPending } = useRestaurant(slug)
+
+  const [items, setItems] = useState&lt;OrderItems&gt;({})
+  {
+    /*Exercise: Store state for new FormTextFields in RestaurantOrder */
+  }
+
+  useEffect(() =&gt; {
+    if (restaurant) {
+      navigation.setOptions({ title: `Order from ${restaurant.name}` })
+    }
+  }, [restaurant, navigation])
+
+  const handleSubmit = () =&gt; {
+    alert(&quot;Order submitted!&quot;)
+  }
+
+  const setItem = (itemId: string, isChecked: boolean, itemPrice: number) =&gt; {
+    return setItems((currentItems) =&gt; {
+      const updatedItems = {
+        ...currentItems,
+      }
+      if (isChecked) {
+        updatedItems[itemId] = itemPrice
+      } else {
+        delete updatedItems[itemId]
+      }
+      return updatedItems
+    })
+  }
+
+  const selectedCount = Object.values(items).length
+  const subtotal = calculateTotal(items)
+
+  function calculateTotal(items: OrderItems) {
+    return Object.values(items).reduce((total, itemPrice) =&gt; {
+      return total + itemPrice
+    }, 0)
+  }
+
+  if (error) {
+    return (
+      &lt;Box padding=&quot;s&quot;&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;
+          Error loading restaurant order:{&quot; &quot;}
+        &lt;/Typography&gt;
+        &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+      &lt;/Box&gt;
+    )
+  }
+
+  if (isPending) {
+    return &lt;Loading /&gt;
+  }
+
+  if (!restaurant) {
+    return (
+      &lt;Box padding=&quot;s&quot;&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;Restaurant not found&lt;/Typography&gt;
+      &lt;/Box&gt;
+    )
+  }
+
+  return (
+    &lt;ScrollView
+      showsVerticalScrollIndicator={false}
+      alwaysBounceVertical={false}
+    &gt;
+      &lt;Screen&gt;
+        &lt;Card title=&quot;Lunch Menu&quot;&gt;
+          {restaurant.menu.lunch.map(({ name, price }) =&gt; (
+            &lt;FormSwitch
+              key={name}
+              label={`${name} ($${price})`}
+              value={name in items}
+              onChange={(value) =&gt; setItem(name, value, price)}
+            /&gt;
+          ))}
+        &lt;/Card&gt;
+
+        &lt;Card title=&quot;Dinner Menu&quot;&gt;
+          {restaurant.menu.dinner.map(({ name, price }) =&gt; (
+            &lt;FormSwitch
+              key={name}
+              label={`${name} ($${price})`}
+              value={name in items}
+              onChange={(value) =&gt; setItem(name, value, price)}
+            /&gt;
+          ))}
+        &lt;/Card&gt;
+
+        &lt;Card title=&quot;Order Details&quot;&gt;
+          {/*Exercise: Use name, address, and phone fields to create FormTextField elements */}
+        &lt;/Card&gt;
+
+        &lt;Box padding=&quot;s&quot;&gt;
+          {subtotal === 0 ? (
+            &lt;Typography&gt;Please choose an item.&lt;/Typography&gt;
+          ) : (
+            &lt;Typography&gt;{selectedCount} items selected.&lt;/Typography&gt;
+          )}
+        &lt;/Box&gt;
+
+        &lt;Box padding=&quot;s&quot;&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;
+            Total: ${subtotal.toFixed(2)}
+          &lt;/Typography&gt;
+        &lt;/Box&gt;
+
+        &lt;Box padding=&quot;s&quot;&gt;
+          &lt;Button onPress={handleSubmit}&gt;Place My Order!&lt;/Button&gt;
+        &lt;/Box&gt;
+      &lt;/Screen&gt;
+    &lt;/ScrollView&gt;
+  )
+}
+
+export default RestaurantOrder
+
+</code></pre>
+ <div line-highlight="12,29-30,87,117-119,only"></div>
+<h3>Verify 2</h3>
+<p>✏️ Create <strong>src/components/FormTextField/FormTextField.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { useId } from &quot;react&quot;
+import { TextInput } from &quot;react-native&quot;
+import Box from &quot;../../design/Box&quot;
+import { useTheme } from &quot;../../design/theme&quot;
+import Typography from &quot;../../design/Typography&quot;
+
+type Props = {
+  label: string
+  placeholder?: string
+  type?: &quot;text&quot;
+  value: string
+  onChange?: (value: string) =&gt; void
+}
+
+const FormTextField: FC&lt;Props&gt; = ({ label, placeholder, value, onChange }) =&gt; {
+  const id = useId()
+  const theme = useTheme()
+
+  return (
+    &lt;Box style={{ marginVertical: 8 }}&gt;
+      {/** Exercise: Create Text Label and Update Text Input to work with label */}
+      &lt;TextInput
+        style={{
+          flex: 1,
+          paddingVertical: 0,
+          borderBottomWidth: 1,
+          borderBottomColor: theme.palette.screen.contrast,
+          color: theme.palette.screen.contrast,
+        }}
+      /&gt;
+    &lt;/Box&gt;
+  )
+}
+
+export default FormTextField
+
+</code></pre>
+<p>✏️ Update <strong>src/screens/RestaurantOrder/RestaurantOrder.test.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+
+import * as restaurantHooks from &quot;../../services/pmo/restaurant/hooks&quot;
+
+import RestaurantOrder from &quot;./RestaurantOrder&quot;
+
+describe(&quot;RestaurantOrder component&quot;, () =&gt; {
+  // Mock the hooks and components used in RestaurantOrder
+
+  const mockRestaurantResponse = {
+    data: {
+      name: &quot;Bagel Restaurant&quot;,
+      slug: &quot;bagel-restaurant&quot;,
+      images: {
+        thumbnail: &quot;node_modules/place-my-order-assets/images/3-thumbnail.jpg&quot;,
+        owner: &quot;node_modules/place-my-order-assets/images/1-owner.jpg&quot;,
+        banner: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;,
+      },
+      menu: {
+        lunch: [
+          { name: &quot;Crab Pancakes with Sorrel Syrup&quot;, price: 35.99 },
+          { name: &quot;Steamed Mussels&quot;, price: 21.99 },
+          { name: &quot;Roasted Salmon&quot;, price: 23.99 },
+        ],
+        dinner: [
+          { name: &quot;Truffle Noodles&quot;, price: 14.99 },
+          { name: &quot;Spinach Fennel Watercress Ravioli&quot;, price: 35.99 },
+          { name: &quot;Herring in Lavender Dill Reduction&quot;, price: 45.99 },
+        ],
+      },
+      address: {
+        street: &quot;285 W Adams Ave&quot;,
+        city: &quot;Detroit&quot;,
+        state: &quot;MI&quot;,
+        zip: &quot;60045&quot;,
+      },
+      coordinate: {
+        latitude: 0,
+        longitude: 0,
+      },
+      resources: {
+        thumbnail: &quot;api/resources/images/3-thumbnail.jpg&quot;,
+        owner: &quot;api/resources/images/4-owner.jpg&quot;,
+        banner: &quot;api/resources/images/1-banner.jpg&quot;,
+      },
+      _id: &quot;5NVE3Z5MXxX3O57R&quot;,
+    },
+  }
+
+  let useRestaurant: jest.SpyInstance&lt;
+    ReturnType&lt;typeof restaurantHooks.useRestaurant&gt;
+  &gt;
+  beforeEach(() =&gt; {
+    jest.resetAllMocks()
+    useRestaurant = jest.spyOn(restaurantHooks, &quot;useRestaurant&quot;)
+  })
+
+  it(&quot;renders restaurant order form&quot;, () =&gt; {
+    useRestaurant.mockReturnValue({
+      ...mockRestaurantResponse,
+      error: null,
+      isPending: false,
+    })
+
+    render(&lt;RestaurantOrder route={{ params: { slug: &quot;bagel-restaurant&quot; } }} /&gt;)
+    expect(screen.getByText(/Lunch Menu/i)).toBeOnTheScreen()
+    expect(
+      screen.getByText(mockRestaurantResponse.data.menu.lunch[0].name, {
+        exact: false,
+      }),
+    ).toBeOnTheScreen()
+    expect(screen.getByText(/Dinner Menu/i)).toBeOnTheScreen()
+    expect(
+      screen.getByText(mockRestaurantResponse.data.menu.dinner[0].name, {
+        exact: false,
+      }),
+    ).toBeOnTheScreen()
+
+    expect(screen.getByText(/Name/i)).toBeOnTheScreen()
+    expect(screen.getByText(/Address/i)).toBeOnTheScreen()
+    expect(screen.getByText(/Phone/i)).toBeOnTheScreen()
+  })
+
+  it(&quot;renders loading restaurant&quot;, () =&gt; {
+    useRestaurant.mockReturnValue({ data: null, error: null, isPending: true })
+
+    render(&lt;RestaurantOrder route={{ params: { slug: &quot;bagel-restaurant&quot; } }} /&gt;)
+    expect(screen.getByText(/Loading/i)).toBeOnTheScreen()
+  })
+  it(&quot;renders error restaurant&quot;, () =&gt; {
+    useRestaurant.mockReturnValue({
+      data: null,
+      error: { name: &quot;Oops&quot;, message: &quot;This is the error&quot; },
+      isPending: false,
+    })
+
+    render(&lt;RestaurantOrder route={{ params: { slug: &quot;bagel-restaurant&quot; } }} /&gt;)
+
+    expect(
+      screen.getByText(/Error loading restaurant order:/),
+    ).toBeOnTheScreen()
+    expect(screen.getByText(/This is the error/)).toBeOnTheScreen()
+  })
+})
+
+</code></pre>
+ <div line-highlight="79-81,only"></div>
+<h3>Exercise 2</h3>
+<ul>
+<li>Create <code>Typography</code> for <code>label</code> and Update <code>TextInput</code> to work with <code>label</code></li>
+<li>Use <code>name</code>, <code>address</code>, and <code>phone</code> fields to create <code>FormTextField</code> elements</li>
+<li>Store <code>state</code> for new <code>FormTextFields</code> in <code>RestaurantOrder</code></li>
+</ul>
+<h3>Solution 2</h3>
+<p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/components/FormTextField/FormTextField.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import { useId } from &quot;react&quot;
+import { TextInput } from &quot;react-native&quot;
+import Box from &quot;../../design/Box&quot;
+import { useTheme } from &quot;../../design/theme&quot;
+import Typography from &quot;../../design/Typography&quot;
+
+type Props = {
+  label: string
+  placeholder?: string
+  type?: &quot;text&quot;
+  value: string
+  onChange?: (value: string) =&gt; void
+}
+
+const FormTextField: FC&lt;Props&gt; = ({ label, placeholder, value, onChange }) =&gt; {
+  const id = useId()
+  const theme = useTheme()
+
+  return (
+    &lt;Box style={{ marginVertical: 8 }}&gt;
+      &lt;Typography nativeID={id} variant=&quot;label&quot;&gt;
+        {label}
+      &lt;/Typography&gt;
+      &lt;TextInput
+        accessibilityLabel=&quot;input&quot;
+        accessibilityLabelledBy={id}
+        onChangeText={onChange}
+        value={value}
+        placeholder={placeholder}
+        style={{
+          flex: 1,
+          paddingVertical: 0,
+          borderBottomWidth: 1,
+          borderBottomColor: theme.palette.screen.contrast,
+          color: theme.palette.screen.contrast,
+        }}
+      /&gt;
+    &lt;/Box&gt;
+  )
+}
+
+export default FormTextField
+
+</code></pre>
+ <div line-highlight="22-24,26-30,only"></div>
+<p>✏️ Update <strong>src/screens/RestaurantOrder/RestaurantOrder.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+import type { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import type { RestaurantsStackParamList } from &quot;../../App&quot;
+
+import { useEffect, useState } from &quot;react&quot;
+import { ScrollView } from &quot;react-native&quot;
+import { useNavigation } from &quot;@react-navigation/native&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
+import Box from &quot;../../design/Box&quot;
+import Typography from &quot;../../design/Typography&quot;
+import Button from &quot;../../design/Button&quot;
+import FormTextField from &quot;../../components/FormTextField&quot;
+import Loading from &quot;../../components/Loading&quot;
+import Card from &quot;../../design/Card&quot;
+import Screen from &quot;../../design/Screen&quot;
+import FormSwitch from &quot;../../components/FormSwitch&quot;
+
+type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;OrderCreate&quot;&gt;
+
+type OrderItems = Record&lt;string, number&gt;
+
+const RestaurantOrder: FC&lt;Props&gt; = ({ route }) =&gt; {
+  const navigation = useNavigation()
+  const { slug } = route.params
+
+  const { data: restaurant, error, isPending } = useRestaurant(slug)
+
+  const [address, setAddress] = useState&lt;string&gt;(&quot;&quot;)
+  const [items, setItems] = useState&lt;OrderItems&gt;({})
+  const [name, setName] = useState&lt;string&gt;(&quot;&quot;)
+  const [phone, setPhone] = useState&lt;string&gt;(&quot;&quot;)
+
+  useEffect(() =&gt; {
+    if (restaurant) {
+      navigation.setOptions({ title: `Order from ${restaurant.name}` })
+    }
+  }, [restaurant, navigation])
+
+  const handleSubmit = () =&gt; {
+    alert(&quot;Order submitted!&quot;)
+  }
+
+  const setItem = (itemId: string, isChecked: boolean, itemPrice: number) =&gt; {
+    return setItems((currentItems) =&gt; {
+      const updatedItems = {
+        ...currentItems,
+      }
+      if (isChecked) {
+        updatedItems[itemId] = itemPrice
+      } else {
+        delete updatedItems[itemId]
+      }
+      return updatedItems
+    })
+  }
+
+  const selectedCount = Object.values(items).length
+  const subtotal = calculateTotal(items)
+
+  function calculateTotal(items: OrderItems) {
+    return Object.values(items).reduce((total, itemPrice) =&gt; {
+      return total + itemPrice
+    }, 0)
+  }
+
+  if (error) {
+    return (
+      &lt;Box padding=&quot;s&quot;&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;
+          Error loading restaurant order:{&quot; &quot;}
+        &lt;/Typography&gt;
+        &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+      &lt;/Box&gt;
+    )
+  }
+
+  if (isPending) {
+    return &lt;Loading /&gt;
+  }
+
+  if (!restaurant) {
+    return (
+      &lt;Box padding=&quot;s&quot;&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;Restaurant not found&lt;/Typography&gt;
+      &lt;/Box&gt;
+    )
+  }
+
+  return (
+    &lt;ScrollView
+      showsVerticalScrollIndicator={false}
+      alwaysBounceVertical={false}
+    &gt;
+      &lt;Screen&gt;
+        &lt;Card title=&quot;Lunch Menu&quot;&gt;
+          {restaurant.menu.lunch.map(({ name, price }) =&gt; (
+            &lt;FormSwitch
+              key={name}
+              label={`${name} ($${price})`}
+              value={name in items}
+              onChange={(value) =&gt; setItem(name, value, price)}
+            /&gt;
+          ))}
+        &lt;/Card&gt;
+
+        &lt;Card title=&quot;Dinner Menu&quot;&gt;
+          {restaurant.menu.dinner.map(({ name, price }) =&gt; (
+            &lt;FormSwitch
+              key={name}
+              label={`${name} ($${price})`}
+              value={name in items}
+              onChange={(value) =&gt; setItem(name, value, price)}
+            /&gt;
+          ))}
+        &lt;/Card&gt;
+
+        &lt;Card title=&quot;Order Details&quot;&gt;
+          &lt;FormTextField label=&quot;Name&quot; onChange={setName} value={name} /&gt;
+          &lt;FormTextField
+            label=&quot;Address&quot;
+            onChange={setAddress}
+            value={address}
+          /&gt;
+          &lt;FormTextField label=&quot;Phone&quot; onChange={setPhone} value={phone} /&gt;
+        &lt;/Card&gt;
+
+        &lt;Box padding=&quot;s&quot;&gt;
+          {subtotal === 0 ? (
+            &lt;Typography&gt;Please choose an item.&lt;/Typography&gt;
+          ) : (
+            &lt;Typography&gt;{selectedCount} items selected.&lt;/Typography&gt;
+          )}
+        &lt;/Box&gt;
+
+        &lt;Box padding=&quot;s&quot;&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;
+            Total: ${subtotal.toFixed(2)}
+          &lt;/Typography&gt;
+        &lt;/Box&gt;
+
+        &lt;Box padding=&quot;s&quot;&gt;
+          &lt;Button onPress={handleSubmit}&gt;Place My Order!&lt;/Button&gt;
+        &lt;/Box&gt;
+      &lt;/Screen&gt;
+    &lt;/ScrollView&gt;
+  )
+}
+
+export default RestaurantOrder
+
+</code></pre>
+ <div line-highlight="28,30-31,118-124,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
-<p>TODO</p>
+<p>Next, in order to retain data to limit requests and migrating the same data, let's look into <a href="./using-asyncstorage">Using AsyncStorage</a>.</p>
 
 </section>
 

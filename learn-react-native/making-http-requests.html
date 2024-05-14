@@ -2366,10 +2366,10 @@ import { useNavigation } from &quot;@react-navigation/native&quot;
 
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
 import Loading from &quot;../../components/Loading&quot;
-import Button from &quot;../../design/Button&quot;
 import Typography from &quot;../../design/Typography&quot;
 import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 import Screen from &quot;../../design/Screen&quot;
+import Button from &quot;../../design/Button&quot;
 
 type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantDetails&quot;&gt;
 
@@ -2379,12 +2379,7 @@ const RestaurantDetails: FC&lt;Props&gt; = ({ route }) =&gt; {
   return (
     &lt;Screen&gt;
       &lt;RestaurantHeader restaurant={restaurant} /&gt;
-
-      &lt;Button
-        onPress={() =&gt; {
-          navigation.navigate(&quot;OrderCreate&quot;, { slug: slug })
-        }}
-      &gt;
+      &lt;Button onPress={() =&gt; console.warn(&quot;Place an order&quot;)}&gt;
         Place an order
       &lt;/Button&gt;
     &lt;/Screen&gt;
@@ -2394,7 +2389,7 @@ const RestaurantDetails: FC&lt;Props&gt; = ({ route }) =&gt; {
 export default RestaurantDetails
 
 </code></pre>
- <div line-highlight="2-3,5,9-12,15,17,24-30,only"></div>
+ <div line-highlight="2-3,5,9-11,15,17,only"></div>
 <h3>Verify 4</h3>
 <p>✏️ Update <strong>src/services/pmo/restaurant/hooks.test.ts</strong> to be:</p>
 <pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react-native&quot;
@@ -3042,10 +3037,10 @@ import { useNavigation } from &quot;@react-navigation/native&quot;
 
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
 import Loading from &quot;../../components/Loading&quot;
-import Button from &quot;../../design/Button&quot;
 import Typography from &quot;../../design/Typography&quot;
 import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 import Screen from &quot;../../design/Screen&quot;
+import Button from &quot;../../design/Button&quot;
 
 type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantDetails&quot;&gt;
 
@@ -3077,12 +3072,7 @@ const RestaurantDetails: FC&lt;Props&gt; = ({ route }) =&gt; {
   return (
     &lt;Screen&gt;
       &lt;RestaurantHeader restaurant={restaurant} /&gt;
-
-      &lt;Button
-        onPress={() =&gt; {
-          navigation.navigate(&quot;OrderCreate&quot;, { slug: slug })
-        }}
-      &gt;
+      &lt;Button onPress={() =&gt; console.warn(&quot;Place an order&quot;)}&gt;
         Place an order
       &lt;/Button&gt;
     &lt;/Screen&gt;
