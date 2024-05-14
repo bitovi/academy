@@ -796,12 +796,11 @@ function List() {
 <p>TODO: Introduce this core component.</p>
 <h3>Setup 1</h3>
 <p>✏️ Update <strong>App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { JSX } from &quot;react&quot;
-import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
 
 const state = { name: &quot;Illinois&quot;, short: &quot;IL&quot; }
 
-function App(): JSX.Element {
+const App: React.FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
       &lt;ScrollView&gt;
@@ -816,10 +815,11 @@ function App(): JSX.Element {
 export default App
 
 </code></pre>
- <div line-highlight="1,4,6,only"></div>
+ <div line-highlight="3,only"></div>
 <h3>Verify 1</h3>
 <p>✏️ Update <strong>App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+
 import App from &quot;./App&quot;
 
 describe(&quot;App&quot;, () =&gt; {
@@ -834,7 +834,7 @@ describe(&quot;App&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="9-12,only"></div>
+ <div line-highlight="10-13,only"></div>
 <h3>Exercise 1</h3>
 <p>Use JSX to dynamically display a state name from a variable that’s an object.</p>
 <h3>Solution 1</h3>
@@ -842,12 +842,11 @@ describe(&quot;App&quot;, () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { JSX } from &quot;react&quot;
-import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
 
 const state = { name: &quot;Illinois&quot;, short: &quot;IL&quot; }
 
-function App(): JSX.Element {
+const App: React.FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
       &lt;ScrollView&gt;
@@ -865,7 +864,7 @@ function App(): JSX.Element {
 export default App
 
 </code></pre>
- <div line-highlight="13-15,only"></div>
+ <div line-highlight="12-14,only"></div>
 <p></details></p>
 <h2>Objective 2: Expressions and loops in JSX</h2>
 <p>Next, we want to render a list of states name in our application:</p>
@@ -1035,8 +1034,7 @@ Check the render method of 'App'. See https://reactjs.org/link/warning-keys for 
 </code></pre>
 <h3>Setup 2</h3>
 <p>✏️ Update <strong>App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { JSX } from &quot;react&quot;
-import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
 
 const states = [
   {
@@ -1049,7 +1047,7 @@ const states = [
   },
 ]
 
-function App(): JSX.Element {
+const App: React.FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
       &lt;ScrollView&gt;
@@ -1057,7 +1055,7 @@ function App(): JSX.Element {
           &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
         &lt;/View&gt;
         &lt;View&gt;
-          &lt;Text&gt;{state.name}&lt;/Text&gt;
+          &lt;Text&gt;{states[0].name}&lt;/Text&gt;
         &lt;/View&gt;
       &lt;/ScrollView&gt;
     &lt;/SafeAreaView&gt;
@@ -1067,10 +1065,11 @@ function App(): JSX.Element {
 export default App
 
 </code></pre>
- <div line-highlight="4-13,only"></div>
+ <div line-highlight="3-12,22,only"></div>
 <h3>Verify 2</h3>
 <p>✏️ Update <strong>App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+
 import App from &quot;./App&quot;
 
 describe(&quot;App&quot;, () =&gt; {
@@ -1086,7 +1085,7 @@ describe(&quot;App&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="9,12,only"></div>
+ <div line-highlight="10,13,only"></div>
 <h3>Exercise 2</h3>
 <ul>
 <li>Update the existing JSX to render the list of state names.</li>
@@ -1099,8 +1098,7 @@ describe(&quot;App&quot;, () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { JSX } from &quot;react&quot;
-import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
 
 const states = [
   {
@@ -1113,7 +1111,7 @@ const states = [
   },
 ]
 
-function App(): JSX.Element {
+const App: React.FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
       &lt;ScrollView&gt;
@@ -1121,7 +1119,7 @@ function App(): JSX.Element {
           &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
         &lt;/View&gt;
         &lt;View&gt;
-          {states?.length &gt; 0 ? (
+          {states?.length ? (
             states.map((state) =&gt; &lt;Text key={state.short}&gt;{state.name}&lt;/Text&gt;)
           ) : (
             &lt;Text&gt;No states found&lt;/Text&gt;
@@ -1135,7 +1133,7 @@ function App(): JSX.Element {
 export default App
 
 </code></pre>
- <div line-highlight="23-27,only"></div>
+ <div line-highlight="22-26,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, we will learn the <a href="intro-to-testing.html" title="Learn about testing solutions in React Native.">Introduction to Testing</a> React Native applications.</p>

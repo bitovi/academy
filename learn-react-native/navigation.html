@@ -754,18 +754,17 @@ export default function App() {
 <pre><code class="language-bash">npm install @react-navigation/native @react-navigation/bottom-tabs
 </code></pre>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { SafeAreaView } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
-import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import { SafeAreaView } from &quot;react-native&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
 import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
-import StateList from &quot;./screens/StateList&quot;
 import Settings from &quot;./screens/Settings&quot;
+import StateList from &quot;./screens/StateList&quot;
 
 const AppTabs = createBottomTabNavigator()
-export const AppNavigator: FC = () =&gt; {
+export const AppNavigator: React.FC = () =&gt; {
   const theme = useTheme()
 
   return (
@@ -795,7 +794,7 @@ export const AppNavigator: FC = () =&gt; {
   )
 }
 
-const App: FC = () =&gt; {
+const App: React.FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
       &lt;ThemeProvider&gt;
@@ -808,21 +807,20 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="3-5,7,9,11-13,16-38,43,49-50,only"></div>
+ <div line-highlight="1-2,4,6-7,10-12,15-37,42,48-49,only"></div>
 <p>✏️ Create <strong>src/screens/Settings/Settings.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { Switch } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { Switch } from &quot;react-native&quot;
 
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
 import Card from &quot;../../design/Card&quot;
+import Screen from &quot;../../design/Screen&quot;
 import { useThemeMode } from &quot;../../design/theme&quot;
+import Typography from &quot;../../design/Typography&quot;
 
 const user = {
   name: &quot;Your Name&quot;,
 }
 
-const Settings: FC = () =&gt; {
+const Settings: React.FC = () =&gt; {
   const { mode, setMode } = useThemeMode()
 
   return (
@@ -851,6 +849,7 @@ export default Settings
 <h3>Verify 1</h3>
 <p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+
 import App from &quot;./App&quot;
 
 describe(&quot;App&quot;, () =&gt; {
@@ -867,22 +866,21 @@ describe(&quot;App&quot;, () =&gt; {
 
 </code></pre>
 <p>✏️ Create <strong>src/screens/Settings/Settings.test.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import type { SwitchChangeEvent } from &quot;react-native&quot;;
-
+<pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { fireEvent, render, screen } from &quot;@testing-library/react-native&quot;
-import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { SwitchChangeEvent } from &quot;react-native&quot;
 
 import Settings from &quot;./Settings&quot;
 
 const mockSetMode = jest.fn()
 
-jest.mock('../../design/theme', () =&gt; ({
-  ...jest.requireActual('../../design/theme'),
+jest.mock(&quot;../../design/theme&quot;, () =&gt; ({
+  ...jest.requireActual(&quot;../../design/theme&quot;),
   useThemeMode: () =&gt; ({
-    mode: 'light',
-    setMode: mockSetMode
+    mode: &quot;light&quot;,
+    setMode: mockSetMode,
   }),
-}));
+}))
 
 describe(&quot;Settings component&quot;, () =&gt; {
   it(&quot;renders Settings Page&quot;, async () =&gt; {
@@ -893,7 +891,7 @@ describe(&quot;Settings component&quot;, () =&gt; {
     )
     expect(screen.getByText(/welcome/i)).toBeOnTheScreen()
   })
-  it('should switch to dark mode', () =&gt; {
+  it(&quot;should switch to dark mode&quot;, () =&gt; {
     render(
       &lt;NavigationContainer&gt;
         &lt;Settings /&gt;
@@ -901,8 +899,10 @@ describe(&quot;Settings component&quot;, () =&gt; {
     )
     const switchElement = screen.getByRole(&quot;switch&quot;)
     expect(switchElement.props.value).toBe(false)
-    fireEvent(switchElement, 'onChange', { nativeEvent: { value: true } } as SwitchChangeEvent);
-    expect(mockSetMode).toHaveBeenCalledWith('dark')
+    fireEvent(switchElement, &quot;onChange&quot;, {
+      nativeEvent: { value: true },
+    } as SwitchChangeEvent)
+    expect(mockSetMode).toHaveBeenCalledWith(&quot;dark&quot;)
   })
 })
 
@@ -918,18 +918,17 @@ describe(&quot;Settings component&quot;, () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { SafeAreaView } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
-import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import { SafeAreaView } from &quot;react-native&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
 import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
-import StateList from &quot;./screens/StateList&quot;
 import Settings from &quot;./screens/Settings&quot;
+import StateList from &quot;./screens/StateList&quot;
 
 const AppTabs = createBottomTabNavigator()
-export const AppNavigator: FC = () =&gt; {
+export const AppNavigator: React.FC = () =&gt; {
   const theme = useTheme()
 
   return (
@@ -974,7 +973,7 @@ export const AppNavigator: FC = () =&gt; {
   )
 }
 
-const App: FC = () =&gt; {
+const App: React.FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
       &lt;ThemeProvider&gt;
@@ -989,7 +988,7 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="32-37,43-52,61-63,only"></div>
+ <div line-highlight="31-36,42-51,60-62,only"></div>
 <p></details></p>
 <h2>Objective 2: Using React Native stack navigation</h2>
 <p>Now that we've covered tab navigation, let's move on to stack navigation. As mentioned in the previous section, most applications use a combination of both tab and stack navigation to create a seamless user experience.</p>
@@ -1063,39 +1062,37 @@ function MyStack() {
 <pre><code class="language-bash">npm install @react-navigation/stack
 </code></pre>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { Pressable, SafeAreaView } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
-import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import { Pressable, SafeAreaView } from &quot;react-native&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
-import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
-import StateList from &quot;./screens/StateList&quot;
-import Settings from &quot;./screens/Settings&quot;
-import CityList from &quot;./screens/CityList&quot;
 import Box from &quot;./design/Box&quot;
+import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
 import Typography from &quot;./design/Typography&quot;
-import { createStackNavigator } from &quot;@react-navigation/stack&quot;
-
+import CityList from &quot;./screens/CityList&quot;
+import Settings from &quot;./screens/Settings&quot;
+import StateList from &quot;./screens/StateList&quot;
 
 const RestaurantsStack = createStackNavigator()
-const RestaurantsNavigator: FC = () =&gt; {
+const RestaurantsNavigator: React.FC = () =&gt; {
   return (
     &lt;RestaurantsStack.Navigator
       initialRouteName=&quot;StateList&quot;
       screenOptions={{
         header: ({ route, navigation }) =&gt; {
-          {/* Exercise: Add logic for back navigation*/ }
+          {
+            /* Exercise: Add logic for back navigation*/
+          }
           return (
-            &lt;Pressable onPress={ }&gt;
+            &lt;Pressable onPress={() =&gt; console.warn(&quot;header pressed&quot;)}&gt;
               &lt;Box
                 padding=&quot;m&quot;
                 style={{ flexDirection: &quot;row&quot;, gap: 8, alignItems: &quot;center&quot; }}
               &gt;
                 &lt;Icon name=&quot;arrow-back&quot; size={20} /&gt;
-                &lt;Typography variant=&quot;heading&quot;&gt;
-                  Choose a location
-                &lt;/Typography&gt;
+                &lt;Typography variant=&quot;heading&quot;&gt;Choose a location&lt;/Typography&gt;
               &lt;/Box&gt;
             &lt;/Pressable&gt;
           )
@@ -1108,7 +1105,7 @@ const RestaurantsNavigator: FC = () =&gt; {
 }
 
 const AppTabs = createBottomTabNavigator()
-export const AppNavigator: FC = () =&gt; {
+export const AppNavigator: React.FC = () =&gt; {
   const theme = useTheme()
 
   return (
@@ -1153,7 +1150,7 @@ export const AppNavigator: FC = () =&gt; {
   )
 }
 
-const App: FC = () =&gt; {
+const App: React.FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
       &lt;ThemeProvider&gt;
@@ -1168,16 +1165,15 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="2,10-13,16-17,19-36,38,40-41,74,76,79,92,100-101,only"></div>
+ <div line-highlight="3-4,7,9-10,14-15,17-22,24-34,36,38-39,69,72,74,77,90,98-99,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+<pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { FlatList } from &quot;react-native&quot;
-import { useNavigation } from &quot;@react-navigation/native&quot;
 
-import Card from &quot;../../design/Card&quot;
-import Typography from &quot;../../design/Typography&quot;
-import Screen from &quot;../../design/Screen&quot;
 import Button from &quot;../../design/Button&quot;
+import Card from &quot;../../design/Card&quot;
+import Screen from &quot;../../design/Screen&quot;
+import Typography from &quot;../../design/Typography&quot;
 
 export interface State {
   name: string
@@ -1195,7 +1191,7 @@ const states: State[] = [
   },
 ]
 
-const StateList: FC = () =&gt; {
+const StateList: React.FC = () =&gt; {
   const navigation = useNavigation()
 
   return (
@@ -1208,9 +1204,7 @@ const StateList: FC = () =&gt; {
       &lt;FlatList
         data={states}
         renderItem={({ item: stateItem }) =&gt; (
-          &lt;Button
-            onPress={() =&gt; console.warn(`${stateItem.name}`)}
-          &gt;
+          &lt;Button onPress={() =&gt; console.warn(`${stateItem.name}`)}&gt;
             {stateItem.name}
           &lt;/Button&gt;
         )}
@@ -1223,13 +1217,12 @@ const StateList: FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="2-3,8,10,27,36-46,only"></div>
+ <div line-highlight="1-2,4,9,26,35-43,only"></div>
 <p>✏️ Create <strong>src/screens/CityList/CityList.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { FlatList } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { FlatList } from &quot;react-native&quot;
 
-import Screen from &quot;../../design/Screen&quot;
 import Button from &quot;../../design/Button&quot;
+import Screen from &quot;../../design/Screen&quot;
 
 export interface City {
   name: string
@@ -1241,15 +1234,13 @@ const cities: City[] = [
   { name: &quot;Springfield&quot;, state: &quot;IL&quot; },
 ]
 
-const CityList: FC = () =&gt; {
+const CityList: React.FC = () =&gt; {
   return (
     &lt;Screen&gt;
       &lt;FlatList
         data={cities}
         renderItem={({ item: cityItem }) =&gt; (
-          &lt;Button
-            onPress={() =&gt; console.warn(`${cityItem.name}`)}
-          &gt;
+          &lt;Button onPress={() =&gt; console.warn(`${cityItem.name}`)}&gt;
             {cityItem.name}
           &lt;/Button&gt;
         )}
@@ -1269,15 +1260,16 @@ export default CityList
 <h3>Verify 2</h3>
 <p>✏️ Update <strong>src/screens/StateList/StateList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
-import { render, screen } from &quot;@testing-library/react-native&quot;;
-import StateList from &quot;./StateList&quot;;
+import { render, screen } from &quot;@testing-library/react-native&quot;
+
+import StateList from &quot;./StateList&quot;
 
 describe(&quot;StateList&quot;, () =&gt; {
   it(&quot;renders states&quot;, async () =&gt; {
     render(
       &lt;NavigationContainer&gt;
         &lt;StateList /&gt;
-      &lt;/NavigationContainer&gt;
+      &lt;/NavigationContainer&gt;,
     )
     expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
     expect(screen.getByText(/Wisconsin/i)).toBeOnTheScreen()
@@ -1285,7 +1277,7 @@ describe(&quot;StateList&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="1-2,7-11,only"></div>
+ <div line-highlight="1-2,8-12,only"></div>
 <p>✏️ Create <strong>src/screens/CityList/CityList.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
 
@@ -1311,23 +1303,21 @@ describe(&quot;CityList component&quot;, () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { Pressable, SafeAreaView } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
-import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import { Pressable, SafeAreaView } from &quot;react-native&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
-import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
-import StateList from &quot;./screens/StateList&quot;
-import Settings from &quot;./screens/Settings&quot;
-import CityList from &quot;./screens/CityList&quot;
 import Box from &quot;./design/Box&quot;
+import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
 import Typography from &quot;./design/Typography&quot;
-import { createStackNavigator } from &quot;@react-navigation/stack&quot;
-
+import CityList from &quot;./screens/CityList&quot;
+import Settings from &quot;./screens/Settings&quot;
+import StateList from &quot;./screens/StateList&quot;
 
 const RestaurantsStack = createStackNavigator()
-const RestaurantsNavigator: FC = () =&gt; {
+const RestaurantsNavigator: React.FC = () =&gt; {
   return (
     &lt;RestaurantsStack.Navigator
       initialRouteName=&quot;StateList&quot;
@@ -1342,9 +1332,7 @@ const RestaurantsNavigator: FC = () =&gt; {
                 style={{ flexDirection: &quot;row&quot;, gap: 8, alignItems: &quot;center&quot; }}
               &gt;
                 &lt;Icon name=&quot;arrow-back&quot; size={20} /&gt;
-                &lt;Typography variant=&quot;heading&quot;&gt;
-                  Choose a location
-                &lt;/Typography&gt;
+                &lt;Typography variant=&quot;heading&quot;&gt;Choose a location&lt;/Typography&gt;
               &lt;/Box&gt;
             &lt;/Pressable&gt;
           )
@@ -1358,7 +1346,7 @@ const RestaurantsNavigator: FC = () =&gt; {
 }
 
 const AppTabs = createBottomTabNavigator()
-export const AppNavigator: FC = () =&gt; {
+export const AppNavigator: React.FC = () =&gt; {
   const theme = useTheme()
 
   return (
@@ -1403,7 +1391,7 @@ export const AppNavigator: FC = () =&gt; {
   )
 }
 
-const App: FC = () =&gt; {
+const App: React.FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
       &lt;ThemeProvider&gt;
@@ -1418,16 +1406,15 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="22-23,26,41-42,only"></div>
+ <div line-highlight="20-21,24,37-38,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+<pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { FlatList } from &quot;react-native&quot;
-import { useNavigation } from &quot;@react-navigation/native&quot;
 
-import Card from &quot;../../design/Card&quot;
-import Typography from &quot;../../design/Typography&quot;
-import Screen from &quot;../../design/Screen&quot;
 import Button from &quot;../../design/Button&quot;
+import Card from &quot;../../design/Card&quot;
+import Screen from &quot;../../design/Screen&quot;
+import Typography from &quot;../../design/Typography&quot;
 
 export interface State {
   name: string
@@ -1445,7 +1432,7 @@ const states: State[] = [
   },
 ]
 
-const StateList: FC = () =&gt; {
+const StateList: React.FC = () =&gt; {
   const navigation = useNavigation()
 
   return (
@@ -1475,7 +1462,7 @@ const StateList: FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="40-42,only"></div>
+ <div line-highlight="38-42,only"></div>
 <p></details></p>
 <h2>Objective 3: Add Restaurant List and Restaurant Details pages with links</h2>
 <div style="display: flex; flex-direction: row; gap: 2rem">
@@ -1484,22 +1471,21 @@ export default StateList
 </div>
 <h3>Setup 3</h3>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { Pressable, SafeAreaView } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
-import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import { Pressable, SafeAreaView } from &quot;react-native&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
-import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
-import StateList from &quot;./screens/StateList&quot;
-import Settings from &quot;./screens/Settings&quot;
-import CityList from &quot;./screens/CityList&quot;
 import Box from &quot;./design/Box&quot;
+import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
 import Typography from &quot;./design/Typography&quot;
-import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import CityList from &quot;./screens/CityList&quot;
+import Settings from &quot;./screens/Settings&quot;
+import StateList from &quot;./screens/StateList&quot;
 
 const RestaurantsStack = createStackNavigator()
-const RestaurantsNavigator: FC = () =&gt; {
+const RestaurantsNavigator: React.FC = () =&gt; {
   return (
     &lt;RestaurantsStack.Navigator
       initialRouteName=&quot;StateList&quot;
@@ -1514,9 +1500,7 @@ const RestaurantsNavigator: FC = () =&gt; {
                 style={{ flexDirection: &quot;row&quot;, gap: 8, alignItems: &quot;center&quot; }}
               &gt;
                 &lt;Icon name=&quot;arrow-back&quot; size={20} /&gt;
-                &lt;Typography variant=&quot;heading&quot;&gt;
-                  Choose a location
-                &lt;/Typography&gt;
+                &lt;Typography variant=&quot;heading&quot;&gt;Choose a location&lt;/Typography&gt;
               &lt;/Box&gt;
             &lt;/Pressable&gt;
           )
@@ -1531,7 +1515,7 @@ const RestaurantsNavigator: FC = () =&gt; {
 }
 
 const AppTabs = createBottomTabNavigator()
-export const AppNavigator: FC = () =&gt; {
+export const AppNavigator: React.FC = () =&gt; {
   const theme = useTheme()
 
   return (
@@ -1576,7 +1560,7 @@ export const AppNavigator: FC = () =&gt; {
   )
 }
 
-const App: FC = () =&gt; {
+const App: React.FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
       &lt;ThemeProvider&gt;
@@ -1591,22 +1575,32 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="42,only"></div>
+ <div line-highlight="39,only"></div>
 <p>✏️ Create <strong>src/components/RestaurantHeader/</strong> (folder)</p>
 <p>✏️ Create <strong>src/components/RestaurantHeader/RestaurantHeader.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import type { Theme } from &quot;../../design/theme&quot;
-import type { Restaurant } from &quot;../../services/pmo/restaurant&quot;
-import type { TextStyle, ViewStyle } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { TextStyle, ViewStyle, ImageBackground, StyleSheet } from &quot;react-native&quot;
 
-import { ImageBackground, StyleSheet } from &quot;react-native&quot;
-import Typography from &quot;../../design/Typography&quot;
 import Box from &quot;../../design/Box&quot;
-import { useTheme } from &quot;../../design/theme&quot;
+import { Theme, useTheme } from &quot;../../design/theme&quot;
+import Typography from &quot;../../design/Typography&quot;
 
 const assetsUrl = process.env.PMO_ASSETS
 
 type Props = {
-  restaurant: Restaurant | null
+  restaurant?: {
+    _id: string
+    address?: {
+      city: string
+      state: string
+      street: string
+      zip: string
+    }
+    images: {
+      banner: string
+    }
+    name: string
+    slug: string
+  }
 }
 
 const RestaurantHeader: React.FC&lt;Props&gt; = ({ restaurant }) =&gt; {
@@ -1675,12 +1669,11 @@ export default RestaurantHeader
 
 </code></pre>
 <p>✏️ Update <strong>src/screens/CityList/CityList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+<pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { FlatList } from &quot;react-native&quot;
-import { useNavigation } from &quot;@react-navigation/native&quot;
 
-import Screen from &quot;../../design/Screen&quot;
 import Button from &quot;../../design/Button&quot;
+import Screen from &quot;../../design/Screen&quot;
 
 export interface City {
   name: string
@@ -1692,7 +1685,7 @@ const cities: City[] = [
   { name: &quot;Springfield&quot;, state: &quot;IL&quot; },
 ]
 
-const CityList: FC = () =&gt; {
+const CityList: React.FC = () =&gt; {
   const navigation = useNavigation()
 
   //Exercise: Use navigation to navigate to RestaurantList
@@ -1715,23 +1708,26 @@ const CityList: FC = () =&gt; {
 export default CityList
 
 </code></pre>
- <div line-highlight="3,19,21,28,only"></div>
+ <div line-highlight="1,18,20,only"></div>
 <p>✏️ Create <strong>src/screens/RestaurantDetails/</strong> (folder)</p>
 <p>✏️ Create <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-
-import { useNavigation } from &quot;@react-navigation/native&quot;
+<pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
-import Screen from &quot;../../design/Screen&quot;
 import Button from &quot;../../design/Button&quot;
+import Screen from &quot;../../design/Screen&quot;
 
 const restaurant = {
   _id: &quot;Ar0qBJHxM3ecOhcr&quot;,
   name: &quot;Cheese Curd City&quot;,
   slug: &quot;cheese-curd-city&quot;,
   images: {
-    // thumbnail: CheeseThumbnail,
+    thumbnail:
+      &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
+    owner:
+      &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
+    banner:
+      &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/1-banner.jpg&quot;,
   },
   address: {
     street: &quot;2451 W Washburne Ave&quot;,
@@ -1741,7 +1737,7 @@ const restaurant = {
   },
 }
 
-const RestaurantDetails: FC = () =&gt; {
+const RestaurantDetails: React.FC = () =&gt; {
   const navigation = useNavigation()
   navigation.setOptions({ title: `${restaurant.name}` })
 
@@ -1764,10 +1760,9 @@ export default RestaurantDetails
 </code></pre>
 <p>✏️ Create <strong>src/screens/RestaurantList/</strong> (folder)</p>
 <p>✏️ Create <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-
+<pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { FlatList } from &quot;react-native&quot;
-import { useNavigation } from &quot;@react-navigation/native&quot;
+
 import Box from &quot;../../design/Box&quot;
 import Button from &quot;../../design/Button&quot;
 
@@ -1776,7 +1771,12 @@ const restaurants = [
     name: &quot;Cheese Curd City&quot;,
     slug: &quot;cheese-curd-city&quot;,
     images: {
-      // thumbnail: CheeseThumbnail,
+      thumbnail:
+        &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
+      owner:
+        &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
+      banner:
+        &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/1-banner.jpg&quot;,
     },
     address: {
       street: &quot;2451 W Washburne Ave&quot;,
@@ -1790,7 +1790,12 @@ const restaurants = [
     name: &quot;Poutine Palace&quot;,
     slug: &quot;poutine-palace&quot;,
     images: {
-      // thumbnail: PoutineThumbnail,
+      thumbnail:
+        &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
+      owner:
+        &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
+      banner:
+        &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/1-banner.jpg&quot;,
     },
     address: {
       street: &quot;230 W Kinzie Street&quot;,
@@ -1802,12 +1807,8 @@ const restaurants = [
   },
 ]
 
-const RestaurantList: FC = () =&gt; {
+const RestaurantList: React.FC = () =&gt; {
   const navigation = useNavigation()
-
-  const navigateToDetails = (slug: string) =&gt; {
-    //Exercise: Implement navigation to RestaurantDetails
-  }
 
   return (
     &lt;&gt;
@@ -1815,7 +1816,7 @@ const RestaurantList: FC = () =&gt; {
         &lt;FlatList
           data={restaurants}
           renderItem={({ item: restaurant }) =&gt; (
-            &lt;Button onPress={() =&gt; navigateToDetails(restaurant.slug)}&gt;
+            &lt;Button onPress={() =&gt; console.log(restaurant.slug)}&gt;
               {restaurant.name}
             &lt;/Button&gt;
           )}
@@ -1857,8 +1858,9 @@ describe(&quot;CityList component&quot;, () =&gt; {
  <div line-highlight="1,8-12,only"></div>
 <p>✏️ Create <strong>src/components/RestaurantHeader/RestaurantHeader.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
-import RestaurantHeader from &quot;./RestaurantHeader&quot;
+
 import { restaurantWithAddress, restaurantWithoutAddress } from &quot;./mocks&quot;
+import RestaurantHeader from &quot;./RestaurantHeader&quot;
 
 describe(&quot;RestaurantHeader component&quot;, () =&gt; {
   it(&quot;renders the restaurant name&quot;, () =&gt; {
@@ -1960,24 +1962,23 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { Pressable, SafeAreaView } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
-import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import { Pressable, SafeAreaView } from &quot;react-native&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
+import Box from &quot;./design/Box&quot;
 import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
-import StateList from &quot;./screens/StateList&quot;
-import Settings from &quot;./screens/Settings&quot;
+import Typography from &quot;./design/Typography&quot;
+import CityList from &quot;./screens/CityList&quot;
 import RestaurantDetails from &quot;./screens/RestaurantDetails&quot;
 import RestaurantList from &quot;./screens/RestaurantList&quot;
-import CityList from &quot;./screens/CityList&quot;
-import Box from &quot;./design/Box&quot;
-import Typography from &quot;./design/Typography&quot;
-import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import Settings from &quot;./screens/Settings&quot;
+import StateList from &quot;./screens/StateList&quot;
 
 const RestaurantsStack = createStackNavigator()
-const RestaurantsNavigator: FC = () =&gt; {
+const RestaurantsNavigator: React.FC = () =&gt; {
   return (
     &lt;RestaurantsStack.Navigator
       initialRouteName=&quot;StateList&quot;
@@ -1992,9 +1993,7 @@ const RestaurantsNavigator: FC = () =&gt; {
                 style={{ flexDirection: &quot;row&quot;, gap: 8, alignItems: &quot;center&quot; }}
               &gt;
                 &lt;Icon name=&quot;arrow-back&quot; size={20} /&gt;
-                &lt;Typography variant=&quot;heading&quot;&gt;
-                  Choose a location
-                &lt;/Typography&gt;
+                &lt;Typography variant=&quot;heading&quot;&gt;Choose a location&lt;/Typography&gt;
               &lt;/Box&gt;
             &lt;/Pressable&gt;
           )
@@ -2016,7 +2015,7 @@ const RestaurantsNavigator: FC = () =&gt; {
 }
 
 const AppTabs = createBottomTabNavigator()
-export const AppNavigator: FC = () =&gt; {
+export const AppNavigator: React.FC = () =&gt; {
   const theme = useTheme()
 
   return (
@@ -2061,7 +2060,7 @@ export const AppNavigator: FC = () =&gt; {
   )
 }
 
-const App: FC = () =&gt; {
+const App: React.FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
       &lt;ThemeProvider&gt;
@@ -2076,14 +2075,13 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="10-11,44-46,48-50,92,97,only"></div>
+ <div line-highlight="11-12,41-43,45-47,89,94,only"></div>
 <p>✏️ Update <strong>src/screens/CityList/CityList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+<pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { FlatList } from &quot;react-native&quot;
-import { useNavigation } from &quot;@react-navigation/native&quot;
 
-import Screen from &quot;../../design/Screen&quot;
 import Button from &quot;../../design/Button&quot;
+import Screen from &quot;../../design/Screen&quot;
 
 export interface City {
   name: string
@@ -2095,19 +2093,17 @@ const cities: City[] = [
   { name: &quot;Springfield&quot;, state: &quot;IL&quot; },
 ]
 
-const CityList: FC = () =&gt; {
+const CityList: React.FC = () =&gt; {
   const navigation = useNavigation()
-
-  const navigateToDetails = () =&gt; {
-    navigation.navigate(&quot;RestaurantList&quot;)
-  }
 
   return (
     &lt;Screen&gt;
       &lt;FlatList
         data={cities}
         renderItem={({ item: cityItem }) =&gt; (
-          &lt;Button onPress={() =&gt; navigateToDetails()}&gt;{cityItem.name}&lt;/Button&gt;
+          &lt;Button onPress={() =&gt; navigation.navigate(&quot;RestaurantList&quot;)}&gt;
+            {cityItem.name}
+          &lt;/Button&gt;
         )}
         keyExtractor={(item) =&gt; item.name}
       /&gt;
@@ -2118,12 +2114,11 @@ const CityList: FC = () =&gt; {
 export default CityList
 
 </code></pre>
- <div line-highlight="21-23,30,only"></div>
+ <div line-highlight="25,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-
+<pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { FlatList } from &quot;react-native&quot;
-import { useNavigation } from &quot;@react-navigation/native&quot;
+
 import Box from &quot;../../design/Box&quot;
 import Button from &quot;../../design/Button&quot;
 
@@ -2132,7 +2127,12 @@ const restaurants = [
     name: &quot;Cheese Curd City&quot;,
     slug: &quot;cheese-curd-city&quot;,
     images: {
-      // thumbnail: CheeseThumbnail,
+      thumbnail:
+        &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
+      owner:
+        &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
+      banner:
+        &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/1-banner.jpg&quot;,
     },
     address: {
       street: &quot;2451 W Washburne Ave&quot;,
@@ -2146,7 +2146,12 @@ const restaurants = [
     name: &quot;Poutine Palace&quot;,
     slug: &quot;poutine-palace&quot;,
     images: {
-      // thumbnail: PoutineThumbnail,
+      thumbnail:
+        &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
+      owner:
+        &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
+      banner:
+        &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/1-banner.jpg&quot;,
     },
     address: {
       street: &quot;230 W Kinzie Street&quot;,
@@ -2158,12 +2163,8 @@ const restaurants = [
   },
 ]
 
-const RestaurantList: FC = () =&gt; {
+const RestaurantList: React.FC = () =&gt; {
   const navigation = useNavigation()
-
-  const navigateToDetails = () =&gt; {
-    navigation.navigate(&quot;RestaurantDetails&quot;)
-  }
 
   return (
     &lt;&gt;
@@ -2171,7 +2172,7 @@ const RestaurantList: FC = () =&gt; {
         &lt;FlatList
           data={restaurants}
           renderItem={({ item: restaurant }) =&gt; (
-            &lt;Button onPress={() =&gt; navigateToDetails(restaurant.slug)}&gt;
+            &lt;Button onPress={() =&gt; navigation.navigate(&quot;RestaurantDetails&quot;)}&gt;
               {restaurant.name}
             &lt;/Button&gt;
           )}
@@ -2185,7 +2186,7 @@ const RestaurantList: FC = () =&gt; {
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="42-43,only"></div>
+ <div line-highlight="57,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Now that we understand how to use React Native Navigation, we'll supplement that knowledge by <a href="./navigation-params.html">storing state in Navigation Parameters</a>.</p>

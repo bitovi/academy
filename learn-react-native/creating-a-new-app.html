@@ -788,8 +788,9 @@ export default App;
     &quot;prettier&quot;: &quot;prettier --check *.ts *.js *.json src&quot;,
     &quot;prettier:fix&quot;: &quot;prettier --write *.ts *.js *.json src&quot;,
     &quot;depcheck&quot;: &quot;depcheck .&quot;,
-    &quot;test&quot;: &quot;jest --watch&quot;,
-    &quot;test:ci&quot;: &quot;jest&quot;,
+    &quot;test&quot;: &quot;jest&quot;,
+    &quot;test:watch&quot;: &quot;jest --watch&quot;,
+    &quot;test:inspect&quot;: &quot;node --inspect-brk ./node_modules/.bin/jest --watch&quot;,
     &quot;precheck&quot;: &quot;npm run typecheck &amp;&amp; npm run eslint &amp;&amp; npm run prettier &amp;&amp; npm run depcheck &amp;&amp; npm run test&quot;,
     &quot;clean&quot;: &quot;rm -rf tsconfig.tsbuildinfo coverage android/.gradle android/build android/app/build node_modules/.cache&quot;,
     &quot;android&quot;: &quot;react-native run-android&quot;,
@@ -832,7 +833,7 @@ export default App;
 <pre><code class="language-js">module.exports = {
   semi: false,
   trailingComma: &quot;all&quot;,
-};
+}
 
 </code></pre>
 <p>✏️ Create <strong>.depcheckrc</strong> and update it to be:</p>
@@ -854,13 +855,13 @@ export default App;
   },
   rules: {
     &quot;jest/prefer-hooks-in-order&quot;: &quot;off&quot;,
-    // &quot;@typescript-eslint/consistent-type-imports&quot;: [
-    //   &quot;error&quot;,
-    //   {
-    //     prefer: &quot;no-type-imports&quot;,
-    //     fixStyle: &quot;inline-type-imports&quot;,
-    //   },
-    // ],
+    &quot;@typescript-eslint/consistent-type-imports&quot;: [
+      &quot;error&quot;,
+      {
+        prefer: &quot;no-type-imports&quot;,
+        fixStyle: &quot;inline-type-imports&quot;,
+      },
+    ],
   },
 }
 

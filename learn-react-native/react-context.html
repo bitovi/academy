@@ -1010,12 +1010,9 @@ export function useAuthentication() {
 <div line-highlight='49-59, only'></div>
 <h3>Setup 1</h3>
 <p>✏️ Create <strong>src/design/theme/ThemeProvider.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import type { Theme } from &quot;./theme&quot;
+<pre><code class="language-tsx">import { createContext, useContext, useMemo } from &quot;react&quot;
 
-import { createContext, useContext, useMemo } from &quot;react&quot;
-
-import theme from &quot;./theme&quot;
+import theme, { Theme } from &quot;./theme&quot;
 
 interface ThemeContext {
   theme: Theme
@@ -1023,7 +1020,7 @@ interface ThemeContext {
 
 // TODO
 
-const ThemeProvider: FC = () =&gt; {
+const ThemeProvider: React.FC = () =&gt; {
   // TODO
 }
 
@@ -1035,12 +1032,12 @@ export function useTheme(): Theme {
 
 </code></pre>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { SafeAreaView } from &quot;react-native&quot;
-import StateList from &quot;./screens/StateList&quot;
-import ThemeProvider from &quot;./design/theme/ThemeProvider&quot;
+<pre><code class="language-tsx">import { SafeAreaView } from &quot;react-native&quot;
 
-const App: FC = () =&gt; {
+import ThemeProvider from &quot;./design/theme/ThemeProvider&quot;
+import StateList from &quot;./screens/StateList&quot;
+
+const App: React.FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
       &lt;ThemeProvider&gt;
@@ -1053,20 +1050,18 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="2,4,9-11,only"></div>
+ <div line-highlight="3,9-11,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/components/ListItem/ListItem.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import type { Theme } from &quot;../../../../design/theme&quot;
+<pre><code class="language-tsx">import { StyleSheet, Text } from &quot;react-native&quot;
 
-import { StyleSheet, Text } from &quot;react-native&quot;
-import { useTheme } from &quot;../../../../design/theme&quot;
+import { Theme, useTheme } from &quot;../../../../design/theme&quot;
 
 type ListItemProps = {
   name: string
 }
 
-const ListItem: FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
-  const styles = getStyles()
+const ListItem: React.FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
+  const styles = getStyles(theme)
 
   return &lt;Text style={styles.text}&gt;{name}&lt;/Text&gt;
 }
@@ -1086,12 +1081,10 @@ function getStyles(theme: Theme) {
 export default ListItem
 
 </code></pre>
- <div line-highlight="2,5,12,17-27,only"></div>
+ <div line-highlight="3,10,15-25,only"></div>
 <h3>Verify 1</h3>
 <p>✏️ Create <strong>src/design/theme/ThemeProvider.test.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-
-import { render, screen } from &quot;@testing-library/react-native&quot;
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
 import { View, Text } from &quot;react-native&quot;
 
 import ThemeProvider, { useTheme } from &quot;./ThemeProvider&quot;
@@ -1109,7 +1102,7 @@ describe(&quot;ThemeProvider Provider&quot;, () =&gt; {
 })
 
 describe(&quot;ThemeContext context&quot;, () =&gt; {
-  const TestComponent: FC = () =&gt; {
+  const TestComponent: React.FC = () =&gt; {
     const theme = useTheme()
 
     return (
@@ -1137,12 +1130,9 @@ describe(&quot;ThemeContext context&quot;, () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/design/theme/ThemeProvider.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import type { Theme } from &quot;./theme&quot;
+<pre><code class="language-tsx">import { createContext, useContext, useMemo } from &quot;react&quot;
 
-import { createContext, useContext, useMemo } from &quot;react&quot;
-
-import theme from &quot;./theme&quot;
+import theme, { Theme } from &quot;./theme&quot;
 
 interface ThemeContext {
   theme: Theme
@@ -1150,7 +1140,9 @@ interface ThemeContext {
 
 const Context = createContext&lt;ThemeContext&gt;({ theme })
 
-const ThemeProvider: FC&lt;{ children: React.ReactNode }&gt; = ({ children }) =&gt; {
+const ThemeProvider: React.FC&lt;{ children: React.ReactNode }&gt; = ({
+  children,
+}) =&gt; {
   const value = useMemo(() =&gt; ({ theme }), [])
 
   return &lt;Context.Provider value={value}&gt;{children}&lt;/Context.Provider&gt;
@@ -1165,19 +1157,17 @@ export function useTheme(): Theme {
 }
 
 </code></pre>
- <div line-highlight="12,14-15,17,23,25,only"></div>
+ <div line-highlight="9,11-14,16,22,24,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/components/ListItem/ListItem.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import type { Theme } from &quot;../../../../design/theme&quot;
+<pre><code class="language-tsx">import { StyleSheet, Text } from &quot;react-native&quot;
 
-import { StyleSheet, Text } from &quot;react-native&quot;
-import { useTheme } from &quot;../../../../design/theme&quot;
+import { Theme, useTheme } from &quot;../../../../design/theme&quot;
 
 type ListItemProps = {
   name: string
 }
 
-const ListItem: FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
+const ListItem: React.FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
   const theme = useTheme()
   const styles = getStyles(theme)
 
@@ -1199,7 +1189,7 @@ function getStyles(theme: Theme) {
 export default ListItem
 
 </code></pre>
- <div line-highlight="12-13,21-25,only"></div>
+ <div line-highlight="10,19-23,only"></div>
 <p></details></p>
 <h2>Objective 2: Begin creating a design system to unify your application</h2>
 <p>If we continue down this path, our entire codebase will become littered with <code>theme.typography.*</code>, <code>theme.palette.*</code>, etc. What if we decide to change the color pattern of one of our components? We'd have to update every place we used that pattern. Instead, we'll create a design system.</p>
@@ -1213,13 +1203,9 @@ export default ListItem
 <p>Atomic Design is a great system, but it can be overkill for many projects. For this project, we're going to keep things much more simple: We'll have the shared theme we created in the previous objective, and we'll create a small collection of exported components.</p>
 <h3>Setup 2</h3>
 <p>✏️ Create <strong>src/design/Box/Box.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import type { ViewProps, ViewStyle } from &quot;react-native&quot;
-import type { Theme, ThemeMargin, ThemePadding } from &quot;../theme&quot;
+<pre><code class="language-tsx">import { ViewProps, ViewStyle, StyleSheet, View } from &quot;react-native&quot;
 
-import { StyleSheet, View } from &quot;react-native&quot;
-
-import { useTheme } from &quot;../theme&quot;
+import { Theme, ThemeMargin, ThemePadding, useTheme } from &quot;../theme&quot;
 
 export interface BoxProps extends ViewProps {
   margin?: ThemeMargin
@@ -1227,7 +1213,7 @@ export interface BoxProps extends ViewProps {
   fullWidth?: boolean
 }
 
-const Box: FC&lt;BoxProps&gt; = ({
+const Box: React.FC&lt;BoxProps&gt; = ({
   margin,
   padding,
   fullWidth = false,
@@ -1288,19 +1274,15 @@ export * from &quot;./Box&quot;
 
 </code></pre>
 <p>✏️ Create <strong>src/design/Typography/Typography.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import type { TextProps, TextStyle } from &quot;react-native&quot;
-import type { Theme } from &quot;../theme&quot;
+<pre><code class="language-tsx">import { TextProps, TextStyle, Text, StyleSheet } from &quot;react-native&quot;
 
-import { Text, StyleSheet } from &quot;react-native&quot;
-
-import { useTheme } from &quot;../theme&quot;
+import { Theme, useTheme } from &quot;../theme&quot;
 
 export interface TypographyProps extends TextProps {
   variant?: keyof Theme[&quot;typography&quot;]
 }
 
-const Typography: FC&lt;TypographyProps&gt; = ({
+const Typography: React.FC&lt;TypographyProps&gt; = ({
   style,
   variant = &quot;body&quot;,
   children,
@@ -1377,19 +1359,15 @@ describe(&quot;Typography component&quot;, () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/design/Typography/Typography.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import type { TextProps, TextStyle } from &quot;react-native&quot;
-import type { Theme } from &quot;../theme&quot;
+<pre><code class="language-tsx">import { TextProps, TextStyle, Text, StyleSheet } from &quot;react-native&quot;
 
-import { Text, StyleSheet } from &quot;react-native&quot;
-
-import { useTheme } from &quot;../theme&quot;
+import { Theme, useTheme } from &quot;../theme&quot;
 
 export interface TypographyProps extends TextProps {
   variant?: keyof Theme[&quot;typography&quot;]
 }
 
-const Typography: FC&lt;TypographyProps&gt; = ({
+const Typography: React.FC&lt;TypographyProps&gt; = ({
   style,
   variant = &quot;body&quot;,
   children,
@@ -1422,13 +1400,14 @@ function getStyles(
 }
 
 </code></pre>
- <div line-highlight="19-20,22-26,only"></div>
+ <div line-highlight="15-16,18-22,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { ScrollView } from &quot;react-native&quot;
-import ListItem from &quot;./components/ListItem&quot;
+<pre><code class="language-tsx">import { ScrollView } from &quot;react-native&quot;
+
 import Box from &quot;../../design/Box&quot;
 import Typography from &quot;../../design/Typography&quot;
+
+import ListItem from &quot;./components/ListItem&quot;
 
 const states = [
   {
@@ -1441,7 +1420,7 @@ const states = [
   },
 ]
 
-const StateList: FC = () =&gt; {
+const StateList: React.FC = () =&gt; {
   return (
     &lt;ScrollView&gt;
       &lt;Box padding=&quot;s&quot;&gt;
@@ -1449,7 +1428,7 @@ const StateList: FC = () =&gt; {
           Place My Order: Coming Soon To...
         &lt;/Typography&gt;
       &lt;/Box&gt;
-      {states?.length &gt; 0 ? (
+      {states?.length ? (
         states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
       ) : (
         &lt;Typography&gt;No states found&lt;/Typography&gt;
@@ -1461,7 +1440,7 @@ const StateList: FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="2,4-5,21-30,only"></div>
+ <div line-highlight="1,3-4,22-31,only"></div>
 <p></details></p>
 <h2>Objective 3: Expand your design system</h2>
 <p>Now that we have the basics of a design system, we can expand it however we need. There are some basic components that most design systems will need:</p>
@@ -1475,13 +1454,16 @@ export default StateList
 <p>Beyond these, you'll find all kinds of UI components like Tabs, Modal, Icon, Navigation, Badge, Progress, etc.</p>
 <h3>Setup 3</h3>
 <p>✏️ Create <strong>src/design/Button/Button.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import type { PressableProps, ViewStyle, TextStyle } from &quot;react-native&quot;
-import type { Theme } from &quot;../theme&quot;
+<pre><code class="language-tsx">import {
+  PressableProps,
+  ViewStyle,
+  TextStyle,
+  StyleSheet,
+  Pressable,
+  Text,
+} from &quot;react-native&quot;
 
-import { StyleSheet, Pressable, Text } from &quot;react-native&quot;
-
-import { useTheme } from &quot;../theme&quot;
+import { Theme, useTheme } from &quot;../theme&quot;
 
 type Variant = &quot;primary&quot; | &quot;secondary&quot; | &quot;outline&quot;
 
@@ -1495,7 +1477,7 @@ export interface ButtonProps extends PressableProps {
   children: string
 }
 
-const Button: FC&lt;ButtonProps&gt; = ({
+const Button: React.FC&lt;ButtonProps&gt; = ({
   variant = &quot;primary&quot;,
   margin,
   padding,
@@ -1614,22 +1596,17 @@ export * from &quot;./Button&quot;
 
 </code></pre>
 <p>✏️ Create <strong>src/design/Card/Card.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import type { ViewStyle } from &quot;react-native&quot;
-import type { Theme } from &quot;../theme&quot;
-import type { BoxProps } from &quot;../Box&quot;
+<pre><code class="language-tsx">import { ViewStyle, StyleSheet } from &quot;react-native&quot;
 
-import { StyleSheet } from &quot;react-native&quot;
-
-import { useTheme } from &quot;../theme&quot;
-import Box from &quot;../Box&quot;
+import Box, { BoxProps } from &quot;../Box&quot;
+import { Theme, useTheme } from &quot;../theme&quot;
 import Typography from &quot;../Typography&quot;
 
 export interface CardProps extends BoxProps {
   title?: string
 }
 
-const Card: FC&lt;CardProps&gt; = ({ title, children, ...props }) =&gt; {
+const Card: React.FC&lt;CardProps&gt; = ({ title, children, ...props }) =&gt; {
   const theme = useTheme()
   const styles = getStyles(theme)
 
@@ -1696,19 +1673,17 @@ export * from &quot;./Card&quot;
 
 </code></pre>
 <p>✏️ Create <strong>src/design/Screen/Screen.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { ScrollView } from &quot;react-native&quot;
-import type { BoxProps } from &quot;../Box&quot;
+<pre><code class="language-tsx">import { ScrollView } from &quot;react-native&quot;
 
+import Box, { BoxProps } from &quot;../Box&quot;
 import { useTheme } from &quot;../theme&quot;
-import Box from &quot;../Box&quot;
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ScreenProps extends BoxProps {
   //
 }
 
-const Screen: FC&lt;ScreenProps&gt; = ({ children, style, ...props }) =&gt; {
+const Screen: React.FC&lt;ScreenProps&gt; = ({ style, children, ...props }) =&gt; {
   const { palette } = useTheme()
 
   return (
@@ -1765,11 +1740,11 @@ export * from &quot;./Box&quot;
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import ListItem from &quot;./components/ListItem&quot;
-import Card from &quot;../../design/Card&quot;
+<pre><code class="language-tsx">import Card from &quot;../../design/Card&quot;
 import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
+
+import ListItem from &quot;./components/ListItem&quot;
 
 const states = [
   {
@@ -1782,7 +1757,7 @@ const states = [
   },
 ]
 
-const StateList: FC = () =&gt; {
+const StateList: React.FC = () =&gt; {
   return (
     &lt;Screen&gt;
       &lt;Card&gt;
@@ -1790,7 +1765,7 @@ const StateList: FC = () =&gt; {
           Place My Order: Coming Soon To...
         &lt;/Typography&gt;
       &lt;/Card&gt;
-      {states?.length &gt; 0 ? (
+      {states?.length ? (
         states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
       ) : (
         &lt;Typography&gt;No states found&lt;/Typography&gt;
@@ -1802,7 +1777,7 @@ const StateList: FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="3-4,20-21,25,31,only"></div>
+ <div line-highlight="1-2,20-21,25,31,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, let’s learn about how we can add dark mode with <a href="managing-state.html" title="Work with React’s useState Hook to manage a component’s state.">useState</a>.</p>

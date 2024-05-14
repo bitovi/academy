@@ -751,24 +751,24 @@ React Native has adapted some of these shorthand properties to suit the styling 
 <p>Find more information about these shorthands in the <a href="https://reactnative.dev/docs/layout-props?language=typescript">Layout Props</a> documentation.</p>
 <h3>Setup</h3>
 <p>✏️ Update <strong>src/screens/StateList/components/ListItem/ListItem.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { StyleSheet, Text } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { StyleSheet, Text } from &quot;react-native&quot;
 
 type ListItemProps = {
   name: string
 }
 
-const ListItem: FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
+const ListItem: React.FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
   return &lt;Text&gt;{name}&lt;/Text&gt;
 }
 
 export default ListItem
 
 </code></pre>
- <div line-highlight="2,only"></div>
+ <div line-highlight="1,only"></div>
 <h3>Verify</h3>
 <p>✏️ Create <strong>src/screens/StateList/components/ListItem/ListItem.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+
 import ListItem from &quot;./ListItem&quot;
 
 describe(&quot;ListItem&quot;, () =&gt; {
@@ -789,7 +789,7 @@ describe(&quot;ListItem&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="5-6,8-9,11-17,only"></div>
+ <div line-highlight="6-7,9-10,12-18,only"></div>
 <h3>Exercise</h3>
 <p>Apply the following CSS styles to the <code>Text</code> view inside the <code>ListItem</code>:</p>
 <pre><code class="language-css">.text {
@@ -806,14 +806,13 @@ describe(&quot;ListItem&quot;, () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/screens/StateList/components/ListItem/ListItem.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { StyleSheet, Text } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { StyleSheet, Text } from &quot;react-native&quot;
 
 type ListItemProps = {
   name: string
 }
 
-const ListItem: FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
+const ListItem: React.FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
   return &lt;Text style={styles.text}&gt;{name}&lt;/Text&gt;
 }
 
@@ -830,7 +829,7 @@ const styles = StyleSheet.create({
 export default ListItem
 
 </code></pre>
- <div line-highlight="9,12-20,only"></div>
+ <div line-highlight="8,11-19,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, let’s learn about how <a href="react-context.html" title="Learn how to share a common theme by creating a Context.">React Context</a> can help us build a theme system.</p>

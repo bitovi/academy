@@ -773,21 +773,20 @@ const UserProfile: FC&lt;ProfileProps&gt; = ({ route }) =&gt; {
 <p>This includes passing the state of <code>user</code> through <code>navigation</code>. We can add <code>user</code>, and other properties as an object for the second argument of <code>navigation.navigate</code>. Thus on the <code>Storefront</code> screen, all of those params passed will be accessible within its component.</p>
 <h3>Setup 1</h3>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { Pressable, SafeAreaView } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
-import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import { Pressable, SafeAreaView } from &quot;react-native&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
+import Box from &quot;./design/Box&quot;
 import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
-import StateList from &quot;./screens/StateList&quot;
-import Settings from &quot;./screens/Settings&quot;
+import Typography from &quot;./design/Typography&quot;
+import CityList from &quot;./screens/CityList&quot;
 import RestaurantDetails from &quot;./screens/RestaurantDetails&quot;
 import RestaurantList from &quot;./screens/RestaurantList&quot;
-import CityList from &quot;./screens/CityList&quot;
-import Box from &quot;./design/Box&quot;
-import Typography from &quot;./design/Typography&quot;
-import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import Settings from &quot;./screens/Settings&quot;
+import StateList from &quot;./screens/StateList&quot;
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -808,7 +807,7 @@ export type RestaurantsStackParamList = {
 }
 
 const RestaurantsStack = createStackNavigator&lt;RestaurantsStackParamList&gt;()
-const RestaurantsNavigator: FC = () =&gt; {
+const RestaurantsNavigator: React.FC = () =&gt; {
   return (
     &lt;RestaurantsStack.Navigator
       initialRouteName=&quot;StateList&quot;
@@ -850,7 +849,7 @@ const RestaurantsNavigator: FC = () =&gt; {
 }
 
 const AppTabs = createBottomTabNavigator()
-export const AppNavigator: FC = () =&gt; {
+export const AppNavigator: React.FC = () =&gt; {
   const theme = useTheme()
 
   return (
@@ -895,7 +894,7 @@ export const AppNavigator: FC = () =&gt; {
   )
 }
 
-const App: FC = () =&gt; {
+const App: React.FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
       &lt;ThemeProvider&gt;
@@ -910,18 +909,17 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="17-22,25-32,35,41,52-55,121,133,only"></div>
+ <div line-highlight="16-21,24-31,34,40,50-55,120,132,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+<pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
+import { StackScreenProps } from &quot;@react-navigation/stack&quot;
 import { FlatList } from &quot;react-native&quot;
-import { useNavigation } from &quot;@react-navigation/native&quot;
-import type { StackScreenProps } from &quot;@react-navigation/stack&quot;
 
-import type { RestaurantsStackParamList } from &quot;../../App&quot;
-import Card from &quot;../../design/Card&quot;
-import Typography from &quot;../../design/Typography&quot;
-import Screen from &quot;../../design/Screen&quot;
+import { RestaurantsStackParamList } from &quot;../../App&quot;
 import Button from &quot;../../design/Button&quot;
+import Card from &quot;../../design/Card&quot;
+import Screen from &quot;../../design/Screen&quot;
+import Typography from &quot;../../design/Typography&quot;
 
 export interface State {
   name: string
@@ -941,7 +939,7 @@ const states: State[] = [
 
 type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;StateList&quot;&gt;
 
-const StateList: FC = () =&gt; {
+const StateList: React.FC = () =&gt; {
   const navigation = useNavigation()
 
   return (
@@ -971,18 +969,26 @@ const StateList: FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="4,6,28,only"></div>
+ <div line-highlight="2,5,27,only"></div>
 <h3>Verify 1</h3>
 <p>✏️ Update <strong>src/screens/StateList/StateList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { render, screen } from &quot;@testing-library/react-native&quot;
+
 import StateList from &quot;./StateList&quot;
+
+const route = {
+  key: &quot;StateList&quot;,
+  name: &quot;StateList&quot;,
+  params: undefined,
+} as const
 
 describe(&quot;StateList&quot;, () =&gt; {
   it(&quot;renders states&quot;, async () =&gt; {
     render(
       &lt;NavigationContainer&gt;
-        &lt;StateList route={undefined} /&gt;
+        {/* @ts-ignore */}
+        &lt;StateList route={route} /&gt;
       &lt;/NavigationContainer&gt;,
     )
     expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
@@ -991,7 +997,7 @@ describe(&quot;StateList&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="9-10,only"></div>
+ <div line-highlight="6-10,16-17,only"></div>
 <h3>Exercise 1</h3>
 <ul>
 <li>Update the typing of <code>StateList</code> component, using the type <code>Props</code> made by the <code>StackScreenProps</code>.</li>
@@ -1002,16 +1008,15 @@ describe(&quot;StateList&quot;, () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+<pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
+import { StackScreenProps } from &quot;@react-navigation/stack&quot;
 import { FlatList } from &quot;react-native&quot;
-import { useNavigation } from &quot;@react-navigation/native&quot;
-import type { StackScreenProps } from &quot;@react-navigation/stack&quot;
 
-import type { RestaurantsStackParamList } from &quot;../../App&quot;
-import Card from &quot;../../design/Card&quot;
-import Typography from &quot;../../design/Typography&quot;
-import Screen from &quot;../../design/Screen&quot;
+import { RestaurantsStackParamList } from &quot;../../App&quot;
 import Button from &quot;../../design/Button&quot;
+import Card from &quot;../../design/Card&quot;
+import Screen from &quot;../../design/Screen&quot;
+import Typography from &quot;../../design/Typography&quot;
 
 export interface State {
   name: string
@@ -1031,7 +1036,7 @@ const states: State[] = [
 
 type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;StateList&quot;&gt;
 
-const StateList: FC&lt;Props&gt; = () =&gt; {
+const StateList: React.FC&lt;Props&gt; = () =&gt; {
   const navigation = useNavigation()
 
   return (
@@ -1061,26 +1066,25 @@ const StateList: FC&lt;Props&gt; = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="30,45,only"></div>
+ <div line-highlight="29,44,only"></div>
 <p></details></p>
 <h2>Objective 2: Implement city and restaurant params</h2>
 <h3>Setup 2</h3>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { Pressable, SafeAreaView } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
-import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import { Pressable, SafeAreaView } from &quot;react-native&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
+import Box from &quot;./design/Box&quot;
 import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
-import StateList from &quot;./screens/StateList&quot;
-import Settings from &quot;./screens/Settings&quot;
+import Typography from &quot;./design/Typography&quot;
+import CityList from &quot;./screens/CityList&quot;
 import RestaurantDetails from &quot;./screens/RestaurantDetails&quot;
 import RestaurantList from &quot;./screens/RestaurantList&quot;
-import CityList from &quot;./screens/CityList&quot;
-import Box from &quot;./design/Box&quot;
-import Typography from &quot;./design/Typography&quot;
-import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import Settings from &quot;./screens/Settings&quot;
+import StateList from &quot;./screens/StateList&quot;
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -1122,7 +1126,7 @@ export type RestaurantsStackParamList = {
 }
 
 const RestaurantsStack = createStackNavigator&lt;RestaurantsStackParamList&gt;()
-const RestaurantsNavigator: FC = () =&gt; {
+const RestaurantsNavigator: React.FC = () =&gt; {
   return (
     &lt;RestaurantsStack.Navigator
       initialRouteName=&quot;StateList&quot;
@@ -1164,7 +1168,7 @@ const RestaurantsNavigator: FC = () =&gt; {
 }
 
 const AppTabs = createBottomTabNavigator()
-export const AppNavigator: FC = () =&gt; {
+export const AppNavigator: React.FC = () =&gt; {
   const theme = useTheme()
 
   return (
@@ -1209,7 +1213,7 @@ export const AppNavigator: FC = () =&gt; {
   )
 }
 
-const App: FC = () =&gt; {
+const App: React.FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
       &lt;ThemeProvider&gt;
@@ -1224,16 +1228,15 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="33-53,only"></div>
+ <div line-highlight="32-52,only"></div>
 <p>✏️ Update <strong>src/screens/CityList/CityList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+<pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
+import { StackScreenProps } from &quot;@react-navigation/stack&quot;
 import { FlatList } from &quot;react-native&quot;
-import { useNavigation } from &quot;@react-navigation/native&quot;
-import type { StackScreenProps } from &quot;@react-navigation/stack&quot;
 
-import type { RestaurantsStackParamList } from &quot;../../App&quot;
-import Screen from &quot;../../design/Screen&quot;
+import { RestaurantsStackParamList } from &quot;../../App&quot;
 import Button from &quot;../../design/Button&quot;
+import Screen from &quot;../../design/Screen&quot;
 
 const cities = [
   { name: &quot;Madison&quot;, state: &quot;WI&quot; },
@@ -1242,7 +1245,7 @@ const cities = [
 
 type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;CityList&quot;&gt;
 
-const CityList: FC = () =&gt; {
+const CityList: React.FC = () =&gt; {
   const navigation = useNavigation()
 
   return (
@@ -1263,14 +1266,13 @@ const CityList: FC = () =&gt; {
 export default CityList
 
 </code></pre>
- <div line-highlight="4,6,10,15,25-27,only"></div>
+ <div line-highlight="2,5,9,14,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { StackScreenProps } from &quot;@react-navigation/stack&quot;
-import type { RestaurantsStackParamList } from &quot;../../App&quot;
-import type { FC } from &quot;react&quot;
-
+<pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
+import { StackScreenProps } from &quot;@react-navigation/stack&quot;
 import { FlatList } from &quot;react-native&quot;
-import { useNavigation } from &quot;@react-navigation/native&quot;
+
+import { RestaurantsStackParamList } from &quot;../../App&quot;
 import Box from &quot;../../design/Box&quot;
 import Button from &quot;../../design/Button&quot;
 
@@ -1281,7 +1283,12 @@ const restaurants = [
     name: &quot;Cheese Curd City&quot;,
     slug: &quot;cheese-curd-city&quot;,
     images: {
-      // thumbnail: CheeseThumbnail,
+      thumbnail:
+        &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
+      owner:
+        &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
+      banner:
+        &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/1-banner.jpg&quot;,
     },
     address: {
       street: &quot;2451 W Washburne Ave&quot;,
@@ -1295,7 +1302,12 @@ const restaurants = [
     name: &quot;Poutine Palace&quot;,
     slug: &quot;poutine-palace&quot;,
     images: {
-      // thumbnail: PoutineThumbnail,
+      thumbnail:
+        &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
+      owner:
+        &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
+      banner:
+        &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/1-banner.jpg&quot;,
     },
     address: {
       street: &quot;230 W Kinzie Street&quot;,
@@ -1307,12 +1319,8 @@ const restaurants = [
   },
 ]
 
-const RestaurantList: FC&lt;Props&gt; = () =&gt; {
+const RestaurantList: React.FC&lt;Props&gt; = () =&gt; {
   const navigation = useNavigation()
-
-  const navigateToDetails = () =&gt; {
-    navigation.navigate(&quot;RestaurantDetails&quot;)
-  }
 
   return (
     &lt;&gt;
@@ -1320,7 +1328,7 @@ const RestaurantList: FC&lt;Props&gt; = () =&gt; {
         &lt;FlatList
           data={restaurants}
           renderItem={({ item: restaurant }) =&gt; (
-            &lt;Button onPress={() =&gt; navigateToDetails(restaurant.slug)}&gt;
+            &lt;Button onPress={() =&gt; navigation.navigate(&quot;RestaurantDetails&quot;)}&gt;
               {restaurant.name}
             &lt;/Button&gt;
           )}
@@ -1334,7 +1342,7 @@ const RestaurantList: FC&lt;Props&gt; = () =&gt; {
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="1-2,10,43,only"></div>
+ <div line-highlight="2,5,9,52,only"></div>
 <h3>Verify 2</h3>
 <p>✏️ Update <strong>src/screens/CityList/CityList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
@@ -1342,13 +1350,23 @@ import { render, screen } from &quot;@testing-library/react-native&quot;
 
 import CityList from &quot;./CityList&quot;
 
+const route = {
+  key: &quot;CityList&quot;,
+  name: &quot;CityList&quot;,
+  params: {
+    state: {
+      name: &quot;name&quot;,
+      short: &quot;short&quot;,
+    },
+  },
+} as const
+
 describe(&quot;CityList component&quot;, () =&gt; {
   it(&quot;renders city List&quot;, () =&gt; {
     render(
       &lt;NavigationContainer&gt;
-        &lt;CityList
-          route={{ params: { state: { name: &quot;test&quot;, short: &quot;test&quot; } } }}
-        /&gt;
+        {/* @ts-ignore */}
+        &lt;CityList route={route} /&gt;
       &lt;/NavigationContainer&gt;,
     )
     expect(screen.getByText(/Madison/i)).toBeOnTheScreen()
@@ -1357,30 +1375,35 @@ describe(&quot;CityList component&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="10-12,only"></div>
+ <div line-highlight="6-15,21-22,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { render, screen } from &quot;@testing-library/react-native&quot;
 
 import RestaurantList from &quot;./RestaurantList&quot;
 
-const params = {
-  state: {
-    short: &quot;sT&quot;,
-    name: &quot;stateTest&quot;,
+const route = {
+  key: &quot;RestaurantList&quot;,
+  name: &quot;RestaurantList&quot;,
+  params: {
+    state: {
+      name: &quot;name&quot;,
+      short: &quot;short&quot;,
+    },
+    city: {
+      name: &quot;name&quot;,
+      state: &quot;state&quot;,
+    },
+    slug: &quot;test&quot;,
   },
-  city: {
-    name: &quot;cityTest&quot;,
-    state: &quot;sT&quot;,
-  },
-  slug: &quot;slugTest&quot;,
-}
+} as const
 
 describe(&quot;RestaurantList component&quot;, () =&gt; {
   it(&quot;renders restaurant List&quot;, () =&gt; {
     render(
       &lt;NavigationContainer&gt;
-        &lt;RestaurantList route={{ params }} /&gt;
+        {/* @ts-ignore */}
+        &lt;RestaurantList route={route} /&gt;
       &lt;/NavigationContainer&gt;,
     )
     expect(screen.getByText(/Cheese Curd City/i)).toBeOnTheScreen()
@@ -1389,7 +1412,7 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="6-16,22,only"></div>
+ <div line-highlight="6-20,26-27,only"></div>
 <h3>Exercise 2</h3>
 <p>For both the <code>CityList</code> and <code>RestaurantList</code> components:</p>
 <ul>
@@ -1402,14 +1425,13 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/screens/CityList/CityList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
+<pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
+import { StackScreenProps } from &quot;@react-navigation/stack&quot;
 import { FlatList } from &quot;react-native&quot;
-import { useNavigation } from &quot;@react-navigation/native&quot;
-import type { StackScreenProps } from &quot;@react-navigation/stack&quot;
 
-import type { RestaurantsStackParamList } from &quot;../../App&quot;
-import Screen from &quot;../../design/Screen&quot;
+import { RestaurantsStackParamList } from &quot;../../App&quot;
 import Button from &quot;../../design/Button&quot;
+import Screen from &quot;../../design/Screen&quot;
 
 const cities = [
   { name: &quot;Madison&quot;, state: &quot;WI&quot; },
@@ -1418,7 +1440,7 @@ const cities = [
 
 type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;CityList&quot;&gt;
 
-const CityList: FC&lt;Props&gt; = ({ route }) =&gt; {
+const CityList: React.FC&lt;Props&gt; = ({ route }) =&gt; {
   const { state } = route.params
   const navigation = useNavigation()
 
@@ -1447,14 +1469,13 @@ const CityList: FC&lt;Props&gt; = ({ route }) =&gt; {
 export default CityList
 
 </code></pre>
- <div line-highlight="17-18,26-33,only"></div>
+ <div line-highlight="16-17,25-32,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { StackScreenProps } from &quot;@react-navigation/stack&quot;
-import type { RestaurantsStackParamList } from &quot;../../App&quot;
-import type { FC } from &quot;react&quot;
-
+<pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
+import { StackScreenProps } from &quot;@react-navigation/stack&quot;
 import { FlatList } from &quot;react-native&quot;
-import { useNavigation } from &quot;@react-navigation/native&quot;
+
+import { RestaurantsStackParamList } from &quot;../../App&quot;
 import Box from &quot;../../design/Box&quot;
 import Button from &quot;../../design/Button&quot;
 
@@ -1465,7 +1486,12 @@ const restaurants = [
     name: &quot;Cheese Curd City&quot;,
     slug: &quot;cheese-curd-city&quot;,
     images: {
-      // thumbnail: CheeseThumbnail,
+      thumbnail:
+        &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
+      owner:
+        &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
+      banner:
+        &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/1-banner.jpg&quot;,
     },
     address: {
       street: &quot;2451 W Washburne Ave&quot;,
@@ -1479,7 +1505,12 @@ const restaurants = [
     name: &quot;Poutine Palace&quot;,
     slug: &quot;poutine-palace&quot;,
     images: {
-      // thumbnail: PoutineThumbnail,
+      thumbnail:
+        &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
+      owner:
+        &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
+      banner:
+        &quot;https://www.place-my-order.com/node_modules/place-my-order-assets/images/1-banner.jpg&quot;,
     },
     address: {
       street: &quot;230 W Kinzie Street&quot;,
@@ -1491,17 +1522,9 @@ const restaurants = [
   },
 ]
 
-const RestaurantList: FC&lt;Props&gt; = ({ route }) =&gt; {
+const RestaurantList: React.FC&lt;Props&gt; = ({ route }) =&gt; {
   const { state, city } = route.params
   const navigation = useNavigation()
-
-  const navigateToDetails = (slug) =&gt; {
-    navigation.navigate(&quot;RestaurantDetails&quot;, {
-      state,
-      city,
-      slug,
-    })
-  }
 
   return (
     &lt;&gt;
@@ -1509,7 +1532,15 @@ const RestaurantList: FC&lt;Props&gt; = ({ route }) =&gt; {
         &lt;FlatList
           data={restaurants}
           renderItem={({ item: restaurant }) =&gt; (
-            &lt;Button onPress={() =&gt; navigateToDetails(restaurant.slug)}&gt;
+            &lt;Button
+              onPress={() =&gt;
+                navigation.navigate(&quot;RestaurantDetails&quot;, {
+                  state,
+                  city,
+                  slug: restaurant.slug,
+                })
+              }
+            &gt;
               {restaurant.name}
             &lt;/Button&gt;
           )}
@@ -1523,7 +1554,7 @@ const RestaurantList: FC&lt;Props&gt; = ({ route }) =&gt; {
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="43-44,47-52,only"></div>
+ <div line-highlight="52-53,62-70,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, we'll cover an essential part of nearly all web applications: <a href="./making-http-requests.html">Making HTTP Requests</a>.</p>

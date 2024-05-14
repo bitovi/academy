@@ -750,8 +750,7 @@ const App: FC = () =&gt; {
 <p>Did you notice the <code>FC</code> that was used in the previous example to type the <code>App</code> const? Because we're using TypeScript with our project, we can apply types to help make sure the function component is properly formed. React provides the type <code>FC</code> (Function component) that can be applied to a function component. This type defines the arguments and return value that a function component must implement.</p>
 <h3>Setup 1</h3>
 <p>✏️ Update <strong>App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
 
 const states = [
   {
@@ -764,11 +763,11 @@ const states = [
   },
 ]
 
-export const StateList: FC = () =&gt; {
+export const StateList: React.FC = () =&gt; {
   // Exercise: Implement StateList component
 }
 
-const App: FC = () =&gt; {
+const App: React.FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
       &lt;ScrollView&gt;
@@ -776,7 +775,7 @@ const App: FC = () =&gt; {
           &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
         &lt;/View&gt;
         &lt;View&gt;
-          {states?.length &gt; 0 ? (
+          {states?.length ? (
             states.map((state) =&gt; &lt;Text key={state.short}&gt;{state.name}&lt;/Text&gt;)
           ) : (
             &lt;Text&gt;No states found&lt;/Text&gt;
@@ -790,12 +789,12 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="1,15-16,19,36,only"></div>
+ <div line-highlight="14-15,35,only"></div>
 <h3>Verify 1</h3>
 <p>✏️ Update <strong>App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
-import App from &quot;./App&quot;
-import { StateList } from &quot;./App&quot;
+
+import App, { StateList } from &quot;./App&quot;
 
 describe(&quot;App&quot;, () =&gt; {
   it(&quot;renders&quot;, async () =&gt; {
@@ -829,8 +828,7 @@ describe(&quot;StateList&quot;, () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
 
 const states = [
   {
@@ -843,14 +841,14 @@ const states = [
   },
 ]
 
-export const StateList: FC = () =&gt; {
+export const StateList: React.FC = () =&gt; {
   return (
     &lt;ScrollView&gt;
       &lt;View&gt;
         &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
       &lt;/View&gt;
       &lt;View&gt;
-        {states?.length &gt; 0 ? (
+        {states?.length ? (
           states.map((state) =&gt; &lt;Text key={state.short}&gt;{state.name}&lt;/Text&gt;)
         ) : (
           &lt;Text&gt;No states found&lt;/Text&gt;
@@ -860,7 +858,7 @@ export const StateList: FC = () =&gt; {
   )
 }
 
-const App: FC = () =&gt; {
+const App: React.FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
       &lt;StateList /&gt;
@@ -871,7 +869,7 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="17-28,33,35,37,only"></div>
+ <div line-highlight="16-27,32,34,36,only"></div>
 <p></details></p>
 <h2>Objective 2: Passing props</h2>
 <p>We’ve taken a great step to make our code more readable and our app more maintainable by creating the <code>StateList</code> component.</p>
@@ -951,8 +949,7 @@ const SubmitButton: FC&lt;SubmitButtonProps&gt; = ({ label, onPress }) =&gt; {
 </ul>
 <h3>Setup 2</h3>
 <p>✏️ Update <strong>App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
 
 const states = [
   {
@@ -966,23 +963,21 @@ const states = [
 ]
 
 export type ListItemProps = {
-  //Exercise: Implement ListItem Props 
+  //Exercise: Implement ListItem Props
 }
 
-export const ListItem: FC = ({}) =&gt; {
-  return (
-    // Exercise: Implement ListItem component
-  )
+export const ListItem: React.FC = () =&gt; {
+  // Exercise: Implement ListItem component
 }
 
-export const StateList: FC = () =&gt; {
+export const StateList: React.FC = () =&gt; {
   return (
     &lt;ScrollView&gt;
       &lt;View&gt;
         &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
       &lt;/View&gt;
       &lt;View&gt;
-        {states?.length &gt; 0 ? (
+        {states?.length ? (
           states.map((state) =&gt; &lt;Text key={state.short}&gt;{state.name}&lt;/Text&gt;)
         ) : (
           &lt;Text&gt;No states found&lt;/Text&gt;
@@ -992,7 +987,7 @@ export const StateList: FC = () =&gt; {
   )
 }
 
-const App: FC = () =&gt; {
+const App: React.FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
       &lt;StateList /&gt;
@@ -1003,12 +998,12 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="15-16,19,21,40,43,47-48,only"></div>
+ <div line-highlight="14-15,18-19,37,45,only"></div>
 <h3>Verify 2</h3>
 <p>✏️ Update <strong>App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
-import App from &quot;./App&quot;
-import { StateList, ListItem } from &quot;./App&quot;
+
+import App, { StateList, ListItem } from &quot;./App&quot;
 
 describe(&quot;App&quot;, () =&gt; {
   it(&quot;renders&quot;, async () =&gt; {
@@ -1052,8 +1047,7 @@ describe(&quot;ListItem&quot;, () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
 
 const states = [
   {
@@ -1067,23 +1061,24 @@ const states = [
 ]
 
 export type ListItemProps = {
-  key: string
   name: string
 }
 
-export const ListItem: FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
+export const ListItem: React.FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
   return &lt;Text&gt;{name}&lt;/Text&gt;
 }
 
-export const StateList: FC = () =&gt; {
+export const StateList: React.FC = () =&gt; {
   return (
     &lt;ScrollView&gt;
       &lt;View&gt;
         &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
       &lt;/View&gt;
       &lt;View&gt;
-        {states?.length &gt; 0 ? (
-          states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
+        {states?.length ? (
+          states.map((state) =&gt; (
+            &lt;ListItem key={state.short} name={state.name} /&gt;
+          ))
         ) : (
           &lt;Text&gt;No states found&lt;/Text&gt;
         )}
@@ -1092,7 +1087,7 @@ export const StateList: FC = () =&gt; {
   )
 }
 
-const App: FC = () =&gt; {
+const App: React.FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
       &lt;StateList /&gt;
@@ -1103,7 +1098,7 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="16-17,20-21,32,only"></div>
+ <div line-highlight="15,18-19,30-32,only"></div>
 <p></details></p>
 <h2>Objective 3: Organize code with the Modlet pattern</h2>
 <p>Our efforts to refactor have been going swimmingly; however, the <code>App.tsx</code> file is getting a bit crowded. It’s about time we take the time to organize our code, while doing so we'll also introduce a useful pattern to follow.</p>
@@ -1238,17 +1233,17 @@ const ProductPage = (props) =&gt; {
  */
 
 import { AppRegistry } from &quot;react-native&quot;
-import App from &quot;./src/App&quot;
+
 import { name as appName } from &quot;./app.json&quot;
+import App from &quot;./src/App&quot;
 
 AppRegistry.registerComponent(appName, () =&gt; App)
 
 </code></pre>
- <div line-highlight="6,only"></div>
+ <div line-highlight="8,only"></div>
 <p>✏️ Create <strong>src/</strong> (folder)</p>
 <p>✏️ Move <strong>App.tsx</strong> to <strong>src/App.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
 
 const states = [
   {
@@ -1262,18 +1257,17 @@ const states = [
 ]
 
 export type ListItemProps = {
-  key: string
   name: string
 }
 
-export const ListItem: FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
+export const ListItem: React.FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
   return &lt;Text&gt;{name}&lt;/Text&gt;
 }
 
-export const StateList: FC = () =&gt; {
+export const StateList: React.FC = () =&gt; {
   return (
     &lt;View&gt;
-      {states?.length &gt; 0 ? (
+      {states?.length ? (
         states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
       ) : (
         &lt;Text&gt;No states found&lt;/Text&gt;
@@ -1282,7 +1276,7 @@ export const StateList: FC = () =&gt; {
   )
 }
 
-const App: FC = () =&gt; {
+const App: React.FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
       &lt;StateList /&gt;
@@ -1295,8 +1289,8 @@ export default App
 </code></pre>
 <p>✏️ Create <strong>src/screens/StateList/</strong> (folder)</p>
 <p>✏️ Create <strong>src/screens/StateList/StateList.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { View, Text } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { View, Text } from &quot;react-native&quot;
+
 import ListItem from &quot;./components/ListItem&quot;
 
 //Exercise: Implement StateList Component
@@ -1310,8 +1304,7 @@ export default StateList
 </code></pre>
 <p>✏️ Create <strong>src/screens/StateList/components/ListItem/</strong> (folder)</p>
 <p>✏️ Create <strong>src/screens/StateList/components/ListItem/ListItem.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { Text } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { Text } from &quot;react-native&quot;
 
 //Exercise: Implement ListItem Component
 
@@ -1325,6 +1318,7 @@ export default ListItem
 <h3>Verify 3</h3>
 <p>✏️ Move <strong>App.test.tsx</strong> to <strong>src/App.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+
 import App from &quot;./App&quot;
 
 describe(&quot;App&quot;, () =&gt; {
@@ -1340,8 +1334,10 @@ describe(&quot;App&quot;, () =&gt; {
 })
 
 </code></pre>
+ <div line-highlight="3,only"></div>
 <p>✏️ Create <strong>src/screens/StateList/StateList.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+
 import StateList from &quot;./StateList&quot;
 
 describe(&quot;StateList&quot;, () =&gt; {
@@ -1355,6 +1351,7 @@ describe(&quot;StateList&quot;, () =&gt; {
 </code></pre>
 <p>✏️ Create <strong>src/screens/StateList/components/ListItem/ListItem.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+
 import ListItem from &quot;./ListItem&quot;
 
 describe(&quot;ListItem&quot;, () =&gt; {
@@ -1375,11 +1372,11 @@ describe(&quot;ListItem&quot;, () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { SafeAreaView } from &quot;react-native&quot;
+
 import StateList from &quot;./screens/StateList&quot;
 
-const App: FC = () =&gt; {
+const App: React.FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
       &lt;StateList /&gt;
@@ -1390,10 +1387,10 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="3,only"></div>
+ <div line-highlight="1,3,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { ScrollView, Text, View } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { ScrollView, Text, View } from &quot;react-native&quot;
+
 import ListItem from &quot;./components/ListItem&quot;
 
 const states = [
@@ -1407,15 +1404,17 @@ const states = [
   },
 ]
 
-const StateList: FC = () =&gt; {
+const StateList: React.FC = () =&gt; {
   return (
     &lt;ScrollView&gt;
       &lt;View&gt;
         &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
       &lt;/View&gt;
       &lt;View&gt;
-        {states?.length &gt; 0 ? (
-          states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
+        {states?.length ? (
+          states.map((state) =&gt; (
+            &lt;ListItem key={state.short} name={state.name} /&gt;
+          ))
         ) : (
           &lt;Text&gt;No states found&lt;/Text&gt;
         )}
@@ -1427,23 +1426,22 @@ const StateList: FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="2,5-14,16-31,only"></div>
+ <div line-highlight="1,5-14,16-33,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/components/ListItem/ListItem.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { Text } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { Text } from &quot;react-native&quot;
 
 type ListItemProps = {
   name: string
 }
 
-const ListItem: FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
+const ListItem: React.FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
   return &lt;Text&gt;{name}&lt;/Text&gt;
 }
 
 export default ListItem
 
 </code></pre>
- <div line-highlight="4-6,8-10,only"></div>
+ <div line-highlight="3-5,7-9,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next we will learn about debugging by using <a href="./debugging-devtools.html">React Devtools</a>.</p>

@@ -855,7 +855,7 @@ const Toggle: React.FC = () =&gt; {
 <p>This is how we can create our custom <code>useToggle</code> Hook and call it in our components, just like React’s built-in Hooks!</p>
 <h3>Setup</h3>
 <p>✏️ Update <strong>src/design/theme/theme.ts</strong> to be:</p>
-<pre><code class="language-ts">import type { TextStyle } from &quot;react-native&quot;
+<pre><code class="language-ts">import { TextStyle } from &quot;react-native&quot;
 
 interface Palette {
   main: string
@@ -885,6 +885,13 @@ export interface Theme {
     label: TextStyle
   }
 }
+
+export type ThemeMargin =
+  | keyof Theme[&quot;spacing&quot;]
+  | [keyof Theme[&quot;spacing&quot;], keyof Theme[&quot;spacing&quot;]]
+export type ThemePadding =
+  | keyof Theme[&quot;spacing&quot;]
+  | [keyof Theme[&quot;spacing&quot;], keyof Theme[&quot;spacing&quot;]]
 
 const light: Theme = {
   palette: {
@@ -961,16 +968,14 @@ export default {
   light,
   dark,
 }
-</code></pre>
- <div line-highlight="32,80-101,103-106,only"></div>
-<p>✏️ Update <strong>src/design/theme/ThemeProvider.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import type { Theme } from &quot;./theme&quot;
 
-import { useState, createContext, useContext, useMemo } from &quot;react&quot;
+</code></pre>
+ <div line-highlight="39,87-108,110-113,only"></div>
+<p>✏️ Update <strong>src/design/theme/ThemeProvider.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { useState, createContext, useContext, useMemo } from &quot;react&quot;
 import { Appearance } from &quot;react-native&quot;
 
-import themes from &quot;./theme&quot;
+import themes, { Theme } from &quot;./theme&quot;
 
 type Mode = keyof typeof themes
 
@@ -983,7 +988,9 @@ const Context = createContext&lt;ThemeContext&gt;({
   theme,
 })
 
-const ThemeProvider: FC&lt;{ children: React.ReactNode }&gt; = ({ children }) =&gt; {
+const ThemeProvider: React.FC&lt;{ children: React.ReactNode }&gt; = ({
+  children,
+}) =&gt; {
   const value = useMemo(() =&gt; ({ theme }), [])
 
   return &lt;Context.Provider value={value}&gt;{children}&lt;/Context.Provider&gt;
@@ -997,21 +1004,24 @@ export function useTheme(): Theme {
   return theme
 }
 
-export function useThemeMode() {
-
-  return
+export function useThemeMode(): {
+  mode: Mode
+  setMode: (mode: Mode) =&gt; void
+} {
+  //
 }
 
 </code></pre>
- <div line-highlight="4-5,7,9,12-13,16-18,34,36-37,only"></div>
+ <div line-highlight="1-2,4,6,9-10,13-15,33-38,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import ListItem from &quot;./components/ListItem&quot;
+<pre><code class="language-tsx">import { Switch } from &quot;react-native&quot;
+
 import Card from &quot;../../design/Card&quot;
 import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
 import { useThemeMode } from &quot;../../design/theme&quot;
-import { Switch } from &quot;react-native&quot;
+import Typography from &quot;../../design/Typography&quot;
+
+import ListItem from &quot;./components/ListItem&quot;
 
 export type State = {
   name: string
@@ -1029,7 +1039,7 @@ const states: State[] = [
   },
 ]
 
-const StateList: FC = () =&gt; {
+const StateList: React.FC = () =&gt; {
   return (
     &lt;Screen&gt;
       &lt;Card&gt;
@@ -1037,7 +1047,7 @@ const StateList: FC = () =&gt; {
           Place My Order: Coming Soon To...
         &lt;/Typography&gt;
       &lt;/Card&gt;
-      {states?.length &gt; 0 ? (
+      {states?.length ? (
         states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
       ) : (
         &lt;Typography&gt;No states found&lt;/Typography&gt;
@@ -1049,12 +1059,15 @@ const StateList: FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="6-7,9-11,14,40,only"></div>
+ <div line-highlight="1,5,10-12,15,41,only"></div>
 <h3>Verify</h3>
 <p>✏️ Update <strong>src/design/theme/theme.test.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-
-import { render, screen, renderHook, waitFor } from &quot;@testing-library/react-native&quot;
+<pre><code class="language-tsx">import {
+  render,
+  screen,
+  renderHook,
+  waitFor,
+} from &quot;@testing-library/react-native&quot;
 import { View, Text } from &quot;react-native&quot;
 
 import ThemeProvider, { useTheme, useThemeMode } from &quot;./ThemeProvider&quot;
@@ -1072,7 +1085,7 @@ describe(&quot;ThemeProvider Provider&quot;, () =&gt; {
 })
 
 describe(&quot;ThemeContext context&quot;, () =&gt; {
-  const TestComponent: FC = () =&gt; {
+  const TestComponent: React.FC = () =&gt; {
     const theme = useTheme()
 
     return (
@@ -1090,13 +1103,15 @@ describe(&quot;ThemeContext context&quot;, () =&gt; {
 })
 
 describe(&quot;Theme mode&quot;, () =&gt; {
-  it('toggles', async () =&gt; {
-    const { result } = renderHook(() =&gt; useThemeMode(), { wrapper: ThemeProvider })
+  it(&quot;toggles&quot;, async () =&gt; {
+    const { result } = renderHook(() =&gt; useThemeMode(), {
+      wrapper: ThemeProvider,
+    })
 
     expect(result.current.mode).toBe(&quot;light&quot;)
 
     await waitFor(() =&gt; {
-      result.current.setMode(&quot;dark&quot;);
+      result.current.setMode(&quot;dark&quot;)
       expect(result.current.mode).not.toBe(&quot;light&quot;)
     })
 
@@ -1105,22 +1120,22 @@ describe(&quot;Theme mode&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="3,6,38-40,42,44-47,49-51,only"></div>
+ <div line-highlight="1-6,9,41-45,47,49-52,54-56,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.test.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { SwitchChangeEvent } from &quot;react-native&quot;;
-import { render, screen, fireEvent } from &quot;@testing-library/react-native&quot;;
-import StateList from &quot;./StateList&quot;;
-import { useThemeMode } from &quot;../../design/theme&quot;;
+<pre><code class="language-tsx">import { render, screen, fireEvent } from &quot;@testing-library/react-native&quot;
+import { SwitchChangeEvent } from &quot;react-native&quot;
+
+import StateList from &quot;./StateList&quot;
 
 const mockSetMode = jest.fn()
 
-jest.mock('../../design/theme', () =&gt; ({
-  ...jest.requireActual('../../design/theme'),
+jest.mock(&quot;../../design/theme&quot;, () =&gt; ({
+  ...jest.requireActual(&quot;../../design/theme&quot;),
   useThemeMode: () =&gt; ({
-    mode: 'light',
-    setMode: mockSetMode
+    mode: &quot;light&quot;,
+    setMode: mockSetMode,
   }),
-}));
+}))
 
 describe(&quot;StateList&quot;, () =&gt; {
   it(&quot;renders states&quot;, async () =&gt; {
@@ -1128,17 +1143,19 @@ describe(&quot;StateList&quot;, () =&gt; {
     expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
     expect(screen.getByText(/Wisconsin/i)).toBeOnTheScreen()
   })
-  it('should switch to dark mode', () =&gt; {
-    render(&lt;StateList /&gt;);
+  it(&quot;should switch to dark mode&quot;, () =&gt; {
+    render(&lt;StateList /&gt;)
     const switchElement = screen.getByRole(&quot;switch&quot;)
     expect(switchElement.props.value).toBe(false)
-    fireEvent(switchElement, 'onChange', { nativeEvent: { value: true } } as SwitchChangeEvent);
-    expect(mockSetMode).toHaveBeenCalledWith('dark')
+    fireEvent(switchElement, &quot;onChange&quot;, {
+      nativeEvent: { value: true },
+    } as SwitchChangeEvent)
+    expect(mockSetMode).toHaveBeenCalledWith(&quot;dark&quot;)
   })
 })
 
 </code></pre>
- <div line-highlight="1-2,4,6,8-14,22-28,only"></div>
+ <div line-highlight="1-2,6,8-14,22-30,only"></div>
 <h3>Exercise</h3>
 <p>✏️ Refactoring <strong>src/design/theme/ThemeProvider.tsx</strong>:</p>
 <ul>
@@ -1157,13 +1174,10 @@ describe(&quot;StateList&quot;, () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/design/theme/ThemeProvider.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import type { Theme } from &quot;./theme&quot;
-
-import { useState, createContext, useContext, useMemo } from &quot;react&quot;
+<pre><code class="language-tsx">import { useState, createContext, useContext, useMemo } from &quot;react&quot;
 import { Appearance } from &quot;react-native&quot;
 
-import themes from &quot;./theme&quot;
+import themes, { Theme } from &quot;./theme&quot;
 
 type Mode = keyof typeof themes
 
@@ -1172,12 +1186,14 @@ interface ThemeContext {
   setMode: (mode: Mode) =&gt; void
 }
 
-const Context = createContext&lt;ThemeContext | undefined&gt;({
+const Context = createContext&lt;ThemeContext&gt;({
   mode: &quot;light&quot;,
   setMode: () =&gt; undefined,
 })
 
-const ThemeProvider: FC&lt;{ children: React.ReactNode }&gt; = ({ children }) =&gt; {
+const ThemeProvider: React.FC&lt;{ children: React.ReactNode }&gt; = ({
+  children,
+}) =&gt; {
   const [mode, setMode] = useState&lt;Mode&gt;(Appearance.getColorScheme() || &quot;light&quot;)
 
   const value = useMemo(() =&gt; ({ mode, setMode }), [mode])
@@ -1206,15 +1222,16 @@ export function useThemeMode(): {
 }
 
 </code></pre>
- <div line-highlight="16-18,22,24,32,34,37-41,43-46,only"></div>
+ <div line-highlight="14-15,21,23,31,33,40,42-45,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import ListItem from &quot;./components/ListItem&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
+<pre><code class="language-tsx">import { Switch } from &quot;react-native&quot;
+
 import Card from &quot;../../design/Card&quot;
+import Screen from &quot;../../design/Screen&quot;
 import { useThemeMode } from &quot;../../design/theme&quot;
-import { Switch } from &quot;react-native&quot;
+import Typography from &quot;../../design/Typography&quot;
+
+import ListItem from &quot;./components/ListItem&quot;
 
 export type State = {
   name: string
@@ -1232,7 +1249,7 @@ const states: State[] = [
   },
 ]
 
-const StateList: FC = () =&gt; {
+const StateList: React.FC = () =&gt; {
   const { mode, setMode } = useThemeMode()
 
   return (
@@ -1242,7 +1259,7 @@ const StateList: FC = () =&gt; {
           Place My Order: Coming Soon To...
         &lt;/Typography&gt;
       &lt;/Card&gt;
-      {states?.length &gt; 0 ? (
+      {states?.length ? (
         states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
       ) : (
         &lt;Typography&gt;No states found&lt;/Typography&gt;
@@ -1261,7 +1278,7 @@ const StateList: FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="26,40-46,only"></div>
+ <div line-highlight="27,41-47,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, we will learn how to switch screens with <a href="navigation.html" title="Learn how to use navigation to move between screens in a React Native app.">Navigation in React Native</a>.</p>
