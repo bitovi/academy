@@ -1,4 +1,3 @@
-import type { JSX } from "react"
 import { SafeAreaView, ScrollView, Text, View } from "react-native"
 
 const states = [
@@ -12,7 +11,7 @@ const states = [
   },
 ]
 
-function App(): JSX.Element {
+const App: React.FC = () => {
   return (
     <SafeAreaView style={{ height: "100%", width: "100%" }}>
       <ScrollView>

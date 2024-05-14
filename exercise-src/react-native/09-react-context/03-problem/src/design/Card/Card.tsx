@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import type { ViewStyle } from "react-native"
 import type { Theme } from "../theme"
 import type { BoxProps } from "../Box"
@@ -13,7 +12,7 @@ export interface CardProps extends BoxProps {
   title?: string
 }
 
-const Card: FC<CardProps> = ({ title, children, ...props }) => {
+const Card: React.FC<CardProps> = ({ title, children, ...props }) => {
   const theme = useTheme()
   const styles = getStyles(theme)
 

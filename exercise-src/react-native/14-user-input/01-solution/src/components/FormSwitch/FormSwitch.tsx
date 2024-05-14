@@ -10,7 +10,7 @@ type Props = {
   onChange: (value: boolean) => void
 }
 
-const FormSwitch: FC<Props> = ({ label, value, onChange }) => {
+const FormSwitch: React.FC<Props> = ({ label, value, onChange }) => {
   const { palette } = useTheme()
 
   return (

@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps"
 import type { Restaurant } from "../../../../services/pmo/restaurant"
 
@@ -7,7 +6,7 @@ type Props = {
   navigateTo: (slug: string) => void
 }
 
-const Map: FC<Props> = ({ data, navigateTo }) => {
+const Map: React.FC<Props> = ({ data, navigateTo }) => {
   return (
     <MapView
       // needs a minHeight to display without error

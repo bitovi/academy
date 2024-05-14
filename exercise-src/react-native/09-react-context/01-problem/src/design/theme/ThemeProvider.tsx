@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import type { Theme } from "./theme"
 
 import { createContext, useContext, useMemo } from "react"
@@ -11,7 +10,7 @@ interface ThemeContext {
 
 // TODO
 
-const ThemeProvider: FC = () => {
+const ThemeProvider: React.FC = () => {
   // TODO
 }
 

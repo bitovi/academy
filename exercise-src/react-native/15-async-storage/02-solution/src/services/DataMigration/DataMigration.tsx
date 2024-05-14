@@ -15,11 +15,11 @@ const migrateDataV1toV2 = async (): Promise<void> => {
   try {
     for (const key of keys) {
       if (key.startsWith(keyPrefix)) {
-        const oldData = await getData(key) as LocalStorageApiRequestV1;
+        const oldData = (await getData(key)) as LocalStorageApiRequestV1
         await storeData<LocalStorageApiRequest<unknown>>(key, {
           ...oldData,
           dateTime: oldData.dateTime.valueOf(),
-        });
+        })
       }
     }
   } catch (error) {
@@ -28,7 +28,7 @@ const migrateDataV1toV2 = async (): Promise<void> => {
   }
 }
 
-const DataMigration: FC<{ children: ReactNode }> = ({ children }) => {
+const DataMigration: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [isDone, setMigrationDone] = useState<boolean>(false)
 
   useEffect(() => {

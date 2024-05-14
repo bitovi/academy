@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import { Switch } from "react-native"
 
 import Screen from "../../design/Screen"
@@ -10,7 +9,7 @@ const user = {
   name: "Your Name",
 }
 
-const Settings: FC = () => {
+const Settings: React.FC = () => {
   const { mode, setMode } = useThemeMode()
 
   return (

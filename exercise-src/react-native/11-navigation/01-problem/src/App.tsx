@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import { SafeAreaView } from "react-native"
 import { NavigationContainer } from "@react-navigation/native"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
@@ -9,7 +8,7 @@ import StateList from "./screens/StateList"
 import Settings from "./screens/Settings"
 
 const AppTabs = createBottomTabNavigator()
-export const AppNavigator: FC = () => {
+export const AppNavigator: React.FC = () => {
   const theme = useTheme()
 
   return (
@@ -39,7 +38,7 @@ export const AppNavigator: FC = () => {
   )
 }
 
-const App: FC = () => {
+const App: React.FC = () => {
   return (
     <SafeAreaView style={{ height: "100%", width: "100%" }}>
       <ThemeProvider>

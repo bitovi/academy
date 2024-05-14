@@ -1,7 +1,6 @@
-import type React from "react"
 import { SafeAreaView, ScrollView, Text, View } from "react-native"
 
-function App(): React.JSX.Element {
+const App: React.FC = () => {
   return (
     <SafeAreaView style={{ height: "100%", width: "100%" }}>
       <ScrollView>

@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import type { PressableProps, ViewStyle, TextStyle } from "react-native"
 import type { Theme } from "../theme"
 
@@ -18,7 +17,7 @@ export interface ButtonProps extends PressableProps {
   children: string
 }
 
-const Button: FC<ButtonProps> = ({
+const Button: React.FC<ButtonProps> = ({
   variant = "primary",
   margin,
   padding,

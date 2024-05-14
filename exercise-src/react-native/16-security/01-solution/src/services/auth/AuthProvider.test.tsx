@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import {
   render,
   screen,
@@ -25,7 +24,7 @@ afterAll(() => {
 })
 
 describe("AuthProvider", () => {
-  const TestComponent: FC = () => {
+  const TestComponent: React.FC = () => {
     const isAuthenticated = useAuthenticated()
     const { signIn, signOut } = useAuthentication()
     const user = useUser()

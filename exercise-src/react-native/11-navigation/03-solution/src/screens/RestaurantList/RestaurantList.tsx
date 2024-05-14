@@ -1,5 +1,3 @@
-import type { FC } from "react"
-
 import { FlatList } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import Box from "../../design/Box"
@@ -36,7 +34,7 @@ const restaurants = [
   },
 ]
 
-const RestaurantList: FC = () => {
+const RestaurantList: React.FC = () => {
   const navigation = useNavigation()
 
   const navigateToDetails = () => {

@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import type { StackScreenProps } from "@react-navigation/stack"
 import type { RestaurantsStackParamList } from "../../App"
 
@@ -14,7 +13,7 @@ import Button from "../../design/Button"
 
 type Props = StackScreenProps<RestaurantsStackParamList, "RestaurantDetails">
 
-const RestaurantDetails: FC<Props> = ({ route }) => {
+const RestaurantDetails: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation()
 
   return (

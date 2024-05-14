@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import type { StackScreenProps } from "@react-navigation/stack"
 import type { RestaurantsStackParamList } from "../../App"
 
@@ -19,7 +18,7 @@ type Props = StackScreenProps<RestaurantsStackParamList, "RestaurantOrder">
 
 type OrderItems = Record<string, number>
 
-const RestaurantOrder: FC<Props> = ({ route }) => {
+const RestaurantOrder: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation()
   const { slug } = route.params
 

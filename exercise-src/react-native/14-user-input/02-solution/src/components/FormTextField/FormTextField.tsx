@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import { useId } from "react"
 import { TextInput } from "react-native"
 import Box from "../../design/Box"
@@ -12,7 +11,7 @@ type Props = {
   onChange?: (value: string) => void
 }
 
-const FormTextField: FC<Props> = ({ label, value, onChange }) => {
+const FormTextField: React.FC<Props> = ({ label, value, onChange }) => {
   const id = useId()
   const theme = useTheme()
 

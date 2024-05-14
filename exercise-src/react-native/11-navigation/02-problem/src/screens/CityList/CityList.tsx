@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import { FlatList } from "react-native"
 
 import Screen from "../../design/Screen"
@@ -14,15 +13,13 @@ const cities: City[] = [
   { name: "Springfield", state: "IL" },
 ]
 
-const CityList: FC = () => {
+const CityList: React.FC = () => {
   return (
     <Screen>
       <FlatList
         data={cities}
         renderItem={({ item: cityItem }) => (
-          <Button
-            onPress={() => console.warn(`${cityItem.name}`)}
-          >
+          <Button onPress={() => console.warn(`${cityItem.name}`)}>
             {cityItem.name}
           </Button>
         )}

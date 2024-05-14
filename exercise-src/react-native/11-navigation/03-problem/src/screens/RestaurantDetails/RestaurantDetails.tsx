@@ -1,5 +1,3 @@
-import type { FC } from "react"
-
 import { useNavigation } from "@react-navigation/native"
 
 import RestaurantHeader from "../../components/RestaurantHeader"
@@ -21,7 +19,7 @@ const restaurant = {
   },
 }
 
-const RestaurantDetails: FC = () => {
+const RestaurantDetails: React.FC = () => {
   const navigation = useNavigation()
   navigation.setOptions({ title: `${restaurant.name}` })
 

@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import { FlatList } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { useRestaurants } from "../../services/pmo/restaurant"
@@ -11,7 +10,7 @@ import type { RestaurantsStackParamList } from "../../App"
 
 type Props = StackScreenProps<RestaurantsStackParamList, "RestaurantList">
 
-const RestaurantList: FC<Props> = ({ route }) => {
+const RestaurantList: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation()
 
   const navigateToDetails = (slug: string) => {

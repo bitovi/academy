@@ -1,11 +1,10 @@
-import type { FC } from "react"
 import { StyleSheet, Text } from "react-native"
 
 type ListItemProps = {
   name: string
 }
 
-const ListItem: FC<ListItemProps> = ({ name }) => {
+const ListItem: React.FC<ListItemProps> = ({ name }) => {
   return <Text style={styles.text}>{name}</Text>
 }
 

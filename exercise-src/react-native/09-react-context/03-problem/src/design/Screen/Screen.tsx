@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import { ScrollView } from "react-native"
 import type { BoxProps } from "../Box"
 
@@ -10,7 +9,7 @@ export interface ScreenProps extends BoxProps {
   //
 }
 
-const Screen: FC<ScreenProps> = ({ children, style, ...props }) => {
+const Screen: React.FC<ScreenProps> = ({ children, style, ...props }) => {
   const { palette } = useTheme()
 
   return (

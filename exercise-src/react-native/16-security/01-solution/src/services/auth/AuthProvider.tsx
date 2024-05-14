@@ -13,7 +13,7 @@ GoogleSignin.configure({
   webClientId: googleOauthwebClientId,
 })
 
-const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
+const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [userInfo, setUserInfo] = useState<UserInfo | null>()
 
   const signIn = useCallback(async () => {

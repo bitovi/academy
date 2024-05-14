@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import { FlatList } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 
@@ -23,7 +22,7 @@ const states: State[] = [
   },
 ]
 
-const StateList: FC = () => {
+const StateList: React.FC = () => {
   const navigation = useNavigation()
 
   return (
@@ -36,9 +35,7 @@ const StateList: FC = () => {
       <FlatList
         data={states}
         renderItem={({ item: stateItem }) => (
-          <Button
-            onPress={() => console.warn(`${stateItem.name}`)}
-          >
+          <Button onPress={() => console.warn(`${stateItem.name}`)}>
             {stateItem.name}
           </Button>
         )}

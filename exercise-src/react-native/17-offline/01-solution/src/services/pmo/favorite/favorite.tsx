@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import { useEffect } from "react"
 import { useNetInfo } from "@react-native-community/netinfo"
 
@@ -20,7 +19,7 @@ const useFavoritesSync = (): void => {
   return
 }
 
-const FavoritesSync: FC = () => {
+const FavoritesSync: React.FC = () => {
   useFavoritesSync()
 
   return null

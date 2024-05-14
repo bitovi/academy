@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import { FlatList } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 
@@ -15,7 +14,7 @@ const cities: City[] = [
   { name: "Springfield", state: "IL" },
 ]
 
-const CityList: FC = () => {
+const CityList: React.FC = () => {
   const navigation = useNavigation()
 
   //Exercise: Use navigation to navigate to RestaurantList

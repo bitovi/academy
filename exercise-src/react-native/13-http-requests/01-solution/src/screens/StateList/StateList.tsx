@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import { FlatList } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 
@@ -9,7 +8,7 @@ import Typography from "../../design/Typography"
 import Button from "../../design/Button"
 import Loading from "../../components/Loading"
 
-const StateList: FC = () => {
+const StateList: React.FC = () => {
   const navigation = useNavigation()
   const { data: states, error, isPending } = useStates()
 

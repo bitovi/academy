@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import { Pressable, SafeAreaView } from "react-native"
 import { NavigationContainer } from "@react-navigation/native"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
@@ -59,7 +58,7 @@ export type RestaurantsStackParamList = {
 }
 
 const RestaurantsStack = createStackNavigator<RestaurantsStackParamList>()
-const RestaurantsNavigator: FC = () => {
+const RestaurantsNavigator: React.FC = () => {
   return (
     <RestaurantsStack.Navigator
       initialRouteName="StateList"
@@ -96,13 +95,16 @@ const RestaurantsNavigator: FC = () => {
         name="RestaurantDetails"
         component={RestaurantDetails}
       />
-      <RestaurantsStack.Screen name="RestaurantOrder" component={RestaurantOrder} />
+      <RestaurantsStack.Screen
+        name="RestaurantOrder"
+        component={RestaurantOrder}
+      />
     </RestaurantsStack.Navigator>
   )
 }
 
 const AppTabs = createBottomTabNavigator()
-export const AppNavigator: FC = () => {
+export const AppNavigator: React.FC = () => {
   const theme = useTheme()
 
   return (
@@ -147,7 +149,7 @@ export const AppNavigator: FC = () => {
   )
 }
 
-const App: FC = () => {
+const App: React.FC = () => {
   return (
     <SafeAreaView style={{ height: "100%", width: "100%" }}>
       <ThemeProvider>

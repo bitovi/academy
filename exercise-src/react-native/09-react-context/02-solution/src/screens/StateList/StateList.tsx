@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import { ScrollView } from "react-native"
 import ListItem from "./components/ListItem"
 import Box from "../../design/Box"
@@ -15,7 +14,7 @@ const states = [
   },
 ]
 
-const StateList: FC = () => {
+const StateList: React.FC = () => {
   return (
     <ScrollView>
       <Box padding="s">

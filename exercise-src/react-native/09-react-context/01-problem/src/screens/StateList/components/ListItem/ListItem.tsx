@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import type { Theme } from "../../../../design/theme"
 
 import { StyleSheet, Text } from "react-native"
@@ -8,7 +7,7 @@ type ListItemProps = {
   name: string
 }
 
-const ListItem: FC<ListItemProps> = ({ name }) => {
+const ListItem: React.FC<ListItemProps> = ({ name }) => {
   const styles = getStyles()
 
   return <Text style={styles.text}>{name}</Text>

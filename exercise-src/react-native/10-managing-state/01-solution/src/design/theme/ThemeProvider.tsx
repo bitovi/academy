@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import type { Theme } from "./theme"
 
 import { useState, createContext, useContext, useMemo } from "react"
@@ -18,7 +17,9 @@ const Context = createContext<ThemeContext | undefined>({
   setMode: () => undefined,
 })
 
-const ThemeProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
+const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [mode, setMode] = useState<Mode>(Appearance.getColorScheme() || "light")
 
   const value = useMemo(() => ({ mode, setMode }), [mode])

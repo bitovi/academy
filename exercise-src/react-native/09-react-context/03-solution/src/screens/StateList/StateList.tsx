@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import ListItem from "./components/ListItem"
 import Card from "../../design/Card"
 import Screen from "../../design/Screen"
@@ -15,7 +14,7 @@ const states = [
   },
 ]
 
-const StateList: FC = () => {
+const StateList: React.FC = () => {
   return (
     <Screen>
       <Card>

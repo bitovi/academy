@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import type { TextProps, TextStyle } from "react-native"
 import type { Theme } from "../theme"
 
@@ -10,7 +9,7 @@ export interface TypographyProps extends TextProps {
   variant?: keyof Theme["typography"]
 }
 
-const Typography: FC<TypographyProps> = ({
+const Typography: React.FC<TypographyProps> = ({
   style,
   variant = "body",
   children,

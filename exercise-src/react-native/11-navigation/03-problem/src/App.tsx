@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import { Pressable, SafeAreaView } from "react-native"
 import { NavigationContainer } from "@react-navigation/native"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
@@ -13,7 +12,7 @@ import Typography from "./design/Typography"
 import { createStackNavigator } from "@react-navigation/stack"
 
 const RestaurantsStack = createStackNavigator()
-const RestaurantsNavigator: FC = () => {
+const RestaurantsNavigator: React.FC = () => {
   return (
     <RestaurantsStack.Navigator
       initialRouteName="StateList"
@@ -28,9 +27,7 @@ const RestaurantsNavigator: FC = () => {
                 style={{ flexDirection: "row", gap: 8, alignItems: "center" }}
               >
                 <Icon name="arrow-back" size={20} />
-                <Typography variant="heading">
-                  Choose a location
-                </Typography>
+                <Typography variant="heading">Choose a location</Typography>
               </Box>
             </Pressable>
           )
@@ -45,7 +42,7 @@ const RestaurantsNavigator: FC = () => {
 }
 
 const AppTabs = createBottomTabNavigator()
-export const AppNavigator: FC = () => {
+export const AppNavigator: React.FC = () => {
   const theme = useTheme()
 
   return (
@@ -90,7 +87,7 @@ export const AppNavigator: FC = () => {
   )
 }
 
-const App: FC = () => {
+const App: React.FC = () => {
   return (
     <SafeAreaView style={{ height: "100%", width: "100%" }}>
       <ThemeProvider>

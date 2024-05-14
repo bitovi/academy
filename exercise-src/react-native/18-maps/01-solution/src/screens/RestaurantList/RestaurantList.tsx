@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import { useState } from "react"
 import { FlatList } from "react-native"
 import { useNavigation } from "@react-navigation/native"
@@ -15,7 +14,7 @@ import Map from "./components/Map"
 
 type Props = StackScreenProps<RestaurantsStackParamList, "RestaurantList">
 
-const RestaurantList: FC<Props> = ({ route }) => {
+const RestaurantList: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation()
 
   const { state, city } = route.params

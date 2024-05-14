@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import { ScrollView, Text, View } from "react-native"
 import ListItem from "./components/ListItem"
 
@@ -13,8 +12,8 @@ const states = [
   },
 ]
 
-const StateList: FC = () => {
-  console.log('Hello World');
+const StateList: React.FC = () => {
+  console.log("Hello World")
   debugger
 
   return (
@@ -24,7 +23,9 @@ const StateList: FC = () => {
       </View>
       <View>
         {states?.length > 0 ? (
-          states.map((state) => <ListItem key={state.short} name={state.name} />)
+          states.map((state) => (
+            <ListItem key={state.short} name={state.name} />
+          ))
         ) : (
           <Text>No states found</Text>
         )}

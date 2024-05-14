@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import { SafeAreaView, ScrollView, Text, View } from "react-native"
 
 const states = [
@@ -12,7 +11,7 @@ const states = [
   },
 ]
 
-export const StateList: FC = () => {
+export const StateList: React.FC = () => {
   return (
     <ScrollView>
       <View>
@@ -29,7 +28,7 @@ export const StateList: FC = () => {
   )
 }
 
-const App: FC = () => {
+const App: React.FC = () => {
   return (
     <SafeAreaView style={{ height: "100%", width: "100%" }}>
       <StateList />

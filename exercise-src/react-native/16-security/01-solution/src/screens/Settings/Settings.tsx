@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import { Switch } from "react-native"
 import { GoogleSigninButton } from "@react-native-google-signin/google-signin"
 
@@ -9,7 +8,7 @@ import Typography from "../../design/Typography"
 import Card from "../../design/Card"
 import { useThemeMode } from "../../design/theme"
 
-const Settings: FC = () => {
+const Settings: React.FC = () => {
   const { signIn, signOut } = useAuthentication()
   const user = useUser()
   const { mode, setMode } = useThemeMode()
