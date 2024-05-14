@@ -23,5 +23,5 @@
     "useDefineForClassFields": true
   },
   "include": ["."],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "03-creating-a-new-app/01-solution"]
 }

@@ -15,7 +15,7 @@ export type ListItemProps = {
   //Exercise: Implement ListItem Props
 }
 
-export const ListItem: React.FC = ({}) => {
+export const ListItem: React.FC = () => {
   // Exercise: Implement ListItem component
 }
 

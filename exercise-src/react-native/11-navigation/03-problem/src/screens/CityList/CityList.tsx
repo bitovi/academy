@@ -1,8 +1,8 @@
-import { FlatList } from "react-native"
 import { useNavigation } from "@react-navigation/native"
+import { FlatList } from "react-native"
 
-import Screen from "../../design/Screen"
 import Button from "../../design/Button"
+import Screen from "../../design/Screen"
 
 export interface City {
   name: string

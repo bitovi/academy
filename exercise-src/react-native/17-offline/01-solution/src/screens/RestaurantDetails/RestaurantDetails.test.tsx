@@ -1,20 +1,24 @@
 import { render, screen } from "@testing-library/react-native"
 
-import * as restaurantHooks from "../../services/pmo/restaurant/hooks"
 import AuthProvider from "../../services/auth/AuthProvider"
+import * as restaurantHooks from "../../services/pmo/restaurant/hooks"
 
 import RestaurantDetails from "./RestaurantDetails"
 
-const params = {
-  state: {
-    name: "name",
-    short: "short",
+const route = {
+  key: "RestaurantDetails",
+  name: "RestaurantDetails",
+  params: {
+    state: {
+      name: "name",
+      short: "short",
+    },
+    city: {
+      name: "name",
+      state: "state",
+    },
+    slug: "test",
   },
-  city: {
-    name: "name",
-    state: "state",
-  },
-  slug: "test",
 } as const
 
 jest.mock("@react-navigation/native", () => {
@@ -61,7 +65,8 @@ describe("RestaurantDetails component", () => {
     useRestaurant.mockReturnValue({ data: null, isPending: true, error: null })
     render(
       <AuthProvider>
-        <RestaurantDetails route={{ params }} />
+        {/* @ts-ignore */}
+        <RestaurantDetails route={route} />
       </AuthProvider>,
     )
 
@@ -76,7 +81,8 @@ describe("RestaurantDetails component", () => {
     })
     render(
       <AuthProvider>
-        <RestaurantDetails route={{ params }} />
+        {/* @ts-ignore */}
+        <RestaurantDetails route={route} />
       </AuthProvider>,
     )
     expect(
@@ -91,7 +97,8 @@ describe("RestaurantDetails component", () => {
     useRestaurant.mockReturnValue(mockRestaurantData)
     render(
       <AuthProvider>
-        <RestaurantDetails route={{ params }} />
+        {/* @ts-ignore */}
+        <RestaurantDetails route={route} />
       </AuthProvider>,
     )
 
@@ -102,7 +109,8 @@ describe("RestaurantDetails component", () => {
     useRestaurant.mockReturnValue({ ...mockRestaurantData, data: null })
     render(
       <AuthProvider>
-        <RestaurantDetails route={{ params }} />
+        {/* @ts-ignore */}
+        <RestaurantDetails route={route} />
       </AuthProvider>,
     )
 

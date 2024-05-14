@@ -1,12 +1,12 @@
-import { Switch } from "react-native"
 import { GoogleSigninButton } from "@react-native-google-signin/google-signin"
+import { Switch } from "react-native"
 
-import { useAuthentication, useUser } from "../../services/auth"
 import Button from "../../design/Button"
-import Screen from "../../design/Screen"
-import Typography from "../../design/Typography"
 import Card from "../../design/Card"
+import Screen from "../../design/Screen"
 import { useThemeMode } from "../../design/theme"
+import Typography from "../../design/Typography"
+import { useAuthentication, useUser } from "../../services/auth"
 
 const Settings: React.FC = () => {
   const { signIn, signOut } = useAuthentication()

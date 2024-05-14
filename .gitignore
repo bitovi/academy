@@ -3,3 +3,4 @@ academy/
 .env
 .vscode/
 .DS_Store
+tsconfig.tsbuildinfo

@@ -1,4 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react-native"
+
 import App from "./App"
 
 const oldFetch = global.fetch
@@ -18,16 +19,15 @@ describe("App", () => {
       { short: "IL", name: "Illinois" },
     ],
   }
-  
+
   it("renders", async () => {
-    mockFetch
-    .mockResolvedValueOnce({
+    mockFetch.mockResolvedValueOnce({
       ok: true,
       json: () => Promise.resolve(mockStateResponse),
       statusText: "OK",
       status: 200,
     })
-    
+
     render(<App />)
 
     await waitFor(() => {

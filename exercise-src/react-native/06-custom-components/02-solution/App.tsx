@@ -12,7 +12,6 @@ const states = [
 ]
 
 export type ListItemProps = {
-  key: string
   name: string
 }
 

@@ -1,4 +1,5 @@
 import { SafeAreaView, ScrollView, Text, View } from "react-native"
+
 import StateList from "./screens/StateList"
 
 const App: React.FC = () => {

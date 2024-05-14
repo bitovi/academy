@@ -1,10 +1,10 @@
-import { FlatList } from "react-native"
 import { useNavigation } from "@react-navigation/native"
-import type { StackScreenProps } from "@react-navigation/stack"
+import { StackScreenProps } from "@react-navigation/stack"
+import { FlatList } from "react-native"
 
-import type { RestaurantsStackParamList } from "../../App"
-import Screen from "../../design/Screen"
+import { RestaurantsStackParamList } from "../../App"
 import Button from "../../design/Button"
+import Screen from "../../design/Screen"
 
 const cities = [
   { name: "Madison", state: "WI" },

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
+
 import { apiRequest } from "../api/api"
-import type { City, Restaurant, State } from "./interfaces"
+
+import { City, Restaurant, State } from "./interfaces"
 
 interface CitiesResponse {
   data: City[] | null
@@ -55,16 +57,12 @@ export function useCities(state: string): CitiesResponse {
   return response
 }
 
-export function useRestaurant(slug: string): RestaurantResponse {
-
-}
+export function useRestaurant(slug: string): RestaurantResponse {}
 
 export function useRestaurants(
   state: string,
   city: string,
-): RestaurantsResponse {
-
-}
+): RestaurantsResponse {}
 
 export function useStates(): StatesResponse {
   const [response, setResponse] = useState<StatesResponse>({

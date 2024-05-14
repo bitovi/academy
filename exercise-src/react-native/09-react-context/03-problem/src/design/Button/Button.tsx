@@ -1,9 +1,13 @@
-import type { PressableProps, ViewStyle, TextStyle } from "react-native"
-import type { Theme } from "../theme"
+import {
+  PressableProps,
+  ViewStyle,
+  TextStyle,
+  StyleSheet,
+  Pressable,
+  Text,
+} from "react-native"
 
-import { StyleSheet, Pressable, Text } from "react-native"
-
-import { useTheme } from "../theme"
+import { Theme, useTheme } from "../theme"
 
 type Variant = "primary" | "secondary" | "outline"
 

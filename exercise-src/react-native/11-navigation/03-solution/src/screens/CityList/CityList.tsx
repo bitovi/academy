@@ -1,8 +1,8 @@
-import { FlatList } from "react-native"
 import { useNavigation } from "@react-navigation/native"
+import { FlatList } from "react-native"
 
-import Screen from "../../design/Screen"
 import Button from "../../design/Button"
+import Screen from "../../design/Screen"
 
 export interface City {
   name: string
@@ -17,16 +17,14 @@ const cities: City[] = [
 const CityList: React.FC = () => {
   const navigation = useNavigation()
 
-  const navigateToDetails = () => {
-    navigation.navigate("RestaurantList")
-  }
-
   return (
     <Screen>
       <FlatList
         data={cities}
         renderItem={({ item: cityItem }) => (
-          <Button onPress={() => navigateToDetails()}>{cityItem.name}</Button>
+          <Button onPress={() => navigation.navigate("RestaurantList")}>
+            {cityItem.name}
+          </Button>
         )}
         keyExtractor={(item) => item.name}
       />

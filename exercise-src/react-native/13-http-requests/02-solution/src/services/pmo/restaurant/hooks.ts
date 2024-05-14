@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import type { State, City } from "./interfaces"
+
+import { State, City } from "./interfaces"
 
 const baseUrl = process.env.PMO_API
 
@@ -54,19 +55,16 @@ export function useCities(state?: string): CitiesResponse {
 
   useEffect(() => {
     const fetchData = async () => {
-      if(state){
-        const response = await fetch(
-          `${baseUrl}/cities?state=${state}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
+      if (state) {
+        const response = await fetch(`${baseUrl}/cities?state=${state}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
           },
-        )
-        
+        })
+
         const data = await response.json()
-        
+
         setResponse({
           data: data?.data || null,
           error: null,

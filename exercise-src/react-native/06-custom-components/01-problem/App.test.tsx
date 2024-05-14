@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react-native"
-import App from "./App"
-import { StateList } from "./App"
+
+import App, { StateList } from "./App"
 
 describe("App", () => {
   it("renders", async () => {

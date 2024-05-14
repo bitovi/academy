@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import { apiRequest } from "../api"
+
 import { storeData, getData } from "../../storage/storage"
+import { apiRequest } from "../api"
 
 interface Favorite {
   userId: string

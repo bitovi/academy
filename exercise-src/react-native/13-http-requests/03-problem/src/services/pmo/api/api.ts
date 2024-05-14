@@ -16,9 +16,7 @@ export async function apiRequest<
   params?: Params
   path: string
   body?: Body
-}): Promise<{ data: Data | null; error: Error | null }> {
-  
-}
+}): Promise<{ data: Data | null; error: Error | null }> {}
 
 export function stringifyQuery(
   input: Record<string, string | null | undefined>,

@@ -5,16 +5,21 @@ import * as restaurantHooks from "../../services/pmo/restaurant/hooks"
 
 import RestaurantList from "./RestaurantList"
 
-const params = {
-  state: {
-    short: "",
-    name: "",
+const route = {
+  key: "RestaurantList",
+  name: "RestaurantList",
+  params: {
+    state: {
+      name: "name",
+      short: "short",
+    },
+    city: {
+      name: "name",
+      state: "state",
+    },
+    slug: "test",
   },
-  city: {
-    name: "",
-    state: "",
-  },
-}
+} as const
 
 describe("RestaurantList component", () => {
   // Mock the hooks and components used in RestaurantList
@@ -117,7 +122,8 @@ describe("RestaurantList component", () => {
 
     render(
       <NavigationContainer>
-        <RestaurantList route={{ params }} />
+        {/* @ts-ignore */}
+        <RestaurantList route={route} />
       </NavigationContainer>,
     )
     expect(screen.getByText(/Bagel Restaurant/i)).toBeOnTheScreen()
@@ -129,7 +135,8 @@ describe("RestaurantList component", () => {
 
     render(
       <NavigationContainer>
-        <RestaurantList route={{ params }} />
+        {/* @ts-ignore */}
+        <RestaurantList route={route} />
       </NavigationContainer>,
     )
 
@@ -144,7 +151,8 @@ describe("RestaurantList component", () => {
 
     render(
       <NavigationContainer>
-        <RestaurantList route={{ params }} />
+        {/* @ts-ignore */}
+        <RestaurantList route={route} />
       </NavigationContainer>,
     )
 

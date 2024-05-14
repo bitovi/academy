@@ -1,7 +1,7 @@
 import { FlatList } from "react-native"
 
-import Screen from "../../design/Screen"
 import Button from "../../design/Button"
+import Screen from "../../design/Screen"
 
 export interface City {
   name: string

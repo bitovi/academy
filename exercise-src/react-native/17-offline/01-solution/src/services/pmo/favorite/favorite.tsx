@@ -1,5 +1,5 @@
-import { useEffect } from "react"
 import { useNetInfo } from "@react-native-community/netinfo"
+import { useEffect } from "react"
 
 import { useUser } from "../../auth"
 

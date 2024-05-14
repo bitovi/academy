@@ -1,15 +1,14 @@
 import { ScrollView } from "react-native"
-import type { BoxProps } from "../Box"
 
+import Box, { BoxProps } from "../Box"
 import { useTheme } from "../theme"
-import Box from "../Box"
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ScreenProps extends BoxProps {
   //
 }
 
-const Screen: React.FC<ScreenProps> = ({ children, style, ...props }) => {
+const Screen: React.FC<ScreenProps> = ({ style, children, ...props }) => {
   const { palette } = useTheme()
 
   return (

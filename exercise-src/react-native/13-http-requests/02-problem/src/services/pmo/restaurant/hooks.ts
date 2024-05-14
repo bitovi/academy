@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import type { City, State } from "./interfaces"
+
+import { City, State } from "./interfaces"
 
 const baseUrl = process.env.PMO_API
 
@@ -45,6 +46,4 @@ export function useStates(): StatesResponse {
   return response
 }
 
-export function useCities(state: string): CitiesResponse {
-
-}
+export function useCities(state: string): CitiesResponse {}

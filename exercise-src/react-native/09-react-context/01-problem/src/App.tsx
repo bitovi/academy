@@ -1,6 +1,7 @@
 import { SafeAreaView } from "react-native"
-import StateList from "./screens/StateList"
+
 import ThemeProvider from "./design/theme/ThemeProvider"
+import StateList from "./screens/StateList"
 
 const App: React.FC = () => {
   return (

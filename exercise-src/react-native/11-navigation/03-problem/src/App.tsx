@@ -1,15 +1,15 @@
-import { Pressable, SafeAreaView } from "react-native"
-import { NavigationContainer } from "@react-navigation/native"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import { NavigationContainer } from "@react-navigation/native"
+import { createStackNavigator } from "@react-navigation/stack"
+import { Pressable, SafeAreaView } from "react-native"
 import Icon from "react-native-vector-icons/Ionicons"
 
-import ThemeProvider, { useTheme } from "./design/theme/ThemeProvider"
-import StateList from "./screens/StateList"
-import Settings from "./screens/Settings"
-import CityList from "./screens/CityList"
 import Box from "./design/Box"
+import ThemeProvider, { useTheme } from "./design/theme/ThemeProvider"
 import Typography from "./design/Typography"
-import { createStackNavigator } from "@react-navigation/stack"
+import CityList from "./screens/CityList"
+import Settings from "./screens/Settings"
+import StateList from "./screens/StateList"
 
 const RestaurantsStack = createStackNavigator()
 const RestaurantsNavigator: React.FC = () => {

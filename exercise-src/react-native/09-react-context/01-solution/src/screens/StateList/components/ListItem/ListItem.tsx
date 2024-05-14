@@ -1,7 +1,6 @@
-import type { Theme } from "../../../../design/theme"
-
 import { StyleSheet, Text } from "react-native"
-import { useTheme } from "../../../../design/theme"
+
+import { Theme, useTheme } from "../../../../design/theme"
 
 type ListItemProps = {
   name: string

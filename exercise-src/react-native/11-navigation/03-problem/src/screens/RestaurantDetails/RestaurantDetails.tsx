@@ -1,8 +1,8 @@
 import { useNavigation } from "@react-navigation/native"
 
 import RestaurantHeader from "../../components/RestaurantHeader"
-import Screen from "../../design/Screen"
 import Button from "../../design/Button"
+import Screen from "../../design/Screen"
 
 const restaurant = {
   _id: "Ar0qBJHxM3ecOhcr",

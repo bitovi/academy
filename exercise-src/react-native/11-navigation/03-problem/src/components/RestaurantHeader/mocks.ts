@@ -1,4 +1,4 @@
-import type { Restaurant } from "../../services/pmo/restaurant"
+import { Restaurant } from "../../services/pmo/restaurant"
 
 export const restaurantWithoutAddress: Restaurant = {
   _id: "3ZOZyTY1LH26LnVw",

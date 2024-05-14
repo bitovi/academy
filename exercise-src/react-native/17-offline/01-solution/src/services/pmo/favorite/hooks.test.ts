@@ -1,7 +1,9 @@
 import { renderHook, waitFor } from "@testing-library/react-native"
-import * as api from "../api/api"
-import { useFavorites } from "./hooks"
+
 import * as storage from "../../storage/storage"
+import * as api from "../api/api"
+
+import { useFavorites } from "./hooks"
 
 describe("Favorite Hook", () => {
   // Mock the apiRequest function

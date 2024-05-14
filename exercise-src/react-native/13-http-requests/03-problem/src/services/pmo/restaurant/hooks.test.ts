@@ -1,5 +1,7 @@
 import { renderHook, waitFor } from "@testing-library/react-native"
+
 import * as api from "../api/api"
+
 import { useStates, useCities } from "./hooks"
 
 describe("Restaurant Hooks", () => {

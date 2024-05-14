@@ -1,19 +1,24 @@
+import { NavigationContainer } from "@react-navigation/native"
 import { render, screen } from "@testing-library/react-native"
 
 import * as restaurantHooks from "../../services/pmo/restaurant/hooks"
 
 import RestaurantDetails from "./RestaurantDetails"
 
-const params = {
-  state: {
-    name: "name",
-    short: "short",
+const route = {
+  key: "RestaurantDetails",
+  name: "RestaurantDetails",
+  params: {
+    state: {
+      name: "name",
+      short: "short",
+    },
+    city: {
+      name: "name",
+      state: "state",
+    },
+    slug: "test",
   },
-  city: {
-    name: "name",
-    state: "state",
-  },
-  slug: "test",
 } as const
 
 jest.mock("@react-navigation/native", () => {
@@ -58,7 +63,12 @@ describe("RestaurantDetails component", () => {
   }
   it("renders loading state", () => {
     useRestaurant.mockReturnValue({ data: null, isPending: true, error: null })
-    render(<RestaurantDetails route={{ params }} />)
+    render(
+      <NavigationContainer>
+        {/* @ts-ignore */}
+        <RestaurantDetails route={route} />
+      </NavigationContainer>,
+    )
 
     expect(screen.getByText(/Loading/i)).toBeOnTheScreen()
   })
@@ -69,7 +79,12 @@ describe("RestaurantDetails component", () => {
       isPending: false,
       error: { name: "Error", message: "Mock error" },
     })
-    render(<RestaurantDetails route={{ params }} />)
+    render(
+      <NavigationContainer>
+        {/* @ts-ignore */}
+        <RestaurantDetails route={route} />
+      </NavigationContainer>,
+    )
     expect(
       screen.getByText(/Error loading restaurant details:/i, {
         exact: false,
@@ -80,14 +95,24 @@ describe("RestaurantDetails component", () => {
 
   it("renders the RestaurantHeader and content when data is available", () => {
     useRestaurant.mockReturnValue(mockRestaurantData)
-    render(<RestaurantDetails route={{ params }} />)
+    render(
+      <NavigationContainer>
+        {/* @ts-ignore */}
+        <RestaurantDetails route={route} />
+      </NavigationContainer>,
+    )
 
     expect(screen.getByText("Test Restaurant")).toBeOnTheScreen()
   })
 
   it("renders the RestaurantHeader and content when data is not available", () => {
     useRestaurant.mockReturnValue({ ...mockRestaurantData, data: null })
-    render(<RestaurantDetails route={{ params }} />)
+    render(
+      <NavigationContainer>
+        {/* @ts-ignore */}
+        <RestaurantDetails route={route} />
+      </NavigationContainer>,
+    )
 
     expect(screen.getByText("Place an order")).toBeOnTheScreen()
   })

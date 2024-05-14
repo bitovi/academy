@@ -1,4 +1,4 @@
-import type { TextStyle } from "react-native"
+import { TextStyle } from "react-native"
 
 interface Palette {
   main: string

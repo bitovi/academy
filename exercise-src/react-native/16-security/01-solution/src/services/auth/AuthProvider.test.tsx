@@ -1,18 +1,19 @@
+import { GoogleSigninButton } from "@react-native-google-signin/google-signin"
 import {
   render,
   screen,
   waitFor,
   fireEvent,
 } from "@testing-library/react-native"
+import { View, Text } from "react-native"
+
+import Button from "../../design/Button"
+
 import AuthProvider, {
   useAuthenticated,
   useAuthentication,
   useUser,
 } from "./AuthProvider"
-
-import { View, Text } from "react-native"
-import Button from "../../design/Button"
-import { GoogleSigninButton } from "@react-native-google-signin/google-signin"
 
 const oldFetch = global.fetch
 const mockFetch = jest.fn()

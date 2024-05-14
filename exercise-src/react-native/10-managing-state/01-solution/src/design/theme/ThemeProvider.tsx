@@ -1,9 +1,7 @@
-import type { Theme } from "./theme"
-
 import { useState, createContext, useContext, useMemo } from "react"
 import { Appearance } from "react-native"
 
-import themes from "./theme"
+import themes, { Theme } from "./theme"
 
 type Mode = keyof typeof themes
 
@@ -12,7 +10,7 @@ interface ThemeContext {
   setMode: (mode: Mode) => void
 }
 
-const Context = createContext<ThemeContext | undefined>({
+const Context = createContext<ThemeContext>({
   mode: "light",
   setMode: () => undefined,
 })

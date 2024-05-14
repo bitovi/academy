@@ -1,11 +1,10 @@
-import type { FC, ReactNode } from "react"
-import type { User as UserInfo } from "@react-native-google-signin/google-signin"
-import type { AuthContext } from "./context"
-
+import {
+  User as UserInfo,
+  GoogleSignin,
+} from "@react-native-google-signin/google-signin"
 import { useCallback, useEffect, useMemo, useState } from "react"
-import { GoogleSignin } from "@react-native-google-signin/google-signin"
 
-import { AuthContextProvider, useAuthContext } from "./context"
+import { AuthContext, AuthContextProvider, useAuthContext } from "./context"
 
 const googleOauthwebClientId = process.env.GOOGLE_OAUTH_CLIENT_ID
 GoogleSignin.configure({
@@ -13,7 +12,9 @@ GoogleSignin.configure({
   webClientId: googleOauthwebClientId,
 })
 
-const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [userInfo, setUserInfo] = useState<UserInfo | null>()
 
   const signIn = useCallback(async () => {

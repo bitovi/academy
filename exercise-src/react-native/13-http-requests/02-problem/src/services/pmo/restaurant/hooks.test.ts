@@ -1,4 +1,5 @@
 import { renderHook, waitFor } from "@testing-library/react-native"
+
 import { useStates, useCities } from "./hooks"
 
 const oldFetch = global.fetch
@@ -20,7 +21,7 @@ describe("Restaurant Hooks", () => {
       // Mock the fetch response
       mockFetch.mockResolvedValueOnce({
         ok: true,
-        json: () => Promise.resolve({ message: "success", data: mockCities}),
+        json: () => Promise.resolve({ message: "success", data: mockCities }),
         statusText: "OK",
         status: 200,
       })
@@ -34,7 +35,7 @@ describe("Restaurant Hooks", () => {
       expect(result.current.error).toBeNull()
     })
   })
-  
+
   describe("useStates hook", () => {
     it("should return states data successfully", async () => {
       const mockStates = [
@@ -44,7 +45,7 @@ describe("Restaurant Hooks", () => {
       // Mock the fetch response
       mockFetch.mockResolvedValueOnce({
         ok: true,
-        json: () => Promise.resolve({ message: "success", data: mockStates}),
+        json: () => Promise.resolve({ message: "success", data: mockStates }),
         statusText: "OK",
         status: 200,
       })

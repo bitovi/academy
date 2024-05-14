@@ -1,4 +1,5 @@
 import { ScrollView, Text, View } from "react-native"
+
 import ListItem from "./components/ListItem"
 
 const states = [

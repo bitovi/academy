@@ -1,10 +1,10 @@
-import { FlatList } from "react-native"
 import { useNavigation } from "@react-navigation/native"
+import { FlatList } from "react-native"
 
-import Card from "../../design/Card"
-import Typography from "../../design/Typography"
-import Screen from "../../design/Screen"
 import Button from "../../design/Button"
+import Card from "../../design/Card"
+import Screen from "../../design/Screen"
+import Typography from "../../design/Typography"
 
 export interface State {
   name: string

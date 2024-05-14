@@ -1,7 +1,9 @@
 import { ScrollView } from "react-native"
-import ListItem from "./components/ListItem"
+
 import Box from "../../design/Box"
 import Typography from "../../design/Typography"
+
+import ListItem from "./components/ListItem"
 
 const states = [
   {

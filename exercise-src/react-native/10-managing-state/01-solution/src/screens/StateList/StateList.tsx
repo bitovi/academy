@@ -1,9 +1,11 @@
-import ListItem from "./components/ListItem"
-import Screen from "../../design/Screen"
-import Typography from "../../design/Typography"
-import Card from "../../design/Card"
-import { useThemeMode } from "../../design/theme"
 import { Switch } from "react-native"
+
+import Card from "../../design/Card"
+import Screen from "../../design/Screen"
+import { useThemeMode } from "../../design/theme"
+import Typography from "../../design/Typography"
+
+import ListItem from "./components/ListItem"
 
 export type State = {
   name: string

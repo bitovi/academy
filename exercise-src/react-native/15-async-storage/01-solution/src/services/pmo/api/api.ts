@@ -35,7 +35,8 @@ export async function apiRequest<
         )
 
         if (cachedResponse) {
-          const diff = new Date().valueOf() - new Date(cachedResponse.dateTime).valueOf()
+          const diff =
+            new Date().valueOf() - new Date(cachedResponse.dateTime).valueOf()
           //Return Cached data if it's younger than one minute
           if (diff < 60000) {
             return {

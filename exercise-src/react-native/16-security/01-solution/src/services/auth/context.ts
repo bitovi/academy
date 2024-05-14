@@ -1,5 +1,4 @@
-import type { User as UserInfo } from "@react-native-google-signin/google-signin"
-
+import { User as UserInfo } from "@react-native-google-signin/google-signin"
 import { createContext, useContext } from "react"
 
 export interface AuthContext {

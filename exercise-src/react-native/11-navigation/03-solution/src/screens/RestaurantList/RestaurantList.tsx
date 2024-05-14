@@ -1,5 +1,6 @@
-import { FlatList } from "react-native"
 import { useNavigation } from "@react-navigation/native"
+import { FlatList } from "react-native"
+
 import Box from "../../design/Box"
 import Button from "../../design/Button"
 
@@ -37,17 +38,13 @@ const restaurants = [
 const RestaurantList: React.FC = () => {
   const navigation = useNavigation()
 
-  const navigateToDetails = () => {
-    navigation.navigate("RestaurantDetails")
-  }
-
   return (
     <>
       <Box padding="s">
         <FlatList
           data={restaurants}
           renderItem={({ item: restaurant }) => (
-            <Button onPress={() => navigateToDetails(restaurant.slug)}>
+            <Button onPress={() => navigation.navigate("RestaurantDetails")}>
               {restaurant.name}
             </Button>
           )}

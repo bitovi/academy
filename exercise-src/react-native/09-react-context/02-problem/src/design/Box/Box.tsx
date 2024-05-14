@@ -1,9 +1,6 @@
-import type { ViewProps, ViewStyle } from "react-native"
-import type { Theme, ThemeMargin, ThemePadding } from "../theme"
+import { ViewProps, ViewStyle, StyleSheet, View } from "react-native"
 
-import { StyleSheet, View } from "react-native"
-
-import { useTheme } from "../theme"
+import { Theme, ThemeMargin, ThemePadding, useTheme } from "../theme"
 
 export interface BoxProps extends ViewProps {
   margin?: ThemeMargin

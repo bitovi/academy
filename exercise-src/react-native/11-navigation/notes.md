@@ -2,7 +2,6 @@
 
 ## Bottom tab
 
-
 Install React Navigation
 
 ```bash
@@ -32,7 +31,7 @@ npm i --save @react-navigation/stack react-native-gesture-handler;
 Add to index
 
 ```ts
-import 'react-native-gesture-handler';
+import "react-native-gesture-handler"
 ```
 
 - Add stack and types to App

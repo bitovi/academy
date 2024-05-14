@@ -1,8 +1,8 @@
-import type { StackScreenProps } from "@react-navigation/stack"
-import type { RestaurantsStackParamList } from "../../App"
-
-import { FlatList } from "react-native"
 import { useNavigation } from "@react-navigation/native"
+import { StackScreenProps } from "@react-navigation/stack"
+import { FlatList } from "react-native"
+
+import { RestaurantsStackParamList } from "../../App"
 import Box from "../../design/Box"
 import Button from "../../design/Button"
 
@@ -42,17 +42,13 @@ const restaurants = [
 const RestaurantList: React.FC<Props> = () => {
   const navigation = useNavigation()
 
-  const navigateToDetails = () => {
-    navigation.navigate("RestaurantDetails")
-  }
-
   return (
     <>
       <Box padding="s">
         <FlatList
           data={restaurants}
           renderItem={({ item: restaurant }) => (
-            <Button onPress={() => navigateToDetails(restaurant.slug)}>
+            <Button onPress={() => navigation.navigate("RestaurantDetails")}>
               {restaurant.name}
             </Button>
           )}
