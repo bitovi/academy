@@ -25,11 +25,13 @@ const FormSwitch: FC<Props> = ({ label, value, onChange }) => {
     >
       <Typography variant="label">{label}</Typography>
       <Switch
+        onValueChange={onChange}
         thumbColor={palette.primary.contrast}
         trackColor={{
           true: palette.primary.strong,
           false: palette.screen.soft,
         }}
+        value={value}
       ></Switch>
     </Box>
   )

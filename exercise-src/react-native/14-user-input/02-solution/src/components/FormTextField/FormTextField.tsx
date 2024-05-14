@@ -7,13 +7,12 @@ import Typography from "../../design/Typography"
 
 type Props = {
   label: string
-  placeholder?: string
   type?: "text"
   value: string
   onChange?: (value: string) => void
 }
 
-const FormTextField: FC<Props> = ({ label, placeholder, value, onChange }) => {
+const FormTextField: FC<Props> = ({ label, value, onChange }) => {
   const id = useId()
   const theme = useTheme()
 
@@ -27,7 +26,6 @@ const FormTextField: FC<Props> = ({ label, placeholder, value, onChange }) => {
         accessibilityLabelledBy={id}
         onChangeText={onChange}
         value={value}
-        placeholder={placeholder}
         style={{
           flex: 1,
           paddingVertical: 0,

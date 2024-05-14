@@ -7,19 +7,18 @@ import Typography from "../../design/Typography"
 
 type Props = {
   label: string
-  placeholder?: string
   type?: "text"
   value: string
   onChange?: (value: string) => void
 }
 
-const FormTextField: FC<Props> = ({ label, placeholder, value, onChange }) => {
+const FormTextField: FC<Props> = ({ label, value, onChange }) => {
   const id = useId()
   const theme = useTheme()
 
   return (
     <Box style={{ marginVertical: 8 }}>
-      {/** Exercise: Create Text Label and Update Text Input to work with label */}
+      {/* Exercise: Create Text Label and update TextInput to work with label. */}
       <TextInput
         style={{
           flex: 1,

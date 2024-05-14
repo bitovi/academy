@@ -14,7 +14,7 @@ import Card from "../../design/Card"
 import Screen from "../../design/Screen"
 import FormSwitch from "../../components/FormSwitch"
 
-type Props = StackScreenProps<RestaurantsStackParamList, "OrderCreate">
+type Props = StackScreenProps<RestaurantsStackParamList, "RestaurantOrder">
 
 type OrderItems = Record<string, number>
 
@@ -24,38 +24,17 @@ const RestaurantOrder: FC<Props> = ({ route }) => {
 
   const { data: restaurant, error, isPending } = useRestaurant(slug)
 
-  const [items, setItems] = useState<OrderItems>({})
-
   useEffect(() => {
     if (restaurant) {
       navigation.setOptions({ title: `Order from ${restaurant.name}` })
     }
   }, [restaurant, navigation])
 
-  const handleSubmit = () => {
-    alert("Order submitted!")
+  const handlePress = () => {
+    console.info("“Place My Order” button pressed!")
   }
 
-  const setItem = (itemId: string, isChecked: boolean, itemPrice: number) => {
-    return setItems((currentItems) => {
-      const updatedItems = {
-        ...currentItems,
-      }
-      if (isChecked) {
-        updatedItems[itemId] = itemPrice
-      } else {
-        delete updatedItems[itemId]
-      }
-      return updatedItems
-    })
-  }
-
-  const selectedCount = Object.values(items).length
-  const subtotal = calculateTotal(items)
-
-  function calculateTotal(items: OrderItems) {
-    /*Exercise: Create subtotal based on selected items */
-  }
+  const subtotal = 0 // Exercise: Use calculateTotal here.
 
   if (error) {
     return (
@@ -87,20 +66,18 @@ const RestaurantOrder: FC<Props> = ({ route }) => {
     >
       <Screen>
         <Card title="Lunch Menu">
-          {/*Exercise: List food items with checkboxes */}
+          {/* Exercise: List food items with checkboxes. */}
         </Card>
 
         <Card title="Dinner Menu">
-          {/*Exercise: List food items with checkboxes */}
+          {/* Exercise: List food items with checkboxes. */}
         </Card>
 
         <Card title="Order Details"></Card>
 
         <Box padding="s">
-          {subtotal === 0 ? (
+          {subtotal === 0 && (
             <Typography>Please choose an item.</Typography>
-          ) : (
-            <Typography>{selectedCount} items selected.</Typography>
           )}
         </Box>
 
@@ -111,11 +88,17 @@ const RestaurantOrder: FC<Props> = ({ route }) => {
         </Box>
 
         <Box padding="s">
-          <Button onPress={handleSubmit}>Place My Order!</Button>
+          <Button onPress={handlePress}>Place My Order!</Button>
         </Box>
       </Screen>
     </ScrollView>
   )
+}
+
+function calculateTotal(items: OrderItems) {
+  return Object.values(items).reduce((total, itemPrice) => {
+    return total + itemPrice
+  }, 0)
 }
 
 export default RestaurantOrder

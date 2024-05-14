@@ -56,13 +56,13 @@ export const AppNavigator: FC = () => {
 
 const App: FC = () => {
   return (
-    <ThemeProvider>
-      <SafeAreaView style={{ height: "100%", width: "100%" }}>
+    <SafeAreaView style={{ height: "100%", width: "100%" }}>
+      <ThemeProvider>
         <NavigationContainer>
           <AppNavigator />
         </NavigationContainer>
-      </SafeAreaView>
-    </ThemeProvider>
+      </ThemeProvider>
+    </SafeAreaView>
   )
 }
 
