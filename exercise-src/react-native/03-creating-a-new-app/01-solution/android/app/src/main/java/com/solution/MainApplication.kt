@@ -1,4 +1,4 @@
-package com.solution
+package com.PlaceMyOrder
 
 import android.app.Application
 import com.facebook.react.PackageList
