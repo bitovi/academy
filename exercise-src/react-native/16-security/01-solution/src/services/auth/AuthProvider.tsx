@@ -53,7 +53,11 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     () => ({
       signIn,
       signOut,
-      isAuthenticated: userInfo ? true : userInfo === null ? false : undefined,
+      isAuthenticated: userInfo
+        ? true
+        : userInfo === undefined
+        ? false
+        : undefined,
       user: userInfo?.user,
       scopes: userInfo?.scopes,
       idToken: userInfo?.idToken,

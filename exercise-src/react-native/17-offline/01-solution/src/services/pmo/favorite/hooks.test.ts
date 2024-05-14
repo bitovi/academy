@@ -45,7 +45,7 @@ describe("Favorite Hook", () => {
       })
 
       expect(result.current.data).toEqual(mockFavorites)
-      expect(result.current.error).toBeNull()
+      expect(result.current.error).toBeUndefined()
     })
     it("should return list of favorites from the local storage", async () => {
       const mockLocalFavorites = {

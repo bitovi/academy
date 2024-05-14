@@ -29,7 +29,7 @@ describe("Restaurant Hooks", () => {
         expect(result.current.isPending).toBeFalsy()
       })
       expect(result.current.data).toEqual(mockCities)
-      expect(result.current.error).toBeNull()
+      expect(result.current.error).toBeUndefined()
     })
 
     it("should handle error when fetching cities data", async () => {
@@ -41,7 +41,7 @@ describe("Restaurant Hooks", () => {
       await waitFor(() => {
         expect(result.current.isPending).toBeFalsy()
       })
-      expect(result.current.data).toBeNull()
+      expect(result.current.data).toBeUndefined()
       expect(result.current.error).toEqual(mockError)
     })
   })
@@ -62,7 +62,7 @@ describe("Restaurant Hooks", () => {
         expect(result.current.isPending).toBeFalsy()
       })
       expect(result.current.data).toEqual(mockRestaurant)
-      expect(result.current.error).toBeNull()
+      expect(result.current.error).toBeUndefined()
     })
 
     it("should handle error when fetching restaurant data", async () => {
@@ -77,7 +77,7 @@ describe("Restaurant Hooks", () => {
         expect(result.current.isPending).toBeFalsy()
       })
 
-      expect(result.current.data).toBeNull()
+      expect(result.current.data).toBeUndefined()
       expect(result.current.error).toEqual(mockError)
     })
   })
@@ -101,7 +101,7 @@ describe("Restaurant Hooks", () => {
         expect(result.current.isPending).toBeFalsy()
       })
       expect(result.current.data).toEqual(mockRestaurants)
-      expect(result.current.error).toBeNull()
+      expect(result.current.error).toBeUndefined()
     })
 
     it("should handle error when fetching restaurants data", async () => {
@@ -115,7 +115,7 @@ describe("Restaurant Hooks", () => {
       await waitFor(() => {
         expect(result.current.isPending).toBeFalsy()
       })
-      expect(result.current.data).toBeNull()
+      expect(result.current.data).toBeUndefined()
       expect(result.current.error).toEqual(mockError)
     })
   })
@@ -137,7 +137,7 @@ describe("Restaurant Hooks", () => {
         expect(result.current.isPending).toBeFalsy()
       })
       expect(result.current.data).toEqual(mockStates)
-      expect(result.current.error).toBeNull()
+      expect(result.current.error).toBeUndefined()
     })
 
     it("should handle error when fetching states data", async () => {
@@ -149,7 +149,7 @@ describe("Restaurant Hooks", () => {
       await waitFor(() => {
         expect(result.current.isPending).toBeFalsy()
       })
-      expect(result.current.data).toBeNull()
+      expect(result.current.data).toBeUndefined()
       expect(result.current.error).toEqual(mockError)
     })
   })

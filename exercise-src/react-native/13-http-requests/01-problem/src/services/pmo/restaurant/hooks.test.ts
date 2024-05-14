@@ -32,7 +32,7 @@ describe("Restaurant Hooks", () => {
         expect(result.current.isPending).toBeFalsy()
       })
       expect(result.current.data).toEqual(mockStates)
-      expect(result.current.error).toBeNull()
+      expect(result.current.error).toBeUndefined()
     })
   })
 })
