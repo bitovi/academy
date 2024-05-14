@@ -14,11 +14,12 @@ import Screen from "../../design/Screen"
 import Typography from "../../design/Typography"
 import { useRestaurant } from "../../services/pmo/restaurant"
 
-type Props = StackScreenProps<RestaurantsStackParamList, "RestaurantOrder">
+export interface RestaurantOrderProps
+  extends StackScreenProps<RestaurantsStackParamList, "RestaurantOrder"> {}
 
 type OrderItems = Record<string, number>
 
-const RestaurantOrder: React.FC<Props> = ({ route }) => {
+const RestaurantOrder: React.FC<RestaurantOrderProps> = ({ route }) => {
   const navigation = useNavigation()
   const { slug } = route.params
 

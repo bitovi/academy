@@ -11,8 +11,10 @@ interface LocalStorageApiRequestV1 {
 
 const migrateDataV1toV2 = async (): Promise<void> => {}
 
-const DataMigration: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {}
+export interface DataMigrationProps {
+  children: React.ReactNode
+}
+
+const DataMigration: React.FC<DataMigrationProps> = ({ children }) => {}
 
 export default DataMigration

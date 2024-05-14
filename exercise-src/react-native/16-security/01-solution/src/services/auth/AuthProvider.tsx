@@ -12,9 +12,11 @@ GoogleSignin.configure({
   webClientId: googleOauthwebClientId,
 })
 
-const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export interface AuthProviderProps {
+  children: React.ReactNode
+}
+
+const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [userInfo, setUserInfo] = useState<UserInfo | undefined>()
 
   const signIn = useCallback(async () => {

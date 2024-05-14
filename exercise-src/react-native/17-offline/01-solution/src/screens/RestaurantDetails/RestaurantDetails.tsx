@@ -16,9 +16,10 @@ import {
 import { useFavorites } from "../../services/pmo/favorite"
 import { useRestaurant } from "../../services/pmo/restaurant"
 
-type Props = StackScreenProps<RestaurantsStackParamList, "RestaurantDetails">
+export interface RestaurantDetailsProps
+  extends StackScreenProps<RestaurantsStackParamList, "RestaurantDetails"> {}
 
-const RestaurantDetails: React.FC<Props> = ({ route }) => {
+const RestaurantDetails: React.FC<RestaurantDetailsProps> = ({ route }) => {
   const { slug } = route.params
   const navigation = useNavigation()
   const { data: restaurant, error, isPending } = useRestaurant(slug)

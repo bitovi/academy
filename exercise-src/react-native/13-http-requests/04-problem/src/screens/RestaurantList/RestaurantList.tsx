@@ -9,9 +9,10 @@ import Button from "../../design/Button"
 import Typography from "../../design/Typography"
 import { useRestaurants } from "../../services/pmo/restaurant"
 
-type Props = StackScreenProps<RestaurantsStackParamList, "RestaurantList">
+export interface RestaurantListProps
+  extends StackScreenProps<RestaurantsStackParamList, "RestaurantList"> {}
 
-const RestaurantList: React.FC<Props> = ({ route }) => {
+const RestaurantList: React.FC<RestaurantListProps> = ({ route }) => {
   const navigation = useNavigation()
 
   return (

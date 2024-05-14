@@ -10,9 +10,10 @@ import Screen from "../../design/Screen"
 import Typography from "../../design/Typography"
 import { useRestaurant } from "../../services/pmo/restaurant"
 
-type Props = StackScreenProps<RestaurantsStackParamList, "RestaurantDetails">
+export interface RestaurantDetailsProps
+  extends StackScreenProps<RestaurantsStackParamList, "RestaurantDetails"> {}
 
-const RestaurantDetails: React.FC<Props> = ({ route }) => {
+const RestaurantDetails: React.FC<RestaurantDetailsProps> = ({ route }) => {
   const navigation = useNavigation()
 
   return (

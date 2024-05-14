@@ -96,7 +96,7 @@ describe("DataMigration component", () => {
       expect(screen.getByText(/Hello!/)).toBeOnTheScreen()
     })
 
-    //if the local storage doesn't run for data migration, GetData will only run once to check the version number
+    // if the local storage doesn't run for data migration, GetData will only run once to check the version number
     expect(mockStorageGetKeys).toHaveReturnedTimes(0)
     expect(mockStorageGetData).toHaveReturnedTimes(1)
     expect(mockStorageStoreData).toHaveReturnedTimes(0)

@@ -1,4 +1,3 @@
-import type { FC } from "react"
 import { Pressable, Text } from "react-native"
 
 interface SubmitButtonProps {
@@ -6,13 +5,11 @@ interface SubmitButtonProps {
   onPress: () => void
 }
 
-const SubmitButton: FC<SubmitButtonProps> = (props) => {
+const SubmitButton: React.FC<SubmitButtonProps> = (props) => {
   const { label, onPress } = props
   return (
     <Pressable onPress={onPress}>
-      <Text>
-        {label}
-      </Text>
+      <Text>{label}</Text>
     </Pressable>
   )
 }

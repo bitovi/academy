@@ -3,11 +3,11 @@ import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps"
 
 import { Restaurant } from "../../../../services/pmo/restaurant"
 
-type Props = {
+export interface MapProps {
   restaurants: Restaurant[]
 }
 
-const Map: React.FC<Props> = ({ restaurants }) => {
+const Map: React.FC<MapProps> = ({ restaurants }) => {
   const navigation = useNavigation()
 
   return (

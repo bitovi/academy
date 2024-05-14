@@ -1,13 +1,12 @@
-import type { FC } from "react"
 import { View, Text, Pressable } from "react-native"
 import { useNavigation } from "@react-navigation/native"
-import type { StackScreenProps } from "@react-navigation/stack"
+import { StackScreenProps } from "@react-navigation/stack"
 
 import { ShopStackParamList } from "./StackRoute"
 
 type ProfileProps = StackScreenProps<ShopStackParamList, "UserProfile">
 
-const UserProfile: FC<ProfileProps> = ({ route }) => {
+const UserProfile: React.FC<ProfileProps> = ({ route }) => {
   const { user } = route.params
   const navigation = useNavigation()
 

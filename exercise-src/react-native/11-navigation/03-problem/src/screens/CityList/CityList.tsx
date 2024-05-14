@@ -17,7 +17,7 @@ const cities: City[] = [
 const CityList: React.FC = () => {
   const navigation = useNavigation()
 
-  //Exercise: Use navigation to navigate to RestaurantList
+  // Exercise: Use navigation to navigate to RestaurantList
 
   return (
     <Screen>

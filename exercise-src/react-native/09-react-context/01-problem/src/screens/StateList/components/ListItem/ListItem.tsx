@@ -2,7 +2,7 @@ import { StyleSheet, Text } from "react-native"
 
 import { Theme, useTheme } from "../../../../design/theme"
 
-type ListItemProps = {
+export interface ListItemProps {
   name: string
 }
 
