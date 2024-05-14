@@ -54,9 +54,7 @@ const RestaurantOrder: FC<Props> = ({ route }) => {
   const subtotal = calculateTotal(items)
 
   function calculateTotal(items: OrderItems) {
-    return Object.values(items).reduce((total, itemPrice) => {
-      return total + itemPrice
-    }, 0)
+    /*Exercise: Create subtotal based on selected items */
   }
 
   if (error) {
@@ -89,25 +87,11 @@ const RestaurantOrder: FC<Props> = ({ route }) => {
     >
       <Screen>
         <Card title="Lunch Menu">
-          {restaurant.menu.lunch.map(({ name, price }) => (
-            <FormSwitch
-              key={name}
-              label={`${name} ($${price})`}
-              value={name in items}
-              onChange={(value) => setItem(name, value, price)}
-            />
-          ))}
+          {/*Exercise: List food items with checkboxes */}
         </Card>
 
         <Card title="Dinner Menu">
-          {restaurant.menu.dinner.map(({ name, price }) => (
-            <FormSwitch
-              key={name}
-              label={`${name} ($${price})`}
-              value={name in items}
-              onChange={(value) => setItem(name, value, price)}
-            />
-          ))}
+          {/*Exercise: List food items with checkboxes */}
         </Card>
 
         <Card title="Order Details"></Card>

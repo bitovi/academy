@@ -9,6 +9,7 @@ import { useRestaurant } from "../../services/pmo/restaurant"
 import Box from "../../design/Box"
 import Typography from "../../design/Typography"
 import Button from "../../design/Button"
+import FormTextField from "../../components/FormTextField"
 import Loading from "../../components/Loading"
 import Card from "../../design/Card"
 import Screen from "../../design/Screen"
@@ -25,6 +26,9 @@ const RestaurantOrder: FC<Props> = ({ route }) => {
   const { data: restaurant, error, isPending } = useRestaurant(slug)
 
   const [items, setItems] = useState<OrderItems>({})
+  {
+    /*Exercise: Store state for new FormTextFields in RestaurantOrder */
+  }
 
   useEffect(() => {
     if (restaurant) {
@@ -110,7 +114,9 @@ const RestaurantOrder: FC<Props> = ({ route }) => {
           ))}
         </Card>
 
-        <Card title="Order Details"></Card>
+        <Card title="Order Details">
+          {/*Exercise: Use name, address, and phone fields to create FormTextField elements */}
+        </Card>
 
         <Box padding="s">
           {subtotal === 0 ? (
