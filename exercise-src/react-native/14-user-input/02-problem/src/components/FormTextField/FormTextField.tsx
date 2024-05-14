@@ -13,7 +13,6 @@ type Props = {
 }
 
 const FormTextField: React.FC<Props> = ({ label, value, onChange }) => {
-  const id = useId()
   const theme = useTheme()
 
   return (

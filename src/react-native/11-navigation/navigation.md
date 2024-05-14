@@ -41,7 +41,7 @@ The React Navigation library used in this section supports deep linking and has 
 
 ### Navigation Lifecycle
 
-Now that we have an understanding of how navigation works within a stack, let's take a look at the implications of navigation on the component lifecycle.
+Now that we have an understanding of how navigation works within a stack, let’s take a look at the implications of navigation on the component lifecycle.
 
 If we have a stack navigator with two screens, `ScreenA` and `ScreenB`, and navigate to `ScreenA`, then `ScreenA` will mount the component and render. If we then navigate to `ScreenB`, `ScreenA` will be unmounted and `ScreenB` will mount and render. What happens when we navigate back to `ScreenA`? `ScreenB` will unmount the component, but `ScreenA` will *not* remount. Because it stayed in the stack, it remained mounted the entire time.
 
@@ -90,7 +90,7 @@ export default function App() {
 ```
 @highlight 3-4, 22, 26-31
 
-Let's break down the code above:
+Let’s break down the code above:
 
 ### NavigationContainer
 
@@ -136,7 +136,7 @@ npm install @react-navigation/native @react-navigation/bottom-tabs
 
 ### Exercise 1
 
-- For the `tabBarIcon` property on `AppTabs.Navigator` update the `Icon` component's name property to be based on the given route.
+- For the `tabBarIcon` property on `AppTabs.Navigator` update the `Icon` component’s name property to be based on the given route.
 - Add a screen tab for Restaurants (the `StateList` component) and for `Settings` component.
 - Add the `NavigationContainer` and  `AppNavigator` to the `App` component.
 
@@ -155,7 +155,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 ## Objective 2: Using React Native stack navigation
 
-Now that we've covered tab navigation, let's move on to stack navigation. As mentioned in the previous section, most applications use a combination of both tab and stack navigation to create a seamless user experience.
+Now that we've covered tab navigation, let’s move on to stack navigation. As mentioned in the previous section, most applications use a combination of both tab and stack navigation to create a seamless user experience.
 
 <div style="display: flex; flex-direction: row; gap: 2rem">
   <img alt="Screen Shot of the CityList in Navigation" src="../static/img/react-native/11-navigation/NavigationCityList.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
@@ -185,7 +185,7 @@ Both the stack navigator and tab navigator have an optional prop, `detachInactiv
 
 ### Stack Navigator
 
-Let's take a look at an example of using a stack navigator in React Native with React Navigation.
+Let’s take a look at an example of using a stack navigator in React Native with React Navigation.
 
 ```tsx
 import { createStackNavigator } from '@react-navigation/stack';
@@ -229,7 +229,7 @@ function MyStack() {
 ```
 @highlight 1, 3, 7-36
 
-Let's break down the code above:
+Let’s break down the code above:
 
 ### createStackNavigator
 

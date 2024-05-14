@@ -76,7 +76,7 @@ describe("DataMigration component", () => {
       With the mock data as it is, getKeys should be called once to get all the necessary keys.
       getData will return three times, once for retrieving the version number, and twice for the two keys that need to be data migrated
       storeData will return three times, twice for the two keys that need to be data migrated, and once more to update the version number
-      storageClear will return zero times, it's only called in the migration function if the migration function fails
+      storageClear will return zero times, it’s only called in the migration function if the migration function fails
     */
     expect(mockStorageGetKeys).toHaveReturnedTimes(1)
     expect(mockStorageGetData).toHaveReturnedTimes(3)
