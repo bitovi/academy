@@ -63,7 +63,10 @@ describe("apiRequest function", () => {
       path: "/test",
     })
 
-    expect(response).toEqual({ data: undefined, error: new Error("Network Error") })
+    expect(response).toEqual({
+      data: undefined,
+      error: new Error("Network Error"),
+    })
   })
 })
 

@@ -62,7 +62,11 @@ describe("RestaurantDetails component", () => {
     error: undefined,
   }
   it("renders loading state", () => {
-    useRestaurant.mockReturnValue({ data: undefined, isPending: true, error: undefined })
+    useRestaurant.mockReturnValue({
+      data: undefined,
+      isPending: true,
+      error: undefined,
+    })
     render(
       <NavigationContainer>
         {/* @ts-ignore */}

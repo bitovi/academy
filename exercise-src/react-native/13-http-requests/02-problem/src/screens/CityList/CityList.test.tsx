@@ -49,7 +49,11 @@ describe("CityList component", () => {
   })
 
   it("renders loading city", () => {
-    useCities.mockReturnValue({ data: undefined, error: undefined, isPending: true })
+    useCities.mockReturnValue({
+      data: undefined,
+      error: undefined,
+      isPending: true,
+    })
 
     render(
       <NavigationContainer>

@@ -18,7 +18,10 @@ describe("Restaurant Hooks", () => {
         { id: 1, name: "City1" },
         { id: 2, name: "City2" },
       ]
-      apiRequest.mockResolvedValue({ data: { data: mockCities }, error: undefined })
+      apiRequest.mockResolvedValue({
+        data: { data: mockCities },
+        error: undefined,
+      })
 
       const { result } = renderHook(() => useCities("test-state"))
 
@@ -123,7 +126,10 @@ describe("Restaurant Hooks", () => {
         { id: 1, name: "State1" },
         { id: 2, name: "State2" },
       ]
-      apiRequest.mockResolvedValue({ data: { data: mockStates }, error: undefined })
+      apiRequest.mockResolvedValue({
+        data: { data: mockStates },
+        error: undefined,
+      })
 
       const { result } = renderHook(() => useStates())
 
