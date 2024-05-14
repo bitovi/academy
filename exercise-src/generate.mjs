@@ -64,6 +64,8 @@ async function getCourseSequence(courseName) {
 
   const modules = await fs.readdir(sourceBase);
   for (const moduleName of modules) {
+    if (moduleName === "node_modules") continue;
+
     const modulePath = path.join(sourceBase, moduleName);
     const stats = await fs.stat(modulePath);
     if (!stats.isDirectory()) {
@@ -91,17 +93,11 @@ async function getCourseSequence(courseName) {
 }
 
 async function updateBuild(build, source, directory) {
-  const items = (await fs.readdir(path.join(source, directory))).filter(
-    (childPath) => {
-      /*
-      This is filtering out the node_modules folder because it is ignored anyway, so
-      it doesn’t need to be copied. If we end up needing to filter out more folders
-      that are in a .gitignore, we should parse it and respect it completely.
-    */
-      return childPath !== "node_modules";
-    }
-  );
+  const items = await fs.readdir(path.join(source, directory));
+
   for (const itemName of items) {
+    if (itemName === "node_modules") continue;
+
     const buildPath = path.join(directory, itemName);
     const fullPath = path.join(source, buildPath);
 

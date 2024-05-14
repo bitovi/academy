@@ -28,6 +28,7 @@ jobs:
           npm ci
           npm run eslint
           npm run prettier
+          rm -rf node_modules
 
       - name: Generate Exercises
         run: npm run generate
