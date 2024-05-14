@@ -1,4 +1,3 @@
-import { useId } from "react"
 import { TextInput } from "react-native"
 
 import Box from "../../design/Box"
@@ -17,7 +16,6 @@ const FormTextField: React.FC<FormTextFieldProps> = ({
   value,
   onChange,
 }) => {
-  const id = useId()
   const theme = useTheme()
 
   return (

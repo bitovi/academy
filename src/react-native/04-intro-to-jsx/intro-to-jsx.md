@@ -112,7 +112,7 @@ In JSX, comments follow the JavaScript comment syntax. Since JSX is transpiled i
 ```tsx
 const content = (
   <Text>
-    {/* This is a JSX comment */}
+    {/* This is a JSX comment. */}
     Visible content
   </Text>
 )

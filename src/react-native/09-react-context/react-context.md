@@ -16,7 +16,7 @@ In this section, you will:
 
 ## Objective 1: Create a theme with shared values
 
-Now that we understand how to style our components, let's style everything! However, this very quickly becomes a maintenance nightmare. We want to use the color `#007980` for most of our highlights, but occasionally use `#ca2f35`. What if we decide to change `#007980` to `#00a5ad`?
+Now that we understand how to style our components, let’s style everything! However, this very quickly becomes a maintenance nightmare. We want to use the color `#007980` for most of our highlights, but occasionally use `#ca2f35`. What if we decide to change `#007980` to `#00a5ad`?
 
 We need a shared theme. Not only will this allow us to keep things in sync and stop repeating ourselves, it will allow us to use common language to describe our colors and other parameters of our styling.
 
@@ -24,7 +24,7 @@ Before we get too far into our style system though, we need to talk about how we
 
 ### What is Context?
 
-React Context is a feature in React that allows you to share data between components without having to explicitly pass props through every level of the component tree. It's particularly useful for passing down global data, such as themes, user authentication, or language preferences, to components deep in the tree.
+React Context is a feature in React that allows you to share data between components without having to explicitly pass props through every level of the component tree. It’s particularly useful for passing down global data, such as themes, user authentication, or language preferences, to components deep in the tree.
 
 ### How do you use Context?
 
