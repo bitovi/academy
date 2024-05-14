@@ -897,20 +897,20 @@ export const AppNavigator: FC = () =&gt; {
 
 const App: FC = () =&gt; {
   return (
-    &lt;ThemeProvider&gt;
-      &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;ThemeProvider&gt;
         &lt;NavigationContainer&gt;
           &lt;AppNavigator /&gt;
         &lt;/NavigationContainer&gt;
-      &lt;/SafeAreaView&gt;
-    &lt;/ThemeProvider&gt;
+      &lt;/ThemeProvider&gt;
+    &lt;/SafeAreaView&gt;
   )
 }
 
 export default App
 
 </code></pre>
- <div line-highlight="17-22,25-32,35,52-55,121,133,only"></div>
+ <div line-highlight="17-22,25-32,35,41,52-55,121,133,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
 import { FlatList } from &quot;react-native&quot;
@@ -1211,13 +1211,13 @@ export const AppNavigator: FC = () =&gt; {
 
 const App: FC = () =&gt; {
   return (
-    &lt;ThemeProvider&gt;
-      &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;ThemeProvider&gt;
         &lt;NavigationContainer&gt;
           &lt;AppNavigator /&gt;
         &lt;/NavigationContainer&gt;
-      &lt;/SafeAreaView&gt;
-    &lt;/ThemeProvider&gt;
+      &lt;/ThemeProvider&gt;
+    &lt;/SafeAreaView&gt;
   )
 }
 

@@ -1409,7 +1409,7 @@ export type RestaurantsStackParamList = {
     }
     slug: string
   }
-  OrderCreate: {
+  RestaurantOrder: {
     slug: string
   }
 }
@@ -1452,7 +1452,7 @@ const RestaurantsNavigator: FC = () =&gt; {
         name=&quot;RestaurantDetails&quot;
         component={RestaurantDetails}
       /&gt;
-      &lt;RestaurantsStack.Screen name=&quot;OrderCreate&quot; component={RestaurantOrder} /&gt;
+      &lt;RestaurantsStack.Screen name=&quot;RestaurantOrder&quot; component={RestaurantOrder} /&gt;
     &lt;/RestaurantsStack.Navigator&gt;
   )
 }
@@ -1520,7 +1520,7 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="17,23,56,99,154-158,only"></div>
+ <div line-highlight="17,99,154-158,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, we will learn <a href="security-and-auth.html" title="TODO">Security and Authentication</a>.</p>

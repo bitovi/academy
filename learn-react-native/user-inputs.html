@@ -786,7 +786,7 @@ const RestaurantsNavigator: FC = () =&gt; {
         name=&quot;RestaurantDetails&quot;
         component={RestaurantDetails}
       /&gt;
-      {/*Exercise: Add RestaurantOrder page to the stack. */}
+      {/* Exercise: Add RestaurantOrder page to the stack. */}
     &lt;/RestaurantsStack.Navigator&gt;
   )
 }
@@ -839,13 +839,13 @@ export const AppNavigator: FC = () =&gt; {
 
 const App: FC = () =&gt; {
   return (
-    &lt;ThemeProvider&gt;
-      &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;ThemeProvider&gt;
         &lt;NavigationContainer&gt;
           &lt;AppNavigator /&gt;
         &lt;/NavigationContainer&gt;
-      &lt;/SafeAreaView&gt;
-    &lt;/ThemeProvider&gt;
+      &lt;/ThemeProvider&gt;
+    &lt;/SafeAreaView&gt;
   )
 }
 
@@ -927,7 +927,7 @@ import Card from &quot;../../design/Card&quot;
 import Screen from &quot;../../design/Screen&quot;
 import FormSwitch from &quot;../../components/FormSwitch&quot;
 
-type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;OrderCreate&quot;&gt;
+type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantOrder&quot;&gt;
 
 type OrderItems = Record&lt;string, number&gt;
 
@@ -937,38 +937,17 @@ const RestaurantOrder: FC&lt;Props&gt; = ({ route }) =&gt; {
 
   const { data: restaurant, error, isPending } = useRestaurant(slug)
 
-  const [items, setItems] = useState&lt;OrderItems&gt;({})
-
   useEffect(() =&gt; {
     if (restaurant) {
       navigation.setOptions({ title: `Order from ${restaurant.name}` })
     }
   }, [restaurant, navigation])
 
-  const handleSubmit = () =&gt; {
-    alert(&quot;Order submitted!&quot;)
+  const handlePress = () =&gt; {
+    console.info(&quot;“Place My Order” button pressed!&quot;)
   }
 
-  const setItem = (itemId: string, isChecked: boolean, itemPrice: number) =&gt; {
-    return setItems((currentItems) =&gt; {
-      const updatedItems = {
-        ...currentItems,
-      }
-      if (isChecked) {
-        updatedItems[itemId] = itemPrice
-      } else {
-        delete updatedItems[itemId]
-      }
-      return updatedItems
-    })
-  }
-
-  const selectedCount = Object.values(items).length
-  const subtotal = calculateTotal(items)
-
-  function calculateTotal(items: OrderItems) {
-    /*Exercise: Create subtotal based on selected items */
-  }
+  const subtotal = 0 // Exercise: Use calculateTotal here.
 
   if (error) {
     return (
@@ -1000,20 +979,18 @@ const RestaurantOrder: FC&lt;Props&gt; = ({ route }) =&gt; {
     &gt;
       &lt;Screen&gt;
         &lt;Card title=&quot;Lunch Menu&quot;&gt;
-          {/*Exercise: List food items with checkboxes */}
+          {/* Exercise: List food items with checkboxes. */}
         &lt;/Card&gt;
 
         &lt;Card title=&quot;Dinner Menu&quot;&gt;
-          {/*Exercise: List food items with checkboxes */}
+          {/* Exercise: List food items with checkboxes. */}
         &lt;/Card&gt;
 
         &lt;Card title=&quot;Order Details&quot;&gt;&lt;/Card&gt;
 
         &lt;Box padding=&quot;s&quot;&gt;
-          {subtotal === 0 ? (
+          {subtotal === 0 &amp;&amp; (
             &lt;Typography&gt;Please choose an item.&lt;/Typography&gt;
-          ) : (
-            &lt;Typography&gt;{selectedCount} items selected.&lt;/Typography&gt;
           )}
         &lt;/Box&gt;
 
@@ -1024,11 +1001,17 @@ const RestaurantOrder: FC&lt;Props&gt; = ({ route }) =&gt; {
         &lt;/Box&gt;
 
         &lt;Box padding=&quot;s&quot;&gt;
-          &lt;Button onPress={handleSubmit}&gt;Place My Order!&lt;/Button&gt;
+          &lt;Button onPress={handlePress}&gt;Place My Order!&lt;/Button&gt;
         &lt;/Box&gt;
       &lt;/Screen&gt;
     &lt;/ScrollView&gt;
   )
+}
+
+function calculateTotal(items: OrderItems) {
+  return Object.values(items).reduce((total, itemPrice) =&gt; {
+    return total + itemPrice
+  }, 0)
 }
 
 export default RestaurantOrder
@@ -1066,8 +1049,6 @@ const FormSwitch: FC&lt;Props&gt; = ({ label, value, onChange }) =&gt; {
     &gt;
       &lt;Typography variant=&quot;label&quot;&gt;{label}&lt;/Typography&gt;
       &lt;Switch
-        value={value}
-        onValueChange={onChange}
         thumbColor={palette.primary.contrast}
         trackColor={{
           true: palette.primary.strong,
@@ -1109,8 +1090,6 @@ const FormSwitch: FC&lt;Props&gt; = ({ label, value, onChange }) =&gt; {
     &gt;
       &lt;Typography variant=&quot;label&quot;&gt;{label}&lt;/Typography&gt;
       &lt;Switch
-        value={value}
-        onValueChange={onChange}
         thumbColor={palette.primary.contrast}
         trackColor={{
           true: palette.primary.strong,
@@ -1261,7 +1240,7 @@ declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace ReactNavigation {
     // eslint-disable-next-line @typescript-eslint/no-empty-interface
-    interface RootParamList extends RestaurantsStackParamList { }
+    interface RootParamList extends RestaurantsStackParamList {}
   }
 }
 
@@ -1406,7 +1385,7 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="22,98-100,147,154-155,159-160,only"></div>
+ <div line-highlight="98-100,147,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
 import type { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -1484,7 +1463,7 @@ import Card from &quot;../../design/Card&quot;
 import Screen from &quot;../../design/Screen&quot;
 import FormSwitch from &quot;../../components/FormSwitch&quot;
 
-type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;OrderCreate&quot;&gt;
+type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantOrder&quot;&gt;
 
 type OrderItems = Record&lt;string, number&gt;
 
@@ -1502,8 +1481,8 @@ const RestaurantOrder: FC&lt;Props&gt; = ({ route }) =&gt; {
     }
   }, [restaurant, navigation])
 
-  const handleSubmit = () =&gt; {
-    alert(&quot;Order submitted!&quot;)
+  const handlePress = () =&gt; {
+    console.info(&quot;“Place My Order” button pressed!&quot;)
   }
 
   const setItem = (itemId: string, isChecked: boolean, itemPrice: number) =&gt; {
@@ -1520,14 +1499,7 @@ const RestaurantOrder: FC&lt;Props&gt; = ({ route }) =&gt; {
     })
   }
 
-  const selectedCount = Object.values(items).length
   const subtotal = calculateTotal(items)
-
-  function calculateTotal(items: OrderItems) {
-    return Object.values(items).reduce((total, itemPrice) =&gt; {
-      return total + itemPrice
-    }, 0)
-  }
 
   if (error) {
     return (
@@ -1583,10 +1555,8 @@ const RestaurantOrder: FC&lt;Props&gt; = ({ route }) =&gt; {
         &lt;Card title=&quot;Order Details&quot;&gt;&lt;/Card&gt;
 
         &lt;Box padding=&quot;s&quot;&gt;
-          {subtotal === 0 ? (
+          {subtotal === 0 &amp;&amp; (
             &lt;Typography&gt;Please choose an item.&lt;/Typography&gt;
-          ) : (
-            &lt;Typography&gt;{selectedCount} items selected.&lt;/Typography&gt;
           )}
         &lt;/Box&gt;
 
@@ -1597,17 +1567,23 @@ const RestaurantOrder: FC&lt;Props&gt; = ({ route }) =&gt; {
         &lt;/Box&gt;
 
         &lt;Box padding=&quot;s&quot;&gt;
-          &lt;Button onPress={handleSubmit}&gt;Place My Order!&lt;/Button&gt;
+          &lt;Button onPress={handlePress}&gt;Place My Order!&lt;/Button&gt;
         &lt;/Box&gt;
       &lt;/Screen&gt;
     &lt;/ScrollView&gt;
   )
 }
 
+function calculateTotal(items: OrderItems) {
+  return Object.values(items).reduce((total, itemPrice) =&gt; {
+    return total + itemPrice
+  }, 0)
+}
+
 export default RestaurantOrder
 
 </code></pre>
- <div line-highlight="57-59,92-99,103-110,only"></div>
+ <div line-highlight="27,39-50,53,76,85-92,96-103,only"></div>
 <p></details></p>
 <h2>Objective 2: Custom wrappers for consistency, accessibility</h2>
 <p>TODO</p>
@@ -1624,19 +1600,18 @@ import Typography from &quot;../../design/Typography&quot;
 
 type Props = {
   label: string
-  placeholder?: string
   type?: &quot;text&quot;
   value: string
   onChange?: (value: string) =&gt; void
 }
 
-const FormTextField: FC&lt;Props&gt; = ({ label, placeholder, value, onChange }) =&gt; {
+const FormTextField: FC&lt;Props&gt; = ({ label, value, onChange }) =&gt; {
   const id = useId()
   const theme = useTheme()
 
   return (
     &lt;Box style={{ marginVertical: 8 }}&gt;
-      {/** Exercise: Create Text Label and Update Text Input to work with label */}
+      {/* Exercise: Create Text Label and update TextInput to work with label. */}
       &lt;TextInput
         style={{
           flex: 1,
@@ -1675,7 +1650,7 @@ import Card from &quot;../../design/Card&quot;
 import Screen from &quot;../../design/Screen&quot;
 import FormSwitch from &quot;../../components/FormSwitch&quot;
 
-type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;OrderCreate&quot;&gt;
+type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantOrder&quot;&gt;
 
 type OrderItems = Record&lt;string, number&gt;
 
@@ -1686,9 +1661,7 @@ const RestaurantOrder: FC&lt;Props&gt; = ({ route }) =&gt; {
   const { data: restaurant, error, isPending } = useRestaurant(slug)
 
   const [items, setItems] = useState&lt;OrderItems&gt;({})
-  {
-    /*Exercise: Store state for new FormTextFields in RestaurantOrder */
-  }
+  // Exercise: Store state for new FormTextFields in RestaurantOrder.
 
   useEffect(() =&gt; {
     if (restaurant) {
@@ -1696,8 +1669,8 @@ const RestaurantOrder: FC&lt;Props&gt; = ({ route }) =&gt; {
     }
   }, [restaurant, navigation])
 
-  const handleSubmit = () =&gt; {
-    alert(&quot;Order submitted!&quot;)
+  const handlePress = () =&gt; {
+    console.info(&quot;“Place My Order” button pressed!&quot;)
   }
 
   const setItem = (itemId: string, isChecked: boolean, itemPrice: number) =&gt; {
@@ -1716,12 +1689,6 @@ const RestaurantOrder: FC&lt;Props&gt; = ({ route }) =&gt; {
 
   const selectedCount = Object.values(items).length
   const subtotal = calculateTotal(items)
-
-  function calculateTotal(items: OrderItems) {
-    return Object.values(items).reduce((total, itemPrice) =&gt; {
-      return total + itemPrice
-    }, 0)
-  }
 
   if (error) {
     return (
@@ -1775,7 +1742,7 @@ const RestaurantOrder: FC&lt;Props&gt; = ({ route }) =&gt; {
         &lt;/Card&gt;
 
         &lt;Card title=&quot;Order Details&quot;&gt;
-          {/*Exercise: Use name, address, and phone fields to create FormTextField elements */}
+          {/* Exercise: Use name, address, and phone fields to create FormTextField elements. */}
         &lt;/Card&gt;
 
         &lt;Box padding=&quot;s&quot;&gt;
@@ -1793,17 +1760,23 @@ const RestaurantOrder: FC&lt;Props&gt; = ({ route }) =&gt; {
         &lt;/Box&gt;
 
         &lt;Box padding=&quot;s&quot;&gt;
-          &lt;Button onPress={handleSubmit}&gt;Place My Order!&lt;/Button&gt;
+          &lt;Button onPress={handlePress}&gt;Place My Order!&lt;/Button&gt;
         &lt;/Box&gt;
       &lt;/Screen&gt;
     &lt;/ScrollView&gt;
   )
 }
 
+function calculateTotal(items: OrderItems) {
+  return Object.values(items).reduce((total, itemPrice) =&gt; {
+    return total + itemPrice
+  }, 0)
+}
+
 export default RestaurantOrder
 
 </code></pre>
- <div line-highlight="12,29-30,87,117-119,only"></div>
+ <div line-highlight="12,29,55,109-111,114,116-117,only"></div>
 <h3>Verify 2</h3>
 <p>✏️ Create <strong>src/components/FormTextField/FormTextField.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
@@ -1815,19 +1788,18 @@ import Typography from &quot;../../design/Typography&quot;
 
 type Props = {
   label: string
-  placeholder?: string
   type?: &quot;text&quot;
   value: string
   onChange?: (value: string) =&gt; void
 }
 
-const FormTextField: FC&lt;Props&gt; = ({ label, placeholder, value, onChange }) =&gt; {
+const FormTextField: FC&lt;Props&gt; = ({ label, value, onChange }) =&gt; {
   const id = useId()
   const theme = useTheme()
 
   return (
     &lt;Box style={{ marginVertical: 8 }}&gt;
-      {/** Exercise: Create Text Label and Update Text Input to work with label */}
+      {/* Exercise: Create Text Label and update TextInput to work with label. */}
       &lt;TextInput
         style={{
           flex: 1,
@@ -1972,13 +1944,12 @@ import Typography from &quot;../../design/Typography&quot;
 
 type Props = {
   label: string
-  placeholder?: string
   type?: &quot;text&quot;
   value: string
   onChange?: (value: string) =&gt; void
 }
 
-const FormTextField: FC&lt;Props&gt; = ({ label, placeholder, value, onChange }) =&gt; {
+const FormTextField: FC&lt;Props&gt; = ({ label, value, onChange }) =&gt; {
   const id = useId()
   const theme = useTheme()
 
@@ -1992,7 +1963,6 @@ const FormTextField: FC&lt;Props&gt; = ({ label, placeholder, value, onChange })
         accessibilityLabelledBy={id}
         onChangeText={onChange}
         value={value}
-        placeholder={placeholder}
         style={{
           flex: 1,
           paddingVertical: 0,
@@ -2008,7 +1978,7 @@ const FormTextField: FC&lt;Props&gt; = ({ label, placeholder, value, onChange })
 export default FormTextField
 
 </code></pre>
- <div line-highlight="22-24,26-30,only"></div>
+ <div line-highlight="21-23,25-28,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantOrder/RestaurantOrder.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
 import type { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -2027,7 +1997,7 @@ import Card from &quot;../../design/Card&quot;
 import Screen from &quot;../../design/Screen&quot;
 import FormSwitch from &quot;../../components/FormSwitch&quot;
 
-type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;OrderCreate&quot;&gt;
+type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantOrder&quot;&gt;
 
 type OrderItems = Record&lt;string, number&gt;
 
@@ -2048,8 +2018,8 @@ const RestaurantOrder: FC&lt;Props&gt; = ({ route }) =&gt; {
     }
   }, [restaurant, navigation])
 
-  const handleSubmit = () =&gt; {
-    alert(&quot;Order submitted!&quot;)
+  const handlePress = () =&gt; {
+    console.info(&quot;“Place My Order” button pressed!&quot;)
   }
 
   const setItem = (itemId: string, isChecked: boolean, itemPrice: number) =&gt; {
@@ -2068,12 +2038,6 @@ const RestaurantOrder: FC&lt;Props&gt; = ({ route }) =&gt; {
 
   const selectedCount = Object.values(items).length
   const subtotal = calculateTotal(items)
-
-  function calculateTotal(items: OrderItems) {
-    return Object.values(items).reduce((total, itemPrice) =&gt; {
-      return total + itemPrice
-    }, 0)
-  }
 
   if (error) {
     return (
@@ -2151,17 +2115,23 @@ const RestaurantOrder: FC&lt;Props&gt; = ({ route }) =&gt; {
         &lt;/Box&gt;
 
         &lt;Box padding=&quot;s&quot;&gt;
-          &lt;Button onPress={handleSubmit}&gt;Place My Order!&lt;/Button&gt;
+          &lt;Button onPress={handlePress}&gt;Place My Order!&lt;/Button&gt;
         &lt;/Box&gt;
       &lt;/Screen&gt;
     &lt;/ScrollView&gt;
   )
 }
 
+function calculateTotal(items: OrderItems) {
+  return Object.values(items).reduce((total, itemPrice) =&gt; {
+    return total + itemPrice
+  }, 0)
+}
+
 export default RestaurantOrder
 
 </code></pre>
- <div line-highlight="28,30-31,118-124,only"></div>
+ <div line-highlight="28,30-31,112-118,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, in order to retain data to limit requests and migrating the same data, let's look into <a href="./using-asyncstorage">Using AsyncStorage</a>.</p>

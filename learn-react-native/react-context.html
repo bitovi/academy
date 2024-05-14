@@ -1042,18 +1042,18 @@ import ThemeProvider from &quot;./design/theme/ThemeProvider&quot;
 
 const App: FC = () =&gt; {
   return (
-    &lt;ThemeProvider&gt;
-      &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;ThemeProvider&gt;
         &lt;StateList /&gt;
-      &lt;/SafeAreaView&gt;
-    &lt;/ThemeProvider&gt;
+      &lt;/ThemeProvider&gt;
+    &lt;/SafeAreaView&gt;
   )
 }
 
 export default App
 
 </code></pre>
- <div line-highlight="2,4,8-12,only"></div>
+ <div line-highlight="2,4,9-11,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/components/ListItem/ListItem.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
 import type { Theme } from &quot;../../../../design/theme&quot;

@@ -790,18 +790,18 @@ export const AppNavigator: FC = () =&gt; {
         },
       })}
     &gt;
-      {/*Exercise: Add the Screens for both the Restaurants and Setting tabs */}
+      {/* Exercise: Add the Screens for both the Restaurants and Setting tabs. */}
     &lt;/AppTabs.Navigator&gt;
   )
 }
 
 const App: FC = () =&gt; {
   return (
-    &lt;ThemeProvider&gt;
-      &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;ThemeProvider&gt;
         &lt;StateList /&gt;
-      &lt;/SafeAreaView&gt;
-    &lt;/ThemeProvider&gt;
+      &lt;/ThemeProvider&gt;
+    &lt;/SafeAreaView&gt;
   )
 }
 
@@ -976,13 +976,13 @@ export const AppNavigator: FC = () =&gt; {
 
 const App: FC = () =&gt; {
   return (
-    &lt;ThemeProvider&gt;
-      &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;ThemeProvider&gt;
         &lt;NavigationContainer&gt;
           &lt;AppNavigator /&gt;
         &lt;/NavigationContainer&gt;
-      &lt;/SafeAreaView&gt;
-    &lt;/ThemeProvider&gt;
+      &lt;/ThemeProvider&gt;
+    &lt;/SafeAreaView&gt;
   )
 }
 
@@ -1084,26 +1084,26 @@ const RestaurantsNavigator: FC = () =&gt; {
     &lt;RestaurantsStack.Navigator
       initialRouteName=&quot;StateList&quot;
       screenOptions={{
-       header: ({ route, navigation }) =&gt; {
-          {/* Exercise: Add logic for back navigation*/}
-        return (
-          &lt;Pressable onPress={}&gt;
-            &lt;Box
-              padding=&quot;m&quot;
-              style={{ flexDirection: &quot;row&quot;, gap: 8, alignItems: &quot;center&quot; }}
-            &gt;
-              &lt;Icon name=&quot;arrow-back&quot; size={20} /&gt;
-              &lt;Typography variant=&quot;heading&quot;&gt;
-                Choose a location
-              &lt;/Typography&gt;
-            &lt;/Box&gt;
-          &lt;/Pressable&gt;
-        )
-      },
-    }}
-  &gt;
-    {/*Exercise: Add Navigator Children for StateList and CityList */}
-  &lt;/RestaurantsStack.Navigator&gt;
+        header: ({ route, navigation }) =&gt; {
+          {/* Exercise: Add logic for back navigation*/ }
+          return (
+            &lt;Pressable onPress={ }&gt;
+              &lt;Box
+                padding=&quot;m&quot;
+                style={{ flexDirection: &quot;row&quot;, gap: 8, alignItems: &quot;center&quot; }}
+              &gt;
+                &lt;Icon name=&quot;arrow-back&quot; size={20} /&gt;
+                &lt;Typography variant=&quot;heading&quot;&gt;
+                  Choose a location
+                &lt;/Typography&gt;
+              &lt;/Box&gt;
+            &lt;/Pressable&gt;
+          )
+        },
+      }}
+    &gt;
+      {/* Exercise: Add Navigator Children for StateList and CityList. */}
+    &lt;/RestaurantsStack.Navigator&gt;
   )
 }
 
@@ -1155,20 +1155,20 @@ export const AppNavigator: FC = () =&gt; {
 
 const App: FC = () =&gt; {
   return (
-    &lt;ThemeProvider&gt;
-      &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;ThemeProvider&gt;
         &lt;NavigationContainer&gt;
           &lt;AppNavigator /&gt;
         &lt;/NavigationContainer&gt;
-      &lt;/SafeAreaView&gt;
-    &lt;/ThemeProvider&gt;
+      &lt;/ThemeProvider&gt;
+    &lt;/SafeAreaView&gt;
   )
 }
 
 export default App
 
 </code></pre>
- <div line-highlight="2,10-13,16-17,19-41,79,92,100-101,only"></div>
+ <div line-highlight="2,10-13,16-17,19-36,38,40-41,74,76,79,92,100-101,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
 import { FlatList } from &quot;react-native&quot;
@@ -1332,7 +1332,7 @@ const RestaurantsNavigator: FC = () =&gt; {
     &lt;RestaurantsStack.Navigator
       initialRouteName=&quot;StateList&quot;
       screenOptions={{
-        header: ({ route, navigation }) =&gt; {
+        header: ({ navigation }) =&gt; {
           if (!navigation.canGoBack()) return null
 
           return (
@@ -1405,20 +1405,20 @@ export const AppNavigator: FC = () =&gt; {
 
 const App: FC = () =&gt; {
   return (
-    &lt;ThemeProvider&gt;
-      &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;ThemeProvider&gt;
         &lt;NavigationContainer&gt;
           &lt;AppNavigator /&gt;
         &lt;/NavigationContainer&gt;
-      &lt;/SafeAreaView&gt;
-    &lt;/ThemeProvider&gt;
+      &lt;/ThemeProvider&gt;
+    &lt;/SafeAreaView&gt;
   )
 }
 
 export default App
 
 </code></pre>
- <div line-highlight="22-23,25-37,39,41-43,76,78,only"></div>
+ <div line-highlight="22-23,26,41-42,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import type { FC } from &quot;react&quot;
 import { FlatList } from &quot;react-native&quot;
@@ -1504,7 +1504,7 @@ const RestaurantsNavigator: FC = () =&gt; {
     &lt;RestaurantsStack.Navigator
       initialRouteName=&quot;StateList&quot;
       screenOptions={{
-        header: ({ route, navigation }) =&gt; {
+        header: ({ navigation }) =&gt; {
           if (!navigation.canGoBack()) return null
 
           return (
@@ -1525,7 +1525,7 @@ const RestaurantsNavigator: FC = () =&gt; {
     &gt;
       &lt;RestaurantsStack.Screen name=&quot;StateList&quot; component={StateList} /&gt;
       &lt;RestaurantsStack.Screen name=&quot;CityList&quot; component={CityList} /&gt;
-      {/* Exercise: Add RestaurantList and RestaurantDetails to the StackNavigator */}
+      {/* Exercise: Add RestaurantList and RestaurantDetails to the StackNavigator. */}
     &lt;/RestaurantsStack.Navigator&gt;
   )
 }
@@ -1578,13 +1578,13 @@ export const AppNavigator: FC = () =&gt; {
 
 const App: FC = () =&gt; {
   return (
-    &lt;ThemeProvider&gt;
-      &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;ThemeProvider&gt;
         &lt;NavigationContainer&gt;
           &lt;AppNavigator /&gt;
         &lt;/NavigationContainer&gt;
-      &lt;/SafeAreaView&gt;
-    &lt;/ThemeProvider&gt;
+      &lt;/ThemeProvider&gt;
+    &lt;/SafeAreaView&gt;
   )
 }
 
@@ -1982,7 +1982,7 @@ const RestaurantsNavigator: FC = () =&gt; {
     &lt;RestaurantsStack.Navigator
       initialRouteName=&quot;StateList&quot;
       screenOptions={{
-        header: ({ route, navigation }) =&gt; {
+        header: ({ navigation }) =&gt; {
           if (!navigation.canGoBack()) return null
 
           return (
@@ -2063,13 +2063,13 @@ export const AppNavigator: FC = () =&gt; {
 
 const App: FC = () =&gt; {
   return (
-    &lt;ThemeProvider&gt;
-      &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;ThemeProvider&gt;
         &lt;NavigationContainer&gt;
           &lt;AppNavigator /&gt;
         &lt;/NavigationContainer&gt;
-      &lt;/SafeAreaView&gt;
-    &lt;/ThemeProvider&gt;
+      &lt;/ThemeProvider&gt;
+    &lt;/SafeAreaView&gt;
   )
 }
 
