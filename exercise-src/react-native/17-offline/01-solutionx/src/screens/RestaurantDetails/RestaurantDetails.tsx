@@ -13,7 +13,7 @@ import {
   useUser,
   useAuthentication,
 } from "../../services/auth"
-import { useFavorites } from "../../services/pmo/favorite"
+import { useFavorites } from "../../services/pmo/favorite/hooks"
 import { useRestaurant } from "../../services/pmo/restaurant"
 
 export interface RestaurantDetailsProps
