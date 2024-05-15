@@ -683,24 +683,798 @@ covering CanJS core libraries.">
 <ul>
 <li>TODO</li>
 </ul>
-<h2>Objective 1: TODO</h2>
+<h2>Objective 1: Context and Google Authentication</h2>
 <p>TODO</p>
 <h3>Concept TODO</h3>
 <p>TODO</p>
 <h3>Setup 1</h3>
-<p>TODO</p>
+<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import { FC } from &quot;react&quot;
+import { Pressable, SafeAreaView } from &quot;react-native&quot;
+import Icon from &quot;react-native-vector-icons/Ionicons&quot;
+
+import Box from &quot;./design/Box&quot;
+import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
+import Typography from &quot;./design/Typography&quot;
+import CityList from &quot;./screens/CityList&quot;
+import RestaurantDetails from &quot;./screens/RestaurantDetails&quot;
+import RestaurantList from &quot;./screens/RestaurantList&quot;
+import RestaurantOrder from &quot;./screens/RestaurantOrder&quot;
+import Settings from &quot;./screens/Settings&quot;
+import StateList from &quot;./screens/StateList&quot;
+import AuthProvider from &quot;./services/auth/AuthProvider&quot;
+import DataMigration from &quot;./services/DataMigration&quot;
+
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace ReactNavigation {
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    interface RootParamList extends RestaurantsStackParamList {}
+  }
+}
+
+export type RestaurantsStackParamList = {
+  StateList: undefined
+  CityList: {
+    state: {
+      name: string
+      short: string
+    }
+  }
+  RestaurantList: {
+    state: {
+      name: string
+      short: string
+    }
+    city: {
+      name: string
+      state: string
+    }
+  }
+  RestaurantDetails: {
+    state: {
+      name: string
+      short: string
+    }
+    city: {
+      name: string
+      state: string
+    }
+    slug: string
+  }
+  RestaurantOrder: {
+    slug: string
+  }
+}
+
+const RestaurantsStack = createStackNavigator&lt;RestaurantsStackParamList&gt;()
+const RestaurantsNavigator: FC = () =&gt; {
+  return (
+    &lt;RestaurantsStack.Navigator
+      initialRouteName=&quot;StateList&quot;
+      screenOptions={{
+        header: ({ route, navigation }) =&gt; {
+          if (!navigation.canGoBack()) return null
+
+          return (
+            &lt;Pressable onPress={navigation.goBack}&gt;
+              &lt;Box
+                padding=&quot;m&quot;
+                style={{ flexDirection: &quot;row&quot;, gap: 8, alignItems: &quot;center&quot; }}
+              &gt;
+                &lt;Icon name=&quot;arrow-back&quot; size={20} /&gt;
+                &lt;Typography variant=&quot;heading&quot;&gt;
+                  {/* @ts-ignore */}
+                  {[route.params?.city?.name, route.params?.state?.name]
+                    .filter(Boolean)
+                    .join(&quot;, &quot;)}
+                &lt;/Typography&gt;
+              &lt;/Box&gt;
+            &lt;/Pressable&gt;
+          )
+        },
+      }}
+    &gt;
+      &lt;RestaurantsStack.Screen name=&quot;StateList&quot; component={StateList} /&gt;
+      &lt;RestaurantsStack.Screen name=&quot;CityList&quot; component={CityList} /&gt;
+      &lt;RestaurantsStack.Screen
+        name=&quot;RestaurantList&quot;
+        component={RestaurantList}
+      /&gt;
+      &lt;RestaurantsStack.Screen
+        name=&quot;RestaurantDetails&quot;
+        component={RestaurantDetails}
+      /&gt;
+      &lt;RestaurantsStack.Screen
+        name=&quot;RestaurantOrder&quot;
+        component={RestaurantOrder}
+      /&gt;
+    &lt;/RestaurantsStack.Navigator&gt;
+  )
+}
+
+const AppTabs = createBottomTabNavigator()
+export const AppNavigator: FC = () =&gt; {
+  const theme = useTheme()
+
+  return (
+    &lt;AppTabs.Navigator
+      initialRouteName=&quot;RestaurantsStack&quot;
+      screenOptions={({ route }) =&gt; ({
+        headerStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        headerTitleStyle: {
+          color: theme.palette.screen.contrast,
+          ...theme.typography.title,
+        },
+        tabBarStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        tabBarActiveTintColor: theme.palette.primary.strong,
+        tabBarInactiveTintColor: theme.palette.screen.contrast,
+        tabBarIcon: ({ focused, color }) =&gt; {
+          let icon = &quot;settings&quot;
+          if (route.name === &quot;Settings&quot;) {
+            icon = focused ? &quot;settings&quot; : &quot;settings-outline&quot;
+          } else if (route.name === &quot;Restaurants&quot;) {
+            icon = focused ? &quot;restaurant&quot; : &quot;restaurant-outline&quot;
+          }
+
+          return &lt;Icon name={icon} size={20} color={color} /&gt;
+        },
+      })}
+    &gt;
+      &lt;AppTabs.Screen
+        name=&quot;Restaurants&quot;
+        component={RestaurantsNavigator}
+        options={{ title: &quot;Place My Order&quot; }}
+      /&gt;
+      &lt;AppTabs.Screen
+        name=&quot;Settings&quot;
+        component={Settings}
+        options={{ title: &quot;Settings&quot; }}
+      /&gt;
+    &lt;/AppTabs.Navigator&gt;
+  )
+}
+
+// Exercise: Add `AuthProvider` to the App component.
+const App: FC = () =&gt; {
+  return (
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;ThemeProvider&gt;
+        &lt;DataMigration&gt;
+          &lt;NavigationContainer&gt;
+            &lt;AppNavigator /&gt;
+          &lt;/NavigationContainer&gt;
+        &lt;/DataMigration&gt;
+      &lt;/ThemeProvider&gt;
+    &lt;/SafeAreaView&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="4,17,63,109,154-155,only"></div>
+<p>✏️ Update <strong>src/env.d.ts</strong> to be:</p>
+<pre><code class="language-ts">/* eslint-disable @typescript-eslint/no-namespace */
+
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      readonly PMO_API: string
+      readonly PMO_ASSETS: string
+      readonly GOOGLE_OAUTH_CLIENT_ID: string
+    }
+  }
+}
+
+export {}
+
+</code></pre>
+ <div line-highlight="8,only"></div>
+<p>✏️ Update <strong>src/screens/Settings/Settings.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
+import { FC } from &quot;react&quot;
+import { Switch } from &quot;react-native&quot;
+
+import Button from &quot;../../design/Button&quot;
+import Card from &quot;../../design/Card&quot;
+import Screen from &quot;../../design/Screen&quot;
+import { useThemeMode } from &quot;../../design/theme&quot;
+import Typography from &quot;../../design/Typography&quot;
+import { useAuthentication, useUser } from &quot;../../services/auth&quot;
+
+const Settings: FC = () =&gt; {
+  // Exercise: use the hooks from auth service to grab the 'user' state, and 'signIn' and 'signOut' callbacks.
+  const { mode, setMode } = useThemeMode()
+
+  return (
+    &lt;Screen&gt;
+      &lt;Card&gt;
+        {/** Exercise: If the user is logged in: Render a button using the signOut callback along with a welcome message.
+         * If the user is logged in: Exercise: Render a button using the GoogleSigninButton.*/}
+      &lt;/Card&gt;
+      &lt;Card&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;Dark Mode&lt;/Typography&gt;
+        &lt;Switch
+          value={mode === &quot;dark&quot;}
+          onChange={() =&gt; setMode(mode === &quot;light&quot; ? &quot;dark&quot; : &quot;light&quot;)}
+        /&gt;
+      &lt;/Card&gt;
+    &lt;/Screen&gt;
+  )
+}
+
+export default Settings
+
+</code></pre>
+ <div line-highlight="1-2,5,10,12-13,19-20,only"></div>
+<p>✏️ Create <strong>src/services/auth/AuthProvider.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import {
+  User as UserInfo,
+  GoogleSignin,
+} from &quot;@react-native-google-signin/google-signin&quot;
+import { FC, ReactNode, useCallback, useEffect, useMemo, useState } from &quot;react&quot;
+
+import { AuthContext, AuthContextProvider, useAuthContext } from &quot;./context&quot;
+
+const googleOauthwebClientId = process.env.GOOGLE_OAUTH_CLIENT_ID
+
+GoogleSignin.configure({
+  scopes: [&quot;openid&quot;, &quot;profile&quot;, &quot;email&quot;],
+  webClientId: googleOauthwebClientId,
+})
+
+const AuthProvider: FC&lt;{ children: ReactNode }&gt; = ({ children }) =&gt; {
+  const [userInfo, setUserInfo] = useState&lt;UserInfo | null&gt;()
+
+  // Exercise: Finish implementing the `signIn` and `signOut` callbacks.
+  const signIn = useCallback(async () =&gt; {}, [])
+
+  const signOut = useCallback(async () =&gt; {}, [])
+
+  useEffect(() =&gt; {
+    // Exercise: When a sign in is successful, update the user.
+    async function run() {}
+
+    run()
+  }, [])
+
+  const value = useMemo&lt;AuthContext&gt;(
+    () =&gt; ({
+      signIn,
+      signOut,
+      isAuthenticated: userInfo ? true : userInfo === null ? false : undefined,
+      user: userInfo?.user,
+      scopes: userInfo?.scopes,
+      idToken: userInfo?.idToken,
+    }),
+    [signIn, signOut, userInfo],
+  )
+
+  return &lt;AuthContextProvider value={value}&gt;{children}&lt;/AuthContextProvider&gt;
+}
+
+export default AuthProvider
+
+export function useAuthentication(): Pick&lt;AuthContext, &quot;signIn&quot; | &quot;signOut&quot;&gt; {
+  const { signIn, signOut } = useAuthContext()
+
+  return { signIn, signOut }
+}
+
+export function useAuthenticated(): boolean | undefined {
+  const { isAuthenticated } = useAuthContext()
+
+  return isAuthenticated
+}
+
+export function useUser(): UserInfo[&quot;user&quot;] | undefined {
+  const { user } = useAuthContext()
+
+  return user
+}
+
+</code></pre>
+<p>✏️ Create <strong>src/services/auth/context.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import { User as UserInfo } from &quot;@react-native-google-signin/google-signin&quot;
+import { createContext, useContext } from &quot;react&quot;
+
+export interface AuthContext {
+  /** Initiate the Google Auth flow. Return boolean success. */
+  signIn: () =&gt; Promise&lt;UserInfo[&quot;user&quot;] | false&gt;
+  /** Log the user out from Google Auth. Return boolean success. */
+  signOut: () =&gt; Promise&lt;boolean&gt;
+  /** Boolean if the user is authenticated or not. Undefined if unknown. */
+  isAuthenticated?: boolean
+  /** Google Auth User object. Undefined if not signed in. */
+  user?: UserInfo[&quot;user&quot;]
+  /** List of Google Auth scopes. Undefined if not signed in. */
+  scopes?: UserInfo[&quot;scopes&quot;]
+  /** Google Auth Token. Undefined if not signed in. */
+  idToken?: UserInfo[&quot;idToken&quot;]
+}
+
+const Context = createContext&lt;AuthContext | undefined&gt;(undefined)
+
+export const AuthContextProvider = Context.Provider
+
+export function useAuthContext(): AuthContext {
+  const value = useContext(Context)
+
+  if (!value) {
+    throw new Error(&quot;Missing AuthProvider.&quot;)
+  }
+
+  return value
+}
+
+</code></pre>
+<p>✏️ Create <strong>src/services/auth/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./AuthProvider&quot;
+export * from &quot;./AuthProvider&quot;
+
+</code></pre>
 <h3>Verify 1</h3>
-<p>TODO</p>
+<p>✏️ Update <strong>src/screens/Settings/Settings.test.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { fireEvent, render, screen } from &quot;@testing-library/react-native&quot;
+import { SwitchChangeEvent } from &quot;react-native&quot;
+
+import AuthProvider from &quot;../../services/auth/AuthProvider&quot;
+
+import Settings from &quot;./Settings&quot;
+
+const mockSetMode = jest.fn()
+
+jest.mock(&quot;../../design/theme&quot;, () =&gt; ({
+  ...jest.requireActual(&quot;../../design/theme&quot;),
+  useThemeMode: () =&gt; ({
+    mode: &quot;light&quot;,
+    setMode: mockSetMode,
+  }),
+}))
+
+describe(&quot;Settings component&quot;, () =&gt; {
+  it(&quot;renders Settings Page&quot;, async () =&gt; {
+    render(
+      &lt;AuthProvider&gt;
+        &lt;NavigationContainer&gt;
+          &lt;Settings /&gt;
+        &lt;/NavigationContainer&gt;
+      &lt;/AuthProvider&gt;,
+    )
+    expect(screen.getByText(/Mock Sign in with Google/i)).toBeOnTheScreen()
+  })
+
+  it(&quot;should switch to dark mode&quot;, () =&gt; {
+    render(
+      &lt;AuthProvider&gt;
+        &lt;NavigationContainer&gt;
+          &lt;Settings /&gt;
+        &lt;/NavigationContainer&gt;
+      &lt;/AuthProvider&gt;,
+    )
+    const switchElement = screen.getByRole(&quot;switch&quot;)
+    expect(switchElement.props.value).toBe(false)
+    fireEvent(switchElement, &quot;onChange&quot;, {
+      nativeEvent: { value: true },
+    } as SwitchChangeEvent)
+    expect(mockSetMode).toHaveBeenCalledWith(&quot;dark&quot;)
+  })
+})
+
+</code></pre>
+ <div line-highlight="5,22-26,28,33-37,only"></div>
+<p>✏️ Create <strong>src/services/auth/AuthProvider.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
+import {
+  render,
+  screen,
+  waitFor,
+  fireEvent,
+} from &quot;@testing-library/react-native&quot;
+import { FC } from &quot;react&quot;
+import { View, Text } from &quot;react-native&quot;
+
+import Button from &quot;../../design/Button&quot;
+
+import AuthProvider, {
+  useAuthenticated,
+  useAuthentication,
+  useUser,
+} from &quot;./AuthProvider&quot;
+
+const oldFetch = global.fetch
+const mockFetch = jest.fn()
+beforeAll(() =&gt; {
+  global.fetch = mockFetch
+})
+afterAll(() =&gt; {
+  global.fetch = oldFetch
+})
+
+describe(&quot;AuthProvider&quot;, () =&gt; {
+  const TestComponent: FC = () =&gt; {
+    const isAuthenticated = useAuthenticated()
+    const { signIn, signOut } = useAuthentication()
+    const user = useUser()
+
+    return (
+      &lt;View&gt;
+        &lt;Text&gt;{user?.id}&lt;/Text&gt;
+        &lt;Text&gt;{user?.name}&lt;/Text&gt;
+        &lt;Text&gt;{user?.email}&lt;/Text&gt;
+        &lt;Text&gt;{user?.photo}&lt;/Text&gt;
+        &lt;Text&gt;{user?.givenName}&lt;/Text&gt;
+        &lt;Text&gt;{user?.familyName}&lt;/Text&gt;
+        {isAuthenticated &amp;&amp; &lt;Button onPress={signOut}&gt;Sign Out&lt;/Button&gt;}
+        {isAuthenticated === false &amp;&amp; &lt;GoogleSigninButton onPress={signIn} /&gt;}
+      &lt;/View&gt;
+    )
+  }
+
+  it(&quot;renders with provider; signs in and signs out&quot;, async () =&gt; {
+    render(
+      &lt;AuthProvider&gt;
+        &lt;TestComponent /&gt;
+      &lt;/AuthProvider&gt;,
+    )
+
+    await waitFor(() =&gt; {
+      expect(screen.getByText(/mockId/i)).toBeOnTheScreen()
+    })
+    fireEvent.press(screen.getByText(/Sign Out/i))
+    await waitFor(() =&gt; {
+      expect(screen.getByText(/Mock Sign in with Google/i)).toBeOnTheScreen()
+    })
+    fireEvent.press(screen.getByText(/Mock Sign in with Google/i))
+    await waitFor(() =&gt; {
+      expect(screen.getByText(/Sign Out/i)).toBeOnTheScreen()
+    })
+  })
+})
+
+</code></pre>
 <h3>Exercise 1</h3>
-<p>TODO</p>
+<p>First, we need to finish implementing the <code>AuthContext</code> in <code>AuthProvider</code>:</p>
+<ul>
+<li>Finish implementing the <code>signIn</code> and <code>signOut</code> callbacks.</li>
+<li>When a sign in is successful, update the user.</li>
+</ul>
+<p>Next, in <code>App.js</code></p>
+<ul>
+<li>Add the <code>AuthProvider</code> to the <code>App</code> component.</li>
+</ul>
+<p>Finally, in <code>Settings.js</code>:</p>
+<ul>
+<li>use the hooks from <code>AuthContext</code> to grab the <code>user</code> state, and <code>signIn</code> and <code>signOut</code> callbacks.</li>
+<li>Implement a conditional to render the a button to Sign In or Sign Out based on the user's state.</li>
+</ul>
 <h3>Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>TODO</p>
+<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import { Pressable, SafeAreaView } from &quot;react-native&quot;
+import Icon from &quot;react-native-vector-icons/Ionicons&quot;
+
+import Box from &quot;./design/Box&quot;
+import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
+import Typography from &quot;./design/Typography&quot;
+import CityList from &quot;./screens/CityList&quot;
+import RestaurantDetails from &quot;./screens/RestaurantDetails&quot;
+import RestaurantList from &quot;./screens/RestaurantList&quot;
+import RestaurantOrder from &quot;./screens/RestaurantOrder&quot;
+import Settings from &quot;./screens/Settings&quot;
+import StateList from &quot;./screens/StateList&quot;
+import AuthProvider from &quot;./services/auth/AuthProvider&quot;
+import DataMigration from &quot;./services/DataMigration&quot;
+
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace ReactNavigation {
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    interface RootParamList extends RestaurantsStackParamList {}
+  }
+}
+
+export type RestaurantsStackParamList = {
+  StateList: undefined
+  CityList: {
+    state: {
+      name: string
+      short: string
+    }
+  }
+  RestaurantList: {
+    state: {
+      name: string
+      short: string
+    }
+    city: {
+      name: string
+      state: string
+    }
+  }
+  RestaurantDetails: {
+    state: {
+      name: string
+      short: string
+    }
+    city: {
+      name: string
+      state: string
+    }
+    slug: string
+  }
+  RestaurantOrder: {
+    slug: string
+  }
+}
+
+const RestaurantsStack = createStackNavigator&lt;RestaurantsStackParamList&gt;()
+const RestaurantsNavigator: React.FC = () =&gt; {
+  return (
+    &lt;RestaurantsStack.Navigator
+      initialRouteName=&quot;StateList&quot;
+      screenOptions={{
+        header: ({ route, navigation }) =&gt; {
+          if (!navigation.canGoBack()) return null
+
+          return (
+            &lt;Pressable onPress={navigation.goBack}&gt;
+              &lt;Box
+                padding=&quot;m&quot;
+                style={{ flexDirection: &quot;row&quot;, gap: 8, alignItems: &quot;center&quot; }}
+              &gt;
+                &lt;Icon name=&quot;arrow-back&quot; size={20} /&gt;
+                &lt;Typography variant=&quot;heading&quot;&gt;
+                  {/* @ts-ignore */}
+                  {[route.params?.city?.name, route.params?.state?.name]
+                    .filter(Boolean)
+                    .join(&quot;, &quot;)}
+                &lt;/Typography&gt;
+              &lt;/Box&gt;
+            &lt;/Pressable&gt;
+          )
+        },
+      }}
+    &gt;
+      &lt;RestaurantsStack.Screen name=&quot;StateList&quot; component={StateList} /&gt;
+      &lt;RestaurantsStack.Screen name=&quot;CityList&quot; component={CityList} /&gt;
+      &lt;RestaurantsStack.Screen
+        name=&quot;RestaurantList&quot;
+        component={RestaurantList}
+      /&gt;
+      &lt;RestaurantsStack.Screen
+        name=&quot;RestaurantDetails&quot;
+        component={RestaurantDetails}
+      /&gt;
+      &lt;RestaurantsStack.Screen
+        name=&quot;RestaurantOrder&quot;
+        component={RestaurantOrder}
+      /&gt;
+    &lt;/RestaurantsStack.Navigator&gt;
+  )
+}
+
+const AppTabs = createBottomTabNavigator()
+const AppNavigator: React.FC = () =&gt; {
+  const theme = useTheme()
+
+  return (
+    &lt;AppTabs.Navigator
+      initialRouteName=&quot;RestaurantsStack&quot;
+      screenOptions={({ route }) =&gt; ({
+        headerStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        headerTitleStyle: {
+          color: theme.palette.screen.contrast,
+          ...theme.typography.title,
+        },
+        tabBarStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        tabBarActiveTintColor: theme.palette.primary.strong,
+        tabBarInactiveTintColor: theme.palette.screen.contrast,
+        tabBarIcon: ({ focused, color }) =&gt; {
+          let icon = &quot;settings&quot;
+          if (route.name === &quot;Settings&quot;) {
+            icon = focused ? &quot;settings&quot; : &quot;settings-outline&quot;
+          } else if (route.name === &quot;Restaurants&quot;) {
+            icon = focused ? &quot;restaurant&quot; : &quot;restaurant-outline&quot;
+          }
+
+          return &lt;Icon name={icon} size={20} color={color} /&gt;
+        },
+      })}
+    &gt;
+      &lt;AppTabs.Screen
+        name=&quot;Restaurants&quot;
+        component={RestaurantsNavigator}
+        options={{ title: &quot;Place My Order&quot; }}
+      /&gt;
+      &lt;AppTabs.Screen
+        name=&quot;Settings&quot;
+        component={Settings}
+        options={{ title: &quot;Settings&quot; }}
+      /&gt;
+    &lt;/AppTabs.Navigator&gt;
+  )
+}
+
+const App: React.FC = () =&gt; {
+  return (
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;ThemeProvider&gt;
+        &lt;AuthProvider&gt;
+          &lt;DataMigration&gt;
+            &lt;NavigationContainer&gt;
+              &lt;AppNavigator /&gt;
+            &lt;/NavigationContainer&gt;
+          &lt;/DataMigration&gt;
+        &lt;/AuthProvider&gt;
+      &lt;/ThemeProvider&gt;
+    &lt;/SafeAreaView&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="62,108,153,157-163,only"></div>
+<p>✏️ Update <strong>src/screens/Settings/Settings.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
+import { Switch } from &quot;react-native&quot;
+
+import Button from &quot;../../design/Button&quot;
+import Card from &quot;../../design/Card&quot;
+import Screen from &quot;../../design/Screen&quot;
+import { useThemeMode } from &quot;../../design/theme&quot;
+import Typography from &quot;../../design/Typography&quot;
+import { useAuthentication, useUser } from &quot;../../services/auth&quot;
+
+const Settings: React.FC = () =&gt; {
+  const { signIn, signOut } = useAuthentication()
+  const user = useUser()
+  const { mode, setMode } = useThemeMode()
+
+  return (
+    &lt;Screen&gt;
+      &lt;Card&gt;
+        {user ? (
+          &lt;&gt;
+            &lt;Typography variant=&quot;heading&quot;&gt;Welcome back, {user.name}&lt;/Typography&gt;
+            &lt;Button onPress={signOut}&gt;Sign Out&lt;/Button&gt;
+          &lt;/&gt;
+        ) : (
+          &lt;GoogleSigninButton onPress={signIn} style={{ width: &quot;100%&quot; }} /&gt;
+        )}
+      &lt;/Card&gt;
+      &lt;Card&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;Dark Mode&lt;/Typography&gt;
+        &lt;Switch
+          value={mode === &quot;dark&quot;}
+          onChange={() =&gt; setMode(mode === &quot;light&quot; ? &quot;dark&quot; : &quot;light&quot;)}
+        /&gt;
+      &lt;/Card&gt;
+    &lt;/Screen&gt;
+  )
+}
+
+export default Settings
+
+</code></pre>
+ <div line-highlight="11-13,19-26,only"></div>
+<p>✏️ Update <strong>src/services/auth/AuthProvider.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import {
+  User as UserInfo,
+  GoogleSignin,
+} from &quot;@react-native-google-signin/google-signin&quot;
+import { useCallback, useEffect, useMemo, useState } from &quot;react&quot;
+
+import { AuthContext, AuthContextProvider, useAuthContext } from &quot;./context&quot;
+
+const googleOauthwebClientId = process.env.GOOGLE_OAUTH_CLIENT_ID
+GoogleSignin.configure({
+  scopes: [&quot;openid&quot;, &quot;profile&quot;, &quot;email&quot;],
+  webClientId: googleOauthwebClientId,
+})
+
+export interface AuthProviderProps {
+  children: React.ReactNode
+}
+
+const AuthProvider: React.FC&lt;AuthProviderProps&gt; = ({ children }) =&gt; {
+  const [userInfo, setUserInfo] = useState&lt;UserInfo | undefined&gt;()
+
+  const signIn = useCallback(async () =&gt; {
+    try {
+      const userInfo = await GoogleSignin.signIn()
+      setUserInfo(userInfo)
+      return userInfo.user
+    } catch (error) {
+      setUserInfo(undefined)
+      console.error(&quot;GoogleSignin.signIn() error&quot;, error)
+      return false
+    }
+  }, [])
+
+  const signOut = useCallback(async () =&gt; {
+    try {
+      await GoogleSignin.signOut()
+      setUserInfo(undefined)
+      return true
+    } catch (error) {
+      console.error(&quot;GoogleSignin.signOut() error&quot;, error)
+      return false
+    }
+  }, [])
+
+  useEffect(() =&gt; {
+    async function run() {
+      const userInfo = await GoogleSignin.getCurrentUser()
+      setUserInfo(userInfo || undefined)
+    }
+
+    run()
+  }, [])
+
+  const value = useMemo&lt;AuthContext&gt;(
+    () =&gt; ({
+      signIn,
+      signOut,
+      isAuthenticated: userInfo
+        ? true
+        : userInfo === undefined
+        ? false
+        : undefined,
+      user: userInfo?.user,
+      scopes: userInfo?.scopes,
+      idToken: userInfo?.idToken,
+    }),
+    [signIn, signOut, userInfo],
+  )
+
+  return &lt;AuthContextProvider value={value}&gt;{children}&lt;/AuthContextProvider&gt;
+}
+
+export default AuthProvider
+
+export function useAuthentication(): Pick&lt;AuthContext, &quot;signIn&quot; | &quot;signOut&quot;&gt; {
+  const { signIn, signOut } = useAuthContext()
+
+  return { signIn, signOut }
+}
+
+export function useAuthenticated(): boolean | undefined {
+  const { isAuthenticated } = useAuthContext()
+
+  return isAuthenticated
+}
+
+export function useUser(): UserInfo[&quot;user&quot;] | undefined {
+  const { user } = useAuthContext()
+
+  return user
+}
+
+</code></pre>
+ <div line-highlight="5,15-16,19-20,22-31,34-43,46-49,52,58-62,91,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
-<p>TODO</p>
+<p>Next, with some of the new tricks we've learned we'll also add <a href="./offline-support">Offline Support</a> to so our app is still usable during network outages.</p>
 
 </section>
 
