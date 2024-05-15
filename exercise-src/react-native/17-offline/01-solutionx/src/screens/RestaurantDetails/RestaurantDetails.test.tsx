@@ -90,7 +90,7 @@ describe("Screens/RestaurantDetails", () => {
       </AuthProvider>,
     )
 
-    expect(screen.getByText("Place an order")).toBeOnTheScreen()
+    expect(screen.getByText("Place My Order!")).toBeOnTheScreen()
   })
 
   it("renders loading state", () => {

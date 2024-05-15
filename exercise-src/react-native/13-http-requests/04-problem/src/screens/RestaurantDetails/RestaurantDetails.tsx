@@ -20,7 +20,7 @@ const RestaurantDetails: React.FC<RestaurantDetailsProps> = ({ route }) => {
     <Screen>
       <RestaurantHeader restaurant={restaurant} />
       <Button onPress={() => console.warn("Place an order")}>
-        Place an order
+        Place My Order!
       </Button>
     </Screen>
   )

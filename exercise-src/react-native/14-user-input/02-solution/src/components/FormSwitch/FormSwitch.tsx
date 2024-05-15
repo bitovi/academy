@@ -1,3 +1,4 @@
+import { useId } from "react"
 import { Switch } from "react-native"
 
 import Box from "../../design/Box"
@@ -12,6 +13,7 @@ export interface FormSwitchProps {
 
 const FormSwitch: React.FC<FormSwitchProps> = ({ label, value, onChange }) => {
   const theme = useTheme()
+  const id = useId()
 
   return (
     <Box
@@ -23,8 +25,14 @@ const FormSwitch: React.FC<FormSwitchProps> = ({ label, value, onChange }) => {
         marginVertical: 8,
       }}
     >
-      <Typography variant="label">{label}</Typography>
+      <Typography nativeID={id} variant="label">
+        {label}
+      </Typography>
       <Switch
+        accessibilityLabel="switch"
+        accessibilityLabelledBy={id}
+        onValueChange={onChange}
+        value={value}
         thumbColor={theme.palette.primary.contrast}
         trackColor={{
           true: theme.palette.primary.strong,

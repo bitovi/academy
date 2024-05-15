@@ -13,6 +13,7 @@ describe("Components/FormTextField", () => {
       ></FormTextField>,
     )
     expect(screen.getByText(/Hello/)).toBeOnTheScreen()
+    expect(screen.getByLabelText(/Hello/)).toBeOnTheScreen()
     fireEvent.changeText(screen.getByLabelText(/Hello/i), "test")
     expect(handleChangeMock).toHaveBeenCalledWith("test")
   })

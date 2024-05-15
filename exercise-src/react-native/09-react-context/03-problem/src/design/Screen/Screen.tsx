@@ -9,7 +9,7 @@ export interface ScreenProps extends BoxProps {
 }
 
 const Screen: React.FC<ScreenProps> = ({ style, children, ...props }) => {
-  const { palette } = useTheme()
+  const theme = useTheme()
 
   return (
     <ScrollView>
@@ -17,7 +17,7 @@ const Screen: React.FC<ScreenProps> = ({ style, children, ...props }) => {
         padding="s"
         style={{
           height: "100%",
-          backgroundColor: palette.screen.soft,
+          backgroundColor: theme.palette.screen.soft,
         }}
         {...props}
       >
