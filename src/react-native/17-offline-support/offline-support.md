@@ -14,6 +14,8 @@ In this section, you will:
 
 ## Objective 1: Learn to listen for connection state
 
+<img alt="Screenshot of the application settings page with the connection status." src="../static/img/react-native/17-offline-support/01-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+
 ### Concept TODO
 
 TODO
@@ -34,21 +36,13 @@ npm install @react-native-community/netinfo@11
 
 @diff ../../../exercises/react-native/16-security/01-solution/src/screens/Settings/Settings.tsx ../../../exercises/react-native/17-offline-support/01-problem/src/screens/Settings/Settings.tsx only
 
-✏️ Create **src/services/pmo/favorite/favorite.tsx** and update it to be:
-
-@sourceref ../../../exercises/react-native/17-offline-support/01-solution/src/services/pmo/favorite/favorite.tsx
-
-✏️ Create **src/services/pmo/favorite/index.ts** and update it to be:
-
-@sourceref ../../../exercises/react-native/17-offline-support/01-solution/src/services/pmo/favorite/index.ts
-
 ### Verify 1
 
 TODO
 
 ### Exercise 1
 
-- Use NetInfo to determine connection state
+- Use NetInfo to determine the connection state
 
 - Display message on Settings when offline
 
@@ -63,15 +57,14 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 @diff ../../../exercises/react-native/17-offline-support/01-problem/src/screens/Settings/Settings.tsx ../../../exercises/react-native/17-offline-support/01-solution/src/screens/Settings/Settings.tsx only
 
-✏️ Update **src/services/pmo/favorite/favorite.tsx** to be:
-
-@diff ../../../exercises/react-native/17-offline-support/01-problem/src/services/pmo/favorite/favorite.tsx ../../../exercises/react-native/17-offline-support/01-solution/src/services/pmo/favorite/favorite.tsx only
-
 </details>
 
 ## Objective 2: Use local storage to store restaurant favorites
 
-TODO
+<div style="display: flex; flex-direction: row; gap: 2rem">
+  <img alt="Screenshot of the application's Restaurant Details screen displaying the add favorite button." src="../static/img/react-native/17-offline-support/02-solution-addFavorites.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screenshot of the application's Restaurant Details screen displaying the remove favorite button." src="../static/img/react-native/17-offline-support/02-solution-removeFavorites.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+</div>
 
 ### Concept TODO
 
@@ -79,11 +72,27 @@ TODO
 
 ### Setup 2
 
-TODO
+✏️ Create **src/services/pmo/favorite/hooks.ts** and update it to be:
+
+@sourceref ../../../exercises/react-native/17-offline-support/02-problem/src/services/pmo/favorite/hooks.ts
+
+✏️ Create **src/services/pmo/favorite/index.ts** and update it to be:
+
+@sourceref ../../../exercises/react-native/17-offline-support/02-problem/src/services/pmo/favorite/index.ts
+
+✏️ Update **src/screens/RestaurantDetails/RestaurantDetails.tsx** to be:
+
+@diff ../../../exercises/react-native/17-offline-support/01-solution/src/screens/RestaurantDetails/RestaurantDetails.tsx ../../../exercises/react-native/17-offline-support/02-problem/src/screens/RestaurantDetails/RestaurantDetails.tsx only
 
 ### Verify 2
 
-TODO
+✏️ Create **src/services/pmo/favorite/hooks.test.ts** and update it to be:
+
+@sourceref ../../../exercises/react-native/17-offline-support/02-problem/src/services/pmo/favorite/hooks.test.ts
+
+✏️ Update **src/screens/RestaurantDetails/RestaurantDetails.test.tsx** to be:
+
+@diff ../../../exercises/react-native/17-offline-support/01-solution/src/screens/RestaurantDetails/RestaurantDetails.test.tsx ../../../exercises/react-native/17-offline-support/02-problem/src/screens/RestaurantDetails/RestaurantDetails.test.tsx only
 
 ### Exercise 2
 
@@ -100,13 +109,17 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 <details>
 <summary>Click to see the solution</summary>
 
-TODO
+✏️ Update **src/services/pmo/favorite/hooks.ts** to be:
+
+@diff ../../../exercises/react-native/17-offline-support/02-problem/src/services/pmo/favorite/hooks.ts ../../../exercises/react-native/17-offline-support/02-solution/src/services/pmo/favorite/hooks.ts only
+
+✏️ Update **src/screens/RestaurantDetails/RestaurantDetails.tsx** to be:
+
+@diff ../../../exercises/react-native/17-offline-support/02-problem/src/screens/RestaurantDetails/RestaurantDetails.tsx ../../../exercises/react-native/17-offline-support/02-solution/src/screens/RestaurantDetails/RestaurantDetails.tsx only
 
 </details>
 
 ## Objective 3: Sync offline data when connectivity changes
-
-TODO
 
 ### Concept TODO
 
@@ -114,11 +127,27 @@ TODO
 
 ### Setup 3
 
-TODO
+✏️ Update **src/App.tsx** to be:
+
+@diff ../../../exercises/react-native/17-offline-support/02-solution/src/App.tsx ../../../exercises/react-native/17-offline-support/03-problem/src/App.tsx only
+
+✏️ Update **src/services/pmo/favorite/hooks.ts** to be:
+
+@diff ../../../exercises/react-native/17-offline-support/02-solution/src/services/pmo/favorite/hooks.ts ../../../exercises/react-native/17-offline-support/03-problem/src/services/pmo/favorite/hooks.ts only
+
+✏️ Create **src/services/pmo/favorite/favorite.tsx** and update it to be:
+
+@sourceref ../../../exercises/react-native/17-offline-support/03-problem/src/services/pmo/favorite/favorite.tsx
+
+✏️ Update **src/services/pmo/favorite/index.ts** to be:
+
+@diff ../../../exercises/react-native/17-offline-support/02-solution/src/services/pmo/favorite/index.ts ../../../exercises/react-native/17-offline-support/03-solution/src/services/pmo/favorite/index.ts only
 
 ### Verify 3
 
-TODO
+✏️ Update **src/services/pmo/favorite/hooks.test.ts** to be:
+
+@diff ../../../exercises/react-native/17-offline-support/02-solution/src/services/pmo/favorite/hooks.test.ts ../../../exercises/react-native/17-offline-support/03-problem/src/services/pmo/favorite/hooks.test.ts only
 
 ### Exercise 3
 
@@ -131,10 +160,16 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 <details>
 <summary>Click to see the solution</summary>
 
-TODO
+✏️ Update **src/services/pmo/favorite/favorite.tsx** to be:
+
+@diff ../../../exercises/react-native/17-offline-support/03-problem/src/services/pmo/favorite/favorite.tsx ../../../exercises/react-native/17-offline-support/03-solution/src/services/pmo/favorite/favorite.tsx only
+
+✏️ Update **src/App.tsx** to be:
+
+@diff ../../../exercises/react-native/17-offline-support/03-problem/src/App.tsx ../../../exercises/react-native/17-offline-support/03-solution/src/App.tsx only
 
 </details>
 
 ## Next steps
 
-TODO
+Next, we will learn about [learn-react-native/google-maps] to our application.

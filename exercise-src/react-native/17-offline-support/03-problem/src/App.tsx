@@ -160,7 +160,6 @@ const App: React.FC = () => {
             <NavigationContainer>
               <AppNavigator />
             </NavigationContainer>
-            <FavoritesSync />
           </DataMigration>
         </AuthProvider>
       </ThemeProvider>

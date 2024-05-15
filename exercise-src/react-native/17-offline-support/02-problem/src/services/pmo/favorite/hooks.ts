@@ -12,14 +12,14 @@ interface Favorite {
 }
 
 interface FavoritesResponse {
-  data: Favorite[] | undefined
-  error: Error | undefined
+  data: Favorite[] | null
+  error: Error | null
   isPending: boolean
 }
 
 interface FavoriteResponse {
-  data: Favorite | undefined
-  error: Error | undefined
+  data: Favorite | null
+  error: Error | null
   isPending: boolean
 }
 
@@ -34,12 +34,10 @@ export const useFavorites = (
 ): FavoritesResponse & {
   updateFavorites: (restaurantId: Favorite["restaurantId"]) => void
   favorite: Favorite | undefined
-  syncWithServer: () => void
-  localFavorites: LocalStorageFavorites | undefined
 } => {
   const [response, setResponse] = useState<FavoritesResponse>({
-    data: undefined,
-    error: undefined,
+    data: null,
+    error: null,
     isPending: true,
   })
   const [localFavorites, setLocalFavorites] = useState<
@@ -48,9 +46,14 @@ export const useFavorites = (
   const [favorite, setFavorite] = useState<Favorite | undefined>()
 
   useEffect(() => {
+    //gathering favorites from both DB and local storage.
     const fetchData = async () => {
       const localFavorites = await getData<LocalStorageFavorites>("my-favorite")
-      setLocalFavorites(localFavorites)
+      setLocalFavorites(
+        localFavorites
+          ? localFavorites
+          : { favorites: [], lastSynced: new Date() },
+      )
 
       const { data, error } = await apiRequest<FavoritesResponse>({
         method: "GET",
@@ -61,7 +64,7 @@ export const useFavorites = (
       })
 
       setResponse({
-        data: data?.data || undefined,
+        data: data?.data || null,
         error: error,
         isPending: false,
       })
@@ -72,6 +75,7 @@ export const useFavorites = (
   }, [userId])
 
   useEffect(() => {
+    //finding the restaurant's favorite status.
     if (restaurantId) {
       const getFavorite = async (restaurantId: Favorite["restaurantId"]) => {
         const foundFavorite = localFavorites?.favorites.find(
@@ -94,6 +98,7 @@ export const useFavorites = (
       let newFavorite = {}
 
       if (favoriteIndex === -1) {
+        // if favorites doesn't exist create a new entry.
         newFavorite = {
           userId: userId,
           restaurantId: restaurantId,
@@ -102,6 +107,7 @@ export const useFavorites = (
         }
         newFavorites.push(newFavorite as Favorite)
       } else {
+        // else if favorite do exist update the existing entry.
         newFavorite = {
           ...newFavorites[favoriteIndex],
           favorite: !newFavorites[favoriteIndex].favorite,
@@ -117,74 +123,8 @@ export const useFavorites = (
       })
 
       if (!("_id" in newFavorite) && postRes && postRes.data) {
+        // new entry don't have _id until the api call get's returned. Adding _id to the new favorites.
         newFavorites[newFavorites.length - 1]._id = postRes.data._id
-      }
-
-      const newLocalFavorites = {
-        lastSynced: error ? localFavorites.lastSynced : timestamp,
-        favorites: newFavorites,
-      }
-
-      await storeData<LocalStorageFavorites>("my-favorite", newLocalFavorites)
-      setLocalFavorites(newLocalFavorites)
-      setResponse({ data: newFavorites, error: error, isPending: false })
-    }
-  }
-
-  const syncWithServer = async () => {
-    if (localFavorites) {
-      const { data: serverData } = await apiRequest<FavoritesResponse>({
-        method: "GET",
-        path: "/favorites",
-        params: {
-          userId: userId,
-          "datetimeUpdated[$gt]": localFavorites?.lastSynced,
-        },
-      })
-
-      const newLocalFavorites = {
-        lastSynced: new Date(),
-        favorites: [...localFavorites.favorites],
-      }
-
-      if (serverData?.data) {
-        if (serverData.data.length !== 0) {
-          serverData.data.forEach((serverFavorite) => {
-            const updateIndex = newLocalFavorites.favorites.findIndex(
-              (localFavorite) => localFavorite._id === serverFavorite._id,
-            )
-            newLocalFavorites.favorites[updateIndex] = { ...serverFavorite }
-          })
-        }
-        await Promise.all(
-          newLocalFavorites.favorites.map(async (newLocalFavorite, index) => {
-            if (
-              new Date(localFavorites.lastSynced) <
-                new Date(newLocalFavorite.datetimeUpdated) &&
-              serverData.data?.findIndex(
-                (serverFavorite) => newLocalFavorite._id === serverFavorite._id,
-              ) === -1
-            ) {
-              const { data: postRes, error } =
-                await apiRequest<FavoriteResponse>({
-                  method: "POST",
-                  path: "/favorites",
-                  body: {
-                    ...newLocalFavorite,
-                    datetimeUpdated: newLocalFavorites.lastSynced,
-                  },
-                })
-              if (error) {
-                newLocalFavorites.lastSynced = localFavorites.lastSynced
-              }
-              if (postRes && postRes.data) {
-                newLocalFavorites.favorites[index] = { ...postRes.data }
-              }
-            }
-          }),
-        )
-
-        await storeData<LocalStorageFavorites>("my-favorite", newLocalFavorites)
       }
     }
   }
@@ -193,7 +133,5 @@ export const useFavorites = (
     ...response,
     updateFavorites,
     favorite,
-    syncWithServer,
-    localFavorites,
   }
 }

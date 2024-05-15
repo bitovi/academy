@@ -23,10 +23,7 @@ const RestaurantDetails: React.FC<RestaurantDetailsProps> = ({ route }) => {
   const { slug } = route.params
   const navigation = useNavigation()
   const { data: restaurant, error, isPending } = useRestaurant(slug)
-  const isAuthenticated = useAuthenticated()
-  const user = useUser()
-  const { signIn } = useAuthentication()
-  const { updateFavorites, favorite } = useFavorites(user?.id, restaurant?._id)
+
   useEffect(() => {
     if (restaurant) {
       navigation.setOptions({ title: `${restaurant.name}` })
@@ -51,19 +48,6 @@ const RestaurantDetails: React.FC<RestaurantDetailsProps> = ({ route }) => {
   return (
     <Screen>
       <RestaurantHeader restaurant={restaurant} />
-      <Button
-        onPress={() => {
-          if (isAuthenticated) {
-            updateFavorites(restaurant!._id)
-          } else {
-            signIn()
-          }
-        }}
-      >
-        {isAuthenticated && favorite?.favorite
-          ? "Remove from Favorites"
-          : "Add to favorites"}
-      </Button>
 
       <Button
         onPress={() => {
