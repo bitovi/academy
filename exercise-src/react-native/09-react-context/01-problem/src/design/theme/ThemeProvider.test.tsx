@@ -3,32 +3,34 @@ import { View, Text } from "react-native"
 
 import ThemeProvider, { useTheme } from "./ThemeProvider"
 
-describe("ThemeProvider Provider", () => {
-  it("renders children", async () => {
-    render(
-      <ThemeProvider>
-        <Text>Hello!</Text>
-      </ThemeProvider>,
-    )
+describe("Design/Theme", () => {
+  describe("ThemeProvider", () => {
+    it("renders children", async () => {
+      render(
+        <ThemeProvider>
+          <Text>Hello!</Text>
+        </ThemeProvider>,
+      )
 
-    expect(screen.getByText(/Hello/)).toBeOnTheScreen()
+      expect(screen.getByText(/Hello/)).toBeOnTheScreen()
+    })
   })
-})
 
-describe("ThemeContext context", () => {
-  const TestComponent: React.FC = () => {
-    const theme = useTheme()
+  describe("ThemeContext", () => {
+    const TestComponent: React.FC = () => {
+      const theme = useTheme()
 
-    return (
-      <View>
-        <Text>{theme.palette.primary.main}</Text>
-      </View>
-    )
-  }
+      return (
+        <View>
+          <Text>{theme.palette.primary.main}</Text>
+        </View>
+      )
+    }
 
-  it("context properties are accessible", async () => {
-    render(<TestComponent />)
+    it("exposes context properties", async () => {
+      render(<TestComponent />)
 
-    expect(screen.getByText(/#007980/)).toBeOnTheScreen()
+      expect(screen.getByText(/#007980/)).toBeOnTheScreen()
+    })
   })
 })

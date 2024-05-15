@@ -16,8 +16,8 @@ jest.mock("../../design/theme", () => ({
   }),
 }))
 
-describe("Settings component", () => {
-  it("renders Settings Page", async () => {
+describe("Screens/Settings", () => {
+  it("renders", async () => {
     render(
       <AuthProvider>
         <NavigationContainer>
@@ -28,7 +28,7 @@ describe("Settings component", () => {
     expect(screen.getByText(/Mock Sign in with Google/i)).toBeOnTheScreen()
   })
 
-  it("should switch to dark mode", () => {
+  it("switches to dark mode", () => {
     render(
       <AuthProvider>
         <NavigationContainer>

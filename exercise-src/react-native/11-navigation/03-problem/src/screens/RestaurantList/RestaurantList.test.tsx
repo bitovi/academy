@@ -3,8 +3,8 @@ import { render, screen } from "@testing-library/react-native"
 
 import RestaurantList from "./RestaurantList"
 
-describe("RestaurantList component", () => {
-  it("renders restaurant List", () => {
+describe("Screens/RestaurantList", () => {
+  it("renders", () => {
     render(
       <NavigationContainer>
         <RestaurantList />

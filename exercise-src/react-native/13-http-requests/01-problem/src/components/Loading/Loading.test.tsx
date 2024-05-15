@@ -2,8 +2,8 @@ import { render, screen } from "@testing-library/react-native"
 
 import Loading from "./Loading"
 
-describe("Loading component", () => {
-  it("renders 'loading' text", () => {
+describe("Components/Loading", () => {
+  it("renders", () => {
     render(<Loading />)
     expect(screen.getByText(/Loading…/)).toBeOnTheScreen()
   })

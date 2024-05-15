@@ -14,8 +14,8 @@ const route = {
   },
 } as const
 
-describe("CityList component", () => {
-  it("renders city List", () => {
+describe("Screens/CityList", () => {
+  it("renders", () => {
     render(
       <NavigationContainer>
         {/* @ts-ignore */}

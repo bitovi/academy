@@ -24,7 +24,7 @@ afterAll(() => {
   global.fetch = oldFetch
 })
 
-describe("AuthProvider", () => {
+describe("Services/Auth/AuthProvider", () => {
   const TestComponent: React.FC = () => {
     const isAuthenticated = useAuthenticated()
     const { signIn, signOut } = useAuthentication()
@@ -44,7 +44,7 @@ describe("AuthProvider", () => {
     )
   }
 
-  it("renders with provider; signs in and signs out", async () => {
+  it("renders", async () => {
     render(
       <AuthProvider>
         <TestComponent />
@@ -54,10 +54,24 @@ describe("AuthProvider", () => {
     await waitFor(() => {
       expect(screen.getByText(/mockId/i)).toBeOnTheScreen()
     })
+  })
+
+  it("signs in and signs out", async () => {
+    render(
+      <AuthProvider>
+        <TestComponent />
+      </AuthProvider>,
+    )
+
+    await waitFor(() => {
+      expect(screen.getByText(/mockId/i)).toBeOnTheScreen()
+    })
+
     fireEvent.press(screen.getByText(/Sign Out/i))
     await waitFor(() => {
       expect(screen.getByText(/Mock Sign in with Google/i)).toBeOnTheScreen()
     })
+
     fireEvent.press(screen.getByText(/Mock Sign in with Google/i))
     await waitFor(() => {
       expect(screen.getByText(/Sign Out/i)).toBeOnTheScreen()

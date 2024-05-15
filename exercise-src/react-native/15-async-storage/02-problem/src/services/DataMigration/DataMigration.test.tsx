@@ -29,8 +29,8 @@ afterEach(() => {
   jest.resetAllMocks()
 })
 
-describe("DataMigration component", () => {
-  it("renders", async () => {
+describe("Services/DataMigration", () => {
+  it("renders loading", async () => {
     mockStorageGetData.mockResolvedValueOnce(2)
 
     render(
@@ -38,20 +38,25 @@ describe("DataMigration component", () => {
         <Typography>Hello!</Typography>
       </DataMigration>,
     )
+
     expect(screen.getByText(/Loading…/)).toBeOnTheScreen()
   })
+
   it("renders children after loading", async () => {
     mockStorageGetData.mockResolvedValueOnce(2)
+
     render(
       <DataMigration>
         <Typography>Hello!</Typography>
       </DataMigration>,
     )
+
     await waitFor(() => {
       expect(screen.getByText(/Hello!/)).toBeOnTheScreen()
     })
   })
-  it("updates localStorage if storage version is less than 2", async () => {
+
+  it("updates data if version is less than 2", async () => {
     mockStorageGetData
       .mockResolvedValueOnce(1)
       .mockResolvedValueOnce({
@@ -68,6 +73,7 @@ describe("DataMigration component", () => {
         <Typography>Hello!</Typography>
       </DataMigration>,
     )
+
     await waitFor(() => {
       expect(screen.getByText(/Hello!/)).toBeOnTheScreen()
     })
@@ -92,6 +98,7 @@ describe("DataMigration component", () => {
         <Typography>Hello!</Typography>
       </DataMigration>,
     )
+
     await waitFor(() => {
       expect(screen.getByText(/Hello!/)).toBeOnTheScreen()
     })

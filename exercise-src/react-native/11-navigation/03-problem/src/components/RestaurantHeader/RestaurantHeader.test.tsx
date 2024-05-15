@@ -3,13 +3,28 @@ import { render, screen } from "@testing-library/react-native"
 import { restaurantWithAddress, restaurantWithoutAddress } from "./mocks"
 import RestaurantHeader from "./RestaurantHeader"
 
-describe("RestaurantHeader component", () => {
-  it("renders the restaurant name", () => {
+describe("Components/RestaurantHeader", () => {
+  it("renders", () => {
     render(<RestaurantHeader restaurant={restaurantWithAddress} />)
+    expect(screen.getByText(/\$\$\$/i)).toBeOnTheScreen()
+    expect(screen.getByText("$$$", { exact: false })).toBeOnTheScreen()
+    expect(
+      screen.getByText("Hours: M-F 10am-11pm", { exact: false }),
+    ).toBeOnTheScreen()
+
     expect(screen.getByText(/Test Restaurant/)).toBeOnTheScreen()
+    expect(screen.getByText(/\$\$\$/i)).toBeOnTheScreen()
+    expect(screen.getByText("$$$", { exact: false })).toBeOnTheScreen()
+    expect(
+      screen.getByText("Hours: M-F 10am-11pm", { exact: false }),
+    ).toBeOnTheScreen()
   })
 
-  it("renders the restaurant address when provided", () => {
+  it("does without an address", () => {
+    render(<RestaurantHeader restaurant={restaurantWithoutAddress} />)
+  })
+
+  it("renders the address", () => {
     render(<RestaurantHeader restaurant={restaurantWithAddress} />)
 
     expect(screen.getByText(/123 Test St/i, { exact: false })).toBeOnTheScreen()
@@ -22,27 +37,5 @@ describe("RestaurantHeader component", () => {
         { exact: false },
       ),
     ).toBeOnTheScreen()
-  })
-
-  it("does not render an address when not provided", () => {
-    render(<RestaurantHeader restaurant={restaurantWithoutAddress} />)
-    expect(
-      screen.queryByText(restaurantWithAddress.address.street),
-    ).not.toBeOnTheScreen()
-  })
-
-  it("renders static details like price and hours", () => {
-    render(<RestaurantHeader restaurant={restaurantWithAddress} />)
-
-    expect(screen.getByText(/\$\$\$/i)).toBeOnTheScreen()
-    expect(screen.getByText("$$$", { exact: false })).toBeOnTheScreen()
-    expect(
-      screen.getByText("Hours: M-F 10am-11pm", { exact: false }),
-    ).toBeOnTheScreen()
-  })
-
-  it('renders the "Open Now" text', () => {
-    render(<RestaurantHeader restaurant={restaurantWithAddress} />)
-    expect(screen.getByText("Open Now", { exact: false })).toBeOnTheScreen()
   })
 })

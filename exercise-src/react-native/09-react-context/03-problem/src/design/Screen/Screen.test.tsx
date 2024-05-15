@@ -4,8 +4,8 @@ import Typography from "../Typography"
 
 import Screen from "./Screen"
 
-describe("Screen component", () => {
-  it("renders children", () => {
+describe("Design/Screen", () => {
+  it("renders", () => {
     render(
       <Screen>
         <Typography variant="body">How are you?</Typography>

@@ -7,6 +7,7 @@ describe("App", () => {
     render(<App />)
     expect(screen.getByText(/Place my order/i)).toBeOnTheScreen()
   })
+
   it("renders states", async () => {
     render(<App />)
     expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
@@ -14,8 +15,8 @@ describe("App", () => {
   })
 })
 
-describe("StateList", () => {
-  it("renders states", async () => {
+describe("Screens/StateList", () => {
+  it("renders", async () => {
     render(<StateList />)
     expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
     expect(screen.getByText(/Wisconsin/i)).toBeOnTheScreen()

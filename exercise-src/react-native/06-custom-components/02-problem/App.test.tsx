@@ -7,6 +7,7 @@ describe("App", () => {
     render(<App />)
     expect(screen.getByText(/Place my order/i)).toBeOnTheScreen()
   })
+
   it("renders states", async () => {
     render(<App />)
     expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
@@ -14,16 +15,16 @@ describe("App", () => {
   })
 })
 
-describe("StateList", () => {
-  it("renders states", async () => {
+describe("Screens/StateList", () => {
+  it("renders", async () => {
     render(<StateList />)
     expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
     expect(screen.getByText(/Wisconsin/i)).toBeOnTheScreen()
   })
 })
 
-describe("ListItem", () => {
-  it("renders ListItem with given name property", async () => {
+describe("Screens/StateList/ListItem", () => {
+  it("renders", async () => {
     render(<ListItem name="This is a given name property." />)
     expect(
       screen.getByText(/This is a given name property./i, { exact: false }),

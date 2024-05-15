@@ -19,8 +19,8 @@ const route = {
   },
 } as const
 
-describe("RestaurantList component", () => {
-  it("renders restaurant List", () => {
+describe("Screens/RestaurantList", () => {
+  it("renders", () => {
     render(
       <NavigationContainer>
         {/* @ts-ignore */}

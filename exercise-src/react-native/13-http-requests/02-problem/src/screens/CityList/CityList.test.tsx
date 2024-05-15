@@ -16,7 +16,7 @@ const route = {
   },
 } as const
 
-describe("CityList component", () => {
+describe("Screens/CityList", () => {
   // Mock the hooks and components used in CityList
 
   const mockCitiesResponse = {
@@ -31,7 +31,7 @@ describe("CityList component", () => {
     useCities = jest.spyOn(restaurantHooks, "useCities")
   })
 
-  it("renders city List", () => {
+  it("renders", () => {
     useCities.mockReturnValue({
       ...mockCitiesResponse,
       error: undefined,
@@ -48,7 +48,7 @@ describe("CityList component", () => {
     expect(screen.getByText(/Ann Arbor/i)).toBeOnTheScreen()
   })
 
-  it("renders loading city", () => {
+  it("renders loading state", () => {
     useCities.mockReturnValue({
       data: undefined,
       error: undefined,

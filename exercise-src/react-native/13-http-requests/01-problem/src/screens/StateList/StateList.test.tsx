@@ -5,7 +5,7 @@ import * as restaurantHooks from "../../services/pmo/restaurant/hooks"
 
 import StateList from "./StateList"
 
-describe("StateList component", () => {
+describe("Screens/StateList", () => {
   // Mock the hooks and components used in StateList
   const mockStateResponse = {
     data: [
@@ -21,7 +21,7 @@ describe("StateList component", () => {
     useStates = jest.spyOn(restaurantHooks, "useStates")
   })
 
-  it("renders State List", () => {
+  it("renders", () => {
     useStates.mockReturnValue({
       ...mockStateResponse,
       error: undefined,
