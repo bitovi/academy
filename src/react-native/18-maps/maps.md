@@ -36,23 +36,23 @@ npm install react-native-maps@1.15.1
 
 ✏️ Update **android/build.gradle** to be:
 
-@diff ../../../exercises/react-native/17-offline/01-solution/android/build.gradle ../../../exercises/react-native/18-maps/01-problem/android/build.gradle only
+@diff ../../../exercises/react-native/17-offline-support/03-solution/android/build.gradle ../../../exercises/react-native/18-maps/01-problem/android/build.gradle only
 
 ✏️ Update **android/app/build.gradle** to be:
 
-@diff ../../../exercises/react-native/17-offline/01-solution/android/app/build.gradle ../../../exercises/react-native/18-maps/01-problem/android/app/build.gradle only
+@diff ../../../exercises/react-native/17-offline-support/03-solution/android/app/build.gradle ../../../exercises/react-native/18-maps/01-problem/android/app/build.gradle only
 
 ✏️ Update **android/app/src/main/AndroidManifest.xml** to be:
 
-@diff ../../../exercises/react-native/17-offline/01-solution/android/app/src/main/AndroidManifest.xml ../../../exercises/react-native/18-maps/01-problem/android/app/src/main/AndroidManifest.xml only
+@diff ../../../exercises/react-native/17-offline-support/03-solution/android/app/src/main/AndroidManifest.xml ../../../exercises/react-native/18-maps/01-problem/android/app/src/main/AndroidManifest.xml only
 
 ✏️ Update **src/env.d.ts** to be:
 
-@diff ../../../exercises/react-native/17-offline/01-solution/src/env.d.ts ../../../exercises/react-native/18-maps/01-problem/src/env.d.ts only
+@diff ../../../exercises/react-native/17-offline-support/03-solution/src/env.d.ts ../../../exercises/react-native/18-maps/01-problem/src/env.d.ts only
 
 ✏️ Update **src/screens/RestaurantList/RestaurantList.tsx** to be:
 
-@diff ../../../exercises/react-native/17-offline/01-solution/src/screens/RestaurantList/RestaurantList.tsx ../../../exercises/react-native/18-maps/01-problem/src/screens/RestaurantList/RestaurantList.tsx only
+@diff ../../../exercises/react-native/17-offline-support/03-solution/src/screens/RestaurantList/RestaurantList.tsx ../../../exercises/react-native/18-maps/01-problem/src/screens/RestaurantList/RestaurantList.tsx only
 
 ✏️ Create **src/components/Tabs/Tabs.tsx** and update it to be:
 
