@@ -1,7 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
-import { FC } from "react"
 import { Pressable, SafeAreaView } from "react-native"
 import Icon from "react-native-vector-icons/Ionicons"
 
@@ -60,7 +59,7 @@ export type RestaurantsStackParamList = {
 }
 
 const RestaurantsStack = createStackNavigator<RestaurantsStackParamList>()
-const RestaurantsNavigator: FC = () => {
+const RestaurantsNavigator: React.FC = () => {
   return (
     <RestaurantsStack.Navigator
       initialRouteName="StateList"
@@ -106,7 +105,7 @@ const RestaurantsNavigator: FC = () => {
 }
 
 const AppTabs = createBottomTabNavigator()
-export const AppNavigator: FC = () => {
+const AppNavigator: React.FC = () => {
   const theme = useTheme()
 
   return (
@@ -152,7 +151,7 @@ export const AppNavigator: FC = () => {
 }
 
 // Exercise: Add `AuthProvider` to the App component.
-const App: FC = () => {
+const App: React.FC = () => {
   return (
     <SafeAreaView style={{ height: "100%", width: "100%" }}>
       <ThemeProvider>

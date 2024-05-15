@@ -14,13 +14,19 @@ In this section, you will:
 
 ## Objective 1: Context and Google Authentication
 
-TODO
+<img alt="Screenshot of the Settings tab with a Google sign in button" src="../static/img/react-native/16-security/1-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
 
 ### Concept TODO
 
 TODO
 
 ### Setup 1
+
+✏️ Run:
+
+```bash
+npm install @react-native-google-signin/google-signin@11
+```
 
 ✏️ Update **src/App.tsx** to be:
 
@@ -29,6 +35,12 @@ TODO
 ✏️ Update **src/env.d.ts** to be:
 
 @diff ../../../exercises/react-native/15-async-storage/02-solution/src/env.d.ts ../../../exercises/react-native/16-security/01-problem/src/env.d.ts only
+
+✏️ Update **.env** to be:
+
+@diff ../../../exercises/react-native/15-async-storage/02-solution/.env.example ../../../exercises/react-native/16-security/01-problem/.env.example only
+
+✏️ Update your `GOOGLE_OAUTH_CLIENT_ID` with your key.
 
 ✏️ Update **src/screens/Settings/Settings.tsx** to be:
 
@@ -60,8 +72,8 @@ TODO
 
 First, we need to finish implementing the `AuthContext` in `AuthProvider`:
 
-- Finish implementing the `signIn` and `signOut` callbacks.
-- When a sign in is successful, update the user.
+- Implement `signIn` and `signOut` using `useCallback`.
+- When a sign in is successful, update the `user`.
 
 Next, in `App.js`
 
@@ -69,7 +81,7 @@ Next, in `App.js`
 
 Finally, in `Settings.js`:
 
-- use the hooks from `AuthContext` to grab the `user` state, and `signIn` and `signOut` callbacks.
+- Use the hooks from `AuthContext` to grab the `user` state, and `signIn` and `signOut` callbacks.
 - Implement a conditional to render the a button to Sign In or Sign Out based on the user's state.
 
 ### Solution 1
@@ -95,4 +107,4 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 ## Next steps
 
-Next, with some of the new tricks we've learned we'll also add [Offline Support](./offline-support) to so our app is still usable during network outages.
+Next, with some of the new tricks we've learned we'll also add [Offline Support](./offline-support) so our app is still usable during network outages.
