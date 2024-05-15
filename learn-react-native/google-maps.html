@@ -683,24 +683,558 @@ covering CanJS core libraries.">
 <ul>
 <li>TODO</li>
 </ul>
-<h2>Objective 1: TODO</h2>
+<h2>Objective 1: Add Google Maps to Restaurant List page</h2>
 <p>TODO</p>
 <h3>Concept TODO</h3>
 <p>TODO</p>
 <h3>Setup 1</h3>
-<p>TODO</p>
+<p>✏️ Run:</p>
+<pre><code class="language-bash">npm install react-native-maps@1.15.1
+</code></pre>
+<p>✏️ Create <strong>android/local.properties</strong> and update it to be:</p>
+<pre><code class="language-example">GOOGLE_MAPS_API_KEY=
+</code></pre>
+<p>✏️ Update <strong>GOOGLE_MAPS_API_KEY</strong> with your key.</p>
+<p>✏️ Update <strong>android/build.gradle</strong> to be:</p>
+<pre><code class="language-gradle">buildscript {
+    ext {
+        buildToolsVersion = &quot;34.0.0&quot;
+        minSdkVersion = 21
+        compileSdkVersion = 34
+        targetSdkVersion = 34
+        ndkVersion = &quot;25.1.8937393&quot;
+        kotlinVersion = &quot;1.8.0&quot;
+    }
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath(&quot;com.android.tools.build:gradle&quot;)
+        classpath(&quot;com.facebook.react:react-native-gradle-plugin&quot;)
+        classpath(&quot;org.jetbrains.kotlin:kotlin-gradle-plugin&quot;)
+        classpath(&quot;com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.1&quot;)
+    }
+}   
+
+apply plugin: &quot;com.facebook.react.rootproject&quot;
+</code></pre>
+ <div line-highlight="18,20,only"></div>
+<p>✏️ Update <strong>android/app/build.gradle</strong> to be:</p>
+<pre><code class="language-gradle">apply plugin: &quot;com.android.application&quot;
+apply plugin: &quot;org.jetbrains.kotlin.android&quot;
+apply plugin: &quot;com.facebook.react&quot;
+apply plugin: &quot;com.google.android.libraries.mapsplatform.secrets-gradle-plugin&quot;
+
+/**
+ * This is the configuration block to customize your React Native Android app.
+ * By default you don't need to apply any configuration, just uncomment the lines you need.
+ */
+react {
+    /* Folders */
+    //   The root of your project, i.e. where &quot;package.json&quot; lives. Default is '..'
+    // root = file(&quot;../&quot;)
+    //   The folder where the react-native NPM package is. Default is ../node_modules/react-native
+    // reactNativeDir = file(&quot;../node_modules/react-native&quot;)
+    //   The folder where the react-native Codegen package is. Default is ../node_modules/@react-native/codegen
+    // codegenDir = file(&quot;../node_modules/@react-native/codegen&quot;)
+    //   The cli.js file which is the React Native CLI entrypoint. Default is ../node_modules/react-native/cli.js
+    // cliFile = file(&quot;../node_modules/react-native/cli.js&quot;)
+
+    /* Variants */
+    //   The list of variants to that are debuggable. For those we're going to
+    //   skip the bundling of the JS bundle and the assets. By default is just 'debug'.
+    //   If you add flavors like lite, prod, etc. you'll have to list your debuggableVariants.
+    // debuggableVariants = [&quot;liteDebug&quot;, &quot;prodDebug&quot;]
+
+    /* Bundling */
+    //   A list containing the node command and its flags. Default is just 'node'.
+    // nodeExecutableAndArgs = [&quot;node&quot;]
+    //
+    //   The command to run when bundling. By default is 'bundle'
+    // bundleCommand = &quot;ram-bundle&quot;
+    //
+    //   The path to the CLI configuration file. Default is empty.
+    // bundleConfig = file(../rn-cli.config.js)
+    //
+    //   The name of the generated asset file containing your JS bundle
+    // bundleAssetName = &quot;MyApplication.android.bundle&quot;
+    //
+    //   The entry file for bundle generation. Default is 'index.android.js' or 'index.js'
+    // entryFile = file(&quot;../js/MyApplication.android.js&quot;)
+    //
+    //   A list of extra flags to pass to the 'bundle' commands.
+    //   See https://github.com/react-native-community/cli/blob/main/docs/commands.md#bundle
+    // extraPackagerArgs = []
+
+    /* Hermes Commands */
+    //   The hermes compiler command to run. By default it is 'hermesc'
+    // hermesCommand = &quot;$rootDir/my-custom-hermesc/bin/hermesc&quot;
+    //
+    //   The list of flags to pass to the Hermes compiler. By default is &quot;-O&quot;, &quot;-output-source-map&quot;
+    // hermesFlags = [&quot;-O&quot;, &quot;-output-source-map&quot;]
+}
+
+/**
+ * Set this to true to Run Proguard on Release builds to minify the Java bytecode.
+ */
+def enableProguardInReleaseBuilds = false
+
+/**
+ * The preferred build flavor of JavaScriptCore (JSC)
+ *
+ * For example, to use the international variant, you can use:
+ * `def jscFlavor = 'org.webkit:android-jsc-intl:+'`
+ *
+ * The international variant includes ICU i18n library and necessary data
+ * allowing to use e.g. `Date.toLocaleString` and `String.localeCompare` that
+ * give correct results when using with locales other than en-US. Note that
+ * this variant is about 6MiB larger per architecture than default.
+ */
+def jscFlavor = 'org.webkit:android-jsc:+'
+
+android {
+    ndkVersion rootProject.ext.ndkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdk rootProject.ext.compileSdkVersion
+
+    namespace &quot;com.placemyorder&quot;
+    defaultConfig {
+        applicationId &quot;com.placemyorder&quot;
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName &quot;1.0&quot;
+    }
+    signingConfigs {
+        debug {
+            storeFile file('debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+    }
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        release {
+            // Caution! In production, you need to generate your own keystore file.
+            // see https://reactnative.dev/docs/signed-apk-android.
+            signingConfig signingConfigs.debug
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile(&quot;proguard-android.txt&quot;), &quot;proguard-rules.pro&quot;
+        }
+    }
+}
+
+dependencies {
+    // The version of react-native is set by the React Native Gradle Plugin
+    implementation(&quot;com.facebook.react:react-android&quot;)
+
+    if (hermesEnabled.toBoolean()) {
+        implementation(&quot;com.facebook.react:hermes-android&quot;)
+    } else {
+        implementation jscFlavor
+    }
+}
+
+apply from: file(&quot;../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle&quot;); applyNativeModulesAppBuildGradle(project)
+
+project.ext.vectoricons = [
+    iconFontNames: [ 'Ionicons.ttf' ] // Specify font files
+]
+
+apply from: file(&quot;../../node_modules/react-native-vector-icons/fonts.gradle&quot;)
+</code></pre>
+ <div line-highlight="4,78,80,121-123,only"></div>
+<p>✏️ Update <strong>android/app/src/main/AndroidManifest.xml</strong> to be:</p>
+<pre><code class="language-xml">&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+
+    &lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;
+
+    &lt;application
+      android:name=&quot;.MainApplication&quot;
+      android:label=&quot;@string/app_name&quot;
+      android:icon=&quot;@mipmap/ic_launcher&quot;
+      android:roundIcon=&quot;@mipmap/ic_launcher_round&quot;
+      android:allowBackup=&quot;false&quot;
+      android:theme=&quot;@style/AppTheme&quot;&gt;
+      &lt;activity
+        android:name=&quot;.MainActivity&quot;
+        android:label=&quot;@string/app_name&quot;
+        android:configChanges=&quot;keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode&quot;
+        android:launchMode=&quot;singleTask&quot;
+        android:windowSoftInputMode=&quot;adjustResize&quot;
+        android:exported=&quot;true&quot;&gt;
+        &lt;intent-filter&gt;
+            &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+            &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
+        &lt;/intent-filter&gt;
+      &lt;/activity&gt;
+      &lt;meta-data
+        android:name=&quot;com.google.android.geo.API_KEY&quot;
+        android:value=&quot;${GOOGLE_MAPS_API_KEY}&quot;/&gt;
+    &lt;/application&gt;
+&lt;/manifest&gt;
+
+</code></pre>
+ <div line-highlight="24-26,only"></div>
+<p>✏️ Update <strong>src/env.d.ts</strong> to be:</p>
+<pre><code class="language-ts">/* eslint-disable @typescript-eslint/no-namespace */
+
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      readonly PMO_API: string
+      readonly PMO_ASSETS: string
+      readonly GOOGLE_MAPS_API_KEY: string
+      readonly GOOGLE_OAUTH_CLIENT_ID: string
+    }
+  }
+}
+
+export {}
+
+</code></pre>
+ <div line-highlight="8,only"></div>
+<p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
+import { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import { useState } from &quot;react&quot;
+import { FlatList } from &quot;react-native&quot;
+
+import { RestaurantsStackParamList } from &quot;../../App&quot;
+import Loading from &quot;../../components/Loading&quot;
+import Tabs from &quot;../../components/Tabs&quot;
+import Box from &quot;../../design/Box&quot;
+import Button from &quot;../../design/Button&quot;
+import Screen from &quot;../../design/Screen&quot;
+import Typography from &quot;../../design/Typography&quot;
+import { useRestaurants } from &quot;../../services/pmo/restaurant&quot;
+
+import Map from &quot;./components/Map&quot;
+
+export interface RestaurantListProps
+  extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantList&quot;&gt; {}
+
+const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
+  const navigation = useNavigation()
+
+  const { state, city } = route.params
+  const {
+    data: restaurants,
+    error,
+    isPending,
+  } = useRestaurants(state.short, city.name)
+
+  const [tab, setTab] = useState&lt;string&gt;(&quot;list&quot;)
+
+  if (error) {
+    return (
+      &lt;Box padding=&quot;s&quot;&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;Error loading restaurants: &lt;/Typography&gt;
+        &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+      &lt;/Box&gt;
+    )
+  }
+
+  if (isPending) {
+    return &lt;Loading /&gt;
+  }
+
+  return (
+    &lt;&gt;
+      &lt;Tabs
+        options={[
+          {
+            label: &quot;List&quot;,
+            value: &quot;list&quot;,
+          },
+          {
+            label: &quot;Map&quot;,
+            value: &quot;map&quot;,
+          },
+        ]}
+        value={tab}
+        onChange={setTab}
+      /&gt;
+      &lt;Screen&gt;
+        {tab === &quot;list&quot; &amp;&amp; (
+          &lt;Box padding=&quot;s&quot;&gt;
+            &lt;FlatList
+              data={restaurants}
+              renderItem={({ item: restaurant }) =&gt; (
+                &lt;Button
+                  onPress={() =&gt;
+                    navigation.navigate(&quot;RestaurantDetails&quot;, {
+                      state,
+                      city,
+                      slug: restaurant.slug,
+                    })
+                  }
+                &gt;
+                  {restaurant.name}
+                &lt;/Button&gt;
+              )}
+              keyExtractor={(item) =&gt; item._id}
+            /&gt;
+          &lt;/Box&gt;
+        )}
+        {tab === &quot;map&quot; &amp;&amp; restaurants &amp;&amp; &lt;Map restaurants={restaurants} /&gt;}
+      &lt;/Screen&gt;
+    &lt;/&gt;
+  )
+}
+
+export default RestaurantList
+
+</code></pre>
+ <div line-highlight="3,8,11,15,30,47-84,only"></div>
+<p>✏️ Create <strong>src/components/Tabs/Tabs.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { TextStyle, ViewStyle, Pressable, StyleSheet } from &quot;react-native&quot;
+
+import Box from &quot;../../design/Box&quot;
+import { Theme, useTheme } from &quot;../../design/theme&quot;
+import Typography from &quot;../../design/Typography&quot;
+
+export interface TabsProps {
+  options: Array&lt;{
+    label: string
+    value: string
+  }&gt;
+  value: string
+  onChange: (value: string) =&gt; void
+}
+
+const Tabs: React.FC&lt;TabsProps&gt; = ({ options, value: activeTab, onChange }) =&gt; {
+  const theme = useTheme()
+  const styles = getStyles(theme)
+
+  return (
+    &lt;Box style={styles.wrapper}&gt;
+      {options.map(({ value, label }) =&gt; {
+        const isActive = value === activeTab
+
+        return (
+          &lt;Pressable
+            key={value}
+            onPress={() =&gt; onChange(value)}
+            style={StyleSheet.compose(styles.tab, isActive &amp;&amp; styles.activeTab)}
+          &gt;
+            &lt;Typography
+              variant=&quot;title&quot;
+              style={StyleSheet.compose(
+                styles.tabText,
+                isActive &amp;&amp; styles.activeTabText,
+              )}
+            &gt;
+              {label}
+            &lt;/Typography&gt;
+          &lt;/Pressable&gt;
+        )
+      })}
+    &lt;/Box&gt;
+  )
+}
+
+export default Tabs
+
+function getStyles(theme: Theme): {
+  wrapper: ViewStyle
+  tab: ViewStyle
+  tabText: TextStyle
+  activeTab: ViewStyle
+  activeTabText: TextStyle
+} {
+  return StyleSheet.create({
+    wrapper: {
+      flexDirection: &quot;row&quot;,
+    },
+    tab: {
+      flex: 1,
+      alignItems: &quot;center&quot;,
+      padding: theme.spacing.m,
+      borderWidth: 1,
+
+      borderColor: theme.palette.primary.main,
+      backgroundColor: theme.palette.screen.main,
+    },
+    tabText: {
+      color: theme.palette.screen.contrast,
+    },
+    activeTab: {
+      backgroundColor: theme.palette.primary.main,
+    },
+    activeTabText: {
+      color: theme.palette.primary.contrast,
+    },
+  })
+}
+
+</code></pre>
+<p>✏️ Create <strong>src/components/Tabs/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./Tabs&quot;
+
+</code></pre>
+<p>✏️ Create <strong>src/screens/RestaurantList/components/Map/Map.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import MapView, { PROVIDER_GOOGLE } from &quot;react-native-maps&quot;
+
+import { Restaurant } from &quot;../../../../services/pmo/restaurant&quot;
+
+export interface MapProps {
+  restaurants: Restaurant[]
+}
+
+const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
+  // Exercise: Implement MapView to accept an initialRegion based on the coordinates of one of the restaurants passed.
+}
+
+export default Map
+
+</code></pre>
+<p>✏️ Create <strong>src/screens/RestaurantList/components/Map/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./Map&quot;
+
+</code></pre>
 <h3>Verify 1</h3>
 <p>TODO</p>
 <h3>Exercise 1</h3>
-<p>TODO</p>
+<ul>
+<li>Implement Google Map's <code>MapView</code> for it to properly render when the <code>Map</code> tab is selected.</li>
+</ul>
 <h3>Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/screens/RestaurantList/components/Map/Map.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import MapView, { PROVIDER_GOOGLE } from &quot;react-native-maps&quot;
+
+import { Restaurant } from &quot;../../../../services/pmo/restaurant&quot;
+
+export interface MapProps {
+  restaurants: Restaurant[]
+}
+
+const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
+  return (
+    &lt;MapView
+      // needs a minHeight to display without error
+      style={{ minHeight: &quot;100%&quot; }}
+      provider={PROVIDER_GOOGLE}
+      initialRegion={{
+        ...restaurants[0].coordinate,
+        latitudeDelta: 0.27,
+        longitudeDelta: 0.5,
+      }}
+      loadingEnabled
+    &gt;&lt;/MapView&gt;
+  )
+}
+
+export default Map
+
+</code></pre>
+ <div line-highlight="10-22,"></div>
+<p></details></p>
+<h2>Objective 2: Add restaurant pins with tooltips to map</h2>
 <p>TODO</p>
+<h3>Concept TODO</h3>
+<p>TODO</p>
+<h3>Setup 2</h3>
+<p>✏️ Update <strong>src/screens/RestaurantList/components/Map/Map.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
+import MapView, { Marker, PROVIDER_GOOGLE } from &quot;react-native-maps&quot;
+
+import { Restaurant } from &quot;../../../../services/pmo/restaurant&quot;
+
+export interface MapProps {
+  restaurants: Restaurant[]
+}
+
+const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
+  return (
+    &lt;MapView
+      // needs a minHeight to display without error
+      style={{ minHeight: &quot;100%&quot; }}
+      provider={PROVIDER_GOOGLE}
+      initialRegion={{
+        ...restaurants[0].coordinate,
+        latitudeDelta: 0.27,
+        longitudeDelta: 0.5,
+      }}
+      loadingEnabled
+    &gt;&lt;/MapView&gt;
+  )
+}
+
+export default Map
+
+</code></pre>
+ <div line-highlight="1-2,"></div>
+<h3>Verify 2</h3>
+<p>TODO</p>
+<h3>Exercise 2</h3>
+<ul>
+<li>Using the <code>restaurants</code> property, create a <code>Marker</code> for each restaurant.</li>
+<li>Fill out the <code>coordinate</code>, <code>title</code>, and <code>description</code> properties on Marker.</li>
+<li>Use <code>onCallOutPress</code> to add <code>navigate</code> to the <code>RestaurantDetails</code> screen.</li>
+</ul>
+<h3>Solution 2</h3>
+<p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/screens/RestaurantList/components/Map/Map.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
+import MapView, { Marker, PROVIDER_GOOGLE } from &quot;react-native-maps&quot;
+
+import { Restaurant } from &quot;../../../../services/pmo/restaurant&quot;
+
+export interface MapProps {
+  restaurants: Restaurant[]
+}
+
+const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
+  const navigation = useNavigation()
+
+  return (
+    &lt;MapView
+      // needs a minHeight to display without error
+      style={{ minHeight: &quot;100%&quot; }}
+      provider={PROVIDER_GOOGLE}
+      initialRegion={{
+        ...restaurants[0].coordinate,
+        latitudeDelta: 0.27,
+        longitudeDelta: 0.5,
+      }}
+      loadingEnabled
+    &gt;
+      {restaurants.map((restaurant, index) =&gt; (
+        &lt;Marker
+          key={index}
+          coordinate={restaurant.coordinate}
+          title={restaurant.name}
+          description={restaurant.address?.street}
+          onCalloutPress={() =&gt;
+            navigation.navigate(&quot;RestaurantDetails&quot;, {
+              state: restaurant.state,
+              city: restaurant.city,
+              slug: restaurant.slug,
+            })
+          }
+        /&gt;
+      ))}
+    &lt;/MapView&gt;
+  )
+}
+
+export default Map
+
+</code></pre>
+ <div line-highlight="11,24-40,"></div>
 <p></details></p>
 <h2>Next steps</h2>
-<p>TODO</p>
+<p>We've accomplished a lot for our React Native App, in order to polish it just a bit more let's get into some <a href="./performance-optimization">Performance and Optimization</a> practices.</p>
 
 </section>
 
