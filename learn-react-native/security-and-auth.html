@@ -684,15 +684,17 @@ covering CanJS core libraries.">
 <li>TODO</li>
 </ul>
 <h2>Objective 1: Context and Google Authentication</h2>
-<p>TODO</p>
+<p><img alt="Screenshot of the Settings tab with a Google sign in button" src="../static/img/react-native/16-security/1-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
 <h3>Concept TODO</h3>
 <p>TODO</p>
 <h3>Setup 1</h3>
+<p>✏️ Run:</p>
+<pre><code class="language-bash">npm install @react-native-google-signin/google-signin@11
+</code></pre>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { createStackNavigator } from &quot;@react-navigation/stack&quot;
-import { FC } from &quot;react&quot;
 import { Pressable, SafeAreaView } from &quot;react-native&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
@@ -751,7 +753,7 @@ export type RestaurantsStackParamList = {
 }
 
 const RestaurantsStack = createStackNavigator&lt;RestaurantsStackParamList&gt;()
-const RestaurantsNavigator: FC = () =&gt; {
+const RestaurantsNavigator: React.FC = () =&gt; {
   return (
     &lt;RestaurantsStack.Navigator
       initialRouteName=&quot;StateList&quot;
@@ -797,7 +799,7 @@ const RestaurantsNavigator: FC = () =&gt; {
 }
 
 const AppTabs = createBottomTabNavigator()
-export const AppNavigator: FC = () =&gt; {
+const AppNavigator: React.FC = () =&gt; {
   const theme = useTheme()
 
   return (
@@ -843,7 +845,7 @@ export const AppNavigator: FC = () =&gt; {
 }
 
 // Exercise: Add `AuthProvider` to the App component.
-const App: FC = () =&gt; {
+const App: React.FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
       &lt;ThemeProvider&gt;
@@ -860,7 +862,7 @@ const App: FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="4,17,63,109,154-155,only"></div>
+ <div line-highlight="16,153,only"></div>
 <p>✏️ Update <strong>src/env.d.ts</strong> to be:</p>
 <pre><code class="language-ts">/* eslint-disable @typescript-eslint/no-namespace */
 
@@ -878,6 +880,12 @@ export {}
 
 </code></pre>
  <div line-highlight="8,only"></div>
+<p>✏️ Update <strong>.env</strong> to be:</p>
+<pre><code class="language-example">PMO_API=http://localhost:7070
+GOOGLE_OAUTH_CLIENT_ID= 
+</code></pre>
+ <div line-highlight="2,only"></div>
+<p>✏️ Update your <code>GOOGLE_OAUTH_CLIENT_ID</code> with your key.</p>
 <p>✏️ Update <strong>src/screens/Settings/Settings.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
 import { FC } from &quot;react&quot;
@@ -934,10 +942,7 @@ GoogleSignin.configure({
 const AuthProvider: FC&lt;{ children: ReactNode }&gt; = ({ children }) =&gt; {
   const [userInfo, setUserInfo] = useState&lt;UserInfo | null&gt;()
 
-  // Exercise: Finish implementing the `signIn` and `signOut` callbacks.
-  const signIn = useCallback(async () =&gt; {}, [])
-
-  const signOut = useCallback(async () =&gt; {}, [])
+  // Exercise: Implement `signIn` and `signOut` using `useCallback`.
 
   useEffect(() =&gt; {
     // Exercise: When a sign in is successful, update the user.
@@ -1140,8 +1145,8 @@ describe(&quot;AuthProvider&quot;, () =&gt; {
 <h3>Exercise 1</h3>
 <p>First, we need to finish implementing the <code>AuthContext</code> in <code>AuthProvider</code>:</p>
 <ul>
-<li>Finish implementing the <code>signIn</code> and <code>signOut</code> callbacks.</li>
-<li>When a sign in is successful, update the user.</li>
+<li>Implement <code>signIn</code> and <code>signOut</code> using <code>useCallback</code>.</li>
+<li>When a sign in is successful, update the <code>user</code>.</li>
 </ul>
 <p>Next, in <code>App.js</code></p>
 <ul>
@@ -1149,7 +1154,7 @@ describe(&quot;AuthProvider&quot;, () =&gt; {
 </ul>
 <p>Finally, in <code>Settings.js</code>:</p>
 <ul>
-<li>use the hooks from <code>AuthContext</code> to grab the <code>user</code> state, and <code>signIn</code> and <code>signOut</code> callbacks.</li>
+<li>Use the hooks from <code>AuthContext</code> to grab the <code>user</code> state, and <code>signIn</code> and <code>signOut</code> callbacks.</li>
 <li>Implement a conditional to render the a button to Sign In or Sign Out based on the user's state.</li>
 </ul>
 <h3>Solution 1</h3>
@@ -1328,7 +1333,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="62,108,153,157-163,only"></div>
+ <div line-highlight="157-163,only"></div>
 <p>✏️ Update <strong>src/screens/Settings/Settings.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
 import { Switch } from &quot;react-native&quot;
@@ -1469,7 +1474,7 @@ export function useUser(): UserInfo[&quot;user&quot;] | undefined {
  <div line-highlight="5,15-16,19-20,22-31,34-43,46-49,52,58-62,91,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
-<p>Next, with some of the new tricks we've learned we'll also add <a href="./offline-support">Offline Support</a> to so our app is still usable during network outages.</p>
+<p>Next, with some of the new tricks we've learned we'll also add <a href="./offline-support">Offline Support</a> so our app is still usable during network outages.</p>
 
 </section>
 
