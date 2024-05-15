@@ -61,7 +61,7 @@ const RestaurantDetails: React.FC<RestaurantDetailsProps> = ({ route }) => {
         }}
       >
         {isAuthenticated && favorite?.favorite
-          ? "Remove from Favorites"
+          ? "Remove from favorites"
           : "Add to favorites"}
       </Button>
 

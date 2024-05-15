@@ -36,21 +36,13 @@ npm install @react-native-community/netinfo@11
 
 @diff ../../../exercises/react-native/16-security/01-solution/src/screens/Settings/Settings.tsx ../../../exercises/react-native/17-offline-support/01-problem/src/screens/Settings/Settings.tsx only
 
-✏️ Create **src/services/pmo/favorite/favorite.tsx** and update it to be:
-
-@sourceref ../../../exercises/react-native/17-offline-support/01-solution/src/services/pmo/favorite/favorite.tsx
-
-✏️ Create **src/services/pmo/favorite/index.ts** and update it to be:
-
-@sourceref ../../../exercises/react-native/17-offline-support/01-solution/src/services/pmo/favorite/index.ts
-
 ### Verify 1
 
 TODO
 
 ### Exercise 1
 
-- Use NetInfo to determine connection state
+- Use NetInfo to determine the connection state
 
 - Display message on Settings when offline
 
@@ -64,10 +56,6 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 ✏️ Update **src/screens/Settings/Settings.tsx** to be:
 
 @diff ../../../exercises/react-native/17-offline-support/01-problem/src/screens/Settings/Settings.tsx ../../../exercises/react-native/17-offline-support/01-solution/src/screens/Settings/Settings.tsx only
-
-✏️ Update **src/services/pmo/favorite/favorite.tsx** to be:
-
-@diff ../../../exercises/react-native/17-offline-support/01-problem/src/services/pmo/favorite/favorite.tsx ../../../exercises/react-native/17-offline-support/01-solution/src/services/pmo/favorite/favorite.tsx only
 
 </details>
 
@@ -84,10 +72,6 @@ TODO
 
 ### Setup 2
 
-✏️ Update **src/screens/RestaurantDetails/RestaurantDetails.tsx** to be:
-
-@diff ../../../exercises/react-native/17-offline-support/01-solution/src/screens/RestaurantDetails/RestaurantDetails.tsx ../../../exercises/react-native/17-offline-support/02-problem/src/screens/RestaurantDetails/RestaurantDetails.tsx only
-
 ✏️ Create **src/services/pmo/favorite/hooks.ts** and update it to be:
 
 @sourceref ../../../exercises/react-native/17-offline-support/02-problem/src/services/pmo/favorite/hooks.ts
@@ -95,6 +79,10 @@ TODO
 ✏️ Create **src/services/pmo/favorite/index.ts** and update it to be:
 
 @sourceref ../../../exercises/react-native/17-offline-support/02-problem/src/services/pmo/favorite/index.ts
+
+✏️ Update **src/screens/RestaurantDetails/RestaurantDetails.tsx** to be:
+
+@diff ../../../exercises/react-native/17-offline-support/01-solution/src/screens/RestaurantDetails/RestaurantDetails.tsx ../../../exercises/react-native/17-offline-support/02-problem/src/screens/RestaurantDetails/RestaurantDetails.tsx only
 
 ### Verify 2
 
@@ -121,13 +109,13 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 <details>
 <summary>Click to see the solution</summary>
 
-✏️ Update **src/screens/RestaurantDetails/RestaurantDetails.tsx** to be:
-
-@diff ../../../exercises/react-native/17-offline-support/02-problem/src/screens/RestaurantDetails/RestaurantDetails.tsx ../../../exercises/react-native/17-offline-support/02-solution/src/screens/RestaurantDetails/RestaurantDetails.tsx only
-
 ✏️ Update **src/services/pmo/favorite/hooks.ts** to be:
 
 @diff ../../../exercises/react-native/17-offline-support/02-problem/src/services/pmo/favorite/hooks.ts ../../../exercises/react-native/17-offline-support/02-solution/src/services/pmo/favorite/hooks.ts only
+
+✏️ Update **src/screens/RestaurantDetails/RestaurantDetails.tsx** to be:
+
+@diff ../../../exercises/react-native/17-offline-support/02-problem/src/screens/RestaurantDetails/RestaurantDetails.tsx ../../../exercises/react-native/17-offline-support/02-solution/src/screens/RestaurantDetails/RestaurantDetails.tsx only
 
 </details>
 
@@ -147,9 +135,13 @@ TODO
 
 @diff ../../../exercises/react-native/17-offline-support/02-solution/src/services/pmo/favorite/hooks.ts ../../../exercises/react-native/17-offline-support/03-problem/src/services/pmo/favorite/hooks.ts only
 
-✏️ Update **src/services/pmo/favorite/favorite.tsx** to be:
+✏️ Create **src/services/pmo/favorite/favorite.tsx** and update it to be:
 
-@diff ../../../exercises/react-native/17-offline-support/02-solution/src/services/pmo/favorite/favorite.tsx ../../../exercises/react-native/17-offline-support/03-problem/src/services/pmo/favorite/favorite.tsx only
+@sourceref ../../../exercises/react-native/17-offline-support/03-problem/src/services/pmo/favorite/favorite.tsx
+
+✏️ Update **src/services/pmo/favorite/index.ts** to be:
+
+@diff ../../../exercises/react-native/17-offline-support/02-solution/src/services/pmo/favorite/index.ts ../../../exercises/react-native/17-offline-support/03-solution/src/services/pmo/favorite/index.ts only
 
 ### Verify 3
 
@@ -171,6 +163,10 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 ✏️ Update **src/services/pmo/favorite/favorite.tsx** to be:
 
 @diff ../../../exercises/react-native/17-offline-support/03-problem/src/services/pmo/favorite/favorite.tsx ../../../exercises/react-native/17-offline-support/03-solution/src/services/pmo/favorite/favorite.tsx only
+
+✏️ Update **src/App.tsx** to be:
+
+@diff ../../../exercises/react-native/17-offline-support/03-problem/src/App.tsx ../../../exercises/react-native/17-offline-support/03-solution/src/App.tsx only
 
 </details>
 
