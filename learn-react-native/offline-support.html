@@ -683,17 +683,239 @@ covering CanJS core libraries.">
 <ul>
 <li>TODO</li>
 </ul>
-<h2>Objective 1: TODO</h2>
-<p>TODO</p>
+<h2>Objective 1: Learn to listen for connection state</h2>
 <h3>Concept TODO</h3>
 <p>TODO</p>
 <h3>Setup 1</h3>
-<p>TODO</p>
+<p>✏️ Run:</p>
+<pre><code class="language-bash">npm install @react-native-community/netinfo@11
+</code></pre>
+<p>✏️ Update <strong>jest-setup.ts</strong> to be:</p>
+<pre><code class="language-ts">import &quot;@testing-library/react-native/extend-expect&quot;
+
+import &quot;react-native-gesture-handler/jestSetup&quot;
+import &quot;@react-native-google-signin/google-signin/jest/build/setup&quot;
+
+import mockRNCNetInfo from &quot;@react-native-community/netinfo/jest/netinfo-mock&quot;
+
+jest.mock(&quot;@react-native-community/netinfo&quot;, () =&gt; mockRNCNetInfo)
+
+jest.mock(&quot;@react-navigation/native&quot;, () =&gt; {
+  const actualNav = jest.requireActual(&quot;@react-navigation/native&quot;)
+  return {
+    ...actualNav,
+    useNavigation: () =&gt; ({
+      navigate: jest.fn(),
+      setOptions: jest.fn(),
+    }),
+  }
+})
+
+jest.mock(&quot;./src/services/storage/storage&quot;, () =&gt;
+  require(&quot;./src/services/storage/storage.mock&quot;),
+)
+
+jest.mock(&quot;@react-native-async-storage/async-storage&quot;, () =&gt;
+  require(&quot;@react-native-async-storage/async-storage/jest/async-storage-mock&quot;),
+)
+
+const consoleError = console.error
+console.error = (message, ...args) =&gt; {
+  if (
+    typeof message === &quot;string&quot; &amp;&amp;
+    message.match(
+      /Warning: An update to .+ inside a test was not wrapped in act\(\.\.\.\)\./,
+    )
+  ) {
+    return
+  }
+
+  return consoleError(message, ...args)
+}
+
+</code></pre>
+ <div line-highlight="6,8,only"></div>
+<p>✏️ Update <strong>src/screens/Settings/Settings.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
+import { FC } from &quot;react&quot;
+import { Switch } from &quot;react-native&quot;
+
+import Button from &quot;../../design/Button&quot;
+import Card from &quot;../../design/Card&quot;
+import Screen from &quot;../../design/Screen&quot;
+import { useThemeMode } from &quot;../../design/theme&quot;
+import Typography from &quot;../../design/Typography&quot;
+import { useAuthentication, useUser } from &quot;../../services/auth&quot;
+import FavoritesSync from &quot;../../services/pmo/favorite&quot;
+
+const Settings: FC = () =&gt; {
+  const { signIn, signOut } = useAuthentication()
+  const user = useUser()
+  const { mode, setMode } = useThemeMode()
+
+  return (
+    &lt;Screen&gt;
+      &lt;Card&gt;
+        {user ? (
+          &lt;&gt;
+            &lt;Typography variant=&quot;heading&quot;&gt;Welcome back, {user.name}&lt;/Typography&gt;
+            &lt;Button onPress={signOut}&gt;Sign Out&lt;/Button&gt;
+          &lt;/&gt;
+        ) : (
+          &lt;GoogleSigninButton onPress={signIn} style={{ width: &quot;100%&quot; }} /&gt;
+        )}
+      &lt;/Card&gt;
+      &lt;Card&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;Dark Mode&lt;/Typography&gt;
+        &lt;Switch
+          value={mode === &quot;dark&quot;}
+          onChange={() =&gt; setMode(mode === &quot;light&quot; ? &quot;dark&quot; : &quot;light&quot;)}
+        /&gt;
+      &lt;/Card&gt;
+    &lt;/Screen&gt;
+  )
+}
+
+export default Settings
+
+</code></pre>
+ <div line-highlight="2,11,13,only"></div>
+<p>✏️ Create <strong>src/services/pmo/favorite/favorite.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { useNetInfo } from &quot;@react-native-community/netinfo&quot;
+import { FC } from &quot;react&quot;
+
+import Typography from &quot;../../../design/Typography&quot;
+
+const FavoritesSync: FC = () =&gt; {
+  const { isConnected } = useNetInfo()
+
+  return (
+    &lt;Typography&gt;
+      Connection Status: {isConnected ? &quot;Online&quot; : &quot;Offline&quot;}
+    &lt;/Typography&gt;
+  )
+}
+
+export default FavoritesSync
+
+</code></pre>
+<p>✏️ Create <strong>src/services/pmo/favorite/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./favorite&quot;
+
+</code></pre>
 <h3>Verify 1</h3>
 <p>TODO</p>
 <h3>Exercise 1</h3>
-<p>TODO</p>
+<ul>
+<li><p>Use NetInfo to determine connection state</p></li>
+<li><p>Display message on Settings when offline</p></li>
+</ul>
 <h3>Solution 1</h3>
+<p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/screens/Settings/Settings.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
+import { FC } from &quot;react&quot;
+import { Switch } from &quot;react-native&quot;
+
+import Button from &quot;../../design/Button&quot;
+import Card from &quot;../../design/Card&quot;
+import Screen from &quot;../../design/Screen&quot;
+import { useThemeMode } from &quot;../../design/theme&quot;
+import Typography from &quot;../../design/Typography&quot;
+import { useAuthentication, useUser } from &quot;../../services/auth&quot;
+import FavoritesSync from &quot;../../services/pmo/favorite&quot;
+
+const Settings: FC = () =&gt; {
+  const { signIn, signOut } = useAuthentication()
+  const user = useUser()
+  const { mode, setMode } = useThemeMode()
+
+  return (
+    &lt;Screen&gt;
+      &lt;Card&gt;
+        {user ? (
+          &lt;&gt;
+            &lt;Typography variant=&quot;heading&quot;&gt;Welcome back, {user.name}&lt;/Typography&gt;
+            &lt;Button onPress={signOut}&gt;Sign Out&lt;/Button&gt;
+          &lt;/&gt;
+        ) : (
+          &lt;GoogleSigninButton onPress={signIn} style={{ width: &quot;100%&quot; }} /&gt;
+        )}
+      &lt;/Card&gt;
+      &lt;Card&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;Dark Mode&lt;/Typography&gt;
+        &lt;Switch
+          value={mode === &quot;dark&quot;}
+          onChange={() =&gt; setMode(mode === &quot;light&quot; ? &quot;dark&quot; : &quot;light&quot;)}
+        /&gt;
+      &lt;/Card&gt;
+      &lt;Card&gt;
+        &lt;FavoritesSync /&gt;
+      &lt;/Card&gt;
+    &lt;/Screen&gt;
+  )
+}
+
+export default Settings
+
+</code></pre>
+ <div line-highlight="37-39,only"></div>
+<p>✏️ Update <strong>src/services/pmo/favorite/favorite.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { useNetInfo } from &quot;@react-native-community/netinfo&quot;
+import { FC } from &quot;react&quot;
+
+import Typography from &quot;../../../design/Typography&quot;
+
+const FavoritesSync: FC = () =&gt; {
+  const { isConnected } = useNetInfo()
+
+  return (
+    &lt;Typography&gt;
+      Connection Status: {isConnected ? &quot;Online&quot; : &quot;Offline&quot;}
+    &lt;/Typography&gt;
+  )
+}
+
+export default FavoritesSync
+
+</code></pre>
+ <div line-highlight="7,9-13,only"></div>
+<p></details></p>
+<h2>Objective 2: Use local storage to store restaurant favorites</h2>
+<p>TODO</p>
+<h3>Concept TODO</h3>
+<p>TODO</p>
+<h3>Setup 2</h3>
+<p>TODO</p>
+<h3>Verify 2</h3>
+<p>TODO</p>
+<h3>Exercise 2</h3>
+<ul>
+<li><p>Add offline-enabled favorite button to RestaurantDetails</p></li>
+<li><p>Toggle favorites in API, ignore no-network failures</p></li>
+<li><p>Toggle favorites locally</p></li>
+</ul>
+<h3>Solution 2</h3>
+<p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>TODO</p>
+<p></details></p>
+<h2>Objective 3: Sync offline data when connectivity changes</h2>
+<p>TODO</p>
+<h3>Concept TODO</h3>
+<p>TODO</p>
+<h3>Setup 3</h3>
+<p>TODO</p>
+<h3>Verify 3</h3>
+<p>TODO</p>
+<h3>Exercise 3</h3>
+<ul>
+<li>Create connectivity event listener, sync favorites to api</li>
+</ul>
+<h3>Solution 3</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
