@@ -151,13 +151,11 @@ TODO
 
 @diff ../../../exercises/react-native/17-offline-support/02-solution/src/services/pmo/favorite/favorite.tsx ../../../exercises/react-native/17-offline-support/03-problem/src/services/pmo/favorite/favorite.tsx only
 
-
 ### Verify 3
 
 ✏️ Update **src/services/pmo/favorite/hooks.test.ts** to be:
 
 @diff ../../../exercises/react-native/17-offline-support/02-solution/src/services/pmo/favorite/hooks.test.ts ../../../exercises/react-native/17-offline-support/03-problem/src/services/pmo/favorite/hooks.test.ts only
-
 
 ### Exercise 3
 
@@ -179,4 +177,3 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 ## Next steps
 
 Next, we will learn about [learn-react-native/google-maps] to our application.
-

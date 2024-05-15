@@ -1,8 +1,8 @@
 import { useNetInfo } from "@react-native-community/netinfo"
-import { FC, useEffect } from "react"
+import { useEffect } from "react"
 
-import { useUser } from "../../auth"
 import Typography from "../../../design/Typography"
+import { useUser } from "../../auth"
 
 import { useFavorites } from "./hooks"
 
@@ -20,7 +20,7 @@ const useFavoritesSync = (): boolean => {
   return isConnected
 }
 
-const FavoritesSync: FC = () => {
+const FavoritesSync: React.FC = () => {
   const isConnected = useFavoritesSync()
 
   return (

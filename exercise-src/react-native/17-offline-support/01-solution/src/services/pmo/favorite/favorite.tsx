@@ -1,9 +1,8 @@
 import { useNetInfo } from "@react-native-community/netinfo"
-import { FC } from "react"
 
 import Typography from "../../../design/Typography"
 
-const FavoritesSync: FC = () => {
+const FavoritesSync: React.FC = () => {
   const { isConnected } = useNetInfo()
 
   return (

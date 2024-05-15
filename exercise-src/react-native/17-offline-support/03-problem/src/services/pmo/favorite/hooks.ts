@@ -47,10 +47,15 @@ export const useFavorites = (
   >()
   const [favorite, setFavorite] = useState<Favorite | undefined>()
 
-  useEffect(() => { //gathering favorites from both DB and local storage.
+  useEffect(() => {
+    //gathering favorites from both DB and local storage.
     const fetchData = async () => {
       const localFavorites = await getData<LocalStorageFavorites>("my-favorite")
-      setLocalFavorites(localFavorites ? localFavorites : {favorites: [], lastSynced: new Date()})
+      setLocalFavorites(
+        localFavorites
+          ? localFavorites
+          : { favorites: [], lastSynced: new Date() },
+      )
 
       const { data, error } = await apiRequest<FavoritesResponse>({
         method: "GET",
@@ -71,7 +76,8 @@ export const useFavorites = (
     }
   }, [userId])
 
-  useEffect(() => { //finding the restaurant's favorite status.
+  useEffect(() => {
+    //finding the restaurant's favorite status.
     if (restaurantId) {
       const getFavorite = async (restaurantId: Favorite["restaurantId"]) => {
         const foundFavorite = localFavorites?.favorites.find(
@@ -93,7 +99,8 @@ export const useFavorites = (
       const timestamp = new Date()
       let newFavorite = {}
 
-      if (favoriteIndex === -1) { // if favorites doesn't exist create a new entry.
+      if (favoriteIndex === -1) {
+        // if favorites doesn't exist create a new entry.
         newFavorite = {
           userId: userId,
           restaurantId: restaurantId,
@@ -101,7 +108,8 @@ export const useFavorites = (
           datetimeUpdated: timestamp,
         }
         newFavorites.push(newFavorite as Favorite)
-      } else { // else if favorite do exist update the existing entry.
+      } else {
+        // else if favorite do exist update the existing entry.
         newFavorite = {
           ...newFavorites[favoriteIndex],
           favorite: !newFavorites[favoriteIndex].favorite,
@@ -116,7 +124,8 @@ export const useFavorites = (
         body: newFavorite,
       })
 
-      if (!("_id" in newFavorite) && postRes && postRes.data) { // new entry don't have _id until the api call get's returned. Adding _id to the new favorites.
+      if (!("_id" in newFavorite) && postRes && postRes.data) {
+        // new entry don't have _id until the api call get's returned. Adding _id to the new favorites.
         newFavorites[newFavorites.length - 1]._id = postRes.data._id
       }
 
@@ -131,7 +140,8 @@ export const useFavorites = (
     }
   }
 
-  const syncWithServer = async () => { // Updating the DB with the local data.
+  const syncWithServer = async () => {
+    // Updating the DB with the local data.
     if (localFavorites) {
       const { data: serverData } = await apiRequest<FavoritesResponse>({
         method: "GET",
@@ -149,14 +159,16 @@ export const useFavorites = (
 
       if (serverData?.data) {
         if (serverData.data.length !== 0) {
-          serverData.data.forEach((serverFavorite) => { // Looping through the server data and updating it with the local.
+          serverData.data.forEach((serverFavorite) => {
+            // Looping through the server data and updating it with the local.
             const updateIndex = newLocalFavorites.favorites.findIndex(
               (localFavorite) => localFavorite._id === serverFavorite._id,
             )
             newLocalFavorites.favorites[updateIndex] = { ...serverFavorite }
           })
         }
-        await Promise.all( // Calling the server to update the DB.
+        await Promise.all(
+          // Calling the server to update the DB.
           newLocalFavorites.favorites.map(async (newLocalFavorite, index) => {
             if (
               new Date(localFavorites.lastSynced) <
@@ -177,7 +189,8 @@ export const useFavorites = (
               if (error) {
                 newLocalFavorites.lastSynced = localFavorites.lastSynced
               }
-              if (postRes && postRes.data) { // Updating local data with any missing _id.
+              if (postRes && postRes.data) {
+                // Updating local data with any missing _id.
                 newLocalFavorites.favorites[index] = { ...postRes.data }
               }
             }
