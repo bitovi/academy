@@ -13,9 +13,7 @@ describe("App", () => {
   it("renders states", async () => {
     render(<App />)
 
-    await waitFor(() => {
-      expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
-      expect(screen.getByText(/Wisconsin/i)).toBeOnTheScreen()
-    })
+    expect(await screen.findByText(/Illinois/i)).toBeOnTheScreen()
+    expect(await screen.findByText(/Wisconsin/i)).toBeOnTheScreen()
   })
 })

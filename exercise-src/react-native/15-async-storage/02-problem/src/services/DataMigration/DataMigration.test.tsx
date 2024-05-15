@@ -51,9 +51,7 @@ describe("Services/DataMigration", () => {
       </DataMigration>,
     )
 
-    await waitFor(() => {
-      expect(screen.getByText(/Hello!/)).toBeOnTheScreen()
-    })
+    expect(await screen.findByText(/Hello!/)).toBeOnTheScreen()
   })
 
   it("updates data if version is less than 2", async () => {
@@ -74,9 +72,7 @@ describe("Services/DataMigration", () => {
       </DataMigration>,
     )
 
-    await waitFor(() => {
-      expect(screen.getByText(/Hello!/)).toBeOnTheScreen()
-    })
+    expect(await screen.findByText(/Hello!/)).toBeOnTheScreen()
 
     /*
       With the mock data as it is, getKeys should be called once to get all the necessary keys.
@@ -99,9 +95,7 @@ describe("Services/DataMigration", () => {
       </DataMigration>,
     )
 
-    await waitFor(() => {
-      expect(screen.getByText(/Hello!/)).toBeOnTheScreen()
-    })
+    expect(await screen.findByText(/Hello!/)).toBeOnTheScreen()
 
     // if the local storage doesn't run for data migration, GetData will only run once to check the version number
     expect(mockStorageGetKeys).toHaveReturnedTimes(0)

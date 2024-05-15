@@ -1,6 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native"
 import { fireEvent, render, screen } from "@testing-library/react-native"
-import { SwitchChangeEvent } from "react-native"
 
 import AuthProvider from "../../services/auth/AuthProvider"
 
@@ -38,9 +37,7 @@ describe("Settings component", () => {
     )
     const switchElement = screen.getByRole("switch")
     expect(switchElement.props.value).toBe(false)
-    fireEvent(switchElement, "onChange", {
-      nativeEvent: { value: true },
-    } as SwitchChangeEvent)
+    fireEvent(switchElement, "onChange", { nativeEvent: { value: true } })
     expect(mockSetMode).toHaveBeenCalledWith("dark")
   })
 })
