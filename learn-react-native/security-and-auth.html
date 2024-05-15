@@ -1025,7 +1025,6 @@ export * from &quot;./AuthProvider&quot;
 <p>✏️ Update <strong>src/screens/Settings/Settings.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { fireEvent, render, screen } from &quot;@testing-library/react-native&quot;
-import { SwitchChangeEvent } from &quot;react-native&quot;
 
 import AuthProvider from &quot;../../services/auth/AuthProvider&quot;
 
@@ -1063,15 +1062,13 @@ describe(&quot;Settings component&quot;, () =&gt; {
     )
     const switchElement = screen.getByRole(&quot;switch&quot;)
     expect(switchElement.props.value).toBe(false)
-    fireEvent(switchElement, &quot;onChange&quot;, {
-      nativeEvent: { value: true },
-    } as SwitchChangeEvent)
+    fireEvent(switchElement, &quot;onChange&quot;, { nativeEvent: { value: true } })
     expect(mockSetMode).toHaveBeenCalledWith(&quot;dark&quot;)
   })
 })
 
 </code></pre>
- <div line-highlight="5,22-26,28,33-37,only"></div>
+ <div line-highlight="4,18-19,21-25,27,30,32-36,only"></div>
 <p>✏️ Create <strong>src/services/auth/AuthProvider.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
 import {
@@ -1127,17 +1124,15 @@ describe(&quot;AuthProvider&quot;, () =&gt; {
       &lt;/AuthProvider&gt;,
     )
 
-    await waitFor(() =&gt; {
-      expect(screen.getByText(/mockId/i)).toBeOnTheScreen()
-    })
+    expect(await screen.findByText(/mockId/i)).toBeOnTheScreen()
     fireEvent.press(screen.getByText(/Sign Out/i))
-    await waitFor(() =&gt; {
-      expect(screen.getByText(/Mock Sign in with Google/i)).toBeOnTheScreen()
-    })
+
+    expect(
+      await screen.findByText(/Mock Sign in with Google/i),
+    ).toBeOnTheScreen()
+
     fireEvent.press(screen.getByText(/Mock Sign in with Google/i))
-    await waitFor(() =&gt; {
-      expect(screen.getByText(/Sign Out/i)).toBeOnTheScreen()
-    })
+    expect(await screen.findByText(/Sign Out/i)).toBeOnTheScreen()
   })
 })
 

@@ -1073,58 +1073,58 @@ import { View, Text } from &quot;react-native&quot;
 
 import ThemeProvider, { useTheme, useThemeMode } from &quot;./ThemeProvider&quot;
 
-describe(&quot;ThemeProvider Provider&quot;, () =&gt; {
-  it(&quot;renders children&quot;, async () =&gt; {
-    render(
-      &lt;ThemeProvider&gt;
-        &lt;Text&gt;Hello!&lt;/Text&gt;
-      &lt;/ThemeProvider&gt;,
-    )
+describe(&quot;Design/Theme&quot;, () =&gt; {
+  describe(&quot;ThemeProvider&quot;, () =&gt; {
+    it(&quot;renders children&quot;, async () =&gt; {
+      render(
+        &lt;ThemeProvider&gt;
+          &lt;Text&gt;Hello!&lt;/Text&gt;
+        &lt;/ThemeProvider&gt;,
+      )
 
-    expect(screen.getByText(/Hello/)).toBeOnTheScreen()
+      expect(screen.getByText(/Hello/)).toBeOnTheScreen()
+    })
   })
-})
 
-describe(&quot;ThemeContext context&quot;, () =&gt; {
-  const TestComponent: React.FC = () =&gt; {
-    const theme = useTheme()
+  describe(&quot;ThemeContext&quot;, () =&gt; {
+    const TestComponent: React.FC = () =&gt; {
+      const theme = useTheme()
 
-    return (
-      &lt;View&gt;
-        &lt;Text&gt;{theme.palette.primary.main}&lt;/Text&gt;
-      &lt;/View&gt;
-    )
-  }
+      return (
+        &lt;View&gt;
+          &lt;Text&gt;{theme.palette.primary.main}&lt;/Text&gt;
+        &lt;/View&gt;
+      )
+    }
 
-  it(&quot;context properties are accessible&quot;, async () =&gt; {
-    render(&lt;TestComponent /&gt;)
+    it(&quot;exposes context properties&quot;, async () =&gt; {
+      render(&lt;TestComponent /&gt;)
 
-    expect(screen.getByText(/#007980/)).toBeOnTheScreen()
-  })
-})
-
-describe(&quot;Theme mode&quot;, () =&gt; {
-  it(&quot;toggles&quot;, async () =&gt; {
-    const { result } = renderHook(() =&gt; useThemeMode(), {
-      wrapper: ThemeProvider,
+      expect(screen.getByText(/#007980/)).toBeOnTheScreen()
     })
 
-    expect(result.current.mode).toBe(&quot;light&quot;)
+    describe(&quot;useThemeMode&quot;, () =&gt; {
+      it(&quot;toggles the theme&quot;, async () =&gt; {
+        const { result } = renderHook(() =&gt; useThemeMode(), {
+          wrapper: ThemeProvider,
+        })
 
-    await waitFor(() =&gt; {
-      result.current.setMode(&quot;dark&quot;)
-      expect(result.current.mode).not.toBe(&quot;light&quot;)
+        expect(result.current.mode).toBe(&quot;light&quot;)
+
+        result.current.setMode(&quot;dark&quot;)
+
+        await waitFor(() =&gt; {
+          expect(result.current.mode).toBe(&quot;dark&quot;)
+        })
+      })
     })
-
-    expect(result.current.mode).toBe(&quot;dark&quot;)
   })
 })
 
 </code></pre>
- <div line-highlight="1-6,9,41-45,47,49-52,54-56,only"></div>
+ <div line-highlight="1-6,9,41-45,47,49,51-55,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { render, screen, fireEvent } from &quot;@testing-library/react-native&quot;
-import { SwitchChangeEvent } from &quot;react-native&quot;
 
 import StateList from &quot;./StateList&quot;
 
@@ -1138,25 +1138,26 @@ jest.mock(&quot;../../design/theme&quot;, () =&gt; ({
   }),
 }))
 
-describe(&quot;StateList&quot;, () =&gt; {
-  it(&quot;renders states&quot;, async () =&gt; {
+describe(&quot;Screens/StateList&quot;, () =&gt; {
+  it(&quot;renders&quot;, async () =&gt; {
     render(&lt;StateList /&gt;)
     expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
     expect(screen.getByText(/Wisconsin/i)).toBeOnTheScreen()
   })
-  it(&quot;should switch to dark mode&quot;, () =&gt; {
+
+  it(&quot;switches to dark mode&quot;, () =&gt; {
     render(&lt;StateList /&gt;)
+
     const switchElement = screen.getByRole(&quot;switch&quot;)
     expect(switchElement.props.value).toBe(false)
-    fireEvent(switchElement, &quot;onChange&quot;, {
-      nativeEvent: { value: true },
-    } as SwitchChangeEvent)
+
+    fireEvent(switchElement, &quot;onChange&quot;, { nativeEvent: { value: true } })
     expect(mockSetMode).toHaveBeenCalledWith(&quot;dark&quot;)
   })
 })
 
 </code></pre>
- <div line-highlight="1-2,6,8-14,22-30,only"></div>
+ <div line-highlight="1,5,7-13,22-23,25-26,28-30,only"></div>
 <h3>Exercise</h3>
 <p>✏️ Refactoring <strong>src/design/theme/ThemeProvider.tsx</strong>:</p>
 <ul>

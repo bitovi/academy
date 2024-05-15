@@ -797,6 +797,7 @@ describe(&quot;App&quot;, () =&gt; {
     render(&lt;App /&gt;)
     expect(screen.getByText(/Place my order/i)).toBeOnTheScreen()
   })
+
   it(&quot;renders states&quot;, async () =&gt; {
     render(&lt;App /&gt;)
     expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
@@ -804,8 +805,8 @@ describe(&quot;App&quot;, () =&gt; {
   })
 })
 
-describe(&quot;StateList&quot;, () =&gt; {
-  it(&quot;renders states&quot;, async () =&gt; {
+describe(&quot;Screens/StateList&quot;, () =&gt; {
+  it(&quot;renders&quot;, async () =&gt; {
     render(&lt;StateList /&gt;)
     expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
     expect(screen.getByText(/Wisconsin/i)).toBeOnTheScreen()
@@ -813,7 +814,7 @@ describe(&quot;StateList&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="3,17-23,only"></div>
+ <div line-highlight="3,18-24,only"></div>
 <h3>Exercise 1</h3>
 <ul>
 <li>Update the <code>StateList</code> component to contain the logic that iterates over the <code>states</code> list.</li>
@@ -998,6 +999,7 @@ describe(&quot;App&quot;, () =&gt; {
     render(&lt;App /&gt;)
     expect(screen.getByText(/Place my order/i)).toBeOnTheScreen()
   })
+
   it(&quot;renders states&quot;, async () =&gt; {
     render(&lt;App /&gt;)
     expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
@@ -1005,16 +1007,16 @@ describe(&quot;App&quot;, () =&gt; {
   })
 })
 
-describe(&quot;StateList&quot;, () =&gt; {
-  it(&quot;renders states&quot;, async () =&gt; {
+describe(&quot;Screens/StateList&quot;, () =&gt; {
+  it(&quot;renders&quot;, async () =&gt; {
     render(&lt;StateList /&gt;)
     expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
     expect(screen.getByText(/Wisconsin/i)).toBeOnTheScreen()
   })
 })
 
-describe(&quot;ListItem&quot;, () =&gt; {
-  it(&quot;renders ListItem with given name property&quot;, async () =&gt; {
+describe(&quot;Screens/StateList/ListItem&quot;, () =&gt; {
+  it(&quot;renders&quot;, async () =&gt; {
     render(&lt;ListItem name=&quot;This is a given name property.&quot; /&gt;)
     expect(
       screen.getByText(/This is a given name property./i, { exact: false }),
@@ -1023,7 +1025,7 @@ describe(&quot;ListItem&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="3,25-32,only"></div>
+ <div line-highlight="3,26-33,only"></div>
 <h3>Exercise 2</h3>
 <ul>
 <li>Update the <code>ListItemProps</code> type to enforce a <code>key</code> and <code>name</code> property of the appropriate primitive type.</li>
@@ -1314,6 +1316,7 @@ describe(&quot;App&quot;, () =&gt; {
     render(&lt;App /&gt;)
     expect(screen.getByText(/Place my order/i)).toBeOnTheScreen()
   })
+
   it(&quot;renders states&quot;, async () =&gt; {
     render(&lt;App /&gt;)
     expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
@@ -1328,8 +1331,8 @@ describe(&quot;App&quot;, () =&gt; {
 
 import StateList from &quot;./StateList&quot;
 
-describe(&quot;StateList&quot;, () =&gt; {
-  it(&quot;renders states&quot;, async () =&gt; {
+describe(&quot;Screens/StateList&quot;, () =&gt; {
+  it(&quot;renders&quot;, async () =&gt; {
     render(&lt;StateList /&gt;)
     expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
     expect(screen.getByText(/Wisconsin/i)).toBeOnTheScreen()
@@ -1342,8 +1345,8 @@ describe(&quot;StateList&quot;, () =&gt; {
 
 import ListItem from &quot;./ListItem&quot;
 
-describe(&quot;ListItem&quot;, () =&gt; {
-  it(&quot;renders ListItem with given props&quot;, async () =&gt; {
+describe(&quot;Screens/StateList/ListItem&quot;, () =&gt; {
+  it(&quot;renders&quot;, async () =&gt; {
     render(&lt;ListItem key=&quot;test&quot; name=&quot;test prop&quot; /&gt;)
     expect(screen.getByText(/test prop/i, { exact: false })).toBeOnTheScreen()
   })

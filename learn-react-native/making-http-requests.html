@@ -1198,29 +1198,26 @@ afterAll(() =&gt; {
   global.fetch = oldFetch
 })
 
-describe(&quot;Restaurant Hooks&quot;, () =&gt; {
-  describe(&quot;useStates hook&quot;, () =&gt; {
-    it(&quot;should return states data successfully&quot;, async () =&gt; {
-      const mockStates = [
-        { id: 1, name: &quot;State1&quot; },
-        { id: 2, name: &quot;State2&quot; },
-      ]
-      // Mock the fetch response
-      mockFetch.mockResolvedValueOnce({
-        ok: true,
-        json: () =&gt; Promise.resolve({ message: &quot;success&quot;, data: mockStates }),
-        statusText: &quot;OK&quot;,
-        status: 200,
-      })
-
-      const { result } = renderHook(() =&gt; useStates())
-
-      await waitFor(() =&gt; {
-        expect(result.current.isPending).toBeFalsy()
-      })
-      expect(result.current.data).toEqual(mockStates)
-      expect(result.current.error).toBeUndefined()
+describe(&quot;Services/PMO/Restaurant/useStates&quot;, () =&gt; {
+  it(&quot;returns states&quot;, async () =&gt; {
+    const mockStates = [
+      { id: 1, name: &quot;State1&quot; },
+      { id: 2, name: &quot;State2&quot; },
+    ]
+    mockFetch.mockResolvedValueOnce({
+      ok: true,
+      json: () =&gt; Promise.resolve({ message: &quot;success&quot;, data: mockStates }),
+      statusText: &quot;OK&quot;,
+      status: 200,
     })
+
+    const { result } = renderHook(() =&gt; useStates())
+
+    await waitFor(() =&gt; {
+      expect(result.current.isPending).toBeFalsy()
+    })
+    expect(result.current.data).toEqual(mockStates)
+    expect(result.current.error).toBeUndefined()
   })
 })
 
@@ -1230,8 +1227,8 @@ describe(&quot;Restaurant Hooks&quot;, () =&gt; {
 
 import Loading from &quot;./Loading&quot;
 
-describe(&quot;Loading component&quot;, () =&gt; {
-  it(&quot;renders 'loading' text&quot;, () =&gt; {
+describe(&quot;Components/Loading&quot;, () =&gt; {
+  it(&quot;renders&quot;, () =&gt; {
     render(&lt;Loading /&gt;)
     expect(screen.getByText(/Loading…/)).toBeOnTheScreen()
   })
@@ -1246,7 +1243,7 @@ import * as restaurantHooks from &quot;../../services/pmo/restaurant/hooks&quot;
 
 import StateList from &quot;./StateList&quot;
 
-describe(&quot;StateList component&quot;, () =&gt; {
+describe(&quot;Screens/StateList&quot;, () =&gt; {
   // Mock the hooks and components used in StateList
   const mockStateResponse = {
     data: [
@@ -1262,7 +1259,7 @@ describe(&quot;StateList component&quot;, () =&gt; {
     useStates = jest.spyOn(restaurantHooks, &quot;useStates&quot;)
   })
 
-  it(&quot;renders State List&quot;, () =&gt; {
+  it(&quot;renders&quot;, () =&gt; {
     useStates.mockReturnValue({
       ...mockStateResponse,
       error: undefined,
@@ -1297,7 +1294,7 @@ describe(&quot;StateList component&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="4,8-16,18-21,24-29,33,36,39,41-46,48-52,54-55,only"></div>
+ <div line-highlight="4,9-16,18-21,25-29,33,36,39,41-46,48-52,54-55,only"></div>
 <h3>Exercise 1</h3>
 <ul>
 <li>Update the <code>useState</code> in <code>hooks.ts</code> to call <code>useEffect()</code> and <code>fetch</code> data from <code>${process.env.PMO_API}/states</code>.</li>
@@ -1556,58 +1553,54 @@ afterAll(() =&gt; {
   global.fetch = oldFetch
 })
 
-describe(&quot;Restaurant Hooks&quot;, () =&gt; {
-  describe(&quot;useCities hook&quot;, () =&gt; {
-    it(&quot;should return cities data successfully&quot;, async () =&gt; {
-      const mockCities = [
-        { id: 1, name: &quot;City1&quot; },
-        { id: 2, name: &quot;City2&quot; },
-      ]
-      // Mock the fetch response
-      mockFetch.mockResolvedValueOnce({
-        ok: true,
-        json: () =&gt; Promise.resolve({ message: &quot;success&quot;, data: mockCities }),
-        statusText: &quot;OK&quot;,
-        status: 200,
-      })
-
-      const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
-
-      await waitFor(() =&gt; {
-        expect(result.current.isPending).toBeFalsy()
-      })
-      expect(result.current.data).toEqual(mockCities)
-      expect(result.current.error).toBeUndefined()
+describe(&quot;Services/PMO/Restaurant/useStates&quot;, () =&gt; {
+  it(&quot;returns states&quot;, async () =&gt; {
+    const mockStates = [
+      { id: 1, name: &quot;State1&quot; },
+      { id: 2, name: &quot;State2&quot; },
+    ]
+    mockFetch.mockResolvedValueOnce({
+      ok: true,
+      json: () =&gt; Promise.resolve({ message: &quot;success&quot;, data: mockStates }),
+      statusText: &quot;OK&quot;,
+      status: 200,
     })
+
+    const { result } = renderHook(() =&gt; useStates())
+
+    await waitFor(() =&gt; {
+      expect(result.current.isPending).toBeFalsy()
+    })
+    expect(result.current.data).toEqual(mockStates)
+    expect(result.current.error).toBeUndefined()
   })
+})
 
-  describe(&quot;useStates hook&quot;, () =&gt; {
-    it(&quot;should return states data successfully&quot;, async () =&gt; {
-      const mockStates = [
-        { id: 1, name: &quot;State1&quot; },
-        { id: 2, name: &quot;State2&quot; },
-      ]
-      // Mock the fetch response
-      mockFetch.mockResolvedValueOnce({
-        ok: true,
-        json: () =&gt; Promise.resolve({ message: &quot;success&quot;, data: mockStates }),
-        statusText: &quot;OK&quot;,
-        status: 200,
-      })
-
-      const { result } = renderHook(() =&gt; useStates())
-
-      await waitFor(() =&gt; {
-        expect(result.current.isPending).toBeFalsy()
-      })
-      expect(result.current.data).toEqual(mockStates)
-      expect(result.current.error).toBeUndefined()
+describe(&quot;Services/PMO/Restaurant/useCities&quot;, () =&gt; {
+  it(&quot;returns cities&quot;, async () =&gt; {
+    const mockCities = [
+      { id: 1, name: &quot;City1&quot; },
+      { id: 2, name: &quot;City2&quot; },
+    ]
+    mockFetch.mockResolvedValueOnce({
+      ok: true,
+      json: () =&gt; Promise.resolve({ message: &quot;success&quot;, data: mockCities }),
+      statusText: &quot;OK&quot;,
+      status: 200,
     })
+
+    const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
+
+    await waitFor(() =&gt; {
+      expect(result.current.isPending).toBeFalsy()
+    })
+    expect(result.current.data).toEqual(mockCities)
+    expect(result.current.error).toBeUndefined()
   })
 })
 
 </code></pre>
- <div line-highlight="3,15-19,24,29,34,44-47,49-51,55-57,59-61,only"></div>
+ <div line-highlight="3,37-48,50,52-58,only"></div>
 <p>✏️ Update <strong>src/screens/CityList/CityList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { render, screen } from &quot;@testing-library/react-native&quot;
@@ -1627,7 +1620,7 @@ const route = {
   },
 } as const
 
-describe(&quot;CityList component&quot;, () =&gt; {
+describe(&quot;Screens/CityList&quot;, () =&gt; {
   // Mock the hooks and components used in CityList
 
   const mockCitiesResponse = {
@@ -1642,7 +1635,7 @@ describe(&quot;CityList component&quot;, () =&gt; {
     useCities = jest.spyOn(restaurantHooks, &quot;useCities&quot;)
   })
 
-  it(&quot;renders city List&quot;, () =&gt; {
+  it(&quot;renders&quot;, () =&gt; {
     useCities.mockReturnValue({
       ...mockCitiesResponse,
       error: undefined,
@@ -1659,7 +1652,7 @@ describe(&quot;CityList component&quot;, () =&gt; {
     expect(screen.getByText(/Ann Arbor/i)).toBeOnTheScreen()
   })
 
-  it(&quot;renders loading city&quot;, () =&gt; {
+  it(&quot;renders loading state&quot;, () =&gt; {
     useCities.mockReturnValue({
       data: undefined,
       error: undefined,
@@ -1931,85 +1924,82 @@ import * as api from &quot;../api/api&quot;
 
 import { useStates, useCities } from &quot;./hooks&quot;
 
-describe(&quot;Restaurant Hooks&quot;, () =&gt; {
-  // Mock the apiRequest function
-  let apiRequest: jest.SpyInstance&lt;ReturnType&lt;typeof api.apiRequest&gt;&gt;
-  beforeEach(() =&gt; {
-    jest.resetAllMocks()
-    apiRequest = jest.spyOn(api, &quot;apiRequest&quot;)
+let apiRequest: jest.SpyInstance&lt;ReturnType&lt;typeof api.apiRequest&gt;&gt;
+beforeEach(() =&gt; {
+  jest.resetAllMocks()
+  apiRequest = jest.spyOn(api, &quot;apiRequest&quot;)
+})
+
+describe(&quot;Services/PMO/Restaurant/useStates&quot;, () =&gt; {
+  it(&quot;returns states&quot;, async () =&gt; {
+    const mockStates = [
+      { id: 1, name: &quot;State1&quot; },
+      { id: 2, name: &quot;State2&quot; },
+    ]
+    apiRequest.mockResolvedValue({
+      data: { data: mockStates },
+      error: undefined,
+    })
+
+    const { result } = renderHook(() =&gt; useStates())
+
+    await waitFor(() =&gt; {
+      expect(result.current.isPending).toBeFalsy()
+    })
+    expect(result.current.data).toEqual(mockStates)
+    expect(result.current.error).toBeUndefined()
   })
 
-  describe(&quot;useCities hook&quot;, () =&gt; {
-    it(&quot;should return cities data successfully&quot;, async () =&gt; {
-      const mockCities = [
-        { id: 1, name: &quot;City1&quot; },
-        { id: 2, name: &quot;City2&quot; },
-      ]
-      apiRequest.mockResolvedValue({
-        data: { data: mockCities },
-        error: undefined,
-      })
+  it(&quot;handles errors&quot;, async () =&gt; {
+    const mockError = new Error(&quot;Error fetching states&quot;)
+    apiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
-      const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
+    const { result } = renderHook(() =&gt; useStates())
 
-      await waitFor(() =&gt; {
-        expect(result.current.isPending).toBeFalsy()
-      })
-      expect(result.current.data).toEqual(mockCities)
-      expect(result.current.error).toBeUndefined()
+    await waitFor(() =&gt; {
+      expect(result.current.isPending).toBeFalsy()
+    })
+    expect(result.current.data).toBeUndefined()
+    expect(result.current.error).toEqual(mockError)
+  })
+})
+
+describe(&quot;Services/PMO/Restaurant/useCities&quot;, () =&gt; {
+  it(&quot;returns cities&quot;, async () =&gt; {
+    const mockCities = [
+      { id: 1, name: &quot;City1&quot; },
+      { id: 2, name: &quot;City2&quot; },
+    ]
+    apiRequest.mockResolvedValue({
+      data: { data: mockCities },
+      error: undefined,
     })
 
-    it(&quot;should handle error when fetching cities data&quot;, async () =&gt; {
-      const mockError = new Error(&quot;Error fetching cities&quot;)
-      apiRequest.mockResolvedValue({ data: undefined, error: mockError })
+    const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
 
-      const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
-
-      await waitFor(() =&gt; {
-        expect(result.current.isPending).toBeFalsy()
-      })
-      expect(result.current.data).toBeUndefined()
-      expect(result.current.error).toEqual(mockError)
+    await waitFor(() =&gt; {
+      expect(result.current.isPending).toBeFalsy()
     })
+    expect(result.current.data).toEqual(mockCities)
+    expect(result.current.error).toBeUndefined()
   })
 
-  describe(&quot;useStates hook&quot;, () =&gt; {
-    it(&quot;should return states data successfully&quot;, async () =&gt; {
-      const mockStates = [
-        { id: 1, name: &quot;State1&quot; },
-        { id: 2, name: &quot;State2&quot; },
-      ]
-      apiRequest.mockResolvedValue({
-        data: { data: mockStates },
-        error: undefined,
-      })
+  it(&quot;handles errors&quot;, async () =&gt; {
+    const mockError = new Error(&quot;Error fetching cities&quot;)
+    apiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
-      const { result } = renderHook(() =&gt; useStates())
+    const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
 
-      await waitFor(() =&gt; {
-        expect(result.current.isPending).toBeFalsy()
-      })
-      expect(result.current.data).toEqual(mockStates)
-      expect(result.current.error).toBeUndefined()
+    await waitFor(() =&gt; {
+      expect(result.current.isPending).toBeFalsy()
     })
-
-    it(&quot;should handle error when fetching states data&quot;, async () =&gt; {
-      const mockError = new Error(&quot;Error fetching states&quot;)
-      apiRequest.mockResolvedValue({ data: undefined, error: mockError })
-
-      const { result } = renderHook(() =&gt; useStates())
-
-      await waitFor(() =&gt; {
-        expect(result.current.isPending).toBeFalsy()
-      })
-      expect(result.current.data).toBeUndefined()
-      expect(result.current.error).toEqual(mockError)
-    })
+    expect(result.current.data).toBeUndefined()
+    expect(result.current.error).toEqual(mockError)
   })
 })
 
 </code></pre>
- <div line-highlight="3,8-12,21-23,35-37,39,44-45,55-57,62-64,67,69-71,73,75-81,only"></div>
+ <div line-highlight="3,7-10,19-21,33-35,37,42-43,53-55,60-62,65,67-69,71,73-78,only"></div>
 <h3>Exercise 3</h3>
 <ul>
 <li>Implement the <code>apiRequest</code> helper function to handle errors returned and thrown from <code>fetch()</code>.</li>
@@ -2414,159 +2404,157 @@ import * as api from &quot;../api/api&quot;
 
 import { useStates, useCities, useRestaurants } from &quot;./hooks&quot;
 
-describe(&quot;Restaurant Hooks&quot;, () =&gt; {
-  // Mock the apiRequest function
-  let apiRequest: jest.SpyInstance&lt;ReturnType&lt;typeof api.apiRequest&gt;&gt;
-  beforeEach(() =&gt; {
-    jest.resetAllMocks()
-    apiRequest = jest.spyOn(api, &quot;apiRequest&quot;)
+// Mock the apiRequest function
+let apiRequest: jest.SpyInstance&lt;ReturnType&lt;typeof api.apiRequest&gt;&gt;
+beforeEach(() =&gt; {
+  jest.resetAllMocks()
+  apiRequest = jest.spyOn(api, &quot;apiRequest&quot;)
+})
+
+describe(&quot;Services/PMO/Restaurant/useStates&quot;, () =&gt; {
+  it(&quot;returns states&quot;, async () =&gt; {
+    const mockStates = [
+      { id: 1, name: &quot;State1&quot; },
+      { id: 2, name: &quot;State2&quot; },
+    ]
+    apiRequest.mockResolvedValue({
+      data: { data: mockStates },
+      error: undefined,
+    })
+
+    const { result } = renderHook(() =&gt; useStates())
+
+    await waitFor(() =&gt; {
+      expect(result.current.isPending).toBeFalsy()
+    })
+    expect(result.current.data).toEqual(mockStates)
+    expect(result.current.error).toBeUndefined()
   })
 
-  describe(&quot;useCities hook&quot;, () =&gt; {
-    it(&quot;should return cities data successfully&quot;, async () =&gt; {
-      const mockCities = [
-        { id: 1, name: &quot;City1&quot; },
-        { id: 2, name: &quot;City2&quot; },
-      ]
-      apiRequest.mockResolvedValue({
-        data: { data: mockCities },
-        error: undefined,
-      })
+  it(&quot;handles errors&quot;, async () =&gt; {
+    const mockError = new Error(&quot;Error fetching states&quot;)
+    apiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
-      const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
+    const { result } = renderHook(() =&gt; useStates())
 
-      await waitFor(() =&gt; {
-        expect(result.current.isPending).toBeFalsy()
-      })
-      expect(result.current.data).toEqual(mockCities)
-      expect(result.current.error).toBeUndefined()
+    await waitFor(() =&gt; {
+      expect(result.current.isPending).toBeFalsy()
+    })
+    expect(result.current.data).toBeUndefined()
+    expect(result.current.error).toEqual(mockError)
+  })
+})
+
+describe(&quot;Services/PMO/Restaurant/useCities&quot;, () =&gt; {
+  it(&quot;returns cities&quot;, async () =&gt; {
+    const mockCities = [
+      { id: 1, name: &quot;City1&quot; },
+      { id: 2, name: &quot;City2&quot; },
+    ]
+    apiRequest.mockResolvedValue({
+      data: { data: mockCities },
+      error: undefined,
     })
 
-    it(&quot;should handle error when fetching cities data&quot;, async () =&gt; {
-      const mockError = new Error(&quot;Error fetching cities&quot;)
-      apiRequest.mockResolvedValue({ data: undefined, error: mockError })
+    const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
 
-      const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
-
-      await waitFor(() =&gt; {
-        expect(result.current.isPending).toBeFalsy()
-      })
-      expect(result.current.data).toBeUndefined()
-      expect(result.current.error).toEqual(mockError)
+    await waitFor(() =&gt; {
+      expect(result.current.isPending).toBeFalsy()
     })
+    expect(result.current.data).toEqual(mockCities)
+    expect(result.current.error).toBeUndefined()
   })
 
-  describe(&quot;useRestaurant hook&quot;, () =&gt; {
-    it(&quot;should return restaurant data successfully&quot;, async () =&gt; {
-      const mockRestaurant = { id: 1, name: &quot;Restaurant1&quot; }
-      apiRequest.mockResolvedValue({
-        data: { data: mockRestaurant },
-        error: undefined,
-      })
+  it(&quot;handles errors&quot;, async () =&gt; {
+    const mockError = new Error(&quot;Error fetching cities&quot;)
+    apiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
-      const { result } = renderHook(() =&gt;
-        useRestaurants(&quot;test-state&quot;, &quot;test-city&quot;),
-      )
+    const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
 
-      await waitFor(() =&gt; {
-        expect(result.current.isPending).toBeFalsy()
-      })
-      expect(result.current.data).toEqual(mockRestaurant)
-      expect(result.current.error).toBeUndefined()
+    await waitFor(() =&gt; {
+      expect(result.current.isPending).toBeFalsy()
+    })
+    expect(result.current.data).toBeUndefined()
+    expect(result.current.error).toEqual(mockError)
+  })
+})
+
+describe(&quot;Services/PMO/Restaurant/useRestaurants&quot;, () =&gt; {
+  it(&quot;returns restaurants&quot;, async () =&gt; {
+    const mockRestaurants = [
+      { id: 1, name: &quot;Restaurant1&quot; },
+      { id: 2, name: &quot;Restaurant2&quot; },
+    ]
+    apiRequest.mockResolvedValue({
+      data: { data: mockRestaurants },
+      error: undefined,
     })
 
-    it(&quot;should handle error when fetching restaurant data&quot;, async () =&gt; {
-      const mockError = new Error(&quot;Error fetching restaurant&quot;)
-      apiRequest.mockResolvedValue({ data: undefined, error: mockError })
+    const { result } = renderHook(() =&gt;
+      useRestaurants(&quot;test-state&quot;, &quot;test-city&quot;),
+    )
 
-      const { result } = renderHook(() =&gt;
-        useRestaurants(&quot;test-state&quot;, &quot;test-city&quot;),
-      )
-
-      await waitFor(() =&gt; {
-        expect(result.current.isPending).toBeFalsy()
-      })
-
-      expect(result.current.data).toBeUndefined()
-      expect(result.current.error).toEqual(mockError)
+    await waitFor(() =&gt; {
+      expect(result.current.isPending).toBeFalsy()
     })
+    expect(result.current.data).toEqual(mockRestaurants)
+    expect(result.current.error).toBeUndefined()
   })
 
-  describe(&quot;useRestaurants hook&quot;, () =&gt; {
-    it(&quot;should return restaurants data successfully&quot;, async () =&gt; {
-      const mockRestaurants = [
-        { id: 1, name: &quot;Restaurant1&quot; },
-        { id: 2, name: &quot;Restaurant2&quot; },
-      ]
-      apiRequest.mockResolvedValue({
-        data: { data: mockRestaurants },
-        error: undefined,
-      })
+  it(&quot;handles errors&quot;, async () =&gt; {
+    const mockError = new Error(&quot;Error fetching restaurants&quot;)
+    apiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
-      const { result } = renderHook(() =&gt;
-        useRestaurants(&quot;test-state&quot;, &quot;test-city&quot;),
-      )
+    const { result } = renderHook(() =&gt;
+      useRestaurants(&quot;test-state&quot;, &quot;test-city&quot;),
+    )
 
-      await waitFor(() =&gt; {
-        expect(result.current.isPending).toBeFalsy()
-      })
-      expect(result.current.data).toEqual(mockRestaurants)
-      expect(result.current.error).toBeUndefined()
+    await waitFor(() =&gt; {
+      expect(result.current.isPending).toBeFalsy()
+    })
+    expect(result.current.data).toBeUndefined()
+    expect(result.current.error).toEqual(mockError)
+  })
+})
+
+describe(&quot;Services/PMO/Restaurant/useRestaurant&quot;, () =&gt; {
+  it(&quot;returns a restaurant&quot;, async () =&gt; {
+    const mockRestaurant = { id: 1, name: &quot;Restaurant1&quot; }
+    apiRequest.mockResolvedValue({
+      data: { data: mockRestaurant },
+      error: undefined,
     })
 
-    it(&quot;should handle error when fetching restaurants data&quot;, async () =&gt; {
-      const mockError = new Error(&quot;Error fetching restaurants&quot;)
-      apiRequest.mockResolvedValue({ data: undefined, error: mockError })
+    const { result } = renderHook(() =&gt;
+      useRestaurants(&quot;test-state&quot;, &quot;test-city&quot;),
+    )
 
-      const { result } = renderHook(() =&gt;
-        useRestaurants(&quot;test-state&quot;, &quot;test-city&quot;),
-      )
-
-      await waitFor(() =&gt; {
-        expect(result.current.isPending).toBeFalsy()
-      })
-      expect(result.current.data).toBeUndefined()
-      expect(result.current.error).toEqual(mockError)
+    await waitFor(() =&gt; {
+      expect(result.current.isPending).toBeFalsy()
     })
+    expect(result.current.data).toEqual(mockRestaurant)
+    expect(result.current.error).toBeUndefined()
   })
 
-  describe(&quot;useStates hook&quot;, () =&gt; {
-    it(&quot;should return states data successfully&quot;, async () =&gt; {
-      const mockStates = [
-        { id: 1, name: &quot;State1&quot; },
-        { id: 2, name: &quot;State2&quot; },
-      ]
-      apiRequest.mockResolvedValue({
-        data: { data: mockStates },
-        error: undefined,
-      })
+  it(&quot;handles errors&quot;, async () =&gt; {
+    const mockError = new Error(&quot;Error fetching restaurant&quot;)
+    apiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
-      const { result } = renderHook(() =&gt; useStates())
+    const { result } = renderHook(() =&gt;
+      useRestaurants(&quot;test-state&quot;, &quot;test-city&quot;),
+    )
 
-      await waitFor(() =&gt; {
-        expect(result.current.isPending).toBeFalsy()
-      })
-      expect(result.current.data).toEqual(mockStates)
-      expect(result.current.error).toBeUndefined()
+    await waitFor(() =&gt; {
+      expect(result.current.isPending).toBeFalsy()
     })
 
-    it(&quot;should handle error when fetching states data&quot;, async () =&gt; {
-      const mockError = new Error(&quot;Error fetching states&quot;)
-      apiRequest.mockResolvedValue({ data: undefined, error: mockError })
-
-      const { result } = renderHook(() =&gt; useStates())
-
-      await waitFor(() =&gt; {
-        expect(result.current.isPending).toBeFalsy()
-      })
-      expect(result.current.data).toBeUndefined()
-      expect(result.current.error).toEqual(mockError)
-    })
+    expect(result.current.data).toBeUndefined()
+    expect(result.current.error).toEqual(mockError)
   })
 })
 
 </code></pre>
- <div line-highlight="5,49-51,53,57-59,64,68-69,72-74,85-89,91-94,96-98,100-105,107-109,111-113,115-121,128-129,131-132,136-138,140-141,145,149-155,only"></div>
+ <div line-highlight="5,7,82-91,93-95,97-102,104-106,108-110,112-118,120-126,128-130,132-137,139-141,143-145,147-149,151-154,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { render, screen } from &quot;@testing-library/react-native&quot;
@@ -2591,7 +2579,7 @@ const route = {
   },
 } as const
 
-describe(&quot;RestaurantList component&quot;, () =&gt; {
+describe(&quot;Screens/RestaurantList&quot;, () =&gt; {
   // Mock the hooks and components used in RestaurantList
 
   const mockRestaurantsResponse = {
@@ -2683,7 +2671,7 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
     useRestaurants = jest.spyOn(restaurantHooks, &quot;useRestaurants&quot;)
   })
 
-  it(&quot;renders restaurant List&quot;, () =&gt; {
+  it(&quot;renders&quot;, () =&gt; {
     useRestaurants.mockReturnValue({
       ...mockRestaurantsResponse,
       error: undefined,
@@ -2700,7 +2688,7 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
     expect(screen.getByText(/Brunch Barn/i)).toBeOnTheScreen()
   })
 
-  it(&quot;renders loading restaurant&quot;, () =&gt; {
+  it(&quot;renders loading state&quot;, () =&gt; {
     useRestaurants.mockReturnValue({
       data: undefined,
       error: undefined,
@@ -2716,7 +2704,8 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
 
     expect(screen.getByText(/Loading/i)).toBeOnTheScreen()
   })
-  it(&quot;renders error restaurant&quot;, () =&gt; {
+
+  it(&quot;renders error state&quot;, () =&gt; {
     useRestaurants.mockReturnValue({
       data: undefined,
       error: { name: &quot;Oops&quot;, message: &quot;This is the error&quot; },
@@ -2736,7 +2725,7 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="4,25,27-106,108-113,117-121,129-131,133-138,140-145,147-154,156-161,163-165,only"></div>
+ <div line-highlight="4,25,27-106,108-113,117-121,129-131,133-138,140-145,147-148,150-155,157-162,164-166,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { render, screen } from &quot;@testing-library/react-native&quot;
@@ -2771,7 +2760,8 @@ jest.mock(&quot;@react-navigation/native&quot;, () =&gt; {
     }),
   }
 })
-describe(&quot;RestaurantDetails component&quot;, () =&gt; {
+
+describe(&quot;Screens/RestaurantDetails&quot;, () =&gt; {
   // Mock the hooks and components used in RestaurantDetails
 
   let useRestaurant: jest.SpyInstance&lt;
@@ -2801,12 +2791,39 @@ describe(&quot;RestaurantDetails component&quot;, () =&gt; {
     isPending: false,
     error: undefined,
   }
+
+  it(&quot;renders&quot;, () =&gt; {
+    useRestaurant.mockReturnValue(mockRestaurantData)
+
+    render(
+      &lt;NavigationContainer&gt;
+        {/* @ts-ignore */}
+        &lt;RestaurantDetails route={route} /&gt;
+      &lt;/NavigationContainer&gt;,
+    )
+
+    expect(screen.getByText(&quot;Test Restaurant&quot;)).toBeOnTheScreen()
+  })
+
+  it(&quot;renders before data loads&quot;, () =&gt; {
+    useRestaurant.mockReturnValue({ ...mockRestaurantData, data: undefined })
+    render(
+      &lt;NavigationContainer&gt;
+        {/* @ts-ignore */}
+        &lt;RestaurantDetails route={route} /&gt;
+      &lt;/NavigationContainer&gt;,
+    )
+
+    expect(screen.getByText(&quot;Place an order&quot;)).toBeOnTheScreen()
+  })
+
   it(&quot;renders loading state&quot;, () =&gt; {
     useRestaurant.mockReturnValue({
       data: undefined,
       isPending: true,
       error: undefined,
     })
+
     render(
       &lt;NavigationContainer&gt;
         {/* @ts-ignore */}
@@ -2823,12 +2840,14 @@ describe(&quot;RestaurantDetails component&quot;, () =&gt; {
       isPending: false,
       error: { name: &quot;Error&quot;, message: &quot;Mock error&quot; },
     })
+
     render(
       &lt;NavigationContainer&gt;
         {/* @ts-ignore */}
         &lt;RestaurantDetails route={route} /&gt;
       &lt;/NavigationContainer&gt;,
     )
+
     expect(
       screen.getByText(/Error loading restaurant details:/i, {
         exact: false,
@@ -2836,34 +2855,10 @@ describe(&quot;RestaurantDetails component&quot;, () =&gt; {
     ).toBeOnTheScreen()
     expect(screen.getByText(/Mock error/i)).toBeOnTheScreen()
   })
-
-  it(&quot;renders the RestaurantHeader and content when data is available&quot;, () =&gt; {
-    useRestaurant.mockReturnValue(mockRestaurantData)
-    render(
-      &lt;NavigationContainer&gt;
-        {/* @ts-ignore */}
-        &lt;RestaurantDetails route={route} /&gt;
-      &lt;/NavigationContainer&gt;,
-    )
-
-    expect(screen.getByText(&quot;Test Restaurant&quot;)).toBeOnTheScreen()
-  })
-
-  it(&quot;renders the RestaurantHeader and content when data is not available&quot;, () =&gt; {
-    useRestaurant.mockReturnValue({ ...mockRestaurantData, data: undefined })
-    render(
-      &lt;NavigationContainer&gt;
-        {/* @ts-ignore */}
-        &lt;RestaurantDetails route={route} /&gt;
-      &lt;/NavigationContainer&gt;,
-    )
-
-    expect(screen.getByText(&quot;Place an order&quot;)).toBeOnTheScreen()
-  })
 })
 
 </code></pre>
- <div line-highlight="1,4,8-22,35,37-42,45-75,77-78,80-98,101-107,109-110,112-119,121-122,only"></div>
+ <div line-highlight="1,4,8-22,36,38-43,46-64,67,69-74,76-77,79-86,88-89,91-96,98-103,105-106,108-113,115-120,122-128,only"></div>
 <h3>Exercise 4</h3>
 <ul>
 <li>Fill in <code>useRestaurants</code> Hook for fetching the list of restaurants.</li>

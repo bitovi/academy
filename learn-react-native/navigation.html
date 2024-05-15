@@ -857,6 +857,7 @@ describe(&quot;App&quot;, () =&gt; {
     render(&lt;App /&gt;)
     expect(screen.getByText(/Place my order/i)).toBeOnTheScreen()
   })
+
   it(&quot;renders states&quot;, async () =&gt; {
     render(&lt;App /&gt;)
     expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
@@ -868,7 +869,6 @@ describe(&quot;App&quot;, () =&gt; {
 <p>✏️ Create <strong>src/screens/Settings/Settings.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { fireEvent, render, screen } from &quot;@testing-library/react-native&quot;
-import { SwitchChangeEvent } from &quot;react-native&quot;
 
 import Settings from &quot;./Settings&quot;
 
@@ -882,8 +882,8 @@ jest.mock(&quot;../../design/theme&quot;, () =&gt; ({
   }),
 }))
 
-describe(&quot;Settings component&quot;, () =&gt; {
-  it(&quot;renders Settings Page&quot;, async () =&gt; {
+describe(&quot;Screens/Settings&quot;, () =&gt; {
+  it(&quot;renders&quot;, async () =&gt; {
     render(
       &lt;NavigationContainer&gt;
         &lt;Settings /&gt;
@@ -891,17 +891,18 @@ describe(&quot;Settings component&quot;, () =&gt; {
     )
     expect(screen.getByText(/welcome/i)).toBeOnTheScreen()
   })
-  it(&quot;should switch to dark mode&quot;, () =&gt; {
+
+  it(&quot;switches to dark mode&quot;, () =&gt; {
     render(
       &lt;NavigationContainer&gt;
         &lt;Settings /&gt;
       &lt;/NavigationContainer&gt;,
     )
+
     const switchElement = screen.getByRole(&quot;switch&quot;)
     expect(switchElement.props.value).toBe(false)
-    fireEvent(switchElement, &quot;onChange&quot;, {
-      nativeEvent: { value: true },
-    } as SwitchChangeEvent)
+
+    fireEvent(switchElement, &quot;onChange&quot;, { nativeEvent: { value: true } })
     expect(mockSetMode).toHaveBeenCalledWith(&quot;dark&quot;)
   })
 })
@@ -1264,8 +1265,8 @@ import { render, screen } from &quot;@testing-library/react-native&quot;
 
 import StateList from &quot;./StateList&quot;
 
-describe(&quot;StateList&quot;, () =&gt; {
-  it(&quot;renders states&quot;, async () =&gt; {
+describe(&quot;Screens/StateList&quot;, () =&gt; {
+  it(&quot;renders&quot;, async () =&gt; {
     render(
       &lt;NavigationContainer&gt;
         &lt;StateList /&gt;
@@ -1283,8 +1284,8 @@ describe(&quot;StateList&quot;, () =&gt; {
 
 import CityList from &quot;./CityList&quot;
 
-describe(&quot;CityList component&quot;, () =&gt; {
-  it(&quot;renders city List&quot;, () =&gt; {
+describe(&quot;Screens/CityList&quot;, () =&gt; {
+  it(&quot;renders&quot;, () =&gt; {
     render(&lt;CityList /&gt;)
 
     expect(screen.getByText(/Madison/i)).toBeOnTheScreen()
@@ -1584,8 +1585,6 @@ import Box from &quot;../../design/Box&quot;
 import { Theme, useTheme } from &quot;../../design/theme&quot;
 import Typography from &quot;../../design/Typography&quot;
 
-const assetsUrl = process.env.PMO_ASSETS
-
 export interface RestaurantHeaderProps {
   restaurant?: {
     _id: string
@@ -1611,7 +1610,7 @@ const RestaurantHeader: React.FC&lt;RestaurantHeaderProps&gt; = ({ restaurant })
     &lt;Box&gt;
       &lt;ImageBackground
         style={styles.heroBackground}
-        source={{ uri: `${assetsUrl}/${restaurant?.images.banner}` }}
+        source={{ uri: restaurant?.images.banner }}
       &gt;
         &lt;Box padding={[&quot;xs&quot;, &quot;m&quot;]} margin={[&quot;s&quot;, &quot;none&quot;]} style={styles.hero}&gt;
           &lt;Typography variant=&quot;heading&quot; style={styles.heroText}&gt;
@@ -1841,8 +1840,8 @@ import { render, screen } from &quot;@testing-library/react-native&quot;
 
 import CityList from &quot;./CityList&quot;
 
-describe(&quot;CityList component&quot;, () =&gt; {
-  it(&quot;renders city List&quot;, () =&gt; {
+describe(&quot;Screens/CityList&quot;, () =&gt; {
+  it(&quot;renders&quot;, () =&gt; {
     render(
       &lt;NavigationContainer&gt;
         &lt;CityList /&gt;
@@ -1862,13 +1861,28 @@ describe(&quot;CityList component&quot;, () =&gt; {
 import { restaurantWithAddress, restaurantWithoutAddress } from &quot;./mocks&quot;
 import RestaurantHeader from &quot;./RestaurantHeader&quot;
 
-describe(&quot;RestaurantHeader component&quot;, () =&gt; {
-  it(&quot;renders the restaurant name&quot;, () =&gt; {
+describe(&quot;Components/RestaurantHeader&quot;, () =&gt; {
+  it(&quot;renders&quot;, () =&gt; {
     render(&lt;RestaurantHeader restaurant={restaurantWithAddress} /&gt;)
+    expect(screen.getByText(/\$\$\$/i)).toBeOnTheScreen()
+    expect(screen.getByText(&quot;$$$&quot;, { exact: false })).toBeOnTheScreen()
+    expect(
+      screen.getByText(&quot;Hours: M-F 10am-11pm&quot;, { exact: false }),
+    ).toBeOnTheScreen()
+
     expect(screen.getByText(/Test Restaurant/)).toBeOnTheScreen()
+    expect(screen.getByText(/\$\$\$/i)).toBeOnTheScreen()
+    expect(screen.getByText(&quot;$$$&quot;, { exact: false })).toBeOnTheScreen()
+    expect(
+      screen.getByText(&quot;Hours: M-F 10am-11pm&quot;, { exact: false }),
+    ).toBeOnTheScreen()
   })
 
-  it(&quot;renders the restaurant address when provided&quot;, () =&gt; {
+  it(&quot;does without an address&quot;, () =&gt; {
+    render(&lt;RestaurantHeader restaurant={restaurantWithoutAddress} /&gt;)
+  })
+
+  it(&quot;renders the address&quot;, () =&gt; {
     render(&lt;RestaurantHeader restaurant={restaurantWithAddress} /&gt;)
 
     expect(screen.getByText(/123 Test St/i, { exact: false })).toBeOnTheScreen()
@@ -1881,28 +1895,6 @@ describe(&quot;RestaurantHeader component&quot;, () =&gt; {
         { exact: false },
       ),
     ).toBeOnTheScreen()
-  })
-
-  it(&quot;does not render an address when not provided&quot;, () =&gt; {
-    render(&lt;RestaurantHeader restaurant={restaurantWithoutAddress} /&gt;)
-    expect(
-      screen.queryByText(restaurantWithAddress.address.street),
-    ).not.toBeOnTheScreen()
-  })
-
-  it(&quot;renders static details like price and hours&quot;, () =&gt; {
-    render(&lt;RestaurantHeader restaurant={restaurantWithAddress} /&gt;)
-
-    expect(screen.getByText(/\$\$\$/i)).toBeOnTheScreen()
-    expect(screen.getByText(&quot;$$$&quot;, { exact: false })).toBeOnTheScreen()
-    expect(
-      screen.getByText(&quot;Hours: M-F 10am-11pm&quot;, { exact: false }),
-    ).toBeOnTheScreen()
-  })
-
-  it('renders the &quot;Open Now&quot; text', () =&gt; {
-    render(&lt;RestaurantHeader restaurant={restaurantWithAddress} /&gt;)
-    expect(screen.getByText(&quot;Open Now&quot;, { exact: false })).toBeOnTheScreen()
   })
 })
 
@@ -1923,8 +1915,8 @@ jest.mock(&quot;@react-navigation/native&quot;, () =&gt; {
   }
 })
 
-describe(&quot;RestaurantDetails component&quot;, () =&gt; {
-  it(&quot;renders the RestaurantHeader and content when data is available&quot;, () =&gt; {
+describe(&quot;Screens/RestaurantDetails&quot;, () =&gt; {
+  it(&quot;renders&quot;, () =&gt; {
     render(&lt;RestaurantDetails /&gt;)
 
     expect(screen.getByText(&quot;Cheese Curd City&quot;)).toBeOnTheScreen()
@@ -1938,8 +1930,8 @@ import { render, screen } from &quot;@testing-library/react-native&quot;
 
 import RestaurantList from &quot;./RestaurantList&quot;
 
-describe(&quot;RestaurantList component&quot;, () =&gt; {
-  it(&quot;renders restaurant List&quot;, () =&gt; {
+describe(&quot;Screens/RestaurantList&quot;, () =&gt; {
+  it(&quot;renders&quot;, () =&gt; {
     render(
       &lt;NavigationContainer&gt;
         &lt;RestaurantList /&gt;

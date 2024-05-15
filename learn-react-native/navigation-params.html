@@ -983,8 +983,8 @@ const route = {
   params: undefined,
 } as const
 
-describe(&quot;StateList&quot;, () =&gt; {
-  it(&quot;renders states&quot;, async () =&gt; {
+describe(&quot;Screens/StateList&quot;, () =&gt; {
+  it(&quot;renders&quot;, () =&gt; {
     render(
       &lt;NavigationContainer&gt;
         {/* @ts-ignore */}
@@ -997,7 +997,7 @@ describe(&quot;StateList&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="6-10,16-17,only"></div>
+ <div line-highlight="6-10,13,16-17,only"></div>
 <h3>Exercise 1</h3>
 <ul>
 <li>Update the typing of <code>StateList</code> component, using the type <code>Props</code> made by the <code>StackScreenProps</code>.</li>
@@ -1364,8 +1364,8 @@ const route = {
   },
 } as const
 
-describe(&quot;CityList component&quot;, () =&gt; {
-  it(&quot;renders city List&quot;, () =&gt; {
+describe(&quot;Screens/CityList&quot;, () =&gt; {
+  it(&quot;renders&quot;, () =&gt; {
     render(
       &lt;NavigationContainer&gt;
         {/* @ts-ignore */}
@@ -1401,8 +1401,8 @@ const route = {
   },
 } as const
 
-describe(&quot;RestaurantList component&quot;, () =&gt; {
-  it(&quot;renders restaurant List&quot;, () =&gt; {
+describe(&quot;Screens/RestaurantList&quot;, () =&gt; {
+  it(&quot;renders&quot;, () =&gt; {
     render(
       &lt;NavigationContainer&gt;
         {/* @ts-ignore */}

@@ -1266,7 +1266,7 @@ const route = {
   },
 } as const
 
-describe(&quot;RestaurantOrder component&quot;, () =&gt; {
+describe(&quot;Screens/RestaurantOrder&quot;, () =&gt; {
   // Mock the hooks and components used in RestaurantOrder
 
   const mockRestaurantResponse = {
@@ -1317,7 +1317,7 @@ describe(&quot;RestaurantOrder component&quot;, () =&gt; {
     useRestaurant = jest.spyOn(restaurantHooks, &quot;useRestaurant&quot;)
   })
 
-  it(&quot;renders restaurant order form&quot;, () =&gt; {
+  it(&quot;renders&quot;, () =&gt; {
     useRestaurant.mockReturnValue({
       ...mockRestaurantResponse,
       error: undefined,
@@ -1344,7 +1344,7 @@ describe(&quot;RestaurantOrder component&quot;, () =&gt; {
     ).toBeOnTheScreen()
   })
 
-  it(&quot;renders loading restaurant&quot;, () =&gt; {
+  it(&quot;renders loading state&quot;, () =&gt; {
     useRestaurant.mockReturnValue({
       data: undefined,
       error: undefined,
@@ -1359,7 +1359,8 @@ describe(&quot;RestaurantOrder component&quot;, () =&gt; {
     )
     expect(screen.getByText(/Loading/i)).toBeOnTheScreen()
   })
-  it(&quot;renders error restaurant&quot;, () =&gt; {
+
+  it(&quot;renders error state&quot;, () =&gt; {
     useRestaurant.mockReturnValue({
       data: undefined,
       error: { name: &quot;Oops&quot;, message: &quot;This is the error&quot; },
@@ -2095,8 +2096,8 @@ export default RestaurantOrder
 
 import FormTextField from &quot;./FormTextField&quot;
 
-describe(&quot;FormTextField component&quot;, () =&gt; {
-  it(&quot;renders label&quot;, () =&gt; {
+describe(&quot;Components/FormTextField&quot;, () =&gt; {
+  it(&quot;renders&quot;, () =&gt; {
     const handleChangeMock = jest.fn()
     render(
       &lt;FormTextField
@@ -2128,7 +2129,7 @@ const route = {
   },
 } as const
 
-describe(&quot;RestaurantOrder component&quot;, () =&gt; {
+describe(&quot;Screens/RestaurantOrder&quot;, () =&gt; {
   // Mock the hooks and components used in RestaurantOrder
 
   const mockRestaurantResponse = {
@@ -2179,7 +2180,7 @@ describe(&quot;RestaurantOrder component&quot;, () =&gt; {
     useRestaurant = jest.spyOn(restaurantHooks, &quot;useRestaurant&quot;)
   })
 
-  it(&quot;renders restaurant order form&quot;, () =&gt; {
+  it(&quot;renders&quot;, () =&gt; {
     useRestaurant.mockReturnValue({
       ...mockRestaurantResponse,
       error: undefined,
@@ -2210,7 +2211,7 @@ describe(&quot;RestaurantOrder component&quot;, () =&gt; {
     expect(screen.getByText(/Phone/i)).toBeOnTheScreen()
   })
 
-  it(&quot;renders loading restaurant&quot;, () =&gt; {
+  it(&quot;renders loading state&quot;, () =&gt; {
     useRestaurant.mockReturnValue({
       data: undefined,
       error: undefined,
@@ -2225,7 +2226,8 @@ describe(&quot;RestaurantOrder component&quot;, () =&gt; {
     )
     expect(screen.getByText(/Loading/i)).toBeOnTheScreen()
   })
-  it(&quot;renders error restaurant&quot;, () =&gt; {
+
+  it(&quot;renders error state&quot;, () =&gt; {
     useRestaurant.mockReturnValue({
       data: undefined,
       error: { name: &quot;Oops&quot;, message: &quot;This is the error&quot; },

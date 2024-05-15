@@ -1089,33 +1089,35 @@ import { View, Text } from &quot;react-native&quot;
 
 import ThemeProvider, { useTheme } from &quot;./ThemeProvider&quot;
 
-describe(&quot;ThemeProvider Provider&quot;, () =&gt; {
-  it(&quot;renders children&quot;, async () =&gt; {
-    render(
-      &lt;ThemeProvider&gt;
-        &lt;Text&gt;Hello!&lt;/Text&gt;
-      &lt;/ThemeProvider&gt;,
-    )
+describe(&quot;Design/Theme&quot;, () =&gt; {
+  describe(&quot;ThemeProvider&quot;, () =&gt; {
+    it(&quot;renders children&quot;, async () =&gt; {
+      render(
+        &lt;ThemeProvider&gt;
+          &lt;Text&gt;Hello!&lt;/Text&gt;
+        &lt;/ThemeProvider&gt;,
+      )
 
-    expect(screen.getByText(/Hello/)).toBeOnTheScreen()
+      expect(screen.getByText(/Hello/)).toBeOnTheScreen()
+    })
   })
-})
 
-describe(&quot;ThemeContext context&quot;, () =&gt; {
-  const TestComponent: React.FC = () =&gt; {
-    const theme = useTheme()
+  describe(&quot;ThemeContext&quot;, () =&gt; {
+    const TestComponent: React.FC = () =&gt; {
+      const theme = useTheme()
 
-    return (
-      &lt;View&gt;
-        &lt;Text&gt;{theme.palette.primary.main}&lt;/Text&gt;
-      &lt;/View&gt;
-    )
-  }
+      return (
+        &lt;View&gt;
+          &lt;Text&gt;{theme.palette.primary.main}&lt;/Text&gt;
+        &lt;/View&gt;
+      )
+    }
 
-  it(&quot;context properties are accessible&quot;, async () =&gt; {
-    render(&lt;TestComponent /&gt;)
+    it(&quot;exposes context properties&quot;, async () =&gt; {
+      render(&lt;TestComponent /&gt;)
 
-    expect(screen.getByText(/#007980/)).toBeOnTheScreen()
+      expect(screen.getByText(/#007980/)).toBeOnTheScreen()
+    })
   })
 })
 
@@ -1323,8 +1325,8 @@ import Typography from &quot;../Typography&quot;
 
 import Box from &quot;./Box&quot;
 
-describe(&quot;Box component&quot;, () =&gt; {
-  it(&quot;renders children components 'Hello!' without issue&quot;, () =&gt; {
+describe(&quot;Design/Box&quot;, () =&gt; {
+  it(&quot;renders&quot;, () =&gt; {
     render(
       &lt;Box padding=&quot;s&quot; margin=&quot;s&quot;&gt;
         &lt;Typography&gt;Hello!&lt;/Typography&gt;
@@ -1341,8 +1343,8 @@ describe(&quot;Box component&quot;, () =&gt; {
 
 import Typography from &quot;./Typography&quot;
 
-describe(&quot;Typography component&quot;, () =&gt; {
-  it(&quot;renders 'Hello' when given input&quot;, () =&gt; {
+describe(&quot;Design/Typography&quot;, () =&gt; {
+  it(&quot;renders&quot;, () =&gt; {
     render(&lt;Typography variant=&quot;body&quot;&gt;Hello!&lt;/Typography&gt;)
 
     expect(screen.getByText(/Hello/)).toBeOnTheScreen()
@@ -1579,8 +1581,8 @@ function getStyles(
 
 import Button from &quot;./Button&quot;
 
-describe(&quot;Button component&quot;, () =&gt; {
-  it(&quot;renders title&quot;, () =&gt; {
+describe(&quot;Design/Button&quot;, () =&gt; {
+  it(&quot;renders&quot;, () =&gt; {
     const handleChangeMock = jest.fn()
 
     render(&lt;Button onPress={handleChangeMock}&gt;Hello!&lt;/Button&gt;)
@@ -1655,8 +1657,8 @@ import Typography from &quot;../Typography&quot;
 
 import Card from &quot;./Card&quot;
 
-describe(&quot;Card component&quot;, () =&gt; {
-  it(&quot;renders title and children&quot;, () =&gt; {
+describe(&quot;Design/Card&quot;, () =&gt; {
+  it(&quot;renders&quot;, () =&gt; {
     render(
       &lt;Card title=&quot;Hello!&quot;&gt;
         &lt;Typography variant=&quot;body&quot;&gt;How are you?&lt;/Typography&gt;
@@ -1714,8 +1716,8 @@ import Typography from &quot;../Typography&quot;
 
 import Screen from &quot;./Screen&quot;
 
-describe(&quot;Screen component&quot;, () =&gt; {
-  it(&quot;renders children&quot;, () =&gt; {
+describe(&quot;Design/Screen&quot;, () =&gt; {
+  it(&quot;renders&quot;, () =&gt; {
     render(
       &lt;Screen&gt;
         &lt;Typography variant=&quot;body&quot;&gt;How are you?&lt;/Typography&gt;

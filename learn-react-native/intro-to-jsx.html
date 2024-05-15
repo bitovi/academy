@@ -817,6 +817,7 @@ describe(&quot;App&quot;, () =&gt; {
     render(&lt;App /&gt;)
     expect(screen.getByText(/Place my order/i)).toBeOnTheScreen()
   })
+
   it(&quot;renders a state&quot;, async () =&gt; {
     render(&lt;App /&gt;)
     expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
@@ -824,7 +825,7 @@ describe(&quot;App&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="10-13,only"></div>
+ <div line-highlight="11-14,only"></div>
 <h3>Exercise 1</h3>
 <p>Use JSX to dynamically display a state name from a variable that’s an object.</p>
 <h3>Solution 1</h3>
@@ -1067,6 +1068,7 @@ describe(&quot;App&quot;, () =&gt; {
     render(&lt;App /&gt;)
     expect(screen.getByText(/Place my order/i)).toBeOnTheScreen()
   })
+
   it(&quot;renders states&quot;, async () =&gt; {
     render(&lt;App /&gt;)
     expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
@@ -1075,7 +1077,7 @@ describe(&quot;App&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="10,13,only"></div>
+ <div line-highlight="11,14,only"></div>
 <h3>Exercise 2</h3>
 <ul>
 <li>Update the existing JSX to render the list of state names.</li>

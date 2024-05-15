@@ -856,7 +856,7 @@ let mockStorageClear: jest.SpyInstance&lt;ReturnType&lt;typeof AsyncStorage.clea
 
 jest.unmock(&quot;./storage&quot;)
 
-describe(&quot;AsyncStorage Functions&quot;, () =&gt; {
+describe(&quot;Services/Storage&quot;, () =&gt; {
   beforeEach(() =&gt; {
     jest.clearAllMocks()
     mockStorageGetData = jest.spyOn(AsyncStorage, &quot;getItem&quot;)
@@ -865,49 +865,60 @@ describe(&quot;AsyncStorage Functions&quot;, () =&gt; {
     mockStorageClear = jest.spyOn(AsyncStorage, &quot;clear&quot;)
   })
 
-  it(&quot;getData function should return parsed value from AsyncStorage&quot;, async () =&gt; {
-    mockStorageGetData.mockResolvedValueOnce(
-      JSON.stringify({ example: &quot;data&quot; }),
-    )
+  describe(&quot;getData&quot;, () =&gt; {
+    it(&quot;returns the parsed value from AsyncStorage&quot;, async () =&gt; {
+      mockStorageGetData.mockResolvedValueOnce(
+        JSON.stringify({ example: &quot;data&quot; }),
+      )
 
-    const data = await getData(&quot;testKey&quot;)
+      const data = await getData(&quot;testKey&quot;)
 
-    expect(data).toEqual({ example: &quot;data&quot; })
-    expect(AsyncStorage.getItem).toHaveBeenCalledWith(&quot;testKey&quot;)
+      expect(data).toEqual({ example: &quot;data&quot; })
+      expect(AsyncStorage.getItem).toHaveBeenCalledWith(&quot;testKey&quot;)
+    })
+
+    it(&quot;returns undefined if key does not exist&quot;, async () =&gt; {
+      mockStorageGetData.mockResolvedValueOnce(JSON.stringify(undefined))
+
+      const data = await getData(&quot;nonExistingKey&quot;)
+
+      expect(data).toBeUndefined()
+      expect(mockStorageGetData).toHaveBeenCalledWith(&quot;nonExistingKey&quot;)
+    })
   })
 
-  it(&quot;getData function should return undefined if key does not exist&quot;, async () =&gt; {
-    mockStorageGetData.mockResolvedValueOnce(JSON.stringify(undefined))
+  describe(&quot;getAllKeys&quot;, () =&gt; {
+    it(&quot;returns keys from AsyncStorage&quot;, async () =&gt; {
+      const keys = [&quot;key1&quot;, &quot;key2&quot;, &quot;key3&quot;]
+      mockStorageGetKeys.mockResolvedValueOnce(keys)
 
-    const data = await getData(&quot;nonExistingKey&quot;)
+      const result = await getAllKeys()
 
-    expect(data).toBeUndefined()
-    expect(mockStorageGetData).toHaveBeenCalledWith(&quot;nonExistingKey&quot;)
+      expect(result).toEqual(keys)
+      expect(mockStorageGetKeys).toHaveBeenCalled()
+    })
   })
 
-  it(&quot;getAllKeys function should return an array of keys from AsyncStorage&quot;, async () =&gt; {
-    const keys = [&quot;key1&quot;, &quot;key2&quot;, &quot;key3&quot;]
-    mockStorageGetKeys.mockResolvedValueOnce(keys)
+  describe(&quot;storeData&quot;, () =&gt; {
+    it(&quot;stores data in AsyncStorage&quot;, async () =&gt; {
+      const data = { example: &quot;data&quot; }
+      const key = &quot;testKey&quot;
 
-    const result = await getAllKeys()
+      await storeData(key, data)
 
-    expect(result).toEqual(keys)
-    expect(mockStorageGetKeys).toHaveBeenCalled()
+      expect(mockStorageStoreData).toHaveBeenCalledWith(
+        key,
+        JSON.stringify(data),
+      )
+    })
   })
 
-  it(&quot;storeData function should store data in AsyncStorage&quot;, async () =&gt; {
-    const data = { example: &quot;data&quot; }
-    const key = &quot;testKey&quot;
+  describe(&quot;clearStorage&quot;, () =&gt; {
+    it(&quot;clears AsyncStorage&quot;, async () =&gt; {
+      await clearStorage()
 
-    await storeData(key, data)
-
-    expect(mockStorageStoreData).toHaveBeenCalledWith(key, JSON.stringify(data))
-  })
-
-  it(&quot;clearStorage function should clear AsyncStorage&quot;, async () =&gt; {
-    await clearStorage()
-
-    expect(mockStorageClear).toHaveBeenCalled()
+      expect(mockStorageClear).toHaveBeenCalled()
+    })
   })
 })
 
@@ -1214,8 +1225,8 @@ afterEach(() =&gt; {
   jest.resetAllMocks()
 })
 
-describe(&quot;DataMigration component&quot;, () =&gt; {
-  it(&quot;renders&quot;, async () =&gt; {
+describe(&quot;Services/DataMigration&quot;, () =&gt; {
+  it(&quot;renders loading&quot;, async () =&gt; {
     mockStorageGetData.mockResolvedValueOnce(2)
 
     render(
@@ -1223,20 +1234,23 @@ describe(&quot;DataMigration component&quot;, () =&gt; {
         &lt;Typography&gt;Hello!&lt;/Typography&gt;
       &lt;/DataMigration&gt;,
     )
+
     expect(screen.getByText(/Loading…/)).toBeOnTheScreen()
   })
+
   it(&quot;renders children after loading&quot;, async () =&gt; {
     mockStorageGetData.mockResolvedValueOnce(2)
+
     render(
       &lt;DataMigration&gt;
         &lt;Typography&gt;Hello!&lt;/Typography&gt;
       &lt;/DataMigration&gt;,
     )
-    await waitFor(() =&gt; {
-      expect(screen.getByText(/Hello!/)).toBeOnTheScreen()
-    })
+
+    expect(await screen.findByText(/Hello!/)).toBeOnTheScreen()
   })
-  it(&quot;updates localStorage if storage version is less than 2&quot;, async () =&gt; {
+
+  it(&quot;updates data if version is less than 2&quot;, async () =&gt; {
     mockStorageGetData
       .mockResolvedValueOnce(1)
       .mockResolvedValueOnce({
@@ -1253,9 +1267,8 @@ describe(&quot;DataMigration component&quot;, () =&gt; {
         &lt;Typography&gt;Hello!&lt;/Typography&gt;
       &lt;/DataMigration&gt;,
     )
-    await waitFor(() =&gt; {
-      expect(screen.getByText(/Hello!/)).toBeOnTheScreen()
-    })
+
+    expect(await screen.findByText(/Hello!/)).toBeOnTheScreen()
 
     /*
       With the mock data as it is, getKeys should be called once to get all the necessary keys.
@@ -1277,9 +1290,8 @@ describe(&quot;DataMigration component&quot;, () =&gt; {
         &lt;Typography&gt;Hello!&lt;/Typography&gt;
       &lt;/DataMigration&gt;,
     )
-    await waitFor(() =&gt; {
-      expect(screen.getByText(/Hello!/)).toBeOnTheScreen()
-    })
+
+    expect(await screen.findByText(/Hello!/)).toBeOnTheScreen()
 
     // if the local storage doesn't run for data migration, GetData will only run once to check the version number
     expect(mockStorageGetKeys).toHaveReturnedTimes(0)
