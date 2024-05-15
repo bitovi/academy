@@ -683,10 +683,121 @@ covering CanJS core libraries.">
 <ul>
 <li>TODO</li>
 </ul>
-<h2>Objective 1: Learn to store data locally</h2>
-<h3>Concept TODO</h3>
-<p>TODO</p>
+<h2>Objective 1: Cache API responses</h2>
+<p>Now that the core functionality of our app is working, let’s improve its performance by caching API responses and using them for GET requests.</p>
+<h3>Storing data on device</h3>
+<p>In mobile applications, persisting data locally is crucial for enabling offline usage and improving app responsiveness by reducing the need for network requests.
+React Native provides several options for local storage, ranging from simple key-value storage to more complex solutions like SQLite or Realm.
+For most use cases, especially when starting out, a simpler and effective solution suffices — such as <code>@react-native-async-storage/async-storage</code>.</p>
+<h4>Using <code>@react-native-async-storage/async-storage</code></h4>
+<p>This package is a local storage system that is ideal for storing small pieces of data.
+It operates asynchronously and stores data in key-value pairs, making it a good choice for lightweight persistence without the need for setting up a database.</p>
+<p>Its API includes a lot of functionality, but we’ll focus on using:</p>
+<ul>
+<li><code>setItem</code></li>
+<li><code>getItem</code></li>
+<li><code>getAllKeys</code></li>
+<li><code>clear</code></li>
+</ul>
+<h4>Storing items</h4>
+<p>Use the <code>setItem</code> method to store data using <code>AsyncStorage</code>.
+Since it only supports storing strings, complex data such as objects or arrays must be serialized using <code>JSON.stringify</code> before storage.</p>
+<p>Here is an example:</p>
+<pre><code class="language-ts">import AsyncStorage from &quot;@react-native-async-storage/async-storage&quot;
+
+export async function saveProfileData(profile) {
+  try {
+    const serializedData = JSON.stringify(profile)
+    await AsyncStorage.setItem(&quot;profileData&quot;, serializedData)
+  } catch (error) {
+    console.error(&quot;Failed to save data&quot;, error)
+  }
+}
+
+</code></pre>
+<div line-highlight='6'></div>
+<p>This function takes a <code>restaurant</code> object, converts it into a string, and saves it under the key <code>&quot;restaurantData&quot;</code>.</p>
+<h4>Getting items</h4>
+<p>Retrieving data from <code>AsyncStorage</code> is done using the <code>getItem</code> method.
+The retrieved data, being in string format, often needs to be converted back into JSON format using <code>JSON.parse</code>.</p>
+<p>Consider this example:</p>
+<pre><code class="language-ts">import AsyncStorage from &quot;@react-native-async-storage/async-storage&quot;
+
+export async function loadProfileData() {
+  try {
+    const serializedData = await AsyncStorage.getItem(&quot;profileData&quot;)
+    return serializedData != null ? JSON.parse(serializedData) : null
+  } catch (error) {
+    console.error(&quot;Failed to load data&quot;, error)
+  }
+}
+
+</code></pre>
+<div line-highlight='5'></div>
+<p>This function fetches the data stored under the <code>&quot;restaurantData&quot;</code> key and converts it from a string back into an object.</p>
+<h4>Getting all keys</h4>
+<p>Sometimes, it is necessary to know all the keys under which data is stored.</p>
+<p>The <code>getAllKeys</code> method provides this capability:</p>
+<pre><code class="language-ts">import AsyncStorage from &quot;@react-native-async-storage/async-storage&quot;
+
+export async function listAllKeys() {
+  try {
+    const keys = await AsyncStorage.getAllKeys()
+    console.info(&quot;Stored keys:&quot;, keys)
+  } catch (error) {
+    console.error(&quot;Failed to fetch keys&quot;, error)
+  }
+}
+
+</code></pre>
+<div line-highlight='5'></div>
+<p>Continuing from our examples above, the <code>keys</code> array would be:</p>
+<pre><code class="language-ts">;[&quot;restaurantData&quot;]
+</code></pre>
+<h4>Clearing all storage</h4>
+<p>Use the <code>clear</code> method to remove all data stored in <code>AsyncStorage</code>:</p>
+<pre><code class="language-ts">import AsyncStorage from &quot;@react-native-async-storage/async-storage&quot;
+
+export async function clearStorage() {
+  try {
+    await AsyncStorage.clear()
+    console.info(&quot;Storage successfully cleared!&quot;)
+  } catch (error) {
+    console.error(&quot;Failed to clear the storage&quot;, error)
+  }
+}
+
+</code></pre>
+<div line-highlight='5'></div>
+<p>After calling <code>clear()</code>, the <code>getAllKeys</code> method would return an empty array, and any <code>getItem</code> calls would no longer return data.</p>
+<h3>Caching strategies</h3>
+<p>In applications that make network requests, caching responses can improve performance while decreasing network data usage.</p>
+<p>There are <em>many</em> different types of caching strategies for network requests:</p>
+<ul>
+<li><p><strong>No cache strategy:</strong> Every request is sent to the server without any attempt to cache data. This is suitable when data updates frequently or when exact real-time data is crucial.</p></li>
+<li><p><strong>Local cache first (cache-then-network):</strong> The app first tries to load data from the local cache. If the data is not available or is stale, it fetches data from the network and updates the cache. This is useful for reducing network requests and speeding up data retrieval.</p></li>
+<li><p><strong>Cache only:</strong> The app relies entirely on the cached data and does not perform any network requests. This is ideal for offline modes where no network connection is available.</p></li>
+<li><p><strong>Cache with network update (stale-while-revalidate):</strong> The app initially serves data from the cache for quick access, but simultaneously fetches the latest data from the network to update the cache. This way, users see data quickly and also get updates as they come.</p></li>
+<li><p><strong>Network with cache fallback:</strong> The primary approach is to fetch data from the network, but if the network is unavailable or the request fails, data is loaded from the cache. This is useful for maintaining functionality when offline or in poor network conditions.</p></li>
+<li><p><strong>Conditional cache strategy:</strong> Using conditional requests with cache tags (like ETag) or timestamps, the app can minimize data transfer by asking the server if there are updates since the last fetch. If the data hasn't changed, the server returns a not-modified status, allowing the app to use cached data.</p></li>
+<li><p><strong>Incremental cache update:</strong> Suitable for data that can be partitioned or incremental updates (like paginated queries). Instead of refreshing the entire cache, only new or updated data chunks are fetched and cached.</p></li>
+<li><p><strong>Intelligent cache invalidation:</strong> A more complex strategy where the app decides when to invalidate cache based on specific rules or expiry times, often used in conjunction with other strategies to optimize data freshness versus retrieval time.</p></li>
+</ul>
+<p>Each of these strategies can be implemented depending on the specific needs of the application, data sensitivity, user experience requirements, and network conditions.
+Choosing the right caching strategy is critical for balancing between data freshness, responsiveness, and minimizing network usage.</p>
+<h4>Local cache first (cache-then-network)</h4>
+<p>For our application, we will implement the <strong>“local cache first” (cache-then-network)</strong> strategy.</p>
+<p>Here are some pointers on implementing this strategy:</p>
+<ul>
+<li><strong>Only cache GET requests.</strong> Most APIs make it so HEAD and GET requests are idempotent (they can be repeated over and over to the same effect), so they are safe to cache and reuse.</li>
+<li><strong>Store API requests by the full URL.</strong> Relative URLs can be a pain to deal with if you’re working with multiple servers.</li>
+<li><strong>Use a prefix for the storage key.</strong> A prefix before the URL can make it easier to find the same type of cached data, and separate it from other things that might be in storage.</li>
+<li><strong>Store the response data with metadata in the cache.</strong> Metadata can give you more info about the cached item, e.g. the date and time of when the item was cached could be stored as a string after calling <code>new Date()</code>.</li>
+</ul>
 <h3>Setup 1</h3>
+<p>✏️ Run:</p>
+<pre><code class="language-bash">npm install @react-native-async-storage/async-storage@1
+</code></pre>
 <p>✏️ Update <strong>jest-setup.ts</strong> to be:</p>
 <pre><code class="language-ts">import &quot;@testing-library/react-native/extend-expect&quot;
 
@@ -727,9 +838,6 @@ console.error = (message, ...args) =&gt; {
 
 </code></pre>
  <div line-highlight="16-18,20-22,only"></div>
-<p>✏️ Run:</p>
-<pre><code class="language-bash">npm install @react-native-async-storage/async-storage@1
-</code></pre>
 <p>✏️ Create <strong>src/services/storage/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export * from &quot;./storage&quot;
 
@@ -924,10 +1032,16 @@ describe(&quot;Services/Storage&quot;, () =&gt; {
 
 </code></pre>
 <h3>Exercise 1</h3>
+<p>For this exercise, let’s implement the storage APIs and use them to cache network responses:</p>
 <ul>
-<li><p>store response from requests, return stored value if network failure</p></li>
-<li><p>View requests in devTools</p></li>
-<li><p>View stored data in devTools/Flipper</p></li>
+<li>Implement the four <code>AsyncStorage</code> helpers in <code>storage.ts</code>.</li>
+<li>When a GET response is received, cache the response (and the current datetime) with the storage helpers.</li>
+<li>When a GET request is made, check the cache first; if it’s been less than a minute since cached, return the cached value, otherwise make the request.</li>
+</ul>
+<p>You can verify that this is working correctly by using DevTools to:</p>
+<ul>
+<li>View the requests (or lack thereof) being made.</li>
+<li>Inspect the stored data.</li>
 </ul>
 <h3>Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
