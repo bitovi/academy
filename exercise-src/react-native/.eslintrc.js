@@ -33,9 +33,11 @@ module.exports = {
     ],
 
     // off for exercises
-    "@typescript-eslint/no-unused-vars": "off",
     "no-console": "off",
     "no-debugger": "off",
     "no-warning-comments": "off",
+
+    // off for problems
+    "@typescript-eslint/no-unused-vars": "off",
   },
 }
