@@ -30,9 +30,7 @@ describe("App", () => {
 
     render(<App />)
 
-    await waitFor(() => {
-      const placeMyOrderText = screen.getAllByText(/Place my order/i)
-      expect(placeMyOrderText).toHaveLength(2)
-    })
+    const placeMyOrderText = await screen.findAllByText(/Place my order/i)
+    expect(placeMyOrderText).toHaveLength(2)
   })
 })

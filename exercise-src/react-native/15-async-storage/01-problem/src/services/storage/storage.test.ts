@@ -15,7 +15,7 @@ let mockStorageClear: jest.SpyInstance<ReturnType<typeof AsyncStorage.clear>>
 
 jest.unmock("./storage")
 
-describe("AsyncStorage Functions", () => {
+describe("Services/Storage", () => {
   beforeEach(() => {
     jest.clearAllMocks()
     mockStorageGetData = jest.spyOn(AsyncStorage, "getItem")
@@ -24,48 +24,59 @@ describe("AsyncStorage Functions", () => {
     mockStorageClear = jest.spyOn(AsyncStorage, "clear")
   })
 
-  it("getData function should return parsed value from AsyncStorage", async () => {
-    mockStorageGetData.mockResolvedValueOnce(
-      JSON.stringify({ example: "data" }),
-    )
+  describe("getData", () => {
+    it("returns the parsed value from AsyncStorage", async () => {
+      mockStorageGetData.mockResolvedValueOnce(
+        JSON.stringify({ example: "data" }),
+      )
 
-    const data = await getData("testKey")
+      const data = await getData("testKey")
 
-    expect(data).toEqual({ example: "data" })
-    expect(AsyncStorage.getItem).toHaveBeenCalledWith("testKey")
+      expect(data).toEqual({ example: "data" })
+      expect(AsyncStorage.getItem).toHaveBeenCalledWith("testKey")
+    })
+
+    it("returns undefined if key does not exist", async () => {
+      mockStorageGetData.mockResolvedValueOnce(JSON.stringify(undefined))
+
+      const data = await getData("nonExistingKey")
+
+      expect(data).toBeUndefined()
+      expect(mockStorageGetData).toHaveBeenCalledWith("nonExistingKey")
+    })
   })
 
-  it("getData function should return undefined if key does not exist", async () => {
-    mockStorageGetData.mockResolvedValueOnce(JSON.stringify(undefined))
+  describe("getAllKeys", () => {
+    it("returns keys from AsyncStorage", async () => {
+      const keys = ["key1", "key2", "key3"]
+      mockStorageGetKeys.mockResolvedValueOnce(keys)
 
-    const data = await getData("nonExistingKey")
+      const result = await getAllKeys()
 
-    expect(data).toBeUndefined()
-    expect(mockStorageGetData).toHaveBeenCalledWith("nonExistingKey")
+      expect(result).toEqual(keys)
+      expect(mockStorageGetKeys).toHaveBeenCalled()
+    })
   })
 
-  it("getAllKeys function should return an array of keys from AsyncStorage", async () => {
-    const keys = ["key1", "key2", "key3"]
-    mockStorageGetKeys.mockResolvedValueOnce(keys)
+  describe("storeData", () => {
+    it("stores data in AsyncStorage", async () => {
+      const data = { example: "data" }
+      const key = "testKey"
 
-    const result = await getAllKeys()
+      await storeData(key, data)
 
-    expect(result).toEqual(keys)
-    expect(mockStorageGetKeys).toHaveBeenCalled()
+      expect(mockStorageStoreData).toHaveBeenCalledWith(
+        key,
+        JSON.stringify(data),
+      )
+    })
   })
 
-  it("storeData function should store data in AsyncStorage", async () => {
-    const data = { example: "data" }
-    const key = "testKey"
+  describe("clearStorage", () => {
+    it("clears AsyncStorage", async () => {
+      await clearStorage()
 
-    await storeData(key, data)
-
-    expect(mockStorageStoreData).toHaveBeenCalledWith(key, JSON.stringify(data))
-  })
-
-  it("clearStorage function should clear AsyncStorage", async () => {
-    await clearStorage()
-
-    expect(mockStorageClear).toHaveBeenCalled()
+      expect(mockStorageClear).toHaveBeenCalled()
+    })
   })
 })

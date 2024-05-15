@@ -31,7 +31,8 @@ jest.mock("@react-navigation/native", () => {
     }),
   }
 })
-describe("RestaurantDetails component", () => {
+
+describe("Screens/RestaurantDetails", () => {
   // Mock the hooks and components used in RestaurantDetails
 
   let useRestaurant: jest.SpyInstance<
@@ -61,12 +62,39 @@ describe("RestaurantDetails component", () => {
     isPending: false,
     error: undefined,
   }
+
+  it("renders", () => {
+    useRestaurant.mockReturnValue(mockRestaurantData)
+
+    render(
+      <NavigationContainer>
+        {/* @ts-ignore */}
+        <RestaurantDetails route={route} />
+      </NavigationContainer>,
+    )
+
+    expect(screen.getByText("Test Restaurant")).toBeOnTheScreen()
+  })
+
+  it("renders before data loads", () => {
+    useRestaurant.mockReturnValue({ ...mockRestaurantData, data: undefined })
+    render(
+      <NavigationContainer>
+        {/* @ts-ignore */}
+        <RestaurantDetails route={route} />
+      </NavigationContainer>,
+    )
+
+    expect(screen.getByText("Place an order")).toBeOnTheScreen()
+  })
+
   it("renders loading state", () => {
     useRestaurant.mockReturnValue({
       data: undefined,
       isPending: true,
       error: undefined,
     })
+
     render(
       <NavigationContainer>
         {/* @ts-ignore */}
@@ -83,41 +111,19 @@ describe("RestaurantDetails component", () => {
       isPending: false,
       error: { name: "Error", message: "Mock error" },
     })
+
     render(
       <NavigationContainer>
         {/* @ts-ignore */}
         <RestaurantDetails route={route} />
       </NavigationContainer>,
     )
+
     expect(
       screen.getByText(/Error loading restaurant details:/i, {
         exact: false,
       }),
     ).toBeOnTheScreen()
     expect(screen.getByText(/Mock error/i)).toBeOnTheScreen()
-  })
-
-  it("renders the RestaurantHeader and content when data is available", () => {
-    useRestaurant.mockReturnValue(mockRestaurantData)
-    render(
-      <NavigationContainer>
-        {/* @ts-ignore */}
-        <RestaurantDetails route={route} />
-      </NavigationContainer>,
-    )
-
-    expect(screen.getByText("Test Restaurant")).toBeOnTheScreen()
-  })
-
-  it("renders the RestaurantHeader and content when data is not available", () => {
-    useRestaurant.mockReturnValue({ ...mockRestaurantData, data: undefined })
-    render(
-      <NavigationContainer>
-        {/* @ts-ignore */}
-        <RestaurantDetails route={route} />
-      </NavigationContainer>,
-    )
-
-    expect(screen.getByText("Place an order")).toBeOnTheScreen()
   })
 })

@@ -13,8 +13,8 @@ jest.mock("@react-navigation/native", () => {
   }
 })
 
-describe("RestaurantDetails component", () => {
-  it("renders the RestaurantHeader and content when data is available", () => {
+describe("Screens/RestaurantDetails", () => {
+  it("renders", () => {
     render(<RestaurantDetails />)
 
     expect(screen.getByText("Cheese Curd City")).toBeOnTheScreen()

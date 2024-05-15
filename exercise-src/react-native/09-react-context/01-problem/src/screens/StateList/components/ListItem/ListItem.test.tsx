@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react-native"
 
 import ListItem from "./ListItem"
 
-describe("ListItem", () => {
+describe("Screens/StateList/ListItem", () => {
   it("renders", async () => {
     render(<ListItem name="One" />)
 

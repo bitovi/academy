@@ -1,10 +1,5 @@
 import { GoogleSigninButton } from "@react-native-google-signin/google-signin"
-import {
-  render,
-  screen,
-  waitFor,
-  fireEvent,
-} from "@testing-library/react-native"
+import { render, screen, fireEvent } from "@testing-library/react-native"
 import { View, Text } from "react-native"
 
 import Button from "../../design/Button"
@@ -24,7 +19,7 @@ afterAll(() => {
   global.fetch = oldFetch
 })
 
-describe("AuthProvider", () => {
+describe("Services/Auth/AuthProvider", () => {
   const TestComponent: React.FC = () => {
     const isAuthenticated = useAuthenticated()
     const { signIn, signOut } = useAuthentication()
@@ -44,23 +39,31 @@ describe("AuthProvider", () => {
     )
   }
 
-  it("renders with provider; signs in and signs out", async () => {
+  it("renders", async () => {
     render(
       <AuthProvider>
         <TestComponent />
       </AuthProvider>,
     )
 
-    await waitFor(() => {
-      expect(screen.getByText(/mockId/i)).toBeOnTheScreen()
-    })
+    expect(await screen.findByText(/mockId/i)).toBeOnTheScreen()
+  })
+
+  it("signs in and signs out", async () => {
+    render(
+      <AuthProvider>
+        <TestComponent />
+      </AuthProvider>,
+    )
+
+    expect(await screen.findByText(/mockId/i)).toBeOnTheScreen()
     fireEvent.press(screen.getByText(/Sign Out/i))
-    await waitFor(() => {
-      expect(screen.getByText(/Mock Sign in with Google/i)).toBeOnTheScreen()
-    })
+
+    expect(
+      await screen.findByText(/Mock Sign in with Google/i),
+    ).toBeOnTheScreen()
+
     fireEvent.press(screen.getByText(/Mock Sign in with Google/i))
-    await waitFor(() => {
-      expect(screen.getByText(/Sign Out/i)).toBeOnTheScreen()
-    })
+    expect(await screen.findByText(/Sign Out/i)).toBeOnTheScreen()
   })
 })

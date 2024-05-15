@@ -29,8 +29,8 @@ afterEach(() => {
   jest.resetAllMocks()
 })
 
-describe("DataMigration component", () => {
-  it("renders", async () => {
+describe("Services/DataMigration", () => {
+  it("renders loading", async () => {
     mockStorageGetData.mockResolvedValueOnce(2)
 
     render(
@@ -38,20 +38,23 @@ describe("DataMigration component", () => {
         <Typography>Hello!</Typography>
       </DataMigration>,
     )
+
     expect(screen.getByText(/Loading…/)).toBeOnTheScreen()
   })
+
   it("renders children after loading", async () => {
     mockStorageGetData.mockResolvedValueOnce(2)
+
     render(
       <DataMigration>
         <Typography>Hello!</Typography>
       </DataMigration>,
     )
-    await waitFor(() => {
-      expect(screen.getByText(/Hello!/)).toBeOnTheScreen()
-    })
+
+    expect(await screen.findByText(/Hello!/)).toBeOnTheScreen()
   })
-  it("updates localStorage if storage version is less than 2", async () => {
+
+  it("updates data if version is less than 2", async () => {
     mockStorageGetData
       .mockResolvedValueOnce(1)
       .mockResolvedValueOnce({
@@ -68,9 +71,8 @@ describe("DataMigration component", () => {
         <Typography>Hello!</Typography>
       </DataMigration>,
     )
-    await waitFor(() => {
-      expect(screen.getByText(/Hello!/)).toBeOnTheScreen()
-    })
+
+    expect(await screen.findByText(/Hello!/)).toBeOnTheScreen()
 
     /*
       With the mock data as it is, getKeys should be called once to get all the necessary keys.
@@ -92,9 +94,8 @@ describe("DataMigration component", () => {
         <Typography>Hello!</Typography>
       </DataMigration>,
     )
-    await waitFor(() => {
-      expect(screen.getByText(/Hello!/)).toBeOnTheScreen()
-    })
+
+    expect(await screen.findByText(/Hello!/)).toBeOnTheScreen()
 
     // if the local storage doesn't run for data migration, GetData will only run once to check the version number
     expect(mockStorageGetKeys).toHaveReturnedTimes(0)

@@ -1,6 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native"
 import { fireEvent, render, screen } from "@testing-library/react-native"
-import { SwitchChangeEvent } from "react-native"
 
 import AuthProvider from "../../services/auth/AuthProvider"
 
@@ -16,8 +15,8 @@ jest.mock("../../design/theme", () => ({
   }),
 }))
 
-describe("Settings component", () => {
-  it("renders Settings Page", async () => {
+describe("Screens/Settings", () => {
+  it("renders", async () => {
     render(
       <AuthProvider>
         <NavigationContainer>
@@ -28,7 +27,7 @@ describe("Settings component", () => {
     expect(screen.getByText(/Mock Sign in with Google/i)).toBeOnTheScreen()
   })
 
-  it("should switch to dark mode", () => {
+  it("switches to dark mode", () => {
     render(
       <AuthProvider>
         <NavigationContainer>
@@ -38,9 +37,7 @@ describe("Settings component", () => {
     )
     const switchElement = screen.getByRole("switch")
     expect(switchElement.props.value).toBe(false)
-    fireEvent(switchElement, "onChange", {
-      nativeEvent: { value: true },
-    } as SwitchChangeEvent)
+    fireEvent(switchElement, "onChange", { nativeEvent: { value: true } })
     expect(mockSetMode).toHaveBeenCalledWith("dark")
   })
 })

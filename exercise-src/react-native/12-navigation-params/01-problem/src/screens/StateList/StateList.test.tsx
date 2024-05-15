@@ -9,8 +9,8 @@ const route = {
   params: undefined,
 } as const
 
-describe("StateList", () => {
-  it("renders states", async () => {
+describe("Screens/StateList", () => {
+  it("renders", () => {
     render(
       <NavigationContainer>
         {/* @ts-ignore */}

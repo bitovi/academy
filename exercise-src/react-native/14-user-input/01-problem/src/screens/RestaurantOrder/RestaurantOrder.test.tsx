@@ -13,7 +13,7 @@ const route = {
   },
 } as const
 
-describe("RestaurantOrder component", () => {
+describe("Screens/RestaurantOrder", () => {
   // Mock the hooks and components used in RestaurantOrder
 
   const mockRestaurantResponse = {
@@ -64,7 +64,7 @@ describe("RestaurantOrder component", () => {
     useRestaurant = jest.spyOn(restaurantHooks, "useRestaurant")
   })
 
-  it("renders restaurant order form", () => {
+  it("renders", () => {
     useRestaurant.mockReturnValue({
       ...mockRestaurantResponse,
       error: undefined,
@@ -91,7 +91,7 @@ describe("RestaurantOrder component", () => {
     ).toBeOnTheScreen()
   })
 
-  it("renders loading restaurant", () => {
+  it("renders loading state", () => {
     useRestaurant.mockReturnValue({
       data: undefined,
       error: undefined,
@@ -106,7 +106,8 @@ describe("RestaurantOrder component", () => {
     )
     expect(screen.getByText(/Loading/i)).toBeOnTheScreen()
   })
-  it("renders error restaurant", () => {
+
+  it("renders error state", () => {
     useRestaurant.mockReturnValue({
       data: undefined,
       error: { name: "Oops", message: "This is the error" },

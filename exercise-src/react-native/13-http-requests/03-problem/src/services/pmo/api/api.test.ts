@@ -9,8 +9,8 @@ afterAll(() => {
   global.fetch = oldFetch
 })
 
-describe("apiRequest function", () => {
-  it("should handle a successful request", async () => {
+describe("Services/PMO/API/apiRequest", () => {
+  it("handles a successful request", async () => {
     // Mock the fetch response
     mockFetch.mockResolvedValueOnce({
       ok: true,
@@ -34,7 +34,7 @@ describe("apiRequest function", () => {
     })
   })
 
-  it("should handle a failed request", async () => {
+  it("handles a failed request", async () => {
     // Mock the fetch response
     mockFetch.mockResolvedValueOnce({
       ok: false,
@@ -54,7 +54,7 @@ describe("apiRequest function", () => {
     })
   })
 
-  it("should handle network errors", async () => {
+  it("handles network errors", async () => {
     // Mock a network error
     mockFetch.mockRejectedValueOnce(new Error("Network Error"))
 
@@ -70,13 +70,13 @@ describe("apiRequest function", () => {
   })
 })
 
-describe("stringifyQuery function", () => {
-  it("should correctly stringify query parameters", () => {
+describe("Services/PMO/API/stringifyQuery", () => {
+  it("stringifies query parameters", () => {
     const query = stringifyQuery({ foo: "bar", baz: "qux" })
     expect(query).toBe("foo=bar&baz=qux")
   })
 
-  it("should omit undefined and null values", () => {
+  it("skips undefined and null values", () => {
     const query = stringifyQuery({ foo: "bar", baz: undefined, qux: undefined })
     expect(query).toBe("foo=bar")
   })

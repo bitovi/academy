@@ -4,6 +4,8 @@ import Box from "../../design/Box"
 import { Theme, useTheme } from "../../design/theme"
 import Typography from "../../design/Typography"
 
+const assetsUrl = process.env.PMO_ASSETS
+
 export interface RestaurantHeaderProps {
   restaurant?: {
     _id: string
@@ -29,7 +31,7 @@ const RestaurantHeader: React.FC<RestaurantHeaderProps> = ({ restaurant }) => {
     <Box>
       <ImageBackground
         style={styles.heroBackground}
-        source={{ uri: restaurant?.images.banner }}
+        source={{ uri: `${assetsUrl}/${restaurant?.images.banner}` }}
       >
         <Box padding={["xs", "m"]} margin={["s", "none"]} style={styles.hero}>
           <Typography variant="heading" style={styles.heroText}>
