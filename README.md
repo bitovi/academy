@@ -59,6 +59,33 @@ Some courses have [dynamically generated exercises](./exercise-src/README.md). T
 npm run generate
 ```
 
+### Linting the content and code
+
+ESLint and Prettier are configured for some of the Academy content and exercises.
+
+In CI, this will run to verify both the content and exercises:
+
+```sh
+npm run lint:content && npm run lint:exercises
+```
+
+To fix them both locally, you can run this command:
+
+```sh
+npm run lint:content:fix && npm run lint:exercises:fix
+```
+
+Be sure to let these commands finish completely because they delete the `node_modules` folders.
+If a `node_modules` folder is left inside `src`, it will be processed as content and cause issues with running `npm start`.
+
+### Testing the exercises
+
+The test script will look inside the `exercises` folder folder any `-solution` folder that has a `package.json`, then install the dependencies and run the tests:
+
+```sh
+npm test
+```
+
 ### Building
 
 If you want to do a full production build from scratch, run:
