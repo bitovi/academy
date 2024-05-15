@@ -12,7 +12,7 @@ In this section, you will:
 
 - TODO
 
-## Objective 1: TODO
+## Objective 1: Creating a build
 
 TODO
 
@@ -30,7 +30,7 @@ TODO
 
 ### Exercise 1
 
-TODO
+- Generate apk file
 
 ### Solution 1
 
@@ -42,6 +42,40 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 TODO
 
 </details>
+
+## Objective 2: Setup signing
+
+TODO
+
+### Concept TODO
+
+TODO
+
+### Setup 2
+
+TODO
+
+### Verify 2
+
+TODO
+
+### Exercise 2
+
+- Generate key
+
+- Add keys to PATH
+
+### Solution 2
+
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
+
+<details>
+<summary>Click to see the solution</summary>
+
+TODO
+
+</details>
+
 
 ## Next steps
 
