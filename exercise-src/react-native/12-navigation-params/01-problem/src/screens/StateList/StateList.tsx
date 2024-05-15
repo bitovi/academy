@@ -24,7 +24,8 @@ const states: State[] = [
   },
 ]
 
-type Props = StackScreenProps<RestaurantsStackParamList, "StateList">
+export interface StateListProps
+  extends StackScreenProps<RestaurantsStackParamList, "StateList"> {}
 
 const StateList: React.FC = () => {
   const navigation = useNavigation()

@@ -11,9 +11,10 @@ const cities = [
   { name: "Springfield", state: "IL" },
 ]
 
-type Props = StackScreenProps<RestaurantsStackParamList, "CityList">
+export interface CityListProps
+  extends StackScreenProps<RestaurantsStackParamList, "CityList"> {}
 
-const CityList: React.FC<Props> = ({ route }) => {
+const CityList: React.FC<CityListProps> = ({ route }) => {
   const { state } = route.params
   const navigation = useNavigation()
 

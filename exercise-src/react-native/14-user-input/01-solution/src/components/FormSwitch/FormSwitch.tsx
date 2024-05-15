@@ -4,13 +4,13 @@ import Box from "../../design/Box"
 import { useTheme } from "../../design/theme"
 import Typography from "../../design/Typography"
 
-type Props = {
+export interface FormSwitchProps {
   label: React.ReactNode
   value: boolean
   onChange: (value: boolean) => void
 }
 
-const FormSwitch: React.FC<Props> = ({ label, value, onChange }) => {
+const FormSwitch: React.FC<FormSwitchProps> = ({ label, value, onChange }) => {
   const { palette } = useTheme()
 
   return (

@@ -144,7 +144,6 @@ There are two prop names that you cannot use and are reserved by React:
 
 - `key`: this prop is one you’ve seen before in the [Introduction to JSX module](intro-to-jsx.html#the-key-prop)! It’s not actually part of the component’s props in a traditional sense. Instead, it’s used by React itself to manage lists of elements and identify which items have changed, been added, or been removed.
 
-
 ### Setup 2
 
 ✏️ Update **App.tsx** to be:
@@ -174,7 +173,6 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 @diff ../../../exercises/react-native/06-custom-components/02-problem/App.tsx ../../../exercises/react-native/06-custom-components/02-solution/App.tsx only
 
-
 </details>
 
 ## Objective 3: Organize code with the Modlet pattern
@@ -183,13 +181,13 @@ Our efforts to refactor have been going swimmingly; however, the `App.tsx` file 
 
 ### Modlets
 
-Modlets are a folder/file structure that place a heavy emphasis on the idea of abstraction. 
+Modlets are a folder/file structure that place a heavy emphasis on the idea of abstraction.
 
 They are completely self contained; each modlet is basically its own application. It has everything it needs inside of it.
 
 Each modlet is treated as a black box that can only be accessed through a single point: its index file.
 
-Modlets follow these three rules: 
+Modlets follow these three rules:
 
 1. Only import folders not specific files.
 2. Do not reach “up” into parent directories or “sideways” into sibling directories to import things. Only “down” to child modlets, or to designated shared modlets in a parent.

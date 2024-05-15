@@ -1,6 +1,3 @@
 const content = (
-  <SubmitButton
-    label="Activate"
-    onPress={() => console.info("Activated!")}
-  />
+  <SubmitButton label="Activate" onPress={() => console.info("Activated!")} />
 )

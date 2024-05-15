@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { View, Text , Pressable } from 'react-native';
+import { View, Text, Pressable } from "react-native"
 
 interface UserProfile {
   email: string
@@ -24,10 +24,8 @@ const UserProfileComponent: React.FC = () => {
       <Text>Name: {userProfile.name}</Text>
       <Text>Email: {userProfile.email}</Text>
       <Pressable onPress={updateProfile}>
-        <Text>
-          Update profile
-        </Text>
-      </Pressable>    
+        <Text>Update profile</Text>
+      </Pressable>
     </View>
   )
 }

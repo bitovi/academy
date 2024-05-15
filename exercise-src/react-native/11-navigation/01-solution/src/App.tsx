@@ -8,7 +8,7 @@ import Settings from "./screens/Settings"
 import StateList from "./screens/StateList"
 
 const AppTabs = createBottomTabNavigator()
-export const AppNavigator: React.FC = () => {
+const AppNavigator: React.FC = () => {
   const theme = useTheme()
 
   return (

@@ -33,7 +33,7 @@ JSX stands for JavaScript XML, allowing you to write UI components that look sim
 const greeting = <Text>Hello, world!</Text>
 ```
 
-In this example, a <Text> component is used to render the text “Hello, world!”
+In this example, a `<Text>` component is used to render the text “Hello, world!”
 
 While this appears similar to XML or HTML, it is JSX used in a React Native project within a JavaScript file.
 
@@ -91,9 +91,7 @@ For example, consider an XML element representing a user:
 JSX allows props (short for properties) to be much more than just strings. Props in JSX can be any JavaScript expression, including any other JavaScript primitive, object, function, etc.
 
 ```jsx
-const userElement = (
-  <User age={37} isActive={true} name={"Mary Jackson"} />
-);
+const userElement = <User age={37} isActive name="Mary Jackson" />
 ```
 
 In the code above, the `age`, `isActive`, and `name` props are all passed into the `User` component.
@@ -128,11 +126,7 @@ React Native supports a `style` prop, but it accepts an object, not a string.
 The style object has properties whose names are camel-case versions of their CSS counterparts, e.g. `font-style` becomes `fontStyle`.
 
 ```tsx
-const content = (
-  <Text style={{ fontStyle: "italic" }}>
-    Restaurants
-  </Text>
-)
+const content = <Text style={{ fontStyle: "italic" }}>Restaurants</Text>
 ```
 
 As we go through this training, you’ll learn additional differences.
@@ -145,9 +139,7 @@ When dealing with JSX that needs multiple lines, the convention is to wrap it in
 function Form() {
   return (
     <View>
-      <Text>
-        Name:
-      </Text>
+      <Text>Name:</Text>
       <TextInput value="Molly Holzschlag" />
     </View>
   )
@@ -165,9 +157,7 @@ function List() {
   return (
     <View>
       {data.map((name) => (
-        <View key={name}>
-          {name}
-        </View>
+        <View key={name}>{name}</View>
       ))}
     </View>
   )
@@ -252,6 +242,7 @@ const content = (
   </View>
 )
 ```
+
 @highlight 8,9
 
 ### JSX is a syntax extension for JavaScript

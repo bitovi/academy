@@ -41,7 +41,7 @@ const RestaurantsNavigator: React.FC = () => {
 }
 
 const AppTabs = createBottomTabNavigator()
-export const AppNavigator: React.FC = () => {
+const AppNavigator: React.FC = () => {
   const theme = useTheme()
 
   return (

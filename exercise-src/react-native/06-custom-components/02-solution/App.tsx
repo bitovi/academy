@@ -11,7 +11,7 @@ const states = [
   },
 ]
 
-export type ListItemProps = {
+export interface ListItemProps {
   name: string
 }
 

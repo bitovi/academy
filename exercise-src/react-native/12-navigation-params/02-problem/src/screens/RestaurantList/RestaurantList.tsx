@@ -6,7 +6,8 @@ import { RestaurantsStackParamList } from "../../App"
 import Box from "../../design/Box"
 import Button from "../../design/Button"
 
-type Props = StackScreenProps<RestaurantsStackParamList, "RestaurantList">
+export interface RestaurantListProps
+  extends StackScreenProps<RestaurantsStackParamList, "RestaurantList"> {}
 
 const restaurants = [
   {
@@ -49,7 +50,7 @@ const restaurants = [
   },
 ]
 
-const RestaurantList: React.FC<Props> = () => {
+const RestaurantList: React.FC<RestaurantListProps> = () => {
   const navigation = useNavigation()
 
   return (

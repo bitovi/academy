@@ -34,10 +34,8 @@ This is convenient for dynamic styles that depend on the component’s state or 
 
 ```tsx
 const InlineStyleExample = () => (
-    <Text style={{ color: 'red', fontSize: 20 }}>
-        Hello, React Native!
-    </Text>
-);
+  <Text style={{ color: "red", fontSize: 20 }}>Hello, React Native!</Text>
+)
 ```
 
 In the code above, we pass an object to the `style` prop that uses keys similar to CSS properties.
@@ -50,14 +48,14 @@ This method abstracts the style objects and validates them at the application st
 ```tsx
 const styles = StyleSheet.create({
   text: {
-    color: 'blue',
+    color: "blue",
     fontSize: 20,
-  }
-});
+  },
+})
 
 const StyleSheetStyleExample = () => (
   <Text style={styles.text}>Hello, StyleSheet!</Text>
-);
+)
 ```
 
 In the code above, we call `StyleSheet.create()` with an object.
@@ -87,8 +85,8 @@ For example, styling `margin-bottom` and `margin-top` together can be shortened 
 const styles = StyleSheet.create({
   container: {
     marginVertical: 20,
-  }
-});
+  },
+})
 ```
 
 This is equivalent to:
@@ -98,8 +96,8 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 20,
     marginBottom: 20,
-  }
-});
+  },
+})
 ```
 
 Find more information about these shorthands in the [Layout Props](https://reactnative.dev/docs/layout-props?language=typescript) documentation.
@@ -122,12 +120,12 @@ Apply the following CSS styles to the `Text` view inside the `ListItem`:
 
 ```css
 .text {
-    background-color: darkgreen;
-    color: white;
-    font-size: 21px;
-    margin-bottom: 5px;
-    margin-top: 5px;
-    padding: 10px;
+  background-color: darkgreen;
+  color: white;
+  font-size: 21px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 10px;
 }
 ```
 

@@ -14,9 +14,11 @@ const Context = createContext<ThemeContext>({
   theme,
 })
 
-const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export interface ThemeProviderProps {
+  children: React.ReactNode
+}
+
+const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const value = useMemo(() => ({ theme }), [])
 
   return <Context.Provider value={value}>{children}</Context.Provider>

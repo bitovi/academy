@@ -1,0 +1,27 @@
+{
+  "name": "bit-academy-src-react-native",
+  "private": true,
+  "scripts": {
+    "eslint": "eslint .",
+    "eslint:fix": "eslint --fix .",
+    "prettier": "prettier --check .",
+    "prettier:fix": "prettier --write .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-native": "0.73.6"
+  },
+  "devDependencies": {
+    "@bitovi/eslint-config": "^1.8.0",
+    "@react-native/eslint-config": "0.73.2",
+    "@react-native/typescript-config": "0.73.1",
+    "@types/react": "^18.2.6",
+    "eslint": "^8.19.0",
+    "prettier": "2.8.8",
+    "typescript": "5.0.4"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

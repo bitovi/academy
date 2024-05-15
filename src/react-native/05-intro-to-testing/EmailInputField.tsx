@@ -1,11 +1,9 @@
-const EmailInputField: FC<Props> = ({ label, value }) => {
+const EmailInputField: React.FC<Props> = ({ label, value }) => {
   const [formValue, setFormValue] = useState(value)
 
   return (
     <Box>
-      <Text nativeID="formLabel">
-        {label}:
-      </Text>
+      <Text nativeID="formLabel">{label}:</Text>
       <TextInput
         accessibilityLabel="input"
         accessibilityLabelledBy="formLabel"
@@ -16,6 +14,4 @@ const EmailInputField: FC<Props> = ({ label, value }) => {
   )
 }
 
-const content = (
-  <EmailInputField label="Email" value="test@example.com" />
-)
+const content = <EmailInputField label="Email" value="test@example.com" />

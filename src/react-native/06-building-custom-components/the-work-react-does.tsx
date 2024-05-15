@@ -1,6 +1,4 @@
-import type { FC } from "react"
-
-const App: FC = () => {
+const App: React.FC = () => {
   return (
     <>
       {Button()}

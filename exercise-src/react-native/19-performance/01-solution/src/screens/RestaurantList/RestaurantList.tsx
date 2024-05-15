@@ -14,9 +14,10 @@ import { useRestaurants } from "../../services/pmo/restaurant"
 
 const Map = lazy(() => import("./components/Map"))
 
-type Props = StackScreenProps<RestaurantsStackParamList, "RestaurantList">
+export interface RestaurantListProps
+  extends StackScreenProps<RestaurantsStackParamList, "RestaurantList"> {}
 
-const RestaurantList: React.FC<Props> = ({ route }) => {
+const RestaurantList: React.FC<RestaurantListProps> = ({ route }) => {
   const navigation = useNavigation()
 
   const { state, city } = route.params

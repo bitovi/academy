@@ -6,7 +6,7 @@ import Typography from "../../design/Typography"
 
 const assetsUrl = process.env.PMO_ASSETS
 
-type Props = {
+export interface RestaurantHeaderProps {
   restaurant?: {
     _id: string
     address?: {
@@ -23,7 +23,7 @@ type Props = {
   }
 }
 
-const RestaurantHeader: React.FC<Props> = ({ restaurant }) => {
+const RestaurantHeader: React.FC<RestaurantHeaderProps> = ({ restaurant }) => {
   const theme = useTheme()
   const styles = getStyles(theme)
 

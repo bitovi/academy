@@ -11,8 +11,8 @@ const states = [
   },
 ]
 
-export type ListItemProps = {
-  //Exercise: Implement ListItem Props
+export interface ListItemProps {
+  // Exercise: Implement ListItem Props
 }
 
 export const ListItem: React.FC = () => {

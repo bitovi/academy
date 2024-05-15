@@ -1,6 +1,6 @@
 import { Text } from "react-native"
 
-type ListItemProps = {
+export interface ListItemProps {
   name: string
 }
 

@@ -15,9 +15,11 @@ const Context = createContext<ThemeContext>({
   setMode: () => undefined,
 })
 
-const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export interface ThemeProviderProps {
+  children: React.ReactNode
+}
+
+const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [mode, setMode] = useState<Mode>(Appearance.getColorScheme() || "light")
 
   const value = useMemo(() => ({ mode, setMode }), [mode])

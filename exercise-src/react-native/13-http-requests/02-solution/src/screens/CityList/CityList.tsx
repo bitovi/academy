@@ -10,9 +10,10 @@ import Screen from "../../design/Screen"
 import Typography from "../../design/Typography"
 import { useCities } from "../../services/pmo/restaurant"
 
-type Props = StackScreenProps<RestaurantsStackParamList, "CityList">
+export interface CityListProps
+  extends StackScreenProps<RestaurantsStackParamList, "CityList"> {}
 
-const CityList: React.FC<Props> = ({ route }) => {
+const CityList: React.FC<CityListProps> = ({ route }) => {
   const { state } = route.params
   const navigation = useNavigation()
   const { data: cities, error, isPending } = useCities(state.short || "")
