@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native"
 import { StackScreenProps } from "@react-navigation/stack"
-import { FC, useEffect } from "react"
+import { useEffect } from "react"
 
 import { RestaurantsStackParamList } from "../../App"
 import Loading from "../../components/Loading"
@@ -16,9 +16,10 @@ import {
 import { useFavorites } from "../../services/pmo/favorite/hooks"
 import { useRestaurant } from "../../services/pmo/restaurant"
 
-type Props = StackScreenProps<RestaurantsStackParamList, "RestaurantDetails">
+export interface RestaurantDetailsProps
+  extends StackScreenProps<RestaurantsStackParamList, "RestaurantDetails"> {}
 
-const RestaurantDetails: FC<Props> = ({ route }) => {
+const RestaurantDetails: React.FC<RestaurantDetailsProps> = ({ route }) => {
   const { slug } = route.params
   const navigation = useNavigation()
   const { data: restaurant, error, isPending } = useRestaurant(slug)

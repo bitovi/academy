@@ -117,15 +117,11 @@ export const useFavorites = (
       if (!("_id" in newFavorite) && postRes && postRes.data) { // new entry don't have _id until the api call get's returned. Adding _id to the new favorites.
         newFavorites[newFavorites.length - 1]._id = postRes.data._id
       }
-      
-      const newLocalFavorites = {
-        lastSynced: error ? localFavorites.lastSynced : timestamp,
-        favorites: newFavorites,
-      }
 
-      await storeData<LocalStorageFavorites>("my-favorite", newLocalFavorites)
-      setLocalFavorites(newLocalFavorites)
-      setResponse({ data: newFavorites, error: error, isPending: false })
+
+
+
+      
     }
   }
 
