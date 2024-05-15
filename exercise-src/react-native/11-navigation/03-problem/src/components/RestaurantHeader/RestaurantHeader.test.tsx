@@ -20,7 +20,7 @@ describe("Components/RestaurantHeader", () => {
     ).toBeOnTheScreen()
   })
 
-  it("does without an address", () => {
+  it("renders without an address", () => {
     render(<RestaurantHeader restaurant={restaurantWithoutAddress} />)
   })
 

@@ -5,27 +5,27 @@ import { apiRequest } from "../api/api"
 import { City, Restaurant, State } from "./interfaces"
 
 interface CitiesResponse {
+  isPending: boolean
   data: City[] | undefined
   error: Error | undefined
-  isPending: boolean
 }
 
 interface RestaurantResponse {
+  isPending: boolean
   data: Restaurant | undefined
   error: Error | undefined
-  isPending: boolean
 }
 
 interface RestaurantsResponse {
+  isPending: boolean
   data: Restaurant[] | undefined
   error: Error | undefined
-  isPending: boolean
 }
 
 interface StatesResponse {
+  isPending: boolean
   data: State[] | undefined
   error: Error | undefined
-  isPending: boolean
 }
 
 export function useCities(state: string): CitiesResponse {

@@ -12,15 +12,15 @@ interface Favorite {
 }
 
 interface FavoritesResponse {
+  isPending: boolean
   data: Favorite[] | undefined
   error: Error | undefined
-  isPending: boolean
 }
 
 interface FavoriteResponse {
+  isPending: boolean
   data: Favorite | undefined
   error: Error | undefined
-  isPending: boolean
 }
 
 interface LocalStorageFavorites {

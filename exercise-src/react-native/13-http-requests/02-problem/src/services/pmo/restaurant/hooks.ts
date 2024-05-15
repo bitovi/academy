@@ -5,15 +5,15 @@ import { City, State } from "./interfaces"
 const baseUrl = process.env.PMO_API
 
 interface StatesResponse {
+  isPending: boolean
   data: State[] | undefined
   error: Error | undefined
-  isPending: boolean
 }
 
 interface CitiesResponse {
+  isPending: boolean
   data: City[] | undefined
   error: Error | undefined
-  isPending: boolean
 }
 
 export function useStates(): StatesResponse {
