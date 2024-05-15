@@ -697,10 +697,8 @@ This prop can accept a JavaScript object that defines various CSS-like propertie
 <p>You can directly pass an object to the <code>style</code> prop.
 This is convenient for dynamic styles that depend on the component’s state or props, but it can be less performance-efficient for static styles.</p>
 <pre><code class="language-tsx">const InlineStyleExample = () =&gt; (
-    &lt;Text style={{ color: 'red', fontSize: 20 }}&gt;
-        Hello, React Native!
-    &lt;/Text&gt;
-);
+  &lt;Text style={{ color: &quot;red&quot;, fontSize: 20 }}&gt;Hello, React Native!&lt;/Text&gt;
+)
 </code></pre>
 <p>In the code above, we pass an object to the <code>style</code> prop that uses keys similar to CSS properties.</p>
 <h3>The <code>StyleSheet</code> API</h3>
@@ -708,14 +706,14 @@ This is convenient for dynamic styles that depend on the component’s state or 
 This method abstracts the style objects and validates them at the application start-up, reducing the overhead of creating styles on the fly.</p>
 <pre><code class="language-tsx">const styles = StyleSheet.create({
   text: {
-    color: 'blue',
+    color: &quot;blue&quot;,
     fontSize: 20,
-  }
-});
+  },
+})
 
 const StyleSheetStyleExample = () =&gt; (
   &lt;Text style={styles.text}&gt;Hello, StyleSheet!&lt;/Text&gt;
-);
+)
 </code></pre>
 <p>In the code above, we call <code>StyleSheet.create()</code> with an object.
 If you’re familiar with front-end web development, the object keys are similar to classes in CSS.
@@ -737,23 +735,23 @@ React Native has adapted some of these shorthand properties to suit the styling 
 <pre><code class="language-tsx">const styles = StyleSheet.create({
   container: {
     marginVertical: 20,
-  }
-});
+  },
+})
 </code></pre>
 <p>This is equivalent to:</p>
 <pre><code class="language-tsx">const styles = StyleSheet.create({
   container: {
     marginTop: 20,
     marginBottom: 20,
-  }
-});
+  },
+})
 </code></pre>
 <p>Find more information about these shorthands in the <a href="https://reactnative.dev/docs/layout-props?language=typescript">Layout Props</a> documentation.</p>
 <h3>Setup</h3>
 <p>✏️ Update <strong>src/screens/StateList/components/ListItem/ListItem.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { StyleSheet, Text } from &quot;react-native&quot;
 
-type ListItemProps = {
+export interface ListItemProps {
   name: string
 }
 
@@ -793,12 +791,12 @@ describe(&quot;ListItem&quot;, () =&gt; {
 <h3>Exercise</h3>
 <p>Apply the following CSS styles to the <code>Text</code> view inside the <code>ListItem</code>:</p>
 <pre><code class="language-css">.text {
-    background-color: darkgreen;
-    color: white;
-    font-size: 21px;
-    margin-bottom: 5px;
-    margin-top: 5px;
-    padding: 10px;
+  background-color: darkgreen;
+  color: white;
+  font-size: 21px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 10px;
 }
 </code></pre>
 <h3>Solution</h3>
@@ -808,7 +806,7 @@ describe(&quot;ListItem&quot;, () =&gt; {
 <p>✏️ Update <strong>src/screens/StateList/components/ListItem/ListItem.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { StyleSheet, Text } from &quot;react-native&quot;
 
-type ListItemProps = {
+export interface ListItemProps {
   name: string
 }
 

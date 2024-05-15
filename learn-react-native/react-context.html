@@ -922,7 +922,7 @@ const AuthProvider: React.FC&lt;{ children: React.ReactNode }&gt; = ({
       signOut,
       user,
     }),
-    [user],
+    [signIn, signOut, user],
   )
 
   return &lt;Context.Provider value={value}&gt;{children}&lt;/Context.Provider&gt;
@@ -986,7 +986,7 @@ const AuthProvider: React.FC&lt;{ children: React.ReactNode }&gt; = ({
       signOut,
       user,
     }),
-    [user],
+    [signIn, signOut, user],
   )
 
   return &lt;Context.Provider value={value}&gt;{children}&lt;/Context.Provider&gt;
@@ -1056,7 +1056,7 @@ export default App
 
 import { Theme, useTheme } from &quot;../../../../design/theme&quot;
 
-type ListItemProps = {
+export interface ListItemProps {
   name: string
 }
 
@@ -1140,9 +1140,11 @@ interface ThemeContext {
 
 const Context = createContext&lt;ThemeContext&gt;({ theme })
 
-const ThemeProvider: React.FC&lt;{ children: React.ReactNode }&gt; = ({
-  children,
-}) =&gt; {
+export interface ThemeProviderProps {
+  children: React.ReactNode
+}
+
+const ThemeProvider: React.FC&lt;ThemeProviderProps&gt; = ({ children }) =&gt; {
   const value = useMemo(() =&gt; ({ theme }), [])
 
   return &lt;Context.Provider value={value}&gt;{children}&lt;/Context.Provider&gt;
@@ -1157,13 +1159,13 @@ export function useTheme(): Theme {
 }
 
 </code></pre>
- <div line-highlight="9,11-14,16,22,24,only"></div>
+ <div line-highlight="9,11-12,15-16,18,24,26-27,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/components/ListItem/ListItem.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { StyleSheet, Text } from &quot;react-native&quot;
 
 import { Theme, useTheme } from &quot;../../../../design/theme&quot;
 
-type ListItemProps = {
+export interface ListItemProps {
   name: string
 }
 

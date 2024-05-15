@@ -698,7 +698,7 @@ covering CanJS core libraries.">
 <h3>Defining interfaces for <code>useState</code></h3>
 <p>When building React Native components, you may sometimes have local state variables that always change together, and thus would benefit by being in a single <code>useState()</code> variable together:</p>
 <pre><code class="language-tsx">import { useState } from &quot;react&quot;
-import { View, Text , Pressable } from 'react-native';
+import { View, Text, Pressable } from &quot;react-native&quot;
 
 interface UserProfile {
   email: string
@@ -723,10 +723,8 @@ const UserProfileComponent: React.FC = () =&gt; {
       &lt;Text&gt;Name: {userProfile.name}&lt;/Text&gt;
       &lt;Text&gt;Email: {userProfile.email}&lt;/Text&gt;
       &lt;Pressable onPress={updateProfile}&gt;
-        &lt;Text&gt;
-          Update profile
-        &lt;/Text&gt;
-      &lt;/Pressable&gt;    
+        &lt;Text&gt;Update profile&lt;/Text&gt;
+      &lt;/Pressable&gt;
     &lt;/View&gt;
   )
 }
@@ -739,35 +737,38 @@ export default UserProfileComponent
 <h3>The <code>useEffect</code> Hook</h3>
 <p><code>useEffect</code> is a React Hook that lets you perform side effects in your function components. It serves as a powerful tool to execute code in response to component renders or state changes.</p>
 <p>Here is an example component with <code>useEffect</code>:</p>
-<pre><code class="language-tsx">import { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+<pre><code class="language-tsx">import { useEffect, useState } from &quot;react&quot;
+import { View, Text } from &quot;react-native&quot;
 
 const GeolocationComponent: React.FC = () =&gt; {
-    const [location, setLocation] = useState(null);
+  const [location, setLocation] = useState(null)
 
-    useEffect(() =&gt; { // Effect callback function
-        navigator.geolocation.getCurrentPosition(position =&gt; {
-            setLocation(position.coords);
-        }, (error) =&gt; {
-            console.error(error);
-        });
-    }, []); // Dependency array
+  useEffect(() =&gt; {
+    // Effect callback function
+    navigator.geolocation.getCurrentPosition(
+      (position) =&gt; {
+        setLocation(position.coords)
+      },
+      (error) =&gt; {
+        console.error(error)
+      },
+    )
+  }, []) // Dependency array
 
-    return (
-        &lt;View&gt;
-            {location ? (
-                &lt;Text&gt;
-                    Latitude: {location.latitude},
-                    Longitude: {location.longitude}
-                &lt;/Text&gt;
-            ) : (
-                &lt;Text&gt;Requesting location…&lt;/Text&gt;
-            )}
-        &lt;/View&gt;
-    );
+  return (
+    &lt;View&gt;
+      {location ? (
+        &lt;Text&gt;
+          Latitude: {location.latitude}, Longitude: {location.longitude}
+        &lt;/Text&gt;
+      ) : (
+        &lt;Text&gt;Requesting location…&lt;/Text&gt;
+      )}
+    &lt;/View&gt;
+  )
 }
 
-export default GeolocationComponent;
+export default GeolocationComponent
 
 </code></pre>
 <div line-highlight='1, 7-13, only'></div>
@@ -781,147 +782,142 @@ export default GeolocationComponent;
 <p>Consider three scenarios based on the dependency array:</p>
 <h4>Empty dependency array (<code>[]</code>)</h4>
 <p>If the dependency array is an empty array, the effect runs once after the initial render.</p>
-<pre><code class="language-tsx">import { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+<pre><code class="language-tsx">import { useEffect, useState } from &quot;react&quot;
+import { View, Text } from &quot;react-native&quot;
 
 const GeolocationComponent: React.FC = () =&gt; {
-    const [location, setLocation] = useState(null);
+  const [location, setLocation] = useState(null)
 
-    useEffect(() =&gt; { // Effect callback function
-        navigator.geolocation.getCurrentPosition(position =&gt; {
-            setLocation(position.coords);
-        }, (error) =&gt; {
-            console.error(error);
-        });
-    }, []); // Dependency array
+  useEffect(() =&gt; {
+    // Effect callback function
+    navigator.geolocation.getCurrentPosition(
+      (position) =&gt; {
+        setLocation(position.coords)
+      },
+      (error) =&gt; {
+        console.error(error)
+      },
+    )
+  }, []) // Dependency array
 
-    return (
-        &lt;View&gt;
-            {location ? (
-                &lt;Text&gt;
-                    Latitude: {location.latitude},
-                    Longitude: {location.longitude}
-                &lt;/Text&gt;
-            ) : (
-                &lt;Text&gt;Requesting location…&lt;/Text&gt;
-            )}
-        &lt;/View&gt;
-    );
+  return (
+    &lt;View&gt;
+      {location ? (
+        &lt;Text&gt;
+          Latitude: {location.latitude}, Longitude: {location.longitude}
+        &lt;/Text&gt;
+      ) : (
+        &lt;Text&gt;Requesting location…&lt;/Text&gt;
+      )}
+    &lt;/View&gt;
+  )
 }
 
-export default GeolocationComponent;
+export default GeolocationComponent
 
 </code></pre>
 <div line-highlight='7-13, only'></div>
 <h4>Array with values</h4>
 <p>When you include values (variables, props, state) in the dependency array, the effect will only re-run if those specific values change between renders. This selective execution can optimize performance by avoiding unnecessary work.</p>
-<pre><code class="language-tsx">import { useEffect, useState } from 'react';
-import { View, Text, TextInput } from 'react-native';
+<pre><code class="language-tsx">import { useEffect, useState } from &quot;react&quot;
+import { View, Text, TextInput } from &quot;react-native&quot;
 
 function NameStorage() {
-    const [name, setName] = useState('');
+  const [name, setName] = useState(&quot;&quot;)
 
-    useEffect(() =&gt; {
-        localStorage.setItem('name', name);
-    }, [name]);
+  useEffect(() =&gt; {
+    localStorage.setItem(&quot;name&quot;, name)
+  }, [name])
 
-    return (
-        &lt;View&gt;
-            &lt;Text&gt;Name&lt;/Text&gt;
-            &lt;TextInput
-            onChangeText={setName}
-            value={name}
-            /&gt;
-        &lt;/View&gt;
-    );
+  return (
+    &lt;View&gt;
+      &lt;Text&gt;Name&lt;/Text&gt;
+      &lt;TextInput onChangeText={setName} value={name} /&gt;
+    &lt;/View&gt;
+  )
 }
 
-export default NameStorage;
+export default NameStorage
+
 </code></pre>
 <div line-highlight='5, 7-9, only'></div>
 <h4>No dependency array</h4>
 <p>If the dependency array is omitted, the effect runs after every render of the component. This should not be needed.</p>
-<pre><code class="language-tsx">import { useEffect, useState } from 'react';
-import { Pressable, Text } from &quot;react-native&quot;;
+<pre><code class="language-tsx">import { useEffect, useState } from &quot;react&quot;
+import { Pressable, Text } from &quot;react-native&quot;
 
 function UpdateLogger() {
-    const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0)
 
-    useEffect(() =&gt; {
-        console.info('Component updated!');
-    }); // No dependency array, runs on every update
+  useEffect(() =&gt; {
+    console.info(&quot;Component updated!&quot;)
+  }) // No dependency array, runs on every update
 
-    return (
-        &lt;Pressable onPress={() =&gt; setCount(count + 1)}&gt;
-            &lt;Text&gt;
-                Increment
-            &lt;/Text&gt;
-        &lt;/Pressable&gt;
-    );
+  return (
+    &lt;Pressable onPress={() =&gt; setCount(count + 1)}&gt;
+      &lt;Text&gt;Increment&lt;/Text&gt;
+    &lt;/Pressable&gt;
+  )
 }
 
-export default UpdateLogger;
+export default UpdateLogger
 
 </code></pre>
 <div line-highlight='9, only'></div>
 <h3>Async operations inside <code>useEffect</code></h3>
 <p>You can use APIs that return a <code>Promise</code> normally within a <code>useEffect</code>:</p>
-<pre><code class="language-tsx">import { useEffect, useState } from 'react';
-import { Text } from 'react-native';
+<pre><code class="language-tsx">import { useEffect, useState } from &quot;react&quot;
+import { Text } from &quot;react-native&quot;
 
 function DataFetcher() {
-    const [data, setData] = useState(null);
+  const [data, setData] = useState(null)
 
-    useEffect(() =&gt; {
-        fetch('https://api.example.com/data')
-            .then(response =&gt; {
-                const parsedData = response.json();
-                setData(parsedData);
-            })
-            .catch(error =&gt; {
-                // Error should be shown to the user
-                console.error('Error fetching data:', error)
-            });
-    }, []);
+  useEffect(() =&gt; {
+    fetch(&quot;https://api.example.com/data&quot;)
+      .then((response) =&gt; {
+        const parsedData = response.json()
+        setData(parsedData)
+      })
+      .catch((error) =&gt; {
+        // Error should be shown to the user
+        console.error(&quot;Error fetching data:&quot;, error)
+      })
+  }, [])
 
-    return (
-        &lt;Text&gt;{data}&lt;/Text&gt;
-    );
+  return &lt;Text&gt;{data}&lt;/Text&gt;
 }
 
-export default DataFetcher;
+export default DataFetcher
 
 </code></pre>
 <div line-highlight='8-16, only'></div>
 <p>However, unlike traditional functions, <code>useEffect</code> functions can’t be marked as async. This is because returning a <code>Promise</code> from <code>useEffect</code> would conflict with its mechanism, which expects either nothing or a clean-up function to be returned.</p>
 <p>To handle asynchronous operations, you typically define an <code>async</code> function inside the effect and then call it:</p>
-<pre><code class="language-tsx">import { useEffect, useState } from 'react';
-import { Text } from 'react-native';
+<pre><code class="language-tsx">import { useEffect, useState } from &quot;react&quot;
+import { Text } from &quot;react-native&quot;
 
 function DataFetcher() {
-    const [data, setData] = useState(null);
+  const [data, setData] = useState(null)
 
-    useEffect(() =&gt; {
-        const fetchData = async () =&gt; {
-            try {
-                const response = await fetch('https://api.example.com/data');
-                const parsedData = response.json();
-                setData(parsedData);
-            } catch (error) {
-                // Error should be shown to the user
-                console.error('Error fetching data:', error)
-            }
-        };
+  useEffect(() =&gt; {
+    const fetchData = async () =&gt; {
+      try {
+        const response = await fetch(&quot;https://api.example.com/data&quot;)
+        const parsedData = response.json()
+        setData(parsedData)
+      } catch (error) {
+        // Error should be shown to the user
+        console.error(&quot;Error fetching data:&quot;, error)
+      }
+    }
 
-        fetchData();
-    }, []);
+    fetchData()
+  }, [])
 
-    return (
-        &lt;Text&gt;{data}&lt;/Text&gt;
-    );
+  return &lt;Text&gt;{data}&lt;/Text&gt;
 }
 
-export default DataFetcher;
+export default DataFetcher
 
 </code></pre>
 <div line-highlight='8-19, only'></div>
@@ -929,41 +925,39 @@ export default DataFetcher;
 <p>In this example, if <code>fetch</code> throws an error, the <code>catch</code> block catches and handles it. This pattern is crucial to prevent unhandled promise rejections and ensure that your application can respond appropriately to failures in asynchronous tasks.</p>
 <h3>Cleanup functions</h3>
 <p>The effect function can optionally return another function, known as the “cleanup” function. The cleanup function is useful for performing any necessary cleanup activities when the component unmounts or before the component re-renders and the effect is re-invoked. Common examples include clearing timers, canceling network requests, or removing event listeners.</p>
-<pre><code class="language-tsx">import { useEffect, useState } from 'react';
-import { View, FlatList, Text } from 'react-native';
+<pre><code class="language-tsx">import { useEffect, useState } from &quot;react&quot;
+import { View, FlatList, Text } from &quot;react-native&quot;
 
 function WebSocketComponent() {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([])
 
   useEffect(() =&gt; {
-    const socket = new WebSocket('wss://chat.donejs.com/');
+    const socket = new WebSocket(&quot;wss://chat.donejs.com/&quot;)
 
     socket.onmessage = (event) =&gt; {
-      setMessages(previousMessages =&gt; {
-        return [ ...previousMessages, event.data ];
-      });
-    };
+      setMessages((previousMessages) =&gt; {
+        return [...previousMessages, event.data]
+      })
+    }
 
     return () =&gt; {
       // Clean up (tear down) the socket connection
-      return socket.close();
-    };
-  }, []);
+      return socket.close()
+    }
+  }, [])
 
   return (
     &lt;View&gt;
       &lt;FlatList
         data={messages}
-        renderItem={({ item }) =&gt; (
-          &lt;Text&gt;{item}&lt;/Text&gt;
-        )}
+        renderItem={({ item }) =&gt; &lt;Text&gt;{item}&lt;/Text&gt;}
         keyExtractor={(item, index) =&gt; index.toString()}
       /&gt;
     &lt;/View&gt;
-  );
+  )
 }
 
-export default WebSocketComponent;
+export default WebSocketComponent
 
 </code></pre>
 <div line-highlight='8, 16-19, only'></div>
@@ -1514,9 +1508,10 @@ import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
 import { useCities } from &quot;../../services/pmo/restaurant&quot;
 
-type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;CityList&quot;&gt;
+export interface CityListProps
+  extends StackScreenProps&lt;RestaurantsStackParamList, &quot;CityList&quot;&gt; {}
 
-const CityList: React.FC&lt;Props&gt; = ({ route }) =&gt; {
+const CityList: React.FC&lt;CityListProps&gt; = ({ route }) =&gt; {
   const { state } = route.params
   const navigation = useNavigation()
 
@@ -1791,9 +1786,10 @@ import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
 import { useCities } from &quot;../../services/pmo/restaurant&quot;
 
-type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;CityList&quot;&gt;
+export interface CityListProps
+  extends StackScreenProps&lt;RestaurantsStackParamList, &quot;CityList&quot;&gt; {}
 
-const CityList: React.FC&lt;Props&gt; = ({ route }) =&gt; {
+const CityList: React.FC&lt;CityListProps&gt; = ({ route }) =&gt; {
   const { state } = route.params
   const navigation = useNavigation()
   const { data: cities, error, isPending } = useCities(state.short || &quot;&quot;)
@@ -1836,7 +1832,7 @@ const CityList: React.FC&lt;Props&gt; = ({ route }) =&gt; {
 export default CityList
 
 </code></pre>
- <div line-highlight="6-7,10-11,18,20-27,29-31,only"></div>
+ <div line-highlight="6-7,10-11,19,21-28,30-32,only"></div>
 <p></details></p>
 <h2>Objective 3: Create API request helper</h2>
 <p>Now that we have two Hooks that fetch data in a similar way, let’s create an <code>apiRequest</code> helper function that both Hooks can use.</p>
@@ -1853,12 +1849,15 @@ export default CityList
 <li><code>.status</code>: This property returns the status code of the response (e.g. <code>200</code> for success, <code>404</code> for <code>Not Found</code>, etc.).</li>
 <li><code>.statusText</code>: This provides the status message corresponding to the status code (e.g. <code>'OK'</code>, <code>'Not Found'</code>, etc.).</li>
 </ul>
-<pre><code class="language-js">const response = await fetch('https://api.example.com/data', {
-    method: &quot;GET&quot;,
+<pre><code class="language-js">const response = await fetch(&quot;https://api.example.com/data&quot;, {
+  method: &quot;GET&quot;,
 })
 
 const data = await response.json()
-const error = response.ok ? null : new Error(`${response.status} (${response.statusText})`)
+const error = response.ok
+  ? null
+  : new Error(`${response.status} (${response.statusText})`)
+
 </code></pre>
 <p>In the example above, we check the <code>response.ok</code> property to see if the status code is in the <code>200</code>-<code>299</code> (successful) range. If not, we create an <code>error</code> object that contains the status code and text (e.g. <code>404 Not Found</code>).</p>
 <h3>Catch network errors</h3>
@@ -1866,18 +1865,21 @@ const error = response.ok ? null : new Error(`${response.status} (${response.sta
 <p>In these cases, the <code>fetch</code> API will <em>not</em> resolve with data, but instead it will throw an error that needs to be caught.</p>
 <p>Let’s take a look at how to handle these types of errors:</p>
 <pre><code class="language-js">try {
-    const response = await fetch('https://api.example.com/data', {
-        method: &quot;GET&quot;,
-    })
+  const response = await fetch(&quot;https://api.example.com/data&quot;, {
+    method: &quot;GET&quot;,
+  })
 
-    const data = await response.json()
-    const error = response.ok ? null : new Error(`${response.status} (${response.statusText})`)
-    // Do something with data and error
-
+  const data = await response.json()
+  const error = response.ok
+    ? null
+    : new Error(`${response.status} (${response.statusText})`)
+  // Do something with data and error
 } catch (error) {
-    const parsedError = error instanceof Error ? error : new Error('An unknown error occurred')
-    // Do something with parsedError
+  const parsedError =
+    error instanceof Error ? error : new Error(&quot;An unknown error occurred&quot;)
+  // Do something with parsedError
 }
+
 </code></pre>
 <p>In the example above, we <code>catch</code> the <code>error</code> and check its type. If it’s already an <code>instanceof Error</code>, then it will have a <code>message</code> property and we can use it as-is. If it’s not, then we can create our own <code>new Error()</code> so we <em>always</em> have an error to consume in our Hooks or components.</p>
 <h3>Setup 3</h3>
@@ -2344,9 +2346,10 @@ import Button from &quot;../../design/Button&quot;
 import Typography from &quot;../../design/Typography&quot;
 import { useRestaurants } from &quot;../../services/pmo/restaurant&quot;
 
-type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantList&quot;&gt;
+export interface RestaurantListProps
+  extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantList&quot;&gt; {}
 
-const RestaurantList: React.FC&lt;Props&gt; = ({ route }) =&gt; {
+const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
   const navigation = useNavigation()
 
   return (
@@ -2369,7 +2372,7 @@ const RestaurantList: React.FC&lt;Props&gt; = ({ route }) =&gt; {
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="6,9-10,23,only"></div>
+ <div line-highlight="6,9-10,24,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -2383,9 +2386,10 @@ import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
 import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
-type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantDetails&quot;&gt;
+export interface RestaurantDetailsProps
+  extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantDetails&quot;&gt; {}
 
-const RestaurantDetails: React.FC&lt;Props&gt; = ({ route }) =&gt; {
+const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&gt; {
   const navigation = useNavigation()
 
   return (
@@ -2401,7 +2405,7 @@ const RestaurantDetails: React.FC&lt;Props&gt; = ({ route }) =&gt; {
 export default RestaurantDetails
 
 </code></pre>
- <div line-highlight="2-3,5-6,10-11,13,15,only"></div>
+ <div line-highlight="2-3,5-6,10-11,13-14,16,only"></div>
 <h3>Verify 4</h3>
 <p>✏️ Update <strong>src/services/pmo/restaurant/hooks.test.ts</strong> to be:</p>
 <pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react-native&quot;
@@ -3040,9 +3044,10 @@ import Button from &quot;../../design/Button&quot;
 import Typography from &quot;../../design/Typography&quot;
 import { useRestaurants } from &quot;../../services/pmo/restaurant&quot;
 
-type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantList&quot;&gt;
+export interface RestaurantListProps
+  extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantList&quot;&gt; {}
 
-const RestaurantList: React.FC&lt;Props&gt; = ({ route }) =&gt; {
+const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
   const navigation = useNavigation()
 
   const { state, city } = route.params
@@ -3093,7 +3098,7 @@ const RestaurantList: React.FC&lt;Props&gt; = ({ route }) =&gt; {
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="17-22,24-25,27-28,30-31,33-35,39,43-51,57,only"></div>
+ <div line-highlight="18-23,25-26,28-29,31-32,34-36,40,44-52,58,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -3107,9 +3112,10 @@ import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
 import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
-type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantDetails&quot;&gt;
+export interface RestaurantDetailsProps
+  extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantDetails&quot;&gt; {}
 
-const RestaurantDetails: React.FC&lt;Props&gt; = ({ route }) =&gt; {
+const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&gt; {
   const { slug } = route.params
   const navigation = useNavigation()
   const { data: restaurant, error, isPending } = useRestaurant(slug)
@@ -3147,7 +3153,7 @@ const RestaurantDetails: React.FC&lt;Props&gt; = ({ route }) =&gt; {
 export default RestaurantDetails
 
 </code></pre>
- <div line-highlight="16,18-23,25-34,36-38,only"></div>
+ <div line-highlight="17,19-24,26-35,37-39,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, we will learn how to <a href="user-inputs.html" title="Use switch controls and inputs to collect information.">Handling User Inputs</a> in React Native applications.</p>

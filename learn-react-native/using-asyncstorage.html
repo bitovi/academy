@@ -962,7 +962,7 @@ export async function apiRequest&lt;
         if (cachedResponse) {
           const diff =
             new Date().valueOf() - new Date(cachedResponse.dateTime).valueOf()
-          // Return cached data if it’s younger than one minute
+          // Return Cached data if it's younger than one minute
           if (diff &lt; 60000) {
             return {
               data: cachedResponse.data,
@@ -1067,9 +1067,11 @@ interface LocalStorageApiRequestV1 {
 
 const migrateDataV1toV2 = async (): Promise&lt;void&gt; =&gt; {}
 
-const DataMigration: React.FC&lt;{ children: React.ReactNode }&gt; = ({
-  children,
-}) =&gt; {}
+export interface DataMigrationProps {
+  children: React.ReactNode
+}
+
+const DataMigration: React.FC&lt;DataMigrationProps&gt; = ({ children }) =&gt; {}
 
 export default DataMigration
 
@@ -1117,7 +1119,7 @@ export async function apiRequest&lt;
 
         if (cachedResponse) {
           const diff = Date.now() - cachedResponse.dateTime
-          // Return cached data if it’s younger than one minute
+          // Return Cached data if it's younger than one minute
           if (diff &lt; 60000) {
             return {
               data: cachedResponse.data,
@@ -1279,7 +1281,7 @@ describe(&quot;DataMigration component&quot;, () =&gt; {
       expect(screen.getByText(/Hello!/)).toBeOnTheScreen()
     })
 
-    //if the local storage doesn't run for data migration, GetData will only run once to check the version number
+    // if the local storage doesn't run for data migration, GetData will only run once to check the version number
     expect(mockStorageGetKeys).toHaveReturnedTimes(0)
     expect(mockStorageGetData).toHaveReturnedTimes(1)
     expect(mockStorageStoreData).toHaveReturnedTimes(0)
@@ -1328,9 +1330,11 @@ const migrateDataV1toV2 = async (): Promise&lt;void&gt; =&gt; {
   }
 }
 
-const DataMigration: React.FC&lt;{ children: React.ReactNode }&gt; = ({
-  children,
-}) =&gt; {
+export interface DataMigrationProps {
+  children: React.ReactNode
+}
+
+const DataMigration: React.FC&lt;DataMigrationProps&gt; = ({ children }) =&gt; {
   const [isDone, setMigrationDone] = useState&lt;boolean&gt;(false)
 
   useEffect(() =&gt; {
@@ -1357,7 +1361,7 @@ const DataMigration: React.FC&lt;{ children: React.ReactNode }&gt; = ({
 export default DataMigration
 
 </code></pre>
- <div line-highlight="12-28,32-33,35-41,43-44,46-47,49-51,53-54,only"></div>
+ <div line-highlight="12-27,32,34-35,37-43,45-46,48-49,51-53,55-56,only"></div>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
@@ -1465,7 +1469,7 @@ const RestaurantsNavigator: React.FC = () =&gt; {
 }
 
 const AppTabs = createBottomTabNavigator()
-export const AppNavigator: React.FC = () =&gt; {
+const AppNavigator: React.FC = () =&gt; {
   const theme = useTheme()
 
   return (

@@ -695,7 +695,7 @@ covering CanJS core libraries.">
 <h4>Basic JSX looks like XML</h4>
 <pre><code class="language-tsx">const greeting = &lt;Text&gt;Hello, world!&lt;/Text&gt;
 </code></pre>
-<p>In this example, a <Text> component is used to render the text “Hello, world!”</p>
+<p>In this example, a <code>&lt;Text&gt;</code> component is used to render the text “Hello, world!”</p>
 <p>While this appears similar to XML or HTML, it is JSX used in a React Native project within a JavaScript file.</p>
 <h3>Embedding a JavaScript expression in JSX</h3>
 <pre><code class="language-tsx">const name = &quot;Alice&quot;
@@ -728,9 +728,7 @@ const welcomeMessage = welcome(&quot;Alice&quot;)
 <pre><code class="language-xml">&lt;user age=&quot;37&quot; isActive=&quot;true&quot; name=&quot;Jane Doe&quot;&gt;&lt;/user&gt;
 </code></pre>
 <p>JSX allows props (short for properties) to be much more than just strings. Props in JSX can be any JavaScript expression, including any other JavaScript primitive, object, function, etc.</p>
-<pre><code class="language-jsx">const userElement = (
-  &lt;User age={37} isActive={true} name={&quot;Mary Jackson&quot;} /&gt;
-);
+<pre><code class="language-jsx">const userElement = &lt;User age={37} isActive name=&quot;Mary Jackson&quot; /&gt;
 </code></pre>
 <p>In the code above, the <code>age</code>, <code>isActive</code>, and <code>name</code> props are all passed into the <code>User</code> component.</p>
 <h4>Writing comments</h4>
@@ -752,11 +750,7 @@ const welcomeMessage = welcome(&quot;Alice&quot;)
 <p>If you’re familiar with front-end web development, you might know that the appearance of most HTML elements can be altered using the <code>style</code> attribute.</p>
 <p>React Native supports a <code>style</code> prop, but it accepts an object, not a string.
 The style object has properties whose names are camel-case versions of their CSS counterparts, e.g. <code>font-style</code> becomes <code>fontStyle</code>.</p>
-<pre><code class="language-tsx">const content = (
-  &lt;Text style={{ fontStyle: &quot;italic&quot; }}&gt;
-    Restaurants
-  &lt;/Text&gt;
-)
+<pre><code class="language-tsx">const content = &lt;Text style={{ fontStyle: &quot;italic&quot; }}&gt;Restaurants&lt;/Text&gt;
 </code></pre>
 <p>As we go through this training, you’ll learn additional differences.</p>
 <h4>Parenthesis (convention)</h4>
@@ -764,9 +758,7 @@ The style object has properties whose names are camel-case versions of their CSS
 <pre><code class="language-tsx">function Form() {
   return (
     &lt;View&gt;
-      &lt;Text&gt;
-        Name:
-      &lt;/Text&gt;
+      &lt;Text&gt;Name:&lt;/Text&gt;
       &lt;TextInput value=&quot;Molly Holzschlag&quot; /&gt;
     &lt;/View&gt;
   )
@@ -780,9 +772,7 @@ function List() {
   return (
     &lt;View&gt;
       {data.map((name) =&gt; (
-        &lt;View key={name}&gt;
-          {name}
-        &lt;/View&gt;
+        &lt;View key={name}&gt;{name}&lt;/View&gt;
       ))}
     &lt;/View&gt;
   )

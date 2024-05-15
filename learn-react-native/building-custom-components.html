@@ -717,9 +717,7 @@ const Button = () =&gt; {
 
 </code></pre>
 <p>Components are like small containers which can be reused throughout your application. The <code>Button</code> component above returns JSX and could then be rendered and reused by another component like <code>App</code> below.</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-
-const App: FC = () =&gt; {
+<pre><code class="language-tsx">const App: React.FC = () =&gt; {
   return (
     &lt;&gt;
       &lt;Button /&gt;
@@ -734,9 +732,7 @@ const App: FC = () =&gt; {
 <p>The JSX syntax allows function components to look like XML, but underneath they are still functions. The return of each component is unique and you can use the same component multiple times.</p>
 <p>You can think of components as fancy functions.</p>
 <p>While you can’t actually do the following, this is functionally similar to what React is doing for you.</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-
-const App: FC = () =&gt; {
+<pre><code class="language-tsx">const App: React.FC = () =&gt; {
   return (
     &lt;&gt;
       {Button()}
@@ -881,21 +877,18 @@ export default App
 <p>The properties on the props object—individually called a “prop”—can include whatever data the child component needs to make the component work. The property values can be any type, including functions and other React components.</p>
 <p>We’re using TypeScript in our project, so we can create an <code>interface</code> for <code>props</code> and use it in the definition of a function component.</p>
 <p>Let’s create a <code>SubmitButton</code> component to see <code>props</code> in action:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { Pressable, Text } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { Pressable, Text } from &quot;react-native&quot;
 
 interface SubmitButtonProps {
   label: string
   onPress: () =&gt; void
 }
 
-const SubmitButton: FC&lt;SubmitButtonProps&gt; = (props) =&gt; {
+const SubmitButton: React.FC&lt;SubmitButtonProps&gt; = (props) =&gt; {
   const { label, onPress } = props
   return (
     &lt;Pressable onPress={onPress}&gt;
-      &lt;Text&gt;
-        {label}
-      &lt;/Text&gt;
+      &lt;Text&gt;{label}&lt;/Text&gt;
     &lt;/Pressable&gt;
   )
 }
@@ -905,20 +898,17 @@ const SubmitButton: FC&lt;SubmitButtonProps&gt; = (props) =&gt; {
 <p>In this example, <code>SubmitButtonProps</code> is an interface that defines the types for <code>label</code> (a string) and <code>onPress</code> (a function). Our <code>SubmitButton</code> component then uses these props to display a button with a label and a click action.</p>
 <p>The example above illustrates how props are passed to component as an argument.</p>
 <p>However, more commonly (and for the rest of this course) you will see props destructured in the function parameters:</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import { Pressable, Text } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { Pressable, Text } from &quot;react-native&quot;
 
 interface SubmitButtonProps {
   label: string
   onPress: () =&gt; void
 }
 
-const SubmitButton: FC&lt;SubmitButtonProps&gt; = ({ label, onPress }) =&gt; {
+const SubmitButton: React.FC&lt;SubmitButtonProps&gt; = ({ label, onPress }) =&gt; {
   return (
     &lt;Pressable onPress={onPress}&gt;
-      &lt;Text&gt;
-        {label}
-      &lt;/Text&gt;
+      &lt;Text&gt;{label}&lt;/Text&gt;
     &lt;/Pressable&gt;
   )
 }
@@ -934,11 +924,9 @@ const SubmitButton: FC&lt;SubmitButtonProps&gt; = ({ label, onPress }) =&gt; {
 <p>In the example below, the <code>label</code> prop accepts a string. so the value is surrounded by double quotes. The <code>onPress</code> prop accepts a function, so the function value is surrounded by braces.</p>
 <p>Here’s how to use our <code>SubmitButton</code>:</p>
 <pre><code class="language-tsx">const content = (
-  &lt;SubmitButton
-    label=&quot;Activate&quot;
-    onPress={() =&gt; console.info(&quot;Activated!&quot;)}
-  /&gt;
+  &lt;SubmitButton label=&quot;Activate&quot; onPress={() =&gt; console.info(&quot;Activated!&quot;)} /&gt;
 )
+
 </code></pre>
 <p>In the example above, we’re setting the <code>label</code> prop to the string “Activate” and the <code>onPress</code> prop to a function that displays an alert.</p>
 <h3>Reserved prop names</h3>
@@ -962,8 +950,8 @@ const states = [
   },
 ]
 
-export type ListItemProps = {
-  //Exercise: Implement ListItem Props
+export interface ListItemProps {
+  // Exercise: Implement ListItem Props
 }
 
 export const ListItem: React.FC = () =&gt; {
@@ -1060,7 +1048,7 @@ const states = [
   },
 ]
 
-export type ListItemProps = {
+export interface ListItemProps {
   name: string
 }
 
@@ -1185,10 +1173,10 @@ export default App
 </ul>
 <h4>Writing Modlet components</h4>
 <p>For more clarity, the <code>ProductDetails</code> component has a default export.</p>
-<pre><code class="language-tsx">const ProductDetails = (props) =&gt; {
+<pre><code class="language-tsx">const ProductDetails = () =&gt; {
   return (
     &lt;View&gt;
-      &lt;Text&gt; Here are some details about this product! &lt;/Text&gt;
+      &lt;Text&gt;Here are some details about this product!&lt;/Text&gt;
     &lt;/View&gt;
   )
 }
@@ -1202,9 +1190,9 @@ export default ProductDetails
 </code></pre>
 <h4>Importing Modlets</h4>
 <p>With the Modlet structure, the top-level component’s imports statements look as follows:</p>
-<pre><code class="language-tsx">import ProductDetails from &quot;./components/ProductDetails&quot;
+<pre><code class="language-tsx">import CartButton from &quot;./components/CartButton&quot;
 import ImageCarousel from &quot;./components/ImageCarousel&quot;
-import CartButton from &quot;./components/CartButton&quot;
+import ProductDetails from &quot;./components/ProductDetails&quot;
 
 const ProductPage = (props) =&gt; {
   return (
@@ -1256,7 +1244,7 @@ const states = [
   },
 ]
 
-export type ListItemProps = {
+export interface ListItemProps {
   name: string
 }
 
@@ -1293,7 +1281,7 @@ export default App
 
 import ListItem from &quot;./components/ListItem&quot;
 
-//Exercise: Implement StateList Component
+// Exercise: Implement StateList Component
 
 export default StateList
 
@@ -1306,7 +1294,7 @@ export default StateList
 <p>✏️ Create <strong>src/screens/StateList/components/ListItem/ListItem.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { Text } from &quot;react-native&quot;
 
-//Exercise: Implement ListItem Component
+// Exercise: Implement ListItem Component
 
 export default ListItem
 
@@ -1430,7 +1418,7 @@ export default StateList
 <p>✏️ Update <strong>src/screens/StateList/components/ListItem/ListItem.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { Text } from &quot;react-native&quot;
 
-type ListItemProps = {
+export interface ListItemProps {
   name: string
 }
 

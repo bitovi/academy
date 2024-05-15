@@ -705,12 +705,9 @@ covering CanJS core libraries.">
 <p>We’ve mentioned before that <code>useState</code> is a Hook for managing state, but what does that mean?</p>
 <p>React Hooks (referred to as just Hooks for the rest of this training) are special functions that allow us to “hook” into React Native functionality. Hooks provide us with many conveniences like sharing stateful logic between components and simplifying what would be otherwise complex components.</p>
 <p>We’ve already seen and used a Hook while building Place My Order! Do you remember this code from earlier?</p>
-<pre><code class="language-tsx">import type { FC } from &quot;react&quot;
-import type { Theme } from &quot;./theme&quot;
+<pre><code class="language-tsx">import { createContext, useContext, useMemo } from &quot;react&quot;
 
-import { createContext, useContext, useMemo } from &quot;react&quot;
-
-import theme from &quot;./theme&quot;
+import theme, { Theme } from &quot;./theme&quot;
 
 interface ThemeContext {
   theme: Theme
@@ -720,7 +717,9 @@ const Context = createContext&lt;ThemeContext&gt;({
   theme,
 })
 
-const ThemeProvider: FC&lt;{ children: React.ReactNode }&gt; = ({ children }) =&gt; {
+const ThemeProvider: React.FC&lt;{ children: React.ReactNode }&gt; = ({
+  children,
+}) =&gt; {
   const value = useMemo(() =&gt; ({ theme }), [])
 
   return &lt;Context.Provider value={value}&gt;{children}&lt;/Context.Provider&gt;
@@ -747,11 +746,11 @@ export function useTheme(): Theme {
 <h3>The useState Hook</h3>
 <p>We can store the state that persists through component rendering with the <code>useState</code> Hook. You can set the initial state value when the component <strong>first</strong> renders by providing the value as an argument to the Hook. _If you do not provide a value the initial state value will be <code>undefined</code>.</p>
 <p>This example shows a <code>useState</code> Hook being set with an initial value of <code>&quot;&quot;</code>:</p>
-<pre><code class="language-tsx">import React, { ChangeEvent, useState } from 'react';
-import { View, Text, TextInput } from 'react-native';
+<pre><code class="language-tsx">import React, { ChangeEvent, useState } from &quot;react&quot;
+import { View, Text, TextInput } from &quot;react-native&quot;
 
 const NameField: React.FC = () =&gt; {
-  const [value, setValue] = useState&lt;string&gt;('')
+  const [value, setValue] = useState&lt;string&gt;(&quot;&quot;)
 
   const handleChange = (event: ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
     setValue(event.target.value)
@@ -763,20 +762,21 @@ const NameField: React.FC = () =&gt; {
       &lt;TextInput
         onChangeText={handleChange}
         value={value}
-        style={{ borderWidth: 1, borderColor: 'gray', padding: 10 }}
+        style={{ borderWidth: 1, borderColor: &quot;gray&quot;, padding: 10 }}
       /&gt;
     &lt;/View&gt;
   )
 }
+
 </code></pre>
 <div line-highlight='1, 5, only'></div>
 <p>As you can see in the previous example, <code>useState</code> returns an array with two elements: the first is the current state value of the Hook, and the second is a setter function that is used to update the state value.</p>
 <p>In the following code, the value is being rendered and the setter is being used to keep track of which input value the user has typed:</p>
-<pre><code class="language-tsx">import React, { ChangeEvent, useState } from 'react';
-import { View, Text, TextInput } from 'react-native';
+<pre><code class="language-tsx">import React, { ChangeEvent, useState } from &quot;react&quot;
+import { View, Text, TextInput } from &quot;react-native&quot;
 
 const NameField: React.FC = () =&gt; {
-  const [value, setValue] = useState&lt;string&gt;('')
+  const [value, setValue] = useState&lt;string&gt;(&quot;&quot;)
 
   const handleChange = (event: ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
     setValue(event.target.value)
@@ -788,11 +788,12 @@ const NameField: React.FC = () =&gt; {
       &lt;TextInput
         onChangeText={handleChange}
         value={value}
-        style={{ borderWidth: 1, borderColor: 'gray', padding: 10 }}
+        style={{ borderWidth: 1, borderColor: &quot;gray&quot;, padding: 10 }}
       /&gt;
     &lt;/View&gt;
   )
 }
+
 </code></pre>
 <div line-highlight='8, only'></div>
 <p>Every time a <code>useState</code>’s setter is invoked with a new value, React Native compares the new value with the current value. If the values are the same, nothing happens; <strong>if the values are different, React Native will rerender the component</strong> so the new state value can be used to update the component.</p>
@@ -829,26 +830,24 @@ export function useToggle(intialValue = true) {
 <p>In the example above, you can see that our <code>useToggle</code> Hook is a function that has an internal <code>useState</code> to keep track of the toggle’s on/off status. This Hook has a <code>handleToggle</code> function for changing its internal state. Lastly, we can see that the <code>useToggle</code> Hook returns an array with the <code>on</code> status and the <code>handleToggle</code> function.</p>
 <h3>How to use a custom Hook</h3>
 <p>How would we use this Hook? Let’s take a look at this example:</p>
-<pre><code class="language-tsx">import React from 'react';
-import { View, Text, Switch } from 'react-native';
+<pre><code class="language-tsx">import React from &quot;react&quot;
+import { View, Text, Switch } from &quot;react-native&quot;
 
 import { useToggle } from &quot;./useToggle&quot;
 
 const Toggle: React.FC = () =&gt; {
-  const [active, toggleActive] = useToggle(true);
+  const [active, toggleActive] = useToggle(true)
 
   return (
     &lt;View&gt;
       &lt;View&gt;
-        &lt;Switch
-          onValueChange={toggleActive}
-          value={active}
-        /&gt;
+        &lt;Switch onValueChange={toggleActive} value={active} /&gt;
         &lt;Text&gt;{active ? &quot;On&quot; : &quot;Off&quot;}&lt;/Text&gt;
       &lt;/View&gt;
     &lt;/View&gt;
-  );
+  )
 }
+
 </code></pre>
 <div line-highlight='4, 7, 13-14, 16, only'></div>
 <p>In this component, we call our <code>useToggle</code> Hook with the initial state (<code>true</code>). Our Hook returns the <code>active</code> state and <code>toggleActive</code> function for changing the on/off state.</p>
@@ -988,9 +987,11 @@ const Context = createContext&lt;ThemeContext&gt;({
   theme,
 })
 
-const ThemeProvider: React.FC&lt;{ children: React.ReactNode }&gt; = ({
-  children,
-}) =&gt; {
+export interface ThemeProviderProps {
+  children: React.ReactNode
+}
+
+const ThemeProvider: React.FC&lt;ThemeProviderProps&gt; = ({ children }) =&gt; {
   const value = useMemo(() =&gt; ({ theme }), [])
 
   return &lt;Context.Provider value={value}&gt;{children}&lt;/Context.Provider&gt;
@@ -1012,7 +1013,7 @@ export function useThemeMode(): {
 }
 
 </code></pre>
- <div line-highlight="1-2,4,6,9-10,13-15,33-38,only"></div>
+ <div line-highlight="1-2,4,6,9-10,13-15,35-40,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { Switch } from &quot;react-native&quot;
 
@@ -1191,9 +1192,11 @@ const Context = createContext&lt;ThemeContext&gt;({
   setMode: () =&gt; undefined,
 })
 
-const ThemeProvider: React.FC&lt;{ children: React.ReactNode }&gt; = ({
-  children,
-}) =&gt; {
+export interface ThemeProviderProps {
+  children: React.ReactNode
+}
+
+const ThemeProvider: React.FC&lt;ThemeProviderProps&gt; = ({ children }) =&gt; {
   const [mode, setMode] = useState&lt;Mode&gt;(Appearance.getColorScheme() || &quot;light&quot;)
 
   const value = useMemo(() =&gt; ({ mode, setMode }), [mode])
@@ -1222,7 +1225,7 @@ export function useThemeMode(): {
 }
 
 </code></pre>
- <div line-highlight="14-15,21,23,31,33,40,42-45,only"></div>
+ <div line-highlight="14-15,23,25,33,35,42,44-47,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { Switch } from &quot;react-native&quot;
 

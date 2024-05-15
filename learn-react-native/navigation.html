@@ -707,28 +707,28 @@ covering CanJS core libraries.">
 <p>Tab navigation pattern is one of the most common navigation patterns used in both Android and iOS applications. It allows users to switch between different screens by tapping on tabs that are typically located at the bottom of the screen.</p>
 <p>Often tabs in a mobile application are made up of more than just one screen. Tab navigation is often used in conjunction with stack navigation to allow for more complex navigation patterns. We will cover how to use React Navigation's stack navigation in the next section.</p>
 <p>Here is an example of using tab-based navigation in React Native with React Navigation:</p>
-<pre><code class="language-tsx">import * as React from 'react';
-import { Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+<pre><code class="language-tsx">import * as React from &quot;react&quot;
+import { Text, View } from &quot;react-native&quot;
+import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 
 function ScreenA() {
   return (
-    &lt;View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}&gt;
+    &lt;View style={{ flex: 1, justifyContent: &quot;center&quot;, alignItems: &quot;center&quot; }}&gt;
       &lt;Text&gt;Screen A&lt;/Text&gt;
     &lt;/View&gt;
-  );
+  )
 }
 
 function ScreenB() {
   return (
-    &lt;View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}&gt;
+    &lt;View style={{ flex: 1, justifyContent: &quot;center&quot;, alignItems: &quot;center&quot; }}&gt;
       &lt;Text&gt;Screen A&lt;/Text&gt;
     &lt;/View&gt;
-  );
+  )
 }
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator()
 
 export default function App() {
   return (
@@ -738,7 +738,7 @@ export default function App() {
         &lt;Tab.Screen name=&quot;Screen B&quot; component={ScreenB} /&gt;
       &lt;/Tab.Navigator&gt;
     &lt;/NavigationContainer&gt;
-  );
+  )
 }
 </code></pre>
 <div line-highlight='3-4, 22, 26-31'></div>
@@ -764,7 +764,7 @@ import Settings from &quot;./screens/Settings&quot;
 import StateList from &quot;./screens/StateList&quot;
 
 const AppTabs = createBottomTabNavigator()
-export const AppNavigator: React.FC = () =&gt; {
+const AppNavigator: React.FC = () =&gt; {
   const theme = useTheme()
 
   return (
@@ -784,7 +784,7 @@ export const AppNavigator: React.FC = () =&gt; {
         tabBarActiveTintColor: theme.palette.primary.strong,
         tabBarInactiveTintColor: theme.palette.screen.contrast,
         tabBarIcon: ({ focused, color }) =&gt; {
-          //Exercise: Update the Icon component’s name property based on the route
+          // Exercise: Update the Icon component's name property based on the route
           return &lt;Icon name={icon} size={20} color={color} /&gt;
         },
       })}
@@ -911,7 +911,7 @@ describe(&quot;Settings component&quot;, () =&gt; {
 <ul>
 <li>For the <code>tabBarIcon</code> property on <code>AppTabs.Navigator</code> update the <code>Icon</code> component’s name property to be based on the given route.</li>
 <li>Add a screen tab for Restaurants (the <code>StateList</code> component) and for <code>Settings</code> component.</li>
-<li>Add the <code>NavigationContainer</code> and  <code>AppNavigator</code> to the <code>App</code> component.</li>
+<li>Add the <code>NavigationContainer</code> and <code>AppNavigator</code> to the <code>App</code> component.</li>
 </ul>
 <h3>Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
@@ -928,7 +928,7 @@ import Settings from &quot;./screens/Settings&quot;
 import StateList from &quot;./screens/StateList&quot;
 
 const AppTabs = createBottomTabNavigator()
-export const AppNavigator: React.FC = () =&gt; {
+const AppNavigator: React.FC = () =&gt; {
   const theme = useTheme()
 
   return (
@@ -1010,32 +1010,32 @@ export default App
 <p>Both the stack navigator and tab navigator have an optional prop, <code>detachInactiveScreens</code>, that defaults to <code>true</code>. This boolean value indicates whether inactive screens (screens that are not currently visible) should be detached from the view hierarchy. This can improve performance by reducing the number of views that need to be rendered and maintained in memory.</p>
 <h3>Stack Navigator</h3>
 <p>Let’s take a look at an example of using a stack navigator in React Native with React Navigation.</p>
-<pre><code class="language-tsx">import { createStackNavigator } from '@react-navigation/stack';
+<pre><code class="language-tsx">import { createStackNavigator } from &quot;@react-navigation/stack&quot;
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator()
 
 function MyStack() {
   return (
     &lt;Stack.Navigator
       initialRouteName=&quot;ScreenA&quot;
       screenOptions={{
-        headerMode: 'screen',
-        headerTintColor: 'white',
-        headerStyle: { backgroundColor: 'tomato' },
+        headerMode: &quot;screen&quot;,
+        headerTintColor: &quot;white&quot;,
+        headerStyle: { backgroundColor: &quot;tomato&quot; },
       }}
     &gt;
       &lt;Stack.Screen
         name=&quot;ScreenA&quot;
         component={ScreenA}
         options={{
-          title: 'Screen A',
+          title: &quot;Screen A&quot;,
         }}
       /&gt;
       &lt;Stack.Screen
         name=&quot;ScreenB&quot;
         component={ScreenB}
         options={{
-          title: 'Screen B',
+          title: &quot;Screen B&quot;,
         }}
       /&gt;
       &lt;Stack.Screen
@@ -1046,7 +1046,7 @@ function MyStack() {
         }}
       /&gt;
     &lt;/Stack.Navigator&gt;
-  );
+  )
 }
 </code></pre>
 <div line-highlight='1, 3, 7-36'></div>
@@ -1105,7 +1105,7 @@ const RestaurantsNavigator: React.FC = () =&gt; {
 }
 
 const AppTabs = createBottomTabNavigator()
-export const AppNavigator: React.FC = () =&gt; {
+const AppNavigator: React.FC = () =&gt; {
   const theme = useTheme()
 
   return (
@@ -1346,7 +1346,7 @@ const RestaurantsNavigator: React.FC = () =&gt; {
 }
 
 const AppTabs = createBottomTabNavigator()
-export const AppNavigator: React.FC = () =&gt; {
+const AppNavigator: React.FC = () =&gt; {
   const theme = useTheme()
 
   return (
@@ -1515,7 +1515,7 @@ const RestaurantsNavigator: React.FC = () =&gt; {
 }
 
 const AppTabs = createBottomTabNavigator()
-export const AppNavigator: React.FC = () =&gt; {
+const AppNavigator: React.FC = () =&gt; {
   const theme = useTheme()
 
   return (
@@ -1586,7 +1586,7 @@ import Typography from &quot;../../design/Typography&quot;
 
 const assetsUrl = process.env.PMO_ASSETS
 
-type Props = {
+export interface RestaurantHeaderProps {
   restaurant?: {
     _id: string
     address?: {
@@ -1603,7 +1603,7 @@ type Props = {
   }
 }
 
-const RestaurantHeader: React.FC&lt;Props&gt; = ({ restaurant }) =&gt; {
+const RestaurantHeader: React.FC&lt;RestaurantHeaderProps&gt; = ({ restaurant }) =&gt; {
   const theme = useTheme()
   const styles = getStyles(theme)
 
@@ -1688,7 +1688,7 @@ const cities: City[] = [
 const CityList: React.FC = () =&gt; {
   const navigation = useNavigation()
 
-  //Exercise: Use navigation to navigate to RestaurantList
+  // Exercise: Use navigation to navigate to RestaurantList
 
   return (
     &lt;Screen&gt;
@@ -2015,7 +2015,7 @@ const RestaurantsNavigator: React.FC = () =&gt; {
 }
 
 const AppTabs = createBottomTabNavigator()
-export const AppNavigator: React.FC = () =&gt; {
+const AppNavigator: React.FC = () =&gt; {
   const theme = useTheme()
 
   return (

@@ -699,11 +699,11 @@ You handle changes using the <code>onValueChange</code> prop, which directly pro
 <p>[If you’re familiar with web development, React Native does not have a direct equivalent to the HTML <code>&lt;input type=&quot;checkbox&quot;&gt;</code>.
 Instead, you use the <code>&lt;Switch&gt;</code> component to achieve similar functionality.]</p>
 <p>Let’s take a look at an example using <code>&lt;Switch&gt;</code>:</p>
-<pre><code class="language-tsx">import React, { useState } from 'react';
-import { Switch, Text, View } from 'react-native';
+<pre><code class="language-tsx">import React, { useState } from &quot;react&quot;
+import { Switch, Text, View } from &quot;react-native&quot;
 
 const SwitchExample = () =&gt; {
-  const [isEnabled, setIsEnabled] = useState(false);
+  const [isEnabled, setIsEnabled] = useState(false)
 
   return (
     &lt;View&gt;
@@ -713,12 +713,13 @@ const SwitchExample = () =&gt; {
         trackColor={{ false: &quot;#767577&quot;, true: &quot;#81b0ff&quot; }}
         value={isEnabled}
       /&gt;
-      &lt;Text&gt;{isEnabled ? 'Enabled' : 'Disabled'}&lt;/Text&gt;
+      &lt;Text&gt;{isEnabled ? &quot;Enabled&quot; : &quot;Disabled&quot;}&lt;/Text&gt;
     &lt;/View&gt;
-  );
-};
+  )
+}
 
-export default SwitchExample;
+export default SwitchExample
+
 </code></pre>
 <div line-highlight='5, 9-14, only'></div>
 <p>In the example above, you can see the <code>value</code> passed in is the <code>isEnabled</code> state.</p>
@@ -730,42 +731,52 @@ We also want to use TypeScript so we can constrain the types used as keys and va
 <p>TypeScript provides a handy interface named <code>Record</code> that we can use.
 <code>Record</code> is a generic interface that requires two types: the first is the type of the keys, and the second is the type of the values.</p>
 <p>For example, if we’re recording the items in a list that are selected, we might capture the item’s name and whether or not it’s selected like this:</p>
-<pre><code class="language-tsx">import React, { useState } from 'react';
-import { View, Text, Switch } from 'react-native';
+<pre><code class="language-tsx">import React, { useState } from &quot;react&quot;
+import { View, Text, Switch } from &quot;react-native&quot;
 
 const landmarks = [
   { id: &quot;0b90c705&quot;, name: &quot;Eiffel Tower&quot; },
   { id: &quot;5be758c1&quot;, name: &quot;Machu Picchu&quot; },
   { id: &quot;206025c3&quot;, name: &quot;Taj Mahal&quot; },
-];
+]
 
-type SelectedItems = Record&lt;string, boolean&gt;;
+type SelectedItems = Record&lt;string, boolean&gt;
 
 const Selected = () =&gt; {
-  const [selected, setSelected] = useState&lt;SelectedItems&gt;({});
+  const [selected, setSelected] = useState&lt;SelectedItems&gt;({})
 
   function handleChange(name: string, isSelected: boolean) {
-    setSelected((current) =&gt; ({ ...current, [name]: isSelected }));
+    setSelected((current) =&gt; ({ ...current, [name]: isSelected }))
   }
 
   return (
     &lt;View&gt;
       {landmarks.map((landmark) =&gt; {
         return (
-          &lt;View key={landmark.id} style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}&gt;
+          &lt;View
+            key={landmark.id}
+            style={{
+              flexDirection: &quot;row&quot;,
+              alignItems: &quot;center&quot;,
+              marginBottom: 10,
+            }}
+          &gt;
             &lt;Text&gt;{landmark.name}: &lt;/Text&gt;
             &lt;Switch
-              onValueChange={(newValue) =&gt; handleChange(landmark.name, newValue)}
+              onValueChange={(newValue) =&gt;
+                handleChange(landmark.name, newValue)
+              }
               value={!!selected[landmark.name]}
             /&gt;
           &lt;/View&gt;
-        );
+        )
       })}
     &lt;/View&gt;
-  );
-};
+  )
+}
 
-export default Selected;
+export default Selected
+
 </code></pre>
 <div line-highlight='10, 13, only'></div>
 <p>We’ve explicitly defined the type of <code>useState</code> as a <code>Record&lt;string, boolean&gt;</code>; all the keys must be strings, and all the values must be booleans.
@@ -777,52 +788,62 @@ Why?
 Imagine we have a state object that already has multiple keys and values, and we need to add a new key and value.</p>
 <p>Well, we’re in luck!
 React already has a solution for this: the setter function returned by <code>useState</code> will accept an “updater function” that’s passed the “current” state value and should return the “next” state value.</p>
-<pre><code class="language-tsx">import React, { useState } from 'react';
-import { View, Text, Switch } from 'react-native';
+<pre><code class="language-tsx">import React, { useState } from &quot;react&quot;
+import { View, Text, Switch } from &quot;react-native&quot;
 
 const landmarks = [
   { id: &quot;0b90c705&quot;, name: &quot;Eiffel Tower&quot; },
   { id: &quot;5be758c1&quot;, name: &quot;Machu Picchu&quot; },
   { id: &quot;206025c3&quot;, name: &quot;Taj Mahal&quot; },
-];
+]
 
-type SelectedItems = Record&lt;string, boolean&gt;;
+type SelectedItems = Record&lt;string, boolean&gt;
 
 const Selected: React.FC = () =&gt; {
-  const [selected, setSelected] = useState&lt;SelectedItems&gt;({});
+  const [selected, setSelected] = useState&lt;SelectedItems&gt;({})
 
   function handleSelectedChange(name: string, isSelected: boolean) {
     setSelected((currentSelectedItems) =&gt; {
       const updatedSelectedItems = {
         ...currentSelectedItems,
-      };
-
-      if (isSelected) {
-        updatedSelectedItems[name] = true;
-      } else {
-        delete updatedSelectedItems[name];
       }
 
-      return updatedSelectedItems;
-    });
+      if (isSelected) {
+        updatedSelectedItems[name] = true
+      } else {
+        delete updatedSelectedItems[name]
+      }
+
+      return updatedSelectedItems
+    })
   }
 
   return (
     &lt;View&gt;
       {landmarks.map((landmark) =&gt; (
-        &lt;View key={landmark.id} style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}&gt;
+        &lt;View
+          key={landmark.id}
+          style={{
+            flexDirection: &quot;row&quot;,
+            alignItems: &quot;center&quot;,
+            marginBottom: 10,
+          }}
+        &gt;
           &lt;Text&gt;{landmark.name}: &lt;/Text&gt;
           &lt;Switch
-            onValueChange={(newValue) =&gt; handleSelectedChange(landmark.name, newValue)}
+            onValueChange={(newValue) =&gt;
+              handleSelectedChange(landmark.name, newValue)
+            }
             value={!!selected[landmark.name]}
           /&gt;
         &lt;/View&gt;
       ))}
     &lt;/View&gt;
-  );
+  )
 }
 
-export default Selected;
+export default Selected
+
 </code></pre>
 <div line-highlight='15-16, 27, 37, only'></div>
 <p>In the example above, the <code>onChange</code> event handler calls <code>handleSelectedChange</code>, which accepts a name <code>string</code> and a <code>boolean</code>.</p>
@@ -955,7 +976,7 @@ const RestaurantsNavigator: React.FC = () =&gt; {
 }
 
 const AppTabs = createBottomTabNavigator()
-export const AppNavigator: React.FC = () =&gt; {
+const AppNavigator: React.FC = () =&gt; {
   const theme = useTheme()
 
   return (
@@ -1029,9 +1050,10 @@ import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
 import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
-type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantDetails&quot;&gt;
+export interface RestaurantDetailsProps
+  extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantDetails&quot;&gt; {}
 
-const RestaurantDetails: React.FC&lt;Props&gt; = ({ route }) =&gt; {
+const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&gt; {
   const { slug } = route.params
   const navigation = useNavigation()
   const { data: restaurant, error, isPending } = useRestaurant(slug)
@@ -1070,7 +1092,7 @@ const RestaurantDetails: React.FC&lt;Props&gt; = ({ route }) =&gt; {
 export default RestaurantDetails
 
 </code></pre>
- <div line-highlight="46,only"></div>
+ <div line-highlight="47,only"></div>
 <p>✏️ Create <strong>src/screens/RestaurantOrder/RestaurantOrder.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -1087,11 +1109,12 @@ import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
 import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
-type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantOrder&quot;&gt;
+export interface RestaurantOrderProps
+  extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantOrder&quot;&gt; {}
 
 type OrderItems = Record&lt;string, number&gt;
 
-const RestaurantOrder: React.FC&lt;Props&gt; = ({ route }) =&gt; {
+const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; {
   const navigation = useNavigation()
   const { slug } = route.params
 
@@ -1187,13 +1210,13 @@ import Box from &quot;../../design/Box&quot;
 import { useTheme } from &quot;../../design/theme&quot;
 import Typography from &quot;../../design/Typography&quot;
 
-type Props = {
+export interface FormSwitchProps {
   label: React.ReactNode
   value: boolean
   onChange: (value: boolean) =&gt; void
 }
 
-const FormSwitch: React.FC&lt;Props&gt; = ({ label, value, onChange }) =&gt; {
+const FormSwitch: React.FC&lt;FormSwitchProps&gt; = ({ label, value, onChange }) =&gt; {
   const { palette } = useTheme()
 
   return (
@@ -1485,7 +1508,7 @@ const RestaurantsNavigator: React.FC = () =&gt; {
 }
 
 const AppTabs = createBottomTabNavigator()
-export const AppNavigator: React.FC = () =&gt; {
+const AppNavigator: React.FC = () =&gt; {
   const theme = useTheme()
 
   return (
@@ -1553,13 +1576,13 @@ import Box from &quot;../../design/Box&quot;
 import { useTheme } from &quot;../../design/theme&quot;
 import Typography from &quot;../../design/Typography&quot;
 
-type Props = {
+export interface FormSwitchProps {
   label: React.ReactNode
   value: boolean
   onChange: (value: boolean) =&gt; void
 }
 
-const FormSwitch: React.FC&lt;Props&gt; = ({ label, value, onChange }) =&gt; {
+const FormSwitch: React.FC&lt;FormSwitchProps&gt; = ({ label, value, onChange }) =&gt; {
   const { palette } = useTheme()
 
   return (
@@ -1603,9 +1626,10 @@ import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
 import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
-type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantDetails&quot;&gt;
+export interface RestaurantDetailsProps
+  extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantDetails&quot;&gt; {}
 
-const RestaurantDetails: React.FC&lt;Props&gt; = ({ route }) =&gt; {
+const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&gt; {
   const { slug } = route.params
   const navigation = useNavigation()
   const { data: restaurant, error, isPending } = useRestaurant(slug)
@@ -1647,7 +1671,7 @@ const RestaurantDetails: React.FC&lt;Props&gt; = ({ route }) =&gt; {
 export default RestaurantDetails
 
 </code></pre>
- <div line-highlight="43-47,only"></div>
+ <div line-highlight="44-48,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantOrder/RestaurantOrder.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -1664,11 +1688,12 @@ import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
 import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
-type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantOrder&quot;&gt;
+export interface RestaurantOrderProps
+  extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantOrder&quot;&gt; {}
 
 type OrderItems = Record&lt;string, number&gt;
 
-const RestaurantOrder: React.FC&lt;Props&gt; = ({ route }) =&gt; {
+const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; {
   const navigation = useNavigation()
   const { slug } = route.params
 
@@ -1782,7 +1807,7 @@ function calculateTotal(items: OrderItems) {
 export default RestaurantOrder
 
 </code></pre>
- <div line-highlight="26,38-49,52,75,84-91,95-102,only"></div>
+ <div line-highlight="27,39-50,53,76,85-92,96-103,only"></div>
 <p></details></p>
 <h2>Objective 2: Add text fields to collect user data</h2>
 <p>Next, we want to collect the user’s name, address, and phone number as part of the order.
@@ -1791,24 +1816,22 @@ To do this, we’ll use React Native’s <code>TextInput</code> component.</p>
 <p>For entering text, React Native uses the <code>TextInput</code> component.
 Changes in text input are managed using the <code>onChangeText</code> prop, which receives the new text directly.</p>
 <p>Here’s how you can use <code>TextInput</code> in your application:</p>
-<pre><code class="language-tsx">import React, { useState } from 'react';
-import { Text, TextInput, View } from 'react-native';
+<pre><code class="language-tsx">import React, { useState } from &quot;react&quot;
+import { Text, TextInput, View } from &quot;react-native&quot;
 
 const InputExample = () =&gt; {
-  const [text, setText] = useState('');
+  const [text, setText] = useState(&quot;&quot;)
 
   return (
     &lt;View&gt;
       &lt;Text&gt;Enter your name:&lt;/Text&gt;
-      &lt;TextInput
-        onChangeText={newText =&gt; setText(newText)}
-        value={text}
-      /&gt;
+      &lt;TextInput onChangeText={(newText) =&gt; setText(newText)} value={text} /&gt;
     &lt;/View&gt;
-  );
+  )
 }
 
 export default InputExample
+
 </code></pre>
 <div line-highlight='5, 10-13, only'></div>
 <p>In this example, the <code>onChangeText</code> prop is passed a function that calls <code>setText</code> to store the text as state in the component.</p>
@@ -1816,11 +1839,11 @@ export default InputExample
 <p>In the code above, we have a <code>&lt;Text&gt;</code> component in the view but it does not have a programmatic relationship with the <code>&lt;TextInput&gt;</code> itself.
 This means that assistive technologies (such as screen readers) won’t know to announce the <code>Text</code> when the <code>TextInput</code> has focus.</p>
 <p>To fix this, we can use the accessibility APIs:</p>
-<pre><code class="language-tsx">import React, { useState } from 'react';
-import { Text, TextInput, View } from 'react-native';
+<pre><code class="language-tsx">import React, { useState } from &quot;react&quot;
+import { Text, TextInput, View } from &quot;react-native&quot;
 
 const InputExample = () =&gt; {
-  const [text, setText] = useState('');
+  const [text, setText] = useState(&quot;&quot;)
 
   return (
     &lt;View&gt;
@@ -1828,16 +1851,17 @@ const InputExample = () =&gt; {
       &lt;TextInput
         accessibilityLabel=&quot;input&quot;
         accessibilityLabelledBy={&quot;name&quot;}
-        onChangeText={newText =&gt; setText(newText)}
+        onChangeText={(newText) =&gt; setText(newText)}
         value={text}
       /&gt;
     &lt;/View&gt;
-  );
+  )
 }
 
 export default InputExample
+
 </code></pre>
- <div line-highlight="9,11-12,only"></div>
+ <div line-highlight="9-15,only"></div>
 <p>In the code above, we add the following props:</p>
 <ul>
 <li><code>nativeID</code> on the <code>Text</code> to give it a unique ID.</li>
@@ -1848,12 +1872,12 @@ export default InputExample
 <h3>Creating unique IDs with the <code>useId()</code> Hook</h3>
 <p>There’s one minor issue with the code we have above: the <code>nativeID</code> prop’s value is pretty generic (<code>&quot;name&quot;</code>) and might accidentally be used multiple times across multiple views, causing confusion about which component is the right one to refer to!</p>
 <p>To solve this, we can use the <code>useId</code> Hook to generate a unique ID:</p>
-<pre><code class="language-tsx">import React, { useState } from 'react';
-import { Text, TextInput, View } from 'react-native';
+<pre><code class="language-tsx">import React, { useState } from &quot;react&quot;
+import { Text, TextInput, View } from &quot;react-native&quot;
 
 const InputExample = () =&gt; {
   const id = useId()
-  const [text, setText] = useState('');
+  const [text, setText] = useState(&quot;&quot;)
 
   return (
     &lt;View&gt;
@@ -1861,35 +1885,39 @@ const InputExample = () =&gt; {
       &lt;TextInput
         accessibilityLabel=&quot;input&quot;
         accessibilityLabelledBy={id}
-        onChangeText={newText =&gt; setText(newText)}
+        onChangeText={(newText) =&gt; setText(newText)}
         value={text}
       /&gt;
     &lt;/View&gt;
-  );
+  )
 }
 
 export default InputExample
+
 </code></pre>
  <div line-highlight="5,10,13,only"></div>
 <p>The value of <code>useId</code> is guaranteed to be unique within the component where it is used.
 This is ideal for linking related components together, as is the case with <code>nativeID</code> and <code>accessibilityLabelledBy</code>.</p>
 <h3>Setup 2</h3>
 <p>✏️ Create <strong>src/components/FormTextField/FormTextField.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { useId } from &quot;react&quot;
-import { TextInput } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { TextInput } from &quot;react-native&quot;
 
 import Box from &quot;../../design/Box&quot;
 import { useTheme } from &quot;../../design/theme&quot;
 import Typography from &quot;../../design/Typography&quot;
 
-type Props = {
+export interface FormTextFieldProps {
   label: string
   type?: &quot;text&quot;
   value: string
   onChange?: (value: string) =&gt; void
 }
 
-const FormTextField: React.FC&lt;Props&gt; = ({ label, value, onChange }) =&gt; {
+const FormTextField: React.FC&lt;FormTextFieldProps&gt; = ({
+  label,
+  value,
+  onChange,
+}) =&gt; {
   const theme = useTheme()
 
   return (
@@ -1933,11 +1961,12 @@ import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
 import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
-type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantOrder&quot;&gt;
+export interface RestaurantOrderProps
+  extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantOrder&quot;&gt; {}
 
 type OrderItems = Record&lt;string, number&gt;
 
-const RestaurantOrder: React.FC&lt;Props&gt; = ({ route }) =&gt; {
+const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; {
   const navigation = useNavigation()
   const { slug } = route.params
 
@@ -2059,7 +2088,7 @@ function calculateTotal(items: OrderItems) {
 export default RestaurantOrder
 
 </code></pre>
- <div line-highlight="8,28,54,108-110,113-117,only"></div>
+ <div line-highlight="8,29,55,109-111,114-118,only"></div>
 <h3>Verify 2</h3>
 <p>✏️ Create <strong>src/components/FormTextField/FormTextField.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { fireEvent, render, screen } from &quot;@testing-library/react-native&quot;
@@ -2244,14 +2273,18 @@ import Box from &quot;../../design/Box&quot;
 import { useTheme } from &quot;../../design/theme&quot;
 import Typography from &quot;../../design/Typography&quot;
 
-type Props = {
+export interface FormTextFieldProps {
   label: string
   type?: &quot;text&quot;
   value: string
   onChange?: (value: string) =&gt; void
 }
 
-const FormTextField: React.FC&lt;Props&gt; = ({ label, value, onChange }) =&gt; {
+const FormTextField: React.FC&lt;FormTextFieldProps&gt; = ({
+  label,
+  value,
+  onChange,
+}) =&gt; {
   const id = useId()
   const theme = useTheme()
 
@@ -2280,7 +2313,7 @@ const FormTextField: React.FC&lt;Props&gt; = ({ label, value, onChange }) =&gt; 
 export default FormTextField
 
 </code></pre>
- <div line-highlight="16,21-23,25-28,only"></div>
+ <div line-highlight="1,20,25-27,29-32,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantOrder/RestaurantOrder.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -2298,11 +2331,12 @@ import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
 import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
-type Props = StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantOrder&quot;&gt;
+export interface RestaurantOrderProps
+  extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantOrder&quot;&gt; {}
 
 type OrderItems = Record&lt;string, number&gt;
 
-const RestaurantOrder: React.FC&lt;Props&gt; = ({ route }) =&gt; {
+const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; {
   const navigation = useNavigation()
   const { slug } = route.params
 
@@ -2432,7 +2466,7 @@ function calculateTotal(items: OrderItems) {
 export default RestaurantOrder
 
 </code></pre>
- <div line-highlight="27,29-30,111-117,only"></div>
+ <div line-highlight="28,30-31,112-118,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, in order to retain data to limit requests and migrating the same data, let’s look into <a href="./using-asyncstorage">Using AsyncStorage</a>.</p>
