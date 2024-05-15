@@ -1,4 +1,5 @@
-import MapView, { PROVIDER_GOOGLE } from "react-native-maps"
+import { useNavigation } from "@react-navigation/native"
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps"
 
 import { Restaurant } from "../../../../services/pmo/restaurant"
 
