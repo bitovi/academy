@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Text, TextInput, View } from 'react-native';
+import React, { useState } from "react"
+import { Text, TextInput, View } from "react-native"
 
 const InputExample = () => {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("")
 
   return (
     <View>
@@ -10,11 +10,11 @@ const InputExample = () => {
       <TextInput
         accessibilityLabel="input"
         accessibilityLabelledBy={"name"}
-        onChangeText={newText => setText(newText)}
+        onChangeText={(newText) => setText(newText)}
         value={text}
       />
     </View>
-  );
+  )
 }
 
 export default InputExample

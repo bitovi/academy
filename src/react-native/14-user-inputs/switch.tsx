@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Switch, Text, View } from 'react-native';
+import React, { useState } from "react"
+import { Switch, Text, View } from "react-native"
 
 const SwitchExample = () => {
-  const [isEnabled, setIsEnabled] = useState(false);
+  const [isEnabled, setIsEnabled] = useState(false)
 
   return (
     <View>
@@ -12,9 +12,9 @@ const SwitchExample = () => {
         trackColor={{ false: "#767577", true: "#81b0ff" }}
         value={isEnabled}
       />
-      <Text>{isEnabled ? 'Enabled' : 'Disabled'}</Text>
+      <Text>{isEnabled ? "Enabled" : "Disabled"}</Text>
     </View>
-  );
-};
+  )
+}
 
-export default SwitchExample;
+export default SwitchExample
