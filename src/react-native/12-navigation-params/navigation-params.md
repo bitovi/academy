@@ -37,7 +37,7 @@ While the `route` is accessible from the `Navigator`, it is also accessible from
 
 To make sure the `Props` for our component match up to what we have for our `StackNavigator`, we can import the type we made and reference the `UserProfile` properties specifically.
 
-As you can see, in the `UserProfile` component, we can access the `route.params` of the component if any are provided. We grab the `user`, and are able to use it's properties throughout the component.
+As you can see, in the `UserProfile` component, we can access the `route.params` of the component if any are provided. We grab the `user`, and are able to use its properties throughout the component.
 
 This includes passing the state of `user` through `navigation`. We can add `user`, and other properties as an object for the second argument of `navigation.navigate`. Thus on the `Storefront` screen, all of those params passed will be accessible within its component.
 

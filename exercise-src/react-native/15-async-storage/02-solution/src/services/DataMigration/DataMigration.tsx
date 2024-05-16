@@ -9,7 +9,7 @@ interface LocalStorageApiRequestV1 {
   dateTime: Date
 }
 
-const migrateDataV1toV2 = async (): Promise<void> => {
+const migrateDataFromV1toV2 = async (): Promise<void> => {
   const keys = await getAllKeys()
   try {
     for (const key of keys) {
@@ -22,7 +22,7 @@ const migrateDataV1toV2 = async (): Promise<void> => {
       }
     }
   } catch (error) {
-    console.error("'migrateDataV1toV2' failed with error:", error)
+    console.error("'migrateDataFromV1toV2' failed with error:", error)
     await clearStorage()
   }
 }
@@ -32,23 +32,23 @@ export interface DataMigrationProps {
 }
 
 const DataMigration: React.FC<DataMigrationProps> = ({ children }) => {
-  const [isDone, setMigrationDone] = useState<boolean>(false)
+  const [isMigrating, setIsMigrating] = useState(true)
 
   useEffect(() => {
     const checkMigration = async () => {
       const appVersion = (await getData<number>("version")) || 1
       if (appVersion < 2) {
-        await migrateDataV1toV2()
+        await migrateDataFromV1toV2()
         await storeData<number>("version", 2)
       }
 
-      setMigrationDone(true)
+      setIsMigrating(false)
     }
 
     checkMigration()
   }, [])
 
-  if (!isDone) {
+  if (isMigrating) {
     return <Loading />
   }
 
