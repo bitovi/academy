@@ -12,7 +12,7 @@ In this section, you will:
 
 - TODO
 
-## Objective 1: TODO
+## Objective 1: Code Splitting and Lazy Loading
 
 TODO
 
@@ -22,7 +22,9 @@ TODO
 
 ### Setup 1
 
-TODO
+✏️ Update **src/screens/RestaurantList/RestaurantList.tsx** to be:
+
+@diff ../../../exercises/react-native/18-maps/02-solution/src/screens/RestaurantList/RestaurantList.tsx ../../../exercises/react-native/19-performance/01-problem/src/screens/RestaurantList/RestaurantList.tsx only
 
 ### Verify 1
 
@@ -39,7 +41,9 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 <details>
 <summary>Click to see the solution</summary>
 
-TODO
+✏️ Update **src/screens/RestaurantList/RestaurantList.tsx** to be:
+
+@diff ../../../exercises/react-native/19-performance/01-problem/src/screens/RestaurantList/RestaurantList.tsx ../../../exercises/react-native/19-performance/01-solution/src/screens/RestaurantList/RestaurantList.tsx only
 
 </details>
 
