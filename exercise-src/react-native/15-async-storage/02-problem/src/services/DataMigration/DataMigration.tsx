@@ -9,7 +9,7 @@ interface LocalStorageApiRequestV1 {
   dateTime: Date
 }
 
-const migrateDataV1toV2 = async (): Promise<void> => {}
+const migrateDataFromV1toV2 = async (): Promise<void> => {}
 
 export interface DataMigrationProps {
   children: React.ReactNode
