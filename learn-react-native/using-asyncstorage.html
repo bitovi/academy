@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="TODO 
+  <meta name="description" content="Store data locally on device with Async Storage and run data migrations with new versions of your application. 
 ">
   
   <!-- Google Tag Manager -->
@@ -22,7 +22,7 @@
   })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
   <!-- End Google Tag Manager -->
 
-  <title>Bitovi Academy - Using AsyncStorage</title>
+  <title>Bitovi Academy - Using Async Storage</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -349,8 +349,8 @@
            						expanded">
 						<a class="page"
 							href="using-asyncstorage.html"
-							title="TODO">
-							Using AsyncStorage
+							title="Store data locally on device with Async Storage and run data migrations with new versions of your application.">
+							Using Async Storage
 						</a>
 						
 							
@@ -657,7 +657,7 @@ covering CanJS core libraries.">
     <div class="main-content">
   		
   			<section class="title">
-	<h1>Using AsyncStorage <code>page</code></h1>
+	<h1>Using Async Storage <code>page</code></h1>
 </section>
 
   		
@@ -665,7 +665,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>TODO</p>
+    <p>Store data locally on device with Async Storage and run data migrations with new versions of your application.</p>
 
 </section>
 
@@ -681,7 +681,10 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this section, you will:</p>
 <ul>
-<li>TODO</li>
+<li>Store data on device.</li>
+<li>Use React Native Async Storage to store items, get items, and more.</li>
+<li>Implement a local cache first (cache-then-network) strategy.</li>
+<li>Migrate data with a new version of the application.</li>
 </ul>
 <h2>Objective 1: Cache API responses</h2>
 <p>Now that the core functionality of our app is working, let’s improve its performance by caching API responses and using them for GET requests.</p>
@@ -689,8 +692,8 @@ covering CanJS core libraries.">
 <p>In mobile applications, persisting data locally is crucial for enabling offline usage and improving app responsiveness by reducing the need for network requests.
 React Native provides several options for local storage, ranging from simple key-value storage to more complex solutions like SQLite or Realm.
 For most use cases, especially when starting out, a simpler and effective solution suffices — such as <code>@react-native-async-storage/async-storage</code>.</p>
-<h4>Using <code>@react-native-async-storage/async-storage</code></h4>
-<p>This package is a local storage system that is ideal for storing small pieces of data.
+<h3>Using React Native Async Storage</h3>
+<p>The <code>@react-native-async-storage/async-storage</code> package is a local storage system that is ideal for storing small pieces of data.
 It operates asynchronously and stores data in key-value pairs, making it a good choice for lightweight persistence without the need for setting up a database.</p>
 <p>Its API includes a lot of functionality, but we’ll focus on using:</p>
 <ul>
@@ -699,7 +702,7 @@ It operates asynchronously and stores data in key-value pairs, making it a good 
 <li><code>getAllKeys</code></li>
 <li><code>clear</code></li>
 </ul>
-<h4>Storing items</h4>
+<h3>Storing items</h3>
 <p>Use the <code>setItem</code> method to store data using <code>AsyncStorage</code>.
 Since it only supports storing strings, complex data such as objects or arrays must be serialized using <code>JSON.stringify</code> before storage.</p>
 <p>Here is an example:</p>
@@ -717,7 +720,7 @@ export async function saveProfileData(profile) {
 </code></pre>
 <div line-highlight='6'></div>
 <p>This function takes a <code>restaurant</code> object, converts it into a string, and saves it under the key <code>&quot;restaurantData&quot;</code>.</p>
-<h4>Getting items</h4>
+<h3>Getting items</h3>
 <p>Retrieving data from <code>AsyncStorage</code> is done using the <code>getItem</code> method.
 The retrieved data, being in string format, often needs to be converted back into JSON format using <code>JSON.parse</code>.</p>
 <p>Consider this example:</p>
@@ -735,7 +738,7 @@ export async function loadProfileData() {
 </code></pre>
 <div line-highlight='5'></div>
 <p>This function fetches the data stored under the <code>&quot;restaurantData&quot;</code> key and converts it from a string back into an object.</p>
-<h4>Getting all keys</h4>
+<h3>Getting all keys</h3>
 <p>Sometimes, it is necessary to know all the keys under which data is stored.</p>
 <p>The <code>getAllKeys</code> method provides this capability:</p>
 <pre><code class="language-ts">import AsyncStorage from &quot;@react-native-async-storage/async-storage&quot;
@@ -751,10 +754,8 @@ export async function listAllKeys() {
 
 </code></pre>
 <div line-highlight='5'></div>
-<p>Continuing from our examples above, the <code>keys</code> array would be:</p>
-<pre><code class="language-ts">;[&quot;restaurantData&quot;]
-</code></pre>
-<h4>Clearing all storage</h4>
+<p>Continuing from our examples above, the <code>keys</code> array would be: <code>[&quot;restaurantData&quot;]</code></p>
+<h3>Clearing all storage</h3>
 <p>Use the <code>clear</code> method to remove all data stored in <code>AsyncStorage</code>:</p>
 <pre><code class="language-ts">import AsyncStorage from &quot;@react-native-async-storage/async-storage&quot;
 
@@ -785,7 +786,7 @@ export async function clearStorage() {
 </ul>
 <p>Each of these strategies can be implemented depending on the specific needs of the application, data sensitivity, user experience requirements, and network conditions.
 Choosing the right caching strategy is critical for balancing between data freshness, responsiveness, and minimizing network usage.</p>
-<h4>Local cache first (cache-then-network)</h4>
+<h3>Local cache first (cache-then-network)</h3>
 <p>For our application, we will implement the <strong>“local cache first” (cache-then-network)</strong> strategy.</p>
 <p>Here are some pointers on implementing this strategy:</p>
 <ul>
@@ -1031,6 +1032,7 @@ describe(&quot;Services/Storage&quot;, () =&gt; {
 })
 
 </code></pre>
+<div line-highlight='27, 49, 61, 75, only'></div>
 <h3>Exercise 1</h3>
 <p>For this exercise, let’s implement the storage APIs and use them to cache network responses:</p>
 <ul>
@@ -1087,7 +1089,7 @@ export async function apiRequest&lt;
         if (cachedResponse) {
           const diff =
             new Date().valueOf() - new Date(cachedResponse.dateTime).valueOf()
-          // Return Cached data if it's younger than one minute
+          // Return cached data if it’s younger than one minute
           if (diff &lt; 60000) {
             return {
               data: cachedResponse.data,
@@ -1174,9 +1176,343 @@ export const clearStorage = (): Promise&lt;void&gt; =&gt; {
 </code></pre>
  <div line-highlight="3-7,9-11,13-16,18-20,only"></div>
 <p></details></p>
-<h2>Objective 2: Migrating data between versions</h2>
-<h3>Concept TODO</h3>
-<p>TODO</p>
+<h2>Objective 2: Migrate data between versions</h2>
+<p>Our overall approach to caching the network responses seems great, although there is an improvement that we could make.</p>
+<p>Right now, we’re storing the datetime as a string in Async Storage, which means we have to parse it every time we check the cached response:</p>
+<pre><code class="language-ts">import { getData, storeData } from &quot;../../storage&quot;
+
+const baseUrl = process.env.PMO_API
+
+export interface LocalStorageApiRequest&lt;T&gt; {
+  data: T
+  dateTime: Date
+}
+
+export const keyPrefix = &quot;apiRequest-&quot;
+
+export async function apiRequest&lt;
+  Data = never,
+  Params = unknown,
+  Body = unknown,
+&gt;({
+  method,
+  params,
+  path,
+  body,
+}: {
+  method: string
+  params?: Params
+  path: string
+  body?: Body
+}): Promise&lt;{ data: Data | undefined; error: Error | undefined }&gt; {
+  try {
+    const query = params ? stringifyQuery(params) : &quot;&quot;
+    const requestUrl = `${baseUrl}${path}?${query}`
+
+    if (method === &quot;GET&quot;) {
+      try {
+        const cachedResponse = await getData&lt;LocalStorageApiRequest&lt;Data&gt;&gt;(
+          keyPrefix + requestUrl,
+        )
+
+        if (cachedResponse) {
+          const diff =
+            new Date().valueOf() - new Date(cachedResponse.dateTime).valueOf()
+          // Return cached data if it’s younger than one minute
+          if (diff &lt; 60000) {
+            return {
+              data: cachedResponse.data,
+              error: undefined,
+            }
+          }
+        }
+      } catch (error) {
+        console.error(&quot;Failed to get cached value:&quot;, error)
+      }
+    }
+
+    const response = await fetch(requestUrl, {
+      method,
+      headers: {
+        &quot;Content-Type&quot;: &quot;application/json&quot;,
+      },
+      body: body ? JSON.stringify(body) : undefined,
+    })
+
+    const data = await response.json()
+    const error = response.ok
+      ? undefined
+      : new Error(`${response.status} (${response.statusText})`)
+
+    if (method === &quot;GET&quot; &amp;&amp; response.ok) {
+      await storeData&lt;LocalStorageApiRequest&lt;Data&gt;&gt;(keyPrefix + requestUrl, {
+        data: data,
+        dateTime: new Date(),
+      })
+    }
+
+    return {
+      data: data,
+      error: error,
+    }
+  } catch (error) {
+    return {
+      data: undefined,
+      error:
+        error instanceof Error ? error : new Error(&quot;An unknown error occurred&quot;),
+    }
+  }
+}
+
+export function stringifyQuery(
+  input: Record&lt;string, string | undefined | undefined&gt;,
+): string {
+  const output: string[] = []
+
+  for (const [key, value] of Object.entries(input)) {
+    if (typeof value !== &quot;undefined&quot; &amp;&amp; value !== null) {
+      output.push(`${key}=${value}`)
+    }
+  }
+
+  return output.join(&quot;&amp;&quot;)
+}
+
+</code></pre>
+<div line-highlight='7, 38-39, 69, only'></div>
+<p>We could improve this by storing the datetime as a number instead, so we don’t have to parse it when fetching from the cache:</p>
+<pre><code class="language-ts">import { getData, storeData } from &quot;../../storage&quot;
+
+const baseUrl = process.env.PMO_API
+
+export interface LocalStorageApiRequest&lt;T&gt; {
+  data: T
+  dateTime: number
+}
+
+export const keyPrefix = &quot;apiRequest-&quot;
+
+export async function apiRequest&lt;
+  Data = never,
+  Params = unknown,
+  Body = unknown,
+&gt;({
+  method,
+  params,
+  path,
+  body,
+}: {
+  method: string
+  params?: Params
+  path: string
+  body?: Body
+}): Promise&lt;{ data: Data | undefined; error: Error | undefined }&gt; {
+  try {
+    const query = params ? stringifyQuery(params) : &quot;&quot;
+    const requestUrl = `${baseUrl}${path}?${query}`
+
+    if (method === &quot;GET&quot;) {
+      try {
+        const cachedResponse = await getData&lt;LocalStorageApiRequest&lt;Data&gt;&gt;(
+          keyPrefix + requestUrl,
+        )
+
+        if (cachedResponse) {
+          const diff = Date.now() - cachedResponse.dateTime
+          // Return cached data if it’s younger than one minute
+          if (diff &lt; 60000) {
+            return {
+              data: cachedResponse.data,
+              error: undefined,
+            }
+          }
+        }
+      } catch (error) {
+        console.error(&quot;Failed to get cached value:&quot;, error)
+      }
+    }
+
+    const response = await fetch(requestUrl, {
+      method,
+      headers: {
+        &quot;Content-Type&quot;: &quot;application/json&quot;,
+      },
+      body: body ? JSON.stringify(body) : undefined,
+    })
+
+    const data = await response.json()
+    const error = response.ok
+      ? undefined
+      : new Error(`${response.status} (${response.statusText})`)
+
+    if (method === &quot;GET&quot; &amp;&amp; response.ok) {
+      await storeData&lt;LocalStorageApiRequest&lt;Data&gt;&gt;(keyPrefix + requestUrl, {
+        data: data,
+        dateTime: Date.now(),
+      })
+    }
+
+    return {
+      data: data,
+      error: error,
+    }
+  } catch (error) {
+    return {
+      data: undefined,
+      error:
+        error instanceof Error ? error : new Error(&quot;An unknown error occurred&quot;),
+    }
+  }
+}
+
+export function stringifyQuery(
+  input: Record&lt;string, string | undefined | undefined&gt;,
+): string {
+  const output: string[] = []
+
+  for (const [key, value] of Object.entries(input)) {
+    if (typeof value !== &quot;undefined&quot; &amp;&amp; value !== null) {
+      output.push(`${key}=${value}`)
+    }
+  }
+
+  return output.join(&quot;&amp;&quot;)
+}
+
+</code></pre>
+ <div line-highlight="7,38,68,only"></div>
+<p>If we make this change, it would be great if we could migrate the old cached data (with strings) to the new format (with numbers).
+Let’s dig into how we can add data migration to the application.</p>
+<h3>Migrating data</h3>
+<p>Here’s a brief overview of what you can do to build a migration process with the application:</p>
+<ul>
+<li>Make changes to the <code>apiRequest</code> helper to use numbers instead of strings.</li>
+<li>Add a component to the <code>App</code> JSX to block rendering the child components until the migration has been run.</li>
+<li>While the migration is running, show a loading screen.</li>
+<li>Check a version number with the data to determine whether the migration should run.</li>
+<li>Run the migration to convert the old string values to numbers.</li>
+<li>Store an updated version number with the data so future launches of the app know that the data has been updated.</li>
+<li>Render the child components after the migration has finished.</li>
+</ul>
+<p>We’ve already covered the <code>apiRequest</code> helper changes we want for using numbers instead of strings, so we’ll start with the component we’ll add to the <code>App</code>.</p>
+<h3>Blocking rendering child components</h3>
+<p>When updating an application, it’s essential to ensure the existing data is compatible with the new version.
+This often involves data migration, which should complete before the app continues to render its components.
+To achieve this, a component can be used in the <code>App</code> JSX to block the rendering of child components until the migration is complete.</p>
+<pre><code class="language-tsx">import React, { ReactNode, useState } from &quot;react&quot;
+import { Text } from &quot;react-native&quot;
+
+const MigrationLoader: React.FC&lt;{ children: ReactNode }&gt; = ({ children }) =&gt; {
+  const [isMigrating, setIsMigrating] = useState(true)
+
+  if (isMigrating) {
+    return &lt;Text&gt;Loading…&lt;/Text&gt;
+  }
+
+  return children
+}
+
+function App() {
+  return (
+    &lt;MigrationLoader&gt;
+      &lt;Text&gt;This will render after the migration is done.&lt;/Text&gt;
+    &lt;/MigrationLoader&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+<div line-highlight='5-11, 17, only'></div>
+<p>In this example, the “Loading…” text is shown when <code>isMigrating</code> is <code>true</code>, blocking the rendering of the rest of the application until the migration is completed.</p>
+<h3>Running the migration</h3>
+<p>Next, we need to run the actual migration!</p>
+<p>The migration will inevitably include a call to an <code>async</code> function, so include a <code>useEffect</code> for this logic:</p>
+<pre><code class="language-tsx">import React, { ReactNode, useEffect, useState } from &quot;react&quot;
+import { Text } from &quot;react-native&quot;
+
+const MigrationLoader: React.FC&lt;{ children: ReactNode }&gt; = ({ children }) =&gt; {
+  const [isMigrating, setIsMigrating] = useState(true)
+
+  useEffect(() =&gt; {
+    async function runMigration() {
+      // Migration logic here
+      setIsMigrating(false)
+    }
+
+    runMigration()
+  }, [])
+
+  if (isMigrating) {
+    return &lt;Text&gt;Loading…&lt;/Text&gt;
+  }
+
+  return children
+}
+
+function App() {
+  return (
+    &lt;MigrationLoader&gt;
+      &lt;Text&gt;This will render after the migration is done.&lt;/Text&gt;
+    &lt;/MigrationLoader&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="1,7-11,13-14,only"></div>
+<h3>Versioning the data</h3>
+<p>The code will currently run the migration every time the app launches, but it should only run the migration when it’s necessary.</p>
+<p>To accomplish this, we can store a version number and fetch it before running the migration:</p>
+<pre><code class="language-tsx">import React, { ReactNode, useEffect, useState } from &quot;react&quot;
+import { Text } from &quot;react-native&quot;
+
+async function getDataVersion() {
+  // Get the data’s version number
+}
+
+async function storeDataVersion() {
+  // Store the data’s version number
+}
+
+const MigrationLoader: React.FC&lt;{ children: ReactNode }&gt; = ({ children }) =&gt; {
+  const [isMigrating, setIsMigrating] = useState(true)
+
+  useEffect(() =&gt; {
+    async function runMigration() {
+      const appVersion = (await getDataVersion()) || 1
+      if (appVersion &lt; 2) {
+        // Migration logic here
+        await storeDataVersion(2)
+      }
+      setIsMigrating(false)
+    }
+
+    runMigration()
+  }, [])
+
+  if (isMigrating) {
+    return &lt;Text&gt;Loading…&lt;/Text&gt;
+  }
+
+  return children
+}
+
+function App() {
+  return (
+    &lt;MigrationLoader&gt;
+      &lt;Text&gt;This will render after the migration is done.&lt;/Text&gt;
+    &lt;/MigrationLoader&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+<div line-highlight='17-18, 20, only'></div>
+<p>Ideally we would have added a version number when we first started storing the data, but that’s ok!
+We’ll assume that the data is version <code>1</code> if we haven’t stored the version number, and then we’ll call our new data version <code>2</code>.</p>
 <h3>Setup 2</h3>
 <p>✏️ Create <strong>src/services/DataMigration/DataMigration.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { useEffect, useState } from &quot;react&quot;
@@ -1190,7 +1526,7 @@ interface LocalStorageApiRequestV1 {
   dateTime: Date
 }
 
-const migrateDataV1toV2 = async (): Promise&lt;void&gt; =&gt; {}
+const migrateDataFromV1toV2 = async (): Promise&lt;void&gt; =&gt; {}
 
 export interface DataMigrationProps {
   children: React.ReactNode
@@ -1244,7 +1580,7 @@ export async function apiRequest&lt;
 
         if (cachedResponse) {
           const diff = Date.now() - cachedResponse.dateTime
-          // Return Cached data if it's younger than one minute
+          // Return cached data if it’s younger than one minute
           if (diff &lt; 60000) {
             return {
               data: cachedResponse.data,
@@ -1416,11 +1752,34 @@ describe(&quot;Services/DataMigration&quot;, () =&gt; {
 })
 
 </code></pre>
+<div line-highlight='33, 45, 57, 89, only'></div>
 <h3>Exercise 2</h3>
+<p>Now let’s implement a data migration!
+We’ve already given you the changes to the <code>apiRequest</code> helper, so now you’ll need to write the logic for migrating the old data to the new format.</p>
+<p>Here are the requirements for this exercise:</p>
 <ul>
-<li><p>Add useEffect to root component, checks if migration needed on app load</p></li>
-<li><p>Using stored data version to determine if migration should run</p></li>
-<li><p>Change from storing whole request to just request.data</p></li>
+<li>Add the <code>DataMigration</code> component to the <code>App</code> JSX so that it blocks the <code>NavigationContainer</code> component (and its children) from rendering until the migration is complete.</li>
+<li>Update the <code>DataMigration</code> component to do the following:
+<ul>
+<li>Run the migration in a <code>useEffect</code>:
+<ul>
+<li>It will fetch the data version (and assume version <code>1</code> if not stored).</li>
+<li>If the data version is less than <code>2</code>, then run the migration and update the stored version number.</li>
+</ul></li>
+<li>While the migration is running, show a <code>Loading</code> component.</li>
+<li>When the migration is all done, render the <code>children</code>.</li>
+</ul></li>
+<li>Here’s what we need to do for the actual migration logic:
+<ul>
+<li>Get all the keys in Async Storage.</li>
+<li>For all the keys that start with our <code>keyPrefix</code>:
+<ul>
+<li>Fetch the old data.</li>
+<li>Translate it to the new format.</li>
+<li>Store the new data.</li>
+</ul></li>
+<li>If there are any errors during the migration process, since this is just a network cache, delete everything in Async Storage.</li>
+</ul></li>
 </ul>
 <h3>Solution 2</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
@@ -1438,7 +1797,7 @@ interface LocalStorageApiRequestV1 {
   dateTime: Date
 }
 
-const migrateDataV1toV2 = async (): Promise&lt;void&gt; =&gt; {
+const migrateDataFromV1toV2 = async (): Promise&lt;void&gt; =&gt; {
   const keys = await getAllKeys()
   try {
     for (const key of keys) {
@@ -1451,7 +1810,7 @@ const migrateDataV1toV2 = async (): Promise&lt;void&gt; =&gt; {
       }
     }
   } catch (error) {
-    console.error(&quot;'migrateDataV1toV2' failed with error:&quot;, error)
+    console.error(&quot;'migrateDataFromV1toV2' failed with error:&quot;, error)
     await clearStorage()
   }
 }
@@ -1461,23 +1820,23 @@ export interface DataMigrationProps {
 }
 
 const DataMigration: React.FC&lt;DataMigrationProps&gt; = ({ children }) =&gt; {
-  const [isDone, setMigrationDone] = useState&lt;boolean&gt;(false)
+  const [isMigrating, setIsMigrating] = useState(true)
 
   useEffect(() =&gt; {
     const checkMigration = async () =&gt; {
       const appVersion = (await getData&lt;number&gt;(&quot;version&quot;)) || 1
       if (appVersion &lt; 2) {
-        await migrateDataV1toV2()
+        await migrateDataFromV1toV2()
         await storeData&lt;number&gt;(&quot;version&quot;, 2)
       }
 
-      setMigrationDone(true)
+      setIsMigrating(false)
     }
 
     checkMigration()
   }, [])
 
-  if (!isDone) {
+  if (isMigrating) {
     return &lt;Loading /&gt;
   }
 
@@ -1699,7 +2058,7 @@ export default App
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-native/15-using-asyncstorage/using-asyncstorage.md"},"description":"TODO \n","name":"learn-react-native/using-asyncstorage","title":"Using AsyncStorage","type":"page","parent":"learn-react-native","order":15,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-native/15-using-asyncstorage/using-asyncstorage.md"},"description":"Store data locally on device with Async Storage and run data migrations with new versions of your application. \n","name":"learn-react-native/using-asyncstorage","title":"Using Async Storage","type":"page","parent":"learn-react-native","order":15,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     

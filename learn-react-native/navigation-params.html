@@ -352,8 +352,8 @@
            						">
 						<a class="page"
 							href="using-asyncstorage.html"
-							title="TODO">
-							Using AsyncStorage
+							title="Store data locally on device with Async Storage and run data migrations with new versions of your application.">
+							Using Async Storage
 						</a>
 						
 					</li>
@@ -768,7 +768,7 @@ const UserProfile: React.FC&lt;ProfileProps&gt; = ({ route }) =&gt; {
 </code></pre>
 <div line-highlight='8, 11, 17, 21'></div>
 <p>To make sure the <code>Props</code> for our component match up to what we have for our <code>StackNavigator</code>, we can import the type we made and reference the <code>UserProfile</code> properties specifically.</p>
-<p>As you can see, in the <code>UserProfile</code> component, we can access the <code>route.params</code> of the component if any are provided. We grab the <code>user</code>, and are able to use it's properties throughout the component.</p>
+<p>As you can see, in the <code>UserProfile</code> component, we can access the <code>route.params</code> of the component if any are provided. We grab the <code>user</code>, and are able to use its properties throughout the component.</p>
 <p>This includes passing the state of <code>user</code> through <code>navigation</code>. We can add <code>user</code>, and other properties as an object for the second argument of <code>navigation.navigate</code>. Thus on the <code>Storefront</code> screen, all of those params passed will be accessible within its component.</p>
 <h3>Setup 1</h3>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
