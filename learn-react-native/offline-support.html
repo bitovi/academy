@@ -684,6 +684,7 @@ covering CanJS core libraries.">
 <li>TODO</li>
 </ul>
 <h2>Objective 1: Learn to listen for connection state</h2>
+<p><img alt="Screenshot of the application settings page with the connection status." src="../static/img/react-native/17-offline-support/01-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
 <h3>Concept TODO</h3>
 <p>TODO</p>
 <h3>Setup 1</h3>
@@ -736,8 +737,8 @@ console.error = (message, ...args) =&gt; {
 </code></pre>
  <div line-highlight="6,8,only"></div>
 <p>✏️ Update <strong>src/screens/Settings/Settings.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
-import { FC } from &quot;react&quot;
+<pre><code class="language-tsx">import { useNetInfo } from &quot;@react-native-community/netinfo&quot;
+import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
 import { Switch } from &quot;react-native&quot;
 
 import Button from &quot;../../design/Button&quot;
@@ -748,7 +749,7 @@ import Typography from &quot;../../design/Typography&quot;
 import { useAuthentication, useUser } from &quot;../../services/auth&quot;
 import FavoritesSync from &quot;../../services/pmo/favorite&quot;
 
-const Settings: FC = () =&gt; {
+const Settings: React.FC = () =&gt; {
   const { signIn, signOut } = useAuthentication()
   const user = useUser()
   const { mode, setMode } = useThemeMode()
@@ -779,35 +780,12 @@ const Settings: FC = () =&gt; {
 export default Settings
 
 </code></pre>
- <div line-highlight="2,11,13,only"></div>
-<p>✏️ Create <strong>src/services/pmo/favorite/favorite.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { useNetInfo } from &quot;@react-native-community/netinfo&quot;
-import { FC } from &quot;react&quot;
-
-import Typography from &quot;../../../design/Typography&quot;
-
-const FavoritesSync: FC = () =&gt; {
-  const { isConnected } = useNetInfo()
-
-  return (
-    &lt;Typography&gt;
-      Connection Status: {isConnected ? &quot;Online&quot; : &quot;Offline&quot;}
-    &lt;/Typography&gt;
-  )
-}
-
-export default FavoritesSync
-
-</code></pre>
-<p>✏️ Create <strong>src/services/pmo/favorite/index.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">export { default } from &quot;./favorite&quot;
-
-</code></pre>
+ <div line-highlight="1,11,only"></div>
 <h3>Verify 1</h3>
 <p>TODO</p>
 <h3>Exercise 1</h3>
 <ul>
-<li><p>Use NetInfo to determine connection state</p></li>
+<li><p>Use NetInfo to determine the connection state</p></li>
 <li><p>Display message on Settings when offline</p></li>
 </ul>
 <h3>Solution 1</h3>
@@ -815,8 +793,8 @@ export default FavoritesSync
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/screens/Settings/Settings.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
-import { FC } from &quot;react&quot;
+<pre><code class="language-tsx">import { useNetInfo } from &quot;@react-native-community/netinfo&quot;
+import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
 import { Switch } from &quot;react-native&quot;
 
 import Button from &quot;../../design/Button&quot;
@@ -825,12 +803,12 @@ import Screen from &quot;../../design/Screen&quot;
 import { useThemeMode } from &quot;../../design/theme&quot;
 import Typography from &quot;../../design/Typography&quot;
 import { useAuthentication, useUser } from &quot;../../services/auth&quot;
-import FavoritesSync from &quot;../../services/pmo/favorite&quot;
 
-const Settings: FC = () =&gt; {
+const Settings: React.FC = () =&gt; {
   const { signIn, signOut } = useAuthentication()
   const user = useUser()
   const { mode, setMode } = useThemeMode()
+  const { isConnected } = useNetInfo()
 
   return (
     &lt;Screen&gt;
@@ -852,7 +830,9 @@ const Settings: FC = () =&gt; {
         /&gt;
       &lt;/Card&gt;
       &lt;Card&gt;
-        &lt;FavoritesSync /&gt;
+        &lt;Typography&gt;
+          Connection Status: {isConnected ? &quot;Online&quot; : &quot;Offline&quot;}
+        &lt;/Typography&gt;
       &lt;/Card&gt;
     &lt;/Screen&gt;
   )
@@ -861,36 +841,397 @@ const Settings: FC = () =&gt; {
 export default Settings
 
 </code></pre>
- <div line-highlight="37-39,only"></div>
-<p>✏️ Update <strong>src/services/pmo/favorite/favorite.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { useNetInfo } from &quot;@react-native-community/netinfo&quot;
-import { FC } from &quot;react&quot;
-
-import Typography from &quot;../../../design/Typography&quot;
-
-const FavoritesSync: FC = () =&gt; {
-  const { isConnected } = useNetInfo()
-
-  return (
-    &lt;Typography&gt;
-      Connection Status: {isConnected ? &quot;Online&quot; : &quot;Offline&quot;}
-    &lt;/Typography&gt;
-  )
-}
-
-export default FavoritesSync
-
-</code></pre>
- <div line-highlight="7,9-13,only"></div>
+ <div line-highlight="16,37-41,only"></div>
 <p></details></p>
 <h2>Objective 2: Use local storage to store restaurant favorites</h2>
-<p>TODO</p>
+<div style="display: flex; flex-direction: row; gap: 2rem">
+  <img alt="Screenshot of the application's Restaurant Details screen displaying the add favorite button." src="../static/img/react-native/17-offline-support/02-solution-addFavorites.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screenshot of the application's Restaurant Details screen displaying the remove favorite button." src="../static/img/react-native/17-offline-support/02-solution-removeFavorites.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+</div>
 <h3>Concept TODO</h3>
 <p>TODO</p>
 <h3>Setup 2</h3>
-<p>TODO</p>
+<p>✏️ Create <strong>src/services/pmo/favorite/hooks.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
+
+import { storeData, getData } from &quot;../../storage/storage&quot;
+import { apiRequest } from &quot;../api&quot;
+
+interface Favorite {
+  userId: string
+  restaurantId: string
+  favorite: boolean
+  datetimeUpdated: Date
+  _id?: string
+}
+
+interface FavoritesResponse {
+  data: Favorite[] | null
+  error: Error | null
+  isPending: boolean
+}
+
+interface FavoriteResponse {
+  data: Favorite | null
+  error: Error | null
+  isPending: boolean
+}
+
+interface LocalStorageFavorites {
+  lastSynced: Date
+  favorites: Favorite[]
+}
+
+export const useFavorites = (
+  userId?: string,
+  restaurantId?: string,
+): FavoritesResponse &amp; {
+  updateFavorites: (restaurantId: Favorite[&quot;restaurantId&quot;]) =&gt; void
+  favorite: Favorite | undefined
+} =&gt; {
+  const [response, setResponse] = useState&lt;FavoritesResponse&gt;({
+    data: null,
+    error: null,
+    isPending: true,
+  })
+  const [localFavorites, setLocalFavorites] = useState&lt;
+    LocalStorageFavorites | undefined
+  &gt;()
+  const [favorite, setFavorite] = useState&lt;Favorite | undefined&gt;()
+
+  useEffect(() =&gt; {
+    //gathering favorites from both DB and local storage.
+    const fetchData = async () =&gt; {
+      const localFavorites = await getData&lt;LocalStorageFavorites&gt;(&quot;my-favorite&quot;)
+      setLocalFavorites(
+        localFavorites
+          ? localFavorites
+          : { favorites: [], lastSynced: new Date() },
+      )
+
+      const { data, error } = await apiRequest&lt;FavoritesResponse&gt;({
+        method: &quot;GET&quot;,
+        path: &quot;/favorites&quot;,
+        params: {
+          userId: userId,
+        },
+      })
+
+      setResponse({
+        data: data?.data || null,
+        error: error,
+        isPending: false,
+      })
+    }
+    if (userId) {
+      fetchData()
+    }
+  }, [userId])
+
+  useEffect(() =&gt; {
+    //finding the restaurant's favorite status.
+    if (restaurantId) {
+      const getFavorite = async (restaurantId: Favorite[&quot;restaurantId&quot;]) =&gt; {
+        const foundFavorite = localFavorites?.favorites.find(
+          (favorite) =&gt; favorite.restaurantId === restaurantId,
+        )
+        setFavorite(foundFavorite)
+      }
+
+      getFavorite(restaurantId)
+    }
+  }, [restaurantId, localFavorites])
+
+  const updateFavorites = async (restaurantId: Favorite[&quot;restaurantId&quot;]) =&gt; {
+    if (localFavorites?.favorites) {
+      const favoriteIndex = localFavorites.favorites.findIndex(
+        (favorite) =&gt; favorite.restaurantId === restaurantId,
+      )
+      const newFavorites = [...localFavorites.favorites]
+      const timestamp = new Date()
+      let newFavorite = {}
+
+      if (favoriteIndex === -1) {
+        // if favorites doesn't exist create a new entry.
+        newFavorite = {
+          userId: userId,
+          restaurantId: restaurantId,
+          favorite: true,
+          datetimeUpdated: timestamp,
+        }
+        newFavorites.push(newFavorite as Favorite)
+      } else {
+        // else if favorite do exist update the existing entry.
+        newFavorite = {
+          ...newFavorites[favoriteIndex],
+          favorite: !newFavorites[favoriteIndex].favorite,
+          datetimeUpdated: timestamp,
+        }
+        newFavorites[favoriteIndex] = newFavorite as Favorite
+      }
+
+      const { data: postRes, error } = await apiRequest&lt;FavoriteResponse&gt;({
+        method: &quot;POST&quot;,
+        path: &quot;/favorites&quot;,
+        body: newFavorite,
+      })
+
+      if (!(&quot;_id&quot; in newFavorite) &amp;&amp; postRes &amp;&amp; postRes.data) {
+        // new entry don't have _id until the api call get's returned. Adding _id to the new favorites.
+        newFavorites[newFavorites.length - 1]._id = postRes.data._id
+      }
+    }
+  }
+
+  return {
+    ...response,
+    updateFavorites,
+    favorite,
+  }
+}
+
+</code></pre>
+<p>✏️ Create <strong>src/services/pmo/favorite/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export * from &quot;./hooks&quot;
+
+</code></pre>
+<p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
+import { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import { useEffect } from &quot;react&quot;
+
+import { RestaurantsStackParamList } from &quot;../../App&quot;
+import Loading from &quot;../../components/Loading&quot;
+import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
+import Button from &quot;../../design/Button&quot;
+import Screen from &quot;../../design/Screen&quot;
+import Typography from &quot;../../design/Typography&quot;
+import {
+  useAuthenticated,
+  useUser,
+  useAuthentication,
+} from &quot;../../services/auth&quot;
+import { useFavorites } from &quot;../../services/pmo/favorite/hooks&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
+
+export interface RestaurantDetailsProps
+  extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantDetails&quot;&gt; {}
+
+const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&gt; {
+  const { slug } = route.params
+  const navigation = useNavigation()
+  const { data: restaurant, error, isPending } = useRestaurant(slug)
+
+  useEffect(() =&gt; {
+    if (restaurant) {
+      navigation.setOptions({ title: `${restaurant.name}` })
+    }
+  }, [restaurant, navigation])
+
+  if (error) {
+    return (
+      &lt;Screen&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;
+          Error loading restaurant details:{&quot; &quot;}
+        &lt;/Typography&gt;
+        &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+      &lt;/Screen&gt;
+    )
+  }
+
+  if (isPending) {
+    return &lt;Loading /&gt;
+  }
+
+  return (
+    &lt;Screen&gt;
+      &lt;RestaurantHeader restaurant={restaurant} /&gt;
+
+      &lt;Button
+        onPress={() =&gt; {
+          navigation.navigate(&quot;RestaurantOrder&quot;, { slug: slug })
+        }}
+      &gt;
+        Place an order
+      &lt;/Button&gt;
+    &lt;/Screen&gt;
+  )
+}
+
+export default RestaurantDetails
+
+</code></pre>
+ <div line-highlight="11-16,only"></div>
 <h3>Verify 2</h3>
-<p>TODO</p>
+<p>✏️ Create <strong>src/services/pmo/favorite/hooks.test.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react-native&quot;
+
+import * as storage from &quot;../../storage/storage&quot;
+import * as api from &quot;../api/api&quot;
+
+import { useFavorites } from &quot;./hooks&quot;
+
+describe(&quot;Favorite Hook&quot;, () =&gt; {
+  // Mock the apiRequest function
+  let apiRequest: jest.SpyInstance&lt;ReturnType&lt;typeof api.apiRequest&gt;&gt;
+  let mockStorage: jest.SpyInstance&lt;ReturnType&lt;typeof storage.getData&gt;&gt;
+  beforeEach(() =&gt; {
+    jest.resetAllMocks()
+    apiRequest = jest.spyOn(api, &quot;apiRequest&quot;)
+    mockStorage = jest.spyOn(storage, &quot;getData&quot;)
+  })
+
+  describe(&quot;useFavorites hook&quot;, () =&gt; {
+    const mockFavorites = [
+      {
+        userId: &quot;user-id&quot;,
+        restaurantId: &quot;WKQjvzup7QWSFXvH&quot;,
+        favorite: false,
+        datetimeUpdated: &quot;2024-04-03T14:12:16.314Z&quot;,
+        _id: &quot;UslYVUxnBuBwqn0s&quot;,
+      },
+      {
+        userId: &quot;user-id&quot;,
+        restaurantId: &quot;7iiKc0akJPYzaMyw&quot;,
+        favorite: true,
+        datetimeUpdated: &quot;2024-04-02T20:16:18.746Z&quot;,
+        _id: &quot;dmTvyAYw3o0xjAIk&quot;,
+      },
+    ]
+    it(&quot;should return list of favorites from the server&quot;, async () =&gt; {
+      apiRequest.mockResolvedValue({
+        data: { data: mockFavorites },
+        error: null,
+      })
+
+      const { result } = renderHook(() =&gt; useFavorites(&quot;user-id&quot;))
+
+      await waitFor(() =&gt; {
+        expect(result.current.isPending).toBeFalsy()
+      })
+
+      expect(result.current.data).toEqual(mockFavorites)
+      expect(result.current.error).toBeNull()
+    })
+  })
+})
+
+</code></pre>
+<p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.test.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+
+import AuthProvider from &quot;../../services/auth/AuthProvider&quot;
+import * as restaurantHooks from &quot;../../services/pmo/restaurant/hooks&quot;
+
+import RestaurantDetails from &quot;./RestaurantDetails&quot;
+
+const params = {
+  state: {
+    name: &quot;name&quot;,
+    short: &quot;short&quot;,
+  },
+  city: {
+    name: &quot;name&quot;,
+    state: &quot;state&quot;,
+  },
+  slug: &quot;test&quot;,
+} as const
+
+jest.mock(&quot;@react-navigation/native&quot;, () =&gt; {
+  const actualNav = jest.requireActual(&quot;@react-navigation/native&quot;)
+  return {
+    ...actualNav,
+    useNavigation: () =&gt; ({
+      navigate: jest.fn(),
+      setOptions: jest.fn(),
+    }),
+  }
+})
+describe(&quot;RestaurantDetails component&quot;, () =&gt; {
+  // Mock the hooks and components used in RestaurantDetails
+
+  let useRestaurant: jest.SpyInstance&lt;
+    ReturnType&lt;typeof restaurantHooks.useRestaurant&gt;
+  &gt;
+  beforeEach(() =&gt; {
+    jest.resetAllMocks()
+    useRestaurant = jest.spyOn(restaurantHooks, &quot;useRestaurant&quot;)
+  })
+
+  const mockRestaurantData = {
+    data: {
+      _id: &quot;1&quot;,
+      name: &quot;Test Restaurant&quot;,
+      slug: &quot;test-restaurant&quot;,
+      images: {
+        banner: &quot;banner.jpg&quot;,
+        owner: &quot;owner.jpg&quot;,
+        thumbnail: &quot;thumbnail.jpg&quot;,
+      },
+      menu: {
+        dinner: [{ name: &quot;yum&quot;, price: 1 }],
+        lunch: [{ name: &quot;snack&quot;, price: 2 }],
+      },
+      coordinate: { latitude: 0, longitude: 0 },
+    },
+    isPending: false,
+    error: null,
+  }
+  it(&quot;renders loading state&quot;, () =&gt; {
+    useRestaurant.mockReturnValue({ data: null, isPending: true, error: null })
+    render(
+      &lt;AuthProvider&gt;
+        &lt;RestaurantDetails route={{ params }} /&gt;
+      &lt;/AuthProvider&gt;,
+    )
+
+    expect(screen.getByText(/Loading/i)).toBeOnTheScreen()
+  })
+
+  it(&quot;renders error state&quot;, () =&gt; {
+    useRestaurant.mockReturnValue({
+      data: null,
+      isPending: false,
+      error: { name: &quot;Error&quot;, message: &quot;Mock error&quot; },
+    })
+    render(
+      &lt;AuthProvider&gt;
+        &lt;RestaurantDetails route={{ params }} /&gt;
+      &lt;/AuthProvider&gt;,
+    )
+    expect(
+      screen.getByText(/Error loading restaurant details:/i, {
+        exact: false,
+      }),
+    ).toBeOnTheScreen()
+    expect(screen.getByText(/Mock error/i)).toBeOnTheScreen()
+  })
+
+  it(&quot;renders the RestaurantHeader and content when data is available&quot;, () =&gt; {
+    useRestaurant.mockReturnValue(mockRestaurantData)
+    render(
+      &lt;AuthProvider&gt;
+        &lt;RestaurantDetails route={{ params }} /&gt;
+      &lt;/AuthProvider&gt;,
+    )
+
+    expect(screen.getByText(&quot;Test Restaurant&quot;)).toBeOnTheScreen()
+  })
+
+  it(&quot;renders the RestaurantHeader and content when data is not available&quot;, () =&gt; {
+    useRestaurant.mockReturnValue({ ...mockRestaurantData, data: null })
+    render(
+      &lt;AuthProvider&gt;
+        &lt;RestaurantDetails route={{ params }} /&gt;
+      &lt;/AuthProvider&gt;,
+    )
+
+    expect(screen.getByText(&quot;Place an order&quot;)).toBeOnTheScreen()
+  })
+})
+
+</code></pre>
+ <div line-highlight="3,8-11,13-17,30,58,61,63-65,73,78-80,90,93-95,101-102,104-106,only"></div>
 <h3>Exercise 2</h3>
 <ul>
 <li><p>Add offline-enabled favorite button to RestaurantDetails</p></li>
@@ -901,16 +1242,734 @@ export default FavoritesSync
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>TODO</p>
+<p>✏️ Update <strong>src/services/pmo/favorite/hooks.ts</strong> to be:</p>
+<pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
+
+import { storeData, getData } from &quot;../../storage/storage&quot;
+import { apiRequest } from &quot;../api&quot;
+
+interface Favorite {
+  userId: string
+  restaurantId: string
+  favorite: boolean
+  datetimeUpdated: Date
+  _id?: string
+}
+
+interface FavoritesResponse {
+  data: Favorite[] | null
+  error: Error | null
+  isPending: boolean
+}
+
+interface FavoriteResponse {
+  data: Favorite | null
+  error: Error | null
+  isPending: boolean
+}
+
+interface LocalStorageFavorites {
+  lastSynced: Date
+  favorites: Favorite[]
+}
+
+export const useFavorites = (
+  userId?: string,
+  restaurantId?: string,
+): FavoritesResponse &amp; {
+  updateFavorites: (restaurantId: Favorite[&quot;restaurantId&quot;]) =&gt; void
+  favorite: Favorite | undefined
+} =&gt; {
+  const [response, setResponse] = useState&lt;FavoritesResponse&gt;({
+    data: null,
+    error: null,
+    isPending: true,
+  })
+  const [localFavorites, setLocalFavorites] = useState&lt;
+    LocalStorageFavorites | undefined
+  &gt;()
+  const [favorite, setFavorite] = useState&lt;Favorite | undefined&gt;()
+
+  useEffect(() =&gt; {
+    //gathering favorites from both DB and local storage.
+    const fetchData = async () =&gt; {
+      const localFavorites = await getData&lt;LocalStorageFavorites&gt;(&quot;my-favorite&quot;)
+      setLocalFavorites(
+        localFavorites
+          ? localFavorites
+          : { favorites: [], lastSynced: new Date() },
+      )
+
+      const { data, error } = await apiRequest&lt;FavoritesResponse&gt;({
+        method: &quot;GET&quot;,
+        path: &quot;/favorites&quot;,
+        params: {
+          userId: userId,
+        },
+      })
+
+      setResponse({
+        data: data?.data || null,
+        error: error,
+        isPending: false,
+      })
+    }
+    if (userId) {
+      fetchData()
+    }
+  }, [userId])
+
+  useEffect(() =&gt; {
+    //finding the restaurant's favorite status.
+    if (restaurantId) {
+      const getFavorite = async (restaurantId: Favorite[&quot;restaurantId&quot;]) =&gt; {
+        const foundFavorite = localFavorites?.favorites.find(
+          (favorite) =&gt; favorite.restaurantId === restaurantId,
+        )
+        setFavorite(foundFavorite)
+      }
+
+      getFavorite(restaurantId)
+    }
+  }, [restaurantId, localFavorites])
+
+  const updateFavorites = async (restaurantId: Favorite[&quot;restaurantId&quot;]) =&gt; {
+    if (localFavorites?.favorites) {
+      const favoriteIndex = localFavorites.favorites.findIndex(
+        (favorite) =&gt; favorite.restaurantId === restaurantId,
+      )
+      const newFavorites = [...localFavorites.favorites]
+      const timestamp = new Date()
+      let newFavorite = {}
+
+      if (favoriteIndex === -1) {
+        // if favorites doesn't exist create a new entry.
+        newFavorite = {
+          userId: userId,
+          restaurantId: restaurantId,
+          favorite: true,
+          datetimeUpdated: timestamp,
+        }
+        newFavorites.push(newFavorite as Favorite)
+      } else {
+        // else if favorite do exist update the existing entry.
+        newFavorite = {
+          ...newFavorites[favoriteIndex],
+          favorite: !newFavorites[favoriteIndex].favorite,
+          datetimeUpdated: timestamp,
+        }
+        newFavorites[favoriteIndex] = newFavorite as Favorite
+      }
+
+      const { data: postRes, error } = await apiRequest&lt;FavoriteResponse&gt;({
+        method: &quot;POST&quot;,
+        path: &quot;/favorites&quot;,
+        body: newFavorite,
+      })
+
+      if (!(&quot;_id&quot; in newFavorite) &amp;&amp; postRes &amp;&amp; postRes.data) {
+        // new entry don't have _id until the api call get's returned. Adding _id to the new favorites.
+        newFavorites[newFavorites.length - 1]._id = postRes.data._id
+      }
+
+      const newLocalFavorites = {
+        lastSynced: error ? localFavorites.lastSynced : timestamp,
+        favorites: newFavorites,
+      }
+
+      await storeData&lt;LocalStorageFavorites&gt;(&quot;my-favorite&quot;, newLocalFavorites)
+      setLocalFavorites(newLocalFavorites)
+      setResponse({ data: newFavorites, error: error, isPending: false })
+    }
+  }
+
+  return {
+    ...response,
+    updateFavorites,
+    favorite,
+  }
+}
+
+</code></pre>
+ <div line-highlight="130-133,135-137,only"></div>
+<p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
+import { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import { useEffect } from &quot;react&quot;
+
+import { RestaurantsStackParamList } from &quot;../../App&quot;
+import Loading from &quot;../../components/Loading&quot;
+import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
+import Button from &quot;../../design/Button&quot;
+import Screen from &quot;../../design/Screen&quot;
+import Typography from &quot;../../design/Typography&quot;
+import {
+  useAuthenticated,
+  useUser,
+  useAuthentication,
+} from &quot;../../services/auth&quot;
+import { useFavorites } from &quot;../../services/pmo/favorite/hooks&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
+
+export interface RestaurantDetailsProps
+  extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantDetails&quot;&gt; {}
+
+const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&gt; {
+  const { slug } = route.params
+  const navigation = useNavigation()
+  const { data: restaurant, error, isPending } = useRestaurant(slug)
+  const isAuthenticated = useAuthenticated()
+  const user = useUser()
+  const { signIn } = useAuthentication()
+  const { updateFavorites, favorite } = useFavorites(user?.id, restaurant?._id)
+  useEffect(() =&gt; {
+    if (restaurant) {
+      navigation.setOptions({ title: `${restaurant.name}` })
+    }
+  }, [restaurant, navigation])
+
+  if (error) {
+    return (
+      &lt;Screen&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;
+          Error loading restaurant details:{&quot; &quot;}
+        &lt;/Typography&gt;
+        &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+      &lt;/Screen&gt;
+    )
+  }
+
+  if (isPending) {
+    return &lt;Loading /&gt;
+  }
+
+  return (
+    &lt;Screen&gt;
+      &lt;RestaurantHeader restaurant={restaurant} /&gt;
+      &lt;Button
+        onPress={() =&gt; {
+          if (isAuthenticated) {
+            updateFavorites(restaurant!._id)
+          } else {
+            signIn()
+          }
+        }}
+      &gt;
+        {isAuthenticated &amp;&amp; favorite?.favorite
+          ? &quot;Remove from favorites&quot;
+          : &quot;Add to favorites&quot;}
+      &lt;/Button&gt;
+
+      &lt;Button
+        onPress={() =&gt; {
+          navigation.navigate(&quot;RestaurantOrder&quot;, { slug: slug })
+        }}
+      &gt;
+        Place an order
+      &lt;/Button&gt;
+    &lt;/Screen&gt;
+  )
+}
+
+export default RestaurantDetails
+
+</code></pre>
+ <div line-highlight="26-29,56-60,63-65,68-69,71-72,74,only"></div>
 <p></details></p>
 <h2>Objective 3: Sync offline data when connectivity changes</h2>
-<p>TODO</p>
 <h3>Concept TODO</h3>
 <p>TODO</p>
 <h3>Setup 3</h3>
-<p>TODO</p>
+<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import { Pressable, SafeAreaView } from &quot;react-native&quot;
+import Icon from &quot;react-native-vector-icons/Ionicons&quot;
+
+import Box from &quot;./design/Box&quot;
+import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
+import Typography from &quot;./design/Typography&quot;
+import CityList from &quot;./screens/CityList&quot;
+import RestaurantDetails from &quot;./screens/RestaurantDetails&quot;
+import RestaurantList from &quot;./screens/RestaurantList&quot;
+import RestaurantOrder from &quot;./screens/RestaurantOrder&quot;
+import Settings from &quot;./screens/Settings&quot;
+import StateList from &quot;./screens/StateList&quot;
+import AuthProvider from &quot;./services/auth/AuthProvider&quot;
+import DataMigration from &quot;./services/DataMigration&quot;
+import FavoritesSync from &quot;./services/pmo/favorite&quot;
+
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace ReactNavigation {
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    interface RootParamList extends RestaurantsStackParamList {}
+  }
+}
+
+export type RestaurantsStackParamList = {
+  StateList: undefined
+  CityList: {
+    state: {
+      name: string
+      short: string
+    }
+  }
+  RestaurantList: {
+    state: {
+      name: string
+      short: string
+    }
+    city: {
+      name: string
+      state: string
+    }
+  }
+  RestaurantDetails: {
+    state: {
+      name: string
+      short: string
+    }
+    city: {
+      name: string
+      state: string
+    }
+    slug: string
+  }
+  RestaurantOrder: {
+    slug: string
+  }
+}
+
+const RestaurantsStack = createStackNavigator&lt;RestaurantsStackParamList&gt;()
+const RestaurantsNavigator: React.FC = () =&gt; {
+  return (
+    &lt;RestaurantsStack.Navigator
+      initialRouteName=&quot;StateList&quot;
+      screenOptions={{
+        header: ({ route, navigation }) =&gt; {
+          if (!navigation.canGoBack()) return null
+
+          return (
+            &lt;Pressable onPress={navigation.goBack}&gt;
+              &lt;Box
+                padding=&quot;m&quot;
+                style={{ flexDirection: &quot;row&quot;, gap: 8, alignItems: &quot;center&quot; }}
+              &gt;
+                &lt;Icon name=&quot;arrow-back&quot; size={20} /&gt;
+                &lt;Typography variant=&quot;heading&quot;&gt;
+                  {/* @ts-ignore */}
+                  {[route.params?.city?.name, route.params?.state?.name]
+                    .filter(Boolean)
+                    .join(&quot;, &quot;)}
+                &lt;/Typography&gt;
+              &lt;/Box&gt;
+            &lt;/Pressable&gt;
+          )
+        },
+      }}
+    &gt;
+      &lt;RestaurantsStack.Screen name=&quot;StateList&quot; component={StateList} /&gt;
+      &lt;RestaurantsStack.Screen name=&quot;CityList&quot; component={CityList} /&gt;
+      &lt;RestaurantsStack.Screen
+        name=&quot;RestaurantList&quot;
+        component={RestaurantList}
+      /&gt;
+      &lt;RestaurantsStack.Screen
+        name=&quot;RestaurantDetails&quot;
+        component={RestaurantDetails}
+      /&gt;
+      &lt;RestaurantsStack.Screen
+        name=&quot;RestaurantOrder&quot;
+        component={RestaurantOrder}
+      /&gt;
+    &lt;/RestaurantsStack.Navigator&gt;
+  )
+}
+
+const AppTabs = createBottomTabNavigator()
+const AppNavigator: React.FC = () =&gt; {
+  const theme = useTheme()
+
+  return (
+    &lt;AppTabs.Navigator
+      initialRouteName=&quot;RestaurantsStack&quot;
+      screenOptions={({ route }) =&gt; ({
+        headerStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        headerTitleStyle: {
+          color: theme.palette.screen.contrast,
+          ...theme.typography.title,
+        },
+        tabBarStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        tabBarActiveTintColor: theme.palette.primary.strong,
+        tabBarInactiveTintColor: theme.palette.screen.contrast,
+        tabBarIcon: ({ focused, color }) =&gt; {
+          let icon = &quot;settings&quot;
+          if (route.name === &quot;Settings&quot;) {
+            icon = focused ? &quot;settings&quot; : &quot;settings-outline&quot;
+          } else if (route.name === &quot;Restaurants&quot;) {
+            icon = focused ? &quot;restaurant&quot; : &quot;restaurant-outline&quot;
+          }
+
+          return &lt;Icon name={icon} size={20} color={color} /&gt;
+        },
+      })}
+    &gt;
+      &lt;AppTabs.Screen
+        name=&quot;Restaurants&quot;
+        component={RestaurantsNavigator}
+        options={{ title: &quot;Place My Order&quot; }}
+      /&gt;
+      &lt;AppTabs.Screen
+        name=&quot;Settings&quot;
+        component={Settings}
+        options={{ title: &quot;Settings&quot; }}
+      /&gt;
+    &lt;/AppTabs.Navigator&gt;
+  )
+}
+
+const App: React.FC = () =&gt; {
+  return (
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;ThemeProvider&gt;
+        &lt;AuthProvider&gt;
+          &lt;DataMigration&gt;
+            &lt;NavigationContainer&gt;
+              &lt;AppNavigator /&gt;
+            &lt;/NavigationContainer&gt;
+          &lt;/DataMigration&gt;
+        &lt;/AuthProvider&gt;
+      &lt;/ThemeProvider&gt;
+    &lt;/SafeAreaView&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="18,only"></div>
+<p>✏️ Update <strong>src/services/pmo/favorite/hooks.ts</strong> to be:</p>
+<pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
+
+import { storeData, getData } from &quot;../../storage/storage&quot;
+import { apiRequest } from &quot;../api&quot;
+
+interface Favorite {
+  userId: string
+  restaurantId: string
+  favorite: boolean
+  datetimeUpdated: Date
+  _id?: string
+}
+
+interface FavoritesResponse {
+  data: Favorite[] | null
+  error: Error | null
+  isPending: boolean
+}
+
+interface FavoriteResponse {
+  data: Favorite | null
+  error: Error | null
+  isPending: boolean
+}
+
+interface LocalStorageFavorites {
+  lastSynced: Date
+  favorites: Favorite[]
+}
+
+export const useFavorites = (
+  userId?: string,
+  restaurantId?: string,
+): FavoritesResponse &amp; {
+  updateFavorites: (restaurantId: Favorite[&quot;restaurantId&quot;]) =&gt; void
+  favorite: Favorite | undefined
+  syncWithServer: () =&gt; void
+  localFavorites: LocalStorageFavorites | undefined
+} =&gt; {
+  const [response, setResponse] = useState&lt;FavoritesResponse&gt;({
+    data: null,
+    error: null,
+    isPending: true,
+  })
+  const [localFavorites, setLocalFavorites] = useState&lt;
+    LocalStorageFavorites | undefined
+  &gt;()
+  const [favorite, setFavorite] = useState&lt;Favorite | undefined&gt;()
+
+  useEffect(() =&gt; {
+    //gathering favorites from both DB and local storage.
+    const fetchData = async () =&gt; {
+      const localFavorites = await getData&lt;LocalStorageFavorites&gt;(&quot;my-favorite&quot;)
+      setLocalFavorites(
+        localFavorites
+          ? localFavorites
+          : { favorites: [], lastSynced: new Date() },
+      )
+
+      const { data, error } = await apiRequest&lt;FavoritesResponse&gt;({
+        method: &quot;GET&quot;,
+        path: &quot;/favorites&quot;,
+        params: {
+          userId: userId,
+        },
+      })
+
+      setResponse({
+        data: data?.data || null,
+        error: error,
+        isPending: false,
+      })
+    }
+    if (userId) {
+      fetchData()
+    }
+  }, [userId])
+
+  useEffect(() =&gt; {
+    //finding the restaurant's favorite status.
+    if (restaurantId) {
+      const getFavorite = async (restaurantId: Favorite[&quot;restaurantId&quot;]) =&gt; {
+        const foundFavorite = localFavorites?.favorites.find(
+          (favorite) =&gt; favorite.restaurantId === restaurantId,
+        )
+        setFavorite(foundFavorite)
+      }
+
+      getFavorite(restaurantId)
+    }
+  }, [restaurantId, localFavorites])
+
+  const updateFavorites = async (restaurantId: Favorite[&quot;restaurantId&quot;]) =&gt; {
+    if (localFavorites?.favorites) {
+      const favoriteIndex = localFavorites.favorites.findIndex(
+        (favorite) =&gt; favorite.restaurantId === restaurantId,
+      )
+      const newFavorites = [...localFavorites.favorites]
+      const timestamp = new Date()
+      let newFavorite = {}
+
+      if (favoriteIndex === -1) {
+        // if favorites doesn't exist create a new entry.
+        newFavorite = {
+          userId: userId,
+          restaurantId: restaurantId,
+          favorite: true,
+          datetimeUpdated: timestamp,
+        }
+        newFavorites.push(newFavorite as Favorite)
+      } else {
+        // else if favorite do exist update the existing entry.
+        newFavorite = {
+          ...newFavorites[favoriteIndex],
+          favorite: !newFavorites[favoriteIndex].favorite,
+          datetimeUpdated: timestamp,
+        }
+        newFavorites[favoriteIndex] = newFavorite as Favorite
+      }
+
+      const { data: postRes, error } = await apiRequest&lt;FavoriteResponse&gt;({
+        method: &quot;POST&quot;,
+        path: &quot;/favorites&quot;,
+        body: newFavorite,
+      })
+
+      if (!(&quot;_id&quot; in newFavorite) &amp;&amp; postRes &amp;&amp; postRes.data) {
+        // new entry don't have _id until the api call get's returned. Adding _id to the new favorites.
+        newFavorites[newFavorites.length - 1]._id = postRes.data._id
+      }
+
+      const newLocalFavorites = {
+        lastSynced: error ? localFavorites.lastSynced : timestamp,
+        favorites: newFavorites,
+      }
+
+      await storeData&lt;LocalStorageFavorites&gt;(&quot;my-favorite&quot;, newLocalFavorites)
+      setLocalFavorites(newLocalFavorites)
+      setResponse({ data: newFavorites, error: error, isPending: false })
+    }
+  }
+
+  const syncWithServer = async () =&gt; {
+    // Updating the DB with the local data.
+    if (localFavorites) {
+      const { data: serverData } = await apiRequest&lt;FavoritesResponse&gt;({
+        method: &quot;GET&quot;,
+        path: &quot;/favorites&quot;,
+        params: {
+          userId: userId,
+          &quot;datetimeUpdated[$gt]&quot;: localFavorites?.lastSynced,
+        },
+      })
+
+      const newLocalFavorites = {
+        lastSynced: new Date(),
+        favorites: [...localFavorites.favorites],
+      }
+
+      if (serverData?.data) {
+        if (serverData.data.length !== 0) {
+          serverData.data.forEach((serverFavorite) =&gt; {
+            // Looping through the server data and updating it with the local.
+            const updateIndex = newLocalFavorites.favorites.findIndex(
+              (localFavorite) =&gt; localFavorite._id === serverFavorite._id,
+            )
+            newLocalFavorites.favorites[updateIndex] = { ...serverFavorite }
+          })
+        }
+        await Promise.all(
+          // Calling the server to update the DB.
+          newLocalFavorites.favorites.map(async (newLocalFavorite, index) =&gt; {
+            if (
+              new Date(localFavorites.lastSynced) &lt;
+                new Date(newLocalFavorite.datetimeUpdated) &amp;&amp;
+              serverData.data?.findIndex(
+                (serverFavorite) =&gt; newLocalFavorite._id === serverFavorite._id,
+              ) === -1
+            ) {
+              const { data: postRes, error } =
+                await apiRequest&lt;FavoriteResponse&gt;({
+                  method: &quot;POST&quot;,
+                  path: &quot;/favorites&quot;,
+                  body: {
+                    ...newLocalFavorite,
+                    datetimeUpdated: newLocalFavorites.lastSynced,
+                  },
+                })
+              if (error) {
+                newLocalFavorites.lastSynced = localFavorites.lastSynced
+              }
+              if (postRes &amp;&amp; postRes.data) {
+                // Updating local data with any missing _id.
+                newLocalFavorites.favorites[index] = { ...postRes.data }
+              }
+            }
+          }),
+        )
+
+        await storeData&lt;LocalStorageFavorites&gt;(&quot;my-favorite&quot;, newLocalFavorites)
+      }
+    }
+  }
+
+  return {
+    ...response,
+    updateFavorites,
+    favorite,
+    syncWithServer,
+    localFavorites,
+  }
+}
+
+</code></pre>
+ <div line-highlight="37-38,143-153,155-158,160-198,200-202,209-211,only"></div>
+<p>✏️ Create <strong>src/services/pmo/favorite/favorite.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { useNetInfo } from &quot;@react-native-community/netinfo&quot;
+import { useEffect } from &quot;react&quot;
+
+import { useUser } from &quot;../../auth&quot;
+
+import { useFavorites } from &quot;./hooks&quot;
+
+export const useFavoritesSync = (): void =&gt; {
+  return
+}
+
+const FavoritesSync: React.FC = () =&gt; {
+  useFavoritesSync()
+
+  return null
+}
+
+export default FavoritesSync
+
+</code></pre>
+<p>✏️ Update <strong>src/services/pmo/favorite/index.ts</strong> to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./favorite&quot;
+export * from &quot;./hooks&quot;
+
+</code></pre>
+ <div line-highlight="1,only"></div>
 <h3>Verify 3</h3>
-<p>TODO</p>
+<p>✏️ Update <strong>src/services/pmo/favorite/hooks.test.ts</strong> to be:</p>
+<pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react-native&quot;
+
+import * as storage from &quot;../../storage/storage&quot;
+import * as api from &quot;../api/api&quot;
+
+import { useFavorites } from &quot;./hooks&quot;
+
+describe(&quot;Favorite Hook&quot;, () =&gt; {
+  // Mock the apiRequest function
+  let apiRequest: jest.SpyInstance&lt;ReturnType&lt;typeof api.apiRequest&gt;&gt;
+  let mockStorage: jest.SpyInstance&lt;ReturnType&lt;typeof storage.getData&gt;&gt;
+  beforeEach(() =&gt; {
+    jest.resetAllMocks()
+    apiRequest = jest.spyOn(api, &quot;apiRequest&quot;)
+    mockStorage = jest.spyOn(storage, &quot;getData&quot;)
+  })
+
+  describe(&quot;useFavorites hook&quot;, () =&gt; {
+    const mockFavorites = [
+      {
+        userId: &quot;user-id&quot;,
+        restaurantId: &quot;WKQjvzup7QWSFXvH&quot;,
+        favorite: false,
+        datetimeUpdated: &quot;2024-04-03T14:12:16.314Z&quot;,
+        _id: &quot;UslYVUxnBuBwqn0s&quot;,
+      },
+      {
+        userId: &quot;user-id&quot;,
+        restaurantId: &quot;7iiKc0akJPYzaMyw&quot;,
+        favorite: true,
+        datetimeUpdated: &quot;2024-04-02T20:16:18.746Z&quot;,
+        _id: &quot;dmTvyAYw3o0xjAIk&quot;,
+      },
+    ]
+    it(&quot;should return list of favorites from the server&quot;, async () =&gt; {
+      apiRequest.mockResolvedValue({
+        data: { data: mockFavorites },
+        error: null,
+      })
+
+      const { result } = renderHook(() =&gt; useFavorites(&quot;user-id&quot;))
+
+      await waitFor(() =&gt; {
+        expect(result.current.isPending).toBeFalsy()
+      })
+
+      expect(result.current.data).toEqual(mockFavorites)
+      expect(result.current.error).toBeNull()
+    })
+    it(&quot;should return list of favorites from the local storage&quot;, async () =&gt; {
+      const mockLocalFavorites = {
+        lastSynced: &quot;Date&quot;,
+        favorites: mockFavorites,
+      }
+      apiRequest.mockResolvedValue({
+        data: { data: mockFavorites },
+        error: null,
+      })
+      mockStorage.mockResolvedValue(mockLocalFavorites)
+      const { result } = renderHook(() =&gt; useFavorites(&quot;user-id&quot;))
+      await waitFor(() =&gt; {
+        expect(result.current.localFavorites).toBeTruthy()
+      })
+
+      expect(result.current.localFavorites).toEqual(mockLocalFavorites)
+    })
+  })
+})
+
+</code></pre>
+ <div line-highlight="50-63,65-66,only"></div>
 <h3>Exercise 3</h3>
 <ul>
 <li>Create connectivity event listener, sync favorites to api</li>
@@ -919,10 +1978,216 @@ export default FavoritesSync
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>TODO</p>
+<p>✏️ Update <strong>src/services/pmo/favorite/favorite.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { useNetInfo } from &quot;@react-native-community/netinfo&quot;
+import { useEffect } from &quot;react&quot;
+
+import { useUser } from &quot;../../auth&quot;
+
+import { useFavorites } from &quot;./hooks&quot;
+
+const useFavoritesSync = (): void =&gt; {
+  const user = useUser()
+  const { isConnected } = useNetInfo()
+  const { syncWithServer, localFavorites } = useFavorites(user?.id)
+
+  useEffect(() =&gt; {
+    if (user &amp;&amp; isConnected &amp;&amp; localFavorites) {
+      syncWithServer()
+    }
+  }, [isConnected, localFavorites, syncWithServer, user])
+
+  return
+}
+
+const FavoritesSync: React.FC = () =&gt; {
+  useFavoritesSync()
+
+  return null
+}
+
+export default FavoritesSync
+
+</code></pre>
+ <div line-highlight="8-11,13-17,only"></div>
+<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import { Pressable, SafeAreaView } from &quot;react-native&quot;
+import Icon from &quot;react-native-vector-icons/Ionicons&quot;
+
+import Box from &quot;./design/Box&quot;
+import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
+import Typography from &quot;./design/Typography&quot;
+import CityList from &quot;./screens/CityList&quot;
+import RestaurantDetails from &quot;./screens/RestaurantDetails&quot;
+import RestaurantList from &quot;./screens/RestaurantList&quot;
+import RestaurantOrder from &quot;./screens/RestaurantOrder&quot;
+import Settings from &quot;./screens/Settings&quot;
+import StateList from &quot;./screens/StateList&quot;
+import AuthProvider from &quot;./services/auth/AuthProvider&quot;
+import DataMigration from &quot;./services/DataMigration&quot;
+import FavoritesSync from &quot;./services/pmo/favorite&quot;
+
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace ReactNavigation {
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    interface RootParamList extends RestaurantsStackParamList {}
+  }
+}
+
+export type RestaurantsStackParamList = {
+  StateList: undefined
+  CityList: {
+    state: {
+      name: string
+      short: string
+    }
+  }
+  RestaurantList: {
+    state: {
+      name: string
+      short: string
+    }
+    city: {
+      name: string
+      state: string
+    }
+  }
+  RestaurantDetails: {
+    state: {
+      name: string
+      short: string
+    }
+    city: {
+      name: string
+      state: string
+    }
+    slug: string
+  }
+  RestaurantOrder: {
+    slug: string
+  }
+}
+
+const RestaurantsStack = createStackNavigator&lt;RestaurantsStackParamList&gt;()
+const RestaurantsNavigator: React.FC = () =&gt; {
+  return (
+    &lt;RestaurantsStack.Navigator
+      initialRouteName=&quot;StateList&quot;
+      screenOptions={{
+        header: ({ route, navigation }) =&gt; {
+          if (!navigation.canGoBack()) return null
+
+          return (
+            &lt;Pressable onPress={navigation.goBack}&gt;
+              &lt;Box
+                padding=&quot;m&quot;
+                style={{ flexDirection: &quot;row&quot;, gap: 8, alignItems: &quot;center&quot; }}
+              &gt;
+                &lt;Icon name=&quot;arrow-back&quot; size={20} /&gt;
+                &lt;Typography variant=&quot;heading&quot;&gt;
+                  {/* @ts-ignore */}
+                  {[route.params?.city?.name, route.params?.state?.name]
+                    .filter(Boolean)
+                    .join(&quot;, &quot;)}
+                &lt;/Typography&gt;
+              &lt;/Box&gt;
+            &lt;/Pressable&gt;
+          )
+        },
+      }}
+    &gt;
+      &lt;RestaurantsStack.Screen name=&quot;StateList&quot; component={StateList} /&gt;
+      &lt;RestaurantsStack.Screen name=&quot;CityList&quot; component={CityList} /&gt;
+      &lt;RestaurantsStack.Screen
+        name=&quot;RestaurantList&quot;
+        component={RestaurantList}
+      /&gt;
+      &lt;RestaurantsStack.Screen
+        name=&quot;RestaurantDetails&quot;
+        component={RestaurantDetails}
+      /&gt;
+      &lt;RestaurantsStack.Screen
+        name=&quot;RestaurantOrder&quot;
+        component={RestaurantOrder}
+      /&gt;
+    &lt;/RestaurantsStack.Navigator&gt;
+  )
+}
+
+const AppTabs = createBottomTabNavigator()
+const AppNavigator: React.FC = () =&gt; {
+  const theme = useTheme()
+
+  return (
+    &lt;AppTabs.Navigator
+      initialRouteName=&quot;RestaurantsStack&quot;
+      screenOptions={({ route }) =&gt; ({
+        headerStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        headerTitleStyle: {
+          color: theme.palette.screen.contrast,
+          ...theme.typography.title,
+        },
+        tabBarStyle: {
+          backgroundColor: theme.palette.screen.main,
+        },
+        tabBarActiveTintColor: theme.palette.primary.strong,
+        tabBarInactiveTintColor: theme.palette.screen.contrast,
+        tabBarIcon: ({ focused, color }) =&gt; {
+          let icon = &quot;settings&quot;
+          if (route.name === &quot;Settings&quot;) {
+            icon = focused ? &quot;settings&quot; : &quot;settings-outline&quot;
+          } else if (route.name === &quot;Restaurants&quot;) {
+            icon = focused ? &quot;restaurant&quot; : &quot;restaurant-outline&quot;
+          }
+
+          return &lt;Icon name={icon} size={20} color={color} /&gt;
+        },
+      })}
+    &gt;
+      &lt;AppTabs.Screen
+        name=&quot;Restaurants&quot;
+        component={RestaurantsNavigator}
+        options={{ title: &quot;Place My Order&quot; }}
+      /&gt;
+      &lt;AppTabs.Screen
+        name=&quot;Settings&quot;
+        component={Settings}
+        options={{ title: &quot;Settings&quot; }}
+      /&gt;
+    &lt;/AppTabs.Navigator&gt;
+  )
+}
+
+const App: React.FC = () =&gt; {
+  return (
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;ThemeProvider&gt;
+        &lt;AuthProvider&gt;
+          &lt;DataMigration&gt;
+            &lt;NavigationContainer&gt;
+              &lt;AppNavigator /&gt;
+            &lt;/NavigationContainer&gt;
+            &lt;FavoritesSync /&gt;
+          &lt;/DataMigration&gt;
+        &lt;/AuthProvider&gt;
+      &lt;/ThemeProvider&gt;
+    &lt;/SafeAreaView&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="163,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
-<p>TODO</p>
+<p>Next, we will learn about <a href="google-maps.html" title="TODO">Integrating Maps</a> to our application.</p>
 
 </section>
 
