@@ -713,18 +713,16 @@ covering CanJS core libraries.">
         classpath(&quot;com.android.tools.build:gradle&quot;)
         classpath(&quot;com.facebook.react:react-native-gradle-plugin&quot;)
         classpath(&quot;org.jetbrains.kotlin:kotlin-gradle-plugin&quot;)
-        classpath(&quot;com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.1&quot;)
     }
-}   
+}
 
 apply plugin: &quot;com.facebook.react.rootproject&quot;
+
 </code></pre>
- <div line-highlight="18,20,only"></div>
 <p>✏️ Update <strong>android/app/build.gradle</strong> to be:</p>
 <pre><code class="language-gradle">apply plugin: &quot;com.android.application&quot;
 apply plugin: &quot;org.jetbrains.kotlin.android&quot;
 apply plugin: &quot;com.facebook.react&quot;
-apply plugin: &quot;com.google.android.libraries.mapsplatform.secrets-gradle-plugin&quot;
 
 /**
  * This is the configuration block to customize your React Native Android app.
@@ -831,6 +829,7 @@ android {
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation(&quot;com.facebook.react:react-android&quot;)
+    implementation(&quot;com.facebook.react:flipper-integration&quot;)
 
     if (hermesEnabled.toBoolean()) {
         implementation(&quot;com.facebook.react:hermes-android&quot;)
@@ -841,13 +840,9 @@ dependencies {
 
 apply from: file(&quot;../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle&quot;); applyNativeModulesAppBuildGradle(project)
 
-project.ext.vectoricons = [
-    iconFontNames: [ 'Ionicons.ttf' ] // Specify font files
-]
-
 apply from: file(&quot;../../node_modules/react-native-vector-icons/fonts.gradle&quot;)
+
 </code></pre>
- <div line-highlight="4,121-123,only"></div>
 <p>✏️ Update <strong>android/app/src/main/AndroidManifest.xml</strong> to be:</p>
 <pre><code class="language-xml">&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
 
@@ -874,7 +869,7 @@ apply from: file(&quot;../../node_modules/react-native-vector-icons/fonts.gradle
       &lt;/activity&gt;
       &lt;meta-data
         android:name=&quot;com.google.android.geo.API_KEY&quot;
-        android:value=&quot;${GOOGLE_MAPS_API_KEY}&quot;/&gt;
+        android:value=&quot;{GOOGLE_MAPS_API_KEY}&quot;/&gt;
     &lt;/application&gt;
 &lt;/manifest&gt;
 
