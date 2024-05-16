@@ -43,7 +43,6 @@ Let's break down some of the core concepts of OAuth:
 
 - **Resource Server**: The server that hosts protected resources. It is responsible for validating access tokens and granting access to resources based on the token's permissions.
 
-
 The use of refresh tokens rather than long-lived access tokens is primarily a security measure:
 
 - **Reduced Exposure**: If an access token is compromised, the attacker has a limited window of time to use it before it expires.
@@ -61,12 +60,12 @@ Let's breakdown some of the methods provided by the package:
 #### GoogleSignin.configure()
 
 ```tsx
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { GoogleSignin } from "@react-native-google-signin/google-signin"
 
 GoogleSignin.configure({
   scopes,
-  webClientId
-});
+  webClientId,
+})
 ```
 
 It is mandatory to call the `configure` method before attempting to sign in. The `configure` method takes an object and is used to initialize your application for authentication with Google. The `scopes` parameter is an array of strings representing the permissions the application is requesting. The `webClientId` parameter is the client ID of th project that is created in the Google Cloud Console.
@@ -74,24 +73,27 @@ It is mandatory to call the `configure` method before attempting to sign in. The
 #### GoogleSignin.signIn
 
 ```tsx
-import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+import {
+  GoogleSignin,
+  statusCodes,
+} from "@react-native-google-signin/google-signin"
 
 const signIn = async () => {
   try {
-    const userInfo = await GoogleSignin.signIn();
-    console.log(userInfo);
+    const userInfo = await GoogleSignin.signIn()
+    console.info(userInfo)
   } catch (error) {
     if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        // user cancelled the login flow
+      // user cancelled the login flow
     } else if (error.code === statusCodes.IN_PROGRESS) {
-       // operation is in progress already
+      // operation is in progress already
     } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        // play services not available or outdated
+      // play services not available or outdated
     } else {
-        // some other error happened
+      // some other error happened
     }
   }
-};
+}
 ```
 
 Ths `signIn` method is used to prompt a modal and allow the user to sign into their Google account from our application. This method returns a promise that resolves to the user's information if the sign-in is successful. This method is the first part of authorization OAuth flow. Once the user is signed in, we can use the `getTokens` method to retrieve an access token.
@@ -99,12 +101,12 @@ Ths `signIn` method is used to prompt a modal and allow the user to sign into th
 #### GoogleSignin.getCurrentUser
 
 ```tsx
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { GoogleSignin } from "@react-native-google-signin/google-signin"
 
 const getCurrentUser = async () => {
-  const userInfo = await GoogleSignin.getCurrentUser();
-  console.log(userInfo);
-};
+  const userInfo = await GoogleSignin.getCurrentUser()
+  console.info(userInfo)
+}
 ```
 
 The `getCurrentUser` method is used to retrieve the current signed-in user's information. This method returns a promise that resolves to the user's information if the user is signed in.
@@ -112,11 +114,11 @@ The `getCurrentUser` method is used to retrieve the current signed-in user's inf
 #### GoogleSignin.signOut
 
 ```tsx
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { GoogleSignin } from "@react-native-google-signin/google-signin"
 
 const signOut = async () => {
-  await GoogleSignin.signOut();
-};
+  await GoogleSignin.signOut()
+}
 ```
 
 The `signOut` method is used to sign the current user out and revoke the access token.
@@ -124,13 +126,12 @@ The `signOut` method is used to sign the current user out and revoke the access 
 #### GoogleSigninButton
 
 ```tsx
-import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
-
-<GoogleSigninButton
-    size={GoogleSigninButton.Size.Wide}
-    color={GoogleSigninButton.Color.Dark}
-    onPress={signIn}
-    disabled={false}
+import { GoogleSigninButton } from "@react-native-google-signin/google-signin"
+;<GoogleSigninButton
+  size={GoogleSigninButton.Size.Wide}
+  color={GoogleSigninButton.Color.Dark}
+  onPress={signIn}
+  disabled={false}
 />
 ```
 
@@ -143,7 +144,7 @@ The `useCallback` Hook is used to memoize functions so that they are not recreat
 ```tsx
 const memoizedCallback = useCallback(() => {
   // function logic
-}, [dependencies]);
+}, [dependencies])
 ```
 
 In the example above, the `memoizedCallback` function will only be recreated when the `dependencies` array changes.
@@ -157,7 +158,7 @@ The `useCallback` Hook is used to memoize a function, so that child components d
 ```tsx
 const memoizedValue = useMemo(() => {
   // value calculation logic
-}, [dependencies]);
+}, [dependencies])
 ```
 
 Just like `useCallback`, the `memoizedValue` will only be recalculated when the `dependencies` array changes.
@@ -182,25 +183,25 @@ We can use an `AuthProvider` to lock down our application and only allow access 
 
 ```tsx
 function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null)
 
   const signIn = useCallback(() => {
     // sign in logic
-  }, []);
+  }, [])
 
   const signOut = useCallback(() => {
     // sign out logic
-  }, []);
+  }, [])
 
   if (!user) {
-    return <SignInScreen onSignIn={signIn} />;
+    return <SignInScreen onSignIn={signIn} />
   }
 
   return (
     <AuthContext.Provider value={{ user, signOut }}>
       {children}
     </AuthContext.Provider>
-  );
+  )
 }
 ```
 
