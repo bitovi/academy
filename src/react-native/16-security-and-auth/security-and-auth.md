@@ -104,7 +104,7 @@ const signIn = async () => {
 }
 ```
 
-Ths `signIn` method is used to prompt a modal and allow the user to sign into their Google account from our application. This method returns a promise that resolves to the user's information if the sign-in is successful. This method is the first part of authorization OAuth flow. Once the user is signed in, we can use the `getTokens` method to retrieve an access token.
+The `signIn` method is used to prompt a modal and allow the user to sign into their Google account from our application. This method returns a promise that resolves to the user's information if the sign-in is successful. This method is the first part of authorization OAuth flow. Once the user is signed in, we can use the `getTokens` method to retrieve an access token.
 
 #### GoogleSignin.getCurrentUser
 
