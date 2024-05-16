@@ -495,6 +495,8 @@ If you have recently installed Android Studio, you will likely need to create a 
 At this point you should be able to click on the green triangle button next to your AVD to launch it.
 
 > If you don’t have HAXM installed, click on “Install HAXM” or follow [Intel’s instructions](https://github.com/intel/haxm/wiki/Installation-Instructions-on-Windows) to set it up, then go back to the AVD Manager.
+>
+> **Note:** You may need to disable Core Isolation for HAXM to install correctly. See the Android docs on [configuring hardware acceleration](https://developer.android.com/studio/run/emulator-acceleration).
 
 ## Next steps
 
