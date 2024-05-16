@@ -38,7 +38,7 @@ npm install react-native-maps@1.15.1
 
 @sourceref ../../../exercises/react-native/18-maps/01-problem/android/.secrets.properties.example
 
-✏️ Update **GOOGLE_MAPS_API_KEY**  in `secrets.properties` with your key.
+✏️ Update **GOOGLE_MAPS_API_KEY** in `secrets.properties` with your key.
 
 ✏️ Update **android/build.gradle** to be:
 
