@@ -20,7 +20,7 @@ In this section, you will:
 
 ### OAuth
 
-OAuth, or "Open Authorization", is a standard that allows an application to access resources hosted by another application on behalf of a user. It is commonly used to allow users to sign in to an application using their Google, Facebook, or other social media accounts.
+OAuth, or "Open Authorization", is a standard that allows an application to access resources hosted by another application through a secure authorization process.
 
 The OAuth flow typically involves the following steps:
 
@@ -29,7 +29,7 @@ The OAuth flow typically involves the following steps:
 3. The user logs in to the OAuth provider.
 4. The OAuth provider redirects the user back to the application with an authorization code.
 5. The application exchanges the authorization code for an access token.
-6. The application uses the access token to access the user's resources.
+6. The application uses the access token to access the secured resources.
 
 Let's break down some of the core concepts of OAuth:
 
@@ -197,7 +197,7 @@ function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, signIn, signOut }}>
+    <AuthContext.Provider value={{ user, signOut }}>
       {children}
     </AuthContext.Provider>
   );
