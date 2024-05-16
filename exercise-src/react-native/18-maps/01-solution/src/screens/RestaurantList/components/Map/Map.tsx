@@ -10,7 +10,7 @@ const Map: React.FC<MapProps> = ({ restaurants }) => {
   return (
     <MapView
       // needs a minHeight to display without error
-      style={{ minHeight: "100%" }}
+      style={{ minHeight: "100%", height: 500 }}
       provider={PROVIDER_GOOGLE}
       initialRegion={{
         ...restaurants[0].coordinate,

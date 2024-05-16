@@ -14,6 +14,8 @@ In this section, you will:
 
 ## Objective 1: Add Google Maps to Restaurant List page
 
+<img alt="Screenshot of the a successfully implemented Google Map in the application." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+
 TODO
 
 ### Concept TODO
@@ -28,11 +30,15 @@ TODO
 npm install react-native-maps@1.15.1
 ```
 
-✏️ Create **android/local.properties** and update it to be:
+✏️ Create **android/local.defaults.properties** and update it to be:
 
-@sourceref ../../../exercises/react-native/18-maps/01-problem/android/.local.properties.example
+@sourceref ../../../exercises/react-native/18-maps/01-problem/android/local.defaults.properties
 
-✏️ Update **GOOGLE_MAPS_API_KEY** with your key.
+✏️ Create **android/secrets.properties** and update it to be:
+
+@sourceref ../../../exercises/react-native/18-maps/01-problem/android/.secrets.properties.example
+
+✏️ Update **GOOGLE_MAPS_API_KEY**  in `secrets.properties` with your key.
 
 ✏️ Update **android/build.gradle** to be:
 
@@ -72,7 +78,9 @@ npm install react-native-maps@1.15.1
 
 ### Verify 1
 
-TODO
+Navigate to the `Maps` tab of the `RestaurantsList` in your emulator and verify that the Map is rendering.
+
+<img alt="Screenshot of how the application should look for the first solution." src="../static/img/react-native/18-maps/01-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
 
 ### Exercise 1
 
@@ -80,7 +88,7 @@ TODO
 
 ### Solution 1
 
-If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
+If you’ve implemented the solution correctly, the Map should be rendering in your application.
 
 <details>
 <summary>Click to see the solution</summary>
@@ -107,7 +115,9 @@ TODO
 
 ### Verify 2
 
-TODO
+Navigate to the `Maps` tab of the `RestaurantsList` in your emulator and verify that the Map is rendering.
+
+<img alt="Screenshot of the a successfully implemented Google Map in the application." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
 
 ### Exercise 2
 
@@ -117,7 +127,7 @@ TODO
 
 ### Solution 2
 
-If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
+If you’ve implemented the solution correctly, your Map should have Markers based on the coordinates of each Restaurant.
 
 <details>
 <summary>Click to see the solution</summary>
