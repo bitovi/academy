@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="TODO 
+  <meta name="description" content="Learn about OAuth, google-signin, and how to secure your React Native app. 
 ">
   
   <!-- Google Tag Manager -->
@@ -364,7 +364,7 @@
            						expanded">
 						<a class="page"
 							href="security-and-auth.html"
-							title="TODO">
+							title="Learn about OAuth, google-signin, and how to secure your React Native app.">
 							Security and Authentication
 						</a>
 						
@@ -665,7 +665,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>TODO</p>
+    <p>Learn about OAuth, google-signin, and how to secure your React Native app.</p>
 
 </section>
 
@@ -681,12 +681,150 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this section, you will:</p>
 <ul>
-<li>TODO</li>
+<li>Learn about OAuth core concepts.</li>
+<li>Implement Google Sign-In in your React Native app.</li>
+<li>Be introduced to useCallback and useMemo.</li>
 </ul>
 <h2>Objective 1: Context and Google Authentication</h2>
 <p><img alt="Screenshot of the Settings tab with a Google sign in button" src="../static/img/react-native/16-security/1-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
-<h3>Concept TODO</h3>
-<p>TODO</p>
+<h3>OAuth</h3>
+<p>OAuth, or &quot;Open Authorization&quot;, is a standard that allows an application to access resources hosted by another application through a secure authorization process.</p>
+<p>The OAuth flow typically involves the following steps:</p>
+<ol>
+<li>The user clicks a &quot;Sign In&quot; button in the application.</li>
+<li>The application redirects the user to the OAuth provider's login page.</li>
+<li>The user logs in to the OAuth provider.</li>
+<li>The OAuth provider redirects the user back to the application with an authorization code.</li>
+<li>The application exchanges the authorization code for an access token.</li>
+<li>The application uses the access token to access the secured resources.</li>
+</ol>
+<p>Let's break down some of the core concepts of OAuth:</p>
+<ul>
+<li><p><strong>Access Token</strong>: A token used by the application to access protected resources. It is obtained during the OAuth authorization flow and sent with each request to the resource server. Access tokens are typically short-lived and can be refreshed using a refresh token.</p></li>
+<li><p><strong>Refresh Token</strong>: A token used to obtain a new access token when the current access token expires. Refresh tokens are typically long-lived and can be used to obtain new access tokens without requiring the user to log in again.</p></li>
+<li><p><strong>Scopes</strong>: Scopes are permissions requested by the application during the OAuth authorization flow. They define what actions the application is allowed to perform using the access token. For example, an application might request only read access to a user's Google Drive files, which would allow it to view but not modify the files.</p></li>
+<li><p><strong>Authorization Server</strong>: The server that authenticates the user and issues access tokens.</p></li>
+<li><p><strong>Resource Server</strong>: The server that hosts protected resources. It is responsible for validating access tokens and granting access to resources based on the token's permissions.</p></li>
+</ul>
+<p>The use of refresh tokens rather than long-lived access tokens is primarily a security measure:</p>
+<ul>
+<li><p><strong>Reduced Exposure</strong>: If an access token is compromised, the attacker has a limited window of time to use it before it expires.</p></li>
+<li><p><strong>Revocation</strong>: If a user's access is revoked, the refresh token can be invalidated, preventing the attacker from obtaining new access tokens.</p></li>
+<li><p><strong>Limited Scope</strong>: Refresh tokens can be issued with limited scopes, reducing the potential damage if they are compromised.</p></li>
+</ul>
+<h3>GoogleSignin</h3>
+<p>The <code>@react-native-google-signin/google-signin</code> package provides a simple way to integrate Google Sign-In into our React Native apps. It handles the OAuth flow, allowing users to sign in with their Google accounts and obtain an access token that can be used to access Google services on their behalf.</p>
+<p>Let's breakdown some of the methods provided by the package:</p>
+<h4>GoogleSignin.configure()</h4>
+<pre><code class="language-tsx">import { GoogleSignin } from &quot;@react-native-google-signin/google-signin&quot;
+
+GoogleSignin.configure({
+  scopes,
+  webClientId,
+})
+</code></pre>
+<p>It is mandatory to call the <code>configure</code> method before attempting to sign in. The <code>configure</code> method takes an object and is used to initialize your application for authentication with Google. The <code>scopes</code> parameter is an array of strings representing the permissions the application is requesting. The <code>webClientId</code> parameter is the client ID of th project that is created in the Google Cloud Console.</p>
+<h4>GoogleSignin.signIn</h4>
+<pre><code class="language-tsx">import {
+  GoogleSignin,
+  statusCodes,
+} from &quot;@react-native-google-signin/google-signin&quot;
+
+const signIn = async () =&gt; {
+  try {
+    const userInfo = await GoogleSignin.signIn()
+    console.info(userInfo)
+  } catch (error) {
+    if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+      // user cancelled the login flow
+    } else if (error.code === statusCodes.IN_PROGRESS) {
+      // operation is in progress already
+    } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+      // play services not available or outdated
+    } else {
+      // some other error happened
+    }
+  }
+}
+</code></pre>
+<p>Ths <code>signIn</code> method is used to prompt a modal and allow the user to sign into their Google account from our application. This method returns a promise that resolves to the user's information if the sign-in is successful. This method is the first part of authorization OAuth flow. Once the user is signed in, we can use the <code>getTokens</code> method to retrieve an access token.</p>
+<h4>GoogleSignin.getCurrentUser</h4>
+<pre><code class="language-tsx">import { GoogleSignin } from &quot;@react-native-google-signin/google-signin&quot;
+
+const getCurrentUser = async () =&gt; {
+  const userInfo = await GoogleSignin.getCurrentUser()
+  console.info(userInfo)
+}
+</code></pre>
+<p>The <code>getCurrentUser</code> method is used to retrieve the current signed-in user's information. This method returns a promise that resolves to the user's information if the user is signed in.</p>
+<h4>GoogleSignin.signOut</h4>
+<pre><code class="language-tsx">import { GoogleSignin } from &quot;@react-native-google-signin/google-signin&quot;
+
+const signOut = async () =&gt; {
+  await GoogleSignin.signOut()
+}
+</code></pre>
+<p>The <code>signOut</code> method is used to sign the current user out and revoke the access token.</p>
+<h4>GoogleSigninButton</h4>
+<pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
+;&lt;GoogleSigninButton
+  size={GoogleSigninButton.Size.Wide}
+  color={GoogleSigninButton.Color.Dark}
+  onPress={signIn}
+  disabled={false}
+/&gt;
+</code></pre>
+<p>The <code>GoogleSigninButton</code> component is a pre-styled button that can be used to initiate the sign-in flow. The size, color, and whether the button is disabled can be customized using props. The <code>onPress</code> prop is used to specify the function to be called when the button is pressed.</p>
+<h3>useCallback</h3>
+<p>The <code>useCallback</code> Hook is used to memoize functions so that they are not recreated on every render. When using a provider, it is important to memoize functions so that they do not cause unnecessary re-renders of components that depend on them.</p>
+<pre><code class="language-tsx">const memoizedCallback = useCallback(() =&gt; {
+  // function logic
+}, [dependencies])
+</code></pre>
+<p>In the example above, the <code>memoizedCallback</code> function will only be recreated when the <code>dependencies</code> array changes.</p>
+<h3>useMemo</h3>
+<p>Similar to <code>useCallback</code>, the <code>useMemo</code> Hook is used to memoize values so that they are not recalculated on every render. It is useful for optimizing performance by avoiding unnecessary calculations.</p>
+<p>The <code>useCallback</code> Hook is used to memoize a function, so that child components do not re-render when the function reference changes. The <code>useMemo</code> Hook on the other hand is used to memoize a <em>value</em>. We should use <code>useMemo</code> if the logic to calculate a value is expensive.</p>
+<pre><code class="language-tsx">const memoizedValue = useMemo(() =&gt; {
+  // value calculation logic
+}, [dependencies])
+</code></pre>
+<p>Just like <code>useCallback</code>, the <code>memoizedValue</code> will only be recalculated when the <code>dependencies</code> array changes.</p>
+<h3>AuthProvider</h3>
+<p>An <code>AuthProvider</code> is a React Context Provider that manages the authentication state of the application. It provides the authentication state and methods to sign in and sign out to the rest of the application using a React Context.</p>
+<p>The <code>AuthProvider</code> typically includes the following components:</p>
+<ul>
+<li><strong>Sign In Method</strong>: A method to sign in the user.</li>
+<li><strong>Sign Out Method</strong>: A method to sign out the user.</li>
+<li><strong>Get User Method</strong>: A method to retrieve the current signed-in user's information.</li>
+</ul>
+<p>We can use an <code>AuthProvider</code> to lock down our application and only allow access to authenticated users.</p>
+<pre><code class="language-tsx">&lt;AuthProvider&gt;
+  &lt;App /&gt;
+&lt;/AuthProvider&gt;
+</code></pre>
+<pre><code class="language-tsx">function AuthProvider({ children }) {
+  const [user, setUser] = useState(null)
+
+  const signIn = useCallback(() =&gt; {
+    // sign in logic
+  }, [])
+
+  const signOut = useCallback(() =&gt; {
+    // sign out logic
+  }, [])
+
+  if (!user) {
+    return &lt;SignInScreen onSignIn={signIn} /&gt;
+  }
+
+  return (
+    &lt;AuthContext.Provider value={{ user, signOut }}&gt;
+      {children}
+    &lt;/AuthContext.Provider&gt;
+  )
+}
+</code></pre>
 <h3>Setup 1</h3>
 <p>✏️ Run:</p>
 <pre><code class="language-bash">npm install @react-native-google-signin/google-signin@11
@@ -1513,7 +1651,7 @@ export function useUser(): UserInfo[&quot;user&quot;] | undefined {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-native/16-security-and-auth/security-and-auth.md"},"description":"TODO \n","name":"learn-react-native/security-and-auth","title":"Security and Authentication","type":"page","parent":"learn-react-native","order":16,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-native/16-security-and-auth/security-and-auth.md"},"description":"Learn about OAuth, google-signin, and how to secure your React Native app. \n","name":"learn-react-native/security-and-auth","title":"Security and Authentication","type":"page","parent":"learn-react-native","order":16,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
