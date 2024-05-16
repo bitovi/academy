@@ -18,7 +18,7 @@ const Map: React.FC<MapProps> = ({ restaurants }) => {
         longitudeDelta: 0.5,
       }}
       loadingEnabled
-    ></MapView>
+    />
   )
 }
 

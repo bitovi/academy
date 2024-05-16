@@ -86,6 +86,14 @@ Navigate to the `Maps` tab of the `RestaurantsList` in your emulator and verify 
 
 - Implement Google Map's `MapView` for it to properly render when the `Map` tab is selected.
 
+Hint: The `MapView` takes its own `style` prop. As a minimum it needs `minHeight` variable to render. If the view is too small, try adding another variable to increase its size.
+
+```jsx
+<MapView
+      style={{ minHeight: "100%" }}
+    />
+```
+
 ### Solution 1
 
 If you’ve implemented the solution correctly, the Map should be rendering in your application.
