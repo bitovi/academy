@@ -55,7 +55,15 @@ The use of refresh tokens rather than long-lived access tokens is primarily a se
 
 The `@react-native-google-signin/google-signin` package provides a simple way to integrate Google Sign-In into our React Native apps. It handles the OAuth flow, allowing users to sign in with their Google accounts and obtain an access token that can be used to access Google services on their behalf.
 
-Let's breakdown some of the methods provided by the package:
+To use Google Sign-In in your React Native app, you must configure your application in the Google Cloud Console and obtain a client ID. This client ID is used to identify your application when requesting access tokens from Google.
+
+1. Create a new project in the Google Cloud Console.
+2. Enable APIs & services for your project.
+3. Navigate to the Credentials section and create a new OAuth client ID.
+4. Because we are using React Native, we will need to create an OAuth client ID for both a Web application and an Android application. For the Android application, use the command provided by the create form to generate a SHA-1 fingerprint.
+5. The client ID from the Web application will be used in the `webClientId` field when configuring the Google Sign-In package in your React Native app.
+
+Now that we have a project set up in Google Cloud Console, we can start integrating Google Sign-In into our React Native app.
 
 #### GoogleSignin.configure()
 
