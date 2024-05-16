@@ -89,9 +89,7 @@ Navigate to the `Maps` tab of the `RestaurantsList` in your emulator and verify 
 Hint: The `MapView` takes its own `style` prop. As a minimum it needs `minHeight` variable to render. If the view is too small, try adding another variable to increase its size.
 
 ```jsx
-<MapView
-      style={{ minHeight: "100%" }}
-    />
+<MapView style={{ minHeight: "100%" }} />
 ```
 
 ### Solution 1
