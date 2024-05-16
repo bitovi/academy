@@ -135,12 +135,17 @@ The `signOut` method is used to sign the current user out and revoke the access 
 
 ```tsx
 import { GoogleSigninButton } from "@react-native-google-signin/google-signin"
-;<GoogleSigninButton
-  size={GoogleSigninButton.Size.Wide}
-  color={GoogleSigninButton.Color.Dark}
-  onPress={signIn}
-  disabled={false}
-/>
+
+function Button() {
+  return (
+    <GoogleSigninButton
+      size={GoogleSigninButton.Size.Wide}
+      color={GoogleSigninButton.Color.Dark}
+      onPress={signIn}
+      disabled={false}
+    />
+  )
+}
 ```
 
 The `GoogleSigninButton` component is a pre-styled button that can be used to initiate the sign-in flow. The size, color, and whether the button is disabled can be customized using props. The `onPress` prop is used to specify the function to be called when the button is pressed.
