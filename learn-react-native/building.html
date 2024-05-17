@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="TODO 
+  <meta name="description" content="Learn how to build Android App Bundles (AAB). 
 ">
   
   <!-- Google Tag Manager -->
@@ -424,7 +424,7 @@
            						expanded">
 						<a class="page"
 							href="building.html"
-							title="TODO">
+							title="Learn how to build Android App Bundles (AAB).">
 							Building React Native Apps
 						</a>
 						
@@ -665,7 +665,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>TODO</p>
+    <p>Learn how to build Android App Bundles (AAB).</p>
 
 </section>
 
@@ -683,24 +683,104 @@ covering CanJS core libraries.">
 <ul>
 <li>TODO</li>
 </ul>
-<h2>Objective 1: TODO</h2>
+<h2>Objective 1: Creating a build</h2>
 <p>TODO</p>
 <h3>Concept TODO</h3>
-<p>TODO</p>
+<!-- Link to provide steps for signing and building -->
+<p>https://reactnative.dev/docs/signed-apk-android</p>
 <h3>Setup 1</h3>
-<p>TODO</p>
-<h3>Verify 1</h3>
-<p>TODO</p>
+<p>✏️ Update <strong>package.json</strong> to be:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;PlaceMyOrder&quot;,
+  &quot;version&quot;: &quot;0.0.1&quot;,
+  &quot;private&quot;: true,
+  &quot;scripts&quot;: {
+    &quot;typecheck&quot;: &quot;tsc --noEmit&quot;,
+    &quot;eslint&quot;: &quot;eslint *.ts *.js src&quot;,
+    &quot;eslint:fix&quot;: &quot;eslint --fix *.ts *.js src&quot;,
+    &quot;prettier&quot;: &quot;prettier --check *.ts *.js *.json src&quot;,
+    &quot;prettier:fix&quot;: &quot;prettier --write *.ts *.js *.json src&quot;,
+    &quot;depcheck&quot;: &quot;depcheck .&quot;,
+    &quot;test&quot;: &quot;jest&quot;,
+    &quot;test:watch&quot;: &quot;jest --watch&quot;,
+    &quot;test:inspect&quot;: &quot;node --inspect-brk ./node_modules/.bin/jest --watch&quot;,
+    &quot;precheck&quot;: &quot;npm run typecheck &amp;&amp; npm run eslint &amp;&amp; npm run prettier &amp;&amp; npm run depcheck &amp;&amp; npm run test&quot;,
+    &quot;clean&quot;: &quot;rm -rf tsconfig.tsbuildinfo coverage android/.gradle android/build android/app/build node_modules/.cache&quot;,
+    &quot;devtools&quot;: &quot;react-devtools&quot;,
+    &quot;linkLocalhost:android&quot;: &quot;adb reverse tcp:7070 tcp:7070&quot;,
+    &quot;api&quot;: &quot;npm run linkLocalhost:android &amp;&amp; place-my-order-api --port 7070&quot;,
+    &quot;android&quot;: &quot;react-native run-android&quot;,
+    &quot;android:build&quot;: &quot;react-native build-android --mode=release&quot;,
+    &quot;ios&quot;: &quot;react-native run-ios&quot;,
+    &quot;start&quot;: &quot;react-native start --reset-cache --experimental-debugger&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;@react-native-async-storage/async-storage&quot;: &quot;^1.23.1&quot;,
+    &quot;@react-native-community/netinfo&quot;: &quot;^11.3.1&quot;,
+    &quot;@react-native-google-signin/google-signin&quot;: &quot;^11.0.1&quot;,
+    &quot;@react-navigation/bottom-tabs&quot;: &quot;^6.5.20&quot;,
+    &quot;@react-navigation/native&quot;: &quot;^6.1.17&quot;,
+    &quot;@react-navigation/stack&quot;: &quot;^6.3.29&quot;,
+    &quot;react&quot;: &quot;18.2.0&quot;,
+    &quot;react-native&quot;: &quot;0.73.6&quot;,
+    &quot;react-native-dotenv&quot;: &quot;^3.4.11&quot;,
+    &quot;react-native-gesture-handler&quot;: &quot;^2.16.0&quot;,
+    &quot;react-native-maps&quot;: &quot;^1.15.1&quot;,
+    &quot;react-native-safe-area-context&quot;: &quot;^4.9.0&quot;,
+    &quot;react-native-screens&quot;: &quot;^3.30.1&quot;,
+    &quot;react-native-vector-icons&quot;: &quot;^10.0.3&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;@babel/core&quot;: &quot;^7.20.0&quot;,
+    &quot;@babel/preset-env&quot;: &quot;^7.20.0&quot;,
+    &quot;@babel/runtime&quot;: &quot;^7.20.0&quot;,
+    &quot;@bitovi/eslint-config&quot;: &quot;^1.8.0&quot;,
+    &quot;@react-native/babel-preset&quot;: &quot;0.73.21&quot;,
+    &quot;@react-native/eslint-config&quot;: &quot;0.73.2&quot;,
+    &quot;@react-native/metro-config&quot;: &quot;0.73.5&quot;,
+    &quot;@react-native/typescript-config&quot;: &quot;0.73.1&quot;,
+    &quot;@testing-library/react-native&quot;: &quot;^12.4.5&quot;,
+    &quot;@types/jest&quot;: &quot;^29.5.12&quot;,
+    &quot;@types/react&quot;: &quot;^18.2.6&quot;,
+    &quot;@types/react-native-vector-icons&quot;: &quot;^6.4.18&quot;,
+    &quot;@types/react-test-renderer&quot;: &quot;^18.0.0&quot;,
+    &quot;babel-jest&quot;: &quot;^29.6.3&quot;,
+    &quot;depcheck&quot;: &quot;^1.4.7&quot;,
+    &quot;eslint&quot;: &quot;^8.19.0&quot;,
+    &quot;identity-obj-proxy&quot;: &quot;^3.0.0&quot;,
+    &quot;jest&quot;: &quot;^29.6.3&quot;,
+    &quot;place-my-order-api&quot;: &quot;^1.7.0&quot;,
+    &quot;prettier&quot;: &quot;2.8.8&quot;,
+    &quot;react-devtools&quot;: &quot;^5.1.0&quot;,
+    &quot;react-test-renderer&quot;: &quot;18.2.0&quot;,
+    &quot;typescript&quot;: &quot;5.0.4&quot;
+  },
+  &quot;engines&quot;: {
+    &quot;node&quot;: &quot;&gt;=20&quot;
+  }
+}
+
+</code></pre>
+ <div line-highlight="21,only"></div>
 <h3>Exercise 1</h3>
-<p>TODO</p>
+<p>✏️ Run to generate AAB file:</p>
+<pre><code class="language-bash">npm run android:build
+</code></pre>
 <h3>Solution 1</h3>
-<p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
-<p><details>
-<summary>Click to see the solution</summary></p>
+<p>If there is a successful build, the file <strong>android/app/build/outputs/bundle/release/app-release.aab</strong> will be created.</p>
+<p>TODO: What happens if there isn’t a successful build? 😅</p>
+<p>TODO: Can the AAB be run in the emulator? If so, we should instruct them to do that.</p>
+<h2>Objective 2: Setup signing</h2>
+<!-- Notes for content -->
+<p>Warning? TODO: What is this about?</p>
+<p>The Android docs say to start with namespace and applicationId the same. Once you publish an android app, however, you cannot change the applicationId; subsequent updates must use the same value. This used to be tied to the package.json name, but is not anymore.</p>
+<p>https://developer.android.com/build/configure-app-module</p>
+<!-- Notes for content -->
+<h3>Concept TODO</h3>
 <p>TODO</p>
-<p></details></p>
+<p>Since we are distributing our app on the Google Play Store, we don't need to sign the app ourselves. Google Play App Signing allows Google to manage the signing key for us.</p>
 <h2>Next steps</h2>
-<p>TODO</p>
+<p>Next, we will learn about <a href="publishing-and-updating.html" title="TODO">Publishing and Updating</a>.</p>
 
 </section>
 
@@ -739,7 +819,7 @@ covering CanJS core libraries.">
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-native/20-building/building.md"},"description":"TODO \n","name":"learn-react-native/building","title":"Building React Native Apps","type":"page","parent":"learn-react-native","order":20,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-native/20-building/building.md"},"description":"Learn how to build Android App Bundles (AAB). \n","name":"learn-react-native/building","title":"Building React Native Apps","type":"page","parent":"learn-react-native","order":20,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
