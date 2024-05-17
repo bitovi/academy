@@ -2,7 +2,7 @@
 @parent learn-react-native 19
 @outline 3
 
-@description TODO
+@description Improve the application’s launch time by implementing lazy loading.
 
 @body
 
@@ -10,15 +10,70 @@
 
 In this section, you will:
 
-- TODO
+- Make smaller JavaScript bundles with code splitting.
+- Use React’s `lazy` and `Suspense` APIs to implement lazy loading.
+- Learn when it’s best to use dynamic imports.
 
-## Objective 1: Code Splitting and Lazy Loading
+## Objective 1: Lazy load the `Map` view
 
-TODO
+In a previous section, we added a `Map` view that has a large dependency: the `react-native-maps` package.
+Large packages have a negative impact on the application’s startup time, but there’s a solution: lazy loading!
 
-### Concept TODO
+Let’s lazy load the `Map` view in our app so it launches faster.
 
-TODO
+### JavaScript bundle size
+
+When our app is transpiled from TypeScript to JavaScript, a “bundle” (file) is created with all of the JavaScript code, along with any additional assets (like images).
+As more code is added to the application, the size of this JavaScript bundle will increase.
+
+The larger bundle can lead to longer startup times for the application because the bundle must be loaded, parsed, and ran before the app can be used.
+This longer launch time translates into a worse user experience as more code is added.
+Our app should improve as we add features without sacrificing launch time!
+
+### Making smaller JavaScript bundles
+
+Currently, our existing imports are “static” `import` declarations that are defined at the top of the file:
+
+@sourceref ./import-static.tsx
+@highlight 5-6, only
+
+We can split our code into multiple bundles by using the dynamic `import()` syntax from JavaScript.
+
+@sourceref ./import-dynamic.tsx
+@highlight 13, only
+
+Now with the dynamic import in place, the `Analytics` view in the code above will be split into a separate JavaScript bundle.
+This means that any of its code (including the code it imports) will be in a separate bundle.
+This will keep the main app bundle smaller over time as the `Analytics` view grows in size.
+
+### Using React’s `lazy` and `Suspense` APIs
+
+This dynamic `import()` code takes a lot of lines to implement this one improvement:
+
+@diff ./import-static.tsx ./import-dynamic.tsx only
+
+If we had to write this for every single component that we wanted to import dynamically, we would have a lot of boilerplate repeated over and over.
+
+Thankfully, React provides two APIs to simplify dynamic imports:
+
+@diff ./import-static.tsx ./import-dynamic-suspense.tsx only
+
+In the code above, we’ve replaced the static `import` with a dynamic `import()` within `lazy`.
+
+When the Analytics tab is tapped on, React Native will load the `component` passed to `Screen`.
+Then, the `<Suspense>` component will render `<Loading>` while the Analytics module is being imported.
+When the module has loaded, the `<Analytics>` component will be displayed.
+
+### Selectively using dynamic imports
+
+You might wonder if it’s a good idea to use dynamic `import()` statements everywhere.
+
+Surprisingly, the answer is **no!**
+The benefit of dynamic imports is that the bundle is split up into separate files, but this comes with a small cost.
+
+Each time a bundle is loaded, the JavaScript has to be parsed and ran.
+This takes a little bit of time for each bundle, so it’s best to only split your bundle in a few key places in your application.
+This can be in views where there is a large dependency (like our Maps view), or between tabs in the app (like we’ve shown above).
 
 ### Setup 1
 
@@ -28,11 +83,15 @@ TODO
 
 ### Verify 1
 
-TODO
+TODO: find where the bundles are built in dev so we can see the modules being split up.
+Alternatively, consider moving this page after the “building” page so we can look at the files being created.
 
 ### Exercise 1
 
-TODO
+Inside of `RestaurantList.tsx`:
+
+- Change the static Map `import` statement to a dynamic `import()`.
+- Use `<Suspense>` to load the Map tab on the screen.
 
 ### Solution 1
 
