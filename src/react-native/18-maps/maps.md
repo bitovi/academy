@@ -10,8 +10,10 @@
 
 In this section, you will:
 
-- Integrate Google Maps
-- Be introduced to gradle
+- Integrating Google Maps
+- Configuring Gradle plugins
+- Adding a map view
+- Adding markers to a map
 
 ## Objective 1: Add Google Maps to Restaurant List page
 
@@ -19,15 +21,15 @@ In this section, you will:
 
 ### React Native Maps
 
-In this section, we will be using the `react-native-maps` library to integrate Google Maps into our application. This library provides several React Native components that can be used to render maps on both iOS and Android.
+In this section, we will be using the `react-native-maps` library to integrate Google Maps into our application. This library provides several React Native components such as maps, polygons, markers, and more that can be used to build maps on both iOS and Android. For the purpose of this training, we will focus on using the map and marker components. To use the Google Maps API, we will need to set up a [Google Maps API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
 
 ### Secrets Gradle Plugin
 
-Before we can use Google Maps in our application, we need to set up a Google Maps API key. We will be using the `secrets-gradle-plugin` to securely store our API key in our project.
+We will be using the [`secrets-gradle-plugin`](https://github.com/google/secrets-gradle-plugin) to securely store our API key in our project.
 
 #### Gradle
 
-Gradle is a build automation tool that is used to compile and build the Android part of our React Native application. We can extend gradle's functionality by using plugins. In this case, we will be using the `secrets-gradle-plugin` to securely store our Google Maps API key. 
+Gradle is a build automation tool that is used to compile and build the Android part of our React Native application. We can extend Gradle's functionality by using plugins. In this case, we will be using the `secrets-gradle-plugin` which allows us to securely store sensitive information such as API keys.
 
 #### Android Manifest
 
@@ -62,7 +64,7 @@ The component takes several props, but the most important ones are:
 - `style`: The style of the map.
 - `provider`: The map provider. In this case, we are using Google Maps.
 - `loadingEnabled`: Whether to show a loading indicator while the map is loading.
-- `initialRegion`: An object that contains coordinates for the initial map region.
+- `initialRegion`: An object that contains coordinates for the initial map region. The object should contain `latitude`, `longitude`, `latitudeDelta`, and `longitudeDelta` properties. The `latitude` and `longitude` properties are the coordinates of the center of the map, and the `latitudeDelta` and `longitudeDelta` properties are the vertical and horizontal zoom levels of the map.
 
 ### Setup 1
 
@@ -151,7 +153,18 @@ If you’ve implemented the solution correctly, the Map should be rendering in y
 
 <img alt="Screenshot of the a successfully implemented Google Map in the application." src="../static/img/react-native/18-maps/01-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
 
+Now that we have a map, let’s add markers for each one of the restaurants. When we tap on them, we will navigate to the restaurant detail page, just like we do in the list view.
+
 ### Marker
+
+The `Marker` component is used to render a pin on the map. It takes several props, but the most important ones are:
+
+- `coordinate`: The coordinates of the marker.
+- `onCalloutPress`: A function that is called when the callout view is pressed.
+- `title`: The title of the callout view.
+- `description`: A description displayed in the callout view.
+
+The callout view is an info window that is displayed when the marker is tapped.
 
 ```tsx
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
@@ -178,13 +191,7 @@ function MapWithMarker({ initialRegion }) {
   );
 }
 ```
-
-The `Marker` component is used to render a pin on the map. It takes several props, but the most important ones are:
-
-- `coordinate`: The coordinates of the marker.
-- `onCalloutPress`: A function that is called when the callout view is pressed.
-- `title`: The title of the marker.
-- `description`: A description of the marker.
+@highlight 10-20
 
 ### Setup 2
 
