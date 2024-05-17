@@ -66,14 +66,18 @@ ESLint and Prettier are configured for some of the Academy content and exercises
 In CI, this will run to verify both the content and exercises:
 
 ```sh
-npm run lint:content && npm run lint:exercises
+npm run lint
 ```
+
+There are also individual `lint:content` and `lint:exercises` scripts if you want to lint just one and not the other.
 
 To fix them both locally, you can run this command:
 
 ```sh
-npm run lint:content:fix && npm run lint:exercises:fix
+npm run lint:fix
 ```
+
+There are also individual `lint:content:fix` and `lint:exercises:fix` scripts if you want to fix just one and not the other.
 
 Be sure to let these commands finish completely because they delete the `node_modules` folders.
 If a `node_modules` folder is left inside `src`, it will be processed as content and cause issues with running `npm start`.
