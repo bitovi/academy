@@ -38,7 +38,7 @@ The Android Manifest file is an XML file that contains important information abo
 ### MapView
 
 ```tsx
-import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import MapView, { PROVIDER_GOOGLE } from "react-native-maps"
 
 function Map() {
   return (
@@ -53,7 +53,7 @@ function Map() {
         longitudeDelta: 0.0421,
       }}
     ></MapView>
-  );
+  )
 }
 ```
 
@@ -167,7 +167,7 @@ The `Marker` component is used to render a pin on the map. It takes several prop
 The callout view is an info window that is displayed when the marker is tapped.
 
 ```tsx
-import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps"
 
 function MapWithMarker({ initialRegion }) {
   return (
@@ -182,15 +182,16 @@ function MapWithMarker({ initialRegion }) {
           longitude: -122.4324,
         }}
         onCalloutPress={() => {
-          console.log("Marker was pressed");
+          console.log("Marker was pressed")
         }}
         title="Title of the Marker"
         description="A brief description"
       />
     </MapView>
-  );
+  )
 }
 ```
+
 @highlight 10-20
 
 ### Setup 2
