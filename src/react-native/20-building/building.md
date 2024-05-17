@@ -15,11 +15,11 @@ In this section, you will:
 - Sign your app.
 - Cover EAS production builds.
 
-## Objective 1: Creating a build
+## Objective 1: Create a build and verify that the build (AAB) is generated
 
 ### Creating a Build
 
-To create an Android build of our React Native app, we can run the `react-native build-android --mode=release` command to generate an Android App Bundle (AAB) file.
+To create an Android build of our React Native app, we can run the `react-native build-android --mode=release` command to generate an Android App Bundle (AAB) file. You are able to create an AAB with or without signing it. However, if you want to upload the AAB to the Google Play store, you must sign it using an upload key keystore.
 
 ### APK vs AAB
 
@@ -29,7 +29,7 @@ On the other hand, an Android App Bundle (AAB) is a publishing format that inclu
 
 ### Signing
 
-Android requires that apps be signed with a certificate before they can be installed on a device. This is to ensure that the app has not been tampered with and that it is safe to run. The signing process involves generating a private key, instructions for which can be found in the [React Native documentation](https://reactnative.dev/docs/signed-apk-android#generating-an-upload-key).
+Android requires that apps be signed with a certificate before they can be installed on a device. This is to ensure that the app has not been tampered with and that it is safe to run. The signing process involves generating an upload key, instructions for which can be found in the [React Native documentation](https://reactnative.dev/docs/signed-apk-android#generating-an-upload-key), and using the upload key to sign the app.
 
 Once the private key has been generated, you must update your Gradle variables and config before building the app using the `npx react-native build-android --mode="release"` command.
 
@@ -66,24 +66,6 @@ If there is a successful build, the file **android/app/build/outputs/bundle/rele
 TODO: What happens if there isn’t a successful build? 😅
 
 TODO: Can the AAB be run in the emulator? If so, we should instruct them to do that.
-
-## Objective 2: Setup signing
-
-<!-- Notes for content -->
-
-Warning? TODO: What is this about?
-
-The Android docs say to start with namespace and applicationId the same. Once you publish an android app, however, you cannot change the applicationId; subsequent updates must use the same value. This used to be tied to the package.json name, but is not anymore.
-
-https://developer.android.com/build/configure-app-module
-
-<!-- Notes for content -->
-
-### Concept TODO
-
-TODO
-
-Since we are distributing our app on the Google Play Store, we don't need to sign the app ourselves. Google Play App Signing allows Google to manage the signing key for us.
 
 ## Next steps
 
