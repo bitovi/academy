@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="TODO 
+  <meta name="description" content="Learn how to integrate Google Maps into your React Native application. 
 ">
   
   <!-- Google Tag Manager -->
@@ -394,7 +394,7 @@
            						expanded">
 						<a class="page"
 							href="google-maps.html"
-							title="TODO">
+							title="Learn how to integrate Google Maps into your React Native application.">
 							Integrating Maps
 						</a>
 						
@@ -665,7 +665,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>TODO</p>
+    <p>Learn how to integrate Google Maps into your React Native application.</p>
 
 </section>
 
@@ -681,13 +681,48 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this section, you will:</p>
 <ul>
-<li>TODO</li>
+<li>Integrating Google Maps</li>
+<li>Configuring Gradle plugins</li>
+<li>Adding a map view</li>
+<li>Adding markers to a map</li>
 </ul>
 <h2>Objective 1: Add Google Maps to Restaurant List page</h2>
-<p><img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” There are two tabs at the top, List and Map, with Map selected. The map below is centered on Green Bay with nearby locations labeled. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
-<p>TODO</p>
-<h3>Concept TODO</h3>
-<p>TODO</p>
+<p><img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” There are two tabs at the top, List and Map, with Map selected. The map below is centered on Green Bay. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/01-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
+<h3>React Native Maps</h3>
+<p>In this section, we will be using the <code>react-native-maps</code> library to integrate Google Maps into our application. This library provides several React Native components such as maps, polygons, markers, and more that can be used to build maps on both iOS and Android. For the purpose of this training, we will focus on using the map and marker components. To use the Google Maps API, we will need to set up a <a href="https://developers.google.com/maps/documentation/javascript/get-api-key">Google Maps API key</a>.</p>
+<h3>Secrets Gradle Plugin</h3>
+<p>We will be using the <a href="https://github.com/google/secrets-gradle-plugin"><code>secrets-gradle-plugin</code></a> to securely store our API key in our project.</p>
+<h4>Gradle</h4>
+<p>Gradle is a build automation tool that is used to compile and build the Android part of our React Native application. We can extend Gradle's functionality by using plugins. In this case, we will be using the <code>secrets-gradle-plugin</code> which allows us to securely store sensitive information such as API keys.</p>
+<h4>Android Manifest</h4>
+<p>The Android Manifest file is an XML file that contains important information about our application such as permissions, activities and services, configuration settings, and more.</p>
+<h3>MapView</h3>
+<pre><code class="language-tsx">import MapView, { PROVIDER_GOOGLE } from &quot;react-native-maps&quot;
+
+function Map() {
+  return (
+    &lt;MapView
+      style={{ minHeight: &quot;100%&quot;, height: 500 }}
+      provider={PROVIDER_GOOGLE}
+      loadingEnabled
+      initialRegion={{
+        latitude: 37.78825,
+        longitude: -122.4324,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      }}
+    &gt;&lt;/MapView&gt;
+  )
+}
+</code></pre>
+<p>The <code>MapView</code> component is the main component that we will be using to render the map. Because we are using a React Native library, we will later be able to pass child components to the <code>MapView</code> component to render <code>Markers</code> and other map elements.</p>
+<p>The component takes several props, but the most important ones are:</p>
+<ul>
+<li><code>style</code>: The style of the map.</li>
+<li><code>provider</code>: The map provider. In this case, we are using Google Maps.</li>
+<li><code>loadingEnabled</code>: Whether to show a loading indicator while the map is loading.</li>
+<li><code>initialRegion</code>: An object that contains coordinates for the initial map region. The object should contain <code>latitude</code>, <code>longitude</code>, <code>latitudeDelta</code>, and <code>longitudeDelta</code> properties. The <code>latitude</code> and <code>longitude</code> properties are the coordinates of the center of the map, and the <code>latitudeDelta</code> and <code>longitudeDelta</code> properties are the vertical and horizontal zoom levels of the map.</li>
+</ul>
 <h3>Setup 1</h3>
 <p>✏️ Run:</p>
 <pre><code class="language-bash">npm install react-native-maps@1.15.1
@@ -1115,7 +1150,7 @@ export default Map
 </code></pre>
 <h3>Verify 1</h3>
 <p>Navigate to the <code>Maps</code> tab of the <code>RestaurantsList</code> in your emulator and verify that the Map is rendering.</p>
-<p><img alt="Screenshot of how the application should look for the first solution." src="../static/img/react-native/18-maps/01-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
+<p><img alt="Screenshot of how the application should look for the second solution." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
 <h3>Exercise 1</h3>
 <ul>
 <li>Implement Google Map's <code>MapView</code> for it to properly render when the <code>Map</code> tab is selected.</li>
@@ -1158,9 +1193,42 @@ export default Map
  <div line-highlight="10-22,"></div>
 <p></details></p>
 <h2>Objective 2: Add restaurant pins with tooltips to map</h2>
-<p>TODO</p>
-<h3>Concept TODO</h3>
-<p>TODO</p>
+<p><img alt="Screenshot of the a successfully implemented Google Map in the application." src="../static/img/react-native/18-maps/01-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
+<p>Now that we have a map, let’s add markers for each one of the restaurants. When we tap on them, we will navigate to the restaurant detail page, just like we do in the list view.</p>
+<h3>Marker</h3>
+<p>The <code>Marker</code> component is used to render a pin on the map. It takes several props, but the most important ones are:</p>
+<ul>
+<li><code>coordinate</code>: The coordinates of the marker.</li>
+<li><code>onCalloutPress</code>: A function that is called when the callout view is pressed.</li>
+<li><code>title</code>: The title of the callout view.</li>
+<li><code>description</code>: A description displayed in the callout view.</li>
+</ul>
+<p>The callout view is an info window that is displayed when the marker is tapped.</p>
+<pre><code class="language-tsx">import MapView, { Marker, PROVIDER_GOOGLE } from &quot;react-native-maps&quot;
+
+function MapWithMarker({ initialRegion }) {
+  return (
+    &lt;MapView
+      style={{ minHeight: &quot;100%&quot;, height: 500 }}
+      provider={PROVIDER_GOOGLE}
+      initialRegion={initialRegion}
+    &gt;
+      &lt;Marker
+        coordinate={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+        }}
+        onCalloutPress={() =&gt; {
+          console.log(&quot;Marker was pressed&quot;)
+        }}
+        title=&quot;Title of the Marker&quot;
+        description=&quot;A brief description&quot;
+      /&gt;
+    &lt;/MapView&gt;
+  )
+}
+</code></pre>
+<div line-highlight='10-20'></div>
 <h3>Setup 2</h3>
 <p>✏️ Update <strong>src/screens/RestaurantList/components/Map/Map.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
@@ -1296,7 +1364,7 @@ export default Map
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-native/18-maps/maps.md"},"description":"TODO \n","name":"learn-react-native/google-maps","title":"Integrating Maps","type":"page","parent":"learn-react-native","order":18,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-native/18-maps/maps.md"},"description":"Learn how to integrate Google Maps into your React Native application. \n","name":"learn-react-native/google-maps","title":"Integrating Maps","type":"page","parent":"learn-react-native","order":18,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
