@@ -2,7 +2,7 @@
 @parent learn-react-native 18
 @outline 3
 
-@description TODO
+@description Learn how to integrate Google Maps into your React Native application.
 
 @body
 
@@ -10,17 +10,59 @@
 
 In this section, you will:
 
-- TODO
+- Integrate Google Maps
+- Be introduced to gradle
 
 ## Objective 1: Add Google Maps to Restaurant List page
 
-<img alt="Screenshot of the a successfully implemented Google Map in the application." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+<img alt="Screenshot of the a successfully implemented Google Map in the application." src="../static/img/react-native/18-maps/01-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
 
-TODO
+### React Native Maps
 
-### Concept TODO
+In this section, we will be using the `react-native-maps` library to integrate Google Maps into our application. This library provides several React Native components that can be used to render maps on both iOS and Android.
 
-TODO
+### Secrets Gradle Plugin
+
+Before we can use Google Maps in our application, we need to set up a Google Maps API key. We will be using the `secrets-gradle-plugin` to securely store our API key in our project.
+
+#### Gradle
+
+Gradle is a build automation tool that is used to compile and build the Android part of our React Native application. We can extend gradle's functionality by using plugins. In this case, we will be using the `secrets-gradle-plugin` to securely store our Google Maps API key. 
+
+#### Android Manifest
+
+The Android Manifest file is an XML file that contains important information about our application such as permissions, activities and services, configuration settings, and more.
+
+### MapView
+
+```tsx
+import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+
+function Map() {
+  return (
+    <MapView
+      style={{ minHeight: "100%", height: 500 }}
+      provider={PROVIDER_GOOGLE}
+      loadingEnabled
+      initialRegion={{
+        latitude: 37.78825,
+        longitude: -122.4324,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      }}
+    ></MapView>
+  );
+}
+```
+
+The `MapView` component is the main component that we will be using to render the map. Because we are using a React Native library, we will later be able to pass child components to the `MapView` component to render `Markers` and other map elements.
+
+The component takes several props, but the most important ones are:
+
+- `style`: The style of the map.
+- `provider`: The map provider. In this case, we are using Google Maps.
+- `loadingEnabled`: Whether to show a loading indicator while the map is loading.
+- `initialRegion`: An object that contains coordinates for the initial map region.
 
 ### Setup 1
 
@@ -107,11 +149,42 @@ If you’ve implemented the solution correctly, the Map should be rendering in y
 
 ## Objective 2: Add restaurant pins with tooltips to map
 
-TODO
+<img alt="Screenshot of the a successfully implemented Google Map in the application." src="../static/img/react-native/18-maps/01-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
 
-### Concept TODO
+### Marker
 
-TODO
+```tsx
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
+
+function MapWithMarker({ initialRegion }) {
+  return (
+    <MapView
+      style={{ minHeight: "100%", height: 500 }}
+      provider={PROVIDER_GOOGLE}
+      initialRegion={initialRegion}
+    >
+      <Marker
+        coordinate={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+        }}
+        onCalloutPress={() => {
+          console.log("Marker was pressed");
+        }}
+        title="Title of the Marker"
+        description="A brief description"
+      />
+    </MapView>
+  );
+}
+```
+
+The `Marker` component is used to render a pin on the map. It takes several props, but the most important ones are:
+
+- `coordinate`: The coordinates of the marker.
+- `onCalloutPress`: A function that is called when the callout view is pressed.
+- `title`: The title of the marker.
+- `description`: A description of the marker.
 
 ### Setup 2
 
