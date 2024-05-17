@@ -2,7 +2,7 @@
 @parent learn-react-native 21
 @outline 3
 
-@description TODO
+@description Preparation for the steps to Publish and Update a production application on Stores.
 
 @body
 
@@ -10,9 +10,11 @@
 
 In this section, you will:
 
-- TODO
+- Discover the process for publishing an application.
+- Hammer out requirements for publishing on different hosts for apps.
+- Create a new build to update an app.
 
-## Objective 1: TODO
+## Objective 1: Steps for publishing an application
 
 TODO
 
@@ -20,29 +22,22 @@ TODO
 
 TODO
 
-### Setup 1
+## Objective 2: Testing, QA, and guidelines for Google Play Store and Apple App Store
 
 TODO
 
-### Verify 1
+### Concept TODO 2
 
 TODO
 
-### Exercise 1
+## Objective 3: Updating an existing application
 
 TODO
 
-### Solution 1
-
-If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
-
-<details>
-<summary>Click to see the solution</summary>
+### Concept TODO 3
 
 TODO
-
-</details>
 
 ## Next steps
 
-TODO
+Congrats, you’ve completed this Bitovi Academy training!
