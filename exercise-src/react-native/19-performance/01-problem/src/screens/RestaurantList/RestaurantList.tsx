@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native"
 import { StackScreenProps } from "@react-navigation/stack"
-import { useState } from "react"
+import { Suspense, lazy, useState } from "react"
 import { FlatList } from "react-native"
 
 import { RestaurantsStackParamList } from "../../App"

@@ -12,10 +12,12 @@
     "deploy": "node scripts/hubspot-deploy",
     "dev": "bit-docs -dw",
     "generate": "node ./exercise-src/generate.mjs",
+    "lint": "npm run lint:content && npm run lint:exercises",
     "lint:content": "cd src/react-native && npm ci && npm run eslint && npm run prettier && rm -rf node_modules",
     "lint:content:fix": "cd src/react-native && npm ci && npm run eslint:fix && npm run prettier:fix && rm -rf node_modules",
     "lint:exercises": "cd exercise-src/react-native && npm ci && npm run eslint && npm run prettier && rm -rf node_modules",
     "lint:exercises:fix": "cd exercise-src/react-native && npm ci && npm run eslint:fix && npm run prettier:fix && rm -rf node_modules",
+    "lint:fix": "npm run lint:content:fix && npm run lint:exercises:fix",
     "rebuild-assets": "bit-docs -dfs",
     "start": "concurrently -k \"npm:dev\" \"http-server -c -1\"",
     "test": "node ./exercises/tests.mjs"
