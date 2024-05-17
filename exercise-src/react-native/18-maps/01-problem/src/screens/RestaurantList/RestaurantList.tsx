@@ -58,7 +58,7 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ route }) => {
         value={tab}
         onChange={setTab}
       />
-      <Screen>
+      <Screen noScroll>
         {tab === "list" && (
           <Box padding="s">
             <FlatList

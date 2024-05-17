@@ -46,7 +46,7 @@ export const useFavorites = (
   const [favorite, setFavorite] = useState<Favorite | undefined>()
 
   useEffect(() => {
-    //gathering favorites from both DB and local storage.
+    // Gathering favorites from both DB and local storage.
     const fetchData = async () => {
       const localFavorites = await getData<LocalStorageFavorites>("my-favorite")
       setLocalFavorites(
@@ -75,7 +75,7 @@ export const useFavorites = (
   }, [userId])
 
   useEffect(() => {
-    //finding the restaurant's favorite status.
+    // Finding the restaurant's favorite status.
     if (restaurantId) {
       const getFavorite = async (restaurantId: Favorite["restaurantId"]) => {
         const foundFavorite = localFavorites?.favorites.find(
@@ -98,7 +98,7 @@ export const useFavorites = (
       let newFavorite = {}
 
       if (favoriteIndex === -1) {
-        // if favorites doesn't exist create a new entry.
+        // If the favorite isn’t in storage, then create a new entry.
         newFavorite = {
           userId: userId,
           restaurantId: restaurantId,
@@ -107,7 +107,7 @@ export const useFavorites = (
         }
         newFavorites.push(newFavorite as Favorite)
       } else {
-        // else if favorite do exist update the existing entry.
+        // Otherwise, if the favorite is in storage, then update the existing entry.
         newFavorite = {
           ...newFavorites[favoriteIndex],
           favorite: !newFavorites[favoriteIndex].favorite,
@@ -123,9 +123,16 @@ export const useFavorites = (
       })
 
       if (!("_id" in newFavorite) && postRes && postRes.data) {
-        // new entry don't have _id until the api call get's returned. Adding _id to the new favorites.
+        // Assign the _id property created from the API call to the new favorite.
         newFavorites[newFavorites.length - 1]._id = postRes.data._id
       }
+
+      /*
+        Exercise:
+          1) Update the `my-favorite` storage item with an object that contains the `newFavorites`.
+          2) Update the `localFavorites` state.
+          3) Update the `response` state.
+      */
     }
   }
 

@@ -27,6 +27,7 @@ const RestaurantDetails: React.FC<RestaurantDetailsProps> = ({ route }) => {
   const user = useUser()
   const { signIn } = useAuthentication()
   const { updateFavorites, favorite } = useFavorites(user?.id, restaurant?._id)
+
   useEffect(() => {
     if (restaurant) {
       navigation.setOptions({ title: `${restaurant.name}` })
