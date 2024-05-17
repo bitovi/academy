@@ -12,13 +12,33 @@ In this section, you will:
 
 - TODO
 
-## Objective 1: Learn to listen for connection state
+## Objective 1: Show the current connection status
+
+Most mobile applications use a network connection for critical functionality.
+It’s important to communicate to the user when their device is offline and some functionality in the application may be disabled because of their current connection status.
+
+The way you communicate this info will depend on your application.
+In ours, we’re going to add some text to the Settings view that shows the current connection status.
 
 <img alt="Screenshot of the application settings page with the connection status." src="../static/img/react-native/17-offline-support/01-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
 
-### Concept TODO
+### Listening for the network connection state
 
-TODO
+The `@react-native-community/netinfo` is an incredible useful package for detecting the network status of the device.
+
+This package allows you to:
+
+- Detect whether the device is connected to the internet.
+- Determine the type of network connection (WiFi, cellular, etc.).
+- React to changes in the network status, allowing the app to adapt accordingly.
+
+### Getting the current connection state
+
+The `useNetInfo` Hook provided by the package simplifies the process of accessing network state information in functional components.
+This Hook returns an object containing details about the network status.
+
+@sourceref ./isConnected.tsx
+@highlight 1, 6, 10, only
 
 ### Setup 1
 
@@ -38,13 +58,12 @@ npm install @react-native-community/netinfo@11
 
 ### Verify 1
 
-TODO
+TODO: We need tests for this exercise.
 
 ### Exercise 1
 
-- Use NetInfo to determine the connection state
-
-- Display message on Settings when offline
+- Get the current connection state with the `useNetInfo()` Hook.
+- Display the connect state in thte Settings view.
 
 ### Solution 1
 
@@ -61,20 +80,81 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 ## Objective 2: Use local storage to store restaurant favorites
 
+Now that you can detect when the device is online or offline, let’s build a feature that can work offline!
+
+Let’s add the ability to “favorite” a restaurant.
+In the `RestaurantDetails`, we’ll add an “Add to favorites” button when the user is signed in, and if they favorite a restaurant, we’ll change it to “Remove from favorites.”
+
+For right now, we’ll write the code for adding and removing favorites in a way that will gracefully handle the user’s device being offline.
+In the third objective, we’ll expand that to handle syncing when the device comes back online.
+
 <div style="display: flex; flex-direction: row; gap: 2rem">
   <img alt="Screenshot of the application's Restaurant Details screen displaying the add favorite button." src="../static/img/react-native/17-offline-support/02-solution-addFavorites.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
   <img alt="Screenshot of the application's Restaurant Details screen displaying the remove favorite button." src="../static/img/react-native/17-offline-support/02-solution-removeFavorites.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
 </div>
 
-### Concept TODO
+### Defining the “favorites” feature
 
-TODO
+There’s a lot that goes into building even a one or two-button feature like the “add to favorites” and “remove from favorites” feature that we’re about to build.
+
+Let’s think through what we want in the restaurant details view:
+
+- When the user is not signed in or they haven’t added the restaurant as a favorite, there should be a “Add to favorites” button.
+- When the user has added the restaurant as a favorite, there should be a “Remove from favorites” button.
+- When the “Add” button is clicked and the user is not signed in, they should be sent through the sign-in flow.
+- When the “Add” or “Remove” buttons are clicked and the user is signed in, that change should immediately be saved in our Async Storage and sent to the API.
+- If there’s a problem with the API call (the server is down, the device is offline, etc.), then the change should still be saved to Async Storage.
+
+Features like this are great to build into Hooks because it makes the logic more easily testable and reusable.
+Let’s look at the Hook code we are going to copy in the Setup step for this exercise.
+
+### Creating a `useFavorites()` Hook
+
+Our `useFavorites()` Hook will accept two arguments:
+
+@sourceref ../../../exercises/react-native/17-offline-support/02-problem/src/services/pmo/favorite/hooks.ts
+@highlight 32-33, only
+
+You’ll remember that the Rules of Hooks state that Hooks must always be called at the top level of a component, so this Hook makes these properties optional because, for example, you may not be signed in (and thus won’t have a `userId`).
+
+### Determining if a restaurant is a favorite
+
+The Hook will return a `true` or `false` value for `favorite`, depending on whether the restaurant is a favorite:
+
+@sourceref ../../../exercises/react-native/17-offline-support/02-problem/src/services/pmo/favorite/hooks.ts
+@highlight 9, 46, 81-84, 142, only
+
+### Fetching favorites when the user signs in
+
+When the user signs in (thus `userId` is set), the Hook will fetch all the favorites from Async Storage and the `/favorites` API:
+
+@sourceref ../../../exercises/react-native/17-offline-support/02-problem/src/services/pmo/favorite/hooks.ts
+@highlight 48-75, only
+
+### Toggling a restaurant’s favorite status
+
+The Hook returns a `updateFavorites` function that can be called to toggle whether the restaurant is a favorite or not:
+
+@sourceref ../../../exercises/react-native/17-offline-support/02-problem/src/services/pmo/favorite/hooks.ts
+@highlight 91, 101, 105, 110, 113, 141, only
+
+### Updating the API with the changed favorite status
+
+The Hook calls the API to update the favorite status for the restaurant:
+
+@sourceref ../../../exercises/react-native/17-offline-support/02-problem/src/services/pmo/favorite/hooks.ts
+@highlight 119, 122, 125-128, only
+
+The API may return an `error`, and that’s ok!
+The Hook can check if the API response was good and store the `_id` if it was.
+If there was an issue with the API call (e.g. the server was down, the device was offline, etc.) then there won’t be an `_id` in our Async Storage and we’ll know that we need to submit that favorite to the API.
 
 ### Setup 2
 
 ✏️ Create **src/services/pmo/favorite/hooks.ts** and update it to be:
 
 @sourceref ../../../exercises/react-native/17-offline-support/02-problem/src/services/pmo/favorite/hooks.ts
+@highlight 130-135, only
 
 ✏️ Create **src/services/pmo/favorite/index.ts** and update it to be:
 
@@ -89,6 +169,7 @@ TODO
 ✏️ Create **src/services/pmo/favorite/hooks.test.ts** and update it to be:
 
 @sourceref ../../../exercises/react-native/17-offline-support/02-problem/src/services/pmo/favorite/hooks.test.ts
+@highlight 35, only
 
 ✏️ Update **src/screens/RestaurantDetails/RestaurantDetails.test.tsx** to be:
 
@@ -96,11 +177,13 @@ TODO
 
 ### Exercise 2
 
-- Add offline-enabled favorite button to RestaurantDetails
+In `RestaurantDetails`, add a button that uses the `updateFavorites` helper.
 
-- Toggle favorites in API, ignore no-network failures
+In `favorite/hooks.ts`, finish the `updateFavorites` implementation to:
 
-- Toggle favorites locally
+- Update the `my-favorite` storage item with an object that contains the `newFavorites`.
+- Update the `localFavorites` state.
+- Update the `response` state.
 
 ### Solution 2
 
@@ -121,9 +204,41 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 ## Objective 3: Sync offline data when connectivity changes
 
-### Concept TODO
+Our app can handle when the API calls fail and it’ll still store the favorites locally in Async Storage.
+When the user’s device is offline, we can improve the app a lot by syncing the favorites to the API when the device comes back online.
 
-TODO
+### Designing the sync behavior
+
+Here’s an overview of how we want our sync to work.
+
+If a favorite is modified:
+
+- By another device while our current device is offline, our device should fetch those changes when it comes back online.
+- On our current device while it’s offline, that change should be synced back to the API as soon as the device comes online.
+- In both places (in the API and on the device), the data with the last modified date should “win.”
+
+### Fetching the favorites modified on the server
+
+The Hook’s `syncWithServer` will first fetch the favorites modified on the server:
+
+@sourceref ../../../exercises/react-native/17-offline-support/03-problem/src/services/pmo/favorite/hooks.ts
+@highlight 146-153, only
+
+The code above will fetch the favorites with the `datetimeUpdated` parameter set to the `lastSynced` datetime.
+
+### Updating favorites modified on the device
+
+Next, the Hook will send any favorites that were modified while the device was offline to the API:
+
+@sourceref ../../../exercises/react-native/17-offline-support/03-problem/src/services/pmo/favorite/hooks.ts
+@highlight 180-188, only
+
+### Updating favorites modified on the device
+
+Last, the Hook will update Async Storage with all the changes that have accumulated through the sync process:
+
+@sourceref ../../../exercises/react-native/17-offline-support/03-problem/src/services/pmo/favorite/hooks.ts
+@highlight 200, only
 
 ### Setup 3
 
@@ -151,7 +266,11 @@ TODO
 
 ### Exercise 3
 
-- Create connectivity event listener, sync favorites to api
+- Create a `FavoritesSync` component that does the following:
+  - When the user is signed in and has a network connection, sync with the server.
+- Add the `FavoritesSync` component to the `App` JSX.
+
+**Hint:** Use all of the imports provided in the `favorite.tsx` file.
 
 ### Solution 3
 
