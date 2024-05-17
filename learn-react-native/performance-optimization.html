@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="TODO 
+  <meta name="description" content="Improve the application’s launch time by implementing lazy loading. 
 ">
   
   <!-- Google Tag Manager -->
@@ -409,7 +409,7 @@
            						expanded">
 						<a class="page"
 							href="performance-optimization.html"
-							title="TODO">
+							title="Improve the application’s launch time by implementing lazy loading.">
 							Performance and Optimization
 						</a>
 						
@@ -665,7 +665,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>TODO</p>
+    <p>Improve the application’s launch time by implementing lazy loading.</p>
 
 </section>
 
@@ -681,12 +681,196 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this section, you will:</p>
 <ul>
-<li>TODO</li>
+<li>Make smaller JavaScript bundles with code splitting.</li>
+<li>Use React’s <code>lazy</code> and <code>Suspense</code> APIs to implement lazy loading.</li>
+<li>Learn when it’s best to use dynamic imports.</li>
 </ul>
-<h2>Objective 1: Code Splitting and Lazy Loading</h2>
-<p>TODO</p>
-<h3>Concept TODO</h3>
-<p>TODO</p>
+<h2>Objective 1: Lazy load the <code>Map</code> view</h2>
+<p>In a previous section, we added a <code>Map</code> view that has a large dependency: the <code>react-native-maps</code> package.
+Large packages have a negative impact on the application’s startup time, but there’s a solution: lazy loading!</p>
+<p>Let’s lazy load the <code>Map</code> view in our app so it launches faster.</p>
+<h3>JavaScript bundle size</h3>
+<p>When our app is transpiled from TypeScript to JavaScript, a “bundle” (file) is created with all of the JavaScript code, along with any additional assets (like images).
+As more code is added to the application, the size of this JavaScript bundle will increase.</p>
+<p>The larger bundle can lead to longer startup times for the application because the bundle must be loaded, parsed, and ran before the app can be used.
+This longer launch time translates into a worse user experience as more code is added.
+Our app should improve as we add features without sacrificing launch time!</p>
+<h3>Making smaller JavaScript bundles</h3>
+<p>Currently, our existing imports are “static” <code>import</code> declarations that are defined at the top of the file:</p>
+<pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { SafeAreaView } from &quot;react-native&quot;
+
+import Analytics from &quot;./screens/Analytics&quot;
+import Home from &quot;./screens/Home&quot;
+
+const AppTabs = createBottomTabNavigator()
+
+const App: React.FC = () =&gt; {
+  return (
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;NavigationContainer&gt;
+        &lt;AppTabs.Navigator initialRouteName=&quot;Home&quot;&gt;
+          &lt;AppTabs.Screen component={Home} name=&quot;Home&quot; /&gt;
+          &lt;AppTabs.Screen component={Analytics} name=&quot;Analytics&quot; /&gt;
+        &lt;/AppTabs.Navigator&gt;
+      &lt;/NavigationContainer&gt;
+    &lt;/SafeAreaView&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+<div line-highlight='5-6, only'></div>
+<p>We can split our code into multiple bundles by using the dynamic <code>import()</code> syntax from JavaScript.</p>
+<pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { useEffect, useState } from &quot;react&quot;
+import { SafeAreaView } from &quot;react-native&quot;
+
+import Home from &quot;./screens/Home&quot;
+
+const Analytics: React.FC = () =&gt; {
+  const [analyticsView, setAnalyticsView] = useState(null)
+
+  useEffect(() =&gt; {
+    async function loadView() {
+      const analyticsModule = await import(&quot;./screens/Analytics&quot;)
+      if (analyticsModule.default) {
+        setAnalyticsView(analyticsModule.default)
+      }
+    }
+    loadView()
+  }, [])
+
+  if (!analyticsView) {
+    return &lt;Loading /&gt;
+  }
+
+  return analyticsView
+}
+
+const AppTabs = createBottomTabNavigator()
+
+const App: React.FC = () =&gt; {
+  return (
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;NavigationContainer&gt;
+        &lt;AppTabs.Navigator initialRouteName=&quot;Home&quot;&gt;
+          &lt;AppTabs.Screen component={Home} name=&quot;Home&quot; /&gt;
+          &lt;AppTabs.Screen component={Analytics} name=&quot;Analytics&quot; /&gt;
+        &lt;/AppTabs.Navigator&gt;
+      &lt;/NavigationContainer&gt;
+    &lt;/SafeAreaView&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+<div line-highlight='13, only'></div>
+<p>Now with the dynamic import in place, the <code>Analytics</code> view in the code above will be split into a separate JavaScript bundle.
+This means that any of its code (including the code it imports) will be in a separate bundle.
+This will keep the main app bundle smaller over time as the <code>Analytics</code> view grows in size.</p>
+<h3>Using React’s <code>lazy</code> and <code>Suspense</code> APIs</h3>
+<p>This dynamic <code>import()</code> code takes a lot of lines to implement this one improvement:</p>
+<pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { useEffect, useState } from &quot;react&quot;
+import { SafeAreaView } from &quot;react-native&quot;
+
+import Home from &quot;./screens/Home&quot;
+
+const Analytics: React.FC = () =&gt; {
+  const [analyticsView, setAnalyticsView] = useState(null)
+
+  useEffect(() =&gt; {
+    async function loadView() {
+      const analyticsModule = await import(&quot;./screens/Analytics&quot;)
+      if (analyticsModule.default) {
+        setAnalyticsView(analyticsModule.default)
+      }
+    }
+    loadView()
+  }, [])
+
+  if (!analyticsView) {
+    return &lt;Loading /&gt;
+  }
+
+  return analyticsView
+}
+
+const AppTabs = createBottomTabNavigator()
+
+const App: React.FC = () =&gt; {
+  return (
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;NavigationContainer&gt;
+        &lt;AppTabs.Navigator initialRouteName=&quot;Home&quot;&gt;
+          &lt;AppTabs.Screen component={Home} name=&quot;Home&quot; /&gt;
+          &lt;AppTabs.Screen component={Analytics} name=&quot;Analytics&quot; /&gt;
+        &lt;/AppTabs.Navigator&gt;
+      &lt;/NavigationContainer&gt;
+    &lt;/SafeAreaView&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="3,8-9,11-19,21-23,25,41,only"></div>
+<p>If we had to write this for every single component that we wanted to import dynamically, we would have a lot of boilerplate repeated over and over.</p>
+<p>Thankfully, React provides two APIs to simplify dynamic imports:</p>
+<pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { Suspense, lazy } from &quot;react&quot;
+import { SafeAreaView } from &quot;react-native&quot;
+
+import Loading from &quot;./components/Loading&quot;
+import Home from &quot;./screens/Home&quot;
+
+const Analytics = lazy(() =&gt; import(&quot;./screens/Analytics&quot;))
+
+const AppTabs = createBottomTabNavigator()
+
+const AnalyticsLazyLoaded: React.FC = () =&gt; {
+  return (
+    &lt;Suspense fallback={&lt;Loading /&gt;}&gt;
+      &lt;Analytics /&gt;
+    &lt;/Suspense&gt;
+  )
+}
+
+const App: React.FC = () =&gt; {
+  return (
+    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+      &lt;NavigationContainer&gt;
+        &lt;AppTabs.Navigator initialRouteName=&quot;Home&quot;&gt;
+          &lt;AppTabs.Screen component={Home} name=&quot;Home&quot; /&gt;
+          &lt;AppTabs.Screen component={AnalyticsLazyLoaded} name=&quot;Analytics&quot; /&gt;
+        &lt;/AppTabs.Navigator&gt;
+      &lt;/NavigationContainer&gt;
+    &lt;/SafeAreaView&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="3,6,9,13,15-17,22,27,31-32,only"></div>
+<p>In the code above, we’ve replaced the static <code>import</code> with a dynamic <code>import()</code> within <code>lazy</code>.</p>
+<p>When the Analytics tab is tapped on, React Native will load the <code>component</code> passed to <code>Screen</code>.
+Then, the <code>&lt;Suspense&gt;</code> component will render <code>&lt;Loading&gt;</code> while the Analytics module is being imported.
+When the module has loaded, the <code>&lt;Analytics&gt;</code> component will be displayed.</p>
+<h3>Selectively using dynamic imports</h3>
+<p>You might wonder if it’s a good idea to use dynamic <code>import()</code> statements everywhere.</p>
+<p>Surprisingly, the answer is <strong>no!</strong>
+The benefit of dynamic imports is that the bundle is split up into separate files, but this comes with a small cost.</p>
+<p>Each time a bundle is loaded, the JavaScript has to be parsed and ran.
+This takes a little bit of time for each bundle, so it’s best to only split your bundle in a few key places in your application.
+This can be in views where there is a large dependency (like our Maps view), or between tabs in the app (like we’ve shown above).</p>
 <h3>Setup 1</h3>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
@@ -703,7 +887,7 @@ import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
 import { useRestaurants } from &quot;../../services/pmo/restaurant&quot;
 
-const Map = null
+import Map from &quot;./components/Map&quot;
 
 export interface RestaurantListProps
   extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantList&quot;&gt; {}
@@ -749,7 +933,7 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
         value={tab}
         onChange={setTab}
       /&gt;
-      &lt;Screen&gt;
+      &lt;Screen noScroll&gt;
         {tab === &quot;list&quot; &amp;&amp; (
           &lt;Box padding=&quot;s&quot;&gt;
             &lt;FlatList
@@ -780,11 +964,16 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="3,15,61,only"></div>
+ <div line-highlight="3,only"></div>
 <h3>Verify 1</h3>
-<p>TODO</p>
+<p>TODO: find where the bundles are built in dev so we can see the modules being split up.
+Alternatively, consider moving this page after the “building” page so we can look at the files being created.</p>
 <h3>Exercise 1</h3>
-<p>TODO</p>
+<p>Inside of <code>RestaurantList.tsx</code>:</p>
+<ul>
+<li>Change the static Map <code>import</code> statement to a dynamic <code>import()</code>.</li>
+<li>Use <code>&lt;Suspense&gt;</code> to load the Map tab on the screen.</li>
+</ul>
 <h3>Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
@@ -850,7 +1039,7 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
         value={tab}
         onChange={setTab}
       /&gt;
-      &lt;Screen&gt;
+      &lt;Screen noScroll&gt;
         {tab === &quot;list&quot; &amp;&amp; (
           &lt;Box padding=&quot;s&quot;&gt;
             &lt;FlatList
@@ -927,7 +1116,7 @@ export default RestaurantList
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-native/19-performance-optimization/performance-optimization.md"},"description":"TODO \n","name":"learn-react-native/performance-optimization","title":"Performance and Optimization","type":"page","parent":"learn-react-native","order":19,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-native/19-performance-optimization/performance-optimization.md"},"description":"Improve the application’s launch time by implementing lazy loading. \n","name":"learn-react-native/performance-optimization","title":"Performance and Optimization","type":"page","parent":"learn-react-native","order":19,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
