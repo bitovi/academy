@@ -1,19 +1,21 @@
 import { useNavigation } from "@react-navigation/native"
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps"
 
-import { Restaurant } from "../../../../services/pmo/restaurant"
+import { Restaurant, State, City } from "../../../../services/pmo/restaurant"
 
 export interface MapProps {
   restaurants: Restaurant[]
+  state: State
+  city: City
 }
 
-const Map: React.FC<MapProps> = ({ restaurants }) => {
+const Map: React.FC<MapProps> = ({ restaurants, state, city }) => {
   const navigation = useNavigation()
 
   return (
     <MapView
       // needs a minHeight to display without error
-      style={{ minHeight: "100%" }}
+      style={{ minHeight: "100%", height: 500 }}
       provider={PROVIDER_GOOGLE}
       initialRegion={{
         ...restaurants[0].coordinate,
@@ -30,8 +32,8 @@ const Map: React.FC<MapProps> = ({ restaurants }) => {
           description={restaurant.address?.street}
           onCalloutPress={() =>
             navigation.navigate("RestaurantDetails", {
-              state: restaurant.state,
-              city: restaurant.city,
+              state: state,
+              city: city,
               slug: restaurant.slug,
             })
           }
