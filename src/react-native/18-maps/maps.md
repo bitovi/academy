@@ -14,7 +14,7 @@ In this section, you will:
 
 ## Objective 1: Add Google Maps to Restaurant List page
 
-<img alt="Screenshot of the a successfully implemented Google Map in the application." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+<img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” There are two tabs at the top, List and Map, with Map selected. The map below is centered on Green Bay with nearby locations labeled. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
 
 TODO
 
@@ -123,7 +123,7 @@ TODO
 
 Navigate to the `Maps` tab of the `RestaurantsList` in your emulator and verify that the Map is rendering.
 
-<img alt="Screenshot of the a successfully implemented Google Map in the application." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+<img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” The map is still centered on Green Bay and now has several locations marked with red pins. One of the markers is labeled Cheese Curd City, 230 W Kinzie Street. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
 
 ### Exercise 2
 
