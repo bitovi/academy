@@ -17,8 +17,6 @@ In this section, you will:
 
 <img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” There are two tabs at the top, List and Map, with Map selected. The map below is centered on Green Bay. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/01-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
 
-TODO
-
 ### React Native Maps
 
 In this section, we will be using the `react-native-maps` library to integrate Google Maps into our application. This library provides several React Native components that can be used to render maps on both iOS and Android.
