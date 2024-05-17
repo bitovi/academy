@@ -714,7 +714,15 @@ covering CanJS core libraries.">
 </ul>
 <h3>GoogleSignin</h3>
 <p>The <code>@react-native-google-signin/google-signin</code> package provides a simple way to integrate Google Sign-In into our React Native apps. It handles the OAuth flow, allowing users to sign in with their Google accounts and obtain an access token that can be used to access Google services on their behalf.</p>
-<p>Let's breakdown some of the methods provided by the package:</p>
+<p>To use Google Sign-In in your React Native app, you must configure your application in the Google Cloud Console and obtain a client ID. This client ID is used to identify your application when requesting access tokens from Google.</p>
+<ol>
+<li>Create a new project in the Google Cloud Console.</li>
+<li>Enable APIs &amp; services for your project.</li>
+<li>Navigate to the Credentials section and create a new OAuth client ID.</li>
+<li>Because we are using React Native, we will need to create an OAuth client ID for both a Web application and an Android application. For the Android application, use the command provided by the create form to generate a SHA-1 fingerprint.</li>
+<li>The client ID from the Web application will be used in the <code>webClientId</code> field when configuring the Google Sign-In package in your React Native app.</li>
+</ol>
+<p>Now that we have a project set up in Google Cloud Console, we can start integrating Google Sign-In into our React Native app.</p>
 <h4>GoogleSignin.configure()</h4>
 <pre><code class="language-tsx">import { GoogleSignin } from &quot;@react-native-google-signin/google-signin&quot;
 
@@ -747,7 +755,7 @@ const signIn = async () =&gt; {
   }
 }
 </code></pre>
-<p>Ths <code>signIn</code> method is used to prompt a modal and allow the user to sign into their Google account from our application. This method returns a promise that resolves to the user's information if the sign-in is successful. This method is the first part of authorization OAuth flow. Once the user is signed in, we can use the <code>getTokens</code> method to retrieve an access token.</p>
+<p>The <code>signIn</code> method is used to prompt a modal and allow the user to sign into their Google account from our application. This method returns a promise that resolves to the user's information if the sign-in is successful. This method is the first part of authorization OAuth flow. Once the user is signed in, we can use the <code>getTokens</code> method to retrieve an access token.</p>
 <h4>GoogleSignin.getCurrentUser</h4>
 <pre><code class="language-tsx">import { GoogleSignin } from &quot;@react-native-google-signin/google-signin&quot;
 
@@ -767,12 +775,17 @@ const signOut = async () =&gt; {
 <p>The <code>signOut</code> method is used to sign the current user out and revoke the access token.</p>
 <h4>GoogleSigninButton</h4>
 <pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
-;&lt;GoogleSigninButton
-  size={GoogleSigninButton.Size.Wide}
-  color={GoogleSigninButton.Color.Dark}
-  onPress={signIn}
-  disabled={false}
-/&gt;
+
+function Button() {
+  return (
+    &lt;GoogleSigninButton
+      size={GoogleSigninButton.Size.Wide}
+      color={GoogleSigninButton.Color.Dark}
+      onPress={signIn}
+      disabled={false}
+    /&gt;
+  )
+}
 </code></pre>
 <p>The <code>GoogleSigninButton</code> component is a pre-styled button that can be used to initiate the sign-in flow. The size, color, and whether the button is disabled can be customized using props. The <code>onPress</code> prop is used to specify the function to be called when the button is pressed.</p>
 <h3>useCallback</h3>

@@ -684,6 +684,7 @@ covering CanJS core libraries.">
 <li>TODO</li>
 </ul>
 <h2>Objective 1: Add Google Maps to Restaurant List page</h2>
+<p><img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” There are two tabs at the top, List and Map, with Map selected. The map below is centered on Green Bay with nearby locations labeled. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
 <p>TODO</p>
 <h3>Concept TODO</h3>
 <p>TODO</p>
@@ -691,19 +692,22 @@ covering CanJS core libraries.">
 <p>✏️ Run:</p>
 <pre><code class="language-bash">npm install react-native-maps@1.15.1
 </code></pre>
-<p>✏️ Create <strong>android/local.properties</strong> and update it to be:</p>
+<p>✏️ Create <strong>android/local.defaults.properties</strong> and update it to be:</p>
+<pre><code class="language-properties">GOOGLE_MAPS_API_KEY=INVALID_API_KEY
+</code></pre>
+<p>✏️ Create <strong>android/secrets.properties</strong> and update it to be:</p>
 <pre><code class="language-example">GOOGLE_MAPS_API_KEY=
 </code></pre>
-<p>✏️ Update <strong>GOOGLE_MAPS_API_KEY</strong> with your key.</p>
+<p>✏️ Update <strong>GOOGLE_MAPS_API_KEY</strong> in <code>secrets.properties</code> with your key.</p>
 <p>✏️ Update <strong>android/build.gradle</strong> to be:</p>
 <pre><code class="language-gradle">buildscript {
     ext {
         buildToolsVersion = &quot;34.0.0&quot;
-        minSdkVersion = 21
+        minSdkVersion = 23
         compileSdkVersion = 34
         targetSdkVersion = 34
-        ndkVersion = &quot;25.1.8937393&quot;
-        kotlinVersion = &quot;1.8.0&quot;
+        ndkVersion = &quot;26.1.10909125&quot;
+        kotlinVersion = &quot;1.9.22&quot;
     }
     repositories {
         google()
@@ -713,16 +717,19 @@ covering CanJS core libraries.">
         classpath(&quot;com.android.tools.build:gradle&quot;)
         classpath(&quot;com.facebook.react:react-native-gradle-plugin&quot;)
         classpath(&quot;org.jetbrains.kotlin:kotlin-gradle-plugin&quot;)
+        classpath(&quot;com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.1&quot;)
     }
-}
+}   
 
 apply plugin: &quot;com.facebook.react.rootproject&quot;
 
 </code></pre>
+ <div line-highlight="4,7-8,18,20,only"></div>
 <p>✏️ Update <strong>android/app/build.gradle</strong> to be:</p>
 <pre><code class="language-gradle">apply plugin: &quot;com.android.application&quot;
 apply plugin: &quot;org.jetbrains.kotlin.android&quot;
 apply plugin: &quot;com.facebook.react&quot;
+apply plugin: &quot;com.google.android.libraries.mapsplatform.secrets-gradle-plugin&quot;
 
 /**
  * This is the configuration block to customize your React Native Android app.
@@ -829,7 +836,6 @@ android {
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation(&quot;com.facebook.react:react-android&quot;)
-    implementation(&quot;com.facebook.react:flipper-integration&quot;)
 
     if (hermesEnabled.toBoolean()) {
         implementation(&quot;com.facebook.react:hermes-android&quot;)
@@ -838,11 +844,26 @@ dependencies {
     }
 }
 
+secrets {
+    // Optionally specify a different file name containing your secrets.
+    // The plugin defaults to &quot;local.properties&quot;
+    propertiesFileName = &quot;secrets.properties&quot;
+
+    // A properties file containing default secret values. This file can be
+    // checked in version control.
+    defaultPropertiesFileName = &quot;local.defaults.properties&quot;
+
+    // Configure which keys should be ignored by the plugin by providing regular expressions.
+    // &quot;sdk.dir&quot; is ignored by default.
+    ignoreList.add(&quot;keyToIgnore&quot;) // Ignore the key &quot;keyToIgnore&quot;
+    ignoreList.add(&quot;sdk.*&quot;)       // Ignore all keys matching the regexp &quot;sdk.*&quot;
+}
+
 apply from: file(&quot;../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle&quot;); applyNativeModulesAppBuildGradle(project)
 
 apply from: file(&quot;../../node_modules/react-native-vector-icons/fonts.gradle&quot;)
-
 </code></pre>
+ <div line-highlight="4,119-122,124-126,128-132,only"></div>
 <p>✏️ Update <strong>android/app/src/main/AndroidManifest.xml</strong> to be:</p>
 <pre><code class="language-xml">&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
 
@@ -869,7 +890,7 @@ apply from: file(&quot;../../node_modules/react-native-vector-icons/fonts.gradle
       &lt;/activity&gt;
       &lt;meta-data
         android:name=&quot;com.google.android.geo.API_KEY&quot;
-        android:value=&quot;{GOOGLE_MAPS_API_KEY}&quot;/&gt;
+        android:value=&quot;${GOOGLE_MAPS_API_KEY}&quot;/&gt;
     &lt;/application&gt;
 &lt;/manifest&gt;
 
@@ -954,7 +975,7 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
         value={tab}
         onChange={setTab}
       /&gt;
-      &lt;Screen&gt;
+      &lt;Screen noScroll&gt;
         {tab === &quot;list&quot; &amp;&amp; (
           &lt;Box padding=&quot;s&quot;&gt;
             &lt;FlatList
@@ -1093,13 +1114,17 @@ export default Map
 
 </code></pre>
 <h3>Verify 1</h3>
-<p>TODO</p>
+<p>Navigate to the <code>Maps</code> tab of the <code>RestaurantsList</code> in your emulator and verify that the Map is rendering.</p>
+<p><img alt="Screenshot of how the application should look for the first solution." src="../static/img/react-native/18-maps/01-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
 <h3>Exercise 1</h3>
 <ul>
 <li>Implement Google Map's <code>MapView</code> for it to properly render when the <code>Map</code> tab is selected.</li>
 </ul>
+<p>Hint: The <code>MapView</code> takes its own <code>style</code> prop. As a minimum it needs <code>minHeight</code> variable to render. If the view is too small, try adding another variable to increase its size.</p>
+<pre><code class="language-jsx">&lt;MapView style={{ minHeight: &quot;100%&quot; }} /&gt;
+</code></pre>
 <h3>Solution 1</h3>
-<p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
+<p>If you’ve implemented the solution correctly, the Map should be rendering in your application.</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/screens/RestaurantList/components/Map/Map.tsx</strong> to be:</p>
@@ -1115,7 +1140,7 @@ const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
   return (
     &lt;MapView
       // needs a minHeight to display without error
-      style={{ minHeight: &quot;100%&quot; }}
+      style={{ minHeight: &quot;100%&quot;, height: 500 }}
       provider={PROVIDER_GOOGLE}
       initialRegion={{
         ...restaurants[0].coordinate,
@@ -1123,7 +1148,7 @@ const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
         longitudeDelta: 0.5,
       }}
       loadingEnabled
-    &gt;&lt;/MapView&gt;
+    /&gt;
   )
 }
 
@@ -1151,7 +1176,7 @@ const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
   return (
     &lt;MapView
       // needs a minHeight to display without error
-      style={{ minHeight: &quot;100%&quot; }}
+      style={{ minHeight: &quot;100%&quot;, height: 500 }}
       provider={PROVIDER_GOOGLE}
       initialRegion={{
         ...restaurants[0].coordinate,
@@ -1166,9 +1191,10 @@ const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
 export default Map
 
 </code></pre>
- <div line-highlight="1-2,"></div>
+ <div line-highlight="1-2,22,"></div>
 <h3>Verify 2</h3>
-<p>TODO</p>
+<p>Navigate to the <code>Maps</code> tab of the <code>RestaurantsList</code> in your emulator and verify that the Map is rendering.</p>
+<p><img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” The map is still centered on Green Bay and now has several locations marked with red pins. One of the markers is labeled Cheese Curd City, 230 W Kinzie Street. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
 <h3>Exercise 2</h3>
 <ul>
 <li>Using the <code>restaurants</code> property, create a <code>Marker</code> for each restaurant.</li>
@@ -1176,26 +1202,28 @@ export default Map
 <li>Use <code>onCallOutPress</code> to add <code>navigate</code> to the <code>RestaurantDetails</code> screen.</li>
 </ul>
 <h3>Solution 2</h3>
-<p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
+<p>If you’ve implemented the solution correctly, your Map should have Markers based on the coordinates of each Restaurant.</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/screens/RestaurantList/components/Map/Map.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import MapView, { Marker, PROVIDER_GOOGLE } from &quot;react-native-maps&quot;
 
-import { Restaurant } from &quot;../../../../services/pmo/restaurant&quot;
+import { Restaurant, State, City } from &quot;../../../../services/pmo/restaurant&quot;
 
 export interface MapProps {
   restaurants: Restaurant[]
+  state: State
+  city: City
 }
 
-const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
+const Map: React.FC&lt;MapProps&gt; = ({ restaurants, state, city }) =&gt; {
   const navigation = useNavigation()
 
   return (
     &lt;MapView
       // needs a minHeight to display without error
-      style={{ minHeight: &quot;100%&quot; }}
+      style={{ minHeight: &quot;100%&quot;, height: 500 }}
       provider={PROVIDER_GOOGLE}
       initialRegion={{
         ...restaurants[0].coordinate,
@@ -1212,8 +1240,8 @@ const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
           description={restaurant.address?.street}
           onCalloutPress={() =&gt;
             navigation.navigate(&quot;RestaurantDetails&quot;, {
-              state: restaurant.state,
-              city: restaurant.city,
+              state: state,
+              city: city,
               slug: restaurant.slug,
             })
           }
@@ -1226,7 +1254,7 @@ const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
 export default Map
 
 </code></pre>
- <div line-highlight="11,24-40,"></div>
+ <div line-highlight="4,8-9,12-13,26-42,"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>We've accomplished a lot for our React Native App, in order to polish it just a bit more let's get into some <a href="./performance-optimization">Performance and Optimization</a> practices.</p>
