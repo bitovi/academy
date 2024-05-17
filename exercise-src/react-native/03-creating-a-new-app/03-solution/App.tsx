@@ -1,4 +1,6 @@
-import { SafeAreaView, ScrollView, Text, View } from "react-native"
+import { ScrollView, Text, View } from "react-native"
+
+import { SafeAreaView } from "react-native-safe-area-context"
 
 const App: React.FC = () => {
   return (
