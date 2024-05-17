@@ -12,7 +12,7 @@ import Screen from "../../design/Screen"
 import Typography from "../../design/Typography"
 import { useRestaurants } from "../../services/pmo/restaurant"
 
-const Map = null
+import Map from "./components/Map"
 
 export interface RestaurantListProps
   extends StackScreenProps<RestaurantsStackParamList, "RestaurantList"> {}
@@ -58,7 +58,7 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ route }) => {
         value={tab}
         onChange={setTab}
       />
-      <Screen>
+      <Screen noScroll>
         {tab === "list" && (
           <Box padding="s">
             <FlatList
