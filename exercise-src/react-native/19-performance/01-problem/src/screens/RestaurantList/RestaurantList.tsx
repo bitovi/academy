@@ -12,6 +12,8 @@ import Screen from "../../design/Screen"
 import Typography from "../../design/Typography"
 import { useRestaurants } from "../../services/pmo/restaurant"
 
+const Map = null
+
 export interface RestaurantListProps
   extends StackScreenProps<RestaurantsStackParamList, "RestaurantList"> {}
 
