@@ -8,7 +8,6 @@ import Screen from "../../design/Screen"
 import { useThemeMode } from "../../design/theme"
 import Typography from "../../design/Typography"
 import { useAuthentication, useUser } from "../../services/auth"
-import FavoritesSync from "../../services/pmo/favorite"
 
 const Settings: React.FC = () => {
   const { signIn, signOut } = useAuthentication()
