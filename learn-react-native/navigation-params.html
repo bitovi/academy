@@ -775,7 +775,8 @@ const UserProfile: React.FC&lt;ProfileProps&gt; = ({ route }) =&gt; {
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { createStackNavigator } from &quot;@react-navigation/stack&quot;
-import { Pressable, SafeAreaView } from &quot;react-native&quot;
+import { Pressable } from &quot;react-native&quot;
+import { SafeAreaView } from &quot;react-native-safe-area-context&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
 import Box from &quot;./design/Box&quot;
@@ -908,7 +909,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="16-21,24-31,34,40,50-55,120,132,only"></div>
+ <div line-highlight="17-22,25-32,35,41,51-56,121,133,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -1075,7 +1076,8 @@ export default StateList
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { createStackNavigator } from &quot;@react-navigation/stack&quot;
-import { Pressable, SafeAreaView } from &quot;react-native&quot;
+import { Pressable } from &quot;react-native&quot;
+import { SafeAreaView } from &quot;react-native-safe-area-context&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
 import Box from &quot;./design/Box&quot;
@@ -1229,7 +1231,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="32-52,only"></div>
+ <div line-highlight="33-53,only"></div>
 <p>✏️ Update <strong>src/screens/CityList/CityList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;

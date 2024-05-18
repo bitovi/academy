@@ -1851,7 +1851,8 @@ export default DataMigration
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { createStackNavigator } from &quot;@react-navigation/stack&quot;
-import { Pressable, SafeAreaView } from &quot;react-native&quot;
+import { Pressable } from &quot;react-native&quot;
+import { SafeAreaView } from &quot;react-native-safe-area-context&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
 import Box from &quot;./design/Box&quot;
@@ -2016,7 +2017,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="16,156-160,only"></div>
+ <div line-highlight="17,157-161,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, we will learn <a href="security-and-auth.html" title="Learn about OAuth, google-signin, and how to secure your React Native app.">Security and Authentication</a>.</p>

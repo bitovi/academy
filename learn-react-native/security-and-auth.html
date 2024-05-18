@@ -846,7 +846,8 @@ function Button() {
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { createStackNavigator } from &quot;@react-navigation/stack&quot;
-import { Pressable, SafeAreaView } from &quot;react-native&quot;
+import { Pressable } from &quot;react-native&quot;
+import { SafeAreaView } from &quot;react-native-safe-area-context&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
 import Box from &quot;./design/Box&quot;
@@ -1013,7 +1014,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="16,153,only"></div>
+ <div line-highlight="17,154,only"></div>
 <p>✏️ Update <strong>src/env.d.ts</strong> to be:</p>
 <pre><code class="language-ts">/* eslint-disable @typescript-eslint/no-namespace */
 
@@ -1316,7 +1317,8 @@ describe(&quot;AuthProvider&quot;, () =&gt; {
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { createStackNavigator } from &quot;@react-navigation/stack&quot;
-import { Pressable, SafeAreaView } from &quot;react-native&quot;
+import { Pressable } from &quot;react-native&quot;
+import { SafeAreaView } from &quot;react-native-safe-area-context&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
 import Box from &quot;./design/Box&quot;
@@ -1484,7 +1486,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="157-163,only"></div>
+ <div line-highlight="158-164,only"></div>
 <p>✏️ Update <strong>src/screens/Settings/Settings.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
 import { Switch } from &quot;react-native&quot;
