@@ -16,11 +16,11 @@ In this section, you will:
 - Discuss OTA vs AAB updates.
 - How to test new releases.
 
-## Objective 1: Uploading AAB to Google Play store
+## Objective 1: Uploading AAB to Google Play Store
 
 ### Generating an upload key
 
-As mentioned in the previous section, if we want to upload an AAB (Android App Bundle) to the Google Play store, we need to generate an upload key and use it to sign the AAB. The instructions for generating an upload key differ between Windows and macOS, they can be found [here](https://reactnative.dev/docs/signed-apk-android).
+As mentioned in the previous section, if we want to upload an AAB (Android App Bundle) to the Google Play Store, we need to generate an upload key and use it to sign the AAB. The React Native documentation provides [instructions for generating an upload key](https://reactnative.dev/docs/signed-apk-android#generating-an-upload-key) for both Windows and macOS.
 
 ### Configuring Gradle
 
@@ -60,9 +60,9 @@ android {
 ...
 ```
 
-The comprehensive guide to signing an AAB can be found [here](https://reactnative.dev/docs/signed-apk-android).
+Now that we've generated an upload key and configured Gradle to use it, we can generate an AAB file and upload it to the Google Play Store.
 
-Now that we've generated an upload key and configured Gradle to use it, we can generate an AAB file and upload it to the Google Play store.
+Check out the [React Native Android guide](https://reactnative.dev/docs/signed-apk-android) for more information.
 
 ```bash
 npx react-native build-android --mode="release"
@@ -72,21 +72,17 @@ npx react-native build-android --mode="release"
 
 ### Releasing updates
 
-The two main ways to release updates to your app are to either upload a new AAB to the Google Play store or to create a new OTA (over-the-air) update.
+The two main ways to release updates to your app are to either upload a new AAB to the Google Play Store or to create a new OTA (over-the-air) update.
 
 OTA updates allow us to update our app without requiring the user to install a new version from the app store. OTA updates are great for quick deployment for bug fixes or small changes. However, they are limited to JavaScript changes only. The overhead of implementing an OTA process is higher than simply uploading a new AAB to the app store.
 
-Deploying a new AAB to the Google Play store is more suited for updates beyond small bug fixes or changes. With a new AAB we can update native code. Users are familiar with the update process, so deploying a new AAB with a changelog can provide a better user experience when doing major updates.
+Deploying a new AAB to the Google Play Store is more suited for updates beyond small bug fixes or changes. With a new AAB we can update native code. Users are familiar with the update process, so deploying a new AAB with a changelog can provide a better user experience when doing major updates.
 
 Both OTA and AAB updates have their place in the app update process. It's up to you to decide whether one or the other, or a mix of both, is best for your app.
 
 ### Testing new releases
 
-Both the Google Play store and the Apple App store allow you to test new releases before making them available to the public. This is a great way to ensure that your app is working as expected before releasing it to the public.
-
-For the Google Play store, you can learn about Internal Testing [here](https://play.google.com/console/about/internal-testing/).
-
-For the Apple App store, you can learn about TestFlight [here](https://developer.apple.com/testflight/).
+Both the Google Play Store and the Apple App Store allow you to test new releases before making them available to the public. This is a great way to ensure that your app is working as expected before releasing it to the public. To learn about testing new releases with the Google Play Store, check out [Internal Testing](https://play.google.com/console/about/internal-testing/). If you are releasing your app on the Apple App Store, you can use [TestFlight](https://developer.apple.com/testflight/).
 
 ## Next steps
 
