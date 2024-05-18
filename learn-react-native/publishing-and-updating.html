@@ -681,22 +681,58 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this section, you will:</p>
 <ul>
-<li>Discover the process for publishing an application.</li>
-<li>Hammer out requirements for publishing on different hosts for apps.</li>
-<li>Create a new build to update an app.</li>
+<li>Generate an upload key.</li>
+<li>Configure Gradle to use the upload key.</li>
+<li>Sign your AAB with the upload key.</li>
+<li>Discuss OTA vs AAB updates.</li>
+<li>How to test new releases.</li>
 </ul>
-<h2>Objective 1: Steps for publishing an application</h2>
-<p>TODO</p>
-<h3>Concept TODO</h3>
-<p>TODO</p>
-<h2>Objective 2: Testing, QA, and guidelines for Google Play Store and Apple App Store</h2>
-<p>TODO</p>
-<h3>Concept TODO 2</h3>
-<p>TODO</p>
-<h2>Objective 3: Updating an existing application</h2>
-<p>TODO</p>
-<h3>Concept TODO 3</h3>
-<p>TODO</p>
+<h2>Objective 1: Uploading AAB to Google Play Store</h2>
+<h3>Generating an upload key</h3>
+<p>As mentioned in the previous section, if we want to upload an AAB (Android App Bundle) to the Google Play Store, we need to generate an upload key and use it to sign the AAB. The React Native documentation provides <a href="https://reactnative.dev/docs/signed-apk-android#generating-an-upload-key">instructions for generating an upload key</a> for both Windows and macOS.</p>
+<h3>Configuring Gradle</h3>
+<p>Now that we've generated an upload key, we need to configure Gradle to use it. First thing we will do is move the upload key keystore file to the <code>android/app</code> directory of our project. Next, we will update the <code>~/.gradle/gradle.properties</code> or <code>android/gradle.properties</code> to add the following:</p>
+<pre><code>MYAPP_UPLOAD_STORE_FILE=my-upload-key.keystore # Replace with the name of your keystore file
+MYAPP_UPLOAD_KEY_ALIAS=my-key-alias # Replace with the alias you set
+MYAPP_UPLOAD_STORE_PASSWORD=your-keystore-password  # Replace with the keystore password you set
+MYAPP_UPLOAD_KEY_PASSWORD=your-key-password  # Replace with the key password you set
+</code></pre>
+<p>Lastly, we will upadte the <code>android/app/build.gradle</code> file to add the following:</p>
+<pre><code class="language-gradle">...
+android {
+    ...
+    defaultConfig { ... }
+    signingConfigs {
+        release {
+            if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
+                storeFile file(MYAPP_UPLOAD_STORE_FILE)
+                storePassword MYAPP_UPLOAD_STORE_PASSWORD
+                keyAlias MYAPP_UPLOAD_KEY_ALIAS
+                keyPassword MYAPP_UPLOAD_KEY_PASSWORD
+            }
+        }
+    }
+    buildTypes {
+        release {
+            ...
+            signingConfig signingConfigs.release
+        }
+    }
+}
+...
+</code></pre>
+<p>Now that we've generated an upload key and configured Gradle to use it, we can generate an AAB file and upload it to the Google Play Store.</p>
+<p>Check out the <a href="https://reactnative.dev/docs/signed-apk-android">React Native Android guide</a> for more information.</p>
+<pre><code class="language-bash">npx react-native build-android --mode=&quot;release&quot;
+</code></pre>
+<h2>Objective 2: App updates and versioning</h2>
+<h3>Releasing updates</h3>
+<p>The two main ways to release updates to your app are to either upload a new AAB to the Google Play Store or to create a new OTA (over-the-air) update.</p>
+<p>OTA updates allow us to update our app without requiring the user to install a new version from the app store. OTA updates are great for quick deployment for bug fixes or small changes. However, they are limited to JavaScript changes only. The overhead of implementing an OTA process is higher than simply uploading a new AAB to the app store.</p>
+<p>Deploying a new AAB to the Google Play Store is more suited for updates beyond small bug fixes or changes. With a new AAB we can update native code. Users are familiar with the update process, so deploying a new AAB with a changelog can provide a better user experience when doing major updates.</p>
+<p>Both OTA and AAB updates have their place in the app update process. It's up to you to decide whether one or the other, or a mix of both, is best for your app.</p>
+<h3>Testing new releases</h3>
+<p>Both the Google Play Store and the Apple App Store allow you to test new releases before making them available to the public. This is a great way to ensure that your app is working as expected before releasing it to the public. To learn about testing new releases with the Google Play Store, check out <a href="https://play.google.com/console/about/internal-testing/">Internal Testing</a>. If you are releasing your app on the Apple App Store, you can use <a href="https://developer.apple.com/testflight/">TestFlight</a>.</p>
 <h2>Next steps</h2>
 <p>Congrats, you’ve completed this Bitovi Academy training!</p>
 
