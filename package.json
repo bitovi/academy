@@ -20,7 +20,8 @@
     "lint:fix": "npm run lint:content:fix && npm run lint:exercises:fix",
     "rebuild-assets": "bit-docs -dfs",
     "start": "concurrently -k \"npm:dev\" \"http-server -c -1\"",
-    "test": "node ./exercises/tests.mjs"
+    "test": "node ./exercises/tests.mjs",
+    "test:benchmark": "node ./exercises/tests.mjs --benchmark"
   },
   "bit-docs": {
     "dependencies": {
