@@ -131,7 +131,7 @@ When using React Native with environment variables, you can utilize a package li
 
 Here’s how we can use it: in our project’s root directory, we can create a `.env` file with variables like this:
 
-@sourceref ../../../exercises/react-native/13-http-requests/01-problem/.env.example
+@sourceref ../../../exercises/react-native/13-http-requests/01-problem/.env
 
 Then we can access this variable using `process.env.PMO_API`:
 
@@ -177,9 +177,15 @@ npm install react-native-dotenv@3
 
 @diff ../../../exercises/react-native/12-navigation-params/01-solution/babel.config.js ../../../exercises/react-native/13-http-requests/01-problem/babel.config.js
 
-✏️ Create **.env** and update it to be:
+✏️ Create **.env.example** and update it to be:
 
 @sourceref ../../../exercises/react-native/13-http-requests/01-problem/.env.example
+
+✏️ Duplicate **.env.example** to **.env** in your project.
+
+It’s always a good idea to keep a `.env.example` file up to date (and committed to git) in your project, then include the actual secrets in your local `.env` file (and not committed to git).
+
+We do not have any secret values yet, so our `.env` can be an exact duplicate of the `.env.example` file.
 
 ✏️ Next add an API script to your `package.json`
 

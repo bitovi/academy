@@ -234,11 +234,11 @@ npm install @react-native-google-signin/google-signin@11
 
 @diff ../../../exercises/react-native/15-async-storage/02-solution/src/env.d.ts ../../../exercises/react-native/16-security/01-problem/src/env.d.ts only
 
-✏️ Update **.env** to be:
+✏️ Update **.env.example** to be:
 
 @diff ../../../exercises/react-native/15-async-storage/02-solution/.env.example ../../../exercises/react-native/16-security/01-problem/.env.example only
 
-✏️ Update your `GOOGLE_OAUTH_CLIENT_ID` with your key.
+✏️ Update **.env** to include your `GOOGLE_OAUTH_CLIENT_ID` key.
 
 ✏️ Update **src/screens/Settings/Settings.tsx** to be:
 
