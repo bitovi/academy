@@ -1018,46 +1018,47 @@ const data = await response.json()
   &quot;version&quot;: &quot;0.0.1&quot;,
   &quot;private&quot;: true,
   &quot;scripts&quot;: {
-    &quot;typecheck&quot;: &quot;tsc --noEmit&quot;,
+    &quot;android&quot;: &quot;react-native run-android&quot;,
+    &quot;android:linkLocalhost&quot;: &quot;adb reverse tcp:7070 tcp:7070&quot;,
+    &quot;api&quot;: &quot;npm run android:linkLocalhost &amp;&amp; place-my-order-api --port 7070&quot;,
+    &quot;clean&quot;: &quot;rm -rf tsconfig.tsbuildinfo coverage android/.gradle android/build android/app/build node_modules/.cache&quot;,
+    &quot;depcheck&quot;: &quot;depcheck .&quot;,
+    &quot;devtools&quot;: &quot;react-devtools&quot;,
     &quot;eslint&quot;: &quot;eslint *.ts *.js src&quot;,
     &quot;eslint:fix&quot;: &quot;eslint --fix *.ts *.js src&quot;,
+    &quot;ios&quot;: &quot;react-native run-ios&quot;,
+    &quot;lint&quot;: &quot;npm run eslint &amp;&amp; npm run prettier&quot;,
+    &quot;lint:fix&quot;: &quot;npm run eslint:fix &amp;&amp; npm run prettier:fix&quot;,
+    &quot;precheck&quot;: &quot;npm run typecheck &amp;&amp; npm run lint &amp;&amp; npm run depcheck &amp;&amp; npm test&quot;,
     &quot;prettier&quot;: &quot;prettier --check *.ts *.js *.json src&quot;,
     &quot;prettier:fix&quot;: &quot;prettier --write *.ts *.js *.json src&quot;,
-    &quot;depcheck&quot;: &quot;depcheck .&quot;,
+    &quot;start&quot;: &quot;react-native start --reset-cache --experimental-debugger&quot;,
     &quot;test&quot;: &quot;jest&quot;,
-    &quot;test:watch&quot;: &quot;jest --watch&quot;,
     &quot;test:inspect&quot;: &quot;node --inspect-brk ./node_modules/.bin/jest --watch&quot;,
-    &quot;precheck&quot;: &quot;npm run typecheck &amp;&amp; npm run eslint &amp;&amp; npm run prettier &amp;&amp; npm run depcheck &amp;&amp; npm run test&quot;,
-    &quot;clean&quot;: &quot;rm -rf tsconfig.tsbuildinfo coverage android/.gradle android/build android/app/build node_modules/.cache&quot;,
-    &quot;devtools&quot;: &quot;react-devtools&quot;,
-    &quot;linkLocalhost:android&quot;: &quot;adb reverse tcp:7070 tcp:7070&quot;,
-    &quot;api&quot;: &quot;npm run linkLocalhost:android &amp;&amp; place-my-order-api --port 7070&quot;,
-    &quot;android&quot;: &quot;react-native run-android&quot;,
-    &quot;ios&quot;: &quot;react-native run-ios&quot;,
-    &quot;start&quot;: &quot;react-native start --reset-cache --experimental-debugger&quot;
+    &quot;test:watch&quot;: &quot;jest --watch&quot;,
+    &quot;typecheck&quot;: &quot;tsc --noEmit&quot;
   },
   &quot;dependencies&quot;: {
     &quot;@react-navigation/bottom-tabs&quot;: &quot;^6.5.20&quot;,
     &quot;@react-navigation/native&quot;: &quot;^6.1.17&quot;,
     &quot;@react-navigation/stack&quot;: &quot;^6.3.29&quot;,
     &quot;react&quot;: &quot;18.2.0&quot;,
-    &quot;react-native&quot;: &quot;0.73.6&quot;,
-    &quot;react-native-dotenv&quot;: &quot;^3.4.11&quot;,
-    &quot;react-native-gesture-handler&quot;: &quot;^2.16.0&quot;,
+    &quot;react-native&quot;: &quot;0.74.1&quot;,
+    &quot;react-native-gesture-handler&quot;: &quot;^2.16.2&quot;,
     &quot;react-native-safe-area-context&quot;: &quot;^4.10.1&quot;,
-    &quot;react-native-screens&quot;: &quot;^3.30.1&quot;,
-    &quot;react-native-vector-icons&quot;: &quot;^10.0.3&quot;
+    &quot;react-native-screens&quot;: &quot;^3.31.1&quot;,
+    &quot;react-native-vector-icons&quot;: &quot;^10.1.0&quot;
   },
   &quot;devDependencies&quot;: {
     &quot;@babel/core&quot;: &quot;^7.20.0&quot;,
     &quot;@babel/preset-env&quot;: &quot;^7.20.0&quot;,
     &quot;@babel/runtime&quot;: &quot;^7.20.0&quot;,
     &quot;@bitovi/eslint-config&quot;: &quot;^1.8.0&quot;,
-    &quot;@react-native/babel-preset&quot;: &quot;0.73.21&quot;,
-    &quot;@react-native/eslint-config&quot;: &quot;0.73.2&quot;,
-    &quot;@react-native/metro-config&quot;: &quot;0.73.5&quot;,
-    &quot;@react-native/typescript-config&quot;: &quot;0.73.1&quot;,
-    &quot;@testing-library/react-native&quot;: &quot;^12.4.5&quot;,
+    &quot;@react-native/babel-preset&quot;: &quot;0.74.83&quot;,
+    &quot;@react-native/eslint-config&quot;: &quot;0.74.83&quot;,
+    &quot;@react-native/metro-config&quot;: &quot;0.74.83&quot;,
+    &quot;@react-native/typescript-config&quot;: &quot;0.74.83&quot;,
+    &quot;@testing-library/react-native&quot;: &quot;^12.5.0&quot;,
     &quot;@types/jest&quot;: &quot;^29.5.12&quot;,
     &quot;@types/react&quot;: &quot;^18.2.6&quot;,
     &quot;@types/react-native-vector-icons&quot;: &quot;^6.4.18&quot;,
@@ -1069,7 +1070,8 @@ const data = await response.json()
     &quot;jest&quot;: &quot;^29.6.3&quot;,
     &quot;place-my-order-api&quot;: &quot;^1.7.0&quot;,
     &quot;prettier&quot;: &quot;2.8.8&quot;,
-    &quot;react-devtools&quot;: &quot;^5.1.0&quot;,
+    &quot;react-devtools&quot;: &quot;^5.2.0&quot;,
+    &quot;react-native-dotenv&quot;: &quot;^3.4.11&quot;,
     &quot;react-test-renderer&quot;: &quot;18.2.0&quot;,
     &quot;typescript&quot;: &quot;5.0.4&quot;
   },
@@ -1079,7 +1081,7 @@ const data = await response.json()
 }
 
 </code></pre>
- <div line-highlight="18-19,30,55,only"></div>
+ <div line-highlight="7-8,56,59,only"></div>
 <p>✏️ In a <strong>new</strong> terminal window, start the API server by running:</p>
 <pre><code class="language-bash">npm run api
 </code></pre>
