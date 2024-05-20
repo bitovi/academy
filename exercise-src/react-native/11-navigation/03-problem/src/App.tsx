@@ -90,7 +90,7 @@ const AppNavigator: React.FC = () => {
 
 const App: React.FC = () => {
   return (
-    <SafeAreaView style={{ height: "100%", width: "100%" }}>
+    <SafeAreaView style={{ flex: 1 }}>
       <ThemeProvider>
         <NavigationContainer>
           <AppNavigator />

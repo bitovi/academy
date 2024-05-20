@@ -3,7 +3,7 @@ import {SafeAreaView, ScrollView, Text, View} from 'react-native';
 
 function App(): JSX.Element {
   return (
-    <SafeAreaView style={{ height: "100%", width: "100%" }}>
+    <SafeAreaView style={{ flex: 1 }}>
       <ScrollView>
         <View>
           <Text>Place My Order: Coming Soon!</Text>

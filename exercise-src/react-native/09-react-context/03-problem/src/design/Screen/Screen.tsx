@@ -12,11 +12,10 @@ const Screen: React.FC<ScreenProps> = ({ style, children, ...props }) => {
   const { palette } = useTheme()
 
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <Box
-        padding="s"
         style={{
-          height: "100%",
+          flex: 1,
           backgroundColor: palette.screen.soft,
         }}
         {...props}
