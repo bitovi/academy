@@ -1,6 +1,11 @@
-import { fireEvent, render, screen } from "@testing-library/react-native"
+import { userEvent, render, screen } from "@testing-library/react-native"
 
 import FormTextField from "./FormTextField"
+
+beforeEach(() => {
+  jest.resetAllMocks()
+  jest.useFakeTimers()
+})
 
 describe("Components/FormTextField", () => {
   it("renders", () => {
@@ -12,10 +17,10 @@ describe("Components/FormTextField", () => {
         onChange={handleChangeMock}
       />,
     )
+    const user = userEvent.setup()
 
     expect(screen.getByText(/Hello/)).toBeOnTheScreen()
-    expect(screen.getByLabelText(/Hello/)).toBeOnTheScreen()
-    fireEvent.changeText(screen.getByLabelText(/Hello/i), "test")
+    await user.type(screen.getByLabelText(/Hello/i), "test")
     expect(handleChangeMock).toHaveBeenCalledWith("test")
   })
 })

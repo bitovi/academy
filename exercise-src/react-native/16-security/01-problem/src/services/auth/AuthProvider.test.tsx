@@ -1,5 +1,5 @@
 import { GoogleSigninButton } from "@react-native-google-signin/google-signin"
-import { render, screen, fireEvent } from "@testing-library/react-native"
+import { render, screen, userEvent } from "@testing-library/react-native"
 import { FC } from "react"
 import { View, Text } from "react-native"
 
@@ -18,6 +18,11 @@ beforeAll(() => {
 })
 afterAll(() => {
   global.fetch = oldFetch
+})
+
+beforeEach(() => {
+  jest.resetAllMocks()
+  jest.useFakeTimers()
 })
 
 describe("Services/Auth/AuthProvider", () => {
@@ -47,14 +52,16 @@ describe("Services/Auth/AuthProvider", () => {
       </AuthProvider>,
     )
 
+    const user = userEvent.setup()
+
     expect(await screen.findByText(/mockId/i)).toBeOnTheScreen()
-    fireEvent.press(screen.getByText(/Sign Out/i))
+    user.press(screen.getByText(/Sign Out/i))
 
     expect(
       await screen.findByText(/Mock Sign in with Google/i),
     ).toBeOnTheScreen()
 
-    fireEvent.press(screen.getByText(/Mock Sign in with Google/i))
+    user.press(screen.getByText(/Mock Sign in with Google/i))
     expect(await screen.findByText(/Sign Out/i)).toBeOnTheScreen()
   })
 })
