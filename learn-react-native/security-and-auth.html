@@ -1032,12 +1032,13 @@ export {}
 
 </code></pre>
  <div line-highlight="8,only"></div>
-<p>✏️ Update <strong>.env</strong> to be:</p>
-<pre><code class="language-example">PMO_API=http://localhost:7070
-GOOGLE_OAUTH_CLIENT_ID= 
+<p>✏️ Update <strong>.env.example</strong> to be:</p>
+<pre><code class="language-example">GOOGLE_OAUTH_CLIENT_ID= 
+PMO_API=http://localhost:7070
+PMO_ASSETS=https://www.place-my-order.com/
 </code></pre>
- <div line-highlight="2,only"></div>
-<p>✏️ Update your <code>GOOGLE_OAUTH_CLIENT_ID</code> with your key.</p>
+ <div line-highlight="1,only"></div>
+<p>✏️ Update <strong>.env</strong> to include your <code>GOOGLE_OAUTH_CLIENT_ID</code> key.</p>
 <p>✏️ Update <strong>src/screens/Settings/Settings.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
 import { FC } from &quot;react&quot;
