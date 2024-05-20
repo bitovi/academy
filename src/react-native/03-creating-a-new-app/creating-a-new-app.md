@@ -126,7 +126,7 @@ npm install --save-dev @bitovi/eslint-config@1 depcheck@1
 ✏️ Update **package.json** to be:
 
 @sourceref ../../../exercises/react-native/03-creating-a-new-app/03-solution/package.json
-@highlight 7-10, 12-17, 21, only
+@highlight 7-10, 12-17, 21, 49, only
 
 ✏️ Update **.prettierrc.js** to be:
 
