@@ -683,7 +683,9 @@ covering CanJS core libraries.">
 <ul>
 <li>Install a code editor.</li>
 <li>Install Node.js and npm.</li>
-<li>Install the JDK, Android Studio, and other React Native dependencies.</li>
+<li>Install the Java Development Kit.</li>
+<li>Install the Android SDK.</li>
+<li>Configure environment variables.</li>
 <li>Launch the Android emulator.</li>
 </ul>
 <h2>Objective 1: Install a code editor</h2>
@@ -698,7 +700,7 @@ It’s also used by cloud environments like CodeSandbox and StackBlitz, making i
 </ul>
 <h2>Set up the React Native CLI</h2>
 <p>There are multiple ways to develop React Native applications, including Expo Go and the React Native CLI.</p>
-<p>We recommend using the <a href="https://reactnative.dev/docs/environment-setup?guide=native">React Native CLI</a> because Expo Go has limitations that might cause you to rearchitect your application as soon as you run into them.
+<p>We recommend using the <a href="https://reactnative.dev/docs/set-up-your-environment">React Native CLI</a> because Expo Go has limitations that might cause you to rearchitect your application as soon as you run into them.
 For example, this course implements <a href="./security-and-auth.html">authentication</a> that requires a native dependency that cannot be used in Expo Go.</p>
 <p>You must have one of these two operating systems:</p>
 <ul>
@@ -717,14 +719,14 @@ Building for iOS require a macOS computer, so this course only focuses on buildi
 <blockquote>
 <p><strong>Using Windows?</strong> <a href="#windows">Skip to the Windows setup instructions.</a></p>
 </blockquote>
-<p>Follow the <a href="https://reactnative.dev/docs/environment-setup?guide=native&amp;os=macos&amp;platform=android">React Native CLI Quickstart</a> instructions for macOS.</p>
+<p>Follow the <a href="https://reactnative.dev/docs/set-up-your-environment?os=macos&amp;platform=android">React Native CLI Quickstart</a> instructions for macOS.</p>
 <p>Be sure to follow the quickstart instructions for:</p>
 <ul>
 <li>Watchman</li>
 <li>Java Development Kit</li>
 <li>Install Android Studio</li>
 <li>Install the Android SDK</li>
-<li>Configure the ANDROID_HOME environment variable</li>
+<li>Configure the <code>ANDROID_HOME</code> environment variable</li>
 </ul>
 <p>We will walk through these steps in detail in the sections below.</p>
 <h3>Objective 2: Install Node.js and npm</h3>
@@ -756,7 +758,7 @@ Use the default selections and proceed with the installation.</p>
 <h5>Homebrew</h5>
 <p>✏️ Follow the “Install Homebrew” instructions on <a href="https://brew.sh">Homebrew’s website</a>.</p>
 <p>After running the installer, be sure to follow the instructions it prints:</p>
-<pre><code>Warning: /opt/homebrew/bin is not in your PATH.
+<pre><code class="language-shell">Warning: /opt/homebrew/bin is not in your PATH.
   Instructions on how to configure your shell for Homebrew
   can be found in the 'Next steps' section below.
 
@@ -767,11 +769,11 @@ Use the default selections and proceed with the installation.</p>
 <div line-highlight='6-7'></div>
 <h5>Watchman</h5>
 <p>✏️ Use Homebrew to install Watchman:</p>
-<pre><code>brew install watchman
+<pre><code class="language-shell">brew install watchman
 </code></pre>
 <h5>Java Development Kit</h5>
 <p>✏️ Install the Java Development Kit with these commands:</p>
-<pre><code>brew tap homebrew/cask-versions
+<pre><code class="language-shell">brew tap homebrew/cask-versions
 brew install --cask zulu17
 
 # Get path to where cask was installed to double-click installer
@@ -782,7 +784,7 @@ brew info --cask zulu17
 </blockquote>
 <h4>Verify 3</h4>
 <p>✏️ Run the following command to verify the JDK is installed correctly:</p>
-<pre><code>java -version
+<pre><code class="language-shell">java -version
 </code></pre>
 <p>The output of the command should be something like:</p>
 <pre><code>openjdk version &quot;17.0.10&quot; 2024-01-16 LTS
@@ -790,13 +792,30 @@ OpenJDK Runtime Environment Zulu17.48+15-CA (build 17.0.10+7-LTS)
 OpenJDK 64-Bit Server VM Zulu17.48+15-CA (build 17.0.10+7-LTS, mixed mode, sharing)
 </code></pre>
 <p>The <code>openjdk version</code> should be major version <code>17</code> (and not higher).</p>
+<p>✏️ Run the following command in PowerShell to verify Java is installed correctly:</p>
+<pre><code class="language-shell">which java
+</code></pre>
+<p>The output of the command should be something like:</p>
+<pre><code>/usr/bin/java
+</code></pre>
 <h3>Objective 4: Install the Android SDK</h3>
-<p>Follow the instructions in the quickstart guide.</p>
-<h4>Install the Android SDK</h4>
-<p>Follow the instructions in the quickstart guide.</p>
+<p>Follow the “Android development environment” instructions in the <a href="https://reactnative.dev/docs/set-up-your-environment?os=macos&amp;platform=android#installing-dependencies">quickstart guide</a>.</p>
 <h3>Objective 5: Configure environment variables</h3>
-<h4>Configure the ANDROID_HOME environment variable</h4>
-<p>Follow the instructions in the quickstart guide.</p>
+<h4>Configure the <code>ANDROID_HOME</code> environment variable</h4>
+<p>Follow the “Configure the <code>ANDROID_HOME</code> environment variable” instructions in the <a href="https://reactnative.dev/docs/set-up-your-environment?os=macos&amp;platform=android#installing-dependencies">quickstart guide</a>.</p>
+<h4>Verify 5</h4>
+<p>✏️ Run the following command to verify that <code>ANDROID_HOME</code> is configured correctly:</p>
+<pre><code class="language-shell">echo $ANDROID_HOME
+</code></pre>
+<p>The output of the command should be something like:</p>
+<pre><code>/Users/bitovi/Library/Android/sdk
+</code></pre>
+<p>✏️ Run the following command to verify that <code>platform-tools</code> is installed correctly:</p>
+<pre><code class="language-shell">echo $PATH | tr ':' '\n' | grep 'platform-tools'
+</code></pre>
+<p>The output of the command should be something like:</p>
+<pre><code>/Users/bitovi/Library/Android/sdk/platform-tools
+</code></pre>
 <h3>Objective 6: Launch the Android emulator</h3>
 <p><img alt="Screenshot of the Android Emulator running in Android Studio" src="../static/img/react-native/02-setting-up-your-environment/06-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
 <h4>Setup 6</h4>
@@ -818,7 +837,7 @@ OpenJDK 64-Bit Server VM Zulu17.48+15-CA (build 17.0.10+7-LTS, mixed mode, shari
 <blockquote>
 <p><strong>Using macOS?</strong> <a href="#macos">Skip to the macOS setup instructions.</a></p>
 </blockquote>
-<p>We will follow the <a href="https://reactnative.dev/docs/environment-setup?guide=native&amp;os=windows&amp;platform=android">React Native CLI Quickstart</a> instructions for buliding Android apps on Windows.</p>
+<p>We will follow the <a href="https://reactnative.dev/docs/set-up-your-environment?os=windows&amp;platform=android">React Native CLI Quickstart</a> instructions for buliding Android apps on Windows.</p>
 <p>After following the objectives below, you will:</p>
 <ul>
 <li>Install Node.js and npm.</li>
@@ -845,15 +864,15 @@ to install Node because it allows you to manage multiple versions of Node for di
 <p>Download the latest <code>nvm-setup.exe</code> file from the <a href="https://github.com/coreybutler/nvm-windows/releases">releases page</a>.</p>
 <p>After installing NVM for Windows, open a new PowerShell window with administrator permissions.</p>
 <p>✏️ Run the following command in PowerShell to install Node 20:</p>
-<pre><code>nvm install 20
+<pre><code class="language-shell">nvm install 20
 </code></pre>
 <p>Always <a href="https://www.howtogeek.com/194041/how-to-open-the-command-prompt-as-administrator-in-windows-10/">open PowerShell as an administrator</a>.</p>
 <p>✏️ Run the following command in PowerShell to use the version of Node that you just installed:</p>
-<pre><code>nvm use 20
+<pre><code class="language-shell">nvm use 20
 </code></pre>
 <h4>Verify 2</h4>
 <p>✏️ If you installed NVM for Windows, run the following command in PowerShell to verify it’s installed correctly:</p>
-<pre><code>nvm --version
+<pre><code class="language-shell">nvm --version
 </code></pre>
 <p>The output of the command will be the current version of NVM for Windows. It should be <code>1.1.12</code> or higher.</p>
 <p>✏️ Run the following command in a terminal to verify Node.js is installed correctly.</p>
@@ -869,10 +888,10 @@ to install Node because it allows you to manage multiple versions of Node for di
 <h5>Chocolatey</h5>
 <p><a href="https://chocolatey.org/install">Install Chocolatey</a> before installing the JDK.</p>
 <p>✏️ Run the following command in PowerShell to check the current execution policy:</p>
-<pre><code>Get-ExecutionPolicy
+<pre><code class="language-shell">Get-ExecutionPolicy
 </code></pre>
 <p>If it’s set to <code>Restricted</code>, run the following:</p>
-<pre><code>Set-ExecutionPolicy AllSigned
+<pre><code class="language-shell">Set-ExecutionPolicy AllSigned
 </code></pre>
 <p>Be sure to select <code>[A]</code> for all.</p>
 <pre><code>[A] Yes to All
@@ -881,24 +900,24 @@ to install Node because it allows you to manage multiple versions of Node for di
 <pre><code>AllSigned
 </code></pre>
 <p>✏️ Next, download and install Chocolatey:</p>
-<pre><code>Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+<pre><code class="language-shell">Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 </code></pre>
 <h5>JDK</h5>
 <p>✏️ Close PowerShell and open it again.</p>
 <p>This is required before installing the JDK.</p>
 <p>✏️ Run the following command in PowerShell to install JDK 17 with Chocolatey:</p>
-<pre><code>choco install -y microsoft-openjdk17
+<pre><code class="language-shell">choco install -y microsoft-openjdk17
 </code></pre>
 <h4>Verify 3</h4>
 <p>✏️ Run the following command in PowerShell to verify Chocolatey is installed correctly:</p>
-<pre><code>choco
+<pre><code class="language-shell">choco
 </code></pre>
 <p>The output of the command should be something like:</p>
 <pre><code>Chocolatey v2.2.2
 Please run 'choco -?' or 'choco &lt;command&gt; -?' for help menu.
 </code></pre>
 <p>✏️ Run the following command in PowerShell to verify the version of Java installed:</p>
-<pre><code>java -version
+<pre><code class="language-shell">java -version
 </code></pre>
 <p>The output of the command should be something like:</p>
 <pre><code>openjdk version &quot;17.0.11&quot; 2024-04-16 LTS
@@ -907,13 +926,13 @@ OpenJDK 64-Bit Server VM Microsoft-9388408 (build 17.0.11+9-LTS, mixed mode, sha
 </code></pre>
 <p>The <code>openjdk version</code> should be major version <code>17</code> (and not higher).</p>
 <p>✏️ Run the following command in PowerShell to verify Java is installed correctly:</p>
-<pre><code>(Get-ChildItem Env:PATH).Value -split ';' | Where-Object { $_ -like '*jdk*' }
+<pre><code class="language-shell">(Get-ChildItem Env:PATH).Value -split ';' | Where-Object { $_ -like '*jdk*' }
 </code></pre>
 <p>The output of the command should be something like:</p>
 <pre><code>C:\Program Files\Microsoft\jdk-17.0.11.9-hotspot\bin
 </code></pre>
 <p>✏️ Run the following command in PowerShell to verify that <code>JAVA_HOME</code> is configured correctly:</p>
-<pre><code>Get-ChildItem Env:JAVA_HOME
+<pre><code class="language-shell">Get-ChildItem Env:JAVA_HOME
 </code></pre>
 <p>The output of the command should be something like:</p>
 <pre><code>Name                           Value
@@ -950,16 +969,16 @@ These tools help you access device features like the camera and GPS, handle user
 <li>Click “Apply” to install the SDKs.</li>
 </ol>
 <h3>Objective 5: Configure environment variables</h3>
-<h4>Configure the ANDROID_HOME environment variable</h4>
+<h4>Configure the <code>ANDROID_HOME</code> environment variable</h4>
 <h4>Setup 5</h4>
 <p>✏️ Follow the instructions in the quickstart guide to:</p>
 <ul>
-<li>Configure the ANDROID_HOME environment variable.</li>
+<li>Configure the <code>ANDROID_HOME</code> environment variable.</li>
 <li>Add platform-tools to Path.</li>
 </ul>
 <h4>Verify 5</h4>
 <p>✏️ Run the following command in PowerShell to verify that <code>ANDROID_HOME</code> is configured correctly:</p>
-<pre><code>Get-ChildItem Env:ANDROID_HOME
+<pre><code class="language-shell">Get-ChildItem Env:ANDROID_HOME
 </code></pre>
 <p>The output of the command should be something like:</p>
 <pre><code>Name                           Value
@@ -967,7 +986,7 @@ These tools help you access device features like the camera and GPS, handle user
 ANDROID_HOME                   C:\Users\bitovi\AppData\Local\Android\Sdk
 </code></pre>
 <p>✏️ Run the following command in PowerShell to verify that <code>platform-tools</code> is installed correctly:</p>
-<pre><code>(Get-ChildItem Env:PATH).Value -split ';' | Where-Object { $_ -like '*platform-tools*' }
+<pre><code class="language-shell">(Get-ChildItem Env:PATH).Value -split ';' | Where-Object { $_ -like '*platform-tools*' }
 </code></pre>
 <p>The output of the command should be something like:</p>
 <pre><code>C:\Users\bitovi\AppData\Local\Android\Sdk\platform-tools
