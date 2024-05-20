@@ -84,11 +84,21 @@ If a `node_modules` folder is left inside `src`, it will be processed as content
 
 ### Testing the exercises
 
-The test script will look inside the `exercises` folder folder any `-solution` folder that has a `package.json`, then install the dependencies and run the tests:
+The test script will look inside the `exercises` folder for any `-solution` folder that has a `package.json`, then install the dependencies and run the tests:
 
 ```sh
 npm test
 ```
+
+It will run up to three of the tests in parallel at a time. This is set in the test script.
+
+To benchmark how many parallel tests can be run at a time, run:
+
+```sh
+npm run test:benchmark
+```
+
+This command will run the tests with various levels of parallelism and print the results at the end.
 
 ### Building
 

@@ -1,6 +1,14 @@
 import fs from 'fs';
 import path from 'path';
 import { exec } from 'child_process';
+import os from 'os';
+
+// Parse command line arguments
+const args = process.argv.slice(2);
+const runBenchmark = args.includes('--benchmark');
+if (runBenchmark) {
+    console.info('Running benchmark…')
+}
 
 /**
  * Executes a command in a given directory.
@@ -26,60 +34,76 @@ function executeCommand(command, directory) {
 }
 
 /**
- * Process all solution folders within a page directory.
+ * Process a single solution folder.
  *
- * @param {string} pageDirectory The page directory path.
+ * @param {string} solutionDirectory The solution directory path.
  */
-async function processSolutions(pageDirectory) {
-    const solutionDirectories = fs.readdirSync(pageDirectory, { withFileTypes: true })
-        .filter(directory => {
-            return directory.isDirectory() && directory.name.endsWith('-solution');
-        })
-        .map(directory => {
-            return path.join(pageDirectory, directory.name);
-        });
+async function processSolution(solutionDirectory) {
+    const relativeDirectory = path.relative(import.meta.dirname, solutionDirectory);
+    const packageJsonPath = path.join(solutionDirectory, 'package.json');
+    if (fs.existsSync(packageJsonPath)) {
+        console.info(`Found package.json in ${relativeDirectory}`);
 
-    for (const solutionDirectory of solutionDirectories) {
-        const relativeDirectory = path.relative(import.meta.dirname, solutionDirectory)
-        const packageJsonPath = path.join(solutionDirectory, 'package.json');
-        if (fs.existsSync(packageJsonPath)) {
-            console.info(`Found package.json in ${relativeDirectory}`);
+        const { scripts } = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
+        const script = 'test';
+        if (!scripts[script]) {
+            console.info(`Script not found in ${relativeDirectory}`);
+            return;
+        }
 
-            const { scripts } = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
-            const script = 'test';
-            if (!scripts[script]) {
-                console.info(`Script not found in ${relativeDirectory}`);
-                continue;
-            }
-
-            await executeCommand('npm ci', solutionDirectory);
-            await executeCommand(`npm run ${script}`, solutionDirectory);
-            try {
-                await executeCommand('rm -rf node_modules', solutionDirectory);
-            } catch (error) {
-                console.warn('Ignoring error while deleting node_modules:', error);
-            }
-            console.info("");
+        await executeCommand('npm ci', solutionDirectory);
+        await executeCommand(`npm run ${script}`, solutionDirectory);
+        try {
+            await executeCommand('rm -rf node_modules', solutionDirectory);
+        } catch (error) {
+            console.warn('Ignoring error while deleting node_modules:', error);
         }
     }
 }
 
 /**
- * Process all pages within a course directory.
+ * Collect all solution folders within a directory.
  *
- * @param {string} courseDirectory The course directory path.
+ * @param {string} directory The directory path.
+ * @returns {string[]} Array of solution folder paths.
  */
-async function processPages(courseDirectory) {
-    const pageDirectories = fs.readdirSync(courseDirectory, { withFileTypes: true })
-        .filter(directory => {
-            return directory.isDirectory();
-        })
-        .map(directory => {
-            return path.join(courseDirectory, directory.name);
-        });
+function collectSolutionFolders(directory) {
+    const solutionFolders = [];
 
-    for (const pageDirectory of pageDirectories) {
-        await processSolutions(pageDirectory);
+    const collect = (currentPath) => {
+        const entries = fs.readdirSync(currentPath, { withFileTypes: true });
+
+        for (const entry of entries) {
+            const entryPath = path.join(currentPath, entry.name);
+            if (entry.isDirectory()) {
+                if (entry.name.endsWith('-solution')) {
+                    solutionFolders.push(entryPath);
+                } else {
+                    collect(entryPath);
+                }
+            }
+        }
+    };
+
+    collect(directory);
+
+    return solutionFolders;
+}
+
+/**
+ * Process solution folders with a specified parallel limit.
+ *
+ * @param {string[]} solutionFolders The array of solution folder paths.
+ * @param {number} parallelLimit The number of parallel processes to use.
+ */
+async function processSolutionsWithLimit(solutionFolders, parallelLimit) {
+    const chunks = [];
+    for (let i = 0; i < solutionFolders.length; i += parallelLimit) {
+        chunks.push(solutionFolders.slice(i, i + parallelLimit));
+    }
+
+    for (const chunk of chunks) {
+        await Promise.all(chunk.map(processSolution));
     }
 }
 
@@ -87,6 +111,7 @@ async function processPages(courseDirectory) {
  * Main function to handle the workflow.
  */
 async function main() {
+    console.time('Test run time');
     try {
         const basePath = path.join(import.meta.dirname, '..', 'exercises');
         const courseDirectories = fs.readdirSync(basePath, { withFileTypes: true })
@@ -100,16 +125,69 @@ async function main() {
                 return path.join(basePath, directory.name);
             });
 
+        let allSolutionFolders = [];
+
         for (const courseDirectory of courseDirectories) {
-            await processPages(courseDirectory);
+            allSolutionFolders = allSolutionFolders.concat(collectSolutionFolders(courseDirectory));
         }
 
+        // The default amount of parallelism a program should use:
+        const availableParallelism = os.availableParallelism();
+
+        if (runBenchmark) {
+            // For benchmarking, allow the parallelism to exceed the max so the max can be properly tested.
+            // Clamp the parallelism to between 1–8 because the tests are flakey with any more parallelism.
+            const parallelLimit = Math.min(8, Math.max(1, availableParallelism + 1));
+
+            const times = [];
+
+            for (let limit = parallelLimit; limit >= 1; limit--) {
+                console.info(`Starting with parallel limit: ${limit}`);
+                const label = `Time for parallel limit ${limit}`;
+                console.time(label);
+                const startTime = process.hrtime();
+                await processSolutionsWithLimit(allSolutionFolders, limit);
+                const endTime = process.hrtime(startTime);
+                console.timeEnd(label);
+                const timeTaken = endTime[0] * 1000 + endTime[1] / 1e6; // Convert to milliseconds
+                times.push({ limit, time: timeTaken, formatted: formatMilliseconds(timeTaken) });
+                console.info(`Finished with parallel limit: ${limit}`);
+            }
+            console.info('Benchmark results:');
+            times.forEach(({ limit, time }) => {
+                console.info(`Parallel limit ${limit}: ${time}`);
+            });
+            console.table(times);
+
+        } else {
+            // No benchmarking, normal test run.
+
+            // Clamp the parallelism to between 1–3:
+            const parallelLimit = Math.min(3, Math.max(1, availableParallelism));
+            await processSolutionsWithLimit(allSolutionFolders, parallelLimit);
+        }
+
+        console.timeEnd('Test run time');
         console.info('All tests passed successfully!');
         process.exit(0);
     } catch (error) {
+        console.timeEnd('Test run time');
         console.error('Test failed:', error);
         process.exit(1);
     }
+}
+
+function formatMilliseconds(ms) {
+    const minutes = Math.floor(ms / (60 * 1000));
+    ms %= 60 * 1000;
+    const seconds = Math.floor(ms / 1000);
+    const milliseconds = Math.floor(ms % 1000); // Drop the fractional part
+
+    // Pad seconds and milliseconds with leading zeros if necessary
+    const paddedSeconds = seconds.toString().padStart(2, '0');
+    const paddedMilliseconds = milliseconds.toString().padStart(3, '0');
+
+    return `${minutes}:${paddedSeconds}.${paddedMilliseconds}`;
 }
 
 main();
