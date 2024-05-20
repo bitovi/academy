@@ -1879,8 +1879,6 @@ const error = response.ok
 <p>✏️ Create <strong>src/services/pmo/api/api.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">const baseUrl = process.env.PMO_API
 
-export const keyPrefix = &quot;apiRequest-&quot;
-
 export async function apiRequest&lt;
   Data = never,
   Params = unknown,
@@ -2018,8 +2016,6 @@ describe(&quot;Services/PMO/Restaurant/useCities&quot;, () =&gt; {
 <p>✏️ Update <strong>src/services/pmo/api/api.ts</strong> to be:</p>
 <pre><code class="language-ts">const baseUrl = process.env.PMO_API
 
-export const keyPrefix = &quot;apiRequest-&quot;
-
 export async function apiRequest&lt;
   Data = never,
   Params = unknown,
@@ -2080,7 +2076,7 @@ export function stringifyQuery(
 }
 
 </code></pre>
- <div line-highlight="19-22,24-30,32-35,37-39,41-46,58-59,62,only"></div>
+ <div line-highlight="17-20,22-28,30-33,35-37,39-44,56-57,60,only"></div>
 <p>✏️ Update <strong>src/services/pmo/restaurant/hooks.ts</strong> to be:</p>
 <pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
 
