@@ -694,7 +694,9 @@ covering CanJS core libraries.">
   </figcaption>
 </figure>
 <h3>Using the React Native CLI</h3>
-<p>React Native has a built-in command line interface. Rather than install and manage a specific version of the CLI globally, we recommend you access the current version at runtime using <code>npx</code>, which ships with Node.js. With <code>npx react-native &lt;command&gt;</code>, the current stable version of the CLI will be downloaded and executed at the time the command is run.</p>
+<p>React Native has a built-in command line interface.
+Rather than install and manage a specific version of the CLI globally, we recommend you access the current version at runtime using <code>npx</code>, which ships as part of npm.
+With <code>npx react-native &lt;command&gt;</code>, the current stable version of the CLI will be downloaded and executed at the time the command is run.</p>
 <h3>Setup 1</h3>
 <p>✏️ Open a terminal and move to a location where you want to generate your React application, then execute the following command:</p>
 <pre><code class="language-shell">npx react-native@0.74.1 init PlaceMyOrder --version 0.74.1
@@ -721,6 +723,10 @@ covering CanJS core libraries.">
 <p>✏️ Run:</p>
 <pre><code class="language-shell">npm install --save-dev @testing-library/react-native@12 @types/jest@29
 </code></pre>
+<p>✏️ Create <strong>jest-setup.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import '@testing-library/react-native/extend-expect';
+
+</code></pre>
 <p>✏️ Update <strong>jest.config.js</strong> to be:</p>
 <pre><code class="language-js">module.exports = {
   preset: 'react-native',
@@ -729,10 +735,6 @@ covering CanJS core libraries.">
 
 </code></pre>
  <div line-highlight="3,only"></div>
-<p>✏️ Create <strong>jest-setup.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">import '@testing-library/react-native/extend-expect';
-
-</code></pre>
 <p>✏️ Delete the unneeded generated folder <code>__tests__</code>.</p>
 <p>✏️ Create <strong>App.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import {render, screen} from '@testing-library/react-native';
@@ -828,14 +830,15 @@ export default App;
 }
 
 </code></pre>
-<div line-highlight='6-11, only'></div>
-<p>✏️ Create <strong>.prettierrc.js</strong> and update it to be:</p>
+<div line-highlight='7-10, 12-17, 21, only'></div>
+<p>✏️ Update <strong>.prettierrc.js</strong> to be:</p>
 <pre><code class="language-js">module.exports = {
   semi: false,
   trailingComma: &quot;all&quot;,
 }
 
 </code></pre>
+ <div line-highlight="2-3,only"></div>
 <p>✏️ Create <strong>.depcheckrc</strong> and update it to be:</p>
 <pre><code>ignores:
   - &quot;@types/*&quot;
@@ -883,7 +886,7 @@ module.exports = mergeConfig(getDefaultConfig(__dirname), config)
 </code></pre>
 <div line-highlight='1, only'></div>
 <p>✏️ Now that we have prettier and eslint set up, we need to make sure our code is following the new standards. You can apply most of the rules automatically. Run:</p>
-<pre><code class="language-shell">npm run prettier:fix
+<pre><code class="language-shell">npm run lint:fix
 </code></pre>
 <p>Note: If you installed the <a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">ESLint</a> and <a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</a> VS Code plugins and enable &quot;format on save&quot; in the settings, VS Code will make the necessary changes any time you save a file too!</p>
 <h3>Verify 3</h3>
