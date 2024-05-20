@@ -84,18 +84,6 @@ const constrained = constrain(-18, 0, 100);
 
 In the code above, we can import the `constrain` function by name from `helpers.ts` and use it in our code.
 
-#### Exporting in place
-
-You can also export values from where they’re declared in the file, without a separate `export` statement:
-
-```ts
-export function constrain(value: number, min: number, max: number): number {
-  return Math.min(Math.max(value, min), max);
-}
-```
-
-@highlight 1
-
 ### Default exports vs. named exports
 
 While you can prefer one style of export over the other, each serves a different purpose.
@@ -103,7 +91,7 @@ While you can prefer one style of export over the other, each serves a different
 - Use default exports for the primary output of a module.
 - Use named exports for secondary outputs or when there is no primary output.
 
-## For example:
+**For example:**
 
 - If you have a module called `AuthProvider` that exports a React component and several helper hooks, the component would be the primary (default) export and the hook would be secondary (named).
 - If you have a module called `transforms` that exports the functions `formatPercent` and `formatCurrency`, both of these would be named exports; there is no primary export.
