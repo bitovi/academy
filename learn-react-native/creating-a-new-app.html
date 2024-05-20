@@ -854,7 +854,6 @@ export default App;
     &quot;import/ignore&quot;: [&quot;node_modules/react-native/index\\.js$&quot;],
   },
   rules: {
-    &quot;jest/prefer-hooks-in-order&quot;: &quot;off&quot;,
     &quot;@typescript-eslint/consistent-type-imports&quot;: [
       &quot;error&quot;,
       {
@@ -866,7 +865,7 @@ export default App;
 }
 
 </code></pre>
- <div line-highlight="3-16,only"></div>
+ <div line-highlight="3-15,only"></div>
 <p>✏️ Update <strong>metro.config.js</strong> to be:</p>
 <pre><code class="language-js">// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { getDefaultConfig, mergeConfig } = require(&quot;@react-native/metro-config&quot;)
