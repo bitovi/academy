@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="TODO 
+  <meta name="description" content="Learn device-first strategies for storing data and syncing it to a server. 
 ">
   
   <!-- Google Tag Manager -->
@@ -379,7 +379,7 @@
            						expanded">
 						<a class="page"
 							href="offline-support.html"
-							title="TODO">
+							title="Learn device-first strategies for storing data and syncing it to a server.">
 							Adding Offline Support
 						</a>
 						
@@ -665,7 +665,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>TODO</p>
+    <p>Learn device-first strategies for storing data and syncing it to a server.</p>
 
 </section>
 
@@ -681,7 +681,10 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this section, you will:</p>
 <ul>
-<li>TODO</li>
+<li>Listen for changes to the network connection state.</li>
+<li>Make an API call when the user signs in.</li>
+<li>Design offline-syncing behavior.</li>
+<li>Sync data between the device and server.</li>
 </ul>
 <h2>Objective 1: Show the current connection status</h2>
 <p>Most mobile applications use a network connection for critical functionality.
@@ -816,7 +819,7 @@ export default Settings
 <h3>Exercise 1</h3>
 <ul>
 <li>Get the current connection state with the <code>useNetInfo()</code> Hook.</li>
-<li>Display the connect state in thte Settings view.</li>
+<li>Display the connection state in the Settings view.</li>
 </ul>
 <h3>Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
@@ -873,7 +876,7 @@ export default Settings
 </code></pre>
  <div line-highlight="16,37-41,only"></div>
 <p></details></p>
-<h2>Objective 2: Use local storage to store restaurant favorites</h2>
+<h2>Objective 2: Store restaurant favorites on device</h2>
 <p>Now that you can detect when the device is online or offline, let’s build a feature that can work offline!</p>
 <p>Let’s add the ability to “favorite” a restaurant.
 In the <code>RestaurantDetails</code>, we’ll add an “Add to favorites” button when the user is signed in, and if they favorite a restaurant, we’ll change it to “Remove from favorites.”</p>
@@ -887,7 +890,7 @@ In the third objective, we’ll expand that to handle syncing when the device co
 <p>There’s a lot that goes into building even a one or two-button feature like the “add to favorites” and “remove from favorites” feature that we’re about to build.</p>
 <p>Let’s think through what we want in the restaurant details view:</p>
 <ul>
-<li>When the user is not signed in or they haven’t added the restaurant as a favorite, there should be a “Add to favorites” button.</li>
+<li>When the user is not signed in or they haven’t added the restaurant as a favorite, there should be an “Add to favorites” button.</li>
 <li>When the user has added the restaurant as a favorite, there should be a “Remove from favorites” button.</li>
 <li>When the “Add” button is clicked and the user is not signed in, they should be sent through the sign-in flow.</li>
 <li>When the “Add” or “Remove” buttons are clicked and the user is signed in, that change should immediately be saved in our Async Storage and sent to the API.</li>
@@ -2283,7 +2286,7 @@ export default RestaurantDetails
  <div line-highlight="26-29,57-61,64-66,69-70,72-73,75,only"></div>
 <p></details></p>
 <h2>Objective 3: Sync offline data when connectivity changes</h2>
-<p>Our app can handle when the API calls fail and it’ll still store the favorites locally in Async Storage.
+<p>Our app can handle when the API calls fail and it’ll still store the favorites on device in Async Storage.
 When the user’s device is offline, we can improve the app a lot by syncing the favorites to the API when the device comes back online.</p>
 <h3>Designing the sync behavior</h3>
 <p>Here’s an overview of how we want our sync to work.</p>
@@ -3699,7 +3702,7 @@ export default App
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-native/17-offline-support/offline-support.md"},"description":"TODO \n","name":"learn-react-native/offline-support","title":"Adding Offline Support","type":"page","parent":"learn-react-native","order":17,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-native/17-offline-support/offline-support.md"},"description":"Learn device-first strategies for storing data and syncing it to a server. \n","name":"learn-react-native/offline-support","title":"Adding Offline Support","type":"page","parent":"learn-react-native","order":17,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
