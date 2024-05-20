@@ -27,7 +27,9 @@ Create a new React Native application named “Place My Order” that supports T
 
 ### Using the React Native CLI
 
-React Native has a built-in command line interface. Rather than install and manage a specific version of the CLI globally, we recommend you access the current version at runtime using `npx`, which ships with Node.js. With `npx react-native <command>`, the current stable version of the CLI will be downloaded and executed at the time the command is run.
+React Native has a built-in command line interface.
+Rather than install and manage a specific version of the CLI globally, we recommend you access the current version at runtime using `npx`, which ships as part of npm.
+With `npx react-native <command>`, the current stable version of the CLI will be downloaded and executed at the time the command is run.
 
 ### Setup 1
 
@@ -81,13 +83,13 @@ Before we can create or execute any tests, run the following command to install 
 npm install --save-dev @testing-library/react-native@12 @types/jest@29
 ```
 
-✏️ Update **jest.config.js** to be:
-
-@diff ../../../exercises/react-native/03-creating-a-new-app/01-solution/jest.config.js ../../../exercises/react-native/03-creating-a-new-app/02-solution/jest.config.js only
-
 ✏️ Create **jest-setup.ts** and update it to be:
 
 @sourceref ../../../exercises/react-native/03-creating-a-new-app/02-solution/jest-setup.ts
+
+✏️ Update **jest.config.js** to be:
+
+@diff ../../../exercises/react-native/03-creating-a-new-app/01-solution/jest.config.js ../../../exercises/react-native/03-creating-a-new-app/02-solution/jest.config.js only
 
 ✏️ Delete the unneeded generated folder `__tests__`.
 
@@ -124,11 +126,11 @@ npm install --save-dev @bitovi/eslint-config@1 depcheck@1
 ✏️ Update **package.json** to be:
 
 @sourceref ../../../exercises/react-native/03-creating-a-new-app/03-solution/package.json
-@highlight 6-11, only
+@highlight 7-10, 12-17, 21, only
 
-✏️ Create **.prettierrc.js** and update it to be:
+✏️ Update **.prettierrc.js** to be:
 
-@sourceref ../../../exercises/react-native/03-creating-a-new-app/03-solution/.prettierrc.js
+@diff ../../../exercises/react-native/03-creating-a-new-app/02-solution/.prettierrc.js ../../../exercises/react-native/03-creating-a-new-app/03-solution/.prettierrc.js only
 
 ✏️ Create **.depcheckrc** and update it to be:
 
@@ -146,7 +148,7 @@ npm install --save-dev @bitovi/eslint-config@1 depcheck@1
 ✏️ Now that we have prettier and eslint set up, we need to make sure our code is following the new standards. You can apply most of the rules automatically. Run:
 
 ```shell
-npm run prettier:fix
+npm run lint:fix
 ```
 
 Note: If you installed the [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) VS Code plugins and enable "format on save" in the settings, VS Code will make the necessary changes any time you save a file too!

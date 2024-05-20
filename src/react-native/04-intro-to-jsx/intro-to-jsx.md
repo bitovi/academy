@@ -98,7 +98,8 @@ In the code above, the `age`, `isActive`, and `name` props are all passed into t
 
 #### Writing comments
 
-In XML, comments are written using the `<!-- -->` syntax, seen below. Anything inside these comment components is ignored by the browser and is not rendered or executed.
+In XML, comments are written using the `<!-- -->` syntax, seen below.
+Anything inside these comment components is ignored by the parser and is not rendered or executed.
 
 ```xml
 <p>

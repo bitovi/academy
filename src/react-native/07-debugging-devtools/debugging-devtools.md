@@ -82,11 +82,11 @@ This will refresh the connection.
 
 ### Exercise 1
 
-Explore Components:
+Explore the “Components” tab:
 
 - Use the "Components" tab to explore the hierarchical structure of the React Native components in the application.
 - Expand and collapse component trees to understand the component composition.
-- Hover over individual components to highlight them in the browser.
+- Hover over individual components to highlight them.
 
 Inspect Props and State:
 
