@@ -5,7 +5,6 @@ module.exports = {
     "import/ignore": ["node_modules/react-native/index\\.js$"],
   },
   rules: {
-    "jest/prefer-hooks-in-order": "off",
     "@typescript-eslint/consistent-type-imports": [
       "error",
       {

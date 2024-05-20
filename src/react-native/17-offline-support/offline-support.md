@@ -2,7 +2,7 @@
 @parent learn-react-native 17
 @outline 3
 
-@description TODO
+@description Learn device-first strategies for storing data and syncing it to a server.
 
 @body
 
@@ -10,7 +10,10 @@
 
 In this section, you will:
 
-- TODO
+- Listen for changes to the network connection state.
+- Make an API call when the user signs in.
+- Design offline-syncing behavior.
+- Sync data between the device and server.
 
 ## Objective 1: Show the current connection status
 
@@ -63,7 +66,7 @@ TODO: We need tests for this exercise.
 ### Exercise 1
 
 - Get the current connection state with the `useNetInfo()` Hook.
-- Display the connect state in thte Settings view.
+- Display the connection state in the Settings view.
 
 ### Solution 1
 
@@ -78,7 +81,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 </details>
 
-## Objective 2: Use local storage to store restaurant favorites
+## Objective 2: Store restaurant favorites on device
 
 Now that you can detect when the device is online or offline, let’s build a feature that can work offline!
 
@@ -99,7 +102,7 @@ There’s a lot that goes into building even a one or two-button feature like th
 
 Let’s think through what we want in the restaurant details view:
 
-- When the user is not signed in or they haven’t added the restaurant as a favorite, there should be a “Add to favorites” button.
+- When the user is not signed in or they haven’t added the restaurant as a favorite, there should be an “Add to favorites” button.
 - When the user has added the restaurant as a favorite, there should be a “Remove from favorites” button.
 - When the “Add” button is clicked and the user is not signed in, they should be sent through the sign-in flow.
 - When the “Add” or “Remove” buttons are clicked and the user is signed in, that change should immediately be saved in our Async Storage and sent to the API.
@@ -204,7 +207,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 ## Objective 3: Sync offline data when connectivity changes
 
-Our app can handle when the API calls fail and it’ll still store the favorites locally in Async Storage.
+Our app can handle when the API calls fail and it’ll still store the favorites on device in Async Storage.
 When the user’s device is offline, we can improve the app a lot by syncing the favorites to the API when the device comes back online.
 
 ### Designing the sync behavior

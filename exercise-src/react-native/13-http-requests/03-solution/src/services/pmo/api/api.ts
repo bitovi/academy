@@ -1,7 +1,5 @@
 const baseUrl = process.env.PMO_API
 
-export const keyPrefix = "apiRequest-"
-
 export async function apiRequest<
   Data = never,
   Params = unknown,
