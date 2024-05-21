@@ -49,19 +49,17 @@ const RestaurantList: React.FC = () => {
   const navigation = useNavigation()
 
   return (
-    <>
-      <Box padding="s">
-        <FlatList
-          data={restaurants}
-          renderItem={({ item: restaurant }) => (
-            <Button onPress={() => console.log(restaurant.slug)}>
-              {restaurant.name}
-            </Button>
-          )}
-          keyExtractor={(item) => item._id}
-        />
-      </Box>
-    </>
+    <Box padding="s">
+      <FlatList
+        data={restaurants}
+        renderItem={({ item: restaurant }) => (
+          <Button onPress={() => console.log(restaurant.slug)}>
+            {restaurant.name}
+          </Button>
+        )}
+        keyExtractor={(item) => item._id}
+      />
+    </Box>
   )
 }
 

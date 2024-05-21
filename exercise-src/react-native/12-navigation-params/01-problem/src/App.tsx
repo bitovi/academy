@@ -63,10 +63,12 @@ const RestaurantsNavigator: React.FC = () => {
       <RestaurantsStack.Screen name="StateList" component={StateList} />
       <RestaurantsStack.Screen name="CityList" component={CityList} />
       <RestaurantsStack.Screen
+        // @ts-ignore: We will fix this in the next exercise
         name="RestaurantList"
         component={RestaurantList}
       />
       <RestaurantsStack.Screen
+        // @ts-ignore: We will fix this in the next exercise
         name="RestaurantDetails"
         component={RestaurantDetails}
       />

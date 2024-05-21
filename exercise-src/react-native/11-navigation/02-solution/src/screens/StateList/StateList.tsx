@@ -37,6 +37,7 @@ const StateList: React.FC = () => {
         renderItem={({ item: stateItem }) => (
           <Button
             onPress={() => {
+              // @ts-ignore: We will fix this in the next module.
               navigation.navigate("CityList")
             }}
           >

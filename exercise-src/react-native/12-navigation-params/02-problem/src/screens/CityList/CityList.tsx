@@ -22,7 +22,11 @@ const CityList: React.FC = () => {
       <FlatList
         data={cities}
         renderItem={({ item: cityItem }) => (
-          <Button onPress={() => navigation.navigate("RestaurantList")}>
+          <Button
+            onPress={() => {
+              navigation.navigate("RestaurantList")
+            }}
+          >
             {cityItem.name}
           </Button>
         )}

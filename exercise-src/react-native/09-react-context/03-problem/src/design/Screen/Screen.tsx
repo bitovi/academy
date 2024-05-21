@@ -1,28 +1,29 @@
-import { ScrollView } from "react-native"
-
 import Box, { BoxProps } from "../Box"
 import { useTheme } from "../theme"
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ScreenProps extends BoxProps {
-  //
+  noScroll?: boolean
 }
 
-const Screen: React.FC<ScreenProps> = ({ style, children, ...props }) => {
+const Screen: React.FC<ScreenProps> = ({
+  noScroll = false,
+  style,
+  children,
+  ...props
+}) => {
   const theme = useTheme()
 
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-      <Box
-        style={{
-          flex: 1,
-          backgroundColor: theme.palette.screen.soft,
-        }}
-        {...props}
-      >
-        {children}
-      </Box>
-    </ScrollView>
+    <Box
+      scrollable={!noScroll}
+      style={{
+        flex: 1,
+        backgroundColor: theme.palette.screen.soft,
+      }}
+      {...props}
+    >
+      {children}
+    </Box>
   )
 }
 

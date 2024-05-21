@@ -23,12 +23,12 @@ const CityList: React.FC<CityListProps> = ({ route }) => {
         data={cities}
         renderItem={({ item: cityItem }) => (
           <Button
-            onPress={() =>
+            onPress={() => {
               navigation.navigate("RestaurantList", {
                 state,
                 city: cityItem,
               })
-            }
+            }}
           >
             {cityItem.name}
           </Button>

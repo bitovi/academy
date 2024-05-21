@@ -1,23 +1,31 @@
-import { ViewProps, ViewStyle, StyleSheet, View } from "react-native"
+import {
+  ViewProps,
+  ViewStyle,
+  StyleSheet,
+  ScrollView,
+  View as StaticView,
+} from "react-native"
 
 import { Theme, ThemeMargin, ThemePadding, useTheme } from "../theme"
 
 export interface BoxProps extends ViewProps {
+  scrollable?: boolean
   margin?: ThemeMargin
   padding?: ThemePadding
-  fullWidth?: boolean
 }
 
 const Box: React.FC<BoxProps> = ({
+  scrollable = false,
   margin,
   padding,
-  fullWidth = false,
   style,
   children,
   ...props
 }) => {
   const theme = useTheme()
-  const styles = getStyles(theme, { margin, padding, fullWidth })
+  const styles = getStyles(theme, { margin, padding })
+
+  const View = scrollable ? ScrollView : StaticView
 
   return (
     <View style={StyleSheet.compose(styles.container, style)} {...props}>
@@ -33,11 +41,9 @@ function getStyles(
   {
     margin,
     padding,
-    fullWidth,
   }: {
     margin?: ThemeMargin
     padding?: ThemePadding
-    fullWidth: boolean
   },
 ): {
   container: ViewStyle
@@ -57,7 +63,6 @@ function getStyles(
         paddingVertical: theme.spacing[padding[0]],
         paddingHorizontal: theme.spacing[padding[1]],
       },
-      fullWidth && { width: "100%" },
     ]),
   })
 }
