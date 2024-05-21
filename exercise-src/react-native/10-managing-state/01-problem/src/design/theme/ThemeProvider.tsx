@@ -28,7 +28,6 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
 export default ThemeProvider
 
-
 // Exercise: Update `useTheme` to return 1 theme based on the `mode` that is stored in the context.
 export function useTheme(): Theme {
   const { theme } = useContext(Context)

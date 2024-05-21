@@ -25,7 +25,7 @@ const states: State[] = [
 
 const StateList: React.FC = () => {
   // Exercise: Display the Switch component to allow users to toggle.
-  
+
   return (
     <Screen>
       <Card>

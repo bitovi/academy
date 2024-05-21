@@ -47,8 +47,7 @@ const restaurants = [
 
 const RestaurantList: React.FC = () => {
   const navigation = useNavigation()
-    // Exercise: Use navigation in the RestaurantList component, to link RestaurantList to the RestaurantDetails screen.
-
+  // Exercise: Use navigation in the RestaurantList component, to link RestaurantList to the RestaurantDetails screen.
 
   return (
     <Box padding="s">
