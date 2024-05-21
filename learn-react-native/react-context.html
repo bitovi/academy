@@ -1207,26 +1207,34 @@ export default ListItem
 <p>Atomic Design is a great system, but it can be overkill for many projects. For this project, we're going to keep things much more simple: We'll have the shared theme we created in the previous objective, and we'll create a small collection of exported components.</p>
 <h3>Setup 2</h3>
 <p>✏️ Create <strong>src/design/Box/Box.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { ViewProps, ViewStyle, StyleSheet, View } from &quot;react-native&quot;
+<pre><code class="language-tsx">import {
+  ViewProps,
+  ViewStyle,
+  StyleSheet,
+  ScrollView,
+  View as StaticView,
+} from &quot;react-native&quot;
 
 import { Theme, ThemeMargin, ThemePadding, useTheme } from &quot;../theme&quot;
 
 export interface BoxProps extends ViewProps {
+  scrollable?: boolean
   margin?: ThemeMargin
   padding?: ThemePadding
-  fullWidth?: boolean
 }
 
 const Box: React.FC&lt;BoxProps&gt; = ({
+  scrollable = false,
   margin,
   padding,
-  fullWidth = false,
   style,
   children,
   ...props
 }) =&gt; {
   const theme = useTheme()
-  const styles = getStyles(theme, { margin, padding, fullWidth })
+  const styles = getStyles(theme, { margin, padding })
+
+  const View = scrollable ? ScrollView : StaticView
 
   return (
     &lt;View style={StyleSheet.compose(styles.container, style)} {...props}&gt;
@@ -1242,11 +1250,9 @@ function getStyles(
   {
     margin,
     padding,
-    fullWidth,
   }: {
     margin?: ThemeMargin
     padding?: ThemePadding
-    fullWidth: boolean
   },
 ): {
   container: ViewStyle
@@ -1266,7 +1272,6 @@ function getStyles(
         paddingVertical: theme.spacing[padding[0]],
         paddingHorizontal: theme.spacing[padding[1]],
       },
-      fullWidth &amp;&amp; { width: &quot;100%&quot; },
     ]),
   })
 }
@@ -1677,31 +1682,32 @@ export * from &quot;./Card&quot;
 
 </code></pre>
 <p>✏️ Create <strong>src/design/Screen/Screen.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { ScrollView } from &quot;react-native&quot;
-
-import Box, { BoxProps } from &quot;../Box&quot;
+<pre><code class="language-tsx">import Box, { BoxProps } from &quot;../Box&quot;
 import { useTheme } from &quot;../theme&quot;
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ScreenProps extends BoxProps {
-  //
+  noScroll?: boolean
 }
 
-const Screen: React.FC&lt;ScreenProps&gt; = ({ style, children, ...props }) =&gt; {
-  const { palette } = useTheme()
+const Screen: React.FC&lt;ScreenProps&gt; = ({
+  noScroll = false,
+  style,
+  children,
+  ...props
+}) =&gt; {
+  const theme = useTheme()
 
   return (
-    &lt;ScrollView contentContainerStyle={{ flexGrow: 1 }}&gt;
-      &lt;Box
-        style={{
-          flex: 1,
-          backgroundColor: palette.screen.soft,
-        }}
-        {...props}
-      &gt;
-        {children}
-      &lt;/Box&gt;
-    &lt;/ScrollView&gt;
+    &lt;Box
+      scrollable={!noScroll}
+      style={{
+        flex: 1,
+        backgroundColor: theme.palette.screen.soft,
+      }}
+      {...props}
+    &gt;
+      {children}
+    &lt;/Box&gt;
   )
 }
 

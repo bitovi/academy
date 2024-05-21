@@ -889,14 +889,6 @@ export type RestaurantsStackParamList = {
     }
   }
   RestaurantDetails: {
-    state: {
-      name: string
-      short: string
-    }
-    city: {
-      name: string
-      state: string
-    }
     slug: string
   }
   RestaurantOrder: {
@@ -1014,7 +1006,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="17,154,only"></div>
+ <div line-highlight="17,146,only"></div>
 <p>✏️ Update <strong>src/env.d.ts</strong> to be:</p>
 <pre><code class="language-ts">/* eslint-disable @typescript-eslint/no-namespace */
 
@@ -1033,9 +1025,10 @@ export {}
 </code></pre>
  <div line-highlight="8,only"></div>
 <p>✏️ Update <strong>.env.example</strong> to be:</p>
-<pre><code class="language-example">GOOGLE_OAUTH_CLIENT_ID= 
+<pre><code class="language-example">GOOGLE_OAUTH_CLIENT_ID=
 PMO_API=http://localhost:7070
 PMO_ASSETS=https://www.place-my-order.com/
+
 </code></pre>
  <div line-highlight="1,only"></div>
 <p>✏️ Update <strong>.env</strong> to include your <code>GOOGLE_OAUTH_CLIENT_ID</code> key.</p>
@@ -1198,8 +1191,8 @@ jest.mock(&quot;../../design/theme&quot;, () =&gt; ({
   }),
 }))
 
-describe(&quot;Settings component&quot;, () =&gt; {
-  it(&quot;renders Settings Page&quot;, async () =&gt; {
+describe(&quot;Screens/Settings&quot;, () =&gt; {
+  it(&quot;renders&quot;, async () =&gt; {
     render(
       &lt;AuthProvider&gt;
         &lt;NavigationContainer&gt;
@@ -1210,7 +1203,7 @@ describe(&quot;Settings component&quot;, () =&gt; {
     expect(screen.getByText(/Mock Sign in with Google/i)).toBeOnTheScreen()
   })
 
-  it(&quot;should switch to dark mode&quot;, () =&gt; {
+  it(&quot;switches to dark mode&quot;, () =&gt; {
     render(
       &lt;AuthProvider&gt;
         &lt;NavigationContainer&gt;
@@ -1218,23 +1211,20 @@ describe(&quot;Settings component&quot;, () =&gt; {
         &lt;/NavigationContainer&gt;
       &lt;/AuthProvider&gt;,
     )
+
     const switchElement = screen.getByRole(&quot;switch&quot;)
     expect(switchElement.props.value).toBe(false)
+
     fireEvent(switchElement, &quot;onChange&quot;, { nativeEvent: { value: true } })
     expect(mockSetMode).toHaveBeenCalledWith(&quot;dark&quot;)
   })
 })
 
 </code></pre>
- <div line-highlight="4,18-19,21-25,27,30,32-36,only"></div>
+ <div line-highlight="4,21-25,27,32-36,only"></div>
 <p>✏️ Create <strong>src/services/auth/AuthProvider.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
-import {
-  render,
-  screen,
-  waitFor,
-  fireEvent,
-} from &quot;@testing-library/react-native&quot;
+import { render, screen, fireEvent } from &quot;@testing-library/react-native&quot;
 import { FC } from &quot;react&quot;
 import { View, Text } from &quot;react-native&quot;
 
@@ -1255,7 +1245,7 @@ afterAll(() =&gt; {
   global.fetch = oldFetch
 })
 
-describe(&quot;AuthProvider&quot;, () =&gt; {
+describe(&quot;Services/Auth/AuthProvider&quot;, () =&gt; {
   const TestComponent: FC = () =&gt; {
     const isAuthenticated = useAuthenticated()
     const { signIn, signOut } = useAuthentication()
@@ -1361,14 +1351,6 @@ export type RestaurantsStackParamList = {
     }
   }
   RestaurantDetails: {
-    state: {
-      name: string
-      short: string
-    }
-    city: {
-      name: string
-      state: string
-    }
     slug: string
   }
   RestaurantOrder: {
@@ -1487,7 +1469,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="158-164,only"></div>
+ <div line-highlight="150-156,only"></div>
 <p>✏️ Update <strong>src/screens/Settings/Settings.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
 import { Switch } from &quot;react-native&quot;

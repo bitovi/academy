@@ -837,10 +837,12 @@ const RestaurantsNavigator: React.FC = () =&gt; {
       &lt;RestaurantsStack.Screen name=&quot;StateList&quot; component={StateList} /&gt;
       &lt;RestaurantsStack.Screen name=&quot;CityList&quot; component={CityList} /&gt;
       &lt;RestaurantsStack.Screen
+        // @ts-ignore: We will fix this in the next exercise
         name=&quot;RestaurantList&quot;
         component={RestaurantList}
       /&gt;
       &lt;RestaurantsStack.Screen
+        // @ts-ignore: We will fix this in the next exercise
         name=&quot;RestaurantDetails&quot;
         component={RestaurantDetails}
       /&gt;
@@ -909,7 +911,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="17-22,25-32,35,41,51-56,121,133,only"></div>
+ <div line-highlight="17-22,25-32,35,41,51-56,66,71,123,135,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -1116,14 +1118,6 @@ export type RestaurantsStackParamList = {
     }
   }
   RestaurantDetails: {
-    state: {
-      name: string
-      short: string
-    }
-    city: {
-      name: string
-      state: string
-    }
     slug: string
   }
 }
@@ -1231,7 +1225,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="33-53,only"></div>
+ <div line-highlight="33-45,only"></div>
 <p>✏️ Update <strong>src/screens/CityList/CityList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -1257,7 +1251,11 @@ const CityList: React.FC = () =&gt; {
       &lt;FlatList
         data={cities}
         renderItem={({ item: cityItem }) =&gt; (
-          &lt;Button onPress={() =&gt; navigation.navigate(&quot;RestaurantList&quot;)}&gt;
+          &lt;Button
+            onPress={() =&gt; {
+              navigation.navigate(&quot;RestaurantList&quot;)
+            }}
+          &gt;
             {cityItem.name}
           &lt;/Button&gt;
         )}
@@ -1328,19 +1326,21 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = () =&gt; {
   const navigation = useNavigation()
 
   return (
-    &lt;&gt;
-      &lt;Box padding=&quot;s&quot;&gt;
-        &lt;FlatList
-          data={restaurants}
-          renderItem={({ item: restaurant }) =&gt; (
-            &lt;Button onPress={() =&gt; navigation.navigate(&quot;RestaurantDetails&quot;)}&gt;
-              {restaurant.name}
-            &lt;/Button&gt;
-          )}
-          keyExtractor={(item) =&gt; item._id}
-        /&gt;
-      &lt;/Box&gt;
-    &lt;/&gt;
+    &lt;Box padding=&quot;s&quot;&gt;
+      &lt;FlatList
+        data={restaurants}
+        renderItem={({ item: restaurant }) =&gt; (
+          &lt;Button
+            onPress={() =&gt; {
+              navigation.navigate(&quot;RestaurantDetails&quot;)
+            }}
+          &gt;
+            {restaurant.name}
+          &lt;/Button&gt;
+        )}
+        keyExtractor={(item) =&gt; item._id}
+      /&gt;
+    &lt;/Box&gt;
   )
 }
 
@@ -1456,12 +1456,12 @@ const CityList: React.FC&lt;CityListProps&gt; = ({ route }) =&gt; {
         data={cities}
         renderItem={({ item: cityItem }) =&gt; (
           &lt;Button
-            onPress={() =&gt;
+            onPress={() =&gt; {
               navigation.navigate(&quot;RestaurantList&quot;, {
                 state,
                 city: cityItem,
               })
-            }
+            }}
           &gt;
             {cityItem.name}
           &lt;/Button&gt;
@@ -1475,7 +1475,7 @@ const CityList: React.FC&lt;CityListProps&gt; = ({ route }) =&gt; {
 export default CityList
 
 </code></pre>
- <div line-highlight="17-18,26-33,only"></div>
+ <div line-highlight="17-18,28-31,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -1530,38 +1530,33 @@ const restaurants = [
 ]
 
 const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
-  const { state, city } = route.params
   const navigation = useNavigation()
 
   return (
-    &lt;&gt;
-      &lt;Box padding=&quot;s&quot;&gt;
-        &lt;FlatList
-          data={restaurants}
-          renderItem={({ item: restaurant }) =&gt; (
-            &lt;Button
-              onPress={() =&gt;
-                navigation.navigate(&quot;RestaurantDetails&quot;, {
-                  state,
-                  city,
-                  slug: restaurant.slug,
-                })
-              }
-            &gt;
-              {restaurant.name}
-            &lt;/Button&gt;
-          )}
-          keyExtractor={(item) =&gt; item._id}
-        /&gt;
-      &lt;/Box&gt;
-    &lt;/&gt;
+    &lt;Box padding=&quot;s&quot;&gt;
+      &lt;FlatList
+        data={restaurants}
+        renderItem={({ item: restaurant }) =&gt; (
+          &lt;Button
+            onPress={() =&gt; {
+              navigation.navigate(&quot;RestaurantDetails&quot;, {
+                slug: restaurant.slug,
+              })
+            }}
+          &gt;
+            {restaurant.name}
+          &lt;/Button&gt;
+        )}
+        keyExtractor={(item) =&gt; item._id}
+      /&gt;
+    &lt;/Box&gt;
   )
 }
 
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="53-54,63-71,only"></div>
+ <div line-highlight="53,63-65,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, we'll cover an essential part of nearly all web applications: <a href="./making-http-requests.html">Making HTTP Requests</a>.</p>

@@ -950,28 +950,24 @@ export {}
 </code></pre>
  <div line-highlight="8,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
-import { StackScreenProps } from &quot;@react-navigation/stack&quot;
+<pre><code class="language-tsx">import { StackScreenProps } from &quot;@react-navigation/stack&quot;
 import { useState } from &quot;react&quot;
-import { FlatList } from &quot;react-native&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
 import Loading from &quot;../../components/Loading&quot;
 import Tabs from &quot;../../components/Tabs&quot;
 import Box from &quot;../../design/Box&quot;
-import Button from &quot;../../design/Button&quot;
 import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
 import { useRestaurants } from &quot;../../services/pmo/restaurant&quot;
 
+import List from &quot;./components/List&quot;
 import Map from &quot;./components/Map&quot;
 
 export interface RestaurantListProps
   extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantList&quot;&gt; {}
 
 const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
-  const navigation = useNavigation()
-
   const { state, city } = route.params
   const {
     data: restaurants,
@@ -998,40 +994,15 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
     &lt;&gt;
       &lt;Tabs
         options={[
-          {
-            label: &quot;List&quot;,
-            value: &quot;list&quot;,
-          },
-          {
-            label: &quot;Map&quot;,
-            value: &quot;map&quot;,
-          },
+          { label: &quot;List&quot;, value: &quot;list&quot; },
+          { label: &quot;Map&quot;, value: &quot;map&quot; },
         ]}
         value={tab}
         onChange={setTab}
       /&gt;
+
       &lt;Screen noScroll&gt;
-        {tab === &quot;list&quot; &amp;&amp; (
-          &lt;Box padding=&quot;s&quot;&gt;
-            &lt;FlatList
-              data={restaurants}
-              renderItem={({ item: restaurant }) =&gt; (
-                &lt;Button
-                  onPress={() =&gt;
-                    navigation.navigate(&quot;RestaurantDetails&quot;, {
-                      state,
-                      city,
-                      slug: restaurant.slug,
-                    })
-                  }
-                &gt;
-                  {restaurant.name}
-                &lt;/Button&gt;
-              )}
-              keyExtractor={(item) =&gt; item._id}
-            /&gt;
-          &lt;/Box&gt;
-        )}
+        {tab === &quot;list&quot; &amp;&amp; restaurants &amp;&amp; &lt;List restaurants={restaurants} /&gt;}
         {tab === &quot;map&quot; &amp;&amp; restaurants &amp;&amp; &lt;Map restaurants={restaurants} /&gt;}
       &lt;/Screen&gt;
     &lt;/&gt;
@@ -1041,7 +1012,7 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="3,8,11,15,30,47-84,only"></div>
+ <div line-highlight="2,6,8,12-13,26,42-49,52-56,only"></div>
 <p>✏️ Create <strong>src/components/Tabs/Tabs.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { TextStyle, ViewStyle, Pressable, StyleSheet } from &quot;react-native&quot;
 
@@ -1174,11 +1145,10 @@ export interface MapProps {
 const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
   return (
     &lt;MapView
-      // needs a minHeight to display without error
       style={{ minHeight: &quot;100%&quot;, height: 500 }}
       provider={PROVIDER_GOOGLE}
       initialRegion={{
-        ...restaurants[0].coordinate,
+        ...restaurants?.[0].coordinate,
         latitudeDelta: 0.27,
         longitudeDelta: 0.5,
       }}
@@ -1190,7 +1160,7 @@ const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
 export default Map
 
 </code></pre>
- <div line-highlight="10-22,"></div>
+ <div line-highlight="10-21,"></div>
 <p></details></p>
 <h2>Objective 2: Add restaurant pins with tooltips to map</h2>
 <p><img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” The map is still centered on Green Bay and now has several locations marked with red pins. One of the markers is labeled Cheese Curd City, 230 W Kinzie Street. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
@@ -1243,11 +1213,10 @@ export interface MapProps {
 const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
   return (
     &lt;MapView
-      // needs a minHeight to display without error
       style={{ minHeight: &quot;100%&quot;, height: 500 }}
       provider={PROVIDER_GOOGLE}
       initialRegion={{
-        ...restaurants[0].coordinate,
+        ...restaurants?.[0].coordinate,
         latitudeDelta: 0.27,
         longitudeDelta: 0.5,
       }}
@@ -1259,7 +1228,7 @@ const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
 export default Map
 
 </code></pre>
- <div line-highlight="1-2,22,"></div>
+ <div line-highlight="1-2,21,"></div>
 <h3>Verify 2</h3>
 <p>Navigate to the <code>Maps</code> tab of the <code>RestaurantsList</code> in your emulator and verify that the Map is rendering.</p>
 <p><img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” The map is still centered on Green Bay and now has several locations marked with red pins. One of the markers is labeled Cheese Curd City, 230 W Kinzie Street. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
@@ -1277,24 +1246,21 @@ export default Map
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import MapView, { Marker, PROVIDER_GOOGLE } from &quot;react-native-maps&quot;
 
-import { Restaurant, State, City } from &quot;../../../../services/pmo/restaurant&quot;
+import { Restaurant } from &quot;../../../../services/pmo/restaurant&quot;
 
 export interface MapProps {
   restaurants: Restaurant[]
-  state: State
-  city: City
 }
 
-const Map: React.FC&lt;MapProps&gt; = ({ restaurants, state, city }) =&gt; {
+const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
   const navigation = useNavigation()
 
   return (
     &lt;MapView
-      // needs a minHeight to display without error
       style={{ minHeight: &quot;100%&quot;, height: 500 }}
       provider={PROVIDER_GOOGLE}
       initialRegion={{
-        ...restaurants[0].coordinate,
+        ...restaurants?.[0].coordinate,
         latitudeDelta: 0.27,
         longitudeDelta: 0.5,
       }}
@@ -1308,8 +1274,6 @@ const Map: React.FC&lt;MapProps&gt; = ({ restaurants, state, city }) =&gt; {
           description={restaurant.address?.street}
           onCalloutPress={() =&gt;
             navigation.navigate(&quot;RestaurantDetails&quot;, {
-              state: state,
-              city: city,
               slug: restaurant.slug,
             })
           }
@@ -1322,7 +1286,7 @@ const Map: React.FC&lt;MapProps&gt; = ({ restaurants, state, city }) =&gt; {
 export default Map
 
 </code></pre>
- <div line-highlight="4,8-9,12-13,26-42,"></div>
+ <div line-highlight="11,23-37,"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>We've accomplished a lot for our React Native App, in order to polish it just a bit more let's get into some <a href="./performance-optimization">Performance and Optimization</a> practices.</p>

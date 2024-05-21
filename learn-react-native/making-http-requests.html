@@ -875,7 +875,7 @@ function DataFetcher() {
   useEffect(() =&gt; {
     fetch(&quot;https://api.example.com/data&quot;)
       .then((response) =&gt; {
-        const parsedData = response.json()
+        const parsedData = await response.json()
         setData(parsedData)
       })
       .catch((error) =&gt; {
@@ -903,7 +903,7 @@ function DataFetcher() {
     const fetchData = async () =&gt; {
       try {
         const response = await fetch(&quot;https://api.example.com/data&quot;)
-        const parsedData = response.json()
+        const parsedData = await response.json()
         setData(parsedData)
       } catch (error) {
         // Error should be shown to the user
@@ -977,6 +977,7 @@ export default WebSocketComponent
 <p>When using React Native with environment variables, you can utilize a package like &quot;react-native-dotenv&quot; to manage environment variables. Here's how you can adapt the provided context for a React Native application:</p>
 <p>Here’s how we can use it: in our project’s root directory, we can create a <code>.env</code> file with variables like this:</p>
 <pre><code>PMO_API=http://localhost:7070
+
 </code></pre>
 <p>Then we can access this variable using <code>process.env.PMO_API</code>:</p>
 <pre><code class="language-tsx">const response = await fetch(`${process.env.PMO_API}/data`, {
@@ -1011,6 +1012,7 @@ const data = await response.json()
  <div line-highlight="3,"></div>
 <p>✏️ Create <strong>.env.example</strong> and update it to be:</p>
 <pre><code class="language-example">PMO_API=http://localhost:7070
+
 </code></pre>
 <p>✏️ Duplicate <strong>.env.example</strong> to <strong>.env</strong> in your project.</p>
 <p>It’s always a good idea to keep a <code>.env.example</code> file up to date (and committed to git) in your project, then include the actual secrets in your local <code>.env</code> file (and not committed to git).</p>
@@ -1523,12 +1525,12 @@ const CityList: React.FC&lt;CityListProps&gt; = ({ route }) =&gt; {
         data={cities}
         renderItem={({ item: cityItem }) =&gt; (
           &lt;Button
-            onPress={() =&gt;
+            onPress={() =&gt; {
               navigation.navigate(&quot;RestaurantList&quot;, {
                 state,
                 city: cityItem,
               })
-            }
+            }}
           &gt;
             {cityItem.name}
           &lt;/Button&gt;
@@ -1811,12 +1813,12 @@ const CityList: React.FC&lt;CityListProps&gt; = ({ route }) =&gt; {
         data={cities}
         renderItem={({ item: cityItem }) =&gt; (
           &lt;Button
-            onPress={() =&gt;
+            onPress={() =&gt; {
               navigation.navigate(&quot;RestaurantList&quot;, {
                 state,
                 city: cityItem,
               })
-            }
+            }}
           &gt;
             {cityItem.name}
           &lt;/Button&gt;
@@ -2344,26 +2346,30 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
   const navigation = useNavigation()
 
   return (
-    &lt;&gt;
-      &lt;Box padding=&quot;s&quot;&gt;
-        &lt;FlatList
-          data={restaurants}
-          renderItem={({ item: restaurant }) =&gt; (
-            &lt;Button onPress={() =&gt; navigation.navigate(&quot;RestaurantDetails&quot;)}&gt;
-              {restaurant.name}
-            &lt;/Button&gt;
-          )}
-          keyExtractor={(item) =&gt; item._id}
-        /&gt;
-      &lt;/Box&gt;
-    &lt;/&gt;
+    &lt;Box padding=&quot;s&quot;&gt;
+      &lt;FlatList
+        data={restaurants}
+        renderItem={({ item: restaurant }) =&gt; (
+          &lt;Button
+            onPress={() =&gt; {
+              navigation.navigate(&quot;RestaurantDetails&quot;, {
+                slug: restaurant.slug,
+              })
+            }}
+          &gt;
+            {restaurant.name}
+          &lt;/Button&gt;
+        )}
+        keyExtractor={(item) =&gt; item._id}
+      /&gt;
+    &lt;/Box&gt;
   )
 }
 
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="6,9-10,24,only"></div>
+ <div line-highlight="6,9-10,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -2387,7 +2393,7 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
     &lt;Screen&gt;
       &lt;RestaurantHeader restaurant={restaurant} /&gt;
       &lt;Button onPress={() =&gt; console.warn(&quot;Place an order&quot;)}&gt;
-        Place an order
+        Place My Order!
       &lt;/Button&gt;
     &lt;/Screen&gt;
   )
@@ -2815,7 +2821,7 @@ describe(&quot;Screens/RestaurantDetails&quot;, () =&gt; {
       &lt;/NavigationContainer&gt;,
     )
 
-    expect(screen.getByText(&quot;Place an order&quot;)).toBeOnTheScreen()
+    expect(screen.getByText(&quot;Place My Order!&quot;)).toBeOnTheScreen()
   })
 
   it(&quot;renders loading state&quot;, () =&gt; {
@@ -3067,34 +3073,30 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
   }
 
   return (
-    &lt;&gt;
-      &lt;Box padding=&quot;s&quot;&gt;
-        &lt;FlatList
-          data={restaurants}
-          renderItem={({ item: restaurant }) =&gt; (
-            &lt;Button
-              onPress={() =&gt;
-                navigation.navigate(&quot;RestaurantDetails&quot;, {
-                  state,
-                  city,
-                  slug: restaurant.slug,
-                })
-              }
-            &gt;
-              {restaurant.name}
-            &lt;/Button&gt;
-          )}
-          keyExtractor={(item) =&gt; item._id}
-        /&gt;
-      &lt;/Box&gt;
-    &lt;/&gt;
+    &lt;Box padding=&quot;s&quot;&gt;
+      &lt;FlatList
+        data={restaurants}
+        renderItem={({ item: restaurant }) =&gt; (
+          &lt;Button
+            onPress={() =&gt; {
+              navigation.navigate(&quot;RestaurantDetails&quot;, {
+                slug: restaurant.slug,
+              })
+            }}
+          &gt;
+            {restaurant.name}
+          &lt;/Button&gt;
+        )}
+        keyExtractor={(item) =&gt; item._id}
+      /&gt;
+    &lt;/Box&gt;
   )
 }
 
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="18-23,25-26,28-29,31-32,34-36,40,44-52,58,only"></div>
+ <div line-highlight="18-23,25-32,34-36,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -3140,7 +3142,7 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
     &lt;Screen&gt;
       &lt;RestaurantHeader restaurant={restaurant} /&gt;
       &lt;Button onPress={() =&gt; console.warn(&quot;Place an order&quot;)}&gt;
-        Place an order
+        Place My Order!
       &lt;/Button&gt;
     &lt;/Screen&gt;
   )

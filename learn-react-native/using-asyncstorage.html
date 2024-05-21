@@ -1644,7 +1644,7 @@ export function stringifyQuery(
  <div line-highlight="7,38,68,only"></div>
 <h3>Verify 2</h3>
 <p>✏️ Create <strong>src/services/DataMigration/DataMigration.test.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { render, screen, waitFor } from &quot;@testing-library/react-native&quot;
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
 
 import Typography from &quot;../../design/Typography&quot;
 import * as storage from &quot;../storage/storage&quot;
@@ -1893,14 +1893,6 @@ export type RestaurantsStackParamList = {
     }
   }
   RestaurantDetails: {
-    state: {
-      name: string
-      short: string
-    }
-    city: {
-      name: string
-      state: string
-    }
     slug: string
   }
   RestaurantOrder: {
@@ -2017,7 +2009,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="17,157-161,only"></div>
+ <div line-highlight="17,149-153,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, we will learn <a href="security-and-auth.html" title="Learn about OAuth, google-signin, and how to secure your React Native app.">Security and Authentication</a>.</p>

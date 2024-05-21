@@ -918,14 +918,6 @@ export type RestaurantsStackParamList = {
     }
   }
   RestaurantDetails: {
-    state: {
-      name: string
-      short: string
-    }
-    city: {
-      name: string
-      state: string
-    }
     slug: string
   }
   RestaurantOrder: {
@@ -1037,7 +1029,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="14,55-57,98,only"></div>
+ <div line-highlight="14,47-49,90,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -1083,7 +1075,7 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
     &lt;Screen&gt;
       &lt;RestaurantHeader restaurant={restaurant} /&gt;
       &lt;Button onPress={() =&gt; console.warn(&quot;Place an order&quot;)}&gt;
-        Place an order
+        Place My Order!
       &lt;/Button&gt;
       {/* Exercise: Add Button that links to RestaurantOrder page. */}
     &lt;/Screen&gt;
@@ -1127,7 +1119,7 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
     }
   }, [restaurant, navigation])
 
-  const handlePress = () =&gt; {
+  const handleOrder = () =&gt; {
     console.info(&quot;“Place My Order” button pressed!&quot;)
   }
 
@@ -1183,7 +1175,7 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
         &lt;/Box&gt;
 
         &lt;Box padding=&quot;s&quot;&gt;
-          &lt;Button onPress={handlePress}&gt;Place My Order!&lt;/Button&gt;
+          &lt;Button onPress={handleOrder}&gt;Place My Order!&lt;/Button&gt;
         &lt;/Box&gt;
       &lt;/Screen&gt;
     &lt;/ScrollView&gt;
@@ -1212,13 +1204,13 @@ import { useTheme } from &quot;../../design/theme&quot;
 import Typography from &quot;../../design/Typography&quot;
 
 export interface FormSwitchProps {
-  label: React.ReactNode
+  label: string
   value: boolean
   onChange: (value: boolean) =&gt; void
 }
 
 const FormSwitch: React.FC&lt;FormSwitchProps&gt; = ({ label, value, onChange }) =&gt; {
-  const { palette } = useTheme()
+  const theme = useTheme()
 
   return (
     &lt;Box
@@ -1232,10 +1224,10 @@ const FormSwitch: React.FC&lt;FormSwitchProps&gt; = ({ label, value, onChange })
     &gt;
       &lt;Typography variant=&quot;label&quot;&gt;{label}&lt;/Typography&gt;
       &lt;Switch
-        thumbColor={palette.primary.contrast}
+        thumbColor={theme.palette.primary.contrast}
         trackColor={{
-          true: palette.primary.strong,
-          false: palette.screen.soft,
+          true: theme.palette.primary.strong,
+          false: theme.palette.screen.soft,
         }}
       &gt;&lt;/Switch&gt;
     &lt;/Box&gt;
@@ -1449,14 +1441,6 @@ export type RestaurantsStackParamList = {
     }
   }
   RestaurantDetails: {
-    state: {
-      name: string
-      short: string
-    }
-    city: {
-      name: string
-      state: string
-    }
     slug: string
   }
   RestaurantOrder: {
@@ -1571,7 +1555,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="98-100,147,only"></div>
+ <div line-highlight="90-92,139,only"></div>
 <p>✏️ Update <strong>src/components/FormSwitch/FormSwitch.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { Switch } from &quot;react-native&quot;
 
@@ -1580,13 +1564,13 @@ import { useTheme } from &quot;../../design/theme&quot;
 import Typography from &quot;../../design/Typography&quot;
 
 export interface FormSwitchProps {
-  label: React.ReactNode
+  label: string
   value: boolean
   onChange: (value: boolean) =&gt; void
 }
 
 const FormSwitch: React.FC&lt;FormSwitchProps&gt; = ({ label, value, onChange }) =&gt; {
-  const { palette } = useTheme()
+  const theme = useTheme()
 
   return (
     &lt;Box
@@ -1601,10 +1585,10 @@ const FormSwitch: React.FC&lt;FormSwitchProps&gt; = ({ label, value, onChange })
       &lt;Typography variant=&quot;label&quot;&gt;{label}&lt;/Typography&gt;
       &lt;Switch
         onValueChange={onChange}
-        thumbColor={palette.primary.contrast}
+        thumbColor={theme.palette.primary.contrast}
         trackColor={{
-          true: palette.primary.strong,
-          false: palette.screen.soft,
+          true: theme.palette.primary.strong,
+          false: theme.palette.screen.soft,
         }}
         value={value}
       &gt;&lt;/Switch&gt;
@@ -1665,7 +1649,7 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
           navigation.navigate(&quot;RestaurantOrder&quot;, { slug: slug })
         }}
       &gt;
-        Place an order
+        Place My Order!
       &lt;/Button&gt;
     &lt;/Screen&gt;
   )
@@ -1710,7 +1694,7 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
     }
   }, [restaurant, navigation])
 
-  const handlePress = () =&gt; {
+  const handleOrder = () =&gt; {
     console.info(&quot;“Place My Order” button pressed!&quot;)
   }
 
@@ -1794,7 +1778,7 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
         &lt;/Box&gt;
 
         &lt;Box padding=&quot;s&quot;&gt;
-          &lt;Button onPress={handlePress}&gt;Place My Order!&lt;/Button&gt;
+          &lt;Button onPress={handleOrder}&gt;Place My Order!&lt;/Button&gt;
         &lt;/Box&gt;
       &lt;/Screen&gt;
     &lt;/ScrollView&gt;
@@ -1842,7 +1826,7 @@ export default InputExample
 <p>In the code above, we have a <code>&lt;Text&gt;</code> component in the view but it does not have a programmatic relationship with the <code>&lt;TextInput&gt;</code> itself.
 This means that assistive technologies (such as screen readers) won’t know to announce the <code>Text</code> when the <code>TextInput</code> has focus.</p>
 <p>To fix this, we can use the accessibility APIs:</p>
-<pre><code class="language-tsx">import React, { useState } from &quot;react&quot;
+<pre><code class="language-tsx">import React, { useId, useState } from &quot;react&quot;
 import { Text, TextInput, View } from &quot;react-native&quot;
 
 const InputExample = () =&gt; {
@@ -1864,7 +1848,7 @@ const InputExample = () =&gt; {
 export default InputExample
 
 </code></pre>
- <div line-highlight="9-15,only"></div>
+ <div line-highlight="1,9-15,only"></div>
 <p>In the code above, we add the following props:</p>
 <ul>
 <li><code>nativeID</code> on the <code>Text</code> to give it a unique ID.</li>
@@ -1898,12 +1882,13 @@ const InputExample = () =&gt; {
 export default InputExample
 
 </code></pre>
- <div line-highlight="5,10,13,only"></div>
+ <div line-highlight="1,5,10,13,only"></div>
 <p>The value of <code>useId</code> is guaranteed to be unique within the component where it is used.
 This is ideal for linking related components together, as is the case with <code>nativeID</code> and <code>accessibilityLabelledBy</code>.</p>
 <h3>Setup 2</h3>
 <p>✏️ Create <strong>src/components/FormTextField/FormTextField.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { TextInput } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { useId } from &quot;react&quot;
+import { TextInput } from &quot;react-native&quot;
 
 import Box from &quot;../../design/Box&quot;
 import { useTheme } from &quot;../../design/theme&quot;
@@ -1984,7 +1969,7 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
     }
   }, [restaurant, navigation])
 
-  const handlePress = () =&gt; {
+  const handleOrder = () =&gt; {
     console.info(&quot;“Place My Order” button pressed!&quot;)
   }
 
@@ -2075,7 +2060,7 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
         &lt;/Box&gt;
 
         &lt;Box padding=&quot;s&quot;&gt;
-          &lt;Button onPress={handlePress}&gt;Place My Order!&lt;/Button&gt;
+          &lt;Button onPress={handleOrder}&gt;Place My Order!&lt;/Button&gt;
         &lt;/Box&gt;
       &lt;/Screen&gt;
     &lt;/ScrollView&gt;
@@ -2106,9 +2091,11 @@ describe(&quot;Components/FormTextField&quot;, () =&gt; {
         label=&quot;Hello!&quot;
         value=&quot;response&quot;
         onChange={handleChangeMock}
-      &gt;&lt;/FormTextField&gt;,
+      /&gt;,
     )
+
     expect(screen.getByText(/Hello/)).toBeOnTheScreen()
+    expect(screen.getByLabelText(/Hello/)).toBeOnTheScreen()
     fireEvent.changeText(screen.getByLabelText(/Hello/i), &quot;test&quot;)
     expect(handleChangeMock).toHaveBeenCalledWith(&quot;test&quot;)
   })
@@ -2208,9 +2195,9 @@ describe(&quot;Screens/RestaurantOrder&quot;, () =&gt; {
       }),
     ).toBeOnTheScreen()
 
-    expect(screen.getByText(/Name/i)).toBeOnTheScreen()
-    expect(screen.getByText(/Address/i)).toBeOnTheScreen()
-    expect(screen.getByText(/Phone/i)).toBeOnTheScreen()
+    expect(screen.getByLabelText(/Name/i)).toBeOnTheScreen()
+    expect(screen.getByLabelText(/Address/i)).toBeOnTheScreen()
+    expect(screen.getByLabelText(/Phone/i)).toBeOnTheScreen()
   })
 
   it(&quot;renders loading state&quot;, () =&gt; {
@@ -2289,8 +2276,8 @@ const FormTextField: React.FC&lt;FormTextFieldProps&gt; = ({
   value,
   onChange,
 }) =&gt; {
-  const id = useId()
   const theme = useTheme()
+  const id = useId()
 
   return (
     &lt;Box style={{ marginVertical: 8 }}&gt;
@@ -2298,7 +2285,7 @@ const FormTextField: React.FC&lt;FormTextFieldProps&gt; = ({
         {label}
       &lt;/Typography&gt;
       &lt;TextInput
-        accessibilityLabel=&quot;input&quot;
+        accessibilityLabel=&quot;Input&quot;
         accessibilityLabelledBy={id}
         onChangeText={onChange}
         value={value}
@@ -2317,7 +2304,7 @@ const FormTextField: React.FC&lt;FormTextFieldProps&gt; = ({
 export default FormTextField
 
 </code></pre>
- <div line-highlight="1,20,25-27,29-32,only"></div>
+ <div line-highlight="21,25-27,29-32,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantOrder/RestaurantOrder.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -2357,7 +2344,7 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
     }
   }, [restaurant, navigation])
 
-  const handlePress = () =&gt; {
+  const handleOrder = () =&gt; {
     console.info(&quot;“Place My Order” button pressed!&quot;)
   }
 
@@ -2454,7 +2441,7 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
         &lt;/Box&gt;
 
         &lt;Box padding=&quot;s&quot;&gt;
-          &lt;Button onPress={handlePress}&gt;Place My Order!&lt;/Button&gt;
+          &lt;Button onPress={handleOrder}&gt;Place My Order!&lt;/Button&gt;
         &lt;/Box&gt;
       &lt;/Screen&gt;
     &lt;/ScrollView&gt;

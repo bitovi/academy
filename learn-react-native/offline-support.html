@@ -914,14 +914,14 @@ interface Favorite {
 }
 
 interface FavoritesResponse {
-  data: Favorite[] | null
-  error: Error | null
+  data: Favorite[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface FavoriteResponse {
-  data: Favorite | null
-  error: Error | null
+  data: Favorite | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
@@ -938,8 +938,8 @@ export const useFavorites = (
   favorite: Favorite | undefined
 } =&gt; {
   const [response, setResponse] = useState&lt;FavoritesResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
   const [localFavorites, setLocalFavorites] = useState&lt;
@@ -966,7 +966,7 @@ export const useFavorites = (
       })
 
       setResponse({
-        data: data?.data || null,
+        data: data?.data || undefined,
         error: error,
         isPending: false,
       })
@@ -1064,14 +1064,14 @@ interface Favorite {
 }
 
 interface FavoritesResponse {
-  data: Favorite[] | null
-  error: Error | null
+  data: Favorite[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface FavoriteResponse {
-  data: Favorite | null
-  error: Error | null
+  data: Favorite | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
@@ -1088,8 +1088,8 @@ export const useFavorites = (
   favorite: Favorite | undefined
 } =&gt; {
   const [response, setResponse] = useState&lt;FavoritesResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
   const [localFavorites, setLocalFavorites] = useState&lt;
@@ -1116,7 +1116,7 @@ export const useFavorites = (
       })
 
       setResponse({
-        data: data?.data || null,
+        data: data?.data || undefined,
         error: error,
         isPending: false,
       })
@@ -1213,14 +1213,14 @@ interface Favorite {
 }
 
 interface FavoritesResponse {
-  data: Favorite[] | null
-  error: Error | null
+  data: Favorite[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface FavoriteResponse {
-  data: Favorite | null
-  error: Error | null
+  data: Favorite | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
@@ -1237,8 +1237,8 @@ export const useFavorites = (
   favorite: Favorite | undefined
 } =&gt; {
   const [response, setResponse] = useState&lt;FavoritesResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
   const [localFavorites, setLocalFavorites] = useState&lt;
@@ -1265,7 +1265,7 @@ export const useFavorites = (
       })
 
       setResponse({
-        data: data?.data || null,
+        data: data?.data || undefined,
         error: error,
         isPending: false,
       })
@@ -1362,14 +1362,14 @@ interface Favorite {
 }
 
 interface FavoritesResponse {
-  data: Favorite[] | null
-  error: Error | null
+  data: Favorite[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface FavoriteResponse {
-  data: Favorite | null
-  error: Error | null
+  data: Favorite | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
@@ -1386,8 +1386,8 @@ export const useFavorites = (
   favorite: Favorite | undefined
 } =&gt; {
   const [response, setResponse] = useState&lt;FavoritesResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
   const [localFavorites, setLocalFavorites] = useState&lt;
@@ -1414,7 +1414,7 @@ export const useFavorites = (
       })
 
       setResponse({
-        data: data?.data || null,
+        data: data?.data || undefined,
         error: error,
         isPending: false,
       })
@@ -1511,14 +1511,14 @@ interface Favorite {
 }
 
 interface FavoritesResponse {
-  data: Favorite[] | null
-  error: Error | null
+  data: Favorite[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface FavoriteResponse {
-  data: Favorite | null
-  error: Error | null
+  data: Favorite | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
@@ -1535,8 +1535,8 @@ export const useFavorites = (
   favorite: Favorite | undefined
 } =&gt; {
   const [response, setResponse] = useState&lt;FavoritesResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
   const [localFavorites, setLocalFavorites] = useState&lt;
@@ -1563,7 +1563,7 @@ export const useFavorites = (
       })
 
       setResponse({
-        data: data?.data || null,
+        data: data?.data || undefined,
         error: error,
         isPending: false,
       })
@@ -1663,14 +1663,14 @@ interface Favorite {
 }
 
 interface FavoritesResponse {
-  data: Favorite[] | null
-  error: Error | null
+  data: Favorite[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface FavoriteResponse {
-  data: Favorite | null
-  error: Error | null
+  data: Favorite | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
@@ -1687,8 +1687,8 @@ export const useFavorites = (
   favorite: Favorite | undefined
 } =&gt; {
   const [response, setResponse] = useState&lt;FavoritesResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
   const [localFavorites, setLocalFavorites] = useState&lt;
@@ -1715,7 +1715,7 @@ export const useFavorites = (
       })
 
       setResponse({
-        data: data?.data || null,
+        data: data?.data || undefined,
         error: error,
         isPending: false,
       })
@@ -1857,7 +1857,7 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
           navigation.navigate(&quot;RestaurantOrder&quot;, { slug: slug })
         }}
       &gt;
-        Place an order
+        Place My Order!
       &lt;/Button&gt;
     &lt;/Screen&gt;
   )
@@ -1871,22 +1871,19 @@ export default RestaurantDetails
 <p>✏️ Create <strong>src/services/pmo/favorite/hooks.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react-native&quot;
 
-import * as storage from &quot;../../storage/storage&quot;
 import * as api from &quot;../api/api&quot;
 
 import { useFavorites } from &quot;./hooks&quot;
 
-describe(&quot;Favorite Hook&quot;, () =&gt; {
+describe(&quot;Services/PMO/Favorite&quot;, () =&gt; {
   // Mock the apiRequest function
   let apiRequest: jest.SpyInstance&lt;ReturnType&lt;typeof api.apiRequest&gt;&gt;
-  let mockStorage: jest.SpyInstance&lt;ReturnType&lt;typeof storage.getData&gt;&gt;
   beforeEach(() =&gt; {
     jest.resetAllMocks()
     apiRequest = jest.spyOn(api, &quot;apiRequest&quot;)
-    mockStorage = jest.spyOn(storage, &quot;getData&quot;)
   })
 
-  describe(&quot;useFavorites hook&quot;, () =&gt; {
+  describe(&quot;useFavorites&quot;, () =&gt; {
     const mockFavorites = [
       {
         userId: &quot;user-id&quot;,
@@ -1903,10 +1900,11 @@ describe(&quot;Favorite Hook&quot;, () =&gt; {
         _id: &quot;dmTvyAYw3o0xjAIk&quot;,
       },
     ]
-    it(&quot;should return list of favorites from the server&quot;, async () =&gt; {
+
+    it(&quot;returns favorites from the server&quot;, async () =&gt; {
       apiRequest.mockResolvedValue({
         data: { data: mockFavorites },
-        error: null,
+        error: undefined,
       })
 
       const { result } = renderHook(() =&gt; useFavorites(&quot;user-id&quot;))
@@ -1916,7 +1914,7 @@ describe(&quot;Favorite Hook&quot;, () =&gt; {
       })
 
       expect(result.current.data).toEqual(mockFavorites)
-      expect(result.current.error).toBeNull()
+      expect(result.current.error).toBeUndefined()
     })
   })
 })
@@ -1924,23 +1922,28 @@ describe(&quot;Favorite Hook&quot;, () =&gt; {
 </code></pre>
 <div line-highlight='35, only'></div>
 <p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.test.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+<pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import { render, screen } from &quot;@testing-library/react-native&quot;
 
 import AuthProvider from &quot;../../services/auth/AuthProvider&quot;
 import * as restaurantHooks from &quot;../../services/pmo/restaurant/hooks&quot;
 
 import RestaurantDetails from &quot;./RestaurantDetails&quot;
 
-const params = {
-  state: {
-    name: &quot;name&quot;,
-    short: &quot;short&quot;,
+const route = {
+  key: &quot;RestaurantDetails&quot;,
+  name: &quot;RestaurantDetails&quot;,
+  params: {
+    state: {
+      name: &quot;name&quot;,
+      short: &quot;short&quot;,
+    },
+    city: {
+      name: &quot;name&quot;,
+      state: &quot;state&quot;,
+    },
+    slug: &quot;test&quot;,
   },
-  city: {
-    name: &quot;name&quot;,
-    state: &quot;state&quot;,
-  },
-  slug: &quot;test&quot;,
 } as const
 
 jest.mock(&quot;@react-navigation/native&quot;, () =&gt; {
@@ -1953,7 +1956,8 @@ jest.mock(&quot;@react-navigation/native&quot;, () =&gt; {
     }),
   }
 })
-describe(&quot;RestaurantDetails component&quot;, () =&gt; {
+
+describe(&quot;Screens/RestaurantDetails&quot;, () =&gt; {
   // Mock the hooks and components used in RestaurantDetails
 
   let useRestaurant: jest.SpyInstance&lt;
@@ -1981,14 +1985,52 @@ describe(&quot;RestaurantDetails component&quot;, () =&gt; {
       coordinate: { latitude: 0, longitude: 0 },
     },
     isPending: false,
-    error: null,
+    error: undefined,
   }
-  it(&quot;renders loading state&quot;, () =&gt; {
-    useRestaurant.mockReturnValue({ data: null, isPending: true, error: null })
+
+  it(&quot;renders&quot;, () =&gt; {
+    useRestaurant.mockReturnValue(mockRestaurantData)
+
     render(
-      &lt;AuthProvider&gt;
-        &lt;RestaurantDetails route={{ params }} /&gt;
-      &lt;/AuthProvider&gt;,
+      &lt;NavigationContainer&gt;
+        &lt;AuthProvider&gt;
+          {/* @ts-ignore */}
+          &lt;RestaurantDetails route={route} /&gt;
+        &lt;/AuthProvider&gt;
+      &lt;/NavigationContainer&gt;,
+    )
+
+    expect(screen.getByText(&quot;Test Restaurant&quot;)).toBeOnTheScreen()
+  })
+
+  it(&quot;renders before data loads&quot;, () =&gt; {
+    useRestaurant.mockReturnValue({ ...mockRestaurantData, data: undefined })
+    render(
+      &lt;NavigationContainer&gt;
+        &lt;AuthProvider&gt;
+          {/* @ts-ignore */}
+          &lt;RestaurantDetails route={route} /&gt;
+        &lt;/AuthProvider&gt;
+      &lt;/NavigationContainer&gt;,
+    )
+
+    expect(screen.getByText(&quot;&quot;)).toBeOnTheScreen()
+  })
+
+  it(&quot;renders loading state&quot;, () =&gt; {
+    useRestaurant.mockReturnValue({
+      data: undefined,
+      isPending: true,
+      error: undefined,
+    })
+
+    render(
+      &lt;NavigationContainer&gt;
+        &lt;AuthProvider&gt;
+          {/* @ts-ignore */}
+          &lt;RestaurantDetails route={route} /&gt;
+        &lt;/AuthProvider&gt;
+      &lt;/NavigationContainer&gt;,
     )
 
     expect(screen.getByText(/Loading/i)).toBeOnTheScreen()
@@ -1996,15 +2038,20 @@ describe(&quot;RestaurantDetails component&quot;, () =&gt; {
 
   it(&quot;renders error state&quot;, () =&gt; {
     useRestaurant.mockReturnValue({
-      data: null,
+      data: undefined,
       isPending: false,
       error: { name: &quot;Error&quot;, message: &quot;Mock error&quot; },
     })
+
     render(
-      &lt;AuthProvider&gt;
-        &lt;RestaurantDetails route={{ params }} /&gt;
-      &lt;/AuthProvider&gt;,
+      &lt;NavigationContainer&gt;
+        &lt;AuthProvider&gt;
+          {/* @ts-ignore */}
+          &lt;RestaurantDetails route={route} /&gt;
+        &lt;/AuthProvider&gt;
+      &lt;/NavigationContainer&gt;,
     )
+
     expect(
       screen.getByText(/Error loading restaurant details:/i, {
         exact: false,
@@ -2012,32 +2059,10 @@ describe(&quot;RestaurantDetails component&quot;, () =&gt; {
     ).toBeOnTheScreen()
     expect(screen.getByText(/Mock error/i)).toBeOnTheScreen()
   })
-
-  it(&quot;renders the RestaurantHeader and content when data is available&quot;, () =&gt; {
-    useRestaurant.mockReturnValue(mockRestaurantData)
-    render(
-      &lt;AuthProvider&gt;
-        &lt;RestaurantDetails route={{ params }} /&gt;
-      &lt;/AuthProvider&gt;,
-    )
-
-    expect(screen.getByText(&quot;Test Restaurant&quot;)).toBeOnTheScreen()
-  })
-
-  it(&quot;renders the RestaurantHeader and content when data is not available&quot;, () =&gt; {
-    useRestaurant.mockReturnValue({ ...mockRestaurantData, data: null })
-    render(
-      &lt;AuthProvider&gt;
-        &lt;RestaurantDetails route={{ params }} /&gt;
-      &lt;/AuthProvider&gt;,
-    )
-
-    expect(screen.getByText(&quot;Place an order&quot;)).toBeOnTheScreen()
-  })
 })
 
 </code></pre>
- <div line-highlight="3,8-11,13-17,30,58,61,63-65,73,78-80,90,93-95,101-102,104-106,only"></div>
+ <div line-highlight="4,72-75,86-89,93,105-108,124-127,only"></div>
 <h3>Exercise 2</h3>
 <p>In <code>RestaurantDetails</code>, add a button that uses the <code>updateFavorites</code> helper.</p>
 <p>In <code>favorite/hooks.ts</code>, finish the <code>updateFavorites</code> implementation to:</p>
@@ -2065,14 +2090,14 @@ interface Favorite {
 }
 
 interface FavoritesResponse {
-  data: Favorite[] | null
-  error: Error | null
+  data: Favorite[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface FavoriteResponse {
-  data: Favorite | null
-  error: Error | null
+  data: Favorite | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
@@ -2089,8 +2114,8 @@ export const useFavorites = (
   favorite: Favorite | undefined
 } =&gt; {
   const [response, setResponse] = useState&lt;FavoritesResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
   const [localFavorites, setLocalFavorites] = useState&lt;
@@ -2117,7 +2142,7 @@ export const useFavorites = (
       })
 
       setResponse({
-        data: data?.data || null,
+        data: data?.data || undefined,
         error: error,
         isPending: false,
       })
@@ -2274,7 +2299,7 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
           navigation.navigate(&quot;RestaurantOrder&quot;, { slug: slug })
         }}
       &gt;
-        Place an order
+        Place My Order!
       &lt;/Button&gt;
     &lt;/Screen&gt;
   )
@@ -2312,14 +2337,14 @@ interface Favorite {
 }
 
 interface FavoritesResponse {
-  data: Favorite[] | null
-  error: Error | null
+  data: Favorite[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface FavoriteResponse {
-  data: Favorite | null
-  error: Error | null
+  data: Favorite | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
@@ -2338,8 +2363,8 @@ export const useFavorites = (
   localFavorites: LocalStorageFavorites | undefined
 } =&gt; {
   const [response, setResponse] = useState&lt;FavoritesResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
   const [localFavorites, setLocalFavorites] = useState&lt;
@@ -2366,7 +2391,7 @@ export const useFavorites = (
       })
 
       setResponse({
-        data: data?.data || null,
+        data: data?.data || undefined,
         error: error,
         isPending: false,
       })
@@ -2530,14 +2555,14 @@ interface Favorite {
 }
 
 interface FavoritesResponse {
-  data: Favorite[] | null
-  error: Error | null
+  data: Favorite[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface FavoriteResponse {
-  data: Favorite | null
-  error: Error | null
+  data: Favorite | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
@@ -2556,8 +2581,8 @@ export const useFavorites = (
   localFavorites: LocalStorageFavorites | undefined
 } =&gt; {
   const [response, setResponse] = useState&lt;FavoritesResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
   const [localFavorites, setLocalFavorites] = useState&lt;
@@ -2584,7 +2609,7 @@ export const useFavorites = (
       })
 
       setResponse({
-        data: data?.data || null,
+        data: data?.data || undefined,
         error: error,
         isPending: false,
       })
@@ -2747,14 +2772,14 @@ interface Favorite {
 }
 
 interface FavoritesResponse {
-  data: Favorite[] | null
-  error: Error | null
+  data: Favorite[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface FavoriteResponse {
-  data: Favorite | null
-  error: Error | null
+  data: Favorite | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
@@ -2773,8 +2798,8 @@ export const useFavorites = (
   localFavorites: LocalStorageFavorites | undefined
 } =&gt; {
   const [response, setResponse] = useState&lt;FavoritesResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
   const [localFavorites, setLocalFavorites] = useState&lt;
@@ -2801,7 +2826,7 @@ export const useFavorites = (
       })
 
       setResponse({
-        data: data?.data || null,
+        data: data?.data || undefined,
         error: error,
         isPending: false,
       })
@@ -2997,14 +3022,6 @@ export type RestaurantsStackParamList = {
     }
   }
   RestaurantDetails: {
-    state: {
-      name: string
-      short: string
-    }
-    city: {
-      name: string
-      state: string
-    }
     slug: string
   }
   RestaurantOrder: {
@@ -3139,14 +3156,14 @@ interface Favorite {
 }
 
 interface FavoritesResponse {
-  data: Favorite[] | null
-  error: Error | null
+  data: Favorite[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface FavoriteResponse {
-  data: Favorite | null
-  error: Error | null
+  data: Favorite | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
@@ -3165,8 +3182,8 @@ export const useFavorites = (
   localFavorites: LocalStorageFavorites | undefined
 } =&gt; {
   const [response, setResponse] = useState&lt;FavoritesResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
   const [localFavorites, setLocalFavorites] = useState&lt;
@@ -3193,7 +3210,7 @@ export const useFavorites = (
       })
 
       setResponse({
-        data: data?.data || null,
+        data: data?.data || undefined,
         error: error,
         isPending: false,
       })
@@ -3376,7 +3393,7 @@ import * as api from &quot;../api/api&quot;
 
 import { useFavorites } from &quot;./hooks&quot;
 
-describe(&quot;Favorite Hook&quot;, () =&gt; {
+describe(&quot;Services/PMO/Favorite&quot;, () =&gt; {
   // Mock the apiRequest function
   let apiRequest: jest.SpyInstance&lt;ReturnType&lt;typeof api.apiRequest&gt;&gt;
   let mockStorage: jest.SpyInstance&lt;ReturnType&lt;typeof storage.getData&gt;&gt;
@@ -3386,7 +3403,7 @@ describe(&quot;Favorite Hook&quot;, () =&gt; {
     mockStorage = jest.spyOn(storage, &quot;getData&quot;)
   })
 
-  describe(&quot;useFavorites hook&quot;, () =&gt; {
+  describe(&quot;useFavorites&quot;, () =&gt; {
     const mockFavorites = [
       {
         userId: &quot;user-id&quot;,
@@ -3403,10 +3420,11 @@ describe(&quot;Favorite Hook&quot;, () =&gt; {
         _id: &quot;dmTvyAYw3o0xjAIk&quot;,
       },
     ]
-    it(&quot;should return list of favorites from the server&quot;, async () =&gt; {
+
+    it(&quot;returns favorites from the server&quot;, async () =&gt; {
       apiRequest.mockResolvedValue({
         data: { data: mockFavorites },
-        error: null,
+        error: undefined,
       })
 
       const { result } = renderHook(() =&gt; useFavorites(&quot;user-id&quot;))
@@ -3416,19 +3434,22 @@ describe(&quot;Favorite Hook&quot;, () =&gt; {
       })
 
       expect(result.current.data).toEqual(mockFavorites)
-      expect(result.current.error).toBeNull()
+      expect(result.current.error).toBeUndefined()
     })
-    it(&quot;should return list of favorites from the local storage&quot;, async () =&gt; {
+
+    it(&quot;returns favorites from storage&quot;, async () =&gt; {
       const mockLocalFavorites = {
         lastSynced: &quot;Date&quot;,
         favorites: mockFavorites,
       }
       apiRequest.mockResolvedValue({
         data: { data: mockFavorites },
-        error: null,
+        error: undefined,
       })
       mockStorage.mockResolvedValue(mockLocalFavorites)
+
       const { result } = renderHook(() =&gt; useFavorites(&quot;user-id&quot;))
+
       await waitFor(() =&gt; {
         expect(result.current.localFavorites).toBeTruthy()
       })
@@ -3439,7 +3460,7 @@ describe(&quot;Favorite Hook&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="50-63,65-66,only"></div>
+ <div line-highlight="3,11,15,52-61,63,65-67,69-70,only"></div>
 <h3>Exercise 3</h3>
 <ul>
 <li>Create a <code>FavoritesSync</code> component that does the following:
@@ -3533,14 +3554,6 @@ export type RestaurantsStackParamList = {
     }
   }
   RestaurantDetails: {
-    state: {
-      name: string
-      short: string
-    }
-    city: {
-      name: string
-      state: string
-    }
     slug: string
   }
   RestaurantOrder: {
@@ -3660,7 +3673,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="164,only"></div>
+ <div line-highlight="156,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, we will learn about <a href="google-maps.html" title="Learn how to integrate Google Maps into your React Native application.">Integrating Maps</a> to our application.</p>
