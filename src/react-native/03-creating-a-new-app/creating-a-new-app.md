@@ -125,15 +125,6 @@ Before we begin adding any content, it’s a good idea to clean up generated fil
 npm install --save-dev @bitovi/eslint-config@1 depcheck@1
 ```
 
-✏️ Update **package.json** to be:
-
-@sourceref ../../../exercises/react-native/03-creating-a-new-app/03-solution/package.json
-@highlight 7-10, 12-17, 21, 49, only
-
-✏️ Update **.prettierrc.js** to be:
-
-@diff ../../../exercises/react-native/03-creating-a-new-app/02-solution/.prettierrc.js ../../../exercises/react-native/03-creating-a-new-app/03-solution/.prettierrc.js only
-
 ✏️ Create **.depcheckrc** and update it to be:
 
 @sourceref ../../../exercises/react-native/03-creating-a-new-app/03-solution/.depcheckrc
@@ -142,10 +133,23 @@ npm install --save-dev @bitovi/eslint-config@1 depcheck@1
 
 @diff ../../../exercises/react-native/03-creating-a-new-app/02-solution/.eslintrc.js ../../../exercises/react-native/03-creating-a-new-app/03-solution/.eslintrc.js only
 
+✏️ Update **.prettierrc.js** to be:
+
+@diff ../../../exercises/react-native/03-creating-a-new-app/02-solution/.prettierrc.js ../../../exercises/react-native/03-creating-a-new-app/03-solution/.prettierrc.js only
+
 ✏️ Update **metro.config.js** to be:
 
 @sourceref ../../../exercises/react-native/03-creating-a-new-app/03-solution/metro.config.js
 @highlight 1, only
+
+✏️ Update **package.json** to be:
+
+@sourceref ../../../exercises/react-native/03-creating-a-new-app/03-solution/package.json
+@highlight 7-10, 12-17, 21, 49, only
+
+✏️ Update **tsconfig.json** to be:
+
+@diff ../../../exercises/react-native/03-creating-a-new-app/02-solution/tsconfig.json ../../../exercises/react-native/03-creating-a-new-app/03-solution/tsconfig.json only
 
 ✏️ Now that we have prettier and eslint set up, we need to make sure our code is following the new standards. You can apply most of the rules automatically. Run:
 
