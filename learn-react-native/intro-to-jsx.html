@@ -681,10 +681,10 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this section, you will:</p>
 <ul>
-<li>Learn the basics of JSX.</li>
-<li>Discover the differences between JSX and XML.</li>
+<li>Embed JavaScript expressions in JSX.</li>
+<li>Combine JSX with standard JavaScript</li>
 <li>Use JavaScript variables and expressions in JSX.</li>
-<li>Work with conditionals and loops in JSX.</li>
+<li>Write conditionals and loops in JSX.</li>
 </ul>
 <h2>Objective 1: Create a UI with JSX</h2>
 <p>Now that we have our project set up, let’s update our page to look like the design below:</p>
@@ -816,7 +816,7 @@ We will get into styles more later, but for now, know that <code>flex: 1</code> 
 <p>In general, you always want to have your content wrapped in a <code>&lt;SafeAreaView&gt;</code> so the device’s hardware boundaries don’t overlap with your app’s content.</p>
 <h4>Parenthesis (convention)</h4>
 <p>When dealing with JSX that needs multiple lines, the convention is to wrap it in parentheses. This helps keep your JSX clean and clear, rather than mixing it with the Javascript around it.</p>
-<pre><code class="language-tsx">function Form() {
+<pre><code class="language-tsx">const Form: React.FC = () =&gt; {
   return (
     &lt;View&gt;
       &lt;Text&gt;Name:&lt;/Text&gt;
@@ -825,11 +825,12 @@ We will get into styles more later, but for now, know that <code>flex: 1</code> 
   )
 }
 </code></pre>
+<div line-highlight='2, 7, only'></div>
 <h4>Implicit returns (convention)</h4>
 <p>When creating functions that have no logic and just return JSX, especially when they're an argument to a function, the convention is to use an arrow function with an implicit return. This is nearly always coupled with the parenthesis convention, too. (Don’t worry: you’ll learn about <code>.map</code> in the next objective.)</p>
 <pre><code class="language-tsx">const data = [&quot;one&quot;, &quot;two&quot;]
 
-function List() {
+const List: React.FC = () =&gt; {
   return (
     &lt;View&gt;
       {data.map((name) =&gt; (
@@ -839,6 +840,7 @@ function List() {
   )
 }
 </code></pre>
+<div line-highlight='6-8'></div>
 <h3>Setup 1</h3>
 <p>✏️ Update <strong>App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
@@ -905,7 +907,7 @@ export default App
  <div line-highlight="4-15,only"></div>
 <p></details></p>
 <h2>Objective 2: Expressions and loops in JSX</h2>
-<p>Next, we want to render a list of states name in our application:</p>
+<p>Next, we want to render a list of state names in our application:</p>
 <p><img alt="Screenshot of a mobile application interface text “Place My Order: Coming Soon To...”, “Illinois“, and “Wisconsin“." src="../static/img/react-native/04-intro-to-jsx/02-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
 <p>To do so, we’ll learn about:</p>
 <ul>
@@ -938,7 +940,7 @@ const content = (
 <pre><code class="language-tsx">const header = &lt;Text&gt;Hello World&lt;/Text&gt;
 const body = &lt;Text&gt;My name is {&quot;Mike&quot;}&lt;/Text&gt;
 
-function MyPage() {
+const MyPage: React.FC = () =&gt; {
   return (
     &lt;View&gt;
       {header}
@@ -1070,6 +1072,7 @@ Check the render method of 'App'. See https://reactjs.org/link/warning-keys for 
   in RCTView (created by View) in View (created by AppContainer)
   in AppContainer in solution
 </code></pre>
+<div line-highlight='1, only'></div>
 <h3>Setup 2</h3>
 <p>✏️ Update <strong>App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
