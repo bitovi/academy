@@ -10,10 +10,10 @@
 
 In this section, you will:
 
-- Learn the basics of JSX.
-- Discover the differences between JSX and XML.
+- Embed JavaScript expressions in JSX.
+- Combine JSX with standard JavaScript
 - Use JavaScript variables and expressions in JSX.
-- Work with conditionals and loops in JSX.
+- Write conditionals and loops in JSX.
 
 ## Objective 1: Create a UI with JSX
 
@@ -168,7 +168,7 @@ In general, you always want to have your content wrapped in a `<SafeAreaView>` s
 When dealing with JSX that needs multiple lines, the convention is to wrap it in parentheses. This helps keep your JSX clean and clear, rather than mixing it with the Javascript around it.
 
 ```tsx
-function Form() {
+const Form: React.FC = () => {
   return (
     <View>
       <Text>Name:</Text>
@@ -178,6 +178,8 @@ function Form() {
 }
 ```
 
+@highlight 2, 7, only
+
 #### Implicit returns (convention)
 
 When creating functions that have no logic and just return JSX, especially when they're an argument to a function, the convention is to use an arrow function with an implicit return. This is nearly always coupled with the parenthesis convention, too. (Don’t worry: you’ll learn about `.map` in the next objective.)
@@ -185,7 +187,7 @@ When creating functions that have no logic and just return JSX, especially when 
 ```tsx
 const data = ["one", "two"]
 
-function List() {
+const List: React.FC = () => {
   return (
     <View>
       {data.map((name) => (
@@ -195,6 +197,8 @@ function List() {
   )
 }
 ```
+
+@highlight 6-8
 
 ### Setup 1
 
@@ -229,7 +233,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 ## Objective 2: Expressions and loops in JSX
 
-Next, we want to render a list of states name in our application:
+Next, we want to render a list of state names in our application:
 
 <img alt="Screenshot of a mobile application interface text “Place My Order: Coming Soon To...”, “Illinois“, and “Wisconsin“." src="../static/img/react-native/04-intro-to-jsx/02-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
 
@@ -276,7 +280,7 @@ Remember, JSX is an alternative syntax for normal JavaScript—it is not magic. 
 const header = <Text>Hello World</Text>
 const body = <Text>My name is {"Mike"}</Text>
 
-function MyPage() {
+const MyPage: React.FC = () => {
   return (
     <View>
       {header}
@@ -453,6 +457,8 @@ Check the render method of 'App'. See https://reactjs.org/link/warning-keys for 
   in RCTView (created by View) in View (created by AppContainer)
   in AppContainer in solution
 ```
+
+@highlight 1, only
 
 ### Setup 2
 
