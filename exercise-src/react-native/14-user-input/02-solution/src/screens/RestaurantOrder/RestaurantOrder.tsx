@@ -36,7 +36,7 @@ const RestaurantOrder: React.FC<RestaurantOrderProps> = ({ route }) => {
     }
   }, [restaurant, navigation])
 
-  const handlePress = () => {
+  const handleOrder = () => {
     console.info("“Place My Order” button pressed!")
   }
 
@@ -133,7 +133,7 @@ const RestaurantOrder: React.FC<RestaurantOrderProps> = ({ route }) => {
         </Box>
 
         <Box padding="s">
-          <Button onPress={handlePress}>Place My Order!</Button>
+          <Button onPress={handleOrder}>Place My Order!</Button>
         </Box>
       </Screen>
     </ScrollView>

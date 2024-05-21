@@ -17,8 +17,8 @@ const FormTextField: React.FC<FormTextFieldProps> = ({
   value,
   onChange,
 }) => {
-  const id = useId()
   const theme = useTheme()
+  const id = useId()
 
   return (
     <Box style={{ marginVertical: 8 }}>
@@ -26,7 +26,7 @@ const FormTextField: React.FC<FormTextFieldProps> = ({
         {label}
       </Typography>
       <TextInput
-        accessibilityLabel="input"
+        accessibilityLabel="Input"
         accessibilityLabelledBy={id}
         onChangeText={onChange}
         value={value}

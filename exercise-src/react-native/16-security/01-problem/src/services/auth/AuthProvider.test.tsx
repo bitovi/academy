@@ -1,10 +1,5 @@
 import { GoogleSigninButton } from "@react-native-google-signin/google-signin"
-import {
-  render,
-  screen,
-  waitFor,
-  fireEvent,
-} from "@testing-library/react-native"
+import { render, screen, fireEvent } from "@testing-library/react-native"
 import { FC } from "react"
 import { View, Text } from "react-native"
 
@@ -25,7 +20,7 @@ afterAll(() => {
   global.fetch = oldFetch
 })
 
-describe("AuthProvider", () => {
+describe("Services/Auth/AuthProvider", () => {
   const TestComponent: FC = () => {
     const isAuthenticated = useAuthenticated()
     const { signIn, signOut } = useAuthentication()

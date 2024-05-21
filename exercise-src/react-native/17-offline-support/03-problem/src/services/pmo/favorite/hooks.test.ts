@@ -5,7 +5,7 @@ import * as api from "../api/api"
 
 import { useFavorites } from "./hooks"
 
-describe("Favorite Hook", () => {
+describe("Services/PMO/Favorite", () => {
   // Mock the apiRequest function
   let apiRequest: jest.SpyInstance<ReturnType<typeof api.apiRequest>>
   let mockStorage: jest.SpyInstance<ReturnType<typeof storage.getData>>
@@ -15,7 +15,7 @@ describe("Favorite Hook", () => {
     mockStorage = jest.spyOn(storage, "getData")
   })
 
-  describe("useFavorites hook", () => {
+  describe("useFavorites", () => {
     const mockFavorites = [
       {
         userId: "user-id",
@@ -32,10 +32,11 @@ describe("Favorite Hook", () => {
         _id: "dmTvyAYw3o0xjAIk",
       },
     ]
-    it("should return list of favorites from the server", async () => {
+
+    it("returns favorites from the server", async () => {
       apiRequest.mockResolvedValue({
         data: { data: mockFavorites },
-        error: null,
+        error: undefined,
       })
 
       const { result } = renderHook(() => useFavorites("user-id"))
@@ -45,19 +46,22 @@ describe("Favorite Hook", () => {
       })
 
       expect(result.current.data).toEqual(mockFavorites)
-      expect(result.current.error).toBeNull()
+      expect(result.current.error).toBeUndefined()
     })
-    it("should return list of favorites from the local storage", async () => {
+
+    it("returns favorites from storage", async () => {
       const mockLocalFavorites = {
         lastSynced: "Date",
         favorites: mockFavorites,
       }
       apiRequest.mockResolvedValue({
         data: { data: mockFavorites },
-        error: null,
+        error: undefined,
       })
       mockStorage.mockResolvedValue(mockLocalFavorites)
+
       const { result } = renderHook(() => useFavorites("user-id"))
+
       await waitFor(() => {
         expect(result.current.localFavorites).toBeTruthy()
       })
