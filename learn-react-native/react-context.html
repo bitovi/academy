@@ -1039,7 +1039,7 @@ import StateList from &quot;./screens/StateList&quot;
 
 const App: React.FC = () =&gt; {
   return (
-    &lt;SafeAreaView style={{ height: &quot;100%&quot;, width: &quot;100%&quot; }}&gt;
+    &lt;SafeAreaView style={{ flex: 1 }}&gt;
       &lt;ThemeProvider&gt;
         &lt;StateList /&gt;
       &lt;/ThemeProvider&gt;
@@ -1691,11 +1691,10 @@ const Screen: React.FC&lt;ScreenProps&gt; = ({ style, children, ...props }) =&gt
   const { palette } = useTheme()
 
   return (
-    &lt;ScrollView&gt;
+    &lt;ScrollView contentContainerStyle={{ flexGrow: 1 }}&gt;
       &lt;Box
-        padding=&quot;s&quot;
         style={{
-          height: &quot;100%&quot;,
+          flex: 1,
           backgroundColor: palette.screen.soft,
         }}
         {...props}
