@@ -170,7 +170,7 @@ We will also need to set up our environment.
 ✏️ Run:
 
 ```bash
-npm install react-native-dotenv@3
+npm install -- save-dev react-native-dotenv@3
 ```
 
 ✏️ Update **babel.config.js** to be:
