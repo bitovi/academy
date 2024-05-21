@@ -132,6 +132,37 @@ const content = <Text style={{ fontStyle: "italic" }}>Restaurants</Text>
 
 As we go through this training, you’ll learn additional differences.
 
+#### Using `View`
+
+The `View` component is one of the most fundamental building blocks in React Native.
+It is a container component that can hold one or more other components while grouping them together for accessibility, styling, touch handling, and more.
+
+If you’re familiar with web development, a `<View>` is similar to a `<div>`.
+
+@sourceref ./View.tsx
+@highlight 5, 7, only
+
+#### Using `ScrollView`
+
+The `ScrollView` component is a generic scrolling container that can host multiple components and views.
+It is useful when the content you need to display exceeds the screen size, enabling vertical or horizontal scrolling.
+
+@sourceref ./ScrollView.tsx
+@highlight 5, 12, only
+
+#### Using `SafeAreaView`
+
+The `SafeAreaView` component ensures that the content is rendered within the safe area boundaries of a device.
+This is particularly important for devices with notches, home indicators, or rounded corners.
+
+@sourceref ./SafeAreaView.tsx
+@highlight 5, 7, only
+
+You’ll notice the `flex: 1` style that we’ve added to the component.
+We will get into styles more later, but for now, know that `flex: 1` will make the component take up all the available space.
+
+In general, you always want to have your content wrapped in a `<SafeAreaView>` so the device’s hardware boundaries don’t overlap with your app’s content.
+
 #### Parenthesis (convention)
 
 When dealing with JSX that needs multiple lines, the convention is to wrap it in parentheses. This helps keep your JSX clean and clear, rather than mixing it with the Javascript around it.
@@ -165,18 +196,6 @@ function List() {
 }
 ```
 
-#### Using `View`
-
-TODO: Introduce this core component.
-
-#### Using `ScrollView`
-
-TODO: Introduce this core component.
-
-#### Using `SafeAreaView`
-
-TODO: Introduce this core component.
-
 ### Setup 1
 
 ✏️ Update **App.tsx** to be:
@@ -191,7 +210,10 @@ TODO: Introduce this core component.
 
 ### Exercise 1
 
-Use JSX to dynamically display a state name from a variable that’s an object.
+Update `App.tsx` to include the following:
+
+- Use `SafeAreaView`, `ScrollView`, and `View` to wrap the existing `Text` component.
+- Add a new `View` component to wrap `Text` that says “Illinois”.
 
 ### Solution 1
 

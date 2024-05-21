@@ -19,7 +19,7 @@ const App: React.FC = () => {
           <Text>Place My Order: Coming Soon!</Text>
         </View>
         <View>
-          <Text>{states[0].name}</Text>
+          <Text>Illinois</Text>
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -1,7 +1,5 @@
 import { SafeAreaView, ScrollView, Text, View } from "react-native"
 
-const state = { name: "Illinois", short: "IL" }
-
 const App: React.FC = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -10,7 +8,7 @@ const App: React.FC = () => {
           <Text>Place My Order: Coming Soon!</Text>
         </View>
         <View>
-          <Text>{state.name}</Text>
+          <Text>Illinois</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
