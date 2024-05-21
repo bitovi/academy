@@ -4,7 +4,7 @@ import StateList from "./screens/StateList"
 
 const App: React.FC = () => {
   return (
-    <SafeAreaView style={{ height: "100%", width: "100%" }}>
+    <SafeAreaView style={{ flex: 1 }}>
       <StateList />
     </SafeAreaView>
   )

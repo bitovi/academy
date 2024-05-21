@@ -154,7 +154,7 @@ const AppNavigator: React.FC = () => {
 // Exercise: Add `AuthProvider` to the App component.
 const App: React.FC = () => {
   return (
-    <SafeAreaView style={{ height: "100%", width: "100%" }}>
+    <SafeAreaView style={{ flex: 1 }}>
       <ThemeProvider>
         <DataMigration>
           <NavigationContainer>
