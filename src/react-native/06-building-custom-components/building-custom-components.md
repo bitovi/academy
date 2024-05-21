@@ -282,15 +282,13 @@ Also, every import is from a child of that top level modlet. We are only reachin
 
 It’s best practice to create a new folder that will contain all of the related files for each component, including test files.
 
+✏️ Create **src/** (folder)
+
+✏️ Move **App.tsx** to **src/App.tsx**
+
 ✏️ Update **index.js** to be:
 
 @diff ../../../exercises/react-native/06-custom-components/02-solution/index.js ../../../exercises/react-native/06-custom-components/03-problem/index.js only
-
-✏️ Create **src/** (folder)
-
-✏️ Move **App.tsx** to **src/App.tsx** and update it to be:
-
-@sourceref ../../../exercises/react-native/06-custom-components/03-problem/src/App.tsx
 
 ✏️ Create **src/screens/StateList/** (folder)
 
