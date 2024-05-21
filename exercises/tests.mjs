@@ -57,7 +57,7 @@ async function processSolution(solutionDirectory) {
         await executeCommand('npm run test', solutionDirectory);
 
         try {
-            // await executeCommand('rm -rf node_modules', solutionDirectory);
+            await executeCommand('rm -rf node_modules', solutionDirectory);
         } catch (error) {
             console.warn('Ignoring error while deleting node_modules:', error);
         }
