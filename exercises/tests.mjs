@@ -45,16 +45,19 @@ async function processSolution(solutionDirectory) {
         console.info(`Found package.json in ${relativeDirectory}`);
 
         const { scripts } = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
-        const script = 'test';
-        if (!scripts[script]) {
-            console.info(`Script not found in ${relativeDirectory}`);
+        if (!scripts.test) {
+            console.info(`Tests not found in ${relativeDirectory}`);
             return;
         }
 
         await executeCommand('npm ci', solutionDirectory);
-        await executeCommand(`npm run ${script}`, solutionDirectory);
+        if (scripts.typecheck) {
+            await executeCommand('npm run typecheck', solutionDirectory);
+        }
+        await executeCommand('npm run test', solutionDirectory);
+
         try {
-            await executeCommand('rm -rf node_modules', solutionDirectory);
+            // await executeCommand('rm -rf node_modules', solutionDirectory);
         } catch (error) {
             console.warn('Ignoring error while deleting node_modules:', error);
         }
