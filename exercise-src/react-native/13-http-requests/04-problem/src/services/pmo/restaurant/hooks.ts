@@ -57,12 +57,16 @@ export function useCities(state: string): CitiesResponse {
   return response
 }
 
-export function useRestaurant(slug: string): RestaurantResponse {}
+export function useRestaurant(slug: string): RestaurantResponse {
+  // Exercise: Fill in `useRestaurant` Hook for fetching the details of the restaurant.
+}
 
 export function useRestaurants(
   state: string,
   city: string,
-): RestaurantsResponse {}
+): RestaurantsResponse {
+  // Exercise: Fill in `useRestaurants` Hook for fetching the list of restaurants.
+}
 
 export function useStates(): StatesResponse {
   const [response, setResponse] = useState<StatesResponse>({

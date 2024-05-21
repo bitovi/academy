@@ -1,4 +1,5 @@
 import { SafeAreaView, ScrollView, Text, View } from "react-native"
+// Exercise: Make sure to properly update each `import` and to reference every component’s essential files.
 
 const states = [
   {

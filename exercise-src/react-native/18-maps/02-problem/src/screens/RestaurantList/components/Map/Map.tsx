@@ -18,7 +18,9 @@ const Map: React.FC<MapProps> = ({ restaurants }) => {
         longitudeDelta: 0.5,
       }}
       loadingEnabled
-    ></MapView>
+    >
+      {/* Exercise: Using the restaurants property, create a Marker for each restaurant. */}
+    </MapView>
   )
 }
 

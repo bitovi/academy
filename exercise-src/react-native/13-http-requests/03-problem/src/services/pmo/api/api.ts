@@ -27,5 +27,7 @@ export function stringifyQuery(
     }
   }
 
+  // Exercise: Implement the `apiRequest` helper function to handle errors returned and thrown from `fetch()`.
+
   return output.join("&")
 }

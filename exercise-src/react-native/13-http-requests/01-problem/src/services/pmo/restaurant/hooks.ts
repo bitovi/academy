@@ -10,4 +10,6 @@ interface StatesResponse {
   isPending: boolean
 }
 
-export function useStates(): StatesResponse {}
+export function useStates(): StatesResponse {
+  // Exercise: Update the `useState` in `hooks.ts` to call `useEffect()` and `fetch` data from `${process.env.PMO_API}/states`.
+}

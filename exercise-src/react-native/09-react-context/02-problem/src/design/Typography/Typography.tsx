@@ -12,7 +12,7 @@ const Typography: React.FC<TypographyProps> = ({
   children,
   ...props
 }) => {
-  // TODO
+  // Exercise: Finish the Typography component using the same patterns used on the 'Box' component.
 }
 
 export default Typography

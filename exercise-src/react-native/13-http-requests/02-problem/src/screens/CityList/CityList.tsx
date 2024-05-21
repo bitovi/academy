@@ -16,6 +16,7 @@ export interface CityListProps
 const CityList: React.FC<CityListProps> = ({ route }) => {
   const { state } = route.params
   const navigation = useNavigation()
+  // Exercise: When calling the Place My Order API, include the `state` query parameter.
 
   return (
     <Screen>

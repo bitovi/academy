@@ -20,7 +20,7 @@ const RestaurantsNavigator: React.FC = () => {
       screenOptions={{
         header: ({ route, navigation }) => {
           {
-            /* Exercise: Add logic for back navigation*/
+            /* Exercise: Add logic for back navigation. */
           }
           return (
             <Pressable onPress={() => console.warn("header pressed")}>

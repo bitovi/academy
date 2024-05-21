@@ -19,7 +19,11 @@ const App: React.FC = () => {
           <Text>Place My Order: Coming Soon!</Text>
         </View>
         <View>
+          {/* Exercise: Update the existing JSX to render the list of state names.
+          Use `Array.map()` to iterate over the `states`.
+          Make sure to use `key` inside the `.map()`. */}
           <Text>Illinois</Text>
+          {/* Exercise: Render `<Text>No states found</Text>` if, hypothetically, there weren’t any states. */}
         </View>
       </ScrollView>
     </SafeAreaView>
