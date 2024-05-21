@@ -2,7 +2,7 @@
 @parent learn-react-native 7
 @outline 3
 
-@description TODO
+@description Learn how to set up and use both DevTools and Debugger.
 
 @body
 
@@ -54,7 +54,8 @@ npm install react-devtools@5 --save-dev
 
 ✏️ Update **src/package.json** to be:
 
-@diff ../../../exercises/react-native/06-custom-components/03-solution/package.json ../../../exercises/react-native/07-debugging/01-solution/package.json only
+@sourceref ../../../exercises/react-native/07-debugging/01-solution/package.json
+@highlight 9, only
 
 ### Verify 1
 
