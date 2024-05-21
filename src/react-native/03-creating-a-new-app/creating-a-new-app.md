@@ -19,7 +19,7 @@ In this section, you will:
 Create a new React Native application named “Place My Order” that supports TypeScript and can be emulated and tested.
 
 <figure>
-  <img alt="A mobile phone displaying the root page of the newly created application served by the dev server. The page displays a 'Welcome to React Native' header and some miscellaneous instructions that we will be disregarding." src="../static/img/react-native/03-creating-a-new-app/01-generated-app.png" width="600px" />
+  <img alt="A mobile phone displaying the root page of the newly created application served by the dev server. The page displays a 'Welcome to React Native' header and some miscellaneous instructions that we will be disregarding." src="../static/img/react-native/03-creating-a-new-app/01-solution.png" style="border: 4px solid black; border-radius: 25px; max-height: 638px" />
   <figcaption style="font-style: italic">
     Screen capture of the completed exercise.
   </figcaption>
@@ -68,6 +68,8 @@ npm run start
 The first time you run it for a given target will take significantly longer than subsequent runs. Once open, you should see the default "Welcome to React Native" screen.
 
 ## Objective 2: Add testing infrastructure
+
+<img alt="A mobile phone displaying the root page of the newly created application served by the dev server. The page displays a “Place My Order: Coming Soon!” message." src="../static/img/react-native/03-creating-a-new-app/02-solution.png" style="border: 4px solid black; border-radius: 25px; max-height: 638px" />
 
 ### Testing code with React Testing Library
 
