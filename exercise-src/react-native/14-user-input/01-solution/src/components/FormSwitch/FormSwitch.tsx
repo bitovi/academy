@@ -5,13 +5,13 @@ import { useTheme } from "../../design/theme"
 import Typography from "../../design/Typography"
 
 export interface FormSwitchProps {
-  label: React.ReactNode
+  label: string
   value: boolean
   onChange: (value: boolean) => void
 }
 
 const FormSwitch: React.FC<FormSwitchProps> = ({ label, value, onChange }) => {
-  const { palette } = useTheme()
+  const theme = useTheme()
 
   return (
     <Box
@@ -26,10 +26,10 @@ const FormSwitch: React.FC<FormSwitchProps> = ({ label, value, onChange }) => {
       <Typography variant="label">{label}</Typography>
       <Switch
         onValueChange={onChange}
-        thumbColor={palette.primary.contrast}
+        thumbColor={theme.palette.primary.contrast}
         trackColor={{
-          true: palette.primary.strong,
-          false: palette.screen.soft,
+          true: theme.palette.primary.strong,
+          false: theme.palette.screen.soft,
         }}
         value={value}
       ></Switch>

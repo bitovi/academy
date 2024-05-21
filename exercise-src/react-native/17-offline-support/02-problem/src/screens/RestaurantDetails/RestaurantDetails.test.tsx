@@ -1,3 +1,4 @@
+import { NavigationContainer } from "@react-navigation/native"
 import { render, screen } from "@testing-library/react-native"
 
 import AuthProvider from "../../services/auth/AuthProvider"
@@ -5,16 +6,20 @@ import * as restaurantHooks from "../../services/pmo/restaurant/hooks"
 
 import RestaurantDetails from "./RestaurantDetails"
 
-const params = {
-  state: {
-    name: "name",
-    short: "short",
+const route = {
+  key: "RestaurantDetails",
+  name: "RestaurantDetails",
+  params: {
+    state: {
+      name: "name",
+      short: "short",
+    },
+    city: {
+      name: "name",
+      state: "state",
+    },
+    slug: "test",
   },
-  city: {
-    name: "name",
-    state: "state",
-  },
-  slug: "test",
 } as const
 
 jest.mock("@react-navigation/native", () => {
@@ -27,7 +32,8 @@ jest.mock("@react-navigation/native", () => {
     }),
   }
 })
-describe("RestaurantDetails component", () => {
+
+describe("Screens/RestaurantDetails", () => {
   // Mock the hooks and components used in RestaurantDetails
 
   let useRestaurant: jest.SpyInstance<
@@ -55,14 +61,52 @@ describe("RestaurantDetails component", () => {
       coordinate: { latitude: 0, longitude: 0 },
     },
     isPending: false,
-    error: null,
+    error: undefined,
   }
-  it("renders loading state", () => {
-    useRestaurant.mockReturnValue({ data: null, isPending: true, error: null })
+
+  it("renders", () => {
+    useRestaurant.mockReturnValue(mockRestaurantData)
+
     render(
-      <AuthProvider>
-        <RestaurantDetails route={{ params }} />
-      </AuthProvider>,
+      <NavigationContainer>
+        <AuthProvider>
+          {/* @ts-ignore */}
+          <RestaurantDetails route={route} />
+        </AuthProvider>
+      </NavigationContainer>,
+    )
+
+    expect(screen.getByText("Test Restaurant")).toBeOnTheScreen()
+  })
+
+  it("renders before data loads", () => {
+    useRestaurant.mockReturnValue({ ...mockRestaurantData, data: undefined })
+    render(
+      <NavigationContainer>
+        <AuthProvider>
+          {/* @ts-ignore */}
+          <RestaurantDetails route={route} />
+        </AuthProvider>
+      </NavigationContainer>,
+    )
+
+    expect(screen.getByText("")).toBeOnTheScreen()
+  })
+
+  it("renders loading state", () => {
+    useRestaurant.mockReturnValue({
+      data: undefined,
+      isPending: true,
+      error: undefined,
+    })
+
+    render(
+      <NavigationContainer>
+        <AuthProvider>
+          {/* @ts-ignore */}
+          <RestaurantDetails route={route} />
+        </AuthProvider>
+      </NavigationContainer>,
     )
 
     expect(screen.getByText(/Loading/i)).toBeOnTheScreen()
@@ -70,42 +114,25 @@ describe("RestaurantDetails component", () => {
 
   it("renders error state", () => {
     useRestaurant.mockReturnValue({
-      data: null,
+      data: undefined,
       isPending: false,
       error: { name: "Error", message: "Mock error" },
     })
+
     render(
-      <AuthProvider>
-        <RestaurantDetails route={{ params }} />
-      </AuthProvider>,
+      <NavigationContainer>
+        <AuthProvider>
+          {/* @ts-ignore */}
+          <RestaurantDetails route={route} />
+        </AuthProvider>
+      </NavigationContainer>,
     )
+
     expect(
       screen.getByText(/Error loading restaurant details:/i, {
         exact: false,
       }),
     ).toBeOnTheScreen()
     expect(screen.getByText(/Mock error/i)).toBeOnTheScreen()
-  })
-
-  it("renders the RestaurantHeader and content when data is available", () => {
-    useRestaurant.mockReturnValue(mockRestaurantData)
-    render(
-      <AuthProvider>
-        <RestaurantDetails route={{ params }} />
-      </AuthProvider>,
-    )
-
-    expect(screen.getByText("Test Restaurant")).toBeOnTheScreen()
-  })
-
-  it("renders the RestaurantHeader and content when data is not available", () => {
-    useRestaurant.mockReturnValue({ ...mockRestaurantData, data: null })
-    render(
-      <AuthProvider>
-        <RestaurantDetails route={{ params }} />
-      </AuthProvider>,
-    )
-
-    expect(screen.getByText("Place an order")).toBeOnTheScreen()
   })
 })

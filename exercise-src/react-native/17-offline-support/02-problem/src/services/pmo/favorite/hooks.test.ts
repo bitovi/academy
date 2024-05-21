@@ -1,21 +1,18 @@
 import { renderHook, waitFor } from "@testing-library/react-native"
 
-import * as storage from "../../storage/storage"
 import * as api from "../api/api"
 
 import { useFavorites } from "./hooks"
 
-describe("Favorite Hook", () => {
+describe("Services/PMO/Favorite", () => {
   // Mock the apiRequest function
   let apiRequest: jest.SpyInstance<ReturnType<typeof api.apiRequest>>
-  let mockStorage: jest.SpyInstance<ReturnType<typeof storage.getData>>
   beforeEach(() => {
     jest.resetAllMocks()
     apiRequest = jest.spyOn(api, "apiRequest")
-    mockStorage = jest.spyOn(storage, "getData")
   })
 
-  describe("useFavorites hook", () => {
+  describe("useFavorites", () => {
     const mockFavorites = [
       {
         userId: "user-id",
@@ -32,10 +29,11 @@ describe("Favorite Hook", () => {
         _id: "dmTvyAYw3o0xjAIk",
       },
     ]
-    it("should return list of favorites from the server", async () => {
+
+    it("returns favorites from the server", async () => {
       apiRequest.mockResolvedValue({
         data: { data: mockFavorites },
-        error: null,
+        error: undefined,
       })
 
       const { result } = renderHook(() => useFavorites("user-id"))
@@ -45,7 +43,7 @@ describe("Favorite Hook", () => {
       })
 
       expect(result.current.data).toEqual(mockFavorites)
-      expect(result.current.error).toBeNull()
+      expect(result.current.error).toBeUndefined()
     })
   })
 })

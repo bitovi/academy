@@ -8,7 +8,7 @@ function DataFetcher() {
     const fetchData = async () => {
       try {
         const response = await fetch("https://api.example.com/data")
-        const parsedData = response.json()
+        const parsedData = await response.json()
         setData(parsedData)
       } catch (error) {
         // Error should be shown to the user

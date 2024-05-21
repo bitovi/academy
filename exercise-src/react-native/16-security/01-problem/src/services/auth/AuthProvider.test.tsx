@@ -25,7 +25,7 @@ afterAll(() => {
   global.fetch = oldFetch
 })
 
-describe("AuthProvider", () => {
+describe("Services/Auth/AuthProvider", () => {
   const TestComponent: FC = () => {
     const isAuthenticated = useAuthenticated()
     const { signIn, signOut } = useAuthentication()

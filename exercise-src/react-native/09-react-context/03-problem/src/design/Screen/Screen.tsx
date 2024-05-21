@@ -9,14 +9,14 @@ export interface ScreenProps extends BoxProps {
 }
 
 const Screen: React.FC<ScreenProps> = ({ style, children, ...props }) => {
-  const { palette } = useTheme()
+  const theme = useTheme()
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <Box
         style={{
           flex: 1,
-          backgroundColor: palette.screen.soft,
+          backgroundColor: theme.palette.screen.soft,
         }}
         {...props}
       >
