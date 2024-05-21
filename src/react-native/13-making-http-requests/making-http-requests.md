@@ -162,7 +162,7 @@ Before we begin requesting data from our API, we need to install the "place-my-o
 ✏️ Run:
 
 ```bash
-npm install place-my-order-api@1
+npm install --save-dev place-my-order-api@1
 ```
 
 We will also need to set up our environment.
