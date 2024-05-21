@@ -144,6 +144,7 @@ const AppNavigator: React.FC = () => {
   )
 }
 
+// Exercise: Add the `FavoritesSync` component to the `App` JSX.
 const App: React.FC = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>

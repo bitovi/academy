@@ -46,4 +46,6 @@ export function useStates(): StatesResponse {
   return response
 }
 
-export function useCities(state: string): CitiesResponse {}
+export function useCities(state: string): CitiesResponse {
+  // Exercise: Update our `useCities()` Hook to fetch cities from the Place My Order API, given a selected state.
+}

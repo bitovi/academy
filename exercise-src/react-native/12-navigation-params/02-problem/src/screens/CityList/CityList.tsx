@@ -14,7 +14,9 @@ const cities = [
 export interface CityListProps
   extends StackScreenProps<RestaurantsStackParamList, "CityList"> {}
 
+// Exercise: Update the the typing to use the given `Props`.
 const CityList: React.FC = () => {
+  // Exercise: Destructure the `route` to fetch its stored state.
   const navigation = useNavigation()
 
   return (
@@ -24,6 +26,7 @@ const CityList: React.FC = () => {
         renderItem={({ item: cityItem }) => (
           <Button
             onPress={() => {
+              // Exercise: Update the `navigation.navigate` to accept the necessary parameters.
               navigation.navigate("RestaurantList")
             }}
           >

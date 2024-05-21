@@ -28,7 +28,7 @@ const AppNavigator: React.FC = () => {
         tabBarActiveTintColor: theme.palette.primary.strong,
         tabBarInactiveTintColor: theme.palette.screen.contrast,
         tabBarIcon: ({ focused, color }) => {
-          // Exercise: Update the Icon component’s name property based on the route
+          // Exercise: Update the Icon component’s name property based on the route.
           return <Icon name={icon} size={20} color={color} />
         },
       })}
@@ -39,6 +39,7 @@ const AppNavigator: React.FC = () => {
 }
 
 const App: React.FC = () => {
+  // Exercise: Add the `NavigationContainer` and `AppNavigator` to the `App` component.
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ThemeProvider>

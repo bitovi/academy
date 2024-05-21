@@ -13,6 +13,7 @@ const Settings: React.FC = () => {
   const { signIn, signOut } = useAuthentication()
   const user = useUser()
   const { mode, setMode } = useThemeMode()
+  // Exercise: Get the current connection state with the `useNetInfo()` Hook.
 
   return (
     <Screen>
@@ -33,6 +34,7 @@ const Settings: React.FC = () => {
           onChange={() => setMode(mode === "light" ? "dark" : "light")}
         />
       </Card>
+      {/* Exercise: Display the connection state in the Settings view. */}
     </Screen>
   )
 }

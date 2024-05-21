@@ -11,6 +11,7 @@ import { useRestaurants } from "../../services/pmo/restaurant"
 
 import List from "./components/List"
 import Map from "./components/Map"
+// Exercise: Change the static Map `import` statement to a dynamic `import()`.
 
 export interface RestaurantListProps
   extends StackScreenProps<RestaurantsStackParamList, "RestaurantList"> {}
@@ -51,6 +52,7 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ route }) => {
 
       <Screen noScroll>
         {tab === "list" && restaurants && <List restaurants={restaurants} />}
+        {/* Exercise: Use `<Suspense>` to load the Map tab on the screen. */}
         {tab === "map" && restaurants && <Map restaurants={restaurants} />}
       </Screen>
     </>

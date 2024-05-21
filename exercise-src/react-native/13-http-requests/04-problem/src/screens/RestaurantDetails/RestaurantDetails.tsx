@@ -15,6 +15,7 @@ export interface RestaurantDetailsProps
 
 const RestaurantDetails: React.FC<RestaurantDetailsProps> = ({ route }) => {
   const navigation = useNavigation()
+  // Exercise: Update `RestaurantDetails.tsx` to use our new `useRestaurants` Hook.
 
   return (
     <Screen>

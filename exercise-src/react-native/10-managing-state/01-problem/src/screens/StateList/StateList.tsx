@@ -24,6 +24,8 @@ const states: State[] = [
 ]
 
 const StateList: React.FC = () => {
+  // Exercise: Display the Switch component to allow users to toggle.
+
   return (
     <Screen>
       <Card>
@@ -36,6 +38,7 @@ const StateList: React.FC = () => {
       ) : (
         <Typography>No states found</Typography>
       )}
+      {/* Exercise: Using the recently created `useThemeMode` Hook, combine it with the `Switch` component. */}
     </Screen>
   )
 }
