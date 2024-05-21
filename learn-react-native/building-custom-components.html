@@ -760,7 +760,7 @@ const states = [
 ]
 
 export const StateList: React.FC = () =&gt; {
-  // Exercise: Implement StateList component
+  // Exercise: Update the `StateList` component to contain the logic that iterates over the `states` list.
 }
 
 const App: React.FC = () =&gt; {
@@ -771,6 +771,7 @@ const App: React.FC = () =&gt; {
           &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
         &lt;/View&gt;
         &lt;View&gt;
+          {/* Exercise: Use the new `StateList` component inside of the `App` component. */}
           {states?.length ? (
             states.map((state) =&gt; &lt;Text key={state.short}&gt;{state.name}&lt;/Text&gt;)
           ) : (
@@ -785,7 +786,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="14-15,35,only"></div>
+ <div line-highlight="14-15,26,36,only"></div>
 <h3>Verify 1</h3>
 <p>✏️ Update <strong>App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
@@ -952,14 +953,15 @@ const states = [
 ]
 
 export interface ListItemProps {
-  // Exercise: Implement ListItem Props
+  // Exercise: Update the `ListItemProps` type to enforce a `key` and `name` property of the appropriate primitive type.
 }
 
 export const ListItem: React.FC = () =&gt; {
-  // Exercise: Implement ListItem component
+  // Exercise: Update the `ListItem` component to use the `ListItemProps` as its input type and return the `name` property of the a `state` index.
 }
 
 export const StateList: React.FC = () =&gt; {
+  // Exercise: Update the `StateList` component to use the `ListItem` component handle each state index.
   return (
     &lt;ScrollView&gt;
       &lt;View&gt;
@@ -987,7 +989,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="14-15,18-19,37,45,only"></div>
+ <div line-highlight="14-15,18-19,23,38,46,only"></div>
 <h3>Verify 2</h3>
 <p>✏️ Update <strong>App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
@@ -1234,6 +1236,7 @@ AppRegistry.registerComponent(appName, () =&gt; App)
 <p>✏️ Create <strong>src/</strong> (folder)</p>
 <p>✏️ Move <strong>App.tsx</strong> to <strong>src/App.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
+// Exercise: Make sure to properly update each `import` and to reference every component’s essential files.
 
 const states = [
   {
@@ -1283,7 +1286,7 @@ export default App
 
 import ListItem from &quot;./components/ListItem&quot;
 
-// Exercise: Implement StateList Component
+// Exercise: Move the `StateList` component logic into the correct file.
 
 export default StateList
 
@@ -1296,7 +1299,7 @@ export default StateList
 <p>✏️ Create <strong>src/screens/StateList/components/ListItem/ListItem.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { Text } from &quot;react-native&quot;
 
-// Exercise: Implement ListItem Component
+// Exercise: Move the `ListItem` component logic into the correct file.
 
 export default ListItem
 

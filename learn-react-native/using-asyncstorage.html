@@ -846,6 +846,7 @@ console.error = (message, ...args) =&gt; {
 <p>✏️ Create <strong>src/services/storage/storage.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import AsyncStorage from &quot;@react-native-async-storage/async-storage&quot;
 
+// Exercise: Implement the four `AsyncStorage` helpers in `storage.ts`.
 export const getData = async &lt;T&gt;(key: string): Promise&lt;T | undefined&gt; =&gt; {}
 
 export const getAllKeys = (): Promise&lt;readonly string[]&gt; =&gt; {}
@@ -1526,13 +1527,19 @@ interface LocalStorageApiRequestV1 {
   dateTime: Date
 }
 
-const migrateDataFromV1toV2 = async (): Promise&lt;void&gt; =&gt; {}
+const migrateDataFromV1toV2 = async (): Promise&lt;void&gt; =&gt; {
+  // Exercise: Implement the data migration logic here.
+}
 
 export interface DataMigrationProps {
   children: React.ReactNode
 }
 
-const DataMigration: React.FC&lt;DataMigrationProps&gt; = ({ children }) =&gt; {}
+const DataMigration: React.FC&lt;DataMigrationProps&gt; = ({ children }) =&gt; {
+  // Exercise: Run the migration in a `useEffect`.
+  // Exercise: While the migration is running, show a `Loading` component.
+  // Exercise: When the migration is all done, render the `children`.
+}
 
 export default DataMigration
 
@@ -1846,7 +1853,7 @@ const DataMigration: React.FC&lt;DataMigrationProps&gt; = ({ children }) =&gt; {
 export default DataMigration
 
 </code></pre>
- <div line-highlight="12-27,32,34-35,37-43,45-46,48-49,51-53,55-56,only"></div>
+ <div line-highlight="13-27,35,37-43,45-46,48-49,51-53,55,only"></div>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;

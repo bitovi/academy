@@ -942,6 +942,7 @@ const states: State[] = [
 export interface StateListProps
   extends StackScreenProps&lt;RestaurantsStackParamList, &quot;StateList&quot;&gt; {}
 
+// Exercise: Update the typing of `StateList` component, using the type `Props` made by the `StackScreenProps`.
 const StateList: React.FC = () =&gt; {
   const navigation = useNavigation()
 
@@ -957,6 +958,7 @@ const StateList: React.FC = () =&gt; {
         renderItem={({ item: stateItem }) =&gt; (
           &lt;Button
             onPress={() =&gt; {
+              // Exercise: Update the `navigation.navigate` to accept `stateItem` as a parameter.
               navigation.navigate(&quot;CityList&quot;)
             }}
           &gt;
@@ -972,7 +974,7 @@ const StateList: React.FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="2,5,27-28,only"></div>
+ <div line-highlight="2,5,27-28,30,46,only"></div>
 <h3>Verify 1</h3>
 <p>✏️ Update <strong>src/screens/StateList/StateList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
@@ -1243,7 +1245,9 @@ const cities = [
 export interface CityListProps
   extends StackScreenProps&lt;RestaurantsStackParamList, &quot;CityList&quot;&gt; {}
 
+// Exercise: Update the the typing to use the given `Props`.
 const CityList: React.FC = () =&gt; {
+  // Exercise: Destructure the `route` to fetch its stored state.
   const navigation = useNavigation()
 
   return (
@@ -1253,6 +1257,7 @@ const CityList: React.FC = () =&gt; {
         renderItem={({ item: cityItem }) =&gt; (
           &lt;Button
             onPress={() =&gt; {
+              // Exercise: Update the `navigation.navigate` to accept the necessary parameters.
               navigation.navigate(&quot;RestaurantList&quot;)
             }}
           &gt;
@@ -1268,7 +1273,7 @@ const CityList: React.FC = () =&gt; {
 export default CityList
 
 </code></pre>
- <div line-highlight="2,5,9,14-15,only"></div>
+ <div line-highlight="2,5,9,14-15,17,19,29,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -1322,7 +1327,9 @@ const restaurants = [
   },
 ]
 
+// Exercise: Update the the typing to use the given `Props`.
 const RestaurantList: React.FC&lt;RestaurantListProps&gt; = () =&gt; {
+  // Exercise: Destructure the `route` to fetch its stored state.
   const navigation = useNavigation()
 
   return (
@@ -1332,6 +1339,7 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = () =&gt; {
         renderItem={({ item: restaurant }) =&gt; (
           &lt;Button
             onPress={() =&gt; {
+              // Exercise: Update the `navigation.navigate` to accept the necessary parameters.
               navigation.navigate(&quot;RestaurantDetails&quot;)
             }}
           &gt;
@@ -1347,7 +1355,7 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = () =&gt; {
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="2,5,9-10,53,only"></div>
+ <div line-highlight="2,5,9-10,53-55,65,only"></div>
 <h3>Verify 2</h3>
 <p>✏️ Update <strong>src/screens/CityList/CityList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
@@ -1422,7 +1430,7 @@ describe(&quot;Screens/RestaurantList&quot;, () =&gt; {
 <p>For both the <code>CityList</code> and <code>RestaurantList</code> components:</p>
 <ul>
 <li>Update the the typing of each component to use the given <code>Props</code>.</li>
-<li>Destructure the <code>route</code> of for each component, to fetch its stored state.</li>
+<li>Destructure the <code>route</code> for each component, to fetch its stored state.</li>
 <li>Update the <code>navigation.navigate</code> to accept the necessary parameters.</li>
 </ul>
 <h3>Solution 2</h3>

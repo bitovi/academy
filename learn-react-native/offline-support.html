@@ -786,6 +786,7 @@ const Settings: React.FC = () =&gt; {
   const { signIn, signOut } = useAuthentication()
   const user = useUser()
   const { mode, setMode } = useThemeMode()
+  // Exercise: Get the current connection state with the `useNetInfo()` Hook.
 
   return (
     &lt;Screen&gt;
@@ -806,6 +807,7 @@ const Settings: React.FC = () =&gt; {
           onChange={() =&gt; setMode(mode === &quot;light&quot; ? &quot;dark&quot; : &quot;light&quot;)}
         /&gt;
       &lt;/Card&gt;
+      {/* Exercise: Display the connection state in the Settings view. */}
     &lt;/Screen&gt;
   )
 }
@@ -813,7 +815,7 @@ const Settings: React.FC = () =&gt; {
 export default Settings
 
 </code></pre>
- <div line-highlight="1,only"></div>
+ <div line-highlight="1,16,37,only"></div>
 <h3>Verify 1</h3>
 <p>TODO: We need tests for this exercise.</p>
 <h3>Exercise 1</h3>
@@ -1826,6 +1828,7 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
   const { slug } = route.params
   const navigation = useNavigation()
   const { data: restaurant, error, isPending } = useRestaurant(slug)
+  // Exercise: Add a button that uses the `updateFavorites` helper.
 
   useEffect(() =&gt; {
     if (restaurant) {
@@ -1866,7 +1869,7 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
 export default RestaurantDetails
 
 </code></pre>
- <div line-highlight="11-16,only"></div>
+ <div line-highlight="11-16,26,only"></div>
 <h3>Verify 2</h3>
 <p>✏️ Create <strong>src/services/pmo/favorite/hooks.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react-native&quot;
@@ -3121,6 +3124,7 @@ const AppNavigator: React.FC = () =&gt; {
   )
 }
 
+// Exercise: Add the `FavoritesSync` component to the `App` JSX.
 const App: React.FC = () =&gt; {
   return (
     &lt;SafeAreaView style={{ flex: 1 }}&gt;
@@ -3140,7 +3144,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="19,only"></div>
+ <div line-highlight="19,147,only"></div>
 <p>✏️ Update <strong>src/services/pmo/favorite/hooks.ts</strong> to be:</p>
 <pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
 
@@ -3366,6 +3370,8 @@ import { useUser } from &quot;../../auth&quot;
 import { useFavorites } from &quot;./hooks&quot;
 
 export const useFavoritesSync = (): void =&gt; {
+  // Exercise: When the user is signed in and has a network connection, sync with the server.
+
   return
 }
 

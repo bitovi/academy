@@ -983,6 +983,7 @@ interface ThemeContext {
   setMode: (mode: Mode) =&gt; void
 }
 
+// Exercise: Update `Context` to set default values for `mode` and `setMode`.
 const Context = createContext&lt;ThemeContext&gt;({
   theme,
 })
@@ -991,6 +992,7 @@ export interface ThemeProviderProps {
   children: React.ReactNode
 }
 
+// Exercise: Update `ThemeProvider` to use `useState`, so the user can switch between the 2 modes.
 const ThemeProvider: React.FC&lt;ThemeProviderProps&gt; = ({ children }) =&gt; {
   const value = useMemo(() =&gt; ({ theme }), [])
 
@@ -999,12 +1001,14 @@ const ThemeProvider: React.FC&lt;ThemeProviderProps&gt; = ({ children }) =&gt; {
 
 export default ThemeProvider
 
+// Exercise: Update `useTheme` to return 1 theme based on the `mode` that is stored in the context.
 export function useTheme(): Theme {
   const { theme } = useContext(Context)
 
   return theme
 }
 
+// Exercise: Update `useThemeMode` to return `mode` and `setMode`.
 export function useThemeMode(): {
   mode: Mode
   setMode: (mode: Mode) =&gt; void
@@ -1013,7 +1017,7 @@ export function useThemeMode(): {
 }
 
 </code></pre>
- <div line-highlight="1-2,4,6,9-10,13-15,35-40,only"></div>
+ <div line-highlight="1-2,4,6,9-10,13-16,22,31,38-44,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { Switch } from &quot;react-native&quot;
 
@@ -1041,6 +1045,8 @@ const states: State[] = [
 ]
 
 const StateList: React.FC = () =&gt; {
+  // Exercise: Display the Switch component to allow users to toggle.
+
   return (
     &lt;Screen&gt;
       &lt;Card&gt;
@@ -1053,6 +1059,7 @@ const StateList: React.FC = () =&gt; {
       ) : (
         &lt;Typography&gt;No states found&lt;/Typography&gt;
       )}
+      {/* Exercise: Using the recently created `useThemeMode` Hook, combine it with the `Switch` component. */}
     &lt;/Screen&gt;
   )
 }
@@ -1060,7 +1067,7 @@ const StateList: React.FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="1,5,10-12,15,41,only"></div>
+ <div line-highlight="1,5,10-12,15,27,41,44,only"></div>
 <h3>Verify</h3>
 <p>✏️ Update <strong>src/design/theme/theme.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import {

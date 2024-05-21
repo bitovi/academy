@@ -846,13 +846,15 @@ const List: React.FC = () =&gt; {
 <pre><code class="language-tsx">import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
 
 const App: React.FC = () =&gt; {
+  // Exercise: Use `SafeAreaView`, `ScrollView`, and `View` to wrap the existing `Text` component.
   return &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
+  // Exercise: Add a new `View` component to wrap `Text` that says “Illinois”.
 }
 
 export default App
 
 </code></pre>
- <div line-highlight="1,only"></div>
+ <div line-highlight="1,4,6,only"></div>
 <h3>Verify 1</h3>
 <p>✏️ Update <strong>App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
@@ -1096,7 +1098,11 @@ const App: React.FC = () =&gt; {
           &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
         &lt;/View&gt;
         &lt;View&gt;
+          {/* Exercise: Update the existing JSX to render the list of state names.
+          Use `Array.map()` to iterate over the `states`.
+          Make sure to use `key` inside the `.map()`. */}
           &lt;Text&gt;Illinois&lt;/Text&gt;
+          {/* Exercise: Render `&lt;Text&gt;No states found&lt;/Text&gt;` if, hypothetically, there weren’t any states. */}
         &lt;/View&gt;
       &lt;/ScrollView&gt;
     &lt;/SafeAreaView&gt;
@@ -1106,7 +1112,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="3-12,only"></div>
+ <div line-highlight="3-12,22-24,26,only"></div>
 <h3>Verify 2</h3>
 <p>✏️ Update <strong>App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;

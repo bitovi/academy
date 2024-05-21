@@ -1018,7 +1018,7 @@ interface ThemeContext {
   theme: Theme
 }
 
-// TODO
+// Exercise: Update `ThemeProvider` to provide data according to the provided `ThemeContext`.
 
 const ThemeProvider: React.FC = () =&gt; {
   // TODO
@@ -1061,6 +1061,7 @@ export interface ListItemProps {
 }
 
 const ListItem: React.FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
+  // Exercise: Update `ListItem` to use the values from our context.
   const styles = getStyles(theme)
 
   return &lt;Text style={styles.text}&gt;{name}&lt;/Text&gt;
@@ -1081,7 +1082,7 @@ function getStyles(theme: Theme) {
 export default ListItem
 
 </code></pre>
- <div line-highlight="3,10,15-25,only"></div>
+ <div line-highlight="3,10-11,16-26,only"></div>
 <h3>Verify 1</h3>
 <p>✏️ Create <strong>src/design/theme/ThemeProvider.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
@@ -1297,7 +1298,7 @@ const Typography: React.FC&lt;TypographyProps&gt; = ({
   children,
   ...props
 }) =&gt; {
-  // TODO
+  // Exercise: Finish the Typography component using the same patterns used on the 'Box' component.
 }
 
 export default Typography

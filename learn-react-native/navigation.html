@@ -784,7 +784,7 @@ const AppNavigator: React.FC = () =&gt; {
         tabBarActiveTintColor: theme.palette.primary.strong,
         tabBarInactiveTintColor: theme.palette.screen.contrast,
         tabBarIcon: ({ focused, color }) =&gt; {
-          // Exercise: Update the Icon component’s name property based on the route
+          // Exercise: Update the Icon component’s name property based on the route.
           return &lt;Icon name={icon} size={20} color={color} /&gt;
         },
       })}
@@ -795,6 +795,7 @@ const AppNavigator: React.FC = () =&gt; {
 }
 
 const App: React.FC = () =&gt; {
+  // Exercise: Add the `NavigationContainer` and `AppNavigator` to the `App` component.
   return (
     &lt;SafeAreaView style={{ flex: 1 }}&gt;
       &lt;ThemeProvider&gt;
@@ -807,7 +808,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="1-4,6-7,10-12,15-37,42,48-49,only"></div>
+ <div line-highlight="1-4,6-7,10-12,15-37,42-43,49-50,only"></div>
 <p>✏️ Create <strong>src/screens/Settings/Settings.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { Switch } from &quot;react-native&quot;
 
@@ -1085,7 +1086,7 @@ const RestaurantsNavigator: React.FC = () =&gt; {
       screenOptions={{
         header: ({ route, navigation }) =&gt; {
           {
-            /* Exercise: Add logic for back navigation*/
+            /* Exercise: Add logic for back navigation. */
           }
           return (
             &lt;Pressable onPress={() =&gt; console.warn(&quot;header pressed&quot;)}&gt;
@@ -1690,8 +1691,7 @@ const cities: City[] = [
 
 const CityList: React.FC = () =&gt; {
   const navigation = useNavigation()
-
-  // Exercise: Use navigation to navigate to RestaurantList
+  // Exercise: Use navigation to navigate to RestaurantList.
 
   return (
     &lt;Screen&gt;
@@ -1711,7 +1711,7 @@ const CityList: React.FC = () =&gt; {
 export default CityList
 
 </code></pre>
- <div line-highlight="1,18,20,only"></div>
+ <div line-highlight="1,18-19,only"></div>
 <p>✏️ Create <strong>src/screens/RestaurantDetails/</strong> (folder)</p>
 <p>✏️ Create <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
@@ -1812,6 +1812,7 @@ const restaurants = [
 
 const RestaurantList: React.FC = () =&gt; {
   const navigation = useNavigation()
+  // Exercise: Use navigation in the RestaurantList component, to link RestaurantList to the RestaurantDetails screen.
 
   return (
     &lt;Box padding=&quot;s&quot;&gt;

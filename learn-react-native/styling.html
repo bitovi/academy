@@ -756,13 +756,14 @@ export interface ListItemProps {
 }
 
 const ListItem: React.FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
+  // Exercise: Apply the given CSS styles to the `Text` view inside the `ListItem`.
   return &lt;Text&gt;{name}&lt;/Text&gt;
 }
 
 export default ListItem
 
 </code></pre>
- <div line-highlight="1,only"></div>
+ <div line-highlight="1,8,only"></div>
 <h3>Verify</h3>
 <p>✏️ Create <strong>src/screens/StateList/components/ListItem/ListItem.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;

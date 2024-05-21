@@ -886,6 +886,7 @@ import { useRestaurants } from &quot;../../services/pmo/restaurant&quot;
 
 import List from &quot;./components/List&quot;
 import Map from &quot;./components/Map&quot;
+// Exercise: Change the static Map `import` statement to a dynamic `import()`.
 
 export interface RestaurantListProps
   extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantList&quot;&gt; {}
@@ -926,6 +927,7 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
 
       &lt;Screen noScroll&gt;
         {tab === &quot;list&quot; &amp;&amp; restaurants &amp;&amp; &lt;List restaurants={restaurants} /&gt;}
+        {/* Exercise: Use `&lt;Suspense&gt;` to load the Map tab on the screen. */}
         {tab === &quot;map&quot; &amp;&amp; restaurants &amp;&amp; &lt;Map restaurants={restaurants} /&gt;}
       &lt;/Screen&gt;
     &lt;/&gt;
@@ -935,7 +937,7 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="2,only"></div>
+ <div line-highlight="2,14,55,only"></div>
 <h3>Verify 1</h3>
 <p>TODO: find where the bundles are built in dev so we can see the modules being split up.
 Alternatively, consider moving this page after the “building” page so we can look at the files being created.</p>
