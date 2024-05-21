@@ -750,18 +750,11 @@ describe('App', () =&gt; {
 
 </code></pre>
 <p>✏️ Update <strong>App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import type { JSX } from &quot;react&quot;
-import {SafeAreaView, ScrollView, Text, View} from 'react-native';
+<pre><code class="language-tsx">import {Text} from 'react-native';
 
-function App(): JSX.Element {
+const App: React.FC = () =&gt; {
   return (
-    &lt;SafeAreaView style={{ flex: 1 }}&gt;
-      &lt;ScrollView&gt;
-        &lt;View&gt;
-          &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
-        &lt;/View&gt;
-      &lt;/ScrollView&gt;
-    &lt;/SafeAreaView&gt;
+    &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
   );
 }
 

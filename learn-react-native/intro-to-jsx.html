@@ -754,6 +754,66 @@ The style object has properties whose names are camel-case versions of their CSS
 <pre><code class="language-tsx">const content = &lt;Text style={{ fontStyle: &quot;italic&quot; }}&gt;Restaurants&lt;/Text&gt;
 </code></pre>
 <p>As we go through this training, you’ll learn additional differences.</p>
+<h4>Using <code>View</code></h4>
+<p>The <code>View</code> component is one of the most fundamental building blocks in React Native.
+It is a container component that can hold one or more other components while grouping them together for accessibility, styling, touch handling, and more.</p>
+<p>If you’re familiar with web development, a <code>&lt;View&gt;</code> is similar to a <code>&lt;div&gt;</code>.</p>
+<pre><code class="language-tsx">import { Text, View } from &quot;react-native&quot;
+
+const App: React.FC = () =&gt; {
+  return (
+    &lt;View&gt;
+      &lt;Text&gt;Hello, React Native!&lt;/Text&gt;
+    &lt;/View&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+<div line-highlight='5, 7, only'></div>
+<h4>Using <code>ScrollView</code></h4>
+<p>The <code>ScrollView</code> component is a generic scrolling container that can host multiple components and views.
+It is useful when the content you need to display exceeds the screen size, enabling vertical or horizontal scrolling.</p>
+<pre><code class="language-tsx">import { ScrollView, Text } from &quot;react-native&quot;
+
+const App: React.FC = () =&gt; {
+  return (
+    &lt;ScrollView&gt;
+      &lt;Text&gt;Ada Lovelace&lt;/Text&gt;
+      &lt;Text&gt;Grace Hopper&lt;/Text&gt;
+      &lt;Text&gt;Katherine Johnson&lt;/Text&gt;
+      &lt;Text&gt;Margaret Hamilton&lt;/Text&gt;
+      &lt;Text&gt;Radia Perlman&lt;/Text&gt;
+      &lt;Text&gt;Hedy Lamarr&lt;/Text&gt;
+    &lt;/ScrollView&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+<div line-highlight='5, 12, only'></div>
+<h4>Using <code>SafeAreaView</code></h4>
+<p>The <code>SafeAreaView</code> component ensures that the content is rendered within the safe area boundaries of a device.
+This is particularly important for devices with notches, home indicators, or rounded corners.</p>
+<pre><code class="language-tsx">import { SafeAreaView, Text } from &quot;react-native&quot;
+
+const App: React.FC = () =&gt; {
+  return (
+    &lt;SafeAreaView style={{ flex: 1 }}&gt;
+      &lt;Text&gt;Content within safe area.&lt;/Text&gt;
+    &lt;/SafeAreaView&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+<div line-highlight='5, 7, only'></div>
+<p>You’ll notice the <code>flex: 1</code> style that we’ve added to the component.
+We will get into styles more later, but for now, know that <code>flex: 1</code> will make the component take up all the available space.</p>
+<p>In general, you always want to have your content wrapped in a <code>&lt;SafeAreaView&gt;</code> so the device’s hardware boundaries don’t overlap with your app’s content.</p>
 <h4>Parenthesis (convention)</h4>
 <p>When dealing with JSX that needs multiple lines, the convention is to wrap it in parentheses. This helps keep your JSX clean and clear, rather than mixing it with the Javascript around it.</p>
 <pre><code class="language-tsx">function Form() {
@@ -779,34 +839,18 @@ function List() {
   )
 }
 </code></pre>
-<h4>Using <code>View</code></h4>
-<p>TODO: Introduce this core component.</p>
-<h4>Using <code>ScrollView</code></h4>
-<p>TODO: Introduce this core component.</p>
-<h4>Using <code>SafeAreaView</code></h4>
-<p>TODO: Introduce this core component.</p>
 <h3>Setup 1</h3>
 <p>✏️ Update <strong>App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
 
-const state = { name: &quot;Illinois&quot;, short: &quot;IL&quot; }
-
 const App: React.FC = () =&gt; {
-  return (
-    &lt;SafeAreaView style={{ flex: 1 }}&gt;
-      &lt;ScrollView&gt;
-        &lt;View&gt;
-          &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
-        &lt;/View&gt;
-      &lt;/ScrollView&gt;
-    &lt;/SafeAreaView&gt;
-  )
+  return &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
 }
 
 export default App
 
 </code></pre>
- <div line-highlight="3,only"></div>
+ <div line-highlight="1,only"></div>
 <h3>Verify 1</h3>
 <p>✏️ Update <strong>App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
@@ -828,15 +872,17 @@ describe(&quot;App&quot;, () =&gt; {
 </code></pre>
  <div line-highlight="11-14,only"></div>
 <h3>Exercise 1</h3>
-<p>Use JSX to dynamically display a state name from a variable that’s an object.</p>
+<p>Update <code>App.tsx</code> to include the following:</p>
+<ul>
+<li>Use <code>SafeAreaView</code>, <code>ScrollView</code>, and <code>View</code> to wrap the existing <code>Text</code> component.</li>
+<li>Add a new <code>View</code> component to wrap <code>Text</code> that says “Illinois”.</li>
+</ul>
 <h3>Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
-
-const state = { name: &quot;Illinois&quot;, short: &quot;IL&quot; }
 
 const App: React.FC = () =&gt; {
   return (
@@ -846,7 +892,7 @@ const App: React.FC = () =&gt; {
           &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
         &lt;/View&gt;
         &lt;View&gt;
-          &lt;Text&gt;{state.name}&lt;/Text&gt;
+          &lt;Text&gt;Illinois&lt;/Text&gt;
         &lt;/View&gt;
       &lt;/ScrollView&gt;
     &lt;/SafeAreaView&gt;
@@ -856,7 +902,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="12-14,only"></div>
+ <div line-highlight="4-15,only"></div>
 <p></details></p>
 <h2>Objective 2: Expressions and loops in JSX</h2>
 <p>Next, we want to render a list of states name in our application:</p>
@@ -1047,7 +1093,7 @@ const App: React.FC = () =&gt; {
           &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
         &lt;/View&gt;
         &lt;View&gt;
-          &lt;Text&gt;{states[0].name}&lt;/Text&gt;
+          &lt;Text&gt;Illinois&lt;/Text&gt;
         &lt;/View&gt;
       &lt;/ScrollView&gt;
     &lt;/SafeAreaView&gt;
@@ -1057,7 +1103,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="3-12,22,only"></div>
+ <div line-highlight="3-12,only"></div>
 <h3>Verify 2</h3>
 <p>✏️ Update <strong>App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
