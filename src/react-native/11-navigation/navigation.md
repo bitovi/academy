@@ -43,7 +43,7 @@ The React Navigation library used in this section supports deep linking and has 
 
 Now that we have an understanding of how navigation works within a stack, let’s take a look at the implications of navigation on the component lifecycle.
 
-If we have a stack navigator with two screens, `ScreenA` and `ScreenB`, and navigate to `ScreenA`, then `ScreenA` will mount the component and render. If we then navigate to `ScreenB`, `ScreenA` will be unmounted and `ScreenB` will mount and render. What happens when we navigate back to `ScreenA`? `ScreenB` will unmount the component, but `ScreenA` will _not_ remount. Because it stayed in the stack, it remained mounted the entire time.
+If we have a stack navigator with two screens, `ScreenA` and `ScreenB`, and navigate to `ScreenA`, then `ScreenA` will mount the component and render. If we then navigate to `ScreenB`, `ScreenA` will remain mounted but will be hidden from view, and `ScreenB` will mount and render. What happens when we navigate back to `ScreenA`? `ScreenB` will be unmounted, but `ScreenA` will _not_ remount. Because it stayed in the stack, it remained mounted the entire time.
 
 ### Bottom Tab Navigation
 
@@ -132,10 +132,6 @@ npm install --save-dev @types/react-native-vector-icons@6 identity-obj-proxy@3
 @sourceref ../../../exercises/react-native/11-navigation/01-problem/src/screens/Settings/index.ts
 
 ### Verify 1
-
-✏️ Update **src/App.test.tsx** to be:
-
-@diff ../../../exercises/react-native/10-managing-state/01-solution/src/App.test.tsx ../../../exercises/react-native/11-navigation/01-problem/src/App.test.tsx only
 
 ✏️ Create **src/screens/Settings/Settings.test.tsx** and update it to be:
 
