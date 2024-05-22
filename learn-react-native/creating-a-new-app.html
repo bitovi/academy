@@ -778,6 +778,7 @@ export default App;
   - &quot;@babel/*&quot;
   - &quot;babel-*&quot;
   - &quot;*-babel&quot;
+  - &quot;@react-native/eslint-config&quot;
   - identity-obj-proxy
   - react-native-dotenv
 
@@ -787,7 +788,7 @@ export default App;
   root: true,
   extends: &quot;@bitovi/eslint-config/react&quot;,
   settings: {
-    &quot;import/ignore&quot;: [&quot;node_modules/react-native/index\\.js$&quot;],
+    &quot;import/ignore&quot;: [&quot;react-native/*&quot;],
   },
   rules: {
     &quot;@typescript-eslint/consistent-type-imports&quot;: [
@@ -836,14 +837,14 @@ module.exports = mergeConfig(getDefaultConfig(__dirname), config)
     &quot;android&quot;: &quot;react-native run-android&quot;,
     &quot;clean&quot;: &quot;rm -rf tsconfig.tsbuildinfo coverage android/.gradle android/build android/app/build node_modules/.cache&quot;,
     &quot;depcheck&quot;: &quot;depcheck .&quot;,
-    &quot;eslint&quot;: &quot;eslint *.ts *.js src&quot;,
-    &quot;eslint:fix&quot;: &quot;eslint --fix *.ts *.js src&quot;,
+    &quot;eslint&quot;: &quot;eslint .&quot;,
+    &quot;eslint:fix&quot;: &quot;eslint --fix .&quot;,
     &quot;ios&quot;: &quot;react-native run-ios&quot;,
     &quot;lint&quot;: &quot;npm run eslint &amp;&amp; npm run prettier&quot;,
     &quot;lint:fix&quot;: &quot;npm run eslint:fix &amp;&amp; npm run prettier:fix&quot;,
     &quot;precheck&quot;: &quot;npm run typecheck &amp;&amp; npm run lint &amp;&amp; npm run depcheck &amp;&amp; npm test&quot;,
-    &quot;prettier&quot;: &quot;prettier --check *.ts *.js *.json src&quot;,
-    &quot;prettier:fix&quot;: &quot;prettier --write *.ts *.js *.json src&quot;,
+    &quot;prettier&quot;: &quot;prettier --check .&quot;,
+    &quot;prettier:fix&quot;: &quot;prettier --write .&quot;,
     &quot;start&quot;: &quot;react-native start --reset-cache&quot;,
     &quot;test&quot;: &quot;jest&quot;,
     &quot;test:inspect&quot;: &quot;node --inspect-brk ./node_modules/.bin/jest --watch&quot;,
