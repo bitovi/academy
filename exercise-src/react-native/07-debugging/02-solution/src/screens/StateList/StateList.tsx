@@ -14,7 +14,7 @@ const states = [
 ]
 
 const StateList: React.FC = () => {
-  console.log("Hello World")
+  console.info("Inside the StateList component.")
   debugger
 
   return (
