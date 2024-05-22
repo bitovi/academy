@@ -99,9 +99,9 @@ Let’s keep the good refactoring rolling by creating a `ListItem` component to 
 
 In React, props (short for “properties”) are how we pass data from a parent component to a child component. Since function React components are fundamentally JavaScript functions, you can think of props like the arguments you pass to a function.
 
-To clarify, props in React Native should not be confused with the properties on HTML elements in web development, even though both share the same name.
+To clarify, props in React Native should not be confused with the properties on HTML elements in web development, even though they sound similar.
 
-To receive props, function components must implement a React API that allows an optional argument of type `object` that’s named `props`.
+To receive props, function components must implement a React API that allows an optional object argument, usually referred to as `props`.
 
 The properties on the props object—individually called a “prop”—can include whatever data the child component needs to make the component work. The property values can be any type, including functions and other React components.
 
@@ -282,15 +282,13 @@ Also, every import is from a child of that top level modlet. We are only reachin
 
 It’s best practice to create a new folder that will contain all of the related files for each component, including test files.
 
+✏️ Create **src/** (folder)
+
+✏️ Move **App.tsx** to **src/App.tsx**
+
 ✏️ Update **index.js** to be:
 
 @diff ../../../exercises/react-native/06-custom-components/02-solution/index.js ../../../exercises/react-native/06-custom-components/03-problem/index.js only
-
-✏️ Create **src/** (folder)
-
-✏️ Move **App.tsx** to **src/App.tsx** and update it to be:
-
-@sourceref ../../../exercises/react-native/06-custom-components/03-problem/src/App.tsx
 
 ✏️ Create **src/screens/StateList/** (folder)
 
@@ -301,6 +299,8 @@ It’s best practice to create a new folder that will contain all of the related
 ✏️ Create **src/screens/StateList/index.ts** and update it to be:
 
 @sourceref ../../../exercises/react-native/06-custom-components/03-problem/src/screens/StateList/index.ts
+
+✏️ Create **src/screens/StateList/components/** (folder)
 
 ✏️ Create **src/screens/StateList/components/ListItem/** (folder)
 
