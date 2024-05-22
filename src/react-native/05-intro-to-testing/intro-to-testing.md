@@ -106,7 +106,7 @@ There are some notable differences compared to the previous test:
 
 After `type` completes, we can make assertions about the current state of the input, including the current value, which should have been updated with the value of the single `type` argument.
 
-As we continue on with future lessons, along with the future tests we use for verify exercises, we'll explain how we and why we go about our testing approach.
+As we continue on with future lessons, along with the future tests we use for verify exercises, we’ll explain how we and why we go about our testing approach.
 
 ## Next steps
 

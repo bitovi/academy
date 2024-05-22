@@ -107,10 +107,16 @@ The `Tab.Screen` component takes a `name` prop that is used to identify the scre
 
 ### Setup 1
 
-✏️ Install the `@react-navigation/native` and `@react-navigation/bottom-tabs` packages:
+✏️ Install the `@react-navigation/native`, `@react-navigation/bottom-tabs`, and `react-native-safe-area-context` packages:
 
 ```bash
-npm install @react-navigation/native @react-navigation/bottom-tabs
+npm install @react-navigation/native@6 @react-navigation/bottom-tabs@6 react-native-safe-area-context@4
+```
+
+✏️ Install the `@types/react-native-vector-icons` and `identity-obj-proxy@3` packages:
+
+```bash
+npm install --save-dev @types/react-native-vector-icons@6 identity-obj-proxy@3
 ```
 
 ✏️ Update **src/App.tsx** to be:
@@ -156,7 +162,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 ## Objective 2: Using React Native stack navigation
 
-Now that we've covered tab navigation, let’s move on to stack navigation. As mentioned in the previous section, most applications use a combination of both tab and stack navigation to create a seamless user experience.
+Now that we’ve covered tab navigation, let’s move on to stack navigation. As mentioned in the previous section, most applications use a combination of both tab and stack navigation to create a seamless user experience.
 
 <div style="display: flex; flex-direction: row; gap: 2rem">
   <img alt="Screen Shot of the CityList in Navigation" src="../static/img/react-native/11-navigation/NavigationCityList.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
@@ -250,7 +256,7 @@ Similar to the `Tab.Screen` component, we can customize the behavior of our `Sta
 ✏️ Install the `@react-navigation/stack` package:
 
 ```bash
-npm install @react-navigation/stack
+npm install @react-navigation/stack@6
 ```
 
 ✏️ Update **src/App.tsx** to be:
@@ -395,4 +401,4 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 ## Next steps
 
-Now that we understand how to use React Native Navigation, we'll supplement that knowledge by [storing state in Navigation Parameters](./navigation-params.html).
+Now that we understand how to use React Native Navigation, we’ll supplement that knowledge by [storing state in Navigation Parameters](./navigation-params.html).

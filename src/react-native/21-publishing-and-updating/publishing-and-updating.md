@@ -24,7 +24,7 @@ As mentioned in the previous section, if we want to upload an AAB (Android App B
 
 ### Configuring Gradle
 
-Now that we've generated an upload key, we need to configure Gradle to use it. First thing we will do is move the upload key keystore file to the `android/app` directory of our project. Next, we will update the `~/.gradle/gradle.properties` or `android/gradle.properties` to add the following:
+Now that we’ve generated an upload key, we need to configure Gradle to use it. First thing we will do is move the upload key keystore file to the `android/app` directory of our project. Next, we will update the `~/.gradle/gradle.properties` or `android/gradle.properties` to add the following:
 
 ```
 MYAPP_UPLOAD_STORE_FILE=my-upload-key.keystore # Replace with the name of your keystore file
@@ -60,7 +60,7 @@ android {
 ...
 ```
 
-Now that we've generated an upload key and configured Gradle to use it, we can generate an AAB file and upload it to the Google Play Store.
+Now that we’ve generated an upload key and configured Gradle to use it, we can generate an AAB file and upload it to the Google Play Store.
 
 Check out the [React Native Android guide](https://reactnative.dev/docs/signed-apk-android) for more information.
 

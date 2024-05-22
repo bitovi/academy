@@ -1,6 +1,6 @@
 import { useNetInfo } from "@react-native-community/netinfo"
 import { GoogleSigninButton } from "@react-native-google-signin/google-signin"
-import { Switch } from "react-native"
+import { StyleSheet, Switch, View } from "react-native"
 
 import Button from "../../design/Button"
 import Card from "../../design/Card"
@@ -28,15 +28,25 @@ const Settings: React.FC = () => {
         )}
       </Card>
       <Card>
-        <Typography variant="heading">Dark Mode</Typography>
-        <Switch
-          value={mode === "dark"}
-          onChange={() => setMode(mode === "light" ? "dark" : "light")}
-        />
+        <View style={styles.row}>
+          <Typography variant="heading">Dark mode</Typography>
+          <Switch
+            onChange={() => setMode(mode === "light" ? "dark" : "light")}
+            value={mode === "dark"}
+          />
+        </View>
       </Card>
       {/* Exercise: Display the connection state in the Settings view. */}
     </Screen>
   )
 }
+
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+})
 
 export default Settings

@@ -305,4 +305,4 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 ## Next steps
 
-Next, with some of the new tricks we've learned we'll also add [Offline Support](./offline-support) so our app is still usable during network outages.
+Next, with some of the new tricks we’ve learned we’ll also add [Offline Support](./offline-support) so our app is still usable during network outages.
