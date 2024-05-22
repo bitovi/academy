@@ -105,18 +105,22 @@ The `Tab.Navigator` component takes `Tab.Screen` components as children. For eac
 
 The `Tab.Screen` component takes a `name` prop that is used to identify the screen and a `component` prop that is used to render the screen. The `name` prop must be unique among all the screens in the navigator. Similar to the `Tab.Navigator`, we can pass an `options` prop to the `Tab.Screen` component to customize the title, label, icon, and other properties of the tab.
 
+### React Native Vector Icons
+
+The React Native Vector Icons repository is an essential resource to enhance your React Native applications with high-quality icons. This library offers a vast collection of customizable icons from popular icon sets like FontAwesome, Material Icons, and Ionicons, among others. Designed to seamlessly integrate with React Native, it provides easy-to-use components that can be styled and scaled to fit any design requirement. Developers can simply import the desired icon set and use the `<Icon>` component to incorporate icons into their apps, specifying properties such as name, size, and color. This makes it a valuable tool for both beginners and experienced developers aiming to create visually appealing and user-friendly mobile apps, allowing them to improve the aesthetics and functionality of their projects with minimal effort.
+
 ### Setup 1
 
-✏️ Install the `@react-navigation/native`, `@react-navigation/bottom-tabs`, and `react-native-safe-area-context` packages:
+✏️ Install the `@react-navigation/native`, `@react-navigation/bottom-tabs`, `react-native-safe-area-context`, and `react-native-vector-icons` packages:
 
 ```bash
-npm install @react-navigation/native@6 @react-navigation/bottom-tabs@6 react-native-safe-area-context@4
+npm install @react-navigation/native@6 @react-navigation/bottom-tabs@6 react-native-safe-area-context@4 react-native-vector-icons@10
 ```
 
-✏️ Install the `@types/react-native-vector-icons` and `identity-obj-proxy@3` packages:
+✏️ Install the `@types/react-native-vector-icons`, `@types/react-native-vector-icons` and `identity-obj-proxy` packages:
 
 ```bash
-npm install --save-dev @types/react-native-vector-icons@6 identity-obj-proxy@3
+npm install --save-dev @types/react-native-vector-icons@6 @types/react-native-vector-icons@6 identity-obj-proxy@3
 ```
 
 ✏️ Update **src/App.tsx** to be:
