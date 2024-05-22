@@ -4,7 +4,7 @@ import Button from "./Button"
 
 describe("Design/Button", () => {
   it("renders", async () => {
-    const user = userEvent.setup()
+    const user = userEvent.setup({ delay: null })
     const handleChangeMock = jest.fn()
 
     render(<Button onPress={handleChangeMock}>Hello!</Button>)
