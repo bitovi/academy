@@ -4,6 +4,11 @@ import ListItem from "./ListItem"
 
 describe("Screens/StateList/ListItem", () => {
   it("renders", async () => {
+    render(<ListItem name="test prop" />)
+    expect(screen.getByText(/test prop/i, { exact: false })).toBeOnTheScreen()
+  })
+
+  it("has the correct styles", async () => {
     render(<ListItem name="One" />)
 
     const element = screen.getByText(/One/i)
