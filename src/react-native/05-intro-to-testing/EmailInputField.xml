@@ -1,0 +1,14 @@
+<RCTSafeAreaView>
+  <RCTScrollView>
+    <View>
+      <View>
+        <Text nativeID="formLabel">Email :</Text>
+        <TextInput
+          accessibilityLabel="input"
+          accessibilityLabelledBy="formLabel"
+          value="test@example.com"
+        />
+      </View>
+    </View>
+  </RCTScrollView>
+</RCTSafeAreaView>

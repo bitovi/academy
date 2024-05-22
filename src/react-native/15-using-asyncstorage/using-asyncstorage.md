@@ -97,7 +97,7 @@ There are _many_ different types of caching strategies for network requests:
 
 - **Network with cache fallback:** The primary approach is to fetch data from the network, but if the network is unavailable or the request fails, data is loaded from the cache. This is useful for maintaining functionality when offline or in poor network conditions.
 
-- **Conditional cache strategy:** Using conditional requests with cache tags (like ETag) or timestamps, the app can minimize data transfer by asking the server if there are updates since the last fetch. If the data hasn't changed, the server returns a not-modified status, allowing the app to use cached data.
+- **Conditional cache strategy:** Using conditional requests with cache tags (like ETag) or timestamps, the app can minimize data transfer by asking the server if there are updates since the last fetch. If the data hasn’t changed, the server returns a not-modified status, allowing the app to use cached data.
 
 - **Incremental cache update:** Suitable for data that can be partitioned or incremental updates (like paginated queries). Instead of refreshing the entire cache, only new or updated data chunks are fetched and cached.
 

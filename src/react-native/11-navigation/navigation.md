@@ -174,7 +174,7 @@ React Native does not have a built-in global history stack similar to a web brow
 
 The React Navigation library provides both a stack navigator as well as a native stack navigator. The native stack navigator uses the native APIs provided by the platform, `UINavigationController` on iOS and `Fragment` on Android. Because it is using the native APIs, it provides native performance and exposes native-specific features. Although the stack navigator is not as performant, it does provide several other benefits:
 
-- Flexibility and Customization: The JS navigator offers more flexibility in customization. You can tweak animations, transitions, and behaviors directly in JavaScript, which can be advantageous if you need highly customized navigation flows that aren't easily achieved with native components.
+- Flexibility and Customization: The JS navigator offers more flexibility in customization. You can tweak animations, transitions, and behaviors directly in JavaScript, which can be advantageous if you need highly customized navigation flows that aren’t easily achieved with native components.
 
 - Simpler Setup and Debugging: Since JS navigators are implemented entirely in JavaScript, you don’t have to deal with native code, making setup, maintenance, and debugging generally simpler. This can speed up development, especially if your team specializes in JavaScript and does not have as much experience with native mobile development.
 
