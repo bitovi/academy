@@ -12,7 +12,7 @@ const states = [
 ]
 
 export const StateList: React.FC = () => {
-  // Exercise: Implement StateList component
+  // Exercise: Update the `StateList` component to contain the logic that iterates over the `states` list.
 }
 
 const App: React.FC = () => {
@@ -23,6 +23,7 @@ const App: React.FC = () => {
           <Text>Place My Order: Coming Soon!</Text>
         </View>
         <View>
+          {/* Exercise: Use the new `StateList` component inside of the `App` component. */}
           {states?.length ? (
             states.map((state) => <Text key={state.short}>{state.name}</Text>)
           ) : (

@@ -10,6 +10,7 @@ import { useStates } from "../../services/pmo/restaurant"
 
 const StateList: React.FC = () => {
   const navigation = useNavigation()
+  // Exercise: Update `StateList.tsx` to call `useState()` and use the `StateResponse` interface.
 
   return (
     <Screen>

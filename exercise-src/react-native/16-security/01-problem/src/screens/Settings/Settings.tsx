@@ -16,8 +16,8 @@ const Settings: FC = () => {
   return (
     <Screen>
       <Card>
-        {/** Exercise: If the user is logged in: Render a button using the signOut callback along with a welcome message.
-         * If the user is logged in: Exercise: Render a button using the GoogleSigninButton.*/}
+        {/* Exercise: If the user is logged in: Render a button using the signOut callback along with a welcome message.
+         If the user is logged in: Exercise: Render a button using the GoogleSigninButton. */}
       </Card>
       <Card>
         <Typography variant="heading">Dark Mode</Typography>

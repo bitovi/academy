@@ -2,7 +2,7 @@ module.exports = {
   root: true,
   extends: "@bitovi/eslint-config/react",
   settings: {
-    "import/ignore": ["node_modules/react-native/index\\.js$"],
+    "import/ignore": ["react-native/*"],
   },
   rules: {
     "@typescript-eslint/consistent-type-imports": [

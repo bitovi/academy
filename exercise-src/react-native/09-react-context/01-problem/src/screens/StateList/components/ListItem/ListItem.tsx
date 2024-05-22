@@ -7,6 +7,7 @@ export interface ListItemProps {
 }
 
 const ListItem: React.FC<ListItemProps> = ({ name }) => {
+  // Exercise: Update `ListItem` to use the values from our context.
   const styles = getStyles(theme)
 
   return <Text style={styles.text}>{name}</Text>

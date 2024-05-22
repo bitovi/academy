@@ -106,7 +106,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 For both the `CityList` and `RestaurantList` components:
 
 - Update the the typing of each component to use the given `Props`.
-- Destructure the `route` of for each component, to fetch its stored state.
+- Destructure the `route` for each component, to fetch its stored state.
 - Update the `navigation.navigate` to accept the necessary parameters.
 
 ### Solution 2

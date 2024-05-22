@@ -27,6 +27,7 @@ const states: State[] = [
 export interface StateListProps
   extends StackScreenProps<RestaurantsStackParamList, "StateList"> {}
 
+// Exercise: Update the typing of `StateList` component, using the type `Props` made by the `StackScreenProps`.
 const StateList: React.FC = () => {
   const navigation = useNavigation()
 
@@ -42,6 +43,7 @@ const StateList: React.FC = () => {
         renderItem={({ item: stateItem }) => (
           <Button
             onPress={() => {
+              // Exercise: Update the `navigation.navigate` to accept `stateItem` as a parameter.
               navigation.navigate("CityList")
             }}
           >
