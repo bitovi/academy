@@ -829,12 +829,13 @@ export default App;
 <div line-highlight='7-10, 12-17, 21, 49, only'></div>
 <p>✏️ Update <strong>.prettierrc.js</strong> to be:</p>
 <pre><code class="language-js">module.exports = {
+  endOfLine: &quot;auto&quot;,
   semi: false,
   trailingComma: &quot;all&quot;,
 }
 
 </code></pre>
- <div line-highlight="2-3,only"></div>
+ <div line-highlight="2-4,only"></div>
 <p>✏️ Create <strong>.depcheckrc</strong> and update it to be:</p>
 <pre><code>ignores:
   - &quot;@types/*&quot;
