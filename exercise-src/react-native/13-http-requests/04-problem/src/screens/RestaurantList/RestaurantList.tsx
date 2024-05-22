@@ -14,6 +14,7 @@ export interface RestaurantListProps
 
 const RestaurantList: React.FC<RestaurantListProps> = ({ route }) => {
   const navigation = useNavigation()
+  // Exercise: Update `RestaurantList.tsx` to use our new `useRestaurants` Hook.
 
   return (
     <Box padding="s">

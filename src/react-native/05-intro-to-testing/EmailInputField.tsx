@@ -1,8 +1,11 @@
+import { useState } from "react"
+import { SafeAreaView, ScrollView, Text, TextInput, View } from "react-native"
+
 const EmailInputField: React.FC<Props> = ({ label, value }) => {
   const [formValue, setFormValue] = useState(value)
 
   return (
-    <Box>
+    <View>
       <Text nativeID="formLabel">{label}:</Text>
       <TextInput
         accessibilityLabel="input"
@@ -10,8 +13,18 @@ const EmailInputField: React.FC<Props> = ({ label, value }) => {
         value={formValue}
         onChangeText={setFormValue}
       />
-    </Box>
+    </View>
   )
 }
 
-const content = <EmailInputField label="Email" value="test@example.com" />
+const App: React.FC = () => {
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <ScrollView>
+        <EmailInputField label="Email" value="test@example.com" />
+      </ScrollView>
+    </SafeAreaView>
+  )
+}
+
+export default App

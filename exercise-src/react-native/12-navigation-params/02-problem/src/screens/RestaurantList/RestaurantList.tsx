@@ -50,7 +50,9 @@ const restaurants = [
   },
 ]
 
+// Exercise: Update the the typing to use the given `Props`.
 const RestaurantList: React.FC<RestaurantListProps> = () => {
+  // Exercise: Destructure the `route` to fetch its stored state.
   const navigation = useNavigation()
 
   return (
@@ -60,6 +62,7 @@ const RestaurantList: React.FC<RestaurantListProps> = () => {
         renderItem={({ item: restaurant }) => (
           <Button
             onPress={() => {
+              // Exercise: Update the `navigation.navigate` to accept the necessary parameters.
               navigation.navigate("RestaurantDetails")
             }}
           >

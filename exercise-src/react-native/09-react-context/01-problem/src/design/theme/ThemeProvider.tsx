@@ -6,7 +6,7 @@ interface ThemeContext {
   theme: Theme
 }
 
-// TODO
+// Exercise: Update `ThemeProvider` to provide data according to the provided `ThemeContext`.
 
 const ThemeProvider: React.FC = () => {
   // TODO

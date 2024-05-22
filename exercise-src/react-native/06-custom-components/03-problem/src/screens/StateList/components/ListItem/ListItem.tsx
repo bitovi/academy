@@ -1,5 +1,5 @@
 import { Text } from "react-native"
 
-// Exercise: Implement ListItem Component
+// Exercise: Move the `ListItem` component logic into the correct file.
 
 export default ListItem

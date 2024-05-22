@@ -19,14 +19,14 @@ Now that we've successfully implemented React Navigation in our application, we 
 
 ### Navigation Parameters
 
-As mentioned in the previous section, since our React Native application isn't navigated through URLs, we aren't able to pass the parameters through a URL. Instead, we'll be using the Stack we've already made.
+As mentioned in the previous section, since our React Native application isn’t navigated through URLs, we aren’t able to pass the parameters through a URL. Instead, we'll be using the Stack we've already made.
 
 @sourceref ./StackRoute.tsx
 @highlight 4-23, 25
 
 Before we get into using `route` on each `Screen` of the `Navigator`, considering we're using TypeScript, we need to make an effort to make sure the properties for each component are properly typed. For this, we will create a type, `ShopStackParamList`.
 
-For each screen we will type the expected properties that will be passed along each route. The `Home` in this case doesn't expect any parameters to be passed to it, so we leave it undefined. The `UserProfile` and `Storefront` contain a few properties.
+For each screen we will type the expected properties that will be passed along each route. The `Home` in this case doesn’t expect any parameters to be passed to it, so we leave it undefined. The `UserProfile` and `Storefront` contain a few properties.
 
 Now, our `createStackNavigator` includes a type we've made `ShopStackParamList`. Because of this, now if we provide our screen components `Props` as route params, TypeScript will be able to able to identify what parameters are accessible from the components `route.params`.
 
@@ -106,7 +106,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 For both the `CityList` and `RestaurantList` components:
 
 - Update the the typing of each component to use the given `Props`.
-- Destructure the `route` of for each component, to fetch its stored state.
+- Destructure the `route` for each component, to fetch its stored state.
 - Update the `navigation.navigate` to accept the necessary parameters.
 
 ### Solution 2
