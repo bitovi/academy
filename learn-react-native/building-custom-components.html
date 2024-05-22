@@ -694,7 +694,7 @@ covering CanJS core libraries.">
 <li><p>The name starts with a capital letter.</p></li>
 <li><p>It returns something renderable (JSX).</p></li>
 </ol>
-<pre><code class="language-tsx">function App() {
+<pre><code class="language-tsx">const App: React.FC = () =&gt; {
   return &lt;Text&gt;Some page content&lt;/Text&gt;
 }
 
@@ -707,7 +707,7 @@ covering CanJS core libraries.">
 <p>Second, our component must return either <code>null</code> or something renderable, like JSX. The return value of our components is almost always JSX, though JavaScript primitives like <code>string</code> and <code>number</code> are also valid. Components cannot return complex types like arrays or objects.</p>
 <pre><code class="language-tsx">import { Pressable, Text } from &quot;react-native&quot;
 
-const Button = () =&gt; {
+const PrimaryButton: React.FC = () =&gt; {
   return (
     &lt;Pressable&gt;
       &lt;Text&gt;Activate me&lt;/Text&gt;
@@ -874,8 +874,8 @@ export default App
 <p>Let’s keep the good refactoring rolling by creating a <code>ListItem</code> component to house the JSX used to render each state in the list.</p>
 <h3>Using component props</h3>
 <p>In React, props (short for “properties”) are how we pass data from a parent component to a child component. Since function React components are fundamentally JavaScript functions, you can think of props like the arguments you pass to a function.</p>
-<p>To clarify, props in React Native should not be confused with the properties on HTML elements in web development, even though both share the same name.</p>
-<p>To receive props, function components must implement a React API that allows an optional argument of type <code>object</code> that’s named <code>props</code>.</p>
+<p>To clarify, props in React Native should not be confused with the properties on HTML elements in web development, even though they sound similar.</p>
+<p>To receive props, function components must implement a React API that allows an optional object argument, usually referred to as <code>props</code>.</p>
 <p>The properties on the props object—individually called a “prop”—can include whatever data the child component needs to make the component work. The property values can be any type, including functions and other React components.</p>
 <p>We’re using TypeScript in our project, so we can create an <code>interface</code> for <code>props</code> and use it in the definition of a function component.</p>
 <p>Let’s create a <code>SubmitButton</code> component to see <code>props</code> in action:</p>
@@ -925,7 +925,7 @@ const SubmitButton: React.FC&lt;SubmitButtonProps&gt; = ({ label, onPress }) =&g
 </ul>
 <p>In the example below, the <code>label</code> prop accepts a string. so the value is surrounded by double quotes. The <code>onPress</code> prop accepts a function, so the function value is surrounded by braces.</p>
 <p>Here’s how to use our <code>SubmitButton</code>:</p>
-<pre><code class="language-tsx">const content = (
+<pre><code class="language-tsx">const content: React.FC = (
   &lt;SubmitButton label=&quot;Activate&quot; onPress={() =&gt; console.info(&quot;Activated!&quot;)} /&gt;
 )
 
@@ -1177,7 +1177,7 @@ export default App
 </ul>
 <h4>Writing Modlet components</h4>
 <p>For more clarity, the <code>ProductDetails</code> component has a default export.</p>
-<pre><code class="language-tsx">const ProductDetails = () =&gt; {
+<pre><code class="language-tsx">const ProductDetails: React.FC = () =&gt; {
   return (
     &lt;View&gt;
       &lt;Text&gt;Here are some details about this product!&lt;/Text&gt;
@@ -1198,7 +1198,7 @@ export default ProductDetails
 import ImageCarousel from &quot;./components/ImageCarousel&quot;
 import ProductDetails from &quot;./components/ProductDetails&quot;
 
-const ProductPage = (props) =&gt; {
+const ProductPage: React.FC = (props) =&gt; {
   return (
     &lt;&gt;
       &lt;ImageCarousel /&gt;
@@ -1219,6 +1219,8 @@ const ProductPage = (props) =&gt; {
 <p>Also, every import is from a child of that top level modlet. We are only reaching down to grab imports!</p>
 <h3>Setup 3</h3>
 <p>It’s best practice to create a new folder that will contain all of the related files for each component, including test files.</p>
+<p>✏️ Create <strong>src/</strong> (folder)</p>
+<p>✏️ Move <strong>App.tsx</strong> to <strong>src/App.tsx</strong></p>
 <p>✏️ Update <strong>index.js</strong> to be:</p>
 <pre><code class="language-js">/**
  * @format
@@ -1233,53 +1235,6 @@ AppRegistry.registerComponent(appName, () =&gt; App)
 
 </code></pre>
  <div line-highlight="8,only"></div>
-<p>✏️ Create <strong>src/</strong> (folder)</p>
-<p>✏️ Move <strong>App.tsx</strong> to <strong>src/App.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
-// Exercise: Make sure to properly update each `import` and to reference every component’s essential files.
-
-const states = [
-  {
-    name: &quot;Illinois&quot;,
-    short: &quot;IL&quot;,
-  },
-  {
-    name: &quot;Wisconsin&quot;,
-    short: &quot;WI&quot;,
-  },
-]
-
-export interface ListItemProps {
-  name: string
-}
-
-export const ListItem: React.FC&lt;ListItemProps&gt; = ({ name }) =&gt; {
-  return &lt;Text&gt;{name}&lt;/Text&gt;
-}
-
-export const StateList: React.FC = () =&gt; {
-  return (
-    &lt;View&gt;
-      {states?.length ? (
-        states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
-      ) : (
-        &lt;Text&gt;No states found&lt;/Text&gt;
-      )}
-    &lt;/View&gt;
-  )
-}
-
-const App: React.FC = () =&gt; {
-  return (
-    &lt;SafeAreaView style={{ flex: 1 }}&gt;
-      &lt;StateList /&gt;
-    &lt;/SafeAreaView&gt;
-  )
-}
-
-export default App
-
-</code></pre>
 <p>✏️ Create <strong>src/screens/StateList/</strong> (folder)</p>
 <p>✏️ Create <strong>src/screens/StateList/StateList.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { View, Text } from &quot;react-native&quot;
@@ -1295,6 +1250,7 @@ export default StateList
 <pre><code class="language-ts">export { default } from &quot;./StateList&quot;
 
 </code></pre>
+<p>✏️ Create <strong>src/screens/StateList/components/</strong> (folder)</p>
 <p>✏️ Create <strong>src/screens/StateList/components/ListItem/</strong> (folder)</p>
 <p>✏️ Create <strong>src/screens/StateList/components/ListItem/ListItem.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { Text } from &quot;react-native&quot;
