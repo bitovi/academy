@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn how to share a common theme by creating a Context. 
+  <meta name="description" content="Learn how to share a common theme by creating a React Context. 
 ">
   
   <!-- Google Tag Manager -->
@@ -259,7 +259,7 @@
            						expanded">
 						<a class="page"
 							href="react-context.html"
-							title="Learn how to share a common theme by creating a Context.">
+							title="Learn how to share a common theme by creating a React Context.">
 							Using React Context
 						</a>
 						
@@ -665,7 +665,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn how to share a common theme by creating a Context.</p>
+    <p>Learn how to share a common theme by creating a React Context.</p>
 
 </section>
 
@@ -681,25 +681,34 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this section, you will:</p>
 <ul>
-<li>Create a theme with shared values</li>
-<li>Understand the what, why, and how of React Context</li>
-<li>Create a design system to unify the application</li>
+<li>Create a theme with shared values.</li>
+<li>Understand the what, why, and how of React Context.</li>
+<li>Create a design system to unify the application.</li>
 </ul>
 <h2>Objective 1: Create a theme with shared values</h2>
-<p>Now that we understand how to style our components, let’s style everything! However, this very quickly becomes a maintenance nightmare. We want to use the color <code>#007980</code> for most of our highlights, but occasionally use <code>#ca2f35</code>. What if we decide to change <code>#007980</code> to <code>#00a5ad</code>?</p>
-<p>We need a shared theme. Not only will this allow us to keep things in sync and stop repeating ourselves, it will allow us to use common language to describe our colors and other parameters of our styling.</p>
+<p>Now that we understand how to style our components, let’s style everything!</p>
+<p>Styling components individually can quickly become a maintenance nightmare.
+For instance, if we use <code>#007980</code> for most highlights but occasionally use <code>#ca2f35</code>, what happens if we decide to change <code>#007980</code> to <code>#00a5ad</code>?</p>
+<p>To manage this efficiently, we need a shared theme.
+A shared theme helps us:</p>
+<ul>
+<li>Keep styles in sync.</li>
+<li>Avoid repetition.</li>
+<li>Use common language to describe colors and other styling parameters.</li>
+</ul>
 <p>Before we get too far into our style system though, we need to talk about how we will share it. While we could put it in a module that we import any time we need it, this would make it difficult to make dynamic changes to our styles, like dark mode. Instead, we can use <strong>React Context</strong>.</p>
-<h3>What is Context?</h3>
-<p>React Context is a feature in React that allows you to share data between components without having to explicitly pass props through every level of the component tree. It’s particularly useful for passing down global data, such as themes, user authentication, or language preferences, to components deep in the tree.</p>
-<h3>How do you use Context?</h3>
+<h3>What is React Context?</h3>
+<p>Context is a feature in React that allows you to share data between components without having to explicitly pass props through every level of the component tree.
+It’s particularly useful for passing down global data (such as themes, user authentication, or language preferences) to components deep in the tree.</p>
+<h3>How do you use React Context?</h3>
 <p>Context consists of three parts:</p>
 <ol>
 <li>Context: Think of the context as a box of things. The box needs to be available to all who want to use it.</li>
 <li>Provider: The provider puts things into the box. Whatever data it handles is only available to its children.</li>
 <li>Consumer: The consumer takes things out of the box. It can only access the providers above it in the component hierarchy.</li>
 </ol>
-<h4>Context</h4>
-<p>First we create a definition of what information will be stored, then we get the object that we'll use to store it. The <code>createContext</code> function also accepts a default value, to be provided whenever we access the context without a provider. In this case, we've decided to not specify a default value.</p>
+<h4>Creating the Context</h4>
+<p>First we create a definition of what information will be stored, then we get the object that we’ll use to store it. The <code>createContext</code> function also accepts a default value, to be provided whenever we access the context without a provider. In this case, we’ve decided to not specify a default value.</p>
 <pre><code class="language-tsx">import {
   createContext,
   useCallback,
@@ -707,6 +716,7 @@ covering CanJS core libraries.">
   useMemo,
   useState,
 } from &quot;react&quot;
+import { Text } from &quot;react-native&quot;
 
 interface User {
   username: string
@@ -744,20 +754,26 @@ const App: React.FC = () =&gt; {
   )
 }
 
-const User: React.FC = ({ children }) =&gt; {
+const User: React.FC = () =&gt; {
   const context = useContext(Context)
 
   return (
-    &lt;div&gt;
+    &lt;Text&gt;
       {context?.user ? `Welcome ${context.user.username}!` : &quot;Please sign in.&quot;}
-    &lt;/div&gt;
+    &lt;/Text&gt;
   )
 }
+
+export default App
 
 </code></pre>
-<div line-highlight='14-20, only'></div>
-<h4>Provider</h4>
-<p>The Provider is how we actually tell React to store our data. We can render the provider anywhere in our tree, and the data will be accessible anywhere inside. To keep things performant, we will usually want to memoize these values. (Don’t worry if <code>useState</code> looks odd. We'll be covering this shortly.)</p>
+<div line-highlight='2, 14-20, only'></div>
+<p>In the code above, we create an <code>AuthContext</code> that will have <code>signIn</code> and <code>signOut</code> methods, as well as a <code>user</code> object.</p>
+<h4>Returning the Provider</h4>
+<p>The Provider is how we actually tell React to store our data.
+We can render the provider anywhere in our tree, and the data will be accessible anywhere inside.
+To keep things performant, we will usually want to memoize these values.
+[Don’t worry if <code>useMemo</code> looks odd, we’ll be covering this shortly.]</p>
 <pre><code class="language-tsx">import {
   createContext,
   useCallback,
@@ -765,6 +781,7 @@ const User: React.FC = ({ children }) =&gt; {
   useMemo,
   useState,
 } from &quot;react&quot;
+import { Text } from &quot;react-native&quot;
 
 interface User {
   username: string
@@ -802,19 +819,21 @@ const App: React.FC = () =&gt; {
   )
 }
 
-const User: React.FC = ({ children }) =&gt; {
+const User: React.FC = () =&gt; {
   const context = useContext(Context)
 
   return (
-    &lt;div&gt;
+    &lt;Text&gt;
       {context?.user ? `Welcome ${context.user.username}!` : &quot;Please sign in.&quot;}
-    &lt;/div&gt;
+    &lt;/Text&gt;
   )
 }
+
+export default App
 
 </code></pre>
 <div line-highlight='33-42, only'></div>
-<h4>Consumer</h4>
+<h4>Consuming the Context</h4>
 <p>We can <code>useContext</code> to access the data from our closest Provider.</p>
 <pre><code class="language-tsx">import {
   createContext,
@@ -823,6 +842,7 @@ const User: React.FC = ({ children }) =&gt; {
   useMemo,
   useState,
 } from &quot;react&quot;
+import { Text } from &quot;react-native&quot;
 
 interface User {
   username: string
@@ -860,27 +880,30 @@ const App: React.FC = () =&gt; {
   )
 }
 
-const User: React.FC = ({ children }) =&gt; {
+const User: React.FC = () =&gt; {
   const context = useContext(Context)
 
   return (
-    &lt;div&gt;
+    &lt;Text&gt;
       {context?.user ? `Welcome ${context.user.username}!` : &quot;Please sign in.&quot;}
-    &lt;/div&gt;
+    &lt;/Text&gt;
   )
 }
 
+export default App
+
 </code></pre>
-<div line-highlight='46, only'></div>
-<h3>Future-proofing your Context</h3>
-<p>This simple approach poses a few problems, however.</p>
+<div line-highlight='46, 50, only'></div>
+<h3>Future-proofing your React Context</h3>
+<p>So far, we’ve covered the bare minimum for getting started with React Context.
+However, this simple approach poses a few problems:</p>
 <ul>
 <li>We can’t store private information in the context.</li>
 <li>Every time the provider is used, the component must be careful to create the memoized (and potentially very complicated) value.</li>
 <li>If the structure of the data changes, you will have to update the code every place you used the provide and every place you used the consumer.</li>
 </ul>
-<p>To help keep things clean in the future, it is best practice to keep this Context object contained within this file, to avoid exporting it, and instead to export custom wrappers around each piece.</p>
-<h4>Provider</h4>
+<p>To help keep things clean in the future, it is best practice to keep this React Context object contained within this file, to avoid exporting it, and instead to export custom wrappers around each piece.</p>
+<h4>Future-proofing the Provider</h4>
 <p>We can create a custom <code>AuthProvider</code> that hides all the complicated logic from other components. Sometimes a custom provider will even take props (such as an access token), though this one doesn’t require any.</p>
 <pre><code class="language-tsx">import {
   createContext,
@@ -944,7 +967,7 @@ export function useAuthentication() {
 
 </code></pre>
 <div line-highlight='22-45, only'></div>
-<h4>Consumer</h4>
+<h4>Future-proofing the Consumer</h4>
 <p>Instead of calling <code>useContext</code> everywhere and needing to understand the structure of the context, we can provide custom hooks that return the specific parts of the context that we need. If we change the context structure, all we have to do is update these hooks to return the same data as before and no other code has to change.</p>
 <pre><code class="language-tsx">import {
   createContext,
@@ -1009,6 +1032,97 @@ export function useAuthentication() {
 </code></pre>
 <div line-highlight='49-59, only'></div>
 <h3>Setup 1</h3>
+<p>✏️ Create <strong>src/design/theme/theme.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import { TextStyle } from &quot;react-native&quot;
+
+interface Palette {
+  main: string
+  soft: string
+  strong: string
+  contrast: string
+}
+
+export interface Theme {
+  palette: {
+    screen: Palette
+    primary: Palette
+    secondary: Palette
+  }
+  spacing: {
+    none: 0
+    xs: number
+    s: number
+    m: number
+    l: number
+    xl: number
+  }
+  typography: {
+    title: TextStyle
+    heading: TextStyle
+    body: TextStyle
+    label: TextStyle
+  }
+}
+
+export type ThemeMargin =
+  | keyof Theme[&quot;spacing&quot;]
+  | [keyof Theme[&quot;spacing&quot;], keyof Theme[&quot;spacing&quot;]]
+export type ThemePadding =
+  | keyof Theme[&quot;spacing&quot;]
+  | [keyof Theme[&quot;spacing&quot;], keyof Theme[&quot;spacing&quot;]]
+
+const theme: Theme = {
+  palette: {
+    screen: {
+      main: &quot;#ffffff&quot;,
+      soft: &quot;#e0e0e0&quot;,
+      strong: &quot;#ffffff&quot;,
+      contrast: &quot;#222222&quot;,
+    },
+    primary: {
+      main: &quot;#007980&quot;,
+      soft: &quot;#00a5ad&quot;,
+      strong: &quot;#006166&quot;,
+      contrast: &quot;#ffffff&quot;,
+    },
+    secondary: {
+      main: &quot;#ca2f35&quot;,
+      soft: &quot;#d93237&quot;,
+      strong: &quot;#a3262b&quot;,
+      contrast: &quot;#ffffff&quot;,
+    },
+  },
+  spacing: {
+    none: 0,
+    xs: 4,
+    s: 8,
+    m: 16,
+    l: 24,
+    xl: 40,
+  },
+  typography: {
+    title: {
+      fontSize: 21,
+      fontWeight: &quot;500&quot;,
+    },
+    heading: {
+      fontSize: 24,
+      fontWeight: &quot;500&quot;,
+    },
+    body: {
+      fontWeight: &quot;normal&quot;,
+    },
+    label: {
+      fontSize: 12,
+      fontWeight: &quot;bold&quot;,
+    },
+  },
+}
+
+export default theme
+
+</code></pre>
+<div line-highlight='48, 51, 63-64, 70, only'></div>
 <p>✏️ Create <strong>src/design/theme/ThemeProvider.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { createContext, useContext, useMemo } from &quot;react&quot;
 
@@ -1021,14 +1135,22 @@ interface ThemeContext {
 // Exercise: Update `ThemeProvider` to provide data according to the provided `ThemeContext`.
 
 const ThemeProvider: React.FC = () =&gt; {
-  // TODO
+  // Exercise: Implement the ThemeProvider.
 }
 
 export default ThemeProvider
 
 export function useTheme(): Theme {
-  // TODO
+  // Exercise: Create the Context.
 }
+
+</code></pre>
+<div line-highlight='9, 12, 18, only'></div>
+<p>✏️ Create <strong>src/design/theme/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export type * from &quot;./theme&quot;
+
+export { default } from &quot;./ThemeProvider&quot;
+export * from &quot;./ThemeProvider&quot;
 
 </code></pre>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
@@ -1197,15 +1319,15 @@ export default ListItem
  <div line-highlight="10,19-23,only"></div>
 <p></details></p>
 <h2>Objective 2: Begin creating a design system to unify your application</h2>
-<p>If we continue down this path, our entire codebase will become littered with <code>theme.typography.*</code>, <code>theme.palette.*</code>, etc. What if we decide to change the color pattern of one of our components? We'd have to update every place we used that pattern. Instead, we'll create a design system.</p>
+<p>If we continue down this path, our entire codebase will become littered with <code>theme.typography.*</code>, <code>theme.palette.*</code>, etc. What if we decide to change the color pattern of one of our components? We'd have to update every place we used that pattern. Instead, we’ll create a design system.</p>
 <h3>What is a design system?</h3>
 <p>A design system is a collection of reusable components, guidelines, and principles that together help ensure consistency, efficiency, and scalability in designing and building digital products. It serves as a single source of truth for design and development teams, providing them with a set of predefined rules and assets to create cohesive user experiences across different platforms and devices.</p>
 <h3>Organizing a design system</h3>
-<p>If you ask 3 designers and 3 developers how best to organize a design system, you'll get 9 different answers...</p>
+<p>If you ask three designers and three developers how best to organize a design system, you’ll get 9 different answers…</p>
 <h4>Atomic Design Methodology</h4>
 <p>The most prolific organization method is Atomic Design. If you want to learn more about design systems, <a href="https://atomicdesign.bradfrost.com/chapter-2/">Atomic Design by Brad Frost</a> is the perfect place to start.</p>
-<h4>But... let’s keep things simple</h4>
-<p>Atomic Design is a great system, but it can be overkill for many projects. For this project, we're going to keep things much more simple: We'll have the shared theme we created in the previous objective, and we'll create a small collection of exported components.</p>
+<h4>But… let’s keep things simple</h4>
+<p>Atomic Design is a great system, but it can be overkill for many projects. For this project, we're going to keep things much more simple: We’ll have the shared theme we created in the previous objective, and we’ll create a small collection of exported components.</p>
 <h3>Setup 2</h3>
 <p>✏️ Create <strong>src/design/Box/Box.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import {
@@ -1323,6 +1445,48 @@ function getStyles(
 export * from &quot;./Typography&quot;
 
 </code></pre>
+<p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { ScrollView, Text, View } from &quot;react-native&quot;
+
+import Box from &quot;../../design/Box&quot;
+import Typography from &quot;../../design/Typography&quot;
+
+import ListItem from &quot;./components/ListItem&quot;
+
+const states = [
+  {
+    name: &quot;Illinois&quot;,
+    short: &quot;IL&quot;,
+  },
+  {
+    name: &quot;Wisconsin&quot;,
+    short: &quot;WI&quot;,
+  },
+]
+
+const StateList: React.FC = () =&gt; {
+  return (
+    &lt;ScrollView&gt;
+      &lt;View&gt;
+        &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
+      &lt;/View&gt;
+      &lt;View&gt;
+        {states?.length ? (
+          states.map((state) =&gt; (
+            &lt;ListItem key={state.short} name={state.name} /&gt;
+          ))
+        ) : (
+          &lt;Text&gt;No states found&lt;/Text&gt;
+        )}
+      &lt;/View&gt;
+    &lt;/ScrollView&gt;
+  )
+}
+
+export default StateList
+
+</code></pre>
+ <div line-highlight="3-4,only"></div>
 <h3>Verify 2</h3>
 <p>✏️ Create <strong>src/design/Box/Box.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
@@ -1359,10 +1523,10 @@ describe(&quot;Design/Typography&quot;, () =&gt; {
 
 </code></pre>
 <h3>Exercise 2</h3>
-<p>We've provided a basic <code>Box</code> component for you; because of the flexibility of the margin, padding, etc, a component like this can get complicated very quickly.</p>
+<p>We’ve provided a basic <code>Box</code> component for you; because of the flexibility of the margin, padding, etc, a component like this can get complicated very quickly.</p>
 <ul>
-<li>Your first task is to finish the <code>Typography</code> component using the same patterns.</li>
-<li>Your second task is to update <code>StateList</code> to use <code>Box</code> and <code>Typography</code> instead of <code>View</code> and <code>Text</code>.</li>
+<li>Finish the <code>Typography</code> component using the same patterns.</li>
+<li>Update <code>StateList</code> to use <code>Box</code> and <code>Typography</code> instead of <code>View</code> and <code>Text</code>.</li>
 </ul>
 <h3>Solution 2</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
@@ -1448,7 +1612,7 @@ const StateList: React.FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="1,3-4,22-29,only"></div>
+ <div line-highlight="1,22-29,only"></div>
 <p></details></p>
 <h2>Objective 3: Expand your design system</h2>
 <p>Now that we have the basics of a design system, we can expand it however we need. There are some basic components that most design systems will need:</p>
@@ -1459,7 +1623,7 @@ export default StateList
 <li>Grid. Most apps will need to control placement of elements on the screen.</li>
 <li>Card. While this is a specific design pattern, it has become very ubiquitous lately.</li>
 </ol>
-<p>Beyond these, you'll find all kinds of UI components like Tabs, Modal, Icon, Navigation, Badge, Progress, etc.</p>
+<p>Beyond these, you’ll find all kinds of UI components like Tabs, Modal, Icon, Navigation, Badge, Progress, etc.</p>
 <h3>Setup 3</h3>
 <p>✏️ Create <strong>src/design/Button/Button.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import {
@@ -1734,14 +1898,53 @@ describe(&quot;Design/Screen&quot;, () =&gt; {
 
 </code></pre>
 <p>✏️ Create <strong>src/design/Screen/index.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">export { default } from &quot;./Box&quot;
-export * from &quot;./Box&quot;
+<pre><code class="language-ts">export { default } from &quot;./Screen&quot;
 
 </code></pre>
+<p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { ScrollView } from &quot;react-native&quot;
+
+import Box from &quot;../../design/Box&quot;
+import Card from &quot;../../design/Card&quot;
+import Screen from &quot;../../design/Screen&quot;
+import Typography from &quot;../../design/Typography&quot;
+
+import ListItem from &quot;./components/ListItem&quot;
+
+const states = [
+  {
+    name: &quot;Illinois&quot;,
+    short: &quot;IL&quot;,
+  },
+  {
+    name: &quot;Wisconsin&quot;,
+    short: &quot;WI&quot;,
+  },
+]
+
+const StateList: React.FC = () =&gt; {
+  return (
+    &lt;ScrollView&gt;
+      &lt;Box padding=&quot;s&quot;&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;Place My Order: Coming Soon!&lt;/Typography&gt;
+      &lt;/Box&gt;
+      {states?.length ? (
+        states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
+      ) : (
+        &lt;Typography&gt;No states found&lt;/Typography&gt;
+      )}
+    &lt;/ScrollView&gt;
+  )
+}
+
+export default StateList
+
+</code></pre>
+ <div line-highlight="4-5,only"></div>
 <h3>Exercise 3</h3>
-<p>We've provided three new design components for you: <code>Button</code>, <code>Card</code>, and <code>Screen</code>.</p>
+<p>We’ve provided three new design components for you: <code>Button</code>, <code>Card</code>, and <code>Screen</code>.</p>
 <ul>
-<li>Update <code>StateList</code> to use our new <code>Screen</code> and <code>Card</code> components. (We'll use <code>Button</code> later.)</li>
+<li>Update <code>StateList</code> to use our new <code>Screen</code> and <code>Card</code> components. (We’ll use <code>Button</code> later.)</li>
 </ul>
 <h3>Solution 3</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
@@ -1783,7 +1986,7 @@ const StateList: React.FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="1-2,20-21,23,29,only"></div>
+ <div line-highlight="20-21,23,29,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, let’s learn about how we can add dark mode with <a href="managing-state.html" title="Work with React’s useState Hook to manage a component’s state.">useState</a>.</p>
@@ -1825,7 +2028,7 @@ export default StateList
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-native/09-react-context/react-context.md"},"description":"Learn how to share a common theme by creating a Context. \n","name":"learn-react-native/react-context","title":"Using React Context","type":"page","parent":"learn-react-native","order":9,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-native/09-react-context/react-context.md"},"description":"Learn how to share a common theme by creating a React Context. \n","name":"learn-react-native/react-context","title":"Using React Context","type":"page","parent":"learn-react-native","order":9,"outline":{"depth":2},"comment":" ","pathToRoot":"../.."};
     </script>
 
     

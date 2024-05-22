@@ -259,7 +259,7 @@
            						">
 						<a class="page"
 							href="react-context.html"
-							title="Learn how to share a common theme by creating a Context.">
+							title="Learn how to share a common theme by creating a React Context.">
 							Using React Context
 						</a>
 						
@@ -691,7 +691,7 @@ covering CanJS core libraries.">
 <h3>Generating an upload key</h3>
 <p>As mentioned in the previous section, if we want to upload an AAB (Android App Bundle) to the Google Play Store, we need to generate an upload key and use it to sign the AAB. The React Native documentation provides <a href="https://reactnative.dev/docs/signed-apk-android#generating-an-upload-key">instructions for generating an upload key</a> for both Windows and macOS.</p>
 <h3>Configuring Gradle</h3>
-<p>Now that we've generated an upload key, we need to configure Gradle to use it. First thing we will do is move the upload key keystore file to the <code>android/app</code> directory of our project. Next, we will update the <code>~/.gradle/gradle.properties</code> or <code>android/gradle.properties</code> to add the following:</p>
+<p>Now that we’ve generated an upload key, we need to configure Gradle to use it. First thing we will do is move the upload key keystore file to the <code>android/app</code> directory of our project. Next, we will update the <code>~/.gradle/gradle.properties</code> or <code>android/gradle.properties</code> to add the following:</p>
 <pre><code>MYAPP_UPLOAD_STORE_FILE=my-upload-key.keystore # Replace with the name of your keystore file
 MYAPP_UPLOAD_KEY_ALIAS=my-key-alias # Replace with the alias you set
 MYAPP_UPLOAD_STORE_PASSWORD=your-keystore-password  # Replace with the keystore password you set
@@ -721,7 +721,7 @@ android {
 }
 ...
 </code></pre>
-<p>Now that we've generated an upload key and configured Gradle to use it, we can generate an AAB file and upload it to the Google Play Store.</p>
+<p>Now that we’ve generated an upload key and configured Gradle to use it, we can generate an AAB file and upload it to the Google Play Store.</p>
 <p>Check out the <a href="https://reactnative.dev/docs/signed-apk-android">React Native Android guide</a> for more information.</p>
 <pre><code class="language-bash">npx react-native build-android --mode=&quot;release&quot;
 </code></pre>

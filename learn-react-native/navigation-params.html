@@ -259,7 +259,7 @@
            						">
 						<a class="page"
 							href="react-context.html"
-							title="Learn how to share a common theme by creating a Context.">
+							title="Learn how to share a common theme by creating a React Context.">
 							Using React Context
 						</a>
 						
@@ -685,9 +685,9 @@ covering CanJS core libraries.">
 <li>Maintain and pass the state using route params through navigation.</li>
 </ul>
 <h2>Objective 1: Intro to navigation parameters</h2>
-<p>Now that we've successfully implemented React Navigation in our application, we can navigate between screens easily. The only remaining issue is that we lack away to pass information, or state, between screens. So, our new goal for this section is passing state between screens using navigation parameters.</p>
+<p>Now that we’ve successfully implemented React Navigation in our application, we can navigate between screens easily. The only remaining issue is that we lack away to pass information, or state, between screens. So, our new goal for this section is passing state between screens using navigation parameters.</p>
 <h3>Navigation Parameters</h3>
-<p>As mentioned in the previous section, since our React Native application isn’t navigated through URLs, we aren’t able to pass the parameters through a URL. Instead, we'll be using the Stack we've already made.</p>
+<p>As mentioned in the previous section, since our React Native application isn’t navigated through URLs, we aren’t able to pass the parameters through a URL. Instead, we’ll be using the Stack we’ve already made.</p>
 <pre><code class="language-tsx">import { createStackNavigator } from &quot;@react-navigation/stack&quot;
 import * as React from &quot;react&quot;
 
@@ -735,7 +735,7 @@ const ShopApp = () =&gt; {
 <div line-highlight='4-23, 25'></div>
 <p>Before we get into using <code>route</code> on each <code>Screen</code> of the <code>Navigator</code>, considering we're using TypeScript, we need to make an effort to make sure the properties for each component are properly typed. For this, we will create a type, <code>ShopStackParamList</code>.</p>
 <p>For each screen we will type the expected properties that will be passed along each route. The <code>Home</code> in this case doesn’t expect any parameters to be passed to it, so we leave it undefined. The <code>UserProfile</code> and <code>Storefront</code> contain a few properties.</p>
-<p>Now, our <code>createStackNavigator</code> includes a type we've made <code>ShopStackParamList</code>. Because of this, now if we provide our screen components <code>Props</code> as route params, TypeScript will be able to able to identify what parameters are accessible from the components <code>route.params</code>.</p>
+<p>Now, our <code>createStackNavigator</code> includes a type we’ve made <code>ShopStackParamList</code>. Because of this, now if we provide our screen components <code>Props</code> as route params, TypeScript will be able to able to identify what parameters are accessible from the components <code>route.params</code>.</p>
 <p>While the <code>route</code> is accessible from the <code>Navigator</code>, it is also accessible from the component that is being navigated to through props.</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -1563,7 +1563,7 @@ export default RestaurantList
  <div line-highlight="53,63-65,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
-<p>Next, we'll cover an essential part of nearly all web applications: <a href="./making-http-requests.html">Making HTTP Requests</a>.</p>
+<p>Next, we’ll cover an essential part of nearly all web applications: <a href="./making-http-requests.html">Making HTTP Requests</a>.</p>
 
 </section>
 
