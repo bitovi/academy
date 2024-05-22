@@ -43,7 +43,7 @@ First we create a definition of what information will be stored, then we get the
 
 #### Provider
 
-The Provider is how we actually tell React to store our data. We can render the provider anywhere in our tree, and the data will be accessible anywhere inside. To keep things performant, we will usually want to memoize these values. (Don't worry if `useState` looks odd. We'll be covering this shortly.)
+The Provider is how we actually tell React to store our data. We can render the provider anywhere in our tree, and the data will be accessible anywhere inside. To keep things performant, we will usually want to memoize these values. (Don’t worry if `useState` looks odd. We'll be covering this shortly.)
 
 @sourceref ./context-basic.tsx
 @highlight 33-42, only
@@ -67,7 +67,7 @@ To help keep things clean in the future, it is best practice to keep this Contex
 
 #### Provider
 
-We can create a custom `AuthProvider` that hides all the complicated logic from other components. Sometimes a custom provider will even take props (such as an access token), though this one doesn't require any.
+We can create a custom `AuthProvider` that hides all the complicated logic from other components. Sometimes a custom provider will even take props (such as an access token), though this one doesn’t require any.
 
 @sourceref ./context-full.tsx
 @highlight 22-45, only
