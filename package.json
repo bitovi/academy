@@ -60,7 +60,6 @@
     ]
   },
   "devDependencies": {
-    "@types/react-native-vector-icons": "^6.4.18",
     "axios": "^1.6.0",
     "bit-docs": "0.2.0",
     "bottleneck": "^2.17.1",
@@ -71,7 +70,6 @@
     "dotenv": "^7.0.0",
     "glob": "^8.0.3",
     "http-server": "^14.1.1",
-    "identity-obj-proxy": "^3.0.0",
     "lz-string": "^1.4.4",
     "recursive-readdir": "^2.2.2"
   }
