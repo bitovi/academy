@@ -773,7 +773,7 @@ console.error = (message, ...args) =&gt; {
 <p>✏️ Update <strong>src/screens/Settings/Settings.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNetInfo } from &quot;@react-native-community/netinfo&quot;
 import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
-import { Switch } from &quot;react-native&quot;
+import { StyleSheet, Switch, View } from &quot;react-native&quot;
 
 import Button from &quot;../../design/Button&quot;
 import Card from &quot;../../design/Card&quot;
@@ -801,21 +801,31 @@ const Settings: React.FC = () =&gt; {
         )}
       &lt;/Card&gt;
       &lt;Card&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;Dark Mode&lt;/Typography&gt;
-        &lt;Switch
-          value={mode === &quot;dark&quot;}
-          onChange={() =&gt; setMode(mode === &quot;light&quot; ? &quot;dark&quot; : &quot;light&quot;)}
-        /&gt;
+        &lt;View style={styles.row}&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;Dark mode&lt;/Typography&gt;
+          &lt;Switch
+            onChange={() =&gt; setMode(mode === &quot;light&quot; ? &quot;dark&quot; : &quot;light&quot;)}
+            value={mode === &quot;dark&quot;}
+          /&gt;
+        &lt;/View&gt;
       &lt;/Card&gt;
       {/* Exercise: Display the connection state in the Settings view. */}
     &lt;/Screen&gt;
   )
 }
 
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: &quot;row&quot;,
+    alignItems: &quot;center&quot;,
+    justifyContent: &quot;space-between&quot;,
+  },
+})
+
 export default Settings
 
 </code></pre>
- <div line-highlight="1,16,37,only"></div>
+ <div line-highlight="1,16,39,only"></div>
 <h3>Verify 1</h3>
 <p>TODO: We need tests for this exercise.</p>
 <h3>Exercise 1</h3>
@@ -830,7 +840,7 @@ export default Settings
 <p>✏️ Update <strong>src/screens/Settings/Settings.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNetInfo } from &quot;@react-native-community/netinfo&quot;
 import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
-import { Switch } from &quot;react-native&quot;
+import { StyleSheet, Switch, View } from &quot;react-native&quot;
 
 import Button from &quot;../../design/Button&quot;
 import Card from &quot;../../design/Card&quot;
@@ -858,11 +868,13 @@ const Settings: React.FC = () =&gt; {
         )}
       &lt;/Card&gt;
       &lt;Card&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;Dark Mode&lt;/Typography&gt;
-        &lt;Switch
-          value={mode === &quot;dark&quot;}
-          onChange={() =&gt; setMode(mode === &quot;light&quot; ? &quot;dark&quot; : &quot;light&quot;)}
-        /&gt;
+        &lt;View style={styles.row}&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;Dark mode&lt;/Typography&gt;
+          &lt;Switch
+            onChange={() =&gt; setMode(mode === &quot;light&quot; ? &quot;dark&quot; : &quot;light&quot;)}
+            value={mode === &quot;dark&quot;}
+          /&gt;
+        &lt;/View&gt;
       &lt;/Card&gt;
       &lt;Card&gt;
         &lt;Typography&gt;
@@ -873,10 +885,18 @@ const Settings: React.FC = () =&gt; {
   )
 }
 
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: &quot;row&quot;,
+    alignItems: &quot;center&quot;,
+    justifyContent: &quot;space-between&quot;,
+  },
+})
+
 export default Settings
 
 </code></pre>
- <div line-highlight="16,37-41,only"></div>
+ <div line-highlight="16,39-43,only"></div>
 <p></details></p>
 <h2>Objective 2: Store restaurant favorites on device</h2>
 <p>Now that you can detect when the device is online or offline, let’s build a feature that can work offline!</p>

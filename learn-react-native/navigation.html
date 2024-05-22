@@ -813,7 +813,7 @@ export default App
 </code></pre>
  <div line-highlight="1-4,6-7,10-12,15-37,42-43,49-50,only"></div>
 <p>✏️ Create <strong>src/screens/Settings/Settings.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { Switch } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { StyleSheet, Switch, View } from &quot;react-native&quot;
 
 import Card from &quot;../../design/Card&quot;
 import Screen from &quot;../../design/Screen&quot;
@@ -833,15 +833,25 @@ const Settings: React.FC = () =&gt; {
         &lt;Typography variant=&quot;heading&quot;&gt;Welcome back, {user.name}&lt;/Typography&gt;
       &lt;/Card&gt;
       &lt;Card&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;Dark Mode&lt;/Typography&gt;
-        &lt;Switch
-          value={mode === &quot;dark&quot;}
-          onChange={() =&gt; setMode(mode === &quot;light&quot; ? &quot;dark&quot; : &quot;light&quot;)}
-        /&gt;
+        &lt;View style={styles.row}&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;Dark mode&lt;/Typography&gt;
+          &lt;Switch
+            onChange={() =&gt; setMode(mode === &quot;light&quot; ? &quot;dark&quot; : &quot;light&quot;)}
+            value={mode === &quot;dark&quot;}
+          /&gt;
+        &lt;/View&gt;
       &lt;/Card&gt;
     &lt;/Screen&gt;
   )
 }
+
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: &quot;row&quot;,
+    alignItems: &quot;center&quot;,
+    justifyContent: &quot;space-between&quot;,
+  },
+})
 
 export default Settings
 

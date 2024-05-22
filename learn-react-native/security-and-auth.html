@@ -1035,7 +1035,7 @@ PMO_ASSETS=https://www.place-my-order.com/
 <p>✏️ Update <strong>src/screens/Settings/Settings.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
 import { FC } from &quot;react&quot;
-import { Switch } from &quot;react-native&quot;
+import { StyleSheet, Switch, View } from &quot;react-native&quot;
 
 import Button from &quot;../../design/Button&quot;
 import Card from &quot;../../design/Card&quot;
@@ -1055,15 +1055,25 @@ const Settings: FC = () =&gt; {
          If the user is logged in: Exercise: Render a button using the GoogleSigninButton. */}
       &lt;/Card&gt;
       &lt;Card&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;Dark Mode&lt;/Typography&gt;
-        &lt;Switch
-          value={mode === &quot;dark&quot;}
-          onChange={() =&gt; setMode(mode === &quot;light&quot; ? &quot;dark&quot; : &quot;light&quot;)}
-        /&gt;
+        &lt;View style={styles.row}&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;Dark mode&lt;/Typography&gt;
+          &lt;Switch
+            onChange={() =&gt; setMode(mode === &quot;light&quot; ? &quot;dark&quot; : &quot;light&quot;)}
+            value={mode === &quot;dark&quot;}
+          /&gt;
+        &lt;/View&gt;
       &lt;/Card&gt;
     &lt;/Screen&gt;
   )
 }
+
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: &quot;row&quot;,
+    alignItems: &quot;center&quot;,
+    justifyContent: &quot;space-between&quot;,
+  },
+})
 
 export default Settings
 
@@ -1472,7 +1482,7 @@ export default App
  <div line-highlight="150-156,only"></div>
 <p>✏️ Update <strong>src/screens/Settings/Settings.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
-import { Switch } from &quot;react-native&quot;
+import { StyleSheet, Switch, View } from &quot;react-native&quot;
 
 import Button from &quot;../../design/Button&quot;
 import Card from &quot;../../design/Card&quot;
@@ -1499,15 +1509,25 @@ const Settings: React.FC = () =&gt; {
         )}
       &lt;/Card&gt;
       &lt;Card&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;Dark Mode&lt;/Typography&gt;
-        &lt;Switch
-          value={mode === &quot;dark&quot;}
-          onChange={() =&gt; setMode(mode === &quot;light&quot; ? &quot;dark&quot; : &quot;light&quot;)}
-        /&gt;
+        &lt;View style={styles.row}&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;Dark mode&lt;/Typography&gt;
+          &lt;Switch
+            onChange={() =&gt; setMode(mode === &quot;light&quot; ? &quot;dark&quot; : &quot;light&quot;)}
+            value={mode === &quot;dark&quot;}
+          /&gt;
+        &lt;/View&gt;
       &lt;/Card&gt;
     &lt;/Screen&gt;
   )
 }
+
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: &quot;row&quot;,
+    alignItems: &quot;center&quot;,
+    justifyContent: &quot;space-between&quot;,
+  },
+})
 
 export default Settings
 
