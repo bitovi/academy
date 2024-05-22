@@ -162,7 +162,7 @@ Before we begin requesting data from our API, we need to install the "place-my-o
 ✏️ Run:
 
 ```bash
-npm install place-my-order-api@1
+npm install --save-dev place-my-order-api@1
 ```
 
 We will also need to set up our environment.
@@ -170,7 +170,7 @@ We will also need to set up our environment.
 ✏️ Run:
 
 ```bash
-npm install react-native-dotenv@3
+npm install -- save-dev react-native-dotenv@3
 ```
 
 ✏️ Update **babel.config.js** to be:
