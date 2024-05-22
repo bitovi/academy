@@ -20,6 +20,8 @@ In this section, you will:
 Styling is a crucial part of building visually appealing and responsive applications.
 Understanding how to effectively use the `style` prop and the `StyleSheet` APIs is fundamental for creating React Native applications.
 
+<img alt="Screenshot of a mobile application interface with new stylings." src="../static/img/react-native/08-styling/01-solution-styling.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+
 ### The `style` prop
 
 In React Native, almost every component can receive a `style` prop.
@@ -108,9 +110,13 @@ Find more information about these shorthands in the [Layout Props](https://react
 
 @diff ../../../exercises/react-native/07-debugging/02-solution/src/screens/StateList/components/ListItem/ListItem.tsx ../../../exercises/react-native/08-styling/01-problem/src/screens/StateList/components/ListItem/ListItem.tsx only
 
+✏️ Update **src/screens/StateList/StateList.tsx** to be:
+
+@diff ../../../exercises/react-native/07-debugging/02-solution/src/screens/StateList/StateList.tsx ../../../exercises/react-native/08-styling/01-problem/src/screens/StateList/StateList.tsx only
+
 ### Verify
 
-✏️ Create **src/screens/StateList/components/ListItem/ListItem.test.tsx** and update it to be:
+✏️ Update **src/screens/StateList/components/ListItem/ListItem.test.tsx** to be:
 
 @diff ../../../exercises/react-native/07-debugging/02-solution/src/screens/StateList/components/ListItem/ListItem.test.tsx ../../../exercises/react-native/08-styling/01-problem/src/screens/StateList/components/ListItem/ListItem.test.tsx only
 
@@ -120,12 +126,12 @@ Apply the following CSS styles to the `Text` view inside the `ListItem`:
 
 ```css
 .text {
-  background-color: darkgreen;
-  color: white;
   font-size: 21px;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  padding: 10px;
+  color: "#ffffff";
+  background-color: "#007980";
+  padding: 16px;
+  margin-bottom: 8px;
+  margin-top: 8px;
 }
 ```
 
