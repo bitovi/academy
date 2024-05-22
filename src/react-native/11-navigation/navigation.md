@@ -162,7 +162,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 ## Objective 2: Using React Native stack navigation
 
-Now that we've covered tab navigation, let’s move on to stack navigation. As mentioned in the previous section, most applications use a combination of both tab and stack navigation to create a seamless user experience.
+Now that we’ve covered tab navigation, let’s move on to stack navigation. As mentioned in the previous section, most applications use a combination of both tab and stack navigation to create a seamless user experience.
 
 <div style="display: flex; flex-direction: row; gap: 2rem">
   <img alt="Screen Shot of the CityList in Navigation" src="../static/img/react-native/11-navigation/NavigationCityList.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
@@ -401,4 +401,4 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 ## Next steps
 
-Now that we understand how to use React Native Navigation, we'll supplement that knowledge by [storing state in Navigation Parameters](./navigation-params.html).
+Now that we understand how to use React Native Navigation, we’ll supplement that knowledge by [storing state in Navigation Parameters](./navigation-params.html).

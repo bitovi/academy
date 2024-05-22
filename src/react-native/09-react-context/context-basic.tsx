@@ -5,6 +5,7 @@ import {
   useMemo,
   useState,
 } from "react"
+import { Text } from "react-native"
 
 interface User {
   username: string
@@ -42,12 +43,14 @@ const App: React.FC = () => {
   )
 }
 
-const User: React.FC = ({ children }) => {
+const User: React.FC = () => {
   const context = useContext(Context)
 
   return (
-    <div>
+    <Text>
       {context?.user ? `Welcome ${context.user.username}!` : "Please sign in."}
-    </div>
+    </Text>
   )
 }
+
+export default App

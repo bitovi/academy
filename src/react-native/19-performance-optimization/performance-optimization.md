@@ -108,4 +108,4 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 ## Next steps
 
-Now we've got a complete and performant application. Let's finish out our work by learning about [Building React Native Apps](./building)
+Now we’ve got a complete and performant application. Let's finish out our work by learning about [Building React Native Apps](./building)
