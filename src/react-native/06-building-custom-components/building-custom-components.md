@@ -177,7 +177,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 ## Objective 3: Organize code with the Modlet pattern
 
-Our efforts to refactor have been going swimmingly; however, the `App.tsx` file is getting a bit crowded. It’s about time we take the time to organize our code, while doing so we'll also introduce a useful pattern to follow.
+Our efforts to refactor have been going swimmingly; however, the `App.tsx` file is getting a bit crowded. It’s about time we take the time to organize our code, while doing so we’ll also introduce a useful pattern to follow.
 
 ### Modlets
 
