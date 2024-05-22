@@ -2,10 +2,6 @@ import { userEvent, render, screen } from "@testing-library/react-native"
 
 import Button from "./Button"
 
-beforeEach(() => {
-  jest.resetAllMocks()
-  jest.useFakeTimers()
-})
 describe("Design/Button", () => {
   it("renders", async () => {
     const user = userEvent.setup()
