@@ -757,7 +757,7 @@ const User: React.FC = ({ children }) =&gt; {
 </code></pre>
 <div line-highlight='14-20, only'></div>
 <h4>Provider</h4>
-<p>The Provider is how we actually tell React to store our data. We can render the provider anywhere in our tree, and the data will be accessible anywhere inside. To keep things performant, we will usually want to memoize these values. (Don't worry if <code>useState</code> looks odd. We'll be covering this shortly.)</p>
+<p>The Provider is how we actually tell React to store our data. We can render the provider anywhere in our tree, and the data will be accessible anywhere inside. To keep things performant, we will usually want to memoize these values. (Don’t worry if <code>useState</code> looks odd. We'll be covering this shortly.)</p>
 <pre><code class="language-tsx">import {
   createContext,
   useCallback,
@@ -881,7 +881,7 @@ const User: React.FC = ({ children }) =&gt; {
 </ul>
 <p>To help keep things clean in the future, it is best practice to keep this Context object contained within this file, to avoid exporting it, and instead to export custom wrappers around each piece.</p>
 <h4>Provider</h4>
-<p>We can create a custom <code>AuthProvider</code> that hides all the complicated logic from other components. Sometimes a custom provider will even take props (such as an access token), though this one doesn't require any.</p>
+<p>We can create a custom <code>AuthProvider</code> that hides all the complicated logic from other components. Sometimes a custom provider will even take props (such as an access token), though this one doesn’t require any.</p>
 <pre><code class="language-tsx">import {
   createContext,
   useCallback,

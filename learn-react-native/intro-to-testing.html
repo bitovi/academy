@@ -683,15 +683,16 @@ covering CanJS core libraries.">
 <ul>
 <li>Learn about React Native Testing Library.</li>
 <li>See the distinctions of testing for React Native components.</li>
-<li>Use userEvent from <code>@testing-library/react-native</code> to simulate user interactions</li>
+<li>Use <code>userEvent</code> from <code>@testing-library/react-native</code> to simulate user interactions.</li>
 </ul>
 <h2>Objective 1: Testing in React Native</h2>
 <p>How do we know when our code is working correctly? How do we know it’s still working correctly in the future after we make changes to it?</p>
 <p>Testing helps by verifying that given certain inputs our code generates expected outputs. So far we’ve copied existing tests to prove that we’ve completed the exercise correctly, now let’s dive in and learn about how React Native testing is done.</p>
 <h3>Introducing React Native Testing Library</h3>
-<p><a href="https://callstack.github.io/react-native-testing-library/docs/getting-started">React Native Testing Library (RNTL)</a> is a set of tools that helps us write robust tests for our React Native applications. Unlike some other testing libraries that focus on the internal state and implementation details of components, RNTL emphasizes testing the behavior of components as experienced by the end users.</p>
-<p>In order to test components, it provides light utility functions using React Test Renderer. Most testing libraries use the DOM, but since React Native doesn't use the DOM, the React Test Renderer is necessary.</p>
-<p>Akin to the original React Testing Library, RNTL's north star is:</p>
+<p><a href="https://callstack.github.io/react-native-testing-library/docs/getting-started">React Native Testing Library (RNTL)</a> is a set of tools that helps us write robust tests for our React Native applications.
+Unlike some other testing libraries that focus on the internal state and implementation details of components, RNTL emphasizes testing the user interface (UI) behavior as experienced by the end users.</p>
+<p>In order to test components, it provides light utility functions using React Test Renderer. Most testing libraries use the DOM, but since React Native doesn’t use the DOM, the React Test Renderer is necessary.</p>
+<p>Akin to the original React Testing Library, RNTL’s north star is:</p>
 <blockquote>
 <p>The more your tests resemble the way your software is used, the more confidence they can give you.</p>
 </blockquote>
@@ -700,11 +701,14 @@ covering CanJS core libraries.">
 <p>OK, you’re convinced that RNTL is a good idea, how do you use it to create tests for your components?</p>
 <p>Let’s take a look at an example.
 Say we want to test a component we created named <code>EmailInputField</code>.</p>
-<pre><code class="language-tsx">const EmailInputField: React.FC&lt;Props&gt; = ({ label, value }) =&gt; {
+<pre><code class="language-tsx">import { useState } from &quot;react&quot;
+import { SafeAreaView, ScrollView, Text, TextInput, View } from &quot;react-native&quot;
+
+const EmailInputField: React.FC&lt;Props&gt; = ({ label, value }) =&gt; {
   const [formValue, setFormValue] = useState(value)
 
   return (
-    &lt;Box&gt;
+    &lt;View&gt;
       &lt;Text nativeID=&quot;formLabel&quot;&gt;{label}:&lt;/Text&gt;
       &lt;TextInput
         accessibilityLabel=&quot;input&quot;
@@ -712,28 +716,66 @@ Say we want to test a component we created named <code>EmailInputField</code>.</
         value={formValue}
         onChangeText={setFormValue}
       /&gt;
-    &lt;/Box&gt;
+    &lt;/View&gt;
   )
 }
 
-const content = &lt;EmailInputField label=&quot;Email&quot; value=&quot;test@example.com&quot; /&gt;
+const App: React.FC = () =&gt; {
+  return (
+    &lt;SafeAreaView style={{ flex: 1 }}&gt;
+      &lt;ScrollView&gt;
+        &lt;EmailInputField label=&quot;Email&quot; value=&quot;test@example.com&quot; /&gt;
+      &lt;/ScrollView&gt;
+    &lt;/SafeAreaView&gt;
+  )
+}
+
+export default App
 
 </code></pre>
-<div line-highlight='20, only'></div>
+<div line-highlight='4, 8-16, 24, only'></div>
+<p>When rendered by React Native, this JSX will look something like:</p>
+<pre><code class="language-xml">&lt;RCTSafeAreaView&gt;
+  &lt;RCTScrollView&gt;
+    &lt;View&gt;
+      &lt;View&gt;
+        &lt;Text nativeID=&quot;formLabel&quot;&gt;Email :&lt;/Text&gt;
+        &lt;TextInput
+          accessibilityLabel=&quot;input&quot;
+          accessibilityLabelledBy=&quot;formLabel&quot;
+          value=&quot;test@example.com&quot;
+        /&gt;
+      &lt;/View&gt;
+    &lt;/View&gt;
+  &lt;/RCTScrollView&gt;
+&lt;/RCTSafeAreaView&gt;
+
+</code></pre>
+<div line-highlight='4-11, only'></div>
 <p>We want to test <code>EmailInputField</code>. If you have experience with software testing, the following pattern will probably be recognizable: each test consists of arguments to the <code>it</code> function provided by Jest. The first argument is a short description of what the test is verifying. The convention is that the description string takes &quot;it&quot; as a prefix and proceeds from there, e.g. &quot;[it] renders the correct label and value.&quot;</p>
 <p>The second argument to <code>it</code> is a callback function that is called to run the test. Inside the callback, invoke the React Native Testing Library function <code>render</code> and pass it a single argument, the JSX for your component including props. After <code>render</code> completes, use <code>screen</code> to query the React Test Renderer and make assertions about the result.</p>
-<pre><code class="language-tsx">it(&quot;renders the correct label and value&quot;, () =&gt; {
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+
+import EmailInputField from &quot;./EmailInputField&quot;
+
+it(&quot;renders the correct label and value&quot;, () =&gt; {
   render(&lt;EmailInputField label=&quot;Email&quot; value=&quot;test@example.com&quot; /&gt;)
   const label = screen.getByText(&quot;Email:&quot;, { exact: false })
   expect(label).toBeOnTheScreen()
 })
 
 </code></pre>
-<p>In the test above, we validate that the label is correct. We use the <code>getByText</code> function to select a single element whose <code>textContent</code> matches the string, &quot;Email:&quot;. If you look closely you can see that the <code>&lt;Text nativeId=&quot;formLabel&quot;&gt;</code> content in the component has a &quot;:&quot; (colon) at the end, but the <code>label</code> prop does not, we can conclude that <code>EmailInputField</code> appends the colon — but <strong>the purpose of the test isn’t how <code>EmailInputField</code> works, it’s the screen output that it returns.</strong></p>
+<p>In the test above, we validate that the label is correct.
+We use the <code>getByText</code> function to select a single component whose text matches the string, <code>&quot;Email:&quot;</code>.
+If you look closely, you can see that the <code>&lt;Text nativeID=&quot;formLabel&quot;&gt;</code> content in the component has a <code>&quot;:&quot;</code> (colon) at the end, but the <code>label</code> prop does not, so we can conclude that <code>EmailInputField</code> appends the colon — but <strong>the purpose of the test isn’t how EmailInputField works, it’s the output that it returns.</strong></p>
 <p>In addition, we add <code>{exact: false}</code> as a second argument for <code>getByText</code>. This will ignore extra spaces created by the component from formatting and only match focus on matching the provided text.</p>
-<p>After we get an element, we then use <code>expect</code> and <code>toBeOnTheScreen</code> to verify the element was rendered properly. Our test passes because the generated screen is what we expect the user will perceive.</p>
-<p>We also want to validate the <code>&lt;input&gt;</code> element; let’s update the test:</p>
-<pre><code class="language-tsx">it(&quot;renders the correct label and value&quot;, () =&gt; {
+<p>After we get a component, we then use <code>expect</code> and <code>toBeOnTheScreen</code> to verify the component was rendered properly. Our test passes because the generated screen is what we expect the user will perceive.</p>
+<p>We also want to validate the <code>&lt;TextInput&gt;</code> component; let’s update the test:</p>
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+
+import EmailInputField from &quot;./EmailInputField&quot;
+
+it(&quot;renders the correct label and value&quot;, () =&gt; {
   render(&lt;EmailInputField label=&quot;Email&quot; value=&quot;test@example.com&quot; /&gt;)
   const label = screen.getByText(&quot;Email:&quot;, { exact: false })
   expect(label).toBeOnTheScreen()
@@ -744,19 +786,28 @@ const content = &lt;EmailInputField label=&quot;Email&quot; value=&quot;test@exa
 })
 
 </code></pre>
- <div line-highlight="6-8,only"></div>
-<p>We’ve used a different query to select the <code>&lt;TextInput&gt;</code> element: <code>getByDisplayValue</code>. It returns an input element whose value matches the provided string. RNTL uses React Testing Libraries Core API which has a <a href="https://testing-library.com/docs/queries/about">suite of &quot;query&quot; functions</a> that select elements based on characteristics like: role, label text, placeholder text, text, display value, alt text, and title. Our test continues to pass because the input’s value in the screen matches what we expect.</p>
+ <div line-highlight="10-12,only"></div>
+<p>We’ve used a different query to select the <code>&lt;TextInput&gt;</code> component: <code>getByDisplayValue</code>.
+It returns an input component whose value matches the provided string.
+RNTL uses React Testing Libraries Core API which has a <a href="https://testing-library.com/docs/queries/about">suite of &quot;query&quot; functions</a> that select components based on characteristics like: role, label text, text, display value, and title.
+Our test continues to pass because the input’s value in the screen matches what we expect.</p>
 <h2>Objective 2: Write a test for handling user interactions</h2>
-<p>Most components can respond to events raised by user interaction, like clicking a button. How can we test code that responds to these interactions? We use another RNTL package named <a href="https://callstack.github.io/react-native-testing-library/docs/user-event">user-event</a>.</p>
-<p>The <code>user-event</code> package allows your tests to interact with your component in a way that more closely matches what would happen with real user interactions, where a single user action can raise multiple events. For example, when a button is clicked, it can emit a focus event and then a click event. <code>user-event</code> also has some helpful functionality to prevent interactions that users would not realistically be able to do, such as not firing a click event from an element that’s hidden.</p>
+<p>Most components can respond to events raised by user interaction, like tapping a button.
+How can we test code that responds to these interactions?</p>
+<p>The <code>userEvent</code> API provided by RNTL allows your tests to interact with your component in a way that more closely matches what would happen with real user interactions, where a single user action can raise multiple events.
+For example, when a text input is typed into, it can emit focus and input events.
+The <code>userEvent</code> API also has some helpful functionality to prevent interactions that users would not realistically be able to do, such as not firing events from a component that’s hidden.</p>
 <p>All of the methods provided by <code>user-event</code> return a Promise, so we want to prefix the test callback function with <code>async</code> and use <code>await</code> when a <code>user-event</code> method is called.</p>
 <h3>Using <code>userEvent</code> to simulate user interactions</h3>
 <p>Referring back to the <code>EmailInputField</code> component:</p>
-<pre><code class="language-tsx">const EmailInputField: React.FC&lt;Props&gt; = ({ label, value }) =&gt; {
+<pre><code class="language-tsx">import { useState } from &quot;react&quot;
+import { SafeAreaView, ScrollView, Text, TextInput, View } from &quot;react-native&quot;
+
+const EmailInputField: React.FC&lt;Props&gt; = ({ label, value }) =&gt; {
   const [formValue, setFormValue] = useState(value)
 
   return (
-    &lt;Box&gt;
+    &lt;View&gt;
       &lt;Text nativeID=&quot;formLabel&quot;&gt;{label}:&lt;/Text&gt;
       &lt;TextInput
         accessibilityLabel=&quot;input&quot;
@@ -764,18 +815,44 @@ const content = &lt;EmailInputField label=&quot;Email&quot; value=&quot;test@exa
         value={formValue}
         onChangeText={setFormValue}
       /&gt;
-    &lt;/Box&gt;
+    &lt;/View&gt;
   )
 }
 
-const content = &lt;EmailInputField label=&quot;Email&quot; value=&quot;test@example.com&quot; /&gt;
+const App: React.FC = () =&gt; {
+  return (
+    &lt;SafeAreaView style={{ flex: 1 }}&gt;
+      &lt;ScrollView&gt;
+        &lt;EmailInputField label=&quot;Email&quot; value=&quot;test@example.com&quot; /&gt;
+      &lt;/ScrollView&gt;
+    &lt;/SafeAreaView&gt;
+  )
+}
+
+export default App
 
 </code></pre>
-<p>We want to write a test to verify that what the user types is displayed as the <code>&lt;TextInput&gt;</code>’s value. The user-event library includes a method named <code>type</code> that we can use to send a sequence of key events to the <code>&lt;TextInput&gt;</code> element. The <code>type</code> method provides a good simulation of what happens when a user is typing. Before we use <code>type</code> in a test, we need to <a href="https://callstack.github.io/react-native-testing-library/docs/user-event#setup">initialize user events with the <code>setup</code> method</a>. Let’s look at the test:</p>
-<pre><code class="language-tsx">import { userEvent, render, screen } from &quot;@testing-library/react-native&quot;
+<div line-highlight='4-5, 10-15, only'></div>
+<p>We want to write a test to verify that what the user types is displayed as the <code>&lt;TextInput&gt;</code>’s value.
+The <code>userEvent</code> API includes a method named <code>type</code> that we can use to send a sequence of key events to the <code>&lt;TextInput&gt;</code> component.
+The <code>type</code> method provides a good simulation of what happens when a user is typing.
+Before we use <code>type</code> in a test, we need to <a href="https://callstack.github.io/react-native-testing-library/docs/user-event#setup">initialize user events with the <code>setup</code> method</a>.
+Let’s look at the test:</p>
+<pre><code class="language-tsx">import { render, screen, userEvent } from &quot;@testing-library/react-native&quot;
+
 import EmailInputField from &quot;./EmailInputField&quot;
 
-it(&quot;renders label&quot;, async () =&gt; {
+it(&quot;renders the correct label and value&quot;, () =&gt; {
+  render(&lt;EmailInputField label=&quot;Email&quot; value=&quot;test@example.com&quot; /&gt;)
+  const label = screen.getByText(&quot;Email:&quot;, { exact: false })
+  expect(label).toBeOnTheScreen()
+
+  // Validate the input value.
+  const input = screen.getByDisplayValue(&quot;test@example.com&quot;)
+  expect(input).toBeOnTheScreen()
+})
+
+it(&quot;updates when an email is entered&quot;, async () =&gt; {
   const user = userEvent.setup()
 
   render(&lt;EmailInputField label=&quot;Email&quot; value=&quot;&quot; /&gt;)
@@ -784,13 +861,15 @@ it(&quot;renders label&quot;, async () =&gt; {
   expect(input).toBeOnTheScreen()
   expect(input).toHaveDisplayValue(&quot;&quot;)
 
-  await user.type(&quot;test@example.com&quot;)
+  await user.type(input, &quot;test@example.com&quot;)
   expect(input).toHaveDisplayValue(&quot;test@example.com&quot;)
 })
+
 </code></pre>
+ <div line-highlight="1,15-16,18,20-22,24-26,only"></div>
 <p>There are some notable differences compared to the previous test:</p>
 <ul>
-<li>The userEvent module is imported.</li>
+<li>The <code>userEvent</code> module is imported.</li>
 <li>A <code>user</code> is created with the <code>userEvent.setup()</code> function.</li>
 <li>The callback function argument of <code>it</code> is prefaced with <code>async</code>.</li>
 <li>We need to <code>await</code> the <code>type</code> method to let it complete.</li>
