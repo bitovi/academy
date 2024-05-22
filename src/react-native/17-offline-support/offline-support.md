@@ -48,7 +48,7 @@ This Hook returns an object containing details about the network status.
 ✏️ Run:
 
 ```bash
-npm install --save-dev @react-native-community/netinfo@11
+npm install @react-native-community/netinfo@11
 ```
 
 ✏️ Update **jest-setup.ts** to be:

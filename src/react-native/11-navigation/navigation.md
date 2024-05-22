@@ -107,12 +107,19 @@ The `Tab.Screen` component takes a `name` prop that is used to identify the scre
 
 ### Setup 1
 
-✏️ Install the `@react-navigation/native` and `@react-navigation/bottom-tabs` packages:
+✏️ Install the `@react-navigation/native`, `@react-navigation/bottom-tabs`, and `@react-native-safe-area-context` packages:
 
 ```bash
-npm install react-navigation/native@6 react-navigation/bottom-tabs@6 react-native-safe-area-context@4
+npm install @react-navigation/native@6 
+npm install @react-navigation/bottom-tabs@6 
+npm install @react-native-safe-area-context@4
+```
 
-npm install --save-dev @types/react-native-vector-icons@6 identity-obj-proxy@3
+✏️ Install the `@types/react-native-vector-icons`, and `identity-obj-proxy@3` packages:
+
+```bash
+npm install --save-dev @types/react-native-vector-icons@6 
+npm install --save-dev identity-obj-proxy@3
 ```
 
 ✏️ Update **src/App.tsx** to be:
