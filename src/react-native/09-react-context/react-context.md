@@ -81,9 +81,17 @@ Instead of calling `useContext` everywhere and needing to understand the structu
 
 ### Setup 1
 
+✏️ Create **src/design/theme/theme.ts** and update it to be:
+
+@sourceref ../../../exercises/react-native/09-react-context/01-problem/src/design/theme/theme.ts
+
 ✏️ Create **src/design/theme/ThemeProvider.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-native/09-react-context/01-problem/src/design/theme/ThemeProvider.tsx
+
+✏️ Create **src/design/theme/index.ts** and update it to be:
+
+@sourceref ../../../exercises/react-native/09-react-context/01-problem/src/design/theme/index.ts
 
 ✏️ Update **src/App.tsx** to be:
 
@@ -241,7 +249,7 @@ Beyond these, you'll find all kinds of UI components like Tabs, Modal, Icon, Nav
 
 ✏️ Create **src/design/Screen/index.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/09-react-context/03-problem/src/design/Box/index.ts
+@sourceref ../../../exercises/react-native/09-react-context/03-problem/src/design/Screen/index.ts
 
 ### Exercise 3
 
