@@ -1,4 +1,4 @@
-import { Switch } from "react-native"
+import { StyleSheet, Switch, View } from "react-native"
 
 import Card from "../../design/Card"
 import Screen from "../../design/Screen"
@@ -40,5 +40,13 @@ const StateList: React.FC = () => {
     </Screen>
   )
 }
+
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+})
 
 export default StateList

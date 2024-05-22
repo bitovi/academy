@@ -21,8 +21,8 @@ In this section, you will:
 We will be setting up the application to switch between light mode and dark mode:
 
 <div style="display: flex; flex-direction: row; gap: 2rem">
-  <img alt="Screenshot of the application when it is in light mode." src="../static/img/react-native/10-managing-state/lightMode.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
-  <img alt="Screenshot of the application when it is in dark mode." src="../static/img/react-native/10-managing-state/darkMode.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screenshot of the application when it is in light mode." src="../static/img/react-native/10-managing-state/lightMode.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screenshot of the application when it is in dark mode." src="../static/img/react-native/10-managing-state/darkMode.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 </div>
 
 ### Overview of state management
@@ -44,7 +44,7 @@ React Hooks (referred to as just Hooks for the rest of this training) are specia
 We’ve already seen and used a Hook while building Place My Order! Do you remember this code from earlier?
 
 @sourceref ./ThemeProvider.tsx
-@highlight 4, 17, 25
+@highlight 3, 16, 24, only
 
 The `useContext` and `useMemo` Hook from `react` allowed us to optimize the performance of our applications by efficiently managing context and memoizing expensive computations respectively.
 
@@ -88,13 +88,13 @@ Custom Hooks are JavaScript functions that can use other React Hooks and provide
 
 Putting stateful logic into a custom Hook has numerous benefits:
 
-**Reusability:** One of the primary reasons for creating custom Hooks is reusability. You might find yourself repeating the same logic in different components—for example, fetching data from an API, handling form input, or managing a subscription. By refactoring this logic into a custom Hook, you can easily reuse this functionality across multiple components, keeping your code DRY (Don’t Repeat Yourself).
-
 **Separation of concerns:** Custom Hooks allow you to separate complex logic from the component logic. This makes your main component code cleaner and more focused on rendering UI, while the custom Hook handles the business logic or side effects. It aligns well with the principle of single responsibility, where a function or module should ideally do one thing only.
+
+**Simplifying components:** If your component is becoming too large and difficult to understand, moving some logic to a custom Hook can simplify it. This not only improves readability but also makes it easier for other developers to grasp what the component is doing.
 
 **Easier testing and maintenance:** Isolating logic into custom Hooks can make your code easier to test and maintain. Since Hooks are just JavaScript functions, they can be tested independently of any component. This isolation can lead to more robust and reliable code.
 
-**Simplifying components:** If your component is becoming too large and difficult to understand, moving some logic to a custom Hook can simplify it. This not only improves readability but also makes it easier for other developers to grasp what the component is doing.
+**Reusability:** One of the primary reasons for creating custom Hooks is reusability. You might find yourself repeating the same logic in different components—for example, fetching data from an API, handling form input, or managing a subscription. By refactoring this logic into a custom Hook, you can easily reuse this functionality across multiple components, keeping your code DRY (Don’t Repeat Yourself).
 
 ### How to create a custom Hook
 
@@ -111,11 +111,31 @@ In the example above, you can see that our `useToggle` Hook is a function that h
 How would we use this Hook? Let’s take a look at this example:
 
 @sourceref ./Toggle.tsx
-@highlight 4, 7, 13-14, 16, only
+@highlight 4, 7, 11-12, only
 
 In this component, we call our `useToggle` Hook with the initial state (`true`). Our Hook returns the `active` state and `toggleActive` function for changing the on/off state.
 
 This is how we can create our custom `useToggle` Hook and call it in our components, just like React’s built-in Hooks!
+
+### Using the `Appearance` module
+
+The `Appearance` module in React Native allows you to access the user’s preferred color scheme (light or dark).
+This helps in creating responsive designs that adapt to user preferences without requiring manual theme switches in your app.
+
+To get the current theme, use the `getColorScheme` method.
+It returns either `'light'`, `'dark'`, or `null` if the preference is not set.
+
+```tsx
+import { Appearance } from "react-native"
+
+const colorScheme = Appearance.getColorScheme()
+
+if (colorScheme === "dark") {
+  // Dark mode logic
+} else {
+  // Light mode logic
+}
+```
 
 ### Setup
 
@@ -133,7 +153,7 @@ This is how we can create our custom `useToggle` Hook and call it in our compone
 
 ### Verify
 
-✏️ Update **src/design/theme/theme.test.tsx** to be:
+✏️ Update **src/design/theme/ThemeProvider.test.tsx** to be:
 
 @diff ../../../exercises/react-native/09-react-context/03-solution/src/design/theme/ThemeProvider.test.tsx ../../../exercises/react-native/10-managing-state/01-problem/src/design/theme/ThemeProvider.test.tsx only
 
@@ -143,14 +163,14 @@ This is how we can create our custom `useToggle` Hook and call it in our compone
 
 ### Exercise
 
-✏️ Refactoring **src/design/theme/ThemeProvider.tsx**:
+Refactor **src/design/theme/ThemeProvider.tsx**:
 
 - Update `Context` to set default values for `mode` and `setMode`.
 - Update `ThemeProvider` to use `useState`, so the user can switch between the 2 modes.
 - Update `useTheme` to return 1 theme based on the `mode` that is stored in the context.
 - Update `useThemeMode` to return `mode` and `setMode`.
 
-✏️ Refactoring **src/screens/StateList/StateList.tsx**:
+Refactor **src/screens/StateList/StateList.tsx**:
 
 - Display the `Switch` component to allow users to toggle.
 - Using the recently created `useThemeMode` Hook, combine it with the `Switch` component.

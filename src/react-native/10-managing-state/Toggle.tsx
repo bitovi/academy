@@ -8,10 +8,10 @@ const Toggle: React.FC = () => {
 
   return (
     <View>
-      <View>
-        <Switch onValueChange={toggleActive} value={active} />
-        <Text>{active ? "On" : "Off"}</Text>
-      </View>
+      <Switch onValueChange={toggleActive} value={active} />
+      <Text>{active ? "On" : "Off"}</Text>
     </View>
   )
 }
+
+export default Toggle
