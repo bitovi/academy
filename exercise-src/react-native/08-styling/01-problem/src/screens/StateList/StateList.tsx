@@ -14,9 +14,6 @@ const states = [
 ]
 
 const StateList: React.FC = () => {
-  console.info("Inside the StateList component.")
-  debugger
-
   return (
     <ScrollView>
       <View>
