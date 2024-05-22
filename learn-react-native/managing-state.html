@@ -1050,9 +1050,7 @@ const StateList: React.FC = () =&gt; {
   return (
     &lt;Screen&gt;
       &lt;Card&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;
-          Place My Order: Coming Soon To...
-        &lt;/Typography&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;Place My Order: Coming Soon!&lt;/Typography&gt;
       &lt;/Card&gt;
       {states?.length ? (
         states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
@@ -1067,7 +1065,7 @@ const StateList: React.FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="1,5,10-12,15,27,41,44,only"></div>
+ <div line-highlight="1,5,10-12,15,27,39,42,only"></div>
 <h3>Verify</h3>
 <p>✏️ Update <strong>src/design/theme/theme.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import {
@@ -1266,9 +1264,7 @@ const StateList: React.FC = () =&gt; {
   return (
     &lt;Screen&gt;
       &lt;Card&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;
-          Place My Order: Coming Soon To...
-        &lt;/Typography&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;Place My Order: Coming Soon!&lt;/Typography&gt;
       &lt;/Card&gt;
       {states?.length ? (
         states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
@@ -1289,7 +1285,7 @@ const StateList: React.FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="27,41-47,only"></div>
+ <div line-highlight="27,39-45,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, we will learn how to switch screens with <a href="navigation.html" title="Learn how to use navigation to move between screens in a React Native app.">Navigation in React Native</a>.</p>

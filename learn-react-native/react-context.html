@@ -1434,9 +1434,7 @@ const StateList: React.FC = () =&gt; {
   return (
     &lt;ScrollView&gt;
       &lt;Box padding=&quot;s&quot;&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;
-          Place My Order: Coming Soon To...
-        &lt;/Typography&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;Place My Order: Coming Soon!&lt;/Typography&gt;
       &lt;/Box&gt;
       {states?.length ? (
         states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
@@ -1450,7 +1448,7 @@ const StateList: React.FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="1,3-4,22-31,only"></div>
+ <div line-highlight="1,3-4,22-29,only"></div>
 <p></details></p>
 <h2>Objective 3: Expand your design system</h2>
 <p>Now that we have the basics of a design system, we can expand it however we need. There are some basic components that most design systems will need:</p>
@@ -1771,9 +1769,7 @@ const StateList: React.FC = () =&gt; {
   return (
     &lt;Screen&gt;
       &lt;Card&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;
-          Place My Order: Coming Soon To...
-        &lt;/Typography&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;Place My Order: Coming Soon!&lt;/Typography&gt;
       &lt;/Card&gt;
       {states?.length ? (
         states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
@@ -1787,7 +1783,7 @@ const StateList: React.FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="1-2,20-21,25,31,only"></div>
+ <div line-highlight="1-2,20-21,23,29,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, let’s learn about how we can add dark mode with <a href="managing-state.html" title="Work with React’s useState Hook to manage a component’s state.">useState</a>.</p>

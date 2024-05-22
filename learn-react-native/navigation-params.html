@@ -949,9 +949,7 @@ const StateList: React.FC = () =&gt; {
   return (
     &lt;Screen&gt;
       &lt;Card&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;
-          Place My Order: Coming Soon To...
-        &lt;/Typography&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;Place My Order: Coming Soon!&lt;/Typography&gt;
       &lt;/Card&gt;
       &lt;FlatList
         data={states}
@@ -974,7 +972,7 @@ const StateList: React.FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="2,5,27-28,30,46,only"></div>
+ <div line-highlight="2,5,27-28,30,44,only"></div>
 <h3>Verify 1</h3>
 <p>✏️ Update <strong>src/screens/StateList/StateList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
@@ -1048,9 +1046,7 @@ const StateList: React.FC&lt;StateListProps&gt; = () =&gt; {
   return (
     &lt;Screen&gt;
       &lt;Card&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;
-          Place My Order: Coming Soon To...
-        &lt;/Typography&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;Place My Order: Coming Soon!&lt;/Typography&gt;
       &lt;/Card&gt;
       &lt;FlatList
         data={states}
@@ -1072,7 +1068,7 @@ const StateList: React.FC&lt;StateListProps&gt; = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="30,45,only"></div>
+ <div line-highlight="30,43,only"></div>
 <p></details></p>
 <h2>Objective 2: Implement city and restaurant params</h2>
 <h3>Setup 2</h3>

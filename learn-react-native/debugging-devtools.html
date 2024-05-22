@@ -681,18 +681,19 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this section, you will:</p>
 <ul>
-<li><a href="https://reactnative.dev/docs/debugging">resource</a></li>
+<li>Use React DevTools.</li>
+<li>Use React Native’s debugger.</li>
 </ul>
 <h2>Objective 1: React DevTools</h2>
 <p>We will be setting up React DevTools to help us inspect the UI:</p>
 <p><img alt="Screenshot of React DevTools inspecting a component tree. It shows a structured hierarchy of all the components in the view. There is also a Profiler tab." src="../static/img/react-native/07-debugging-devtools/dev-tool-connected.png" style="max-width: 100%;"/></p>
-<h3>What is React Devtools</h3>
+<h3>Using React DevTools</h3>
 <p>React DevTools is an extension that provides a powerful set of tools for inspecting and debugging React Native applications. It allows developers to inspect and manipulate the hierarchy of React Native components rendered in their mobile applications. With React DevTools, developers can easily identify component structures, inspect props and state, track component updates, and even modify component properties in real-time, greatly enhancing the debugging and development process for React Native projects.</p>
 <p>By examining the JSX code below, developers can gain insight into how React Native components are structured and composed. Comparing the JSX code with the React DevTools component tree allows developers to visualize how each JSX element corresponds to a component instance in the application, providing a deeper understanding of their React applications and aiding in debugging and optimization efforts.</p>
 <pre><code class="language-jsx">&lt;App&gt;
   &lt;ScrollView&gt;
     &lt;View&gt;
-      &lt;Text&gt;Place My Order: Coming Soon To...&lt;/Text&gt;
+      &lt;Text&gt;Place My Order: Coming Soon!&lt;/Text&gt;
     &lt;/View&gt;
     &lt;StateList&gt;
       &lt;View&gt;
@@ -775,11 +776,17 @@ covering CanJS core libraries.">
 </code></pre>
 <p>This should open a separate window that looks like the following image:</p>
 <p><img alt="Screenshot of a window with options for React Native and React DOM. The React Native section suggests opening the in-app developer menu. A notification at the top states the server is waiting for React to connect." src="../static/img/react-native/07-debugging-devtools/dev-tool-not-connected.png" style="max-width: 100%;"/></p>
-<p>At this point, the DevTool is not connected. To connect the DevTool to the application, run the following command to pull up the dev menu:</p>
+<p>At this point, DevTools is not connected.
+To connect DevTools to the application, run the following command to pull up the dev menu:</p>
 <p>✏️ Run:</p>
 <pre><code class="language-shell">adb shell input keyevent 82
 </code></pre>
-<p>This will refresh the connection.</p>
+<p>This will connect DevTools to your application running in the emulator.</p>
+<p>Alternatively, you can use these keyboard commands:</p>
+<ul>
+<li>Linux or Windows: <code>Ctrl</code> + <code>M</code></li>
+<li>macOS: <code>Cmd ⌘</code> + <code>M</code></li>
+</ul>
 <h3>Exercise 1</h3>
 <p>Explore the “Components” tab:</p>
 <ul>
@@ -797,10 +804,10 @@ covering CanJS core libraries.">
 <li>Experiment with modifying props directly from the DevTools panel.</li>
 <li>Change prop values and observe how they affect the component’s appearance or behavior in real-time.</li>
 </ul>
-<h2>Objective 2: React Native Debugger</h2>
+<h2>Objective 2: React Native’s debugger</h2>
 <p>We will be setting up React Native Debugger to help us debug:</p>
 <p><img alt="Screenshot of the React Native JavaScript Inspector interface. It includes common DevTools tabs such as Console, Sources, Memory, and Profiler." src="../static/img/react-native/07-debugging-devtools/react-native-debugger.png" style="max-width: 100%;"/></p>
-<h3>What is React Native Debugger</h3>
+<h3>Using React Native’s debugger</h3>
 <p>React Native Debugger, is a feature in React Native that serves as a debugging tool for developers to step through the code, analyze props, and state more efficiently in their React Native applications. React Native Debugger provides valuable insights into the application's state and flow. React Native Debugger will enhance the debugging process for React Native projects, offering essential functionalities for identifying and resolving issues during development.</p>
 <h3>Setup 2</h3>
 <p>✏️ Update <strong>src/package.json</strong> to be:</p>
@@ -877,7 +884,7 @@ const states = [
 ]
 
 const StateList: React.FC = () =&gt; {
-  console.log(&quot;Hello World&quot;)
+  console.info(&quot;Inside the StateList component.&quot;)
   debugger
 
   return (
@@ -904,20 +911,21 @@ export default StateList
  <div line-highlight="17-18,only"></div>
 <h3>Exercise 2</h3>
 <p>Execute the command:</p>
-<p>✏️ Run:</p>
-<pre><code class="language-shell">npm run debugger
+<p>✏️ Kill your existing <code>npm run start</code> process and run:</p>
+<pre><code class="language-shell">npm run start
 </code></pre>
 <p>The application should be running in Android Studio. Open the terminal and run the following command:</p>
 <p>✏️ Run:</p>
 <pre><code class="language-shell">adb shell input keyevent 82
 </code></pre>
 <p>This will open up the dev menu. It should look like the following image:</p>
-<p><img alt="Screenshot of the emulator displaying the React Native Developer Menu. The screen lists various options like Reload, Open Debugger, Change Bundle Location, Show Element Inspector, Disable Fast Refresh, Show Perf Monitor, Settings, and Enable Sampling Profiler." src="../static/img/react-native/07-debugging-devtools/in-app-dev-menu.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
+<p><img alt="Screenshot of the emulator displaying the React Native Developer Menu. The screen lists various options like Reload, Open Debugger, Change Bundle Location, Show Element Inspector, Disable Fast Refresh, Show Perf Monitor, Settings, and Enable Sampling Profiler." src="../static/img/react-native/07-debugging-devtools/in-app-dev-menu.png" style="max-height: 420px; border: 4px solid black; border-radius: 25px;"/></p>
 <p>Clicking on &quot;Open Debugger&quot; will open up a separate window for debugging.</p>
+<p>To see where the <code>debugger</code> is currently stopped, click on <code>StateList</code> under the “Call Stack” section in the right page of the “Sources” tab.</p>
 <h3>Exercise 2</h3>
 <p>Exploring the debugger:</p>
 <ul>
-<li>View where the <code>console.log(&quot;Hello World)</code> is being printed.</li>
+<li>View where the <code>console.info(&quot;Inside the StateList component.&quot;)</code> is being printed.</li>
 <li>Step through your code using the debugger controls (step into, step over, step out) to understand its execution flow.</li>
 </ul>
 <h2>Next steps</h2>
