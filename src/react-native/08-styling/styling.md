@@ -12,7 +12,7 @@ In this section, you will:
 
 - Use the `style` prop.
 - Use the `StyleSheet` API in React Native.
-- Understand why the `StyleSheet` API is preferred.
+- Combine stylesheets together.
 - Use CSS shorthands in React Native.
 
 ## Objective: Styling an individual element
