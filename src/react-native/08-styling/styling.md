@@ -10,10 +10,10 @@
 
 In this section, you will:
 
-- Learn more about the `style` prop.
+- Use the `style` prop.
 - Use the `StyleSheet` API in React Native.
 - Understand why the `StyleSheet` API is preferred.
-- Learn CSS shorthands in React Native.
+- Use CSS shorthands in React Native.
 
 ## Objective: Styling an individual element
 
@@ -32,7 +32,7 @@ There are a couple main ways how the `style` prop is generally used:
 ### Inline styling
 
 You can directly pass an object to the `style` prop.
-This is convenient for dynamic styles that depend on the component’s state or props, but it can be less performance-efficient for static styles.
+This is convenient for dynamic styles that depend on the component’s state or props, but it can be less performant for static styles.
 
 ```tsx
 const InlineStyleExample = () => (
@@ -44,7 +44,7 @@ In the code above, we pass an object to the `style` prop that uses keys similar 
 
 ### The `StyleSheet` API
 
-More commonly, and recommended for performance reasons, styles are defined using `StyleSheet.create()`.
+More commonly, and recommended for performance reasons (unless the styles are dynamic), styles are defined using `StyleSheet.create()`.
 This method abstracts the style objects and validates them at the application start-up, reducing the overhead of creating styles on the fly.
 
 ```tsx
@@ -74,6 +74,18 @@ Using `StyleSheet` has several advantages:
 - **Reusability:** Styles can be defined once and reused across components, reducing code duplication and improving maintainability.
 
 We will look more into reusing styles in the next module.
+
+### Composing stylesheets
+
+`StyleSheet.compose` is a method provided by React Native that lets you merge two styles into a single style object.
+This is useful when you want to combine base styles with additional styles based on certain conditions.
+
+Let’s look at an example:
+
+@sourceref ./compose.tsx
+@highlight 4-10, 16, 20, only
+
+In the example above, the resulting `combinedStyle` will have the `fontSize` and `color` from `base` and the `fontWeight` from `bold`.
 
 ### CSS shorthands
 
@@ -106,13 +118,13 @@ Find more information about these shorthands in the [Layout Props](https://react
 
 ### Setup
 
+✏️ Update **src/screens/StateList/StateList.tsx** to remove the `debugger` we had in the last exercise:
+
+@diff ../../../exercises/react-native/07-debugging/02-solution/src/screens/StateList/StateList.tsx ../../../exercises/react-native/08-styling/01-problem/src/screens/StateList/StateList.tsx only
+
 ✏️ Update **src/screens/StateList/components/ListItem/ListItem.tsx** to be:
 
 @diff ../../../exercises/react-native/07-debugging/02-solution/src/screens/StateList/components/ListItem/ListItem.tsx ../../../exercises/react-native/08-styling/01-problem/src/screens/StateList/components/ListItem/ListItem.tsx only
-
-✏️ Update **src/screens/StateList/StateList.tsx** to be:
-
-@diff ../../../exercises/react-native/07-debugging/02-solution/src/screens/StateList/StateList.tsx ../../../exercises/react-native/08-styling/01-problem/src/screens/StateList/StateList.tsx only
 
 ### Verify
 
