@@ -683,7 +683,7 @@ covering CanJS core libraries.">
 <ul>
 <li>Use the <code>style</code> prop.</li>
 <li>Use the <code>StyleSheet</code> API in React Native.</li>
-<li>Understand why the <code>StyleSheet</code> API is preferred.</li>
+<li>Combine stylesheets together.</li>
 <li>Use CSS shorthands in React Native.</li>
 </ul>
 <h2>Objective: Styling an individual element</h2>
@@ -845,6 +845,11 @@ import ListItem from &quot;./ListItem&quot;
 
 describe(&quot;Screens/StateList/ListItem&quot;, () =&gt; {
   it(&quot;renders&quot;, async () =&gt; {
+    render(&lt;ListItem name=&quot;test prop&quot; /&gt;)
+    expect(screen.getByText(/test prop/i, { exact: false })).toBeOnTheScreen()
+  })
+
+  it(&quot;has the correct styles&quot;, async () =&gt; {
     render(&lt;ListItem name=&quot;One&quot; /&gt;)
 
     const element = screen.getByText(/One/i)
@@ -861,7 +866,7 @@ describe(&quot;Screens/StateList/ListItem&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="7,9-10,12-18,only"></div>
+ <div line-highlight="11-12,14-15,17-24,only"></div>
 <h3>Exercise</h3>
 <p>Apply the following CSS styles to the <code>Text</code> view inside the <code>ListItem</code>:</p>
 <pre><code class="language-css">.text {

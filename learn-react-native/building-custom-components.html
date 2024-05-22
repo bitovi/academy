@@ -1306,7 +1306,7 @@ import ListItem from &quot;./ListItem&quot;
 
 describe(&quot;Screens/StateList/ListItem&quot;, () =&gt; {
   it(&quot;renders&quot;, async () =&gt; {
-    render(&lt;ListItem key=&quot;test&quot; name=&quot;test prop&quot; /&gt;)
+    render(&lt;ListItem name=&quot;test prop&quot; /&gt;)
     expect(screen.getByText(/test prop/i, { exact: false })).toBeOnTheScreen()
   })
 })
