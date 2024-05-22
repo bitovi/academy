@@ -20,9 +20,7 @@ const StateList: React.FC = () => {
   return (
     <ScrollView>
       <Box padding="s">
-        <Typography variant="heading">
-          Place My Order: Coming Soon To...
-        </Typography>
+        <Typography variant="heading">Place My Order: Coming Soon!</Typography>
       </Box>
       {states?.length ? (
         states.map((state) => <ListItem key={state.short} name={state.name} />)
