@@ -1,3 +1,3 @@
-function App(): React.FC {
+const App: React.FC = () => {
   return <Text>Some page content</Text>
 }
