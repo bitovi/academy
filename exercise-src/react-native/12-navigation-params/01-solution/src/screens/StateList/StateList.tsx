@@ -33,9 +33,7 @@ const StateList: React.FC<StateListProps> = () => {
   return (
     <Screen>
       <Card>
-        <Typography variant="heading">
-          Place My Order: Coming Soon To...
-        </Typography>
+        <Typography variant="heading">Place My Order: Coming Soon!</Typography>
       </Card>
       <FlatList
         data={states}
