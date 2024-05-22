@@ -772,6 +772,61 @@ export default App;
 <p>✏️ Run:</p>
 <pre><code class="language-shell">npm install --save-dev @bitovi/eslint-config@1 depcheck@1
 </code></pre>
+<p>✏️ Create <strong>.depcheckrc</strong> and update it to be:</p>
+<pre><code>ignores:
+  - &quot;@types/*&quot;
+  - &quot;@babel/*&quot;
+  - &quot;babel-*&quot;
+  - &quot;*-babel&quot;
+  - identity-obj-proxy
+  - react-native-dotenv
+
+</code></pre>
+<p>✏️ Update <strong>.eslintrc.js</strong> to be:</p>
+<pre><code class="language-js">module.exports = {
+  root: true,
+  extends: &quot;@bitovi/eslint-config/react&quot;,
+  settings: {
+    &quot;import/ignore&quot;: [&quot;node_modules/react-native/index\\.js$&quot;],
+  },
+  rules: {
+    &quot;@typescript-eslint/consistent-type-imports&quot;: [
+      &quot;error&quot;,
+      {
+        prefer: &quot;no-type-imports&quot;,
+        fixStyle: &quot;inline-type-imports&quot;,
+      },
+    ],
+  },
+}
+
+</code></pre>
+ <div line-highlight="3-15,only"></div>
+<p>✏️ Update <strong>.prettierrc.js</strong> to be:</p>
+<pre><code class="language-js">module.exports = {
+  endOfLine: &quot;auto&quot;,
+  semi: false,
+  trailingComma: &quot;all&quot;,
+}
+
+</code></pre>
+ <div line-highlight="2-4,only"></div>
+<p>✏️ Update <strong>metro.config.js</strong> to be:</p>
+<pre><code class="language-js">// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { getDefaultConfig, mergeConfig } = require(&quot;@react-native/metro-config&quot;)
+
+/**
+ * Metro configuration
+ * https://facebook.github.io/metro/docs/configuration
+ *
+ * @type {import('metro-config').MetroConfig}
+ */
+const config = {}
+
+module.exports = mergeConfig(getDefaultConfig(__dirname), config)
+
+</code></pre>
+<div line-highlight='1, only'></div>
 <p>✏️ Update <strong>package.json</strong> to be:</p>
 <pre><code class="language-json">{
   &quot;name&quot;: &quot;PlaceMyOrder&quot;,
@@ -827,61 +882,37 @@ export default App;
 
 </code></pre>
 <div line-highlight='7-10, 12-17, 21, 49, only'></div>
-<p>✏️ Update <strong>.prettierrc.js</strong> to be:</p>
-<pre><code class="language-js">module.exports = {
-  endOfLine: &quot;auto&quot;,
-  semi: false,
-  trailingComma: &quot;all&quot;,
+<p>✏️ Update <strong>tsconfig.json</strong> to be:</p>
+<pre><code class="language-json">{
+  &quot;extends&quot;: &quot;@react-native/typescript-config/tsconfig.json&quot;,
+  &quot;compilerOptions&quot;: {
+    &quot;module&quot;: &quot;ES2022&quot;,
+    &quot;types&quot;: [&quot;react-native&quot;, &quot;jest&quot;, &quot;node&quot;],
+
+    &quot;declaration&quot;: true,
+    &quot;composite&quot;: true,
+    &quot;incremental&quot;: true,
+    &quot;strict&quot;: true,
+    &quot;noEmit&quot;: true,
+
+    &quot;allowJs&quot;: false,
+    &quot;allowSyntheticDefaultImports&quot;: true,
+    &quot;downlevelIteration&quot;: true,
+    &quot;esModuleInterop&quot;: true,
+    &quot;forceConsistentCasingInFileNames&quot;: true,
+    &quot;isolatedModules&quot;: true,
+    &quot;noFallthroughCasesInSwitch&quot;: true,
+    &quot;noImplicitReturns&quot;: true,
+    &quot;noUnusedLocals&quot;: true,
+    &quot;skipLibCheck&quot;: true,
+    &quot;useDefineForClassFields&quot;: true
+  },
+  &quot;include&quot;: [&quot;@types&quot;, &quot;*.ts&quot;, &quot;*.tsx&quot;, &quot;src&quot;],
+  &quot;exclude&quot;: [&quot;node_modules&quot;]
 }
 
 </code></pre>
- <div line-highlight="2-4,only"></div>
-<p>✏️ Create <strong>.depcheckrc</strong> and update it to be:</p>
-<pre><code>ignores:
-  - &quot;@types/*&quot;
-  - &quot;@babel/*&quot;
-  - &quot;babel-*&quot;
-  - &quot;*-babel&quot;
-  - identity-obj-proxy
-  - react-native-dotenv
-
-</code></pre>
-<p>✏️ Update <strong>.eslintrc.js</strong> to be:</p>
-<pre><code class="language-js">module.exports = {
-  root: true,
-  extends: &quot;@bitovi/eslint-config/react&quot;,
-  settings: {
-    &quot;import/ignore&quot;: [&quot;node_modules/react-native/index\\.js$&quot;],
-  },
-  rules: {
-    &quot;@typescript-eslint/consistent-type-imports&quot;: [
-      &quot;error&quot;,
-      {
-        prefer: &quot;no-type-imports&quot;,
-        fixStyle: &quot;inline-type-imports&quot;,
-      },
-    ],
-  },
-}
-
-</code></pre>
- <div line-highlight="3-15,only"></div>
-<p>✏️ Update <strong>metro.config.js</strong> to be:</p>
-<pre><code class="language-js">// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { getDefaultConfig, mergeConfig } = require(&quot;@react-native/metro-config&quot;)
-
-/**
- * Metro configuration
- * https://facebook.github.io/metro/docs/configuration
- *
- * @type {import('metro-config').MetroConfig}
- */
-const config = {}
-
-module.exports = mergeConfig(getDefaultConfig(__dirname), config)
-
-</code></pre>
-<div line-highlight='1, only'></div>
+ <div line-highlight="2-5,7-11,13-26,only"></div>
 <p>✏️ Now that we have prettier and eslint set up, we need to make sure our code is following the new standards. You can apply most of the rules automatically. Run:</p>
 <pre><code class="language-shell">npm run lint:fix
 </code></pre>
