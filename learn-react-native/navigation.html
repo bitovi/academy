@@ -750,8 +750,11 @@ export default function App() {
 <p>The <code>Tab.Navigator</code> component takes <code>Tab.Screen</code> components as children. For each child, a tab button will be added to the tab bar at the bottom of the screen. The <code>Tab.Navigator</code> also has a set of props that can be used to customize the behavior of the tab bar. We can set the initial route with <code>initialRouteName</code>, specify the <code>backBehavior</code>, customize the styles through <code>screenOptions</code>, and more.</p>
 <p>The <code>Tab.Screen</code> component takes a <code>name</code> prop that is used to identify the screen and a <code>component</code> prop that is used to render the screen. The <code>name</code> prop must be unique among all the screens in the navigator. Similar to the <code>Tab.Navigator</code>, we can pass an <code>options</code> prop to the <code>Tab.Screen</code> component to customize the title, label, icon, and other properties of the tab.</p>
 <h3>Setup 1</h3>
-<p>✏️ Install the <code>@react-navigation/native</code> and <code>@react-navigation/bottom-tabs</code> packages:</p>
-<pre><code class="language-bash">npm install @react-navigation/native @react-navigation/bottom-tabs
+<p>✏️ Install the <code>@react-navigation/native</code>, <code>@react-navigation/bottom-tabs</code>, and <code>react-native-safe-area-context</code> packages:</p>
+<pre><code class="language-bash">npm install @react-navigation/native@6 @react-navigation/bottom-tabs@6 react-native-safe-area-context@4
+</code></pre>
+<p>✏️ Install the <code>@types/react-native-vector-icons</code> and <code>identity-obj-proxy@3</code> packages:</p>
+<pre><code class="language-bash">npm install --save-dev @types/react-native-vector-icons@6 identity-obj-proxy@3
 </code></pre>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
@@ -1061,7 +1064,7 @@ function MyStack() {
 <p>Similar to the <code>Tab.Screen</code> component, we can customize the behavior of our <code>Stack.Screen</code> with an <code>options</code> prop. This prop allows us to customize the header title, card style, whether gestures are enabled, and more.</p>
 <h3>Setup 2</h3>
 <p>✏️ Install the <code>@react-navigation/stack</code> package:</p>
-<pre><code class="language-bash">npm install @react-navigation/stack
+<pre><code class="language-bash">npm install @react-navigation/stack@6
 </code></pre>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
