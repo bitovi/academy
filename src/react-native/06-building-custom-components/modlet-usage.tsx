@@ -2,7 +2,7 @@ import CartButton from "./components/CartButton"
 import ImageCarousel from "./components/ImageCarousel"
 import ProductDetails from "./components/ProductDetails"
 
-const ProductPage = (props) => {
+const ProductPage: React.FC = (props) => {
   return (
     <>
       <ImageCarousel />
