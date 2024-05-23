@@ -18,7 +18,7 @@ const CityList: React.FC = () => {
   const navigation = useNavigation()
 
   return (
-    <Screen>
+    <Screen noScroll>
       <FlatList
         data={cities}
         renderItem={({ item: cityItem }) => (
