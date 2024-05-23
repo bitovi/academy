@@ -236,7 +236,7 @@ Similar to the `Tab.Screen` component, we can customize the behavior of our `Sta
 
 ### Setup 2
 
-✏️ Install the new dependency:
+✏️ Install the new dependencies:
 
 ```bash
 npm install @react-navigation/stack@6 react-native-gesture-handler@2
