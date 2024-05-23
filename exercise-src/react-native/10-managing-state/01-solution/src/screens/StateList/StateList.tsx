@@ -1,4 +1,4 @@
-import { Switch } from "react-native"
+import { StyleSheet, Switch, View } from "react-native"
 
 import Card from "../../design/Card"
 import Screen from "../../design/Screen"
@@ -37,14 +37,24 @@ const StateList: React.FC = () => {
         <Typography>No states found</Typography>
       )}
       <Card>
-        <Typography variant="heading">Dark Mode</Typography>
-        <Switch
-          value={mode === "dark"}
-          onChange={() => setMode(mode === "light" ? "dark" : "light")}
-        />
+        <View style={styles.row}>
+          <Typography variant="heading">Dark mode</Typography>
+          <Switch
+            onChange={() => setMode(mode === "light" ? "dark" : "light")}
+            value={mode === "dark"}
+          />
+        </View>
       </Card>
     </Screen>
   )
 }
+
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+})
 
 export default StateList

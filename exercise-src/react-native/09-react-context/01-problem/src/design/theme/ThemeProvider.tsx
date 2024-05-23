@@ -9,11 +9,11 @@ interface ThemeContext {
 // Exercise: Update `ThemeProvider` to provide data according to the provided `ThemeContext`.
 
 const ThemeProvider: React.FC = () => {
-  // TODO
+  // Exercise: Implement the ThemeProvider.
 }
 
 export default ThemeProvider
 
 export function useTheme(): Theme {
-  // TODO
+  // Exercise: Create the Context.
 }

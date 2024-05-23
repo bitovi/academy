@@ -15,11 +15,11 @@ In this section, you will:
 
 ## Objective 1: Intro to navigation parameters
 
-Now that we've successfully implemented React Navigation in our application, we can navigate between screens easily. The only remaining issue is that we lack away to pass information, or state, between screens. So, our new goal for this section is passing state between screens using navigation parameters.
+Now that we’ve successfully implemented React Navigation in our application, we can navigate between screens easily. The only remaining issue is that we lack away to pass information, or state, between screens. So, our new goal for this section is passing state between screens using navigation parameters.
 
 ### Navigation Parameters
 
-As mentioned in the previous section, since our React Native application isn’t navigated through URLs, we aren’t able to pass the parameters through a URL. Instead, we'll be using the Stack we've already made.
+As mentioned in the previous section, since our React Native application isn’t navigated through URLs, we aren’t able to pass the parameters through a URL. Instead, we’ll be using the Stack we’ve already made.
 
 @sourceref ./StackRoute.tsx
 @highlight 4-23, 25
@@ -28,7 +28,7 @@ Before we get into using `route` on each `Screen` of the `Navigator`, considerin
 
 For each screen we will type the expected properties that will be passed along each route. The `Home` in this case doesn’t expect any parameters to be passed to it, so we leave it undefined. The `UserProfile` and `Storefront` contain a few properties.
 
-Now, our `createStackNavigator` includes a type we've made `ShopStackParamList`. Because of this, now if we provide our screen components `Props` as route params, TypeScript will be able to able to identify what parameters are accessible from the components `route.params`.
+Now, our `createStackNavigator` includes a type we’ve made `ShopStackParamList`. Because of this, now if we provide our screen components `Props` as route params, TypeScript will be able to able to identify what parameters are accessible from the components `route.params`.
 
 While the `route` is accessible from the `Navigator`, it is also accessible from the component that is being navigated to through props.
 
@@ -128,4 +128,4 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 ## Next steps
 
-Next, we'll cover an essential part of nearly all web applications: [Making HTTP Requests](./making-http-requests.html).
+Next, we’ll cover an essential part of nearly all web applications: [Making HTTP Requests](./making-http-requests.html).
