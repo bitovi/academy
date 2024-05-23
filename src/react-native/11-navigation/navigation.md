@@ -126,13 +126,8 @@ npm run start
 
 ### Exercise 1
 
-<<<<<<< HEAD
 - For the `tabBarIcon` prop on `AppTabs.Navigator` update the `Icon` component’s name prop to be based on the given route.
 - Add a screen tab for Restaurants (the `StateList` component) and for `Settings` component.
-=======
-- For the `tabBarIcon` property on `AppTabs.Navigator`, update the `Icon` component’s name property to be based on the given route.
-- Add a screen tab for Restaurants (the `StateList` component) and a tab for the `Settings` component.
->>>>>>> origin/main
 - Add the `NavigationContainer` and `AppNavigator` to the `App` component.
 
 ### Solution 1
@@ -241,11 +236,7 @@ Similar to the `Tab.Screen` component, we can customize the behavior of our `Sta
 
 ### Setup 2
 
-<<<<<<< HEAD
 ✏️ Install the new dependency:
-=======
-✏️ Run:
->>>>>>> origin/main
 
 ```bash
 npm install @react-navigation/stack@6 react-native-gesture-handler@2

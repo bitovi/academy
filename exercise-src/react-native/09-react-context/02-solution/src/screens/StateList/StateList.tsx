@@ -20,7 +20,7 @@ const StateList: React.FC = () => {
   return (
     <ScrollView>
       <Box padding="s">
-        <Typography>Place My Order: Coming Soon!</Typography>
+        <Typography variant="heading">Place My Order: Coming Soon!</Typography>
       </Box>
       <Box>
         {states?.length ? (
