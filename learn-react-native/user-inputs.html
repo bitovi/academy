@@ -2079,12 +2079,17 @@ export default RestaurantOrder
  <div line-highlight="8,29,55,109-111,114-118,only"></div>
 <h3>Verify 2</h3>
 <p>✏️ Create <strong>src/components/FormTextField/FormTextField.test.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { fireEvent, render, screen } from &quot;@testing-library/react-native&quot;
+<pre><code class="language-tsx">import { render, screen, userEvent } from &quot;@testing-library/react-native&quot;
 
 import FormTextField from &quot;./FormTextField&quot;
 
+beforeEach(() =&gt; {
+  jest.resetAllMocks()
+  jest.useFakeTimers()
+})
+
 describe(&quot;Components/FormTextField&quot;, () =&gt; {
-  it(&quot;renders&quot;, () =&gt; {
+  it(&quot;renders and handles input change&quot;, async () =&gt; {
     const handleChangeMock = jest.fn()
     render(
       &lt;FormTextField
@@ -2094,10 +2099,16 @@ describe(&quot;Components/FormTextField&quot;, () =&gt; {
       /&gt;,
     )
 
-    expect(screen.getByText(/Hello/)).toBeOnTheScreen()
-    expect(screen.getByLabelText(/Hello/)).toBeOnTheScreen()
-    fireEvent.changeText(screen.getByLabelText(/Hello/i), &quot;test&quot;)
-    expect(handleChangeMock).toHaveBeenCalledWith(&quot;test&quot;)
+    const user = userEvent.setup()
+    expect(screen.getByText(/Hello/)).toBeTruthy()
+
+    await user.type(screen.getByLabelText(/Hello/i), &quot;test&quot;)
+
+    expect(handleChangeMock).toHaveBeenCalledTimes(4)
+    expect(handleChangeMock).toHaveBeenNthCalledWith(1, &quot;responset&quot;)
+    expect(handleChangeMock).toHaveBeenNthCalledWith(2, &quot;responsee&quot;)
+    expect(handleChangeMock).toHaveBeenNthCalledWith(3, &quot;responses&quot;)
+    expect(handleChangeMock).toHaveBeenNthCalledWith(4, &quot;responset&quot;)
   })
 })
 
