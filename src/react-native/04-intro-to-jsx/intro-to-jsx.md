@@ -88,7 +88,7 @@ For example, consider an XML element representing a user:
 <user age="37" isActive="true" name="Jane Doe"></user>
 ```
 
-JSX allows props (short for properties) to be much more than just strings. Props in JSX can be any JavaScript expression, including any other JavaScript primitive, object, function, etc.
+JSX allows props to be much more than just strings. Props in JSX can be any JavaScript expression, including any other JavaScript primitive, object, function, etc.
 
 ```jsx
 const userElement = <User age={37} isActive name="Mary Jackson" />

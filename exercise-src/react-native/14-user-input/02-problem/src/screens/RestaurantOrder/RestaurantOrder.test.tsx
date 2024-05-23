@@ -90,9 +90,9 @@ describe("Screens/RestaurantOrder", () => {
       }),
     ).toBeOnTheScreen()
 
-    expect(screen.getByText(/Name/i)).toBeOnTheScreen()
-    expect(screen.getByText(/Phone/i)).toBeOnTheScreen()
-    expect(screen.getByText(/Address/i)).toBeOnTheScreen()
+    expect(screen.getByLabelText(/Name/i)).toBeOnTheScreen()
+    expect(screen.getByLabelText(/Phone/i)).toBeOnTheScreen()
+    expect(screen.getByLabelText(/Address/i)).toBeOnTheScreen()
   })
 
   it("renders loading state", () => {

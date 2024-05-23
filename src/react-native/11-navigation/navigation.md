@@ -68,7 +68,7 @@ The `createBottomTabNavigator` function creates a navigator that renders a tab b
 
 The `Tab.Navigator` component takes `Tab.Screen` components as children. For each child, a tab button will be added to the tab bar at the bottom of the screen. The `Tab.Navigator` also has a set of props that can be used to customize the behavior of the tab bar. We can set the initial route with `initialRouteName`, specify the `backBehavior`, customize the styles through `screenOptions`, and more.
 
-The `Tab.Screen` component takes a `name` prop that is used to identify the screen and a `component` prop that is used to render the screen. The `name` prop must be unique among all the screens in the navigator. Similar to the `Tab.Navigator`, we can pass an `options` prop to the `Tab.Screen` component to customize the title, label, icon, and other properties of the tab.
+The `Tab.Screen` component takes a `name` prop that is used to identify the screen and a `component` prop that is used to render the screen. The `name` prop must be unique among all the screens in the navigator. Similar to the `Tab.Navigator`, we can pass an `options` prop to the `Tab.Screen` component to customize the title, label, icon, and other props of the tab.
 
 ### React Native Vector Icons
 
@@ -79,13 +79,13 @@ By importing your chosen icon set and utilizing the `<Icon>` component, you can 
 
 ### Setup 1
 
-✏️ Run:
+✏️ Install the new dependencies:
 
 ```bash
 npm install @react-navigation/native@6 @react-navigation/bottom-tabs@6 react-native-safe-area-context@4 react-native-screens@3 react-native-vector-icons@10
 ```
 
-✏️ Run:
+✏️ Install the new dev dependencies:
 
 ```bash
 npm install --save-dev @types/react-native-vector-icons@6 identity-obj-proxy@3
@@ -129,8 +129,8 @@ npm run start
 
 ### Exercise 1
 
-- For the `tabBarIcon` property on `AppTabs.Navigator`, update the `Icon` component’s name property to be based on the given route.
-- Add a screen tab for Restaurants (the `StateList` component) and a tab for the `Settings` component.
+- For the `tabBarIcon` prop on `AppTabs.Navigator` update the `Icon` component’s name prop to be based on the given route.
+- Add a screen tab for Restaurants (the `StateList` component) and for `Settings` component.
 - Add the `NavigationContainer` and `AppNavigator` to the `App` component.
 
 Use these API docs for reference:
@@ -245,7 +245,7 @@ Similar to the `Tab.Screen` component, we can customize the behavior of our `Sta
 
 ### Setup 2
 
-✏️ Run:
+✏️ Install the new dependencies:
 
 ```bash
 npm install @react-navigation/stack@6 react-native-gesture-handler@2

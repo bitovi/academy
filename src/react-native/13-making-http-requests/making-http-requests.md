@@ -159,7 +159,7 @@ const response = await fetch(`//localhost:7070/data`, {
 
 Before we begin requesting data from our API, we need to install the "place-my-order-api" module, which will generate fake restaurant data and serve it from port `7070`.
 
-✏️ Run:
+✏️ Install the new dev dependency:
 
 ```bash
 npm install --save-dev place-my-order-api@1
@@ -167,7 +167,7 @@ npm install --save-dev place-my-order-api@1
 
 We will also need to set up our environment.
 
-✏️ Run:
+✏️ Install the new dev dependency:
 
 ```bash
 npm install --save-dev react-native-dotenv@3

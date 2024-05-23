@@ -21,7 +21,7 @@ We will be setting up React DevTools to help us inspect the UI:
 
 ### Using React DevTools
 
-React DevTools is an extension that provides a powerful set of tools for inspecting and debugging React Native applications. It allows developers to inspect and manipulate the hierarchy of React Native components rendered in their mobile applications. With React DevTools, developers can easily identify component structures, inspect props and state, track component updates, and even modify component properties in real-time, greatly enhancing the debugging and development process for React Native projects.
+React DevTools is an extension that provides a powerful set of tools for inspecting and debugging React Native applications. It allows developers to inspect and manipulate the hierarchy of React Native components rendered in their mobile applications. With React DevTools, developers can easily identify component structures, inspect props and state, track component updates, and even modify component props in real-time, greatly enhancing the debugging and development process for React Native projects.
 
 By examining the JSX code below, developers can gain insight into how React Native components are structured and composed. Comparing the JSX code with the React DevTools component tree allows developers to visualize how each JSX element corresponds to a component instance in the application, providing a deeper understanding of their React applications and aiding in debugging and optimization efforts.
 
@@ -47,10 +47,10 @@ By examining the JSX code below, developers can gain insight into how React Nati
 
 ### Setup 1
 
-✏️ Run:
+✏️ Install the new dev dependency:
 
 ```shell
-npm install react-devtools@5 --save-dev
+npm install --save-dev react-devtools@5
 ```
 
 ✏️ Update **src/package.json** to be:
@@ -73,20 +73,7 @@ This should open a separate window that looks like the following image:
 <img alt="Screenshot of a window with options for React Native and React DOM. The React Native section suggests opening the in-app developer menu. A notification at the top states the server is waiting for React to connect." src="../static/img/react-native/07-debugging-devtools/dev-tool-not-connected.png" style="max-width: 100%;"/>
 
 At this point, DevTools is not connected.
-To connect DevTools to the application, run the following command to pull up the dev menu:
-
-✏️ Run:
-
-```shell
-adb shell input keyevent 82
-```
-
-This will connect DevTools to your application running in the emulator.
-
-Alternatively, you can use these keyboard commands:
-
-- Linux or Windows: `Ctrl` + `M`
-- macOS: `Cmd ⌘` + `M`
+To connect DevTools to the application, go back to the terminal where you ran `npm run start` and press `r` to reload.
 
 ### Exercise 1
 
@@ -96,12 +83,12 @@ Explore the “Components” tab:
 - Expand and collapse component trees to understand the component composition.
 - Hover over individual components to highlight them.
 
-Inspect Props and State:
+Inspect props and state:
 
 - Select a component from the component tree to inspect its props and state.
 - View the current props and state values, and observe how they affect the component’s rendering.
 
-Modify Props:
+Modify props:
 
 - Experiment with modifying props directly from the DevTools panel.
 - Change prop values and observe how they affect the component’s appearance or behavior in real-time.
@@ -137,6 +124,8 @@ npm run start
 ```
 
 The application should be running in Android Studio. Open the terminal and run the following command:
+
+// TODO
 
 ✏️ Run:
 

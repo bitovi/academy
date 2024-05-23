@@ -1,5 +1,7 @@
 import { SafeAreaView, ScrollView, Text, View } from "react-native"
-// Exercise: Make sure to properly update each `import` and to reference every component’s essential files.
+
+// Exercise: Move `ListItem`, `StateList`, and any related tests to the appropriate files.
+// Note: Make sure to properly update each `import` and to reference every component’s essential files.
 
 const states = [
   {
@@ -22,13 +24,20 @@ export const ListItem: React.FC<ListItemProps> = ({ name }) => {
 
 export const StateList: React.FC = () => {
   return (
-    <View>
-      {states?.length ? (
-        states.map((state) => <ListItem key={state.short} name={state.name} />)
-      ) : (
-        <Text>No states found</Text>
-      )}
-    </View>
+    <ScrollView>
+      <View>
+        <Text>Place My Order: Coming Soon!</Text>
+      </View>
+      <View>
+        {states?.length ? (
+          states.map((state) => (
+            <ListItem key={state.short} name={state.name} />
+          ))
+        ) : (
+          <Text>No states found</Text>
+        )}
+      </View>
+    </ScrollView>
   )
 }
 

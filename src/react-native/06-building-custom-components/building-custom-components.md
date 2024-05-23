@@ -97,7 +97,7 @@ Let’s keep the good refactoring rolling by creating a `ListItem` component to 
 
 ### Using component props
 
-In React, props (short for “properties”) are how we pass data from a parent component to a child component. Since function React components are fundamentally JavaScript functions, you can think of props like the arguments you pass to a function.
+In React, props are how we pass data from a parent component to a child component. Since function React components are fundamentally JavaScript functions, you can think of props like the arguments you pass to a function.
 
 To clarify, props in React Native should not be confused with the properties on HTML elements in web development, even though they sound similar.
 
@@ -158,9 +158,9 @@ There are two prop names that you cannot use and are reserved by React:
 
 ### Exercise 2
 
-- Update the `ListItemProps` type to enforce a `key` and `name` property of the appropriate primitive type.
-- Update the `ListItem` component to use the `ListItemProps` as its input type and return the `name` property of the a `state` index.
-- Update the `StateList` component to use the `ListItem` component handle each state index.
+- Update the `ListItemProps` type to enforce a `name` prop of the appropriate primitive type.
+- Update the `ListItem` component to use the `ListItemProps` and returns the `<Text>` element.
+- Update the `StateList` component to use the `ListItem` component to handle each state item.
 
 ### Solution 2
 

@@ -220,7 +220,7 @@ function AuthProvider({ children }) {
 
 ### Setup 1
 
-✏️ Run:
+✏️ Install the new dependency:
 
 ```bash
 npm install @react-native-google-signin/google-signin@11

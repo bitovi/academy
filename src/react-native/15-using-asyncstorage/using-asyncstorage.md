@@ -119,7 +119,7 @@ Here are some pointers on implementing this strategy:
 
 ### Setup 1
 
-✏️ Run:
+✏️ Install the new dependency:
 
 ```bash
 npm install @react-native-async-storage/async-storage@1

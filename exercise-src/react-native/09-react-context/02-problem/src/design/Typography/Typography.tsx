@@ -1,4 +1,4 @@
-import { TextProps, TextStyle, Text, StyleSheet } from "react-native"
+import { TextProps, Text, StyleSheet } from "react-native"
 
 import { Theme, useTheme } from "../theme"
 
@@ -17,12 +17,7 @@ const Typography: React.FC<TypographyProps> = ({
 
 export default Typography
 
-function getStyles(
-  theme: Theme,
-  variant: keyof Theme["typography"],
-): {
-  text: TextStyle
-} {
+function getStyles(theme: Theme, variant: keyof Theme["typography"]) {
   return StyleSheet.create({
     text: {
       ...theme.typography[variant],
