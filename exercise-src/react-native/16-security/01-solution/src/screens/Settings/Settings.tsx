@@ -29,7 +29,7 @@ const Settings: React.FC = () => {
         <View style={styles.row}>
           <Typography variant="heading">Dark mode</Typography>
           <Switch
-            onChange={() => setMode(mode === "light" ? "dark" : "light")}
+            onValueChange={(value) => setMode(value ? "dark" : "light")}
             value={mode === "dark"}
           />
         </View>

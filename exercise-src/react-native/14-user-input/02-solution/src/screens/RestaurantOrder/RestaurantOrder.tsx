@@ -1,7 +1,6 @@
 import { useNavigation } from "@react-navigation/native"
 import { StackScreenProps } from "@react-navigation/stack"
 import { useEffect, useState } from "react"
-import { ScrollView } from "react-native"
 
 import { RestaurantsStackParamList } from "../../App"
 import FormSwitch from "../../components/FormSwitch"
@@ -59,12 +58,12 @@ const RestaurantOrder: React.FC<RestaurantOrderProps> = ({ route }) => {
 
   if (error) {
     return (
-      <Box padding="s">
+      <Screen>
         <Typography variant="heading">
           Error loading restaurant order:{" "}
         </Typography>
         <Typography variant="body">{error.message}</Typography>
-      </Box>
+      </Screen>
     )
   }
 
@@ -74,69 +73,58 @@ const RestaurantOrder: React.FC<RestaurantOrderProps> = ({ route }) => {
 
   if (!restaurant) {
     return (
-      <Box padding="s">
+      <Screen>
         <Typography variant="heading">Restaurant not found</Typography>
-      </Box>
+      </Screen>
     )
   }
 
   return (
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      alwaysBounceVertical={false}
-    >
-      <Screen>
-        <Card title="Lunch Menu">
-          {restaurant.menu.lunch.map(({ name, price }) => (
-            <FormSwitch
-              key={name}
-              label={`${name} ($${price})`}
-              value={name in items}
-              onChange={(value) => setItem(name, value, price)}
-            />
-          ))}
-        </Card>
-
-        <Card title="Dinner Menu">
-          {restaurant.menu.dinner.map(({ name, price }) => (
-            <FormSwitch
-              key={name}
-              label={`${name} ($${price})`}
-              value={name in items}
-              onChange={(value) => setItem(name, value, price)}
-            />
-          ))}
-        </Card>
-
-        <Card title="Order Details">
-          <FormTextField label="Name" onChange={setName} value={name} />
-          <FormTextField
-            label="Address"
-            onChange={setAddress}
-            value={address}
+    <Screen>
+      <Card title="Lunch Menu">
+        {restaurant.menu.lunch.map(({ name, price }) => (
+          <FormSwitch
+            key={name}
+            label={`${name} ($${price})`}
+            onChange={(value) => setItem(name, value, price)}
+            value={name in items}
           />
-          <FormTextField label="Phone" onChange={setPhone} value={phone} />
-        </Card>
+        ))}
+      </Card>
 
-        <Box padding="s">
-          {subtotal === 0 ? (
-            <Typography>Please choose an item.</Typography>
-          ) : (
-            <Typography>{selectedCount} items selected.</Typography>
-          )}
-        </Box>
+      <Card title="Dinner Menu">
+        {restaurant.menu.dinner.map(({ name, price }) => (
+          <FormSwitch
+            key={name}
+            label={`${name} ($${price})`}
+            onChange={(value) => setItem(name, value, price)}
+            value={name in items}
+          />
+        ))}
+      </Card>
 
-        <Box padding="s">
-          <Typography variant="heading">
-            Total: ${subtotal.toFixed(2)}
-          </Typography>
-        </Box>
+      <Card title="Order Details">
+        <FormTextField label="Name" onChange={setName} value={name} />
+        <FormTextField label="Address" onChange={setAddress} value={address} />
+        <FormTextField label="Phone" onChange={setPhone} value={phone} />
+      </Card>
 
-        <Box padding="s">
-          <Button onPress={handleOrder}>Place My Order!</Button>
-        </Box>
-      </Screen>
-    </ScrollView>
+      <Box padding="s">
+        {subtotal === 0 ? (
+          <Typography>Please choose an item.</Typography>
+        ) : (
+          <Typography>{selectedCount} items selected.</Typography>
+        )}
+      </Box>
+
+      <Box padding="s">
+        <Typography variant="heading">Total: ${subtotal.toFixed(2)}</Typography>
+      </Box>
+
+      <Box padding="s">
+        <Button onPress={handleOrder}>Place My Order!</Button>
+      </Box>
+    </Screen>
   )
 }
 

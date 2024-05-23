@@ -41,8 +41,5 @@ export function useThemeMode(): {
 } {
   const { mode, setMode } = useContext(Context)
 
-  return {
-    mode,
-    setMode,
-  }
+  return { mode, setMode }
 }

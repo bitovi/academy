@@ -1,4 +1,4 @@
-import { ViewStyle, StyleSheet } from "react-native"
+import { StyleSheet } from "react-native"
 
 import Box, { BoxProps } from "../Box"
 import { Theme, useTheme } from "../theme"
@@ -27,10 +27,7 @@ const Card: React.FC<CardProps> = ({ title, children, ...props }) => {
 
 export default Card
 
-function getStyles(theme: Theme): {
-  container: ViewStyle
-  title: ViewStyle
-} {
+function getStyles(theme: Theme) {
   return StyleSheet.create({
     container: {
       width: "100%",
