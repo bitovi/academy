@@ -21,7 +21,7 @@ In this section, you will:
 As our application grows in complexity, more screens will be added. The React Navigation library provides a solution that allows us to move between these screens. In this section, we will cover both common navigation patterns used in both Android and iOS applications: tab navigation and stack navigation.
 
 <div style="display: flex; flex-direction: row; gap: 2rem">
-  <img alt="Screen Shot of the StateList in Navigation" src="../static/img/react-native/11-navigation/NavigationStateList.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screen Shot of the StateList in Navigation" src="../static/img/react-native/11-navigation/01-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 </div>
 
 ### What is navigation?
@@ -53,7 +53,7 @@ Often tabs in a mobile application are made up of more than just one screen. Tab
 Here is an example of using tab-based navigation in React Native with React Navigation:
 
 @sourceref ./tabs.tsx
-@highlight 3, 21, 25-30, only
+@highlight 1-2, 21, 25-30, only
 
 Let’s break down the code above:
 
@@ -72,7 +72,10 @@ The `Tab.Screen` component takes a `name` prop that is used to identify the scre
 
 ### React Native Vector Icons
 
-The React Native Vector Icons repository is an invaluable resource for enhancing your React Native applications with high-quality icons. This library provides an extensive collection of icons from popular sets such as FontAwesome, Material Icons, and Ionicons. It integrates seamlessly with React Native, offering versatile components that you can style and scale to meet any design requirements. By importing your chosen icon set and utilizing the <Icon> component, you can easily specify properties like name, size, and color to incorporate icons into your apps. This tool is essential for both novice and seasoned developers, enabling you to elevate the visual appeal and functionality of your mobile apps with minimal effort.
+The React Native Vector Icons repository is an invaluable resource for enhancing your React Native applications with high-quality icons.
+This library provides an extensive collection of icons from popular sets such as FontAwesome, Material Icons, and Ionicons.
+It integrates seamlessly with React Native, offering versatile components that you can style and scale to meet any design requirements.
+By importing your chosen icon set and utilizing the `<Icon>` component, you can easily specify properties like name, size, and color to incorporate icons into your apps.
 
 ### Setup 1
 
@@ -129,6 +132,12 @@ npm run start
 - For the `tabBarIcon` property on `AppTabs.Navigator`, update the `Icon` component’s name property to be based on the given route.
 - Add a screen tab for Restaurants (the `StateList` component) and a tab for the `Settings` component.
 - Add the `NavigationContainer` and `AppNavigator` to the `App` component.
+
+Use these API docs for reference:
+
+- [`screenOptions`](https://reactnavigation.org/docs/screen-options/)
+- [`navigation`](https://reactnavigation.org/docs/navigation-prop/)
+- [`react-native-vector-icons`](https://oblador.github.io/react-native-vector-icons/#Ionicons)
 
 ### Solution 1
 
@@ -290,6 +299,7 @@ We no longer need the `<ListItem>` component.
 
 - Using `RestaurantsStack` implement a `Navigator` with two screens, one for `StateList` and one for `CityList`.
 - Use `navigation` in the `StateList` component, to link `StateList` to the `CityList` screen.
+- Add logic for back navigation.
 
 ### Solution 2
 
