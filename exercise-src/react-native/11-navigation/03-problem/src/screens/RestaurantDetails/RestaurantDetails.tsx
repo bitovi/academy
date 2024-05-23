@@ -1,4 +1,5 @@
 import { useNavigation } from "@react-navigation/native"
+import { useEffect } from "react"
 
 import RestaurantHeader from "../../components/RestaurantHeader"
 import Button from "../../design/Button"
@@ -26,7 +27,10 @@ const restaurant = {
 
 const RestaurantDetails: React.FC = () => {
   const navigation = useNavigation()
-  navigation.setOptions({ title: `${restaurant.name}` })
+
+  useEffect(() => {
+    navigation.setOptions({ title: `${restaurant.name}` })
+  }, [navigation])
 
   return (
     <Screen>
