@@ -1165,7 +1165,7 @@ export default App
 <h2>Objective 2: Using React Native stack navigation</h2>
 <p>Now that we’ve covered tab navigation, let’s move on to stack navigation. As mentioned in the previous section, most applications use a combination of both tab and stack navigation to create a seamless user experience.</p>
 <div style="display: flex; flex-direction: row; gap: 2rem">
-  <img alt="Screen Shot of the CityList in Navigation" src="../static/img/react-native/11-navigation/NavigationCityList.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screen Shot of the CityList in Navigation" src="../static/img/react-native/11-navigation/02-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 </div>
 <h3>Stacks</h3>
 <p>In mobile applications, navigation isn’t managed by the browser through URLs (like in web applications) but through navigation stacks. When a user navigates to a new screen, this screen is pushed onto the navigation stack. If the user navigates back, the current screen is popped off the stack, and the app returns to the previous screen.</p>
@@ -1478,7 +1478,7 @@ export default CityList
 <pre><code class="language-ts">export { default } from &quot;./CityList&quot;
 
 </code></pre>
-<p>✏️ Delete <strong>src/screens/StateList/components/</strong> and everthing in it.</p>
+<p>✏️ Delete <strong>src/screens/StateList/components/</strong> and everything in it.</p>
 <p>We no longer need the <code>&lt;ListItem&gt;</code> component.</p>
 <h3>Verify 2</h3>
 <p>✏️ Update <strong>src/screens/StateList/StateList.test.tsx</strong> to be:</p>
@@ -1690,8 +1690,8 @@ export default StateList
 <p></details></p>
 <h2>Objective 3: Add Restaurant List and Restaurant Details pages with links</h2>
 <div style="display: flex; flex-direction: row; gap: 2rem">
-  <img alt="Screen Shot of the RestaurantList in Navigation" src="../static/img/react-native/11-navigation/NavigationRestaurantList.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
-  <img alt="Screen Shot of the RestaurantDetails in Navigation" src="../static/img/react-native/11-navigation/NavigationRestaurantDetails.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screen Shot of the RestaurantList in Navigation" src="../static/img/react-native/11-navigation/03-solution-restaurants.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screen Shot of the RestaurantDetails in Navigation" src="../static/img/react-native/11-navigation/03-solution-restaurant-details.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 </div>
 <h3>Setup 3</h3>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
@@ -2161,6 +2161,9 @@ describe(&quot;Components/RestaurantHeader&quot;, () =&gt; {
 
   it(&quot;renders without an address&quot;, () =&gt; {
     render(&lt;RestaurantHeader restaurant={restaurantWithoutAddress} /&gt;)
+    expect(
+      screen.getByText(/Test Restaurant/i, { exact: false }),
+    ).toBeOnTheScreen()
   })
 
   it(&quot;renders the address&quot;, () =&gt; {
