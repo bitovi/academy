@@ -1,7 +1,6 @@
 import { useNavigation } from "@react-navigation/native"
 import { FlatList } from "react-native"
 
-import Box from "../../design/Box"
 import Button from "../../design/Button"
 import Screen from "../../design/Screen"
 
