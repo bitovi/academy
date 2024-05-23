@@ -690,7 +690,7 @@ covering CanJS core libraries.">
 <h2>Objective 1: Using React Native bottom tab navigation</h2>
 <p>As our application grows in complexity, more screens will be added. The React Navigation library provides a solution that allows us to move between these screens. In this section, we will cover both common navigation patterns used in both Android and iOS applications: tab navigation and stack navigation.</p>
 <div style="display: flex; flex-direction: row; gap: 2rem">
-  <img alt="Screen Shot of the StateList in Navigation" src="../static/img/react-native/11-navigation/NavigationStateList.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screen Shot of the StateList in Navigation" src="../static/img/react-native/11-navigation/01-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 </div>
 <h3>What is navigation?</h3>
 <p>Navigation in React Native refers to the process of moving between different screens in our application. It helps users transition between various parts of your application through interactions like tapping on buttons, list rows, and other UI elements.</p>
@@ -710,18 +710,18 @@ covering CanJS core libraries.">
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { Text, View } from &quot;react-native&quot;
 
-function ScreenA() {
+function HomeScreen() {
   return (
     &lt;View style={{ flex: 1, justifyContent: &quot;center&quot;, alignItems: &quot;center&quot; }}&gt;
-      &lt;Text&gt;Screen A&lt;/Text&gt;
+      &lt;Text&gt;Home screen.&lt;/Text&gt;
     &lt;/View&gt;
   )
 }
 
-function ScreenB() {
+function SettingsScreen() {
   return (
     &lt;View style={{ flex: 1, justifyContent: &quot;center&quot;, alignItems: &quot;center&quot; }}&gt;
-      &lt;Text&gt;Screen A&lt;/Text&gt;
+      &lt;Text&gt;Settings screen.&lt;/Text&gt;
     &lt;/View&gt;
   )
 }
@@ -732,15 +732,15 @@ export default function App() {
   return (
     &lt;NavigationContainer&gt;
       &lt;Tab.Navigator&gt;
-        &lt;Tab.Screen name=&quot;Screen A&quot; component={ScreenA} /&gt;
-        &lt;Tab.Screen name=&quot;Screen B&quot; component={ScreenB} /&gt;
+        &lt;Tab.Screen name=&quot;Home&quot; component={HomeScreen} /&gt;
+        &lt;Tab.Screen name=&quot;Settings&quot; component={SettingsScreen} /&gt;
       &lt;/Tab.Navigator&gt;
     &lt;/NavigationContainer&gt;
   )
 }
 
 </code></pre>
-<div line-highlight='3, 21, 25-30, only'></div>
+<div line-highlight='1-2, 21, 25-30, only'></div>
 <p>Let’s break down the code above:</p>
 <h3>NavigationContainer</h3>
 <p>The <code>NavigationContainer</code> component is responsible for managing our app state and linking.
@@ -750,7 +750,10 @@ This component handles the platform-specific (Android, iOS, etc.) navigation log
 <p>The <code>Tab.Navigator</code> component takes <code>Tab.Screen</code> components as children. For each child, a tab button will be added to the tab bar at the bottom of the screen. The <code>Tab.Navigator</code> also has a set of props that can be used to customize the behavior of the tab bar. We can set the initial route with <code>initialRouteName</code>, specify the <code>backBehavior</code>, customize the styles through <code>screenOptions</code>, and more.</p>
 <p>The <code>Tab.Screen</code> component takes a <code>name</code> prop that is used to identify the screen and a <code>component</code> prop that is used to render the screen. The <code>name</code> prop must be unique among all the screens in the navigator. Similar to the <code>Tab.Navigator</code>, we can pass an <code>options</code> prop to the <code>Tab.Screen</code> component to customize the title, label, icon, and other properties of the tab.</p>
 <h3>React Native Vector Icons</h3>
-<p>The React Native Vector Icons repository is an invaluable resource for enhancing your React Native applications with high-quality icons. This library provides an extensive collection of icons from popular sets such as FontAwesome, Material Icons, and Ionicons. It integrates seamlessly with React Native, offering versatile components that you can style and scale to meet any design requirements. By importing your chosen icon set and utilizing the <Icon> component, you can easily specify properties like name, size, and color to incorporate icons into your apps. This tool is essential for both novice and seasoned developers, enabling you to elevate the visual appeal and functionality of your mobile apps with minimal effort.</p>
+<p>The React Native Vector Icons repository is an invaluable resource for enhancing your React Native applications with high-quality icons.
+This library provides an extensive collection of icons from popular sets such as FontAwesome, Material Icons, and Ionicons.
+It integrates seamlessly with React Native, offering versatile components that you can style and scale to meet any design requirements.
+By importing your chosen icon set and utilizing the <code>&lt;Icon&gt;</code> component, you can easily specify properties like name, size, and color to incorporate icons into your apps.</p>
 <h3>Setup 1</h3>
 <p>✏️ Run:</p>
 <pre><code class="language-bash">npm install @react-navigation/native@6 @react-navigation/bottom-tabs@6 react-native-safe-area-context@4 react-native-screens@3 react-native-vector-icons@10
@@ -1075,6 +1078,12 @@ describe(&quot;Screens/Settings&quot;, () =&gt; {
 <li>For the <code>tabBarIcon</code> property on <code>AppTabs.Navigator</code>, update the <code>Icon</code> component’s name property to be based on the given route.</li>
 <li>Add a screen tab for Restaurants (the <code>StateList</code> component) and a tab for the <code>Settings</code> component.</li>
 <li>Add the <code>NavigationContainer</code> and <code>AppNavigator</code> to the <code>App</code> component.</li>
+</ul>
+<p>Use these API docs for reference:</p>
+<ul>
+<li><a href="https://reactnavigation.org/docs/screen-options/"><code>screenOptions</code></a></li>
+<li><a href="https://reactnavigation.org/docs/navigation-prop/"><code>navigation</code></a></li>
+<li><a href="https://oblador.github.io/react-native-vector-icons/#Ionicons"><code>react-native-vector-icons</code></a></li>
 </ul>
 <h3>Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
@@ -1511,6 +1520,7 @@ describe(&quot;Screens/CityList&quot;, () =&gt; {
 <ul>
 <li>Using <code>RestaurantsStack</code> implement a <code>Navigator</code> with two screens, one for <code>StateList</code> and one for <code>CityList</code>.</li>
 <li>Use <code>navigation</code> in the <code>StateList</code> component, to link <code>StateList</code> to the <code>CityList</code> screen.</li>
+<li>Add logic for back navigation.</li>
 </ul>
 <h3>Solution 2</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
