@@ -1,6 +1,5 @@
 import Card from "../../design/Card"
 import Screen from "../../design/Screen"
-import { useThemeMode } from "../../design/theme"
 import Typography from "../../design/Typography"
 
 import ListItem from "./components/ListItem"
@@ -17,8 +16,6 @@ const states = [
 ]
 
 const StateList: React.FC = () => {
-  const { mode, setMode } = useThemeMode()
-
   return (
     <Screen>
       <Card>
