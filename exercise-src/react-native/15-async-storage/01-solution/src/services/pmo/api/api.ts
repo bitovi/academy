@@ -2,9 +2,9 @@ import { getData, storeData } from "../../storage"
 
 const baseUrl = process.env.PMO_API
 
-export interface LocalStorageApiRequest<T> {
+export interface CachedResponse<T> {
   data: T
-  dateTime: Date
+  dateTime: string
 }
 
 export const keyPrefix = "apiRequest-"
@@ -30,7 +30,7 @@ export async function apiRequest<
 
     if (method === "GET") {
       try {
-        const cachedResponse = await getData<LocalStorageApiRequest<Data>>(
+        const cachedResponse = await getData<CachedResponse<Data>>(
           keyPrefix + requestUrl,
         )
 
@@ -64,7 +64,7 @@ export async function apiRequest<
       : new Error(`${response.status} (${response.statusText})`)
 
     if (method === "GET" && response.ok) {
-      await storeData<LocalStorageApiRequest<Data>>(keyPrefix + requestUrl, {
+      await storeData<CachedResponse<Data>>(keyPrefix + requestUrl, {
         data: data,
         dateTime: new Date(),
       })

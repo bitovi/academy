@@ -41,6 +41,7 @@ Its API includes a lot of functionality, but we’ll focus on using:
 
 Use the `setItem` method to store data using `AsyncStorage`.
 Since it only supports storing strings, complex data such as objects or arrays must be serialized using `JSON.stringify` before storage.
+This also means that classes and functions can't be serialized for storage.
 
 Here is an example:
 
