@@ -237,8 +237,7 @@ It will be helpful to have a third terminal tab for the `npm run api` command.
 
 - Update the `useState` in `hooks.ts` to call `useEffect()` and `fetch` data from `${process.env.PMO_API}/states`.
 - Update `StateList.tsx` to call `useState()` and use the `StateResponse` interface.
-
-✏️ Duplicate **.env.example** to **.env** in your project.
+- Duplicate **.env.example** to **.env** in your project.
 
 It’s always a good idea to keep a `.env.example` file up to date (and committed to git) in your project, then include the actual secrets in your local `.env` file (and not committed to git).
 
