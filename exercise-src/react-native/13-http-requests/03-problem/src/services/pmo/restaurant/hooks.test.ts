@@ -55,7 +55,7 @@ describe("Services/PMO/Restaurant/useCities", () => {
       error: undefined,
     })
 
-    const { result } = renderHook(() => useCities("test-state"))
+    const { result } = renderHook(() => useCities({ state: "test-state" }))
 
     await waitFor(() => {
       expect(result.current.isPending).toBeFalsy()
@@ -68,7 +68,7 @@ describe("Services/PMO/Restaurant/useCities", () => {
     const mockError = new Error("Error fetching cities")
     apiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
-    const { result } = renderHook(() => useCities("test-state"))
+    const { result } = renderHook(() => useCities({ state: "test-state" }))
 
     await waitFor(() => {
       expect(result.current.isPending).toBeFalsy()

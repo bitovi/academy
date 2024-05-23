@@ -170,7 +170,7 @@ We will also need to set up our environment.
 ✏️ Run:
 
 ```bash
-npm install -- save-dev react-native-dotenv@3
+npm install --save-dev react-native-dotenv@3
 ```
 
 ✏️ Update **babel.config.js** to be:
@@ -180,12 +180,6 @@ npm install -- save-dev react-native-dotenv@3
 ✏️ Create **.env.example** and update it to be:
 
 @sourceref ../../../exercises/react-native/13-http-requests/01-problem/.env.example
-
-✏️ Duplicate **.env.example** to **.env** in your project.
-
-It’s always a good idea to keep a `.env.example` file up to date (and committed to git) in your project, then include the actual secrets in your local `.env` file (and not committed to git).
-
-We do not have any secret values yet, so our `.env` can be an exact duplicate of the `.env.example` file.
 
 ✏️ Next add an API script to your `package.json`
 
@@ -201,13 +195,13 @@ Double-check the API by navigating to <a href="http://localhost:7070/restaurants
 
 It will be helpful to have a third terminal tab for the `npm run api` command.
 
-✏️ Create **src/services/pmo/restaurant/hooks.ts** and update it to be:
-
-@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/restaurant/hooks.ts
-
 ✏️ Create **src/services/pmo/restaurant/interfaces.ts** and update it to be:
 
 @sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/restaurant/interfaces.ts
+
+✏️ Create **src/services/pmo/restaurant/hooks.ts** and update it to be:
+
+@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/restaurant/hooks.ts
 
 ✏️ Create **src/services/pmo/restaurant/index.ts** and update it to be:
 
@@ -244,7 +238,15 @@ It will be helpful to have a third terminal tab for the `npm run api` command.
 - Update the `useState` in `hooks.ts` to call `useEffect()` and `fetch` data from `${process.env.PMO_API}/states`.
 - Update `StateList.tsx` to call `useState()` and use the `StateResponse` interface.
 
+✏️ Duplicate **.env.example** to **.env** in your project.
+
+It’s always a good idea to keep a `.env.example` file up to date (and committed to git) in your project, then include the actual secrets in your local `.env` file (and not committed to git).
+
+We do not have any secret values yet, so our `.env` can be an exact duplicate of the `.env.example` file.
+
 Hint: Call your state setter after you parse the JSON response from `fetch()`.
+
+Hint: `useState()` return `isPending` and `error`. Use these states to inform the user the status.
 
 ### Solution 1
 
@@ -288,13 +290,13 @@ Here’s a breakdown of this URL:
 
 ### Setup 2
 
-✏️ Update **src/services/pmo/restaurant/hooks.ts** to be:
-
-@diff ../../../exercises/react-native/13-http-requests/01-solution/src/services/pmo/restaurant/hooks.ts ../../../exercises/react-native/13-http-requests/02-problem/src/services/pmo/restaurant/hooks.ts only
-
 ✏️ Create **src/services/pmo/restaurant/interfaces.ts** and update it to be:
 
 @diff ../../../exercises/react-native/13-http-requests/01-solution/src/services/pmo/restaurant/interfaces.ts ../../../exercises/react-native/13-http-requests/02-problem/src/services/pmo/restaurant/interfaces.ts only
+
+✏️ Update **src/services/pmo/restaurant/hooks.ts** to be:
+
+@diff ../../../exercises/react-native/13-http-requests/01-solution/src/services/pmo/restaurant/hooks.ts ../../../exercises/react-native/13-http-requests/02-problem/src/services/pmo/restaurant/hooks.ts only
 
 ✏️ Update **src/screens/CityList/CityList.tsx** to be:
 
@@ -381,6 +383,10 @@ In the example above, we `catch` the `error` and check its type. If it’s alrea
 
 @sourceref ../../../exercises/react-native/13-http-requests/03-problem/src/services/pmo/api/index.ts
 
+✏️ Update **src/services/pmo/restaurant/hooks.ts** to be:
+
+@diff ../../../exercises/react-native/13-http-requests/02-solution/src/services/pmo/restaurant/hooks.ts ../../../exercises/react-native/13-http-requests/03-problem/src/services/pmo/restaurant/hooks.ts only
+
 ### Verify 3
 
 ✏️ Update **src/services/pmo/restaurant/hooks.test.ts** to be:
@@ -431,13 +437,13 @@ Now that we are able to capture a user’s state and city preferences, we want t
 
 ### Setup 4
 
-✏️ Update **src/services/pmo/restaurant/hooks.ts** to be:
-
-@diff ../../../exercises/react-native/13-http-requests/03-solution/src/services/pmo/restaurant/hooks.ts ../../../exercises/react-native/13-http-requests/04-problem/src/services/pmo/restaurant/hooks.ts only
-
 ✏️ Create **src/services/pmo/restaurant/interfaces.ts** and update it to be:
 
 @diff ../../../exercises/react-native/13-http-requests/03-solution/src/services/pmo/restaurant/interfaces.ts ../../../exercises/react-native/13-http-requests/04-problem/src/services/pmo/restaurant/interfaces.ts only
+
+✏️ Update **src/services/pmo/restaurant/hooks.ts** to be:
+
+@diff ../../../exercises/react-native/13-http-requests/03-solution/src/services/pmo/restaurant/hooks.ts ../../../exercises/react-native/13-http-requests/04-problem/src/services/pmo/restaurant/hooks.ts only
 
 ✏️ Update **src/screens/RestaurantList/RestaurantList.tsx** to be:
 

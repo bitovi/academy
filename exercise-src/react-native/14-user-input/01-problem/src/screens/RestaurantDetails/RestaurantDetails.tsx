@@ -16,7 +16,7 @@ export interface RestaurantDetailsProps
 const RestaurantDetails: React.FC<RestaurantDetailsProps> = ({ route }) => {
   const { slug } = route.params
   const navigation = useNavigation()
-  const { data: restaurant, error, isPending } = useRestaurant(slug)
+  const { data: restaurant, error, isPending } = useRestaurant({ slug })
   useEffect(() => {
     if (restaurant) {
       navigation.setOptions({ title: `${restaurant.name}` })
