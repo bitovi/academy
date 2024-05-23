@@ -17,14 +17,18 @@ In this section, you will:
 
 Now that we’ve successfully implemented React Navigation in our application, we can navigate between screens easily. The only remaining issue is that we lack away to pass information, or state, between screens. So, our new goal for this section is passing state between screens using navigation parameters.
 
-### Navigation Parameters
+### Navigation parameters
 
-As mentioned in the previous section, since our React Native application isn’t navigated through URLs, we aren’t able to pass the parameters through a URL. Instead, we’ll be using the Stack we’ve already made.
+If you’re familiar with web development, you might know the best practice to update the URL with parameters that reflect the state of the application.
+For Single Page Applications (SPAs), this includes updating the URL with the current navigation state.
+
+Since our React Native application isn’t navigated through URLs, we aren’t able to pass the parameters through a URL.
+Instead, we’ll be using the Stack we’ve already made.
 
 @sourceref ./StackRoute.tsx
-@highlight 4-23, 25
+@highlight 3-22, 24, only
 
-Before we get into using `route` on each `Screen` of the `Navigator`, considering we're using TypeScript, we need to make an effort to make sure the properties for each component are properly typed. For this, we will create a type, `ShopStackParamList`.
+Before we get into using `route` on each `Screen` of the `Navigator`, considering we’re using TypeScript, we need to make an effort to make sure the properties for each component are properly typed. For this, we will create a type, `ShopStackParamList`.
 
 For each screen we will type the expected properties that will be passed along each route. The `Home` in this case doesn’t expect any parameters to be passed to it, so we leave it undefined. The `UserProfile` and `Storefront` contain a few properties.
 
@@ -33,7 +37,7 @@ Now, our `createStackNavigator` includes a type we’ve made `ShopStackParamList
 While the `route` is accessible from the `Navigator`, it is also accessible from the component that is being navigated to through props.
 
 @sourceref ./RouteParams.tsx
-@highlight 8, 11, 17, 21
+@highlight 7, 10, 16, 20
 
 To make sure the `Props` for our component match up to what we have for our `StackNavigator`, we can import the type we made and reference the `UserProfile` properties specifically.
 
@@ -60,11 +64,11 @@ This includes passing the state of `user` through `navigation`. We can add `user
 ### Exercise 1
 
 - Update the typing of `StateList` component, using the type `Props` made by the `StackScreenProps`.
-- Update the `navigation.navigate` to accept `stateItem` as a parameter.
+- Navigate to the CityList view.
 
 ### Solution 1
 
-If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
+**Note:** The tests will pass before you make any changes, so use the application in the emulator to verify your solution!
 
 <details>
 <summary>Click to see the solution</summary>
@@ -76,6 +80,8 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 </details>
 
 ## Objective 2: Implement city and restaurant params
+
+Now let’s implement the `CityList` and `RestaurantList` params!
 
 ### Setup 2
 
@@ -111,7 +117,7 @@ For both the `CityList` and `RestaurantList` components:
 
 ### Solution 2
 
-If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
+**Note:** The tests will pass before you make any changes, so use the application in the emulator to verify your solution!
 
 <details>
 <summary>Click to see the solution</summary>

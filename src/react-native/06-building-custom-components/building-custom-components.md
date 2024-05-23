@@ -57,7 +57,7 @@ While you can’t actually do the following, this is functionally similar to wha
 
 @sourceref ./the-work-react-does.tsx
 
-Did you notice the `FC` that was used in the previous example to type the `App` const? Because we're using TypeScript with our project, we can apply types to help make sure the function component is properly formed. React provides the type `FC` (Function component) that can be applied to a function component. This type defines the arguments and return value that a function component must implement.
+Did you notice the `FC` that was used in the previous example to type the `App` const? Because we’re using TypeScript with our project, we can apply types to help make sure the function component is properly formed. React provides the type `FC` (Function component) that can be applied to a function component. This type defines the arguments and return value that a function component must implement.
 
 ### Setup 1
 

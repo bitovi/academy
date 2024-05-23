@@ -26,8 +26,7 @@ const CityList: React.FC = () => {
         renderItem={({ item: cityItem }) => (
           <Button
             onPress={() => {
-              // Exercise: Update the `navigation.navigate` to accept the necessary parameters.
-              navigation.navigate("RestaurantList")
+              // Exercise: Navigate to the RestaurantList view.
             }}
           >
             {cityItem.name}
