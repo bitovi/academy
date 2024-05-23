@@ -40,7 +40,7 @@ export async function apiRequest<
 
     if (!response.ok) {
       const error = new Error(`${response.status} (${response.statusText})`)
-      return { data: undefined, error: error }
+      return { data: data, error: error }
     }
 
     return {
