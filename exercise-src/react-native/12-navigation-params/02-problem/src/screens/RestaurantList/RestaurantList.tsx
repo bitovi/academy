@@ -62,8 +62,7 @@ const RestaurantList: React.FC<RestaurantListProps> = () => {
         renderItem={({ item: restaurant }) => (
           <Button
             onPress={() => {
-              // Exercise: Update the `navigation.navigate` to accept the necessary parameters.
-              navigation.navigate("RestaurantDetails")
+              // Exercise: Navigate to the RestaurantDetails view.
             }}
           >
             {restaurant.name}

@@ -47,7 +47,7 @@ describe("Services/PMO/Restaurant/useCities", () => {
       status: 200,
     })
 
-    const { result } = renderHook(() => useCities("test-state"))
+    const { result } = renderHook(() => useCities({ state: "test-state" }))
 
     await waitFor(() => {
       expect(result.current.isPending).toBeFalsy()

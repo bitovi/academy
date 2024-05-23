@@ -16,6 +16,10 @@ interface CitiesResponse {
   isPending: boolean
 }
 
+interface UseCitiesParams {
+  state?: string
+}
+
 export function useStates(): StatesResponse {
   const [response, setResponse] = useState<StatesResponse>({
     data: undefined,
@@ -46,7 +50,7 @@ export function useStates(): StatesResponse {
   return response
 }
 
-export function useCities(state?: string): CitiesResponse {
+export function useCities({ state }: UseCitiesParams): CitiesResponse {
   const [response, setResponse] = useState<CitiesResponse>({
     data: undefined,
     error: undefined,

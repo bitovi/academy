@@ -22,7 +22,7 @@ const RestaurantOrder: React.FC<RestaurantOrderProps> = ({ route }) => {
   const navigation = useNavigation()
   const { slug } = route.params
 
-  const { data: restaurant, error, isPending } = useRestaurant(slug)
+  const { data: restaurant, error, isPending } = useRestaurant({ slug })
 
   const [items, setItems] = useState<OrderItems>({})
   // Exercise: Store state for new FormTextFields in RestaurantOrder.

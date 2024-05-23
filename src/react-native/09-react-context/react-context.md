@@ -164,7 +164,7 @@ The most prolific organization method is Atomic Design. If you want to learn mor
 
 #### But… let’s keep things simple
 
-Atomic Design is a great system, but it can be overkill for many projects. For this project, we're going to keep things much more simple: We’ll have the shared theme we created in the previous objective, and we’ll create a small collection of exported components.
+Atomic Design is a great system, but it can be overkill for many projects. For this project, we’re going to keep things much more simple: We’ll have the shared theme we created in the previous objective, and we’ll create a small collection of exported components.
 
 ### Setup 2
 

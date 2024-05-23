@@ -2,7 +2,7 @@ import { renderHook, waitFor } from "@testing-library/react-native"
 
 import * as api from "../api/api"
 
-import { useStates, useCities, useRestaurants } from "./hooks"
+import { useStates, useCities, useRestaurants, useRestaurant } from "./hooks"
 
 // Mock the apiRequest function
 let apiRequest: jest.SpyInstance<ReturnType<typeof api.apiRequest>>
@@ -56,7 +56,7 @@ describe("Services/PMO/Restaurant/useCities", () => {
       error: undefined,
     })
 
-    const { result } = renderHook(() => useCities("test-state"))
+    const { result } = renderHook(() => useCities({ state: "test-state" }))
 
     await waitFor(() => {
       expect(result.current.isPending).toBeFalsy()
@@ -69,7 +69,7 @@ describe("Services/PMO/Restaurant/useCities", () => {
     const mockError = new Error("Error fetching cities")
     apiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
-    const { result } = renderHook(() => useCities("test-state"))
+    const { result } = renderHook(() => useCities({ state: "test-state" }))
 
     await waitFor(() => {
       expect(result.current.isPending).toBeFalsy()
@@ -91,7 +91,7 @@ describe("Services/PMO/Restaurant/useRestaurants", () => {
     })
 
     const { result } = renderHook(() =>
-      useRestaurants("test-state", "test-city"),
+      useRestaurants({ state: "test-state", city: "test-city" }),
     )
 
     await waitFor(() => {
@@ -106,7 +106,7 @@ describe("Services/PMO/Restaurant/useRestaurants", () => {
     apiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
     const { result } = renderHook(() =>
-      useRestaurants("test-state", "test-city"),
+      useRestaurants({ state: "test-state", city: "test-city" }),
     )
 
     await waitFor(() => {
@@ -125,9 +125,7 @@ describe("Services/PMO/Restaurant/useRestaurant", () => {
       error: undefined,
     })
 
-    const { result } = renderHook(() =>
-      useRestaurants("test-state", "test-city"),
-    )
+    const { result } = renderHook(() => useRestaurant({ slug: "test-slug" }))
 
     await waitFor(() => {
       expect(result.current.isPending).toBeFalsy()
@@ -140,9 +138,7 @@ describe("Services/PMO/Restaurant/useRestaurant", () => {
     const mockError = new Error("Error fetching restaurant")
     apiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
-    const { result } = renderHook(() =>
-      useRestaurants("test-state", "test-city"),
-    )
+    const { result } = renderHook(() => useRestaurant({ slug: "test-slug" }))
 
     await waitFor(() => {
       expect(result.current.isPending).toBeFalsy()

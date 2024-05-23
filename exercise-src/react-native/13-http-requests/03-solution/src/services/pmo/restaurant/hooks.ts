@@ -2,12 +2,16 @@ import { useEffect, useState } from "react"
 
 import { apiRequest } from "../api"
 
-import { City, State } from "./interfaces"
+import { State, City } from "./interfaces"
 
 interface CitiesResponse {
   data: City[] | undefined
   error: Error | undefined
   isPending: boolean
+}
+
+interface UseCitiesParams {
+  state?: string
 }
 
 interface StatesResponse {
@@ -16,7 +20,7 @@ interface StatesResponse {
   isPending: boolean
 }
 
-export function useCities(state: string): CitiesResponse {
+export function useCities({ state }: UseCitiesParams): CitiesResponse {
   const [response, setResponse] = useState<CitiesResponse>({
     data: undefined,
     error: undefined,

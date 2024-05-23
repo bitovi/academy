@@ -28,13 +28,15 @@ export async function apiRequest<
     })
 
     const data = await response.json()
-    const error = response.ok
-      ? undefined
-      : new Error(`${response.status} (${response.statusText})`)
+
+    if (!response.ok) {
+      const error = new Error(`${response.status} (${response.statusText})`)
+      return { data: data, error: error }
+    }
 
     return {
       data: data,
-      error: error,
+      error: undefined,
     }
   } catch (error) {
     return {

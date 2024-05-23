@@ -223,7 +223,7 @@ dinoTuple = [5, "boop", "Stegosaurus"];
 dinoTuple = ["boop", "Stegosaurus", 5];
 ```
 
-First we give `dinoTuple` the assignment `[5, "boop", "Stegosaurus"]`, based on the `tuple` we’ve provided `[number, string, Dino]` it looks like we're following the typing rules, so there’ll be no errors.
+First we give `dinoTuple` the assignment `[5, "boop", "Stegosaurus"]`, based on the `tuple` we’ve provided `[number, string, Dino]` it looks like we’re following the typing rules, so there’ll be no errors.
 
 Then, we mutate `dinoTuple` to be `["boop", "Stegosaurus", 5]` everything’s out of order, but we only get two type errors here.
 
