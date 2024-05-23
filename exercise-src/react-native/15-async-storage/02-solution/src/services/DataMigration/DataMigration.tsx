@@ -4,7 +4,7 @@ import Loading from "../../components/Loading"
 import { CachedResponse, keyPrefix } from "../pmo/api"
 import { getData, getAllKeys, storeData, clearStorage } from "../storage"
 
-interface LocalStorageApiRequestV1 {
+interface CachedResponseV1 {
   data: unknown
   dateTime: string
 }
@@ -14,7 +14,7 @@ const migrateDataFromV1toV2 = async (): Promise<void> => {
   try {
     for (const key of keys) {
       if (key.startsWith(keyPrefix)) {
-        const oldData = (await getData(key)) as LocalStorageApiRequestV1
+        const oldData = (await getData(key)) as CachedResponseV1
         await storeData<CachedResponse<unknown>>(key, {
           ...oldData,
           dateTime: oldData.dateTime,

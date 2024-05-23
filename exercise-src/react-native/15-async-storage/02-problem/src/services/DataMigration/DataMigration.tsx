@@ -4,7 +4,7 @@ import Loading from "../../components/Loading"
 import { CachedResponse, keyPrefix } from "../pmo/api"
 import { getData, getAllKeys, storeData, clearStorage } from "../storage"
 
-interface LocalStorageApiRequestV1 {
+interface CachedResponseV1 {
   data: unknown
   dateTime: string
 }
