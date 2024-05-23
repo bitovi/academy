@@ -724,7 +724,7 @@ dinoTuple = [5, &quot;boop&quot;, &quot;Stegosaurus&quot;];
 
 dinoTuple = [&quot;boop&quot;, &quot;Stegosaurus&quot;, 5];
 </code></pre>
-<p>First we give <code>dinoTuple</code> the assignment <code>[5, &quot;boop&quot;, &quot;Stegosaurus&quot;]</code>, based on the <code>tuple</code> we’ve provided <code>[number, string, Dino]</code> it looks like we're following the typing rules, so there’ll be no errors.</p>
+<p>First we give <code>dinoTuple</code> the assignment <code>[5, &quot;boop&quot;, &quot;Stegosaurus&quot;]</code>, based on the <code>tuple</code> we’ve provided <code>[number, string, Dino]</code> it looks like we’re following the typing rules, so there’ll be no errors.</p>
 <p>Then, we mutate <code>dinoTuple</code> to be <code>[&quot;boop&quot;, &quot;Stegosaurus&quot;, 5]</code> everything’s out of order, but we only get two type errors here.</p>
 <p>For <code>boop</code>: <code>Type 'string' is not assignable to type 'number'.</code>
 and for <code>5</code>: <code>Type 'number' is not assignable to type 'Dino'.</code></p>
