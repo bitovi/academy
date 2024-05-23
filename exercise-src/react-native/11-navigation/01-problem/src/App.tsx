@@ -28,7 +28,7 @@ const AppNavigator: React.FC = () => {
         tabBarActiveTintColor: theme.palette.primary.strong,
         tabBarInactiveTintColor: theme.palette.screen.contrast,
         tabBarIcon: ({ focused, color }) => {
-          // Exercise: Update the Icon component’s name pop based on the route.
+          // Exercise: Update the Icon component’s name prop based on the route.
           return <Icon name={icon} size={20} color={color} />
         },
       })}

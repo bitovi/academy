@@ -31,9 +31,10 @@ const StateList: React.FC = () => {
       ) : (
         <Typography>No states found</Typography>
       )}
+
       <Card>
         <View style={styles.row}>
-          <Typography variant="heading">Dark Mode</Typography>
+          <Typography variant="heading">Dark mode</Typography>
           <Switch
             onValueChange={(value) => setMode(value ? "dark" : "light")}
             value={mode === "dark"}

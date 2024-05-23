@@ -83,12 +83,12 @@ Explore the “Components” tab:
 - Expand and collapse component trees to understand the component composition.
 - Hover over individual components to highlight them.
 
-Inspect Props and State:
+Inspect props and state:
 
 - Select a component from the component tree to inspect its props and state.
 - View the current props and state values, and observe how they affect the component’s rendering.
 
-Modify Props:
+Modify props:
 
 - Experiment with modifying props directly from the DevTools panel.
 - Change prop values and observe how they affect the component’s appearance or behavior in real-time.
