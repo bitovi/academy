@@ -107,13 +107,13 @@ The `Tab.Screen` component takes a `name` prop that is used to identify the scre
 
 ### Setup 1
 
-✏️ Install the `@react-navigation/native`, `@react-navigation/bottom-tabs`, and `react-native-safe-area-context` packages:
+✏️ Install the new dependencies:
 
 ```bash
-npm install @react-navigation/native@6 @react-navigation/bottom-tabs@6 react-native-safe-area-context@4
+npm install @react-navigation/native@6 @react-navigation/bottom-tabs@6 react-native-vector-icons@10 react-native-safe-area-context@4
 ```
 
-✏️ Install the `@types/react-native-vector-icons` and `identity-obj-proxy@3` packages:
+✏️ Install the new dev dependencies:
 
 ```bash
 npm install --save-dev @types/react-native-vector-icons@6 identity-obj-proxy@3
@@ -143,7 +143,7 @@ npm install --save-dev @types/react-native-vector-icons@6 identity-obj-proxy@3
 
 ### Exercise 1
 
-- For the `tabBarIcon` property on `AppTabs.Navigator` update the `Icon` component’s name property to be based on the given route.
+- For the `tabBarIcon` prop on `AppTabs.Navigator` update the `Icon` component’s name prop to be based on the given route.
 - Add a screen tab for Restaurants (the `StateList` component) and for `Settings` component.
 - Add the `NavigationContainer` and `AppNavigator` to the `App` component.
 
@@ -253,7 +253,7 @@ Similar to the `Tab.Screen` component, we can customize the behavior of our `Sta
 
 ### Setup 2
 
-✏️ Install the `@react-navigation/stack` package:
+✏️ Install the new dependency:
 
 ```bash
 npm install @react-navigation/stack@6

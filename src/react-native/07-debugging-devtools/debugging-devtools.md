@@ -47,10 +47,10 @@ By examining the JSX code below, developers can gain insight into how React Nati
 
 ### Setup 1
 
-✏️ Run:
+✏️ Install the new dev dependency:
 
 ```shell
-npm install react-devtools@5 --save-dev
+npm install --save-dev react-devtools@5
 ```
 
 ✏️ Update **src/package.json** to be:

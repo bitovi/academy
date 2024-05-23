@@ -45,7 +45,7 @@ This Hook returns an object containing details about the network status.
 
 ### Setup 1
 
-✏️ Run:
+✏️ Install the new dependency:
 
 ```bash
 npm install @react-native-community/netinfo@11

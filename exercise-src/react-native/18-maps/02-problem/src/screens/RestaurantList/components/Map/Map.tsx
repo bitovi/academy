@@ -19,7 +19,7 @@ const Map: React.FC<MapProps> = ({ restaurants }) => {
       }}
       loadingEnabled
     >
-      {/* Exercise: Using the restaurants property, create a Marker for each restaurant. */}
+      {/* Exercise: Using the restaurants prop, create a Marker for each restaurant. */}
     </MapView>
   )
 }
