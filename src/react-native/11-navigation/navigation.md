@@ -10,12 +10,11 @@
 
 In this section, you will:
 
-- Understand why navigation is important
-- Be introduced to deep linking
-- Understand the navigation lifecycle
-- Implement a bottom tab navigation pattern
-- Learn about the difference between stack and native stack navigation
-- Implement a stack navigation pattern
+- Understand why navigation is important.
+- Understand the navigation lifecycle.
+- Implement a bottom tab navigation pattern.
+- Learn about the difference between stack and native stack navigation.
+- Implement a stack navigation pattern.
 
 ## Objective 1: Using React Native bottom tab navigation
 
@@ -53,49 +52,15 @@ Often tabs in a mobile application are made up of more than just one screen. Tab
 
 Here is an example of using tab-based navigation in React Native with React Navigation:
 
-```tsx
-import * as React from "react"
-import { Text, View } from "react-native"
-import { NavigationContainer } from "@react-navigation/native"
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-
-function ScreenA() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Screen A</Text>
-    </View>
-  )
-}
-
-function ScreenB() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Screen A</Text>
-    </View>
-  )
-}
-
-const Tab = createBottomTabNavigator()
-
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Screen A" component={ScreenA} />
-        <Tab.Screen name="Screen B" component={ScreenB} />
-      </Tab.Navigator>
-    </NavigationContainer>
-  )
-}
-```
-
-@highlight 3-4, 22, 26-31
+@sourceref ./tabs.tsx
+@highlight 3, 21, 25-30, only
 
 Let’s break down the code above:
 
 ### NavigationContainer
 
-The `NavigationContainer` component is responsible for managing our app state and linking. This component handles the platform-specific (iOS, Android) navigation logic and provides functionality to: deep link, notify state changes, and handle back button presses.
+The `NavigationContainer` component is responsible for managing our app state and linking.
+This component handles the platform-specific (Android, iOS, etc.) navigation logic and provides functionality to: deep link, notify state changes, and handle back button presses.
 
 ### createBottomTabNavigator
 
@@ -107,21 +72,35 @@ The `Tab.Screen` component takes a `name` prop that is used to identify the scre
 
 ### React Native Vector Icons
 
-The React Native Vector Icons repository is an essential resource to enhance your React Native applications with high-quality icons. This library offers a vast collection of customizable icons from popular icon sets like FontAwesome, Material Icons, and Ionicons, among others. Designed to seamlessly integrate with React Native, it provides easy-to-use components that can be styled and scaled to fit any design requirement. Developers can simply import the desired icon set and use the `<Icon>` component to incorporate icons into their apps, specifying properties such as name, size, and color. This makes it a valuable tool for both beginners and experienced developers aiming to create visually appealing and user-friendly mobile apps, allowing them to improve the aesthetics and functionality of their projects with minimal effort.
+The React Native Vector Icons repository is an invaluable resource for enhancing your React Native applications with high-quality icons. This library provides an extensive collection of icons from popular sets such as FontAwesome, Material Icons, and Ionicons. It integrates seamlessly with React Native, offering versatile components that you can style and scale to meet any design requirements. By importing your chosen icon set and utilizing the <Icon> component, you can easily specify properties like name, size, and color to incorporate icons into your apps. This tool is essential for both novice and seasoned developers, enabling you to elevate the visual appeal and functionality of your mobile apps with minimal effort.
 
 ### Setup 1
 
-✏️ Install the `@react-navigation/native`, `@react-navigation/bottom-tabs`, `react-native-safe-area-context`, and `react-native-vector-icons` packages:
+✏️ Run:
 
 ```bash
-npm install @react-navigation/native@6 @react-navigation/bottom-tabs@6 react-native-safe-area-context@4 react-native-vector-icons@10
+npm install @react-navigation/native@6 @react-navigation/bottom-tabs@6 react-native-safe-area-context@4 react-native-screens@3 react-native-vector-icons@10
 ```
 
-✏️ Install the `@types/react-native-vector-icons`, `@types/react-native-vector-icons` and `identity-obj-proxy` packages:
+✏️ Run:
 
 ```bash
-npm install --save-dev @types/react-native-vector-icons@6 @types/react-native-vector-icons@6 identity-obj-proxy@3
+npm install --save-dev @types/react-native-vector-icons@6 identity-obj-proxy@3
 ```
+
+✏️ Kill the existing dev server and start it again:
+
+```bash
+npm run start
+```
+
+✏️ Update **jest.config.js** to be:
+
+@diff ../../../exercises/react-native/10-managing-state/01-solution/jest.config.js ../../../exercises/react-native/11-navigation/01-problem/jest.config.js only
+
+✏️ Update **android/app/build.gradle** to be:
+
+@diff ../../../exercises/react-native/10-managing-state/01-solution/android/app/build.gradle ../../../exercises/react-native/11-navigation/01-problem/android/app/build.gradle only
 
 ✏️ Update **src/App.tsx** to be:
 
@@ -143,8 +122,8 @@ npm install --save-dev @types/react-native-vector-icons@6 @types/react-native-ve
 
 ### Exercise 1
 
-- For the `tabBarIcon` property on `AppTabs.Navigator` update the `Icon` component’s name property to be based on the given route.
-- Add a screen tab for Restaurants (the `StateList` component) and for `Settings` component.
+- For the `tabBarIcon` property on `AppTabs.Navigator`, update the `Icon` component’s name property to be based on the given route.
+- Add a screen tab for Restaurants (the `StateList` component) and a tab for the `Settings` component.
 - Add the `NavigationContainer` and `AppNavigator` to the `App` component.
 
 ### Solution 1
@@ -253,11 +232,19 @@ Similar to the `Tab.Screen` component, we can customize the behavior of our `Sta
 
 ### Setup 2
 
-✏️ Install the `@react-navigation/stack` package:
+✏️ Run:
 
 ```bash
-npm install @react-navigation/stack@6
+npm install @react-navigation/stack@6 react-native-gesture-handler@2
 ```
+
+✏️ Update **index.js** to be:
+
+@diff ../../../exercises/react-native/11-navigation/01-solution/index.js ../../../exercises/react-native/11-navigation/02-problem/index.js only
+
+✏️ Update **jest-setup.ts** to be:
+
+@diff ../../../exercises/react-native/11-navigation/01-solution/jest-setup.ts ../../../exercises/react-native/11-navigation/02-problem/jest-setup.ts only
 
 ✏️ Update **src/App.tsx** to be:
 

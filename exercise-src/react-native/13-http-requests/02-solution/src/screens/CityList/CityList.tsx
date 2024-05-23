@@ -32,7 +32,7 @@ const CityList: React.FC<CityListProps> = ({ route }) => {
   }
 
   return (
-    <Screen>
+    <Screen noScroll>
       <FlatList
         data={cities}
         renderItem={({ item: cityItem }) => (

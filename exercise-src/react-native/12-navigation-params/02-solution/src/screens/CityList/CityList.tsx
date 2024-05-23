@@ -19,7 +19,7 @@ const CityList: React.FC<CityListProps> = ({ route }) => {
   const navigation = useNavigation()
 
   return (
-    <Screen>
+    <Screen noScroll>
       <FlatList
         data={cities}
         renderItem={({ item: cityItem }) => (

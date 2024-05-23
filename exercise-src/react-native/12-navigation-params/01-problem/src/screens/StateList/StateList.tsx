@@ -32,7 +32,7 @@ const StateList: React.FC = () => {
   const navigation = useNavigation()
 
   return (
-    <Screen>
+    <Screen noScroll>
       <Card>
         <Typography variant="heading">Place My Order: Coming Soon!</Typography>
       </Card>
