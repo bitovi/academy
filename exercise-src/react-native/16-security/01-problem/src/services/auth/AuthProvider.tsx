@@ -14,9 +14,13 @@ GoogleSignin.configure({
 })
 
 const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [userInfo, setUserInfo] = useState<UserInfo | null>()
+  const [userInfo, setUserInfo] = useState<UserInfo | undefined>()
 
   // Exercise: Implement `signIn` and `signOut` using `useCallback`.
+
+  const signIn = async () => {}
+
+  const signIn = async () => {}
 
   useEffect(() => {
     // Exercise: When a sign in is successful, update the user.
@@ -29,7 +33,11 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
     () => ({
       signIn,
       signOut,
-      isAuthenticated: userInfo ? true : userInfo === null ? false : undefined,
+      isAuthenticated: userInfo
+        ? true
+        : userInfo === undefined
+        ? false
+        : undefined,
       user: userInfo?.user,
       scopes: userInfo?.scopes,
       idToken: userInfo?.idToken,
