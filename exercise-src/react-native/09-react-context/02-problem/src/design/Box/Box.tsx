@@ -1,6 +1,5 @@
 import {
   ViewProps,
-  ViewStyle,
   StyleSheet,
   ScrollView,
   View as StaticView,

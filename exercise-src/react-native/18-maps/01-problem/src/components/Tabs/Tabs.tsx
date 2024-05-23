@@ -1,4 +1,4 @@
-import { TextStyle, ViewStyle, Pressable, StyleSheet } from "react-native"
+import { TextStyle, Pressable, StyleSheet } from "react-native"
 
 import Box from "../../design/Box"
 import { Theme, useTheme } from "../../design/theme"

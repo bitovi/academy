@@ -1,4 +1,4 @@
-import { ViewStyle, StyleSheet } from "react-native"
+import { StyleSheet } from "react-native"
 
 import Box, { BoxProps } from "../Box"
 import { Theme, useTheme } from "../theme"

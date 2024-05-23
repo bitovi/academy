@@ -1,6 +1,5 @@
 import {
   PressableProps,
-  ViewStyle,
   TextStyle,
   StyleSheet,
   Pressable,
