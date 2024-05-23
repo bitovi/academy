@@ -22,7 +22,7 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ route }) => {
     data: restaurants,
     error,
     isPending,
-  } = useRestaurants(state.short, city.name)
+  } = useRestaurants({ state: state.short, city: city.name })
 
   const [tab, setTab] = useState<string>("list")
 

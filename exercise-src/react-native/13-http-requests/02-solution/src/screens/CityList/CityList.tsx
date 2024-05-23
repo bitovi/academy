@@ -16,7 +16,11 @@ export interface CityListProps
 const CityList: React.FC<CityListProps> = ({ route }) => {
   const { state } = route.params
   const navigation = useNavigation()
-  const { data: cities, error, isPending } = useCities(state.short || "")
+  const {
+    data: cities,
+    error,
+    isPending,
+  } = useCities({ state: state.short || "" })
 
   if (error) {
     return (

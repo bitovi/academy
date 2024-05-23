@@ -10,10 +10,17 @@ interface CitiesResponse {
   isPending: boolean
 }
 
+interface UseCitiesParams {
+  state?: string
+}
 interface RestaurantResponse {
   data: Restaurant | undefined
   error: Error | undefined
   isPending: boolean
+}
+
+interface UseRestaurant {
+  slug: string
 }
 
 interface RestaurantsResponse {
@@ -22,13 +29,18 @@ interface RestaurantsResponse {
   isPending: boolean
 }
 
+interface UseRestaurants {
+  state: string
+  city: string
+}
+
 interface StatesResponse {
   data: State[] | undefined
   error: Error | undefined
   isPending: boolean
 }
 
-export function useCities(state: string): CitiesResponse {
+export function useCities({ state }: UseCitiesParams): CitiesResponse {
   const [response, setResponse] = useState<CitiesResponse>({
     data: undefined,
     error: undefined,
@@ -57,7 +69,7 @@ export function useCities(state: string): CitiesResponse {
   return response
 }
 
-export function useRestaurant(slug: string): RestaurantResponse {
+export function useRestaurant({ slug }: UseRestaurant): RestaurantResponse {
   const [response, setResponse] = useState<RestaurantResponse>({
     data: undefined,
     error: undefined,
@@ -66,13 +78,13 @@ export function useRestaurant(slug: string): RestaurantResponse {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data, error } = await apiRequest({
+      const { data, error } = await apiRequest<RestaurantResponse>({
         method: "GET",
         path: `/restaurants/${slug}`,
       })
 
       setResponse({
-        data: data || undefined,
+        data: data?.data || undefined,
         error: error,
         isPending: false,
       })
@@ -83,10 +95,10 @@ export function useRestaurant(slug: string): RestaurantResponse {
   return response
 }
 
-export function useRestaurants(
-  state: string,
-  city: string,
-): RestaurantsResponse {
+export function useRestaurants({
+  state,
+  city,
+}: UseRestaurants): RestaurantsResponse {
   const [response, setResponse] = useState<RestaurantsResponse>({
     data: undefined,
     error: undefined,

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 
-import { City, State } from "./interfaces"
+import { apiRequest } from "../api"
+
+import { State, City } from "./interfaces"
 
 const baseUrl = process.env.PMO_API
 
@@ -51,5 +53,33 @@ export function useStates(): StatesResponse {
 }
 
 export function useCities({ state }: UseCitiesParams): CitiesResponse {
-  // Exercise: Update our `useCities()` Hook to fetch cities from the Place My Order API, given a selected state.
+  const [response, setResponse] = useState<CitiesResponse>({
+    data: undefined,
+    error: undefined,
+    isPending: true,
+  })
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (state) {
+        const response = await fetch(`${baseUrl}/cities?state=${state}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+
+        const data = await response.json()
+
+        setResponse({
+          data: data?.data || undefined,
+          error: undefined,
+          isPending: false,
+        })
+      }
+    }
+    fetchData()
+  }, [state])
+
+  return response
 }
