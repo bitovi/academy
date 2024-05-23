@@ -157,7 +157,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 Now that we’ve covered tab navigation, let’s move on to stack navigation. As mentioned in the previous section, most applications use a combination of both tab and stack navigation to create a seamless user experience.
 
 <div style="display: flex; flex-direction: row; gap: 2rem">
-  <img alt="Screen Shot of the CityList in Navigation" src="../static/img/react-native/11-navigation/NavigationCityList.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screen Shot of the CityList in Navigation" src="../static/img/react-native/11-navigation/02-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 </div>
 
 ### Stacks
@@ -281,7 +281,7 @@ npm run start
 
 @sourceref ../../../exercises/react-native/11-navigation/02-problem/src/screens/CityList/index.ts
 
-✏️ Delete **src/screens/StateList/components/** and everthing in it.
+✏️ Delete **src/screens/StateList/components/** and everything in it.
 
 We no longer need the `<ListItem>` component.
 
@@ -321,8 +321,8 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 ## Objective 3: Add Restaurant List and Restaurant Details pages with links
 
 <div style="display: flex; flex-direction: row; gap: 2rem">
-  <img alt="Screen Shot of the RestaurantList in Navigation" src="../static/img/react-native/11-navigation/NavigationRestaurantList.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
-  <img alt="Screen Shot of the RestaurantDetails in Navigation" src="../static/img/react-native/11-navigation/NavigationRestaurantDetails.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screen Shot of the RestaurantList in Navigation" src="../static/img/react-native/11-navigation/03-solution-restaurants.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screen Shot of the RestaurantDetails in Navigation" src="../static/img/react-native/11-navigation/03-solution-restaurant-details.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 </div>
 
 ### Setup 3
