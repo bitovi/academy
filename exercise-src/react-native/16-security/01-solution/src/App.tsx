@@ -25,7 +25,7 @@ declare global {
   }
 }
 
-export type RestaurantsStackParamList = {
+export interface RestaurantsStackParamList {
   StateList: undefined
   CityList: {
     state: {

@@ -45,9 +45,7 @@ function getStyles(
     margin?: ThemeMargin
     padding?: ThemePadding
   },
-): {
-  container: ViewStyle
-} {
+) {
   return StyleSheet.create({
     container: StyleSheet.flatten([
       {

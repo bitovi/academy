@@ -73,20 +73,7 @@ This should open a separate window that looks like the following image:
 <img alt="Screenshot of a window with options for React Native and React DOM. The React Native section suggests opening the in-app developer menu. A notification at the top states the server is waiting for React to connect." src="../static/img/react-native/07-debugging-devtools/dev-tool-not-connected.png" style="max-width: 100%;"/>
 
 At this point, DevTools is not connected.
-To connect DevTools to the application, run the following command to pull up the dev menu:
-
-✏️ Run:
-
-```shell
-adb shell input keyevent 82
-```
-
-This will connect DevTools to your application running in the emulator.
-
-Alternatively, you can use these keyboard commands:
-
-- Linux or Windows: `Ctrl` + `M`
-- macOS: `Cmd ⌘` + `M`
+To connect DevTools to the application, go back to the terminal where you ran `npm run start` and press `r` to reload.
 
 ### Exercise 1
 
@@ -137,6 +124,8 @@ npm run start
 ```
 
 The application should be running in Android Studio. Open the terminal and run the following command:
+
+// TODO
 
 ✏️ Run:
 

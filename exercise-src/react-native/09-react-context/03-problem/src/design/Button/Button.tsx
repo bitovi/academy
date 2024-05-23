@@ -58,13 +58,7 @@ const Button: React.FC<ButtonProps> = ({
 
 export default Button
 
-function getStyles(
-  theme: Theme,
-  variant: Variant,
-): {
-  pressable: ViewStyle
-  text: TextStyle
-} {
+function getStyles(theme: Theme, variant: Variant) {
   if (variant === "primary") {
     return StyleSheet.create({
       pressable: {

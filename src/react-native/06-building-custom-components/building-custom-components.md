@@ -158,9 +158,9 @@ There are two prop names that you cannot use and are reserved by React:
 
 ### Exercise 2
 
-- Update the `ListItemProps` type to enforce a `key` and `name` property of the appropriate primitive type.
-- Update the `ListItem` component to use the `ListItemProps` as its input type and return the `name` property of the a `state` index.
-- Update the `StateList` component to use the `ListItem` component handle each state index.
+- Update the `ListItemProps` type to enforce a `name` prop of the appropriate primitive type.
+- Update the `ListItem` component to use the `ListItemProps` and returns the `<Text>` element.
+- Update the `StateList` component to use the `ListItem` component to handle each state item.
 
 ### Solution 2
 

@@ -86,8 +86,8 @@ const RestaurantOrder: React.FC<RestaurantOrderProps> = ({ route }) => {
             <FormSwitch
               key={name}
               label={`${name} ($${price})`}
-              value={name in items}
               onChange={(value) => setItem(name, value, price)}
+              value={name in items}
             />
           ))}
         </Card>
@@ -97,8 +97,8 @@ const RestaurantOrder: React.FC<RestaurantOrderProps> = ({ route }) => {
             <FormSwitch
               key={name}
               label={`${name} ($${price})`}
-              value={name in items}
               onChange={(value) => setItem(name, value, price)}
+              value={name in items}
             />
           ))}
         </Card>

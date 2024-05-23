@@ -57,11 +57,7 @@ const RestaurantHeader: React.FC<RestaurantHeaderProps> = ({ restaurant }) => {
   )
 }
 
-function getStyles(theme: Theme): {
-  heroBackground: ViewStyle
-  hero: ViewStyle
-  heroText: TextStyle
-} {
+function getStyles(theme: Theme) {
   return StyleSheet.create({
     heroBackground: {
       width: "100%",

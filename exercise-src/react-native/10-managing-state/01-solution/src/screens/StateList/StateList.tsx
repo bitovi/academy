@@ -7,12 +7,7 @@ import Typography from "../../design/Typography"
 
 import ListItem from "./components/ListItem"
 
-export type State = {
-  name: string
-  short: string
-}
-
-const states: State[] = [
+const states = [
   {
     name: "Illinois",
     short: "IL",
@@ -38,9 +33,9 @@ const StateList: React.FC = () => {
       )}
       <Card>
         <View style={styles.row}>
-          <Typography variant="heading">Dark mode</Typography>
+          <Typography variant="heading">Dark Mode</Typography>
           <Switch
-            onChange={() => setMode(mode === "light" ? "dark" : "light")}
+            onValueChange={(value) => setMode(value ? "dark" : "light")}
             value={mode === "dark"}
           />
         </View>
