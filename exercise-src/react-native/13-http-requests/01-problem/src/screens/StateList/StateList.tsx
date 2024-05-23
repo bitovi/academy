@@ -13,7 +13,7 @@ const StateList: React.FC = () => {
   // Exercise: Update `StateList.tsx` to call `useState()` and use the `StateResponse` interface.
 
   return (
-    <Screen>
+    <Screen noScroll>
       {states?.length ? (
         <FlatList
           data={states}

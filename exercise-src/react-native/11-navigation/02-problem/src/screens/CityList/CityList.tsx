@@ -15,7 +15,7 @@ const cities: City[] = [
 
 const CityList: React.FC = () => {
   return (
-    <Screen>
+    <Screen noScroll>
       <FlatList
         data={cities}
         renderItem={({ item: cityItem }) => (

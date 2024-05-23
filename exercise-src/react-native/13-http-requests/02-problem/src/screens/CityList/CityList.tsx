@@ -19,7 +19,7 @@ const CityList: React.FC<CityListProps> = ({ route }) => {
   // Exercise: When calling the Place My Order API, include the `state` query parameter.
 
   return (
-    <Screen>
+    <Screen noScroll>
       <FlatList
         data={cities}
         renderItem={({ item: cityItem }) => (
