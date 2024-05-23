@@ -947,7 +947,7 @@ const StateList: React.FC = () =&gt; {
   const navigation = useNavigation()
 
   return (
-    &lt;Screen&gt;
+    &lt;Screen noScroll&gt;
       &lt;Card&gt;
         &lt;Typography variant=&quot;heading&quot;&gt;Place My Order: Coming Soon!&lt;/Typography&gt;
       &lt;/Card&gt;
@@ -1044,7 +1044,7 @@ const StateList: React.FC&lt;StateListProps&gt; = () =&gt; {
   const navigation = useNavigation()
 
   return (
-    &lt;Screen&gt;
+    &lt;Screen noScroll&gt;
       &lt;Card&gt;
         &lt;Typography variant=&quot;heading&quot;&gt;Place My Order: Coming Soon!&lt;/Typography&gt;
       &lt;/Card&gt;
@@ -1247,7 +1247,7 @@ const CityList: React.FC = () =&gt; {
   const navigation = useNavigation()
 
   return (
-    &lt;Screen&gt;
+    &lt;Screen noScroll&gt;
       &lt;FlatList
         data={cities}
         renderItem={({ item: cityItem }) =&gt; (
@@ -1455,7 +1455,7 @@ const CityList: React.FC&lt;CityListProps&gt; = ({ route }) =&gt; {
   const navigation = useNavigation()
 
   return (
-    &lt;Screen&gt;
+    &lt;Screen noScroll&gt;
       &lt;FlatList
         data={cities}
         renderItem={({ item: cityItem }) =&gt; (

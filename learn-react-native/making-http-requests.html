@@ -1165,7 +1165,7 @@ const StateList: React.FC = () =&gt; {
   // Exercise: Update `StateList.tsx` to call `useState()` and use the `StateResponse` interface.
 
   return (
-    &lt;Screen&gt;
+    &lt;Screen noScroll&gt;
       {states?.length ? (
         &lt;FlatList
           data={states}
@@ -1389,7 +1389,7 @@ const StateList: React.FC = () =&gt; {
   }
 
   return (
-    &lt;Screen&gt;
+    &lt;Screen noScroll&gt;
       {states?.length ? (
         &lt;FlatList
           data={states}
@@ -1526,7 +1526,7 @@ const CityList: React.FC&lt;CityListProps&gt; = ({ route }) =&gt; {
   // Exercise: When calling the Place My Order API, include the `state` query parameter.
 
   return (
-    &lt;Screen&gt;
+    &lt;Screen noScroll&gt;
       &lt;FlatList
         data={cities}
         renderItem={({ item: cityItem }) =&gt; (
@@ -1814,7 +1814,7 @@ const CityList: React.FC&lt;CityListProps&gt; = ({ route }) =&gt; {
   }
 
   return (
-    &lt;Screen&gt;
+    &lt;Screen noScroll&gt;
       &lt;FlatList
         data={cities}
         renderItem={({ item: cityItem }) =&gt; (
@@ -2416,7 +2416,7 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
 export default RestaurantDetails
 
 </code></pre>
- <div line-highlight="2-3,5-6,10-11,13-14,16,18,only"></div>
+ <div line-highlight="2,5-6,10-11,13-14,16,18,only"></div>
 <h3>Verify 4</h3>
 <p>✏️ Update <strong>src/services/pmo/restaurant/hooks.test.ts</strong> to be:</p>
 <pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react-native&quot;

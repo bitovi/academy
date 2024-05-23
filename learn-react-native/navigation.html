@@ -681,12 +681,11 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this section, you will:</p>
 <ul>
-<li>Understand why navigation is important</li>
-<li>Be introduced to deep linking</li>
-<li>Understand the navigation lifecycle</li>
-<li>Implement a bottom tab navigation pattern</li>
-<li>Learn about the difference between stack and native stack navigation</li>
-<li>Implement a stack navigation pattern</li>
+<li>Understand why navigation is important.</li>
+<li>Understand the navigation lifecycle.</li>
+<li>Implement a bottom tab navigation pattern.</li>
+<li>Learn about the difference between stack and native stack navigation.</li>
+<li>Implement a stack navigation pattern.</li>
 </ul>
 <h2>Objective 1: Using React Native bottom tab navigation</h2>
 <p>As our application grows in complexity, more screens will be added. The React Navigation library provides a solution that allows us to move between these screens. In this section, we will cover both common navigation patterns used in both Android and iOS applications: tab navigation and stack navigation.</p>
@@ -702,15 +701,14 @@ covering CanJS core libraries.">
 <p>The React Navigation library used in this section supports deep linking and has a <a href="https://reactnavigation.org/docs/deep-linking/">guide</a> on how to set up your application to be notified of incoming links.</p>
 <h3>Navigation Lifecycle</h3>
 <p>Now that we have an understanding of how navigation works within a stack, let’s take a look at the implications of navigation on the component lifecycle.</p>
-<p>If we have a stack navigator with two screens, <code>ScreenA</code> and <code>ScreenB</code>, and navigate to <code>ScreenA</code>, then <code>ScreenA</code> will mount the component and render. If we then navigate to <code>ScreenB</code>, <code>ScreenA</code> will be unmounted and <code>ScreenB</code> will mount and render. What happens when we navigate back to <code>ScreenA</code>? <code>ScreenB</code> will unmount the component, but <code>ScreenA</code> will <em>not</em> remount. Because it stayed in the stack, it remained mounted the entire time.</p>
+<p>If we have a stack navigator with two screens, <code>ScreenA</code> and <code>ScreenB</code>, and navigate to <code>ScreenA</code>, then <code>ScreenA</code> will mount the component and render. If we then navigate to <code>ScreenB</code>, <code>ScreenA</code> will remain mounted but will be hidden from view, and <code>ScreenB</code> will mount and render. What happens when we navigate back to <code>ScreenA</code>? <code>ScreenB</code> will be unmounted, but <code>ScreenA</code> will <em>not</em> remount. Because it stayed in the stack, it remained mounted the entire time.</p>
 <h3>Bottom Tab Navigation</h3>
 <p>Tab navigation pattern is one of the most common navigation patterns used in both Android and iOS applications. It allows users to switch between different screens by tapping on tabs that are typically located at the bottom of the screen.</p>
 <p>Often tabs in a mobile application are made up of more than just one screen. Tab navigation is often used in conjunction with stack navigation to allow for more complex navigation patterns. We will cover how to use React Navigation's stack navigation in the next section.</p>
 <p>Here is an example of using tab-based navigation in React Native with React Navigation:</p>
-<pre><code class="language-tsx">import * as React from &quot;react&quot;
-import { Text, View } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
-import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
+import { Text, View } from &quot;react-native&quot;
 
 function ScreenA() {
   return (
@@ -740,22 +738,168 @@ export default function App() {
     &lt;/NavigationContainer&gt;
   )
 }
+
 </code></pre>
-<div line-highlight='3-4, 22, 26-31'></div>
+<div line-highlight='3, 21, 25-30, only'></div>
 <p>Let’s break down the code above:</p>
 <h3>NavigationContainer</h3>
-<p>The <code>NavigationContainer</code> component is responsible for managing our app state and linking. This component handles the platform-specific (iOS, Android) navigation logic and provides functionality to: deep link, notify state changes, and handle back button presses.</p>
+<p>The <code>NavigationContainer</code> component is responsible for managing our app state and linking.
+This component handles the platform-specific (Android, iOS, etc.) navigation logic and provides functionality to: deep link, notify state changes, and handle back button presses.</p>
 <h3>createBottomTabNavigator</h3>
 <p>The <code>createBottomTabNavigator</code> function creates a navigator that renders a tab bar at the bottom of the screen. The components returned from this function are the <code>Tab.Navigator</code> and <code>Tab.Screen</code> components which we use together to define our tab navigation.</p>
 <p>The <code>Tab.Navigator</code> component takes <code>Tab.Screen</code> components as children. For each child, a tab button will be added to the tab bar at the bottom of the screen. The <code>Tab.Navigator</code> also has a set of props that can be used to customize the behavior of the tab bar. We can set the initial route with <code>initialRouteName</code>, specify the <code>backBehavior</code>, customize the styles through <code>screenOptions</code>, and more.</p>
 <p>The <code>Tab.Screen</code> component takes a <code>name</code> prop that is used to identify the screen and a <code>component</code> prop that is used to render the screen. The <code>name</code> prop must be unique among all the screens in the navigator. Similar to the <code>Tab.Navigator</code>, we can pass an <code>options</code> prop to the <code>Tab.Screen</code> component to customize the title, label, icon, and other properties of the tab.</p>
+<h3>React Native Vector Icons</h3>
+<p>The React Native Vector Icons repository is an invaluable resource for enhancing your React Native applications with high-quality icons. This library provides an extensive collection of icons from popular sets such as FontAwesome, Material Icons, and Ionicons. It integrates seamlessly with React Native, offering versatile components that you can style and scale to meet any design requirements. By importing your chosen icon set and utilizing the <Icon> component, you can easily specify properties like name, size, and color to incorporate icons into your apps. This tool is essential for both novice and seasoned developers, enabling you to elevate the visual appeal and functionality of your mobile apps with minimal effort.</p>
 <h3>Setup 1</h3>
-<p>✏️ Install the <code>@react-navigation/native</code>, <code>@react-navigation/bottom-tabs</code>, and <code>react-native-safe-area-context</code> packages:</p>
-<pre><code class="language-bash">npm install @react-navigation/native@6 @react-navigation/bottom-tabs@6 react-native-safe-area-context@4
+<p>✏️ Run:</p>
+<pre><code class="language-bash">npm install @react-navigation/native@6 @react-navigation/bottom-tabs@6 react-native-safe-area-context@4 react-native-screens@3 react-native-vector-icons@10
 </code></pre>
-<p>✏️ Install the <code>@types/react-native-vector-icons</code> and <code>identity-obj-proxy@3</code> packages:</p>
+<p>✏️ Run:</p>
 <pre><code class="language-bash">npm install --save-dev @types/react-native-vector-icons@6 identity-obj-proxy@3
 </code></pre>
+<p>✏️ Kill the existing dev server and start it again:</p>
+<pre><code class="language-bash">npm run start
+</code></pre>
+<p>✏️ Update <strong>jest.config.js</strong> to be:</p>
+<pre><code class="language-js">module.exports = {
+  clearMocks: true,
+  moduleNameMapper: {
+    &quot;\\.(png)$&quot;: &quot;identity-obj-proxy&quot;,
+  },
+  preset: &quot;react-native&quot;,
+  setupFilesAfterEnv: [&quot;&lt;rootDir&gt;/jest-setup.ts&quot;],
+  transformIgnorePatterns: [
+    &quot;/node_modules/(?!((jest-)?react-native|@react-native(-community)?)|react-navigation|@react-navigation/.*)&quot;,
+  ],
+}
+
+</code></pre>
+ <div line-highlight="2-5,8-10,only"></div>
+<p>✏️ Update <strong>android/app/build.gradle</strong> to be:</p>
+<pre><code class="language-gradle">apply plugin: &quot;com.android.application&quot;
+apply plugin: &quot;org.jetbrains.kotlin.android&quot;
+apply plugin: &quot;com.facebook.react&quot;
+
+/**
+ * This is the configuration block to customize your React Native Android app.
+ * By default you don't need to apply any configuration, just uncomment the lines you need.
+ */
+react {
+    /* Folders */
+    //   The root of your project, i.e. where &quot;package.json&quot; lives. Default is '..'
+    // root = file(&quot;../&quot;)
+    //   The folder where the react-native NPM package is. Default is ../node_modules/react-native
+    // reactNativeDir = file(&quot;../node_modules/react-native&quot;)
+    //   The folder where the react-native Codegen package is. Default is ../node_modules/@react-native/codegen
+    // codegenDir = file(&quot;../node_modules/@react-native/codegen&quot;)
+    //   The cli.js file which is the React Native CLI entrypoint. Default is ../node_modules/react-native/cli.js
+    // cliFile = file(&quot;../node_modules/react-native/cli.js&quot;)
+
+    /* Variants */
+    //   The list of variants to that are debuggable. For those we're going to
+    //   skip the bundling of the JS bundle and the assets. By default is just 'debug'.
+    //   If you add flavors like lite, prod, etc. you'll have to list your debuggableVariants.
+    // debuggableVariants = [&quot;liteDebug&quot;, &quot;prodDebug&quot;]
+
+    /* Bundling */
+    //   A list containing the node command and its flags. Default is just 'node'.
+    // nodeExecutableAndArgs = [&quot;node&quot;]
+    //
+    //   The command to run when bundling. By default is 'bundle'
+    // bundleCommand = &quot;ram-bundle&quot;
+    //
+    //   The path to the CLI configuration file. Default is empty.
+    // bundleConfig = file(../rn-cli.config.js)
+    //
+    //   The name of the generated asset file containing your JS bundle
+    // bundleAssetName = &quot;MyApplication.android.bundle&quot;
+    //
+    //   The entry file for bundle generation. Default is 'index.android.js' or 'index.js'
+    // entryFile = file(&quot;../js/MyApplication.android.js&quot;)
+    //
+    //   A list of extra flags to pass to the 'bundle' commands.
+    //   See https://github.com/react-native-community/cli/blob/main/docs/commands.md#bundle
+    // extraPackagerArgs = []
+
+    /* Hermes Commands */
+    //   The hermes compiler command to run. By default it is 'hermesc'
+    // hermesCommand = &quot;$rootDir/my-custom-hermesc/bin/hermesc&quot;
+    //
+    //   The list of flags to pass to the Hermes compiler. By default is &quot;-O&quot;, &quot;-output-source-map&quot;
+    // hermesFlags = [&quot;-O&quot;, &quot;-output-source-map&quot;]
+}
+
+/**
+ * Set this to true to Run Proguard on Release builds to minify the Java bytecode.
+ */
+def enableProguardInReleaseBuilds = false
+
+/**
+ * The preferred build flavor of JavaScriptCore (JSC)
+ *
+ * For example, to use the international variant, you can use:
+ * `def jscFlavor = 'org.webkit:android-jsc-intl:+'`
+ *
+ * The international variant includes ICU i18n library and necessary data
+ * allowing to use e.g. `Date.toLocaleString` and `String.localeCompare` that
+ * give correct results when using with locales other than en-US. Note that
+ * this variant is about 6MiB larger per architecture than default.
+ */
+def jscFlavor = 'org.webkit:android-jsc:+'
+
+android {
+    ndkVersion rootProject.ext.ndkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdk rootProject.ext.compileSdkVersion
+
+    namespace &quot;com.placemyorder&quot;
+    defaultConfig {
+        applicationId &quot;com.placemyorder&quot;
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName &quot;1.0&quot;
+    }
+    signingConfigs {
+        debug {
+            storeFile file('debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+    }
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        release {
+            // Caution! In production, you need to generate your own keystore file.
+            // see https://reactnative.dev/docs/signed-apk-android.
+            signingConfig signingConfigs.debug
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile(&quot;proguard-android.txt&quot;), &quot;proguard-rules.pro&quot;
+        }
+    }
+}
+
+dependencies {
+    // The version of react-native is set by the React Native Gradle Plugin
+    implementation(&quot;com.facebook.react:react-android&quot;)
+
+    if (hermesEnabled.toBoolean()) {
+        implementation(&quot;com.facebook.react:hermes-android&quot;)
+    } else {
+        implementation jscFlavor
+    }
+}
+
+apply from: file(&quot;../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle&quot;); applyNativeModulesAppBuildGradle(project)
+
+apply from: file(&quot;../../node_modules/react-native-vector-icons/fonts.gradle&quot;)
+
+</code></pre>
+ <div line-highlight="120,only"></div>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
@@ -869,17 +1013,21 @@ import App from &quot;./App&quot;
 describe(&quot;App&quot;, () =&gt; {
   it(&quot;renders&quot;, async () =&gt; {
     render(&lt;App /&gt;)
-    expect(screen.getByText(/Place my order/i)).toBeOnTheScreen()
+
+    const placeMyOrderText = screen.getAllByText(/Place my order/i)
+    expect(placeMyOrderText).toHaveLength(3)
   })
 
   it(&quot;renders states&quot;, async () =&gt; {
     render(&lt;App /&gt;)
-    expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
-    expect(screen.getByText(/Wisconsin/i)).toBeOnTheScreen()
+
+    expect(await screen.findByText(/Illinois/i)).toBeOnTheScreen()
+    expect(await screen.findByText(/Wisconsin/i)).toBeOnTheScreen()
   })
 })
 
 </code></pre>
+ <div line-highlight="9-10,16-17,only"></div>
 <p>✏️ Create <strong>src/screens/Settings/Settings.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { fireEvent, render, screen } from &quot;@testing-library/react-native&quot;
@@ -924,8 +1072,8 @@ describe(&quot;Screens/Settings&quot;, () =&gt; {
 </code></pre>
 <h3>Exercise 1</h3>
 <ul>
-<li>For the <code>tabBarIcon</code> property on <code>AppTabs.Navigator</code> update the <code>Icon</code> component’s name property to be based on the given route.</li>
-<li>Add a screen tab for Restaurants (the <code>StateList</code> component) and for <code>Settings</code> component.</li>
+<li>For the <code>tabBarIcon</code> property on <code>AppTabs.Navigator</code>, update the <code>Icon</code> component’s name property to be based on the given route.</li>
+<li>Add a screen tab for Restaurants (the <code>StateList</code> component) and a tab for the <code>Settings</code> component.</li>
 <li>Add the <code>NavigationContainer</code> and <code>AppNavigator</code> to the <code>App</code> component.</li>
 </ul>
 <h3>Solution 1</h3>
@@ -1073,9 +1221,59 @@ function MyStack() {
 <p>The <code>Stack.Navigator</code> also accepts a <code>screenOptions</code> prop that we can use to customize the appearance of the header. For example, if we would like to conditionally render a back button in the header, we could check the <code>navigation.canGoBack()</code> method inside of <code>screenOptions.header</code> and render a custom header with or without a back button.</p>
 <p>Similar to the <code>Tab.Screen</code> component, we can customize the behavior of our <code>Stack.Screen</code> with an <code>options</code> prop. This prop allows us to customize the header title, card style, whether gestures are enabled, and more.</p>
 <h3>Setup 2</h3>
-<p>✏️ Install the <code>@react-navigation/stack</code> package:</p>
-<pre><code class="language-bash">npm install @react-navigation/stack@6
+<p>✏️ Run:</p>
+<pre><code class="language-bash">npm install @react-navigation/stack@6 react-native-gesture-handler@2
 </code></pre>
+<p>✏️ Update <strong>index.js</strong> to be:</p>
+<pre><code class="language-js">/**
+ * @format
+ */
+
+import &quot;react-native-gesture-handler&quot;
+import { AppRegistry } from &quot;react-native&quot;
+
+import { name as appName } from &quot;./app.json&quot;
+import App from &quot;./src/App&quot;
+
+AppRegistry.registerComponent(appName, () =&gt; App)
+
+</code></pre>
+ <div line-highlight="5,only"></div>
+<p>✏️ Kill the existing dev server and start it again:</p>
+<pre><code class="language-bash">npm run start
+</code></pre>
+<p>✏️ Update <strong>jest-setup.ts</strong> to be:</p>
+<pre><code class="language-ts">import &quot;@testing-library/react-native/extend-expect&quot;
+
+import &quot;react-native-gesture-handler/jestSetup&quot;
+
+jest.mock(&quot;@react-navigation/native&quot;, () =&gt; {
+  const actualNav = jest.requireActual(&quot;@react-navigation/native&quot;)
+  return {
+    ...actualNav,
+    useNavigation: () =&gt; ({
+      navigate: jest.fn(),
+      setOptions: jest.fn(),
+    }),
+  }
+})
+
+const consoleError = console.error
+console.error = (message, ...args) =&gt; {
+  if (
+    typeof message === &quot;string&quot; &amp;&amp;
+    message.match(
+      /Warning: An update to .+ inside a test was not wrapped in act\(\.\.\.\)\./,
+    )
+  ) {
+    return
+  }
+
+  return consoleError(message, ...args)
+}
+
+</code></pre>
+ <div line-highlight="3,5-12,14,25,only"></div>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
@@ -1211,7 +1409,7 @@ const StateList: React.FC = () =&gt; {
   const navigation = useNavigation()
 
   return (
-    &lt;Screen&gt;
+    &lt;Screen noScroll&gt;
       &lt;Card&gt;
         &lt;Typography variant=&quot;heading&quot;&gt;Place My Order: Coming Soon!&lt;/Typography&gt;
       &lt;/Card&gt;
@@ -1231,7 +1429,7 @@ const StateList: React.FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="1-2,4,9,26,33-41,only"></div>
+ <div line-highlight="1-2,4,9,26,29,33-41,only"></div>
 <p>✏️ Create <strong>src/screens/CityList/CityList.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { FlatList } from &quot;react-native&quot;
 
@@ -1250,7 +1448,7 @@ const cities: City[] = [
 
 const CityList: React.FC = () =&gt; {
   return (
-    &lt;Screen&gt;
+    &lt;Screen noScroll&gt;
       &lt;FlatList
         data={cities}
         renderItem={({ item: cityItem }) =&gt; (
@@ -1271,6 +1469,8 @@ export default CityList
 <pre><code class="language-ts">export { default } from &quot;./CityList&quot;
 
 </code></pre>
+<p>✏️ Delete <strong>src/screens/StateList/components/</strong> and everthing in it.</p>
+<p>We no longer need the <code>&lt;ListItem&gt;</code> component.</p>
 <h3>Verify 2</h3>
 <p>✏️ Update <strong>src/screens/StateList/StateList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
@@ -1451,7 +1651,7 @@ const StateList: React.FC = () =&gt; {
   const navigation = useNavigation()
 
   return (
-    &lt;Screen&gt;
+    &lt;Screen noScroll&gt;
       &lt;Card&gt;
         &lt;Typography variant=&quot;heading&quot;&gt;Place My Order: Coming Soon!&lt;/Typography&gt;
       &lt;/Card&gt;
@@ -1591,6 +1791,7 @@ export default App
 
 </code></pre>
  <div line-highlight="40,only"></div>
+<p>✏️ Create <strong>src/components/</strong> (folder)</p>
 <p>✏️ Create <strong>src/components/RestaurantHeader/</strong> (folder)</p>
 <p>✏️ Create <strong>src/components/RestaurantHeader/RestaurantHeader.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { TextStyle, ViewStyle, ImageBackground, StyleSheet } from &quot;react-native&quot;
@@ -1677,6 +1878,60 @@ function getStyles(theme: Theme): {
 export default RestaurantHeader
 
 </code></pre>
+<p>✏️ Create <strong>src/components/RestaurantHeader/mocks.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export const restaurantWithoutAddress = {
+  _id: &quot;3ZOZyTY1LH26LnVw&quot;,
+  images: {
+    banner: &quot;banner-image.jpg&quot;,
+    owner: &quot;owner-image.jpg&quot;,
+    thumbnail: &quot;thumbnail-image.jpg&quot;,
+  },
+  menu: {
+    lunch: [
+      {
+        name: &quot;Crab Pancakes with Sorrel Syrup&quot;,
+        price: 35.99,
+      },
+      {
+        name: &quot;Steamed Mussels&quot;,
+        price: 21.99,
+      },
+      {
+        name: &quot;Spinach Fennel Watercress Ravioli&quot;,
+        price: 35.99,
+      },
+    ],
+    dinner: [
+      {
+        name: &quot;Gunthorp Chicken&quot;,
+        price: 21.99,
+      },
+      {
+        name: &quot;Herring in Lavender Dill Reduction&quot;,
+        price: 45.99,
+      },
+      {
+        name: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
+        price: 45.99,
+      },
+    ],
+  },
+  coordinate: { latitude: 0, longitude: 0 },
+  name: &quot;Test Restaurant&quot;,
+  slug: &quot;poutine-palace&quot;,
+}
+
+export const restaurantWithAddress = {
+  ...restaurantWithoutAddress,
+  address: {
+    street: &quot;123 Test St&quot;,
+    city: &quot;Testville&quot;,
+    state: &quot;TS&quot;,
+    zip: &quot;12345&quot;,
+  },
+}
+
+</code></pre>
 <p>✏️ Create <strong>src/components/RestaurantHeader/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./RestaurantHeader&quot;
 
@@ -1703,7 +1958,7 @@ const CityList: React.FC = () =&gt; {
   // Exercise: Use navigation to navigate to RestaurantList.
 
   return (
-    &lt;Screen&gt;
+    &lt;Screen noScroll&gt;
       &lt;FlatList
         data={cities}
         renderItem={({ item: cityItem }) =&gt; (
@@ -1724,6 +1979,7 @@ export default CityList
 <p>✏️ Create <strong>src/screens/RestaurantDetails/</strong> (folder)</p>
 <p>✏️ Create <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
+import { useEffect } from &quot;react&quot;
 
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
 import Button from &quot;../../design/Button&quot;
@@ -1751,7 +2007,10 @@ const restaurant = {
 
 const RestaurantDetails: React.FC = () =&gt; {
   const navigation = useNavigation()
-  navigation.setOptions({ title: `${restaurant.name}` })
+
+  useEffect(() =&gt; {
+    navigation.setOptions({ title: `${restaurant.name}` })
+  }, [navigation])
 
   return (
     &lt;Screen&gt;
@@ -1911,7 +2170,7 @@ describe(&quot;Components/RestaurantHeader&quot;, () =&gt; {
 })
 
 </code></pre>
-<p>✏️ Create <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/screens/RestaurantDetails/RestaurantDetails.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
 
 import RestaurantDetails from &quot;./RestaurantDetails&quot;
@@ -2102,7 +2361,7 @@ const CityList: React.FC = () =&gt; {
   const navigation = useNavigation()
 
   return (
-    &lt;Screen&gt;
+    &lt;Screen noScroll&gt;
       &lt;FlatList
         data={cities}
         renderItem={({ item: cityItem }) =&gt; (
