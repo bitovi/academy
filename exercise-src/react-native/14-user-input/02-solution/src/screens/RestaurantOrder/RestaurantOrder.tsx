@@ -29,7 +29,7 @@ const RestaurantOrder: React.FC<RestaurantOrderProps> = ({ route }) => {
   const [name, setName] = useState<string>("")
   const [phone, setPhone] = useState<string>("")
   const [address, setAddress] = useState<string>("")
-  
+
   useEffect(() => {
     if (restaurant) {
       navigation.setOptions({ title: `Order from ${restaurant.name}` })
