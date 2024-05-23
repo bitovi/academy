@@ -1,4 +1,4 @@
-import { TextProps, TextStyle, Text, StyleSheet } from "react-native"
+import { TextProps, Text, StyleSheet } from "react-native"
 
 import { Theme, useTheme } from "../theme"
 
