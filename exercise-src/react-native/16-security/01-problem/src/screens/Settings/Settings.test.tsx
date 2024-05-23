@@ -35,8 +35,10 @@ describe("Screens/Settings", () => {
         </NavigationContainer>
       </AuthProvider>,
     )
+
     const switchElement = screen.getByRole("switch")
     expect(switchElement.props.value).toBe(false)
+
     fireEvent(switchElement, "onChange", { nativeEvent: { value: true } })
     expect(mockSetMode).toHaveBeenCalledWith("dark")
   })
