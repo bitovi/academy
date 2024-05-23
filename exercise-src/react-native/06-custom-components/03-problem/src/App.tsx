@@ -1,6 +1,6 @@
 import { SafeAreaView, ScrollView, Text, View } from "react-native"
 
-// Exercise: Move `ListItem` and `StateList`, and any
+// Exercise: Move `ListItem`, `StateList`, and any related tests to the appropriate files.
 // Note: Make sure to properly update each `import` and to reference every component’s essential files.
 
 const states = [
