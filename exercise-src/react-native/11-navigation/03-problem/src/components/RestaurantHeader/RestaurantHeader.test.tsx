@@ -22,6 +22,9 @@ describe("Components/RestaurantHeader", () => {
 
   it("renders without an address", () => {
     render(<RestaurantHeader restaurant={restaurantWithoutAddress} />)
+    expect(
+      screen.getByText(/Test Restaurant/i, { exact: false }),
+    ).toBeOnTheScreen()
   })
 
   it("renders the address", () => {

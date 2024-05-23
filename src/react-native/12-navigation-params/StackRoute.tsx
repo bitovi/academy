@@ -1,5 +1,4 @@
 import { createStackNavigator } from "@react-navigation/stack"
-import * as React from "react"
 
 export type ShopStackParamList = {
   Home: undefined

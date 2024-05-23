@@ -10,10 +10,17 @@ interface CitiesResponse {
   isPending: boolean
 }
 
+interface UseCitiesParams {
+  state?: string
+}
 interface RestaurantResponse {
   data: Restaurant | undefined
   error: Error | undefined
   isPending: boolean
+}
+
+interface UseRestaurant {
+  slug: string
 }
 
 interface RestaurantsResponse {
@@ -22,13 +29,18 @@ interface RestaurantsResponse {
   isPending: boolean
 }
 
+interface UseRestaurants {
+  state: string
+  city: string
+}
+
 interface StatesResponse {
   data: State[] | undefined
   error: Error | undefined
   isPending: boolean
 }
 
-export function useCities(state: string): CitiesResponse {
+export function useCities({ state }: UseCitiesParams): CitiesResponse {
   const [response, setResponse] = useState<CitiesResponse>({
     data: undefined,
     error: undefined,
@@ -57,14 +69,14 @@ export function useCities(state: string): CitiesResponse {
   return response
 }
 
-export function useRestaurant(slug: string): RestaurantResponse {
+export function useRestaurant({ slug }: UseRestaurant): RestaurantResponse {
   // Exercise: Fill in `useRestaurant` Hook for fetching the details of the restaurant.
 }
 
-export function useRestaurants(
-  state: string,
-  city: string,
-): RestaurantsResponse {
+export function useRestaurants({
+  state,
+  city,
+}: UseRestaurants): RestaurantsResponse {
   // Exercise: Fill in `useRestaurants` Hook for fetching the list of restaurants.
 }
 
