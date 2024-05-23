@@ -24,9 +24,9 @@ As mentioned in the previous section, since our React Native application isn’t
 @sourceref ./StackRoute.tsx
 @highlight 4-23, 25
 
-Before we get into using `route` on each `Screen` of the `Navigator`, considering we're using TypeScript, we need to make an effort to make sure the properties for each component are properly typed. For this, we will create a type, `ShopStackParamList`.
+Before we get into using `route` on each `Screen` of the `Navigator`, considering we're using TypeScript, we need to make an effort to make sure the props for each component are properly typed. For this, we will create a type, `ShopStackParamList`.
 
-For each screen we will type the expected properties that will be passed along each route. The `Home` in this case doesn’t expect any parameters to be passed to it, so we leave it undefined. The `UserProfile` and `Storefront` contain a few properties.
+For each screen we will type the expected props that will be passed along each route. The `Home` in this case doesn’t expect any parameters to be passed to it, so we leave it undefined. The `UserProfile` and `Storefront` contain a few props.
 
 Now, our `createStackNavigator` includes a type we’ve made `ShopStackParamList`. Because of this, now if we provide our screen components `Props` as route params, TypeScript will be able to able to identify what parameters are accessible from the components `route.params`.
 
@@ -35,7 +35,7 @@ While the `route` is accessible from the `Navigator`, it is also accessible from
 @sourceref ./RouteParams.tsx
 @highlight 8, 11, 17, 21
 
-To make sure the `Props` for our component match up to what we have for our `StackNavigator`, we can import the type we made and reference the `UserProfile` properties specifically.
+To make sure the `Props` for our component match up to what we have for our `StackNavigator`, we can import the type we made and reference the `UserProfile` props specifically.
 
 As you can see, in the `UserProfile` component, we can access the `route.params` of the component if any are provided. We grab the `user`, and are able to use its properties throughout the component.
 

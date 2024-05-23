@@ -97,7 +97,7 @@ Let’s keep the good refactoring rolling by creating a `ListItem` component to 
 
 ### Using component props
 
-In React, props (short for “properties”) are how we pass data from a parent component to a child component. Since function React components are fundamentally JavaScript functions, you can think of props like the arguments you pass to a function.
+In React, props are how we pass data from a parent component to a child component. Since function React components are fundamentally JavaScript functions, you can think of props like the arguments you pass to a function.
 
 To clarify, props in React Native should not be confused with the properties on HTML elements in web development, even though they sound similar.
 

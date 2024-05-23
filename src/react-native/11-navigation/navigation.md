@@ -103,7 +103,7 @@ The `createBottomTabNavigator` function creates a navigator that renders a tab b
 
 The `Tab.Navigator` component takes `Tab.Screen` components as children. For each child, a tab button will be added to the tab bar at the bottom of the screen. The `Tab.Navigator` also has a set of props that can be used to customize the behavior of the tab bar. We can set the initial route with `initialRouteName`, specify the `backBehavior`, customize the styles through `screenOptions`, and more.
 
-The `Tab.Screen` component takes a `name` prop that is used to identify the screen and a `component` prop that is used to render the screen. The `name` prop must be unique among all the screens in the navigator. Similar to the `Tab.Navigator`, we can pass an `options` prop to the `Tab.Screen` component to customize the title, label, icon, and other properties of the tab.
+The `Tab.Screen` component takes a `name` prop that is used to identify the screen and a `component` prop that is used to render the screen. The `name` prop must be unique among all the screens in the navigator. Similar to the `Tab.Navigator`, we can pass an `options` prop to the `Tab.Screen` component to customize the title, label, icon, and other props of the tab.
 
 ### Setup 1
 
