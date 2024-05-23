@@ -17,7 +17,7 @@ const migrateDataFromV1toV2 = async (): Promise<void> => {
         const oldData = (await getData(key)) as LocalStorageApiRequestV1
         await storeData<CachedResponse<unknown>>(key, {
           ...oldData,
-          dateTime: oldData.dateTime.valueOf(),
+          dateTime: oldData.dateTime,
         })
       }
     }
