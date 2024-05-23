@@ -897,7 +897,7 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
     data: restaurants,
     error,
     isPending,
-  } = useRestaurants(state.short, city.name)
+  } = useRestaurants({ state: state.short, city: city.name })
 
   const [tab, setTab] = useState&lt;string&gt;(&quot;list&quot;)
 
@@ -976,7 +976,7 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
     data: restaurants,
     error,
     isPending,
-  } = useRestaurants(state.short, city.name)
+  } = useRestaurants({ state: state.short, city: city.name })
 
   const [tab, setTab] = useState&lt;string&gt;(&quot;list&quot;)
 

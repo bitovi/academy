@@ -1847,7 +1847,7 @@ export interface RestaurantDetailsProps
 const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&gt; {
   const { slug } = route.params
   const navigation = useNavigation()
-  const { data: restaurant, error, isPending } = useRestaurant(slug)
+  const { data: restaurant, error, isPending } = useRestaurant({ slug })
   // Exercise: Add a button that uses the `updateFavorites` helper.
 
   useEffect(() =&gt; {
@@ -2273,7 +2273,7 @@ export interface RestaurantDetailsProps
 const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&gt; {
   const { slug } = route.params
   const navigation = useNavigation()
-  const { data: restaurant, error, isPending } = useRestaurant(slug)
+  const { data: restaurant, error, isPending } = useRestaurant({ slug })
   const isAuthenticated = useAuthenticated()
   const user = useUser()
   const { signIn } = useAuthentication()

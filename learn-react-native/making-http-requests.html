@@ -1000,7 +1000,7 @@ const data = await response.json()
 </code></pre>
 <p>We will also need to set up our environment.</p>
 <p>✏️ Run:</p>
-<pre><code class="language-bash">npm install -- save-dev react-native-dotenv@3
+<pre><code class="language-bash">npm install --save-dev react-native-dotenv@3
 </code></pre>
 <p>✏️ Update <strong>babel.config.js</strong> to be:</p>
 <pre><code class="language-js">module.exports = {
@@ -1014,9 +1014,6 @@ const data = await response.json()
 <pre><code class="language-example">PMO_API=http://localhost:7070
 
 </code></pre>
-<p>✏️ Duplicate <strong>.env.example</strong> to <strong>.env</strong> in your project.</p>
-<p>It’s always a good idea to keep a <code>.env.example</code> file up to date (and committed to git) in your project, then include the actual secrets in your local <code>.env</code> file (and not committed to git).</p>
-<p>We do not have any secret values yet, so our <code>.env</code> can be an exact duplicate of the <code>.env.example</code> file.</p>
 <p>✏️ Next add an API script to your <code>package.json</code></p>
 <pre><code class="language-json">{
   &quot;name&quot;: &quot;PlaceMyOrder&quot;,
@@ -1092,6 +1089,13 @@ const data = await response.json()
 </code></pre>
 <p>Double-check the API by navigating to <a href="http://localhost:7070/restaurants">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data.</p>
 <p>It will be helpful to have a third terminal tab for the <code>npm run api</code> command.</p>
+<p>✏️ Create <strong>src/services/pmo/restaurant/interfaces.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export interface State {
+  name: string
+  short: string
+}
+
+</code></pre>
 <p>✏️ Create <strong>src/services/pmo/restaurant/hooks.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
 
@@ -1107,13 +1111,6 @@ interface StatesResponse {
 
 export function useStates(): StatesResponse {
   // Exercise: Update the `useState` in `hooks.ts` to call `useEffect()` and `fetch` data from `${process.env.PMO_API}/states`.
-}
-
-</code></pre>
-<p>✏️ Create <strong>src/services/pmo/restaurant/interfaces.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">export interface State {
-  name: string
-  short: string
 }
 
 </code></pre>
@@ -1309,8 +1306,12 @@ describe(&quot;Screens/StateList&quot;, () =&gt; {
 <ul>
 <li>Update the <code>useState</code> in <code>hooks.ts</code> to call <code>useEffect()</code> and <code>fetch</code> data from <code>${process.env.PMO_API}/states</code>.</li>
 <li>Update <code>StateList.tsx</code> to call <code>useState()</code> and use the <code>StateResponse</code> interface.</li>
+<li>Duplicate <strong>.env.example</strong> to <strong>.env</strong> in your project.</li>
 </ul>
+<p>It’s always a good idea to keep a <code>.env.example</code> file up to date (and committed to git) in your project, then include the actual secrets in your local <code>.env</code> file (and not committed to git).</p>
+<p>We do not have any secret values yet, so our <code>.env</code> can be an exact duplicate of the <code>.env.example</code> file.</p>
 <p>Hint: Call your state setter after you parse the JSON response from <code>fetch()</code>.</p>
+<p>Hint: <code>useState()</code> return <code>isPending</code> and <code>error</code>. Use these states to inform the user the status.</p>
 <h3>Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
@@ -1437,6 +1438,18 @@ export default StateList
 </ul></li>
 </ul>
 <h3>Setup 2</h3>
+<p>✏️ Create <strong>src/services/pmo/restaurant/interfaces.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export interface City {
+  name: string
+  state: string
+}
+export interface State {
+  name: string
+  short: string
+}
+
+</code></pre>
+ <div line-highlight="1,3,6,8,only"></div>
 <p>✏️ Update <strong>src/services/pmo/restaurant/hooks.ts</strong> to be:</p>
 <pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
 
@@ -1454,6 +1467,10 @@ interface CitiesResponse {
   data: City[] | undefined
   error: Error | undefined
   isPending: boolean
+}
+
+interface UseCitiesParams {
+  state?: string
 }
 
 export function useStates(): StatesResponse {
@@ -1486,24 +1503,12 @@ export function useStates(): StatesResponse {
   return response
 }
 
-export function useCities(state: string): CitiesResponse {
+export function useCities({ state }: UseCitiesParams): CitiesResponse {
   // Exercise: Update our `useCities()` Hook to fetch cities from the Place My Order API, given a selected state.
 }
 
 </code></pre>
- <div line-highlight="3,13-16,47,49-51,only"></div>
-<p>✏️ Create <strong>src/services/pmo/restaurant/interfaces.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">export interface City {
-  name: string
-  state: string
-}
-export interface State {
-  name: string
-  short: string
-}
-
-</code></pre>
- <div line-highlight="1,3,6,8,only"></div>
+ <div line-highlight="3,13-16,19-21,51,53-55,only"></div>
 <p>✏️ Update <strong>src/screens/CityList/CityList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -1602,7 +1607,7 @@ describe(&quot;Services/PMO/Restaurant/useCities&quot;, () =&gt; {
       status: 200,
     })
 
-    const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
+    const { result } = renderHook(() =&gt; useCities({ state: &quot;test-state&quot; }))
 
     await waitFor(() =&gt; {
       expect(result.current.isPending).toBeFalsy()
@@ -1715,6 +1720,10 @@ interface CitiesResponse {
   isPending: boolean
 }
 
+interface UseCitiesParams {
+  state?: string
+}
+
 export function useStates(): StatesResponse {
   const [response, setResponse] = useState&lt;StatesResponse&gt;({
     data: undefined,
@@ -1745,7 +1754,7 @@ export function useStates(): StatesResponse {
   return response
 }
 
-export function useCities(state?: string): CitiesResponse {
+export function useCities({ state }: UseCitiesParams): CitiesResponse {
   const [response, setResponse] = useState&lt;CitiesResponse&gt;({
     data: undefined,
     error: undefined,
@@ -1778,7 +1787,7 @@ export function useCities(state?: string): CitiesResponse {
 }
 
 </code></pre>
- <div line-highlight="3,49-54,56-64,66,68-76,78,only"></div>
+ <div line-highlight="3,54-58,60-68,70,72-80,82,only"></div>
 <p>✏️ Update <strong>src/screens/CityList/CityList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -1798,7 +1807,11 @@ export interface CityListProps
 const CityList: React.FC&lt;CityListProps&gt; = ({ route }) =&gt; {
   const { state } = route.params
   const navigation = useNavigation()
-  const { data: cities, error, isPending } = useCities(state.short || &quot;&quot;)
+  const {
+    data: cities,
+    error,
+    isPending,
+  } = useCities({ state: state.short || &quot;&quot; })
 
   if (error) {
     return (
@@ -1838,7 +1851,7 @@ const CityList: React.FC&lt;CityListProps&gt; = ({ route }) =&gt; {
 export default CityList
 
 </code></pre>
- <div line-highlight="6-7,10-11,19,21-28,30-32,only"></div>
+ <div line-highlight="6-7,10-11,19-23,25-32,34-36,only"></div>
 <p></details></p>
 <h2>Objective 3: Create API request helper</h2>
 <p>Now that we have two Hooks that fetch data in a similar way, let’s create an <code>apiRequest</code> helper function that both Hooks can use.</p>
@@ -1929,6 +1942,95 @@ export function stringifyQuery(
 <pre><code class="language-ts">export * from &quot;./api&quot;
 
 </code></pre>
+<p>✏️ Update <strong>src/services/pmo/restaurant/hooks.ts</strong> to be:</p>
+<pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
+
+import { apiRequest } from &quot;../api&quot;
+
+import { State, City } from &quot;./interfaces&quot;
+
+const baseUrl = process.env.PMO_API
+
+interface StatesResponse {
+  data: State[] | undefined
+  error: Error | undefined
+  isPending: boolean
+}
+
+interface CitiesResponse {
+  data: City[] | undefined
+  error: Error | undefined
+  isPending: boolean
+}
+
+interface UseCitiesParams {
+  state?: string
+}
+
+export function useStates(): StatesResponse {
+  const [response, setResponse] = useState&lt;StatesResponse&gt;({
+    data: undefined,
+    error: undefined,
+    isPending: true,
+  })
+
+  useEffect(() =&gt; {
+    const fetchData = async () =&gt; {
+      const response = await fetch(`${baseUrl}/states`, {
+        method: &quot;GET&quot;,
+        headers: {
+          &quot;Content-Type&quot;: &quot;application/json&quot;,
+        },
+      })
+
+      const data = await response.json()
+
+      setResponse({
+        data: data?.data || undefined,
+        error: undefined,
+        isPending: false,
+      })
+    }
+    fetchData()
+  }, [])
+
+  return response
+}
+
+export function useCities({ state }: UseCitiesParams): CitiesResponse {
+  const [response, setResponse] = useState&lt;CitiesResponse&gt;({
+    data: undefined,
+    error: undefined,
+    isPending: true,
+  })
+
+  useEffect(() =&gt; {
+    const fetchData = async () =&gt; {
+      if (state) {
+        const response = await fetch(`${baseUrl}/cities?state=${state}`, {
+          method: &quot;GET&quot;,
+          headers: {
+            &quot;Content-Type&quot;: &quot;application/json&quot;,
+          },
+        })
+
+        const data = await response.json()
+
+        setResponse({
+          data: data?.data || undefined,
+          error: undefined,
+          isPending: false,
+        })
+      }
+    }
+    fetchData()
+  }, [state])
+
+  return response
+}
+
+</code></pre>
+ <div line-highlight="3,only"></div>
 <h3>Verify 3</h3>
 <p>✏️ Update <strong>src/services/pmo/restaurant/hooks.test.ts</strong> to be:</p>
 <pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react-native&quot;
@@ -1988,7 +2090,7 @@ describe(&quot;Services/PMO/Restaurant/useCities&quot;, () =&gt; {
       error: undefined,
     })
 
-    const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
+    const { result } = renderHook(() =&gt; useCities({ state: &quot;test-state&quot; }))
 
     await waitFor(() =&gt; {
       expect(result.current.isPending).toBeFalsy()
@@ -2001,7 +2103,7 @@ describe(&quot;Services/PMO/Restaurant/useCities&quot;, () =&gt; {
     const mockError = new Error(&quot;Error fetching cities&quot;)
     apiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
-    const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
+    const { result } = renderHook(() =&gt; useCities({ state: &quot;test-state&quot; }))
 
     await waitFor(() =&gt; {
       expect(result.current.isPending).toBeFalsy()
@@ -2059,13 +2161,15 @@ export async function apiRequest&lt;
     })
 
     const data = await response.json()
-    const error = response.ok
-      ? undefined
-      : new Error(`${response.status} (${response.statusText})`)
+
+    if (!response.ok) {
+      const error = new Error(`${response.status} (${response.statusText})`)
+      return { data: data, error: error }
+    }
 
     return {
       data: data,
-      error: error,
+      error: undefined,
     }
   } catch (error) {
     return {
@@ -2091,18 +2195,22 @@ export function stringifyQuery(
 }
 
 </code></pre>
- <div line-highlight="17-20,22-28,30-33,35-37,39-44,56-57,60,only"></div>
+ <div line-highlight="17-20,22-28,30,32-34,37-46,58-59,62,only"></div>
 <p>✏️ Update <strong>src/services/pmo/restaurant/hooks.ts</strong> to be:</p>
 <pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
 
 import { apiRequest } from &quot;../api&quot;
 
-import { City, State } from &quot;./interfaces&quot;
+import { State, City } from &quot;./interfaces&quot;
 
 interface CitiesResponse {
   data: City[] | undefined
   error: Error | undefined
   isPending: boolean
+}
+
+interface UseCitiesParams {
+  state?: string
 }
 
 interface StatesResponse {
@@ -2111,7 +2219,7 @@ interface StatesResponse {
   isPending: boolean
 }
 
-export function useCities(state: string): CitiesResponse {
+export function useCities({ state }: UseCitiesParams): CitiesResponse {
   const [response, setResponse] = useState&lt;CitiesResponse&gt;({
     data: undefined,
     error: undefined,
@@ -2173,7 +2281,7 @@ export function useStates(): StatesResponse {
 }
 
 </code></pre>
- <div line-highlight="3,5,19,28,30-32,38,57-58,60-61,63-66,68-72,only"></div>
+ <div line-highlight="32,34-36,42,61-62,64-65,67-70,72-76,only"></div>
 <p></details></p>
 <h2>Objective 4: Add <code>fetch</code> restaurants in a custom hook</h2>
 <p>Let’s finish our quest to load data from our API by creating a Hook to fetch the list of restaurants and use it in our component.</p>
@@ -2183,111 +2291,6 @@ export function useStates(): StatesResponse {
   <img alt="Screenshot of the application when it makes an api call to the restaurant endpoint and is populated populated with the restaurants details." src="../static/img/react-native/13-making-http-requests/4-2-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
 </div>
 <h3>Setup 4</h3>
-<p>✏️ Update <strong>src/services/pmo/restaurant/hooks.ts</strong> to be:</p>
-<pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
-
-import { apiRequest } from &quot;../api/api&quot;
-
-import { City, Restaurant, State } from &quot;./interfaces&quot;
-
-interface CitiesResponse {
-  data: City[] | undefined
-  error: Error | undefined
-  isPending: boolean
-}
-
-interface RestaurantResponse {
-  data: Restaurant | undefined
-  error: Error | undefined
-  isPending: boolean
-}
-
-interface RestaurantsResponse {
-  data: Restaurant[] | undefined
-  error: Error | undefined
-  isPending: boolean
-}
-
-interface StatesResponse {
-  data: State[] | undefined
-  error: Error | undefined
-  isPending: boolean
-}
-
-export function useCities(state: string): CitiesResponse {
-  const [response, setResponse] = useState&lt;CitiesResponse&gt;({
-    data: undefined,
-    error: undefined,
-    isPending: true,
-  })
-
-  useEffect(() =&gt; {
-    const fetchData = async () =&gt; {
-      const { data, error } = await apiRequest&lt;CitiesResponse&gt;({
-        method: &quot;GET&quot;,
-        path: &quot;/cities&quot;,
-        params: {
-          state: state,
-        },
-      })
-
-      setResponse({
-        data: data?.data || undefined,
-        error: error,
-        isPending: false,
-      })
-    }
-    fetchData()
-  }, [state])
-
-  return response
-}
-
-export function useRestaurant(slug: string): RestaurantResponse {
-  // Exercise: Fill in `useRestaurant` Hook for fetching the details of the restaurant.
-}
-
-export function useRestaurants(
-  state: string,
-  city: string,
-): RestaurantsResponse {
-  // Exercise: Fill in `useRestaurants` Hook for fetching the list of restaurants.
-}
-
-export function useStates(): StatesResponse {
-  const [response, setResponse] = useState&lt;StatesResponse&gt;({
-    data: undefined,
-    error: undefined,
-    isPending: true,
-  })
-
-  useEffect(() =&gt; {
-    const fetchData = async () =&gt; {
-      setResponse({
-        data: undefined,
-        error: undefined,
-        isPending: true,
-      })
-
-      const { data, error } = await apiRequest&lt;StatesResponse&gt;({
-        method: &quot;GET&quot;,
-        path: &quot;/states&quot;,
-      })
-
-      setResponse({
-        data: data?.data || undefined,
-        error: error,
-        isPending: false,
-      })
-    }
-    fetchData()
-  }, [])
-
-  return response
-}
-
-</code></pre>
- <div line-highlight="3,5,13-14,19-22,27-28,58,60-62,64-69,101,only"></div>
 <p>✏️ Create <strong>src/services/pmo/restaurant/interfaces.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export interface City {
   name: string
@@ -2339,6 +2342,123 @@ export interface State {
 
 </code></pre>
  <div line-highlight="6,8,11-14,16-21,23-27,29-32,34-42,45,47,only"></div>
+<p>✏️ Update <strong>src/services/pmo/restaurant/hooks.ts</strong> to be:</p>
+<pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
+
+import { apiRequest } from &quot;../api/api&quot;
+
+import { City, Restaurant, State } from &quot;./interfaces&quot;
+
+interface CitiesResponse {
+  data: City[] | undefined
+  error: Error | undefined
+  isPending: boolean
+}
+
+interface UseCitiesParams {
+  state?: string
+}
+interface RestaurantResponse {
+  data: Restaurant | undefined
+  error: Error | undefined
+  isPending: boolean
+}
+
+interface UseRestaurant {
+  slug: string
+}
+
+interface RestaurantsResponse {
+  data: Restaurant[] | undefined
+  error: Error | undefined
+  isPending: boolean
+}
+
+interface UseRestaurants {
+  state: string
+  city: string
+}
+
+interface StatesResponse {
+  data: State[] | undefined
+  error: Error | undefined
+  isPending: boolean
+}
+
+export function useCities({ state }: UseCitiesParams): CitiesResponse {
+  const [response, setResponse] = useState&lt;CitiesResponse&gt;({
+    data: undefined,
+    error: undefined,
+    isPending: true,
+  })
+
+  useEffect(() =&gt; {
+    const fetchData = async () =&gt; {
+      const { data, error } = await apiRequest&lt;CitiesResponse&gt;({
+        method: &quot;GET&quot;,
+        path: &quot;/cities&quot;,
+        params: {
+          state: state,
+        },
+      })
+
+      setResponse({
+        data: data?.data || undefined,
+        error: error,
+        isPending: false,
+      })
+    }
+    fetchData()
+  }, [state])
+
+  return response
+}
+
+export function useRestaurant({ slug }: UseRestaurant): RestaurantResponse {
+  // Exercise: Fill in `useRestaurant` Hook for fetching the details of the restaurant.
+}
+
+export function useRestaurants({
+  state,
+  city,
+}: UseRestaurants): RestaurantsResponse {
+  // Exercise: Fill in `useRestaurants` Hook for fetching the list of restaurants.
+}
+
+export function useStates(): StatesResponse {
+  const [response, setResponse] = useState&lt;StatesResponse&gt;({
+    data: undefined,
+    error: undefined,
+    isPending: true,
+  })
+
+  useEffect(() =&gt; {
+    const fetchData = async () =&gt; {
+      setResponse({
+        data: undefined,
+        error: undefined,
+        isPending: true,
+      })
+
+      const { data, error } = await apiRequest&lt;StatesResponse&gt;({
+        method: &quot;GET&quot;,
+        path: &quot;/states&quot;,
+      })
+
+      setResponse({
+        data: data?.data || undefined,
+        error: error,
+        isPending: false,
+      })
+    }
+    fetchData()
+  }, [])
+
+  return response
+}
+
+</code></pre>
+ <div line-highlight="3,5,16-17,22-23,26-29,32-35,39-41,70,72-74,76-81,113,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -2423,7 +2543,7 @@ export default RestaurantDetails
 
 import * as api from &quot;../api/api&quot;
 
-import { useStates, useCities, useRestaurants } from &quot;./hooks&quot;
+import { useStates, useCities, useRestaurants, useRestaurant } from &quot;./hooks&quot;
 
 // Mock the apiRequest function
 let apiRequest: jest.SpyInstance&lt;ReturnType&lt;typeof api.apiRequest&gt;&gt;
@@ -2477,7 +2597,7 @@ describe(&quot;Services/PMO/Restaurant/useCities&quot;, () =&gt; {
       error: undefined,
     })
 
-    const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
+    const { result } = renderHook(() =&gt; useCities({ state: &quot;test-state&quot; }))
 
     await waitFor(() =&gt; {
       expect(result.current.isPending).toBeFalsy()
@@ -2490,7 +2610,7 @@ describe(&quot;Services/PMO/Restaurant/useCities&quot;, () =&gt; {
     const mockError = new Error(&quot;Error fetching cities&quot;)
     apiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
-    const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
+    const { result } = renderHook(() =&gt; useCities({ state: &quot;test-state&quot; }))
 
     await waitFor(() =&gt; {
       expect(result.current.isPending).toBeFalsy()
@@ -2512,7 +2632,7 @@ describe(&quot;Services/PMO/Restaurant/useRestaurants&quot;, () =&gt; {
     })
 
     const { result } = renderHook(() =&gt;
-      useRestaurants(&quot;test-state&quot;, &quot;test-city&quot;),
+      useRestaurants({ state: &quot;test-state&quot;, city: &quot;test-city&quot; }),
     )
 
     await waitFor(() =&gt; {
@@ -2527,7 +2647,7 @@ describe(&quot;Services/PMO/Restaurant/useRestaurants&quot;, () =&gt; {
     apiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
     const { result } = renderHook(() =&gt;
-      useRestaurants(&quot;test-state&quot;, &quot;test-city&quot;),
+      useRestaurants({ state: &quot;test-state&quot;, city: &quot;test-city&quot; }),
     )
 
     await waitFor(() =&gt; {
@@ -2546,9 +2666,7 @@ describe(&quot;Services/PMO/Restaurant/useRestaurant&quot;, () =&gt; {
       error: undefined,
     })
 
-    const { result } = renderHook(() =&gt;
-      useRestaurants(&quot;test-state&quot;, &quot;test-city&quot;),
-    )
+    const { result } = renderHook(() =&gt; useRestaurant({ slug: &quot;test-slug&quot; }))
 
     await waitFor(() =&gt; {
       expect(result.current.isPending).toBeFalsy()
@@ -2561,9 +2679,7 @@ describe(&quot;Services/PMO/Restaurant/useRestaurant&quot;, () =&gt; {
     const mockError = new Error(&quot;Error fetching restaurant&quot;)
     apiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
-    const { result } = renderHook(() =&gt;
-      useRestaurants(&quot;test-state&quot;, &quot;test-city&quot;),
-    )
+    const { result } = renderHook(() =&gt; useRestaurant({ slug: &quot;test-slug&quot; }))
 
     await waitFor(() =&gt; {
       expect(result.current.isPending).toBeFalsy()
@@ -2575,7 +2691,7 @@ describe(&quot;Services/PMO/Restaurant/useRestaurant&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="5,7,82-91,93-95,97-102,104-106,108-110,112-118,120-126,128-130,132-137,139-141,143-145,147-149,151-154,only"></div>
+ <div line-highlight="5,7,82-91,93-95,97-102,104-106,108-110,112-118,120-126,128,130-135,137-139,141,143-145,147-150,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { render, screen } from &quot;@testing-library/react-native&quot;
@@ -2908,10 +3024,17 @@ interface CitiesResponse {
   isPending: boolean
 }
 
+interface UseCitiesParams {
+  state?: string
+}
 interface RestaurantResponse {
   data: Restaurant | undefined
   error: Error | undefined
   isPending: boolean
+}
+
+interface UseRestaurant {
+  slug: string
 }
 
 interface RestaurantsResponse {
@@ -2920,13 +3043,18 @@ interface RestaurantsResponse {
   isPending: boolean
 }
 
+interface UseRestaurants {
+  state: string
+  city: string
+}
+
 interface StatesResponse {
   data: State[] | undefined
   error: Error | undefined
   isPending: boolean
 }
 
-export function useCities(state: string): CitiesResponse {
+export function useCities({ state }: UseCitiesParams): CitiesResponse {
   const [response, setResponse] = useState&lt;CitiesResponse&gt;({
     data: undefined,
     error: undefined,
@@ -2955,7 +3083,7 @@ export function useCities(state: string): CitiesResponse {
   return response
 }
 
-export function useRestaurant(slug: string): RestaurantResponse {
+export function useRestaurant({ slug }: UseRestaurant): RestaurantResponse {
   const [response, setResponse] = useState&lt;RestaurantResponse&gt;({
     data: undefined,
     error: undefined,
@@ -2964,13 +3092,13 @@ export function useRestaurant(slug: string): RestaurantResponse {
 
   useEffect(() =&gt; {
     const fetchData = async () =&gt; {
-      const { data, error } = await apiRequest({
+      const { data, error } = await apiRequest&lt;RestaurantResponse&gt;({
         method: &quot;GET&quot;,
         path: `/restaurants/${slug}`,
       })
 
       setResponse({
-        data: data || undefined,
+        data: data?.data || undefined,
         error: error,
         isPending: false,
       })
@@ -2981,10 +3109,10 @@ export function useRestaurant(slug: string): RestaurantResponse {
   return response
 }
 
-export function useRestaurants(
-  state: string,
-  city: string,
-): RestaurantsResponse {
+export function useRestaurants({
+  state,
+  city,
+}: UseRestaurants): RestaurantsResponse {
   const [response, setResponse] = useState&lt;RestaurantsResponse&gt;({
     data: undefined,
     error: undefined,
@@ -3047,7 +3175,7 @@ export function useStates(): StatesResponse {
 }
 
 </code></pre>
- <div line-highlight="61,69,71,75,81,90-94,96-104,109-114,116,121-124,126-128,132,135,137,139-145,148,only"></div>
+ <div line-highlight="73,81,83,93,102-106,108-116,120-126,128,133-136,138-140,144,147,149,151-157,160,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -3071,7 +3199,7 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
     data: restaurants,
     error,
     isPending,
-  } = useRestaurants(state.short, city.name)
+  } = useRestaurants({ state: state.short, city: city.name })
 
   if (error) {
     return (
@@ -3130,7 +3258,7 @@ export interface RestaurantDetailsProps
 const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&gt; {
   const { slug } = route.params
   const navigation = useNavigation()
-  const { data: restaurant, error, isPending } = useRestaurant(slug)
+  const { data: restaurant, error, isPending } = useRestaurant({ slug })
   useEffect(() =&gt; {
     if (restaurant) {
       navigation.setOptions({ title: `${restaurant.name}` })
