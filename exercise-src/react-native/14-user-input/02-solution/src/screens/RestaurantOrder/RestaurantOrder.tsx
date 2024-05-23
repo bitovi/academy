@@ -25,11 +25,11 @@ const RestaurantOrder: React.FC<RestaurantOrderProps> = ({ route }) => {
 
   const { data: restaurant, error, isPending } = useRestaurant({ slug })
 
-  const [address, setAddress] = useState<string>("")
   const [items, setItems] = useState<OrderItems>({})
   const [name, setName] = useState<string>("")
   const [phone, setPhone] = useState<string>("")
-
+  const [address, setAddress] = useState<string>("")
+  
   useEffect(() => {
     if (restaurant) {
       navigation.setOptions({ title: `Order from ${restaurant.name}` })
@@ -110,12 +110,12 @@ const RestaurantOrder: React.FC<RestaurantOrderProps> = ({ route }) => {
 
         <Card title="Order Details">
           <FormTextField label="Name" onChange={setName} value={name} />
+          <FormTextField label="Phone" onChange={setPhone} value={phone} />
           <FormTextField
             label="Address"
             onChange={setAddress}
             value={address}
           />
-          <FormTextField label="Phone" onChange={setPhone} value={phone} />
         </Card>
 
         <Box padding="s">

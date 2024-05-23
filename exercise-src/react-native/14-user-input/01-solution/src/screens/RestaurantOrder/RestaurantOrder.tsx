@@ -50,6 +50,7 @@ const RestaurantOrder: React.FC<RestaurantOrderProps> = ({ route }) => {
     })
   }
 
+  const selectedCount = Object.values(items).length
   const subtotal = calculateTotal(items)
 
   if (error) {
@@ -106,7 +107,11 @@ const RestaurantOrder: React.FC<RestaurantOrderProps> = ({ route }) => {
         <Card title="Order Details"></Card>
 
         <Box padding="s">
-          {subtotal === 0 && <Typography>Please choose an item.</Typography>}
+          {subtotal === 0 ? (
+            <Typography>Please choose an item.</Typography>
+          ) : (
+            <Typography>{selectedCount} items selected.</Typography>
+          )}
         </Box>
 
         <Box padding="s">
