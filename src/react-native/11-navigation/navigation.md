@@ -116,6 +116,10 @@ npm run start
 
 ### Verify 1
 
+✏️ Update **src/App.test.tsx** to be:
+
+@diff ../../../exercises/react-native/10-managing-state/01-solution/src/App.test.tsx ../../../exercises/react-native/11-navigation/01-problem/src/App.test.tsx only
+
 ✏️ Create **src/screens/Settings/Settings.test.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-native/11-navigation/01-problem/src/screens/Settings/Settings.test.tsx
@@ -242,6 +246,12 @@ npm install @react-navigation/stack@6 react-native-gesture-handler@2
 
 @diff ../../../exercises/react-native/11-navigation/01-solution/index.js ../../../exercises/react-native/11-navigation/02-problem/index.js only
 
+✏️ Kill the existing dev server and start it again:
+
+```bash
+npm run start
+```
+
 ✏️ Update **jest-setup.ts** to be:
 
 @diff ../../../exercises/react-native/11-navigation/01-solution/jest-setup.ts ../../../exercises/react-native/11-navigation/02-problem/jest-setup.ts only
@@ -261,6 +271,10 @@ npm install @react-navigation/stack@6 react-native-gesture-handler@2
 ✏️ Create **src/screens/CityList/index.ts** and update it to be:
 
 @sourceref ../../../exercises/react-native/11-navigation/02-problem/src/screens/CityList/index.ts
+
+✏️ Delete **src/screens/StateList/components/** and everthing in it.
+
+We no longer need the `<ListItem>` component.
 
 ### Verify 2
 
@@ -307,11 +321,17 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 @diff ../../../exercises/react-native/11-navigation/02-solution/src/App.tsx ../../../exercises/react-native/11-navigation/03-problem/src/App.tsx only
 
+✏️ Create **src/components/** (folder)
+
 ✏️ Create **src/components/RestaurantHeader/** (folder)
 
 ✏️ Create **src/components/RestaurantHeader/RestaurantHeader.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-native/11-navigation/03-problem/src/components/RestaurantHeader/RestaurantHeader.tsx
+
+✏️ Create **src/components/RestaurantHeader/mocks.ts** and update it to be:
+
+@sourceref ../../../exercises/react-native/11-navigation/03-problem/src/components/RestaurantHeader/mocks.ts
 
 ✏️ Create **src/components/RestaurantHeader/index.ts** and update it to be:
 
@@ -351,7 +371,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 @sourceref ../../../exercises/react-native/11-navigation/03-problem/src/components/RestaurantHeader/RestaurantHeader.test.tsx
 
-✏️ Create **src/screens/RestaurantDetails/RestaurantDetails.tsx** and update it to be:
+✏️ Create **src/screens/RestaurantDetails/RestaurantDetails.test.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-native/11-navigation/03-problem/src/screens/RestaurantDetails/RestaurantDetails.test.tsx
 
