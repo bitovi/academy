@@ -14,7 +14,7 @@ const CityList: React.FC = () => {
   // Exercise: Use navigation to navigate to RestaurantList.
 
   return (
-    <Screen>
+    <Screen noScroll>
       <FlatList
         data={cities}
         renderItem={({ item: cityItem }) => (

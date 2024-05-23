@@ -26,7 +26,7 @@ const StateList: React.FC = () => {
   }
 
   return (
-    <Screen>
+    <Screen noScroll>
       {states?.length ? (
         <FlatList
           data={states}

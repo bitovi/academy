@@ -10,12 +10,11 @@
 
 In this section, you will:
 
-- Understand why navigation is important
-- Be introduced to deep linking
-- Understand the navigation lifecycle
-- Implement a bottom tab navigation pattern
-- Learn about the difference between stack and native stack navigation
-- Implement a stack navigation pattern
+- Understand why navigation is important.
+- Understand the navigation lifecycle.
+- Implement a bottom tab navigation pattern.
+- Learn about the difference between stack and native stack navigation.
+- Implement a stack navigation pattern.
 
 ## Objective 1: Using React Native bottom tab navigation
 
@@ -43,7 +42,7 @@ The React Navigation library used in this section supports deep linking and has 
 
 Now that we have an understanding of how navigation works within a stack, let’s take a look at the implications of navigation on the component lifecycle.
 
-If we have a stack navigator with two screens, `ScreenA` and `ScreenB`, and navigate to `ScreenA`, then `ScreenA` will mount the component and render. If we then navigate to `ScreenB`, `ScreenA` will be unmounted and `ScreenB` will mount and render. What happens when we navigate back to `ScreenA`? `ScreenB` will unmount the component, but `ScreenA` will _not_ remount. Because it stayed in the stack, it remained mounted the entire time.
+If we have a stack navigator with two screens, `ScreenA` and `ScreenB`, and navigate to `ScreenA`, then `ScreenA` will mount the component and render. If we then navigate to `ScreenB`, `ScreenA` will remain mounted but will be hidden from view, and `ScreenB` will mount and render. What happens when we navigate back to `ScreenA`? `ScreenB` will be unmounted, but `ScreenA` will _not_ remount. Because it stayed in the stack, it remained mounted the entire time.
 
 ### Bottom Tab Navigation
 
@@ -53,49 +52,15 @@ Often tabs in a mobile application are made up of more than just one screen. Tab
 
 Here is an example of using tab-based navigation in React Native with React Navigation:
 
-```tsx
-import * as React from "react"
-import { Text, View } from "react-native"
-import { NavigationContainer } from "@react-navigation/native"
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-
-function ScreenA() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Screen A</Text>
-    </View>
-  )
-}
-
-function ScreenB() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Screen A</Text>
-    </View>
-  )
-}
-
-const Tab = createBottomTabNavigator()
-
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Screen A" component={ScreenA} />
-        <Tab.Screen name="Screen B" component={ScreenB} />
-      </Tab.Navigator>
-    </NavigationContainer>
-  )
-}
-```
-
-@highlight 3-4, 22, 26-31
+@sourceref ./tabs.tsx
+@highlight 3, 21, 25-30, only
 
 Let’s break down the code above:
 
 ### NavigationContainer
 
-The `NavigationContainer` component is responsible for managing our app state and linking. This component handles the platform-specific (iOS, Android) navigation logic and provides functionality to: deep link, notify state changes, and handle back button presses.
+The `NavigationContainer` component is responsible for managing our app state and linking.
+This component handles the platform-specific (Android, iOS, etc.) navigation logic and provides functionality to: deep link, notify state changes, and handle back button presses.
 
 ### createBottomTabNavigator
 
@@ -105,12 +70,16 @@ The `Tab.Navigator` component takes `Tab.Screen` components as children. For eac
 
 The `Tab.Screen` component takes a `name` prop that is used to identify the screen and a `component` prop that is used to render the screen. The `name` prop must be unique among all the screens in the navigator. Similar to the `Tab.Navigator`, we can pass an `options` prop to the `Tab.Screen` component to customize the title, label, icon, and other props of the tab.
 
+### React Native Vector Icons
+
+The React Native Vector Icons repository is an invaluable resource for enhancing your React Native applications with high-quality icons. This library provides an extensive collection of icons from popular sets such as FontAwesome, Material Icons, and Ionicons. It integrates seamlessly with React Native, offering versatile components that you can style and scale to meet any design requirements. By importing your chosen icon set and utilizing the <Icon> component, you can easily specify properties like name, size, and color to incorporate icons into your apps. This tool is essential for both novice and seasoned developers, enabling you to elevate the visual appeal and functionality of your mobile apps with minimal effort.
+
 ### Setup 1
 
 ✏️ Install the new dependencies:
 
 ```bash
-npm install @react-navigation/native@6 @react-navigation/bottom-tabs@6 react-native-vector-icons@10 react-native-safe-area-context@4
+npm install @react-navigation/native@6 @react-navigation/bottom-tabs@6 react-native-safe-area-context@4 react-native-screens@3 react-native-vector-icons@10
 ```
 
 ✏️ Install the new dev dependencies:
@@ -118,6 +87,20 @@ npm install @react-navigation/native@6 @react-navigation/bottom-tabs@6 react-nat
 ```bash
 npm install --save-dev @types/react-native-vector-icons@6 identity-obj-proxy@3
 ```
+
+✏️ Kill the existing dev server and start it again:
+
+```bash
+npm run start
+```
+
+✏️ Update **jest.config.js** to be:
+
+@diff ../../../exercises/react-native/10-managing-state/01-solution/jest.config.js ../../../exercises/react-native/11-navigation/01-problem/jest.config.js only
+
+✏️ Update **android/app/build.gradle** to be:
+
+@diff ../../../exercises/react-native/10-managing-state/01-solution/android/app/build.gradle ../../../exercises/react-native/11-navigation/01-problem/android/app/build.gradle only
 
 ✏️ Update **src/App.tsx** to be:
 
@@ -143,8 +126,13 @@ npm install --save-dev @types/react-native-vector-icons@6 identity-obj-proxy@3
 
 ### Exercise 1
 
+<<<<<<< HEAD
 - For the `tabBarIcon` prop on `AppTabs.Navigator` update the `Icon` component’s name prop to be based on the given route.
 - Add a screen tab for Restaurants (the `StateList` component) and for `Settings` component.
+=======
+- For the `tabBarIcon` property on `AppTabs.Navigator`, update the `Icon` component’s name property to be based on the given route.
+- Add a screen tab for Restaurants (the `StateList` component) and a tab for the `Settings` component.
+>>>>>>> origin/main
 - Add the `NavigationContainer` and `AppNavigator` to the `App` component.
 
 ### Solution 1
@@ -253,11 +241,29 @@ Similar to the `Tab.Screen` component, we can customize the behavior of our `Sta
 
 ### Setup 2
 
+<<<<<<< HEAD
 ✏️ Install the new dependency:
+=======
+✏️ Run:
+>>>>>>> origin/main
 
 ```bash
-npm install @react-navigation/stack@6
+npm install @react-navigation/stack@6 react-native-gesture-handler@2
 ```
+
+✏️ Update **index.js** to be:
+
+@diff ../../../exercises/react-native/11-navigation/01-solution/index.js ../../../exercises/react-native/11-navigation/02-problem/index.js only
+
+✏️ Kill the existing dev server and start it again:
+
+```bash
+npm run start
+```
+
+✏️ Update **jest-setup.ts** to be:
+
+@diff ../../../exercises/react-native/11-navigation/01-solution/jest-setup.ts ../../../exercises/react-native/11-navigation/02-problem/jest-setup.ts only
 
 ✏️ Update **src/App.tsx** to be:
 
@@ -274,6 +280,10 @@ npm install @react-navigation/stack@6
 ✏️ Create **src/screens/CityList/index.ts** and update it to be:
 
 @sourceref ../../../exercises/react-native/11-navigation/02-problem/src/screens/CityList/index.ts
+
+✏️ Delete **src/screens/StateList/components/** and everthing in it.
+
+We no longer need the `<ListItem>` component.
 
 ### Verify 2
 
@@ -320,11 +330,17 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 @diff ../../../exercises/react-native/11-navigation/02-solution/src/App.tsx ../../../exercises/react-native/11-navigation/03-problem/src/App.tsx only
 
+✏️ Create **src/components/** (folder)
+
 ✏️ Create **src/components/RestaurantHeader/** (folder)
 
 ✏️ Create **src/components/RestaurantHeader/RestaurantHeader.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-native/11-navigation/03-problem/src/components/RestaurantHeader/RestaurantHeader.tsx
+
+✏️ Create **src/components/RestaurantHeader/mocks.ts** and update it to be:
+
+@sourceref ../../../exercises/react-native/11-navigation/03-problem/src/components/RestaurantHeader/mocks.ts
 
 ✏️ Create **src/components/RestaurantHeader/index.ts** and update it to be:
 
@@ -364,7 +380,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 @sourceref ../../../exercises/react-native/11-navigation/03-problem/src/components/RestaurantHeader/RestaurantHeader.test.tsx
 
-✏️ Create **src/screens/RestaurantDetails/RestaurantDetails.tsx** and update it to be:
+✏️ Create **src/screens/RestaurantDetails/RestaurantDetails.test.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-native/11-navigation/03-problem/src/screens/RestaurantDetails/RestaurantDetails.test.tsx
 
