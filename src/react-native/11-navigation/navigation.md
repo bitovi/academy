@@ -391,13 +391,13 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 ### Exercise 3
 
-- Add `RestaurantList` and `RestaurantDetails` to the `StackNavigator`
+- Add `RestaurantList` and `RestaurantDetails` to the `StackNavigator`.
 - Use `navigation` in the `CityList` component, to link `CityList` to the `RestaurantList` screen.
 - Use `navigation` in the `RestaurantList` component, to link `RestaurantList` to the `RestaurantDetails` screen.
 
 ### Solution 3
 
-If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
+**Note:** The tests will pass before you make any changes, so use the application in the emulator to verify your solution!
 
 <details>
 <summary>Click to see the solution</summary>
