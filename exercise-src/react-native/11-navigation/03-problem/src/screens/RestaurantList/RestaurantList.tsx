@@ -3,6 +3,7 @@ import { FlatList } from "react-native"
 
 import Box from "../../design/Box"
 import Button from "../../design/Button"
+import Screen from "../../design/Screen"
 
 const restaurants = [
   {
@@ -50,7 +51,7 @@ const RestaurantList: React.FC = () => {
   // Exercise: Use navigation in the RestaurantList component, to link RestaurantList to the RestaurantDetails screen.
 
   return (
-    <Box padding="s">
+    <Screen noScroll>
       <FlatList
         data={restaurants}
         renderItem={({ item: restaurant }) => (
@@ -60,7 +61,7 @@ const RestaurantList: React.FC = () => {
         )}
         keyExtractor={(item) => item._id}
       />
-    </Box>
+    </Screen>
   )
 }
 
