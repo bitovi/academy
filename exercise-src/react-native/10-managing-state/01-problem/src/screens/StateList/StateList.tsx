@@ -7,12 +7,7 @@ import Typography from "../../design/Typography"
 
 import ListItem from "./components/ListItem"
 
-export type State = {
-  name: string
-  short: string
-}
-
-const states: State[] = [
+const states = [
   {
     name: "Illinois",
     short: "IL",

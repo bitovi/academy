@@ -26,12 +26,12 @@ const FormSwitch: React.FC<FormSwitchProps> = ({ label, value, onChange }) => {
       <Typography variant="label">{label}</Typography>
       <Switch
         onValueChange={onChange}
+        value={value}
         thumbColor={theme.palette.primary.contrast}
         trackColor={{
           true: theme.palette.primary.strong,
           false: theme.palette.screen.soft,
         }}
-        value={value}
       ></Switch>
     </Box>
   )

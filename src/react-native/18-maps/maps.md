@@ -68,7 +68,7 @@ The component takes several props, but the most important ones are:
 
 ### Setup 1
 
-✏️ Run:
+✏️ Install the new dependency:
 
 ```bash
 npm install react-native-maps@1.15.1
@@ -208,7 +208,7 @@ Navigate to the `Maps` tab of the `RestaurantsList` in your emulator and verify 
 
 ### Exercise 2
 
-- Using the `restaurants` property, create a `Marker` for each restaurant.
+- Using the `restaurants` prop, create a `Marker` for each restaurant.
 - Fill out the `coordinate`, `title`, and `description` properties on Marker.
 - Use `onCallOutPress` to add `navigate` to the `RestaurantDetails` screen.
 

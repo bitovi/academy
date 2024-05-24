@@ -1,4 +1,4 @@
-import { TextStyle, ViewStyle, Pressable, StyleSheet } from "react-native"
+import { Pressable, StyleSheet } from "react-native"
 
 import Box from "../../design/Box"
 import { Theme, useTheme } from "../../design/theme"
@@ -46,13 +46,7 @@ const Tabs: React.FC<TabsProps> = ({ options, value: activeTab, onChange }) => {
 
 export default Tabs
 
-function getStyles(theme: Theme): {
-  wrapper: ViewStyle
-  tab: ViewStyle
-  tabText: TextStyle
-  activeTab: ViewStyle
-  activeTabText: TextStyle
-} {
+function getStyles(theme: Theme) {
   return StyleSheet.create({
     wrapper: {
       flexDirection: "row",

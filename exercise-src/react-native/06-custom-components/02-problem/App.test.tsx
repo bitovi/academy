@@ -25,9 +25,9 @@ describe("Screens/StateList", () => {
 
 describe("Screens/StateList/ListItem", () => {
   it("renders", async () => {
-    render(<ListItem name="This is a given name property." />)
+    render(<ListItem name="This is a given name prop." />)
     expect(
-      screen.getByText(/This is a given name property./i, { exact: false }),
+      screen.getByText(/This is a given name prop./i, { exact: false }),
     ).toBeOnTheScreen()
   })
 })

@@ -1,4 +1,4 @@
-import { TextStyle, ViewStyle, ImageBackground, StyleSheet } from "react-native"
+import { ImageBackground, StyleSheet } from "react-native"
 
 import Box from "../../design/Box"
 import { Theme, useTheme } from "../../design/theme"
@@ -57,11 +57,7 @@ const RestaurantHeader: React.FC<RestaurantHeaderProps> = ({ restaurant }) => {
   )
 }
 
-function getStyles(theme: Theme): {
-  heroBackground: ViewStyle
-  hero: ViewStyle
-  heroText: TextStyle
-} {
+function getStyles(theme: Theme) {
   return StyleSheet.create({
     heroBackground: {
       width: "100%",

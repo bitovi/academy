@@ -4,7 +4,6 @@ import { useState } from "react"
 import { RestaurantsStackParamList } from "../../App"
 import Loading from "../../components/Loading"
 import Tabs from "../../components/Tabs"
-import Box from "../../design/Box"
 import Screen from "../../design/Screen"
 import Typography from "../../design/Typography"
 import { useRestaurants } from "../../services/pmo/restaurant"
@@ -27,10 +26,10 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ route }) => {
 
   if (error) {
     return (
-      <Box padding="s">
+      <Screen>
         <Typography variant="heading">Error loading restaurants: </Typography>
         <Typography variant="body">{error.message}</Typography>
-      </Box>
+      </Screen>
     )
   }
 
@@ -45,8 +44,8 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ route }) => {
           { label: "List", value: "list" },
           { label: "Map", value: "map" },
         ]}
-        value={tab}
         onChange={setTab}
+        value={tab}
       />
 
       <Screen noScroll>

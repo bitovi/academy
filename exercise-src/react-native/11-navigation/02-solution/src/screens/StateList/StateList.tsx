@@ -6,12 +6,7 @@ import Card from "../../design/Card"
 import Screen from "../../design/Screen"
 import Typography from "../../design/Typography"
 
-export interface State {
-  name: string
-  short: string
-}
-
-const states: State[] = [
+const states = [
   {
     name: "Illinois",
     short: "IL",

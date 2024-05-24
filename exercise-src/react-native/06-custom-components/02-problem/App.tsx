@@ -12,15 +12,15 @@ const states = [
 ]
 
 export interface ListItemProps {
-  // Exercise: Update the `ListItemProps` type to enforce a `key` and `name` property of the appropriate primitive type.
+  // Exercise: Update the `ListItemProps` type to enforce a `name` prop of the appropriate primitive type.
 }
 
 export const ListItem: React.FC = () => {
-  // Exercise: Update the `ListItem` component to use the `ListItemProps` as its input type and return the `name` property of the a `state` index.
+  // Exercise: Update the `ListItem` component to use the `ListItemProps` and return the `<Text>` element.
 }
 
 export const StateList: React.FC = () => {
-  // Exercise: Update the `StateList` component to use the `ListItem` component handle each state index.
+  // Exercise: Update the `StateList` component to use the `ListItem` component handle each state item.
   return (
     <ScrollView>
       <View>
