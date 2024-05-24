@@ -21,7 +21,7 @@ In this section, you will:
 - Handle HTTP error statuses.
 - Include query parameters in API calls.
 
-## Objective 1: Add `fetch` states in a custom hook
+## Objective 1: Fetch states in a custom Hook
 
 So far we’ve only had hard-coded data for our states, cities, and restaurants. Let’s start loading data from an API server, beginning with the list of states!
 
@@ -263,6 +263,8 @@ It will be helpful to have a third command-line interface (CLI) tab for the `npm
 
 **Hint:** `useState()` return `isPending` and `error`. Use these states to inform the user the status.
 
+**Hint:** Use `Array.isArray(data) ? data : data?.data ?? undefined` when you need to check for `data` being an Array or an Object response.
+
 ### Solution 1
 
 If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
@@ -453,6 +455,28 @@ Now that we are able to capture a user’s state and city preferences, we want t
 </div>
 
 ### Setup 4
+
+✏️ Update **.env** to be:
+
+@diff ../../../exercises/react-native/13-http-requests/03-solution/.env ../../../exercises/react-native/13-http-requests/04-problem/.env only
+
+✏️ Update **.env.example** to be:
+
+@diff ../../../exercises/react-native/13-http-requests/03-solution/.env.example ../../../exercises/react-native/13-http-requests/04-problem/.env.example only
+
+✏️ Update **src/env.d.ts** to be:
+
+@diff ../../../exercises/react-native/13-http-requests/03-solution/src/env.d.ts ../../../exercises/react-native/13-http-requests/04-problem/src/env.d.ts only
+
+✏️ Terminate the existing dev server and start it again:
+
+```bash
+npm run start
+```
+
+✏️ Update **src/components/RestaurantHeader/RestaurantHeader.tsx** to be:
+
+@diff ../../../exercises/react-native/13-http-requests/03-solution/src/components/RestaurantHeader/RestaurantHeader.tsx ../../../exercises/react-native/13-http-requests/04-problem/src/components/RestaurantHeader/RestaurantHeader.tsx only
 
 ✏️ Update **src/services/pmo/restaurant/interfaces.ts** to be:
 
