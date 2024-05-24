@@ -1830,6 +1830,7 @@ import { useEffect } from &quot;react&quot;
 import { RestaurantsStackParamList } from &quot;../../App&quot;
 import Loading from &quot;../../components/Loading&quot;
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
+import Box from &quot;../../design/Box&quot;
 import Button from &quot;../../design/Button&quot;
 import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
@@ -1860,10 +1861,12 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
   if (error) {
     return (
       &lt;Screen&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;
-          Error loading restaurant details:{&quot; &quot;}
-        &lt;/Typography&gt;
-        &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;Box padding=&quot;m&quot;&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;
+            Error loading restaurant details:{&quot; &quot;}
+          &lt;/Typography&gt;
+          &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;/Box&gt;
       &lt;/Screen&gt;
     )
   }
@@ -1890,7 +1893,7 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
 export default RestaurantDetails
 
 </code></pre>
- <div line-highlight="11-16,27,only"></div>
+ <div line-highlight="12-17,28,only"></div>
 <h3>Verify 2</h3>
 <p>✏️ Create <strong>src/services/pmo/favorite/hooks.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react-native&quot;
@@ -2257,6 +2260,7 @@ import { useEffect } from &quot;react&quot;
 import { RestaurantsStackParamList } from &quot;../../App&quot;
 import Loading from &quot;../../components/Loading&quot;
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
+import Box from &quot;../../design/Box&quot;
 import Button from &quot;../../design/Button&quot;
 import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
@@ -2289,10 +2293,12 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
   if (error) {
     return (
       &lt;Screen&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;
-          Error loading restaurant details:{&quot; &quot;}
-        &lt;/Typography&gt;
-        &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;Box padding=&quot;m&quot;&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;
+            Error loading restaurant details:{&quot; &quot;}
+          &lt;/Typography&gt;
+          &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;/Box&gt;
       &lt;/Screen&gt;
     )
   }
@@ -2332,7 +2338,7 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
 export default RestaurantDetails
 
 </code></pre>
- <div line-highlight="26-29,57-61,64-66,69-70,72-73,75,only"></div>
+ <div line-highlight="27-30,60-64,67-69,72-73,75-76,78,only"></div>
 <p></details></p>
 <h2>Objective 3: Sync offline data when connectivity changes</h2>
 <p>Our app can handle when the API calls fail and it’ll still store the favorites on device in Async Storage.

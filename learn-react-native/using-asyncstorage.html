@@ -719,7 +719,7 @@ export async function saveProfileData(profile) {
 }
 
 </code></pre>
-<div line-highlight='6'></div>
+<div line-highlight='1, 5-6, only'></div>
 <p>This function takes a <code>restaurant</code> object, converts it into a string, and saves it under the key <code>&quot;restaurantData&quot;</code>.</p>
 <h3>Getting items</h3>
 <p>Retrieving data from <code>AsyncStorage</code> is done using the <code>getItem</code> method.
@@ -737,7 +737,7 @@ export async function loadProfileData() {
 }
 
 </code></pre>
-<div line-highlight='5'></div>
+<div line-highlight='5-6, only'></div>
 <p>This function fetches the data stored under the <code>&quot;restaurantData&quot;</code> key and converts it from a string back into an object.</p>
 <h3>Getting all keys</h3>
 <p>Sometimes, it is necessary to know all the keys under which data is stored.</p>
@@ -800,6 +800,9 @@ Choosing the right caching strategy is critical for balancing between data fresh
 <p>✏️ Install the new dependency:</p>
 <pre><code class="language-bash">npm install @react-native-async-storage/async-storage@1
 </code></pre>
+<p>✏️ Terminate the existing dev server and start it again:</p>
+<pre><code class="language-bash">npm run start
+</code></pre>
 <p>✏️ Update <strong>jest-setup.ts</strong> to be:</p>
 <pre><code class="language-ts">import &quot;@testing-library/react-native/extend-expect&quot;
 
@@ -840,14 +843,10 @@ console.error = (message, ...args) =&gt; {
 
 </code></pre>
  <div line-highlight="16-18,20-22,only"></div>
-<p>✏️ Create <strong>src/services/storage/index.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">export * from &quot;./storage&quot;
-
-</code></pre>
 <p>✏️ Create <strong>src/services/storage/storage.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import AsyncStorage from &quot;@react-native-async-storage/async-storage&quot;
 
-// Exercise: Implement the four `AsyncStorage` helpers in `storage.ts`.
+// Exercise: Implement the four `AsyncStorage` helpers.
 export const getData = async &lt;T&gt;(key: string): Promise&lt;T | undefined&gt; =&gt; {}
 
 export const getAllKeys = (): Promise&lt;readonly string[]&gt; =&gt; {}
@@ -855,6 +854,11 @@ export const getAllKeys = (): Promise&lt;readonly string[]&gt; =&gt; {}
 export const storeData = &lt;T&gt;(key: string, value: T): Promise&lt;void&gt; =&gt; {}
 
 export const clearStorage = (): Promise&lt;void&gt; =&gt; {}
+
+</code></pre>
+<div line-highlight='3'></div>
+<p>✏️ Create <strong>src/services/storage/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export * from &quot;./storage&quot;
 
 </code></pre>
 <p>✏️ Update <strong>src/services/pmo/api/api.ts</strong> to be:</p>
@@ -1049,6 +1053,8 @@ describe(&quot;Services/Storage&quot;, () =&gt; {
 <li>View the requests (or lack thereof) being made.</li>
 <li>Inspect the stored data.</li>
 </ul>
+<p>You can terminate the <code>api</code> server to check that uncached requests show an error.</p>
+<p><strong>Hint:</strong> Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toJSON"><code>new Date().toJSON()</code></a> to get the current datetime as a string.</p>
 <h3>Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
@@ -1119,7 +1125,7 @@ export async function apiRequest&lt;
     if (method === &quot;GET&quot; &amp;&amp; response.ok) {
       await storeData&lt;CachedResponse&lt;Data&gt;&gt;(keyPrefix + requestUrl, {
         data: data,
-        dateTime: new Date().toDateString(),
+        dateTime: new Date().toJSON(),
       })
     }
 
@@ -1250,7 +1256,7 @@ export async function apiRequest&lt;
     if (method === &quot;GET&quot; &amp;&amp; response.ok) {
       await storeData&lt;CachedResponse&lt;Data&gt;&gt;(keyPrefix + requestUrl, {
         data: data,
-        dateTime: new Date().toDateString(),
+        dateTime: new Date().toJSON(),
       })
     }
 
@@ -1287,7 +1293,7 @@ export function stringifyQuery(
 }
 
 </code></pre>
-<div line-highlight='7, 38-39, 69, only'></div>
+<div line-highlight='7, 38-39, 66, only'></div>
 <p>We could improve this by storing the datetime as a number instead, so we don’t have to parse it when fetching from the cache:</p>
 <pre><code class="language-ts">import { getData, storeData } from &quot;../../storage&quot;
 
@@ -1553,6 +1559,7 @@ const DataMigration: React.FC&lt;DataMigrationProps&gt; = ({ children }) =&gt; {
 export default DataMigration
 
 </code></pre>
+<div line-highlight='13, 21-23, only'></div>
 <p>✏️ Create <strong>src/services/DataMigration/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./DataMigration&quot;
 export * from &quot;./DataMigration&quot;
@@ -1804,7 +1811,7 @@ We’ve already given you the changes to the <code>apiRequest</code> helper, so 
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update <strong>src/services/DataMigration/DataMigration.ts</strong> to be:</p>
+<p>✏️ Update <strong>src/services/DataMigration/DataMigration.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useEffect, useState } from &quot;react&quot;
 
 import Loading from &quot;../../components/Loading&quot;

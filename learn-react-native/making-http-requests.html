@@ -2796,6 +2796,7 @@ import { useEffect } from &quot;react&quot;
 import { RestaurantsStackParamList } from &quot;../../App&quot;
 import Loading from &quot;../../components/Loading&quot;
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
+import Box from &quot;../../design/Box&quot;
 import Button from &quot;../../design/Button&quot;
 import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
@@ -2821,7 +2822,7 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
 export default RestaurantDetails
 
 </code></pre>
- <div line-highlight="2,5-6,10-11,13-14,16,18,only"></div>
+ <div line-highlight="2,5-6,8,11-12,14-15,17,19,only"></div>
 <h3>Verify 4</h3>
 <p>✏️ Update <strong>src/services/pmo/restaurant/hooks.test.ts</strong> to be:</p>
 <pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react-native&quot;
@@ -3533,6 +3534,7 @@ import { useEffect } from &quot;react&quot;
 import { RestaurantsStackParamList } from &quot;../../App&quot;
 import Loading from &quot;../../components/Loading&quot;
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
+import Box from &quot;../../design/Box&quot;
 import Button from &quot;../../design/Button&quot;
 import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
@@ -3555,10 +3557,12 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
   if (error) {
     return (
       &lt;Screen&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;
-          Error loading restaurant details:{&quot; &quot;}
-        &lt;/Typography&gt;
-        &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;Box padding=&quot;m&quot;&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;
+            Error loading restaurant details:{&quot; &quot;}
+          &lt;/Typography&gt;
+          &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;/Box&gt;
       &lt;/Screen&gt;
     )
   }
@@ -3580,7 +3584,7 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
 export default RestaurantDetails
 
 </code></pre>
- <div line-highlight="17,19,21-25,27-36,38-40,only"></div>
+ <div line-highlight="18,20,22-26,28-39,41-43,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, we will learn how to <a href="user-inputs.html" title="Use switch controls and inputs to collect information.">Handling User Inputs</a> in React Native applications.</p>

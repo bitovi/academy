@@ -1041,6 +1041,7 @@ import { useEffect } from &quot;react&quot;
 import { RestaurantsStackParamList } from &quot;../../App&quot;
 import Loading from &quot;../../components/Loading&quot;
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
+import Box from &quot;../../design/Box&quot;
 import Button from &quot;../../design/Button&quot;
 import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
@@ -1063,10 +1064,12 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
   if (error) {
     return (
       &lt;Screen&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;
-          Error loading restaurant details:{&quot; &quot;}
-        &lt;/Typography&gt;
-        &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;Box padding=&quot;m&quot;&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;
+            Error loading restaurant details:{&quot; &quot;}
+          &lt;/Typography&gt;
+          &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;/Box&gt;
       &lt;/Screen&gt;
     )
   }
@@ -1089,7 +1092,7 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
 export default RestaurantDetails
 
 </code></pre>
- <div line-highlight="48,only"></div>
+ <div line-highlight="51,only"></div>
 <p>✏️ Create <strong>src/screens/RestaurantOrder/RestaurantOrder.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -1133,10 +1136,12 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
   if (error) {
     return (
       &lt;Screen&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;
-          Error loading restaurant order:{&quot; &quot;}
-        &lt;/Typography&gt;
-        &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;Box padding=&quot;m&quot;&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;
+            Error loading restaurant order:{&quot; &quot;}
+          &lt;/Typography&gt;
+          &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;/Box&gt;
       &lt;/Screen&gt;
     )
   }
@@ -1148,7 +1153,9 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
   if (!restaurant) {
     return (
       &lt;Screen&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;Restaurant not found&lt;/Typography&gt;
+        &lt;Box padding=&quot;m&quot;&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;Restaurant not found&lt;/Typography&gt;
+        &lt;/Box&gt;
       &lt;/Screen&gt;
     )
   }
@@ -1612,6 +1619,7 @@ import { useEffect } from &quot;react&quot;
 import { RestaurantsStackParamList } from &quot;../../App&quot;
 import Loading from &quot;../../components/Loading&quot;
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
+import Box from &quot;../../design/Box&quot;
 import Button from &quot;../../design/Button&quot;
 import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
@@ -1634,10 +1642,12 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
   if (error) {
     return (
       &lt;Screen&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;
-          Error loading restaurant details:{&quot; &quot;}
-        &lt;/Typography&gt;
-        &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;Box padding=&quot;m&quot;&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;
+            Error loading restaurant details:{&quot; &quot;}
+          &lt;/Typography&gt;
+          &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;/Box&gt;
       &lt;/Screen&gt;
     )
   }
@@ -1663,7 +1673,7 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
 export default RestaurantDetails
 
 </code></pre>
- <div line-highlight="45-49,only"></div>
+ <div line-highlight="48-52,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantOrder/RestaurantOrder.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -1723,10 +1733,12 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
   if (error) {
     return (
       &lt;Screen&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;
-          Error loading restaurant order:{&quot; &quot;}
-        &lt;/Typography&gt;
-        &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;Box padding=&quot;m&quot;&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;
+            Error loading restaurant order:{&quot; &quot;}
+          &lt;/Typography&gt;
+          &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;/Box&gt;
       &lt;/Screen&gt;
     )
   }
@@ -1738,7 +1750,9 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
   if (!restaurant) {
     return (
       &lt;Screen&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;Restaurant not found&lt;/Typography&gt;
+        &lt;Box padding=&quot;m&quot;&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;Restaurant not found&lt;/Typography&gt;
+        &lt;/Box&gt;
       &lt;/Screen&gt;
     )
   }
@@ -1797,7 +1811,7 @@ function calculateTotal(items: OrderItems) {
 export default RestaurantOrder
 
 </code></pre>
- <div line-highlight="26,39-50,54,77,82-89,93-100,only"></div>
+ <div line-highlight="26,39-50,54,81,86-93,97-104,only"></div>
 <p></details></p>
 <h2>Objective 2: Add text fields to collect user data</h2>
 <p>Next, we want to collect the user’s name, phone number, and address as part of the order.
@@ -2046,10 +2060,12 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
   if (error) {
     return (
       &lt;Screen&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;
-          Error loading restaurant order:{&quot; &quot;}
-        &lt;/Typography&gt;
-        &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;Box padding=&quot;m&quot;&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;
+            Error loading restaurant order:{&quot; &quot;}
+          &lt;/Typography&gt;
+          &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;/Box&gt;
       &lt;/Screen&gt;
     )
   }
@@ -2061,7 +2077,9 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
   if (!restaurant) {
     return (
       &lt;Screen&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;Restaurant not found&lt;/Typography&gt;
+        &lt;Box padding=&quot;m&quot;&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;Restaurant not found&lt;/Typography&gt;
+        &lt;/Box&gt;
       &lt;/Screen&gt;
     )
   }
@@ -2122,7 +2140,7 @@ function calculateTotal(items: OrderItems) {
 export default RestaurantOrder
 
 </code></pre>
- <div line-highlight="7,28,105-107,only"></div>
+ <div line-highlight="7,28,109-111,only"></div>
 <h3>Verify 2</h3>
 <p>✏️ Create <strong>src/components/FormTextField/FormTextField.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen, userEvent } from &quot;@testing-library/react-native&quot;
@@ -2480,10 +2498,12 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
   if (error) {
     return (
       &lt;Screen&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;
-          Error loading restaurant order:{&quot; &quot;}
-        &lt;/Typography&gt;
-        &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;Box padding=&quot;m&quot;&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;
+            Error loading restaurant order:{&quot; &quot;}
+          &lt;/Typography&gt;
+          &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;/Box&gt;
       &lt;/Screen&gt;
     )
   }
@@ -2495,7 +2515,9 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
   if (!restaurant) {
     return (
       &lt;Screen&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;Restaurant not found&lt;/Typography&gt;
+        &lt;Box padding=&quot;m&quot;&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;Restaurant not found&lt;/Typography&gt;
+        &lt;/Box&gt;
       &lt;/Screen&gt;
     )
   }
@@ -2558,7 +2580,7 @@ function calculateTotal(items: OrderItems) {
 export default RestaurantOrder
 
 </code></pre>
- <div line-highlight="28-30,108-110,only"></div>
+ <div line-highlight="28-30,112-114,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, in order to retain data to limit requests and migrating the same data, let’s look into <a href="./using-asyncstorage">Using AsyncStorage</a>.</p>
