@@ -210,10 +210,6 @@ Double-check the API by navigating to <a href="http://localhost:7070/restaurants
 
 It will be helpful to have a third command-line interface (CLI) tab for the `npm run api` command.
 
-✏️ Update **src/App.test.tsx** to be:
-
-@diff ../../../exercises/react-native/12-navigation-params/01-solution/src/App.test.tsx ../../../exercises/react-native/13-http-requests/01-problem/src/App.test.tsx only
-
 ✏️ Create **src/services/pmo/restaurant/interfaces.ts** and update it to be:
 
 @sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/restaurant/interfaces.ts
@@ -231,10 +227,6 @@ It will be helpful to have a third command-line interface (CLI) tab for the `npm
 
 @sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/components/Loading/Loading.tsx
 
-✏️ Create **src/components/Loading/Loading.test.tsx** and update it to be:
-
-@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/components/Loading/Loading.test.tsx
-
 ✏️ Create **src/components/Loading/index.ts** and update it to be:
 
 @sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/components/Loading/index.ts
@@ -244,6 +236,14 @@ It will be helpful to have a third command-line interface (CLI) tab for the `npm
 @diff ../../../exercises/react-native/12-navigation-params/01-solution/src/screens/StateList/StateList.tsx ../../../exercises/react-native/13-http-requests/01-problem/src/screens/StateList/StateList.tsx only
 
 ### Verify 1
+
+✏️ Update **src/App.test.tsx** to be:
+
+@diff ../../../exercises/react-native/12-navigation-params/01-solution/src/App.test.tsx ../../../exercises/react-native/13-http-requests/01-problem/src/App.test.tsx only
+
+✏️ Create **src/components/Loading/Loading.test.tsx** and update it to be:
+
+@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/components/Loading/Loading.test.tsx
 
 ✏️ Create **src/services/pmo/restaurant/hooks.test.ts** and update it to be:
 
