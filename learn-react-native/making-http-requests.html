@@ -681,20 +681,20 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this section, you will:</p>
 <ul>
-<li>Manage environment variables</li>
-<li>Define interfaces for <code>useState</code></li>
-<li>Explore the <code>useEffect</code> Hook</li>
-<li>Understand the effect callback function</li>
-<li>Utilize the dependency array</li>
-<li>Perform async operations inside <code>useEffect</code></li>
-<li>Implement cleanup functions</li>
-<li>Catch network errors</li>
-<li>Handle HTTP error statuses</li>
-<li>Include query parameters in API calls</li>
+<li>Manage environment variables.</li>
+<li>Define interfaces for <code>useState</code>.</li>
+<li>Explore the <code>useEffect</code> Hook.</li>
+<li>Understand the effect callback function.</li>
+<li>Utilize the dependency array.</li>
+<li>Perform async operations inside <code>useEffect</code>.</li>
+<li>Implement cleanup functions.</li>
+<li>Catch network errors.</li>
+<li>Handle HTTP error statuses.</li>
+<li>Include query parameters in API calls.</li>
 </ul>
-<h2>Objective 1: Add <code>fetch</code> states in a custom hook</h2>
+<h2>Objective 1: Fetch states in a custom Hook</h2>
 <p>So far we’ve only had hard-coded data for our states, cities, and restaurants. Let’s start loading data from an API server, beginning with the list of states!</p>
-<p><img alt="Screenshot of the application when it makes an api call to the states endpoint and is populated the list of states." src="../static/img/react-native/13-making-http-requests/1-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
+<p><img alt="Screenshot of the application when it makes an API call to the states endpoint and is populated the list of states." src="../static/img/react-native/13-making-http-requests/1-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/></p>
 <h3>Defining interfaces for <code>useState</code></h3>
 <p>When building React Native components, you may sometimes have local state variables that always change together, and thus would benefit by being in a single <code>useState()</code> variable together:</p>
 <pre><code class="language-tsx">import { useState } from &quot;react&quot;
@@ -738,31 +738,33 @@ export default UserProfileComponent
 <p><code>useEffect</code> is a React Hook that lets you perform side effects in your function components. It serves as a powerful tool to execute code in response to component renders or state changes.</p>
 <p>Here is an example component with <code>useEffect</code>:</p>
 <pre><code class="language-tsx">import { useEffect, useState } from &quot;react&quot;
-import { View, Text } from &quot;react-native&quot;
+import { Keyboard, Text, View } from &quot;react-native&quot;
 
 const GeolocationComponent: React.FC = () =&gt; {
-  const [location, setLocation] = useState(null)
+  const [keyboardStatus, setKeyboardStatus] = useState(&quot;&quot;)
 
   useEffect(() =&gt; {
     // Effect callback function
-    navigator.geolocation.getCurrentPosition(
-      (position) =&gt; {
-        setLocation(position.coords)
-      },
-      (error) =&gt; {
-        console.error(error)
-      },
-    )
+    const showSubscription = Keyboard.addListener(&quot;keyboardDidShow&quot;, () =&gt; {
+      setKeyboardStatus(&quot;Keyboard shown&quot;)
+    })
+    const hideSubscription = Keyboard.addListener(&quot;keyboardDidHide&quot;, () =&gt; {
+      setKeyboardStatus(&quot;Keyboard hidden&quot;)
+    })
+
+    return () =&gt; {
+      // Teardown function
+      showSubscription.remove()
+      hideSubscription.remove()
+    }
   }, []) // Dependency array
 
   return (
     &lt;View&gt;
-      {location ? (
-        &lt;Text&gt;
-          Latitude: {location.latitude}, Longitude: {location.longitude}
-        &lt;/Text&gt;
+      {keyboardStatus ? (
+        &lt;Text&gt;{keyboardStatus}&lt;/Text&gt;
       ) : (
-        &lt;Text&gt;Requesting location…&lt;/Text&gt;
+        &lt;Text&gt;Checking keyboard status…&lt;/Text&gt;
       )}
     &lt;/View&gt;
   )
@@ -771,7 +773,7 @@ const GeolocationComponent: React.FC = () =&gt; {
 export default GeolocationComponent
 
 </code></pre>
-<div line-highlight='1, 7-13, only'></div>
+<div line-highlight='1, 7-21, only'></div>
 <p>Let’s break this example down by the two arguments that <code>useEffect</code> takes:</p>
 <h3>Effect callback function</h3>
 <p>The first argument of <code>useEffect</code> is a function, often referred to as the “effect” function. This is where you perform your side effects, such as fetching data, setting up a subscription, or manually changing the UI in React Native components.</p>
@@ -783,31 +785,33 @@ export default GeolocationComponent
 <h4>Empty dependency array (<code>[]</code>)</h4>
 <p>If the dependency array is an empty array, the effect runs once after the initial render.</p>
 <pre><code class="language-tsx">import { useEffect, useState } from &quot;react&quot;
-import { View, Text } from &quot;react-native&quot;
+import { Keyboard, Text, View } from &quot;react-native&quot;
 
 const GeolocationComponent: React.FC = () =&gt; {
-  const [location, setLocation] = useState(null)
+  const [keyboardStatus, setKeyboardStatus] = useState(&quot;&quot;)
 
   useEffect(() =&gt; {
     // Effect callback function
-    navigator.geolocation.getCurrentPosition(
-      (position) =&gt; {
-        setLocation(position.coords)
-      },
-      (error) =&gt; {
-        console.error(error)
-      },
-    )
+    const showSubscription = Keyboard.addListener(&quot;keyboardDidShow&quot;, () =&gt; {
+      setKeyboardStatus(&quot;Keyboard shown&quot;)
+    })
+    const hideSubscription = Keyboard.addListener(&quot;keyboardDidHide&quot;, () =&gt; {
+      setKeyboardStatus(&quot;Keyboard hidden&quot;)
+    })
+
+    return () =&gt; {
+      // Teardown function
+      showSubscription.remove()
+      hideSubscription.remove()
+    }
   }, []) // Dependency array
 
   return (
     &lt;View&gt;
-      {location ? (
-        &lt;Text&gt;
-          Latitude: {location.latitude}, Longitude: {location.longitude}
-        &lt;/Text&gt;
+      {keyboardStatus ? (
+        &lt;Text&gt;{keyboardStatus}&lt;/Text&gt;
       ) : (
-        &lt;Text&gt;Requesting location…&lt;/Text&gt;
+        &lt;Text&gt;Checking keyboard status…&lt;/Text&gt;
       )}
     &lt;/View&gt;
   )
@@ -816,31 +820,41 @@ const GeolocationComponent: React.FC = () =&gt; {
 export default GeolocationComponent
 
 </code></pre>
-<div line-highlight='7-13, only'></div>
+<div line-highlight='7-21, only'></div>
 <h4>Array with values</h4>
 <p>When you include values (variables, props, state) in the dependency array, the effect will only re-run if those specific values change between renders. This selective execution can optimize performance by avoiding unnecessary work.</p>
 <pre><code class="language-tsx">import { useEffect, useState } from &quot;react&quot;
-import { View, Text, TextInput } from &quot;react-native&quot;
+import { Pressable, Vibration, View } from &quot;react-native&quot;
 
-function NameStorage() {
-  const [name, setName] = useState(&quot;&quot;)
+function VibrateButtons() {
+  const [vibrate, setVibrate] = useState(false)
 
   useEffect(() =&gt; {
-    localStorage.setItem(&quot;name&quot;, name)
-  }, [name])
+    if (vibrate) {
+      Vibration.vibrate(1000)
+    }
+
+    return () =&gt; {
+      Vibration.cancel()
+    }
+  }, [vibrate])
 
   return (
     &lt;View&gt;
-      &lt;Text&gt;Name&lt;/Text&gt;
-      &lt;TextInput onChangeText={setName} value={name} /&gt;
+      &lt;Pressable onPress={() =&gt; setVibrate(true)}&gt;
+        &lt;Text&gt;Vibrate&lt;/Text&gt;
+      &lt;/Pressable&gt;
+      &lt;Pressable onPress={() =&gt; setVibrate(false)}&gt;
+        &lt;Text&gt;Stop vibrating&lt;/Text&gt;
+      &lt;/Pressable&gt;
     &lt;/View&gt;
   )
 }
 
-export default NameStorage
+export default VibrateButtons
 
 </code></pre>
-<div line-highlight='5, 7-9, only'></div>
+<div line-highlight='5, 7, 15, 19, 22, only'></div>
 <h4>No dependency array</h4>
 <p>If the dependency array is omitted, the effect runs after every render of the component. This should not be needed.</p>
 <pre><code class="language-tsx">import { useEffect, useState } from &quot;react&quot;
@@ -988,7 +1002,7 @@ const data = await response.json()
 </code></pre>
 <div line-highlight='1'></div>
 <p>Concatenating the two, this will be the equivalent of making this <code>fetch</code> request:</p>
-<pre><code class="language-tsx">const response = await fetch(`//localhost:7070/data`, {
+<pre><code class="language-tsx">const response = await fetch(`http://localhost:7070/data`, {
   method: &quot;GET&quot;,
 })
 </code></pre>
@@ -996,25 +1010,132 @@ const data = await response.json()
 <h3>Setup 1</h3>
 <p>Before we begin requesting data from our API, we need to install the &quot;place-my-order-api&quot; module, which will generate fake restaurant data and serve it from port <code>7070</code>.</p>
 <p>✏️ Install the new dev dependency:</p>
-<pre><code class="language-bash">npm install --save-dev place-my-order-api@1
+<pre><code class="language-bash">npm install --save-dev place-my-order-api@1 react-native-dotenv@3
 </code></pre>
-<p>We will also need to set up our environment.</p>
-<p>✏️ Install the new dev dependency:</p>
-<pre><code class="language-bash">npm install --save-dev react-native-dotenv@3
-</code></pre>
-<p>✏️ Update <strong>babel.config.js</strong> to be:</p>
-<pre><code class="language-js">module.exports = {
-  presets: [&quot;module:@react-native/babel-preset&quot;],
-  plugins: [&quot;module:react-native-dotenv&quot;],
-}
-
-</code></pre>
- <div line-highlight="3,"></div>
 <p>✏️ Create <strong>.env.example</strong> and update it to be:</p>
 <pre><code class="language-example">PMO_API=http://localhost:7070
 
 </code></pre>
-<p>✏️ Next add an API script to your <code>package.json</code></p>
+<div line-highlight='1, only'></div>
+<p>✏️ Duplicate <strong>.env.example</strong> to <strong>.env</strong> in your project.</p>
+<p>It’s always a good idea to keep a <code>.env.example</code> file up to date (and committed to git) in your project, then include the actual secrets in your local <code>.env</code> file (and not committed to git).</p>
+<p>We do not have any secret values yet, so our <code>.env</code> can be an exact duplicate of the <code>.env.example</code> file.</p>
+<p>✏️ Update <strong>.gitignore</strong> to be:</p>
+<pre><code># OSX
+#
+.DS_Store
+
+# Windows
+#
+Thumbs.db
+
+# Xcode
+#
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+**/.xcode.env.local
+
+# Android/IntelliJ
+#
+build/
+.idea
+.gradle
+local.properties
+*.iml
+*.hprof
+.cxx/
+*.keystore
+!debug.keystore
+
+# node.js
+#
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/
+
+**/fastlane/report.xml
+**/fastlane/Preview.html
+**/fastlane/screenshots
+**/fastlane/test_output
+
+# Bundle artifact
+*.jsbundle
+*.tsbuildinfo
+
+# Environment variables
+.env
+
+# Place My Order API
+/db-data
+
+# Ruby / CocoaPods
+**/Pods/
+/vendor/bundle/
+
+# Temporary files created by Metro to check the health of the file watcher
+.metro-health-check*
+
+# testing
+/coverage
+
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+</code></pre>
+ <div line-highlight="63-64,66-67,only"></div>
+<p>✏️ Update <strong>babel.config.js</strong> to be:</p>
+<pre><code class="language-js">module.exports = {
+  plugins: [&quot;module:react-native-dotenv&quot;],
+  presets: [&quot;module:@react-native/babel-preset&quot;],
+}
+
+</code></pre>
+ <div line-highlight="2,only"></div>
+<p>✏️ Create <strong>src/env.d.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">/* eslint-disable @typescript-eslint/no-namespace */
+
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      readonly PMO_API: string
+    }
+  }
+}
+
+export {}
+
+</code></pre>
+<div line-highlight='6, only'></div>
+<p>✏️ Terminate the existing dev server and start it again:</p>
+<pre><code class="language-bash">npm run start
+</code></pre>
+<p>✏️ Update <strong>package.json</strong> to be:</p>
 <pre><code class="language-json">{
   &quot;name&quot;: &quot;PlaceMyOrder&quot;,
   &quot;version&quot;: &quot;0.0.1&quot;,
@@ -1083,12 +1204,52 @@ const data = await response.json()
 }
 
 </code></pre>
- <div line-highlight="7-8,56,59,only"></div>
-<p>✏️ In a <strong>new</strong> terminal window, start the API server by running:</p>
+<div line-highlight='7-8, only'></div>
+<p>✏️ In a <strong>new</strong> command-line interface (CLI) window, start the API server by running:</p>
 <pre><code class="language-bash">npm run api
 </code></pre>
 <p>Double-check the API by navigating to <a href="http://localhost:7070/restaurants">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data.</p>
-<p>It will be helpful to have a third terminal tab for the <code>npm run api</code> command.</p>
+<p>It will be helpful to have a third command-line interface (CLI) tab for the <code>npm run api</code> command.</p>
+<p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+
+import App from &quot;./App&quot;
+
+const oldFetch = global.fetch
+const mockFetch = jest.fn()
+beforeAll(() =&gt; {
+  global.fetch = mockFetch
+})
+afterAll(() =&gt; {
+  global.fetch = oldFetch
+})
+
+describe(&quot;App&quot;, () =&gt; {
+  const mockStateResponse = {
+    data: [
+      { short: &quot;MI&quot;, name: &quot;Michigan&quot; },
+      { short: &quot;WI&quot;, name: &quot;Wisconsin&quot; },
+      { short: &quot;IL&quot;, name: &quot;Illinois&quot; },
+    ],
+  }
+
+  it(&quot;renders&quot;, async () =&gt; {
+    mockFetch.mockResolvedValueOnce({
+      ok: true,
+      json: () =&gt; Promise.resolve(mockStateResponse),
+      statusText: &quot;OK&quot;,
+      status: 200,
+    })
+
+    render(&lt;App /&gt;)
+
+    const placeMyOrderText = await screen.findAllByText(/Place my order/i)
+    expect(placeMyOrderText).toHaveLength(2)
+  })
+})
+
+</code></pre>
+ <div line-highlight="5-8,10-12,15-21,24-29,33-34,36,only"></div>
 <p>✏️ Create <strong>src/services/pmo/restaurant/interfaces.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export interface State {
   name: string
@@ -1114,6 +1275,7 @@ export function useStates(): StatesResponse {
 }
 
 </code></pre>
+<div line-highlight='14, only'></div>
 <p>✏️ Create <strong>src/services/pmo/restaurant/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export * from &quot;./interfaces&quot;
 export * from &quot;./hooks&quot;
@@ -1142,6 +1304,19 @@ const Loading: React.FC = () =&gt; {
 export default Loading
 
 </code></pre>
+<p>✏️ Create <strong>src/components/Loading/Loading.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
+
+import Loading from &quot;./Loading&quot;
+
+describe(&quot;Components/Loading&quot;, () =&gt; {
+  it(&quot;renders&quot;, () =&gt; {
+    render(&lt;Loading /&gt;)
+    expect(screen.getByText(/Loading…/)).toBeOnTheScreen()
+  })
+})
+
+</code></pre>
 <p>✏️ Create <strong>src/components/Loading/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./Loading&quot;
 
@@ -1151,6 +1326,7 @@ export default Loading
 import { FlatList } from &quot;react-native&quot;
 
 import Loading from &quot;../../components/Loading&quot;
+import Box from &quot;../../design/Box&quot;
 import Button from &quot;../../design/Button&quot;
 import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
@@ -1188,7 +1364,7 @@ const StateList: React.FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="4,8,10,12,16-34,only"></div>
+ <div line-highlight="4-5,9,11,13,17-35,only"></div>
 <h3>Verify 1</h3>
 <p>✏️ Create <strong>src/services/pmo/restaurant/hooks.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react-native&quot;
@@ -1228,19 +1404,7 @@ describe(&quot;Services/PMO/Restaurant/useStates&quot;, () =&gt; {
 })
 
 </code></pre>
-<p>✏️ Create <strong>src/components/Loading/Loading.test.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
-
-import Loading from &quot;./Loading&quot;
-
-describe(&quot;Components/Loading&quot;, () =&gt; {
-  it(&quot;renders&quot;, () =&gt; {
-    render(&lt;Loading /&gt;)
-    expect(screen.getByText(/Loading…/)).toBeOnTheScreen()
-  })
-})
-
-</code></pre>
+<div line-highlight='15, only'></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { render, screen } from &quot;@testing-library/react-native&quot;
@@ -1305,12 +1469,10 @@ describe(&quot;Screens/StateList&quot;, () =&gt; {
 <ul>
 <li>Update the <code>useState</code> in <code>hooks.ts</code> to call <code>useEffect()</code> and <code>fetch</code> data from <code>${process.env.PMO_API}/states</code>.</li>
 <li>Update <code>StateList.tsx</code> to call <code>useState()</code> and use the <code>StateResponse</code> interface.</li>
-<li>Duplicate <strong>.env.example</strong> to <strong>.env</strong> in your project.</li>
 </ul>
-<p>It’s always a good idea to keep a <code>.env.example</code> file up to date (and committed to git) in your project, then include the actual secrets in your local <code>.env</code> file (and not committed to git).</p>
-<p>We do not have any secret values yet, so our <code>.env</code> can be an exact duplicate of the <code>.env.example</code> file.</p>
-<p>Hint: Call your state setter after you parse the JSON response from <code>fetch()</code>.</p>
-<p>Hint: <code>useState()</code> return <code>isPending</code> and <code>error</code>. Use these states to inform the user the status.</p>
+<p><strong>Hint:</strong> Call your state setter after you parse the JSON response from <code>fetch()</code>.</p>
+<p><strong>Hint:</strong> <code>useState()</code> return <code>isPending</code> and <code>error</code>. Use these states to inform the user the status.</p>
+<p><strong>Hint:</strong> Use <code>Array.isArray(data) ? data : data?.data ?? undefined</code> when you need to check for <code>data</code> being an Array or an Object response.</p>
 <h3>Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
@@ -1347,7 +1509,7 @@ export function useStates(): StatesResponse {
       const data = await response.json()
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data) ? data : data?.data ?? undefined,
         error: undefined,
         isPending: false,
       })
@@ -1365,6 +1527,7 @@ export function useStates(): StatesResponse {
 import { FlatList } from &quot;react-native&quot;
 
 import Loading from &quot;../../components/Loading&quot;
+import Box from &quot;../../design/Box&quot;
 import Button from &quot;../../design/Button&quot;
 import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
@@ -1377,8 +1540,10 @@ const StateList: React.FC = () =&gt; {
   if (error) {
     return (
       &lt;Screen&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;Error loading states: &lt;/Typography&gt;
-        &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;Box padding=&quot;m&quot;&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;Error loading states: &lt;/Typography&gt;
+          &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;/Box&gt;
       &lt;/Screen&gt;
     )
   }
@@ -1415,12 +1580,12 @@ const StateList: React.FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="12,14-21,23-25,only"></div>
+ <div line-highlight="13,15-24,26-28,only"></div>
 <p></details></p>
-<h2>Objective 2: Add <code>fetch</code> cities in a custom hook with query parameters</h2>
+<h2>Objective 2: Fetch cities in a custom Hook with query parameters</h2>
 <p>Let’s continue our quest to load data from our API and update our <code>&lt;CitiesList&gt;</code> to use a custom <code>useCities</code> Hook to fetch data.</p>
 <p>To do this, we’ll need to include query parameters in our API call to the <code>/cities</code> endpoint.</p>
-<p><img alt="Screenshot of the application when it makes an api call to the cities endpoint and is populated the list of cities." src="../static/img/react-native/13-making-http-requests/2-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
+<p><img alt="Screenshot of the application when it makes an API call to the cities endpoint and is populated the list of cities." src="../static/img/react-native/13-making-http-requests/2-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/></p>
 <h3>Including query parameters in API calls</h3>
 <p>Query parameters are a defined set of parameters attached to the end of a URL. They are used to define and pass data in the form of key-value pairs. The parameters are separated from the URL itself by a <code>?</code> symbol, and individual key-value pairs are separated by the <code>&amp;</code> symbol.</p>
 <p>A basic URL with query parameters looks like this:
@@ -1436,7 +1601,7 @@ export default StateList
 </ul></li>
 </ul>
 <h3>Setup 2</h3>
-<p>✏️ Create <strong>src/services/pmo/restaurant/interfaces.ts</strong> and update it to be:</p>
+<p>✏️ Update <strong>src/services/pmo/restaurant/interfaces.ts</strong> to be:</p>
 <pre><code class="language-ts">export interface State {
   name: string
   short: string
@@ -1491,7 +1656,7 @@ export function useStates(): StatesResponse {
       const data = await response.json()
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data) ? data : data?.data ?? undefined,
         error: undefined,
         isPending: false,
       })
@@ -1515,6 +1680,7 @@ import { FlatList } from &quot;react-native&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
 import Loading from &quot;../../components/Loading&quot;
+import Box from &quot;../../design/Box&quot;
 import Button from &quot;../../design/Button&quot;
 import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
@@ -1553,7 +1719,7 @@ const CityList: React.FC&lt;CityListProps&gt; = ({ route }) =&gt; {
 export default CityList
 
 </code></pre>
- <div line-highlight="6,9-10,18,only"></div>
+ <div line-highlight="6-7,10-11,19,only"></div>
 <h3>Verify 2</h3>
 <p>✏️ Update <strong>src/services/pmo/restaurant/hooks.test.ts</strong> to be:</p>
 <pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react-native&quot;
@@ -1694,7 +1860,7 @@ describe(&quot;Screens/CityList&quot;, () =&gt; {
 <li>When calling the Place My Order API, include the <code>state</code> query parameter:
 <code>http://localhost:7070/cities?state=MO</code></li>
 </ul>
-<p>Hint: Remember to include the <code>state</code> in the dependency array of the <code>useEffect()</code> in <code>useCities()</code>.</p>
+<p><strong>Hint:</strong> Remember to include the <code>state</code> in the dependency array of the <code>useEffect()</code> in <code>useCities()</code>.</p>
 <h3>Solution 2</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
@@ -1702,7 +1868,7 @@ describe(&quot;Screens/CityList&quot;, () =&gt; {
 <p>✏️ Update <strong>src/services/pmo/restaurant/hooks.ts</strong> to be:</p>
 <pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
 
-import { State, City } from &quot;./interfaces&quot;
+import { City, State } from &quot;./interfaces&quot;
 
 const baseUrl = process.env.PMO_API
 
@@ -1741,7 +1907,7 @@ export function useStates(): StatesResponse {
       const data = await response.json()
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data) ? data : data?.data ?? undefined,
         error: undefined,
         isPending: false,
       })
@@ -1772,7 +1938,7 @@ export function useCities({ state }: UseCitiesParams): CitiesResponse {
         const data = await response.json()
 
         setResponse({
-          data: data?.data || undefined,
+          data: Array.isArray(data) ? data : data?.data ?? undefined,
           error: undefined,
           isPending: false,
         })
@@ -1785,7 +1951,7 @@ export function useCities({ state }: UseCitiesParams): CitiesResponse {
 }
 
 </code></pre>
- <div line-highlight="3,54-58,60-68,70,72-80,82,only"></div>
+ <div line-highlight="54-58,60-68,70,72-80,82,only"></div>
 <p>✏️ Update <strong>src/screens/CityList/CityList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -1793,6 +1959,7 @@ import { FlatList } from &quot;react-native&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
 import Loading from &quot;../../components/Loading&quot;
+import Box from &quot;../../design/Box&quot;
 import Button from &quot;../../design/Button&quot;
 import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
@@ -1813,8 +1980,10 @@ const CityList: React.FC&lt;CityListProps&gt; = ({ route }) =&gt; {
   if (error) {
     return (
       &lt;Screen&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;Error loading cities: &lt;/Typography&gt;
-        &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;Box padding=&quot;m&quot;&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;Error loading cities: &lt;/Typography&gt;
+          &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;/Box&gt;
       &lt;/Screen&gt;
     )
   }
@@ -1848,14 +2017,14 @@ const CityList: React.FC&lt;CityListProps&gt; = ({ route }) =&gt; {
 export default CityList
 
 </code></pre>
- <div line-highlight="6,9-10,18-22,24-31,33-35,only"></div>
+ <div line-highlight="6-7,10-11,19-23,25-34,36-38,only"></div>
 <p></details></p>
 <h2>Objective 3: Create API request helper</h2>
 <p>Now that we have two Hooks that fetch data in a similar way, let’s create an <code>apiRequest</code> helper function that both Hooks can use.</p>
+<p>While we do this, let‘s add error handling for unsuccessful API requests:</p>
 <div style="display: flex; flex-direction: row; gap: 2rem">
-  <img alt="Screenshot of the application when it makes an api call to the states endpoint and is populated the list of states." src="../static/img/react-native/13-making-http-requests/1-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
-  <img alt="Screenshot of the application when it makes an api call to the cities endpoint and is populated the list of cities." src="../static/img/react-native/13-making-http-requests/2-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
-  <img alt="Screenshot of the application when it makes an api call and the api returns an error." src="../static/img/react-native/13-making-http-requests/3-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screenshot of the application when it makes an API call to the cities endpoint and is populated the list of cities." src="../static/img/react-native/13-making-http-requests/2-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screenshot of the application when it makes an API call and the API returns an error." src="../static/img/react-native/13-making-http-requests/3-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 </div>
 <h3>Handle HTTP error statuses</h3>
 <p>When you make a request with the Fetch API, it does not reject HTTP error statuses (like <code>404</code> or <code>500</code>). Instead, it resolves normally (with an <code>ok</code> status set to <code>false</code>), and it only rejects on network failure or if anything prevented the request from completing.</p>
@@ -1935,6 +2104,7 @@ export function stringifyQuery(
 }
 
 </code></pre>
+<div line-highlight='30, only'></div>
 <p>✏️ Create <strong>src/services/pmo/api/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export * from &quot;./api&quot;
 
@@ -1944,7 +2114,7 @@ export function stringifyQuery(
 
 import { apiRequest } from &quot;../api&quot;
 
-import { State, City } from &quot;./interfaces&quot;
+import { City, State } from &quot;./interfaces&quot;
 
 const baseUrl = process.env.PMO_API
 
@@ -1983,7 +2153,7 @@ export function useStates(): StatesResponse {
       const data = await response.json()
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data) ? data : data?.data ?? undefined,
         error: undefined,
         isPending: false,
       })
@@ -2014,7 +2184,7 @@ export function useCities({ state }: UseCitiesParams): CitiesResponse {
         const data = await response.json()
 
         setResponse({
-          data: data?.data || undefined,
+          data: Array.isArray(data) ? data : data?.data ?? undefined,
           error: undefined,
           isPending: false,
         })
@@ -2117,7 +2287,7 @@ describe(&quot;Services/PMO/Restaurant/useCities&quot;, () =&gt; {
 <li>Implement the <code>apiRequest</code> helper function to handle errors returned and thrown from <code>fetch()</code>.</li>
 <li>Update the <code>useCities</code> and <code>useStates</code> Hooks to use the <code>data</code> and <code>error</code> returned from <code>apiRequest</code>.</li>
 </ul>
-<p>Hint: Use the new <code>stringifyQuery</code> function to convert an object of query parameters to a string:</p>
+<p><strong>Hint:</strong> Use the new <code>stringifyQuery</code> function to convert an object of query parameters to a string:</p>
 <pre><code class="language-tsx">stringifyQuery({
   param1: &quot;value1&quot;,
   param2: &quot;value2&quot;,
@@ -2198,7 +2368,7 @@ export function stringifyQuery(
 
 import { apiRequest } from &quot;../api&quot;
 
-import { State, City } from &quot;./interfaces&quot;
+import { City, State } from &quot;./interfaces&quot;
 
 interface CitiesResponse {
   data: City[] | undefined
@@ -2234,7 +2404,7 @@ export function useCities({ state }: UseCitiesParams): CitiesResponse {
       })
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data) ? data : data?.data ?? undefined,
         error: error,
         isPending: false,
       })
@@ -2266,7 +2436,7 @@ export function useStates(): StatesResponse {
       })
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data) ? data : data?.data ?? undefined,
         error: error,
         isPending: false,
       })
@@ -2280,15 +2450,130 @@ export function useStates(): StatesResponse {
 </code></pre>
  <div line-highlight="32,34-36,42,61-62,64-65,67-70,72-76,only"></div>
 <p></details></p>
-<h2>Objective 4: Add <code>fetch</code> restaurants in a custom hook</h2>
+<h2>Objective 4: Fetch restaurants in a custom Hook</h2>
 <p>Let’s finish our quest to load data from our API by creating a Hook to fetch the list of restaurants and use it in our component.</p>
 <p>Now that we are able to capture a user’s state and city preferences, we want to only show the restaurants in the selected city:</p>
 <div style="display: flex; flex-direction: row; gap: 2rem">
-  <img alt="Screenshot of the application when it makes an api call to the restaurants endpoint and is populated the list of restaurants." src="../static/img/react-native/13-making-http-requests/4-1-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
-  <img alt="Screenshot of the application when it makes an api call to the restaurant endpoint and is populated populated with the restaurants details." src="../static/img/react-native/13-making-http-requests/4-2-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screenshot of the application when it makes an API call to the restaurants endpoint and is populated the list of restaurants." src="../static/img/react-native/13-making-http-requests/4-1-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screenshot of the application when it makes an API call to the restaurant endpoint and is populated populated with the restaurants details." src="../static/img/react-native/13-making-http-requests/4-2-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 </div>
 <h3>Setup 4</h3>
-<p>✏️ Create <strong>src/services/pmo/restaurant/interfaces.ts</strong> and update it to be:</p>
+<p>✏️ Update <strong>.env</strong> to be:</p>
+<pre><code>PMO_API=http://localhost:7070
+PMO_ASSETS=https://www.place-my-order.com/
+
+</code></pre>
+ <div line-highlight="2,only"></div>
+<p>✏️ Update <strong>.env.example</strong> to be:</p>
+<pre><code class="language-example">PMO_API=http://localhost:7070
+PMO_ASSETS=https://www.place-my-order.com/
+
+</code></pre>
+ <div line-highlight="2,only"></div>
+<p>✏️ Update <strong>src/env.d.ts</strong> to be:</p>
+<pre><code class="language-ts">/* eslint-disable @typescript-eslint/no-namespace */
+
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      readonly PMO_API: string
+      readonly PMO_ASSETS: string
+    }
+  }
+}
+
+export {}
+
+</code></pre>
+ <div line-highlight="7,only"></div>
+<p>✏️ Terminate the existing dev server and start it again:</p>
+<pre><code class="language-bash">npm run start
+</code></pre>
+<p>✏️ Update <strong>src/components/RestaurantHeader/RestaurantHeader.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { ImageBackground, StyleSheet } from &quot;react-native&quot;
+
+import Box from &quot;../../design/Box&quot;
+import { Theme, useTheme } from &quot;../../design/theme&quot;
+import Typography from &quot;../../design/Typography&quot;
+
+const assetsUrl = process.env.PMO_ASSETS
+
+export interface RestaurantHeaderProps {
+  restaurant?: {
+    _id: string
+    address?: {
+      city: string
+      state: string
+      street: string
+      zip: string
+    }
+    images: {
+      banner: string
+    }
+    name: string
+    slug: string
+  }
+}
+
+const RestaurantHeader: React.FC&lt;RestaurantHeaderProps&gt; = ({ restaurant }) =&gt; {
+  const theme = useTheme()
+  const styles = getStyles(theme)
+
+  return (
+    &lt;Box&gt;
+      &lt;ImageBackground
+        style={styles.heroBackground}
+        source={{ uri: `${assetsUrl}/${restaurant?.images.banner}` }}
+      &gt;
+        &lt;Box padding={[&quot;xs&quot;, &quot;m&quot;]} margin={[&quot;s&quot;, &quot;none&quot;]} style={styles.hero}&gt;
+          &lt;Typography variant=&quot;heading&quot; style={styles.heroText}&gt;
+            {restaurant?.name}
+          &lt;/Typography&gt;
+        &lt;/Box&gt;
+      &lt;/ImageBackground&gt;
+
+      &lt;Box padding=&quot;m&quot;&gt;
+        {restaurant?.address &amp;&amp; (
+          &lt;Typography variant=&quot;body&quot;&gt;
+            {restaurant.address.street}
+            {restaurant.address.city}, {restaurant.address.state}{&quot; &quot;}
+            {restaurant.address.zip}
+          &lt;/Typography&gt;
+        )}
+
+        &lt;Typography variant=&quot;body&quot;&gt;
+          $$$ Hours: M-F 10am-11pm Open Now
+        &lt;/Typography&gt;
+      &lt;/Box&gt;
+    &lt;/Box&gt;
+  )
+}
+
+function getStyles(theme: Theme) {
+  return StyleSheet.create({
+    heroBackground: {
+      width: &quot;100%&quot;,
+      maxWidth: 768,
+      height: 180,
+      margin: &quot;auto&quot;,
+      justifyContent: &quot;flex-end&quot;,
+      alignItems: &quot;flex-start&quot;,
+    },
+    hero: {
+      backgroundColor: theme.palette.secondary.main + &quot;bb&quot;,
+    },
+    heroText: {
+      color: theme.palette.secondary.contrast,
+      fontSize: 32,
+    },
+  })
+}
+
+export default RestaurantHeader
+
+</code></pre>
+ <div line-highlight="7,34,only"></div>
+<p>✏️ Update <strong>src/services/pmo/restaurant/interfaces.ts</strong> to be:</p>
 <pre><code class="language-ts">export interface State {
   name: string
   short: string
@@ -2400,7 +2685,7 @@ export function useCities({ state }: UseCitiesParams): CitiesResponse {
       })
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data) ? data : data?.data ?? undefined,
         error: error,
         isPending: false,
       })
@@ -2443,7 +2728,9 @@ export function useStates(): StatesResponse {
       })
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data)
+          ? undefined
+          : (data?.data as Restaurant | undefined),
         error: error,
         isPending: false,
       })
@@ -2455,7 +2742,7 @@ export function useStates(): StatesResponse {
 }
 
 </code></pre>
- <div line-highlight="3,5,16-17,22-23,26-29,32-35,39-41,70,72-74,76-81,113,only"></div>
+ <div line-highlight="3,5,16-17,22-23,26-29,32-35,39-41,70,72-74,76-81,104-106,115,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -2463,6 +2750,7 @@ import { FlatList } from &quot;react-native&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
 import Loading from &quot;../../components/Loading&quot;
+import Box from &quot;../../design/Box&quot;
 import Button from &quot;../../design/Button&quot;
 import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
@@ -2499,7 +2787,7 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="6,9-10,17,only"></div>
+ <div line-highlight="6-7,10-11,18,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -2995,15 +3283,13 @@ describe(&quot;Screens/RestaurantDetails&quot;, () =&gt; {
  <div line-highlight="1,4,8-22,36,38-43,46-64,67,69-74,76-77,79-86,88-89,91-96,98-103,105-106,108-113,115-120,122-128,only"></div>
 <h3>Exercise 4</h3>
 <ul>
+<li>Fill in <code>useRestaurant</code> Hook for fetching the details of the restaurant.</li>
 <li>Fill in <code>useRestaurants</code> Hook for fetching the list of restaurants.</li>
+<li>Update <code>RestaurantDetails.tsx</code> to use our new <code>useRestaurants</code> Hook.</li>
 <li>Update <code>RestaurantList.tsx</code> to use our new <code>useRestaurants</code> Hook.</li>
 </ul>
-<p>Hint: The requested URL with query parameters should look like this: <code>'/restaurants?filter[address.state]=IL&amp;filter[address.city]=Chicago'</code></p>
-<ul>
-<li>Fill in <code>useRestaurant</code> Hook for fetching the details of the restaurant.</li>
-<li>Update <code>RestaurantDetails.tsx</code> to use our new <code>useRestaurants</code> Hook.</li>
-</ul>
-<p>Hint: The requested URL with query parameters should look like this: <code>'/restaurants/${slug}'</code></p>
+<p><strong>Hint:</strong> The <code>useRestaurant()</code> Hook should make a request like this: <code>'/restaurants/${slug}'</code></p>
+<p><strong>Hint:</strong> The <code>useRestaurants()</code> Hook should make a request with these query parameters: <code>'/restaurants?filter[address.state]=IL&amp;filter[address.city]=Chicago'</code></p>
 <h3>Solution 4</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
@@ -3069,7 +3355,7 @@ export function useCities({ state }: UseCitiesParams): CitiesResponse {
       })
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data) ? data : data?.data ?? undefined,
         error: error,
         isPending: false,
       })
@@ -3095,7 +3381,7 @@ export function useRestaurant({ slug }: UseRestaurant): RestaurantResponse {
       })
 
       setResponse({
-        data: data?.data || undefined,
+        data: data &amp;&amp; &quot;data&quot; in data ? data.data : data || undefined,
         error: error,
         isPending: false,
       })
@@ -3128,7 +3414,7 @@ export function useRestaurants({
       })
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data) ? data : data?.data ?? undefined,
         error: error,
         isPending: false,
       })
@@ -3160,7 +3446,7 @@ export function useStates(): StatesResponse {
       })
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data) ? data : data?.data ?? undefined,
         error: error,
         isPending: false,
       })
@@ -3172,7 +3458,7 @@ export function useStates(): StatesResponse {
 }
 
 </code></pre>
- <div line-highlight="73,81,83,93,102-106,108-116,120-126,128,133-136,138-140,144,147,149,151-157,160,only"></div>
+ <div line-highlight="73,81,83,87,93,102-106,108-116,120-126,128,133-136,138-140,144,147,149,151-157,160,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -3180,6 +3466,7 @@ import { FlatList } from &quot;react-native&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
 import Loading from &quot;../../components/Loading&quot;
+import Box from &quot;../../design/Box&quot;
 import Button from &quot;../../design/Button&quot;
 import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
@@ -3201,8 +3488,10 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
   if (error) {
     return (
       &lt;Screen&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;Error loading restaurants: &lt;/Typography&gt;
-        &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;Box padding=&quot;m&quot;&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;Error loading restaurants: &lt;/Typography&gt;
+          &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;/Box&gt;
       &lt;/Screen&gt;
     )
   }
@@ -3235,7 +3524,7 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="18-23,25-32,34-36,only"></div>
+ <div line-highlight="19-24,26-35,37-39,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -3256,6 +3545,7 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
   const { slug } = route.params
   const navigation = useNavigation()
   const { data: restaurant, error, isPending } = useRestaurant({ slug })
+
   useEffect(() =&gt; {
     if (restaurant) {
       navigation.setOptions({ title: `${restaurant.name}` })
@@ -3290,7 +3580,7 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
 export default RestaurantDetails
 
 </code></pre>
- <div line-highlight="17,19-24,26-35,37-39,only"></div>
+ <div line-highlight="17,19,21-25,27-36,38-40,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, we will learn how to <a href="user-inputs.html" title="Use switch controls and inputs to collect information.">Handling User Inputs</a> in React Native applications.</p>
@@ -3332,7 +3622,7 @@ export default RestaurantDetails
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-native/13-making-http-requests/making-http-requests.md"},"description":"Learn about how to make `fetch` requests and render requested data in React Native components. \n","name":"learn-react-native/making-http-requests","title":"Making HTTP Requests","type":"page","parent":"learn-react-native","order":13,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-native/13-making-http-requests/making-http-requests.md"},"description":"Learn about how to make `fetch` requests and render requested data in React Native components. \n","name":"learn-react-native/making-http-requests","title":"Making HTTP Requests","type":"page","parent":"learn-react-native","order":13,"outline":{"depth":2},"comment":" ","pathToRoot":"../.."};
     </script>
 
     

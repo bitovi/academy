@@ -968,7 +968,7 @@ export function useAuthentication() {
 </code></pre>
 <div line-highlight='22-45, only'></div>
 <h4>Future-proofing the Consumer</h4>
-<p>Instead of calling <code>useContext</code> everywhere and needing to understand the structure of the context, we can provide custom hooks that return the specific parts of the context that we need. If we change the context structure, all we have to do is update these hooks to return the same data as before and no other code has to change.</p>
+<p>Instead of calling <code>useContext</code> everywhere and needing to understand the structure of the context, we can provide custom Hooks that return the specific parts of the context that we need. If we change the context structure, all we have to do is update these hooks to return the same data as before and no other code has to change.</p>
 <pre><code class="language-tsx">import {
   createContext,
   useCallback,

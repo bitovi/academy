@@ -879,6 +879,7 @@ import { Suspense, lazy, useState } from &quot;react&quot;
 import { RestaurantsStackParamList } from &quot;../../App&quot;
 import Loading from &quot;../../components/Loading&quot;
 import Tabs from &quot;../../components/Tabs&quot;
+import Box from &quot;../../design/Box&quot;
 import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
 import { useRestaurants } from &quot;../../services/pmo/restaurant&quot;
@@ -903,8 +904,10 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
   if (error) {
     return (
       &lt;Screen&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;Error loading restaurants: &lt;/Typography&gt;
-        &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;Box padding=&quot;m&quot;&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;Error loading restaurants: &lt;/Typography&gt;
+          &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;/Box&gt;
       &lt;/Screen&gt;
     )
   }
@@ -936,7 +939,7 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="2,13,54,only"></div>
+ <div line-highlight="2,14,57,only"></div>
 <h3>Verify 1</h3>
 <p>TODO: find where the bundles are built in dev so we can see the modules being split up.
 Alternatively, consider moving this page after the “building” page so we can look at the files being created.</p>
@@ -957,6 +960,7 @@ import { Suspense, lazy, useState } from &quot;react&quot;
 import { RestaurantsStackParamList } from &quot;../../App&quot;
 import Loading from &quot;../../components/Loading&quot;
 import Tabs from &quot;../../components/Tabs&quot;
+import Box from &quot;../../design/Box&quot;
 import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
 import { useRestaurants } from &quot;../../services/pmo/restaurant&quot;
@@ -981,8 +985,10 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
   if (error) {
     return (
       &lt;Screen&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;Error loading restaurants: &lt;/Typography&gt;
-        &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;Box padding=&quot;m&quot;&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;Error loading restaurants: &lt;/Typography&gt;
+          &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;/Box&gt;
       &lt;/Screen&gt;
     )
   }
@@ -1017,7 +1023,7 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="13,54-58,only"></div>
+ <div line-highlight="14,57-61,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Now we’ve got a complete and performant application. Let's finish out our work by learning about <a href="./building">Building React Native Apps</a></p>

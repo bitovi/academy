@@ -691,7 +691,7 @@ covering CanJS core libraries.">
 It’s important to communicate to the user when their device is offline and some functionality in the application may be disabled because of their current connection status.</p>
 <p>The way you communicate this info will depend on your application.
 In ours, we’re going to add some text to the Settings view that shows the current connection status.</p>
-<p><img alt="Screenshot of the application settings page with the connection status." src="../static/img/react-native/17-offline-support/01-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
+<p><img alt="Screenshot of the application settings page with the connection status." src="../static/img/react-native/17-offline-support/01-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/></p>
 <h3>Listening for the network connection state</h3>
 <p>The <code>@react-native-community/netinfo</code> is an incredible useful package for detecting the network status of the device.</p>
 <p>This package allows you to:</p>
@@ -905,8 +905,8 @@ In the <code>RestaurantDetails</code>, we’ll add an “Add to favorites” but
 <p>For right now, we’ll write the code for adding and removing favorites in a way that will gracefully handle the user’s device being offline.
 In the third objective, we’ll expand that to handle syncing when the device comes back online.</p>
 <div style="display: flex; flex-direction: row; gap: 2rem">
-  <img alt="Screenshot of the application's Restaurant Details screen displaying the add favorite button." src="../static/img/react-native/17-offline-support/02-solution-addFavorites.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
-  <img alt="Screenshot of the application's Restaurant Details screen displaying the remove favorite button." src="../static/img/react-native/17-offline-support/02-solution-removeFavorites.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screenshot of the application's Restaurant Details screen displaying the add favorite button." src="../static/img/react-native/17-offline-support/02-solution-addFavorites.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screenshot of the application's Restaurant Details screen displaying the remove favorite button." src="../static/img/react-native/17-offline-support/02-solution-removeFavorites.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 </div>
 <h3>Defining the “favorites” feature</h3>
 <p>There’s a lot that goes into building even a one or two-button feature like the “add to favorites” and “remove from favorites” feature that we’re about to build.</p>
@@ -988,7 +988,7 @@ export const useFavorites = (
       })
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data) ? data : data?.data ?? undefined,
         error: error,
         isPending: false,
       })
@@ -1138,7 +1138,7 @@ export const useFavorites = (
       })
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data) ? data : data?.data ?? undefined,
         error: error,
         isPending: false,
       })
@@ -1287,7 +1287,7 @@ export const useFavorites = (
       })
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data) ? data : data?.data ?? undefined,
         error: error,
         isPending: false,
       })
@@ -1436,7 +1436,7 @@ export const useFavorites = (
       })
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data) ? data : data?.data ?? undefined,
         error: error,
         isPending: false,
       })
@@ -1585,7 +1585,7 @@ export const useFavorites = (
       })
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data) ? data : data?.data ?? undefined,
         error: error,
         isPending: false,
       })
@@ -1737,7 +1737,7 @@ export const useFavorites = (
       })
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data) ? data : data?.data ?? undefined,
         error: error,
         isPending: false,
       })
@@ -1848,6 +1848,7 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
   const { slug } = route.params
   const navigation = useNavigation()
   const { data: restaurant, error, isPending } = useRestaurant({ slug })
+
   // Exercise: Add a button that uses the `updateFavorites` helper.
 
   useEffect(() =&gt; {
@@ -1889,7 +1890,7 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
 export default RestaurantDetails
 
 </code></pre>
- <div line-highlight="11-16,26,only"></div>
+ <div line-highlight="11-16,27,only"></div>
 <h3>Verify 2</h3>
 <p>✏️ Create <strong>src/services/pmo/favorite/hooks.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react-native&quot;
@@ -2165,7 +2166,7 @@ export const useFavorites = (
       })
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data) ? data : data?.data ?? undefined,
         error: error,
         isPending: false,
       })
@@ -2414,7 +2415,7 @@ export const useFavorites = (
       })
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data) ? data : data?.data ?? undefined,
         error: error,
         isPending: false,
       })
@@ -2632,7 +2633,7 @@ export const useFavorites = (
       })
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data) ? data : data?.data ?? undefined,
         error: error,
         isPending: false,
       })
@@ -2849,7 +2850,7 @@ export const useFavorites = (
       })
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data) ? data : data?.data ?? undefined,
         error: error,
         isPending: false,
       })
@@ -3234,7 +3235,7 @@ export const useFavorites = (
       })
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data) ? data : data?.data ?? undefined,
         error: error,
         isPending: false,
       })
