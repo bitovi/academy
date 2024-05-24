@@ -24,7 +24,10 @@ Now let’s create a `RestaurantOrder` view for users to start selecting menu it
 
 We’ll start with switch controls to select menu items, with a message that warns users when no items are selected and a total that shows the sum of the selected items.
 
-<!-- TODO: Add an image in a follow-up commit. -->
+<div style="display: flex; flex-direction: row; gap: 2rem">
+  <img alt="Screenshot of the top of the application restaurant order page." src="../static/img/react-native/14-user-input/01-solution-top.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screenshot of the bottom of the application restaurant order page." src="../static/img/react-native/14-user-input/01-solution-bottom.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+</div>
 
 ### Handling checkbox-like behavior with `<Switch>`
 
@@ -195,6 +198,11 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 Next, we want to collect the user’s name, phone number, and address as part of the order.
 To do this, we’ll use React Native’s `TextInput` component.
+
+<div style="display: flex; flex-direction: row; gap: 2rem">
+  <img alt="Screenshot of the top of the application restaurant order page." src="../static/img/react-native/14-user-input/02-solution-top.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screenshot of the bottom of the application restaurant order page." src="../static/img/react-native/14-user-input/02-solution-bottom.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+</div>
 
 ### Using the `TextInput` component
 
