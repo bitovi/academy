@@ -14,7 +14,7 @@ GoogleSignin.configure({
 })
 
 const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [userInfo, setUserInfo] = useState<UserInfo | undefined>()
+  const [userInfo, setUserInfo] = useState<UserInfo | null>()
 
   // Exercise: Implement `signIn` and `signOut` using `useCallback`.
 
