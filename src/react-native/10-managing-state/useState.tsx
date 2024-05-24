@@ -1,5 +1,5 @@
-import React, { ChangeEvent, useState } from "react"
-import { View, Text, TextInput } from "react-native"
+import { ChangeEvent, useState } from "react"
+import { Text, TextInput, View } from "react-native"
 
 const NameField: React.FC = () => {
   const [value, setValue] = useState<string>("")

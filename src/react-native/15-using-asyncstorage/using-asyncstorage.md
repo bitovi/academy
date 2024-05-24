@@ -46,7 +46,7 @@ This also means that classes and functions can't be serialized for storage.
 Here is an example:
 
 @sourceref ./async-setItem.ts
-@highlight 6
+@highlight 1, 5-6, only
 
 This function takes a `restaurant` object, converts it into a string, and saves it under the key `"restaurantData"`.
 
@@ -58,7 +58,7 @@ The retrieved data, being in string format, often needs to be converted back int
 Consider this example:
 
 @sourceref ./async-getItem.ts
-@highlight 5
+@highlight 5-6, only
 
 This function fetches the data stored under the `"restaurantData"` key and converts it from a string back into an object.
 
@@ -126,17 +126,24 @@ Here are some pointers on implementing this strategy:
 npm install @react-native-async-storage/async-storage@1
 ```
 
+✏️ Terminate the existing dev server and start it again:
+
+```bash
+npm run start
+```
+
 ✏️ Update **jest-setup.ts** to be:
 
 @diff ../../../exercises/react-native/14-user-input/01-solution/jest-setup.ts ../../../exercises/react-native/15-async-storage/01-problem/jest-setup.ts only
 
-✏️ Create **src/services/storage/index.ts** and update it to be:
-
-@sourceref ../../../exercises/react-native/15-async-storage/01-problem/src/services/storage/index.ts
-
 ✏️ Create **src/services/storage/storage.ts** and update it to be:
 
 @sourceref ../../../exercises/react-native/15-async-storage/01-problem/src/services/storage/storage.ts
+@highlight 3
+
+✏️ Create **src/services/storage/index.ts** and update it to be:
+
+@sourceref ../../../exercises/react-native/15-async-storage/01-problem/src/services/storage/index.ts
 
 ✏️ Update **src/services/pmo/api/api.ts** to be:
 
@@ -166,6 +173,10 @@ You can verify that this is working correctly by using DevTools to:
 - View the requests (or lack thereof) being made.
 - Inspect the stored data.
 
+You can terminate the `api` server to check that uncached requests show an error.
+
+**Hint:** Use [`new Date().toJSON()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toJSON) to get the current datetime as a string.
+
 ### Solution 1
 
 If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
@@ -190,7 +201,7 @@ Our overall approach to caching the network responses seems great, although ther
 Right now, we’re storing the datetime as a string in Async Storage, which means we have to parse it every time we check the cached response:
 
 @sourceref ../../../exercises/react-native/15-async-storage/01-solution/src/services/pmo/api/api.ts
-@highlight 7, 38-39, 69, only
+@highlight 7, 38-39, 66, only
 
 We could improve this by storing the datetime as a number instead, so we don’t have to parse it when fetching from the cache:
 
@@ -249,6 +260,7 @@ We’ll assume that the data is version `1` if we haven’t stored the version n
 ✏️ Create **src/services/DataMigration/DataMigration.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-native/15-async-storage/02-problem/src/services/DataMigration/DataMigration.tsx
+@highlight 13, 21-23, only
 
 ✏️ Create **src/services/DataMigration/index.ts** and update it to be:
 
@@ -294,7 +306,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 <details>
 <summary>Click to see the solution</summary>
 
-✏️ Update **src/services/DataMigration/DataMigration.ts** to be:
+✏️ Update **src/services/DataMigration/DataMigration.tsx** to be:
 
 @diff ../../../exercises/react-native/15-async-storage/02-problem/src/services/DataMigration/DataMigration.tsx ../../../exercises/react-native/15-async-storage/02-solution/src/services/DataMigration/DataMigration.tsx only
 
