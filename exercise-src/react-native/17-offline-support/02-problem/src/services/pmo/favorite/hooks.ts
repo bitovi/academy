@@ -64,7 +64,7 @@ export const useFavorites = (
       })
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data) ? data : data?.data ?? undefined,
         error: error,
         isPending: false,
       })

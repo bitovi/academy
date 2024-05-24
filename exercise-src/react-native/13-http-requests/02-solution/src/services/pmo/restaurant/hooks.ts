@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-import { State, City } from "./interfaces"
+import { City, State } from "./interfaces"
 
 const baseUrl = process.env.PMO_API
 
@@ -39,7 +39,7 @@ export function useStates(): StatesResponse {
       const data = await response.json()
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data) ? data : data?.data ?? undefined,
         error: undefined,
         isPending: false,
       })
@@ -70,7 +70,7 @@ export function useCities({ state }: UseCitiesParams): CitiesResponse {
         const data = await response.json()
 
         setResponse({
-          data: data?.data || undefined,
+          data: Array.isArray(data) ? data : data?.data ?? undefined,
           error: undefined,
           isPending: false,
         })

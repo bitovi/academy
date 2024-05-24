@@ -117,7 +117,7 @@ React Native Debugger, is a feature in React Native that serves as a debugging t
 
 Execute the command:
 
-✏️ Kill your existing `npm run start` process and run:
+✏️ Terminate your existing `npm run start` process and run:
 
 ```shell
 npm run start

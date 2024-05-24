@@ -1,19 +1,29 @@
 import { useEffect, useState } from "react"
-import { View, Text, TextInput } from "react-native"
+import { Pressable, Vibration, View } from "react-native"
 
-function NameStorage() {
-  const [name, setName] = useState("")
+function VibrateButtons() {
+  const [vibrate, setVibrate] = useState(false)
 
   useEffect(() => {
-    localStorage.setItem("name", name)
-  }, [name])
+    if (vibrate) {
+      Vibration.vibrate(1000)
+    }
+
+    return () => {
+      Vibration.cancel()
+    }
+  }, [vibrate])
 
   return (
     <View>
-      <Text>Name</Text>
-      <TextInput onChangeText={setName} value={name} />
+      <Pressable onPress={() => setVibrate(true)}>
+        <Text>Vibrate</Text>
+      </Pressable>
+      <Pressable onPress={() => setVibrate(false)}>
+        <Text>Stop vibrating</Text>
+      </Pressable>
     </View>
   )
 }
 
-export default NameStorage
+export default VibrateButtons
