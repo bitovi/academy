@@ -5,6 +5,7 @@ import { useEffect } from "react"
 import { RestaurantsStackParamList } from "../../App"
 import Loading from "../../components/Loading"
 import RestaurantHeader from "../../components/RestaurantHeader"
+import Box from "../../design/Box"
 import Button from "../../design/Button"
 import Screen from "../../design/Screen"
 import Typography from "../../design/Typography"
@@ -37,10 +38,12 @@ const RestaurantDetails: React.FC<RestaurantDetailsProps> = ({ route }) => {
   if (error) {
     return (
       <Screen>
-        <Typography variant="heading">
-          Error loading restaurant details:{" "}
-        </Typography>
-        <Typography variant="body">{error.message}</Typography>
+        <Box padding="m">
+          <Typography variant="heading">
+            Error loading restaurant details:{" "}
+          </Typography>
+          <Typography variant="body">{error.message}</Typography>
+        </Box>
       </Screen>
     )
   }
