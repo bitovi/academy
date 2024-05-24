@@ -702,7 +702,7 @@ You handle changes using the <code>onValueChange</code> prop, which directly pro
 <p>[If you’re familiar with web development, React Native does not have a direct equivalent to the HTML <code>&lt;input type=&quot;checkbox&quot;&gt;</code>.
 Instead, you use the <code>&lt;Switch&gt;</code> component to achieve similar functionality.]</p>
 <p>Let’s take a look at an example using <code>&lt;Switch&gt;</code>:</p>
-<pre><code class="language-tsx">import React, { useState } from &quot;react&quot;
+<pre><code class="language-tsx">import { useState } from &quot;react&quot;
 import { Switch, Text, View } from &quot;react-native&quot;
 
 const SwitchExample = () =&gt; {
@@ -734,7 +734,7 @@ We also want to use TypeScript so we can constrain the types used as keys and va
 <p>TypeScript provides a handy interface named <code>Record</code> that we can use.
 <code>Record</code> is a generic interface that requires two types: the first is the type of the keys, and the second is the type of the values.</p>
 <p>For example, if we’re recording the items in a list that are selected, we might capture the item’s name and whether or not it’s selected like this:</p>
-<pre><code class="language-tsx">import React, { useState } from &quot;react&quot;
+<pre><code class="language-tsx">import { useState } from &quot;react&quot;
 import { View, Text, Switch } from &quot;react-native&quot;
 
 const landmarks = [
@@ -791,7 +791,7 @@ Why?
 Imagine we have a state object that already has multiple keys and values, and we need to add a new key and value.</p>
 <p>Well, we’re in luck!
 React already has a solution for this: the setter function returned by <code>useState</code> will accept an “updater function” that’s passed the “current” state value and should return the “next” state value.</p>
-<pre><code class="language-tsx">import React, { useState } from &quot;react&quot;
+<pre><code class="language-tsx">import { useState } from &quot;react&quot;
 import { View, Text, Switch } from &quot;react-native&quot;
 
 const landmarks = [
@@ -848,10 +848,10 @@ const Selected: React.FC = () =&gt; {
 export default Selected
 
 </code></pre>
-<div line-highlight='15-16, 27, 37, only'></div>
+<div line-highlight='15-16, 27, 45, only'></div>
 <p>In the example above, the <code>onChange</code> event handler calls <code>handleSelectedChange</code>, which accepts a name <code>string</code> and a <code>boolean</code>.</p>
 <p>In turn, <code>handleSelectedChange</code> calls <code>setSelected</code> with an updater function as the argument.
-The updater function accepts the <code>currentSelectedItems</code> argument, which is the object with the currently-selected items <em>before</em> our checkbox was checked.</p>
+The updater function accepts the <code>currentSelectedItems</code> argument, which is the object with the currently-selected items <em>before</em> our switch was toggled.</p>
 <p>We will dig into <em>how</em> we create the <code>updatedSelectedItems</code> object in just a bit, but for now let’s take note that we create a new <code>updatedSelectedItems</code> object and return it from our updater function.
 This gives React the updated <code>selected</code> state and allows React to re-render the component.</p>
 <h3>Updating reference types and rendering</h3>
@@ -1123,6 +1123,7 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
   }, [restaurant, navigation])
 
   const handleOrder = () =&gt; {
+    // eslint-disable-next-line no-console
     console.info(&quot;“Place My Order” button pressed!&quot;)
   }
 
@@ -1192,6 +1193,7 @@ function calculateTotal(items: OrderItems) {
 export default RestaurantOrder
 
 </code></pre>
+<div line-highlight='37, 65, 69, only'></div>
 <p>✏️ Create <strong>src/screens/RestaurantOrder/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./RestaurantOrder&quot;
 export * from &quot;./RestaurantOrder&quot;
@@ -1377,6 +1379,7 @@ describe(&quot;Screens/RestaurantOrder&quot;, () =&gt; {
 })
 
 </code></pre>
+<div line-highlight='67, 94, 110, only'></div>
 <h3>Exercise 1</h3>
 <ul>
 <li>Add <code>RestaurantOrder</code> to the <code>NavigatorStack</code>.</li>
@@ -1385,9 +1388,9 @@ describe(&quot;Screens/RestaurantOrder&quot;, () =&gt; {
 <li>Call <code>useState()</code> and use the <code>OrderItems</code> interface to create an <code>items</code> state.</li>
 <li>Create a function for calling <code>setItems()</code> with the updated <code>items</code> state.</li>
 <li>Update <code>subtotal</code> to use the <code>calculateTotal()</code> helper function.</li>
-<li>List restaurant food items for both lunch and dinner menus with checkboxes using <code>FormSwitchField</code>.</li>
+<li>List restaurant food items for both lunch and dinner menus with switches using <code>FormSwitchField</code>.</li>
 </ul>
-<p>Hint: The <code>items</code> state will look like this when populated:</p>
+<p><strong>Hint:</strong> The <code>items</code> state will look like this when populated:</p>
 <pre><code class="language-tsx">const items = {
   &quot;Menu item 1 name&quot;: 1.23, // Menu item 1 price
   &quot;Menu item 2 name&quot;: 4.56, // Menu item 2 price
@@ -1696,6 +1699,7 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
   }, [restaurant, navigation])
 
   const handleOrder = () =&gt; {
+    // eslint-disable-next-line no-console
     console.info(&quot;“Place My Order” button pressed!&quot;)
   }
 
@@ -1793,20 +1797,19 @@ function calculateTotal(items: OrderItems) {
 export default RestaurantOrder
 
 </code></pre>
- <div line-highlight="26,38-49,53,76,81-88,92-99,only"></div>
+ <div line-highlight="26,39-50,54,77,82-89,93-100,only"></div>
 <p></details></p>
 <h2>Objective 2: Add text fields to collect user data</h2>
 <p>Next, we want to collect the user’s name, phone number, and address as part of the order.
 To do this, we’ll use React Native’s <code>TextInput</code> component.</p>
 <div style="display: flex; flex-direction: row; gap: 2rem">
-  <img alt="Screenshot of the top of the application restaurant order page." src="../static/img/react-native/14-user-input/02-solution-top.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
   <img alt="Screenshot of the bottom of the application restaurant order page." src="../static/img/react-native/14-user-input/02-solution-bottom.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 </div>
 <h3>Using the <code>TextInput</code> component</h3>
 <p>For entering text, React Native uses the <code>TextInput</code> component.
 Changes in text input are managed using the <code>onChangeText</code> prop, which receives the new text directly.</p>
 <p>Here’s how you can use <code>TextInput</code> in your application:</p>
-<pre><code class="language-tsx">import React, { useState } from &quot;react&quot;
+<pre><code class="language-tsx">import { useState } from &quot;react&quot;
 import { Text, TextInput, View } from &quot;react-native&quot;
 
 const InputExample = () =&gt; {
@@ -1823,13 +1826,13 @@ const InputExample = () =&gt; {
 export default InputExample
 
 </code></pre>
-<div line-highlight='5, 10-13, only'></div>
+<div line-highlight='5, 10, only'></div>
 <p>In this example, the <code>onChangeText</code> prop is passed a function that calls <code>setText</code> to store the text as state in the component.</p>
 <h3>Labelling text inputs</h3>
 <p>In the code above, we have a <code>&lt;Text&gt;</code> component in the view but it does not have a programmatic relationship with the <code>&lt;TextInput&gt;</code> itself.
 This means that assistive technologies (such as screen readers) won’t know to announce the <code>Text</code> when the <code>TextInput</code> has focus.</p>
 <p>To fix this, we can use the accessibility APIs:</p>
-<pre><code class="language-tsx">import React, { useId, useState } from &quot;react&quot;
+<pre><code class="language-tsx">import { useState } from &quot;react&quot;
 import { Text, TextInput, View } from &quot;react-native&quot;
 
 const InputExample = () =&gt; {
@@ -1851,18 +1854,19 @@ const InputExample = () =&gt; {
 export default InputExample
 
 </code></pre>
- <div line-highlight="1,9-15,only"></div>
+ <div line-highlight="9-15,only"></div>
 <p>In the code above, we add the following props:</p>
 <ul>
 <li><code>nativeID</code> on the <code>Text</code> to give it a unique ID.</li>
-<li><code>accessibilityLabel</code> to indicate the <code>TextInput</code> is an input.</li>
+<li><code>accessibilityLabel</code> to indicate the <code>TextInput</code> is an “edit box.”</li>
 <li><code>accessibilityLabelledBy</code> on the <code>TextInput</code> to associate it with the <code>Text</code> component.</li>
 </ul>
-<p>These three props combined will make the input accessible to assistive technologies.</p>
+<p>These three props combined will make the input accessible to assistive technologies.
+For example, a screen reader would announce “Input, Edit Box for Enter your name” when the <code>TextInput</code> receives focus.</p>
 <h3>Creating unique IDs with the <code>useId()</code> Hook</h3>
 <p>There’s one minor issue with the code we have above: the <code>nativeID</code> prop’s value is pretty generic (<code>&quot;name&quot;</code>) and might accidentally be used multiple times across multiple views, causing confusion about which component is the right one to refer to!</p>
 <p>To solve this, we can use the <code>useId</code> Hook to generate a unique ID:</p>
-<pre><code class="language-tsx">import React, { useState } from &quot;react&quot;
+<pre><code class="language-tsx">import { useId, useState } from &quot;react&quot;
 import { Text, TextInput, View } from &quot;react-native&quot;
 
 const InputExample = () =&gt; {
@@ -1930,6 +1934,7 @@ const FormTextField: React.FC&lt;FormTextFieldProps&gt; = ({
 export default FormTextField
 
 </code></pre>
+<div line-highlight='24, only'></div>
 <p>✏️ Create <strong>src/components/FormTextField/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./FormTextField&quot;
 export * from &quot;./FormTextField&quot;
@@ -2017,6 +2022,7 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
   }, [restaurant, navigation])
 
   const handleOrder = () =&gt; {
+    // eslint-disable-next-line no-console
     console.info(&quot;“Place My Order” button pressed!&quot;)
   }
 
@@ -2116,7 +2122,7 @@ function calculateTotal(items: OrderItems) {
 export default RestaurantOrder
 
 </code></pre>
- <div line-highlight="7,28,104-106,only"></div>
+ <div line-highlight="7,28,105-107,only"></div>
 <h3>Verify 2</h3>
 <p>✏️ Create <strong>src/components/FormTextField/FormTextField.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen, userEvent } from &quot;@testing-library/react-native&quot;
@@ -2153,6 +2159,7 @@ describe(&quot;Components/FormTextField&quot;, () =&gt; {
 })
 
 </code></pre>
+<div line-highlight='11, only'></div>
 <p>✏️ Update <strong>src/screens/RestaurantOrder/RestaurantOrder.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { render, screen } from &quot;@testing-library/react-native&quot;
@@ -2449,6 +2456,7 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
   }, [restaurant, navigation])
 
   const handleOrder = () =&gt; {
+    // eslint-disable-next-line no-console
     console.info(&quot;“Place My Order” button pressed!&quot;)
   }
 
@@ -2550,7 +2558,7 @@ function calculateTotal(items: OrderItems) {
 export default RestaurantOrder
 
 </code></pre>
- <div line-highlight="28-30,107-109,only"></div>
+ <div line-highlight="28-30,108-110,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, in order to retain data to limit requests and migrating the same data, let’s look into <a href="./using-asyncstorage">Using AsyncStorage</a>.</p>

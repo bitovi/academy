@@ -746,8 +746,8 @@ export function useTheme(): Theme {
 <h3>The useState Hook</h3>
 <p>We can store the state that persists through component rendering with the <code>useState</code> Hook. You can set the initial state value when the component <strong>first</strong> renders by providing the value as an argument to the Hook. _If you do not provide a value the initial state value will be <code>undefined</code>.</p>
 <p>This example shows a <code>useState</code> Hook being set with an initial value of <code>&quot;&quot;</code>:</p>
-<pre><code class="language-tsx">import React, { ChangeEvent, useState } from &quot;react&quot;
-import { View, Text, TextInput } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { ChangeEvent, useState } from &quot;react&quot;
+import { Text, TextInput, View } from &quot;react-native&quot;
 
 const NameField: React.FC = () =&gt; {
   const [value, setValue] = useState&lt;string&gt;(&quot;&quot;)
@@ -772,8 +772,8 @@ const NameField: React.FC = () =&gt; {
 <div line-highlight='1, 5, only'></div>
 <p>As you can see in the previous example, <code>useState</code> returns an array with two elements: the first is the current state value of the Hook, and the second is a setter function that is used to update the state value.</p>
 <p>In the following code, the value is being rendered and the setter is being used to keep track of which input value the user has typed:</p>
-<pre><code class="language-tsx">import React, { ChangeEvent, useState } from &quot;react&quot;
-import { View, Text, TextInput } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { ChangeEvent, useState } from &quot;react&quot;
+import { Text, TextInput, View } from &quot;react-native&quot;
 
 const NameField: React.FC = () =&gt; {
   const [value, setValue] = useState&lt;string&gt;(&quot;&quot;)

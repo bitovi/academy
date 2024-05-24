@@ -1409,7 +1409,7 @@ Let’s dig into how we can add data migration to the application.</p>
 <p>When updating an application, it’s essential to ensure the existing data is compatible with the new version.
 This often involves data migration, which should complete before the app continues to render its components.
 To achieve this, a component can be used in the <code>App</code> JSX to block the rendering of child components until the migration is complete.</p>
-<pre><code class="language-tsx">import React, { ReactNode, useState } from &quot;react&quot;
+<pre><code class="language-tsx">import { ReactNode, useState } from &quot;react&quot;
 import { Text } from &quot;react-native&quot;
 
 const MigrationLoader: React.FC&lt;{ children: ReactNode }&gt; = ({ children }) =&gt; {
@@ -1438,7 +1438,7 @@ export default App
 <h3>Running the migration</h3>
 <p>Next, we need to run the actual migration!</p>
 <p>The migration will inevitably include a call to an <code>async</code> function, so include a <code>useEffect</code> for this logic:</p>
-<pre><code class="language-tsx">import React, { ReactNode, useEffect, useState } from &quot;react&quot;
+<pre><code class="language-tsx">import { ReactNode, useEffect, useState } from &quot;react&quot;
 import { Text } from &quot;react-native&quot;
 
 const MigrationLoader: React.FC&lt;{ children: ReactNode }&gt; = ({ children }) =&gt; {
@@ -1475,7 +1475,7 @@ export default App
 <h3>Versioning the data</h3>
 <p>The code will currently run the migration every time the app launches, but it should only run the migration when it’s necessary.</p>
 <p>To accomplish this, we can store a version number and fetch it before running the migration:</p>
-<pre><code class="language-tsx">import React, { ReactNode, useEffect, useState } from &quot;react&quot;
+<pre><code class="language-tsx">import { ReactNode, useEffect, useState } from &quot;react&quot;
 import { Text } from &quot;react-native&quot;
 
 async function getDataVersion() {
