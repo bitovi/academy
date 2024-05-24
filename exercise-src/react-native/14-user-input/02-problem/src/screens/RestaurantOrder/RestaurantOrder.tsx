@@ -58,10 +58,12 @@ const RestaurantOrder: React.FC<RestaurantOrderProps> = ({ route }) => {
   if (error) {
     return (
       <Screen>
-        <Typography variant="heading">
-          Error loading restaurant order:{" "}
-        </Typography>
-        <Typography variant="body">{error.message}</Typography>
+        <Box padding="m">
+          <Typography variant="heading">
+            Error loading restaurant order:{" "}
+          </Typography>
+          <Typography variant="body">{error.message}</Typography>
+        </Box>
       </Screen>
     )
   }
@@ -73,7 +75,9 @@ const RestaurantOrder: React.FC<RestaurantOrderProps> = ({ route }) => {
   if (!restaurant) {
     return (
       <Screen>
-        <Typography variant="heading">Restaurant not found</Typography>
+        <Box padding="m">
+          <Typography variant="heading">Restaurant not found</Typography>
+        </Box>
       </Screen>
     )
   }

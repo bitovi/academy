@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
-// Exercise: Implement the four `AsyncStorage` helpers in `storage.ts`.
+// Exercise: Implement the four `AsyncStorage` helpers.
 export const getData = async <T>(key: string): Promise<T | undefined> => {}
 
 export const getAllKeys = (): Promise<readonly string[]> => {}
