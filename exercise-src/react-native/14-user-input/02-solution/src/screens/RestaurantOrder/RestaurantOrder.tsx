@@ -36,6 +36,7 @@ const RestaurantOrder: React.FC<RestaurantOrderProps> = ({ route }) => {
   }, [restaurant, navigation])
 
   const handleOrder = () => {
+    // eslint-disable-next-line no-console
     console.info("“Place My Order” button pressed!")
   }
 

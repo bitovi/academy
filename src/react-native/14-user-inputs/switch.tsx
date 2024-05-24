@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import { Switch, Text, View } from "react-native"
 
 const SwitchExample = () => {
