@@ -20,7 +20,7 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
   const signIn = async () => {}
 
-  const signIn = async () => {}
+  const signOut = async () => {}
 
   useEffect(() => {
     // Exercise: When a sign in is successful, update the user.
