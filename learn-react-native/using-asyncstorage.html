@@ -704,7 +704,8 @@ It operates asynchronously and stores data in key-value pairs, making it a good 
 </ul>
 <h3>Storing items</h3>
 <p>Use the <code>setItem</code> method to store data using <code>AsyncStorage</code>.
-Since it only supports storing strings, complex data such as objects or arrays must be serialized using <code>JSON.stringify</code> before storage.</p>
+Since it only supports storing strings, complex data such as objects or arrays must be serialized using <code>JSON.stringify</code> before storage.
+This also means that classes and functions can't be serialized for storage.</p>
 <p>Here is an example:</p>
 <pre><code class="language-ts">import AsyncStorage from &quot;@react-native-async-storage/async-storage&quot;
 
@@ -729,7 +730,7 @@ The retrieved data, being in string format, often needs to be converted back int
 export async function loadProfileData() {
   try {
     const serializedData = await AsyncStorage.getItem(&quot;profileData&quot;)
-    return serializedData != null ? JSON.parse(serializedData) : null
+    return serializedData ? JSON.parse(serializedData) : null
   } catch (error) {
     console.error(&quot;Failed to load data&quot;, error)
   }
@@ -861,9 +862,9 @@ export const clearStorage = (): Promise&lt;void&gt; =&gt; {}
 
 const baseUrl = process.env.PMO_API
 
-export interface LocalStorageApiRequest&lt;T&gt; {
+export interface CachedResponse&lt;T&gt; {
   data: T
-  dateTime: Date
+  dateTime: string
 }
 
 export const keyPrefix = &quot;apiRequest-&quot;
@@ -1057,9 +1058,9 @@ describe(&quot;Services/Storage&quot;, () =&gt; {
 
 const baseUrl = process.env.PMO_API
 
-export interface LocalStorageApiRequest&lt;T&gt; {
+export interface CachedResponse&lt;T&gt; {
   data: T
-  dateTime: Date
+  dateTime: string
 }
 
 export const keyPrefix = &quot;apiRequest-&quot;
@@ -1085,7 +1086,7 @@ export async function apiRequest&lt;
 
     if (method === &quot;GET&quot;) {
       try {
-        const cachedResponse = await getData&lt;LocalStorageApiRequest&lt;Data&gt;&gt;(
+        const cachedResponse = await getData&lt;CachedResponse&lt;Data&gt;&gt;(
           keyPrefix + requestUrl,
         )
 
@@ -1116,9 +1117,9 @@ export async function apiRequest&lt;
     const data = await response.json()
 
     if (method === &quot;GET&quot; &amp;&amp; response.ok) {
-      await storeData&lt;LocalStorageApiRequest&lt;Data&gt;&gt;(keyPrefix + requestUrl, {
+      await storeData&lt;CachedResponse&lt;Data&gt;&gt;(keyPrefix + requestUrl, {
         data: data,
-        dateTime: new Date(),
+        dateTime: new Date().toDateString(),
       })
     }
 
@@ -1188,9 +1189,9 @@ export const clearStorage = (): Promise&lt;void&gt; =&gt; {
 
 const baseUrl = process.env.PMO_API
 
-export interface LocalStorageApiRequest&lt;T&gt; {
+export interface CachedResponse&lt;T&gt; {
   data: T
-  dateTime: Date
+  dateTime: string
 }
 
 export const keyPrefix = &quot;apiRequest-&quot;
@@ -1216,7 +1217,7 @@ export async function apiRequest&lt;
 
     if (method === &quot;GET&quot;) {
       try {
-        const cachedResponse = await getData&lt;LocalStorageApiRequest&lt;Data&gt;&gt;(
+        const cachedResponse = await getData&lt;CachedResponse&lt;Data&gt;&gt;(
           keyPrefix + requestUrl,
         )
 
@@ -1247,9 +1248,9 @@ export async function apiRequest&lt;
     const data = await response.json()
 
     if (method === &quot;GET&quot; &amp;&amp; response.ok) {
-      await storeData&lt;LocalStorageApiRequest&lt;Data&gt;&gt;(keyPrefix + requestUrl, {
+      await storeData&lt;CachedResponse&lt;Data&gt;&gt;(keyPrefix + requestUrl, {
         data: data,
-        dateTime: new Date(),
+        dateTime: new Date().toDateString(),
       })
     }
 
@@ -1292,7 +1293,7 @@ export function stringifyQuery(
 
 const baseUrl = process.env.PMO_API
 
-export interface LocalStorageApiRequest&lt;T&gt; {
+export interface CachedResponse&lt;T&gt; {
   data: T
   dateTime: number
 }
@@ -1320,7 +1321,7 @@ export async function apiRequest&lt;
 
     if (method === &quot;GET&quot;) {
       try {
-        const cachedResponse = await getData&lt;LocalStorageApiRequest&lt;Data&gt;&gt;(
+        const cachedResponse = await getData&lt;CachedResponse&lt;Data&gt;&gt;(
           keyPrefix + requestUrl,
         )
 
@@ -1350,7 +1351,7 @@ export async function apiRequest&lt;
     const data = await response.json()
 
     if (method === &quot;GET&quot; &amp;&amp; response.ok) {
-      await storeData&lt;LocalStorageApiRequest&lt;Data&gt;&gt;(keyPrefix + requestUrl, {
+      await storeData&lt;CachedResponse&lt;Data&gt;&gt;(keyPrefix + requestUrl, {
         data: data,
         dateTime: Date.now(),
       })
@@ -1527,12 +1528,12 @@ We’ll assume that the data is version <code>1</code> if we haven’t stored th
 <pre><code class="language-tsx">import { useEffect, useState } from &quot;react&quot;
 
 import Loading from &quot;../../components/Loading&quot;
-import { LocalStorageApiRequest, keyPrefix } from &quot;../pmo/api&quot;
+import { CachedResponse, keyPrefix } from &quot;../pmo/api&quot;
 import { getData, getAllKeys, storeData, clearStorage } from &quot;../storage&quot;
 
-interface LocalStorageApiRequestV1 {
+interface CachedResponseV1 {
   data: unknown
-  dateTime: Date
+  dateTime: string
 }
 
 const migrateDataFromV1toV2 = async (): Promise&lt;void&gt; =&gt; {
@@ -1562,7 +1563,7 @@ export * from &quot;./DataMigration&quot;
 
 const baseUrl = process.env.PMO_API
 
-export interface LocalStorageApiRequest&lt;T&gt; {
+export interface CachedResponse&lt;T&gt; {
   data: T
   dateTime: number
 }
@@ -1590,7 +1591,7 @@ export async function apiRequest&lt;
 
     if (method === &quot;GET&quot;) {
       try {
-        const cachedResponse = await getData&lt;LocalStorageApiRequest&lt;Data&gt;&gt;(
+        const cachedResponse = await getData&lt;CachedResponse&lt;Data&gt;&gt;(
           keyPrefix + requestUrl,
         )
 
@@ -1620,7 +1621,7 @@ export async function apiRequest&lt;
     const data = await response.json()
 
     if (method === &quot;GET&quot; &amp;&amp; response.ok) {
-      await storeData&lt;LocalStorageApiRequest&lt;Data&gt;&gt;(keyPrefix + requestUrl, {
+      await storeData&lt;CachedResponse&lt;Data&gt;&gt;(keyPrefix + requestUrl, {
         data: data,
         dateTime: Date.now(),
       })
@@ -1807,12 +1808,12 @@ We’ve already given you the changes to the <code>apiRequest</code> helper, so 
 <pre><code class="language-tsx">import { useEffect, useState } from &quot;react&quot;
 
 import Loading from &quot;../../components/Loading&quot;
-import { LocalStorageApiRequest, keyPrefix } from &quot;../pmo/api&quot;
+import { CachedResponse, keyPrefix } from &quot;../pmo/api&quot;
 import { getData, getAllKeys, storeData, clearStorage } from &quot;../storage&quot;
 
-interface LocalStorageApiRequestV1 {
+interface CachedResponseV1 {
   data: unknown
-  dateTime: Date
+  dateTime: string
 }
 
 const migrateDataFromV1toV2 = async (): Promise&lt;void&gt; =&gt; {
@@ -1820,10 +1821,10 @@ const migrateDataFromV1toV2 = async (): Promise&lt;void&gt; =&gt; {
   try {
     for (const key of keys) {
       if (key.startsWith(keyPrefix)) {
-        const oldData = (await getData(key)) as LocalStorageApiRequestV1
-        await storeData&lt;LocalStorageApiRequest&lt;unknown&gt;&gt;(key, {
+        const oldData = (await getData(key)) as CachedResponseV1
+        await storeData&lt;CachedResponse&lt;unknown&gt;&gt;(key, {
           ...oldData,
-          dateTime: oldData.dateTime.valueOf(),
+          dateTime: new Date(oldData.dateTime).valueOf(),
         })
       }
     }
