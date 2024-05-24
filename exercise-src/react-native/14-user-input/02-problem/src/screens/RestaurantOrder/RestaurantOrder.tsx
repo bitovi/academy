@@ -102,7 +102,7 @@ const RestaurantOrder: React.FC<RestaurantOrderProps> = ({ route }) => {
       </Card>
 
       <Card title="Order Details">
-        {/* Exercise: Use name, address, and phone fields to create FormTextField elements. */}
+        {/* Exercise: Use name, phone, and address fields to create FormTextField elements. */}
       </Card>
 
       <Box padding="s">
