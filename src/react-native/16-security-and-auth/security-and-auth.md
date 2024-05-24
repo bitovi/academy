@@ -40,7 +40,7 @@ The use of refresh tokens rather than long-lived access tokens is primarily a se
 
 - **Revocation**: If a user's access is revoked, the refresh token can be invalidated, preventing the attacker from obtaining new access tokens.
 
-- **Limited Scope**: Refresh tokens can be issued with limited scopes, reducing the potential damage if they are compromised. 
+- **Limited Scope**: Refresh tokens can be issued with limited scopes, reducing the potential damage if they are compromised.
 
 The OAuth flow typically involves the following steps:
 
