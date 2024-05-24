@@ -75,12 +75,12 @@ Well, we’re in luck!
 React already has a solution for this: the setter function returned by `useState` will accept an “updater function” that’s passed the “current” state value and should return the “next” state value.
 
 @sourceref ./set-state-with-function.tsx
-@highlight 15-16, 27, 37, only
+@highlight 15-16, 27, 45, only
 
 In the example above, the `onChange` event handler calls `handleSelectedChange`, which accepts a name `string` and a `boolean`.
 
 In turn, `handleSelectedChange` calls `setSelected` with an updater function as the argument.
-The updater function accepts the `currentSelectedItems` argument, which is the object with the currently-selected items _before_ our checkbox was checked.
+The updater function accepts the `currentSelectedItems` argument, which is the object with the currently-selected items _before_ our switch was toggled.
 
 We will dig into _how_ we create the `updatedSelectedItems` object in just a bit, but for now let’s take note that we create a new `updatedSelectedItems` object and return it from our updater function.
 This gives React the updated `selected` state and allows React to re-render the component.
@@ -130,6 +130,7 @@ OK, that was a lot. Let’s start making some code changes so we can select menu
 ✏️ Create **src/screens/RestaurantOrder/RestaurantOrder.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-native/14-user-input/01-problem/src/screens/RestaurantOrder/RestaurantOrder.tsx
+@highlight 37, 65, 69, only
 
 ✏️ Create **src/screens/RestaurantOrder/index.ts** and update it to be:
 
@@ -149,6 +150,7 @@ OK, that was a lot. Let’s start making some code changes so we can select menu
 ✏️ Create **src/screens/RestaurantOrder/RestaurantOrder.test.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-native/14-user-input/01-problem/src/screens/RestaurantOrder/RestaurantOrder.test.tsx
+@highlight 67, 94, 110, only
 
 ### Exercise 1
 
@@ -158,9 +160,9 @@ OK, that was a lot. Let’s start making some code changes so we can select menu
 - Call `useState()` and use the `OrderItems` interface to create an `items` state.
 - Create a function for calling `setItems()` with the updated `items` state.
 - Update `subtotal` to use the `calculateTotal()` helper function.
-- List restaurant food items for both lunch and dinner menus with checkboxes using `FormSwitchField`.
+- List restaurant food items for both lunch and dinner menus with switches using `FormSwitchField`.
 
-Hint: The `items` state will look like this when populated:
+**Hint:** The `items` state will look like this when populated:
 
 ```tsx
 const items = {
@@ -200,7 +202,6 @@ Next, we want to collect the user’s name, phone number, and address as part of
 To do this, we’ll use React Native’s `TextInput` component.
 
 <div style="display: flex; flex-direction: row; gap: 2rem">
-  <img alt="Screenshot of the top of the application restaurant order page." src="../static/img/react-native/14-user-input/02-solution-top.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
   <img alt="Screenshot of the bottom of the application restaurant order page." src="../static/img/react-native/14-user-input/02-solution-bottom.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 </div>
 
@@ -212,7 +213,7 @@ Changes in text input are managed using the `onChangeText` prop, which receives 
 Here’s how you can use `TextInput` in your application:
 
 @sourceref text.tsx
-@highlight 5, 10-13, only
+@highlight 5, 10, only
 
 In this example, the `onChangeText` prop is passed a function that calls `setText` to store the text as state in the component.
 
@@ -228,10 +229,11 @@ To fix this, we can use the accessibility APIs:
 In the code above, we add the following props:
 
 - `nativeID` on the `Text` to give it a unique ID.
-- `accessibilityLabel` to indicate the `TextInput` is an input.
+- `accessibilityLabel` to indicate the `TextInput` is an “edit box.”
 - `accessibilityLabelledBy` on the `TextInput` to associate it with the `Text` component.
 
 These three props combined will make the input accessible to assistive technologies.
+For example, a screen reader would announce “Input, Edit Box for Enter your name” when the `TextInput` receives focus.
 
 ### Creating unique IDs with the `useId()` Hook
 
@@ -249,6 +251,7 @@ This is ideal for linking related components together, as is the case with `nati
 ✏️ Create **src/components/FormTextField/FormTextField.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-native/14-user-input/02-problem/src/components/FormTextField/FormTextField.tsx
+@highlight 24, only
 
 ✏️ Create **src/components/FormTextField/index.ts** and update it to be:
 
@@ -267,6 +270,7 @@ This is ideal for linking related components together, as is the case with `nati
 ✏️ Create **src/components/FormTextField/FormTextField.test.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-native/14-user-input/02-problem/src/components/FormTextField/FormTextField.test.tsx
+@highlight 11, only
 
 ✏️ Update **src/screens/RestaurantOrder/RestaurantOrder.test.tsx** to be:
 

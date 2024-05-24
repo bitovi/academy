@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from "react"
+import { ReactNode, useEffect, useState } from "react"
 import { Text } from "react-native"
 
 const MigrationLoader: React.FC<{ children: ReactNode }> = ({ children }) => {
