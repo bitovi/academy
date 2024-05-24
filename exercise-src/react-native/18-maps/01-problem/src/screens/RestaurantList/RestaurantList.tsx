@@ -4,6 +4,7 @@ import { useState } from "react"
 import { RestaurantsStackParamList } from "../../App"
 import Loading from "../../components/Loading"
 import Tabs from "../../components/Tabs"
+import Box from "../../design/Box"
 import Screen from "../../design/Screen"
 import Typography from "../../design/Typography"
 import { useRestaurants } from "../../services/pmo/restaurant"
@@ -27,8 +28,10 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ route }) => {
   if (error) {
     return (
       <Screen>
-        <Typography variant="heading">Error loading restaurants: </Typography>
-        <Typography variant="body">{error.message}</Typography>
+        <Box padding="m">
+          <Typography variant="heading">Error loading restaurants: </Typography>
+          <Typography variant="body">{error.message}</Typography>
+        </Box>
       </Screen>
     )
   }

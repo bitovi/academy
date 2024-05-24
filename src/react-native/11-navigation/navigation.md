@@ -91,7 +91,7 @@ npm install @react-navigation/native@6 @react-navigation/bottom-tabs@6 react-nat
 npm install --save-dev @types/react-native-vector-icons@6 identity-obj-proxy@3
 ```
 
-✏️ Kill the existing dev server and start it again:
+✏️ Terminate the existing dev server and start it again:
 
 ```bash
 npm run start
@@ -255,7 +255,7 @@ npm install @react-navigation/stack@6 react-native-gesture-handler@2
 
 @diff ../../../exercises/react-native/11-navigation/01-solution/index.js ../../../exercises/react-native/11-navigation/02-problem/index.js only
 
-✏️ Kill the existing dev server and start it again:
+✏️ Terminate the existing dev server and start it again:
 
 ```bash
 npm run start

@@ -2,6 +2,7 @@ import { useNavigation } from "@react-navigation/native"
 import { FlatList } from "react-native"
 
 import Loading from "../../components/Loading"
+import Box from "../../design/Box"
 import Button from "../../design/Button"
 import Screen from "../../design/Screen"
 import Typography from "../../design/Typography"
@@ -14,8 +15,10 @@ const StateList: React.FC = () => {
   if (error) {
     return (
       <Screen>
-        <Typography variant="heading">Error loading states: </Typography>
-        <Typography variant="body">{error.message}</Typography>
+        <Box padding="m">
+          <Typography variant="heading">Error loading states: </Typography>
+          <Typography variant="body">{error.message}</Typography>
+        </Box>
       </Screen>
     )
   }

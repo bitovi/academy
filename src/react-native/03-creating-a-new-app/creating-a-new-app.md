@@ -131,6 +131,10 @@ npm install --save-dev @bitovi/eslint-config@1 depcheck@1
 
 @diff ../../../exercises/react-native/03-creating-a-new-app/02-solution/.eslintrc.js ../../../exercises/react-native/03-creating-a-new-app/03-solution/.eslintrc.js only
 
+✏️ Update **.gitignore** to be:
+
+@diff ../../../exercises/react-native/03-creating-a-new-app/02-solution/.gitignore ../../../exercises/react-native/03-creating-a-new-app/03-solution/.gitignore only
+
 ✏️ Update **.prettierrc.js** to be:
 
 @diff ../../../exercises/react-native/03-creating-a-new-app/02-solution/.prettierrc.js ../../../exercises/react-native/03-creating-a-new-app/03-solution/.prettierrc.js only

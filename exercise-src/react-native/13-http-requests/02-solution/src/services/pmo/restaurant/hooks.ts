@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-import { State, City } from "./interfaces"
+import { City, State } from "./interfaces"
 
 const baseUrl = process.env.PMO_API
 

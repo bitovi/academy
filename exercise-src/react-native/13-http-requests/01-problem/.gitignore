@@ -60,6 +60,12 @@ yarn-error.log
 *.jsbundle
 *.tsbuildinfo
 
+# Environment variables
+.env
+
+# Place My Order API
+/db-data
+
 # Ruby / CocoaPods
 **/Pods/
 /vendor/bundle/

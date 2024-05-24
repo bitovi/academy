@@ -16,7 +16,7 @@ In this section, you will:
 
 ## Objective 1: Context and Google Authentication
 
-<img alt="Screenshot of the Settings tab with a Google sign in button" src="../static/img/react-native/16-security/1-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+<img alt="Screenshot of the Settings tab with a Google sign in button" src="../static/img/react-native/16-security/1-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 
 ### OAuth
 

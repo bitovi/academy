@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 import { apiRequest } from "../api"
 
-import { State, City } from "./interfaces"
+import { City, State } from "./interfaces"
 
 interface CitiesResponse {
   data: City[] | undefined

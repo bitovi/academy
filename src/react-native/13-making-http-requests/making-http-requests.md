@@ -1,6 +1,6 @@
 @page learn-react-native/making-http-requests Making HTTP Requests
 @parent learn-react-native 13
-@outline 3
+@outline 2
 
 @description Learn about how to make `fetch` requests and render requested data in React Native components.
 
@@ -10,22 +10,22 @@
 
 In this section, you will:
 
-- Manage environment variables
-- Define interfaces for `useState`
-- Explore the `useEffect` Hook
-- Understand the effect callback function
-- Utilize the dependency array
-- Perform async operations inside `useEffect`
-- Implement cleanup functions
-- Catch network errors
-- Handle HTTP error statuses
-- Include query parameters in API calls
+- Manage environment variables.
+- Define interfaces for `useState`.
+- Explore the `useEffect` Hook.
+- Understand the effect callback function.
+- Utilize the dependency array.
+- Perform async operations inside `useEffect`.
+- Implement cleanup functions.
+- Catch network errors.
+- Handle HTTP error statuses.
+- Include query parameters in API calls.
 
 ## Objective 1: Add `fetch` states in a custom hook
 
 So far we’ve only had hard-coded data for our states, cities, and restaurants. Let’s start loading data from an API server, beginning with the list of states!
 
-<img alt="Screenshot of the application when it makes an api call to the states endpoint and is populated the list of states." src="../static/img/react-native/13-making-http-requests/1-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+<img alt="Screenshot of the application when it makes an API call to the states endpoint and is populated the list of states." src="../static/img/react-native/13-making-http-requests/1-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 
 ### Defining interfaces for `useState`
 
@@ -43,7 +43,7 @@ In the example above, we have a `UserProfile` interface that keeps track of an `
 Here is an example component with `useEffect`:
 
 @sourceref dependency-array-empty.tsx
-@highlight 1, 7-13, only
+@highlight 1, 7-21, only
 
 Let’s break this example down by the two arguments that `useEffect` takes:
 
@@ -66,14 +66,14 @@ Consider three scenarios based on the dependency array:
 If the dependency array is an empty array, the effect runs once after the initial render.
 
 @sourceref dependency-array-empty.tsx
-@highlight 7-13, only
+@highlight 7-21, only
 
 #### Array with values
 
 When you include values (variables, props, state) in the dependency array, the effect will only re-run if those specific values change between renders. This selective execution can optimize performance by avoiding unnecessary work.
 
 @sourceref dependency-array-with-values.tsx
-@highlight 5, 7-9, only
+@highlight 5, 7, 15, 19, 22, only
 
 #### No dependency array
 
@@ -148,7 +148,7 @@ const data = await response.json()
 Concatenating the two, this will be the equivalent of making this `fetch` request:
 
 ```tsx
-const response = await fetch(`//localhost:7070/data`, {
+const response = await fetch(`http://localhost:7070/data`, {
   method: "GET",
 })
 ```
@@ -162,30 +162,45 @@ Before we begin requesting data from our API, we need to install the "place-my-o
 ✏️ Install the new dev dependency:
 
 ```bash
-npm install --save-dev place-my-order-api@1
+npm install --save-dev place-my-order-api@1 react-native-dotenv@3
 ```
-
-We will also need to set up our environment.
-
-✏️ Install the new dev dependency:
-
-```bash
-npm install --save-dev react-native-dotenv@3
-```
-
-✏️ Update **babel.config.js** to be:
-
-@diff ../../../exercises/react-native/12-navigation-params/01-solution/babel.config.js ../../../exercises/react-native/13-http-requests/01-problem/babel.config.js
 
 ✏️ Create **.env.example** and update it to be:
 
 @sourceref ../../../exercises/react-native/13-http-requests/01-problem/.env.example
+@highlight 1, only
 
-✏️ Next add an API script to your `package.json`
+✏️ Duplicate **.env.example** to **.env** in your project.
 
-@diff ../../../exercises/react-native/12-navigation-params/01-solution/package.json ../../../exercises/react-native/13-http-requests/01-problem/package.json only
+It’s always a good idea to keep a `.env.example` file up to date (and committed to git) in your project, then include the actual secrets in your local `.env` file (and not committed to git).
 
-✏️ In a **new** terminal window, start the API server by running:
+We do not have any secret values yet, so our `.env` can be an exact duplicate of the `.env.example` file.
+
+✏️ Update **.gitignore** to be:
+
+@diff ../../../exercises/react-native/12-navigation-params/01-solution/.gitignore ../../../exercises/react-native/13-http-requests/01-problem/.gitignore only
+
+✏️ Update **babel.config.js** to be:
+
+@diff ../../../exercises/react-native/12-navigation-params/01-solution/babel.config.js ../../../exercises/react-native/13-http-requests/01-problem/babel.config.js only
+
+✏️ Create **src/env.d.ts** and update it to be:
+
+@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/env.d.ts
+@highlight 6, only
+
+✏️ Terminate the existing dev server and start it again:
+
+```bash
+npm run start
+```
+
+✏️ Update **package.json** to be:
+
+@sourceref ../../../exercises/react-native/13-http-requests/01-problem/package.json
+@highlight 7-8, only
+
+✏️ In a **new** command-line interface (CLI) window, start the API server by running:
 
 ```bash
 npm run api
@@ -193,7 +208,11 @@ npm run api
 
 Double-check the API by navigating to <a href="http://localhost:7070/restaurants">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data.
 
-It will be helpful to have a third terminal tab for the `npm run api` command.
+It will be helpful to have a third command-line interface (CLI) tab for the `npm run api` command.
+
+✏️ Update **src/App.test.tsx** to be:
+
+@diff ../../../exercises/react-native/12-navigation-params/01-solution/src/App.test.tsx ../../../exercises/react-native/13-http-requests/01-problem/src/App.test.tsx only
 
 ✏️ Create **src/services/pmo/restaurant/interfaces.ts** and update it to be:
 
@@ -202,6 +221,7 @@ It will be helpful to have a third terminal tab for the `npm run api` command.
 ✏️ Create **src/services/pmo/restaurant/hooks.ts** and update it to be:
 
 @sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/restaurant/hooks.ts
+@highlight 14, only
 
 ✏️ Create **src/services/pmo/restaurant/index.ts** and update it to be:
 
@@ -210,6 +230,10 @@ It will be helpful to have a third terminal tab for the `npm run api` command.
 ✏️ Create **src/components/Loading/Loading.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/components/Loading/Loading.tsx
+
+✏️ Create **src/components/Loading/Loading.test.tsx** and update it to be:
+
+@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/components/Loading/Loading.test.tsx
 
 ✏️ Create **src/components/Loading/index.ts** and update it to be:
 
@@ -224,10 +248,7 @@ It will be helpful to have a third terminal tab for the `npm run api` command.
 ✏️ Create **src/services/pmo/restaurant/hooks.test.ts** and update it to be:
 
 @sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/restaurant/hooks.test.ts
-
-✏️ Create **src/components/Loading/Loading.test.tsx** and update it to be:
-
-@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/components/Loading/Loading.test.tsx
+@highlight 15, only
 
 ✏️ Update **src/screens/StateList/StateList.test.tsx** to be:
 
@@ -237,15 +258,10 @@ It will be helpful to have a third terminal tab for the `npm run api` command.
 
 - Update the `useState` in `hooks.ts` to call `useEffect()` and `fetch` data from `${process.env.PMO_API}/states`.
 - Update `StateList.tsx` to call `useState()` and use the `StateResponse` interface.
-- Duplicate **.env.example** to **.env** in your project.
 
-It’s always a good idea to keep a `.env.example` file up to date (and committed to git) in your project, then include the actual secrets in your local `.env` file (and not committed to git).
+**Hint:** Call your state setter after you parse the JSON response from `fetch()`.
 
-We do not have any secret values yet, so our `.env` can be an exact duplicate of the `.env.example` file.
-
-Hint: Call your state setter after you parse the JSON response from `fetch()`.
-
-Hint: `useState()` return `isPending` and `error`. Use these states to inform the user the status.
+**Hint:** `useState()` return `isPending` and `error`. Use these states to inform the user the status.
 
 ### Solution 1
 
@@ -264,13 +280,13 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 </details>
 
-## Objective 2: Add `fetch` cities in a custom hook with query parameters
+## Objective 2: Fetch cities in a custom Hook with query parameters
 
 Let’s continue our quest to load data from our API and update our `<CitiesList>` to use a custom `useCities` Hook to fetch data.
 
 To do this, we’ll need to include query parameters in our API call to the `/cities` endpoint.
 
-<img alt="Screenshot of the application when it makes an api call to the cities endpoint and is populated the list of cities." src="../static/img/react-native/13-making-http-requests/2-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+<img alt="Screenshot of the application when it makes an API call to the cities endpoint and is populated the list of cities." src="../static/img/react-native/13-making-http-requests/2-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 
 ### Including query parameters in API calls
 
@@ -289,7 +305,7 @@ Here’s a breakdown of this URL:
 
 ### Setup 2
 
-✏️ Create **src/services/pmo/restaurant/interfaces.ts** and update it to be:
+✏️ Update **src/services/pmo/restaurant/interfaces.ts** to be:
 
 @diff ../../../exercises/react-native/13-http-requests/01-solution/src/services/pmo/restaurant/interfaces.ts ../../../exercises/react-native/13-http-requests/02-problem/src/services/pmo/restaurant/interfaces.ts only
 
@@ -317,7 +333,7 @@ Here’s a breakdown of this URL:
 - When calling the Place My Order API, include the `state` query parameter:
   `http://localhost:7070/cities?state=MO`
 
-Hint: Remember to include the `state` in the dependency array of the `useEffect()` in `useCities()`.
+**Hint:** Remember to include the `state` in the dependency array of the `useEffect()` in `useCities()`.
 
 ### Solution 2
 
@@ -340,10 +356,11 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 Now that we have two Hooks that fetch data in a similar way, let’s create an `apiRequest` helper function that both Hooks can use.
 
+While we do this, let‘s add error handling for unsuccessful API requests:
+
 <div style="display: flex; flex-direction: row; gap: 2rem">
-  <img alt="Screenshot of the application when it makes an api call to the states endpoint and is populated the list of states." src="../static/img/react-native/13-making-http-requests/1-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
-  <img alt="Screenshot of the application when it makes an api call to the cities endpoint and is populated the list of cities." src="../static/img/react-native/13-making-http-requests/2-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
-  <img alt="Screenshot of the application when it makes an api call and the api returns an error." src="../static/img/react-native/13-making-http-requests/3-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screenshot of the application when it makes an API call to the cities endpoint and is populated the list of cities." src="../static/img/react-native/13-making-http-requests/2-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screenshot of the application when it makes an API call and the API returns an error." src="../static/img/react-native/13-making-http-requests/3-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 </div>
 
 ### Handle HTTP error statuses
@@ -377,6 +394,7 @@ In the example above, we `catch` the `error` and check its type. If it’s alrea
 ✏️ Create **src/services/pmo/api/api.ts** and update it to be:
 
 @sourceref ../../../exercises/react-native/13-http-requests/03-problem/src/services/pmo/api/api.ts
+@highlight 30, only
 
 ✏️ Create **src/services/pmo/api/index.ts** and update it to be:
 
@@ -397,7 +415,7 @@ In the example above, we `catch` the `error` and check its type. If it’s alrea
 - Implement the `apiRequest` helper function to handle errors returned and thrown from `fetch()`.
 - Update the `useCities` and `useStates` Hooks to use the `data` and `error` returned from `apiRequest`.
 
-Hint: Use the new `stringifyQuery` function to convert an object of query parameters to a string:
+**Hint:** Use the new `stringifyQuery` function to convert an object of query parameters to a string:
 
 ```tsx
 stringifyQuery({
@@ -423,20 +441,20 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 </details>
 
-## Objective 4: Add `fetch` restaurants in a custom hook
+## Objective 4: Fetch restaurants in a custom Hook
 
 Let’s finish our quest to load data from our API by creating a Hook to fetch the list of restaurants and use it in our component.
 
 Now that we are able to capture a user’s state and city preferences, we want to only show the restaurants in the selected city:
 
 <div style="display: flex; flex-direction: row; gap: 2rem">
-  <img alt="Screenshot of the application when it makes an api call to the restaurants endpoint and is populated the list of restaurants." src="../static/img/react-native/13-making-http-requests/4-1-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
-  <img alt="Screenshot of the application when it makes an api call to the restaurant endpoint and is populated populated with the restaurants details." src="../static/img/react-native/13-making-http-requests/4-2-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screenshot of the application when it makes an API call to the restaurants endpoint and is populated the list of restaurants." src="../static/img/react-native/13-making-http-requests/4-1-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screenshot of the application when it makes an API call to the restaurant endpoint and is populated populated with the restaurants details." src="../static/img/react-native/13-making-http-requests/4-2-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 </div>
 
 ### Setup 4
 
-✏️ Create **src/services/pmo/restaurant/interfaces.ts** and update it to be:
+✏️ Update **src/services/pmo/restaurant/interfaces.ts** to be:
 
 @diff ../../../exercises/react-native/13-http-requests/03-solution/src/services/pmo/restaurant/interfaces.ts ../../../exercises/react-native/13-http-requests/04-problem/src/services/pmo/restaurant/interfaces.ts only
 
@@ -468,15 +486,14 @@ Now that we are able to capture a user’s state and city preferences, we want t
 
 ### Exercise 4
 
+- Fill in `useRestaurant` Hook for fetching the details of the restaurant.
 - Fill in `useRestaurants` Hook for fetching the list of restaurants.
+- Update `RestaurantDetails.tsx` to use our new `useRestaurants` Hook.
 - Update `RestaurantList.tsx` to use our new `useRestaurants` Hook.
 
-Hint: The requested URL with query parameters should look like this: `'/restaurants?filter[address.state]=IL&filter[address.city]=Chicago'`
+**Hint:** The `useRestaurant()` Hook should make a request like this: `'/restaurants/${slug}'`
 
-- Fill in `useRestaurant` Hook for fetching the details of the restaurant.
-- Update `RestaurantDetails.tsx` to use our new `useRestaurants` Hook.
-
-Hint: The requested URL with query parameters should look like this: `'/restaurants/${slug}'`
+**Hint:** The `useRestaurants()` Hook should make a request with these query parameters: `'/restaurants?filter[address.state]=IL&filter[address.city]=Chicago'`
 
 ### Solution 4
 
