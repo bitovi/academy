@@ -873,7 +873,7 @@ export default App
 <p>We’ve taken a great step to make our code more readable and our app more maintainable by creating the <code>StateList</code> component.</p>
 <p>Let’s keep the good refactoring rolling by creating a <code>ListItem</code> component to house the JSX used to render each state in the list.</p>
 <h3>Using component props</h3>
-<p>In React, props (short for “properties”) are how we pass data from a parent component to a child component. Since function React components are fundamentally JavaScript functions, you can think of props like the arguments you pass to a function.</p>
+<p>In React, props are how we pass data from a parent component to a child component. Since function React components are fundamentally JavaScript functions, you can think of props like the arguments you pass to a function.</p>
 <p>To clarify, props in React Native should not be confused with the properties on HTML elements in web development, even though they sound similar.</p>
 <p>To receive props, function components must implement a React API that allows an optional object argument, usually referred to as <code>props</code>.</p>
 <p>The properties on the props object—individually called a “prop”—can include whatever data the child component needs to make the component work. The property values can be any type, including functions and other React components.</p>
@@ -953,15 +953,15 @@ const states = [
 ]
 
 export interface ListItemProps {
-  // Exercise: Update the `ListItemProps` type to enforce a `key` and `name` property of the appropriate primitive type.
+  // Exercise: Update the `ListItemProps` type to enforce a `name` prop of the appropriate primitive type.
 }
 
 export const ListItem: React.FC = () =&gt; {
-  // Exercise: Update the `ListItem` component to use the `ListItemProps` as its input type and return the `name` property of the a `state` index.
+  // Exercise: Update the `ListItem` component to use the `ListItemProps` and return the `&lt;Text&gt;` element.
 }
 
 export const StateList: React.FC = () =&gt; {
-  // Exercise: Update the `StateList` component to use the `ListItem` component handle each state index.
+  // Exercise: Update the `StateList` component to use the `ListItem` component handle each state item.
   return (
     &lt;ScrollView&gt;
       &lt;View&gt;
@@ -1019,9 +1019,9 @@ describe(&quot;Screens/StateList&quot;, () =&gt; {
 
 describe(&quot;Screens/StateList/ListItem&quot;, () =&gt; {
   it(&quot;renders&quot;, async () =&gt; {
-    render(&lt;ListItem name=&quot;This is a given name property.&quot; /&gt;)
+    render(&lt;ListItem name=&quot;This is a given name prop.&quot; /&gt;)
     expect(
-      screen.getByText(/This is a given name property./i, { exact: false }),
+      screen.getByText(/This is a given name prop./i, { exact: false }),
     ).toBeOnTheScreen()
   })
 })
@@ -1030,9 +1030,9 @@ describe(&quot;Screens/StateList/ListItem&quot;, () =&gt; {
  <div line-highlight="3,26-33,only"></div>
 <h3>Exercise 2</h3>
 <ul>
-<li>Update the <code>ListItemProps</code> type to enforce a <code>key</code> and <code>name</code> property of the appropriate primitive type.</li>
-<li>Update the <code>ListItem</code> component to use the <code>ListItemProps</code> as its input type and return the <code>name</code> property of the a <code>state</code> index.</li>
-<li>Update the <code>StateList</code> component to use the <code>ListItem</code> component handle each state index.</li>
+<li>Update the <code>ListItemProps</code> type to enforce a <code>name</code> prop of the appropriate primitive type.</li>
+<li>Update the <code>ListItem</code> component to use the <code>ListItemProps</code> and returns the <code>&lt;Text&gt;</code> element.</li>
+<li>Update the <code>StateList</code> component to use the <code>ListItem</code> component to handle each state item.</li>
 </ul>
 <h3>Solution 2</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
@@ -1241,7 +1241,7 @@ AppRegistry.registerComponent(appName, () =&gt; App)
 
 import ListItem from &quot;./components/ListItem&quot;
 
-// Exercise: Move the `StateList` component logic into the correct file.
+// Exercise: Move the `StateList` component logic here.
 
 export default StateList
 
@@ -1255,13 +1255,14 @@ export default StateList
 <p>✏️ Create <strong>src/screens/StateList/components/ListItem/ListItem.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { Text } from &quot;react-native&quot;
 
-// Exercise: Move the `ListItem` component logic into the correct file.
+// Exercise: Move the `ListItem` component logic here.
 
 export default ListItem
 
 </code></pre>
 <p>✏️ Create <strong>src/screens/StateList/components/ListItem/index.tsx</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./ListItem&quot;
+export * from &quot;./ListItem&quot;
 
 </code></pre>
 <h3>Verify 3</h3>
@@ -1290,13 +1291,7 @@ describe(&quot;App&quot;, () =&gt; {
 
 import StateList from &quot;./StateList&quot;
 
-describe(&quot;Screens/StateList&quot;, () =&gt; {
-  it(&quot;renders&quot;, async () =&gt; {
-    render(&lt;StateList /&gt;)
-    expect(screen.getByText(/Illinois/i)).toBeOnTheScreen()
-    expect(screen.getByText(/Wisconsin/i)).toBeOnTheScreen()
-  })
-})
+// Exercise: Move the `StateList` test logic here.
 
 </code></pre>
 <p>✏️ Create <strong>src/screens/StateList/components/ListItem/ListItem.test.tsx</strong> and update it to be:</p>
@@ -1304,12 +1299,7 @@ describe(&quot;Screens/StateList&quot;, () =&gt; {
 
 import ListItem from &quot;./ListItem&quot;
 
-describe(&quot;Screens/StateList/ListItem&quot;, () =&gt; {
-  it(&quot;renders&quot;, async () =&gt; {
-    render(&lt;ListItem name=&quot;test prop&quot; /&gt;)
-    expect(screen.getByText(/test prop/i, { exact: false })).toBeOnTheScreen()
-  })
-})
+// Exercise: Move the `ListItem` test logic here.
 
 </code></pre>
 <h3>Exercise 3</h3>

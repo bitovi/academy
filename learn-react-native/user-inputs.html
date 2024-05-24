@@ -1090,7 +1090,6 @@ export default RestaurantDetails
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
 import { useEffect, useState } from &quot;react&quot;
-import { ScrollView } from &quot;react-native&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
 import FormSwitch from &quot;../../components/FormSwitch&quot;
@@ -1127,12 +1126,12 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
 
   if (error) {
     return (
-      &lt;Box padding=&quot;s&quot;&gt;
+      &lt;Screen&gt;
         &lt;Typography variant=&quot;heading&quot;&gt;
           Error loading restaurant order:{&quot; &quot;}
         &lt;/Typography&gt;
         &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
-      &lt;/Box&gt;
+      &lt;/Screen&gt;
     )
   }
 
@@ -1142,43 +1141,36 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
 
   if (!restaurant) {
     return (
-      &lt;Box padding=&quot;s&quot;&gt;
+      &lt;Screen&gt;
         &lt;Typography variant=&quot;heading&quot;&gt;Restaurant not found&lt;/Typography&gt;
-      &lt;/Box&gt;
+      &lt;/Screen&gt;
     )
   }
 
   return (
-    &lt;ScrollView
-      showsVerticalScrollIndicator={false}
-      alwaysBounceVertical={false}
-    &gt;
-      &lt;Screen&gt;
-        &lt;Card title=&quot;Lunch Menu&quot;&gt;
-          {/* Exercise: List food items with checkboxes. */}
-        &lt;/Card&gt;
+    &lt;Screen&gt;
+      &lt;Card title=&quot;Lunch Menu&quot;&gt;
+        {/* Exercise: List food items with checkboxes. */}
+      &lt;/Card&gt;
 
-        &lt;Card title=&quot;Dinner Menu&quot;&gt;
-          {/* Exercise: List food items with checkboxes. */}
-        &lt;/Card&gt;
+      &lt;Card title=&quot;Dinner Menu&quot;&gt;
+        {/* Exercise: List food items with checkboxes. */}
+      &lt;/Card&gt;
 
-        &lt;Card title=&quot;Order Details&quot;&gt;&lt;/Card&gt;
+      &lt;Card title=&quot;Order Details&quot;&gt;&lt;/Card&gt;
 
-        &lt;Box padding=&quot;s&quot;&gt;
-          {subtotal === 0 &amp;&amp; &lt;Typography&gt;Please choose an item.&lt;/Typography&gt;}
-        &lt;/Box&gt;
+      &lt;Box padding=&quot;s&quot;&gt;
+        {subtotal === 0 &amp;&amp; &lt;Typography&gt;Please choose an item.&lt;/Typography&gt;}
+      &lt;/Box&gt;
 
-        &lt;Box padding=&quot;s&quot;&gt;
-          &lt;Typography variant=&quot;heading&quot;&gt;
-            Total: ${subtotal.toFixed(2)}
-          &lt;/Typography&gt;
-        &lt;/Box&gt;
+      &lt;Box padding=&quot;s&quot;&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;Total: ${subtotal.toFixed(2)}&lt;/Typography&gt;
+      &lt;/Box&gt;
 
-        &lt;Box padding=&quot;s&quot;&gt;
-          &lt;Button onPress={handleOrder}&gt;Place My Order!&lt;/Button&gt;
-        &lt;/Box&gt;
-      &lt;/Screen&gt;
-    &lt;/ScrollView&gt;
+      &lt;Box padding=&quot;s&quot;&gt;
+        &lt;Button onPress={handleOrder}&gt;Place My Order!&lt;/Button&gt;
+      &lt;/Box&gt;
+    &lt;/Screen&gt;
   )
 }
 
@@ -1194,6 +1186,7 @@ export default RestaurantOrder
 <div line-highlight='37, 69, 73, only'></div>
 <p>✏️ Create <strong>src/screens/RestaurantOrder/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./RestaurantOrder&quot;
+export * from &quot;./RestaurantOrder&quot;
 
 </code></pre>
 <p>✏️ Create <strong>src/components/FormSwitch/FormSwitch.tsx</strong> and update it to be:</p>
@@ -1240,6 +1233,7 @@ export default FormSwitch
 <div line-highlight='27-33, only'></div>
 <p>✏️ Create <strong>src/components/FormSwitch/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./FormSwitch&quot;
+export * from &quot;./FormSwitch&quot;
 
 </code></pre>
 <h3>Verify 1</h3>
@@ -1585,12 +1579,12 @@ const FormSwitch: React.FC&lt;FormSwitchProps&gt; = ({ label, value, onChange })
       &lt;Typography variant=&quot;label&quot;&gt;{label}&lt;/Typography&gt;
       &lt;Switch
         onValueChange={onChange}
+        value={value}
         thumbColor={theme.palette.primary.contrast}
         trackColor={{
           true: theme.palette.primary.strong,
           false: theme.palette.screen.soft,
         }}
-        value={value}
       &gt;&lt;/Switch&gt;
     &lt;/Box&gt;
   )
@@ -1599,7 +1593,7 @@ const FormSwitch: React.FC&lt;FormSwitchProps&gt; = ({ label, value, onChange })
 export default FormSwitch
 
 </code></pre>
- <div line-highlight="28,34,only"></div>
+ <div line-highlight="28-29,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -1663,7 +1657,6 @@ export default RestaurantDetails
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
 import { useEffect, useState } from &quot;react&quot;
-import { ScrollView } from &quot;react-native&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
 import FormSwitch from &quot;../../components/FormSwitch&quot;
@@ -1716,12 +1709,12 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
 
   if (error) {
     return (
-      &lt;Box padding=&quot;s&quot;&gt;
+      &lt;Screen&gt;
         &lt;Typography variant=&quot;heading&quot;&gt;
           Error loading restaurant order:{&quot; &quot;}
         &lt;/Typography&gt;
         &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
-      &lt;/Box&gt;
+      &lt;/Screen&gt;
     )
   }
 
@@ -1731,57 +1724,50 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
 
   if (!restaurant) {
     return (
-      &lt;Box padding=&quot;s&quot;&gt;
+      &lt;Screen&gt;
         &lt;Typography variant=&quot;heading&quot;&gt;Restaurant not found&lt;/Typography&gt;
-      &lt;/Box&gt;
+      &lt;/Screen&gt;
     )
   }
 
   return (
-    &lt;ScrollView
-      showsVerticalScrollIndicator={false}
-      alwaysBounceVertical={false}
-    &gt;
-      &lt;Screen&gt;
-        &lt;Card title=&quot;Lunch Menu&quot;&gt;
-          {restaurant.menu.lunch.map(({ name, price }) =&gt; (
-            &lt;FormSwitch
-              key={name}
-              label={`${name} ($${price})`}
-              value={name in items}
-              onChange={(value) =&gt; setItem(name, value, price)}
-            /&gt;
-          ))}
-        &lt;/Card&gt;
+    &lt;Screen&gt;
+      &lt;Card title=&quot;Lunch Menu&quot;&gt;
+        {restaurant.menu.lunch.map(({ name, price }) =&gt; (
+          &lt;FormSwitch
+            key={name}
+            label={`${name} ($${price})`}
+            onChange={(value) =&gt; setItem(name, value, price)}
+            value={name in items}
+          /&gt;
+        ))}
+      &lt;/Card&gt;
 
-        &lt;Card title=&quot;Dinner Menu&quot;&gt;
-          {restaurant.menu.dinner.map(({ name, price }) =&gt; (
-            &lt;FormSwitch
-              key={name}
-              label={`${name} ($${price})`}
-              value={name in items}
-              onChange={(value) =&gt; setItem(name, value, price)}
-            /&gt;
-          ))}
-        &lt;/Card&gt;
+      &lt;Card title=&quot;Dinner Menu&quot;&gt;
+        {restaurant.menu.dinner.map(({ name, price }) =&gt; (
+          &lt;FormSwitch
+            key={name}
+            label={`${name} ($${price})`}
+            onChange={(value) =&gt; setItem(name, value, price)}
+            value={name in items}
+          /&gt;
+        ))}
+      &lt;/Card&gt;
 
-        &lt;Card title=&quot;Order Details&quot;&gt;&lt;/Card&gt;
+      &lt;Card title=&quot;Order Details&quot;&gt;&lt;/Card&gt;
 
-        &lt;Box padding=&quot;s&quot;&gt;
-          {subtotal === 0 &amp;&amp; &lt;Typography&gt;Please choose an item.&lt;/Typography&gt;}
-        &lt;/Box&gt;
+      &lt;Box padding=&quot;s&quot;&gt;
+        {subtotal === 0 &amp;&amp; &lt;Typography&gt;Please choose an item.&lt;/Typography&gt;}
+      &lt;/Box&gt;
 
-        &lt;Box padding=&quot;s&quot;&gt;
-          &lt;Typography variant=&quot;heading&quot;&gt;
-            Total: ${subtotal.toFixed(2)}
-          &lt;/Typography&gt;
-        &lt;/Box&gt;
+      &lt;Box padding=&quot;s&quot;&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;Total: ${subtotal.toFixed(2)}&lt;/Typography&gt;
+      &lt;/Box&gt;
 
-        &lt;Box padding=&quot;s&quot;&gt;
-          &lt;Button onPress={handleOrder}&gt;Place My Order!&lt;/Button&gt;
-        &lt;/Box&gt;
-      &lt;/Screen&gt;
-    &lt;/ScrollView&gt;
+      &lt;Box padding=&quot;s&quot;&gt;
+        &lt;Button onPress={handleOrder}&gt;Place My Order!&lt;/Button&gt;
+      &lt;/Box&gt;
+    &lt;/Screen&gt;
   )
 }
 
@@ -1794,7 +1780,7 @@ function calculateTotal(items: OrderItems) {
 export default RestaurantOrder
 
 </code></pre>
- <div line-highlight="27,39-50,53,76,85-92,96-103,only"></div>
+ <div line-highlight="26,38-49,52,75,80-87,91-98,only"></div>
 <p></details></p>
 <h2>Objective 2: Add text fields to collect user data</h2>
 <p>Next, we want to collect the user’s name, address, and phone number as part of the order.
@@ -1930,13 +1916,13 @@ export default FormTextField
 <div line-highlight='20, only'></div>
 <p>✏️ Create <strong>src/components/FormTextField/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./FormTextField&quot;
+export * from &quot;./FormTextField&quot;
 
 </code></pre>
 <p>✏️ Update <strong>src/screens/RestaurantOrder/RestaurantOrder.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
 import { useEffect, useState } from &quot;react&quot;
-import { ScrollView } from &quot;react-native&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
 import FormSwitch from &quot;../../components/FormSwitch&quot;
@@ -1992,12 +1978,12 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
 
   if (error) {
     return (
-      &lt;Box padding=&quot;s&quot;&gt;
+      &lt;Screen&gt;
         &lt;Typography variant=&quot;heading&quot;&gt;
           Error loading restaurant order:{&quot; &quot;}
         &lt;/Typography&gt;
         &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
-      &lt;/Box&gt;
+      &lt;/Screen&gt;
     )
   }
 
@@ -2007,63 +1993,56 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
 
   if (!restaurant) {
     return (
-      &lt;Box padding=&quot;s&quot;&gt;
+      &lt;Screen&gt;
         &lt;Typography variant=&quot;heading&quot;&gt;Restaurant not found&lt;/Typography&gt;
-      &lt;/Box&gt;
+      &lt;/Screen&gt;
     )
   }
 
   return (
-    &lt;ScrollView
-      showsVerticalScrollIndicator={false}
-      alwaysBounceVertical={false}
-    &gt;
-      &lt;Screen&gt;
-        &lt;Card title=&quot;Lunch Menu&quot;&gt;
-          {restaurant.menu.lunch.map(({ name, price }) =&gt; (
-            &lt;FormSwitch
-              key={name}
-              label={`${name} ($${price})`}
-              value={name in items}
-              onChange={(value) =&gt; setItem(name, value, price)}
-            /&gt;
-          ))}
-        &lt;/Card&gt;
+    &lt;Screen&gt;
+      &lt;Card title=&quot;Lunch Menu&quot;&gt;
+        {restaurant.menu.lunch.map(({ name, price }) =&gt; (
+          &lt;FormSwitch
+            key={name}
+            label={`${name} ($${price})`}
+            onChange={(value) =&gt; setItem(name, value, price)}
+            value={name in items}
+          /&gt;
+        ))}
+      &lt;/Card&gt;
 
-        &lt;Card title=&quot;Dinner Menu&quot;&gt;
-          {restaurant.menu.dinner.map(({ name, price }) =&gt; (
-            &lt;FormSwitch
-              key={name}
-              label={`${name} ($${price})`}
-              value={name in items}
-              onChange={(value) =&gt; setItem(name, value, price)}
-            /&gt;
-          ))}
-        &lt;/Card&gt;
+      &lt;Card title=&quot;Dinner Menu&quot;&gt;
+        {restaurant.menu.dinner.map(({ name, price }) =&gt; (
+          &lt;FormSwitch
+            key={name}
+            label={`${name} ($${price})`}
+            onChange={(value) =&gt; setItem(name, value, price)}
+            value={name in items}
+          /&gt;
+        ))}
+      &lt;/Card&gt;
 
-        &lt;Card title=&quot;Order Details&quot;&gt;
-          {/* Exercise: Use name, address, and phone fields to create FormTextField elements. */}
-        &lt;/Card&gt;
+      &lt;Card title=&quot;Order Details&quot;&gt;
+        {/* Exercise: Use name, address, and phone fields to create FormTextField elements. */}
+      &lt;/Card&gt;
 
-        &lt;Box padding=&quot;s&quot;&gt;
-          {subtotal === 0 ? (
-            &lt;Typography&gt;Please choose an item.&lt;/Typography&gt;
-          ) : (
-            &lt;Typography&gt;{selectedCount} items selected.&lt;/Typography&gt;
-          )}
-        &lt;/Box&gt;
+      &lt;Box padding=&quot;s&quot;&gt;
+        {subtotal === 0 ? (
+          &lt;Typography&gt;Please choose an item.&lt;/Typography&gt;
+        ) : (
+          &lt;Typography&gt;{selectedCount} items selected.&lt;/Typography&gt;
+        )}
+      &lt;/Box&gt;
 
-        &lt;Box padding=&quot;s&quot;&gt;
-          &lt;Typography variant=&quot;heading&quot;&gt;
-            Total: ${subtotal.toFixed(2)}
-          &lt;/Typography&gt;
-        &lt;/Box&gt;
+      &lt;Box padding=&quot;s&quot;&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;Total: ${subtotal.toFixed(2)}&lt;/Typography&gt;
+      &lt;/Box&gt;
 
-        &lt;Box padding=&quot;s&quot;&gt;
-          &lt;Button onPress={handleOrder}&gt;Place My Order!&lt;/Button&gt;
-        &lt;/Box&gt;
-      &lt;/Screen&gt;
-    &lt;/ScrollView&gt;
+      &lt;Box padding=&quot;s&quot;&gt;
+        &lt;Button onPress={handleOrder}&gt;Place My Order!&lt;/Button&gt;
+      &lt;/Box&gt;
+    &lt;/Screen&gt;
   )
 }
 
@@ -2076,7 +2055,7 @@ function calculateTotal(items: OrderItems) {
 export default RestaurantOrder
 
 </code></pre>
- <div line-highlight="8,29,55,109-111,114-118,only"></div>
+ <div line-highlight="7,28,54,104-106,109-113,only"></div>
 <h3>Verify 2</h3>
 <p>✏️ Create <strong>src/components/FormTextField/FormTextField.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen, userEvent } from &quot;@testing-library/react-native&quot;
@@ -2094,8 +2073,8 @@ describe(&quot;Components/FormTextField&quot;, () =&gt; {
     render(
       &lt;FormTextField
         label=&quot;Hello!&quot;
-        value=&quot;response&quot;
         onChange={handleChangeMock}
+        value=&quot;response&quot;
       /&gt;,
     )
 
@@ -2320,7 +2299,6 @@ export default FormTextField
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
 import { useEffect, useState } from &quot;react&quot;
-import { ScrollView } from &quot;react-native&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
 import FormSwitch from &quot;../../components/FormSwitch&quot;
@@ -2378,12 +2356,12 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
 
   if (error) {
     return (
-      &lt;Box padding=&quot;s&quot;&gt;
+      &lt;Screen&gt;
         &lt;Typography variant=&quot;heading&quot;&gt;
           Error loading restaurant order:{&quot; &quot;}
         &lt;/Typography&gt;
         &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
-      &lt;/Box&gt;
+      &lt;/Screen&gt;
     )
   }
 
@@ -2393,69 +2371,58 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
 
   if (!restaurant) {
     return (
-      &lt;Box padding=&quot;s&quot;&gt;
+      &lt;Screen&gt;
         &lt;Typography variant=&quot;heading&quot;&gt;Restaurant not found&lt;/Typography&gt;
-      &lt;/Box&gt;
+      &lt;/Screen&gt;
     )
   }
 
   return (
-    &lt;ScrollView
-      showsVerticalScrollIndicator={false}
-      alwaysBounceVertical={false}
-    &gt;
-      &lt;Screen&gt;
-        &lt;Card title=&quot;Lunch Menu&quot;&gt;
-          {restaurant.menu.lunch.map(({ name, price }) =&gt; (
-            &lt;FormSwitch
-              key={name}
-              label={`${name} ($${price})`}
-              value={name in items}
-              onChange={(value) =&gt; setItem(name, value, price)}
-            /&gt;
-          ))}
-        &lt;/Card&gt;
-
-        &lt;Card title=&quot;Dinner Menu&quot;&gt;
-          {restaurant.menu.dinner.map(({ name, price }) =&gt; (
-            &lt;FormSwitch
-              key={name}
-              label={`${name} ($${price})`}
-              value={name in items}
-              onChange={(value) =&gt; setItem(name, value, price)}
-            /&gt;
-          ))}
-        &lt;/Card&gt;
-
-        &lt;Card title=&quot;Order Details&quot;&gt;
-          &lt;FormTextField label=&quot;Name&quot; onChange={setName} value={name} /&gt;
-          &lt;FormTextField
-            label=&quot;Address&quot;
-            onChange={setAddress}
-            value={address}
+    &lt;Screen&gt;
+      &lt;Card title=&quot;Lunch Menu&quot;&gt;
+        {restaurant.menu.lunch.map(({ name, price }) =&gt; (
+          &lt;FormSwitch
+            key={name}
+            label={`${name} ($${price})`}
+            onChange={(value) =&gt; setItem(name, value, price)}
+            value={name in items}
           /&gt;
-          &lt;FormTextField label=&quot;Phone&quot; onChange={setPhone} value={phone} /&gt;
-        &lt;/Card&gt;
+        ))}
+      &lt;/Card&gt;
 
-        &lt;Box padding=&quot;s&quot;&gt;
-          {subtotal === 0 ? (
-            &lt;Typography&gt;Please choose an item.&lt;/Typography&gt;
-          ) : (
-            &lt;Typography&gt;{selectedCount} items selected.&lt;/Typography&gt;
-          )}
-        &lt;/Box&gt;
+      &lt;Card title=&quot;Dinner Menu&quot;&gt;
+        {restaurant.menu.dinner.map(({ name, price }) =&gt; (
+          &lt;FormSwitch
+            key={name}
+            label={`${name} ($${price})`}
+            onChange={(value) =&gt; setItem(name, value, price)}
+            value={name in items}
+          /&gt;
+        ))}
+      &lt;/Card&gt;
 
-        &lt;Box padding=&quot;s&quot;&gt;
-          &lt;Typography variant=&quot;heading&quot;&gt;
-            Total: ${subtotal.toFixed(2)}
-          &lt;/Typography&gt;
-        &lt;/Box&gt;
+      &lt;Card title=&quot;Order Details&quot;&gt;
+        &lt;FormTextField label=&quot;Name&quot; onChange={setName} value={name} /&gt;
+        &lt;FormTextField label=&quot;Address&quot; onChange={setAddress} value={address} /&gt;
+        &lt;FormTextField label=&quot;Phone&quot; onChange={setPhone} value={phone} /&gt;
+      &lt;/Card&gt;
 
-        &lt;Box padding=&quot;s&quot;&gt;
-          &lt;Button onPress={handleOrder}&gt;Place My Order!&lt;/Button&gt;
-        &lt;/Box&gt;
-      &lt;/Screen&gt;
-    &lt;/ScrollView&gt;
+      &lt;Box padding=&quot;s&quot;&gt;
+        {subtotal === 0 ? (
+          &lt;Typography&gt;Please choose an item.&lt;/Typography&gt;
+        ) : (
+          &lt;Typography&gt;{selectedCount} items selected.&lt;/Typography&gt;
+        )}
+      &lt;/Box&gt;
+
+      &lt;Box padding=&quot;s&quot;&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;Total: ${subtotal.toFixed(2)}&lt;/Typography&gt;
+      &lt;/Box&gt;
+
+      &lt;Box padding=&quot;s&quot;&gt;
+        &lt;Button onPress={handleOrder}&gt;Place My Order!&lt;/Button&gt;
+      &lt;/Box&gt;
+    &lt;/Screen&gt;
   )
 }
 
@@ -2468,7 +2435,7 @@ function calculateTotal(items: OrderItems) {
 export default RestaurantOrder
 
 </code></pre>
- <div line-highlight="28,30-31,112-118,only"></div>
+ <div line-highlight="27,29-30,107-109,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, in order to retain data to limit requests and migrating the same data, let’s look into <a href="./using-asyncstorage">Using AsyncStorage</a>.</p>

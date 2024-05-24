@@ -722,7 +722,7 @@ export default NetworkStatusComponent
 </code></pre>
 <div line-highlight='1, 6, 10, only'></div>
 <h3>Setup 1</h3>
-<p>✏️ Run:</p>
+<p>✏️ Install the new dependency:</p>
 <pre><code class="language-bash">npm install @react-native-community/netinfo@11
 </code></pre>
 <p>✏️ Update <strong>jest-setup.ts</strong> to be:</p>
@@ -804,7 +804,7 @@ const Settings: React.FC = () =&gt; {
         &lt;View style={styles.row}&gt;
           &lt;Typography variant=&quot;heading&quot;&gt;Dark mode&lt;/Typography&gt;
           &lt;Switch
-            onChange={() =&gt; setMode(mode === &quot;light&quot; ? &quot;dark&quot; : &quot;light&quot;)}
+            onValueChange={(value) =&gt; setMode(value ? &quot;dark&quot; : &quot;light&quot;)}
             value={mode === &quot;dark&quot;}
           /&gt;
         &lt;/View&gt;
@@ -871,7 +871,7 @@ const Settings: React.FC = () =&gt; {
         &lt;View style={styles.row}&gt;
           &lt;Typography variant=&quot;heading&quot;&gt;Dark mode&lt;/Typography&gt;
           &lt;Switch
-            onChange={() =&gt; setMode(mode === &quot;light&quot; ? &quot;dark&quot; : &quot;light&quot;)}
+            onValueChange={(value) =&gt; setMode(value ? &quot;dark&quot; : &quot;light&quot;)}
             value={mode === &quot;dark&quot;}
           /&gt;
         &lt;/View&gt;

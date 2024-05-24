@@ -839,7 +839,7 @@ function Button() {
 }
 </code></pre>
 <h3>Setup 1</h3>
-<p>✏️ Run:</p>
+<p>✏️ Install the new dependency:</p>
 <pre><code class="language-bash">npm install @react-native-google-signin/google-signin@11
 </code></pre>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
@@ -1058,7 +1058,7 @@ const Settings: FC = () =&gt; {
         &lt;View style={styles.row}&gt;
           &lt;Typography variant=&quot;heading&quot;&gt;Dark mode&lt;/Typography&gt;
           &lt;Switch
-            onChange={() =&gt; setMode(mode === &quot;light&quot; ? &quot;dark&quot; : &quot;light&quot;)}
+            onValueChange={(value) =&gt; setMode(value ? &quot;dark&quot; : &quot;light&quot;)}
             value={mode === &quot;dark&quot;}
           /&gt;
         &lt;/View&gt;
@@ -1225,7 +1225,7 @@ describe(&quot;Screens/Settings&quot;, () =&gt; {
     const switchElement = screen.getByRole(&quot;switch&quot;)
     expect(switchElement.props.value).toBe(false)
 
-    fireEvent(switchElement, &quot;onChange&quot;, { nativeEvent: { value: true } })
+    fireEvent(switchElement, &quot;onValueChange&quot;, true)
     expect(mockSetMode).toHaveBeenCalledWith(&quot;dark&quot;)
   })
 })
@@ -1512,7 +1512,7 @@ const Settings: React.FC = () =&gt; {
         &lt;View style={styles.row}&gt;
           &lt;Typography variant=&quot;heading&quot;&gt;Dark mode&lt;/Typography&gt;
           &lt;Switch
-            onChange={() =&gt; setMode(mode === &quot;light&quot; ? &quot;dark&quot; : &quot;light&quot;)}
+            onValueChange={(value) =&gt; setMode(value ? &quot;dark&quot; : &quot;light&quot;)}
             value={mode === &quot;dark&quot;}
           /&gt;
         &lt;/View&gt;

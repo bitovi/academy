@@ -688,7 +688,7 @@ covering CanJS core libraries.">
 <p>We will be setting up React DevTools to help us inspect the UI:</p>
 <p><img alt="Screenshot of React DevTools inspecting a component tree. It shows a structured hierarchy of all the components in the view. There is also a Profiler tab." src="../static/img/react-native/07-debugging-devtools/dev-tool-connected.png" style="max-width: 100%;"/></p>
 <h3>Using React DevTools</h3>
-<p>React DevTools is an extension that provides a powerful set of tools for inspecting and debugging React Native applications. It allows developers to inspect and manipulate the hierarchy of React Native components rendered in their mobile applications. With React DevTools, developers can easily identify component structures, inspect props and state, track component updates, and even modify component properties in real-time, greatly enhancing the debugging and development process for React Native projects.</p>
+<p>React DevTools is an extension that provides a powerful set of tools for inspecting and debugging React Native applications. It allows developers to inspect and manipulate the hierarchy of React Native components rendered in their mobile applications. With React DevTools, developers can easily identify component structures, inspect props and state, track component updates, and even modify component props in real-time, greatly enhancing the debugging and development process for React Native projects.</p>
 <p>By examining the JSX code below, developers can gain insight into how React Native components are structured and composed. Comparing the JSX code with the React DevTools component tree allows developers to visualize how each JSX element corresponds to a component instance in the application, providing a deeper understanding of their React applications and aiding in debugging and optimization efforts.</p>
 <pre><code class="language-jsx">&lt;App&gt;
   &lt;ScrollView&gt;
@@ -709,8 +709,8 @@ covering CanJS core libraries.">
 &lt;/App&gt;
 </code></pre>
 <h3>Setup 1</h3>
-<p>✏️ Run:</p>
-<pre><code class="language-shell">npm install react-devtools@5 --save-dev
+<p>✏️ Install the new dev dependency:</p>
+<pre><code class="language-shell">npm install --save-dev react-devtools@5
 </code></pre>
 <p>✏️ Update <strong>src/package.json</strong> to be:</p>
 <pre><code class="language-json">{
@@ -777,16 +777,7 @@ covering CanJS core libraries.">
 <p>This should open a separate window that looks like the following image:</p>
 <p><img alt="Screenshot of a window with options for React Native and React DOM. The React Native section suggests opening the in-app developer menu. A notification at the top states the server is waiting for React to connect." src="../static/img/react-native/07-debugging-devtools/dev-tool-not-connected.png" style="max-width: 100%;"/></p>
 <p>At this point, DevTools is not connected.
-To connect DevTools to the application, run the following command to pull up the dev menu:</p>
-<p>✏️ Run:</p>
-<pre><code class="language-shell">adb shell input keyevent 82
-</code></pre>
-<p>This will connect DevTools to your application running in the emulator.</p>
-<p>Alternatively, you can use these keyboard commands:</p>
-<ul>
-<li>Linux or Windows: <code>Ctrl</code> + <code>M</code></li>
-<li>macOS: <code>Cmd ⌘</code> + <code>M</code></li>
-</ul>
+To connect DevTools to the application, go back to the terminal where you ran <code>npm run start</code> and press <code>r</code> to reload.</p>
 <h3>Exercise 1</h3>
 <p>Explore the “Components” tab:</p>
 <ul>
@@ -794,12 +785,12 @@ To connect DevTools to the application, run the following command to pull up the
 <li>Expand and collapse component trees to understand the component composition.</li>
 <li>Hover over individual components to highlight them.</li>
 </ul>
-<p>Inspect Props and State:</p>
+<p>Inspect props and state:</p>
 <ul>
 <li>Select a component from the component tree to inspect its props and state.</li>
 <li>View the current props and state values, and observe how they affect the component’s rendering.</li>
 </ul>
-<p>Modify Props:</p>
+<p>Modify props:</p>
 <ul>
 <li>Experiment with modifying props directly from the DevTools panel.</li>
 <li>Change prop values and observe how they affect the component’s appearance or behavior in real-time.</li>
@@ -915,6 +906,7 @@ export default StateList
 <pre><code class="language-shell">npm run start
 </code></pre>
 <p>The application should be running in Android Studio. Open the terminal and run the following command:</p>
+<p>// TODO</p>
 <p>✏️ Run:</p>
 <pre><code class="language-shell">adb shell input keyevent 82
 </code></pre>

@@ -995,11 +995,11 @@ const data = await response.json()
 <div line-highlight='1'></div>
 <h3>Setup 1</h3>
 <p>Before we begin requesting data from our API, we need to install the &quot;place-my-order-api&quot; module, which will generate fake restaurant data and serve it from port <code>7070</code>.</p>
-<p>✏️ Run:</p>
+<p>✏️ Install the new dev dependency:</p>
 <pre><code class="language-bash">npm install --save-dev place-my-order-api@1
 </code></pre>
 <p>We will also need to set up our environment.</p>
-<p>✏️ Run:</p>
+<p>✏️ Install the new dev dependency:</p>
 <pre><code class="language-bash">npm install --save-dev react-native-dotenv@3
 </code></pre>
 <p>✏️ Update <strong>babel.config.js</strong> to be:</p>
@@ -1151,7 +1151,6 @@ export default Loading
 import { FlatList } from &quot;react-native&quot;
 
 import Loading from &quot;../../components/Loading&quot;
-import Box from &quot;../../design/Box&quot;
 import Button from &quot;../../design/Button&quot;
 import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
@@ -1189,7 +1188,7 @@ const StateList: React.FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="4-5,9,11,13,17-35,only"></div>
+ <div line-highlight="4,8,10,12,16-34,only"></div>
 <h3>Verify 1</h3>
 <p>✏️ Create <strong>src/services/pmo/restaurant/hooks.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react-native&quot;
@@ -1366,7 +1365,6 @@ export function useStates(): StatesResponse {
 import { FlatList } from &quot;react-native&quot;
 
 import Loading from &quot;../../components/Loading&quot;
-import Box from &quot;../../design/Box&quot;
 import Button from &quot;../../design/Button&quot;
 import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
@@ -1378,10 +1376,10 @@ const StateList: React.FC = () =&gt; {
 
   if (error) {
     return (
-      &lt;Box padding=&quot;s&quot;&gt;
+      &lt;Screen&gt;
         &lt;Typography variant=&quot;heading&quot;&gt;Error loading states: &lt;/Typography&gt;
         &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
-      &lt;/Box&gt;
+      &lt;/Screen&gt;
     )
   }
 
@@ -1417,7 +1415,7 @@ const StateList: React.FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="13,15-22,24-26,only"></div>
+ <div line-highlight="12,14-21,23-25,only"></div>
 <p></details></p>
 <h2>Objective 2: Add <code>fetch</code> cities in a custom hook with query parameters</h2>
 <p>Let’s continue our quest to load data from our API and update our <code>&lt;CitiesList&gt;</code> to use a custom <code>useCities</code> Hook to fetch data.</p>
@@ -1439,17 +1437,18 @@ export default StateList
 </ul>
 <h3>Setup 2</h3>
 <p>✏️ Create <strong>src/services/pmo/restaurant/interfaces.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">export interface City {
-  name: string
-  state: string
-}
-export interface State {
+<pre><code class="language-ts">export interface State {
   name: string
   short: string
 }
 
+export interface City {
+  name: string
+  state: string
+}
+
 </code></pre>
- <div line-highlight="1,3,6,8,only"></div>
+ <div line-highlight="6-9,only"></div>
 <p>✏️ Update <strong>src/services/pmo/restaurant/hooks.ts</strong> to be:</p>
 <pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
 
@@ -1516,7 +1515,6 @@ import { FlatList } from &quot;react-native&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
 import Loading from &quot;../../components/Loading&quot;
-import Box from &quot;../../design/Box&quot;
 import Button from &quot;../../design/Button&quot;
 import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
@@ -1555,7 +1553,7 @@ const CityList: React.FC&lt;CityListProps&gt; = ({ route }) =&gt; {
 export default CityList
 
 </code></pre>
- <div line-highlight="6-7,10-11,19,only"></div>
+ <div line-highlight="6,9-10,18,only"></div>
 <h3>Verify 2</h3>
 <p>✏️ Update <strong>src/services/pmo/restaurant/hooks.test.ts</strong> to be:</p>
 <pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react-native&quot;
@@ -1795,7 +1793,6 @@ import { FlatList } from &quot;react-native&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
 import Loading from &quot;../../components/Loading&quot;
-import Box from &quot;../../design/Box&quot;
 import Button from &quot;../../design/Button&quot;
 import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
@@ -1815,10 +1812,10 @@ const CityList: React.FC&lt;CityListProps&gt; = ({ route }) =&gt; {
 
   if (error) {
     return (
-      &lt;Box padding=&quot;s&quot;&gt;
+      &lt;Screen&gt;
         &lt;Typography variant=&quot;heading&quot;&gt;Error loading cities: &lt;/Typography&gt;
         &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
-      &lt;/Box&gt;
+      &lt;/Screen&gt;
     )
   }
 
@@ -1851,7 +1848,7 @@ const CityList: React.FC&lt;CityListProps&gt; = ({ route }) =&gt; {
 export default CityList
 
 </code></pre>
- <div line-highlight="6-7,10-11,19-23,25-32,34-36,only"></div>
+ <div line-highlight="6,9-10,18-22,24-31,33-35,only"></div>
 <p></details></p>
 <h2>Objective 3: Create API request helper</h2>
 <p>Now that we have two Hooks that fetch data in a similar way, let’s create an <code>apiRequest</code> helper function that both Hooks can use.</p>
@@ -2292,37 +2289,14 @@ export function useStates(): StatesResponse {
 </div>
 <h3>Setup 4</h3>
 <p>✏️ Create <strong>src/services/pmo/restaurant/interfaces.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">export interface City {
+<pre><code class="language-ts">export interface State {
+  name: string
+  short: string
+}
+
+export interface City {
   name: string
   state: string
-}
-
-export interface Item {
-  name: string
-  price: number
-}
-
-interface Menu {
-  dinner: Item[]
-  lunch: Item[]
-}
-
-interface Address {
-  city: string
-  state: string
-  street: string
-  zip: string
-}
-
-interface Images {
-  banner: string
-  owner: string
-  thumbnail: string
-}
-
-interface Coordinate {
-  latitude: number
-  longitude: number
 }
 
 export interface Restaurant {
@@ -2335,13 +2309,36 @@ export interface Restaurant {
   slug: string
 }
 
-export interface State {
+interface Address {
+  city: string
+  state: string
+  street: string
+  zip: string
+}
+
+interface Coordinate {
+  latitude: number
+  longitude: number
+}
+
+interface Images {
+  banner: string
+  owner: string
+  thumbnail: string
+}
+
+interface Menu {
+  dinner: MenuItem[]
+  lunch: MenuItem[]
+}
+
+interface MenuItem {
   name: string
-  short: string
+  price: number
 }
 
 </code></pre>
- <div line-highlight="6,8,11-14,16-21,23-27,29-32,34-42,45,47,only"></div>
+ <div line-highlight="11-19,21-26,28-31,33-37,39-42,44-47,only"></div>
 <p>✏️ Update <strong>src/services/pmo/restaurant/hooks.ts</strong> to be:</p>
 <pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
 
@@ -2466,8 +2463,8 @@ import { FlatList } from &quot;react-native&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
 import Loading from &quot;../../components/Loading&quot;
-import Box from &quot;../../design/Box&quot;
 import Button from &quot;../../design/Button&quot;
+import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
 import { useRestaurants } from &quot;../../services/pmo/restaurant&quot;
 
@@ -2479,7 +2476,7 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
   // Exercise: Update `RestaurantList.tsx` to use our new `useRestaurants` Hook.
 
   return (
-    &lt;Box padding=&quot;s&quot;&gt;
+    &lt;Screen noScroll&gt;
       &lt;FlatList
         data={restaurants}
         renderItem={({ item: restaurant }) =&gt; (
@@ -2495,7 +2492,7 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
         )}
         keyExtractor={(item) =&gt; item._id}
       /&gt;
-    &lt;/Box&gt;
+    &lt;/Screen&gt;
   )
 }
 
@@ -3183,8 +3180,8 @@ import { FlatList } from &quot;react-native&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
 import Loading from &quot;../../components/Loading&quot;
-import Box from &quot;../../design/Box&quot;
 import Button from &quot;../../design/Button&quot;
+import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
 import { useRestaurants } from &quot;../../services/pmo/restaurant&quot;
 
@@ -3203,10 +3200,10 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
 
   if (error) {
     return (
-      &lt;Box padding=&quot;s&quot;&gt;
+      &lt;Screen&gt;
         &lt;Typography variant=&quot;heading&quot;&gt;Error loading restaurants: &lt;/Typography&gt;
         &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
-      &lt;/Box&gt;
+      &lt;/Screen&gt;
     )
   }
 
@@ -3215,7 +3212,7 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
   }
 
   return (
-    &lt;Box padding=&quot;s&quot;&gt;
+    &lt;Screen noScroll&gt;
       &lt;FlatList
         data={restaurants}
         renderItem={({ item: restaurant }) =&gt; (
@@ -3231,7 +3228,7 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
         )}
         keyExtractor={(item) =&gt; item._id}
       /&gt;
-    &lt;/Box&gt;
+    &lt;/Screen&gt;
   )
 }
 

@@ -1141,7 +1141,7 @@ const ThemeProvider: React.FC = () =&gt; {
 export default ThemeProvider
 
 export function useTheme(): Theme {
-  // Exercise: Create the Context.
+  // Exercise: Consume the Context.
 }
 
 </code></pre>
@@ -1332,7 +1332,6 @@ export default ListItem
 <p>✏️ Create <strong>src/design/Box/Box.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import {
   ViewProps,
-  ViewStyle,
   StyleSheet,
   ScrollView,
   View as StaticView,
@@ -1377,9 +1376,7 @@ function getStyles(
     margin?: ThemeMargin
     padding?: ThemePadding
   },
-): {
-  container: ViewStyle
-} {
+) {
   return StyleSheet.create({
     container: StyleSheet.flatten([
       {
@@ -1406,7 +1403,7 @@ export * from &quot;./Box&quot;
 
 </code></pre>
 <p>✏️ Create <strong>src/design/Typography/Typography.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { TextProps, TextStyle, Text, StyleSheet } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { TextProps, Text, StyleSheet } from &quot;react-native&quot;
 
 import { Theme, useTheme } from &quot;../theme&quot;
 
@@ -1425,12 +1422,7 @@ const Typography: React.FC&lt;TypographyProps&gt; = ({
 
 export default Typography
 
-function getStyles(
-  theme: Theme,
-  variant: keyof Theme[&quot;typography&quot;],
-): {
-  text: TextStyle
-} {
+function getStyles(theme: Theme, variant: keyof Theme[&quot;typography&quot;]) {
   return StyleSheet.create({
     text: {
       ...theme.typography[variant],
@@ -1533,7 +1525,7 @@ describe(&quot;Design/Typography&quot;, () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/design/Typography/Typography.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { TextProps, TextStyle, Text, StyleSheet } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { TextProps, Text, StyleSheet } from &quot;react-native&quot;
 
 import { Theme, useTheme } from &quot;../theme&quot;
 
@@ -1559,12 +1551,7 @@ const Typography: React.FC&lt;TypographyProps&gt; = ({
 
 export default Typography
 
-function getStyles(
-  theme: Theme,
-  variant: keyof Theme[&quot;typography&quot;],
-): {
-  text: TextStyle
-} {
+function getStyles(theme: Theme, variant: keyof Theme[&quot;typography&quot;]) {
   return StyleSheet.create({
     text: {
       ...theme.typography[variant],
@@ -1600,11 +1587,15 @@ const StateList: React.FC = () =&gt; {
       &lt;Box padding=&quot;s&quot;&gt;
         &lt;Typography variant=&quot;heading&quot;&gt;Place My Order: Coming Soon!&lt;/Typography&gt;
       &lt;/Box&gt;
-      {states?.length ? (
-        states.map((state) =&gt; &lt;ListItem key={state.short} name={state.name} /&gt;)
-      ) : (
-        &lt;Typography&gt;No states found&lt;/Typography&gt;
-      )}
+      &lt;Box&gt;
+        {states?.length ? (
+          states.map((state) =&gt; (
+            &lt;ListItem key={state.short} name={state.name} /&gt;
+          ))
+        ) : (
+          &lt;Typography&gt;No states found&lt;/Typography&gt;
+        )}
+      &lt;/Box&gt;
     &lt;/ScrollView&gt;
   )
 }
@@ -1612,7 +1603,7 @@ const StateList: React.FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="1,22-29,only"></div>
+ <div line-highlight="1,22-25,31,33,only"></div>
 <p></details></p>
 <h2>Objective 3: Expand your design system</h2>
 <p>Now that we have the basics of a design system, we can expand it however we need. There are some basic components that most design systems will need:</p>
@@ -1628,7 +1619,6 @@ export default StateList
 <p>✏️ Create <strong>src/design/Button/Button.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import {
   PressableProps,
-  ViewStyle,
   TextStyle,
   StyleSheet,
   Pressable,
@@ -1686,13 +1676,7 @@ const Button: React.FC&lt;ButtonProps&gt; = ({
 
 export default Button
 
-function getStyles(
-  theme: Theme,
-  variant: Variant,
-): {
-  pressable: ViewStyle
-  text: TextStyle
-} {
+function getStyles(theme: Theme, variant: Variant) {
   if (variant === &quot;primary&quot;) {
     return StyleSheet.create({
       pressable: {
@@ -1768,7 +1752,7 @@ export * from &quot;./Button&quot;
 
 </code></pre>
 <p>✏️ Create <strong>src/design/Card/Card.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { ViewStyle, StyleSheet } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { StyleSheet } from &quot;react-native&quot;
 
 import Box, { BoxProps } from &quot;../Box&quot;
 import { Theme, useTheme } from &quot;../theme&quot;
@@ -1797,10 +1781,7 @@ const Card: React.FC&lt;CardProps&gt; = ({ title, children, ...props }) =&gt; {
 
 export default Card
 
-function getStyles(theme: Theme): {
-  container: ViewStyle
-  title: ViewStyle
-} {
+function getStyles(theme: Theme) {
   return StyleSheet.create({
     container: {
       width: &quot;100%&quot;,
@@ -1899,6 +1880,7 @@ describe(&quot;Design/Screen&quot;, () =&gt; {
 </code></pre>
 <p>✏️ Create <strong>src/design/Screen/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./Screen&quot;
+export * from &quot;./Screen&quot;
 
 </code></pre>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
@@ -1940,7 +1922,7 @@ const StateList: React.FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="4-5,only"></div>
+ <div line-highlight="4-5,27-31,only"></div>
 <h3>Exercise 3</h3>
 <p>We’ve provided three new design components for you: <code>Button</code>, <code>Card</code>, and <code>Screen</code>.</p>
 <ul>

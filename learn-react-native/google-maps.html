@@ -724,7 +724,7 @@ function Map() {
 <li><code>initialRegion</code>: An object that contains coordinates for the initial map region. The object should contain <code>latitude</code>, <code>longitude</code>, <code>latitudeDelta</code>, and <code>longitudeDelta</code> properties. The <code>latitude</code> and <code>longitude</code> properties are the coordinates of the center of the map, and the <code>latitudeDelta</code> and <code>longitudeDelta</code> properties are the vertical and horizontal zoom levels of the map.</li>
 </ul>
 <h3>Setup 1</h3>
-<p>✏️ Run:</p>
+<p>✏️ Install the new dependency:</p>
 <pre><code class="language-bash">npm install react-native-maps@1.15.1
 </code></pre>
 <p>✏️ Create <strong>android/local.defaults.properties</strong> and update it to be:</p>
@@ -956,7 +956,6 @@ import { useState } from &quot;react&quot;
 import { RestaurantsStackParamList } from &quot;../../App&quot;
 import Loading from &quot;../../components/Loading&quot;
 import Tabs from &quot;../../components/Tabs&quot;
-import Box from &quot;../../design/Box&quot;
 import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
 import { useRestaurants } from &quot;../../services/pmo/restaurant&quot;
@@ -979,10 +978,10 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
 
   if (error) {
     return (
-      &lt;Box padding=&quot;s&quot;&gt;
+      &lt;Screen&gt;
         &lt;Typography variant=&quot;heading&quot;&gt;Error loading restaurants: &lt;/Typography&gt;
         &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
-      &lt;/Box&gt;
+      &lt;/Screen&gt;
     )
   }
 
@@ -997,8 +996,8 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
           { label: &quot;List&quot;, value: &quot;list&quot; },
           { label: &quot;Map&quot;, value: &quot;map&quot; },
         ]}
-        value={tab}
         onChange={setTab}
+        value={tab}
       /&gt;
 
       &lt;Screen noScroll&gt;
@@ -1012,9 +1011,9 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="2,6,8,12-13,26,42-49,52-56,only"></div>
+ <div line-highlight="2,6,11-12,25,41-48,51-55,only"></div>
 <p>✏️ Create <strong>src/components/Tabs/Tabs.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { TextStyle, ViewStyle, Pressable, StyleSheet } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { Pressable, StyleSheet } from &quot;react-native&quot;
 
 import Box from &quot;../../design/Box&quot;
 import { Theme, useTheme } from &quot;../../design/theme&quot;
@@ -1062,13 +1061,7 @@ const Tabs: React.FC&lt;TabsProps&gt; = ({ options, value: activeTab, onChange }
 
 export default Tabs
 
-function getStyles(theme: Theme): {
-  wrapper: ViewStyle
-  tab: ViewStyle
-  tabText: TextStyle
-  activeTab: ViewStyle
-  activeTabText: TextStyle
-} {
+function getStyles(theme: Theme) {
   return StyleSheet.create({
     wrapper: {
       flexDirection: &quot;row&quot;,
@@ -1097,6 +1090,7 @@ function getStyles(theme: Theme): {
 </code></pre>
 <p>✏️ Create <strong>src/components/Tabs/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./Tabs&quot;
+export * from &quot;./Tabs&quot;
 
 </code></pre>
 <p>✏️ Create <strong>src/screens/RestaurantList/components/Map/Map.tsx</strong> and update it to be:</p>
@@ -1117,6 +1111,7 @@ export default Map
 </code></pre>
 <p>✏️ Create <strong>src/screens/RestaurantList/components/Map/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./Map&quot;
+export * from &quot;./Map&quot;
 
 </code></pre>
 <h3>Verify 1</h3>
@@ -1148,7 +1143,7 @@ const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
       style={{ minHeight: &quot;100%&quot;, height: 500 }}
       provider={PROVIDER_GOOGLE}
       initialRegion={{
-        ...restaurants?.[0].coordinate,
+        ...restaurants[0].coordinate,
         latitudeDelta: 0.27,
         longitudeDelta: 0.5,
       }}
@@ -1216,13 +1211,13 @@ const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
       style={{ minHeight: &quot;100%&quot;, height: 500 }}
       provider={PROVIDER_GOOGLE}
       initialRegion={{
-        ...restaurants?.[0].coordinate,
+        ...restaurants[0].coordinate,
         latitudeDelta: 0.27,
         longitudeDelta: 0.5,
       }}
       loadingEnabled
     &gt;
-      {/* Exercise: Using the restaurants property, create a Marker for each restaurant. */}
+      {/* Exercise: Using the restaurants prop, create a Marker for each restaurant. */}
     &lt;/MapView&gt;
   )
 }
@@ -1236,7 +1231,7 @@ export default Map
 <p><img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” The map is still centered on Green Bay and now has several locations marked with red pins. One of the markers is labeled Cheese Curd City, 230 W Kinzie Street. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/></p>
 <h3>Exercise 2</h3>
 <ul>
-<li>Using the <code>restaurants</code> property, create a <code>Marker</code> for each restaurant.</li>
+<li>Using the <code>restaurants</code> prop, create a <code>Marker</code> for each restaurant.</li>
 <li>Fill out the <code>coordinate</code>, <code>title</code>, and <code>description</code> properties on Marker.</li>
 <li>Use <code>onCallOutPress</code> to add <code>navigate</code> to the <code>RestaurantDetails</code> screen.</li>
 </ul>
@@ -1262,7 +1257,7 @@ const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
       style={{ minHeight: &quot;100%&quot;, height: 500 }}
       provider={PROVIDER_GOOGLE}
       initialRegion={{
-        ...restaurants?.[0].coordinate,
+        ...restaurants[0].coordinate,
         latitudeDelta: 0.27,
         longitudeDelta: 0.5,
       }}

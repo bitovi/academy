@@ -720,8 +720,7 @@ With <code>npx react-native &lt;command&gt;</code>, the current stable version o
 <h3>Testing code with React Testing Library</h3>
 <p>We will create unit tests for our application using the <a href="https://callstack.github.io/react-native-testing-library/">React Native Testing Library</a>. The unit tests for components will be focused on verifying that a component creates the correct output based on the state the component is provided. We also need to create tests for any React custom Hooks we create to ensure they provide the expected results.</p>
 <h3>Setup 2</h3>
-<p>Before we can create or execute any tests, run the following command to install the packages related to the React Native Testing Library:</p>
-<p>✏️ Run:</p>
+<p>✏️ Install the new dev dependencies:</p>
 <pre><code class="language-shell">npm install --save-dev @testing-library/react-native@12 @types/jest@29
 </code></pre>
 <p>✏️ Create <strong>jest-setup.ts</strong> and update it to be:</p>
@@ -769,7 +768,7 @@ export default App;
 <h2>Objective 3: Clean up the generated code and add helpers</h2>
 <p>Before we begin adding any content, it’s a good idea to clean up generated files and add code quality tools.</p>
 <h3>Setup 3</h3>
-<p>✏️ Run:</p>
+<p>✏️ Install the new dev dependencies:</p>
 <pre><code class="language-shell">npm install --save-dev @bitovi/eslint-config@1 depcheck@1
 </code></pre>
 <p>✏️ Create <strong>.depcheckrc</strong> and update it to be:</p>

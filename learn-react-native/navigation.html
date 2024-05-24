@@ -748,17 +748,17 @@ This component handles the platform-specific (Android, iOS, etc.) navigation log
 <h3>createBottomTabNavigator</h3>
 <p>The <code>createBottomTabNavigator</code> function creates a navigator that renders a tab bar at the bottom of the screen. The components returned from this function are the <code>Tab.Navigator</code> and <code>Tab.Screen</code> components which we use together to define our tab navigation.</p>
 <p>The <code>Tab.Navigator</code> component takes <code>Tab.Screen</code> components as children. For each child, a tab button will be added to the tab bar at the bottom of the screen. The <code>Tab.Navigator</code> also has a set of props that can be used to customize the behavior of the tab bar. We can set the initial route with <code>initialRouteName</code>, specify the <code>backBehavior</code>, customize the styles through <code>screenOptions</code>, and more.</p>
-<p>The <code>Tab.Screen</code> component takes a <code>name</code> prop that is used to identify the screen and a <code>component</code> prop that is used to render the screen. The <code>name</code> prop must be unique among all the screens in the navigator. Similar to the <code>Tab.Navigator</code>, we can pass an <code>options</code> prop to the <code>Tab.Screen</code> component to customize the title, label, icon, and other properties of the tab.</p>
+<p>The <code>Tab.Screen</code> component takes a <code>name</code> prop that is used to identify the screen and a <code>component</code> prop that is used to render the screen. The <code>name</code> prop must be unique among all the screens in the navigator. Similar to the <code>Tab.Navigator</code>, we can pass an <code>options</code> prop to the <code>Tab.Screen</code> component to customize the title, label, icon, and other props of the tab.</p>
 <h3>React Native Vector Icons</h3>
 <p>The React Native Vector Icons repository is an invaluable resource for enhancing your React Native applications with high-quality icons.
 This library provides an extensive collection of icons from popular sets such as FontAwesome, Material Icons, and Ionicons.
 It integrates seamlessly with React Native, offering versatile components that you can style and scale to meet any design requirements.
 By importing your chosen icon set and utilizing the <code>&lt;Icon&gt;</code> component, you can easily specify properties like name, size, and color to incorporate icons into your apps.</p>
 <h3>Setup 1</h3>
-<p>✏️ Run:</p>
+<p>✏️ Install the new dependencies:</p>
 <pre><code class="language-bash">npm install @react-navigation/native@6 @react-navigation/bottom-tabs@6 react-native-safe-area-context@4 react-native-screens@3 react-native-vector-icons@10
 </code></pre>
-<p>✏️ Run:</p>
+<p>✏️ Install the new dev dependencies:</p>
 <pre><code class="language-bash">npm install --save-dev @types/react-native-vector-icons@6 identity-obj-proxy@3
 </code></pre>
 <p>✏️ Kill the existing dev server and start it again:</p>
@@ -766,19 +766,19 @@ By importing your chosen icon set and utilizing the <code>&lt;Icon&gt;</code> co
 </code></pre>
 <p>✏️ Update <strong>jest.config.js</strong> to be:</p>
 <pre><code class="language-js">module.exports = {
-  clearMocks: true,
-  moduleNameMapper: {
-    &quot;\\.(png)$&quot;: &quot;identity-obj-proxy&quot;,
-  },
   preset: &quot;react-native&quot;,
+  clearMocks: true,
   setupFilesAfterEnv: [&quot;&lt;rootDir&gt;/jest-setup.ts&quot;],
   transformIgnorePatterns: [
     &quot;/node_modules/(?!((jest-)?react-native|@react-native(-community)?)|react-navigation|@react-navigation/.*)&quot;,
   ],
+  moduleNameMapper: {
+    &quot;\\.(png)$&quot;: &quot;identity-obj-proxy&quot;,
+  },
 }
 
 </code></pre>
- <div line-highlight="2-5,8-10,only"></div>
+ <div line-highlight="3,5-10,only"></div>
 <p>✏️ Update <strong>android/app/build.gradle</strong> to be:</p>
 <pre><code class="language-gradle">apply plugin: &quot;com.android.application&quot;
 apply plugin: &quot;org.jetbrains.kotlin.android&quot;
@@ -934,7 +934,7 @@ const AppNavigator: React.FC = () =&gt; {
         tabBarActiveTintColor: theme.palette.primary.strong,
         tabBarInactiveTintColor: theme.palette.screen.contrast,
         tabBarIcon: ({ focused, color }) =&gt; {
-          // Exercise: Update the Icon component’s name property based on the route.
+          // Exercise: Update the Icon component’s name prop based on the route.
           return &lt;Icon name={icon} size={20} color={color} /&gt;
         },
       })}
@@ -983,7 +983,7 @@ const Settings: React.FC = () =&gt; {
         &lt;View style={styles.row}&gt;
           &lt;Typography variant=&quot;heading&quot;&gt;Dark mode&lt;/Typography&gt;
           &lt;Switch
-            onChange={() =&gt; setMode(mode === &quot;light&quot; ? &quot;dark&quot; : &quot;light&quot;)}
+            onValueChange={(value) =&gt; setMode(value ? &quot;dark&quot; : &quot;light&quot;)}
             value={mode === &quot;dark&quot;}
           /&gt;
         &lt;/View&gt;
@@ -1005,6 +1005,7 @@ export default Settings
 </code></pre>
 <p>✏️ Create <strong>src/screens/Settings/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./Settings&quot;
+export * from &quot;./Settings&quot;
 
 </code></pre>
 <h3>Verify 1</h3>
@@ -1067,7 +1068,7 @@ describe(&quot;Screens/Settings&quot;, () =&gt; {
     const switchElement = screen.getByRole(&quot;switch&quot;)
     expect(switchElement.props.value).toBe(false)
 
-    fireEvent(switchElement, &quot;onChange&quot;, { nativeEvent: { value: true } })
+    fireEvent(switchElement, &quot;onValueChange&quot;, true)
     expect(mockSetMode).toHaveBeenCalledWith(&quot;dark&quot;)
   })
 })
@@ -1075,8 +1076,8 @@ describe(&quot;Screens/Settings&quot;, () =&gt; {
 </code></pre>
 <h3>Exercise 1</h3>
 <ul>
-<li>For the <code>tabBarIcon</code> property on <code>AppTabs.Navigator</code>, update the <code>Icon</code> component’s name property to be based on the given route.</li>
-<li>Add a screen tab for Restaurants (the <code>StateList</code> component) and a tab for the <code>Settings</code> component.</li>
+<li>For the <code>tabBarIcon</code> prop on <code>AppTabs.Navigator</code> update the <code>Icon</code> component’s name prop to be based on the given route.</li>
+<li>Add a screen tab for Restaurants (the <code>StateList</code> component) and for <code>Settings</code> component.</li>
 <li>Add the <code>NavigationContainer</code> and <code>AppNavigator</code> to the <code>App</code> component.</li>
 </ul>
 <p>Use these API docs for reference:</p>
@@ -1230,7 +1231,7 @@ function MyStack() {
 <p>The <code>Stack.Navigator</code> also accepts a <code>screenOptions</code> prop that we can use to customize the appearance of the header. For example, if we would like to conditionally render a back button in the header, we could check the <code>navigation.canGoBack()</code> method inside of <code>screenOptions.header</code> and render a custom header with or without a back button.</p>
 <p>Similar to the <code>Tab.Screen</code> component, we can customize the behavior of our <code>Stack.Screen</code> with an <code>options</code> prop. This prop allows us to customize the header title, card style, whether gestures are enabled, and more.</p>
 <h3>Setup 2</h3>
-<p>✏️ Run:</p>
+<p>✏️ Install the new dependencies:</p>
 <pre><code class="language-bash">npm install @react-navigation/stack@6 react-native-gesture-handler@2
 </code></pre>
 <p>✏️ Update <strong>index.js</strong> to be:</p>
@@ -1305,9 +1306,7 @@ const RestaurantsNavigator: React.FC = () =&gt; {
       initialRouteName=&quot;StateList&quot;
       screenOptions={{
         header: ({ route, navigation }) =&gt; {
-          {
-            /* Exercise: Add logic for back navigation. */
-          }
+          // Exercise: Add logic for back navigation.
           return (
             &lt;Pressable onPress={() =&gt; console.warn(&quot;header pressed&quot;)}&gt;
               &lt;Box
@@ -1388,7 +1387,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="3-4,8,10-11,15-16,18-23,25-35,37,39-40,70,73,75,78,91,99-100,only"></div>
+ <div line-highlight="3-4,8,10-11,15-16,18-33,35,37-38,71,73,76,89,97-98,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { FlatList } from &quot;react-native&quot;
@@ -1398,12 +1397,7 @@ import Card from &quot;../../design/Card&quot;
 import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
 
-export interface State {
-  name: string
-  short: string
-}
-
-const states: State[] = [
+const states = [
   {
     name: &quot;Illinois&quot;,
     short: &quot;IL&quot;,
@@ -1438,19 +1432,14 @@ const StateList: React.FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="1-2,4,9,26,29,33-41,only"></div>
+ <div line-highlight="1-2,4,21,24,28-36,only"></div>
 <p>✏️ Create <strong>src/screens/CityList/CityList.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { FlatList } from &quot;react-native&quot;
 
 import Button from &quot;../../design/Button&quot;
 import Screen from &quot;../../design/Screen&quot;
 
-export interface City {
-  name: string
-  state: string
-}
-
-const cities: City[] = [
+const cities = [
   { name: &quot;Madison&quot;, state: &quot;WI&quot; },
   { name: &quot;Springfield&quot;, state: &quot;IL&quot; },
 ]
@@ -1476,6 +1465,7 @@ export default CityList
 </code></pre>
 <p>✏️ Create <strong>src/screens/CityList/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./CityList&quot;
+export * from &quot;./CityList&quot;
 
 </code></pre>
 <p>✏️ Delete <strong>src/screens/StateList/components/</strong> and everything in it.</p>
@@ -1500,7 +1490,7 @@ describe(&quot;Screens/StateList&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="1-2,8-12,only"></div>
+ <div line-highlight="1,8-12,only"></div>
 <p>✏️ Create <strong>src/screens/CityList/CityList.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
 
@@ -1641,12 +1631,7 @@ import Card from &quot;../../design/Card&quot;
 import Screen from &quot;../../design/Screen&quot;
 import Typography from &quot;../../design/Typography&quot;
 
-export interface State {
-  name: string
-  short: string
-}
-
-const states: State[] = [
+const states = [
   {
     name: &quot;Illinois&quot;,
     short: &quot;IL&quot;,
@@ -1686,7 +1671,7 @@ const StateList: React.FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="36-41,only"></div>
+ <div line-highlight="31-36,only"></div>
 <p></details></p>
 <h2>Objective 3: Add Restaurant List and Restaurant Details pages with links</h2>
 <div style="display: flex; flex-direction: row; gap: 2rem">
@@ -1804,7 +1789,7 @@ export default App
 <p>✏️ Create <strong>src/components/</strong> (folder)</p>
 <p>✏️ Create <strong>src/components/RestaurantHeader/</strong> (folder)</p>
 <p>✏️ Create <strong>src/components/RestaurantHeader/RestaurantHeader.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { TextStyle, ViewStyle, ImageBackground, StyleSheet } from &quot;react-native&quot;
+<pre><code class="language-tsx">import { ImageBackground, StyleSheet } from &quot;react-native&quot;
 
 import Box from &quot;../../design/Box&quot;
 import { Theme, useTheme } from &quot;../../design/theme&quot;
@@ -1861,11 +1846,7 @@ const RestaurantHeader: React.FC&lt;RestaurantHeaderProps&gt; = ({ restaurant })
   )
 }
 
-function getStyles(theme: Theme): {
-  heroBackground: ViewStyle
-  hero: ViewStyle
-  heroText: TextStyle
-} {
+function getStyles(theme: Theme) {
   return StyleSheet.create({
     heroBackground: {
       width: &quot;100%&quot;,
@@ -1944,6 +1925,7 @@ export const restaurantWithAddress = {
 </code></pre>
 <p>✏️ Create <strong>src/components/RestaurantHeader/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./RestaurantHeader&quot;
+export * from &quot;./RestaurantHeader&quot;
 
 </code></pre>
 <p>✏️ Update <strong>src/screens/CityList/CityList.tsx</strong> to be:</p>
@@ -1953,12 +1935,7 @@ import { FlatList } from &quot;react-native&quot;
 import Button from &quot;../../design/Button&quot;
 import Screen from &quot;../../design/Screen&quot;
 
-export interface City {
-  name: string
-  state: string
-}
-
-const cities: City[] = [
+const cities = [
   { name: &quot;Madison&quot;, state: &quot;WI&quot; },
   { name: &quot;Springfield&quot;, state: &quot;IL&quot; },
 ]
@@ -1985,7 +1962,7 @@ const CityList: React.FC = () =&gt; {
 export default CityList
 
 </code></pre>
- <div line-highlight="1,18-19,only"></div>
+ <div line-highlight="1,13-14,only"></div>
 <p>✏️ Create <strong>src/screens/RestaurantDetails/</strong> (folder)</p>
 <p>✏️ Create <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
@@ -2037,6 +2014,7 @@ export default RestaurantDetails
 </code></pre>
 <p>✏️ Create <strong>src/screens/RestaurantDetails/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./RestaurantDetails&quot;
+export * from &quot;./RestaurantDetails&quot;
 
 </code></pre>
 <p>✏️ Create <strong>src/screens/RestaurantList/</strong> (folder)</p>
@@ -2044,8 +2022,8 @@ export default RestaurantDetails
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { FlatList } from &quot;react-native&quot;
 
-import Box from &quot;../../design/Box&quot;
 import Button from &quot;../../design/Button&quot;
+import Screen from &quot;../../design/Screen&quot;
 
 const restaurants = [
   {
@@ -2093,7 +2071,7 @@ const RestaurantList: React.FC = () =&gt; {
   // Exercise: Use navigation in the RestaurantList component, to link RestaurantList to the RestaurantDetails screen.
 
   return (
-    &lt;Box padding=&quot;s&quot;&gt;
+    &lt;Screen noScroll&gt;
       &lt;FlatList
         data={restaurants}
         renderItem={({ item: restaurant }) =&gt; (
@@ -2103,7 +2081,7 @@ const RestaurantList: React.FC = () =&gt; {
         )}
         keyExtractor={(item) =&gt; item._id}
       /&gt;
-    &lt;/Box&gt;
+    &lt;/Screen&gt;
   )
 }
 
@@ -2112,6 +2090,7 @@ export default RestaurantList
 </code></pre>
 <p>✏️ Create <strong>src/screens/RestaurantList/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./RestaurantList&quot;
+export * from &quot;./RestaurantList&quot;
 
 </code></pre>
 <h3>Verify 3</h3>
@@ -2360,12 +2339,7 @@ import { FlatList } from &quot;react-native&quot;
 import Button from &quot;../../design/Button&quot;
 import Screen from &quot;../../design/Screen&quot;
 
-export interface City {
-  name: string
-  state: string
-}
-
-const cities: City[] = [
+const cities = [
   { name: &quot;Madison&quot;, state: &quot;WI&quot; },
   { name: &quot;Springfield&quot;, state: &quot;IL&quot; },
 ]
@@ -2396,13 +2370,13 @@ const CityList: React.FC = () =&gt; {
 export default CityList
 
 </code></pre>
- <div line-highlight="25-30,only"></div>
+ <div line-highlight="20-25,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { FlatList } from &quot;react-native&quot;
 
-import Box from &quot;../../design/Box&quot;
 import Button from &quot;../../design/Button&quot;
+import Screen from &quot;../../design/Screen&quot;
 
 const restaurants = [
   {
@@ -2449,7 +2423,7 @@ const RestaurantList: React.FC = () =&gt; {
   const navigation = useNavigation()
 
   return (
-    &lt;Box padding=&quot;s&quot;&gt;
+    &lt;Screen noScroll&gt;
       &lt;FlatList
         data={restaurants}
         renderItem={({ item: restaurant }) =&gt; (
@@ -2464,7 +2438,7 @@ const RestaurantList: React.FC = () =&gt; {
         )}
         keyExtractor={(item) =&gt; item._id}
       /&gt;
-    &lt;/Box&gt;
+    &lt;/Screen&gt;
   )
 }
 

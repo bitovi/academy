@@ -796,7 +796,7 @@ Choosing the right caching strategy is critical for balancing between data fresh
 <li><strong>Store the response data with metadata in the cache.</strong> Metadata can give you more info about the cached item, e.g. the date and time of when the item was cached could be stored as a string after calling <code>new Date()</code>.</li>
 </ul>
 <h3>Setup 1</h3>
-<p>✏️ Run:</p>
+<p>✏️ Install the new dependency:</p>
 <pre><code class="language-bash">npm install @react-native-async-storage/async-storage@1
 </code></pre>
 <p>✏️ Update <strong>jest-setup.ts</strong> to be:</p>
@@ -1554,6 +1554,7 @@ export default DataMigration
 </code></pre>
 <p>✏️ Create <strong>src/services/DataMigration/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./DataMigration&quot;
+export * from &quot;./DataMigration&quot;
 
 </code></pre>
 <p>✏️ Update <strong>src/services/pmo/api/api.ts</strong> to be:</p>
