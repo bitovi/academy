@@ -1,6 +1,5 @@
 import {
   ViewProps,
-  ViewStyle,
   StyleSheet,
   ScrollView,
   View as StaticView,
@@ -45,9 +44,7 @@ function getStyles(
     margin?: ThemeMargin
     padding?: ThemePadding
   },
-): {
-  container: ViewStyle
-} {
+) {
   return StyleSheet.create({
     container: StyleSheet.flatten([
       {

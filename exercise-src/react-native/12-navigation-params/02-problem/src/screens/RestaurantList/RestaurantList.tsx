@@ -3,8 +3,8 @@ import { StackScreenProps } from "@react-navigation/stack"
 import { FlatList } from "react-native"
 
 import { RestaurantsStackParamList } from "../../App"
-import Box from "../../design/Box"
 import Button from "../../design/Button"
+import Screen from "../../design/Screen"
 
 export interface RestaurantListProps
   extends StackScreenProps<RestaurantsStackParamList, "RestaurantList"> {}
@@ -56,7 +56,7 @@ const RestaurantList: React.FC<RestaurantListProps> = () => {
   const navigation = useNavigation()
 
   return (
-    <Box padding="s">
+    <Screen noScroll>
       <FlatList
         data={restaurants}
         renderItem={({ item: restaurant }) => (
@@ -70,7 +70,7 @@ const RestaurantList: React.FC<RestaurantListProps> = () => {
         )}
         keyExtractor={(item) => item._id}
       />
-    </Box>
+    </Screen>
   )
 }
 

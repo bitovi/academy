@@ -23,6 +23,7 @@ const RestaurantDetails: React.FC<RestaurantDetailsProps> = ({ route }) => {
   const { slug } = route.params
   const navigation = useNavigation()
   const { data: restaurant, error, isPending } = useRestaurant({ slug })
+
   // Exercise: Add a button that uses the `updateFavorites` helper.
 
   useEffect(() => {

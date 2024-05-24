@@ -22,11 +22,15 @@ const StateList: React.FC = () => {
       <Box padding="s">
         <Typography variant="heading">Place My Order: Coming Soon!</Typography>
       </Box>
-      {states?.length ? (
-        states.map((state) => <ListItem key={state.short} name={state.name} />)
-      ) : (
-        <Typography>No states found</Typography>
-      )}
+      <Box>
+        {states?.length ? (
+          states.map((state) => (
+            <ListItem key={state.short} name={state.name} />
+          ))
+        ) : (
+          <Typography>No states found</Typography>
+        )}
+      </Box>
     </ScrollView>
   )
 }

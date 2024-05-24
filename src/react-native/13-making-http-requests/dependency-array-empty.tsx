@@ -1,29 +1,31 @@
 import { useEffect, useState } from "react"
-import { View, Text } from "react-native"
+import { Keyboard, Text, View } from "react-native"
 
 const GeolocationComponent: React.FC = () => {
-  const [location, setLocation] = useState(null)
+  const [keyboardStatus, setKeyboardStatus] = useState("")
 
   useEffect(() => {
     // Effect callback function
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        setLocation(position.coords)
-      },
-      (error) => {
-        console.error(error)
-      },
-    )
+    const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+      setKeyboardStatus("Keyboard shown")
+    })
+    const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+      setKeyboardStatus("Keyboard hidden")
+    })
+
+    return () => {
+      // Teardown function
+      showSubscription.remove()
+      hideSubscription.remove()
+    }
   }, []) // Dependency array
 
   return (
     <View>
-      {location ? (
-        <Text>
-          Latitude: {location.latitude}, Longitude: {location.longitude}
-        </Text>
+      {keyboardStatus ? (
+        <Text>{keyboardStatus}</Text>
       ) : (
-        <Text>Requesting location…</Text>
+        <Text>Checking keyboard status…</Text>
       )}
     </View>
   )

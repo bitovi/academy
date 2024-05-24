@@ -13,8 +13,8 @@ describe("Components/FormTextField", () => {
     render(
       <FormTextField
         label="Hello!"
-        value="response"
         onChange={handleChangeMock}
+        value="response"
       />,
     )
 

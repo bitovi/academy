@@ -77,9 +77,7 @@ We will create unit tests for our application using the [React Native Testing Li
 
 ### Setup 2
 
-Before we can create or execute any tests, run the following command to install the packages related to the React Native Testing Library:
-
-✏️ Run:
+✏️ Install the new dev dependencies:
 
 ```shell
 npm install --save-dev @testing-library/react-native@12 @types/jest@29
@@ -119,7 +117,7 @@ Before we begin adding any content, it’s a good idea to clean up generated fil
 
 ### Setup 3
 
-✏️ Run:
+✏️ Install the new dev dependencies:
 
 ```shell
 npm install --save-dev @bitovi/eslint-config@1 depcheck@1
@@ -132,6 +130,10 @@ npm install --save-dev @bitovi/eslint-config@1 depcheck@1
 ✏️ Update **.eslintrc.js** to be:
 
 @diff ../../../exercises/react-native/03-creating-a-new-app/02-solution/.eslintrc.js ../../../exercises/react-native/03-creating-a-new-app/03-solution/.eslintrc.js only
+
+✏️ Update **.gitignore** to be:
+
+@diff ../../../exercises/react-native/03-creating-a-new-app/02-solution/.gitignore ../../../exercises/react-native/03-creating-a-new-app/03-solution/.gitignore only
 
 ✏️ Update **.prettierrc.js** to be:
 

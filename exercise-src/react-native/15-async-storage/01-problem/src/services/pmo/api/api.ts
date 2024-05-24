@@ -2,9 +2,9 @@ import { getData, storeData } from "../../storage"
 
 const baseUrl = process.env.PMO_API
 
-export interface LocalStorageApiRequest<T> {
+export interface CachedResponse<T> {
   data: T
-  dateTime: Date
+  dateTime: string
 }
 
 export const keyPrefix = "apiRequest-"

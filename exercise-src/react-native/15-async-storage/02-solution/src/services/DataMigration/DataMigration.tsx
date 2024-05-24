@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 
 import Loading from "../../components/Loading"
-import { LocalStorageApiRequest, keyPrefix } from "../pmo/api"
+import { CachedResponse, keyPrefix } from "../pmo/api"
 import { getData, getAllKeys, storeData, clearStorage } from "../storage"
 
-interface LocalStorageApiRequestV1 {
+interface CachedResponseV1 {
   data: unknown
-  dateTime: Date
+  dateTime: string
 }
 
 const migrateDataFromV1toV2 = async (): Promise<void> => {
@@ -14,10 +14,10 @@ const migrateDataFromV1toV2 = async (): Promise<void> => {
   try {
     for (const key of keys) {
       if (key.startsWith(keyPrefix)) {
-        const oldData = (await getData(key)) as LocalStorageApiRequestV1
-        await storeData<LocalStorageApiRequest<unknown>>(key, {
+        const oldData = (await getData(key)) as CachedResponseV1
+        await storeData<CachedResponse<unknown>>(key, {
           ...oldData,
-          dateTime: oldData.dateTime.valueOf(),
+          dateTime: new Date(oldData.dateTime).valueOf(),
         })
       }
     }

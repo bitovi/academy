@@ -1,8 +1,8 @@
 import { useNavigation } from "@react-navigation/native"
 import { FlatList } from "react-native"
 
-import Box from "../../../../design/Box"
 import Button from "../../../../design/Button"
+import Screen from "../../../../design/Screen"
 import { Restaurant } from "../../../../services/pmo/restaurant"
 
 export interface ListProps {
@@ -13,7 +13,7 @@ const List: React.FC<ListProps> = ({ restaurants }) => {
   const navigation = useNavigation()
 
   return (
-    <Box padding="s">
+    <Screen noScroll>
       <FlatList
         data={restaurants}
         renderItem={({ item: restaurant }) => (
@@ -29,7 +29,7 @@ const List: React.FC<ListProps> = ({ restaurants }) => {
         )}
         keyExtractor={(item) => item._id}
       />
-    </Box>
+    </Screen>
   )
 }
 

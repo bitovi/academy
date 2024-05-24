@@ -15,5 +15,5 @@ const ThemeProvider: React.FC = () => {
 export default ThemeProvider
 
 export function useTheme(): Theme {
-  // Exercise: Create the Context.
+  // Exercise: Consume the Context.
 }

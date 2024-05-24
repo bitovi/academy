@@ -17,7 +17,7 @@ In this section, you will:
 
 ## Objective 1: Add Google Maps to Restaurant List page
 
-<img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” There are two tabs at the top, List and Map, with Map selected. The map below is centered on Green Bay. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/01-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+<img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” There are two tabs at the top, List and Map, with Map selected. The map below is centered on Green Bay. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/01-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 
 ### React Native Maps
 
@@ -68,7 +68,7 @@ The component takes several props, but the most important ones are:
 
 ### Setup 1
 
-✏️ Run:
+✏️ Install the new dependency:
 
 ```bash
 npm install react-native-maps@1.15.1
@@ -124,7 +124,7 @@ npm install react-native-maps@1.15.1
 
 Navigate to the `Maps` tab of the `RestaurantsList` in your emulator and verify that the Map is rendering.
 
-<img alt="Screenshot of how the application should look for the second solution." src="../static/img/react-native/18-maps/01-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+<img alt="Screenshot of how the application should look for the second solution." src="../static/img/react-native/18-maps/01-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 
 ### Exercise 1
 
@@ -151,7 +151,7 @@ If you’ve implemented the solution correctly, the Map should be rendering in y
 
 ## Objective 2: Add restaurant pins with tooltips to map
 
-<img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” The map is still centered on Green Bay and now has several locations marked with red pins. One of the markers is labeled Cheese Curd City, 230 W Kinzie Street. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+<img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” The map is still centered on Green Bay and now has several locations marked with red pins. One of the markers is labeled Cheese Curd City, 230 W Kinzie Street. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 
 Now that we have a map, let’s add markers for each one of the restaurants. When we tap on them, we will navigate to the restaurant detail page, just like we do in the list view.
 
@@ -204,11 +204,11 @@ function MapWithMarker({ initialRegion }) {
 
 Navigate to the `Maps` tab of the `RestaurantsList` in your emulator and verify that the Map is rendering.
 
-<img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” The map is still centered on Green Bay and now has several locations marked with red pins. One of the markers is labeled Cheese Curd City, 230 W Kinzie Street. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 750px; border: 4px solid black; border-radius: 25px;"/>
+<img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” The map is still centered on Green Bay and now has several locations marked with red pins. One of the markers is labeled Cheese Curd City, 230 W Kinzie Street. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 
 ### Exercise 2
 
-- Using the `restaurants` property, create a `Marker` for each restaurant.
+- Using the `restaurants` prop, create a `Marker` for each restaurant.
 - Fill out the `coordinate`, `title`, and `description` properties on Marker.
 - Use `onCallOutPress` to add `navigate` to the `RestaurantDetails` screen.
 

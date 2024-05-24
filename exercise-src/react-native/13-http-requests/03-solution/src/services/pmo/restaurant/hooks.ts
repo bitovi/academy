@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 import { apiRequest } from "../api"
 
-import { State, City } from "./interfaces"
+import { City, State } from "./interfaces"
 
 interface CitiesResponse {
   data: City[] | undefined
@@ -38,7 +38,7 @@ export function useCities({ state }: UseCitiesParams): CitiesResponse {
       })
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data) ? data : data?.data ?? undefined,
         error: error,
         isPending: false,
       })
@@ -70,7 +70,7 @@ export function useStates(): StatesResponse {
       })
 
       setResponse({
-        data: data?.data || undefined,
+        data: Array.isArray(data) ? data : data?.data ?? undefined,
         error: error,
         isPending: false,
       })

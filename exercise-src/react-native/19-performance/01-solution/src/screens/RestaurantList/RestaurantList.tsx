@@ -28,10 +28,12 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ route }) => {
 
   if (error) {
     return (
-      <Box padding="s">
-        <Typography variant="heading">Error loading restaurants: </Typography>
-        <Typography variant="body">{error.message}</Typography>
-      </Box>
+      <Screen>
+        <Box padding="m">
+          <Typography variant="heading">Error loading restaurants: </Typography>
+          <Typography variant="body">{error.message}</Typography>
+        </Box>
+      </Screen>
     )
   }
 
@@ -46,8 +48,8 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ route }) => {
           { label: "List", value: "list" },
           { label: "Map", value: "map" },
         ]}
-        value={tab}
         onChange={setTab}
+        value={tab}
       />
 
       <Screen noScroll>

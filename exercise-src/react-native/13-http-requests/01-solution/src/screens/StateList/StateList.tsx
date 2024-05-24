@@ -14,10 +14,12 @@ const StateList: React.FC = () => {
 
   if (error) {
     return (
-      <Box padding="s">
-        <Typography variant="heading">Error loading states: </Typography>
-        <Typography variant="body">{error.message}</Typography>
-      </Box>
+      <Screen>
+        <Box padding="m">
+          <Typography variant="heading">Error loading states: </Typography>
+          <Typography variant="body">{error.message}</Typography>
+        </Box>
+      </Screen>
     )
   }
 

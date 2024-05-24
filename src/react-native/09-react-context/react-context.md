@@ -89,7 +89,7 @@ We can create a custom `AuthProvider` that hides all the complicated logic from 
 
 #### Future-proofing the Consumer
 
-Instead of calling `useContext` everywhere and needing to understand the structure of the context, we can provide custom hooks that return the specific parts of the context that we need. If we change the context structure, all we have to do is update these hooks to return the same data as before and no other code has to change.
+Instead of calling `useContext` everywhere and needing to understand the structure of the context, we can provide custom Hooks that return the specific parts of the context that we need. If we change the context structure, all we have to do is update these hooks to return the same data as before and no other code has to change.
 
 @sourceref ./context-full.tsx
 @highlight 49-59, only

@@ -4,12 +4,7 @@ import { FlatList } from "react-native"
 import Button from "../../design/Button"
 import Screen from "../../design/Screen"
 
-export interface City {
-  name: string
-  state: string
-}
-
-const cities: City[] = [
+const cities = [
   { name: "Madison", state: "WI" },
   { name: "Springfield", state: "IL" },
 ]
