@@ -1122,6 +1122,7 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
     console.info(&quot;“Place My Order” button pressed!&quot;)
   }
 
+  const selectedCount = Object.values(items).length
   const subtotal = 0 // Exercise: Use calculateTotal here.
 
   if (error) {
@@ -1160,7 +1161,11 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
       &lt;Card title=&quot;Order Details&quot;&gt;&lt;/Card&gt;
 
       &lt;Box padding=&quot;s&quot;&gt;
-        {subtotal === 0 &amp;&amp; &lt;Typography&gt;Please choose an item.&lt;/Typography&gt;}
+        {subtotal === 0 ? (
+          &lt;Typography&gt;Please choose an item.&lt;/Typography&gt;
+        ) : (
+          &lt;Typography&gt;{selectedCount} items selected.&lt;/Typography&gt;
+        )}
       &lt;/Box&gt;
 
       &lt;Box padding=&quot;s&quot;&gt;
@@ -1183,7 +1188,6 @@ function calculateTotal(items: OrderItems) {
 export default RestaurantOrder
 
 </code></pre>
-<div line-highlight='37, 69, 73, only'></div>
 <p>✏️ Create <strong>src/screens/RestaurantOrder/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./RestaurantOrder&quot;
 export * from &quot;./RestaurantOrder&quot;
@@ -1369,7 +1373,6 @@ describe(&quot;Screens/RestaurantOrder&quot;, () =&gt; {
 })
 
 </code></pre>
-<div line-highlight='58, 80, 86, only'></div>
 <h3>Exercise 1</h3>
 <ul>
 <li>Add <code>RestaurantOrder</code> to the <code>NavigatorStack</code>.</li>
@@ -1705,6 +1708,7 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
     })
   }
 
+  const selectedCount = Object.values(items).length
   const subtotal = calculateTotal(items)
 
   if (error) {
@@ -1757,7 +1761,11 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
       &lt;Card title=&quot;Order Details&quot;&gt;&lt;/Card&gt;
 
       &lt;Box padding=&quot;s&quot;&gt;
-        {subtotal === 0 &amp;&amp; &lt;Typography&gt;Please choose an item.&lt;/Typography&gt;}
+        {subtotal === 0 ? (
+          &lt;Typography&gt;Please choose an item.&lt;/Typography&gt;
+        ) : (
+          &lt;Typography&gt;{selectedCount} items selected.&lt;/Typography&gt;
+        )}
       &lt;/Box&gt;
 
       &lt;Box padding=&quot;s&quot;&gt;
@@ -1780,10 +1788,10 @@ function calculateTotal(items: OrderItems) {
 export default RestaurantOrder
 
 </code></pre>
- <div line-highlight="26,38-49,52,75,80-87,91-98,only"></div>
+ <div line-highlight="26,38-49,53,76,81-88,92-99,only"></div>
 <p></details></p>
 <h2>Objective 2: Add text fields to collect user data</h2>
-<p>Next, we want to collect the user’s name, address, and phone number as part of the order.
+<p>Next, we want to collect the user’s name, phone number, and address as part of the order.
 To do this, we’ll use React Native’s <code>TextInput</code> component.</p>
 <h3>Using the <code>TextInput</code> component</h3>
 <p>For entering text, React Native uses the <code>TextInput</code> component.
@@ -1913,12 +1921,56 @@ const FormTextField: React.FC&lt;FormTextFieldProps&gt; = ({
 export default FormTextField
 
 </code></pre>
-<div line-highlight='20, only'></div>
 <p>✏️ Create <strong>src/components/FormTextField/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./FormTextField&quot;
 export * from &quot;./FormTextField&quot;
 
 </code></pre>
+<p>✏️ Update <strong>src/components/FormSwitch/FormSwitch.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { useId } from &quot;react&quot;
+import { Switch } from &quot;react-native&quot;
+
+import Box from &quot;../../design/Box&quot;
+import { useTheme } from &quot;../../design/theme&quot;
+import Typography from &quot;../../design/Typography&quot;
+
+export interface FormSwitchProps {
+  label: string
+  value: boolean
+  onChange: (value: boolean) =&gt; void
+}
+
+const FormSwitch: React.FC&lt;FormSwitchProps&gt; = ({ label, value, onChange }) =&gt; {
+  const theme = useTheme()
+
+  return (
+    &lt;Box
+      style={{
+        width: &quot;100%&quot;,
+        flexDirection: &quot;row&quot;,
+        justifyContent: &quot;space-between&quot;,
+        alignItems: &quot;center&quot;,
+        marginVertical: 8,
+      }}
+    &gt;
+      &lt;Typography variant=&quot;label&quot;&gt;{label}&lt;/Typography&gt;
+      &lt;Switch
+        onValueChange={onChange}
+        thumbColor={theme.palette.primary.contrast}
+        trackColor={{
+          true: theme.palette.primary.strong,
+          false: theme.palette.screen.soft,
+        }}
+        value={value}
+      &gt;&lt;/Switch&gt;
+    &lt;/Box&gt;
+  )
+}
+
+export default FormSwitch
+
+</code></pre>
+ <div line-highlight="1,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantOrder/RestaurantOrder.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -2024,7 +2076,7 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
       &lt;/Card&gt;
 
       &lt;Card title=&quot;Order Details&quot;&gt;
-        {/* Exercise: Use name, address, and phone fields to create FormTextField elements. */}
+        {/* Exercise: Use name, phone, and address fields to create FormTextField elements. */}
       &lt;/Card&gt;
 
       &lt;Box padding=&quot;s&quot;&gt;
@@ -2055,7 +2107,7 @@ function calculateTotal(items: OrderItems) {
 export default RestaurantOrder
 
 </code></pre>
- <div line-highlight="7,28,54,104-106,109-113,only"></div>
+ <div line-highlight="7,28,104-106,only"></div>
 <h3>Verify 2</h3>
 <p>✏️ Create <strong>src/components/FormTextField/FormTextField.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen, userEvent } from &quot;@testing-library/react-native&quot;
@@ -2186,8 +2238,8 @@ describe(&quot;Screens/RestaurantOrder&quot;, () =&gt; {
     ).toBeOnTheScreen()
 
     expect(screen.getByLabelText(/Name/i)).toBeOnTheScreen()
-    expect(screen.getByLabelText(/Address/i)).toBeOnTheScreen()
     expect(screen.getByLabelText(/Phone/i)).toBeOnTheScreen()
+    expect(screen.getByLabelText(/Address/i)).toBeOnTheScreen()
   })
 
   it(&quot;renders loading state&quot;, () =&gt; {
@@ -2237,9 +2289,13 @@ describe(&quot;Screens/RestaurantOrder&quot;, () =&gt; {
 <li>Associate the <code>&lt;Typography&gt;</code> and <code>&lt;TextInput&gt;</code> components with the correct props for accessibility.</li>
 <li>Add the <code>onChangeText</code> and <code>value</code> props to the <code>&lt;TextInput&gt;</code> component.</li>
 </ul>
-<p>Additionally, let’s update the <code>RestaurantOrder</code> component to:</p>
+<p>Additionally, Let's update the <code>FormSwitch</code> component to:</p>
 <ul>
-<li>Have state variables and setters for <code>address</code>, <code>name</code>, and <code>phone</code>.</li>
+<li>Associate the <code>&lt;Switch&gt;</code> component with the correct props for accessibility.</li>
+</ul>
+<p>Finally, let’s update the <code>RestaurantOrder</code> component to:</p>
+<ul>
+<li>Have state variables and setters for <code>address</code>, <code>phone</code>, and <code>name</code>.</li>
 <li>Use <code>&lt;FormTextField&gt;</code> to create text fields for these three state variables.</li>
 </ul>
 <h3>Solution 2</h3>
@@ -2295,6 +2351,56 @@ export default FormTextField
 
 </code></pre>
  <div line-highlight="21,25-27,29-32,only"></div>
+<p>✏️ Update <strong>src/components/FormSwitch/FormSwitch.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { useId } from &quot;react&quot;
+import { Switch } from &quot;react-native&quot;
+
+import Box from &quot;../../design/Box&quot;
+import { useTheme } from &quot;../../design/theme&quot;
+import Typography from &quot;../../design/Typography&quot;
+
+export interface FormSwitchProps {
+  label: string
+  value: boolean
+  onChange: (value: boolean) =&gt; void
+}
+
+const FormSwitch: React.FC&lt;FormSwitchProps&gt; = ({ label, value, onChange }) =&gt; {
+  const theme = useTheme()
+  const id = useId()
+
+  return (
+    &lt;Box
+      style={{
+        width: &quot;100%&quot;,
+        flexDirection: &quot;row&quot;,
+        justifyContent: &quot;space-between&quot;,
+        alignItems: &quot;center&quot;,
+        marginVertical: 8,
+      }}
+    &gt;
+      &lt;Typography nativeID={id} variant=&quot;label&quot;&gt;
+        {label}
+      &lt;/Typography&gt;
+      &lt;Switch
+        accessibilityLabel=&quot;Toggle&quot;
+        accessibilityLabelledBy={id}
+        onValueChange={onChange}
+        value={value}
+        thumbColor={theme.palette.primary.contrast}
+        trackColor={{
+          true: theme.palette.primary.strong,
+          false: theme.palette.screen.soft,
+        }}
+      &gt;&lt;/Switch&gt;
+    &lt;/Box&gt;
+  )
+}
+
+export default FormSwitch
+
+</code></pre>
+ <div line-highlight="16,28-30,32-33,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantOrder/RestaurantOrder.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -2322,10 +2428,10 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
 
   const { data: restaurant, error, isPending } = useRestaurant({ slug })
 
-  const [address, setAddress] = useState&lt;string&gt;(&quot;&quot;)
   const [items, setItems] = useState&lt;OrderItems&gt;({})
   const [name, setName] = useState&lt;string&gt;(&quot;&quot;)
   const [phone, setPhone] = useState&lt;string&gt;(&quot;&quot;)
+  const [address, setAddress] = useState&lt;string&gt;(&quot;&quot;)
 
   useEffect(() =&gt; {
     if (restaurant) {
@@ -2403,8 +2509,8 @@ const RestaurantOrder: React.FC&lt;RestaurantOrderProps&gt; = ({ route }) =&gt; 
 
       &lt;Card title=&quot;Order Details&quot;&gt;
         &lt;FormTextField label=&quot;Name&quot; onChange={setName} value={name} /&gt;
-        &lt;FormTextField label=&quot;Address&quot; onChange={setAddress} value={address} /&gt;
         &lt;FormTextField label=&quot;Phone&quot; onChange={setPhone} value={phone} /&gt;
+        &lt;FormTextField label=&quot;Address&quot; onChange={setAddress} value={address} /&gt;
       &lt;/Card&gt;
 
       &lt;Box padding=&quot;s&quot;&gt;
@@ -2435,7 +2541,7 @@ function calculateTotal(items: OrderItems) {
 export default RestaurantOrder
 
 </code></pre>
- <div line-highlight="27,29-30,107-109,only"></div>
+ <div line-highlight="28-30,107-109,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, in order to retain data to limit requests and migrating the same data, let’s look into <a href="./using-asyncstorage">Using AsyncStorage</a>.</p>
