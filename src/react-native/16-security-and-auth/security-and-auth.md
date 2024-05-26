@@ -22,15 +22,6 @@ In this section, you will:
 
 OAuth, or "Open Authorization", is a standard that allows an application to access resources hosted by another application through a secure authorization process.
 
-The OAuth flow typically involves the following steps:
-
-1. The user clicks a "Sign In" button in the application.
-2. The application redirects the user to the OAuth provider's login page.
-3. The user logs in to the OAuth provider.
-4. The OAuth provider redirects the user back to the application with an authorization code.
-5. The application exchanges the authorization code for an access token.
-6. The application uses the access token to access the secured resources.
-
 Let's break down some of the core concepts of OAuth:
 
 - **Access Token**: A token used by the application to access protected resources. It is obtained during the OAuth authorization flow and sent with each request to the resource server. Access tokens are typically short-lived and can be refreshed using a refresh token.
@@ -51,6 +42,15 @@ The use of refresh tokens rather than long-lived access tokens is primarily a se
 
 - **Limited Scope**: Refresh tokens can be issued with limited scopes, reducing the potential damage if they are compromised.
 
+The OAuth flow typically involves the following steps:
+
+1. The user clicks a "Sign In" button in the application.
+2. The application redirects the user to the OAuth provider's login page.
+3. The user logs in to the OAuth provider.
+4. The OAuth provider redirects the user back to the application with an authorization code.
+5. The application exchanges the authorization code for an access token.
+6. The application uses the access token to access the secured resources.
+
 ### GoogleSignin
 
 The `@react-native-google-signin/google-signin` package provides a simple way to integrate Google Sign-In into our React Native apps. It handles the OAuth flow, allowing users to sign in with their Google accounts and obtain an access token that can be used to access Google services on their behalf.
@@ -59,7 +59,7 @@ To use Google Sign-In in your React Native app, you must configure your applicat
 
 1. Create a new project in the Google Cloud Console.
 2. Enable APIs & services for your project.
-3. Navigate to the Credentials section and create a new OAuth client ID.
+3. Navigate to the [Credentials](https://developers.google.com/workspace/guides/create-credentials) section and create a new OAuth client ID.
 4. Because we are using React Native, we will need to create an OAuth client ID for both a Web application and an Android application. For the Android application, use the command provided by the create form to generate a SHA-1 fingerprint.
 5. The client ID from the Web application will be used in the `webClientId` field when configuring the Google Sign-In package in your React Native app.
 

@@ -18,6 +18,10 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
   // Exercise: Implement `signIn` and `signOut` using `useCallback`.
 
+  const signIn = async () => {}
+
+  const signOut = async () => {}
+
   useEffect(() => {
     // Exercise: When a sign in is successful, update the user.
     async function run() {}
@@ -29,7 +33,11 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
     () => ({
       signIn,
       signOut,
-      isAuthenticated: userInfo ? true : userInfo === null ? false : undefined,
+      isAuthenticated: userInfo
+        ? true
+        : userInfo === undefined
+        ? false
+        : undefined,
       user: userInfo?.user,
       scopes: userInfo?.scopes,
       idToken: userInfo?.idToken,
