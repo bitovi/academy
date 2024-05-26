@@ -689,15 +689,6 @@ covering CanJS core libraries.">
 <p><img alt="Screenshot of the Settings tab with a Google sign in button" src="../static/img/react-native/16-security/1-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/></p>
 <h3>OAuth</h3>
 <p>OAuth, or &quot;Open Authorization&quot;, is a standard that allows an application to access resources hosted by another application through a secure authorization process.</p>
-<p>The OAuth flow typically involves the following steps:</p>
-<ol>
-<li>The user clicks a &quot;Sign In&quot; button in the application.</li>
-<li>The application redirects the user to the OAuth provider's login page.</li>
-<li>The user logs in to the OAuth provider.</li>
-<li>The OAuth provider redirects the user back to the application with an authorization code.</li>
-<li>The application exchanges the authorization code for an access token.</li>
-<li>The application uses the access token to access the secured resources.</li>
-</ol>
 <p>Let's break down some of the core concepts of OAuth:</p>
 <ul>
 <li><p><strong>Access Token</strong>: A token used by the application to access protected resources. It is obtained during the OAuth authorization flow and sent with each request to the resource server. Access tokens are typically short-lived and can be refreshed using a refresh token.</p></li>
@@ -712,13 +703,22 @@ covering CanJS core libraries.">
 <li><p><strong>Revocation</strong>: If a user's access is revoked, the refresh token can be invalidated, preventing the attacker from obtaining new access tokens.</p></li>
 <li><p><strong>Limited Scope</strong>: Refresh tokens can be issued with limited scopes, reducing the potential damage if they are compromised.</p></li>
 </ul>
+<p>The OAuth flow typically involves the following steps:</p>
+<ol>
+<li>The user clicks a &quot;Sign In&quot; button in the application.</li>
+<li>The application redirects the user to the OAuth provider's login page.</li>
+<li>The user logs in to the OAuth provider.</li>
+<li>The OAuth provider redirects the user back to the application with an authorization code.</li>
+<li>The application exchanges the authorization code for an access token.</li>
+<li>The application uses the access token to access the secured resources.</li>
+</ol>
 <h3>GoogleSignin</h3>
 <p>The <code>@react-native-google-signin/google-signin</code> package provides a simple way to integrate Google Sign-In into our React Native apps. It handles the OAuth flow, allowing users to sign in with their Google accounts and obtain an access token that can be used to access Google services on their behalf.</p>
 <p>To use Google Sign-In in your React Native app, you must configure your application in the Google Cloud Console and obtain a client ID. This client ID is used to identify your application when requesting access tokens from Google.</p>
 <ol>
 <li>Create a new project in the Google Cloud Console.</li>
 <li>Enable APIs &amp; services for your project.</li>
-<li>Navigate to the Credentials section and create a new OAuth client ID.</li>
+<li>Navigate to the <a href="https://developers.google.com/workspace/guides/create-credentials">Credentials</a> section and create a new OAuth client ID.</li>
 <li>Because we are using React Native, we will need to create an OAuth client ID for both a Web application and an Android application. For the Android application, use the command provided by the create form to generate a SHA-1 fingerprint.</li>
 <li>The client ID from the Web application will be used in the <code>webClientId</code> field when configuring the Google Sign-In package in your React Native app.</li>
 </ol>
@@ -1053,6 +1053,7 @@ const Settings: FC = () =&gt; {
       &lt;Card&gt;
         {/* Exercise: If the user is logged in: Render a button using the signOut callback along with a welcome message.
          If the user is logged in: Exercise: Render a button using the GoogleSigninButton. */}
+        &lt;Typography variant=&quot;heading&quot;&gt;&lt;/Typography&gt;
       &lt;/Card&gt;
       &lt;Card&gt;
         &lt;View style={styles.row}&gt;
@@ -1078,7 +1079,7 @@ const styles = StyleSheet.create({
 export default Settings
 
 </code></pre>
- <div line-highlight="1-2,5,10,12-13,19-20,only"></div>
+ <div line-highlight="1-2,5,10,12-13,19-21,only"></div>
 <p>✏️ Create <strong>src/services/auth/AuthProvider.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import {
   User as UserInfo,
@@ -1100,6 +1101,10 @@ const AuthProvider: FC&lt;{ children: ReactNode }&gt; = ({ children }) =&gt; {
 
   // Exercise: Implement `signIn` and `signOut` using `useCallback`.
 
+  const signIn = async () =&gt; {}
+
+  const signOut = async () =&gt; {}
+
   useEffect(() =&gt; {
     // Exercise: When a sign in is successful, update the user.
     async function run() {}
@@ -1111,7 +1116,11 @@ const AuthProvider: FC&lt;{ children: ReactNode }&gt; = ({ children }) =&gt; {
     () =&gt; ({
       signIn,
       signOut,
-      isAuthenticated: userInfo ? true : userInfo === null ? false : undefined,
+      isAuthenticated: userInfo
+        ? true
+        : userInfo === undefined
+        ? false
+        : undefined,
       user: userInfo?.user,
       scopes: userInfo?.scopes,
       idToken: userInfo?.idToken,
@@ -1627,7 +1636,7 @@ export function useUser(): UserInfo[&quot;user&quot;] | undefined {
 }
 
 </code></pre>
- <div line-highlight="5,15-16,19-20,22-31,34-43,46-49,52,58-62,91,only"></div>
+ <div line-highlight="5,15-16,19-20,22-31,34-43,46-49,52,91,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, with some of the new tricks we’ve learned we’ll also add <a href="./offline-support">Offline Support</a> so our app is still usable during network outages.</p>
