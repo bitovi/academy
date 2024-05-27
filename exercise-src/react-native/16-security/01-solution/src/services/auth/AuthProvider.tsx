@@ -17,35 +17,72 @@ export interface AuthProviderProps {
 }
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+  const [error, setError] = useState<Error | undefined>()
+  const [isPending, setIsPending] = useState<boolean>(true)
   const [userInfo, setUserInfo] = useState<UserInfo | undefined>()
 
   const signIn = useCallback(async () => {
     try {
+      setError(undefined)
+      setIsPending(true)
+
       const userInfo = await GoogleSignin.signIn()
+
+      setIsPending(false)
       setUserInfo(userInfo)
+
       return userInfo.user
     } catch (error) {
+      console.error("Call to GoogleSignin.signIn() failed with error:", error)
+
+      setError(error as Error)
+      setIsPending(false)
       setUserInfo(undefined)
-      console.error("GoogleSignin.signIn() error", error)
+
       return false
     }
   }, [])
 
   const signOut = useCallback(async () => {
     try {
+      setError(undefined)
+      setIsPending(true)
+
       await GoogleSignin.signOut()
+
+      setIsPending(false)
       setUserInfo(undefined)
+
       return true
     } catch (error) {
-      console.error("GoogleSignin.signOut() error", error)
+      console.error("Call to GoogleSignin.signOut() failed with error:", error)
+
+      setError(error as Error)
+      setIsPending(false)
+
       return false
     }
   }, [])
 
   useEffect(() => {
     async function run() {
-      const userInfo = await GoogleSignin.getCurrentUser()
-      setUserInfo(userInfo || undefined)
+      try {
+        setError(undefined)
+        setIsPending(true)
+
+        const userInfo = await GoogleSignin.getCurrentUser()
+
+        setIsPending(false)
+        setUserInfo(userInfo || undefined)
+      } catch (error) {
+        console.error(
+          "Call to GoogleSignin.getCurrentUser() failed with error:",
+          error,
+        )
+
+        setError(error as Error)
+        setIsPending(false)
+      }
     }
 
     run()
@@ -55,16 +92,18 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     () => ({
       signIn,
       signOut,
+      error,
       isAuthenticated: userInfo
         ? true
         : userInfo === undefined
         ? false
         : undefined,
+      isPending,
       user: userInfo?.user,
       scopes: userInfo?.scopes,
       idToken: userInfo?.idToken,
     }),
-    [signIn, signOut, userInfo],
+    [error, isPending, signIn, signOut, userInfo],
   )
 
   return <AuthContextProvider value={value}>{children}</AuthContextProvider>
@@ -72,10 +111,13 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
 export default AuthProvider
 
-export function useAuthentication(): Pick<AuthContext, "signIn" | "signOut"> {
-  const { signIn, signOut } = useAuthContext()
+export function useAuthentication(): Pick<
+  AuthContext,
+  "error" | "isPending" | "signIn" | "signOut"
+> {
+  const { error, isPending, signIn, signOut } = useAuthContext()
 
-  return { signIn, signOut }
+  return { error, isPending, signIn, signOut }
 }
 
 export function useAuthenticated(): boolean | undefined {

@@ -3,9 +3,9 @@
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
+      readonly GOOGLE_OAUTH_CLIENT_ID: string
       readonly PMO_API: string
       readonly PMO_ASSETS: string
-      readonly GOOGLE_OAUTH_CLIENT_ID: string
     }
   }
 }

@@ -78,7 +78,7 @@ OTA updates allow us to update our app without requiring the user to install a n
 
 Deploying a new AAB to the Google Play Store is more suited for updates beyond small bug fixes or changes. With a new AAB we can update native code. Users are familiar with the update process, so deploying a new AAB with a changelog can provide a better user experience when doing major updates.
 
-Both OTA and AAB updates have their place in the app update process. It's up to you to decide whether one or the other, or a mix of both, is best for your app.
+Both OTA and AAB updates have their place in the app update process. It’s up to you to decide whether one or the other, or a mix of both, is best for your app.
 
 ### Testing new releases
 

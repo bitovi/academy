@@ -227,4 +227,4 @@ If you’ve implemented the solution correctly, your Map should have Markers bas
 
 ## Next steps
 
-We’ve accomplished a lot for our React Native App, in order to polish it just a bit more let's get into some [Performance and Optimization](./performance-optimization) practices.
+We’ve accomplished a lot for our React Native App, in order to polish it just a bit more let’s get into some [Performance and Optimization](./performance-optimization) practices.
