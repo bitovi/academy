@@ -1,146 +1,114 @@
 import { useEffect, useState } from "react"
 
-import { storeData, getData } from "../../storage/storage"
+import { getData, storeData } from "../../storage"
 import { apiRequest } from "../api"
 
-interface Favorite {
-  userId: string
-  restaurantId: string
-  favorite: boolean
-  datetimeUpdated: Date
-  _id?: string
-}
-
-interface FavoritesResponse {
-  data: Favorite[] | undefined
-  error: Error | undefined
-  isPending: boolean
-}
-
-interface FavoriteResponse {
-  data: Favorite | undefined
-  error: Error | undefined
-  isPending: boolean
-}
-
-interface LocalStorageFavorites {
-  lastSynced: Date
-  favorites: Favorite[]
-}
+import { Favorite, FavoriteResponse, StoredFavorites } from "./interfaces"
 
 export const useFavorites = (
   userId?: string,
   restaurantId?: string,
-): FavoritesResponse & {
-  updateFavorites: (restaurantId: Favorite["restaurantId"]) => void
-  favorite: Favorite | undefined
+): {
+  error: Error | undefined
+  isFavorite: boolean
+  isPending: boolean
+  toggleFavorite: () => void
 } => {
-  const [response, setResponse] = useState<FavoritesResponse>({
-    data: undefined,
-    error: undefined,
-    isPending: true,
-  })
-  const [localFavorites, setLocalFavorites] = useState<
-    LocalStorageFavorites | undefined
+  const [error, setError] = useState<Error | undefined>()
+  const [isPending, setIsPending] = useState<boolean>(false)
+  const [favoriteRestaurants, setFavoriteRestaurants] = useState<
+    StoredFavorites | undefined
   >()
-  const [favorite, setFavorite] = useState<Favorite | undefined>()
 
   useEffect(() => {
-    // Gathering favorites from both DB and local storage.
-    const fetchData = async () => {
-      const localFavorites = await getData<LocalStorageFavorites>("my-favorite")
-      setLocalFavorites(
-        localFavorites
-          ? localFavorites
-          : { favorites: [], lastSynced: new Date() },
-      )
-
-      const { data, error } = await apiRequest<FavoritesResponse>({
-        method: "GET",
-        path: "/favorites",
-        params: {
-          userId: userId,
-        },
-      })
-
-      setResponse({
-        data: Array.isArray(data) ? data : data?.data ?? undefined,
-        error: error,
-        isPending: false,
-      })
+    // Get the favorite restaurant data from storage.
+    const getStoredData = async () => {
+      const storedData = await getData<StoredFavorites>("favorite-restaurants")
+      setFavoriteRestaurants(storedData)
     }
-    if (userId) {
-      fetchData()
-    }
-  }, [userId])
+    getStoredData()
+  }, [])
 
-  useEffect(() => {
-    // Finding the restaurant's favorite status.
-    if (restaurantId) {
-      const getFavorite = async (restaurantId: Favorite["restaurantId"]) => {
-        const foundFavorite = localFavorites?.favorites.find(
-          (favorite) => favorite.restaurantId === restaurantId,
-        )
-        setFavorite(foundFavorite)
-      }
+  // Finding the restaurant’s favorite status.
+  const favoriteRestaurant = favoriteRestaurants?.favorites.find(
+    (favorite) => favorite.restaurantId === restaurantId,
+  )
 
-      getFavorite(restaurantId)
-    }
-  }, [restaurantId, localFavorites])
-
-  const updateFavorites = async (restaurantId: Favorite["restaurantId"]) => {
-    if (localFavorites?.favorites) {
-      const favoriteIndex = localFavorites.favorites.findIndex(
-        (favorite) => favorite.restaurantId === restaurantId,
-      )
-      const newFavorites = [...localFavorites.favorites]
-      const timestamp = new Date()
-      let newFavorite = {}
-
-      if (favoriteIndex === -1) {
-        // If the favorite isn’t in storage, then create a new entry.
-        newFavorite = {
-          userId: userId,
+  const toggleFavorite = async () => {
+    // updatedFavorite has the toggled “favorite” status.
+    const updatedFavorite = favoriteRestaurant
+      ? {
+          ...favoriteRestaurant,
+          favorite: !favoriteRestaurant.favorite, // Toggle it.
+        }
+      : ({
+          favorite: true, // Default to it being a new favorite.
           restaurantId: restaurantId,
-          favorite: true,
-          datetimeUpdated: timestamp,
-        }
-        newFavorites.push(newFavorite as Favorite)
-      } else {
-        // Otherwise, if the favorite is in storage, then update the existing entry.
-        newFavorite = {
-          ...newFavorites[favoriteIndex],
-          favorite: !newFavorites[favoriteIndex].favorite,
-          datetimeUpdated: timestamp,
-        }
-        newFavorites[favoriteIndex] = newFavorite as Favorite
-      }
+          userId: userId,
+        } as Favorite)
 
-      const { data: postRes, error } = await apiRequest<FavoriteResponse>({
-        method: "POST",
-        path: "/favorites",
-        body: newFavorite,
-      })
+    // Update the datetime on the favorite
+    updatedFavorite.datetimeUpdated = Date.now()
 
-      if (!("_id" in newFavorite) && postRes && postRes.data) {
+    // updatedFavorites will hold all the updated data before storage is updated.
+    const updatedFavorites =
+      favoriteRestaurants && favoriteRestaurants.favorites
+        ? {
+            ...favoriteRestaurants,
+          }
+        : {
+            favorites: [] as Favorite[],
+            lastSynced: 0,
+          }
+
+    // Update the full favorite restaurants array.
+    const favoriteIndex = favoriteRestaurants?.favorites.findIndex(
+      (favorite) => favorite.restaurantId === restaurantId,
+    )
+    if (favoriteIndex !== undefined && favoriteIndex >= 0) {
+      // Already a favorite, so update the array in place.
+      updatedFavorites.favorites[favoriteIndex] = updatedFavorite
+    } else {
+      // Brand new favorite, so add it to the array.
+      updatedFavorites.favorites.push(updatedFavorite)
+    }
+
+    try {
+      setError(undefined)
+      setIsPending(true)
+
+      const { data: updateFavoritesResponse, error } =
+        await apiRequest<FavoriteResponse>({
+          method: "POST",
+          path: "/favorites",
+          body: updatedFavorite,
+        })
+
+      if (updateFavoritesResponse && updateFavoritesResponse.data) {
         // Assign the _id property created from the API call to the new favorite.
-        newFavorites[newFavorites.length - 1]._id = postRes.data._id
+        updatedFavorite._id = updateFavoritesResponse.data._id
       }
 
-      const newLocalFavorites = {
-        lastSynced: error ? localFavorites.lastSynced : timestamp,
-        favorites: newFavorites,
-      }
+      // Update the stored data.
+      await storeData<StoredFavorites>("favorite-restaurants", updatedFavorites)
 
-      await storeData<LocalStorageFavorites>("my-favorite", newLocalFavorites)
-      setLocalFavorites(newLocalFavorites)
-      setResponse({ data: newFavorites, error: error, isPending: false })
+      setError(error)
+      setFavoriteRestaurants(updatedFavorites)
+      setIsPending(false)
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error)
+      } else {
+        setError(new Error("Unknown error while updating favorites."))
+      }
+      setIsPending(false)
     }
   }
 
   return {
-    ...response,
-    updateFavorites,
-    favorite,
+    error,
+    isFavorite: (favoriteRestaurant && favoriteRestaurant.favorite) || false,
+    isPending,
+    toggleFavorite,
   }
 }

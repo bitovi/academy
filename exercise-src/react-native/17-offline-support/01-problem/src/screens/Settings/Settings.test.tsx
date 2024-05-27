@@ -42,4 +42,16 @@ describe("Screens/Settings", () => {
     fireEvent(switchElement, "onValueChange", true)
     expect(mockSetMode).toHaveBeenCalledWith("dark")
   })
+
+  it("displays the correct connection status", () => {
+    render(
+      <AuthProvider>
+        <NavigationContainer>
+          <Settings />
+        </NavigationContainer>
+      </AuthProvider>,
+    )
+
+    expect(screen.getByText(/Connection status: Online/i)).not.toBeNull()
+  })
 })

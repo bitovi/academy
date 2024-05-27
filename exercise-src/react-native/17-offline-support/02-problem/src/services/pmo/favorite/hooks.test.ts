@@ -1,5 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react-native"
 
+import * as storage from "../../storage/storage"
 import * as api from "../api/api"
 
 import { useFavorites } from "./hooks"
@@ -7,9 +8,11 @@ import { useFavorites } from "./hooks"
 describe("Services/PMO/Favorite", () => {
   // Mock the apiRequest function
   let apiRequest: jest.SpyInstance<ReturnType<typeof api.apiRequest>>
+  let mockStorage: jest.SpyInstance<ReturnType<typeof storage.getData>>
   beforeEach(() => {
     jest.resetAllMocks()
     apiRequest = jest.spyOn(api, "apiRequest")
+    mockStorage = jest.spyOn(storage, "getData")
   })
 
   describe("useFavorites", () => {
@@ -30,20 +33,49 @@ describe("Services/PMO/Favorite", () => {
       },
     ]
 
-    it("returns favorites from the server", async () => {
+    beforeEach(() => {
+      jest.clearAllMocks()
+    })
+
+    it("should initialize with the correct default values", async () => {
       apiRequest.mockResolvedValue({
         data: { data: mockFavorites },
         error: undefined,
       })
-
-      const { result } = renderHook(() => useFavorites("user-id"))
-
-      await waitFor(() => {
-        expect(result.current.isPending).toBeFalsy()
+      mockStorage.mockResolvedValue({
+        lastSynced: Date.now(),
+        favorites: mockFavorites,
       })
 
-      expect(result.current.data).toEqual(mockFavorites)
+      const { result } = renderHook(() =>
+        useFavorites("user-id", "7iiKc0akJPYzaMyw"),
+      )
+
+      await waitFor(() => {
+        expect(result.current.isFavorite).toBe(true)
+      })
+
       expect(result.current.error).toBeUndefined()
+      expect(result.current.isPending).toBe(false)
+    })
+
+    it("should set isFavorite to false if the restaurant is not a favorite", async () => {
+      apiRequest.mockResolvedValue({
+        data: { data: mockFavorites },
+        error: undefined,
+      })
+      mockStorage.mockResolvedValue({
+        lastSynced: Date.now(),
+        favorites: mockFavorites,
+      })
+
+      const { result } = renderHook(() =>
+        useFavorites("user-id", "WKQjvzup7QWSFXvH"),
+      )
+
+      await waitFor(() => {
+        expect(result.current.isFavorite).toBe(false)
+      })
     })
   })
 })
