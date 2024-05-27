@@ -50,7 +50,7 @@ const RestaurantDetails: React.FC<RestaurantDetailsProps> = ({ route }) => {
           navigation.navigate("RestaurantOrder", { slug: slug })
         }}
       >
-        Place My Order!
+        Place an order
       </Button>
     </Screen>
   )

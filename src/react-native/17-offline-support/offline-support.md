@@ -51,6 +51,11 @@ This Hook returns an object containing details about the network status.
 npm install @react-native-community/netinfo@11
 ```
 
+✏️ Create **@types/@react-native-community/netinfo/jest/netinfo-mock.d.ts** and update it to be:
+
+@sourceref ../../../exercises/react-native/17-offline-support/01-problem/@types/@react-native-community/netinfo/jest/netinfo-mock.d.ts
+@highlight 1
+
 ✏️ Update **jest-setup.ts** to be:
 
 @diff ../../../exercises/react-native/16-security/01-solution/jest-setup.ts ../../../exercises/react-native/17-offline-support/01-problem/jest-setup.ts only
@@ -61,7 +66,9 @@ npm install @react-native-community/netinfo@11
 
 ### Verify 1
 
-TODO: We need tests for this exercise.
+✏️ Update **src/screens/Settings/Settings.test.tsx** to be:
+
+@diff ../../../exercises/react-native/16-security/01-solution/src/screens/Settings/Settings.test.tsx ../../../exercises/react-native/17-offline-support/01-problem/src/screens/Settings/Settings.test.tsx only
 
 ### Exercise 1
 

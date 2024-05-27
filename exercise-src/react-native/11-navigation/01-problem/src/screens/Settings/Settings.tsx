@@ -15,7 +15,8 @@ const Settings: React.FC = () => {
   return (
     <Screen>
       <Card>
-        <Typography variant="heading">Welcome back, {user.name}</Typography>
+        <Typography variant="heading">Welcome back</Typography>
+        <Typography variant="body">{user.name || "Unknown name"}</Typography>
       </Card>
       <Card>
         <View style={styles.row}>
