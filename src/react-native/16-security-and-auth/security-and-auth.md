@@ -247,7 +247,7 @@ npm run start
 ✏️ Create **src/services/auth/AuthProvider.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-native/16-security/01-problem/src/services/auth/AuthProvider.tsx
-@highlight 19, 27, only
+@highlight 26, 31, 49, 54, 76, only
 
 ✏️ Create **src/services/auth/context.ts** and update it to be:
 

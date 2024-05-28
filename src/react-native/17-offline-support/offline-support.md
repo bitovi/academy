@@ -168,6 +168,11 @@ If there was an issue with the API call (e.g. the server was down, the device wa
 
 ### Setup 2
 
+✏️ Create **src/services/pmo/favorite/interfaces.ts** and update it to be:
+
+@sourceref ../../../exercises/react-native/17-offline-support/02-problem/src/services/pmo/favorite/interfaces.ts
+@highlight 1, 9, 15, 21, only
+
 ✏️ Create **src/services/pmo/favorite/hooks.ts** and update it to be:
 
 @sourceref ../../../exercises/react-native/17-offline-support/02-problem/src/services/pmo/favorite/hooks.ts
@@ -203,7 +208,9 @@ In `RestaurantDetails`, add a button that uses the `toggleFavorite` helper:
 
 ### Solution 2
 
-If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
+If you’ve implemented the solution correctly, you will be able to sign in and out of your Google account within the application!
+
+You can test the error message by tapping “Sign in” and dismissing the modal.
 
 <details>
 <summary>Click to see the solution</summary>
@@ -243,7 +250,7 @@ Next, the Hook will send any favorites that were modified while the device was o
 @sourceref ../../../exercises/react-native/17-offline-support/03-problem/src/services/pmo/favorite/sync.ts
 @highlight 81-95, only
 
-### Updating favorites modified on the device
+### Updating storage with the changes
 
 Last, the Hook will update Async Storage with all the changes that have accumulated through the sync process:
 
@@ -260,6 +267,11 @@ Last, the Hook will update Async Storage with all the changes that have accumula
 
 @sourceref ../../../exercises/react-native/17-offline-support/03-problem/src/services/pmo/favorite/favorite.tsx
 @highlight 9, only
+
+✏️ Create **src/services/pmo/favorite/sync.ts** and update it to be:
+
+@sourceref ../../../exercises/react-native/17-offline-support/03-problem/src/services/pmo/favorite/sync.ts
+@highlight 11, only
 
 ✏️ Update **src/services/pmo/favorite/index.ts** to be:
 
