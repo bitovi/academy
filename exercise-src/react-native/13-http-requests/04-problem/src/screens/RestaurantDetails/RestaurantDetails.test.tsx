@@ -85,7 +85,7 @@ describe("Screens/RestaurantDetails", () => {
       </NavigationContainer>,
     )
 
-    expect(screen.getByText("Place My Order!")).toBeOnTheScreen()
+    expect(screen.getByText("Place an order")).toBeOnTheScreen()
   })
 
   it("renders loading state", () => {

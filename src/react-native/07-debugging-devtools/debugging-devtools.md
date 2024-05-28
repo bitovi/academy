@@ -123,11 +123,9 @@ Execute the command:
 npm run start
 ```
 
-The application should be running in Android Studio. Open the terminal and run the following command:
+The application should be running in Android Studio.
 
-// TODO
-
-✏️ Run:
+✏️ In a **new** command-line interface (CLI) window, run:
 
 ```shell
 adb shell input keyevent 82

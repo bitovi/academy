@@ -285,7 +285,7 @@ Let’s fully implement our `FormTextField` component and have it:
 - Associate the `<Typography>` and `<TextInput>` components with the correct props for accessibility.
 - Add the `onChangeText` and `value` props to the `<TextInput>` component.
 
-Additionally, Let's update the `FormSwitch` component to:
+Additionally, let’s update the `FormSwitch` component to:
 
 - Associate the `<Switch>` component with the correct props for accessibility.
 

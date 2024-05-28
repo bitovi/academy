@@ -46,7 +46,7 @@ const RestaurantDetails: React.FC<RestaurantDetailsProps> = ({ route }) => {
     <Screen>
       <RestaurantHeader restaurant={restaurant} />
       <Button onPress={() => console.warn("Place an order")}>
-        Place My Order!
+        Place an order
       </Button>
     </Screen>
   )
