@@ -5,7 +5,7 @@ import { apiRequest } from "../api"
 
 import { Favorite, FavoriteResponse, StoredFavorites } from "./interfaces"
 
-export const useFavorites = (
+export const useFavorite = (
   userId?: string,
   restaurantId?: string,
 ): {
@@ -29,7 +29,7 @@ export const useFavorites = (
     getStoredData()
   }, [])
 
-  // Finding the restaurant’s favorite status.
+  // Finding whether a restaurant is a favorite.
   const favoriteRestaurant = favoriteRestaurants?.favorites.find(
     (favorite) => favorite.restaurantId === restaurantId,
   )
