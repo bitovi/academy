@@ -690,7 +690,7 @@ covering CanJS core libraries.">
 Large packages have a negative impact on the application’s startup time, but there’s a solution: lazy loading!</p>
 <p>Let’s lazy load the <code>Map</code> view in our app so it launches faster.</p>
 <h3>JavaScript bundle size</h3>
-<p>When our app is transpiled from TypeScript to JavaScript, a “bundle” (file) is created with all of the JavaScript code, along with any additional assets (like images).
+<p>A “bundle” (file) is created with all of the JavaScript code when the application is built, along with any additional assets (like images).
 As more code is added to the application, the size of this JavaScript bundle will increase.</p>
 <p>The larger bundle can lead to longer startup times for the application because the bundle must be loaded, parsed, and ran before the app can be used.
 This longer launch time translates into a worse user experience as more code is added.
@@ -941,8 +941,19 @@ export default RestaurantList
 </code></pre>
  <div line-highlight="2,14,57,only"></div>
 <h3>Verify 1</h3>
-<p>TODO: find where the bundles are built in dev so we can see the modules being split up.
-Alternatively, consider moving this page after the “building” page so we can look at the files being created.</p>
+<p>Watch the output of the <code>npm start</code> command while it’s running.</p>
+<p>When you’ve completed this exercise, you’ll notice that there’s a new bundle loaded when you go to the Map view:</p>
+<pre><code>BUILD SUCCESSFUL in 7s
+199 actionable tasks: 15 executed, 184 up-to-date
+info Connecting to the development server...
+info Starting the app on &quot;emulator-5554&quot;...
+Starting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.placemyorder/.MainActivity }
+ BUNDLE  ./index.js
+
+ LOG  Running &quot;PlaceMyOrder&quot; with {&quot;rootTag&quot;:11}
+ BUNDLE  src/screens/RestaurantList/components/Map/index.ts
+</code></pre>
+<div line-highlight='9'></div>
 <h3>Exercise 1</h3>
 <p>Inside of <code>RestaurantList.tsx</code>:</p>
 <ul>
@@ -950,7 +961,7 @@ Alternatively, consider moving this page after the “building” page so we ca
 <li>Use <code>&lt;Suspense&gt;</code> to load the Map tab on the screen.</li>
 </ul>
 <h3>Solution 1</h3>
-<p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
+<p>If you’ve implemented the solution correctly, you will see the new <code>BUNDLE</code> line logged while the server is running.</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
@@ -1026,7 +1037,7 @@ export default RestaurantList
  <div line-highlight="14,57-61,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
-<p>Now we’ve got a complete and performant application. Let’s finish out our work by learning about <a href="./building">Building React Native Apps</a></p>
+<p>Now we’ve got a complete and performant application. Let’s finish out our work by learning about <a href="./building">Building React Native Apps</a>.</p>
 
 </section>
 
