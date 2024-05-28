@@ -681,28 +681,24 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this section, you will:</p>
 <ul>
-<li>Integrating Google Maps</li>
-<li>Configuring Gradle plugins</li>
-<li>Adding a map view</li>
-<li>Adding markers to a map</li>
+<li>Render Google Maps.</li>
+<li>Store secrets with Gradle.</li>
+<li>Configure the Android Manifest file.</li>
+<li>Add markers to a map.</li>
 </ul>
-<h2>Objective 1: Add Google Maps to Restaurant List page</h2>
+<h2>Objective 1: View the restaurants on a map</h2>
 <p><img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” There are two tabs at the top, List and Map, with Map selected. The map below is centered on Green Bay. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/01-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/></p>
-<h3>React Native Maps</h3>
-<p>In this section, we will be using the <code>react-native-maps</code> library to integrate Google Maps into our application. This library provides several React Native components such as maps, polygons, markers, and more that can be used to build maps on both iOS and Android. For the purpose of this training, we will focus on using the map and marker components. To use the Google Maps API, we will need to set up a <a href="https://developers.google.com/maps/documentation/javascript/get-api-key">Google Maps API key</a>.</p>
-<h3>Secrets Gradle Plugin</h3>
-<p>We will be using the <a href="https://github.com/google/secrets-gradle-plugin"><code>secrets-gradle-plugin</code></a> to securely store our API key in our project.</p>
-<h4>Gradle</h4>
-<p>Gradle is a build automation tool that is used to compile and build the Android part of our React Native application. We can extend Gradle's functionality by using plugins. In this case, we will be using the <code>secrets-gradle-plugin</code> which allows us to securely store sensitive information such as API keys.</p>
-<h4>Android Manifest</h4>
-<p>The Android Manifest file is an XML file that contains important information about our application such as permissions, activities and services, configuration settings, and more.</p>
-<h3>MapView</h3>
+<h3>Rendering Google Maps</h3>
+<p>To use the Google Maps API, you will need to set up a <a href="https://developers.google.com/maps/documentation/javascript/get-api-key">Google Maps API key</a>.</p>
+<p>In this section, we will be using the <a href="https://www.npmjs.com/package/react-native-maps"><code>react-native-maps</code></a> package to integrate Google Maps into our application.
+This library provides several React Native components such as maps, polygons, markers, and more that can be used to build maps on both iOS and Android.
+For the purpose of this course, we will focus on using the map and marker components.</p>
 <pre><code class="language-tsx">import MapView, { PROVIDER_GOOGLE } from &quot;react-native-maps&quot;
 
 function Map() {
   return (
     &lt;MapView
-      style={{ minHeight: &quot;100%&quot;, height: 500 }}
+      style={{ minHeight: &quot;100%&quot; }}
       provider={PROVIDER_GOOGLE}
       loadingEnabled
       initialRegion={{
@@ -718,22 +714,246 @@ function Map() {
 <p>The <code>MapView</code> component is the main component that we will be using to render the map. Because we are using a React Native library, we will later be able to pass child components to the <code>MapView</code> component to render <code>Markers</code> and other map elements.</p>
 <p>The component takes several props, but the most important ones are:</p>
 <ul>
-<li><code>style</code>: The style of the map.</li>
+<li><code>style</code>: The regular <code>style</code> prop applied to other compoennts.</li>
 <li><code>provider</code>: The map provider. In this case, we are using Google Maps.</li>
 <li><code>loadingEnabled</code>: Whether to show a loading indicator while the map is loading.</li>
-<li><code>initialRegion</code>: An object that contains coordinates for the initial map region. The object should contain <code>latitude</code>, <code>longitude</code>, <code>latitudeDelta</code>, and <code>longitudeDelta</code> properties. The <code>latitude</code> and <code>longitude</code> properties are the coordinates of the center of the map, and the <code>latitudeDelta</code> and <code>longitudeDelta</code> properties are the vertical and horizontal zoom levels of the map.</li>
+<li><code>initialRegion</code>: An object that contains coordinates for the initial map region. The object should contain:
+<ul>
+<li><code>latitude</code> and <code>longitude</code>: the coordinates of the center of the map.</li>
+<li><code>latitudeDelta</code> and <code>longitudeDelta</code>: the vertical and horizontal zoom levels of the map.</li>
+</ul></li>
 </ul>
+<h3>Storing secrets with Gradle</h3>
+<p>Gradle is a powerful build system used in Android development.
+It automates the building, testing, and deployment of your app.</p>
+<p>In a React Native project, you’ll encounter two key Gradle files:</p>
+<ul>
+<li><p><code>android/build.gradle</code> (project level): Located at the root of your android directory, it defines build configurations and dependencies that apply to all modules in your project.</p></li>
+<li><p><code>android/app/build.gradle</code> (app level): Located in <code>android/app</code>, it specifies configurations for the app module, including dependencies, SDK versions, and build types.</p></li>
+</ul>
+<p>Gradle allows you to define how your project is structured, manage dependencies, and configure the build process in a flexible and customizable way.</p>
+<h4>Using <code>secrets-gradle-plugin</code></h4>
+<p>Managing sensitive information like API keys securely is critical in mobile app development.
+The <a href="https://github.com/google/secrets-gradle-plugin"><code>secrets-gradle-plugin</code></a> helps you handle such secrets without exposing them in your source code.</p>
+<p>In our application, we will add a dependency to the project-level Gradle file:</p>
+<pre><code class="language-gradle">buildscript {
+    ext {
+        buildToolsVersion = &quot;34.0.0&quot;
+        minSdkVersion = 23
+        compileSdkVersion = 34
+        targetSdkVersion = 34
+        ndkVersion = &quot;26.1.10909125&quot;
+        kotlinVersion = &quot;1.9.22&quot;
+    }
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath(&quot;com.android.tools.build:gradle&quot;)
+        classpath(&quot;com.facebook.react:react-native-gradle-plugin&quot;)
+        classpath(&quot;org.jetbrains.kotlin:kotlin-gradle-plugin&quot;)
+        classpath(&quot;com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.1&quot;)
+    }
+}   
+
+apply plugin: &quot;com.facebook.react.rootproject&quot;
+
+</code></pre>
+<div line-highlight='18, only'></div>
+<p>…then apply it in the app-level Gradle file:</p>
+<pre><code class="language-gradle">apply plugin: &quot;com.android.application&quot;
+apply plugin: &quot;org.jetbrains.kotlin.android&quot;
+apply plugin: &quot;com.facebook.react&quot;
+apply plugin: &quot;com.google.android.libraries.mapsplatform.secrets-gradle-plugin&quot;
+
+/**
+ * This is the configuration block to customize your React Native Android app.
+ * By default you don't need to apply any configuration, just uncomment the lines you need.
+ */
+react {
+    /* Folders */
+    //   The root of your project, i.e. where &quot;package.json&quot; lives. Default is '..'
+    // root = file(&quot;../&quot;)
+    //   The folder where the react-native NPM package is. Default is ../node_modules/react-native
+    // reactNativeDir = file(&quot;../node_modules/react-native&quot;)
+    //   The folder where the react-native Codegen package is. Default is ../node_modules/@react-native/codegen
+    // codegenDir = file(&quot;../node_modules/@react-native/codegen&quot;)
+    //   The cli.js file which is the React Native CLI entrypoint. Default is ../node_modules/react-native/cli.js
+    // cliFile = file(&quot;../node_modules/react-native/cli.js&quot;)
+
+    /* Variants */
+    //   The list of variants to that are debuggable. For those we're going to
+    //   skip the bundling of the JS bundle and the assets. By default is just 'debug'.
+    //   If you add flavors like lite, prod, etc. you'll have to list your debuggableVariants.
+    // debuggableVariants = [&quot;liteDebug&quot;, &quot;prodDebug&quot;]
+
+    /* Bundling */
+    //   A list containing the node command and its flags. Default is just 'node'.
+    // nodeExecutableAndArgs = [&quot;node&quot;]
+    //
+    //   The command to run when bundling. By default is 'bundle'
+    // bundleCommand = &quot;ram-bundle&quot;
+    //
+    //   The path to the CLI configuration file. Default is empty.
+    // bundleConfig = file(../rn-cli.config.js)
+    //
+    //   The name of the generated asset file containing your JS bundle
+    // bundleAssetName = &quot;MyApplication.android.bundle&quot;
+    //
+    //   The entry file for bundle generation. Default is 'index.android.js' or 'index.js'
+    // entryFile = file(&quot;../js/MyApplication.android.js&quot;)
+    //
+    //   A list of extra flags to pass to the 'bundle' commands.
+    //   See https://github.com/react-native-community/cli/blob/main/docs/commands.md#bundle
+    // extraPackagerArgs = []
+
+    /* Hermes Commands */
+    //   The hermes compiler command to run. By default it is 'hermesc'
+    // hermesCommand = &quot;$rootDir/my-custom-hermesc/bin/hermesc&quot;
+    //
+    //   The list of flags to pass to the Hermes compiler. By default is &quot;-O&quot;, &quot;-output-source-map&quot;
+    // hermesFlags = [&quot;-O&quot;, &quot;-output-source-map&quot;]
+}
+
+/**
+ * Set this to true to Run Proguard on Release builds to minify the Java bytecode.
+ */
+def enableProguardInReleaseBuilds = false
+
+/**
+ * The preferred build flavor of JavaScriptCore (JSC)
+ *
+ * For example, to use the international variant, you can use:
+ * `def jscFlavor = 'org.webkit:android-jsc-intl:+'`
+ *
+ * The international variant includes ICU i18n library and necessary data
+ * allowing to use e.g. `Date.toLocaleString` and `String.localeCompare` that
+ * give correct results when using with locales other than en-US. Note that
+ * this variant is about 6MiB larger per architecture than default.
+ */
+def jscFlavor = 'org.webkit:android-jsc:+'
+
+android {
+    ndkVersion rootProject.ext.ndkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdk rootProject.ext.compileSdkVersion
+
+    namespace &quot;com.placemyorder&quot;
+    defaultConfig {
+        applicationId &quot;com.placemyorder&quot;
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName &quot;1.0&quot;
+    }
+    signingConfigs {
+        debug {
+            storeFile file('debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+    }
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        release {
+            // Caution! In production, you need to generate your own keystore file.
+            // see https://reactnative.dev/docs/signed-apk-android.
+            signingConfig signingConfigs.debug
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile(&quot;proguard-android.txt&quot;), &quot;proguard-rules.pro&quot;
+        }
+    }
+}
+
+dependencies {
+    // The version of react-native is set by the React Native Gradle Plugin
+    implementation(&quot;com.facebook.react:react-android&quot;)
+
+    if (hermesEnabled.toBoolean()) {
+        implementation(&quot;com.facebook.react:hermes-android&quot;)
+    } else {
+        implementation jscFlavor
+    }
+}
+
+secrets {
+    // Optionally specify a different file name containing your secrets.
+    // The plugin defaults to &quot;local.properties&quot;
+    propertiesFileName = &quot;secrets.properties&quot;
+
+    // A properties file containing default secret values. This file can be
+    // checked in version control.
+    defaultPropertiesFileName = &quot;local.defaults.properties&quot;
+
+    // Configure which keys should be ignored by the plugin by providing regular expressions.
+    // &quot;sdk.dir&quot; is ignored by default.
+    ignoreList.add(&quot;keyToIgnore&quot;) // Ignore the key &quot;keyToIgnore&quot;
+    ignoreList.add(&quot;sdk.*&quot;)       // Ignore all keys matching the regexp &quot;sdk.*&quot;
+}
+
+apply from: file(&quot;../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle&quot;); applyNativeModulesAppBuildGradle(project)
+
+apply from: file(&quot;../../node_modules/react-native-vector-icons/fonts.gradle&quot;)
+</code></pre>
+<div line-highlight='4, only'></div>
+<h3>Configuring the Android Manifest file</h3>
+<p>The Android Manifest file is an XML file that contains important information about our application such as permissions, activities and services, configuration settings, and more.</p>
+<p>The Android manifest file (<code>AndroidManifest.xml</code>) is a crucial part of any Android application.
+It resides in the <code>android/app/src/main/</code> directory of your React Native project.
+This XML file provides essential information to the Android operating system about your app, such as:</p>
+<ul>
+<li><strong>Package name:</strong> Unique identifier for your app.</li>
+<li><strong>Components:</strong> Declares components of your app (activities, services, broadcast receivers, and content providers).</li>
+<li><strong>Permissions:</strong> Specifies permissions your app needs (e.g., internet access, camera usage).</li>
+<li><strong>App metadata:</strong> Includes additional information like themes, icons, and minimum API levels.</li>
+</ul>
+<p>In essence, the manifest file acts as a roadmap for the Android OS to understand and manage your app correctly.</p>
+<pre><code class="language-xml">&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+
+    &lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;
+
+    &lt;application
+      android:name=&quot;.MainApplication&quot;
+      android:label=&quot;@string/app_name&quot;
+      android:icon=&quot;@mipmap/ic_launcher&quot;
+      android:roundIcon=&quot;@mipmap/ic_launcher_round&quot;
+      android:allowBackup=&quot;false&quot;
+      android:theme=&quot;@style/AppTheme&quot;&gt;
+      &lt;activity
+        android:name=&quot;.MainActivity&quot;
+        android:label=&quot;@string/app_name&quot;
+        android:configChanges=&quot;keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode&quot;
+        android:launchMode=&quot;singleTask&quot;
+        android:windowSoftInputMode=&quot;adjustResize&quot;
+        android:exported=&quot;true&quot;&gt;
+        &lt;intent-filter&gt;
+            &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+            &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
+        &lt;/intent-filter&gt;
+      &lt;/activity&gt;
+      &lt;meta-data
+        android:name=&quot;com.google.android.geo.API_KEY&quot;
+        android:value=&quot;${GOOGLE_MAPS_API_KEY}&quot;/&gt;
+    &lt;/application&gt;
+&lt;/manifest&gt;
+
+</code></pre>
+ <div line-highlight="24-26,only"></div>
 <h3>Setup 1</h3>
 <p>✏️ Install the new dependency:</p>
-<pre><code class="language-bash">npm install react-native-maps@1.15.1
+<pre><code class="language-bash">npm install react-native-maps@1
 </code></pre>
 <p>✏️ Create <strong>android/local.defaults.properties</strong> and update it to be:</p>
 <pre><code class="language-properties">GOOGLE_MAPS_API_KEY=INVALID_API_KEY
 </code></pre>
-<p>✏️ Create <strong>android/secrets.properties</strong> and update it to be:</p>
-<pre><code class="language-example">GOOGLE_MAPS_API_KEY=
-</code></pre>
-<p>✏️ Update <strong>GOOGLE_MAPS_API_KEY</strong> in <code>secrets.properties</code> with your key.</p>
+<p>✏️ Duplicate <strong>android/local.defaults.properties</strong> to <strong>android/secrets.properties</strong> in your project.</p>
+<p>It’s always a good idea to keep a <code>local.defaults.properties</code> file up to date (and committed to git) in your project, then include the actual secrets in your local <code>secrets.properties</code> file (and not committed to git).</p>
+<p>✏️ Update <strong>android/secrets.properties</strong> to include your <code>GOOGLE_MAPS_API_KEY</code> key.</p>
+<p>Replace the <code>INVALID_API_KEY</code> text that’s currently in the file with your key.</p>
 <p>✏️ Update <strong>android/build.gradle</strong> to be:</p>
 <pre><code class="language-gradle">buildscript {
     ext {
@@ -931,24 +1151,9 @@ apply from: file(&quot;../../node_modules/react-native-vector-icons/fonts.gradle
 
 </code></pre>
  <div line-highlight="24-26,only"></div>
-<p>✏️ Update <strong>src/env.d.ts</strong> to be:</p>
-<pre><code class="language-ts">/* eslint-disable @typescript-eslint/no-namespace */
-
-declare global {
-  namespace NodeJS {
-    interface ProcessEnv {
-      readonly GOOGLE_MAPS_API_KEY: string
-      readonly GOOGLE_OAUTH_CLIENT_ID: string
-      readonly PMO_API: string
-      readonly PMO_ASSETS: string
-    }
-  }
-}
-
-export {}
-
+<p>✏️ Terminate the existing dev server and start it again:</p>
+<pre><code class="language-bash">npm run start
 </code></pre>
- <div line-highlight="6,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { StackScreenProps } from &quot;@react-navigation/stack&quot;
 import { useState } from &quot;react&quot;
@@ -1091,6 +1296,7 @@ function getStyles(theme: Theme) {
 }
 
 </code></pre>
+<div line-highlight='16, only'></div>
 <p>✏️ Create <strong>src/components/Tabs/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./Tabs&quot;
 export * from &quot;./Tabs&quot;
@@ -1112,6 +1318,7 @@ const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
 export default Map
 
 </code></pre>
+<div line-highlight='10, only'></div>
 <p>✏️ Create <strong>src/screens/RestaurantList/components/Map/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./Map&quot;
 export * from &quot;./Map&quot;
@@ -1121,10 +1328,10 @@ export * from &quot;./Map&quot;
 <p>Navigate to the <code>Maps</code> tab of the <code>RestaurantsList</code> in your emulator and verify that the Map is rendering.</p>
 <p><img alt="Screenshot of how the application should look for the second solution." src="../static/img/react-native/18-maps/01-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/></p>
 <h3>Exercise 1</h3>
-<ul>
-<li>Implement Google Map's <code>MapView</code> for it to properly render when the <code>Map</code> tab is selected.</li>
-</ul>
-<p>Hint: The <code>MapView</code> takes its own <code>style</code> prop. As a minimum it needs <code>minHeight</code> variable to render. If the view is too small, try adding another variable to increase its size.</p>
+<p>For this exercise, implement Google Map’s <code>MapView</code> for it to properly render when the <code>Map</code> tab is selected.</p>
+<p><strong>Hint:</strong> The <code>MapView</code> takes its own <code>style</code> prop.
+As a minimum it needs <code>minHeight</code> variable to render.
+If the view is too small, try adding another variable to increase its size.</p>
 <pre><code class="language-jsx">&lt;MapView style={{ minHeight: &quot;100%&quot; }} /&gt;
 </code></pre>
 <h3>Solution 1</h3>
@@ -1143,7 +1350,7 @@ export interface MapProps {
 const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
   return (
     &lt;MapView
-      style={{ minHeight: &quot;100%&quot;, height: 500 }}
+      style={{ minHeight: &quot;100%&quot; }}
       provider={PROVIDER_GOOGLE}
       initialRegion={{
         ...restaurants[0].coordinate,
@@ -1161,9 +1368,10 @@ export default Map
  <div line-highlight="10-21,"></div>
 <p></details></p>
 <h2>Objective 2: Add restaurant pins with tooltips to map</h2>
+<p>Now that we have a map, let’s add markers for each one of the restaurants.
+When we tap on them, we will navigate to the restaurant detail page, just like we do in the list view.</p>
 <p><img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” The map is still centered on Green Bay and now has several locations marked with red pins. One of the markers is labeled Cheese Curd City, 230 W Kinzie Street. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/></p>
-<p>Now that we have a map, let’s add markers for each one of the restaurants. When we tap on them, we will navigate to the restaurant detail page, just like we do in the list view.</p>
-<h3>Marker</h3>
+<h3>Adding markers to a map</h3>
 <p>The <code>Marker</code> component is used to render a pin on the map. It takes several props, but the most important ones are:</p>
 <ul>
 <li><code>coordinate</code>: The coordinates of the marker.</li>
@@ -1177,7 +1385,7 @@ export default Map
 function MapWithMarker({ initialRegion }) {
   return (
     &lt;MapView
-      style={{ minHeight: &quot;100%&quot;, height: 500 }}
+      style={{ minHeight: &quot;100%&quot; }}
       provider={PROVIDER_GOOGLE}
       initialRegion={initialRegion}
     &gt;
@@ -1187,7 +1395,7 @@ function MapWithMarker({ initialRegion }) {
           longitude: -122.4324,
         }}
         onCalloutPress={() =&gt; {
-          console.log(&quot;Marker was pressed&quot;)
+          console.info(&quot;Marker was pressed&quot;)
         }}
         title=&quot;Title of the Marker&quot;
         description=&quot;A brief description&quot;
@@ -1211,7 +1419,7 @@ export interface MapProps {
 const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
   return (
     &lt;MapView
-      style={{ minHeight: &quot;100%&quot;, height: 500 }}
+      style={{ minHeight: &quot;100%&quot; }}
       provider={PROVIDER_GOOGLE}
       initialRegion={{
         ...restaurants[0].coordinate,
@@ -1228,7 +1436,7 @@ const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
 export default Map
 
 </code></pre>
- <div line-highlight="1-2,21-23,"></div>
+ <div line-highlight="1-2,21-23,only"></div>
 <h3>Verify 2</h3>
 <p>Navigate to the <code>Maps</code> tab of the <code>RestaurantsList</code> in your emulator and verify that the Map is rendering.</p>
 <p><img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” The map is still centered on Green Bay and now has several locations marked with red pins. One of the markers is labeled Cheese Curd City, 230 W Kinzie Street. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/></p>
@@ -1239,7 +1447,9 @@ export default Map
 <li>Use <code>onCallOutPress</code> to add <code>navigate</code> to the <code>RestaurantDetails</code> screen.</li>
 </ul>
 <h3>Solution 2</h3>
-<p>If you’ve implemented the solution correctly, your Map should have Markers based on the coordinates of each Restaurant.</p>
+<p>If you’ve implemented the solution correctly, your Map should have Markers based on the coordinates of each Restaurant.
+Then, when you tap on a marker, it should show its info in a pop-up view.
+Then, you can tap on the pop-up view to navigate to the restaurant details view.</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/screens/RestaurantList/components/Map/Map.tsx</strong> to be:</p>
@@ -1257,7 +1467,7 @@ const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
 
   return (
     &lt;MapView
-      style={{ minHeight: &quot;100%&quot;, height: 500 }}
+      style={{ minHeight: &quot;100%&quot; }}
       provider={PROVIDER_GOOGLE}
       initialRegion={{
         ...restaurants[0].coordinate,
@@ -1328,7 +1538,7 @@ export default Map
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-native/18-maps/maps.md"},"description":"Learn how to integrate Google Maps into your React Native application. \n","name":"learn-react-native/google-maps","title":"Integrating Maps","type":"page","parent":"learn-react-native","order":18,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-native/18-maps/maps.md"},"description":"Learn how to integrate Google Maps into your React Native application. \n","name":"learn-react-native/google-maps","title":"Integrating Maps","type":"page","parent":"learn-react-native","order":18,"outline":{"depth":2},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
