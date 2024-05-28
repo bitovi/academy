@@ -27,7 +27,12 @@ const RestaurantDetails: React.FC<RestaurantDetailsProps> = ({ route }) => {
   const isAuthenticated = useAuthenticated()
   const user = useUser()
   const { signIn } = useAuthentication()
-  const { updateFavorites, favorite } = useFavorites(user?.id, restaurant?._id)
+  const {
+    error: favoriteError,
+    isFavorite,
+    isPending: favoriteIsPending,
+    toggleFavorite,
+  } = useFavorites(user?.id, restaurant?._id)
 
   useEffect(() => {
     if (restaurant) {
@@ -58,23 +63,32 @@ const RestaurantDetails: React.FC<RestaurantDetailsProps> = ({ route }) => {
       <Button
         onPress={() => {
           if (isAuthenticated) {
-            updateFavorites(restaurant!._id)
+            toggleFavorite()
           } else {
             signIn()
           }
         }}
       >
-        {isAuthenticated && favorite?.favorite
-          ? "Remove from favorites"
-          : "Add to favorites"}
+        {isAuthenticated
+          ? favoriteIsPending
+            ? "Saving…"
+            : isFavorite
+            ? "Remove from favorites"
+            : "Add to favorites"
+          : "Sign in to favorite this restaurant"}
       </Button>
+      {favoriteError ? (
+        <Box padding="s">
+          <Typography variant="body">{favoriteError.message}</Typography>
+        </Box>
+      ) : null}
 
       <Button
         onPress={() => {
           navigation.navigate("RestaurantOrder", { slug: slug })
         }}
       >
-        Place My Order!
+        Place an order
       </Button>
     </Screen>
   )

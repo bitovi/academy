@@ -3,24 +3,20 @@ import { useEffect } from "react"
 
 import { useUser } from "../../auth"
 
-import { useFavorites } from "./hooks"
-
-const useFavoritesSync = (): void => {
-  const user = useUser()
-  const { isConnected } = useNetInfo()
-  const { syncWithServer, localFavorites } = useFavorites(user?.id)
-
-  useEffect(() => {
-    if (user && isConnected && localFavorites) {
-      syncWithServer()
-    }
-  }, [isConnected, localFavorites, syncWithServer, user])
-
-  return
-}
+import { syncWithServer } from "./sync"
 
 const FavoritesSync: React.FC = () => {
-  useFavoritesSync()
+  const { isConnected } = useNetInfo()
+  const user = useUser()
+
+  useEffect(() => {
+    async function syncData() {
+      if (isConnected && user) {
+        await syncWithServer(user.id)
+      }
+    }
+    syncData()
+  }, [isConnected, user])
 
   return null
 }
