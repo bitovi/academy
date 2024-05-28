@@ -1,7 +1,7 @@
 import { GoogleSigninButton } from "@react-native-google-signin/google-signin"
-import { FC } from "react"
 import { StyleSheet, Switch, View } from "react-native"
 
+import Loading from "../../components/Loading"
 import Button from "../../design/Button"
 import Card from "../../design/Card"
 import Screen from "../../design/Screen"
@@ -9,8 +9,8 @@ import { useThemeMode } from "../../design/theme"
 import Typography from "../../design/Typography"
 import { useAuthentication, useUser } from "../../services/auth"
 
-const Settings: FC = () => {
-  // Exercise: use the hooks from the auth service to grab the 'user' state, and 'signIn' and 'signOut' callbacks.
+const Settings: React.FC = () => {
+  // Exercise: use the Hooks from the Auth service to get: error, isPending, signIn, signOut.
   const { mode, setMode } = useThemeMode()
 
   return (
@@ -18,8 +18,10 @@ const Settings: FC = () => {
       <Card>
         {/*
           Exercise:
+          - If the user is logged out: Render a button using the GoogleSigninButton.
           - If the user is logged in: Render a button using the signOut callback along with a welcome message.
-          - If the user is logged in: Exercise: Render a button using the GoogleSigninButton.
+          - If the Hook isPending: Render the Loading view.
+          - If the Hook has an error: Render the error message.
         */}
         <Typography variant="heading"></Typography>
       </Card>

@@ -56,7 +56,7 @@ The OAuth flow typically involves the following steps:
 5. The application exchanges the authorization code for an access token.
 6. The application uses the access token to access the secured resources.
 
-### Implement Google Sign-In
+### Implementing Google Sign-In
 
 The `@react-native-google-signin/google-signin` package provides a simple way to integrate Google Sign-In into our React Native apps. It handles the OAuth flow, allowing users to sign in with their Google accounts and obtain an access token that can be used to access Google services on their behalf.
 
@@ -72,49 +72,28 @@ Now that we have a project set up in Google Cloud Console, we can start integrat
 
 #### Configuring the package
 
-```tsx
-import { GoogleSignin } from "@react-native-google-signin/google-signin"
+It is mandatory to call the `configure` method before attempting to sign in.
+The `configure` method takes an object and is used to initialize your application for authentication with Google.
+The `scopes` parameter is an array of strings representing the permissions the application is requesting.
+The `webClientId` parameter is the client ID of th project that is created in the Google Cloud Console.
 
-GoogleSignin.configure({
-  scopes,
-  webClientId,
-})
-```
-
-It is mandatory to call the `configure` method before attempting to sign in. The `configure` method takes an object and is used to initialize your application for authentication with Google. The `scopes` parameter is an array of strings representing the permissions the application is requesting. The `webClientId` parameter is the client ID of th project that is created in the Google Cloud Console.
+@sourceref ./configuring.ts
+@highlight 5-8
 
 #### Signing in
-
-```tsx
-import {
-  GoogleSignin,
-  statusCodes,
-} from "@react-native-google-signin/google-signin"
-
-const signIn = async () => {
-  try {
-    const userInfo = await GoogleSignin.signIn()
-    console.info(userInfo)
-  } catch (error) {
-    if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-      // user cancelled the login flow
-    } else if (error.code === statusCodes.IN_PROGRESS) {
-      // operation is in progress already
-    } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-      // play services not available or outdated
-    } else {
-      // some other error happened
-    }
-  }
-}
-```
 
 The `signIn` method is used to prompt a modal and allow the user to sign into their Google account from our application.
 This method returns a Promise that resolves to the user’s information if the sign-in is successful.
 This method is the first part of authorization OAuth flow.
 Once the user is signed in, we can use the `getTokens` method to retrieve an access token.
 
+@sourceref ./signIn.ts
+@highlight 8
+
 #### Getting the current user
+
+The `getCurrentUser` method is used to retrieve the current signed-in user’s information.
+This method returns a Promise that resolves to the user’s information if the user is signed in.
 
 ```tsx
 import { GoogleSignin } from "@react-native-google-signin/google-signin"
@@ -125,10 +104,9 @@ const getCurrentUser = async () => {
 }
 ```
 
-The `getCurrentUser` method is used to retrieve the current signed-in user’s information.
-This method returns a Promise that resolves to the user’s information if the user is signed in.
-
 #### Signing out
+
+The `signOut` method is used to sign the current user out and revoke the access token.
 
 ```tsx
 import { GoogleSignin } from "@react-native-google-signin/google-signin"
@@ -138,9 +116,11 @@ const signOut = async () => {
 }
 ```
 
-The `signOut` method is used to sign the current user out and revoke the access token.
-
 #### Using the `GoogleSigninButton`
+
+The `GoogleSigninButton` component is a pre-styled button that can be used to initiate the sign-in flow.
+The size, color, and whether the button is disabled can be customized using props.
+The `onPress` prop is used to specify the function to be called when the button is pressed.
 
 ```tsx
 import { GoogleSigninButton } from "@react-native-google-signin/google-signin"
@@ -156,8 +136,6 @@ function Button() {
   )
 }
 ```
-
-The `GoogleSigninButton` component is a pre-styled button that can be used to initiate the sign-in flow. The size, color, and whether the button is disabled can be customized using props. The `onPress` prop is used to specify the function to be called when the button is pressed.
 
 ### Memoizing functions with `useCallback`
 
@@ -238,6 +216,10 @@ We would use this in the application like this:
 npm install @react-native-google-signin/google-signin@11
 ```
 
+✏️ Update **jest-setup.ts** to be:
+
+@diff ../../../exercises/react-native/15-async-storage/02-solution/jest-setup.ts ../../../exercises/react-native/16-security/01-problem/jest-setup.ts only
+
 ✏️ Update **src/App.tsx** to be:
 
 @diff ../../../exercises/react-native/15-async-storage/02-solution/src/App.tsx ../../../exercises/react-native/16-security/01-problem/src/App.tsx only
@@ -252,6 +234,12 @@ npm install @react-native-google-signin/google-signin@11
 
 ✏️ Update **.env** to include your `GOOGLE_OAUTH_CLIENT_ID` key.
 
+✏️ Terminate the existing dev server and start it again:
+
+```bash
+npm run start
+```
+
 ✏️ Update **src/screens/Settings/Settings.tsx** to be:
 
 @diff ../../../exercises/react-native/15-async-storage/02-solution/src/screens/Settings/Settings.tsx ../../../exercises/react-native/16-security/01-problem/src/screens/Settings/Settings.tsx only
@@ -259,11 +247,12 @@ npm install @react-native-google-signin/google-signin@11
 ✏️ Create **src/services/auth/AuthProvider.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-native/16-security/01-problem/src/services/auth/AuthProvider.tsx
-@highlight 19, 26, only
+@highlight 19, 27, only
 
 ✏️ Create **src/services/auth/context.ts** and update it to be:
 
 @sourceref ../../../exercises/react-native/16-security/01-problem/src/services/auth/context.ts
+@highlight 4-28, only
 
 ✏️ Create **src/services/auth/index.ts** and update it to be:
 

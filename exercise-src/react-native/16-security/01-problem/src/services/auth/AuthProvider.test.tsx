@@ -1,6 +1,5 @@
 import { GoogleSigninButton } from "@react-native-google-signin/google-signin"
 import { render, screen, fireEvent } from "@testing-library/react-native"
-import { FC } from "react"
 import { View, Text } from "react-native"
 
 import Button from "../../design/Button"
@@ -21,7 +20,7 @@ afterAll(() => {
 })
 
 describe("Services/Auth/AuthProvider", () => {
-  const TestComponent: FC = () => {
+  const TestComponent: React.FC = () => {
     const isAuthenticated = useAuthenticated()
     const { signIn, signOut } = useAuthentication()
     const user = useUser()
