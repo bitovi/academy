@@ -686,7 +686,9 @@ covering CanJS core libraries.">
 <li>Configure the Android Manifest file.</li>
 <li>Add markers to a map.</li>
 </ul>
-<h2>Objective 1: View the restaurants on a map</h2>
+<h2>Objective 1: Add a map view</h2>
+<p>A list of restaurants is a good start, but showing them on a map would make it easier to visualize where they are.</p>
+<p>Let’s start by adding a map to the application. We’ll add a <code>Tab</code> component to switch between the List and Map views.</p>
 <p><img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” There are two tabs at the top, List and Map, with Map selected. The map below is centered on Green Bay. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/01-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/></p>
 <h3>Rendering Google Maps</h3>
 <p>To use the Google Maps API, you will need to set up a <a href="https://developers.google.com/maps/documentation/javascript/get-api-key">Google Maps API key</a>.</p>
@@ -947,6 +949,98 @@ This XML file provides essential information to the Android operating system abo
 <p>✏️ Install the new dependency:</p>
 <pre><code class="language-bash">npm install react-native-maps@1
 </code></pre>
+<p>✏️ Update <strong>.gitignore</strong> to be:</p>
+<pre><code># OSX
+#
+.DS_Store
+
+# Windows
+#
+Thumbs.db
+
+# Xcode
+#
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+**/.xcode.env.local
+
+# Android/IntelliJ
+#
+build/
+.idea
+.gradle
+local.properties
+*.iml
+*.hprof
+.cxx/
+*.keystore
+!debug.keystore
+
+# node.js
+#
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/
+
+**/fastlane/report.xml
+**/fastlane/Preview.html
+**/fastlane/screenshots
+**/fastlane/test_output
+
+# Bundle artifact
+*.jsbundle
+*.tsbuildinfo
+
+# Environment variables
+.env
+
+# Place My Order API
+/db-data
+
+# Ruby / CocoaPods
+**/Pods/
+/vendor/bundle/
+
+# Secrets
+android/secrets.properties
+
+# Temporary files created by Metro to check the health of the file watcher
+.metro-health-check*
+
+# testing
+/coverage
+
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+</code></pre>
+ <div line-highlight="73-74,only"></div>
 <p>✏️ Create <strong>android/local.defaults.properties</strong> and update it to be:</p>
 <pre><code class="language-properties">GOOGLE_MAPS_API_KEY=INVALID_API_KEY
 </code></pre>
@@ -1154,72 +1248,6 @@ apply from: file(&quot;../../node_modules/react-native-vector-icons/fonts.gradle
 <p>✏️ Terminate the existing dev server and start it again:</p>
 <pre><code class="language-bash">npm run start
 </code></pre>
-<p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { StackScreenProps } from &quot;@react-navigation/stack&quot;
-import { useState } from &quot;react&quot;
-
-import { RestaurantsStackParamList } from &quot;../../App&quot;
-import Loading from &quot;../../components/Loading&quot;
-import Tabs from &quot;../../components/Tabs&quot;
-import Box from &quot;../../design/Box&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
-import { useRestaurants } from &quot;../../services/pmo/restaurant&quot;
-
-import List from &quot;./components/List&quot;
-import Map from &quot;./components/Map&quot;
-
-export interface RestaurantListProps
-  extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantList&quot;&gt; {}
-
-const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
-  const { state, city } = route.params
-  const {
-    data: restaurants,
-    error,
-    isPending,
-  } = useRestaurants({ state: state.short, city: city.name })
-
-  const [tab, setTab] = useState&lt;string&gt;(&quot;list&quot;)
-
-  if (error) {
-    return (
-      &lt;Screen&gt;
-        &lt;Box padding=&quot;m&quot;&gt;
-          &lt;Typography variant=&quot;heading&quot;&gt;Error loading restaurants: &lt;/Typography&gt;
-          &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
-        &lt;/Box&gt;
-      &lt;/Screen&gt;
-    )
-  }
-
-  if (isPending) {
-    return &lt;Loading /&gt;
-  }
-
-  return (
-    &lt;&gt;
-      &lt;Tabs
-        options={[
-          { label: &quot;List&quot;, value: &quot;list&quot; },
-          { label: &quot;Map&quot;, value: &quot;map&quot; },
-        ]}
-        onChange={setTab}
-        value={tab}
-      /&gt;
-
-      &lt;Screen noScroll&gt;
-        {tab === &quot;list&quot; &amp;&amp; restaurants &amp;&amp; &lt;List restaurants={restaurants} /&gt;}
-        {tab === &quot;map&quot; &amp;&amp; restaurants &amp;&amp; &lt;Map restaurants={restaurants} /&gt;}
-      &lt;/Screen&gt;
-    &lt;/&gt;
-  )
-}
-
-export default RestaurantList
-
-</code></pre>
- <div line-highlight="2,6,12-13,26,44-51,54-58,only"></div>
 <p>✏️ Create <strong>src/components/Tabs/Tabs.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { Pressable, StyleSheet } from &quot;react-native&quot;
 
@@ -1302,6 +1330,51 @@ function getStyles(theme: Theme) {
 export * from &quot;./Tabs&quot;
 
 </code></pre>
+<p>✏️ Create <strong>src/screens/RestaurantList/components/List/List.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
+import { FlatList } from &quot;react-native&quot;
+
+import Button from &quot;../../../../design/Button&quot;
+import Screen from &quot;../../../../design/Screen&quot;
+import { Restaurant } from &quot;../../../../services/pmo/restaurant&quot;
+
+export interface ListProps {
+  restaurants: Restaurant[]
+}
+
+const List: React.FC&lt;ListProps&gt; = ({ restaurants }) =&gt; {
+  const navigation = useNavigation()
+
+  return (
+    &lt;Screen noScroll&gt;
+      &lt;FlatList
+        data={restaurants}
+        renderItem={({ item: restaurant }) =&gt; (
+          &lt;Button
+            onPress={() =&gt; {
+              navigation.navigate(&quot;RestaurantDetails&quot;, {
+                slug: restaurant.slug,
+              })
+            }}
+          &gt;
+            {restaurant.name}
+          &lt;/Button&gt;
+        )}
+        keyExtractor={(item) =&gt; item._id}
+      /&gt;
+    &lt;/Screen&gt;
+  )
+}
+
+export default List
+
+</code></pre>
+<div line-highlight='12, only'></div>
+<p>✏️ Create <strong>src/screens/RestaurantList/components/List/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./List&quot;
+export * from &quot;./List&quot;
+
+</code></pre>
 <p>✏️ Create <strong>src/screens/RestaurantList/components/Map/Map.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import MapView, { PROVIDER_GOOGLE } from &quot;react-native-maps&quot;
 
@@ -1324,6 +1397,72 @@ export default Map
 export * from &quot;./Map&quot;
 
 </code></pre>
+<p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import { useState } from &quot;react&quot;
+
+import { RestaurantsStackParamList } from &quot;../../App&quot;
+import Loading from &quot;../../components/Loading&quot;
+import Tabs from &quot;../../components/Tabs&quot;
+import Box from &quot;../../design/Box&quot;
+import Screen from &quot;../../design/Screen&quot;
+import Typography from &quot;../../design/Typography&quot;
+import { useRestaurants } from &quot;../../services/pmo/restaurant&quot;
+
+import List from &quot;./components/List&quot;
+import Map from &quot;./components/Map&quot;
+
+export interface RestaurantListProps
+  extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantList&quot;&gt; {}
+
+const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
+  const { state, city } = route.params
+  const {
+    data: restaurants,
+    error,
+    isPending,
+  } = useRestaurants({ state: state.short, city: city.name })
+
+  const [tab, setTab] = useState&lt;string&gt;(&quot;list&quot;)
+
+  if (error) {
+    return (
+      &lt;Screen&gt;
+        &lt;Box padding=&quot;m&quot;&gt;
+          &lt;Typography variant=&quot;heading&quot;&gt;Error loading restaurants: &lt;/Typography&gt;
+          &lt;Typography variant=&quot;body&quot;&gt;{error.message}&lt;/Typography&gt;
+        &lt;/Box&gt;
+      &lt;/Screen&gt;
+    )
+  }
+
+  if (isPending) {
+    return &lt;Loading /&gt;
+  }
+
+  return (
+    &lt;&gt;
+      &lt;Tabs
+        options={[
+          { label: &quot;List&quot;, value: &quot;list&quot; },
+          { label: &quot;Map&quot;, value: &quot;map&quot; },
+        ]}
+        onChange={setTab}
+        value={tab}
+      /&gt;
+
+      &lt;Screen noScroll&gt;
+        {tab === &quot;list&quot; &amp;&amp; restaurants &amp;&amp; &lt;List restaurants={restaurants} /&gt;}
+        {tab === &quot;map&quot; &amp;&amp; restaurants &amp;&amp; &lt;Map restaurants={restaurants} /&gt;}
+      &lt;/Screen&gt;
+    &lt;/&gt;
+  )
+}
+
+export default RestaurantList
+
+</code></pre>
+ <div line-highlight="2,6,12-13,26,44-51,54-58,only"></div>
 <h3>Verify 1</h3>
 <p>Navigate to the <code>Maps</code> tab of the <code>RestaurantsList</code> in your emulator and verify that the Map is rendering.</p>
 <p><img alt="Screenshot of how the application should look for the second solution." src="../static/img/react-native/18-maps/01-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/></p>
@@ -1367,7 +1506,7 @@ export default Map
 </code></pre>
  <div line-highlight="10-21,"></div>
 <p></details></p>
-<h2>Objective 2: Add restaurant pins with tooltips to map</h2>
+<h2>Objective 2: Add restaurant markers with tooltips to the map</h2>
 <p>Now that we have a map, let’s add markers for each one of the restaurants.
 When we tap on them, we will navigate to the restaurant detail page, just like we do in the list view.</p>
 <p><img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” The map is still centered on Green Bay and now has several locations marked with red pins. One of the markers is labeled Cheese Curd City, 230 W Kinzie Street. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/></p>
