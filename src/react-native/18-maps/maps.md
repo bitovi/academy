@@ -15,7 +15,11 @@ In this section, you will:
 - Configure the Android Manifest file.
 - Add markers to a map.
 
-## Objective 1: View the restaurants on a map
+## Objective 1: Add a map view
+
+A list of restaurants is a good start, but showing them on a map would make it easier to visualize where they are.
+
+Let’s start by adding a map to the application. We’ll add a `Tab` component to switch between the List and Map views.
 
 <img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” There are two tabs at the top, List and Map, with Map selected. The map below is centered on Green Bay. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/01-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 
@@ -111,6 +115,10 @@ In essence, the manifest file acts as a roadmap for the Android OS to understand
 npm install react-native-maps@1
 ```
 
+✏️ Update **.gitignore** to be:
+
+@diff ../../../exercises/react-native/17-offline-support/03-solution/.gitignore ../../../exercises/react-native/18-maps/01-problem/.gitignore only
+
 ✏️ Create **android/local.defaults.properties** and update it to be:
 
 @sourceref ../../../exercises/react-native/18-maps/01-problem/android/local.defaults.properties
@@ -141,10 +149,6 @@ Replace the `INVALID_API_KEY` text that’s currently in the file with your key.
 npm run start
 ```
 
-✏️ Update **src/screens/RestaurantList/RestaurantList.tsx** to be:
-
-@diff ../../../exercises/react-native/17-offline-support/03-solution/src/screens/RestaurantList/RestaurantList.tsx ../../../exercises/react-native/18-maps/01-problem/src/screens/RestaurantList/RestaurantList.tsx only
-
 ✏️ Create **src/components/Tabs/Tabs.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-native/18-maps/01-problem/src/components/Tabs/Tabs.tsx
@@ -154,6 +158,15 @@ npm run start
 
 @sourceref ../../../exercises/react-native/18-maps/01-problem/src/components/Tabs/index.ts
 
+✏️ Create **src/screens/RestaurantList/components/List/List.tsx** and update it to be:
+
+@sourceref ../../../exercises/react-native/18-maps/01-problem/src/screens/RestaurantList/components/List/List.tsx
+@highlight 12, only
+
+✏️ Create **src/screens/RestaurantList/components/List/index.ts** and update it to be:
+
+@sourceref ../../../exercises/react-native/18-maps/01-problem/src/screens/RestaurantList/components/List/index.ts
+
 ✏️ Create **src/screens/RestaurantList/components/Map/Map.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-native/18-maps/01-problem/src/screens/RestaurantList/components/Map/Map.tsx
@@ -162,6 +175,10 @@ npm run start
 ✏️ Create **src/screens/RestaurantList/components/Map/index.ts** and update it to be:
 
 @sourceref ../../../exercises/react-native/18-maps/01-problem/src/screens/RestaurantList/components/Map/index.ts
+
+✏️ Update **src/screens/RestaurantList/RestaurantList.tsx** to be:
+
+@diff ../../../exercises/react-native/17-offline-support/03-solution/src/screens/RestaurantList/RestaurantList.tsx ../../../exercises/react-native/18-maps/01-problem/src/screens/RestaurantList/RestaurantList.tsx only
 
 ### Verify 1
 
@@ -194,7 +211,7 @@ If you’ve implemented the solution correctly, the Map should be rendering in y
 
 </details>
 
-## Objective 2: Add restaurant pins with tooltips to map
+## Objective 2: Add restaurant markers with tooltips to the map
 
 Now that we have a map, let’s add markers for each one of the restaurants.
 When we tap on them, we will navigate to the restaurant detail page, just like we do in the list view.
