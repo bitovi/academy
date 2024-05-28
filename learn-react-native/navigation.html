@@ -367,7 +367,7 @@
            						">
 						<a class="page"
 							href="security-and-auth.html"
-							title="Learn about OAuth, google-signin, and how to secure your React Native app.">
+							title="Learn about security, authentication, and authorization by implementing Google Sign-In.">
 							Security and Authentication
 						</a>
 						
@@ -977,7 +977,8 @@ const Settings: React.FC = () =&gt; {
   return (
     &lt;Screen&gt;
       &lt;Card&gt;
-        &lt;Typography variant=&quot;heading&quot;&gt;Welcome back, {user.name}&lt;/Typography&gt;
+        &lt;Typography variant=&quot;heading&quot;&gt;Welcome back&lt;/Typography&gt;
+        &lt;Typography variant=&quot;body&quot;&gt;{user.name || &quot;Unknown name&quot;}&lt;/Typography&gt;
       &lt;/Card&gt;
       &lt;Card&gt;
         &lt;View style={styles.row}&gt;
@@ -2003,7 +2004,7 @@ const RestaurantDetails: React.FC = () =&gt; {
     &lt;Screen&gt;
       &lt;RestaurantHeader restaurant={restaurant} /&gt;
       &lt;Button onPress={() =&gt; console.warn(&quot;Place an order&quot;)}&gt;
-        Place My Order!
+        Place an order
       &lt;/Button&gt;
     &lt;/Screen&gt;
   )

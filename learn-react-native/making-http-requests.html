@@ -367,7 +367,7 @@
            						">
 						<a class="page"
 							href="security-and-auth.html"
-							title="Learn about OAuth, google-signin, and how to secure your React Native app.">
+							title="Learn about security, authentication, and authorization by implementing Google Sign-In.">
 							Security and Authentication
 						</a>
 						
@@ -2813,7 +2813,7 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
     &lt;Screen&gt;
       &lt;RestaurantHeader restaurant={restaurant} /&gt;
       &lt;Button onPress={() =&gt; console.warn(&quot;Place an order&quot;)}&gt;
-        Place My Order!
+        Place an order
       &lt;/Button&gt;
     &lt;/Screen&gt;
   )
@@ -3237,7 +3237,7 @@ describe(&quot;Screens/RestaurantDetails&quot;, () =&gt; {
       &lt;/NavigationContainer&gt;,
     )
 
-    expect(screen.getByText(&quot;Place My Order!&quot;)).toBeOnTheScreen()
+    expect(screen.getByText(&quot;Place an order&quot;)).toBeOnTheScreen()
   })
 
   it(&quot;renders loading state&quot;, () =&gt; {
@@ -3575,7 +3575,7 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
     &lt;Screen&gt;
       &lt;RestaurantHeader restaurant={restaurant} /&gt;
       &lt;Button onPress={() =&gt; console.warn(&quot;Place an order&quot;)}&gt;
-        Place My Order!
+        Place an order
       &lt;/Button&gt;
     &lt;/Screen&gt;
   )

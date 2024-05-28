@@ -364,7 +364,7 @@
            						">
 						<a class="page"
 							href="security-and-auth.html"
-							title="Learn about OAuth, google-signin, and how to secure your React Native app.">
+							title="Learn about security, authentication, and authorization by implementing Google Sign-In.">
 							Security and Authentication
 						</a>
 						
@@ -937,10 +937,10 @@ apply from: file(&quot;../../node_modules/react-native-vector-icons/fonts.gradle
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      readonly PMO_API: string
-      readonly PMO_ASSETS: string
       readonly GOOGLE_MAPS_API_KEY: string
       readonly GOOGLE_OAUTH_CLIENT_ID: string
+      readonly PMO_API: string
+      readonly PMO_ASSETS: string
     }
   }
 }
@@ -948,7 +948,7 @@ declare global {
 export {}
 
 </code></pre>
- <div line-highlight="8,only"></div>
+ <div line-highlight="6,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { StackScreenProps } from &quot;@react-navigation/stack&quot;
 import { useState } from &quot;react&quot;
@@ -1289,7 +1289,7 @@ export default Map
  <div line-highlight="11,24-36,"></div>
 <p></details></p>
 <h2>Next steps</h2>
-<p>We’ve accomplished a lot for our React Native App, in order to polish it just a bit more let's get into some <a href="./performance-optimization">Performance and Optimization</a> practices.</p>
+<p>We’ve accomplished a lot for our React Native App, in order to polish it just a bit more let’s get into some <a href="./performance-optimization">Performance and Optimization</a> practices.</p>
 
 </section>
 

@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn about OAuth, google-signin, and how to secure your React Native app. 
+  <meta name="description" content="Learn about security, authentication, and authorization by implementing Google Sign-In. 
 ">
   
   <!-- Google Tag Manager -->
@@ -364,7 +364,7 @@
            						expanded">
 						<a class="page"
 							href="security-and-auth.html"
-							title="Learn about OAuth, google-signin, and how to secure your React Native app.">
+							title="Learn about security, authentication, and authorization by implementing Google Sign-In.">
 							Security and Authentication
 						</a>
 						
@@ -665,7 +665,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn about OAuth, google-signin, and how to secure your React Native app.</p>
+    <p>Learn about security, authentication, and authorization by implementing Google Sign-In.</p>
 
 </section>
 
@@ -681,38 +681,43 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this section, you will:</p>
 <ul>
-<li>Learn about OAuth core concepts.</li>
-<li>Implement Google Sign-In in your React Native app.</li>
-<li>Be introduced to useCallback and useMemo.</li>
+<li>Authenticate with OAuth.</li>
+<li>Implement Google Sign-In.</li>
+<li>Memoize functions with <code>useCallback</code>.</li>
+<li>Memoize values with <code>useMemo</code>.</li>
+<li>Create an <code>AuthProvider</code> Context.</li>
 </ul>
-<h2>Objective 1: Context and Google Authentication</h2>
-<p><img alt="Screenshot of the Settings tab with a Google sign in button" src="../static/img/react-native/16-security/1-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/></p>
-<h3>OAuth</h3>
-<p>OAuth, or &quot;Open Authorization&quot;, is a standard that allows an application to access resources hosted by another application through a secure authorization process.</p>
-<p>Let's break down some of the core concepts of OAuth:</p>
+<h2>Objective 1: Add Google Sign-In</h2>
+<div style="display: flex; flex-direction: row; gap: 2rem">
+  <img alt="Screenshot of the Settings tab with a Google “Sign in” button." src="../static/img/react-native/16-security/01-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screenshot of the Settings tab showing a sign-in user and a “Sign out” button." src="../static/img/react-native/16-security/01-solution-signed-in.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+</div>
+<h3>Authenticating with OAuth</h3>
+<p>OAuth is a standard that allows an application to access resources hosted by another application through a secure authorization process.</p>
+<p>Let’s break down some of the core concepts of OAuth:</p>
 <ul>
 <li><p><strong>Access Token</strong>: A token used by the application to access protected resources. It is obtained during the OAuth authorization flow and sent with each request to the resource server. Access tokens are typically short-lived and can be refreshed using a refresh token.</p></li>
 <li><p><strong>Refresh Token</strong>: A token used to obtain a new access token when the current access token expires. Refresh tokens are typically long-lived and can be used to obtain new access tokens without requiring the user to log in again.</p></li>
-<li><p><strong>Scopes</strong>: Scopes are permissions requested by the application during the OAuth authorization flow. They define what actions the application is allowed to perform using the access token. For example, an application might request only read access to a user's Google Drive files, which would allow it to view but not modify the files.</p></li>
+<li><p><strong>Scopes</strong>: Scopes are permissions requested by the application during the OAuth authorization flow. They define what actions the application is allowed to perform using the access token. For example, an application might request only read access to a user’s Google Drive files, which would allow it to view (but not modify) the files.</p></li>
 <li><p><strong>Authorization Server</strong>: The server that authenticates the user and issues access tokens.</p></li>
 <li><p><strong>Resource Server</strong>: The server that hosts protected resources. It is responsible for validating access tokens and granting access to resources based on the token's permissions.</p></li>
 </ul>
 <p>The use of refresh tokens rather than long-lived access tokens is primarily a security measure:</p>
 <ul>
 <li><p><strong>Reduced Exposure</strong>: If an access token is compromised, the attacker has a limited window of time to use it before it expires.</p></li>
-<li><p><strong>Revocation</strong>: If a user's access is revoked, the refresh token can be invalidated, preventing the attacker from obtaining new access tokens.</p></li>
+<li><p><strong>Revocation</strong>: If a user’s access is revoked, the refresh token can be invalidated, preventing the attacker from obtaining new access tokens.</p></li>
 <li><p><strong>Limited Scope</strong>: Refresh tokens can be issued with limited scopes, reducing the potential damage if they are compromised.</p></li>
 </ul>
 <p>The OAuth flow typically involves the following steps:</p>
 <ol>
-<li>The user clicks a &quot;Sign In&quot; button in the application.</li>
-<li>The application redirects the user to the OAuth provider's login page.</li>
+<li>The user clicks a “Sign In” button in the application.</li>
+<li>The application redirects the user to the OAuth provider’s login page.</li>
 <li>The user logs in to the OAuth provider.</li>
 <li>The OAuth provider redirects the user back to the application with an authorization code.</li>
 <li>The application exchanges the authorization code for an access token.</li>
 <li>The application uses the access token to access the secured resources.</li>
 </ol>
-<h3>GoogleSignin</h3>
+<h3>Implement Google Sign-In</h3>
 <p>The <code>@react-native-google-signin/google-signin</code> package provides a simple way to integrate Google Sign-In into our React Native apps. It handles the OAuth flow, allowing users to sign in with their Google accounts and obtain an access token that can be used to access Google services on their behalf.</p>
 <p>To use Google Sign-In in your React Native app, you must configure your application in the Google Cloud Console and obtain a client ID. This client ID is used to identify your application when requesting access tokens from Google.</p>
 <ol>
@@ -723,7 +728,7 @@ covering CanJS core libraries.">
 <li>The client ID from the Web application will be used in the <code>webClientId</code> field when configuring the Google Sign-In package in your React Native app.</li>
 </ol>
 <p>Now that we have a project set up in Google Cloud Console, we can start integrating Google Sign-In into our React Native app.</p>
-<h4>GoogleSignin.configure()</h4>
+<h4>Configuring the package</h4>
 <pre><code class="language-tsx">import { GoogleSignin } from &quot;@react-native-google-signin/google-signin&quot;
 
 GoogleSignin.configure({
@@ -732,7 +737,7 @@ GoogleSignin.configure({
 })
 </code></pre>
 <p>It is mandatory to call the <code>configure</code> method before attempting to sign in. The <code>configure</code> method takes an object and is used to initialize your application for authentication with Google. The <code>scopes</code> parameter is an array of strings representing the permissions the application is requesting. The <code>webClientId</code> parameter is the client ID of th project that is created in the Google Cloud Console.</p>
-<h4>GoogleSignin.signIn</h4>
+<h4>Signing in</h4>
 <pre><code class="language-tsx">import {
   GoogleSignin,
   statusCodes,
@@ -755,8 +760,11 @@ const signIn = async () =&gt; {
   }
 }
 </code></pre>
-<p>The <code>signIn</code> method is used to prompt a modal and allow the user to sign into their Google account from our application. This method returns a promise that resolves to the user's information if the sign-in is successful. This method is the first part of authorization OAuth flow. Once the user is signed in, we can use the <code>getTokens</code> method to retrieve an access token.</p>
-<h4>GoogleSignin.getCurrentUser</h4>
+<p>The <code>signIn</code> method is used to prompt a modal and allow the user to sign into their Google account from our application.
+This method returns a Promise that resolves to the user’s information if the sign-in is successful.
+This method is the first part of authorization OAuth flow.
+Once the user is signed in, we can use the <code>getTokens</code> method to retrieve an access token.</p>
+<h4>Getting the current user</h4>
 <pre><code class="language-tsx">import { GoogleSignin } from &quot;@react-native-google-signin/google-signin&quot;
 
 const getCurrentUser = async () =&gt; {
@@ -764,8 +772,9 @@ const getCurrentUser = async () =&gt; {
   console.info(userInfo)
 }
 </code></pre>
-<p>The <code>getCurrentUser</code> method is used to retrieve the current signed-in user's information. This method returns a promise that resolves to the user's information if the user is signed in.</p>
-<h4>GoogleSignin.signOut</h4>
+<p>The <code>getCurrentUser</code> method is used to retrieve the current signed-in user’s information.
+This method returns a Promise that resolves to the user’s information if the user is signed in.</p>
+<h4>Signing out</h4>
 <pre><code class="language-tsx">import { GoogleSignin } from &quot;@react-native-google-signin/google-signin&quot;
 
 const signOut = async () =&gt; {
@@ -773,7 +782,7 @@ const signOut = async () =&gt; {
 }
 </code></pre>
 <p>The <code>signOut</code> method is used to sign the current user out and revoke the access token.</p>
-<h4>GoogleSigninButton</h4>
+<h4>Using the <code>GoogleSigninButton</code></h4>
 <pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
 
 function Button() {
@@ -788,14 +797,14 @@ function Button() {
 }
 </code></pre>
 <p>The <code>GoogleSigninButton</code> component is a pre-styled button that can be used to initiate the sign-in flow. The size, color, and whether the button is disabled can be customized using props. The <code>onPress</code> prop is used to specify the function to be called when the button is pressed.</p>
-<h3>useCallback</h3>
+<h3>Memoizing functions with <code>useCallback</code></h3>
 <p>The <code>useCallback</code> Hook is used to memoize functions so that they are not recreated on every render. When using a provider, it is important to memoize functions so that they do not cause unnecessary re-renders of components that depend on them.</p>
 <pre><code class="language-tsx">const memoizedCallback = useCallback(() =&gt; {
   // function logic
 }, [dependencies])
 </code></pre>
 <p>In the example above, the <code>memoizedCallback</code> function will only be recreated when the <code>dependencies</code> array changes.</p>
-<h3>useMemo</h3>
+<h3>Memoizing values with <code>useMemo</code></h3>
 <p>Similar to <code>useCallback</code>, the <code>useMemo</code> Hook is used to memoize values so that they are not recalculated on every render. It is useful for optimizing performance by avoiding unnecessary calculations.</p>
 <p>The <code>useCallback</code> Hook is used to memoize a function, so that child components do not re-render when the function reference changes. The <code>useMemo</code> Hook on the other hand is used to memoize a <em>value</em>. We should use <code>useMemo</code> if the logic to calculate a value is expensive.</p>
 <pre><code class="language-tsx">const memoizedValue = useMemo(() =&gt; {
@@ -803,19 +812,16 @@ function Button() {
 }, [dependencies])
 </code></pre>
 <p>Just like <code>useCallback</code>, the <code>memoizedValue</code> will only be recalculated when the <code>dependencies</code> array changes.</p>
-<h3>AuthProvider</h3>
-<p>An <code>AuthProvider</code> is a React Context Provider that manages the authentication state of the application. It provides the authentication state and methods to sign in and sign out to the rest of the application using a React Context.</p>
-<p>The <code>AuthProvider</code> typically includes the following components:</p>
+<h3>Creating an <code>AuthProvider</code> Context</h3>
+<p>It’s common to create an <code>AuthProvider</code> context that manages the authentication state of the application.
+It provides the authentication state and methods to sign in and sign out to the rest of the application using a React Context.</p>
+<p>The <code>AuthProvider</code> typically includes methods to:</p>
 <ul>
-<li><strong>Sign In Method</strong>: A method to sign in the user.</li>
-<li><strong>Sign Out Method</strong>: A method to sign out the user.</li>
-<li><strong>Get User Method</strong>: A method to retrieve the current signed-in user's information.</li>
+<li>Sign in the user.</li>
+<li>Sign out the user.</li>
+<li>Get the current signed-in user’s information.</li>
 </ul>
 <p>We can use an <code>AuthProvider</code> to lock down our application and only allow access to authenticated users.</p>
-<pre><code class="language-tsx">&lt;AuthProvider&gt;
-  &lt;App /&gt;
-&lt;/AuthProvider&gt;
-</code></pre>
 <pre><code class="language-tsx">function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
 
@@ -837,6 +843,11 @@ function Button() {
     &lt;/AuthContext.Provider&gt;
   )
 }
+</code></pre>
+<p>We would use this in the application like this:</p>
+<pre><code class="language-tsx">&lt;AuthProvider&gt;
+  &lt;App /&gt;
+&lt;/AuthProvider&gt;
 </code></pre>
 <h3>Setup 1</h3>
 <p>✏️ Install the new dependency:</p>
@@ -1013,9 +1024,9 @@ export default App
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
+      readonly GOOGLE_OAUTH_CLIENT_ID: string
       readonly PMO_API: string
       readonly PMO_ASSETS: string
-      readonly GOOGLE_OAUTH_CLIENT_ID: string
     }
   }
 }
@@ -1023,7 +1034,7 @@ declare global {
 export {}
 
 </code></pre>
- <div line-highlight="8,only"></div>
+ <div line-highlight="6,only"></div>
 <p>✏️ Update <strong>.env.example</strong> to be:</p>
 <pre><code class="language-example">GOOGLE_OAUTH_CLIENT_ID=
 PMO_API=http://localhost:7070
@@ -1045,14 +1056,17 @@ import Typography from &quot;../../design/Typography&quot;
 import { useAuthentication, useUser } from &quot;../../services/auth&quot;
 
 const Settings: FC = () =&gt; {
-  // Exercise: use the hooks from auth service to grab the 'user' state, and 'signIn' and 'signOut' callbacks.
+  // Exercise: use the hooks from the auth service to grab the 'user' state, and 'signIn' and 'signOut' callbacks.
   const { mode, setMode } = useThemeMode()
 
   return (
     &lt;Screen&gt;
       &lt;Card&gt;
-        {/* Exercise: If the user is logged in: Render a button using the signOut callback along with a welcome message.
-         If the user is logged in: Exercise: Render a button using the GoogleSigninButton. */}
+        {/*
+          Exercise:
+          - If the user is logged in: Render a button using the signOut callback along with a welcome message.
+          - If the user is logged in: Exercise: Render a button using the GoogleSigninButton.
+        */}
         &lt;Typography variant=&quot;heading&quot;&gt;&lt;/Typography&gt;
       &lt;/Card&gt;
       &lt;Card&gt;
@@ -1079,7 +1093,7 @@ const styles = StyleSheet.create({
 export default Settings
 
 </code></pre>
- <div line-highlight="1-2,5,10,12-13,19-21,only"></div>
+ <div line-highlight="1-2,5,10,12-13,19-24,only"></div>
 <p>✏️ Create <strong>src/services/auth/AuthProvider.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import {
   User as UserInfo,
@@ -1106,8 +1120,9 @@ const AuthProvider: FC&lt;{ children: ReactNode }&gt; = ({ children }) =&gt; {
   const signOut = async () =&gt; {}
 
   useEffect(() =&gt; {
-    // Exercise: When a sign in is successful, update the user.
-    async function run() {}
+    async function run() {
+      // Exercise: When a sign in is successful, update the user.
+    }
 
     run()
   }, [])
@@ -1152,6 +1167,7 @@ export function useUser(): UserInfo[&quot;user&quot;] | undefined {
 }
 
 </code></pre>
+<div line-highlight='19, 26, only'></div>
 <p>✏️ Create <strong>src/services/auth/context.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { User as UserInfo } from &quot;@react-native-google-signin/google-signin&quot;
 import { createContext, useContext } from &quot;react&quot;
@@ -1159,14 +1175,25 @@ import { createContext, useContext } from &quot;react&quot;
 export interface AuthContext {
   /** Initiate the Google Auth flow. Return boolean success. */
   signIn: () =&gt; Promise&lt;UserInfo[&quot;user&quot;] | false&gt;
+
   /** Log the user out from Google Auth. Return boolean success. */
   signOut: () =&gt; Promise&lt;boolean&gt;
+
+  /** Error if any Google API returns an error. Undefined if no errors in the last API call. */
+  error?: Error | undefined
+
   /** Boolean if the user is authenticated or not. Undefined if unknown. */
   isAuthenticated?: boolean
+
+  /** Boolean if a Google API call is being made. */
+  isPending: boolean
+
   /** Google Auth User object. Undefined if not signed in. */
   user?: UserInfo[&quot;user&quot;]
+
   /** List of Google Auth scopes. Undefined if not signed in. */
   scopes?: UserInfo[&quot;scopes&quot;]
+
   /** Google Auth Token. Undefined if not signed in. */
   idToken?: UserInfo[&quot;idToken&quot;]
 }
@@ -1219,7 +1246,7 @@ describe(&quot;Screens/Settings&quot;, () =&gt; {
         &lt;/NavigationContainer&gt;
       &lt;/AuthProvider&gt;,
     )
-    expect(screen.getByText(/Mock Sign in with Google/i)).toBeOnTheScreen()
+    expect(screen.getByText(/Loading…/i)).not.toBeNull()
   })
 
   it(&quot;switches to dark mode&quot;, () =&gt; {
@@ -1278,7 +1305,7 @@ describe(&quot;Services/Auth/AuthProvider&quot;, () =&gt; {
         &lt;Text&gt;{user?.photo}&lt;/Text&gt;
         &lt;Text&gt;{user?.givenName}&lt;/Text&gt;
         &lt;Text&gt;{user?.familyName}&lt;/Text&gt;
-        {isAuthenticated &amp;&amp; &lt;Button onPress={signOut}&gt;Sign Out&lt;/Button&gt;}
+        {isAuthenticated &amp;&amp; &lt;Button onPress={signOut}&gt;Sign out&lt;/Button&gt;}
         {isAuthenticated === false &amp;&amp; &lt;GoogleSigninButton onPress={signIn} /&gt;}
       &lt;/View&gt;
     )
@@ -1304,6 +1331,7 @@ describe(&quot;Services/Auth/AuthProvider&quot;, () =&gt; {
 })
 
 </code></pre>
+<div line-highlight='43, only'></div>
 <h3>Exercise 1</h3>
 <p>First, we need to finish implementing the <code>AuthContext</code> in <code>AuthProvider</code>:</p>
 <ul>
@@ -1317,7 +1345,7 @@ describe(&quot;Services/Auth/AuthProvider&quot;, () =&gt; {
 <p>Finally, in <code>Settings.js</code>:</p>
 <ul>
 <li>Use the hooks from <code>AuthContext</code> to grab the <code>user</code> state, and <code>signIn</code> and <code>signOut</code> callbacks.</li>
-<li>Implement a conditional to render the a button to Sign In or Sign Out based on the user's state.</li>
+<li>Implement a conditional to render the a button to Sign In or Sign Out based on the user’s state.</li>
 </ul>
 <h3>Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
@@ -1493,6 +1521,7 @@ export default App
 <pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
 import { StyleSheet, Switch, View } from &quot;react-native&quot;
 
+import Loading from &quot;../../components/Loading&quot;
 import Button from &quot;../../design/Button&quot;
 import Card from &quot;../../design/Card&quot;
 import Screen from &quot;../../design/Screen&quot;
@@ -1501,20 +1530,33 @@ import Typography from &quot;../../design/Typography&quot;
 import { useAuthentication, useUser } from &quot;../../services/auth&quot;
 
 const Settings: React.FC = () =&gt; {
-  const { signIn, signOut } = useAuthentication()
+  const { error, isPending, signIn, signOut } = useAuthentication()
   const user = useUser()
   const { mode, setMode } = useThemeMode()
 
   return (
     &lt;Screen&gt;
       &lt;Card&gt;
-        {user ? (
+        {isPending ? (
+          &lt;Loading /&gt;
+        ) : user ? (
           &lt;&gt;
-            &lt;Typography variant=&quot;heading&quot;&gt;Welcome back, {user.name}&lt;/Typography&gt;
-            &lt;Button onPress={signOut}&gt;Sign Out&lt;/Button&gt;
+            &lt;Typography variant=&quot;heading&quot;&gt;Welcome back&lt;/Typography&gt;
+            &lt;Typography variant=&quot;body&quot;&gt;
+              {user.name || &quot;Unknown name&quot;}
+            &lt;/Typography&gt;
+            &lt;Button onPress={signOut}&gt;Sign out&lt;/Button&gt;
+            {error ? (
+              &lt;Typography variant=&quot;body&quot;&gt;Error: {error.message}&lt;/Typography&gt;
+            ) : null}
           &lt;/&gt;
         ) : (
-          &lt;GoogleSigninButton onPress={signIn} style={{ width: &quot;100%&quot; }} /&gt;
+          &lt;&gt;
+            &lt;GoogleSigninButton onPress={signIn} style={{ width: &quot;100%&quot; }} /&gt;
+            {error ? (
+              &lt;Typography variant=&quot;body&quot;&gt;Error: {error.message}&lt;/Typography&gt;
+            ) : null}
+          &lt;/&gt;
         )}
       &lt;/Card&gt;
       &lt;Card&gt;
@@ -1541,7 +1583,7 @@ const styles = StyleSheet.create({
 export default Settings
 
 </code></pre>
- <div line-highlight="11-13,19-26,only"></div>
+ <div line-highlight="4,12-14,20-40,only"></div>
 <p>✏️ Update <strong>src/services/auth/AuthProvider.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import {
   User as UserInfo,
@@ -1562,35 +1604,72 @@ export interface AuthProviderProps {
 }
 
 const AuthProvider: React.FC&lt;AuthProviderProps&gt; = ({ children }) =&gt; {
+  const [error, setError] = useState&lt;Error | undefined&gt;()
+  const [isPending, setIsPending] = useState&lt;boolean&gt;(true)
   const [userInfo, setUserInfo] = useState&lt;UserInfo | undefined&gt;()
 
   const signIn = useCallback(async () =&gt; {
     try {
+      setError(undefined)
+      setIsPending(true)
+
       const userInfo = await GoogleSignin.signIn()
+
+      setIsPending(false)
       setUserInfo(userInfo)
+
       return userInfo.user
     } catch (error) {
+      console.error(&quot;Call to GoogleSignin.signIn() failed with error:&quot;, error)
+
+      setError(error as Error)
+      setIsPending(false)
       setUserInfo(undefined)
-      console.error(&quot;GoogleSignin.signIn() error&quot;, error)
+
       return false
     }
   }, [])
 
   const signOut = useCallback(async () =&gt; {
     try {
+      setError(undefined)
+      setIsPending(true)
+
       await GoogleSignin.signOut()
+
+      setIsPending(false)
       setUserInfo(undefined)
+
       return true
     } catch (error) {
-      console.error(&quot;GoogleSignin.signOut() error&quot;, error)
+      console.error(&quot;Call to GoogleSignin.signOut() failed with error:&quot;, error)
+
+      setError(error as Error)
+      setIsPending(false)
+
       return false
     }
   }, [])
 
   useEffect(() =&gt; {
     async function run() {
-      const userInfo = await GoogleSignin.getCurrentUser()
-      setUserInfo(userInfo || undefined)
+      try {
+        setError(undefined)
+        setIsPending(true)
+
+        const userInfo = await GoogleSignin.getCurrentUser()
+
+        setIsPending(false)
+        setUserInfo(userInfo || undefined)
+      } catch (error) {
+        console.error(
+          &quot;Call to GoogleSignin.getCurrentUser() failed with error:&quot;,
+          error,
+        )
+
+        setError(error as Error)
+        setIsPending(false)
+      }
     }
 
     run()
@@ -1600,16 +1679,18 @@ const AuthProvider: React.FC&lt;AuthProviderProps&gt; = ({ children }) =&gt; {
     () =&gt; ({
       signIn,
       signOut,
+      error,
       isAuthenticated: userInfo
         ? true
         : userInfo === undefined
         ? false
         : undefined,
+      isPending,
       user: userInfo?.user,
       scopes: userInfo?.scopes,
       idToken: userInfo?.idToken,
     }),
-    [signIn, signOut, userInfo],
+    [error, isPending, signIn, signOut, userInfo],
   )
 
   return &lt;AuthContextProvider value={value}&gt;{children}&lt;/AuthContextProvider&gt;
@@ -1617,10 +1698,13 @@ const AuthProvider: React.FC&lt;AuthProviderProps&gt; = ({ children }) =&gt; {
 
 export default AuthProvider
 
-export function useAuthentication(): Pick&lt;AuthContext, &quot;signIn&quot; | &quot;signOut&quot;&gt; {
-  const { signIn, signOut } = useAuthContext()
+export function useAuthentication(): Pick&lt;
+  AuthContext,
+  &quot;error&quot; | &quot;isPending&quot; | &quot;signIn&quot; | &quot;signOut&quot;
+&gt; {
+  const { error, isPending, signIn, signOut } = useAuthContext()
 
-  return { signIn, signOut }
+  return { error, isPending, signIn, signOut }
 }
 
 export function useAuthenticated(): boolean | undefined {
@@ -1636,7 +1720,7 @@ export function useUser(): UserInfo[&quot;user&quot;] | undefined {
 }
 
 </code></pre>
- <div line-highlight="5,15-16,19-20,22-31,34-43,46-49,52,91,only"></div>
+ <div line-highlight="5,15-16,19-22,24-27,29,31-32,34-36,38-40,42,46-49,51,53-54,56-58,60-61,63-65,69-71,73,75-81,83-86,89,95,101,106,114-118,120,133,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, with some of the new tricks we’ve learned we’ll also add <a href="./offline-support">Offline Support</a> so our app is still usable during network outages.</p>
@@ -1678,7 +1762,7 @@ export function useUser(): UserInfo[&quot;user&quot;] | undefined {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-native/16-security-and-auth/security-and-auth.md"},"description":"Learn about OAuth, google-signin, and how to secure your React Native app. \n","name":"learn-react-native/security-and-auth","title":"Security and Authentication","type":"page","parent":"learn-react-native","order":16,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-native/16-security-and-auth/security-and-auth.md"},"description":"Learn about security, authentication, and authorization by implementing Google Sign-In. \n","name":"learn-react-native/security-and-auth","title":"Security and Authentication","type":"page","parent":"learn-react-native","order":16,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     

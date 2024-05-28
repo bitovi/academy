@@ -364,7 +364,7 @@
            						">
 						<a class="page"
 							href="security-and-auth.html"
-							title="Learn about OAuth, google-signin, and how to secure your React Native app.">
+							title="Learn about security, authentication, and authorization by implementing Google Sign-In.">
 							Security and Authentication
 						</a>
 						
@@ -825,7 +825,7 @@ const styles = StyleSheet.create({
 export default Settings
 
 </code></pre>
- <div line-highlight="1,16,39,only"></div>
+ <div line-highlight="1,13,16,21,23-24,27,39,only"></div>
 <h3>Verify 1</h3>
 <p>TODO: We need tests for this exercise.</p>
 <h3>Exercise 1</h3>
@@ -842,6 +842,7 @@ export default Settings
 import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
 import { StyleSheet, Switch, View } from &quot;react-native&quot;
 
+import Loading from &quot;../../components/Loading&quot;
 import Button from &quot;../../design/Button&quot;
 import Card from &quot;../../design/Card&quot;
 import Screen from &quot;../../design/Screen&quot;
@@ -850,7 +851,7 @@ import Typography from &quot;../../design/Typography&quot;
 import { useAuthentication, useUser } from &quot;../../services/auth&quot;
 
 const Settings: React.FC = () =&gt; {
-  const { signIn, signOut } = useAuthentication()
+  const { error, isPending, signIn, signOut } = useAuthentication()
   const user = useUser()
   const { mode, setMode } = useThemeMode()
   const { isConnected } = useNetInfo()
@@ -858,13 +859,26 @@ const Settings: React.FC = () =&gt; {
   return (
     &lt;Screen&gt;
       &lt;Card&gt;
-        {user ? (
+        {isPending ? (
+          &lt;Loading /&gt;
+        ) : user ? (
           &lt;&gt;
-            &lt;Typography variant=&quot;heading&quot;&gt;Welcome back, {user.name}&lt;/Typography&gt;
-            &lt;Button onPress={signOut}&gt;Sign Out&lt;/Button&gt;
+            &lt;Typography variant=&quot;heading&quot;&gt;Welcome back&lt;/Typography&gt;
+            &lt;Typography variant=&quot;body&quot;&gt;
+              {user.name || &quot;Unknown name&quot;}
+            &lt;/Typography&gt;
+            &lt;Button onPress={signOut}&gt;Sign out&lt;/Button&gt;
+            {error ? (
+              &lt;Typography variant=&quot;body&quot;&gt;Error: {error.message}&lt;/Typography&gt;
+            ) : null}
           &lt;/&gt;
         ) : (
-          &lt;GoogleSigninButton onPress={signIn} style={{ width: &quot;100%&quot; }} /&gt;
+          &lt;&gt;
+            &lt;GoogleSigninButton onPress={signIn} style={{ width: &quot;100%&quot; }} /&gt;
+            {error ? (
+              &lt;Typography variant=&quot;body&quot;&gt;Error: {error.message}&lt;/Typography&gt;
+            ) : null}
+          &lt;/&gt;
         )}
       &lt;/Card&gt;
       &lt;Card&gt;
@@ -877,8 +891,8 @@ const Settings: React.FC = () =&gt; {
         &lt;/View&gt;
       &lt;/Card&gt;
       &lt;Card&gt;
-        &lt;Typography&gt;
-          Connection Status: {isConnected ? &quot;Online&quot; : &quot;Offline&quot;}
+        &lt;Typography variant=&quot;title&quot;&gt;
+          Connection status: {isConnected ? &quot;Online&quot; : &quot;Offline&quot;}
         &lt;/Typography&gt;
       &lt;/Card&gt;
     &lt;/Screen&gt;
@@ -896,7 +910,7 @@ const styles = StyleSheet.create({
 export default Settings
 
 </code></pre>
- <div line-highlight="16,39-43,only"></div>
+ <div line-highlight="5,14,17,22-24,26-33,36-41,53-57,only"></div>
 <p></details></p>
 <h2>Objective 2: Store restaurant favorites on device</h2>
 <p>Now that you can detect when the device is online or offline, let’s build a feature that can work offline!</p>
@@ -1893,7 +1907,7 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
 export default RestaurantDetails
 
 </code></pre>
- <div line-highlight="12-17,28,only"></div>
+ <div line-highlight="12-17,28,62,only"></div>
 <h3>Verify 2</h3>
 <p>✏️ Create <strong>src/services/pmo/favorite/hooks.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react-native&quot;

@@ -367,7 +367,7 @@
            						">
 						<a class="page"
 							href="security-and-auth.html"
-							title="Learn about OAuth, google-signin, and how to secure your React Native app.">
+							title="Learn about security, authentication, and authorization by implementing Google Sign-In.">
 							Security and Authentication
 						</a>
 						
@@ -1082,7 +1082,7 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
     &lt;Screen&gt;
       &lt;RestaurantHeader restaurant={restaurant} /&gt;
       &lt;Button onPress={() =&gt; console.warn(&quot;Place an order&quot;)}&gt;
-        Place My Order!
+        Place an order
       &lt;/Button&gt;
       {/* Exercise: Add Button that links to RestaurantOrder page. */}
     &lt;/Screen&gt;
@@ -1664,7 +1664,7 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
           navigation.navigate(&quot;RestaurantOrder&quot;, { slug: slug })
         }}
       &gt;
-        Place My Order!
+        Place an order
       &lt;/Button&gt;
     &lt;/Screen&gt;
   )
@@ -2323,7 +2323,7 @@ describe(&quot;Screens/RestaurantOrder&quot;, () =&gt; {
 <li>Associate the <code>&lt;Typography&gt;</code> and <code>&lt;TextInput&gt;</code> components with the correct props for accessibility.</li>
 <li>Add the <code>onChangeText</code> and <code>value</code> props to the <code>&lt;TextInput&gt;</code> component.</li>
 </ul>
-<p>Additionally, Let's update the <code>FormSwitch</code> component to:</p>
+<p>Additionally, let’s update the <code>FormSwitch</code> component to:</p>
 <ul>
 <li>Associate the <code>&lt;Switch&gt;</code> component with the correct props for accessibility.</li>
 </ul>
