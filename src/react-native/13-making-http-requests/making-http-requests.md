@@ -127,7 +127,7 @@ In our project, we’ll utilize environment variables to set ourselves up to be 
 
 #### Using environment variables with react-native-dotenv
 
-When using React Native with environment variables, you can utilize a package like "react-native-dotenv" to manage environment variables. Here's how you can adapt the provided context for a React Native application:
+When using React Native with environment variables, you can utilize a package like "react-native-dotenv" to manage environment variables. Here’s how you can adapt the provided context for a React Native application:
 
 Here’s how we can use it: in our project’s root directory, we can create a `.env` file with variables like this:
 

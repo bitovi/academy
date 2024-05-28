@@ -10,7 +10,7 @@ export interface MapProps {
 const Map: React.FC<MapProps> = ({ restaurants }) => {
   return (
     <MapView
-      style={{ minHeight: "100%", height: 500 }}
+      style={{ minHeight: "100%" }}
       provider={PROVIDER_GOOGLE}
       initialRegion={{
         ...restaurants[0].coordinate,
