@@ -2,7 +2,7 @@
 @parent learn-react-native 20
 @outline 3
 
-@description Learn how to build Android App Bundles (AAB).
+@description Learn how to build Android App Bundle (AAB) files.
 
 @body
 
@@ -10,40 +10,56 @@
 
 In this section, you will:
 
-- Create a build.
-- Understand the difference between APK and AAB.
-- Sign your app.
-- Cover EAS production builds.
+- Learn about the differences between APK and AAB files.
+- Build an AAB file.
 
-## Objective 1: Create a build and verify that the build (AAB) is generated
+## Objective 1: Create an Android App Bundle (AAB)
 
-### Creating a Build
+When developing Android applications, understanding the different formats used for packaging and distributing your app is crucial.
+Two primary formats you’ll encounter are the Android App Bundle (AAB) and the Android Package (APK).
 
-To create an Android build of our React Native app, we can run the `react-native build-android --mode=release` command to generate an Android App Bundle (AAB) file. You are able to create an AAB with or without signing it. However, if you want to upload the AAB to the Google Play store, you must sign it using an upload key keystore.
+Each serves distinct purposes and offers unique benefits.
+Let’s dive into what these formats are and why they matter.
 
-### APK vs AAB
+### What is an APK?
 
-An Android Package (APK) is the traditional format used to distribute and install Android apps. It is a zip file that contains all the necessary files for the app to run on an Android device. APKs can be directly installed onto devices or through app stores like Google Play. However, APKs are not optimized and contain all resources for every device configuration, leading to larger file sizes.
+An Android Package (APK) is the traditional file format used to distribute and install applications on Android devices.
+Essentially, an APK is a compressed archive that contains all the necessary components for an app to run, including the compiled code, resources, assets, and manifest file.
+When you download an app from the Google Play Store or another source, it typically comes in the form of an APK.
 
-On the other hand, an Android App Bundle (AAB) is a publishing format that includes all the compiled code and resources of an app, but does not create a final APK. Instead, it allows the Google Play store to generate an APK for each different device configuration: different screen densities, CPU architectures, and languages. Users cannot directly install AABs and they must be uploaded to the Google Play Store for distribution. Because the Play Store generates optimized APKs for each device, AABs are smaller in size which results in faster downloads, reduced storage space, and better performance.
+Key features of an APK:
 
-### Signing
+- **Direct installation:** APK files can be installed directly onto Android devices, either through the Play Store or by sideloading.
+- **Universal packaging:** An APK contains all resources and code required for every possible device configuration, such as different screen sizes, densities, and CPU architectures.
+- **Larger file size:** Because it includes resources for all configurations, an APK file can be quite large and may include unnecessary data for a particular device.
 
-Android requires that apps be signed with a certificate before they can be installed on a device. This is to ensure that the app has not been tampered with and that it is safe to run. The signing process involves generating an upload key, instructions for which can be found in the [React Native documentation](https://reactnative.dev/docs/signed-apk-android#generating-an-upload-key), and using the upload key to sign the app.
+### What is an AAB?
 
-Once the private key has been generated, you must update your Gradle variables and config before building the app using the `npx react-native build-android --mode="release"` command.
+An Android App Bundle (AAB) is a more modern and efficient format introduced by Google.
+Unlike an APK, an AAB is not a final package that can be installed on a device.
+Instead, it contains all the compiled code and resources of an app, but in a way that allows Google Play to generate optimized APKs specifically tailored for each device configuration.
 
-The signed AAB can be found under `android/app/build/outputs/bundle/release/app-release.aab` and can now be uploaded to the Google Play store.
+Key features of an AAB:
 
-### Getting build onto device
+- **Optimized distribution:** When you upload an AAB to the Google Play Store, the Play Store automatically generates and serves optimized APKs for each user’s device. This means the downloaded app will only contain the resources needed for that specific device, resulting in smaller download sizes and improved performance.
+- **Mandatory for Play Store:** Starting in 2021, Google Play requires new apps to be published using the AAB format.
+- **Efficient updates:** By using AAB, incremental updates can be more efficient as only the necessary changes are downloaded, reducing the update size.
 
-If you would like to test the release build on a device, you can run the `npm run android -- --mode="release"` command. However, this will only work if you followed the signing instructions that were mentioned earlier.
+### Building an AAB
 
-Keep in mind that when you sign an AAB locally it will change the signature of the app. The Google Sign-In API relies on the app's signature to verify the app's identity, so the newly signed app will not be able to use Google Sign-In API.
+AAB files can be built by using this command provided by React Native:
 
-### EAS Production Build
+```shell
+react-native build-android --mode=release
+```
 
-EAS, or Expo Application Services, is a service provided by Expo to help streamline the process of building and deploying React Native applications. It is a cloud-based solution that allows us to create production builds, submit them to the app stores, and manage OTA (over-the-air) updates.
+The AAB will be in this location:
+
+```
+android/app/build/outputs/bundle/release/app-release.aab
+```
+
+You are able to create an AAB with or without signing it. However, if you want to upload the AAB to the Google Play store, you must sign it using an upload key keystore.
 
 ### Setup 1
 
@@ -51,21 +67,58 @@ EAS, or Expo Application Services, is a service provided by Expo to help streaml
 
 @diff ../../../exercises/react-native/19-performance/01-solution/package.json ../../../exercises/react-native/20-building/01-solution/package.json only
 
+### Verify 1
+
+The build logs will look something like this (but much, much longer):
+
+```
+npm run android:build
+
+> PlaceMyOrder@0.0.1 android:build
+> react-native build-android --mode=release
+
+info Building the app...
+
+> Task :app:createBundleReleaseJsAndAssets
+debug Reading Metro config from /Users/bitovi/PlaceMyOrder/metro.config.js
+warning: the transform cache was reset.
+                Welcome to Metro v0.80.9
+              Fast - Scalable - Integrated
+
+# Many lines later…
+
+> Task :react-native-gesture-handler:compileReleaseKotlin
+w: file:///Users/bitovi/PlaceMyOrder/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/RNGestureHandlerPackage.kt:69:42 'constructor ReactModuleInfo(String!, String!, Boolean, Boolean, Boolean, Boolean, Boolean)' is deprecated. Deprecated in Java
+w: file:///Users/bitovi/PlaceMyOrder/node_modules/react-native-gesture-handler/android/src/main/java/com/swmansion/gesturehandler/core/FlingGestureHandler.kt:25:26 Parameter 'event' is never used
+
+> Task :react-native-screens:compileReleaseJavaWithJavac
+Note: /Users/bitovi/PlaceMyOrder/node_modules/react-native-screens/android/src/paper/java/com/swmansion/rnscreens/NativeScreensModuleSpec.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+BUILD SUCCESSFUL in 30s
+216 actionable tasks: 211 executed, 5 up-to-date
+```
+
+@highlight 1, 24, only
+
 ### Exercise 1
 
-✏️ Run to generate AAB file:
+✏️ Run the script to generate the AAB file:
 
-```bash
+```shell
 npm run android:build
 ```
 
 ### Solution 1
 
-If there is a successful build, the file **android/app/build/outputs/bundle/release/app-release.aab** will be created.
+After the build runs successfully, you can find the AAB in your project:
 
-TODO: What happens if there isn’t a successful build? 😅
+```
+android/app/build/outputs/bundle/release/app-release.aab
+```
 
-TODO: Can the AAB be run in the emulator? If so, we should instruct them to do that.
+Since the `aab` file is really a `zip` in disguise, change the filename to `app-release.zip` and open it.
+What can you find?
 
 ## Next steps
 
