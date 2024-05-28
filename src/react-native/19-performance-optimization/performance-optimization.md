@@ -23,7 +23,7 @@ Let’s lazy load the `Map` view in our app so it launches faster.
 
 ### JavaScript bundle size
 
-When our app is transpiled from TypeScript to JavaScript, a “bundle” (file) is created with all of the JavaScript code, along with any additional assets (like images).
+A “bundle” (file) is created with all of the JavaScript code when the application is built, along with any additional assets (like images).
 As more code is added to the application, the size of this JavaScript bundle will increase.
 
 The larger bundle can lead to longer startup times for the application because the bundle must be loaded, parsed, and ran before the app can be used.
@@ -83,8 +83,23 @@ This can be in views where there is a large dependency (like our Maps view), or 
 
 ### Verify 1
 
-TODO: find where the bundles are built in dev so we can see the modules being split up.
-Alternatively, consider moving this page after the “building” page so we can look at the files being created.
+Watch the output of the `npm start` command while it’s running.
+
+When you’ve completed this exercise, you’ll notice that there’s a new bundle loaded when you go to the Map view:
+
+```
+BUILD SUCCESSFUL in 7s
+199 actionable tasks: 15 executed, 184 up-to-date
+info Connecting to the development server...
+info Starting the app on "emulator-5554"...
+Starting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.placemyorder/.MainActivity }
+ BUNDLE  ./index.js
+
+ LOG  Running "PlaceMyOrder" with {"rootTag":11}
+ BUNDLE  src/screens/RestaurantList/components/Map/index.ts
+```
+
+@highlight 9
 
 ### Exercise 1
 
@@ -95,7 +110,7 @@ Inside of `RestaurantList.tsx`:
 
 ### Solution 1
 
-If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
+If you’ve implemented the solution correctly, you will see the new `BUNDLE` line logged while the server is running.
 
 <details>
 <summary>Click to see the solution</summary>
@@ -108,4 +123,4 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 ## Next steps
 
-Now we’ve got a complete and performant application. Let’s finish out our work by learning about [Building React Native Apps](./building)
+Now we’ve got a complete and performant application. Let’s finish out our work by learning about [Building React Native Apps](./building).
