@@ -717,7 +717,7 @@ covering CanJS core libraries.">
 <li>The application exchanges the authorization code for an access token.</li>
 <li>The application uses the access token to access the secured resources.</li>
 </ol>
-<h3>Implement Google Sign-In</h3>
+<h3>Implementing Google Sign-In</h3>
 <p>The <code>@react-native-google-signin/google-signin</code> package provides a simple way to integrate Google Sign-In into our React Native apps. It handles the OAuth flow, allowing users to sign in with their Google accounts and obtain an access token that can be used to access Google services on their behalf.</p>
 <p>To use Google Sign-In in your React Native app, you must configure your application in the Google Cloud Console and obtain a client ID. This client ID is used to identify your application when requesting access tokens from Google.</p>
 <ol>
@@ -729,16 +729,27 @@ covering CanJS core libraries.">
 </ol>
 <p>Now that we have a project set up in Google Cloud Console, we can start integrating Google Sign-In into our React Native app.</p>
 <h4>Configuring the package</h4>
-<pre><code class="language-tsx">import { GoogleSignin } from &quot;@react-native-google-signin/google-signin&quot;
+<p>It is mandatory to call the <code>configure</code> method before attempting to sign in.
+The <code>configure</code> method takes an object and is used to initialize your application for authentication with Google.
+The <code>scopes</code> parameter is an array of strings representing the permissions the application is requesting.
+The <code>webClientId</code> parameter is the client ID of th project that is created in the Google Cloud Console.</p>
+<pre><code class="language-ts">import { GoogleSignin } from &quot;@react-native-google-signin/google-signin&quot;
+
+const googleOauthwebClientId = process.env.GOOGLE_OAUTH_CLIENT_ID
 
 GoogleSignin.configure({
-  scopes,
-  webClientId,
+  scopes: [&quot;openid&quot;, &quot;profile&quot;, &quot;email&quot;],
+  webClientId: googleOauthwebClientId,
 })
+
 </code></pre>
-<p>It is mandatory to call the <code>configure</code> method before attempting to sign in. The <code>configure</code> method takes an object and is used to initialize your application for authentication with Google. The <code>scopes</code> parameter is an array of strings representing the permissions the application is requesting. The <code>webClientId</code> parameter is the client ID of th project that is created in the Google Cloud Console.</p>
+<div line-highlight='5-8'></div>
 <h4>Signing in</h4>
-<pre><code class="language-tsx">import {
+<p>The <code>signIn</code> method is used to prompt a modal and allow the user to sign into their Google account from our application.
+This method returns a Promise that resolves to the user’s information if the sign-in is successful.
+This method is the first part of authorization OAuth flow.
+Once the user is signed in, we can use the <code>getTokens</code> method to retrieve an access token.</p>
+<pre><code class="language-ts">import {
   GoogleSignin,
   statusCodes,
 } from &quot;@react-native-google-signin/google-signin&quot;
@@ -749,22 +760,24 @@ const signIn = async () =&gt; {
     console.info(userInfo)
   } catch (error) {
     if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-      // user cancelled the login flow
+      // User cancelled the login flow.
     } else if (error.code === statusCodes.IN_PROGRESS) {
-      // operation is in progress already
+      // Operation is in progress already.
     } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-      // play services not available or outdated
+      // Play services not available or outdated.
     } else {
-      // some other error happened
+      // Some other error happened.
     }
   }
 }
+
+export default signIn
+
 </code></pre>
-<p>The <code>signIn</code> method is used to prompt a modal and allow the user to sign into their Google account from our application.
-This method returns a Promise that resolves to the user’s information if the sign-in is successful.
-This method is the first part of authorization OAuth flow.
-Once the user is signed in, we can use the <code>getTokens</code> method to retrieve an access token.</p>
+<div line-highlight='8'></div>
 <h4>Getting the current user</h4>
+<p>The <code>getCurrentUser</code> method is used to retrieve the current signed-in user’s information.
+This method returns a Promise that resolves to the user’s information if the user is signed in.</p>
 <pre><code class="language-tsx">import { GoogleSignin } from &quot;@react-native-google-signin/google-signin&quot;
 
 const getCurrentUser = async () =&gt; {
@@ -772,17 +785,18 @@ const getCurrentUser = async () =&gt; {
   console.info(userInfo)
 }
 </code></pre>
-<p>The <code>getCurrentUser</code> method is used to retrieve the current signed-in user’s information.
-This method returns a Promise that resolves to the user’s information if the user is signed in.</p>
 <h4>Signing out</h4>
+<p>The <code>signOut</code> method is used to sign the current user out and revoke the access token.</p>
 <pre><code class="language-tsx">import { GoogleSignin } from &quot;@react-native-google-signin/google-signin&quot;
 
 const signOut = async () =&gt; {
   await GoogleSignin.signOut()
 }
 </code></pre>
-<p>The <code>signOut</code> method is used to sign the current user out and revoke the access token.</p>
 <h4>Using the <code>GoogleSigninButton</code></h4>
+<p>The <code>GoogleSigninButton</code> component is a pre-styled button that can be used to initiate the sign-in flow.
+The size, color, and whether the button is disabled can be customized using props.
+The <code>onPress</code> prop is used to specify the function to be called when the button is pressed.</p>
 <pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
 
 function Button() {
@@ -796,7 +810,6 @@ function Button() {
   )
 }
 </code></pre>
-<p>The <code>GoogleSigninButton</code> component is a pre-styled button that can be used to initiate the sign-in flow. The size, color, and whether the button is disabled can be customized using props. The <code>onPress</code> prop is used to specify the function to be called when the button is pressed.</p>
 <h3>Memoizing functions with <code>useCallback</code></h3>
 <p>The <code>useCallback</code> Hook is used to memoize functions so that they are not recreated on every render. When using a provider, it is important to memoize functions so that they do not cause unnecessary re-renders of components that depend on them.</p>
 <pre><code class="language-tsx">const memoizedCallback = useCallback(() =&gt; {
@@ -853,6 +866,47 @@ It provides the authentication state and methods to sign in and sign out to the 
 <p>✏️ Install the new dependency:</p>
 <pre><code class="language-bash">npm install @react-native-google-signin/google-signin@11
 </code></pre>
+<p>✏️ Update <strong>jest-setup.ts</strong> to be:</p>
+<pre><code class="language-ts">import &quot;@testing-library/react-native/extend-expect&quot;
+
+import &quot;react-native-gesture-handler/jestSetup&quot;
+import &quot;@react-native-google-signin/google-signin/jest/build/setup&quot;
+
+jest.mock(&quot;@react-navigation/native&quot;, () =&gt; {
+  const actualNav = jest.requireActual(&quot;@react-navigation/native&quot;)
+  return {
+    ...actualNav,
+    useNavigation: () =&gt; ({
+      navigate: jest.fn(),
+      setOptions: jest.fn(),
+    }),
+  }
+})
+
+jest.mock(&quot;./src/services/storage/storage&quot;, () =&gt;
+  require(&quot;./src/services/storage/storage.mock&quot;),
+)
+
+jest.mock(&quot;@react-native-async-storage/async-storage&quot;, () =&gt;
+  require(&quot;@react-native-async-storage/async-storage/jest/async-storage-mock&quot;),
+)
+
+const consoleError = console.error
+console.error = (message, ...args) =&gt; {
+  if (
+    typeof message === &quot;string&quot; &amp;&amp;
+    message.match(
+      /Warning: An update to .+ inside a test was not wrapped in act\(\.\.\.\)\./,
+    )
+  ) {
+    return
+  }
+
+  return consoleError(message, ...args)
+}
+
+</code></pre>
+ <div line-highlight="4,only"></div>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
@@ -1043,11 +1097,14 @@ PMO_ASSETS=https://www.place-my-order.com/
 </code></pre>
  <div line-highlight="1,only"></div>
 <p>✏️ Update <strong>.env</strong> to include your <code>GOOGLE_OAUTH_CLIENT_ID</code> key.</p>
+<p>✏️ Terminate the existing dev server and start it again:</p>
+<pre><code class="language-bash">npm run start
+</code></pre>
 <p>✏️ Update <strong>src/screens/Settings/Settings.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
-import { FC } from &quot;react&quot;
 import { StyleSheet, Switch, View } from &quot;react-native&quot;
 
+import Loading from &quot;../../components/Loading&quot;
 import Button from &quot;../../design/Button&quot;
 import Card from &quot;../../design/Card&quot;
 import Screen from &quot;../../design/Screen&quot;
@@ -1055,8 +1112,8 @@ import { useThemeMode } from &quot;../../design/theme&quot;
 import Typography from &quot;../../design/Typography&quot;
 import { useAuthentication, useUser } from &quot;../../services/auth&quot;
 
-const Settings: FC = () =&gt; {
-  // Exercise: use the hooks from the auth service to grab the 'user' state, and 'signIn' and 'signOut' callbacks.
+const Settings: React.FC = () =&gt; {
+  // Exercise: use the Hooks from the Auth service to get: error, isPending, signIn, signOut.
   const { mode, setMode } = useThemeMode()
 
   return (
@@ -1064,8 +1121,10 @@ const Settings: FC = () =&gt; {
       &lt;Card&gt;
         {/*
           Exercise:
+          - If the user is logged out: Render a button using the GoogleSigninButton.
           - If the user is logged in: Render a button using the signOut callback along with a welcome message.
-          - If the user is logged in: Exercise: Render a button using the GoogleSigninButton.
+          - If the Hook isPending: Render the Loading view.
+          - If the Hook has an error: Render the error message.
         */}
         &lt;Typography variant=&quot;heading&quot;&gt;&lt;/Typography&gt;
       &lt;/Card&gt;
@@ -1093,7 +1152,7 @@ const styles = StyleSheet.create({
 export default Settings
 
 </code></pre>
- <div line-highlight="1-2,5,10,12-13,19-24,only"></div>
+ <div line-highlight="1,4-5,10,13,19-26,only"></div>
 <p>✏️ Create <strong>src/services/auth/AuthProvider.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import {
   User as UserInfo,
@@ -1110,18 +1169,76 @@ GoogleSignin.configure({
   webClientId: googleOauthwebClientId,
 })
 
+export interface AuthProviderProps {
+  children: React.ReactNode
+}
+
 const AuthProvider: FC&lt;{ children: ReactNode }&gt; = ({ children }) =&gt; {
-  const [userInfo, setUserInfo] = useState&lt;UserInfo | null&gt;()
+  const [error, setError] = useState&lt;Error | undefined&gt;()
+  const [isPending, setIsPending] = useState&lt;boolean&gt;(true)
+  const [userInfo, setUserInfo] = useState&lt;UserInfo | undefined&gt;()
 
-  // Exercise: Implement `signIn` and `signOut` using `useCallback`.
+  const signIn = async () =&gt; {
+    // Exercise: Implement `signIn` with `useCallback`.
+    try {
+      setError(undefined)
+      setIsPending(true)
 
-  const signIn = async () =&gt; {}
+      // Exercise: Use the GoogleSignin API to sign in the user.
 
-  const signOut = async () =&gt; {}
+      setIsPending(false)
+      setUserInfo(userInfo)
+
+      return userInfo.user
+    } catch (error) {
+      console.error(&quot;Call to GoogleSignin.signIn() failed with error:&quot;, error)
+
+      setError(error as Error)
+      setIsPending(false)
+      setUserInfo(undefined)
+
+      return false
+    }
+  }
+
+  const signOut = async () =&gt; {
+    // Exercise: Implement `signOut` with `useCallback`.
+    try {
+      setError(undefined)
+      setIsPending(true)
+
+      // Exercise: Use the GoogleSignin API to sign out the user.
+
+      setIsPending(false)
+      setUserInfo(undefined)
+
+      return true
+    } catch (error) {
+      console.error(&quot;Call to GoogleSignin.signOut() failed with error:&quot;, error)
+
+      setError(error as Error)
+      setIsPending(false)
+
+      return false
+    }
+  }
 
   useEffect(() =&gt; {
     async function run() {
-      // Exercise: When a sign in is successful, update the user.
+      try {
+        setError(undefined)
+        setIsPending(true)
+
+        // Exercise: When a sign in is successful, update the user.
+      } catch (error) {
+        console.error(
+          &quot;Call to GoogleSignin.getCurrentUser() failed with error:&quot;,
+          error,
+        )
+
+        setError(error as Error)
+        setIsPending(false)
+      }
     }
 
     run()
@@ -1131,16 +1248,18 @@ const AuthProvider: FC&lt;{ children: ReactNode }&gt; = ({ children }) =&gt; {
     () =&gt; ({
       signIn,
       signOut,
+      error,
       isAuthenticated: userInfo
         ? true
         : userInfo === undefined
         ? false
         : undefined,
+      isPending,
       user: userInfo?.user,
       scopes: userInfo?.scopes,
       idToken: userInfo?.idToken,
     }),
-    [signIn, signOut, userInfo],
+    [error, isPending, signIn, signOut, userInfo],
   )
 
   return &lt;AuthContextProvider value={value}&gt;{children}&lt;/AuthContextProvider&gt;
@@ -1148,10 +1267,13 @@ const AuthProvider: FC&lt;{ children: ReactNode }&gt; = ({ children }) =&gt; {
 
 export default AuthProvider
 
-export function useAuthentication(): Pick&lt;AuthContext, &quot;signIn&quot; | &quot;signOut&quot;&gt; {
-  const { signIn, signOut } = useAuthContext()
+export function useAuthentication(): Pick&lt;
+  AuthContext,
+  &quot;error&quot; | &quot;isPending&quot; | &quot;signIn&quot; | &quot;signOut&quot;
+&gt; {
+  const { error, isPending, signIn, signOut } = useAuthContext()
 
-  return { signIn, signOut }
+  return { error, isPending, signIn, signOut }
 }
 
 export function useAuthenticated(): boolean | undefined {
@@ -1167,7 +1289,7 @@ export function useUser(): UserInfo[&quot;user&quot;] | undefined {
 }
 
 </code></pre>
-<div line-highlight='19, 26, only'></div>
+<div line-highlight='19, 27, only'></div>
 <p>✏️ Create <strong>src/services/auth/context.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { User as UserInfo } from &quot;@react-native-google-signin/google-signin&quot;
 import { createContext, useContext } from &quot;react&quot;
@@ -1213,6 +1335,7 @@ export function useAuthContext(): AuthContext {
 }
 
 </code></pre>
+<div line-highlight='4-28, only'></div>
 <p>✏️ Create <strong>src/services/auth/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./AuthProvider&quot;
 export * from &quot;./AuthProvider&quot;
@@ -1271,7 +1394,6 @@ describe(&quot;Screens/Settings&quot;, () =&gt; {
 <p>✏️ Create <strong>src/services/auth/AuthProvider.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
 import { render, screen, fireEvent } from &quot;@testing-library/react-native&quot;
-import { FC } from &quot;react&quot;
 import { View, Text } from &quot;react-native&quot;
 
 import Button from &quot;../../design/Button&quot;
@@ -1292,7 +1414,7 @@ afterAll(() =&gt; {
 })
 
 describe(&quot;Services/Auth/AuthProvider&quot;, () =&gt; {
-  const TestComponent: FC = () =&gt; {
+  const TestComponent: React.FC = () =&gt; {
     const isAuthenticated = useAuthenticated()
     const { signIn, signOut } = useAuthentication()
     const user = useUser()
@@ -1583,7 +1705,7 @@ const styles = StyleSheet.create({
 export default Settings
 
 </code></pre>
- <div line-highlight="4,12-14,20-40,only"></div>
+ <div line-highlight="13-14,20-40,only"></div>
 <p>✏️ Update <strong>src/services/auth/AuthProvider.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import {
   User as UserInfo,
@@ -1594,6 +1716,7 @@ import { useCallback, useEffect, useMemo, useState } from &quot;react&quot;
 import { AuthContext, AuthContextProvider, useAuthContext } from &quot;./context&quot;
 
 const googleOauthwebClientId = process.env.GOOGLE_OAUTH_CLIENT_ID
+
 GoogleSignin.configure({
   scopes: [&quot;openid&quot;, &quot;profile&quot;, &quot;email&quot;],
   webClientId: googleOauthwebClientId,
@@ -1720,7 +1843,7 @@ export function useUser(): UserInfo[&quot;user&quot;] | undefined {
 }
 
 </code></pre>
- <div line-highlight="5,15-16,19-22,24-27,29,31-32,34-36,38-40,42,46-49,51,53-54,56-58,60-61,63-65,69-71,73,75-81,83-86,89,95,101,106,114-118,120,133,only"></div>
+ <div line-highlight="5,20,25,30,47,52,66,74,77,85,90,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>Next, with some of the new tricks we’ve learned we’ll also add <a href="./offline-support">Offline Support</a> so our app is still usable during network outages.</p>
