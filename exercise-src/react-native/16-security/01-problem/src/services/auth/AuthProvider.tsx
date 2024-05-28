@@ -13,18 +13,76 @@ GoogleSignin.configure({
   webClientId: googleOauthwebClientId,
 })
 
+export interface AuthProviderProps {
+  children: React.ReactNode
+}
+
 const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [userInfo, setUserInfo] = useState<UserInfo | null>()
+  const [error, setError] = useState<Error | undefined>()
+  const [isPending, setIsPending] = useState<boolean>(true)
+  const [userInfo, setUserInfo] = useState<UserInfo | undefined>()
 
-  // Exercise: Implement `signIn` and `signOut` using `useCallback`.
+  const signIn = async () => {
+    // Exercise: Implement `signIn` with `useCallback`.
+    try {
+      setError(undefined)
+      setIsPending(true)
 
-  const signIn = async () => {}
+      // Exercise: Use the GoogleSignin API to sign in the user.
 
-  const signOut = async () => {}
+      setIsPending(false)
+      setUserInfo(userInfo)
+
+      return userInfo.user
+    } catch (error) {
+      console.error("Call to GoogleSignin.signIn() failed with error:", error)
+
+      setError(error as Error)
+      setIsPending(false)
+      setUserInfo(undefined)
+
+      return false
+    }
+  }
+
+  const signOut = async () => {
+    // Exercise: Implement `signOut` with `useCallback`.
+    try {
+      setError(undefined)
+      setIsPending(true)
+
+      // Exercise: Use the GoogleSignin API to sign out the user.
+
+      setIsPending(false)
+      setUserInfo(undefined)
+
+      return true
+    } catch (error) {
+      console.error("Call to GoogleSignin.signOut() failed with error:", error)
+
+      setError(error as Error)
+      setIsPending(false)
+
+      return false
+    }
+  }
 
   useEffect(() => {
     async function run() {
-      // Exercise: When a sign in is successful, update the user.
+      try {
+        setError(undefined)
+        setIsPending(true)
+
+        // Exercise: When a sign in is successful, update the user.
+      } catch (error) {
+        console.error(
+          "Call to GoogleSignin.getCurrentUser() failed with error:",
+          error,
+        )
+
+        setError(error as Error)
+        setIsPending(false)
+      }
     }
 
     run()
@@ -34,16 +92,18 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
     () => ({
       signIn,
       signOut,
+      error,
       isAuthenticated: userInfo
         ? true
         : userInfo === undefined
         ? false
         : undefined,
+      isPending,
       user: userInfo?.user,
       scopes: userInfo?.scopes,
       idToken: userInfo?.idToken,
     }),
-    [signIn, signOut, userInfo],
+    [error, isPending, signIn, signOut, userInfo],
   )
 
   return <AuthContextProvider value={value}>{children}</AuthContextProvider>
@@ -51,10 +111,13 @@ const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
 export default AuthProvider
 
-export function useAuthentication(): Pick<AuthContext, "signIn" | "signOut"> {
-  const { signIn, signOut } = useAuthContext()
+export function useAuthentication(): Pick<
+  AuthContext,
+  "error" | "isPending" | "signIn" | "signOut"
+> {
+  const { error, isPending, signIn, signOut } = useAuthContext()
 
-  return { signIn, signOut }
+  return { error, isPending, signIn, signOut }
 }
 
 export function useAuthenticated(): boolean | undefined {
