@@ -1616,6 +1616,34 @@ export const useFavorite = (
 The Hook can check if the API response was good and store the <code>_id</code> if it was.</p>
 <p>If there was an issue with the API call (e.g. the server was down, the device was offline, etc.) then there won’t be an <code>_id</code> in our Async Storage and we’ll know that we need to submit that favorite to the API.</p>
 <h3>Setup 2</h3>
+<p>✏️ Create <strong>src/services/pmo/favorite/interfaces.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export interface Favorite {
+  userId: string
+  restaurantId: string
+  favorite: boolean
+  datetimeUpdated: number
+  _id?: string
+}
+
+export interface FavoritesResponse {
+  data: Favorite[] | undefined
+  error: Error | undefined
+  isPending: boolean
+}
+
+export interface FavoriteResponse {
+  data: Favorite | undefined
+  error: Error | undefined
+  isPending: boolean
+}
+
+export interface StoredFavorites {
+  lastSynced: number
+  favorites: Favorite[]
+}
+
+</code></pre>
+<div line-highlight='1, 9, 15, 21, only'></div>
 <p>✏️ Create <strong>src/services/pmo/favorite/hooks.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
 
@@ -2054,7 +2082,8 @@ describe(&quot;Screens/RestaurantDetails&quot;, () =&gt; {
 <li>If there’s an error: Render the error message.</li>
 </ul>
 <h3>Solution 2</h3>
-<p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
+<p>If you’ve implemented the solution correctly, you will be able to sign in and out of your Google account within the application!</p>
+<p>You can test the error message by tapping “Sign in” and dismissing the modal.</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> to be:</p>
@@ -2406,7 +2435,7 @@ export const syncWithServer = async (userId: string): Promise&lt;void&gt; =&gt; 
 
 </code></pre>
 <div line-highlight='81-95, only'></div>
-<h3>Updating favorites modified on the device</h3>
+<h3>Updating storage with the changes</h3>
 <p>Last, the Hook will update Async Storage with all the changes that have accumulated through the sync process:</p>
 <pre><code class="language-ts">import { getData, storeData } from &quot;../../storage&quot;
 import { apiRequest } from &quot;../api&quot;
@@ -2711,6 +2740,123 @@ export default FavoritesSync
 
 </code></pre>
 <div line-highlight='9, only'></div>
+<p>✏️ Create <strong>src/services/pmo/favorite/sync.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import { getData, storeData } from &quot;../../storage&quot;
+import { apiRequest } from &quot;../api&quot;
+
+import {
+  Favorite,
+  FavoriteResponse,
+  FavoritesResponse,
+  StoredFavorites,
+} from &quot;./interfaces&quot;
+
+export const syncWithServer = async (userId: string): Promise&lt;void&gt; =&gt; {
+  // Fetch the list of favorites from the server.
+  const { data: apiResponse } = await apiRequest&lt;FavoritesResponse&gt;({
+    method: &quot;GET&quot;,
+    path: &quot;/favorites&quot;,
+    params: {
+      userId: userId,
+    },
+  })
+
+  // Get the list of favorites in storage.
+  const favoriteRestaurants = await getData&lt;StoredFavorites&gt;(
+    &quot;favorite-restaurants&quot;,
+  )
+
+  // Create an Object with the restaurantId as the key and full Favorite as the value.
+  const favoriteRestaurantMap: { [key: string]: Favorite } = {}
+  if (favoriteRestaurants &amp;&amp; favoriteRestaurants.favorites) {
+    favoriteRestaurants.favorites.forEach((storedFavorite) =&gt; {
+      favoriteRestaurantMap[storedFavorite.restaurantId] = storedFavorite
+    })
+  }
+
+  if (apiResponse &amp;&amp; apiResponse.data) {
+    // Iterate through the list of favorites returned by the server:
+    const favoritesUpdatedOnServer = apiResponse.data.filter((apiFavorite) =&gt; {
+      const storedFavorite = favoriteRestaurantMap[apiFavorite.restaurantId]
+      // If the server datetimeUpdated is later than the datetimeUpdated in storage, or if the favorite is not in storage:
+      const serverDatetimeIsLaterThanStorage = storedFavorite
+        ? apiFavorite.datetimeUpdated &gt; storedFavorite.datetimeUpdated
+        : true
+      return serverDatetimeIsLaterThanStorage
+    })
+
+    const idsOfFavoritesUpdatedOnServer = favoritesUpdatedOnServer.map(
+      (apiFavorite) =&gt; {
+        if (favoriteRestaurantMap[apiFavorite.restaurantId]) {
+          // Update the object that came from storage.
+          favoriteRestaurantMap[apiFavorite.restaurantId]._id = apiFavorite._id
+          favoriteRestaurantMap[apiFavorite.restaurantId].datetimeUpdated =
+            apiFavorite.datetimeUpdated
+          favoriteRestaurantMap[apiFavorite.restaurantId].favorite =
+            apiFavorite.favorite
+        } else {
+          // Create the favorite in the map; this will be added to storage later.
+          favoriteRestaurantMap[apiFavorite.restaurantId] = apiFavorite
+        }
+
+        // Keep this in an array/set to reference below…
+        return apiFavorite._id
+      },
+    )
+
+    // Query storage for favorites updated since the lastSynced datetime:
+    const favoritesUpdatedWhileOffline =
+      favoriteRestaurants?.favorites.filter((storedFavorite) =&gt; {
+        const favoriteUpdatedSinceLastSync =
+          storedFavorite.datetimeUpdated &gt; favoriteRestaurants?.lastSynced
+        return favoriteUpdatedSinceLastSync
+      }) || []
+
+    // If the favorite isn’t in the array/set created above
+    const favoritesToUpdateOnServer = favoritesUpdatedWhileOffline.filter(
+      (storedFavorite) =&gt; {
+        const storedFavoriteIsMoreRecentThanServer =
+          idsOfFavoritesUpdatedOnServer.includes(storedFavorite._id) === false
+        return storedFavoriteIsMoreRecentThanServer
+      },
+    )
+
+    // Call the API to update the favorite
+    favoritesToUpdateOnServer.map(async (storedFavorite) =&gt; {
+      const { data: updateFavoritesResponse } =
+        await apiRequest&lt;FavoriteResponse&gt;({
+          method: &quot;POST&quot;,
+          path: &quot;/favorites&quot;,
+          body: storedFavorite,
+        })
+
+      // Update the object that will be stored:
+      if (updateFavoritesResponse &amp;&amp; updateFavoritesResponse.data) {
+        favoriteRestaurantMap[storedFavorite.restaurantId] =
+          updateFavoritesResponse.data
+      }
+    })
+
+    // Update the lastSynced datetime in storage
+    const updatedFavoriteRestaurants = {
+      favorites: [] as Favorite[],
+      lastSynced: Date.now(),
+    }
+    for (const restaurantId in favoriteRestaurantMap) {
+      const favoriteRestaurant = favoriteRestaurantMap[restaurantId]
+      updatedFavoriteRestaurants.favorites.push(favoriteRestaurant)
+    }
+
+    // Update the stored data.
+    await storeData&lt;StoredFavorites&gt;(
+      &quot;favorite-restaurants&quot;,
+      updatedFavoriteRestaurants,
+    )
+  }
+}
+
+</code></pre>
+<div line-highlight='11, only'></div>
 <p>✏️ Update <strong>src/services/pmo/favorite/index.ts</strong> to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./favorite&quot;
 export * from &quot;./hooks&quot;
