@@ -14,7 +14,7 @@ import {
   useUser,
   useAuthentication,
 } from "../../services/auth"
-import { useFavorites } from "../../services/pmo/favorite/hooks"
+import { useFavorite } from "../../services/pmo/favorite/hooks"
 import { useRestaurant } from "../../services/pmo/restaurant"
 
 export interface RestaurantDetailsProps
@@ -25,7 +25,7 @@ const RestaurantDetails: React.FC<RestaurantDetailsProps> = ({ route }) => {
   const navigation = useNavigation()
   const { data: restaurant, error, isPending } = useRestaurant({ slug })
 
-  // Exercise: Add a button that uses the `updateFavorites` helper.
+  // Exercise: Add a button that uses the `toggleFavorite` helper.
 
   useEffect(() => {
     if (restaurant) {
@@ -53,6 +53,13 @@ const RestaurantDetails: React.FC<RestaurantDetailsProps> = ({ route }) => {
   return (
     <Screen>
       <RestaurantHeader restaurant={restaurant} />
+      {/*
+          Exercise:
+          - If the user is logged out: Render a button that says “Sign in to favorite this restaurant” and call the `signIn` method.
+          - If the user is logged in: Render a button that says “Add to favorites” or “Remove from favorites”, depending on whether the restaurant is a favorite.
+          - If a request is pending: Change the button text to “Saving…”.
+          - If there’s an error: Render the error message.
+        */}
 
       <Button
         onPress={() => {

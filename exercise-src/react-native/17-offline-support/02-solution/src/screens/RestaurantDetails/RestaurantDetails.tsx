@@ -14,7 +14,7 @@ import {
   useUser,
   useAuthentication,
 } from "../../services/auth"
-import { useFavorites } from "../../services/pmo/favorite/hooks"
+import { useFavorite } from "../../services/pmo/favorite/hooks"
 import { useRestaurant } from "../../services/pmo/restaurant"
 
 export interface RestaurantDetailsProps
@@ -32,7 +32,7 @@ const RestaurantDetails: React.FC<RestaurantDetailsProps> = ({ route }) => {
     isFavorite,
     isPending: favoriteIsPending,
     toggleFavorite,
-  } = useFavorites(user?.id, restaurant?._id)
+  } = useFavorite(user?.id, restaurant?._id)
 
   useEffect(() => {
     if (restaurant) {

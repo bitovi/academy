@@ -60,6 +60,12 @@ npm install @react-native-community/netinfo@11
 
 @diff ../../../exercises/react-native/16-security/01-solution/jest-setup.ts ../../../exercises/react-native/17-offline-support/01-problem/jest-setup.ts only
 
+✏️ Terminate the existing dev server and start it again:
+
+```bash
+npm run start
+```
+
 ✏️ Update **src/screens/Settings/Settings.tsx** to be:
 
 @diff ../../../exercises/react-native/16-security/01-solution/src/screens/Settings/Settings.tsx ../../../exercises/react-native/17-offline-support/01-problem/src/screens/Settings/Settings.tsx only
@@ -118,45 +124,46 @@ Let’s think through what we want in the restaurant details view:
 Features like this are great to build into Hooks because it makes the logic more easily testable and reusable.
 Let’s look at the Hook code we are going to copy in the Setup step for this exercise.
 
-### Creating a `useFavorites()` Hook
+### Creating a `useFavorite()` Hook
 
-Our `useFavorites()` Hook will accept two arguments:
+Our `useFavorite()` Hook will accept two arguments:
 
 @sourceref ../../../exercises/react-native/17-offline-support/02-problem/src/services/pmo/favorite/hooks.ts
-@highlight 32-33, only
+@highlight 8-11, only
 
 You’ll remember that the Rules of Hooks state that Hooks must always be called at the top level of a component, so this Hook makes these properties optional because, for example, you may not be signed in (and thus won’t have a `userId`).
 
 ### Determining if a restaurant is a favorite
 
-The Hook will return a `true` or `false` value for `favorite`, depending on whether the restaurant is a favorite:
+The Hook will return a `true` or `false` value for `isFavorite`, depending on whether the restaurant is a favorite:
 
 @sourceref ../../../exercises/react-native/17-offline-support/02-problem/src/services/pmo/favorite/hooks.ts
-@highlight 9, 46, 81-84, 142, only
+@highlight 13, 32-35, 110, only
 
-### Fetching favorites when the user signs in
+### Getting favorites from storage
 
-When the user signs in (thus `userId` is set), the Hook will fetch all the favorites from Async Storage and the `/favorites` API:
+The Hook gets all the favorite restaurants from Async Storage:
 
 @sourceref ../../../exercises/react-native/17-offline-support/02-problem/src/services/pmo/favorite/hooks.ts
-@highlight 48-75, only
+@highlight 23-30, only
 
 ### Toggling a restaurant’s favorite status
 
-The Hook returns a `updateFavorites` function that can be called to toggle whether the restaurant is a favorite or not:
+The Hook returns a `toggleFavorite` function that can be called to toggle whether the restaurant is a favorite or not:
 
 @sourceref ../../../exercises/react-native/17-offline-support/02-problem/src/services/pmo/favorite/hooks.ts
-@highlight 91, 101, 105, 110, 113, 141, only
+@highlight 15, 37, 42, 45, 112, only
 
 ### Updating the API with the changed favorite status
 
 The Hook calls the API to update the favorite status for the restaurant:
 
 @sourceref ../../../exercises/react-native/17-offline-support/02-problem/src/services/pmo/favorite/hooks.ts
-@highlight 119, 122, 125-128, only
+@highlight 80-85, only
 
 The API may return an `error`, and that’s ok!
 The Hook can check if the API response was good and store the `_id` if it was.
+
 If there was an issue with the API call (e.g. the server was down, the device was offline, etc.) then there won’t be an `_id` in our Async Storage and we’ll know that we need to submit that favorite to the API.
 
 ### Setup 2
@@ -164,7 +171,12 @@ If there was an issue with the API call (e.g. the server was down, the device wa
 ✏️ Create **src/services/pmo/favorite/hooks.ts** and update it to be:
 
 @sourceref ../../../exercises/react-native/17-offline-support/02-problem/src/services/pmo/favorite/hooks.ts
-@highlight 130-135, only
+@highlight 8-16, 108-113, only
+
+✏️ Create **src/services/pmo/favorite/hooks.test.ts** and update it to be:
+
+@sourceref ../../../exercises/react-native/17-offline-support/02-problem/src/services/pmo/favorite/hooks.test.ts
+@highlight 40, 62, only
 
 ✏️ Create **src/services/pmo/favorite/index.ts** and update it to be:
 
@@ -176,24 +188,18 @@ If there was an issue with the API call (e.g. the server was down, the device wa
 
 ### Verify 2
 
-✏️ Create **src/services/pmo/favorite/hooks.test.ts** and update it to be:
-
-@sourceref ../../../exercises/react-native/17-offline-support/02-problem/src/services/pmo/favorite/hooks.test.ts
-@highlight 35, only
-
 ✏️ Update **src/screens/RestaurantDetails/RestaurantDetails.test.tsx** to be:
 
 @diff ../../../exercises/react-native/17-offline-support/01-solution/src/screens/RestaurantDetails/RestaurantDetails.test.tsx ../../../exercises/react-native/17-offline-support/02-problem/src/screens/RestaurantDetails/RestaurantDetails.test.tsx only
 
 ### Exercise 2
 
-In `RestaurantDetails`, add a button that uses the `updateFavorites` helper.
+In `RestaurantDetails`, add a button that uses the `toggleFavorite` helper:
 
-In `favorite/hooks.ts`, finish the `updateFavorites` implementation to:
-
-- Update the `my-favorite` storage item with an object that contains the `newFavorites`.
-- Update the `localFavorites` state.
-- Update the `response` state.
+- If the user is logged out: Render a button that says “Sign in to favorite this restaurant” and call the `signIn` method.
+- If the user is logged in: Render a button that says “Add to favorites” or “Remove from favorites”, depending on whether the restaurant is a favorite.
+- If a request is pending: Change the button text to “Saving…”.
+- If there’s an error: Render the error message.
 
 ### Solution 2
 
@@ -201,10 +207,6 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 <details>
 <summary>Click to see the solution</summary>
-
-✏️ Update **src/services/pmo/favorite/hooks.ts** to be:
-
-@diff ../../../exercises/react-native/17-offline-support/02-problem/src/services/pmo/favorite/hooks.ts ../../../exercises/react-native/17-offline-support/02-solution/src/services/pmo/favorite/hooks.ts only
 
 ✏️ Update **src/screens/RestaurantDetails/RestaurantDetails.tsx** to be:
 
@@ -229,26 +231,24 @@ If a favorite is modified:
 
 ### Fetching the favorites modified on the server
 
-The Hook’s `syncWithServer` will first fetch the favorites modified on the server:
+The Hook’s `syncWithServer` will first fetch the favorites from the server:
 
-@sourceref ../../../exercises/react-native/17-offline-support/03-problem/src/services/pmo/favorite/hooks.ts
-@highlight 146-153, only
-
-The code above will fetch the favorites with the `datetimeUpdated` parameter set to the `lastSynced` datetime.
+@sourceref ../../../exercises/react-native/17-offline-support/03-problem/src/services/pmo/favorite/sync.ts
+@highlight 12-19, only
 
 ### Updating favorites modified on the device
 
 Next, the Hook will send any favorites that were modified while the device was offline to the API:
 
-@sourceref ../../../exercises/react-native/17-offline-support/03-problem/src/services/pmo/favorite/hooks.ts
-@highlight 180-188, only
+@sourceref ../../../exercises/react-native/17-offline-support/03-problem/src/services/pmo/favorite/sync.ts
+@highlight 81-95, only
 
 ### Updating favorites modified on the device
 
 Last, the Hook will update Async Storage with all the changes that have accumulated through the sync process:
 
-@sourceref ../../../exercises/react-native/17-offline-support/03-problem/src/services/pmo/favorite/hooks.ts
-@highlight 200, only
+@sourceref ../../../exercises/react-native/17-offline-support/03-problem/src/services/pmo/favorite/sync.ts
+@highlight 97-111, only
 
 ### Setup 3
 
@@ -256,13 +256,10 @@ Last, the Hook will update Async Storage with all the changes that have accumula
 
 @diff ../../../exercises/react-native/17-offline-support/02-solution/src/App.tsx ../../../exercises/react-native/17-offline-support/03-problem/src/App.tsx only
 
-✏️ Update **src/services/pmo/favorite/hooks.ts** to be:
-
-@diff ../../../exercises/react-native/17-offline-support/02-solution/src/services/pmo/favorite/hooks.ts ../../../exercises/react-native/17-offline-support/03-problem/src/services/pmo/favorite/hooks.ts only
-
 ✏️ Create **src/services/pmo/favorite/favorite.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-native/17-offline-support/03-problem/src/services/pmo/favorite/favorite.tsx
+@highlight 9, only
 
 ✏️ Update **src/services/pmo/favorite/index.ts** to be:
 
@@ -270,9 +267,7 @@ Last, the Hook will update Async Storage with all the changes that have accumula
 
 ### Verify 3
 
-✏️ Update **src/services/pmo/favorite/hooks.test.ts** to be:
-
-@diff ../../../exercises/react-native/17-offline-support/02-solution/src/services/pmo/favorite/hooks.test.ts ../../../exercises/react-native/17-offline-support/03-problem/src/services/pmo/favorite/hooks.test.ts only
+Use the `console` or debugger to check the `syncWithServer` function is called when signing in and out.
 
 ### Exercise 3
 
@@ -283,8 +278,6 @@ Last, the Hook will update Async Storage with all the changes that have accumula
 **Hint:** Use all of the imports provided in the `favorite.tsx` file.
 
 ### Solution 3
-
-If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 <details>
 <summary>Click to see the solution</summary>

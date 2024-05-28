@@ -3,7 +3,7 @@ import { renderHook, waitFor } from "@testing-library/react-native"
 import * as storage from "../../storage/storage"
 import * as api from "../api/api"
 
-import { useFavorites } from "./hooks"
+import { useFavorite } from "./hooks"
 
 describe("Services/PMO/Favorite", () => {
   // Mock the apiRequest function
@@ -15,7 +15,7 @@ describe("Services/PMO/Favorite", () => {
     mockStorage = jest.spyOn(storage, "getData")
   })
 
-  describe("useFavorites", () => {
+  describe("useFavorite", () => {
     const mockFavorites = [
       {
         userId: "user-id",
@@ -48,7 +48,7 @@ describe("Services/PMO/Favorite", () => {
       })
 
       const { result } = renderHook(() =>
-        useFavorites("user-id", "7iiKc0akJPYzaMyw"),
+        useFavorite("user-id", "7iiKc0akJPYzaMyw"),
       )
 
       await waitFor(() => {
@@ -70,7 +70,7 @@ describe("Services/PMO/Favorite", () => {
       })
 
       const { result } = renderHook(() =>
-        useFavorites("user-id", "WKQjvzup7QWSFXvH"),
+        useFavorite("user-id", "WKQjvzup7QWSFXvH"),
       )
 
       await waitFor(() => {
