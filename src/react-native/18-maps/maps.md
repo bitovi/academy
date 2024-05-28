@@ -1,6 +1,6 @@
 @page learn-react-native/google-maps Integrating Maps
 @parent learn-react-native 18
-@outline 3
+@outline 2
 
 @description Learn how to integrate Google Maps into your React Native application.
 
@@ -10,32 +10,22 @@
 
 In this section, you will:
 
-- Integrating Google Maps
-- Configuring Gradle plugins
-- Adding a map view
-- Adding markers to a map
+- Render Google Maps.
+- Store secrets with Gradle.
+- Configure the Android Manifest file.
+- Add markers to a map.
 
-## Objective 1: Add Google Maps to Restaurant List page
+## Objective 1: View the restaurants on a map
 
 <img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” There are two tabs at the top, List and Map, with Map selected. The map below is centered on Green Bay. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/01-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 
-### React Native Maps
+### Rendering Google Maps
 
-In this section, we will be using the `react-native-maps` library to integrate Google Maps into our application. This library provides several React Native components such as maps, polygons, markers, and more that can be used to build maps on both iOS and Android. For the purpose of this training, we will focus on using the map and marker components. To use the Google Maps API, we will need to set up a [Google Maps API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
+To use the Google Maps API, you will need to set up a [Google Maps API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
 
-### Secrets Gradle Plugin
-
-We will be using the [`secrets-gradle-plugin`](https://github.com/google/secrets-gradle-plugin) to securely store our API key in our project.
-
-#### Gradle
-
-Gradle is a build automation tool that is used to compile and build the Android part of our React Native application. We can extend Gradle's functionality by using plugins. In this case, we will be using the `secrets-gradle-plugin` which allows us to securely store sensitive information such as API keys.
-
-#### Android Manifest
-
-The Android Manifest file is an XML file that contains important information about our application such as permissions, activities and services, configuration settings, and more.
-
-### MapView
+In this section, we will be using the [`react-native-maps`](https://www.npmjs.com/package/react-native-maps) package to integrate Google Maps into our application.
+This library provides several React Native components such as maps, polygons, markers, and more that can be used to build maps on both iOS and Android.
+For the purpose of this course, we will focus on using the map and marker components.
 
 ```tsx
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps"
@@ -43,7 +33,7 @@ import MapView, { PROVIDER_GOOGLE } from "react-native-maps"
 function Map() {
   return (
     <MapView
-      style={{ minHeight: "100%", height: 500 }}
+      style={{ minHeight: "100%" }}
       provider={PROVIDER_GOOGLE}
       loadingEnabled
       initialRegion={{
@@ -61,28 +51,77 @@ The `MapView` component is the main component that we will be using to render th
 
 The component takes several props, but the most important ones are:
 
-- `style`: The style of the map.
+- `style`: The regular `style` prop applied to other compoennts.
 - `provider`: The map provider. In this case, we are using Google Maps.
 - `loadingEnabled`: Whether to show a loading indicator while the map is loading.
-- `initialRegion`: An object that contains coordinates for the initial map region. The object should contain `latitude`, `longitude`, `latitudeDelta`, and `longitudeDelta` properties. The `latitude` and `longitude` properties are the coordinates of the center of the map, and the `latitudeDelta` and `longitudeDelta` properties are the vertical and horizontal zoom levels of the map.
+- `initialRegion`: An object that contains coordinates for the initial map region. The object should contain:
+  - `latitude` and `longitude`: the coordinates of the center of the map.
+  - `latitudeDelta` and `longitudeDelta`: the vertical and horizontal zoom levels of the map.
+
+### Storing secrets with Gradle
+
+Gradle is a powerful build system used in Android development.
+It automates the building, testing, and deployment of your app.
+
+In a React Native project, you’ll encounter two key Gradle files:
+
+- `android/build.gradle` (project level): Located at the root of your android directory, it defines build configurations and dependencies that apply to all modules in your project.
+
+- `android/app/build.gradle` (app level): Located in `android/app`, it specifies configurations for the app module, including dependencies, SDK versions, and build types.
+
+Gradle allows you to define how your project is structured, manage dependencies, and configure the build process in a flexible and customizable way.
+
+#### Using `secrets-gradle-plugin`
+
+Managing sensitive information like API keys securely is critical in mobile app development.
+The [`secrets-gradle-plugin`](https://github.com/google/secrets-gradle-plugin) helps you handle such secrets without exposing them in your source code.
+
+In our application, we will add a dependency to the project-level Gradle file:
+
+@sourceref ../../../exercises/react-native/18-maps/01-problem/android/build.gradle
+@highlight 18, only
+
+…then apply it in the app-level Gradle file:
+
+@sourceref ../../../exercises/react-native/18-maps/01-problem/android/app/build.gradle
+@highlight 4, only
+
+### Configuring the Android Manifest file
+
+The Android Manifest file is an XML file that contains important information about our application such as permissions, activities and services, configuration settings, and more.
+
+The Android manifest file (`AndroidManifest.xml`) is a crucial part of any Android application.
+It resides in the `android/app/src/main/` directory of your React Native project.
+This XML file provides essential information to the Android operating system about your app, such as:
+
+- **Package name:** Unique identifier for your app.
+- **Components:** Declares components of your app (activities, services, broadcast receivers, and content providers).
+- **Permissions:** Specifies permissions your app needs (e.g., internet access, camera usage).
+- **App metadata:** Includes additional information like themes, icons, and minimum API levels.
+
+In essence, the manifest file acts as a roadmap for the Android OS to understand and manage your app correctly.
+
+@diff ../../../exercises/react-native/17-offline-support/03-solution/android/app/src/main/AndroidManifest.xml ../../../exercises/react-native/18-maps/01-problem/android/app/src/main/AndroidManifest.xml only
 
 ### Setup 1
 
 ✏️ Install the new dependency:
 
 ```bash
-npm install react-native-maps@1.15.1
+npm install react-native-maps@1
 ```
 
 ✏️ Create **android/local.defaults.properties** and update it to be:
 
 @sourceref ../../../exercises/react-native/18-maps/01-problem/android/local.defaults.properties
 
-✏️ Create **android/secrets.properties** and update it to be:
+✏️ Duplicate **android/local.defaults.properties** to **android/secrets.properties** in your project.
 
-@sourceref ../../../exercises/react-native/18-maps/01-problem/android/.secrets.properties.example
+It’s always a good idea to keep a `local.defaults.properties` file up to date (and committed to git) in your project, then include the actual secrets in your local `secrets.properties` file (and not committed to git).
 
-✏️ Update **GOOGLE_MAPS_API_KEY** in `secrets.properties` with your key.
+✏️ Update **android/secrets.properties** to include your `GOOGLE_MAPS_API_KEY` key.
+
+Replace the `INVALID_API_KEY` text that’s currently in the file with your key.
 
 ✏️ Update **android/build.gradle** to be:
 
@@ -96,9 +135,11 @@ npm install react-native-maps@1.15.1
 
 @diff ../../../exercises/react-native/17-offline-support/03-solution/android/app/src/main/AndroidManifest.xml ../../../exercises/react-native/18-maps/01-problem/android/app/src/main/AndroidManifest.xml only
 
-✏️ Update **src/env.d.ts** to be:
+✏️ Terminate the existing dev server and start it again:
 
-@diff ../../../exercises/react-native/17-offline-support/03-solution/src/env.d.ts ../../../exercises/react-native/18-maps/01-problem/src/env.d.ts only
+```bash
+npm run start
+```
 
 ✏️ Update **src/screens/RestaurantList/RestaurantList.tsx** to be:
 
@@ -107,6 +148,7 @@ npm install react-native-maps@1.15.1
 ✏️ Create **src/components/Tabs/Tabs.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-native/18-maps/01-problem/src/components/Tabs/Tabs.tsx
+@highlight 16, only
 
 ✏️ Create **src/components/Tabs/index.ts** and update it to be:
 
@@ -115,6 +157,7 @@ npm install react-native-maps@1.15.1
 ✏️ Create **src/screens/RestaurantList/components/Map/Map.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-native/18-maps/01-problem/src/screens/RestaurantList/components/Map/Map.tsx
+@highlight 10, only
 
 ✏️ Create **src/screens/RestaurantList/components/Map/index.ts** and update it to be:
 
@@ -128,9 +171,11 @@ Navigate to the `Maps` tab of the `RestaurantsList` in your emulator and verify 
 
 ### Exercise 1
 
-- Implement Google Map's `MapView` for it to properly render when the `Map` tab is selected.
+For this exercise, implement Google Map’s `MapView` for it to properly render when the `Map` tab is selected.
 
-Hint: The `MapView` takes its own `style` prop. As a minimum it needs `minHeight` variable to render. If the view is too small, try adding another variable to increase its size.
+**Hint:** The `MapView` takes its own `style` prop.
+As a minimum it needs `minHeight` variable to render.
+If the view is too small, try adding another variable to increase its size.
 
 ```jsx
 <MapView style={{ minHeight: "100%" }} />
@@ -151,11 +196,12 @@ If you’ve implemented the solution correctly, the Map should be rendering in y
 
 ## Objective 2: Add restaurant pins with tooltips to map
 
+Now that we have a map, let’s add markers for each one of the restaurants.
+When we tap on them, we will navigate to the restaurant detail page, just like we do in the list view.
+
 <img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” The map is still centered on Green Bay and now has several locations marked with red pins. One of the markers is labeled Cheese Curd City, 230 W Kinzie Street. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 
-Now that we have a map, let’s add markers for each one of the restaurants. When we tap on them, we will navigate to the restaurant detail page, just like we do in the list view.
-
-### Marker
+### Adding markers to a map
 
 The `Marker` component is used to render a pin on the map. It takes several props, but the most important ones are:
 
@@ -172,7 +218,7 @@ import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps"
 function MapWithMarker({ initialRegion }) {
   return (
     <MapView
-      style={{ minHeight: "100%", height: 500 }}
+      style={{ minHeight: "100%" }}
       provider={PROVIDER_GOOGLE}
       initialRegion={initialRegion}
     >
@@ -182,7 +228,7 @@ function MapWithMarker({ initialRegion }) {
           longitude: -122.4324,
         }}
         onCalloutPress={() => {
-          console.log("Marker was pressed")
+          console.info("Marker was pressed")
         }}
         title="Title of the Marker"
         description="A brief description"
@@ -198,7 +244,7 @@ function MapWithMarker({ initialRegion }) {
 
 ✏️ Update **src/screens/RestaurantList/components/Map/Map.tsx** to be:
 
-@diff ../../../exercises/react-native/18-maps/01-solution/src/screens/RestaurantList/components/Map/Map.tsx ../../../exercises/react-native/18-maps/02-problem/src/screens/RestaurantList/components/Map/Map.tsx
+@diff ../../../exercises/react-native/18-maps/01-solution/src/screens/RestaurantList/components/Map/Map.tsx ../../../exercises/react-native/18-maps/02-problem/src/screens/RestaurantList/components/Map/Map.tsx only
 
 ### Verify 2
 
@@ -215,6 +261,8 @@ Navigate to the `Maps` tab of the `RestaurantsList` in your emulator and verify 
 ### Solution 2
 
 If you’ve implemented the solution correctly, your Map should have Markers based on the coordinates of each Restaurant.
+Then, when you tap on a marker, it should show its info in a pop-up view.
+Then, you can tap on the pop-up view to navigate to the restaurant details view.
 
 <details>
 <summary>Click to see the solution</summary>

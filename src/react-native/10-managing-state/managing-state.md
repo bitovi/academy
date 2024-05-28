@@ -80,7 +80,7 @@ In the example above, when the user types, the `NameField` component is rendered
 
 ### What are custom Hooks?
 
-React Native's Hooks API provides a powerful and flexible way to encapsulate and reuse functionality across our components. While React Native comes with a set of built-in Hooks, we can also create our own custom Hooks. This allows us to abstract component logic into reusable functions. Custom Hooks are particularly useful when we find ourselves repeating the same logic in multiple components.
+React Native’s Hooks API provides a powerful and flexible way to encapsulate and reuse functionality across our components. While React Native comes with a set of built-in Hooks, we can also create our own custom Hooks. This allows us to abstract component logic into reusable functions. Custom Hooks are particularly useful when we find ourselves repeating the same logic in multiple components.
 
 Custom Hooks are JavaScript functions that can use other React Hooks and provide a way to share logic across multiple components. Like built-in Hooks, custom Hooks must adhere to React’s rules of Hooks. The naming convention for custom Hooks is to start with `use`, like `useCustomHook`.
 
