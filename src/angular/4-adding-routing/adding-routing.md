@@ -82,7 +82,7 @@ Notice that you will be able to click the **Choose a Restaurant** button
 after implementing the solution:
 
 <img alt="Choose a restaurant routing." src="../static/img/angular/4-adding-routing/after.gif"
-  style="border: solid 1px black;"/>
+  style="border: solid 1px black;" width="90%"/>
 
 ## Setup
 
