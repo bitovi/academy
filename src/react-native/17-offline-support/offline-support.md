@@ -104,7 +104,7 @@ In the `RestaurantDetails`, we’ll add an “Add to favorites” button when th
 For right now, we’ll write the code for adding and removing favorites in a way that will gracefully handle the user’s device being offline.
 In the third objective, we’ll expand that to handle syncing when the device comes back online.
 
-<div style="display: flex; flex-direction: row; gap: 2rem">
+<div style="display: flex; flex-direction: row; gap: 2rem; flex-wrap: wrap;">
   <img alt="Screenshot of the application's Restaurant Details screen displaying the add favorite button." src="../static/img/react-native/17-offline-support/02-solution-addFavorites.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
   <img alt="Screenshot of the application's Restaurant Details screen displaying the remove favorite button." src="../static/img/react-native/17-offline-support/02-solution-removeFavorites.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 </div>

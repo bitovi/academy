@@ -45,7 +45,7 @@ Chrome lets you add conditional breakpoints that break when an expression evalua
 _truthy_.  Right click the line number you’d like to break on and enter the
 expression.
 
-<img src="../static/img/debugging/conditional.png"/>
+<img src="../static/img/debugging/conditional.png" width="90%"/>
 
 
 ## The solution

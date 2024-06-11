@@ -320,7 +320,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 ## Objective 3: Add Restaurant List and Restaurant Details pages with links
 
-<div style="display: flex; flex-direction: row; gap: 2rem">
+<div style="display: flex; flex-direction: row; gap: 2rem; flex-wrap: wrap;">
   <img alt="Screen Shot of the RestaurantList in Navigation" src="../static/img/react-native/11-navigation/03-solution-restaurants.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
   <img alt="Screen Shot of the RestaurantDetails in Navigation" src="../static/img/react-native/11-navigation/03-solution-restaurant-details.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 </div>

@@ -360,7 +360,7 @@ Now that we have two Hooks that fetch data in a similar way, let’s create an `
 
 While we do this, let‘s add error handling for unsuccessful API requests:
 
-<div style="display: flex; flex-direction: row; gap: 2rem">
+<div style="display: flex; flex-direction: row; gap: 2rem; flex-wrap: wrap;">
   <img alt="Screenshot of the application when it makes an API call to the cities endpoint and is populated the list of cities." src="../static/img/react-native/13-making-http-requests/2-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
   <img alt="Screenshot of the application when it makes an API call and the API returns an error." src="../static/img/react-native/13-making-http-requests/3-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 </div>
@@ -449,7 +449,7 @@ Let’s finish our quest to load data from our API by creating a Hook to fetch t
 
 Now that we are able to capture a user’s state and city preferences, we want to only show the restaurants in the selected city:
 
-<div style="display: flex; flex-direction: row; gap: 2rem">
+<div style="display: flex; flex-direction: row; gap: 2rem; flex-wrap: wrap;">
   <img alt="Screenshot of the application when it makes an API call to the restaurants endpoint and is populated the list of restaurants." src="../static/img/react-native/13-making-http-requests/4-1-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
   <img alt="Screenshot of the application when it makes an API call to the restaurant endpoint and is populated populated with the restaurants details." src="../static/img/react-native/13-making-http-requests/4-2-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 </div>
