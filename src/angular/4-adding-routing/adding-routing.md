@@ -81,7 +81,8 @@ Create routes for the `HomeComponent` and `RestaurantComponent`. When the route 
 Notice that you will be able to click the **Choose a Restaurant** button
 after implementing the solution:
 
-![Choose a restaurant routing](../static/img/angular/4-adding-routing/after.gif 'Choose a restaurant routing')
+<img alt="Choose a restaurant routing." src="../static/img/angular/4-adding-routing/after.gif"
+  style="border: solid 1px black;" width="90%"/>
 
 ## Setup
 
