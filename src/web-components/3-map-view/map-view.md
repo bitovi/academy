@@ -18,7 +18,7 @@ Create a component where we can display a Google map. Google maps need to be att
 
 <img src="../static/img/web-components/gmap-slippy.gif"
   style="border: solid 1px black; max-width: 100%;"
-  title="google-map-view component with a useable slippy map."/>
+  alt="google-map-view component with a useable slippy map."/>
 
 ## How to Solve This Problem
 

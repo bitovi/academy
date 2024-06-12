@@ -46,4 +46,4 @@ The video walks through these 4 steps:
 7. <code>[3:22](https://youtu.be/MJKAFeN4BjM?list=PL--xV5crGpX_EdvA-rcDXVC4qjiujYTKE&t=202)</code> Verify the plan is working
 
 
-<iframe class="block-16-by-9" src="https://www.youtube.com/embed/MJKAFeN4BjM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe class="block-16-by-9" src="https://www.youtube.com/embed/MJKAFeN4BjM" alt="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

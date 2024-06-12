@@ -21,7 +21,7 @@ We want to build a component that displays the CTA bus tracker routes and displa
 
 <img src="../static/img/web-components/bus-tracker-shell.png"
   style="border: solid 1px black; max-width: 100%;"
-  title="The shell of our bus-tracker component showing a header and a Google map"/>
+  alt="The shell of our bus-tracker component showing a header and a Google map"/>
 
 ## How to Solve This Problem
 

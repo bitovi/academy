@@ -20,7 +20,7 @@ if they are for the current page or not.
 
 <img src="../static/img/angular/pmo-working-nav.gif"
   style="border: solid 1px black; "
-  title="Place My Order App working nav"/>
+  alt="Place My Order App working nav"/>
 
 ## What you need to know
 

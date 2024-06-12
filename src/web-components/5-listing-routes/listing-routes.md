@@ -17,7 +17,7 @@ Our bus-tracker component currently only includes a header and a map. We want to
 
 <img src="../static/img/web-components/bt-list-routes.gif"
   style="border: solid 1px black; max-width: 100%;"
-  title="A scrollable list of bus routes on top, a map on the bottom." />
+  alt="A scrollable list of bus routes on top, a map on the bottom." />
 
 Additionally we have text within the header that says __Loading routes…__ statically. We want to remove this text after the routes have been rendered.
 

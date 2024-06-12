@@ -18,7 +18,7 @@ Open up the styling for this component by providing supported CSS custom propert
 
 <img src="../static/img/web-components/bt-header-styles.jpg"
   style="border: solid 1px black; max-width: 100%;"
-  title="Custom header styles applied to our element." />
+  alt="Custom header styles applied to our element." />
 
 ## How to Solve This Problem
 

@@ -18,7 +18,7 @@ The Google map API needs an element to mount the map into. We want our map to be
 
 <img src="../static/img/web-components/map-view-rect.png"
   style="border: solid 1px black; max-width: 100%;"
-  title="A rectangle for where we will display the map."/>
+  alt="A rectangle for where we will display the map."/>
 
 ## How to Solve This Problem
 
