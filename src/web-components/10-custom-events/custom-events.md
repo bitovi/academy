@@ -17,7 +17,7 @@ We want to display the bus destination for the selected marker. This should look
 
 <img src="../static/img/web-components/bt-display-vehicle.gif"
   style="border: solid 1px black; max-width: 100%;"
-  title="Selecting a marker displays the vehicle associated with that marker." />
+  alt="Selecting a marker displays the vehicle associated with that marker." />
 
 ## How to Solve This Problem
 

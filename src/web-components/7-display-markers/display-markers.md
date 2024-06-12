@@ -21,7 +21,7 @@ When an error occurs in the API it should wipe away any existing markers.
 
 <img src="../static/img/web-components/bt-display-markers.gif"
   style="border: solid 1px black; max-width: 100%;"
-  title="Markers being displayed when a route is selected." />
+  alt="Markers being displayed when a route is selected." />
 
 ## How to Solve This Problem
 

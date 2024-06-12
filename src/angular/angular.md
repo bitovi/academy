@@ -24,7 +24,7 @@ If you find bugs in this training or have suggestions, create an [issue](https:/
 
 In this guide, we will build this restaurant ordering app with Angular:
 
-<img src="./static/img/place-my-order.png" title="Place My Order App screenshot"
+<img src="./static/img/place-my-order.png" alt="Place My Order App screenshot"
   style="max-width: 100%"/>
 
 You can see a DoneJS implementation of this application at

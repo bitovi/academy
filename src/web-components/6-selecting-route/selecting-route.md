@@ -22,7 +22,7 @@ When a route is selected it should become active and show a checkmark by the nam
 
 <img src="../static/img/web-components/bt-selecting-route.gif"
   style="border: solid 1px black; max-width: 100%;"
-  title="Selecting a route from the list and noticing that the item is highlighted as active and the route number and name is shown in an overlay on top of the map." />
+  alt="Selecting a route from the list and noticing that the item is highlighted as active and the route number and name is shown in an overlay on top of the map." />
 
 ## How to Solve This Problem
 

@@ -18,7 +18,7 @@ An easier way to allow consumers of your component to have *complete* control is
 
 <img src="../static/img/web-components/bt-slotted.jpg"
   style="border: solid 1px black; max-width: 100%;"
-  title="Header customized using slots." />
+  alt="Header customized using slots." />
 
 ## How to Solve This Problem
 
