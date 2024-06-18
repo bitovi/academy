@@ -48,7 +48,10 @@ window.PACKAGES = packages;
         var element = document.querySelector(window.location.hash);
         if (element) {
           articleContainer.scrollTop = element.offsetTop - 60; // ~60px for the navigation height
+          window.history.pushState({ articleScroll: element.offsetTop - 60 });
         }
+        // need to push to window.history.state otherwise scroll eventListener will reference null and fail to run
+        window.history.pushState({ articleScroll: 0 });
       }
     }
     setArticleScroll();
@@ -98,11 +101,15 @@ window.PACKAGES = packages;
     const modal = document.getElementById("email-modal");
     modal.style.display = "block";
     // Close modal when clicking backdrop
-    Array.from(modal.querySelectorAll('.email-modal-backdrop')).forEach(element => {
-      element.addEventListener("click", academyContactEmailSubmitted);
-    });
+    Array.from(modal.querySelectorAll(".email-modal-backdrop")).forEach(
+      (element) => {
+        element.addEventListener("click", academyContactEmailSubmitted);
+      }
+    );
     // Close modal when clicking close icon in upper right
-    document.getElementById("email-modal-close").addEventListener("click", academyContactEmailSubmitted);
+    document
+      .getElementById("email-modal-close")
+      .addEventListener("click", academyContactEmailSubmitted);
     modal.focus();
 
     hbspt.forms.create({
