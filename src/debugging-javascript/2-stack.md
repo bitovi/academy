@@ -47,7 +47,7 @@ a();
 
 By adding a breakpoint in `d()`, you will see the following in the __Call Stack__:
 
-<img src="../static/img/debugging/stack.png" style="border: solid 1px black; max-width: 429px"/>
+<img src="../static/img/debugging/stack.png" style="border: solid 1px black;" width="429px"/>
 
 
 Chrome can also track asynchrounous function calls.  In the following code,
@@ -72,7 +72,7 @@ a();
 
 By adding a breakpoint in `d()`, you will see the following in the __Call Stack__:
 
-<img src="../static/img/debugging/async-stack.png" style="border: solid 1px black; max-width: 429px"/>
+<img src="../static/img/debugging/async-stack.png" style="border: solid 1px black;" width="429px"/>
 
 
 ## The solution

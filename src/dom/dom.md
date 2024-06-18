@@ -9,8 +9,18 @@ using it to make a basic tabs widget. We strongly suggest finishing [learn-advan
 ## Before you begin
 
 <a href="https://discord.gg/J7ejFsZnJ4" style="display:flex;align-items:center">
-<img alt="" src="./static/img/discord.png"
-  style="float:left; margin:20px" width="57"/> <span style="display: inline-block;">Click here to join the<br/>Bitovi Community Discord</span></a>
+  <img 
+    alt="" 
+    src="./static/img/discord.png"
+    style="float:left; margin:20px" 
+    width="57"
+  /> 
+  <span style="display: inline-block;">
+    Click here to join the
+    <br/>
+    Bitovi Community Discord
+  </span>
+</a>
 
 Join the Bitovi Community Discord to get help on Bitovi Academy courses or other
 Angular, React, CanJS and JavaScript problems.
@@ -23,7 +33,7 @@ If you find bugs in this training or have suggestions, create an [issue](https:/
 
 The end result of this training is to build a basic, [progressively enhanced](https://en.wikipedia.org/wiki/Progressive_enhancement) tabs widget that looks like:
 
-<img src="./static/img/dog-tabs.png" width="50%"/>
+<img src="./static/img/dog-tabs.png" width="100%"/>
 
 We will be creating simple versions of many of jQuery’s most useful methods:
 

@@ -15,14 +15,14 @@ In this part, we will:
 ## Problem
 
 <img src="../static/img/angular/10-updating-service-params/before.png"
-  style="border: solid 1px black; max-width: 400px;"/>
+  style="border: solid 1px black;" width="400px"/>
 
 Now that we are able to capture a user’s state and city preferences, we want to only return restaurants in the selected city. Modify the `getRestaurants` method in the **src/app/restaurant/restaurant.service.ts** file to take two string parameters, one for city, and one for state.
 
 The requested URL with params should look like this: `'/api/restaurants?filter[address.state]=IL&filter[address.city]=Chicago'`
 
 <img src="../static/img/angular/10-updating-service-params/after.png"
-  style="border: solid 1px black; max-width: 400px;"/>
+  style="border: solid 1px black;" width="400px"/>
 
 ## What you need to know
 

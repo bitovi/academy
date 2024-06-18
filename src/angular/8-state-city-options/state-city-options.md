@@ -19,12 +19,12 @@ In this part, we will:
 Currently, we are showing a list of all restaurants:
 
 <img src="../static/img/angular/8-state-city-options/before.png"
-  style="border: solid 1px black; max-width: 320px;"/>
+  style="border: solid 1px black;" width="320px"/>
 
 We would like our user to be able to filter restaurants based on city and state. To accomplish this,
 we will need to implement a reactive form with two controls, `state` and `city`, that are dropdowns displaying a list of cities and states. It will look like the following:
 
-![Place My Order App city and state dropdowns](../static/img/angular/pmo-dropdowns.gif 'Place My Order App city and state dropdowns')
+<img alt="Place My Order App city and state dropdowns" src="../static/img/angular/pmo-dropdowns.gif">
 
 ## What you need to know
 
@@ -155,7 +155,7 @@ some boilerplate for the state and city `<select>` controls:
 
 When you visit <a href="http://localhost:4200/restaurants">localhost:4200/restaurants</a>, there will now be state and city dropdown options populated with fake data.
 
-![Place My Order App city and state dropdowns](../static/img/angular/pmo-dropdowns.gif 'Place My Order App city and state dropdowns')
+<img alt="Place My Order App city and state dropdowns" src="../static/img/angular/pmo-dropdowns.gif">
 
 ✏️ Update the spec file **src/app/restaurant/restaurant.component.spec.ts** to be:
 

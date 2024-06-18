@@ -46,7 +46,7 @@ The following video shows how to:
 4. <code>[1:57](https://youtu.be/rBYxqhNGGmQ?t=117)</code> Verify we can create an Initiative
 5. <code>[2:37](https://youtu.be/rBYxqhNGGmQ?t=157)</code> Enable epics to link to a parent initiative.
 
-<iframe class="block-16-by-9" src="https://www.youtube.com/embed/rBYxqhNGGmQ" alt="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe class="block-16-by-9" src="https://www.youtube.com/embed/rBYxqhNGGmQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## Create the Continuous Exploration workflow
 
@@ -73,7 +73,7 @@ The following video shows how to:
 
 4. <code>[3:36](https://youtu.be/QZzKaGHZ54o?t=216)</code> Associate initiatives with the Continous Exploration workflow
 
-<iframe class="block-16-by-9" src="https://www.youtube.com/embed/QZzKaGHZ54o" alt="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe class="block-16-by-9" src="https://www.youtube.com/embed/QZzKaGHZ54o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 
 ## Create the Continuous Exploration board
@@ -105,7 +105,7 @@ The following video shows how to:
 
 5. <code>[4:00](https://youtu.be/65C9f6OR4G0?t=240)</code> Fixing duplicate statuses
 
-<iframe class="block-16-by-9" src="https://www.youtube.com/embed/65C9f6OR4G0" alt="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe class="block-16-by-9" src="https://www.youtube.com/embed/65C9f6OR4G0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 
 ## Adding Custom Fields
@@ -128,4 +128,4 @@ To create these custom fields, the video walks through these 4 steps:
 4. <code>[4:19](https://youtu.be/SUcM798b9-w?t=259)</code> Verify custom fields are working
 
 
-<iframe class="block-16-by-9" src="https://www.youtube.com/embed/SUcM798b9-w" alt="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe class="block-16-by-9" src="https://www.youtube.com/embed/SUcM798b9-w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

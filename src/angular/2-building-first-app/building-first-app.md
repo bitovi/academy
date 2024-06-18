@@ -24,7 +24,7 @@ In this part, we will:
 We want to create a new Angular application and update it to say **Place My Order App: Coming Soon!** in an `<h1>` element.
 
 <img src="../static/img/angular/2-generate-an-app/after.png"
-  style="border: solid 1px black; max-width: 320px;"/>
+  style="border: solid 1px black;" width="320px"/>
 
 ## What you need to know
 
@@ -77,7 +77,8 @@ npm install -g @angular/cli@17
 
 Our final goal is to build a restaurant menu and ordering application, which should look something like this:
 
-![Place My Order App screenshot](../static/img/place-my-order.png 'Place My Order App screenshot')
+<img alt="Place My Order App screenshot" src="../static/img/place-my-order.png" width="640">
+
 
 (reminder: You can see a DoneJS implementation of this application at [www.place-my-order.com](http://www.place-my-order.com))
 

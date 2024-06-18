@@ -20,7 +20,7 @@ In this section, you will:
 Styling is a crucial part of building visually appealing and responsive applications.
 Understanding how to effectively use the `style` prop and the `StyleSheet` APIs is fundamental for creating React Native applications.
 
-<img alt="Screenshot of a mobile application interface with new stylings." src="../static/img/react-native/08-styling/01-solution-styling.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+<img alt="Screenshot of a mobile application interface with new stylings." src="../static/img/react-native/08-styling/01-solution-styling.png" style="border: 4px solid black; border-radius: 25px;" height="640px"/>
 
 ### The `style` prop
 

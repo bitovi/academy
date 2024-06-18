@@ -17,7 +17,7 @@ In this section, you will:
 
 We will be setting up React DevTools to help us inspect the UI:
 
-<img alt="Screenshot of React DevTools inspecting a component tree. It shows a structured hierarchy of all the components in the view. There is also a Profiler tab." src="../static/img/react-native/07-debugging-devtools/dev-tool-connected.png" style="max-width: 100%;"/>
+<img alt="Screenshot of React DevTools inspecting a component tree. It shows a structured hierarchy of all the components in the view. There is also a Profiler tab." src="../static/img/react-native/07-debugging-devtools/dev-tool-connected.png" width="100%"/>
 
 ### Using React DevTools
 
@@ -70,7 +70,7 @@ npm run devtools
 
 This should open a separate window that looks like the following image:
 
-<img alt="Screenshot of a window with options for React Native and React DOM. The React Native section suggests opening the in-app developer menu. A notification at the top states the server is waiting for React to connect." src="../static/img/react-native/07-debugging-devtools/dev-tool-not-connected.png" style="max-width: 100%;"/>
+<img alt="Screenshot of a window with options for React Native and React DOM. The React Native section suggests opening the in-app developer menu. A notification at the top states the server is waiting for React to connect." src="../static/img/react-native/07-debugging-devtools/dev-tool-not-connected.png" width="100%"/>
 
 At this point, DevTools is not connected.
 To connect DevTools to the application, go back to the terminal where you ran `npm run start` and press `r` to reload.
@@ -97,7 +97,7 @@ Modify props:
 
 We will be setting up React Native Debugger to help us debug:
 
-<img alt="Screenshot of the React Native JavaScript Inspector interface. It includes common DevTools tabs such as Console, Sources, Memory, and Profiler." src="../static/img/react-native/07-debugging-devtools/react-native-debugger.png" style="max-width: 100%;"/>
+<img alt="Screenshot of the React Native JavaScript Inspector interface. It includes common DevTools tabs such as Console, Sources, Memory, and Profiler." src="../static/img/react-native/07-debugging-devtools/react-native-debugger.png" width="100%"/>
 
 ### Using React Native’s debugger
 
@@ -133,7 +133,7 @@ adb shell input keyevent 82
 
 This will open up the dev menu. It should look like the following image:
 
-<img alt="Screenshot of the emulator displaying the React Native Developer Menu. The screen lists various options like Reload, Open Debugger, Change Bundle Location, Show Element Inspector, Disable Fast Refresh, Show Perf Monitor, Settings, and Enable Sampling Profiler." src="../static/img/react-native/07-debugging-devtools/in-app-dev-menu.png" style="max-height: 420px; border: 4px solid black; border-radius: 25px;"/>
+<img alt="Screenshot of the emulator displaying the React Native Developer Menu. The screen lists various options like Reload, Open Debugger, Change Bundle Location, Show Element Inspector, Disable Fast Refresh, Show Perf Monitor, Settings, and Enable Sampling Profiler." src="../static/img/react-native/07-debugging-devtools/in-app-dev-menu.png" style="border: 4px solid black; border-radius: 25px;" height="420px"/>
 
 Clicking on "Open Debugger" will open up a separate window for debugging.
 

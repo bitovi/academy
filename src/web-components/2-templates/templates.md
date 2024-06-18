@@ -17,7 +17,8 @@ In this part, we will:
 The Google map API needs an element to mount the map into. We want our map to be certain dimensions. Create a `250px` tall container for the map using `<template>`. In the end it should look like the CodePen with the grey box below::
 
 <img src="../static/img/web-components/map-view-rect.png"
-  style="border: solid 1px black; max-width: 100%;"
+  width="100%"
+  style="border: solid 1px black;"
   alt="A rectangle for where we will display the map."/>
 
 ## How to Solve This Problem
