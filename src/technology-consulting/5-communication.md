@@ -64,7 +64,7 @@ Consider the frequency in which you meet. The frequency should be based on the t
 
 #### Find out what information needs to be conveyed and to whom
 
-Know your audience! Think about what the audience needs to know vs what you want to share. Save challenges or stories for another venue.
+Know your audience! Think about what the audience needs to know vs. what you want to share. Save challenges or stories for another venue.
 
 </details>
 
@@ -121,7 +121,7 @@ The following the communication tools that should be present on every project. W
 - Chat
 - Meetings
 
-When deciding what tool to use, start at the top - it is the most respectful of your recipient’s time. Most communications are informational in nature and should be documented (like in a wiki) or emailed. If using email to ask a question or to get a response, follow the [business writing](#business-writing) principles outlined below.
+When deciding what tool to use, start at the top — it is the most respectful of your recipient’s time. Most communications are informational in nature and should be documented (like in a wiki) or emailed. If using email to ask a question or to get a response, follow the [business writing](#business-writing) principles outlined below.
 
 Chat replies can be delayed but most modern tools like Slack give the sender the ability to "demand" a recipients attention with notifications. Meetings should only be scheduled when decisions need to be made at that very moment.
 
