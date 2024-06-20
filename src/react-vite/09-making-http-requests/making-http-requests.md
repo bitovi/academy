@@ -423,7 +423,7 @@ Let’s finish our quest to load data from our API by creating a Hook to fetch t
 
 Now that we are able to capture a user’s state and city preferences, we want to only show the restaurants in the selected city:
 
-<img alt="A web page titled “Restaurants” from place-my-order.com showing that “Illinois” and “Chicago” are selected. Underneath the dropdowns is a list of restaurants that are in Chicago." src="../static/img/react-vite/09-making-http-requests/05-solution-with-selection.png" width="689px"/>
+<img alt="A web page titled “Restaurants” from place-my-order.com showing that “Illinois” and “Chicago” are selected. Underneath the dropdowns is a list of restaurants that are in Chicago." src="../static/img/react-vite/09-making-http-requests/05-solution-with-selection.png" width="689"/>
 
 ### Setup 5
 

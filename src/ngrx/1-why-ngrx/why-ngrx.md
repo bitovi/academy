@@ -69,7 +69,7 @@ Selectors are functions that extract data from the state. Selectors can return d
 To help you understand how Redux pieces work together, let’s take a look at the most basic representation of how data is passed around in an application that uses Redux, also known as a _one-way data flow_, [taken from the Redux Official Documentation](https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow#state-management).
 
 <figure>
-    <img src="../static/img/ngrx/1-why-ngrx/ngrx-one-way-data-flow.png" alt="One-way data flow" width="640px">
+    <img src="../static/img/ngrx/1-why-ngrx/ngrx-one-way-data-flow.png" alt="One-way data flow" width="640">
     <figcaption style="text-align: center; width: 640px">One-way Data Flow (<a href="https://redux.js.org/tutorials/essentials/part-1-overview-concepts">Source</a>)</figcaption>
 </figure>
 
@@ -87,7 +87,7 @@ Data goes through the following steps:
 NgRx abstracts away from _one-way data flow_ to represent its own Store implementation pieces and interaction with external entities, such as Components and Services, to what is referred to as the _State Management Lifecycle_.
 
 <figure>
-    <img src="../static/img/ngrx/1-why-ngrx/state-management-lifecycle.png" alt="NgRx State Management Lifecycle diagram" width="640px">
+    <img src="../static/img/ngrx/1-why-ngrx/state-management-lifecycle.png" alt="NgRx State Management Lifecycle diagram" width="640">
     <figcaption style="text-align: center; width: 640px">NgRx State Management Lifecycle (<a href="https://ngrx.io/guide/store">Source</a>)</figcaption>
 </figure>
 

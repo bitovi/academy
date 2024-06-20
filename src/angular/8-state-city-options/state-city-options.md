@@ -19,7 +19,7 @@ In this part, we will:
 Currently, we are showing a list of all restaurants:
 
 <img src="../static/img/angular/8-state-city-options/before.png"
-  style="border: solid 1px black;" width="320px"/>
+  style="border: solid 1px black;" width="320"/>
 
 We would like our user to be able to filter restaurants based on city and state. To accomplish this,
 we will need to implement a reactive form with two controls, `state` and `city`, that are dropdowns displaying a list of cities and states. It will look like the following:

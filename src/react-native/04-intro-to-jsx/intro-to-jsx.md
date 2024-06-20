@@ -19,7 +19,7 @@ In this section, you will:
 
 Now that we have our project set up, let’s update our page to look like the design below:
 
-<img alt="Screenshot of a mobile application interface text “Place My Order: Coming Soon!” and “Illinois“." src="../static/img/react-native/04-intro-to-jsx/01-solution.png" style="border: 4px solid black; border-radius: 25px;" width="640px"/>
+<img alt="Screenshot of a mobile application interface text “Place My Order: Coming Soon!” and “Illinois“." src="../static/img/react-native/04-intro-to-jsx/01-solution.png" style="border: 4px solid black; border-radius: 25px;" width="640"/>
 
 ### What is JSX?
 
@@ -235,7 +235,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 Next, we want to render a list of state names in our application:
 
-<img alt="Screenshot of a mobile application interface text “Place My Order: Coming Soon!”, “Illinois“, and “Wisconsin“." src="../static/img/react-native/04-intro-to-jsx/02-solution.png" style="border: 4px solid black; border-radius: 25px;" width="640px"/>
+<img alt="Screenshot of a mobile application interface text “Place My Order: Coming Soon!”, “Illinois“, and “Wisconsin“." src="../static/img/react-native/04-intro-to-jsx/02-solution.png" style="border: 4px solid black; border-radius: 25px;" width="640"/>
 
 To do so, we’ll learn about:
 

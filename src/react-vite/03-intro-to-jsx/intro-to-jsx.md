@@ -19,7 +19,7 @@ In this section, we will:
 
 Now that we have our project set up, let’s update our page to look like the design below:
 
-<img alt="Screenshot of a web application interface titled “Restaurants” showing a single restaurant entry. The entry includes a photo of a sushi plate, an address, a price indicator, business hours, and a green badge stating “Open Now”. There is also a “Details” button to the right. The browser tab indicates “Vite + React + TS” and the URL is “localhost:5173”." src="../static/img/react-vite/03-intro-to-jsx/01-solution.png" width="640px"/>
+<img alt="Screenshot of a web application interface titled “Restaurants” showing a single restaurant entry. The entry includes a photo of a sushi plate, an address, a price indicator, business hours, and a green badge stating “Open Now”. There is also a “Details” button to the right. The browser tab indicates “Vite + React + TS” and the URL is “localhost:5173”." src="../static/img/react-vite/03-intro-to-jsx/01-solution.png" width="640"/>
 
 ### What is JSX?
 
@@ -235,7 +235,7 @@ Take the below HTML and convert it to JSX in `app.tsx`:
 
 Next, we want to render a list of restaurants in our application:
 
-<img alt="Screenshot of the same web application interface from Objective 1, except now there are multiple restaurants listed in the UI." src="../static/img/react-vite/03-intro-to-jsx/02-solution.png" width="640px"/>
+<img alt="Screenshot of the same web application interface from Objective 1, except now there are multiple restaurants listed in the UI." src="../static/img/react-vite/03-intro-to-jsx/02-solution.png" width="640"/>
 
 To do so, we‘ll learn about:
 

@@ -24,7 +24,7 @@ In this part, we will:
 We want to create a new Angular application and update it to say **Place My Order App: Coming Soon!** in an `<h1>` element.
 
 <img src="../static/img/angular/2-generate-an-app/after.png"
-  style="border: solid 1px black;" width="320px"/>
+  style="border: solid 1px black;" width="320"/>
 
 ## What you need to know
 

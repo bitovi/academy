@@ -171,7 +171,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 We want to display a list of restaurants in our UI once the data has been set on the restaurants member. It will look like:
 
 <img src="../static/img/angular/3-creating-components/restaurant-component.png"
-  style="border: solid 1px black;" width="640px"/>
+  style="border: solid 1px black;" width="640"/>
 
 > Note: We will fix the missing images in the next step.
 

@@ -20,7 +20,7 @@ data from the service API. Instead of two hard coded restaurants, we will
 see a longer list:
 
 <img src="../static/img/angular/7-data-into-view/1-after.png"
-  style="border: solid 1px black;" width="640px"/>
+  style="border: solid 1px black;" width="640"/>
 
 ## P1: What you need to know
 

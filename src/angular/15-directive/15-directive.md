@@ -10,7 +10,7 @@
 While filling out the `phone number` field, you might have noticed that users can type in both letters and numbers. This is a problem because we do not want users entering letters in the `phone number` field.
 
 <img src="../static/img/angular/15-directives/order-form-thumbnails.png"
-style="border: solid 1px black;" width="420px"/>
+style="border: solid 1px black;" width="420"/>
 
 In order to fix this, we will create an Attribute Directive that will change the behavior of the Phone Input Field, and will ensure that only numbers can be entered in the field.
 

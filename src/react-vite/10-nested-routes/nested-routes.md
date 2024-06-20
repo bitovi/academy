@@ -18,7 +18,7 @@ In this section, we will:
 
 We want to have a component to display individual restaurants details, and want the path to be nested under the restaurants path.
 
-<img alt="Screenshot of the Place My Order app with a nested route, displaying the “/restaurants/lettuce-shack” URL in the browser’s address bar." src="../static/img/react-vite/10-nested-routes/01-solution.png" width="640px"/>
+<img alt="Screenshot of the Place My Order app with a nested route, displaying the “/restaurants/lettuce-shack” URL in the browser’s address bar." src="../static/img/react-vite/10-nested-routes/01-solution.png" width="640"/>
 
 ### Introduction to nested routes
 
@@ -167,7 +167,7 @@ Refactor the router config in **src/main.tsx** to nest the restaurant routes.
 
 We learned to create nested routes, let’s practice by adding another page to our application. Add the order page to the route config and add a link to it.
 
-<img alt="Screenshot of the Place My Order app with a nested route, displaying the “/restaurants/lettuce-shack/order” URL in the browser’s address bar." src="../static/img/react-vite/10-nested-routes/02-solution.png" width="640px"/>
+<img alt="Screenshot of the Place My Order app with a nested route, displaying the “/restaurants/lettuce-shack/order” URL in the browser’s address bar." src="../static/img/react-vite/10-nested-routes/02-solution.png" width="640"/>
 
 ### Setup 2
 
