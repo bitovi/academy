@@ -20,7 +20,7 @@ We want to build a component that displays the CTA bus tracker routes and displa
 - The `google-map-view` component we created in the previous section.
 
 <img src="../static/img/web-components/bus-tracker-shell.png"
-  width="100%"
+ 
   style="border: solid 1px black;"
   alt="The shell of our bus-tracker component showing a header and a Google map"/>
 

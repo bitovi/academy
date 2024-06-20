@@ -75,13 +75,13 @@ be a useful reference for understanding how the tutorial works:
 
 - Open Developer Tools and stack CodePen vertically:
 
-  <img src="./static/img/codepen-stack.png" width="100%" alt="CodePen stacked" style="border: solid 1px #808080" />
+  <img src="./static/img/codepen-stack.png" alt="CodePen stacked" style="border: solid 1px #808080" />
 
 - Save your CodePen
 - If you can’t figure out what is breaking, use an [online diff checker](https://www.diffchecker.com/) to
   compare your code with the solution.
 
-  <img src="./static/img/diff-checker.png" width="100%" alt="DiffChecker" style="border: solid 1px #808080" />
+  <img src="./static/img/diff-checker.png" alt="DiffChecker" style="border: solid 1px #808080" />
 
 ## Prerequisites
 

@@ -21,8 +21,8 @@ In this section, you will:
 We will be setting up the application to switch between light mode and dark mode:
 
 <div style="display: flex; flex-direction: row; gap: 2rem; flex-wrap: wrap;">
-  <img alt="Screenshot of the application when it is in light mode." src="../static/img/react-native/10-managing-state/lightMode.png" style="border: 4px solid black; border-radius: 25px;" height="640px"/>
-  <img alt="Screenshot of the application when it is in dark mode." src="../static/img/react-native/10-managing-state/darkMode.png" style="border: 4px solid black; border-radius: 25px;" height="640px"/>
+  <img alt="Screenshot of the application when it is in light mode." src="../static/img/react-native/10-managing-state/lightMode.png" style="border: 4px solid black; border-radius: 25px;" height="640"/>
+  <img alt="Screenshot of the application when it is in dark mode." src="../static/img/react-native/10-managing-state/darkMode.png" style="border: 4px solid black; border-radius: 25px;" height="640"/>
 </div>
 
 ### Overview of state management

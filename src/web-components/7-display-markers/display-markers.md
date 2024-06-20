@@ -20,7 +20,7 @@ In the previous exercise we fetched a list of vehicles when a route is selected 
 When an error occurs in the API it should wipe away any existing markers.
 
 <img src="../static/img/web-components/bt-display-markers.gif"
-  width="100%"
+ 
   style="border: solid 1px black;"
   alt="Markers being displayed when a route is selected." />
 

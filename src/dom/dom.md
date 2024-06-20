@@ -33,7 +33,7 @@ If you find bugs in this training or have suggestions, create an [issue](https:/
 
 The end result of this training is to build a basic, [progressively enhanced](https://en.wikipedia.org/wiki/Progressive_enhancement) tabs widget that looks like:
 
-<img src="./static/img/dog-tabs.png" width="100%"/>
+<img src="./static/img/dog-tabs.png"/>
 
 We will be creating simple versions of many of jQuery’s most useful methods:
 

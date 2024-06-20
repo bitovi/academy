@@ -53,7 +53,7 @@ console.log(m);
 
 You can inspect the Mammal instance `m` and see its `__proto__` property:
 
-<img src="../static/img/debugging/prototype.png" width="100%"/>
+<img src="../static/img/debugging/prototype.png"/>
 
 
 ## The solution

@@ -16,7 +16,7 @@ In this part we will:
 Our bus-tracker component currently only includes a header and a map. We want to add a routes list so that eventually the user can select a route which will display within the map. At the end of this exercise we want a scrollable list of routes to be displayed.
 
 <img src="../static/img/web-components/bt-list-routes.gif"
-  width="100%"
+ 
   style="border: solid 1px black;"
   alt="A scrollable list of bus routes on top, a map on the bottom." />
 

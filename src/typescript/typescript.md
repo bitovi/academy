@@ -18,7 +18,7 @@ Please ask questions related to TypeScript in the [TypeScript chat room](https:/
 
 If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/academy/issues) or email `contact@bitovi.com`.
 
-<img alt="TypeScript" src="./static/img/typescript/logo.svg" width="100%"/>
+<img alt="TypeScript" src="./static/img/typescript/logo.svg"/>
 
 TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
 

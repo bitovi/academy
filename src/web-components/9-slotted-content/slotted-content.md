@@ -17,7 +17,7 @@ In the previous section we allowed the header to be styled with a few CSS proper
 An easier way to allow consumers of your component to have *complete* control is to use slots. In this part we want to allow the header to be replaced with a custom header. In the end it should look like:
 
 <img src="../static/img/web-components/bt-slotted.jpg"
-  width="100%"
+ 
   style="border: solid 1px black;"
   alt="Header customized using slots." />
 
