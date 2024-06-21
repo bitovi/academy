@@ -170,7 +170,7 @@ Questions to reflect:
 - What are the specific pain points the client is facing with this project?
 - How will success be measured for this project?
 
-### Background research
+### Conducting background research
 
 Thorough background research is useful for understanding the client’s context and preparing for effective engagement:
 
@@ -228,7 +228,7 @@ Tips and techniques:
 
 - **RSS feeds:** Use RSS feeds to aggregate content from industry blogs and journals.
 
-### Questions to ask
+### Client questions
 
 Understanding the client:
 
@@ -314,7 +314,7 @@ Questions to reflect:
 
 - How do you keep project documentation current and encourage team contributions?
 
-### Questions to ask
+### Product questions
 
 Product understanding:
 
@@ -518,7 +518,7 @@ Questions to reflect:
 
 - How do you ensure that customer insights are effectively communicated within your team and to the client?
 
-### Questions to ask
+### Customer questions
 
 Customer identification:
 
@@ -752,7 +752,7 @@ Questions to reflect:
 
 - How do you ensure that project documentation is clear, comprehensive, and accessible to all team members? What best practices do you follow?
 
-### Questions to ask
+### Project questions
 
 Project understanding:
 
