@@ -35,7 +35,7 @@ Here are key strategies to build and sustain your credibility:
 - **Set realistic expectations:** Always set achievable expectations. Consistently delivering on or before deadlines fosters trust, as clients see you as reliable and competent.
 - **Follow through on promises:** Ensure you fulfill your commitments on time. Consistently doing what you say you’ll do reinforces your reliability.
 - **Align actions with words:** Ensure that what you say matches what you do. Consistency between your promises and actions builds trust.
-- **Regular updates:** Provide regular and accurate updates to keep the client informed about the project’s status. Avoid surprises by communicating openly about any changes or issues.
+- **Give regular updates:** Provide regular and accurate updates to keep the client informed about the project’s status. Avoid surprises by communicating openly about any changes or issues.
 - **Admit mistakes:** If you make a mistake, acknowledge it quickly and work on a solution. Taking responsibility shows integrity and a commitment to excellence.
 
 To establish trust quickly and effectively, follow these core principles:
@@ -125,10 +125,10 @@ Leveraging technology effectively can significantly enhance trust between you an
 
 Here are key ways to use technology to build and maintain trust:
 
-- **Secure document sharing:** Use Google Drive (or the client’s preferred tool) with proper access controls to ensure that sensitive documents are only accessible to authorized individuals.
-- **Password management:** Use 1Password (or the client’s preferred tool) to securely share credentials with clients. Do not trust Slack (or any other chat tool) with secrets because all messages may be logged or retained.
-- **Task management software:** Keep the project’s task management software (e.g. Jira) up to date. This allows clients to track progress in real-time, providing transparency and reassurance.
 - **Regular updates:** Use these tools to provide regular updates and document any changes or issues that arise. Consistent communication through these platforms can help build trust and manage expectations.
+- **Task management software:** Keep the project’s task management software (e.g. Jira) up to date. This allows clients to track progress in real-time, providing transparency and reassurance.
+- **Password management:** Use 1Password (or the client’s preferred tool) to securely share credentials with clients. Do not trust Slack (or any other chat tool) with secrets because all messages may be logged or retained.
+- **Secure document sharing:** Use Google Drive (or the client’s preferred tool) with proper access controls to ensure that sensitive documents are only accessible to authorized individuals.
 
 Tips and techniques:
 
@@ -139,7 +139,6 @@ Tips and techniques:
 Questions to reflect:
 
 - Reflect on a past project where you felt trust was strong between you and the client. What specific actions or behaviors contributed to building that trust?
-- How do you differentiate between trust and rapport in your professional relationships? Can you give an example where you experienced one without the other?
 - Think about a time when trust was broken in a professional setting. How was it handled, and what were the outcomes?
 
 ## Rapport
@@ -177,9 +176,9 @@ Tips and techniques:
 
 - Start meetings with a light, non-work-related question like, “How was your weekend?”
 
-### Natural relationship building
+### Building natural relationships
 
-Building relationships naturally and authentically is key to developing strong client connections.
+Developing relationships naturally and authentically is key to developing strong client connections.
 
 - **Authenticity:** Build relationships without forcing them. Genuine interactions are more effective and sustainable.
 - **Consistency:** Regular, genuine interactions are crucial for maintaining strong relationships.
@@ -270,6 +269,7 @@ Tips and techniques:
 
 Questions to reflect:
 
+- How do you differentiate between trust and rapport in your professional relationships? Can you give an example where you experienced one without the other?
 - How do you typically establish rapport with a new client? What techniques do you find most effective?
 - Can you recall a situation where a strong rapport with a client helped navigate a challenging project phase? What was the outcome?
 - How do you balance professionalism and rapport-building activities in your client interactions?
@@ -370,11 +370,11 @@ Questions to reflect:
 - How do you balance the need for honesty with maintaining a positive relationship with a client?
 - How would you adjust your approach to speaking truth to power in an organization with a very hierarchical culture?
 
-#### Scenario 1: Misaligned Expectations
+#### Scenario 1: Misaligned expectations
 
-Details: You discover that the project expectations set by the senior leadership are unrealistic given the current resources and timeline.
+You discover that the project expectations set by the senior leadership are unrealistic given the current resources and timeline.
 
-Challenge: How would you present this issue to the leadership without causing alarm or defensiveness? What data and strategies would you use to support your message?
+**How would you present this issue to the leadership without causing alarm or defensiveness? What data and strategies would you use to support your message?**
 
 ## Advocating for tool & process change to improve efficiency
 
@@ -394,7 +394,7 @@ Tips and techniques:
 - **Create a checklist:** Develop a detailed checklist of features, pros, cons, and usage scenarios for each tool to streamline the evaluation process.
 - **Use software tools:** Use workflow mapping software like Lucidchart or Miro to create dynamic and interactive diagrams.
 
-### Gap analysis
+### Analyzing gaps
 
 Conducting a gap analysis helps identify areas for improvement by comparing current practices with industry best practices.
 
@@ -412,7 +412,7 @@ Questions to reflect:
 
 - How do you prioritize gaps when multiple areas need improvement? What criteria do you use to evaluate their urgency and potential benefits?
 
-### Solution identification
+### Identifying solutions
 
 With a clear understanding of gaps and inefficiencies, the next step is to identify potential solutions.
 
@@ -424,7 +424,7 @@ Tips and techniques:
 - **Phased approach:** Design a phased integration plan that allows gradual implementation and adjustment.
 - **Feedback loops:** Establish continuous feedback loops with end-users to gather insights on usability.
 
-### Stakeholder engagement
+### Engaging stakeholders
 
 Engaging stakeholders is critical for gaining support and ensuring successful implementation of proposed changes.
 
@@ -443,7 +443,7 @@ Questions to reflect:
 - How do you prepare for presenting findings and proposals to stakeholders? What key points do you focus on?
 - What strategies do you use to address stakeholder concerns and build support for proposed changes?
 
-### Pilot testing
+### Running a pilot test
 
 Testing proposed changes on a small scale helps validate their effectiveness before full-scale implementation.
 
@@ -454,7 +454,7 @@ Tips and techniques:
 
 - **Success criteria:** Establish clear success criteria to evaluate the pilot’s outcomes.
 
-### Analysis and feedback
+### Analyzing the outcomes
 
 After the pilot, it’s important to analyze the outcomes and refine the implementation plan based on feedback.
 
@@ -467,7 +467,7 @@ Tips and techniques:
 - **Iterative adjustments:** Make iterative adjustments to the implementation plan based on feedback to refine the process.
 - **Stakeholder review:** Share revised plans with stakeholders for final review and approval before full-scale rollout.
 
-### Full-scale implementation
+### Rolling out the full-scale implementation
 
 Successful pilot testing paves the way for full-scale implementation, which requires careful planning and execution.
 
@@ -484,7 +484,7 @@ Questions to reflect:
 
 - How will you ensure that the rollout plan is detailed and comprehensive?
 
-### Continuous improvement
+### Continuously improving over time
 
 Continuous improvement ensures that the new tools and processes remain effective and relevant over time.
 
@@ -510,8 +510,6 @@ Questions to reflect:
 
 - How do you ensure comprehensive documentation for new tools and processes?
 - What strategies do you use to standardize changes across projects and ensure team alignment?
-
----
 
 ## Taking complete ownership of tasks and the overall project goals
 
