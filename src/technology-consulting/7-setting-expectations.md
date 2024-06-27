@@ -140,7 +140,9 @@ Questions to reflect:
 
 ### Exercise
 
-**Project planning:** Your client informs you that your team will be working on a new feature for your project. They’ve committed to an internal deadline of July 1st, with a non-negotiable set of requirements, and you have a team of yourself and 2 devs to deliver.
+#### Project planning
+
+Your client informs you that your team will be working on a new feature for your project. They’ve committed to an internal deadline of July 1st, with a non-negotiable set of requirements, and you have a team of yourself and 2 devs to deliver.
 
 **What do you do?**
 
@@ -155,114 +157,6 @@ Principals used:
 
 - The Consulting Trifecta
 - Pushing Back
-
-</details>
-
-## Balancing progress and oversight
-
-There will always be a tradeoff between moving a project forward and getting sign-off from a client or stakeholder. You may often deal with clients who say they want to be involved in many layers of decisions but they are so busy or non-responsive that progress becomes blocked waiting for their approvals.
-
-We’ve found the best practice for balancing these concerns is to optimize for progress, but give stakeholders plenty of opportunities to weigh in or course correct. In other words, in most cases, move forward with your best judgement, but visibly document your course via emails or tickets, in a way where clients can step in if they desire.
-
-### Get to know the stakeholders
-
-Understanding your stakeholders is the foundation of effective project management. It involves identifying who they are, assessing their influence, and establishing communication channels tailored to their needs.
-
-- **Identify key stakeholders:** Start by identifying the primary stakeholders involved in the project. These are the individuals or groups who have a vested interest in the project’s outcome. Examples include clients, project sponsors, team members, and end-users.
-- **Assess stakeholder influence:** Determine the level of influence each stakeholder has on the project. This includes understanding their authority to make decisions, their interest in the project, and their impact on its success. Use tools like stakeholder maps to visualize and assess these dynamics.
-- **Establish communication channels:** Set up clear and effective communication channels. Decide on the frequency and method of communication for each stakeholder based on their influence and interest. For example, high-influence stakeholders might need weekly updates via video calls, while others might prefer bi-weekly email summaries.
-
-Tips and techniques:
-
-- **Conduct stakeholder interviews:** Schedule one-on-one interviews with key stakeholders to understand their priorities, expectations, and concerns.
-
-Questions to reflect:
-
-- Reflect on a previous project you were involved in. Who were the key stakeholders, and how did their influence and interest affect the project?
-- How do you establish trust and rapport with new stakeholders?
-
-### Keep everyone informed
-
-Keeping stakeholders informed is crucial to maintaining their trust and engagement. A well-structured communication plan ensures that everyone is on the same page.
-
-- **Develop a communication plan:** Create a detailed communication plan that outlines what information will be shared, when, how, and with whom. This plan should address the needs of all stakeholders and ensure transparency throughout the project lifecycle.
-- **Provide regular updates:** Regularly update stakeholders through various channels such as meetings, emails, and reports. These updates should highlight progress, upcoming milestones, and any potential issues.
-- **Tailor communication styles:** Adapt your communication style to suit the preferences of different stakeholders. For example, some stakeholders might prefer detailed reports, while others might prefer concise summaries or visual presentations.
-
-Tips and techniques:
-
-- **Templates and formats:** Use standardized templates for reports and updates to maintain consistency and clarity in communication.
-- **Weekly summary emails:** Send out weekly summary emails highlighting key achievements, upcoming tasks, and any issues needing attention.
-
-Questions to reflect:
-
-- Think about a project where communication broke down. What were the consequences, and how could they have been avoided?
-
-### Involve stakeholders consistently
-
-Consistent involvement of stakeholders helps in building a collaborative environment and ensures that their insights and feedback are incorporated.
-
-- **Schedule review sessions:** Set up regular review sessions to discuss progress and gather feedback. These sessions can be weekly, bi-weekly, or monthly depending on the project’s needs and the stakeholders’ availability.
-- **Engage in decision-making:** Include stakeholders in decision-making processes, especially when significant changes are being considered. This inclusion fosters a sense of ownership and aligns the project with their expectations.
-- **Address concerns:** Provide stakeholders with opportunities to voice their concerns and suggestions. Address these promptly to prevent minor issues from becoming major roadblocks.
-
-Tips and techniques:
-
-- **Regular check-ins:** Set up bi-weekly or monthly check-ins with stakeholders to review progress and gather feedback.
-- **Structured agendas:** Prepare structured agendas for review sessions to ensure focused and productive discussions.
-
-Questions to reflect:
-
-- How do you balance involving stakeholders in decision-making without slowing down project progress?
-- Describe a time when stakeholder feedback led to a significant change in a project. How did you handle the change?
-- What strategies do you use to encourage stakeholder participation in review sessions?
-
-### Manage expectations while progressing
-
-Effectively managing expectations helps in maintaining stakeholder satisfaction while ensuring the project progresses smoothly.
-
-- **Prioritize tasks:** Prioritize tasks based on their importance and impact on the project timeline. Allocate resources efficiently to ensure critical tasks are completed on time.
-- **Align with broader goals:** Ensure that immediate tasks are aligned with the broader goals of the project. This alignment provides a clear direction and purpose, enhancing coherence and focus.
-
-Tips and techniques:
-
-- **Use priority matrices:** Implement priority matrices to help prioritize tasks based on their importance and urgency.
-- **Set clear boundaries:** Clearly communicate what is feasible within the project scope and timelines to manage stakeholder expectations effectively.
-
-Questions to reflect:
-
-- How do you prioritize tasks when resources are limited and deadlines are tight?
-
-### Use technology to enhance oversight and tracking
-
-Leveraging technology enhances oversight and tracking, making it easier to manage projects efficiently and transparently.
-
-- **Centralize tracking:** Use project management software to centralize the tracking of activities and communications. Tools like Jira can provide a single source of truth for the project’s progress.
-- **Use collaborative tools:** Use collaborative tools like Microsoft Teams or Slack to facilitate efficient communication and collaboration. These tools help in keeping everyone in the loop and enable real-time updates.
-- **Set up dashboards:** Create dashboards to monitor important metrics in real time. Dashboards provide a visual representation of key performance indicators (KPIs) and help in identifying trends and issues quickly.
-
-Questions to reflect:
-
-- What key metrics do you track using dashboards, and how do they inform your project management decisions?
-
-### Exercise
-
-#### The unresponsive client
-
-You’re in charge of adding a search box to a component. You could build it into the existing grid in a completely abstract way, which would take 5 days, or you could make it work in the way needed for this specific use case, which would take two days. You ask your client which they would prefer but they are in two days of meetings and not replying promptly. This is the most important feature right now, so switching to something else isn’t a viable option.
-
-**What do you do?**
-
-<details>
-<summary>
-Answer
-</summary>
-
-How likely is it that the project will reuse the search feature in a future grid? For example, assume, based on your current knowledge, there’s a less than 25% chance of reuse. Therefore, I would recommend choosing the non-abstract approach, and writing an email, or writing a comment on the ticket tagging your client which summarizes your decision, the reasons for it, and states “I will proceed with this approach, but let me know if you disagree”. Forward progress is being made, but with transparency and giving your client the opportunity to course correct if they have different information.
-
-Principals used:
-
-- Balancing progress and oversight
 
 </details>
 
@@ -286,5 +180,90 @@ Principles used:
 - Remember that you share common goals
 - Building rapport
 - Pushing back
+
+</details>
+
+## Balancing progress and oversight
+
+There will always be a tradeoff between moving a project forward and getting sign-off from a client or stakeholder. You may often deal with clients who say they want to be involved in many layers of decisions but they are so busy or non-responsive that progress becomes blocked waiting for their approvals.
+
+We’ve found the best practice for balancing these concerns is to optimize for progress, but give stakeholders plenty of opportunities to weigh in or course correct. In other words, in most cases, move forward with your best judgement, but visibly document your course via emails or tickets, in a way where clients can step in if they desire.
+
+### Keep stakeholders informed
+
+During the normal course of your work, be sure to:
+
+- **Keep project management tools up to date:** Tools like Jira can provide a single source of truth for the project’s progress. Always keep it up to date and add comments to issues if it’s in progress for more than a day.
+- **Summarize project status in weekly updates:** This can be in the form of a Slack post or email, depending on the audience. Weekly updates provide a regular way for you to report progress and flag when a blocker needs to be addressed.
+- **Use sprint demos/reviews to show progress:** Ideally, all stakeholders will attend sprint demos to learn more about work that’s being implemented. Even if they don’t attend the meeting, it can be recorded and sent to them as a reference.
+- **Use backlog grooming to identify risks:** When refining issues in a backlog, point out the items that are unclear, need answers, or will need stakeholder input before they are worked on. The earlier those things can be addressed, the less risky the work will be when it’s picked up.
+
+Tips and techniques:
+
+- **Add a Blocked column:** In tools like Jira, adding a “Blocked” column to the far left of the sprint board can make it very clear when there are blockers that need to be handled.
+- **Implement weekly updates (even if you don’t think they’re required):** It is always useful to summarize progress to stakeholders to build trust. If things start to go off track, it’s easier to put that at the top of a weekly status update (vs. having to communicate bad news in the first update).
+- **Develop a communication plan:** Create a detailed communication plan that outlines what information will be shared, when, how, and with whom. This plan should address the needs of all stakeholders and ensure transparency throughout the project lifecycle.
+- **Tailor communication styles:** Adapt your communication style to suit the preferences of different stakeholders. For example, some stakeholders might prefer detailed reports, while others might prefer concise summaries or visual presentations.
+- **Templates and formats:** Use standardized templates for reports and updates to maintain consistency and clarity in communication.
+- **Weekly summary emails:** Send out weekly summary emails highlighting key achievements, upcoming tasks, and any issues needing attention.
+
+Questions to reflect:
+
+- How do you balance involving stakeholders in decision-making without slowing down project progress?
+- Describe a time when stakeholder feedback led to a significant change in a project. How did you handle the change?
+- What strategies do you use to encourage stakeholder participation in review sessions?
+- Think about a project where communication broke down. What were the consequences, and how could they have been avoided?
+
+### Identify when a stakeholder is required for a decision
+
+Stakeholders don’t typically need to be involved in:
+
+- Minor addjustments: Small tweaks that don’t significantly affect the project.
+- Operational details: Day-to-day operational decisions that don’t impact the project’s core objectives.
+- Technical details: Technical choices that don’t have a greater business impact.
+
+The almost always need to be involved in:
+
+- **Scope adjustments:** Alters the project scope or objectives.
+- **Timeline changes:** Affects the project deadlines or delivery dates.
+- **Strategic direction:** Influences the overall strategic direction of the project.
+- **Critical requirements:** Impacts core functionalities or key deliverables.
+
+Before escalating your communication, consider:
+
+- **Who** it’s important to: Involve the stakeholders who have a vested interest in getting the problem solved.
+- **What** needs to be decided: Focus on the most important things that need to be resolved first.
+- **When** you need a decision by: Communicate this and share the impact of not having a decision by a specific date.
+- **Why** the decision needs to be made: If you move forward with what you think is best, will there be any ramifications later?
+
+### Escalate blockers to stakeholders
+
+If the matter at hand is an actual blocker, try to get a hold of the stakeholder:
+
+1) **Schedule a meeting:** Look at their calendar and find their first available slot. When possible, include a link to a message in your chat tool or a comment in the project management tool that explains the blocker so they can read up on it before the meeting.
+2) **Message them directly:** Include a short summary of what you need a decision on with a link to more information.
+3) **Call them directly:** Tools such as Microsoft Teams or Slack allow you to call another person. Avoid calling them if you know they’re in another meeting.
+4) **Tell your lead/manager/etc.:** Let someone else know that you’re blocked and ask them for advice for escalating it more.
+
+In any case, try to explain what you will do if you do not hear back from them, or make it clear you are completely blocked on a piece of work until you’ve had a chance to discuss it with them.
+
+### Exercise
+
+#### The unresponsive client
+
+You’re in charge of adding a search box to a component. You could build it into the existing grid in a completely abstract way, which would take 5 days, or you could make it work in the way needed for this specific use case, which would take two days. You ask your client which they would prefer but they are in two days of meetings and not replying promptly. This is the most important feature right now, so switching to something else isn’t a viable option.
+
+**What do you do?**
+
+<details>
+<summary>
+Answer
+</summary>
+
+How likely is it that the project will reuse the search feature in a future grid? For example, assume, based on your current knowledge, there’s a less than 25% chance of reuse. Therefore, I would recommend choosing the non-abstract approach, and writing an email, or writing a comment on the ticket tagging your client which summarizes your decision, the reasons for it, and states “I will proceed with this approach, but let me know if you disagree”. Forward progress is being made, but with transparency and giving your client the opportunity to course correct if they have different information.
+
+Principals used:
+
+- Balancing progress and oversight
 
 </details>
