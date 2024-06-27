@@ -43,7 +43,7 @@ Initiatives in the `Ideas Backlog` are just ideas. Anyone can add them at any ti
 
 
 <img src="../static/img/program-management-with-jira/continuous-exploration-workflow.png"
-	style="border: solid 1px black; min-width: 400px; width: 100%; max-width: 800px"/>
+	style="border: solid 1px black;"/>
 
 The discovery workflow is a process that looks at:
 
@@ -57,7 +57,7 @@ The discovery workflow is a process that looks at:
 
 
 <img src="../static/img/program-management-with-jira/customer-reports.png"
-  style="border: solid 1px black; min-width: 400px; width: 100%; max-width: 800px"/>
+  style="border: solid 1px black;"/>
 
 
 The discovery workflow is out-of-scope for this training. If you’d like to learn more, please vote for the [Product Discovery Process](https://github.com/bitovi/academy/issues/386) training.

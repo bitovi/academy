@@ -14,7 +14,7 @@ The following is a bit crazy, but it connects what users, businesses, and develo
 <span style="color:green; font-weight: bold">(green)</span> and tools
 <span style="color:purple; font-weight: bold">(violet)</span>.
 
-![Theory](../../docs/front-end/madness.png "Theory")
+<img alt="Theory" src="../../docs/front-end/madness.png">
 
 ## The Goal
 

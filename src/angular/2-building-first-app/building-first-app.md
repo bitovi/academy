@@ -24,7 +24,7 @@ In this part, we will:
 We want to create a new Angular application and update it to say **Place My Order App: Coming Soon!** in an `<h1>` element.
 
 <img src="../static/img/angular/2-generate-an-app/after.png"
-  style="border: solid 1px black; max-width: 320px;"/>
+  style="border: solid 1px black;" width="320"/>
 
 ## What you need to know
 
@@ -44,7 +44,7 @@ If you’re looking for a code editor (aka IDE) to improve your Angular developm
 
 <a href="https://code.visualstudio.com/">VS Code</a> is Microsoft’s modern take on an IDE for app development (P.S. TypeScript is a Microsoft Open Source project). VS Code has built in TypeScript support for syntax highlighting, IntelliSense code completion, and linting.
 
-<a href="../static/img/vs-code-screenshot.png"><img src="../static/img/vs-code-screenshot.png" width="100%" alt="Visual Studio Code screenshot" /></a>
+<a href="../static/img/vs-code-screenshot.png"><img src="../static/img/vs-code-screenshot.png" alt="Visual Studio Code screenshot" /></a>
 
 Helpful Plugins:
 
@@ -55,7 +55,7 @@ Helpful Plugins:
 
 <a href="https://www.jetbrains.com/webstorm/download/">Webstorm</a> is a platform by JetBrains that is loved for its great code refactoring assistance and version control integration, but it does require a paid subscription.
 
-<a href="../static/img/webstorm-screenshot.png"><img src="../static/img/webstorm-screenshot.png" width="100%" alt="Webstorm screenshot" /></a>
+<a href="../static/img/webstorm-screenshot.png"><img src="../static/img/webstorm-screenshot.png" alt="Webstorm screenshot" /></a>
 
 Helpful Plugins:
 
@@ -77,7 +77,8 @@ npm install -g @angular/cli@17
 
 Our final goal is to build a restaurant menu and ordering application, which should look something like this:
 
-![Place My Order App screenshot](../static/img/place-my-order.png 'Place My Order App screenshot')
+<img alt="Place My Order App screenshot" src="../static/img/place-my-order.png" width="640">
+
 
 (reminder: You can see a DoneJS implementation of this application at [www.place-my-order.com](http://www.place-my-order.com))
 
