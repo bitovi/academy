@@ -79,7 +79,7 @@ Negotiation is key to aligning client expectations with project realities.
 
 - **Set firm boundaries:** Clearly define what is achievable with the current resources. State these boundaries upfront to avoid misunderstandings later. For example, “Our team can deliver this module by the end of Q2, but not the entire project.”
 - **Propose viable alternatives:** Offer realistic options that align with the client’s objectives. If a client wants a complex feature quickly, suggest developing a simpler MVP (Minimum Viable Product) first.
-- **Phase-based agreements:** Breaking the project into phases allows for periodic reassessment and adjustment of expectations. This can also help in delivering incremental value to the client, making the progress tangible.
+- **Break the project into phases:** Phased-base agreements allow for periodic reassessment and adjustment of expectations. This can also help in delivering incremental value to the client, making the progress tangible.
 
 Questions to reflect:
 
@@ -92,7 +92,6 @@ Questions to reflect:
 Strong project management practices are essential for maintaining realistic expectations and delivering on commitments.
 
 - **Maintain scope integrity:** Regularly review the project scope to ensure alignment with the agreed terms. For example, use scope documents and change request logs to manage additions or modifications.
-- **Optimal resource allocation:** Strategically allocate resources to maximize efficiency and meet key deadlines. Prioritize tasks based on their impact and feasibility.
 - **Proactive risk management:** Identify potential risks from the onset and develop mitigation strategies. For instance, if a particular technology is new to the team, allocate extra time for training and potential troubleshooting.
 
 Tips and techniques:
@@ -127,8 +126,7 @@ Questions to reflect:
 
 Proper documentation is essential for managing and communicating expectations clearly.
 
-- **Maintain change logs:** Record any changes in project scope or expectations that arise during negotiations. This ensures that everyone is aware of what has been agreed upon.
-- **Accurate contract management:** Ensure that all contracts and agreements reflect the outcomes of discussions and negotiations. This can prevent misunderstandings and serve as a reference point.
+- **Maintain change logs:** Record any changes in project scope or expectations. This ensures that everyone is aware of what has been agreed upon.
 - **Regular updates:** Provide frequent updates to keep everyone informed about progress and any changes in expectations. This can be done through weekly status reports or regular client meetings.
 
 Tips and techniques:
@@ -139,6 +137,26 @@ Tips and techniques:
 Questions to reflect:
 
 - How do you ensure all changes in project scope are accurately documented?
+
+### Exercise
+
+**Project planning:** Your client informs you that your team will be working on a new feature for your project. They’ve committed to an internal deadline of July 1st, with a non-negotiable set of requirements, and you have a team of yourself and 2 devs to deliver.
+
+**What do you do?**
+
+<details>
+<summary>
+Answer
+</summary>
+
+Let them know that plan is likely untenable, and that you’d like to evaluate the scope before committing to that deadline (otherwise there’s risk in not meeting it). Work with them to find a scope that keeps them within their time and staffing constraints. If they are not flexible, explain the scope-resources-deadline trifecta and the risks. Ask them to consider additional resources, or a more flexible deadline.
+
+Principals used:
+
+- The Consulting Trifecta
+- Pushing Back
+
+</details>
 
 ## Balancing progress and oversight
 
@@ -227,27 +245,9 @@ Questions to reflect:
 
 - What key metrics do you track using dashboards, and how do they inform your project management decisions?
 
-## Exercise: Project Planning
+### Exercise
 
-Your client informs you that your team will be working on a new feature for your project. They’ve committed to an internal deadline of July 1st, with a non-negotiable set of requirements, and you have a team of yourself and 2 devs to deliver.
-
-**What do you do?**
-
-<details>
-<summary>
-Answer
-</summary>
-
-Let them know that plan is likely untenable, and that you’d like to evaluate the scope before committing to that deadline (otherwise there’s risk in not meeting it). Work with them to find a scope that keeps them within their time and staffing constraints. If they are not flexible, explain the scope-resources-deadline trifecta and the risks. Ask them to consider additional resources, or a more flexible deadline.
-
-Principals used:
-
-- The Consulting Trifecta
-- Pushing Back
-
-</details>
-
-## Exercise: The Unresponsive Client
+#### The unresponsive client
 
 You’re in charge of adding a search box to a component. You could build it into the existing grid in a completely abstract way, which would take 5 days, or you could make it work in the way needed for this specific use case, which would take two days. You ask your client which they would prefer but they are in two days of meetings and not replying promptly. This is the most important feature right now, so switching to something else isn’t a viable option.
 
@@ -266,7 +266,7 @@ Principals used:
 
 </details>
 
-## Exercise: The Difficult Developer
+#### The difficult developer
 
 There is one particularly grumpy client developer that joins your team in the middle of the project. Every idea you propose they argue against. They tend to nitpick all your pull requests with [bikeshed-type](https://en.wikipedia.org/wiki/Law_of_triviality) comments. Recently, they proposed that we rewrite our project in Angular because it’s easier to onboard new developers to a popular framework.
 
