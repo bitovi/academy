@@ -16,7 +16,6 @@ In this part we will:
 We want to display the bus destination for the selected marker. This should look similar to how the selected route is displayed as an overlay of the map, but float just below the route overlay. When no routes or markers are selected it should be invisible; when it is clicked it should say `Vehicle: DESTINATION`, where destination can be gotten from the vehicle object that is used to construct the marker.
 
 <img src="../static/img/web-components/bt-display-vehicle.gif"
-
   style="border: solid 1px black;"
   alt="Selecting a marker displays the vehicle associated with that marker." />
 

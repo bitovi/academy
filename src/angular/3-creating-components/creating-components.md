@@ -74,7 +74,7 @@ Data can also be passed to child components. Data can be passed with expression 
 Create a component that displays a title read from a component’s `title` member.
 
 <img src="../static/img/angular/3-creating-components/home-component.png"
-  style="border: solid 1px black;" width="640px/>
+  style="border: solid 1px black;" width="640px"/>
 
 The component should provide the following HTML:
 

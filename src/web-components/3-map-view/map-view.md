@@ -17,7 +17,6 @@ In this part we will:
 Create a component where we can display a Google map. Google maps need to be attached to a DOM element, so use [Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM) to encapsulate the HTML and CSS that Google maps builds.
 
 <img src="../static/img/web-components/gmap-slippy.gif"
- 
   style="border: solid 1px black;"
   alt="google-map-view component with a useable slippy map."/>
 
