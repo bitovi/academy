@@ -224,7 +224,7 @@ The output of the command should be something like:
 
 ### Objective 6: Launch the Android emulator
 
-<img alt="Screenshot of the Android Emulator running in Android Studio" src="../static/img/react-native/02-setting-up-your-environment/06-solution.png" style="border: 4px solid black; border-radius: 25px;" width="640"/>
+<img alt="Screenshot of the Android Emulator running in Android Studio" src="../static/img/react-native/02-setting-up-your-environment/06-solution.png" style="border: 4px solid black; border-radius: 25px;" height="640"/>
 
 #### Setup 6
 
@@ -511,7 +511,7 @@ C:\Users\bitovi\AppData\Local\Android\Sdk\platform-tools
 
 ### Objective 6: Launch the Android emulator
 
-<img alt="Screenshot of the Android Emulator running in Android Studio" src="../static/img/react-native/02-setting-up-your-environment/06-solution.png" style="border: 4px solid black; border-radius: 25px;" width="640"/>
+<img alt="Screenshot of the Android Emulator running in Android Studio" src="../static/img/react-native/02-setting-up-your-environment/06-solution.png" style="border: 4px solid black; border-radius: 25px;" height="640"/>
 
 #### Setup 6
 
