@@ -1,24 +1,39 @@
 @page learn-technology-consulting/consultant-vs-technologist Being a Consultant
-@parent learn-technology-consulting 6
+@parent learn-technology-consulting 7
 @outline 3
 
-@description How to be more than just a technologist on a consulting project.
+@description How to be more than just a domain expert on a consulting project.
 
 @body
 
-## Being a Consultant (not just a technologist)
+## Being a Consultant (not just a domain expert)
 
-### Understanding the role of a consultant
+At Bitovi, we pride ourselves in being able to deliver more than just staff augmentation. Being a consultant means understanding and engaging with the client’s broader business context, building strong relationships, asking insightful questions, and providing tailored solutions. Your role is to be a partner to the client, offering expertise that goes beyond fulfilling tasks to include strategic thinking and problem-solving.
 
-**Beyond technical expertise:** Recognize that your role extends beyond being a technical expert. As a consultant, you are a trusted advisor offering solutions that address real-world problems and deliver significant value.
+### Common roles on software projects
 
-This means your job is not only about solving technical issues but also understanding and addressing the client’s business challenges. You should aim to bridge the gap between technology and business, ensuring that your solutions contribute to the client’s success.
+There are _many_ roles on software projects:
 
-**Partnering with clients:** View yourself as a partner, not just a service provider. Your aim is to collaborate closely with clients to achieve their business goals. This partnership involves building a strong relationship based on trust, open communication, and mutual respect, all of which will be covered in later sections.
+- **Client Stakeholder**: Represents the client’s interests, provides feedback, and approves deliverables.
+- **Project Manager (PM)**: Oversees the project, ensuring it stays on schedule, within budget, and meets the client’s requirements.
+- **Product Owner (PO)**: Defines the product vision and prioritizes the product backlog to ensure the development team delivers maximum value.
+- **Scrum Master**: Facilitates Agile ceremonies, removes impediments, and supports the team in following Scrum practices.
+- **Backend**: Develops server-side logic, databases, and APIs, ensuring the application’s functionality and performance.
+- **DevOps**: Manages deployment processes, infrastructure, and continuous integration/continuous deployment (CI/CD) pipelines.
+- **Frontend**: Implements the user interface and client-side logic, ensuring a responsive and accessible web application.
+- **Product Design**: Designs the user interface and experience, focusing on usability, aesthetics, and overall user satisfaction.
+- **QA/QE**: Tests the application to identify bugs, ensure functionality, and verify that requirements are met.
+- **Business Analyst (BA)**: Gathers requirements, documents processes, and ensures the solution meets business needs.
 
-By positioning yourself as a collaborator, you can better understand the client’s needs, align your efforts with their objectives, and create solutions that drive real value.
+As a consultant, you are expected to be an expert in one of these roles, but being a consultant is a lot more than just being a domain expert.
 
-**Aligning with business strategy:** Ensure your technical solutions align with the client’s broader business objectives and strategies. It is crucial to understand the client’s vision, mission, and strategic goals. This knowledge will guide your technical decisions and ensure that your contributions are not just technically sound but also strategically beneficial.
+### Understand the role of a consultant
+
+**Expand beyond domain expertise:** Recognize that your role is not just about completing tasks. You are a trusted advisor working on solutions that address real-world problems and deliver significant value.
+
+**Build client partnerships:** View yourself as a partner, not just a service provider. Collaborate closely with clients to understand their vision, mission, and strategic goals. This knowledge will guide your technical decisions and ensure your contributions are strategically beneficial.
+
+**Care deeply about results:** A key difference between great and average consultants is genuinely caring about making the project successful. Show your dedication, and others who care will be attracted to you and respect you, opening doors for further opportunities.
 
 Tips and techniques:
 
@@ -27,47 +42,65 @@ Tips and techniques:
 
 Questions to reflect:
 
-- Reflect on a recent project. How did your role extend beyond providing technical expertise?
+- Reflect on a recent project. How did your role extend beyond providing domain expertise?
 - What strategies can you use to position yourself as a trusted advisor rather than just a service provider?
 
-### Delivering real value
+### Grasp the business context
 
-**Identifying needs:** Proactively identify and prioritize client needs through ongoing communication and strategic meetings. Start by listening carefully and asking insightful questions to uncover underlying issues and opportunities.
+Understanding the client’s business context is crucial for delivering impactful work. By comprehending the client’s product, market, and customer base, you can better align your contributions with their broader goals.
 
-How to assess impact and identify opportunities:
+- **Learn about the client/product/customer/project:** Before diving into tasks, invest time in learning about the client’s business, their product, the market they operate in, and their customers. This understanding will enable you to tailor your work for maximum positive impact.
 
-- Regularly review the impact of implemented solutions and identify new opportunities for adding value. Assess how your solutions are performing and whether they meet the client’s expectations.
-- Use tools like SWOT analysis, customer journey mapping, and the Value Proposition Canvas to uncover deeper client needs. These tools can help you identify strengths, weaknesses, opportunities, and threats, as well as map out the client’s journey and value propositions.
+- **Contextualize your work:** Always consider how your work affects the client, customer, or project. For example, a frontend developer should think about how a new feature enhances user experience, aligns with business objectives, and meets customer needs.
 
-How to provide educational leadership:
+### Ask questions and listen
 
-- Keep clients informed about industry trends and innovations. Share relevant articles, reports, and insights that can help them stay ahead in their industry.
-- Use case studies to illustrate successful projects and highlight tangible benefits. Showcase examples of how similar solutions have benefitted other clients, emphasizing the positive outcomes and lessons learned.
+Ask thoughtful questions to understand the tasks at hand and the rationale behind them. This ensures that your implementation or solution is not just correct but also aligned with the client’s goals.
+
+- **Understand the purpose:** Ask why a task is important and how it fits into the bigger picture. This not only clarifies your understanding but also demonstrates your interest in contributing to the client’s success.
+- **Identify key roles**: Find out who is responsible for various aspects such as project management, design, UX research, understanding customers, etc. Engage with these individuals to gain insights that can inform your work.
+
+Active listening is vital for understanding the client’s needs, concerns, and expectations. It involves fully concentrating, understanding, responding, and remembering what the client says.
+
+- **Listen to understand**: Pay close attention during client interactions, and show that you value their input. Reflect back what you hear to confirm understanding and clarify any ambiguities.
+- **Address concerns**: Use the insights gained from listening to address client concerns proactively and to tailor your solutions to better meet their needs.
+
+### Solve problems
+
+As a consultant, your goal is to solve problems and empower clients to make informed decisions. This means thinking critically about the challenges they face and offering practical, well-considered advice.
+
+- **Consider multiple options:** When presented with a problem, don’t just accept it at face value. Consider various solutions, weighing their pros and cons, and how they align with the client’s goals.
+- **Address root causes:** Focus on solving the underlying problems rather than just the symptoms. This approach not only resolves the immediate problem but can also prevent future occurrences.
+- **Get creative:** There are almost certainly multiple solutions to every problem. Brainstorm ideas with your teammates to think outside the box and find opportunties in constraints.
+- **Think holistically:** Consider the big picture, understanding how different parts of a system interact and affect the business. Evaluate the interdependencies and potential ripple effects of your solutions, ensuring they align with the client’s overall strategy.
+- **Empower clients to make decisions**: Provide clients with the information they need to make decisions. This includes presenting different options, explaining the implications of each, and recommending the best course of action based on your expertise.
 
 Tips and techniques:
 
-- **Client Interviews:** Conduct structured interviews with key stakeholders to uncover pain points and priorities.
+- **Knowledge transfer sessions:** Hold knowledge transfer meetings where you train your client on tools and processes, empowering them to take ownership.
+- **Use the “Five Whys” technique:** “Five Whys” ecnourages thoughtful thinking by drilling down into the reasons behind a task or requirement, ensuring you understand the core purpose.
 
 Questions to reflect:
 
-- How do you proactively identify and prioritize client needs?
-- How do you measure the impact of your solutions and identify new opportunities for adding value?
+- Describe a time when you had to adjust your solution to better meet your client’s needs.
+- What techniques do you use to empower your client to actively participate in the design, management, or technical process?
 
-### Advocating for best practices
+### Advocate for best practices
 
 **Lead by example:** Demonstrate best practices in your own work. This not only improves the product but can also be a reference to share what implementing best practices looks like.
 
 By holding yourself to a high standard in your own work, you set a benchmark for quality and excellence that your team can aspire to.
 
-**Guide clients:** Help clients understand the rationale behind your recommendations, making them advocates for best practices. Explain the benefits of following best practices and how they can positively impact the project and business outcomes.
+**Explain your reasoning:** Help clients understand the rationale behind your recommendations, making them advocates for best practices. Explain the benefits of following best practices and how they can positively impact the project and business outcomes.
 
 How to offer strategic advisory:
 
-- Evaluate the client’s current tech setup and suggest updates to better meet project needs and support growth. Conduct thorough assessments and provide clear, actionable recommendations.
-- Create proofs of concept to demonstrate how different technologies perform under specific conditions. This helps your client visualize potential solutions and make informed decisions.
+- Evaluate the client’s project and suggest updates to better meet project needs and support growth. Conduct thorough assessments and provide clear, actionable recommendations.
+- Create proofs of concept to demonstrate how different solutions perform under specific conditions. This helps your client visualize potential solutions and make informed decisions.
 
 Tips and techniques:
 
+- **Build connections**: Develop rapport with key client stakeholders through regular communication and collaboration. This could involve informal catch-ups, joint problem-solving sessions, or simply being approachable and responsive. Strong relationships enable you to propose and implement changes more effectively. When stakeholders trust you, they are more likely to consider and support your recommendations.
 - **Conduct education sessions:** Hold sessions to update clients on the latest in technologies and best practices, showing how these can benefit their business.
 
 Questions to reflect:
@@ -75,24 +108,7 @@ Questions to reflect:
 - How do you demonstrate best practices in your work?
 - Describe a situation where you had to guide a client to understand the rationale behind your recommendations.
 
-### Flexibility in problem solving
-
-**Adapting solutions:** Stay adaptable, ready to adjust solutions as needed, and creatively tackle problems using methods like brainstorming or the Five Whys. Flexibility is key in consulting, as client needs and project scopes will inevitably change unexpectedly.
-
-**Empowering clients:** Provide clients with the tools and understanding needed to actively participate in the technical process, enhancing their decision-making capabilities. Offer training and resources that enable clients to take a more active role in their projects.
-
-**Thinking holistically:** Consider the big picture, understanding how different parts of a system interact and affect the business. Evaluate the interdependencies and potential ripple effects of your solutions, ensuring they align with the client’s overall strategy.
-
-Tips and techniques:
-
-- **Knowledge transfer sessions:** Hold knowledge transfer meetings where you train your client on tools and processes, empowering them to take ownership.
-
-Questions to reflect:
-
-- Describe a time when you had to adjust your solution to better meet your client’s needs.
-- What techniques do you use to empower your client to actively participate in the design, management, or technical process?
-
-### Managing scope, timeline, and risks
+### Manage scope, timeline, and risks
 
 Effectively manage project boundaries and expectations to avoid scope creep and ensure successful outcomes:
 
@@ -112,6 +128,7 @@ Think of issues and challenges on projects as opportunities to show problem-solv
 
 Tips and techniques:
 
+- **Refer to the Engagement Summary Document:** Regularly refer to the [learn-technology-consulting/transitioning-to-delivery#engagement-summary-document Engagement Summary Document] created at the start of the project to remind everyone of the shared objectives and reinforce the common goals.
 - **Change request process:** Implement a formal change request process to manage and document any alterations to the project scope.
 - **Root Cause Analysis (RCA):** Use root cause analysis techniques (e.g. Five Whys) to identify and address the underlying causes of issues.
 - **Post-mortem reviews:** Conduct post-mortem reviews after major issues to learn from them and prevent recurrence.
@@ -121,7 +138,7 @@ Questions to reflect:
 - Can you describe a situation where you successfully managed scope changes?
 - What strategies do you use to proactively manage risks in a project?
 
-### Upholding ethics and professionalism
+### Uphold ethics and professionalism
 
 **Maintaining confidentiality and integrity:** Handle sensitive information with care and maintain the highest level of professionalism. Ensure that client data and intellectual property are protected and handled ethically.
 
@@ -130,6 +147,20 @@ Questions to reflect:
 Questions to reflect:
 
 - Can you provide an example of how you adhered to ethical standards in a challenging situation?
+
+### Exercise
+
+You are part of a project kick-off meeting where the client outlines several tasks they want completed. One task seems unnecessary and could be a potential time drain. How would you handle this situation?
+
+<details>
+<summary>Guidance</summary>
+
+- Use active listening to fully understand the client’s request. Reflect back what you hear to confirm understanding.
+- Ask why the task is important and how it fits into the bigger picture. Use the “Five Whys” technique to uncover the root purpose.
+- Suggest alternative approaches if the task seems misaligned with project goals, providing clear reasons and potential benefits.
+- Ensure the client feels heard and valued, and collaboratively decide the best course of action.
+
+</details>
 
 ## Understanding the client, customer, product, and project
 
@@ -153,9 +184,7 @@ You should be equipped with a comprehensive understanding of the client’s busi
 
 - **Clear vision, challenges, and expectations:** Get a detailed briefing from the Principal about the client’s overall vision, the specific business challenges they face, and the expectations for how the consultant can support their broader business goals.
 
-- **Business context and industry specifics:** Obtain detailed information about the client’s industry, market position, and any relevant historical context of the business. Understand the client’s market dynamics and competitive landscape.
-
-- **Client’s business strategies:** Gain insight into the client’s past and current business strategies. This includes understanding previous initiatives, successes, failures, and lessons learned to better align your contributions with their business goals.
+- **Past, current, and future initiatives:** Gain insight into the client’s past and current business strategies. This includes understanding previous initiatives, successes, failures, and lessons learned to better align your contributions with their business goals.
 
 - **Revenue streams:** Identify the primary sources of revenue for the client. Is the project a cost center or profit center for the company?
 
@@ -174,6 +203,20 @@ Questions to reflect:
 - What are the client’s main business goals, and how does this project align with them?
 - What are the specific pain points the client is facing with this project?
 - How will success be measured for this project?
+
+#### SWOT analysis
+
+A SWOT analysis is a strategic planning tool used to identify and evaluate the Strengths, Weaknesses, Opportunities, and Threats related to a business or project. 
+
+- **Strengths:** Internal factors that give an organization an advantage over its competitors, such as strong brand reputation, loyal customer base, or unique technology.
+
+- **Weaknesses:** Internal factors that place an organization at a disadvantage, like limited resources, poor location, or outdated technology.
+
+- **Opportunities:** External factors that an organization can exploit to its advantage, such as market growth, favorable industry trends, or new technological advancements.
+
+- **Threats:** External factors that could cause trouble for the business, including economic downturns, increased competition, or regulatory changes.
+
+Conducting a SWOT analysis helps organizations understand their internal and external environments, aiding in strategic planning and decision-making.
 
 #### Learning their organizational culture and structure
 
@@ -267,25 +310,20 @@ Tips and techniques:
 Understanding the client:
 
 - What is the core business or primary mission of the client?
+- What market or industry does the client operate in?
 - What are the key products or services offered by the client?
-- Who are the client’s primary target customers or audience?
 - What are the main revenue streams for the client?
 - What are the client’s values and how do they align with their business strategies?
 - Can you describe the organizational structure of the client’s company?
 - Who are the decision-makers and key stakeholders in the projects we will be consulting on?
-- What are the current challenges or pain points the client is facing with their web applications?
 - What goals does the client hope to achieve with this project (e.g., increase sales, improve user experience, expand market share)?
 - Are there specific financial or time constraints the client is dealing with?
-
-Understanding the client’s business context:
-
-- What is the client’s core business?
-- Who are the client’s target customers?
-- What market or industry does the client operate in?
 - What are the client’s business objectives for the next 1-5 years?
-- How does the client measure success in their projects?
 
+<details>
+<summary>
 Understanding the client’s competitive landscape:
+</summary>
 
 - Who are the client’s main competitors?
 - What competitive advantages do the client’s primary competitors hold?
@@ -298,7 +336,12 @@ Understanding the client’s competitive landscape:
 - How do the client’s prices compare to those of their competitors?
 - What marketing strategies are the competitors using, particularly online and in digital spaces?
 
+</details>
+
+<details>
+<summary>
 Asking the client for information:
+</summary>
 
 - Can you provide any internal or external research reports on market trends and competitor analysis?
 - Do you have access to customer feedback or market surveys that detail customer satisfaction with your and competitors’ products?
@@ -310,6 +353,8 @@ Asking the client for information:
 - What information do you regularly track or monitor about your competitors?
 - Are there specific competitive challenges you want your project to address directly?
 - What outcomes would you consider a success for this project in the context of your competitive environment?
+
+</details>
 
 ### Understanding the product
 
@@ -329,11 +374,16 @@ For instance, a product designed for busy professionals should emphasize ease of
 
 Identifying these unique aspects can help in marketing and further development to maintain a competitive edge.
 
+**Determine if it’s a profit or cost center:** Assess whether the product functions as a profit center or a cost center. A profit center generates revenue directly through sales, subscriptions, or other means. In contrast, a cost center supports internal operations without directly generating revenue but may lead to cost savings or improved efficiency. Understanding this distinction helps in setting financial expectations, budgeting, and strategic planning.
+
+For instance, a customer relationship management (CRM) system sold to other businesses is a profit center, whereas an internal HR management tool used to streamline employee processes is typically a cost center.
+
 Questions to reflect:
 
 - What are the core functionalities of the product you’re currently working on, and how do they address the primary needs of the target audience?
+- Is the product intended to be a profit center or a cost center, and how does this impact its development and marketing strategies?
 
-#### Documentation and reporting
+#### Share the knowledge
 
 Effective documentation and reporting are key tools in understanding a product now and over time.
 
@@ -364,7 +414,6 @@ Product understanding:
 - How does the product solve problems or fulfill the needs of the end-user?
 - What are the key features of the product?
 - Are there any secondary or additional features that add value to the product?
-- What technology stack is the product built on?
 
 Product goals alignment:
 
@@ -375,7 +424,10 @@ Product goals alignment:
 - Is the product intended to generate revenue directly or support revenue generation indirectly?
 - Is the product expected to reduce costs or enhance operational efficiency? How?
 
+<details>
+<summary>
 Client’s strategic objectives:
+</summary>
 
 - How does this product support the client’s strategic initiatives?
 - Are there specific market opportunities the client is aiming to capture with this product?
@@ -383,7 +435,12 @@ Client’s strategic objectives:
 - How does the product support the client’s branding and market positioning?
 - Are there regulatory or compliance issues that the product helps the client navigate?
 
+</details>
+
+<details>
+<summary>
 Stakeholder impact:
+</summary>
 
 - Who are the key stakeholders impacted by the product?
 - How does each stakeholder group benefit from the product?
@@ -391,28 +448,35 @@ Stakeholder impact:
 - How will the product change the day-to-day operations of the client’s organization?
 - How does the product align with the stakeholders’ expectations and goals?
 
+</details>
+
+<details>
+<summary>
 Feedback and adjustments:
+</summary>
 
 - What feedback mechanisms are in place to gather input from end-users or stakeholders?
 - How will feedback be incorporated into product development and iteration?
 - Are there predefined points in the project timeline to reassess and realign the product with client goals?
 - What metrics or data will indicate a need for product adjustment or pivot?
 
+</details>
+
 ### Understanding the customer
 
-By comprehensively knowing the customer, you can tailor your solutions to meet the client’s needs.
+When you really understand the client’s customer, you can help create solutions that truly meet their needs.
 
 #### Determine the target audience type
 
-Determining the target audience type is crucial for tailoring your approach and recommendations to align with the specific needs and expectations of the end-users.
+Knowing who your audience is helps you tailor your approach to their specific needs.
 
-**Identify the audience category:** Begin by clarifying whether the users are B2B (business-to-business), B2C (business-to-consumer), or internal employees. This categorization will influence the design, functionality, and communication strategies of the product.
+**Categorize the audience:** Figure out if the audience is B2B (business-to-business), B2C (business-to-consumer), or internal employees. This affects how the client should design, function, and communicate about their product.
 
-For instance, B2B products often require robust data integration capabilities and may have different user experience priorities compared to B2C products, which might focus more on aesthetics and ease of use.
+For example, B2B products might need strong data integration and have different priorities than B2C products, which often focus more on looks and ease of use.
 
-**Understand the interaction dynamics:** Explore how the audience category influences the design and functionality of the product.
+**Understand the audience’s priorities:** Look at how the type of audience affects your product’s design and functionality.
 
-For example, internal employee tools may prioritize efficiency and integration with existing systems, while consumer-facing products might emphasize user engagement and customer support features. Understanding these dynamics helps us create solutions that resonate with the end-users’ daily interactions and workflows.
+For example, tools for employees might prioritize efficiency and integration with existing systems, while products for consumers might focus on user engagement and customer support. Knowing these dynamics helps create products that fit into the users’ daily routines and workflows.
 
 Tips and techniques:
 
@@ -577,7 +641,10 @@ Customer challenges and pain points:
 - How do these challenges impact the customers’ ability to achieve their goals?
 - Are there frequent customer complaints or negative feedback? What are the common themes?
 
+<details>
+<summary>
 Customer journey:
+</summary>
 
 - What is the typical customer journey for someone using the product or service?
 - At what points in the customer journey do customers experience success or frustration?
@@ -585,78 +652,84 @@ Customer journey:
 - What factors influence the customers’ decision to purchase or use the product or service (consideration and decision stages)?
 - What is the customer’s experience post-purchase (loyalty and advocacy stages)?
 
+</details>
+
+<details>
+<summary>
 Customer expectations:
+</summary>
 
 - What are the expectations of the customers regarding the product or service?
 - How do these expectations compare with what the product or service currently delivers?
 - Are there gaps between customer expectations and the actual product or service performance?
 
+</details>
+
+<details>
+<summary>
 Customer feedback and insights:
+</summary>
 
 - How does the client currently gather feedback from customers?
 - What data or insights are regularly collected from customer feedback?
 - How is customer feedback used to improve the product or service?
 
+</details>
+
+<details>
+<summary>
 Market and competitive environment:
+</summary>
 
 - Who are the direct and indirect competitors in this market?
 - What are the competitors offering that might attract the client’s customers?
 - How do the client’s offerings differ from those of competitors in terms of meeting customer goals?
 
+</details>
+
 ### Understanding the project
 
 Understanding the project thoroughly helps ensure that all efforts align with the client’s vision and business goals, setting a clear path for project execution.
 
-##### Define project objectives
+##### Clarify project objectives
 
-Defining project objectives involves clear and open communication with stakeholders to understand the project’s primary goals and align them with the business’ broader objectives.
+Clarifying project objectives involves clear and open communication with stakeholders to understand the project’s primary goals and ensure alignment with broader business objectives.
 
-- **Identify objectives:** Talk with stakeholders to understand the primary goals of the project. Ensure these goals align with the broader business objectives and desired outcomes. This can be achieved through detailed discussions and workshops where stakeholders share their visions and expectations.
-- **Clarify success criteria:** Establish clear criteria for what success looks like for the project. Make sure these criteria are agreed upon by all stakeholders. Document these criteria to avoid any ambiguity and revisit them regularly to ensure alignment.
+- **Ask about the primary objectives:** Engage with stakeholders to understand the main goals of the project. Ensure these goals align with the broader business objectives and desired outcomes. Use discussions and workshops to gather stakeholders’ visions and expectations.
+- **Understand the success criteria:** Inquire about the criteria for success from stakeholders. Ensure these criteria are documented and agreed upon by all parties to avoid any ambiguity.
 
 Tips and techniques:
 
-- **Document and confirm objectives:** Create a concise document listing all agreed-upon objectives and success criteria. Share this document with all stakeholders for sign-off to ensure mutual understanding.
+- **Confirm objectives:** Review a concise document listing all agreed-upon objectives and success criteria with stakeholders for sign-off.
 
 Questions to reflect:
 
-- Reflect on a recent project you worked on. What were the primary goals, and how did you ensure they aligned with the broader business objectives?
-- Think about a time when project objectives were not clear from the outset. What steps did you take to clarify them, and how did it impact the project’s outcome?
+- Reflect on a recent project you were involved in. What were the primary goals, and how did you ensure they aligned with the broader business objectives?
+- Think about a time when project objectives were unclear. What steps did you take to clarify them, and how did it impact the project’s outcome?
 - How do you approach situations where different stakeholders have conflicting objectives?
 
-##### Analyze project scope
+##### Understand project scope
 
-Analyzing the project scope is crucial for setting realistic expectations and defining the boundaries within which the project will operate.
+Understanding the project scope is crucial for setting realistic expectations and defining the boundaries within which the project will operate.
 
-- **Define project scope:** Clearly outline what is included and excluded in the project. Detail the expected deliverables and the specific tasks needed to produce them. This includes creating a scope document that outlines key deliverables, milestones, and responsibilities.
-- **Scope validation:** Regularly review the scope with stakeholders to prevent scope creep and ensure alignment throughout the project. Use scope validation meetings to reassess and adjust the scope as needed based on project progress and feedback.
+- **Clarify the project scope:** Ask stakeholders to clearly outline what is included and excluded in the project. Ensure you understand the expected deliverables and specific tasks.
+- **Validate scope:** Regularly discuss the scope with stakeholders to prevent scope creep and ensure alignment throughout the project.
 
 Tips and techniques:
 
-- **Scope control:** Implement a change control process to manage any changes to the project scope. This involves documenting all change requests, assessing their impact, and obtaining approval from key stakeholders before implementation.
+- **Control scope:** Ensure there is a change control process in place to manage any changes to the project scope.
 
 Questions to reflect:
 
 - Describe a project where scope creep became an issue. How did you identify it, and what steps did you take to mitigate it?
 - Think about a project where the scope was well-defined from the beginning. What impact did this have on the project’s success?
 
-##### Evaluate technology stack
-
-Evaluating the technology stack helps ensure that the project has the technical foundation needed for success.
-
-- **Current technology assessment:** Examine the existing technology infrastructure to determine its suitability for the project’s requirements. This includes assessing current software, hardware, and tools used by the organization.
-- **Technology recommendations:** Identify if new technologies are needed and recommend solutions that best fit the project needs and goals. Consider the long-term implications and scalability of the recommended technologies.
-
-Questions to reflect:
-
-- Describe a situation where you had to recommend a new technology for a project. What factors did you consider, and how did you ensure it was the right choice?
-
 ##### Assess project risks
 
-Assessing project risks involves identifying potential challenges and developing strategies to mitigate them, ensuring smooth project execution.
+Assessing project risks involves identifying potential challenges and understanding strategies to mitigate them, ensuring smooth project execution.
 
-- **Risk identification:** Identify potential risks that could impact the project. Consider factors such as technical challenges, resource availability, and external dependencies. Create a risk register to document these risks.
-- **Risk mitigation:** Develop plans to minimize identified risks and establish contingencies to address issues that arise. Regularly update the risk register and communicate risk mitigation strategies to all stakeholders.
+- **Identify risks:** Ask about potential risks that could impact the project. Consider factors such as technical challenges, resource availability, and external dependencies.
+- **Understand risk mitigation:** Inquire about the plans to minimize identified risks and establish contingencies to address issues that arise.
 
 Tips and techniques:
 
@@ -671,16 +744,16 @@ Questions to reflect:
 
 A well-defined project roadmap is essential for managing timelines, resources, and expectations. It provides a clear path to follow and helps in tracking progress.
 
-##### Define the project milestones
+##### Clarify project milestones
 
-Defining project milestones helps break down the project into manageable phases, each with specific goals and deliverables.
+Clarifying project milestones helps break down the project into manageable phases, each with specific goals and deliverables.
 
-- **Break down the project into milestones:** Divide the project into distinct phases or milestones. Set clear goals and deliverables for each phase. This makes it easier to manage and track progress.
-- **Schedule milestone reviews:** Schedule regular reviews to assess progress and make adjustments as needed. Use these reviews to ensure alignment with project objectives and timelines.
+- **Look for distinct milestones:** For larger projects, expect stakeholders to break down the project into distinct phases or milestones. Understand the goals and deliverables for each phase.
+- **Review milestones:** Schedule regular reviews to discuss progress and make adjustments as needed.
 
 Tips and techniques:
 
-- **Milestone celebration:** Celebrate achieving milestones with the team to boost morale and maintain momentum. Even small recognitions can have a big impact on team motivation.
+- **Celebrate milestones:** Recognize achieving milestones with the team to boost morale and maintain momentum.
 
 Questions to reflect:
 
@@ -689,10 +762,10 @@ Questions to reflect:
 
 ##### Develop a project timeline
 
-Developing a project timeline involves creating a detailed schedule that includes all key milestones and deadlines, allowing for effective time management.
+Developing a project timeline involves understanding the detailed schedule that includes all key milestones and deadlines, allowing for effective time management.
 
-- **Create a detailed timeline:** Draft a comprehensive timeline that includes key milestones and deadlines. Incorporate buffer time for unexpected challenges. Use project management tools to visualize and track this timeline.
-- **Set realistic deadlines:** Ensure that all deadlines are achievable and agreed upon by the project team and stakeholders. Factor in potential delays and plan accordingly to avoid unrealistic expectations.
+- **Ask for a detailed timeline:** Request a comprehensive timeline that includes key milestones and deadlines. Ensure buffer time for unexpected challenges is incorporated.
+- **Understand deadlines:** Confirm that all deadlines are realistic and agreed upon by the project team and stakeholders.
 
 Tips and techniques:
 
@@ -708,9 +781,9 @@ Questions to reflect:
 
 Tracking project progress is critical for maintaining momentum and ensuring the project stays on course.
 
-- **Monitor:** Implement systems to track project progress against the roadmap. Use tools like Gantt charts or project management software to visualize and manage timelines. Ensure all team members are trained in using these tools.
-- **Review:** Conduct regular progress reviews to ensure the project stays on track and to address any deviations promptly. Use these reviews to identify issues early and make necessary adjustments.
-- **Report:** Report the project’s progress to key stakeholders. Be sure to call out any risks or blockers in these updates.
+- **Monitor progress:** Ensure there are systems in place to track project progress against the roadmap. Understand how to use tools like Gantt charts or project management software.
+- **Review regularly:** Participate in regular progress reviews to ensure the project stays on track and address any deviations promptly.
+- **Report updates:** Ensure progress is reported to key stakeholders, highlighting any risks or blockers.
 
 Questions to reflect:
 
@@ -725,8 +798,8 @@ Understanding the people involved in the project ensures effective collaboration
 
 Analyzing stakeholders helps identify all individuals and groups involved in the project, understanding their interests, influence, and expectations.
 
-- **Stakeholder identification:** Identify all stakeholders involved in the project, including team members, clients, and external partners. Understand their interests, influence, and expectations. Create a stakeholder map to visualize and manage these relationships.
-- **Stakeholder engagement:** Develop a plan to engage stakeholders effectively, ensuring their input and feedback are incorporated throughout the project. Use regular meetings, updates, and feedback sessions to keep stakeholders informed and involved.
+- **Identify stakeholders:** Work with stakeholders to identify all individuals and groups involved in the project. Understand their interests, influence, and expectations. Create a stakeholder map to visualize and manage these relationships.
+- **Engage stakeholders:** Develop a plan to engage stakeholders effectively, ensuring their input and feedback are incorporated throughout the project.
 
 Questions to reflect:
 
@@ -738,24 +811,24 @@ Questions to reflect:
 
 Evaluating team dynamics involves understanding the strengths and weaknesses of the project team and fostering a collaborative working environment.
 
-- **Team assessment:** Evaluate the strengths and weaknesses of the project team. Identify areas for improvement and potential training needs. Conduct regular team assessments to understand team dynamics and address issues.
-- **Team-building activities:** Plan activities to enhance teamwork and collaboration, fostering a positive and productive working environment. Use team-building exercises, workshops, and social events to strengthen team bonds.
+- **Assess the team:** Evaluate the strengths and weaknesses of the project team. Identify areas for improvement and potential training needs.
+- **Foster teamwork:** Encourage team-building activities to enhance teamwork and collaboration, fostering a positive and productive working environment.
 
 Questions to reflect:
 
 - Describe a time when you implemented team-building activities. What impact did these activities have on team dynamics and project success?
 - How do you handle conflicts within a project team?
 
-##### Define leadership and support
+##### Understand leadership and support
 
-Defining leadership and support roles ensures that the project team has clear guidance and access to necessary resources and mentorship.
+Understanding leadership and support roles ensures that the project team has clear guidance and access to necessary resources and mentorship.
 
-- **Leadership roles:** Establish clear leadership roles and responsibilities within the project team. Ensure everyone knows who to go to for guidance and support. Define these roles in a project charter or team structure document.
-- **Support systems:** Set up training and mentoring programs to provide ongoing support and development for team members. Ensure that team members have access to the resources and support they need to succeed.
+- **Clarify leadership roles:** Ensure there are clear leadership roles and responsibilities within the project team. Understand who to go to for guidance and support.
+- **Access support systems:** Ensure there are training and mentoring programs in place to provide ongoing support and development for team members.
 
 Tips and techniques:
 
-- **Support buddy system:** Your Bitovi buddy or manager can support your learning and provide practical assistance.
+- **Support buddy system:** Utilize a buddy or manager for support and practical assistance.
 
 Questions to reflect:
 
@@ -763,14 +836,14 @@ Questions to reflect:
 
 #### Techniques for accomplishing these tasks
 
-Employing effective techniques is crucial for accomplishing the tasks involved in understanding and managing the project.
+Employing effective techniques is crucial for understanding and managing the project.
 
 ##### Conduct interviews and meetings
 
 Conducting interviews and meetings is useful for gathering information, aligning on objectives, and maintaining open communication.
 
-- **Stakeholder interviews:** Hold individual or group discussions with stakeholders to gather their perspectives and expectations. Maintain regular meetings to ensure ongoing alignment and address any issues promptly. Use structured interview guides to ensure comprehensive coverage of key topics.
-- **Team meetings:** Schedule regular team meetings to discuss progress, challenges, and next steps. Use these meetings to foster collaboration and address any issues as they arise.
+- **Stakeholder interviews:** Hold discussions with stakeholders to gather their perspectives and expectations. Maintain regular meetings to ensure ongoing alignment and address any issues promptly.
+- **Team meetings:** Schedule regular team meetings to discuss progress, challenges, and next steps.
 
 Questions to reflect:
 
@@ -781,8 +854,8 @@ Questions to reflect:
 
 Reviewing and analyzing documents helps leverage past experiences and ensures that all project documentation is thorough and accessible.
 
-- **Document review:** Examine existing project-related documents, such as previous plans and reports. Analyze these to learn from past experiences and improve current project planning. Identify best practices and lessons learned.
-- **Documentation best practices:** Ensure that all project documentation is clear, comprehensive, and accessible to all team members. Use standardized templates and formats for consistency.
+- **Review documents:** Examine existing project-related documents, such as previous plans and reports, to learn from past experiences and improve current project planning.
+- **Ensure documentation:** Ensure that all project documentation is clear, comprehensive, and accessible to all team members.
 
 Questions to reflect:
 
@@ -794,9 +867,7 @@ Project understanding:
 
 - What is the primary objective of the project?
 - What problem does this project aim to solve for the client?
-- Who are the end-users of the product being developed?
 - What are the expected deliverables of this project?
-- Are there any specific technologies or methodologies we are expected to use?
 - What constraints (time, budget, resources) are we operating under?
 - What are the critical milestones in this project?
 - Are there any anticipated risks or challenges we should be aware of?
@@ -811,10 +882,11 @@ Roadmap details:
 - What are the key milestones and their expected completion dates?
 - Are there scheduled review points or decision gates?
 - What dependencies exist between project tasks?
-- How are changes to the project scope or timeline handled?
-- What is the process for adjusting the roadmap in response to new insights or challenges?
 
+<details>
+<summary>
 Understanding the people:
+</summary>
 
 - Who is the project sponsor or primary stakeholder?
 - Can you provide an overview of all parties involved and their roles?
@@ -822,10 +894,10 @@ Understanding the people:
 - Who will be your main point of contact throughout the project?
 - How should we communicate with the stakeholders (meetings, emails, reports)?
 - What is the preferred frequency and format for project updates?
-- Are there any sensitive issues or political dynamics we should be aware of?
-- Who are the end-users, and how can we engage them for feedback?
 - What is the team structure on the client side?
 - Are there any external consultants or teams involved, and what are their roles?
+
+</details>
 
 ## Continuously learning consulting skills
 
