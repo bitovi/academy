@@ -21,7 +21,7 @@ In this section, you will:
 As our application grows in complexity, more screens will be added. The React Navigation library provides a solution that allows us to move between these screens. In this section, we will cover both common navigation patterns used in both Android and iOS applications: tab navigation and stack navigation.
 
 <div style="display: flex; flex-direction: row; gap: 2rem">
-  <img alt="Screen Shot of the StateList in Navigation" src="../static/img/react-native/11-navigation/01-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screen Shot of the StateList in Navigation" src="../static/img/react-native/11-navigation/01-solution.png" style="border: 4px solid black; border-radius: 25px;" height="640"/>
 </div>
 
 ### What is navigation?
@@ -157,7 +157,7 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 Now that we’ve covered tab navigation, let’s move on to stack navigation. As mentioned in the previous section, most applications use a combination of both tab and stack navigation to create a seamless user experience.
 
 <div style="display: flex; flex-direction: row; gap: 2rem">
-  <img alt="Screen Shot of the CityList in Navigation" src="../static/img/react-native/11-navigation/02-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screen Shot of the CityList in Navigation" src="../static/img/react-native/11-navigation/02-solution.png" style="border: 4px solid black; border-radius: 25px;" height="640"/>
 </div>
 
 ### Stacks
@@ -321,8 +321,8 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 ## Objective 3: Add Restaurant List and Restaurant Details pages with links
 
 <div style="display: flex; flex-direction: row; gap: 2rem; flex-wrap: wrap;">
-  <img alt="Screen Shot of the RestaurantList in Navigation" src="../static/img/react-native/11-navigation/03-solution-restaurants.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
-  <img alt="Screen Shot of the RestaurantDetails in Navigation" src="../static/img/react-native/11-navigation/03-solution-restaurant-details.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screen Shot of the RestaurantList in Navigation" src="../static/img/react-native/11-navigation/03-solution-restaurants.png" style="border: 4px solid black; border-radius: 25px;" height="640"/>
+  <img alt="Screen Shot of the RestaurantDetails in Navigation" src="../static/img/react-native/11-navigation/03-solution-restaurant-details.png" style="border: 4px solid black; border-radius: 25px;" height="640"/>
 </div>
 
 ### Setup 3

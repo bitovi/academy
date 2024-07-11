@@ -23,7 +23,7 @@ It’s important to communicate to the user when their device is offline and som
 The way you communicate this info will depend on your application.
 In ours, we’re going to add some text to the Settings view that shows the current connection status.
 
-<img alt="Screenshot of the application settings page with the connection status." src="../static/img/react-native/17-offline-support/01-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+<img alt="Screenshot of the application settings page with the connection status." src="../static/img/react-native/17-offline-support/01-solution.png" style="border: 4px solid black; border-radius: 25px;" height="640"/>
 
 ### Listening for the network connection state
 
@@ -105,8 +105,8 @@ For right now, we’ll write the code for adding and removing favorites in a way
 In the third objective, we’ll expand that to handle syncing when the device comes back online.
 
 <div style="display: flex; flex-direction: row; gap: 2rem; flex-wrap: wrap;">
-  <img alt="Screenshot of the application's Restaurant Details screen displaying the add favorite button." src="../static/img/react-native/17-offline-support/02-solution-addFavorites.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
-  <img alt="Screenshot of the application's Restaurant Details screen displaying the remove favorite button." src="../static/img/react-native/17-offline-support/02-solution-removeFavorites.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screenshot of the application's Restaurant Details screen displaying the add favorite button." src="../static/img/react-native/17-offline-support/02-solution-addFavorites.png" style="border: 4px solid black; border-radius: 25px;" height="640"/>
+  <img alt="Screenshot of the application's Restaurant Details screen displaying the remove favorite button." src="../static/img/react-native/17-offline-support/02-solution-removeFavorites.png" style="border: 4px solid black; border-radius: 25px;" height="640"/>
 </div>
 
 ### Defining the “favorites” feature

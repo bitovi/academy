@@ -238,4 +238,4 @@ For a deep dive on the mechanics of class inheritance, checkout
 goes into detail about how the `[[HomeObject]]` internal property is used to enable the `super`
 keyword.
 
-<img src="https://docs.google.com/drawings/d/e/2PACX-1vRw9Jbz-_KHQsYE_7YmfibHznMvgHlooBRgKrafsyzNzQcDs-xZy4GuYJWDcc09PM6uX30V4riPbKX-/pub?w=872&amp;h=327" style="max-width: 100%;">
+<img src="https://docs.google.com/drawings/d/e/2PACX-1vRw9Jbz-_KHQsYE_7YmfibHznMvgHlooBRgKrafsyzNzQcDs-xZy4GuYJWDcc09PM6uX30V4riPbKX-/pub?w=872&amp;h=327">

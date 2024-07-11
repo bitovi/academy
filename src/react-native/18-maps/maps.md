@@ -21,7 +21,7 @@ A list of restaurants is a good start, but showing them on a map would make it e
 
 Let’s start by adding a map to the application. We’ll add a `Tab` component to switch between the List and Map views.
 
-<img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” There are two tabs at the top, List and Map, with Map selected. The map below is centered on Green Bay. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/01-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+<img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” There are two tabs at the top, List and Map, with Map selected. The map below is centered on Green Bay. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/01-solution.png" style="border: 4px solid black; border-radius: 25px;" height="640"/>
 
 ### Rendering Google Maps
 
@@ -184,7 +184,7 @@ npm run start
 
 Navigate to the `Maps` tab of the `RestaurantsList` in your emulator and verify that the Map is rendering.
 
-<img alt="Screenshot of how the application should look for the second solution." src="../static/img/react-native/18-maps/01-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+<img alt="Screenshot of how the application should look for the second solution." src="../static/img/react-native/18-maps/01-solution.png" style="border: 4px solid black; border-radius: 25px;" height="640"/>
 
 ### Exercise 1
 
@@ -216,7 +216,7 @@ If you’ve implemented the solution correctly, the Map should be rendering in y
 Now that we have a map, let’s add markers for each one of the restaurants.
 When we tap on them, we will navigate to the restaurant detail page, just like we do in the list view.
 
-<img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” The map is still centered on Green Bay and now has several locations marked with red pins. One of the markers is labeled Cheese Curd City, 230 W Kinzie Street. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+<img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” The map is still centered on Green Bay and now has several locations marked with red pins. One of the markers is labeled Cheese Curd City, 230 W Kinzie Street. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/02-solution.png" style="border: 4px solid black; border-radius: 25px;" height="640"/>
 
 ### Adding markers to a map
 
@@ -267,7 +267,7 @@ function MapWithMarker({ initialRegion }) {
 
 Navigate to the `Maps` tab of the `RestaurantsList` in your emulator and verify that the Map is rendering.
 
-<img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” The map is still centered on Green Bay and now has several locations marked with red pins. One of the markers is labeled Cheese Curd City, 230 W Kinzie Street. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+<img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” The map is still centered on Green Bay and now has several locations marked with red pins. One of the markers is labeled Cheese Curd City, 230 W Kinzie Street. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/02-solution.png" style="border: 4px solid black; border-radius: 25px;" height="640"/>
 
 ### Exercise 2
 
