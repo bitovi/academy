@@ -72,15 +72,9 @@ header, footer {
 }
 
 .content {
-  display: grid;
-  grid-template-areas: "sidebar" "toc" "main";
-  grid-template-columns: minmax(0, 1fr);
-
-  @media (min-width: 1024px) {
-    grid-template-areas: "sidebar main toc";
-    grid-template-columns: max-content minmax(0, 1fr) fit-content(25%);
-  }
-
+  flex-grow: 1;
+  overflow-x: hidden;
+  overflow-y: hidden;
   // Navigation list will be flush with parent
 
   .sidebar:extend(.container) {
@@ -102,6 +96,7 @@ header, footer {
   }
 
   .main:extend(.container) {
+    overflow-x: hidden; // fix to hide <pre> code overflow
 
     // Collapse <p> for parameters, returns, and non-nested options
     .parameters, .returns, div.options {
@@ -114,6 +109,69 @@ header, footer {
           margin-top: 1em;
         }
       }
+    }
+  }
+}
+
+/*
+Desktop:
+┌──────────────────────────────────────────────────────┐
+│ html ▶ height: 100%                                  ├ Get window height.
+│ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ │
+│ ┃ body ▶ height: 100%,                             ┣━━ Use html/window height.
+│ ┃        flex-direction: column                    ┣━━ Children are in column.
+│ ┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃ │
+│ ┃ ┃ header ▶ flex: none                          ┣━━━━ Use content height.
+│ ┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃ │
+│ ┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃ │
+│ ┃ ┃ .content ▶ flex: auto,                       ┣━━━━ Fill remaining height.
+│ ┃ ┃            flex-direction: row               ┃ ┃ │ Children are in a row.
+│ ┃ ┃ ┏━━━━━━━━━━━━━━━━━━━━┓ ┏━━━━━━━━━━━━━━━━━━━┓ ┃ ┃ │
+│ ┃ ┃ ┃ .sidebar ▼         ┃ ┃ .main ▼           ┃ ┃ ┃ │
+│ ┃ ┃ ┃ flex: none,        ┃ ┃ flex: auto        ┃ ┃ ┃ │
+│ ┃ ┃ ┃ overflow-y: auto   ┃ ┃ overflow-y: auto  ┃ ┃ ┃ │
+│ ┃ ┃ ┃                    ┃ ┃                   ┃ ┃ ┃ │
+│ ┃ ┃ ┣ Use content width. ┃ ┣ Fill width.       ┃ ┃ ┃ │
+│ ┃ ┃ ┣ Fill height.       ┃ ┣ Fill height.      ┃ ┃ ┃ │
+│ ┃ ┃ ┣ Scroll vertical.   ┃ ┣ Scroll vertical.  ┃ ┃ ┃ │
+│ ┃ ┃ ┗━━━━━━━━━━━━━━━━━━━━┛ ┗━━━━━━━━━━━━━━━━━━━┛ ┃ ┃ │
+│ ┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃ │
+│ ┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃ │
+│ ┃ ┃ footer ▶ flex: none                          ┣━━━━ Use content height.
+│ ┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃ │
+│ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ │
+└──────────────────────────────────────────────────────┘
+*/
+
+@media @desktops {
+  // Flex elements will fill html/body space and scroll themselves
+  html, body {
+    width: 100%;
+    height: 100%;
+  }
+
+  body {
+    .flex-column;
+  }
+
+  header, footer {
+    .flex-none; // fit to content height
+  }
+
+  .content {
+    .flex-auto; // fill remaining height
+    .flex-row;
+
+    // Note: Don’t add border, padding or margin to a flex-row or flex-column,    // because IE 10-11 incorrectly assumes content-box sizing for flex-basis.
+
+    .sidebar {
+      .flex-none; // fit to content width
+      overflow-y: auto;
+    }
+
+    .main {
+      .flex-auto; // fill remaining width
+      overflow-y: auto;
     }
   }
 }
@@ -405,24 +463,15 @@ a {
 
 
 
-.sidebar-left, .sidebar-right {
-  align-self: start;
-
-  @media (min-width: 1024px) {
-    max-height: ~"calc(100vh - 57px)";// 57px should not be hard-coded and should be flexible with the .header
-    overflow: auto;
-    position: sticky;
-    top: 0;
-  }
-}
 
 
 // Sidebar Left
 
 .sidebar-left {
-  grid-area: sidebar;
   padding: 15px;
   white-space: nowrap;
+  overflow-y: auto;
+  flex-shrink: 0;
   @media (max-width: 768px) {
     padding-bottom: 0;
   }
@@ -481,11 +530,16 @@ a {
 // Course Content
 
 .main {
-  display: contents;
+  padding: 15px 30px;
+  @media (max-width: 768px) {
+    padding-top: 0;
+  }
 }
 .main-content {
-  grid-area: main;
-  padding: 15px;
+  padding-right: 250px;
+  @media (max-width: 1200px) {
+    padding-right: 0;
+  }
 }
 .main-content .title h1 {
   font-size: 28px;
@@ -545,16 +599,22 @@ hr:first-of-type {
 // Sidebar Right
 
 .sidebar-right {
-  grid-area: toc;
+  position: fixed;
+  top: 85px;
+  right: 30px;
+  bottom: 0px;
+  width: 240px;
+  margin-left: 30px;
+  padding: 0 10px;
   display: flex;
   flex-direction: column;
-  padding: 15px;
+  @media (max-width: 1200px) {
+    display: none;
+  }
 }
 .sidebar-right .content-nav {
   display: flex;
   flex-direction: column;
-  overflow-x: auto;
-  padding-top: 15px;
 }
 .content-nav .list-items {
   flex-grow: 1;
@@ -592,6 +652,9 @@ hr:first-of-type {
 
 .content-nav {
   border-bottom: 1px solid #eee;
+  margin-top: 22px;
+  padding-bottom: 15px;
+  min-height: 45px;
 }
 .content-nav h6 {
   font-size: 15px;
