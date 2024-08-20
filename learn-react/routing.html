@@ -543,7 +543,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, we will:</p>
 <ul>
 <li>Think through why routing is important.</li>
@@ -553,9 +553,9 @@ covering CanJS core libraries.">
 <li>Create links between pages.</li>
 <li>Determine which route is the active route with <code>useMatch()</code>.</li>
 </ul>
-<h2>Objective 1: Defining routes and Outlets</h2>
+<h2 id="objective-1-defining-routes-and-outlets">Objective 1: Defining routes and Outlets</h2>
 <p>Our goal is to split the homepage of our Place My Order application so that we only see the Home content on the homepage.</p>
-<h3>Why is routing important?</h3>
+<h3 id="why-is-routing-important">Why is routing important?</h3>
 <p>Routing is a mechanism used by single-page applications to determine what their user interface looks like based on the browser’s current URL. This follows the standard pattern for browsers where changing the URL fetches a new resource; however in client-rendered applications like React, there is no communication between the browser and server; instead, a specific component is displayed.</p>
 <p>Routing is crucial for:</p>
 <ul>
@@ -564,12 +564,12 @@ covering CanJS core libraries.">
 <li>Organization: Helps in structuring the application into logical views or components.</li>
 </ul>
 <p>We will use the <a href="https://reactrouter.com/">React Router</a> package to provide routing for the Place My Order application. This router is popular in the React community and a great de facto choice when building a React application.</p>
-<h3>What is React Router?</h3>
+<h3 id="what-is-react-router">What is React Router?</h3>
 <p>React Router is the de facto standard for routing in React applications. It’s extremely popular in the React community, especially when not using a framework like Next.js, which comes with its own routing solution. React Router adds dynamic, client-side routing to React, enabling the creation of single-page applications (SPAs) that can handle different URLs and render different content accordingly.</p>
 <p>React Router allows applications to dynamically render different components based on the URL, all without the need for a page reload. This is a significant enhancement over traditional multi-page applications, where navigating to a new page requires a complete reload of the page’s resources.</p>
 <p>React Router’s API is declarative. Routes are defined using configuration through <code>createBrowserRouter()</code> and with components like <code>RouterProvider</code>, <code>Outlet</code>, and <code>Link</code>, which makes the routing rules readable and integrated seamlessly into the rest of the React component structure.</p>
 <p>Nested routes are a powerful feature of React Router, allowing the creation of complex application structures. You can define routes within routes, which is particularly useful for creating layouts that persist across multiple pages, like headers and footers.</p>
-<h3>createBrowserRouter</h3>
+<h3 id="createbrowserrouter">createBrowserRouter</h3>
 <p>React Router works by matching the segments of the browser’s URL path to components, i.e. each segment of the URL’s path corresponds to a particular React component based on the segment’s value. The mapping of a segment’s value to a component is done through a collection of <code>RouteObject</code> items that are passed to the router when it is initialized.</p>
 <p>The <code>createBrowserRouter</code> function is a key part of React Router. This function is used to create a <code>router</code> object that defines the navigation structure of our app. The structure is defined through a configuration object that specifies the paths and corresponding components. Let’s break down its usage with the example below:</p>
 <pre><code class="language-tsx">import React from &quot;react&quot;
@@ -617,7 +617,7 @@ ReactDOM.createRoot(document.getElementById(&quot;root&quot;)!).render(
 <li><code>index</code>: A boolean for indicating that the route should act as a default or fallback route within a group of nested routes.</li>
 </ul>
 <p>The second argument to <code>createBrowserRouter</code> is an optional configuration object. In the code above, it sets the <code>basename</code>, which is the base URL for all locations. Here, it’s dynamically set based on the environment variable <code>import.meta.env.BASE_URL</code>. This is useful for scenarios where your application is served from a subdirectory on your server.</p>
-<h3>RouterProvider</h3>
+<h3 id="routerprovider">RouterProvider</h3>
 <p>Next, we can use <code>RouterProvider</code> to render our <code>&lt;App&gt;</code> component.
 Remember that our <code>main.tsx</code> file currently looks like this:</p>
 <pre><code class="language-tsx">import React from &quot;react&quot;
@@ -674,7 +674,7 @@ ReactDOM.createRoot(document.getElementById(&quot;root&quot;)!).render(
 <div line-highlight='33, only'></div>
 <p>The <code>RouterProvider</code> requires the <code>router</code> object created by <code>createBrowserRouter</code>.
 This object contains all the route configurations and settings for our application.</p>
-<h3>Outlet</h3>
+<h3 id="outlet">Outlet</h3>
 <p>The final piece of React Router API that we need to use is the <code>&lt;Outlet&gt;</code> component.</p>
 <p>The <code>Outlet</code> component is used within a parent route component to render its child route components. Think of it as a marker that tells React Router, “Insert the child route component here.”</p>
 <p>When you define nested routes in your route configuration above, you don’t immediately specify where in the parent component’s JSX the child components should appear. Instead, you use <code>Outlet</code> in the parent component’s JSX as a placeholder for where the matched child route component should be rendered.</p>
@@ -694,7 +694,7 @@ const Layout = () =&gt; {
 }
 </code></pre>
 <div line-highlight='8'></div>
-<h3>Setup 1</h3>
+<h3 id="setup-1">Setup 1</h3>
 <p>To get starting with React Router in our application, let’s install <code>react-router-dom</code> with npm:</p>
 <p>✏️ Run:</p>
 <pre><code class="language-shell">npm install react-router-dom@6
@@ -778,7 +778,7 @@ ReactDOM.createRoot(document.getElementById(&quot;root&quot;)!).render(
 
 </code></pre>
  <div line-highlight="3-5,only"></div>
-<h3>Verify 1</h3>
+<h3 id="verify-1">Verify 1</h3>
 <p>✏️ Create <strong>src/pages/Home/Home.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
 import { render, screen } from &quot;@testing-library/react&quot;
@@ -847,10 +847,10 @@ describe(&quot;App component&quot;, () =&gt; {
 
 </code></pre>
  <div line-highlight="2,4-5,9-13,15,17-18,21-24,26-27,29-31,only"></div>
-<h3>Exercise 1</h3>
+<h3 id="exercise-1">Exercise 1</h3>
 <p>Create routes for the <code>&lt;Home&gt;</code> component and <code>&lt;RestaurantList&gt;</code> component. When the route is <code>&quot;&quot;</code>, the <code>&lt;Home&gt;</code> component should display, and when the route is <code>/restaurants</code> then the <code>&lt;RestaurantList&gt;</code> component should display. These changes should be made in <code>src/App.tsx</code> and <code>src/main.tsx</code>.</p>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-problem?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-problem?file=src/App.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution 1</h3>
+<h3 id="solution-1">Solution 1</h3>
 <p><details></p>
 <p><summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
@@ -924,9 +924,9 @@ ReactDOM.createRoot(document.getElementById(&quot;root&quot;)!).render(
  <div line-highlight="9-28,33,35,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-solution?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-solution?file=src/App.tsx">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Objective 2: Creating (active) links between pages</h2>
+<h2 id="objective-2-creating-active-links-between-pages">Objective 2: Creating (active) links between pages</h2>
 <p>Next, we want to update Place My Order to include links in our <code>&lt;header&gt;</code> so we can navigate between pages. Each link should show its active state when it matches the currently-selected page.</p>
-<h3>Link</h3>
+<h3 id="link">Link</h3>
 <p>The <code>Link</code> component is a basic building block in React Router. It allows you to create links in our application that navigate to different routes (or paths) defined in our React application.</p>
 <p>Use the <code>Link</code> component similarly to how you use an <code>&lt;a&gt;</code> element in HTML. Instead of using <code>href</code>, you use <code>to</code> to specify the path.</p>
 <pre><code class="language-tsx">import { Link } from &quot;react-router-dom&quot;
@@ -934,7 +934,7 @@ ReactDOM.createRoot(document.getElementById(&quot;root&quot;)!).render(
 const content = &lt;Link to=&quot;/about&quot;&gt;About&lt;/Link&gt;
 </code></pre>
 <p>When users click on this link, they are directed to the <code>/about</code> route in your application, without causing a full page reload.</p>
-<h3>Match based on the current route</h3>
+<h3 id="match-based-on-the-current-route">Match based on the current route</h3>
 <p>If you want to style another element based on the current route, you’ll need
 to use the <code>useMatches</code> function:</p>
 <pre><code class="language-tsx">import { useMatch } from &quot;react-router-dom&quot;
@@ -959,7 +959,7 @@ function App() {
 </code></pre>
 <div line-highlight='4-5, 9-11'></div>
 <p>In the example above, <code>aboutMatch</code> will be an object with details about the route if the current route is <code>/about</code>; otherwise, <code>useMatch</code> will return <code>undefined</code> if the current route is something else.</p>
-<h3>Setup 2</h3>
+<h3 id="setup-2">Setup 2</h3>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { Link, Outlet, useMatch } from &quot;react-router-dom&quot;
 import &quot;./App.css&quot;
@@ -990,7 +990,7 @@ export default App
 
 </code></pre>
  <div line-highlight="1,only"></div>
-<h3>Verify 2</h3>
+<h3 id="verify-2">Verify 2</h3>
 <p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
 import type { ReactNode } from &quot;react&quot;
@@ -1035,7 +1035,7 @@ describe(&quot;App component&quot;, () =&gt; {
 
 </code></pre>
  <div line-highlight="33-39,only"></div>
-<h3>Exercise 2</h3>
+<h3 id="exercise-2">Exercise 2</h3>
 <ul>
 <li>Create links to the <code>/</code> (<code>Home</code>) and <code>/restaurants</code> (<code>RestaurantList</code>) pages.</li>
 <li>When the current page is Home, give the parent <code>&lt;li&gt;</code> of the link an <code>active</code> class.</li>
@@ -1052,7 +1052,7 @@ describe(&quot;App component&quot;, () =&gt; {
 &lt;/ul&gt;
 </code></pre>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/02-problem?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/02-problem?file=src/App.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution 2</h3>
+<h3 id="solution-2">Solution 2</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
@@ -1090,7 +1090,7 @@ export default App
  <div line-highlight="5-6,14-15,17-18,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/02-solution?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/02-solution?file=src/App.tsx">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>Next, let’s learn about different ways to <a href="./styling-in-react.html">apply CSS styles</a> in React applications.</p>
 
 </section>

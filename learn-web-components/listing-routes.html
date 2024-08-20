@@ -528,19 +528,19 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this part we will:</p>
 <ul>
 <li>Fetch the list of routes from the API.</li>
 <li>Display the route name and number in the list.</li>
 </ul>
-<h2>Problem</h2>
+<h2 id="problem">Problem</h2>
 <p>Our bus-tracker component currently only includes a header and a map. We want to add a routes list so that eventually the user can select a route which will display within the map. At the end of this exercise we want a scrollable list of routes to be displayed.</p>
 <p><img src="../static/img/web-components/bt-list-routes.gif"
 style="border: solid 1px black; max-width: 100%;"
 alt="A scrollable list of bus routes on top, a map on the bottom." /></p>
 <p>Additionally we have text within the header that says <strong>Loading routes…</strong> statically. We want to remove this text after the routes have been rendered.</p>
-<h2>How to Solve This Problem</h2>
+<h2 id="how-to-solve-this-problem">How to Solve This Problem</h2>
 <ol>
 <li>Create a template using an <code>li</code> for each route.</li>
 <li>Write a function that fetches the list of routes from the CTA bus tracker API.</li>
@@ -548,7 +548,7 @@ alt="A scrollable list of bus routes on top, a map on the bottom." /></p>
 <li>Append the DOM to the <code>.routes-list</code> list.</li>
 <li>Remove the <code>#loading-routes</code> element since the routes are now loaded.</li>
 </ol>
-<h2>Technical requirements</h2>
+<h2 id="technical-requirements">Technical requirements</h2>
 <p>The following snippet of JavaScript will be useful for fetching data from the bus tracker API. Use the <code>getRoutesEndpoint</code> string to fetch the list of routes.</p>
 <pre><code class="language-js">const apiRoot = &quot;https://cta-bustracker.vercel.app/api/&quot;;
 const getRoutesEndpoint = apiRoot + &quot;routes&quot;;
@@ -563,12 +563,12 @@ const getVehiclesEndpoint = apiRoot + &quot;vehicles&quot;;
   &lt;/button&gt;
 &lt;/li&gt;
 </code></pre>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <ul>
 <li>How to use <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">fetch</a> to make API requests.</li>
 <li>Setting an element’s text.</li>
 </ul>
-<h3>Fetch</h3>
+<h3 id="fetch">Fetch</h3>
 <p><code>fetch</code> is a function on the <code>window</code> object that is used to make network requests. In its simplest form it only needs a string URL, which will be used to make a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET">GET</a> request.</p>
 <p>fetch differs slightly from the older <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">XMLHttpRequest</a> in a variety of ways; for example fetch does not include cookies by default. It’s easier to use, however, because it uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promises</a>. If you don’t need to support Internet Explorer you’ll probably want to use fetch in your applications.</p>
 <p><code>fetch()</code> returns a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Response">Response</a> object. To get a JSON object from this use <code>response.json()</code> like so:</p>
@@ -587,7 +587,7 @@ const getVehiclesEndpoint = apiRoot + &quot;vehicles&quot;;
 
 listFoods();
 </code></pre>
-<h3>textContent</h3>
+<h3 id="textcontent">textContent</h3>
 <p>Every element has a <code>.textContent</code> property. Setting this property to a string will render the text as children.</p>
 <pre><code class="language-js">let el = document.createElement('h1');
 document.body.append(el);
@@ -610,7 +610,7 @@ setTimeout(() =&gt; {
 <div class='codepen'></div>
 <div line-highlight='4-9'></div>
 <p>Usually you will use <code>.textContent</code> unless building a library where performance is critical. textContent is the most convenient way to change an element’s text.</p>
-<h2>Solution</h2>
+<h2 id="solution">Solution</h2>
 <p>✏️ Use the markup provided above and create another template with the id of <code>route-template</code>. Keep a reference to this template in your JavaScript along with the other template. Copy the URL snippet from above and paste that so that it can be used within the component.</p>
 <p>Create a method on the component, we’re calling it <code>getRoutes</code> here that is called in the <code>connectedCallback</code> method. It’s an async method that uses <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">fetch</a> to retrieve the list of routes which we can get with <code>data[&quot;bustime-response&quot;].routes</code>.</p>
 <p>Loop over the routes and clone an instance of the template filling in the route number with <code>route.rt</code> and the route name with <code>route.rtnm</code>.</p>

@@ -530,7 +530,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, you will:</p>
 <ul>
 <li>Install Node.js and npm</li>
@@ -539,28 +539,28 @@ covering CanJS core libraries.">
 <li>Use <code>ts-node</code> to run TypeScript</li>
 <li>Write TypeScript tests in a Node project</li>
 </ul>
-<h2>Objective 1: Install prerequisites</h2>
+<h2 id="objective-1-install-prerequisites">Objective 1: Install prerequisites</h2>
 <p>Before we start writing code, we need to install the prerequisites.</p>
-<h3>Installing Node.js and npm</h3>
+<h3 id="installing-nodejs-and-npm">Installing Node.js and npm</h3>
 <p>This course requires the <a href="https://nodejs.org/">Node.js</a> JavaScript runtime
 environment. Node.js and its included package manager <code>npm</code> will be used to do a
 variety of tasks, including: installing required packages, compiling TypeScript files into JavaScript,
 and executing tests.</p>
 <p>This course requires Node.js v18.17.0 or newer, or v20.1.0 or newer.</p>
-<h3>Setup 1</h3>
+<h3 id="setup-1">Setup 1</h3>
 <p>Follow <a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm">npm’s instructions to install Node.js</a>.</p>
 <p>During the installation process, you may be prompted to make selections or install prerequisites.
 Use the default selections and proceed with the installation.</p>
 <p>The installation process can take 10 to 15 minutes to complete.</p>
-<h4>macOS</h4>
+<h4 id="macos">macOS</h4>
 <p>On macOS, we recommend <a href="https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating">using nvm</a>
 to install Node because it allows you to manage multiple versions of Node for different projects.</p>
-<h4>Windows</h4>
+<h4 id="windows">Windows</h4>
 <p>On Windows, we recommend <a href="https://github.com/coreybutler/nvm-windows?tab=readme-ov-file#overview">using NVM for Windows</a>
 to install Node because it allows you to manage multiple versions of Node for different projects.</p>
 <p>You can also follow <a href="https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows">Microsoft’s instructions for setting up Node.js on Windows</a>.</p>
 <p>For some of the instructions, you may need to <a href="https://www.howtogeek.com/194041/how-to-open-the-command-prompt-as-administrator-in-windows-10/">open the command prompt or PowerShell as an administrator</a>.</p>
-<h3>Verify 1</h3>
+<h3 id="verify-1">Verify 1</h3>
 <p>✏️ Run the following command to verify Node.js is installed correctly:</p>
 <pre><code class="language-shell">node --version
 </code></pre>
@@ -571,16 +571,16 @@ It should start with either “v18” or “v20”.</p>
 </code></pre>
 <p>The output of the command will be the current version of <code>npm</code>.
 It should start with either “9” or “10”.</p>
-<h2>Objective 2: Initialize a Node project</h2>
+<h2 id="objective-2-initialize-a-node-project">Objective 2: Initialize a Node project</h2>
 <p>Let’s create a new Node project that supports TypeScript and can be tested.</p>
-<h3>Using npm to initialize a new Node application</h3>
+<h3 id="using-npm-to-initialize-a-new-node-application">Using npm to initialize a new Node application</h3>
 <p>For this course, we will use <code>npm</code> to initialize our application.</p>
 <p><a href="https://www.npmjs.com">npm</a> is a command line interface (CLI) tool that is used
 in every Node.js project. npm’s primary purpose is to take a list of dependencies
 in a project (in the <code>package.json</code> file) and install them locally.</p>
 <p><a href="https://docs.npmjs.com/cli/v10/commands/npm-init"><code>npm init</code></a> is the command for
 creating a new <code>package.json</code> file.</p>
-<h3>Setup 2</h3>
+<h3 id="setup-2">Setup 2</h3>
 <p>✏️ Run the following command to create a new <code>learn-typescript</code> folder:</p>
 <pre><code class="language-shell">mkdir learn-typescript
 </code></pre>
@@ -592,18 +592,18 @@ and install the required packages:</p>
 <p>✏️ Run the following command to create a new <code>package.json</code> file:</p>
 <pre><code class="language-shell">npm init --yes
 </code></pre>
-<h3>Verify 2</h3>
+<h3 id="verify-2">Verify 2</h3>
 <p>Your <code>learn-typescript</code> folder should now have one file:</p>
 <pre><code class="language-code">├── package.json
 </code></pre>
-<h2>Objective 3: Install TypeScript</h2>
-<h3>Adding TypeScript to a project</h3>
+<h2 id="objective-3-install-typescript">Objective 3: Install TypeScript</h2>
+<h3 id="adding-typescript-to-a-project">Adding TypeScript to a project</h3>
 <p>This entire course will focus on TypeScript, so we’ll need to add it to our project!</p>
 <p>Other tutorials may encourage you to install TypeScript globally, but this has the downside of
 using one TypeScript version for all of your projects.</p>
 <p>Instead, we think it’s best to install TypeScript as a dependency to your project so the
 version is always correct.</p>
-<h3>Setup 3</h3>
+<h3 id="setup-3">Setup 3</h3>
 <p>✏️ Run the following command to add the <code>typescript</code> package to your project:</p>
 <pre><code class="language-shell">npm install --save-dev typescript@~5.4
 </code></pre>
@@ -611,20 +611,20 @@ version is always correct.</p>
 <pre><code class="language-shell">npx tsc --init
 </code></pre>
 <p>In the command above, <code>npx</code> will find the <code>tsc</code> (TypeScript) binary in our <code>node_modules</code> folder.</p>
-<h3>Verify 3</h3>
+<h3 id="verify-3">Verify 3</h3>
 <p>Your <code>learn-typescript</code> folder should now have these files:</p>
 <pre><code class="language-code">├── node_modules/
 ├── package-lock.json
 ├── package.json
 ├── tsconfig.json
 </code></pre>
-<h2>Objective 4: Create your first TypeScript file</h2>
-<h3>Using <code>ts-node</code> to run TypeScript</h3>
+<h2 id="objective-4-create-your-first-typescript-file">Objective 4: Create your first TypeScript file</h2>
+<h3 id="using-codets-nodecode-to-run-typescript">Using <code>ts-node</code> to run TypeScript</h3>
 <p>Out of the box, Node.js does not have any support for TypeScript.</p>
 <p>We will install a dependency called <code>ts-node</code> that will compile our TypeScript to JavaScript
 before running it.</p>
 <p>Once we have <code>ts-node</code> installed, we can use <code>npx</code> again to run the <code>ts-node</code> binary.</p>
-<h3>Setup 4</h3>
+<h3 id="setup-4">Setup 4</h3>
 <p>✏️ Run the following command to add the <code>ts-node</code> package to your project:</p>
 <pre><code class="language-shell">npm install --save-dev ts-node@10
 </code></pre>
@@ -640,17 +640,17 @@ let user = &quot;World&quot;;
 
 console.info('Greeting:', greeter(user));
 </code></pre>
-<h3>Verify 4</h3>
+<h3 id="verify-4">Verify 4</h3>
 <p>✏️ Run the following command to run the TypeScript code:</p>
 <pre><code class="language-shell">npx ts-node src/hello-world/greetings.ts
 </code></pre>
-<h3>Solution 4</h3>
+<h3 id="solution-4">Solution 4</h3>
 <p>After running the command above, you should see:</p>
 <pre><code>Greeting: Hello, World
 </code></pre>
 <p>Congrats! You’ve written and run your first TypeScript application.</p>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/03-setting-up-your-environment/04-solution?file=src/hello-world/greetings.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/03-setting-up-your-environment/04-solution?file=src/hello-world/greetings.ts">CodeSandbox</a>.</p>
-<h3>Bonus challenge</h3>
+<h3 id="bonus-challenge">Bonus challenge</h3>
 <p>Change the <code>user</code> variable to a number and compile again. What do you think will happen?</p>
 <p>You should see an error message.</p>
 <p><details>
@@ -663,11 +663,11 @@ src/hello-world/greetings.ts:7:35 - error TS2345: Argument of type 'number' is n
 </code></pre>
 <p><a href="../static/img/typescript-error-compiling.png"><img alt="A screenshot of an Integrated Development Environment (IDE) showing TypeScript code. The code attempts to greet a user by displaying “Hello,” followed by a user’s name. However, a numeric value is passed instead of a string, causing a compilation error highlighted in the terminal at the bottom." src="../static/img/typescript-error-compiling.png" width="100%"/></a></p>
 <p></details></p>
-<h2>Objective 5: Create your first test file</h2>
-<h3>Writing TypeScript tests in a Node project</h3>
+<h2 id="objective-5-create-your-first-test-file">Objective 5: Create your first test file</h2>
+<h3 id="writing-typescript-tests-in-a-node-project">Writing TypeScript tests in a Node project</h3>
 <p>Out of the box, Node.js <em>does</em> have support for writing tests.
 We will use its built-in assertion library and test-runner for our TypeScript tests.</p>
-<h3>Setup 5</h3>
+<h3 id="setup-5">Setup 5</h3>
 <p>✏️ Create <strong>src/hello-world/greetings.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
@@ -698,11 +698,11 @@ describe('Hello world', () =&gt; {
 
 </code></pre>
  <div line-highlight="7,"></div>
-<h3>Verify 5</h3>
+<h3 id="verify-5">Verify 5</h3>
 <p>Run the tests in your terminal:</p>
 <pre><code class="language-shell">npm run test
 </code></pre>
-<h3>Solution 5</h3>
+<h3 id="solution-5">Solution 5</h3>
 <p>After running the command above, you should see something like:</p>
 <pre><code>&gt; learn-typescript@1.0.0 test
 &gt; node --require ts-node/register --test src/**/**.test.**
@@ -721,7 +721,7 @@ describe('Hello world', () =&gt; {
 ℹ duration_ms 540.290334
 </code></pre>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/03-setting-up-your-environment/05-solution?file=src/hello-world/greetings.test.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/03-setting-up-your-environment/05-solution?file=src/hello-world/greetings.test.ts">CodeSandbox</a>.</p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>Next we will learn how to import and export functions between <a href="modules.html" title="Learn how to export and import values from a file.">Modules</a>.</p>
 
 </section>

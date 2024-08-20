@@ -574,7 +574,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>Both teams and stakeholders need a sense of timing. Teams need to know when work will complete so they can coordinate effectively. Stakeholders want a sense of timing to weigh cost benefits or be able to assist if work is not progressing smoothly.</p>
 <p>For timing, it’s critical to keep Advanced Roadmap the source of truth. But, Advanced Roadmap is not something that everyone on the team will be comfortable looking at:</p>
 <p><img src="../static/img/program-management-with-jira/reporting/big-roadmap.png"
@@ -604,10 +604,10 @@ class="content-400-800-shadow"/></p>
 <p>The following is the <a href="https://docs.google.com/presentation/d/1zvMxqCu7h_hDpCP-SM6cNXWUbzasTbVqoKq2cTpOErU/edit?usp=sharing">Google Slides presentation</a>
 for this material:</p>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRu7fc5Ak81pr_sia28FrLKPwY_0XsNEAOSU4M_2goUXuiSOw0MqnqUiRynodZfn4AmySWs63z0meXw/embed?start=false&loop=false&delayms=3000" frameborder="0" class="block-16-by-9" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-<h2>Keeping Jira the Source of Truth</h2>
+<h2 id="keeping-jira-the-source-of-truth">Keeping Jira the Source of Truth</h2>
 <p>Too often, Program Managers spend a lot of time gathering dates, times, and statuses from various project teams and assembling them into something a wider audience, typically stakeholders and senior management can understand. This often expresses itself as a PowerPoint slide at a <a href="https://www.projectmanager.com/blog/steering-committee-definition">SteerCo</a> meeting.</p>
 <p>At best, the time spent producing the PowerPoint slide is inefficient. At worst, the PowerPoint slide becomes the source of truth and limits time spent maintaining and improving the more valuable representation of the plan - the Advanced Roadmap plan.</p>
-<h2>Timeline Report Guidelines</h2>
+<h2 id="timeline-report-guidelines">Timeline Report Guidelines</h2>
 <p>The Timeline Report’s goal is to help present a simplified representation of the work being done or going to be done. By simplifying, there can sometimes be a conflict between data. For example:</p>
 <ul>
 <li><p>An initiative could be put in a “QA” status, but the development epics are still in progress.</p></li>
@@ -617,7 +617,7 @@ for this material:</p>
 <p><img src="../static/img/program-management-with-jira/reporting/release-in-each-status.png"
 class="content-400-800-shadow"/></p>
 <p>A primary goal of the “Timeline Report” is to keep the timeline up to date, so when there are conflicts between statuses and the <code>start date</code> and <code>due dates</code>, the dates win. For example, all epics with a <code>due date</code> less than the current date will be treated as “complete”.</p>
-<h2>Connecting the Timeline Report to your Jira instance</h2>
+<h2 id="connecting-the-timeline-report-to-your-jira-instance">Connecting the Timeline Report to your Jira instance</h2>
 <p>The timeline report can be found at <a href="https://timeline-report.bitovi-jira.com/">https://timeline-report.bitovi-jira.com/</a> . To use it:</p>
 <ol>
 <li><p>Go to <a href="https://timeline-report.bitovi-jira.com/">https://timeline-report.bitovi-jira.com/</a> . The site will redirect to Jira to authenticate the app to read data.</p></li>
@@ -630,7 +630,7 @@ class="content-400-800-shadow"/></p></li>
 <ol start="3">
 <li>Click “Accept” and you will be redirected back to the Jira app.</li>
 </ol>
-<h2>Change the Reported Status from “Not Started” to “On Track”</h2>
+<h2 id="change-the-reported-status-from-not-started-to-on-track">Change the Reported Status from “Not Started” to “On Track”</h2>
 <p><strong>Given</strong>: A timeline like:</p>
 <p><img src="../static/img/program-management-with-jira/reporting/starting-timeline.png"
 class="content-400-800-shadow"/></p>
@@ -643,7 +643,7 @@ class="content-400-800-shadow"/></p>
 <p><strong>Result</strong>: The initiative shows up as “on track” as follows</p>
 <p><img src="../static/img/program-management-with-jira/reporting/on-track.png"
 class="content-400-800-shadow"/></p>
-<h2>Change the Reported Status to “Behind”</h2>
+<h2 id="change-the-reported-status-to-behind">Change the Reported Status to “Behind”</h2>
 <p><strong>Given</strong>: The previous timeline.</p>
 <p><strong>Steps</strong>: Move an epic so the initiative’s timeline will be delayed</p>
 <p><img src="../static/img/program-management-with-jira/reporting/delayed.png"
@@ -654,7 +654,7 @@ class="content-400-800-shadow"/></p>
 <p>The timer can be used to control the reference point to determine if the initiative is delayed:</p>
 <p><img src="../static/img/program-management-with-jira/reporting/compare-to-zero.png"
 class="content-400-800-shadow"/></p>
-<h2>Change the Reported Status to “Blocked”</h2>
+<h2 id="change-the-reported-status-to-blocked">Change the Reported Status to “Blocked”</h2>
 <p><strong>Given</strong>: The previous timeline.</p>
 <p><strong>Steps</strong>:</p>
 <ol>
@@ -667,7 +667,7 @@ class="content-400-800-shadow"/></p></li>
 The reported status is shown as blocked.</p>
 <p><img src="../static/img/program-management-with-jira/reporting/blocked-report.png"
 class="content-400-800-shadow"/></p>
-<h2>Change the Reported Status to “Complete”</h2>
+<h2 id="change-the-reported-status-to-complete">Change the Reported Status to “Complete”</h2>
 <p><strong>Given</strong>: The previous timeline.</p>
 <p><strong>Steps</strong>: Move all of the initiative’s epics to complete before the current time.</p>
 <p><img src="../static/img/program-management-with-jira/reporting/complete-epic.png"
@@ -675,7 +675,7 @@ class="content-400-800-shadow"/></p>
 <p><strong>Result</strong>: The initiative is shown as “complete”:</p>
 <p><img src="../static/img/program-management-with-jira/reporting/complete-report.png"
 class="content-400-800-shadow"/></p>
-<h2>Show a Development, QA, and UAT breakout</h2>
+<h2 id="show-a-development-qa-and-uat-breakout">Show a Development, QA, and UAT breakout</h2>
 <p>It can be nice to see an initiative’s timing as it flow from development, to QA (testing), and finally to User Acceptance Testing (UAT).</p>
 <p><strong>Given</strong>: The previous timeline.</p>
 <p><strong>Steps</strong>:</p>
@@ -691,7 +691,7 @@ class="content-400-800-shadow"/></p></li>
 <p><strong>Result</strong>: The Dev, QA, and UAT epics timelines are reported individually.</p>
 <p><img src="../static/img/program-management-with-jira/reporting/phase-breakout.png"
 class="content-400-800-shadow"/></p>
-<h2>Role Up Into Releases</h2>
+<h2 id="role-up-into-releases">Role Up Into Releases</h2>
 <p>In some organizations, multiple initiatives are released together as part of a “Release”. The “Jira Timeline” can report release timings as well.</p>
 <p><strong>Given</strong>: The previous timeline.</p>
 <p><strong>Steps</strong>:</p>
@@ -709,15 +709,15 @@ class="content-400-800-shadow"/></p></li>
 <p><strong>Result</strong>: The initiatives are shown as part of a release. Add more releases and initiatives to releases to see additional releases.</p>
 <p><img src="../static/img/program-management-with-jira/reporting/releases-report.png"
 class="content-400-800-shadow"/></p>
-<h2>Exercise</h2>
+<h2 id="exercise">Exercise</h2>
 <p>In these exercises, you will learn how to change your initiative’s epics so they are reported with the “Timeline Report”.</p>
-<h3>Step 1: Make your initiative appear as “not started”</h3>
+<h3 id="step-1-make-your-initiative-appear-as-not-started">Step 1: Make your initiative appear as “not started”</h3>
 <p>Connect your Jira instance to the “Timeline Report”. Ensure your Initiative is visible.</p>
-<h3>Step 2: Add QA and UAT epics</h3>
+<h3 id="step-2-add-qa-and-uat-epics">Step 2: Add QA and UAT epics</h3>
 <p>Add QA and UAT epics to your initiative. Make the timeline show the QA and UAT breakout.</p>
-<h3>Step 3: Create Releases</h3>
+<h3 id="step-3-create-releases">Step 3: Create Releases</h3>
 <p>Create releases and decide which initiative belongs to which release. Hopefully there are at least 4 initiatives. Each release can have its own initiative.</p>
-<h3>Step 4: Stagger Releases</h3>
+<h3 id="step-4-stagger-releases">Step 4: Stagger Releases</h3>
 <p>Decide which release (and therefore initiatives) should be in which reported status:</p>
 <ul>
 <li><p>Not Started</p></li>

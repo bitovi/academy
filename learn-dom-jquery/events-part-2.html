@@ -497,17 +497,17 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this part, we will:</p>
 <ul>
 <li>Learn about event propagation</li>
 <li>Learn about event delegation</li>
 </ul>
-<h2>Slides</h2>
+<h2 id="slides">Slides</h2>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vT8tm1B2yfrIZxSPMtKhMHf_nCGgUbwu6kmDgOQqp6sskZqqmCMUvDmeYRBsQ8o_RECYtIwhFBHB0UM/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-<h2>Video</h2>
+<h2 id="video">Video</h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/qoW-EYuESZA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<h2>Propagation Demo</h2>
+<h2 id="propagation-demo">Propagation Demo</h2>
 <p>The following listens to <code>click</code> on a nested body, div, and
 anchor element in both the <code>capture</code> and <code>bubble</code> phase
 and logs which handler is being dispatched.</p>
@@ -571,7 +571,7 @@ a.addEventListener('click', function() {
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='6-12,16-18,30-32,only'></div>
-<h2>Delegation Demo</h2>
+<h2 id="delegation-demo">Delegation Demo</h2>
 <p>The following shows using event delegation to listen to
 when any anchor is clicked in the page.</p>
 <pre><code class="language-html">&lt;style&gt;
@@ -629,7 +629,7 @@ document.body.addEventListener(&quot;click&quot;, function(ev){
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='15-23,only'></div>
-<h2>Setup</h2>
+<h2 id="setup">Setup</h2>
 <p>Run the following example in CodePen:</p>
 <pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
 &lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
@@ -839,8 +839,8 @@ document.body.addEventListener(&quot;click&quot;, function(ev){
 <div class='codepen'></div>
 <div line-highlight='196-199,only'></div>
 <p>Each exercise builds on the previous exercise. There is a completed solution at the end of this page.</p>
-<h2>Exercise: <code>collection.is(selector) -&gt; boolean</code></h2>
-<h3>The problem</h3>
+<h2 id="exercise-codecollectionisselector--gt-booleancode">Exercise: <code>collection.is(selector) -&gt; boolean</code></h2>
+<h3 id="the-problem">The problem</h3>
 <p><a href="https://api.jquery.com/is/">collection.is</a> checks the current matched set of elements against a selector.</p>
 <pre><code class="language-js">import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
 
@@ -868,7 +868,7 @@ console.log(elements.is(&quot;div&quot;)); //-&gt; true
 });
 </code></pre>
 <p></details></p>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <ul>
 <li><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/matches">matches</a> returns if an
 element matches a selector:</p>
@@ -879,7 +879,7 @@ element matches a selector:</p>
 </code></pre></li>
 </ul>
 <div class='codepen'></div>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">    is: function(selector){
@@ -894,8 +894,8 @@ element matches a selector:</p>
 </code></pre>
 <div line-highlight='2-8'></div>
 <p></details></p>
-<h2>Exercise: <code>collection.data(key [, value])</code></h2>
-<h3>The problem</h3>
+<h2 id="exercise-codecollectiondatakey--valuecode">Exercise: <code>collection.data(key [, value])</code></h2>
+<h3 id="the-problem">The problem</h3>
 <p><a href="https://api.jquery.com/data/">collection.data</a> stores arbitrary data associated with the matched elements or return the value at the named data store for the first element in the set of matched elements.</p>
 <pre><code class="language-html">&lt;div id=&quot;hello&quot;&gt;Hello World&lt;/div&gt;
 &lt;script type=&quot;module&quot;&gt;
@@ -918,7 +918,7 @@ element matches a selector:</p>
 });
 </code></pre>
 <p></details></p>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <ul>
 <li><p>Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap">WeakMap</a>
 to store data associated with an object in such a way that when the object is removed the data
@@ -938,7 +938,7 @@ setTimeout(function () {
 </code></pre></li>
 </ul>
 <div class='codepen'></div>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">    data: (function(){
@@ -964,8 +964,8 @@ setTimeout(function () {
 </code></pre>
 <div line-highlight='1-20'></div>
 <p></details></p>
-<h2>Exercise: <code>collection.on(eventType, selector, handler)</code></h2>
-<h3>The problem</h3>
+<h2 id="exercise-codecollectiononeventtype-selector-handlercode">Exercise: <code>collection.on(eventType, selector, handler)</code></h2>
+<h3 id="the-problem">The problem</h3>
 <p><a href="https://api.jquery.com/on/">collection.on</a> attaches a delegate event listener.</p>
 <pre><code class="language-html">&lt;ul id=&quot;root&quot;&gt;
   &lt;li&gt;First&lt;/li&gt;
@@ -1009,7 +1009,7 @@ setTimeout(function () {
 });
 </code></pre>
 <p></details></p>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <ul>
 <li>Instead of binding the <code>handler</code>, you’ll need to bind a <code>delegator</code> that
 will conditionally call the <code>handler</code>.</li>
@@ -1021,7 +1021,7 @@ looks like:
 // }
 </code></pre></li>
 </ul>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">    on: function(eventType, selector, handler) {
@@ -1060,8 +1060,8 @@ looks like:
 </code></pre>
 <div line-highlight='2-31'></div>
 <p></details></p>
-<h2>Exercise: <code>collection.off(eventType, selector, handler)</code></h2>
-<h3>The problem</h3>
+<h2 id="exercise-codecollectionoffeventtype-selector-handlercode">Exercise: <code>collection.off(eventType, selector, handler)</code></h2>
+<h3 id="the-problem">The problem</h3>
 <p><a href="https://api.jquery.com/off/">collection.off</a> stops listening for a delegate listener.</p>
 <p><details>
 <summary>Click to see test code</summary></p>
@@ -1089,12 +1089,12 @@ looks like:
 });
 </code></pre>
 <p></details></p>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <ul>
 <li>You will need to find the delegate for the handler passed to <code>.off()</code> and then
 call <code>.removeEventListener</code>.</li>
 </ul>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">    off: function(eventType, selector, handler) {
@@ -1118,7 +1118,7 @@ call <code>.removeEventListener</code>.</li>
 </code></pre>
 <div line-highlight='2-17'></div>
 <p></details></p>
-<h2>Completed solution</h2>
+<h2 id="completed-solution">Completed solution</h2>
 <p><details>
 <summary>Click to see completed solution</summary></p>
 <pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;

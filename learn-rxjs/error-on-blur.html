@@ -543,17 +543,17 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Video</h2>
+    <h2 id="video">Video</h2>
 <p>Who has time to read? This video covers the content on this page. Watch fullscreen.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/3cM-IaOO048" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<h2>The problem</h2>
+<h2 id="the-problem">The problem</h2>
 <p>In this section, we will:</p>
 <ul>
 <li>Only show the cardNumber error if the user blurs the card number input. Once the user blurs,
 we will update the displayed cardNumber error, if there is one, on every future keystroke.</li>
 <li>Add class=&quot;is-error&quot; to the input when it has an error.</li>
 </ul>
-<h2>How to solve this problem</h2>
+<h2 id="how-to-solve-this-problem">How to solve this problem</h2>
 <ul>
 <li>Create a <code>this.userCardNumberBlurred$</code> <code>Subject</code> that emits when the <code>cardNumber</code> input is blurred.</li>
 <li>Create a <code>this.showCardError$</code> that emits true when the <code>cardNumber</code> error should be shown.</li>
@@ -563,7 +563,7 @@ the <code>showCardError$</code> observable from two source observables.<br />
 promote the <code>error$</code> and <code>blurred$</code> into events and
 reduce those events into the <code>showCardError$</code> observable.</li>
 </ul>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <ul>
 <li><p>One of the most useful patterns in constructing streams is the <strong>event-reducer</strong>
 pattern. On a high-level it involves turning values into events, and using those
@@ -726,7 +726,7 @@ an element. The following will show the <code>div</code> if <code>expression</co
 <pre><code class="language-html">&lt;div *ngIf=&quot;expression&quot;&gt;Show this&lt;/div&gt;
 </code></pre></li>
 </ul>
-<h2>The solution</h2>
+<h2 id="the-solution">The solution</h2>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;

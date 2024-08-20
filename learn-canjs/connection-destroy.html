@@ -618,12 +618,12 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>The problem</h2>
+    <h2 id="the-problem">The problem</h2>
 <p>When a todo’s <strong>destroy</strong> button is clicked, we need to delete the
 todo on the server and remove the todo’s element from the page. While
 the todo is being destroyed, add <code>destroying</code> to the todo’s <code>&lt;li&gt;</code>’s <code>class</code>
 attribute.</p>
-<h2>Things to know</h2>
+<h2 id="things-to-know">Things to know</h2>
 <ul>
 <li><p>The remaining parts of the <a href="https://drive.google.com/open?id=0Bx-kNqf-wxZebHFWMElNOVEwSlE">https://canjs.com/doc/can-connect.html Presentation</a>, with an emphasis on how the <a href="https://canjs.com/doc/can-connect/real-time/real-time.html" title="real-time">real-time</a> behavior works.</p></li>
 <li><p>Delete a record on the server with <a href="https://canjs.com/doc/can-connect/can/map/map.prototype.destroy.html" title=".destroy()">.destroy()</a> like:</p>
@@ -634,7 +634,7 @@ has been called, but has not resolved yet.</p>
 <pre><code class="language-js">map.isDestroying()
 </code></pre></li>
 </ul>
-<h2>The solution</h2>
+<h2 id="the-solution">The solution</h2>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>Update <em>index.stache</em> to the following:</p>

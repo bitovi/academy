@@ -497,7 +497,7 @@ covering CanJS core libraries.">
     <blockquote>
 <p><strong>NOTE:</strong> This section is currently under development.  There are no exercises yet.</p>
 </blockquote>
-<h2>What is a promise</h2>
+<h2 id="what-is-a-promise">What is a promise</h2>
 <p>A promise represents the completion or failure of some
 operation.  Promises have methods (<code>.then</code>)
 that let you listen for when the operation completes:</p>
@@ -527,7 +527,7 @@ request.catch( function rejected(){
 } )
 </code></pre>
 <div class='codepen'></div>
-<h2>Success values</h2>
+<h2 id="success-values">Success values</h2>
 <p>If the operation is successful, the operation can return
 a value.  For example, if <code>fetch</code> establishes a value,
 a <code>response</code> object is provided.</p>
@@ -541,7 +541,7 @@ request.then( function(response){
 <p>Setting a promise’s returning value is actually called <em>resolving</em> the
 promise’s value. This is because a promise’s value can
 only be set once.</p>
-<h2>Failure reasons</h2>
+<h2 id="failure-reasons">Failure reasons</h2>
 <p>If the operation fails, a reason for the failure can be returned.
 For example, if <code>fetch</code> makes a request to a URL that doesn’t exist,
 the <code>reason</code> will be an TypeError object.</p>
@@ -553,7 +553,7 @@ request.catch( function(reason){
 </code></pre>
 <div class='codepen'></div>
 <p>When a promise fails, it is called <em>rejecting</em> the promise.</p>
-<h2>Creating promises</h2>
+<h2 id="creating-promises">Creating promises</h2>
 <p>You can create your own promises with <code>new Promise()</code>!
 The following example creates a promise whose value is
 resolved to a random number after one second.  We also listen to when
@@ -653,7 +653,7 @@ numberPromise.catch( function( error ){
 } );
 </code></pre>
 <div class='codepen'></div>
-<h3>Shorthands</h3>
+<h3 id="shorthands">Shorthands</h3>
 <p>You can also create resolved and rejected promises with shorthands:</p>
 <pre><code class="language-js">const numberPromise = Promise.resolve(123);
 
@@ -665,7 +665,7 @@ numberPromise.then(console.log) //-&gt; 123
 numberPromise.catch(console.log) //-&gt; Error[Borked]
 </code></pre>
 <div class='codepen'></div>
-<h2>Creating promises from other promises</h2>
+<h2 id="creating-promises-from-other-promises">Creating promises from other promises</h2>
 <p>One of the most common uses of promises is to take a promise value and convert it to another
 promise value.</p>
 <p>A promise’s <code>.then( onFulfilled )</code> method always returns another <em>outer</em> promise.  That <em>outer</em> promise
@@ -691,7 +691,7 @@ countPromise.then( (count) =&gt; {
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='9-10,14'></div>
-<h3>Flattening promises</h3>
+<h3 id="flattening-promises">Flattening promises</h3>
 <p>If a <code>onFulfilled</code> function returns another promise, the <em>outer</em> promise actually takes on
 the behavior of the returned promise. This was used in the above example.  <code>response.json()</code>
 returns a promise, so <code>breedsPromise</code> took on the behavior of the result of <code>response.json()</code>.</p>
@@ -727,7 +727,7 @@ countPromise.then( (count) =&gt; {
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='1-7,17,21'></div>
-<h3>Throwing exceptions</h3>
+<h3 id="throwing-exceptions">Throwing exceptions</h3>
 <p>If an <code>onFulfilled</code> function throws an exception, this will reject the <em>outer</em>
 promise returned by <code>.then</code>.</p>
 <p>For example, if <code>toCount</code> mistakenly read <code>breeds.data</code> instead of <code>breeds.message</code>,
@@ -753,7 +753,7 @@ countPromise.catch( (reason) =&gt; {
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='10,17'></div>
-<h2>Promise providers</h2>
+<h2 id="promise-providers">Promise providers</h2>
 <p>Promises are returned by many APIs such as:</p>
 <ul>
 <li><p>The <code>fetch()</code> API returns a promise when a connection is
@@ -765,7 +765,7 @@ JSON response is complete:</p>
 <li><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia">getUserMedia</a></p></li>
 <li><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerContainer/register">ServiceWorkerContainer.register(...)</a></p></li>
 </ul>
-<h2>Promise syntax</h2>
+<h2 id="promise-syntax">Promise syntax</h2>
 <p>JavaScript even has <strong>special syntax</strong> for using promises:</p>
 <ul>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function">async</a> / <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await">await</a> let you read the value of promises without
@@ -796,7 +796,7 @@ for await (const chunk of response.body.getReader() ) {
 }
 </code></pre></li>
 </ul>
-<h2>Timing</h2>
+<h2 id="timing">Timing</h2>
 <p>Promises' callback handlers are run in the
 <code>microtask queue</code> which is called at the end of the JavaScript
 event loop. This means a few things.</p>
@@ -856,7 +856,7 @@ console.log(&quot;after resolve&quot;);
 know that your callbacks will always be called sometime in the
 future. If callbacks were called immediately, this would
 have to be handled.</p>
-<h2>Chaining vs callbacks</h2>
+<h2 id="chaining-vs-callbacks">Chaining vs callbacks</h2>
 <p>Without Promises, the common way of handling asynchronous behavior was
 to pass a success and failure callback to functions as follows.</p>
 <pre><code class="language-js">doSomething( (filesData) =&gt; {
@@ -882,7 +882,7 @@ linear process:</p>
   })
   .catch( failureCallback );
 </code></pre>
-<h2>Promise queues</h2>
+<h2 id="promise-queues">Promise queues</h2>
 <p>Often, you want to run a series of tasks, but those
 tasks might be optional. Making this work with
 promises can be tricky.</p>
@@ -923,7 +923,7 @@ const promise = promiseQueue([
   writeHTML
 ]);
 </code></pre>
-<h2>Waiting for multiple async tasks to complete</h2>
+<h2 id="waiting-for-multiple-async-tasks-to-complete">Waiting for multiple async tasks to complete</h2>
 <p>Often, you might want to do two or more parallel tasks and
 then do something with the result.  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all">Promise.all</a> takes
 multiple promises and returns another promise when they all complete.</p>
@@ -971,8 +971,8 @@ Promise.all([houndsPromise, dingosPromise])
   } );
 </code></pre>
 <div class='codepen'></div>
-<h2>Promises compared to alternatives</h2>
-<h3>Promises compared to callbacks</h3>
+<h2 id="promises-compared-to-alternatives">Promises compared to alternatives</h2>
+<h3 id="promises-compared-to-callbacks">Promises compared to callbacks</h3>
 <p>Callback functions can be passed to a function. In the following example,
 <code>doSomething()</code> takes a completion callback:</p>
 <pre><code class="language-js">doSomething(someArg, function onComplete(err, data) {
@@ -1000,7 +1000,7 @@ can create timing issues.</li>
 <p>If you are making something that needs to run extremely quickly and doesn’t need to
 be user friendly, callbacks might be a good solution. After all, it’s not difficult to
 &quot;promisify&quot; callback-based APIs.  Many libraries do exactly this.</p>
-<h3>Promises compared to event streams</h3>
+<h3 id="promises-compared-to-event-streams">Promises compared to event streams</h3>
 <p>Event streams are any technology that might produce values
 overtime.  For example, listening to a <code>click</code> event on the DOM
 is a form of event stream:</p>

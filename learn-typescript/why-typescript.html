@@ -530,11 +530,11 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>What is TypeScript?</h2>
+    <h2 id="what-is-typescript">What is TypeScript?</h2>
 <p>TypeScript is a programming language developed and maintained by Microsoft. It is a typed superset of JavaScript,
 which means that any valid JavaScript code is also valid TypeScript code. TypeScript adds optional static typing
 to the language, along with other features that don’t exist in regular JavaScript.</p>
-<h3>Static vs. dynamic typing</h3>
+<h3 id="static-vs-dynamic-typing">Static vs. dynamic typing</h3>
 <p>JavaScript is an “untyped” or “dynamically typed” language. Type is associated with a value instead of a variable.
 JavaScript can assign variables to values of different types:</p>
 <pre><code class="language-js">let myVariable;
@@ -558,10 +558,10 @@ myVariable = &quot;2&quot;;
 <pre><code>Type 'string' is not assignable to type 'number'.ts(2322)
 </code></pre>
 <p>For a deeper dive into how typechecking works, the creators of TypeScript have a <a href="https://www.typescriptlang.org/docs/handbook/type-checking-javascript-files.html">typechecking handbook</a> of more specific cases as well as their inspiration for the way these features were designed.</p>
-<h3>Class-based object-oriented programming</h3>
+<h3 id="class-based-object-oriented-programming">Class-based object-oriented programming</h3>
 <p>While JavaScript supports prototype-based object-oriented programming, TypeScript enhances this with the ability to use classes in a way similar to other OOP languages like Java or C#.
 This includes features like inheritance, interfaces, and access modifiers such as <code>private</code> or <code>public</code>.</p>
-<h3>Advanced type system</h3>
+<h3 id="advanced-type-system">Advanced type system</h3>
 <p>TypeScript’s type system is rich and includes generics, enums, hybrid types, intersection types, tuples, and much more.
 This system allows developers to write flexible, yet robust code very efficiently.</p>
 <p>Below is an example of using enums in TypeScript:</p>
@@ -586,7 +586,7 @@ function move(direction: Direction): string {
 console.info(move(Direction.Up)); // Output: Vertical movement!
 
 </code></pre>
-<h3>Transpiling TypeScript to JavaScript</h3>
+<h3 id="transpiling-typescript-to-javascript">Transpiling TypeScript to JavaScript</h3>
 <p>TypeScript code is converted into plain JavaScript through a process called transpilation.
 During this process, the compiler can catch and report errors that would otherwise only be caught at runtime when using plain JavaScript.</p>
 <p>Here’s an example of TypeScript code before transpilation:</p>
@@ -606,8 +606,8 @@ function hello(who = world) {
 }
 exports.hello = hello;
 </code></pre>
-<h2>Why use TypeScript?</h2>
-<h3>Improve readability</h3>
+<h2 id="why-use-typescript">Why use TypeScript?</h2>
+<h3 id="improve-readability">Improve readability</h3>
 <p>By using types, JavaScript becomes more predictable and easier to understand.
 Types act as a form of documentation that can significantly reduce the cognitive load on developers, helping new team members to understand the codebase quicker.
 This can lead to a more maintainable and scalable project.</p>
@@ -621,7 +621,7 @@ This can lead to a more maintainable and scalable project.</p>
   return price + price * tax;
 }
 </code></pre>
-<h3>Increases maintainability</h3>
+<h3 id="increases-maintainability">Increases maintainability</h3>
 <p>TypeScript also offers modern (think ES6) features of JavaScript and the use of classes and interfaces to write code in an object-oriented way.</p>
 <p>Here’s another example of code being more readable with types. Creating a <code>User</code> interface makes it clear what the <code>greet</code> function is expecting in the <code>user</code> object:</p>
 <pre><code class="language-typescript">interface User {
@@ -638,7 +638,7 @@ function greet(user: User) {
   console.info(`Hello, ${user.name}`);
 }
 </code></pre>
-<h3>Reduces errors</h3>
+<h3 id="reduces-errors">Reduces errors</h3>
 <p>Typechecking is the process of verifying and enforcing the constraints of types, checking each variable, function, and expression to ensure they all fit together correctly. It’s like ensuring that you’re using the right tools for the job and putting them in the right places, so your program runs smoothly without unexpected errors.</p>
 <p>JavaScript can call a function with a type it doesn’t expect:</p>
 <pre><code class="language-js">function greeter(person) {
@@ -665,21 +665,21 @@ console.info(greeter(user));
 </code></pre>
 <p>TypeScript’s compile-time checks can identify common bugs that would typically be found at runtime in plain JavaScript.
 Issues like calling a function with the wrong type of arguments, or trying to use a property that doesn’t exist on an object, can be caught early, thus saving time and reducing costs associated with debugging and fixing production bugs.</p>
-<h3>Simplifies code refactoring</h3>
+<h3 id="simplifies-code-refactoring">Simplifies code refactoring</h3>
 <p>Refactoring large codebases can be risky when you can’t be certain what impact your changes might have.
 TypeScript’s type system provides a safety net that makes it easier to make extensive changes while ensuring that no part of the system is adversely affected.</p>
-<h3>Facilitates collaboration in large teams</h3>
+<h3 id="facilitates-collaboration-in-large-teams">Facilitates collaboration in large teams</h3>
 <p>In large development teams, ensuring code consistency and avoiding conflicts can be challenging.
 TypeScript’s explicit type system and the compilation step help enforce a level of consistency across the codebase.
 It acts as a guide to ensure that all team members are implementing features with the expected types in mind.</p>
-<h3>Integrates with modern development tools</h3>
+<h3 id="integrates-with-modern-development-tools">Integrates with modern development tools</h3>
 <p>The static typing feature of TypeScript provides powerful tooling at development time in IDEs (Integrated Development Environments).
 Features like code completion, refactorings, and inline documentation become more powerful due to TypeScript’s advanced type inference and type checking.</p>
 <p>TypeScript is supported by most modern development tools, including popular IDEs like Visual Studio Code, WebStorm, and others.
 These tools provide enhanced features when used with TypeScript, such as better autocomplete, inline errors, and automated refactoring tools.</p>
-<h2>TypeScript or JavaScript?</h2>
+<h2 id="typescript-or-javascript">TypeScript or JavaScript?</h2>
 <p>Given the myriad benefits of TypeScript, we simply cannot recommend using plain JavaScript on the vast majority of modern projects. Even on legacy JavaScript projects, we usually recommend migrating to TypeScript.</p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>Next, let’s take a look at <a href="./ide-support.html">IDEs</a> support building TypeScript projects.</p>
 
 </section>

@@ -498,7 +498,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>We will learn about:</p>
 <ul>
 <li>Extending objects by building <code>$.extend</code></li>
@@ -506,11 +506,11 @@ covering CanJS core libraries.">
 <li>Iterating objects and arrays by building <code>$.each</code></li>
 <li>Binding functions to a particular context by building <code>$.proxy</code></li>
 </ul>
-<h2>Video</h2>
+<h2 id="video">Video</h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ZyItGFJivaQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<h2>Slides</h2>
+<h2 id="slides">Slides</h2>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQS1BOdGeK3-TEHbLt_mWjc7Z3TAd5dk6lFCDEvOy5cXLHzrYx7OsmVAP72vwDvTxJ_lLG0y5UqEUfc/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-<h2>Setup</h2>
+<h2 id="setup">Setup</h2>
 <p>Run the following example in CodePen:</p>
 <pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
 &lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
@@ -541,8 +541,8 @@ covering CanJS core libraries.">
 <div class='codepen'></div>
 <p>Each exercise builds on the previous exercise. There is a completed solution
 at the end of this page.</p>
-<h2>Exercise: <code>$.extend( target, source ) -&gt; target</code></h2>
-<h3>The problem</h3>
+<h2 id="exercise-codeextend-target-source---gt-targetcode">Exercise: <code>$.extend( target, source ) -&gt; target</code></h2>
+<h3 id="the-problem">The problem</h3>
 <p><a href="https://api.jquery.com/jquery.extend/">jQuery.extend</a> merges the contents of a <code>source</code>
 object onto the <code>target</code> object.</p>
 <p><details>
@@ -565,7 +565,7 @@ object onto the <code>target</code> object.</p>
 <blockquote>
 <p><strong>PRO TIP</strong>: Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">Object.assign</a> in a modern app.</p>
 </blockquote>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <ul>
 <li><p>Loop through an object’s enumerable properties with a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in">for-in loop</a>:</p>
 <pre><code class="language-js">var obj = { foo: &quot;bar&quot;, zed: &quot;ted&quot; };
@@ -600,7 +600,7 @@ console.log(obj.hasOwnProperty(&quot;foo&quot;)); // Logs true
 </code></pre></li>
 </ul>
 <div class='codepen' data-codepen=''></div>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">$.extend = function (target, object) {
@@ -614,8 +614,8 @@ console.log(obj.hasOwnProperty(&quot;foo&quot;)); // Logs true
 </code></pre>
 <div line-highlight='2-7'></div>
 <p></details></p>
-<h2>Exercise: <code>$.isArray( obj ) -&gt; boolean</code></h2>
-<h3>The problem</h3>
+<h2 id="exercise-codeisarray-obj---gt-booleancode">Exercise: <code>$.isArray( obj ) -&gt; boolean</code></h2>
+<h3 id="the-problem">The problem</h3>
 <p><a href="http://api.jquery.com/jquery.isarray/">jQuery.isArray</a> determines whether the argument is an array.</p>
 <p><details>
 <summary>Click to see test code</summary></p>
@@ -641,7 +641,7 @@ console.log(obj.hasOwnProperty(&quot;foo&quot;)); // Logs true
 <blockquote>
 <p><strong>PRO TIP</strong>: Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray">Array.isArray</a> in a modern app.</p>
 </blockquote>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <ul>
 <li><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString">Object.prototype.toString</a> called on built-in types returns the object class name:</p>
 <pre><code class="language-js">console.log(Object.prototype.toString.call(new Date()));
@@ -649,7 +649,7 @@ console.log(obj.hasOwnProperty(&quot;foo&quot;)); // Logs true
 </code></pre></li>
 </ul>
 <div class='codepen' data-codepen=''></div>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">    isArray: function(obj) {
@@ -658,8 +658,8 @@ console.log(obj.hasOwnProperty(&quot;foo&quot;)); // Logs true
 </code></pre>
 <div line-highlight='2'></div>
 <p></details></p>
-<h2>Exercise: <code>$.isArrayLike(obj) -&gt; boolean</code></h2>
-<h3>The problem</h3>
+<h2 id="exercise-codeisarraylikeobj--gt-booleancode">Exercise: <code>$.isArrayLike(obj) -&gt; boolean</code></h2>
+<h3 id="the-problem">The problem</h3>
 <p>jQuery uses an internal <code>isArrayLike</code> method to detect if an object looks like an
 array. A value is array-like if:</p>
 <ul>
@@ -688,7 +688,7 @@ array. A value is array-like if:</p>
 });
 </code></pre>
 <p></details></p>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <ul>
 <li>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in">in operator </a> returns <code>true</code> if the specified property is in the specified object or its prototype chain.
 <pre><code class="language-js">var obj = { foo: &quot;bar&quot; };
@@ -696,7 +696,7 @@ console.log(&quot;foo&quot; in obj); // Logs true
 </code></pre></li>
 </ul>
 <div class='codepen' data-codepen=''></div>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">    isArrayLike: function(obj) {
@@ -710,8 +710,8 @@ console.log(&quot;foo&quot; in obj); // Logs true
 </code></pre>
 <div line-highlight='2-7'></div>
 <p></details></p>
-<h2>Exercise: <code>$.each( obj , cb(index, value) ) -&gt; obj</code></h2>
-<h3>The problem</h3>
+<h2 id="exercise-codeeach-obj--cbindex-value---gt-objcode">Exercise: <code>$.each( obj , cb(index, value) ) -&gt; obj</code></h2>
+<h3 id="the-problem">The problem</h3>
 <p><a href="http://api.jquery.com/jquery.each/">jQuery.each</a> loops through objects and
 arrays, calling the <code>cb</code> callback for each value.</p>
 <pre><code class="language-js">import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
@@ -764,7 +764,7 @@ res = $.each(collection, function (prop, value) {
 <blockquote>
 <p>Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach">forEach</a> on arrays in apps.</p>
 </blockquote>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <ul>
 <li>Use a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration#for_statement">for statement</a> to loop through something array-like:
 <pre><code class="language-js">var items = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;];
@@ -773,7 +773,7 @@ for (var i = 0; i &lt; items.length; i++) {
 }
 </code></pre></li>
 </ul>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">    each: function(collection, cb) {
@@ -797,8 +797,8 @@ for (var i = 0; i &lt; items.length; i++) {
 </code></pre>
 <div line-highlight='2-17'></div>
 <p></details></p>
-<h2>Exercise: <code>$.makeArray</code></h2>
-<h3>The problem</h3>
+<h2 id="exercise-codemakearraycode">Exercise: <code>$.makeArray</code></h2>
+<h3 id="the-problem">The problem</h3>
 <p><a href="https://api.jquery.com/jQuery.makeArray/">jQuery.makeArray</a> converts an array-like object into a true JavaScript array. For example, it can make arrays of the following:</p>
 <pre><code class="language-js">$.makeArray(document.body.childNodes);
 
@@ -827,12 +827,12 @@ $.makeArray($(&quot;li&quot;));
 });
 </code></pre>
 <p></details></p>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <p>You already know everything you need to know. You can do it!</p>
 <blockquote>
 <p>In modern apps, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from">Array.from</a> instead of <code>jQuery.makeArray</code>.</p>
 </blockquote>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">    makeArray: function(arr) {
@@ -848,8 +848,8 @@ $.makeArray($(&quot;li&quot;));
 </code></pre>
 <div line-highlight='2-7'></div>
 <p></details></p>
-<h2>Exercise: <code>$.proxy</code></h2>
-<h3>The problem</h3>
+<h2 id="exercise-codeproxycode">Exercise: <code>$.proxy</code></h2>
+<h3 id="the-problem">The problem</h3>
 <p><a href="https://api.jquery.com/jQuery.proxy/">jQuery.proxy</a> takes a function and returns a new one that will always have a particular context.</p>
 <p>The following logs <code>&quot;undefined says woof&quot;</code> instead of <code>&quot;fido says woof&quot;</code>:</p>
 <pre><code class="language-js">var dog = {
@@ -908,7 +908,7 @@ dogSpeak(&quot;ruff&quot;); // Logs 'fido says ruff'
 <blockquote>
 <p><strong>PRO TIP</strong>: Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind">Function.prototype.bind</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">arrow functions</a> instead of <code>$.proxy</code>.</p>
 </blockquote>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <ul>
 <li><p>Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply">Function.prototype.apply</a> to call a function with a specified <code>this</code>
 and arguments:</p>
@@ -924,7 +924,7 @@ var dog = {
 dog.speak.apply(cat, []); // Logs &quot;sparky says woof&quot;
 </code></pre></li>
 </ul>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">    proxy: function(fn, context) {
@@ -935,7 +935,7 @@ dog.speak.apply(cat, []); // Logs &quot;sparky says woof&quot;
 </code></pre>
 <div line-highlight='2-7'></div>
 <p></details></p>
-<h2>Completed Solution</h2>
+<h2 id="completed-solution">Completed Solution</h2>
 <p><details>
 <summary>Click to see completed solution</summary></p>
 <pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;

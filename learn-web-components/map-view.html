@@ -528,25 +528,25 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this part we will:</p>
 <ul>
 <li>Create a custom element named <code>google-map-view</code>.</li>
 <li>Initialize the <a href="https://developers.google.com/maps/documentation/">Google maps API</a>.</li>
 <li>Learn about Shadow DOM and <code>connectedCallback</code>.</li>
 </ul>
-<h2>Problem</h2>
+<h2 id="problem">Problem</h2>
 <p>Create a component where we can display a Google map. Google maps need to be attached to a DOM element, so use <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM">Shadow DOM</a> to encapsulate the HTML and CSS that Google maps builds.</p>
 <p><img src="../static/img/web-components/gmap-slippy.gif"
 style="border: solid 1px black; max-width: 100%;"
 alt="google-map-view component with a useable slippy map."/></p>
-<h2>How to Solve This Problem</h2>
+<h2 id="how-to-solve-this-problem">How to Solve This Problem</h2>
 <ol>
 <li>Add the <code>script</code> element for the Google map API.</li>
 <li>Create a custom element that contains a Shadow DOM with the contents from the <code>template</code> in the previous exercise.</li>
 <li>Set up the Google map <em>only</em> when the custom element is connected to the DOM.</li>
 </ol>
-<h2>Technical requirements</h2>
+<h2 id="technical-requirements">Technical requirements</h2>
 <p>Use the existing <code>#gmap-template</code> template, and append it to the host component’s Shadow DOM. Use this script tag to enable the Google maps API:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://maps.googleapis.com/maps/api/js?key=AIzaSyD7POAQA-i16Vws48h4yRFVGBZzIExOAJI&quot;&gt;&lt;/script&gt;
 </code></pre>
@@ -560,12 +560,12 @@ alt="google-map-view component with a useable slippy map."/></p>
 });
 </code></pre>
 <p>Where <code>element</code> is the element the Google map will mount to.</p>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <ul>
 <li>How to create Shadow DOM for an element.</li>
 <li>Which callback to use to instantiate a new <code>Map</code> for the Google map.</li>
 </ul>
-<h3>Shadow DOM</h3>
+<h3 id="shadow-dom">Shadow DOM</h3>
 <p>(Most) elements can have a <code>shadowRoot</code> property. This is a special version of a <a href="https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment">DocumentFragment</a> that is completely encapsulated. You cannot query the nodes within it from the outside (like <code>document.querySelector('.gmap')</code>). Styles within will not affect DOM outside.</p>
 <p>You can create a <code>shadowRoot</code> for your element by calling <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow">attachShadow</a>.</p>
 <pre><code class="language-html">&lt;template&gt;
@@ -602,7 +602,7 @@ document.body.append(el);
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='2, 9-13'></div>
-<h3>connectedCallback</h3>
+<h3 id="connectedcallback">connectedCallback</h3>
 <p>For elements with side-effects (such as those that make network requests), it’s best to do those side effects in the <strong>connectedCallback</strong>.</p>
 <p><code>connectedCallback</code> is a lifecycle method for custom elements. It is called when the element is <strong>connected</strong>, which can occur in one of these scenarios:</p>
 <ul>
@@ -636,7 +636,7 @@ document.body.append(el);
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
-<h2>Solution</h2>
+<h2 id="solution">Solution</h2>
 <p>✏️ Building off of the template we created in the previous section, now extend <code>HTMLElement</code> to create a custom element.</p>
 <p><details>
 <summary>Click to see the solution</summary></p>

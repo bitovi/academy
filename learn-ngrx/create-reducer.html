@@ -606,16 +606,16 @@ covering CanJS core libraries.">
     <blockquote>
 <p><strong>Quick Start</strong>: You can checkout <a href="https://github.com/bitovi/angular-ngrx-chat/tree/test-redirect-effects">this branch</a> to get your codebase ready to work on this section.</p>
 </blockquote>
-<h2>Overview</h2>
+<h2 id="overview">Overview</h2>
 <ol>
 <li><p>Define Login State shape.</p></li>
 <li><p>Set Login initial state.</p></li>
 <li><p>Update Reducer function to include handler for <code>LoginActions.loginSuccess</code> Action to update Login State.</p></li>
 <li><p>Update Reducer function to include handler for <code>LoginActions.logoutSuccess</code> Action to reset Login State.</p></li>
 </ol>
-<h2>Problem 1: Define Login State Shape</h2>
+<h2 id="problem-1-define-login-state-shape">Problem 1: Define Login State Shape</h2>
 <p>Update the Login State shape by adding <code>userId</code>, <code>username</code>, and <code>token</code> properties to its interface definition. Each property should have type <code>string | null</code>.</p>
-<h2>P1: What you need to know</h2>
+<h2 id="p1-what-you-need-to-know">P1: What you need to know</h2>
 <p>Now that we have all of our Actions prepared to dispatch whenever we need, we will update the Login State. Typically a Reducer is updated with 3 steps:</p>
 <ol>
 <li><p>Define or update <code>Store</code> interface to have an <a href="https://ngrx.io/guide/store/reducers#defining-the-state-shape">expected shape</a> after Reducer updates state.</p></li>
@@ -632,7 +632,7 @@ export interface Contact {
 
 </code></pre>
 <div line-highlight='2, 3'></div>
-<h2>P1: Solution</h2>
+<h2 id="p1-solution">P1: Solution</h2>
 <p><details>
 <summary>src/app/store/login/login.reducer.ts</summary></p>
 <pre><code class="language-ts">// src/app/store/login/login.reducer.ts
@@ -662,9 +662,9 @@ export const reducer = createReducer(
 </code></pre>
  <div line-highlight="8-10,only"></div>
 </details>
-<h2>Problem 2: Set Initial Value For Login State</h2>
+<h2 id="problem-2-set-initial-value-for-login-state">Problem 2: Set Initial Value For Login State</h2>
 <p>Set initial state for Login State. Each member of the Login State should start with <code>null</code> as its value.</p>
-<h2>P2: What you need to know</h2>
+<h2 id="p2-what-you-need-to-know">P2: What you need to know</h2>
 <p>Now that we have updated the Login State’s shape by updating the <code>State</code> interface, we need to update its initial shape. By default, we will set each member to <code>null</code>. Here is an example of doing that:</p>
 <pre><code class="language-ts">export const initialValue: Contact = {
     emailAddress: null;
@@ -673,7 +673,7 @@ export const reducer = createReducer(
 
 </code></pre>
 <div line-highlight='2, 3'></div>
-<h2>P2: Solution</h2>
+<h2 id="p2-solution">P2: Solution</h2>
 <p><details>
 <summary>src/app/store/login/login.reducer.ts</summary></p>
 <pre><code class="language-ts">// src/app/store/login/login.reducer.ts
@@ -705,9 +705,9 @@ export const reducer = createReducer(
 </code></pre>
  <div line-highlight="18-20,only"></div>
 </details>
-<h2>Problem 3: Update Login State With Login Information On Login</h2>
+<h2 id="problem-3-update-login-state-with-login-information-on-login">Problem 3: Update Login State With Login Information On Login</h2>
 <p>Login Reducer should include an <code>on()</code> handler that updates Login State with <code>userId</code>, <code>username</code> and <code>token</code> whenever <code>LoginActions.loginSuccess</code> Action is dispatched.</p>
-<h2>P3: What you need to know</h2>
+<h2 id="p3-what-you-need-to-know">P3: What you need to know</h2>
 <p>We can <a href="https://ngrx.io/guide/store/reducers#creating-the-reducer-function">create NgRx Reducers</a> using the <a href="https://ngrx.io/api/store/createReducer#description"><code>createReducer()</code></a> helper function.</p>
 <p>The first argument for <code>createReducer()</code> sets the initial value of your State. Then every argument after should be an <a href="https://ngrx.io/api/store/on"><code>on()</code> handler function calls</a>.</p>
 <p>When writing an <code>on()</code> handler, there are 2 arguments that we need to provide:</p>
@@ -729,7 +729,7 @@ export const scoreboardReducer = createReducer(
 
 </code></pre>
 <div line-highlight='7, 8, 9'></div>
-<h2>P3: Solution</h2>
+<h2 id="p3-solution">P3: Solution</h2>
 <p><details>
 <summary>src/app/store/login/login.reducer.ts</summary></p>
 <pre><code class="language-ts">// src/app/store/login/login.reducer.ts
@@ -771,9 +771,9 @@ export const reducer = createReducer(
 </code></pre>
  <div line-highlight="3-4,25-34,only"></div>
 </details>
-<h2>Problem 4: Reset Login State On Logout</h2>
+<h2 id="problem-4-reset-login-state-on-logout">Problem 4: Reset Login State On Logout</h2>
 <p>Login Reducer should include an <code>on()</code> handler that resets Login State back to <code>initialState</code> whenever <code>LoginActions.logoutSuccess</code> Action is dispatched.</p>
-<h2>P4: What you need to know</h2>
+<h2 id="p4-what-you-need-to-know">P4: What you need to know</h2>
 <p>A common requirement is to reset state. One approach might look like this:</p>
 <pre><code class="language-ts">// Note: This example code is not part of our application repo or solution
 
@@ -807,7 +807,7 @@ export const scoreboardReducer = createReducer(
 </code></pre>
  <div line-highlight="10,"></div>
 <p>Both solutions are fine, but it is likely better to reuse <code>initialState</code> to future-proof the Reducer for future requirements.</p>
-<h2>P4: Solution</h2>
+<h2 id="p4-solution">P4: Solution</h2>
 <p><details>
 <summary>src/app/store/login/login.reducer.ts</summary></p>
 <pre><code class="language-ts">// src/app/store/login/login.reducer.ts

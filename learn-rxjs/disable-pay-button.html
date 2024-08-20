@@ -544,15 +544,15 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Video</h2>
+    <h2 id="video">Video</h2>
 <p>Who has time to read? This video covers the content on this page. Watch fullscreen.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/pjJPwtfDykk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<h2>The problem</h2>
+<h2 id="the-problem">The problem</h2>
 <p>In this section, we will:</p>
 <ul>
 <li>disable the Pay button until the card, expiry, and cvc are valid.</li>
 </ul>
-<h2>How to solve this problem</h2>
+<h2 id="how-to-solve-this-problem">How to solve this problem</h2>
 <ul>
 <li>Create a <code>this.isCardInvalid$</code> property that publishes <code>true</code> if
 either <code>this.cardError$</code>, <code>this.expiryError$</code> or <code>this.cvcError$</code> are truthy.</li>
@@ -560,7 +560,7 @@ either <code>this.cardError$</code>, <code>this.expiryError$</code> or <code>thi
 <code>this.cardError$</code>, <code>this.expiryError$</code> and <code>this.cvcError$</code> observables
 and returns the <code>this.isCardInvalid$</code> observable.</li>
 </ul>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <ul>
 <li><p>The <a href="https://rxjs.dev/api/index/function/combineLatest">combineLatest</a> static method combines the values from several observables into a single array that emits whenever any of the input observables emits:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -601,7 +601,7 @@ from another value:</p>
 <pre><code class="language-html">&lt;button [disabled]=&quot;value&quot;&gt;&lt;/button&gt;
 </code></pre></li>
 </ul>
-<h2>The solution</h2>
+<h2 id="the-solution">The solution</h2>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;

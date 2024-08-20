@@ -606,37 +606,37 @@ covering CanJS core libraries.">
     <blockquote>
 <p><strong>Quick Start</strong>: You can checkout <a href="https://github.com/bitovi/angular-ngrx-chat/tree/starting-point">this branch</a> to get your codebase ready to work on this section.</p>
 </blockquote>
-<h2>Overview</h2>
+<h2 id="overview">Overview</h2>
 <ol>
 <li><p>Add NgRx schematics.</p></li>
 <li><p>Add NgRx dependencies.</p></li>
 <li><p>Generate Global Store using NgRx schematics.</p></li>
 <li><p>Generate Login Feature Store using NgRx schematics.</p></li>
 </ol>
-<h2>Installing Project Dependencies</h2>
+<h2 id="installing-project-dependencies">Installing Project Dependencies</h2>
 <p>We will need access to the Angular cli for this section, so if you haven’t already installed the project’s dependencies (<a href="getting-started.html" title="Check out the course repository and get setup for upcoming lessons!">Getting Started</a>), be sure to install them:</p>
 <pre><code class="language-bash">npm install
 </code></pre>
-<h2>NgRx Dependencies</h2>
+<h2 id="ngrx-dependencies">NgRx Dependencies</h2>
 <p>Since we are going to use multiple NgRx tools, let’s install everything we need:</p>
-<h3>NgRx Schematics</h3>
+<h3 id="ngrx-schematics">NgRx Schematics</h3>
 <p>First, install <a href="https://ngrx.io/guide/schematics/install#installing-with-ng-add">NgRx schematics</a>, a tool that will allow us to run schematics from the CLI to quickly generate code.</p>
 <p>This command will install NgRx schematics and update <code>angular.json</code>:</p>
 <pre><code class="language-bash">npx ng add @ngrx/schematics@14
 </code></pre>
-<h3>NgRx Libraries</h3>
+<h3 id="ngrx-libraries">NgRx Libraries</h3>
 <p>Next, let’s install the <a href="https://ngrx.io/guide/schematics#dependencies">NgRx dependencies</a>.</p>
 <p>This command will install the NgRx dependencies and update <code>package.json</code> and <code>package-lock.json</code>:</p>
 <pre><code class="language-bash">npm install @ngrx/{store,effects,entity,store-devtools}@14 --save
 </code></pre>
-<h2>Generating Global Store</h2>
+<h2 id="generating-global-store">Generating Global Store</h2>
 <p>We’ll take advantage of NgRx schematics to <a href="https://ngrx.io/guide/schematics/store#command">generate our initial state management files</a>, and register the root of our Global Store within <code>app.module.ts</code>.</p>
 <pre><code class="language-bash">npx ng generate store State --root --state-path store --module app.module.ts
 </code></pre>
 <p>We are now setup to be able to generate NgRx Features.</p>
-<h2>Generating Login Feature Set</h2>
+<h2 id="generating-login-feature-set">Generating Login Feature Set</h2>
 <p>The Login Feature Set in our application will be responsible for holding information about authentication and the authenticated user.</p>
-<h3>Setup</h3>
+<h3 id="setup">Setup</h3>
 <p>We’ll take advantage of NgRx schematics to quickly <a href="https://ngrx.io/guide/schematics/feature#command">generate a Feature Set</a>:</p>
 <pre><code class="language-bash">npx ng generate feature store/login/Login --module app.module.ts --reducers ../../store/index.ts
 </code></pre>
@@ -653,7 +653,7 @@ covering CanJS core libraries.">
 a. Add Login Feature Reducers map
 b. Add the Login State type to the Global <code>State</code> interface</li>
 </ol>
-<h3>Register Root <code>EffectsModule</code> in <code>AppModule</code></h3>
+<h3 id="register-root-codeeffectsmodulecode-in-codeappmodulecode">Register Root <code>EffectsModule</code> in <code>AppModule</code></h3>
 <p>This project has <a href="https://prettier.io/">prettier</a> installed, so you can format files throughout the course. Right now the <code>imports</code> for <code>AppModule</code> found at <code>src/app/app.module.ts</code> has a long imports array. To make this more readable, we will <a href="https://code.visualstudio.com/docs/editor/codebasics#_formatting">format this file</a>. To do this using <a href="https://code.visualstudio.com/">vscode</a>, we can open <code>src/app/app.module.ts</code> then press <code>Shift</code> + <code>Option</code> + <code>F</code> for Mac or press <code>Shift</code> + <code>Alt</code> + <code>F</code> for Windows:</p>
 <p><details open>
 <summary>src/app/app.module.ts</summary></p>
@@ -731,7 +731,7 @@ export class AppModule {}
 </code></pre>
  <div line-highlight="25,only"></div>
 </details>
-<h3>Generate Login Feature</h3>
+<h3 id="generate-login-feature">Generate Login Feature</h3>
 <p>Lastly, we need to update <code>src/app/store/login/login.reducer.ts</code> to include a <code>LoginPartialState</code> interface, which is easier to import when:</p>
 <ol>
 <li>Writing tests for <code>Components</code> using NgRx Selectors</li>

@@ -677,7 +677,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this part, we will:</p>
 <ul>
 <li>Create a new order service</li>
@@ -686,9 +686,9 @@ covering CanJS core libraries.">
 <li>Import our new order service to our component &amp; create an order</li>
 <li>Show completed order in UI</li>
 </ul>
-<h2>Problem 1: Create Order Service and Export Items and Order interfaces</h2>
+<h2 id="problem-1-create-order-service-and-export-items-and-order-interfaces">Problem 1: Create Order Service and Export Items and Order interfaces</h2>
 <p>We need to create a new service to handle creating and updating orders. We’ll need three interfaces - one to describe the order form data, one to describe the order, and one to describe items in the order.</p>
-<h2>P1: Technical requirements</h2>
+<h2 id="p1-technical-requirements">P1: Technical requirements</h2>
 <p>Create a new service <code>order</code> in the order directory, and write and export <code>CreateOrderDto</code>, <code>Order</code> and <code>Item</code> interfaces representing these objects in the new service:</p>
 <pre><code class="language-typescript">const createOrderDto = {
   restaurant: '12345',
@@ -718,14 +718,14 @@ const order = {
   ],
 };
 </code></pre>
-<h2>P1: What you Need to Know</h2>
+<h2 id="p1-what-you-need-to-know">P1: What you Need to Know</h2>
 <ul>
 <li><p>How to create services (you learned this in previous sections! ✔️)</p></li>
 <li><p>How to write interfaces (you learned this in previous sections! ✔️)</p>
 <pre><code class="language-bash">  ng g service order/order
 </code></pre></li>
 </ul>
-<h2>P1: Solution</h2>
+<h2 id="p1-solution">P1: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/order/order.service.ts</strong></p>
@@ -765,9 +765,9 @@ export class OrderService {
 </code></pre>
 <div line-highlight='3-6, 8-14, 16-24'></div>
 <p></details></p>
-<h2>Problem 2: Finish the Order Service</h2>
+<h2 id="problem-2-finish-the-order-service">Problem 2: Finish the Order Service</h2>
 <p>With our order service we’ll want to be able to create new orders, updating existing orders, delete orders, and view all orders.</p>
-<h2>P2: Setup</h2>
+<h2 id="p2-setup">P2: Setup</h2>
 <p>✏️ Paste the following into <strong>src/app/order/order.service.spec.ts</strong>:</p>
 <pre><code class="language-ts">import { HttpRequest } from '@angular/common/http';
 import {
@@ -956,7 +956,7 @@ get the tests to pass.</p>
 <p>✏️ Run your tests with:</p>
 <pre><code class="language-shell">ng test
 </code></pre>
-<h2>P2: What you need to know</h2>
+<h2 id="p2-what-you-need-to-know">P2: What you need to know</h2>
 <ul>
 <li>The method signatures for the methods you’ll be adding to <code>OrderService</code>:
 <ul>
@@ -969,7 +969,7 @@ get the tests to pass.</p>
 added as a property in the <code>OrderService</code> constructor.</li>
 <li>You can pass a request <code>body</code> using the second argument of <code>HttpClient</code> <code>post</code> and <code>put</code> methods.</li>
 </ul>
-<h2>P2: Solution</h2>
+<h2 id="p2-solution">P2: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/order/order.service.ts</strong></p>
@@ -1043,8 +1043,8 @@ export class OrderService {
 </code></pre>
  <div line-highlight="1,3-4,33,35-39,41-50,52-61,63-65,only"></div>
 <p></details></p>
-<h2>Problem 3: Use the OrderService in the OrderComponent to Create an Order</h2>
-<h2>P3: Technical requirements</h2>
+<h2 id="problem-3-use-the-orderservice-in-the-ordercomponent-to-create-an-order">Problem 3: Use the OrderService in the OrderComponent to Create an Order</h2>
+<h2 id="p3-technical-requirements">P3: Technical requirements</h2>
 <p>For this problem, we will:</p>
 <ul>
 <li>Create an order when the user submits the form using the service.</li>
@@ -1065,7 +1065,7 @@ and set back to <code>false</code> when <code>startNewOrder()</code> is called.<
 <blockquote>
 <p>A FormGroup’s <code>value</code> property is wrapped in <code>Partial</code> type because controls are removed from the form’s value when disabled. For our case, we don’t need to disable controls. We can use a FormGroup’s <code>getRawValue()</code> method to access its value with the full type.</p>
 </blockquote>
-<h2>P3: Setup</h2>
+<h2 id="p3-setup">P3: Setup</h2>
 <p>Before starting:</p>
 <p>1. ✏️ Update <strong>src/app/order/order.component.html</strong> to show the completed order:</p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
@@ -1299,7 +1299,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
 </code></pre>
  <div line-highlight="94-95,117-119,127,only"></div>
-<h2>P3: How to verify your solution is correct</h2>
+<h2 id="p3-how-to-verify-your-solution-is-correct">P3: How to verify your solution is correct</h2>
 <p>If you’ve implemented everything correctly, you should now be able to create an order from the UI and see a record of your completed order once it’s created.</p>
 <p>✏️ Update the menu-items spec file <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -1609,13 +1609,13 @@ describe('OrderComponent', () =&gt; {
 </code></pre>
  <div line-highlight="3,9-10,63-69,71-77,88,93,108-112,115,225-245,247-270,272-302,only"></div>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
-<h2>P3: What you need to know</h2>
+<h2 id="p3-what-you-need-to-know">P3: What you need to know</h2>
 <ul>
 <li>How to import a service</li>
 <li>How to call a method on a service and get the result</li>
 <li>How to show/hide content using *ngIf</li>
 </ul>
-<h2>P3: Solution</h2>
+<h2 id="p3-solution">P3: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/order/order.component.ts</strong></p>

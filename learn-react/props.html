@@ -543,7 +543,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, we will:</p>
 <ul>
 <li>Understand what props are and how they work in React</li>
@@ -551,10 +551,10 @@ covering CanJS core libraries.">
 <li>Use props within a child component</li>
 <li>Pass props from a parent component to a child component</li>
 </ul>
-<h2>Objective: Use props to make more maintainable components</h2>
+<h2 id="objective-use-props-to-make-more-maintainable-components">Objective: Use props to make more maintainable components</h2>
 <p>We’ve taken a great step to make our code more readable and our app more maintainable by creating the <code>RestaurantList</code> component.</p>
 <p>Let’s keep the good refactoring rolling by creating a <code>ListItem</code> component to house the JSX used to render each restaurant in the list.</p>
-<h3>Using component props</h3>
+<h3 id="using-component-props">Using component props</h3>
 <p>In React, props (short for “properties”) are how we pass data from a parent component to a child component. Since function React components are fundamentally JavaScript functions, you can think of props like the arguments you pass to a function.</p>
 <p>Also note that React component props are not the same as the &quot;properties&quot; that exist on a DOM element.</p>
 <p>To receive props, function components must implement a React API that allows an optional argument of type <code>object</code> that’s named <code>props</code>.</p>
@@ -589,7 +589,7 @@ const SubmitButton: React.FC&lt;SubmitButtonProps&gt; = ({ label, onClick }) =&g
 }
 </code></pre>
 <div line-highlight='6, only'></div>
-<h3>Passing component props</h3>
+<h3 id="passing-component-props">Passing component props</h3>
 <p>Now, how do we use this <code>SubmitButton</code>? In <a href="intro-to-jsx.html">JSX syntax</a> a component’s props look like an HTML tag’s &quot;attributes&quot; and accept a value.</p>
 <ul>
 <li>If a prop’s value type is a string then the prop value is set using quotes.</li>
@@ -602,13 +602,13 @@ const SubmitButton: React.FC&lt;SubmitButtonProps&gt; = ({ label, onClick }) =&g
 )
 </code></pre>
 <p>In the example above, we’re setting the <code>label</code> prop to the string “Activate” and the <code>onClick</code> prop to a function that displays an alert.</p>
-<h3>Reserved prop names</h3>
+<h3 id="reserved-prop-names">Reserved prop names</h3>
 <p>There are two prop names that you cannot use and are reserved by React:</p>
 <ul>
 <li><p><code>children</code>: this prop is automatically provided by React to every component. We will see this prop in later examples.</p></li>
 <li><p><code>key</code>: this prop is one you’ve seen before in the <a href="intro-to-jsx.html#the-key-prop">Introduction to JSX module</a>! It’s not actually part of the component’s props in a traditional sense. Instead, it’s used by React itself to manage lists of elements and identify which items have changed, been added, or been removed.</p></li>
 </ul>
-<h3>Setup</h3>
+<h3 id="setup">Setup</h3>
 <p>✏️ Create <strong>src/pages/RestaurantList/ListItem.tsx</strong> and update it to contain:</p>
 <pre><code class="language-tsx">interface ListItemProps {
   address?: {
@@ -711,7 +711,7 @@ export default RestaurantList
 
 </code></pre>
  <div line-highlight="3,only"></div>
-<h3>Verify</h3>
+<h3 id="verify">Verify</h3>
 <p>These tests will pass when the solution has been implemented properly.</p>
 <p>✏️ Create <strong>src/pages/RestaurantList/ListItem.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
@@ -811,14 +811,14 @@ describe(&quot;ListItem component&quot;, () =&gt; {
 })
 
 </code></pre>
-<h3>Exercise</h3>
+<h3 id="exercise">Exercise</h3>
 <ul>
 <li>Update <code>ListItem</code> to accept props with restaurant data.</li>
 <li>Alter <code>ListItem</code> to return the JSX for a single item in <code>restaurants.data</code>, use props for the variable data.</li>
 <li>Refactor <code>RestaurantList</code> to use <code>ListItem</code> to render the items in <code>restaurants.data</code>.</li>
 </ul>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/05-props/01-problem?file=src/pages/RestaurantList/ListItem.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/05-props/01-problem?file=src/pages/RestaurantList/ListItem.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution</h3>
+<h3 id="solution">Solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/pages/RestaurantList/ListItem.tsx</strong> to be:</p>
@@ -941,7 +941,7 @@ export default RestaurantList
  <div line-highlight="45-51,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/05-props/01-solution?file=src/pages/RestaurantList/ListItem.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/05-props/01-solution?file=src/pages/RestaurantList/ListItem.tsx">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>Next, let’s <a href="./routing.html">learn about routing</a> to update the URL based on the view we’re looking at, and vice versa.</p>
 
 </section>

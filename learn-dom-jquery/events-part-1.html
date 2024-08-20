@@ -498,18 +498,18 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this part, we will:</p>
 <ul>
 <li>Learn how to listen to events on an element</li>
 <li>Explore the events the browser supports</li>
 <li>Implement <code>$.fn.bind</code> and <code>$.fn.unbind</code></li>
 </ul>
-<h2>Video</h2>
+<h2 id="video">Video</h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/qoW-EYuESZA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<h2>Slides</h2>
+<h2 id="slides">Slides</h2>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQGzElV5YC_q8hOcumq38Xi4IeRDnK94gABK_KvFRGWSbdgeTMGtefBWUu1dfqiiKGY-_jejqONDiYe/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-<h2>Setup</h2>
+<h2 id="setup">Setup</h2>
 <p>Run the following example in CodePen:</p>
 <pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
 &lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
@@ -707,7 +707,7 @@ covering CanJS core libraries.">
 <div class='codepen'></div>
 <div line-highlight='186-187,only'></div>
 <p>Each exercise builds on the previous exercise. There is a completed solution at the end of this page.</p>
-<h2>Events List</h2>
+<h2 id="events-list">Events List</h2>
 <p>The following lists most of the DOM's events and lets you see how they work - Be sure to run in Codepen for a demonstration!</p>
 <pre><code class="language-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css&quot;&gt;
 &lt;link href=&quot;https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css&quot; rel=&quot;stylesheet&quot;/&gt;
@@ -1184,7 +1184,7 @@ document.addEventListener(&quot;fullscreenchange&quot;, function( event ) {
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='25,only'></div>
-<h2>mouseenter vs mouseout</h2>
+<h2 id="mouseenter-vs-mouseout">mouseenter vs mouseout</h2>
 <p>The following shows why mouseenter is usually prefered over mouseover - Be sure to run in Codepen for a demonstration!</p>
 <pre><code class="language-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css&quot;&gt;
 &lt;style&gt;
@@ -1236,8 +1236,8 @@ $.each(['mouseenter', 'mouseleave', 'mouseover', 'mouseout'], function(i, evName
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='9,only'></div>
-<h2>Exercise: <code>collection.bind</code> and <code>collection.unbind</code></h2>
-<h3>The problem</h3>
+<h2 id="exercise-codecollectionbindcode-and-codecollectionunbindcode">Exercise: <code>collection.bind</code> and <code>collection.unbind</code></h2>
+<h3 id="the-problem">The problem</h3>
 <p><a href="http://api.jquery.com/bind/">collection.bind</a> adds an event handler to elements in the
 collection. <a href="http://api.jquery.com/unbind/">collection.unbind</a> removes an event handler to elements in the
 collection.</p>
@@ -1263,7 +1263,7 @@ collection.</p>
 });
 </code></pre>
 <p></details></p>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <ul>
 <li><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener">addEventListener</a>
 adds an event listener to a target element:</p>
@@ -1295,7 +1295,7 @@ handler after the first click.</p>
 </code></pre></li>
 </ul>
 <div class='codepen' data-codepen=''></div>
-<h2>Complete solution</h2>
+<h2 id="complete-solution">Complete solution</h2>
 <p><details>
 <summary>Click to see completed solution</summary></p>
 <pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;

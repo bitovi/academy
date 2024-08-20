@@ -606,23 +606,23 @@ covering CanJS core libraries.">
     <blockquote>
 <p><strong>Quick Start</strong>: You can checkout <a href="https://github.com/bitovi/angular-ngrx-chat/tree/create-redirect-effects">this branch</a> to get your codebase ready to work on this section.</p>
 </blockquote>
-<h2>Overview</h2>
+<h2 id="overview">Overview</h2>
 <ol>
 <li><p>Verify navigation to the dashboard page occurs when <code>LoginActions.loginSuccess</code> Action dispatches.</p></li>
 <li><p>Verify navigation to the login page occurs when <code>LoginActions.logoutSuccess</code> Action dispatches.</p></li>
 </ol>
-<h2>Running Tests</h2>
+<h2 id="running-tests">Running Tests</h2>
 <p>To run unit tests in your project, you can either use the <code>test</code> npm script, or the <code>ng test</code> command:</p>
 <pre><code class="language-bash">npm run test
 # or
 ng test --watch
 </code></pre>
 <p>The <code>--watch</code> switch will rerun your tests whenever a code file changes. You can skip it to just run all tests once.</p>
-<h2>Description</h2>
+<h2 id="description">Description</h2>
 <p>When testing Effects, we will verify side-effects are executed properly when an appropriate Action is dispatched. In our case, we are working with Effects that cause navigation, so we can take advantage of the <a href="https://angular.io/api/router/testing/RouterTestingModule#usage-notes">RouterTestingModule</a>.</p>
-<h2>Update <code>login.effects.spec.ts</code></h2>
+<h2 id="update-codelogineffectsspectscode">Update <code>login.effects.spec.ts</code></h2>
 <p>We will walk through updating <code>src/app/store/login/login.effects.spec.ts</code> to run tests for your Effects.</p>
-<h3>Updating our TestBed</h3>
+<h3 id="updating-our-testbed">Updating our TestBed</h3>
 <p>When testing navigation in Angular, we can take advantage of the <a href="https://angular.io/api/router/testing/RouterTestingModule#usage-notes">RouterTestingModule</a>. Using the static <a href="https://angular.io/api/router/testing/RouterTestingModule#static-methods"><code>withRoutes()</code> method</a>, we can prepare our tests to navigate to a mock login and dashboard page:</p>
 <p><details open>
 <summary>src/app/store/login/login.effects.spec.ts</summary></p>
@@ -772,7 +772,7 @@ describe('LoginEffects', () =&gt; {
 </code></pre>
  <div line-highlight="11-13,15-16,18,33,37-41,51,56,142,only"></div>
 </details>
-<h3>Verifying Navigation to Dashboard Page When <code>LoginActions.loginSuccess</code> Action Dispatches</h3>
+<h3 id="verifying-navigation-to-dashboard-page-when-codeloginactionsloginsuccesscode-action-dispatches">Verifying Navigation to Dashboard Page When <code>LoginActions.loginSuccess</code> Action Dispatches</h3>
 <p>Here we can use a <a href="https://jasmine.github.io/tutorials/your_first_suite#:~:text=%C2%B6-,Spies,-Jasmine%20has%20test">spy</a> to verify <code>Router</code> is used to navigate to the dashboard page:</p>
 <p><details open>
 <summary>src/app/store/login/login.effects.spec.ts</summary></p>
@@ -943,7 +943,7 @@ describe('LoginEffects', () =&gt; {
 </code></pre>
  <div line-highlight="112,114-119,123-124,126-127,134,143,148,159-162,only"></div>
 </details>
-<h3>Verifying Navigation to Login Page When <code>LoginActions.logoutSuccess</code> Action Dispatches</h3>
+<h3 id="verifying-navigation-to-login-page-when-codeloginactionslogoutsuccesscode-action-dispatches">Verifying Navigation to Login Page When <code>LoginActions.logoutSuccess</code> Action Dispatches</h3>
 <p>Here we can use a <a href="https://jasmine.github.io/tutorials/your_first_suite#:~:text=%C2%B6-,Spies,-Jasmine%20has%20test">spy</a> to verify <code>Router</code> is used to navigate to the login page:</p>
 <p><details open>
 <summary>src/app/store/login/login.effects.spec.ts</summary></p>
@@ -1129,7 +1129,7 @@ describe('LoginEffects', () =&gt; {
 </code></pre>
  <div line-highlight="164-167,169-170,172-177,only"></div>
 </details>
-<h2>Final Result</h2>
+<h2 id="final-result">Final Result</h2>
 <p>At the end of this section, the following spec file(s) should be updated. After each spec file has been updated and all the tests have passed, this means that all the previous sections have been completed successfully:</p>
 <p><details>
 <summary>src/app/store/login/login.effects.spec.ts</summary></p>

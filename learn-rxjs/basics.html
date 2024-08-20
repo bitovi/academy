@@ -543,17 +543,17 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this part, we will learn:</p>
 <ul>
 <li>What is an observable and how subscribe to one.</li>
 <li>How to transform one observable into another one.</li>
 <li>What is a Subject and how is it different from an observable.</li>
 </ul>
-<h2>Video</h2>
+<h2 id="video">Video</h2>
 <p>Who has time to read? This video covers the content on this page. Watch fullscreen.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/vnEitL000PE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<h2>Observables</h2>
+<h2 id="observables">Observables</h2>
 <p>At its most simplistic, an observable is a publisher and
 enables the <a href="https://en.wikipedia.org/wiki/Observer_pattern">Observer pattern</a>.</p>
 <p>To subscribe to an RXJS observable, you call subscribe like:</p>
@@ -610,7 +610,7 @@ observable:</p>
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='11-20'></div>
-<h3>Lifecycles</h3>
+<h3 id="lifecycles">Lifecycles</h3>
 <p>RxJS observables have a lifecycle. They can publish values over
 time and complete. They can also publish errors. You can listen
 to all three events with the following:</p>
@@ -658,7 +658,7 @@ unsubscribed. This helps avoid memory leaks.</p>
 the <code>1</code> value is published synchronously. Then
 <code>'just after subscribe'</code> is logged.</p>
 </blockquote>
-<h3>Unsubscribing</h3>
+<h3 id="unsubscribing">Unsubscribing</h3>
 <p>The <code>observable.subscribe()</code> method returns
 a <a href="https://rxjs.dev/api/index/class/Subscription">subscription</a> which can be used to cancel
 the subscription like:</p>
@@ -687,7 +687,7 @@ the <code>subscriber</code> function is only called once.</p>
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='13, 15'></div>
-<h3>Transforming observables to other observables</h3>
+<h3 id="transforming-observables-to-other-observables">Transforming observables to other observables</h3>
 <p>Observable libraries like RxJS have many operators that transform
 published values on one observable to published observables
 on another observable. In fact, using these operators is
@@ -745,7 +745,7 @@ into<br />
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='16-33, 35-44'></div>
-<h2>Observables vs Subjects</h2>
+<h2 id="observables-vs-subjects">Observables vs Subjects</h2>
 <p>Each time an observable is subscribed to, it creates a new
 and distinct execution context. This can be unexpected or
 even undesirable. Let’s see what a distinct execution means.</p>

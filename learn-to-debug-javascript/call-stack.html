@@ -438,7 +438,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>The problem</h2>
+    <h2 id="the-problem">The problem</h2>
 <p>What is the name of the function that calls the <code>end</code> function below?</p>
 <pre><code class="language-html">&lt;script src=&quot;//bitovi.github.io/academy/static/scripts/debugging/variables.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;module&quot;&gt;
@@ -450,7 +450,7 @@ start();
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <p>In the following code, <code>a()</code> calls <code>b()</code>, <code>b()</code> calls <code>c()</code>, and <code>c()</code> calls <code>d()</code>:</p>
 <pre><code class="language-js">function a(){
     var varA = &quot;A&quot;;
@@ -491,7 +491,7 @@ a();
 <div class='codepen'></div>
 <p>By adding a breakpoint in <code>d()</code>, you will see the following in the <strong>Call Stack</strong>:</p>
 <p><img src="../static/img/debugging/async-stack.png" style="border: solid 1px black; max-width: 429px"/></p>
-<h2>The solution</h2>
+<h2 id="the-solution">The solution</h2>
 <p><details>
 <summary>Click to see the answer</summary></p>
 <p>The answer is <code>e</code>.</p>

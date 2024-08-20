@@ -438,7 +438,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>The problem</h2>
+    <h2 id="the-problem">The problem</h2>
 <p>What is the value of <code>frozen</code>’s <code>rated</code> property that it inherited from the <code>Entertainment</code>
 prototype?</p>
 <pre><code class="language-html">&lt;script src=&quot;//bitovi.github.io/academy/static/scripts/debugging/variables.js&quot;&gt;&lt;/script&gt;
@@ -457,7 +457,7 @@ console.log(frozen);
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <p>The following sets up the same <code>Animal</code>, <code>Chordate</code>, and <code>Mammal</code>
 inheritance chain from the <a href="../learn-advanced-javascript/prototypes.html" title="Demystify .prototype and ._proto_! We’ll cover what the &quot;new&quot; and &quot;instanceof&quot; operators are actually doing behind the scenes, and what prototype-based inheritance looks like in memory.">Prototypes</a> JavaScript course.</p>
 <pre><code class="language-js">Animal = function(name) { this.name = name; };
@@ -476,7 +476,7 @@ console.log(m);
 </code></pre>
 <p>You can inspect the Mammal instance <code>m</code> and see its <code>__proto__</code> property:</p>
 <p><img src="../static/img/debugging/prototype.png" width="90%"/></p>
-<h2>The solution</h2>
+<h2 id="the-solution">The solution</h2>
 <p><details>
 <summary>Click to see the answer</summary></p>
 <p>The answer is <code>b</code>.</p>

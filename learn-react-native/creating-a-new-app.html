@@ -678,14 +678,14 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, you will:</p>
 <ul>
 <li>Use the React Native CLI to generate a new React Native application.</li>
 <li>Test code with React Testing Library.</li>
 <li>Add code quality tools.</li>
 </ul>
-<h2>Objective 1: Generate the “Place My Order” application</h2>
+<h2 id="objective-1-generate-the-place-my-order-application">Objective 1: Generate the “Place My Order” application</h2>
 <p>Create a new React Native application named “Place My Order” that supports TypeScript and can be emulated and tested.</p>
 <figure>
   <img alt="A mobile phone displaying the root page of the newly created application served by the dev server. The page displays a 'Welcome to React Native' header and some miscellaneous instructions that we will be disregarding." src="../static/img/react-native/03-creating-a-new-app/01-solution.png" style="border: 4px solid black; border-radius: 25px; max-height: 638px" />
@@ -693,11 +693,11 @@ covering CanJS core libraries.">
     Screen capture of the completed exercise.
   </figcaption>
 </figure>
-<h3>Using the React Native CLI</h3>
+<h3 id="using-the-react-native-cli">Using the React Native CLI</h3>
 <p>React Native has a built-in command line interface.
 Rather than install and manage a specific version of the CLI globally, we recommend you access the current version at runtime using <code>npx</code>, which ships as part of npm.
 With <code>npx react-native &lt;command&gt;</code>, the current stable version of the CLI will be downloaded and executed at the time the command is run.</p>
-<h3>Setup 1</h3>
+<h3 id="setup-1">Setup 1</h3>
 <p>✏️ Open a terminal and move to a location where you want to generate your React application, then execute the following command:</p>
 <pre><code class="language-shell">npx react-native@0.74.1 init PlaceMyOrder --version 0.74.1
 </code></pre>
@@ -706,7 +706,7 @@ With <code>npx react-native &lt;command&gt;</code>, the current stable version o
 <pre><code class="language-shell">cd PlaceMyOrder
 </code></pre>
 <p>When cloning a project from a git repository, it will also be necessary to run <code>npm install</code> in the directory, but the app setup has done this for us already.</p>
-<h3>Verify 1</h3>
+<h3 id="verify-1">Verify 1</h3>
 <p>Once you have completed the previous step you will be able to start the development server and see the default welcome page.</p>
 <p>The development server is a useful tool. When it starts, it <a href="https://en.wikipedia.org/wiki/Source-to-source_compiler">transpiles</a> the TypeScript and JSX code into JavaScript and bundles it for delivery to the device. It also watches for changes to the source code, and when they occur, it repeats the process, then causes the device to reload with those changes.</p>
 <p>✏️ Start the virtual device you created in the previous module.</p>
@@ -715,11 +715,11 @@ With <code>npx react-native &lt;command&gt;</code>, the current stable version o
 </code></pre>
 <p>✏️ Press the <code>a</code> key to run the app on the open Android virtual device.</p>
 <p>The first time you run it for a given target will take significantly longer than subsequent runs. Once open, you should see the default &quot;Welcome to React Native&quot; screen.</p>
-<h2>Objective 2: Add testing infrastructure</h2>
+<h2 id="objective-2-add-testing-infrastructure">Objective 2: Add testing infrastructure</h2>
 <p><img alt="A mobile phone displaying the root page of the newly created application served by the dev server. The page displays a “Place My Order: Coming Soon!” message." src="../static/img/react-native/03-creating-a-new-app/02-solution.png" style="border: 4px solid black; border-radius: 25px; max-height: 638px" /></p>
-<h3>Testing code with React Testing Library</h3>
+<h3 id="testing-code-with-react-testing-library">Testing code with React Testing Library</h3>
 <p>We will create unit tests for our application using the <a href="https://callstack.github.io/react-native-testing-library/">React Native Testing Library</a>. The unit tests for components will be focused on verifying that a component creates the correct output based on the state the component is provided. We also need to create tests for any React custom Hooks we create to ensure they provide the expected results.</p>
-<h3>Setup 2</h3>
+<h3 id="setup-2">Setup 2</h3>
 <p>✏️ Install the new dev dependencies:</p>
 <pre><code class="language-shell">npm install --save-dev @testing-library/react-native@12 @types/jest@29
 </code></pre>
@@ -760,14 +760,14 @@ const App: React.FC = () =&gt; {
 export default App;
 
 </code></pre>
-<h3>Verify 2</h3>
+<h3 id="verify-2">Verify 2</h3>
 <p>After completing the previous steps you will be able to run unit tests. Execute the command:</p>
 <pre><code class="language-shell">npm run test
 </code></pre>
 <p>and &quot;Test Suites: 1 passed, 1 total&quot; will be written to the console.</p>
-<h2>Objective 3: Clean up the generated code and add helpers</h2>
+<h2 id="objective-3-clean-up-the-generated-code-and-add-helpers">Objective 3: Clean up the generated code and add helpers</h2>
 <p>Before we begin adding any content, it’s a good idea to clean up generated files and add code quality tools.</p>
-<h3>Setup 3</h3>
+<h3 id="setup-3">Setup 3</h3>
 <p>✏️ Install the new dev dependencies:</p>
 <pre><code class="language-shell">npm install --save-dev @bitovi/eslint-config@1 depcheck@1
 </code></pre>
@@ -1000,7 +1000,7 @@ module.exports = mergeConfig(getDefaultConfig(__dirname), config)
 <pre><code class="language-shell">npm run lint:fix
 </code></pre>
 <p>Note: If you installed the <a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">ESLint</a> and <a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</a> VS Code plugins and enable &quot;format on save&quot; in the settings, VS Code will make the necessary changes any time you save a file too!</p>
-<h3>Verify 3</h3>
+<h3 id="verify-3">Verify 3</h3>
 <p>✏️ Run the new code quality scripts.</p>
 <pre><code class="language-shell">npm run typecheck
 npm run eslint
@@ -1010,7 +1010,7 @@ npm run depcheck
 <p>These scripts should all pass successfully. You can run all of these, and the tests, with</p>
 <pre><code class="language-shell">npm run precheck
 </code></pre>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>Next, let’s <a href="./intro-to-jsx.html">learn about JSX</a> to understand React’s templating language.</p>
 
 </section>

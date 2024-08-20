@@ -469,7 +469,7 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/sQ4TG6cfSfw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<h2>App Review</h2>
+<h2 id="app-review">App Review</h2>
 <p>In the last section, we created a <code>Dockerfile</code> for our Node.js app.</p>
 <pre><code class="language-dockerfile">FROM node:15
 
@@ -486,7 +486,7 @@ CMD npm start
 </code></pre>
 <p>At this point, our directory should look like this</p>
 <p><img src="../static/img/docker/4-build-and-run-image/app-directory.png" alt="app directory" /></p>
-<h2>Build our image</h2>
+<h2 id="build-our-image">Build our image</h2>
 <p>Ensure you have docker desktop running on your machine, then open a terminal to your application directory and run</p>
 <pre><code class="language-bash">docker build -t my-node-app .
 </code></pre>
@@ -537,7 +537,7 @@ Removing intermediate container 50c5f19c7773
 Successfully built 3eaf756066ae
 Successfully tagged my-node-app:latest
 </code></pre>
-<h2>View our image</h2>
+<h2 id="view-our-image">View our image</h2>
 <p>The <code>my-node-app:latest</code> image has been saved to our local Docker registry. Run <code>docker image ls</code> and you can see information about it.</p>
 <pre><code class="language-bash">$ docker image ls
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
@@ -545,7 +545,7 @@ my-node-app         latest              848464f1725a        5 seconds ago       
 node                15                  b34e90f5c9c0        24 hours ago        935MB
 </code></pre>
 <p>You’ll notice there’s also a <code>node:15</code> image in our registry. This is because we defined it as our base image in our <code>Dockerfile</code> (<code>FROM node:15</code>). It was pulled from Dockerhub so it can be used locally.</p>
-<h2>Run our image</h2>
+<h2 id="run-our-image">Run our image</h2>
 <p>We’re finally ready to run our image. Open a terminal and run</p>
 <pre><code class="language-bash">docker run --name my-container -p 8000:8000 -d my-node-app:latest
 </code></pre>
@@ -560,7 +560,7 @@ node                15                  b34e90f5c9c0        24 hours ago        
 71cfe418a26a05bbebb160f541e53c025157dc7ee2c333ab2309c7bc66bb24e3
 </code></pre>
 <p>Open your browser to <code>localhost:8000</code> and you should see <code>Hello World!</code>. You just ran your first docker image!</p>
-<h2>Interacting with our container</h2>
+<h2 id="interacting-with-our-container">Interacting with our container</h2>
 <p>Run <code>docker ps</code> to see the status of all running containers</p>
 <pre><code class="language-bash">$ docker ps
 CONTAINER ID        IMAGE                COMMAND                  CREATED              STATUS              PORTS                    NAMES
@@ -587,7 +587,7 @@ $ docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 
 </code></pre>
-<h2>Customize the port</h2>
+<h2 id="customize-the-port">Customize the port</h2>
 <p>We can use the <code>-e</code> flag when starting our container to set the <code>PORT</code> environment variable.</p>
 <pre><code class="language-bash">$ MY_PORT=9000
 $ docker run --name my-container -p 8000:$MY_PORT -d -e PORT=$MY_PORT my-node-app:latest
@@ -606,7 +606,7 @@ $ docker logs my-container
 Example app listening at http://localhost:9000
 </code></pre>
 <p>You’ll see the last line of the logs indicating the app is now listening on port 9000. However, because we set the port mapping with <code>-p 8000:9000</code>, we still will view the application in our browser from <code>localhost:8000</code>.</p>
-<h2>Review</h2>
+<h2 id="review">Review</h2>
 <p>We’ve built an image and run a container for our Node.js app. Here’s a cheat sheet of all the commands we ran.</p>
 <pre><code class="language-bash"># Build an image
 docker build -t my-node-app .

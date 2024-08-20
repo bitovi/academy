@@ -678,25 +678,25 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this part, we will:</p>
 <ul>
 <li>Import new service into Restaurant Component</li>
 <li>Call <code>getRestaurants()</code> method in component</li>
 <li>Change restaurant markup to use new restaurant object</li>
 </ul>
-<h2>Problem 1: Make <code>RestaurantComponent</code> use the <code>getRestaurants</code> function</h2>
+<h2 id="problem-1-make-coderestaurantcomponentcode-use-the-codegetrestaurantscode-function">Problem 1: Make <code>RestaurantComponent</code> use the <code>getRestaurants</code> function</h2>
 <p>In this section, we will change <code>RestaurantComponent</code> to actually get
 data from the service API. Instead of two hard coded restaurants, we will
 see a longer list:</p>
 <p><img src="../static/img/angular/7-data-into-view/1-after.png"
 style="border: solid 1px black; max-width: 640px;"/></p>
-<h2>P1: What you need to know</h2>
+<h2 id="p1-what-you-need-to-know">P1: What you need to know</h2>
 <ul>
 <li>How to inject a service into a component</li>
 <li>How to subscribe to an observable</li>
 </ul>
-<h2>Inject a service into a component</h2>
+<h2 id="inject-a-service-into-a-component">Inject a service into a component</h2>
 <p>To use a service in a component, we use dependency injection to pass the service in the component constructor function. We’re then able to access methods on it for use in our component.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -832,7 +832,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='90,only'></div>
-<h2>Subscribe to an <code>Observable</code></h2>
+<h2 id="subscribe-to-an-codeobservablecode">Subscribe to an <code>Observable</code></h2>
 <p>The result of <code>getRestaurants()</code> is an observable. Use <a href="https://rxjs.dev/guide/subscription">subscribe</a> to listen to when
 an RxJS observable changes:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
@@ -853,7 +853,7 @@ observable.subscribe(function subscriber(value) {
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='11'></div>
-<h2>P1: Technical requirements</h2>
+<h2 id="p1-technical-requirements">P1: Technical requirements</h2>
 <ol>
 <li>Change <code>RestaurantComponent</code>’s <em>restaurants</em> property definition:</li>
 </ol>
@@ -975,7 +975,7 @@ export class RestaurantComponent implements OnInit {
 <li>Use <code>RestaurantService</code>’s <code>getRestaurants</code> to get an array of restaurants and
 set it on <code>RestaurantComponent</code>’s <em>restaurants</em> property.</li>
 </ol>
-<h2>P1: How to verify your solution is correct</h2>
+<h2 id="p1-how-to-verify-your-solution-is-correct">P1: How to verify your solution is correct</h2>
 <p>You should be able see a list of all restaurants when you navigate to <a href="http://localhost:4200/restaurants">localhost:4200/restaurants</a>, instead of the two that were previously hard-coded.</p>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import {
@@ -1552,7 +1552,7 @@ describe('AppComponent', () =&gt; {
 <blockquote>
 <p>Hint: Call the <code>getRestaurants</code> method in the <code>ngOnInit</code> method.</p>
 </blockquote>
-<h2>P1: Solution</h2>
+<h2 id="p1-solution">P1: Solution</h2>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary>
@@ -1581,18 +1581,18 @@ export class RestaurantComponent implements OnInit {
 </code></pre>
  <div line-highlight="2-3,11,13,16-18,"></div>
 <p></details></p>
-<h2>Problem 2: Show a loading state while restaurants are being requested</h2>
+<h2 id="problem-2-show-a-loading-state-while-restaurants-are-being-requested">Problem 2: Show a loading state while restaurants are being requested</h2>
 <p>Sometimes the server can take a long time to respond. It’s a better experience for the user
 to show a loading icon to the user while data is loading:</p>
 <p>This icon will be shown with the following HTML:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurant loading&quot;&gt;&lt;/div&gt;
 </code></pre>
-<h2>P2: What you need to know</h2>
+<h2 id="p2-what-you-need-to-know">P2: What you need to know</h2>
 <ul>
 <li>How to write an interface (you learned this in the previous section! ✔️)</li>
 <li>How to conditionally show html blocks (you learned this in a previous section! ✔️)</li>
 </ul>
-<h2>P2: Technical requirements</h2>
+<h2 id="p2-technical-requirements">P2: Technical requirements</h2>
 <ol>
 <li><p>Create a new interface <code>Data</code> that represents the following object:</p>
 <pre><code class="language-js">let data = {
@@ -1607,7 +1607,7 @@ to show a loading icon to the user while data is loading:</p>
 </ol>
 <pre><code class="language-html">&lt;div class=&quot;restaurant loading&quot;&gt;&lt;/div&gt;
 </code></pre>
-<h2>P2: How to verify your solution is correct</h2>
+<h2 id="p2-how-to-verify-your-solution-is-correct">P2: How to verify your solution is correct</h2>
 <p>You should be able see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants">localhost:4200/restaurants</a>!</p>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import {
@@ -1904,7 +1904,7 @@ describe('RestaurantComponent', () =&gt; {
 
 </code></pre>
  <div line-highlight="167,172-219,221-266,268-270,274-281,283-290,only"></div>
-<h2>P2: Solution</h2>
+<h2 id="p2-solution">P2: Solution</h2>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary>
@@ -1978,7 +1978,7 @@ export class RestaurantComponent implements OnInit {
 </code></pre>
  <div line-highlight="3-11,only"></div>
 <p></details></p>
-<h2>Did you know?</h2>
+<h2 id="did-you-know">Did you know?</h2>
 <p>You may have noticed in our markup there’s another use of <code>routerLink</code>:</p>
 <pre><code class="language-html">&lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;
   Details

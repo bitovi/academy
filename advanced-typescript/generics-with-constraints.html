@@ -453,9 +453,9 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In the last lesson we saw how powerful generics can be allowing us to create resuable logic across multiple types. However, that’s just the beginning. TypeScript has all sorts of powerful feature we can leverage to make our logic more typesafe and more reusable. In this lesson we will take a look at constraining generics and how they can assist us in forcing our reusable logic to have certain characteristics while maintaining the typed flexibility of generics.</p>
-<h2>Quick Recap on Generics</h2>
+<h2 id="quick-recap-on-generics">Quick Recap on Generics</h2>
 <blockquote>
 <p>For more information on generics, see <a href="../learn-typescript/generics.html" title="Learn about what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript.">generics</a> in the TypeScript course.</p>
 </blockquote>
@@ -476,7 +476,7 @@ type User = { /** Implementation Detail */ }
 type UserResponse&lt;User, CustomError&gt;
 </code></pre>
 <p>Generics are a great way to reuse strongly typed code and create powerful abstractions in your libraries and applications.</p>
-<h2>With Constraints</h2>
+<h2 id="with-constraints">With Constraints</h2>
 <p>Generics by themselves are a great way to encapsulate logic when we don’t really care what shape that type has. For example, take <code>Array</code>. Arrays are a list of things. It doesn’t matter what things are in it since when we do interact with items in an array we provide the logic to handle those items, making the array indifferent to what’s inside. Sometimes though, we do care about the shape of the thing being passed in or at least part of it. Take a <code>greeter</code> function, say we want it to greet something by name whether it be a bird, dog, person, cat, or pokemon. Reuse of logic across types screams generics. So what happens if we try to implement <code>greeter</code> using plain generics? Well, let’s try.</p>
 <pre><code class="language-ts">function greeter&lt;T&gt;(thingToGreet: T): void {
   // Error: Property 'name' does not exist on type 'T'.
@@ -552,8 +552,8 @@ type JohtoPokedex = {
 }
 </code></pre>
 <p>Moving into the upcoming lessons, constraining generics will be a common tool we reach for to leverage more of TypeScript’s powerful features.</p>
-<h2>Exercises</h2>
-<h3>Exercise 1</h3>
+<h2 id="exercises">Exercises</h2>
+<h3 id="exercise-1">Exercise 1</h3>
 <p>Update the <code>Keys</code> type to act as a type alias for <code>keyof</code>. With this type, we don’t want to allow <code>string</code>s, <code>number</code>s and <code>boolean</code>s to be passed
 into the <code>Keys</code> type (<code>Keys&lt;string&gt;</code>, <code>Keys&lt;number&gt;</code>, etc. should not be allowed). So that the following is true</p>
 <pre><code class="language-ts">type LeafStarterPokemon = {
@@ -650,7 +650,7 @@ export type Keys&lt;T&gt; = any;
 </code></pre>
 <div line-highlight='1'></div>
 <p></details></p>
-<h3>Exercise 2</h3>
+<h3 id="exercise-2">Exercise 2</h3>
 <p>Now that we have a <code>Keys</code> type let’s put it to work. Imagine we have the following types:</p>
 <pre><code class="language-ts">type PokedexEntry = string;
 

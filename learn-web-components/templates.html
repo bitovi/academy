@@ -529,23 +529,23 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <p>Create a <a href="https://codepen.io/pen/">new CodePen</a> for this exercise. This new CodePen can be used for the rest of the exercises in this training.</p>
-<h2>Overview</h2>
+<h2 id="overview">Overview</h2>
 <p>In this part, we will:</p>
 <ul>
 <li>Create a template that includes the HTML we need for our <a href="https://www.google.com/maps">Google map</a> component.</li>
 </ul>
-<h2>Problem</h2>
+<h2 id="problem">Problem</h2>
 <p>The Google map API needs an element to mount the map into. We want our map to be certain dimensions. Create a <code>250px</code> tall container for the map using <code>&lt;template&gt;</code>. In the end it should look like the CodePen with the grey box below::</p>
 <p><img src="../static/img/web-components/map-view-rect.png"
 style="border: solid 1px black; max-width: 100%;"
 alt="A rectangle for where we will display the map."/></p>
-<h2>How to Solve This Problem</h2>
+<h2 id="how-to-solve-this-problem">How to Solve This Problem</h2>
 <ol>
 <li>Create a <code>template</code> element that contains a <code>div</code> that will act as the container for the Google Map, as well as the styles.</li>
 <li>Add the global styles to the CSS tab in CodePen.</li>
 <li>In the JS tab write the JavaScript necessary to clone and activate the template, appending it to the <code>body</code>.</li>
 </ol>
-<h2>Technical requirements</h2>
+<h2 id="technical-requirements">Technical requirements</h2>
 <p>The following CSS will give the container the dimensions we want.</p>
 <pre><code class="language-css">.gmap {
   width: 100%;
@@ -567,13 +567,13 @@ body {
   margin: 0;
 }
 </code></pre>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <p>To solve this, you will need to know:</p>
 <ul>
 <li>What the <code>&lt;template&gt;</code> element is.</li>
 <li>How to create a new instance of a template.</li>
 </ul>
-<h3>The template element</h3>
+<h3 id="the-template-element">The template element</h3>
 <p>A <code>&lt;template&gt;</code> is an element whose children are <strong>inert</strong>. This means that the browser doesn’t render them, like it will for nodes outside of templates. Images will not load, scripts will not execute, styles are not applied.</p>
 <pre><code class="language-html">&lt;template&gt;
   &lt;h1&gt;Cats&lt;/h1&gt;
@@ -591,7 +591,7 @@ let template = document.querySelector('template');
 h1 = template.content.querySelector('h1');
 console.log(h1); // &lt;h1&gt;Cats&lt;/h1&gt;
 </code></pre>
-<h3>Creating instances of a template</h3>
+<h3 id="creating-instances-of-a-template">Creating instances of a template</h3>
 <p>Templates can be cloned using <code>template.content.cloneNode(true)</code> or <code>document.importNode(template.content, true)</code>. The latter is useful if you ever need to clone a template contained within another document, but otherwise they are equivalent.</p>
 <p>Cloning a template returns a <a href="https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment">DocumentFragment</a>, a collection of DOM nodes that can be quickly inserted into an element.</p>
 <pre><code class="language-js">let template = document.querySelector('template');
@@ -600,7 +600,7 @@ let fragment = document.importNode(template.content, true);
 document.body.append(fragment);
 // Our cat picture is now loading!
 </code></pre>
-<h2>Solution</h2>
+<h2 id="solution">Solution</h2>
 <p>✏️ Start by creating the template. Give it an <code>id</code> so that we can more easily query it to use it in our component.</p>
 <p><details>
 <summary>Click to see the solution</summary></p>

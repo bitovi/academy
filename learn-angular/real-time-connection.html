@@ -677,19 +677,19 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this part, we will:</p>
 <ul>
 <li>Install socket.io Client</li>
 <li>Update list view on socket events.</li>
 </ul>
-<h2>P1: How to verify your solution is correct</h2>
+<h2 id="p1-how-to-verify-your-solution-is-correct">P1: How to verify your solution is correct</h2>
 <p>If you’ve implemented the solution correctly you should now be able to navigate to <a href="http://localhost:4200/order-history">http://localhost:4200/order-history</a> and see orders be created, updated or removed without refreshing the page!</p>
-<h2>Install Socket.io Client and Types</h2>
+<h2 id="install-socketio-client-and-types">Install Socket.io Client and Types</h2>
 <pre><code class="language-bash">npm install socket.io-client@2
 npm install --save-dev @types/socket.io-client@1
 </code></pre>
-<h2>Listen to Socket Events</h2>
+<h2 id="listen-to-socket-events">Listen to Socket Events</h2>
 <p>We’ll use <code>apiUrl</code> for our Socket.io connection, and listen for <code>orders created</code>, <code>order updated</code>, and <code>orders deleted</code> events to change our list on:</p>
 <p>✏️ Update <strong>src/app/order/history.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnDestroy, OnInit } from '@angular/core';

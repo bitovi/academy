@@ -542,14 +542,14 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>The problem</h2>
+    <h2 id="the-problem">The problem</h2>
 <p>In this section, we will:</p>
 <ul>
 <li>Simulate making a 2 second AJAX request to create a payment when someone submits the form.</li>
 <li>Log <code>console.log(&quot;Asking for token with&quot;, card)</code> when the request is made.</li>
 <li>Log <code>console.log(&quot;payment complete!&quot;);</code> when the payment is complete.</li>
 </ul>
-<h2>How to solve the problem</h2>
+<h2 id="how-to-solve-the-problem">How to solve the problem</h2>
 <ul>
 <li><p>Create a <code>appComponent.pay(event)</code> method that is called when the form is submitted.</p></li>
 <li><p>Create a <code>appComponent.paySubmitted$</code> <code>Subject</code> that emits when
@@ -581,7 +581,7 @@ subscribe to it as follows:</p>
 <li><p>Log <code>console.log(&quot;Asking for token with&quot;, card)</code> when
 the request is made.</p></li>
 </ul>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <ul>
 <li><p>Use <code>(event)=&quot;method($event)&quot;</code> to listen to an event in the
 template and call a method with the event.</p>
@@ -632,7 +632,7 @@ the page is clicked:</p>
 });
 </code></pre></li>
 </ul>
-<h2>The solution</h2>
+<h2 id="the-solution">The solution</h2>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;

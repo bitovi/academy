@@ -606,13 +606,13 @@ covering CanJS core libraries.">
     <blockquote>
 <p><strong>Quick Start</strong>: You can checkout <a href="https://github.com/bitovi/angular-ngrx-chat/tree/ngrx-init">this branch</a> to get your codebase ready to work on this section.</p>
 </blockquote>
-<h2>Overview</h2>
+<h2 id="overview">Overview</h2>
 <ol>
 <li><p>Replace generated Actions with new Login Actions.</p></li>
 <li><p>Create Logout Actions.</p></li>
 <li><p>Clean up code involving replaced Actions.</p></li>
 </ol>
-<h2>Problem 1: Create Login Actions to Represent Login Events</h2>
+<h2 id="problem-1-create-login-actions-to-represent-login-events">Problem 1: Create Login Actions to Represent Login Events</h2>
 <p>NgRx schematics generated Actions with the following Action Types: <code>[Login] Load Logins</code>, <code>[Login] Load Logins Success</code> and <code>[Login] Load Logins Failure</code>.</p>
 <p>Our goal is to have a different set of Action instead:</p>
 <ol>
@@ -632,7 +632,7 @@ covering CanJS core libraries.">
 <li>props: <code>{ errorMsg: string }</code></li>
 </ul></li>
 </ol>
-<h2>P1: What you need to know</h2>
+<h2 id="p1-what-you-need-to-know">P1: What you need to know</h2>
 <p>Action Types in NgRx follow a string pattern: <code>[Source] Event</code>. Since Actions represent a unique event, an Action Type should be a unique identifier for that event. NgRx encourages Actions to be unique in order to help with application debugging, traceability and maintainability. <a href="https://www.youtube.com/watch?v=JmnsEvoy-gY">Here’s a great presentation about Action Best Practices</a> from Mike Ryan, co-creator of NgRx.</p>
 <p><code>createAction()</code> can take up to two arguments: the string <code>type</code> and a <code>config</code> function that represents additional metadata, usually referred as <code>props</code> in Redux Pattern:</p>
 <blockquote>
@@ -647,7 +647,7 @@ export const submit = createAction(
   props&lt;{ emailAddress: string; fullName: string }&gt;()// props
 );
 </code></pre>
-<h2>P1: Solution</h2>
+<h2 id="p1-solution">P1: Solution</h2>
 <p><details>
 <summary>src/app/store/login/login.actions.ts</summary></p>
 <pre><code class="language-ts">// src/app/store/login/login.actions.ts
@@ -672,7 +672,7 @@ export const loginFailure = createAction(
 </code></pre>
  <div line-highlight="5-7,10-12,15-17,only"></div>
 </details>
-<h2>Problem 2: Create Logout Actions to Represent Logout Events</h2>
+<h2 id="problem-2-create-logout-actions-to-represent-logout-events">Problem 2: Create Logout Actions to Represent Logout Events</h2>
 <p>Next, our goal is to create 3 more Actions for logout:</p>
 <ol>
 <li><code>logout</code> - Dispatched when user clicks on a logout button
@@ -689,7 +689,7 @@ export const loginFailure = createAction(
 <li>props: <code>{ errorMsg: string }</code></li>
 </ul></li>
 </ol>
-<h2>P2: Solution</h2>
+<h2 id="p2-solution">P2: Solution</h2>
 <p><details>
 <summary>src/app/store/login/login.actions.ts</summary></p>
 <pre><code class="language-ts">// src/app/store/login/login.actions.ts
@@ -723,7 +723,7 @@ export const logoutFailure = createAction(
 </code></pre>
  <div line-highlight="20,22,24-27,only"></div>
 </details>
-<h2>Cleaning Up Removed Actions</h2>
+<h2 id="cleaning-up-removed-actions">Cleaning Up Removed Actions</h2>
 <p>Now that we’ve removed the generated Actions, we will need to update a couple of files so that our application can run:</p>
 <blockquote>
 <p>Also note that this clean up will be required for the upcoming unit tests to pass</p>

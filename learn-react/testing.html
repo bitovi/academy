@@ -543,25 +543,25 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, we will:</p>
 <ul>
 <li>Introduce React Testing Library</li>
 <li>Render and verify a component in a test</li>
 <li>Use <code>@testing-library/user-event</code> to simulate user interactions</li>
 </ul>
-<h2>Objective 1: Write a test for rendering a component and verifying the DOM structure</h2>
+<h2 id="objective-1-write-a-test-for-rendering-a-component-and-verifying-the-dom-structure">Objective 1: Write a test for rendering a component and verifying the DOM structure</h2>
 <p>How do we know when our code is working correctly? How do we know it’s still working correctly in the future after we make changes to it?</p>
 <p>Testing helps by verifying that given certain inputs our code generates expected outputs. So far we’ve copied existing tests to prove that we’ve completed the exercise correctly, now let’s dive in and learn about how React testing is done.</p>
 <p>The most basic test is to render a component and validate the DOM that is generated. That’s what we’ll do in this first section.</p>
-<h3>Introducing React Testing Library</h3>
+<h3 id="introducing-react-testing-library">Introducing React Testing Library</h3>
 <p><a href="https://testing-library.com/docs/react-testing-library/intro/">React Testing Library</a> is a set of tools that helps us write robust tests for our React applications. Unlike some other testing libraries that focus on the internal state and implementation details of components, React Testing Library emphasizes testing the behavior of components as experienced by the end-users. It works with the DOM rendered by React components, allowing tests to cover a wide range of user interactions.</p>
 <p>React Testing Library’s north star is:</p>
 <blockquote>
 <p>The more your tests resemble the way your software is used, the more confidence they can give you.</p>
 </blockquote>
 <p>React Testing Library encourages tests that focus on how the user interacts with the application, rather than the implementation details of the components.</p>
-<h3>Rendering and verifying a component in a test</h3>
+<h3 id="rendering-and-verifying-a-component-in-a-test">Rendering and verifying a component in a test</h3>
 <p>OK, you’re convinced that React Testing Library is a good idea, how do you use it to create tests for your React components?</p>
 <p>Let’s take a look at an example: say we want to test a component we created named <code>EmailInputField</code> that renders a form field. We expect the component will generate HTML like this:</p>
 <pre><code class="language-html">&lt;div class=&quot;form-field&quot;&gt;
@@ -591,7 +591,7 @@ covering CanJS core libraries.">
 </code></pre>
 <p>We’ve used a different query to select the <code>&lt;input&gt;</code> element: <code>getByDisplayValue</code>. It returns an input element whose value matches the provided string. React Testing Library has a <a href="https://testing-library.com/docs/queries/about">suite of &quot;query&quot; functions</a> that select elements based on characteristics like: role, label text, placeholder text, text, display value, alt text, and title. Our test continues to pass because the input’s value in the DOM matches what we expect.</p>
 <p>Before we move on, let’s consider the <code>type</code> prop — shouldn’t we test to be sure it was applied properly as the input’s <code>type</code> attribute? The answer is maybe. <code>type=&quot;email&quot;</code> doesn’t affect the appearance of the field in a browser, but it might affect how the user can enter input. For example, a mobile device might display a special on-screen keyboard. For now, we’ll hold off on writing tests that check attribute values and see if there is another, more user-focused way to test this behavior.</p>
-<h3>Setup 1</h3>
+<h3 id="setup-1">Setup 1</h3>
 <p>✏️ Create <strong>src/components/FormSelect/FormSelect.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { useId } from &quot;react&quot;
 
@@ -735,7 +735,7 @@ export default RestaurantList
 
 </code></pre>
  <div line-highlight="8,35-45,47-48,50-62,66,only"></div>
-<h3>Verify 1</h3>
+<h3 id="verify-1">Verify 1</h3>
 <p>✏️ Create <strong>src/components/FormSelect/FormSelect.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
 import { render, screen } from &quot;@testing-library/react&quot;
@@ -749,7 +749,7 @@ describe(&quot;FormSelect Component&quot;, () =&gt; {
 })
 
 </code></pre>
-<h3>Exercise 1</h3>
+<h3 id="exercise-1">Exercise 1</h3>
 <ul>
 <li>Call <code>render()</code> with the JSX for the component you want to test.</li>
 <li>Call <code>screen.getByText()</code> to get the <code>&lt;label&gt;</code> element.</li>
@@ -765,7 +765,7 @@ describe(&quot;FormSelect Component&quot;, () =&gt; {
 )
 </code></pre>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/12-testing/01-problem?file=src/components/FormSelect/FormSelect.test.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/12-testing/01-problem?file=src/components/FormSelect/FormSelect.test.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution 1</h3>
+<h3 id="solution-1">Solution 1</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/components/FormSelect/FormSelect.test.tsx</strong> to be:</p>
@@ -796,11 +796,11 @@ describe(&quot;FormSelect Component&quot;, () =&gt; {
  <div line-highlight="8-13,15-16,18-20,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/12-testing/01-solution?file=src/components/FormSelect/FormSelect.test.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/12-testing/01-solution?file=src/components/FormSelect/FormSelect.test.tsx">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Objective 2: Write a test for handling user interactions</h2>
+<h2 id="objective-2-write-a-test-for-handling-user-interactions">Objective 2: Write a test for handling user interactions</h2>
 <p>Most components can respond to events raised by user interaction, like clicking a button. How can we test code that responds to these interactions? We use another React Testing Library package named <a href="https://testing-library.com/docs/user-event/intro">user-event</a>.</p>
 <p><code>user-event</code> allows your tests to interact with your component in a browser-like manner, where a single user action can raise multiple events. For example, when a button is clicked, it can emit a focus event and then a click event. <code>user-event</code> also has some helpful functionality to prevent interactions that are not possible in a browser environment, such as not firing a click event from an element that’s hidden.</p>
 <p>All of the methods provided by <code>user-event</code> return a Promise, so we want to prefix the test callback function with <code>async</code> and use <code>await</code> when a <code>user-event</code> method is called.</p>
-<h3>Using <code>@testing-library/user-event</code> to simulate user interactions</h3>
+<h3 id="using-codetesting-libraryuser-eventcode-to-simulate-user-interactions">Using <code>@testing-library/user-event</code> to simulate user interactions</h3>
 <p>Referring back to the HTML output by the <code>EmailInputField</code> component:</p>
 <pre><code class="language-html">&lt;div class=&quot;form-field&quot;&gt;
   &lt;label htmlFor=&quot;inputId&quot;&gt;Email:&lt;/label&gt;
@@ -862,7 +862,7 @@ it(&quot;flags an incorrectly formatted email address as invalid&quot;, async ()
 })
 </code></pre>
 <p>Compared to the prior test, this one inputs a string that is not a valid email address and has three additional lines at the end that move focus away from the <code>&lt;input&gt;</code> element, triggering the built-in validation to be executed, and then asserts that the <code>&lt;input&gt;</code> has been <a href="https://github.com/testing-library/jest-dom?tab=readme-ov-file#tobeinvalid">marked as invalid</a>.</p>
-<h3>Verify 2</h3>
+<h3 id="verify-2">Verify 2</h3>
 <p>✏️ Update <strong>src/components/FormSelect/FormSelect.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
 import { render, screen } from &quot;@testing-library/react&quot;
@@ -894,7 +894,7 @@ describe(&quot;FormSelect Component&quot;, () =&gt; {
 
 </code></pre>
  <div line-highlight="3-4,24-26,only"></div>
-<h3>Exercise 2</h3>
+<h3 id="exercise-2">Exercise 2</h3>
 <ul>
 <li>Call <code>vi.fn()</code> to create a function you can observe.</li>
 <li>Call <code>userEvent.setup()</code> to set up the object for simulating user interactions.</li>
@@ -902,7 +902,7 @@ describe(&quot;FormSelect Component&quot;, () =&gt; {
 <li>Use <code>.toHaveBeenCalledWith()</code> to confirm whether the <code>onChange</code> handler is called.</li>
 </ul>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/12-testing/02-problem?file=src/components/FormSelect/FormSelect.test.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/12-testing/02-problem?file=src/components/FormSelect/FormSelect.test.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution 2</h3>
+<h3 id="solution-2">Solution 2</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/components/FormSelect/FormSelect.test.tsx</strong> to be:</p>
@@ -952,7 +952,7 @@ describe(&quot;FormSelect Component&quot;, () =&gt; {
  <div line-highlight="25-26,28-33,35-36,38-39,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/12-testing/02-solution?file=src/components/FormSelect/FormSelect.test.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/12-testing/02-solution?file=src/components/FormSelect/FormSelect.test.tsx">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>Congrats, you’ve completed this Bitovi Academy training!</p>
 
 </section>

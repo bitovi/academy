@@ -498,17 +498,17 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>We will learn about:</p>
 <ul>
 <li>Creating next/prev/parent/children functions</li>
 <li>Re-factoring methods</li>
 </ul>
-<h2>Video</h2>
+<h2 id="video">Video</h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/fDjdaO2XtP0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<h2>Slides</h2>
+<h2 id="slides">Slides</h2>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRjiGAVqwMHNDiV1g0oWkCW5CZTvNXKGcmb1xJszsD7Z479EJTmRCXnzhjkuJj2fru_vOYxZw-sb7t1/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-<h2>Setup</h2>
+<h2 id="setup">Setup</h2>
 <p>Run the following example in CodePen:</p>
 <pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
 &lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
@@ -626,8 +626,8 @@ covering CanJS core libraries.">
 <div line-highlight='104-107,only'></div>
 <p>Each exercise builds on the previous exercise. There is a completed solution
 at the end of this page.</p>
-<h2>Exercise: <code>collection.parent() -&gt; collection</code></h2>
-<h3>The problem</h3>
+<h2 id="exercise-codecollectionparent--gt-collectioncode">Exercise: <code>collection.parent() -&gt; collection</code></h2>
+<h3 id="the-problem">The problem</h3>
 <p><a href="https://api.jquery.com/parent/">collection.parent</a> gets the parent of each element in the current set of matched elements.</p>
 <pre><code class="language-html">&lt;ul class=&quot;level-1&quot;&gt;
   &lt;li class=&quot;item-i&quot;&gt;I&lt;/li&gt;
@@ -669,12 +669,12 @@ at the end of this page.</p>
 
 </code></pre>
 <p></details></p>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <ul>
 <li>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/parentNode">parentNode</a> property
 returns an elements parent node.</li>
 </ul>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">      parent: function() {
@@ -687,8 +687,8 @@ returns an elements parent node.</li>
 </code></pre>
 <div line-highlight='2-6'></div>
 <p></details></p>
-<h2>Exercise: <code>collection.next() -&gt; collection</code></h2>
-<h3>The problem</h3>
+<h2 id="exercise-codecollectionnext--gt-collectioncode">Exercise: <code>collection.next() -&gt; collection</code></h2>
+<h3 id="the-problem">The problem</h3>
 <p><a href="https://api.jquery.com/next/">collection.next</a> gets the immediately following sibling of each element in the set of matched elements.</p>
 <pre><code class="language-html">&lt;ul&gt;
   &lt;li&gt;list item 1&lt;/li&gt;
@@ -719,12 +719,12 @@ returns an elements parent node.</li>
 
 </code></pre>
 <p></details></p>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <ul>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/NonDocumentTypeChildNode/nextElementSibling">nextElementSibling</a>
 returns the element immediately following the specified one in its parent’s children list, or <code>null</code> if the specified element is the last one in the list.</li>
 </ul>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">      next: function() {
@@ -739,8 +739,8 @@ returns the element immediately following the specified one in its parent’s ch
 </code></pre>
 <div line-highlight='2-6'></div>
 <p></details></p>
-<h2>Exercise: <code>collection.prev() -&gt; collection</code></h2>
-<h3>The problem</h3>
+<h2 id="exercise-codecollectionprev--gt-collectioncode">Exercise: <code>collection.prev() -&gt; collection</code></h2>
+<h3 id="the-problem">The problem</h3>
 <p><a href="https://api.jquery.com/prev/">collection.prev</a> get the immediately preceding sibling of each element in the set of matched elements.</p>
 <p><details>
 <summary>Click to see test code</summary></p>
@@ -757,12 +757,12 @@ returns the element immediately following the specified one in its parent’s ch
 
 </code></pre>
 <p></details></p>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <ul>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/NonDocumentTypeChildNode/previousElementSibling">previousElementSibling</a>
 returns the Element immediately prior to the specified one in its parent’s children list, or <code>null</code> if the specified element is the first one in the list.</li>
 </ul>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">      prev: function() {
@@ -777,8 +777,8 @@ returns the Element immediately prior to the specified one in its parent’s chi
 </code></pre>
 <div line-highlight='2-8'></div>
 <p></details></p>
-<h2>Exercise: <code>collection.children() -&gt; collection</code></h2>
-<h3>The problem</h3>
+<h2 id="exercise-codecollectionchildren--gt-collectioncode">Exercise: <code>collection.children() -&gt; collection</code></h2>
+<h3 id="the-problem">The problem</h3>
 <p><a href="https://api.jquery.com/children/">collection.children</a> get the children of each element in the set of matched elements.</p>
 <pre><code class="language-html">&lt;ul class=&quot;level-1&quot;&gt;
   &lt;li class=&quot;item-i&quot;&gt;I&lt;/li&gt;
@@ -820,12 +820,12 @@ returns the Element immediately prior to the specified one in its parent’s chi
 
 </code></pre>
 <p></details></p>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <ul>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/children">children</a> returns
 the child elements of the node upon which it was called.</li>
 </ul>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">      children: function() {
@@ -838,8 +838,8 @@ the child elements of the node upon which it was called.</li>
 </code></pre>
 <div line-highlight='2-6'></div>
 <p></details></p>
-<h2>Exercise: eliminate duplicate code in <code>.find</code>, <code>.parent</code>, <code>.next</code>, <code>.prev</code>, and <code>.children</code>.</h2>
-<h3>The problem</h3>
+<h2 id="exercise-eliminate-duplicate-code-in-codefindcode-codeparentcode-codenextcode-codeprevcode-and-codechildrencode">Exercise: eliminate duplicate code in <code>.find</code>, <code>.parent</code>, <code>.next</code>, <code>.prev</code>, and <code>.children</code>.</h2>
+<h3 id="the-problem">The problem</h3>
 <p>Use meta programming techniques to reduce the duplicate code in the <code>.find</code>, <code>.parent</code>, <code>.next</code>, <code>.prev</code>, and <code>.children</code>
 functions.</p>
 <pre><code class="language-js">      find: function(selector) {
@@ -890,9 +890,9 @@ produces a function.</p>
 the source collection. When calling <code>traverse</code>, its <code>this</code> should be each element.</p>
 <p>The <code>traverse</code> functions should be able to return <code>null</code> and <code>element</code> or an array-like
 object of <code>elements</code>.</p>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <p>You know everything you need to know. You can do it!</p>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">function makeTraverser(traverser) {
@@ -930,7 +930,7 @@ object of <code>elements</code>.</p>
 </code></pre>
 <div line-highlight='1-15'></div>
 <p></details></p>
-<h2>Completed Solution</h2>
+<h2 id="completed-solution">Completed Solution</h2>
 <p><details>
 <summary>Click to see completed solution</summary></p>
 <pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;

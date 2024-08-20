@@ -424,21 +424,21 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Our Application</h2>
+    <h2 id="our-application">Our Application</h2>
 <p>We are going to create a baseline application that has three main entities: <strong>renters, properties, and propertyOwners</strong>. This application will create some create/read endpoints for the following entities, and establish the different relationships between renters, properties, and propertyOwners. We want to start building an application that allows renters to find roommates as well as properties that are owned by property owners.</p>
-<h2>Dependencies</h2>
+<h2 id="dependencies">Dependencies</h2>
 <p>Open up a directory and let’s call it <code>node-graphql-2023</code>. From there run <code>npm init</code> and then run the following command to install the necessary packages:</p>
 <pre><code class="language-shell">npm i @apollo/server body-parser cors express graphql
 </code></pre>
 <p><strong>Note:</strong> With the Update of Apollo Server 4, the intention is to focus on improving Apollo Server’s extensibility and making it simpler to use, maintain, and document. This means that <code>@apollo/server</code> combines numerous smaller packages, namely <strong>startStandaloneServer</strong> and <strong>expressMiddleware</strong> functions.</p>
-<h2>Apollo Server 4 Contents</h2>
+<h2 id="apollo-server-4-contents">Apollo Server 4 Contents</h2>
 <ul>
 <li>The <code>ApolloServer</code> class</li>
 <li>An Express 4 integration (similar to <code>apollo-server-express</code>)</li>
 <li>A standalone server (<code>startStandaloneServer</code>)</li>
 <li>And a set of <a href="https://www.apollographql.com/docs/apollo-server/migration/#plugins-are-in-deep-imports">core plugins</a></li>
 </ul>
-<h2>Apollo Server 4 Changes</h2>
+<h2 id="apollo-server-4-changes">Apollo Server 4 Changes</h2>
 <ul>
 <li><p>You can pass your <strong>context</strong> initialization function directly to whatever framework you are using in its integration function rather than the <strong>ApolloServer</strong> constructor (we will see this later in the tutorial)</p></li>
 <li><p>You are responsible for setting up HTTP body parsing and CORS</p></li>
@@ -522,11 +522,11 @@ main();
 </code></pre>
 <p>Currently don’t worry about the <strong>typeDefs</strong> and <strong>resolvers</strong> as we will be defining those soon within the <code>/src</code> folder. These represent our schema definitions and resolvers which is how we will resolve different fields, entities, queries and mutations. We use a plugin called <strong>ApolloServerPluginDrainHttpServer</strong> which is used to ensure that the node server closes down correctly. Next we create a main function so that we can call <code>await server.start()</code> and we are unable to do that outside of an async function. We will then apply our middleware, which will set up our server to have CORS enabled, the ability to pass in a json object in a body to the server, and lastly we include <strong>expressMiddleware</strong> to pass in the parameters we want to include in our <strong>context</strong> within GraphQL resolvers. Later we will include our database connection (SQL, noSQL or an ORM) in this method.</p>
 <p><strong>Note:</strong> We don’t use <code>startStandaloneServer</code> because it does not provide out-of-the-box support for middleware. It is more used for getting simple servers up and running.</p>
-<h2>Schema Creation and Separation</h2>
+<h2 id="schema-creation-and-separation">Schema Creation and Separation</h2>
 <p>Next we are going to create our <code>/src</code> folder: This will include the following sub-folders: <strong>common, properties, propertyOwners, renters</strong>. We are creating separate folders for each of the entities so that we can introduce the idea of <strong>schema stitching</strong> which is essentially putting all the schemas that are separate into one big schema. By keeping these schemas separate, it makes it much easier to maintain and read as the project grows. We will add to the common sub-folder later.</p>
-<h2>Renter Entity</h2>
+<h2 id="renter-entity">Renter Entity</h2>
 <p>The first schema we are going to make is for the Renter entity. We are going to create the following files: <code>index.js, dataSource.js, resolver.js, and schema.js</code> within the <code>/src/renters</code> folder. We are separating out each file so that the methods that will interact with our data source (for now it will be a local data file, but later will be a database), will be put in our <code>dataSource.js</code> file. The type definitions for the renter schema, will be put in the <code>schema.js</code> file. The object containing how we will resolve the Renter entity, queries, and mutations will be in the <code>resolver.js</code> file. <strong>Resolvers</strong> are a series of functions that are responsible for populating the data for a single field in your schema, while the <strong>dataSource</strong> should only contain methods we wish to expose on how to interact with our data. As a result of the logical separation of concerns, we want to have that code also be separate.</p>
-<h3>Renter Schema</h3>
+<h3 id="renter-schema">Renter Schema</h3>
 <p>The first thing we will do is define an entity called <strong>Renter</strong>, and create baseline Queries and Mutations to cover our application. We will include one <code>input</code> type as the input for the <code>createRenter</code> method signature:</p>
 <pre><code class="language-js">const typeDefs = `#graphql
     type Renter {
@@ -560,7 +560,7 @@ module.exports = {
 </code></pre>
 <p><strong>Note:</strong> By using the <code>#graphql</code> in front of a template string we are able to have syntax highlighting for GraphQL.</p>
 <p>Another thing to note is that our input uses <code>roommates</code> as a list of <strong>IDs</strong> rather than a list of <strong>Renters</strong>, that way we can grab the information from our dataSource and we don’t have to supply potentially invalid or out of date information for the <code>roommates</code> field. When we return the roommates field we will be covering the topic of entity resolution, but we will address this in the <code>resolver.js</code> file.</p>
-<h3>Renter Resolver</h3>
+<h3 id="renter-resolver">Renter Resolver</h3>
 <p>We are going to write the code that will deal with the resolution process of the Queries and Mutations we have written out above:</p>
 <pre><code class="language-js">const {
     getRenterById,
@@ -592,9 +592,9 @@ module.exports = {
 };
 </code></pre>
 <p>You will see that in general when we don’t use a parameter in a method signature, we typically preface it with a <code>_</code> in order to indicate that we won’t use that parameter within the function. Another thing to notice is that our data logic is entirely separated into our <code>dataSource</code> file, so we will have to create those referenced functions above.</p>
-<h3>Renter entity resolution</h3>
+<h3 id="renter-entity-resolution">Renter entity resolution</h3>
 <p>When we mentioned that we would have to include a method to resolve that list of <strong>IDs</strong> for roommates and somehow turn that into a list of <code>Renter</code> objects this concept is known as <strong>entity resolution</strong>. We will accomplish this by adding a specific field resolution for <code>roommates</code> within the <code>Renter</code> type in our resolver object. We will call <code>getRenterById</code> to pull the information we need from the IDs provided so that our queries don’t throw an error expecting a type <code>Renter</code> but receiving a type of <code>ID</code>.</p>
-<h3>Renter dataSource</h3>
+<h3 id="renter-datasource">Renter dataSource</h3>
 <p>We will be using a global package called <code>crypto</code> that was added to Node that will help us to generate unique id’s for our <code>createRenter</code> mutation. Otherwise the other two Query methods are pretty self-explanatory: <code>getRenterById</code> will take an ID and return a found <code>Renter</code> entity, while <code>getAllRenters</code> will return all the renters in the system:</p>
 <pre><code class="language-js">const crypto = require('crypto');
 let { renters } = require('../../data');
@@ -629,7 +629,7 @@ module.exports = {
 }
 </code></pre>
 <p>For the <code>createRenter</code> method we don’t need to pass in a <code>rating</code> as it will be a field that will get updated by another mutation down the line, but during creation the default rating should be 0.</p>
-<h3>Export Renter Schema and Resolver</h3>
+<h3 id="export-renter-schema-and-resolver">Export Renter Schema and Resolver</h3>
 <p>We will also create an <code>index.js</code> file within the <code>renter</code> folder with the following code in order to export our schema and resolver so it can be stitched together:</p>
 <pre><code class="language-js">const { resolvers } = require('./resolver');
 const { typeDefs } = require('./schema');
@@ -666,7 +666,7 @@ module.exports = {
 </code></pre>
 <p>As we create resolvers for <strong>property</strong> and <strong>propertyOwner</strong> we will be adding to the lists passed to the <code>mergeTypeDefs</code> method and the <code>mergeResolvers</code> method.</p>
 <p><strong>Note:</strong> Rather than needing the entire <code>@graphql-tools</code> library, we only need to install <code>@graphql-tools/merge</code> which reduces our overall dependency size. We still need to define some baseline data values for <strong>renters</strong> so we will do that next.</p>
-<h3>Renter Data</h3>
+<h3 id="renter-data">Renter Data</h3>
 <p>Go to the top level of the project and create a file called <code>data.js</code>. We populate the object to match the schema definition we defined earlier, and it will look like this:</p>
 <pre><code class="language-js">const renters = [
     {
@@ -694,9 +694,9 @@ module.exports = {
 }
 </code></pre>
 <p><strong>Pause Step:</strong> With this we should be able to test out our Renter endpoints in the Apollo Studio Sandbox.</p>
-<h2>PropertyOwner Entity</h2>
+<h2 id="propertyowner-entity">PropertyOwner Entity</h2>
 <p>Overall we want some baseline fields that represent what sort of information we may want to display from a property owner, but namely we want to set up a relationship between a property owner and a property. We will accomplish this via the <strong>properties</strong> field. Like the renter folder, we are going to create a <em>schema, resolver, and dataSource</em> as well as a file to export our <strong>typeDefs</strong> and <strong>resolvers</strong> created for schema stitching.</p>
-<h3>PropertyOwner Schema</h3>
+<h3 id="propertyowner-schema">PropertyOwner Schema</h3>
 <pre><code class="language-js">const typeDefs = `#graphql
     type PropertyOwner {
         id: ID!
@@ -729,7 +729,7 @@ module.exports = {
 }
 </code></pre>
 <p><strong>Note:</strong> You’ll start to notice a pattern here with the base get/create query/mutations within the schemas.</p>
-<h3>PropertyOwner Resolver</h3>
+<h3 id="propertyowner-resolver">PropertyOwner Resolver</h3>
 <p>While most of the get/create methods are following the same sort of pattern, the interesting part of this is the <strong>entity resolution</strong> required for the <code>properties</code> field within <strong>PropertyOwner</strong>:</p>
 <pre><code class="language-js">const {
     createPropertyOwner,
@@ -763,9 +763,9 @@ module.exports = {
     resolvers
 };
 </code></pre>
-<h3>PropertyOwner properties field resolution</h3>
+<h3 id="propertyowner-properties-field-resolution">PropertyOwner properties field resolution</h3>
 <p>Our resolver for the <code>properties</code> field will need to call the <code>getPropertyById</code> function from our <strong>Property</strong> dataSource in order to resolve the list of IDs and return a <strong>Property</strong> object (however in order for us to be able to test these mutations/queries, we will need to complete the <strong>Property</strong> dataSource and schema).</p>
-<h3>PropertyOwner dataSource</h3>
+<h3 id="propertyowner-datasource">PropertyOwner dataSource</h3>
 <p>This will follow a similar paradigm to the renter dataSource:</p>
 <pre><code class="language-js">const crypto = require('crypto');
 let { propertyOwners } = require('../../data');
@@ -803,7 +803,7 @@ module.exports = {
 }
 </code></pre>
 <p><strong>Note:</strong> You can copy and paste the <code>index.js</code> from <code>src/renters</code> to <code>src/propertyOwners</code> as well as the <code>src/properties</code> folders. Since the import/export of these folders follow the same exact structure.</p>
-<h3>PropertyOwner Schema Stitching</h3>
+<h3 id="propertyowner-schema-stitching">PropertyOwner Schema Stitching</h3>
 <p>Remember to add the following lines to your <code>/src/index.js</code> file in order to export the merged typeDefs and resolvers:</p>
 <pre><code class="language-js">const {
     resolvers: propertyOwnerResolvers,
@@ -820,7 +820,7 @@ const resolvers = mergeResolvers([
     renterResolvers
 ]);
 </code></pre>
-<h3>PropertyOwner Data</h3>
+<h3 id="propertyowner-data">PropertyOwner Data</h3>
 <p>Now we need to create a list of property owners within our <code>data.js</code> file, and we’ll add the following lines:</p>
 <pre><code class="language-js">const propertyOwners = [
     {
@@ -847,9 +847,9 @@ module.exports = {
 }
 </code></pre>
 <p><strong>Pause Step:</strong> With this we <strong>won’t</strong> be able to test our endpoints in Apollo Studio Sandbox because we currently have no way to resolve the properties field within the <strong>PropertyOwner</strong> object.</p>
-<h2>Property Entity</h2>
+<h2 id="property-entity">Property Entity</h2>
 <p>Each property will have some basic information about it, a unique id, and will have connections to both the renter entity, and the propertyOwner entity. This will allow you to see if a property currently has tenants, and who the owner is as well as their contact information.</p>
-<h3>Property Schema</h3>
+<h3 id="property-schema">Property Schema</h3>
 <pre><code class="language-js">const typeDefs = `#graphql
     type Property {
         id: ID!
@@ -890,7 +890,7 @@ module.exports = {
 };
 </code></pre>
 <p>The only thing to note is that during the creation of a property entity, we are requiring the <code>propertyOwnerId</code> field to be filled. Essentially saying you need to have a person attached to the property for contact purposes.</p>
-<h3>Property Resolver</h3>
+<h3 id="property-resolver">Property Resolver</h3>
 <p>This entity is interesting since we now need to define two resolver methods: one for the <code>renters</code> field and the other for the <code>propertyOwner</code> field. In this case we will have to import the methods from their respective dataSource files. It will look like the following:</p>
 <pre><code class="language-js">const {
     getPropertyById,
@@ -930,7 +930,7 @@ module.exports = {
     resolvers
 };
 </code></pre>
-<h3>Property dataSource</h3>
+<h3 id="property-datasource">Property dataSource</h3>
 <p>Creating the core methods <code>getEntityById, getAllEntities and createProperty</code> will be following the similar format to before:</p>
 <pre><code class="language-js">const crypto = require('crypto');
 let { properties } = require('../../data');
@@ -972,7 +972,7 @@ module.exports = {
 }
 </code></pre>
 <p><strong>Note:</strong> Don’t forget to copy and paste the <code>index.js</code> from <code>src/renters</code> to <code>src/properties</code>!</p>
-<h3>Property Schema Stitching</h3>
+<h3 id="property-schema-stitching">Property Schema Stitching</h3>
 <p>Remember to add the following lines to your <code>/src/index.js</code> file in order to export the merged typeDefs and resolvers:</p>
 <pre><code class="language-js">const {
     resolvers: propertyResolvers,
@@ -991,7 +991,7 @@ const resolvers = mergeResolvers([
     renterResolvers
 ]);
 </code></pre>
-<h3>PropertyData</h3>
+<h3 id="propertydata">PropertyData</h3>
 <p>Now we need to create the data that will match our properties schema, so we will add the following lines to the <code>data.js</code> file:</p>
 <pre><code class="language-js">const properties = [
     {
@@ -1029,7 +1029,7 @@ module.exports = {
 }
 </code></pre>
 <p><strong>Pause Step:</strong> Now we can test our endpoints for both properties and propertyOwners now that we have data, entity resolution, and schema stitching in place.</p>
-<h2>Introducing Error Handling</h2>
+<h2 id="introducing-error-handling">Introducing Error Handling</h2>
 <p>For all our endpoints so far we have always assumed the method would succeed, but what if it didn’t? That’s where having a generic <strong>Error</strong> type would help so that we can capture that error as part of its expected behavior. When throwing these errors, we want to ensure we have a human-readable error. But to start we are going to create a baseline <code>Error</code> interface in our schema. Since this is something that will be shared across schemas, we will add it to the <code>src/common</code> folder. Let’s create a <code>schema.js</code> within this folder and add the following:</p>
 <pre><code class="language-js">const typeDefs = `#graphql
     interface Error {
@@ -1054,7 +1054,7 @@ const typeDefs = mergeTypeDefs([
     renterTypeDefs
 ]);
 </code></pre>
-<h3>Adding an Update mutation</h3>
+<h3 id="adding-an-update-mutation">Adding an Update mutation</h3>
 <p>Now that we have baseline create/read methods for each of the entities we are going to go through how we will add an update mutation. First thing we will add is the <strong>updateProperty</strong> method to the schema and create a new input type <strong>UpdatePropertyInput</strong>. We will also be creating a <strong>Union</strong> type called <strong>UpdatePropertyResult</strong> which is a <strong>Union</strong> of either a <strong>Property</strong>, or a <strong>PropertyNotFoundError</strong>. In practice when we want to update a property, so far we will either be passed a valid id contained in our dataSource, or an invalid one, which means we will return this <code>PropertyNotFoundError</code>:</p>
 <pre><code class="language-graphql">input UpdatePropertyInput {
     id: ID!
@@ -1151,7 +1151,7 @@ module.exports = {
   }
 }
 </code></pre>
-<h2>Growing your schema and things to keep in mind</h2>
+<h2 id="growing-your-schema-and-things-to-keep-in-mind">Growing your schema and things to keep in mind</h2>
 <p>As we grow our schema, especially when serving multiple customers or clients, we have to keep in mind what changes might be considered “breaking” changes. The breaking changes are as follows:</p>
 <ul>
 <li>Removing a type or field</li>
@@ -1174,7 +1174,7 @@ input CreateRenterInput {
 </code></pre>
 <p><strong>Note:</strong> To use a directive you need to start with a <code>@</code> symbol followed by the name of the directive you are using. This directive is actually a function which will take a parameter <code>reason</code> which will display to the user when attempting to use the <code>deprecatedField</code>. The deprecated directive can be used with the following types: <code>FIELD_DEFINITION | ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION | ENUM_VALUE</code>.</p>
 <p><strong>Pause Step:</strong> Check this out in Apollo Studio Sandbox and you will see the deprecated message!</p>
-<h2>Setting up a caching mechanism</h2>
+<h2 id="setting-up-a-caching-mechanism">Setting up a caching mechanism</h2>
 <p>Since we are utilizing the power of directives when updating fields, we can also use it to start some ground work on caching some of our entities or fields within them. To do this we will be using a plugin offered by our <code>@apollo/server</code> library. We will add it to our <code>ApolloServer</code> initialization by passing it within the <code>plugins</code> field which you can see below (located in our top-level <code>index.js</code>):</p>
 <pre><code class="language-js">const { ApolloServerPluginCacheControl } = require('@apollo/server/plugin/cacheControl');
 
@@ -1218,7 +1218,7 @@ directive @cacheControl(
 }
 </code></pre>
 <p>These are fields that we think will not change often, and so these might be fields we would like to cache for some time. This will mean that it will only call the resolver function for <code>propertyOwner</code> or <code>rating</code> after 60 seconds for the same input, using a previously cached field value.</p>
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 <p>During this tutorial we walked through setting up a multi-schema GraphQL server, using updated features from <code>Node v18, Apollo Server 4, and Graphql 16.6</code>. We looked into entity resolution when dealing with fields that reference other entities we have in dataSources. We looked into creating an update method for properties and starting our Error Handling processes, and introduced a use-case for Union types. We talked a little about schema maintenance, and how different directives can be used to notify deprecated fields, as well as introducing a little bit of Cache Control as well. I hope you enjoyed this tutorial, and next we will talk about introducing a live database and integrating it with our server!</p>
 <p>At the end of this tutorial you should have a server looking similar or identical to <a href="https://github.com/bitovi/node-graphql-tutorial-2023">this</a>.</p>
 

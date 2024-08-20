@@ -678,28 +678,28 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this part, we will:</p>
 <ul>
 <li>Use <code>routerLink</code> to create navigation links</li>
 <li>Use <code>routerLinkActive</code> to highlight current navigation</li>
 </ul>
-<h2>Problem</h2>
+<h2 id="problem">Problem</h2>
 <p>We want to create <em>Home</em> and <em>Restaurant</em> links in our app navigation that can
 be used to navigate between pages. We also want those links to change color
 if they are for the current page or not.</p>
 <p><img src="../static/img/angular/pmo-working-nav.gif"
 style="border: solid 1px black; "
 alt="Place My Order App working nav"/></p>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <p>To solve this, you will need to know how to:</p>
 <ul>
 <li>How to use the <code>routerLink</code> directive</li>
 <li>How to use the <code>routerLinkActive</code> directive</li>
 </ul>
-<h2>RouterLink</h2>
+<h2 id="routerlink">RouterLink</h2>
 <p>You may have noticed the links in the routing examples to switch between views. They use the <a href="https://angular.io/api/router/RouterLink">routerLink</a> directive. The <code>routerLink</code> takes a property of a path that can be static or built dynamically based on properties on the component.</p>
-<h3>Static routerLink Segments</h3>
+<h3 id="static-routerlink-segments">Static routerLink Segments</h3>
 <p>The following is an example of a hard coded path:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -793,7 +793,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='25, only'></div>
-<h3>Dynamic routerLink Segments</h3>
+<h3 id="dynamic-routerlink-segments">Dynamic routerLink Segments</h3>
 <p>The following is an example of a path being built from different pieces of data. In reusable components we’ll often want to dynamically create paths based on a piece of data’s unique property values.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -903,9 +903,9 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='28,35, only'></div>
-<h2>RouterLinkActive</h2>
+<h2 id="routerlinkactive">RouterLinkActive</h2>
 <p>The <a href="https://angular.io/api/router/RouterLinkActive">routerLinkActive</a> directive lets you add a CSS class to an element when the link's route becomes active. Angular looks at the path to determine if the route is active and will return true if any of the path matches, meaning when a path contains a &quot;child&quot; segment the route active status will still return true. If exact specificity is needed, <code>[routerLinkActiveOptions]=&quot;{exact: true}&quot;</code> can be used.</p>
-<h3>Adding a Basic Active Class</h3>
+<h3 id="adding-a-basic-active-class">Adding a Basic Active Class</h3>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1019,7 +1019,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='25, only'></div>
-<h3>Adding an Active Class with Options</h3>
+<h3 id="adding-an-active-class-with-options">Adding an Active Class with Options</h3>
 <p>Using <code>{exact: true}</code> will only set the class if the path match is exactly equal. <code>{exact: true}</code> can also be applied to parents of <code>routerLink</code>s.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -1140,7 +1140,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='24-25,27-28,30, only'></div>
-<h3>Adding an Active Class with Template Variable</h3>
+<h3 id="adding-an-active-class-with-template-variable">Adding an Active Class with Template Variable</h3>
 <p><code>RouterLinkActive</code> can also be used to set <a href="https://angular.io/api/router/RouterLinkActive#template-variable-references">template variables</a> to check the active status of the route. In this example, we’re creating a template variable <code>userLink</code> to represent our route and its active state for logic in our template.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -1257,9 +1257,9 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='27-28, 32, only'></div>
-<h2>Technical requirements</h2>
+<h2 id="technical-requirements">Technical requirements</h2>
 <p>Create a navigation menu that will route to our home and restaurant components when clicked, as well as show an <code>active</code> class on the <code>li</code> element when the route is active.</p>
-<h2>Setup</h2>
+<h2 id="setup">Setup</h2>
 <p>Make your changes in the <strong>src/app/app.component.html</strong> file. The markup structure should look like this:</p>
 <pre><code class="language-html">&lt;header&gt;
   &lt;nav&gt;
@@ -1278,7 +1278,7 @@ platformBrowserDynamic()
 &lt;router-outlet /&gt;
 </code></pre>
  <div line-highlight="1-13,"></div>
-<h2>How to verify your solution is correct</h2>
+<h2 id="how-to-verify-your-solution-is-correct">How to verify your solution is correct</h2>
 <p>You will know you’ve completed the exercise correctly when you can click the nav items to
 see the UI change and see the active class on the current nav item.</p>
 <p><img src="../static/img/angular/pmo-working-nav.gif" alt="Place My Order App working nav" title="Place My Order App working nav" /></p>
@@ -1397,7 +1397,7 @@ describe('AppComponent', () =&gt; {
 
 </code></pre>
  <div line-highlight="3-9,18-19,29-30,47,69-75,77-83,85-90,92-96,98-103,105-110,only"></div>
-<h2>Solution</h2>
+<h2 id="solution">Solution</h2>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary>

@@ -678,7 +678,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this part, we will:</p>
 <ul>
 <li>Create a new order component</li>
@@ -687,19 +687,19 @@ covering CanJS core libraries.">
 <li>Import a third-party lib</li>
 <li>Create a custom component to handle item selection</li>
 </ul>
-<h2>Creating an order form component</h2>
+<h2 id="creating-an-order-form-component">Creating an order form component</h2>
 <p>Our order form is how we can create new orders. We’ll use a reactive form to get data from the users, use a custom validation function to make sure at least one item has been selected, and calculate the order total every time a new item is selected or unselected.</p>
-<h2>Problem 1: Create a new route for ordering from a restaurant</h2>
-<h2>P1: What you need to know</h2>
+<h2 id="problem-1-create-a-new-route-for-ordering-from-a-restaurant">Problem 1: Create a new route for ordering from a restaurant</h2>
+<h2 id="p1-what-you-need-to-know">P1: What you need to know</h2>
 <ul>
 <li>How to create new components
 <pre><code class="language-bash">ng g component order
 </code></pre></li>
 <li>You’ve created routes before! You got this!</li>
 </ul>
-<h2>P1: Technical requirements</h2>
+<h2 id="p1-technical-requirements">P1: Technical requirements</h2>
 <p>Create a new <code>order</code> component, and create a route for our new component! The path should be <code>/restaurants/{{slug}}/order</code>.</p>
-<h2>P1: How to verify your solution is correct</h2>
+<h2 id="p1-how-to-verify-your-solution-is-correct">P1: How to verify your solution is correct</h2>
 <p>When you navigate to the <code>/order</code> path from a restaurant detail page you should see your new order component.</p>
 <p>✏️ Update the spec file <strong>src/app/app.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { Location } from '@angular/common';
@@ -1027,7 +1027,7 @@ describe('AppComponent', () =&gt; {
 </code></pre>
  <div line-highlight="18,208,270,273-276,309,313,320,only"></div>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
-<h2>P1: Solution</h2>
+<h2 id="p1-solution">P1: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/app-routing.module.ts</strong></p>
@@ -1066,10 +1066,10 @@ export class AppRoutingModule {}
 </code></pre>
  <div line-highlight="4,21-24,only"></div>
 <p></details></p>
-<h2>Problem 2: Build out the order component</h2>
+<h2 id="problem-2-build-out-the-order-component">Problem 2: Build out the order component</h2>
 <p>We’ve covered a few concepts, like how to get the slug from the route, how to get a restaurant, how to create a form and subscribe to its changes. Let’s practice those concepts.</p>
 <p>We’ve provided some starting code to get through this section to help you get the restaurant based on the route slug, create a new reactive form to collect order information, and update the order total whenever the <code>items</code> FormControl value changes.</p>
-<h2>P2: What you need to know</h2>
+<h2 id="p2-what-you-need-to-know">P2: What you need to know</h2>
 <ul>
 <li><p>How to get the restaurant from the route slug (you learned this in previous sections! ✔️)</p></li>
 <li><p>Create a reactive form (you learned this in previous sections! ✔️)</p></li>
@@ -1092,9 +1092,9 @@ this.myValidatingForm = this.formBuilder.group({
   hobbies: [[]]
 });
 </code></pre>
-<h2>P2: Technical requirements</h2>
+<h2 id="p2-technical-requirements">P2: Technical requirements</h2>
 <p>The order form component needs to get the restaurant from the route slug, and needs a reactive form to collect <code>restaurant</code>, <code>name</code>, <code>address</code>, <code>phone</code>, and <code>items</code>, and a way to update the order total when the items form control changes.</p>
-<h2>P2: Setup</h2>
+<h2 id="p2-setup">P2: Setup</h2>
 <p>✏️ Update the <strong>src/app/order/order.component.html</strong> file to be:</p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
   &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;&lt;/ng-container&gt;
@@ -1264,7 +1264,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
-<h2>P2: How to verify your solution is correct</h2>
+<h2 id="p2-how-to-verify-your-solution-is-correct">P2: How to verify your solution is correct</h2>
 <p>✏️ Update the order spec file <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -1436,7 +1436,7 @@ describe('OrderComponent', () =&gt; {
 
 </code></pre>
 <div line-highlight='101-167, only'></div>
-<h2>P2: Solution</h2>
+<h2 id="p2-solution">P2: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/order/order.component.ts</strong></p>
@@ -1565,7 +1565,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 </code></pre>
  <div line-highlight="9,62-63,65-73,77-79,83-90,95-98,110,120,only"></div>
 <p></details></p>
-<h2>Importing third-party plugins</h2>
+<h2 id="importing-third-party-plugins">Importing third-party plugins</h2>
 <p>In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let’s import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started">ngx-bootstrap</a>:</p>
 <p>✏️ Run:</p>
 <pre><code class="language-bash">ng add ngx-bootstrap
@@ -1683,15 +1683,15 @@ export class AppModule { }
  <div line-highlight="10-37,only"></div>
 <p>Now when we view the order form of our route, we’ll see a nice form and tabs for lunch and dinner menu options.</p>
 <p><img src="../static/img/angular/pmo-tabs-working.gif" alt="Place My Order App tabs" title="Place My Order App tabs" /></p>
-<h2>Problem 3: Create a <code>menu-items</code> component</h2>
+<h2 id="problem-3-create-a-codemenu-itemscode-component">Problem 3: Create a <code>menu-items</code> component</h2>
 <p>We’re going to build another component to use in our form to handle selecting order items. We use data-binding to pass data between components. We’ll use the <code>@Input()</code> to get our list of items from the restaurant to display in our child component, and eventually hook it into our Reactive Form using the <code>formControlName</code> attribute as shown below.</p>
 <pre><code class="language-html">&lt;pmo-menu-items
   [data]=&quot;restaurant.menu.lunch&quot;
   formControlName=&quot;items&quot;
 &gt;&lt;/pmo-menu-items&gt;
 </code></pre>
-<h2>P3: What you need to know</h2>
-<h2>Component interaction</h2>
+<h2 id="p3-what-you-need-to-know">P3: What you need to know</h2>
+<h2 id="component-interaction">Component interaction</h2>
 <p>Components in Angular can pass data back and forth to each other through the use of <a href="https://angular.io/api/core/Input">@Input</a> and <a href="https://angular.io/api/core/Output">@Output</a> decorations.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -1764,7 +1764,7 @@ platformBrowserDynamic()
 <li>How to use *ngFor (you learned this in previous sections! ✔️)</li>
 <li>How to use @Input to pass properties (you learned this in the section above! ✔️)</li>
 </ul>
-<h2>P3: Setup</h2>
+<h2 id="p3-setup">P3: Setup</h2>
 <p>Create the new menu-items component inside the order component folder</p>
 <p>✏️ Run:</p>
 <pre><code class="language-bash">ng g component order/menu-items
@@ -1833,7 +1833,7 @@ platformBrowserDynamic()
 
 </code></pre>
  <div line-highlight="13,18,only"></div>
-<h2>P3: How to verify your solution is correct</h2>
+<h2 id="p3-how-to-verify-your-solution-is-correct">P3: How to verify your solution is correct</h2>
 <p>✏️ Update the order spec file <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -2047,7 +2047,7 @@ describe('MenuItemsComponent', () =&gt; {
 
 </code></pre>
 <div line-highlight='25-36, only'></div>
-<h2>P3: Solution</h2>
+<h2 id="p3-solution">P3: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/order/menu-items.component.html</strong></p>
@@ -2129,11 +2129,11 @@ export class MenuItemsComponent {
 </code></pre>
  <div line-highlight="13,18,only"></div>
 <p></details></p>
-<h2>Problem 4: Attaching event handlers to item checkboxes</h2>
+<h2 id="problem-4-attaching-event-handlers-to-item-checkboxes">Problem 4: Attaching event handlers to item checkboxes</h2>
 <p>Next, we want to know when a checkbox has been checked or unchecked.</p>
 <p>Before communicating between <code>MenuItemsComponent</code> and its parent <code>OrderComponent</code>, <code>MenuItemsComponent</code> will need to attach an event handler - a function - to the <code>change</code> event of the item checkboxes.</p>
-<h2>P4: What you need to know</h2>
-<h2>Event handlers in Angular</h2>
+<h2 id="p4-what-you-need-to-know">P4: What you need to know</h2>
+<h2 id="event-handlers-in-angular">Event handlers in Angular</h2>
 <p>Event binding in Angular follows a simple pattern - the event name in parenthesis and a function to call in quotes on the other side of an equal sign. <code>(event)=&quot;functionToCall()&quot;</code>. Any parameter(s) can be passed to the event function, but to capture the event itself use the parameter <code>$event</code></p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -2219,9 +2219,9 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='24,26,32,41-43,45-47,49-51,only'></div>
-<h2>P4: Technical requirements</h2>
+<h2 id="p4-technical-requirements">P4: Technical requirements</h2>
 <p>Create a function in the <code>MenuItemsComponent</code> called <code>updateItem</code> that fires whenever a checkbox is checked and takes a parameter of the item that has been checked.</p>
-<h2>P4: How to verify your solution is correct</h2>
+<h2 id="p4-how-to-verify-your-solution-is-correct">P4: How to verify your solution is correct</h2>
 <p>✏️ Update the menu-items spec file <strong>src/app/order/menu-items/menu-items.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -2277,7 +2277,7 @@ describe('MenuItemsComponent', () =&gt; {
 
 </code></pre>
  <div line-highlight="37-50,only"></div>
-<h2>P4: Solution</h2>
+<h2 id="p4-solution">P4: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/order/menu-items/menu-items.component.html</strong></p>
@@ -2310,14 +2310,14 @@ export class MenuItemsComponent {
 </code></pre>
  <div line-highlight="12,14,only"></div>
 <p></details></p>
-<h2>Problem 5: Update <code>OrderFormComponent</code> with the emitted <code>Item</code> from <code>MenuItemsComponent</code></h2>
+<h2 id="problem-5-update-codeorderformcomponentcode-with-the-emitted-codeitemcode-from-codemenuitemscomponentcode">Problem 5: Update <code>OrderFormComponent</code> with the emitted <code>Item</code> from <code>MenuItemsComponent</code></h2>
 <p>Now we want to let the form know what the selected items are as they change so we can update the order total accordingly.</p>
-<h2>P5: What you need to know</h2>
+<h2 id="p5-what-you-need-to-know">P5: What you need to know</h2>
 <ul>
 <li>How to emit a value to a parent component</li>
 <li>How to programmatically update a <code>FormControl</code>’s value (you learned this in previous sections! ✔️)</li>
 </ul>
-<h2>Emitting Data to Parent Components</h2>
+<h2 id="emitting-data-to-parent-components">Emitting Data to Parent Components</h2>
 <p>To pass data to parent components in Angular, the <a href="https://angular.io/api/core/EventEmitter">EventEmitter</a> class is used in combination with the <a href="https://angular.io/api/core/Output">Output decorator</a>. The Output decorator marks a property to be listened to during change detection, and we call the <code>emit</code> method to broadcast the property’s new value.</p>
 <p>The parent component is listening for a change on the child component’s property and calls a function on that change that takes a parameter of the updated value.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -2425,9 +2425,9 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='31-33,44-46,65,70,78-80,only'></div>
-<h2>P5: Technical requirements</h2>
+<h2 id="p5-technical-requirements">P5: Technical requirements</h2>
 <p>Create an <code>itemChanged</code> EventEmitter property that emits the checked/unchecked <code>Item</code> value every time it changes, and in the parent OrderComponent update the <code>items</code> FormControl with the updated <code>Item</code>s array using the provided <code>getChange</code> function.</p>
-<h2>P5: Setup</h2>
+<h2 id="p5-setup">P5: Setup</h2>
 <p>✏️ Update the <strong>src/app/order/order.component.ts</strong> file to be:</p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
@@ -2568,7 +2568,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
 </code></pre>
  <div line-highlight="94-96,98-101,103-104,106,123,125,135,only"></div>
-<h2>P5: How to verify your solution is correct</h2>
+<h2 id="p5-how-to-verify-your-solution-is-correct">P5: How to verify your solution is correct</h2>
 <p>✏️ Update the menu-items spec file <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -2784,7 +2784,7 @@ describe('OrderComponent', () =&gt; {
 
 </code></pre>
  <div line-highlight="8,78,171-180,182-194,196-210,only"></div>
-<h2>P5: Solution</h2>
+<h2 id="p5-solution">P5: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/order/menu-items.component.ts</strong></p>
@@ -3008,7 +3008,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 </code></pre>
  <div line-highlight="106,only"></div>
 <p></details></p>
-<h2>Control Value Accessor</h2>
+<h2 id="control-value-accessor">Control Value Accessor</h2>
 <p>Using inputs and event emitters is a great way to pass data between components in a general sense. However this can be a very messy way to approach handling custom form situations. Some times a better approach can be to write a custom component that implements the <a href="https://angular.io/api/forms/ControlValueAccessor">Control Value Accessor</a> interface to just write the value straight to the form. Classes implementing the CVA must have 3 methods - <code>onChange</code>, <code>onTouched</code>, <code>setValue</code>. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.</p>
 <p>✏️ Update <strong>src/app/order/menu-items.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, forwardRef, Input } from '@angular/core';
@@ -3070,11 +3070,11 @@ export class MenuItemsComponent implements ControlValueAccessor {
 </code></pre>
  <div line-highlight="1-2,9-15,17,19,21-22,24-25,28-32,34-36,38-40,42-44,47-54,only"></div>
 <p>Other concepts used here:</p>
-<h3>forwardRef</h3>
+<h3 id="forwardref">forwardRef</h3>
 <p><a href="https://angular.io/api/core/forwardRef">forwardRef</a> is used to reference a token that may not be defined when we need it.</p>
-<h3>NG_VALUE_ACCESSOR</h3>
+<h3 id="ng_value_accessor">NG_VALUE_ACCESSOR</h3>
 <p><a href="https://angular.io/api/forms/NG_VALUE_ACCESSOR">NG_VALUE_ACCESSOR</a> is used to provide the control value accessor for a form control.</p>
-<h3>Use New Menu Items Component in Order Form</h3>
+<h3 id="use-new-menu-items-component-in-order-form">Use New Menu Items Component in Order Form</h3>
 <p>✏️ Update <strong>src/app/order/order.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
   &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;&lt;/ng-container&gt;
@@ -3136,7 +3136,7 @@ export class MenuItemsComponent implements ControlValueAccessor {
 </code></pre>
  <div line-highlight="15,23,only"></div>
 <p>We now have a form that updates the <code>items</code> formControl when items are selected and shows the user an updated total!</p>
-<h3>Update order component Tests</h3>
+<h3 id="update-order-component-tests">Update order component Tests</h3>
 <p>✏️ Update the order spec file <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';

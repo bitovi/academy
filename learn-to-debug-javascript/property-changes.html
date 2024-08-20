@@ -438,7 +438,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>The problem</h2>
+    <h2 id="the-problem">The problem</h2>
 <p>The following example creates an object <code>obj</code> whose <code>subject</code> property is changed
 by something called within <code>somethingWillMutate</code>.  What is the name of the
 function that changed <code>obj.subject</code>?</p>
@@ -457,7 +457,7 @@ propertyChange();
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <p>You can capture when a property is set using a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set">setter</a>.  A <em>setter</em> can be created with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Object.defineProperty</a> like:</p>
 <pre><code class="language-js">var propertyValue = object.property;
 Object.defineProperty(object,&quot;property&quot;,{
@@ -501,7 +501,7 @@ console.log(person);
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='19-23'></div>
-<h2>The solution</h2>
+<h2 id="the-solution">The solution</h2>
 <pre><code class="language-html">&lt;script src=&quot;//bitovi.github.io/academy/static/scripts/debugging/variables.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;module&quot;&gt;
 function propertyChange(){

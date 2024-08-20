@@ -543,16 +543,16 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Video</h2>
+    <h2 id="video">Video</h2>
 <p>Who has time to read? This video covers the content on this page. Watch fullscreen.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/tjMaxHnrYxw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<h2>The problem</h2>
+<h2 id="the-problem">The problem</h2>
 <p>In this section, we will:</p>
 <ul>
 <li>Display an error message if the user has not entered a card or the card number is not
 16 digits.</li>
 </ul>
-<h2>How to solve this problem</h2>
+<h2 id="how-to-solve-this-problem">How to solve this problem</h2>
 <ul>
 <li>Create a <code>cardError$</code> observable that represents this error.</li>
 <li><code>cardError$</code> should emit:
@@ -563,12 +563,12 @@ is not 16 digits.</li>
 </ul></li>
 <li><code>cardError$</code> should be displayed within the <code>&lt;div class=&quot;message&quot;&gt;</code> element.</li>
 </ul>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <p>You know everything you need to know already.</p>
 <blockquote>
 <p>HINT: Create a <code>validateCard</code> operator with <code>map</code>.</p>
 </blockquote>
-<h2>The solution</h2>
+<h2 id="the-solution">The solution</h2>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;

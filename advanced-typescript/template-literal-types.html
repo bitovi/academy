@@ -453,9 +453,9 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>Template literal types give us new ways to create types from string literals and string literal unions. In this section, we will see what they are, how to write them, and how they can be used to create new types with renamed keys.</p>
-<h2>Template Literal Types</h2>
+<h2 id="template-literal-types">Template Literal Types</h2>
 <p>Template literal types allow us to combine string literals, just like how template literals in JavaScript allow us to combine strings. Like conditional types, the syntax for template literal types is identical to JavaScript’s and uses back ticks <code>`</code> and <code>${}</code>.</p>
 <pre><code class="language-ts">type TemplateLiteralTypes = &quot;Template Literal Types&quot;;
 
@@ -479,7 +479,7 @@ type BagItems = `${ItemTypes} ${Items}`; //&quot;regular potion&quot; | &quot;re
 
 type PokemonNamesFromEgg = FromEgg&lt;PokemonEgg&gt;; // &quot;bulbasaur&quot; | &quot;ivysaur&quot; | ...
 </code></pre>
-<h2>Renamed Keys</h2>
+<h2 id="renamed-keys">Renamed Keys</h2>
 <p>Back when we were looking at mapped types, the name of the key was always preserved; however, it’d be incredibly useful if there was a way we could rename some of the keys by adding some text to them. Luckily for us, there’s a way! We can leverage template literal types within a key mapping. Let’s look at an example. Let’s make a <code>Stateful</code> type that adds getters and setters for any of the properties of the type passed in. If we gave it <code>{name: string}</code> we’d want it to create <code>{name: string; setName: (newValue: string) =&gt; void; getName: () =&gt; string;</code>. Let’s start with adding a type that produces a “getter”.</p>
 <pre><code class="language-ts">type Getters&lt;T&gt; = {
   [OriginalKey in keyof T as `get${string &amp;
@@ -551,8 +551,8 @@ type PokemonGetters = Getters&lt;Pokemon&gt;;
 type StatefulPokemon = Stateful&lt;Pokemon&gt;;
 </code></pre>
 <p>Template literal types allow us to do a number of useful string literal manipulations. Being able to share string templates across different types keeps code clean and DRY. Remapping key names allows for intuitive type-based abstractions to help speed up the development process.</p>
-<h2>Exercises</h2>
-<h3>Exercise 1</h3>
+<h2 id="exercises">Exercises</h2>
+<h3 id="exercise-1">Exercise 1</h3>
 <p>Given the following <code>Direction</code> type, use template literal types to create <code>Padding</code> and <code>Margin</code>, which should be a string literal union for all the diffent paddings and margins.</p>
 <pre><code class="language-ts">type Padding = &quot;padding-top&quot; | &quot;padding-left&quot;; // ...
 type Margin = &quot;margin-top&quot; | &quot;margin-left&quot;; // ...
@@ -584,7 +584,7 @@ export type Margin = `margin-${Direction}`;
 </code></pre>
 <div line-highlight='1, 3-4'></div>
 <p></details></p>
-<h3>Exercise 2</h3>
+<h3 id="exercise-2">Exercise 2</h3>
 <p>Let’s create a type that reverses <code>Getter&lt;T&gt;</code>. <code>FromGetter&lt;T&gt;</code> should take an object type and create a new type from all keys starting
 with <code>get</code>. The new type should have the key name be camel-cased and the type of the property should resolve to the <code>ReturnType</code> of
 the getter if it is a function. If it is not a function, it should resolve to whatever it was.</p>

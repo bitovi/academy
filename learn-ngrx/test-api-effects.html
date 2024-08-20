@@ -606,25 +606,25 @@ covering CanJS core libraries.">
     <blockquote>
 <p><strong>Quick Start</strong>: You can checkout <a href="https://github.com/bitovi/angular-ngrx-chat/tree/create-api-effects">this branch</a> to get your codebase ready to work on this section.</p>
 </blockquote>
-<h2>Overview</h2>
+<h2 id="overview">Overview</h2>
 <ol>
 <li><p>Verify <code>LoginActions.loginSuccess</code> Action dispatches when API request is successful.</p></li>
 <li><p>Verify <code>LoginActions.loginFailure</code> Action dispatches when API request fails.</p></li>
 <li><p>Verify <code>LoginActions.logoutSuccess</code> Action dispatches when API request is successful.</p></li>
 <li><p>Verify <code>LoginActions.logoutFailure</code> Action dispatches when API request fails.</p></li>
 </ol>
-<h2>Running Tests</h2>
+<h2 id="running-tests">Running Tests</h2>
 <p>To run unit tests in your project, you can either use the <code>test</code> npm script, or the <code>ng test</code> command:</p>
 <pre><code class="language-bash">npm run test
 # or
 ng test --watch
 </code></pre>
 <p>The <code>--watch</code> switch will rerun your tests whenever a code file changes. You can skip it to just run all tests once.</p>
-<h2>Description</h2>
+<h2 id="description">Description</h2>
 <p>When testing Effects, we will verify that a specific Action gets dispatched depending on the circumstances when an Effect is triggered. In our case, we are working with Effects that depend on an API response. We can take advantage of spies to simulate different API responses.</p>
-<h2>Update <code>login.effects.spec.ts</code></h2>
+<h2 id="update-codelogineffectsspectscode">Update <code>login.effects.spec.ts</code></h2>
 <p>We will walk through updating <code>src/app/store/login/login.effects.spec.ts</code> to run tests for your Effects.</p>
-<h3>Setting Up our <code>TestBed</code></h3>
+<h3 id="setting-up-our-codetestbedcode">Setting Up our <code>TestBed</code></h3>
 <p>When testing Effects, we will need to mock the <a href="https://ngrx.io/api/effects/Actions"><code>Actions</code> class</a> since it plays a major role on <a href="https://ngrx.io/guide/effects#writing-effects">how Effects work</a>. NgRx provides a convenient way to do this through <a href="https://ngrx.io/api/effects/testing/provideMockActions"><code>provideMockActions()</code></a>:</p>
 <p><details open>
 <summary>src/app/store/login/login.effects.spec.ts</summary></p>
@@ -695,7 +695,7 @@ describe('login$', () =&gt; {
 
 </code></pre>
 <div line-highlight='5-12, 16-19'></div>
-<h3>Mocking <code>LoginService</code></h3>
+<h3 id="mocking-codeloginservicecode">Mocking <code>LoginService</code></h3>
 <p>Since our Effects use <code>LoginService</code> from <code>ngx-learn-ngrx</code>, we will need to also mock this <code>Service</code>:</p>
 <p><details open>
 <summary>src/app/store/login/login.effects.spec.ts</summary></p>
@@ -757,7 +757,7 @@ describe('LoginEffects', () =&gt; {
 </code></pre>
  <div line-highlight="10,12-18,24,33-36,41,only"></div>
 </details>
-<h3>Verifying <code>LoginEffects.login$</code> Effect Dispatches <code>LoginActions.loginSuccess</code> When API Request is Successful</h3>
+<h3 id="verifying-codelogineffectslogincode-effect-dispatches-codeloginactionsloginsuccesscode-when-api-request-is-successful">Verifying <code>LoginEffects.login$</code> Effect Dispatches <code>LoginActions.loginSuccess</code> When API Request is Successful</h3>
 <p>We will create a <a href="https://jasmine.github.io/tutorials/your_first_suite#:~:text=%C2%B6-,Spies,-Jasmine%20has%20test">spy</a> to verify <code>LoginService.login()</code> is called with the expected arguments. Then we will verify that <code>LoginActions.loginSuccess</code> is dispatched with the proper payload:</p>
 <p><details open>
 <summary>src/app/store/login/login.effects.spec.ts</summary></p>
@@ -843,7 +843,7 @@ describe('LoginEffects', () =&gt; {
 <blockquote>
 <p>Note that we are taking advantage of the <a href="https://jasmine.github.io/tutorials/async#callbacks"><code>done()</code> callback to write an asynchronous test</a>. This is common when writing tests where you subscribe to an <code>Observable</code> to perform a test.</p>
 </blockquote>
-<h3>Verifying <code>LoginEffects.login$</code> Effect Dispatches <code>LoginActions.loginFailure</code> When API Request is NOT Successful</h3>
+<h3 id="verifying-codelogineffectslogincode-effect-dispatches-codeloginactionsloginfailurecode-when-api-request-is-not-successful">Verifying <code>LoginEffects.login$</code> Effect Dispatches <code>LoginActions.loginFailure</code> When API Request is NOT Successful</h3>
 <p>To verify different behaviors for <code>LoginService</code>, we can take advantage of <a href="https://jasmine.github.io/tutorials/your_first_suite#:~:text=%C2%B6-,Spies,-Jasmine%20has%20test">spies</a> to return a different return value:</p>
 <p><details open>
 <summary>src/app/store/login/login.effects.spec.ts</summary></p>
@@ -947,7 +947,7 @@ describe('LoginEffects', () =&gt; {
 </code></pre>
  <div line-highlight="5,75-78,80-84,86-90,92-94,only"></div>
 </details>
-<h3>Verifying <code>LoginEffects.logout$</code> Effect Dispatches <code>LoginActions.logoutSuccess</code> When API Request is Successful</h3>
+<h3 id="verifying-codelogineffectslogoutcode-effect-dispatches-codeloginactionslogoutsuccesscode-when-api-request-is-successful">Verifying <code>LoginEffects.logout$</code> Effect Dispatches <code>LoginActions.logoutSuccess</code> When API Request is Successful</h3>
 <p><details open>
 <summary>src/app/store/login/login.effects.spec.ts</summary></p>
 <pre><code class="language-ts">// src/app/store/login/login.effects.spec.ts
@@ -1063,7 +1063,7 @@ describe('LoginEffects', () =&gt; {
 </code></pre>
  <div line-highlight="97-100,102-108,only"></div>
 </details>
-<h3>Verifying <code>LoginEffects.logout$</code> Effect Dispatches <code>LoginActions.logoutFailure</code> When API Request is NOT Successful</h3>
+<h3 id="verifying-codelogineffectslogoutcode-effect-dispatches-codeloginactionslogoutfailurecode-when-api-request-is-not-successful">Verifying <code>LoginEffects.logout$</code> Effect Dispatches <code>LoginActions.logoutFailure</code> When API Request is NOT Successful</h3>
 <p><details open>
 <summary>src/app/store/login/login.effects.spec.ts</summary></p>
 <pre><code class="language-ts">// src/app/store/login/login.effects.spec.ts
@@ -1197,7 +1197,7 @@ describe('LoginEffects', () =&gt; {
 </code></pre>
  <div line-highlight="109-112,114-115,117-121,123-125,only"></div>
 </details>
-<h2>Final Result</h2>
+<h2 id="final-result">Final Result</h2>
 <p>At the end of this section, the following spec file(s) should be updated. After each spec file has been updated and all the tests have passed, this means that all the previous sections have been completed successfully:</p>
 <p><details>
 <summary>src/app/store/login/login.effects.spec.ts</summary></p>

@@ -528,7 +528,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this part we will:</p>
 <ul>
 <li>Update the <code>&lt;google-map-view&gt;</code> component to display markers.</li>
@@ -536,19 +536,19 @@ covering CanJS core libraries.">
 <li>Add a marker for each vehicle using the embedded Googles Maps widget.</li>
 <li>Reflect back the array of vehicles and array of markers as properties on the <code>&lt;google-map-view&gt;</code>.</li>
 </ul>
-<h2>Problem</h2>
+<h2 id="problem">Problem</h2>
 <p>In the previous exercise we fetched a list of vehicles when a route is selected and logged them to the console. Now we want to instead pass those to the <code>google-map-view</code> element. The <code>google-map-view</code> element should add a marker for each vehicle.</p>
 <p>When an error occurs in the API it should wipe away any existing markers.</p>
 <p><img src="../static/img/web-components/bt-display-markers.gif"
 style="border: solid 1px black; max-width: 100%;"
 alt="Markers being displayed when a route is selected." /></p>
-<h2>How to Solve This Problem</h2>
+<h2 id="how-to-solve-this-problem">How to Solve This Problem</h2>
 <ol>
 <li>Update the <code>bus-tracker</code> component to pass the vehicles list to the <code>google-map-view</code> via the <code>vehicles</code> property.</li>
 <li>Add a getter/setter pair on the <code>google-map-view</code> to handle <code>.vehicles</code>. When set it should use the Marker snippet (below) to create a new marker for <em>each</em> vehicle.</li>
 <li>When a route is selected and markers are already displayed for a previous route, remove the previous markers.</li>
 </ol>
-<h2>Technical requirements</h2>
+<h2 id="technical-requirements">Technical requirements</h2>
 <p>To create a new marker use <code>new google.maps.Marker</code>. This takes an object with some options that look like this:</p>
 <pre><code class="language-js">new google.maps.Marker({
   position: {
@@ -562,12 +562,12 @@ alt="Markers being displayed when a route is selected." /></p>
 <p>Additionally this snippet can be used to remove a marker:</p>
 <pre><code class="language-js">marker.setMap(null);
 </code></pre>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <ul>
 <li>How to use JavaScript getters and setters to handle dynamic property values.</li>
 <li>How to use default values in custom elements.</li>
 </ul>
-<h3>getters/setters</h3>
+<h3 id="getterssetters">getters/setters</h3>
 <p>JavaScript <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set">setters</a> allow observation of property changes. Adding a setter for <code>vehicles</code> provides a hook for when the <code>&lt;bus-tracker&gt;</code> component passes the array of vehicles for the selected route.</p>
 <p>In order to reflect back the list of vehicles in a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get">getter</a> you can save the vehicle list to another property on the element (like an underscore property). It’s common when a setter exists that a getter does as well.</p>
 <p>This is an example of a getter/setter pair in a JavaScript class.</p>
@@ -626,7 +626,7 @@ setTimeout(() =&gt; counter.count--, 15000);
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='15-22'></div>
-<h3>Default values</h3>
+<h3 id="default-values">Default values</h3>
 <p>Most properties supported by built-in elements have some sort of default value. For example the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress">&lt;progress&gt;</a> element has a <code>max</code> property that defaults to <code>1</code>: <code>document.createElement('progress').max; // 1</code>. <strong>All</strong> elements have an <code>onclick</code> property whose default value is <code>null</code>. It’s good practice to provide default values for your supported public properties, and these can be set in the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor">constructor</a>. Combining getters, setters and default values for properties makes your component more robust.</p>
 <pre><code class="language-js">class DogElement extends HTMLElement {
   constructor() {
@@ -641,7 +641,7 @@ setTimeout(() =&gt; counter.count--, 15000);
   }
 }
 </code></pre>
-<h2>Solution</h2>
+<h2 id="solution">Solution</h2>
 <p>✏️ Add default values for <code>markers</code> and <code>vehicles</code> in the constructor (use an underscore property for vehicles). Add a getter/setter pair for <code>vehicles</code>, where the setter creates new markers on the map with <code>new google.maps.Marker</code>.</p>
 <p><details>
 <summary>Click to see the solution</summary></p>

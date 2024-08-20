@@ -543,21 +543,21 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, we will:</p>
 <ul>
 <li>Learn the basics of creating components in React</li>
 <li>Discover how components are structured</li>
 <li>Review how React components are (fundamentally) functions</li>
 </ul>
-<h2>Objective: Create a React component</h2>
+<h2 id="objective-create-a-react-component">Objective: Create a React component</h2>
 <p>Our <code>App</code> component currently shows our restaurant list, but eventually we’ll want to show other page content. Let’s prepare now by moving all of the JSX from <code>App</code> to a new component called <code>RestaurantList</code>.</p>
 <p>In our Place My Order app, we want to:</p>
 <ul>
 <li>Create our first brand new React component (RestaurantList)</li>
 <li>Move the logic from our App component to our new RestaurantList component</li>
 </ul>
-<h3>What are components?</h3>
+<h3 id="what-are-components">What are components?</h3>
 <p>So far, we have placed all of our JSX inside the <code>App</code> function. Notice two things about the <code>App</code> function:</p>
 <ol>
 <li>The name starts with a capital letter</li>
@@ -569,7 +569,7 @@ covering CanJS core libraries.">
 </code></pre>
 <p>In React, we call this a component. When you create a component in React, you are creating building blocks that can be composed, reordered, and reused much like HTML elements.</p>
 <p>React makes it relatively straightforward to create new components. Let’s learn to build our own.</p>
-<h3>Component structure</h3>
+<h3 id="component-structure">Component structure</h3>
 <p>Let’s start by creating a component from a commonly reused element, the button.</p>
 <p>First, React component names <strong>must</strong> start with a capital letter, so we can call this <code>Button</code>. By convention component names use PascalCase when naming components, so longer component names will look like <code>IconButton</code>. Avoid hyphens and underscores.</p>
 <p>Second, our component must return either <code>null</code> or something renderable, like JSX. The return value of our components is almost always JSX, though JavaScript primitives like <code>string</code> and <code>number</code> are also valid. Components cannot return complex types like arrays or objects.</p>
@@ -588,7 +588,7 @@ covering CanJS core libraries.">
   )
 }
 </code></pre>
-<h3>React components are functions</h3>
+<h3 id="react-components-are-functions">React components are functions</h3>
 <p>The JSX syntax allows function components to look like HTML, but underneath they are still functions. The return of each component is unique and you can use the same component multiple times.</p>
 <p>You can think of components as fancy functions.</p>
 <p>While you can’t actually do the following, this is functionally similar to what React is doing for you.</p>
@@ -605,7 +605,7 @@ const App: React.FC = () =&gt; {
 }
 </code></pre>
 <p>Did you notice the <code>React.FC</code> that was used in the previous example to type the <code>App</code> const? Because we’re using TypeScript with our project, we can apply types to help make sure the function component is properly formed. React provides the type <code>FC</code> (an abbreviation for &quot;function component&quot;) that can be applied to a function component. This type defines the arguments and return value that a function component must implement.</p>
-<h3>Setup</h3>
+<h3 id="setup">Setup</h3>
 <p>It’s best practice to create a new folder that will contain all of the related files for that component, including test and CSS files.</p>
 <p>✏️ Create <strong>src/pages/</strong> (folder)</p>
 <p>✏️ Create <strong>src/pages/RestaurantList/</strong> (folder)</p>
@@ -707,7 +707,7 @@ export default App
 
 </code></pre>
  <div line-highlight="3,only"></div>
-<h3>Verify</h3>
+<h3 id="verify">Verify</h3>
 <p>✏️ Create <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
 import { render, screen } from &quot;@testing-library/react&quot;
@@ -803,13 +803,13 @@ describe(&quot;App Component&quot;, () =&gt; {
 
 </code></pre>
  <div line-highlight="3,7-11,13-15,17,only"></div>
-<h3>Exercise</h3>
+<h3 id="exercise">Exercise</h3>
 <ul>
 <li>Move the logic in our <code>App</code> component to our new <code>RestaurantList</code> component.</li>
 <li>Update our <code>App</code> component to use our new <code>RestaurantList</code> component.</li>
 </ul>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/04-components/01-problem?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/04-components/01-problem?file=src/App.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution</h3>
+<h3 id="solution">Solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/App.tsx</strong></p>
@@ -911,7 +911,7 @@ export default RestaurantList
  <div line-highlight="5-36,38-46,48-54,56-61,63-74,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/04-components/01-solution?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/04-components/01-solution?file=src/App.tsx">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>Next we’ll learn to pass arguments to our components through props.</p>
 
 </section>

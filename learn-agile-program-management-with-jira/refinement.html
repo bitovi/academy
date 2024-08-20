@@ -574,7 +574,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>The purpose of the refinement stage is to clarify the functionality of the initiative well enough so it can be validated, estimated, and eventually prioritized.</p>
 <p>We will learn:</p>
 <ul>
@@ -587,11 +587,11 @@ class="content-400-1080-shadow"/></p>
 <p>The following is the <a href="https://docs.google.com/presentation/d/1iQpbLm1R55JdzCfdMBQ4ruoehmpz8v-pN0iEMNJWa18/edit?usp=sharing">Google Slides presentation</a>
 for this material:</p>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRLJHc6dl9TqFCwtizJx0RrRgH8Vn9ziFkuGmNgfDaUWT0G6A9_5UvWg9urS5V4n6O2mmmQKv4OkhPu/embed?start=false&loop=false&delayms=3000" frameborder="0" class="block-16-by-9" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-<h2>What are the goals of refinement?</h2>
+<h2 id="what-are-the-goals-of-refinement">What are the goals of refinement?</h2>
 <p>Getting to a Refined status is ultimately about making sure everyone has enough detail to effectively prioritize the initiative, but not so much detail that it takes too long to make a decision.</p>
 <p>To prioritize an initiative, you ultimately need to know how much value the initiative might create and how much effort or costs the initiative will consume.</p>
 <p>A good rule of thumb is that the initiative should have enough detail enough to validate AND estimate it with at least about 50% confidence.</p>
-<h2>What’s needed for refinement?</h2>
+<h2 id="whats-needed-for-refinement">What’s needed for refinement?</h2>
 <p>A fully <code>refined</code> initiative will not only expand the <code>idea</code> content, but it will typically update the content that was provided in the <code>idea</code> status.</p>
 <p>This means that the initiative’s title, description, impact, and problem statement might all be changed. Furthermore, we also recommend adding the following sections:</p>
 <ul>
@@ -677,9 +677,9 @@ A: <code>Fred</code> - Delete the promotion in the admin tool.</li>
 </div>
 </div>
 <p>In the next sections, we will break down our approach to adding these new sections.</p>
-<h2>Writing the People Section</h2>
+<h2 id="writing-the-people-section">Writing the People Section</h2>
 <p>The people section is a list of people who should be consulted on the direction and development of the initiative. Who are the subject matter experts? What people from other departments will you need to work with? Who are the engineering and architecture leads who will help you estimate the work and guide what is in and out of scope?</p>
-<h2>Writing the High-Level Use Cases Section</h2>
+<h2 id="writing-the-high-level-use-cases-section">Writing the High-Level Use Cases Section</h2>
 <p>The goal of defining the use cases is to try and capture the ways different users will use the proposed solution. The use cases should be end-to-end, that is, they should encompass all the major interactions necessary to result in the desired impact and solve the initiative’s problem.</p>
 <p>We suggest writing the “happy path” use case first. The “happy path” is the most likely path that solves the initiative’s problem.</p>
 <p>The use cases should also include the major “unhappy paths”. These are the critical paths where things might go wrong: edge cases, users doing something unexpected.</p>
@@ -689,18 +689,18 @@ A: <code>Fred</code> - Delete the promotion in the admin tool.</li>
 <li><p>You should be looking to remove scope whenever possible. If you can release something early, get feedback, and then iterate, you’ll almost always be better off being better informed. Put any items that can be deferred in the Out-of-scope section.</p></li>
 </ul>
 <p>These use cases will eventually be useful for breaking down the work and estimating.</p>
-<h2>Building a Wireframe User Flow</h2>
+<h2 id="building-a-wireframe-user-flow">Building a Wireframe User Flow</h2>
 <p>A picture is worth a thousand words. A wireframe is, by far, the easiest way of getting consensus around what a solution might look like. We strongly suggest wireframing the user journey. Typically, we end up discussing and sharing the wireframe much more than the written use cases.</p>
 <p>The following is the lo-fi wireframe we created for promotions:</p>
 <p><img src="../static/img/program-management-with-jira/refinement/wireframe-small.png"
 class="content-400-1080-shadow"/></p>
 <p>Wireframing can be a bit dangerous. The wireframes you create can be “sticky”, that is, these designs might set expectations and glue people to the specifics of the wireframe, preventing alternative user flows and designs from being explored. You hopefully have a team of highly skilled product designers and usability experts whose entire job is to determine the final design that best solves the initiative’s problem.</p>
 <p>To balance these concerns (getting consensus while leaving room for design changes), wireframing should be done very “ugly”. Do not make the designs look nice. We suggest balamiq as a wireframing tool. It can build most user interfaces very quickly but also results in designs that are sufficiently unpolished.</p>
-<h2>Writing the Out-Of-Scope Section</h2>
+<h2 id="writing-the-out-of-scope-section">Writing the Out-Of-Scope Section</h2>
 <p>The out-of-scope section is a list of features that will not be included in the release.</p>
 <p>The out-of-scope section is arguably more important than the use case section. We should strive to limit the scope of the initiative to a <a href="https://www.agilealliance.org/glossary/mmf/">Minimal Marketable Feature</a> (MMF). A <em>Minimal Marketable Feature</em> is the smallest iteration of the initiative where some impact can be felt by the customer (or the product team). This is the shortest path for the team to collect feedback and continue confirming value. If you can release something early, get feedback, and then iterate, you’ll almost always be better off being better informed.</p>
 <p>If you are a consultant, this section can be particularly important to manage customer and stakeholder expectations.</p>
-<h2>Writing the Considerations Section</h2>
+<h2 id="writing-the-considerations-section">Writing the Considerations Section</h2>
 <p>The considerations section is anything that you uncover while scoping the initiative that should be retained while working through the initiative. Examples might include:</p>
 <ul>
 <li><p>Technical limitations or challenges</p></li>
@@ -708,7 +708,7 @@ class="content-400-1080-shadow"/></p>
 <li><p>Related work items or initiatives</p></li>
 <li><p>Any known unknowns.</p></li>
 </ul>
-<h2>Writing the Questions Section</h2>
+<h2 id="writing-the-questions-section">Writing the Questions Section</h2>
 <p>The questions section details any questions you or other team members might have about the initiative. When answers are known, they should be included. It’s also a good idea to indicate who asked and answered the question.</p>
 <p>Example Questions might include:</p>
 <ul>
@@ -716,18 +716,18 @@ class="content-400-1080-shadow"/></p>
 <li><p>Questions on the technical implementation</p></li>
 <li><p>Questions on timelines</p></li>
 </ul>
-<h2>The Refinement and Refined Columns</h2>
+<h2 id="the-refinement-and-refined-columns">The Refinement and Refined Columns</h2>
 <p>The continuous exploration board has a <code>Refinement</code> and <code>Refined</code> column.</p>
 <p><img src="../static/img/program-management-with-jira/refinement/kanban-board.png"
 class="content-400-1080-shadow"/></p>
 <p>The <code>Refinement</code> column is the list of initiatives that you and other Program Managers are refining. Once refinement is complete, those initiatives move into the <code>Refined</code> column. Finally, once an initiative is ready to be validated or estimated, the initiative will move into the <code>Estimating / Validating</code> column.</p>
 <p>The <code>Refinement</code> and <code>Refined</code> columns should be sorted by priority (which initiatives have the most value).</p>
 <p>The <code>Refined</code> column can be thought of as a backlog of “concrete” ideas ready to have their value more accurately verified and their cost more accurately estimated.</p>
-<h2>Moving initiatives into <code>Refinement</code></h2>
+<h2 id="moving-initiatives-into-coderefinementcode">Moving initiatives into <code>Refinement</code></h2>
 <p>If the team responsible for scoping initiatives has capacity, then initiatives can be moved into the <code>Refinement</code> status. Make sure to assign the person responsible for scoping the initiative.</p>
 <p>For a product that is already released, a product manager might take on one or two initiatives every sprint (assuming that sprints are used and sprints are 2 weeks). Often, a product manager might be working through several initiatives at once as initiatives might take anywhere from 1 to 6 weeks to get ready for development.</p>
 <p>We will go into more detail on how to manage the overall continuous exploration process in the Management part of the training.</p>
-<h2>Promoting an initiative to <code>Refined</code></h2>
+<h2 id="promoting-an-initiative-to-coderefinedcode">Promoting an initiative to <code>Refined</code></h2>
 <p>An initiative is <code>Refined</code> when it clarifies a proposed solution “well enough” to the product team so the product team will be able to:</p>
 <ul>
 <li><p>Explore ideas on how to evaluate and validate if the proposed solution will achieve its goals.</p></li>
@@ -735,11 +735,11 @@ class="content-400-1080-shadow"/></p>
 </ul>
 <p>A product manager will likely have a few rounds of meetings with team members to document all the sections above. Once the product manager feels like there is sufficient clarity, the product manager should review their initiatives with the team and stakeholders before moving into the refined status.</p>
 <p>Ultimately, the team will actually need to <code>validate</code> or <code>estimate</code> the initiative to truly know if it has enough details, but over time a product manager will develop a strong sense of when enough clarity has been achieved.</p>
-<h2>Moving initiatives to <code>Validating</code></h2>
+<h2 id="moving-initiatives-to-codevalidatingcode">Moving initiatives to <code>Validating</code></h2>
 <p>We go into detail about when and how initiatives move into the <code>Validating</code> status. In short, when the product team has agreed to what is necessary for validation and they have the capacity to take on the work, the initiative’s status should be changed to <code>validating</code>.</p>
-<h2>Exercise</h2>
+<h2 id="exercise">Exercise</h2>
 <p>In this exercise, you will refine your initiative, using your team members and instructors as pretend stakeholders, engineers, designers, and business analysts to answer questions and shape the initiative.</p>
-<h3>Step 1: Decide Roles</h3>
+<h3 id="step-1-decide-roles">Step 1: Decide Roles</h3>
 <p>Unfortunately, we don’t have a full product team at this training. So the instructors and other trainees will need to pretend to be team members across the Itsy Bitsy organization.</p>
 <p>For this step you will need to:</p>
 <ol>
@@ -752,7 +752,7 @@ class="content-400-1080-shadow"/></p>
 <p>Discuss with the team the different people you need. The instructor will help determine which trainees or instructor(s) will take on which roles.</p>
 <p>✏️ Write the specific people in your “people” section.</p></li>
 </ol>
-<h3>Step 2: Write up the additional sections</h3>
+<h3 id="step-2-write-up-the-additional-sections">Step 2: Write up the additional sections</h3>
 <p>Take your first attempt at writing up the additional sections:</p>
 <ul>
 <li><p>Use cases, including wireframes</p></li>
@@ -761,11 +761,11 @@ class="content-400-1080-shadow"/></p>
 <li><p>Questions</p></li>
 </ul>
 <p>You will get to review with your team in the next step.</p>
-<h3>Step 3: Review with your team</h3>
+<h3 id="step-3-review-with-your-team">Step 3: Review with your team</h3>
 <p>Review with the people identified in your initiative. Get your questions answered.</p>
-<h3>Step 4: Update the initiative</h3>
+<h3 id="step-4-update-the-initiative">Step 4: Update the initiative</h3>
 <p>If the initiative wasn’t clear, or there were things missing, update it.</p>
-<h3>Step 5: Final Review</h3>
+<h3 id="step-5-final-review">Step 5: Final Review</h3>
 <p>Ask your team if they think they understand the initiative well enough:</p>
 <ul>
 <li><p>Are behaviors well enough known that if they were to build the solution, folks wouldn’t be surprised by the result.</p></li>

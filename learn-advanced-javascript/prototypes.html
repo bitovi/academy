@@ -494,7 +494,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <ul>
 <li>Shared properties</li>
 <li>Methods/properties on a prototype</li>
@@ -502,12 +502,12 @@ covering CanJS core libraries.">
 <li>Object.create</li>
 <li>Exercise!</li>
 </ul>
-<h2>Video</h2>
+<h2 id="video">Video</h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/uu-Cgn_CSoE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<h2>Slides</h2>
+<h2 id="slides">Slides</h2>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQg_A0R1JaF1H6bKbU1FjadnGYrbty_1jRqVbwQ79y7A3LQxtRlx22GomawLcECzQWIIv5xHleyRh0r/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-<h2>Exercise 1: new Operator</h2>
-<h3>The problem</h3>
+<h2 id="exercise-1-new-operator">Exercise 1: new Operator</h2>
+<h3 id="the-problem">The problem</h3>
 <p>Write the <code>new</code> operator as if it was implemented in JS as a function. For example,
 instead of calling <code>new Person('name')</code>, we will call <code>NEW(Person,['name'])</code> as follows:</p>
 <pre><code class="language-js">function Person(name) {
@@ -556,7 +556,7 @@ QUnit.test('NEW works', function(){
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='5-7,only'></div>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <p>The <code>new</code> operator does three things:</p>
 <ol>
 <li>Creates a new object.</li>
@@ -569,7 +569,7 @@ QUnit.test('NEW works', function(){
 <li>Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply">apply</a> to
 call a function (also constructor functions) with a <code>this</code> value and an array of arguments.</li>
 </ul>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
 &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.14.0.css&quot;&gt;
 &lt;script src=&quot;//code.jquery.com/qunit/qunit-1.14.0.js&quot;&gt;&lt;/script&gt;
@@ -611,8 +611,8 @@ QUnit.test('NEW works', function(){
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='5-19,only'></div>
-<h2>Exercise 2: instanceof Operator</h2>
-<h3>The problem</h3>
+<h2 id="exercise-2-instanceof-operator">Exercise 2: instanceof Operator</h2>
+<h3 id="the-problem">The problem</h3>
 <p>Write the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof">instanceof</a> operator as if it was implemented in JS. For example, instead of calling <code>person instanceof Person</code>,
 we will call it as <code>INSTANCEOF(person, Person)</code> as follows:</p>
 <pre><code class="language-js">var Person = function(name) {
@@ -658,7 +658,7 @@ QUnit.test('INSTANCEOF works', function() {
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='5-7,only'></div>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof">instanceof</a>
 operator returns true if the prototype property of a constructor appears anywhere in the prototype chain of an object.</p>
 <p>A constructor function’s prototype is not an instance of the constructor function:</p>
@@ -668,7 +668,7 @@ operator returns true if the prototype property of a constructor appears anywher
 
 console.log( Person.prototype instanceof Person ) // Logs: false
 </code></pre>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
 &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.14.0.css&quot;&gt;
 &lt;script src=&quot;//code.jquery.com/qunit/qunit-1.14.0.js&quot;&gt;&lt;/script&gt;

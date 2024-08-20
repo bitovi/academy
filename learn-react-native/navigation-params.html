@@ -678,15 +678,15 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, you will:</p>
 <ul>
 <li>Strongly type the navigation parameters of an application.</li>
 <li>Maintain and pass the state using route params through navigation.</li>
 </ul>
-<h2>Objective 1: Intro to navigation parameters</h2>
+<h2 id="objective-1-intro-to-navigation-parameters">Objective 1: Intro to navigation parameters</h2>
 <p>Now that we’ve successfully implemented React Navigation in our application, we can navigate between screens easily. The only remaining issue is that we lack away to pass information, or state, between screens. So, our new goal for this section is passing state between screens using navigation parameters.</p>
-<h3>Navigation parameters</h3>
+<h3 id="navigation-parameters">Navigation parameters</h3>
 <p>If you’re familiar with web development, you might know the best practice to update the URL with parameters that reflect the state of the application.
 For Single Page Applications (SPAs), this includes updating the URL with the current navigation state.</p>
 <p>Since our React Native application isn’t navigated through URLs, we aren’t able to pass the parameters through a URL.
@@ -772,7 +772,7 @@ const UserProfile: React.FC&lt;ProfileProps&gt; = ({ route }) =&gt; {
 <p>To make sure the <code>Props</code> for our component match up to what we have for our <code>StackNavigator</code>, we can import the type we made and reference the <code>UserProfile</code> props specifically.</p>
 <p>As you can see, in the <code>UserProfile</code> component, we can access the <code>route.params</code> of the component if any are provided. We grab the <code>user</code>, and are able to use its properties throughout the component.</p>
 <p>This includes passing the state of <code>user</code> through <code>navigation</code>. We can add <code>user</code>, and other properties as an object for the second argument of <code>navigation.navigate</code>. Thus on the <code>Storefront</code> screen, all of those params passed will be accessible within its component.</p>
-<h3>Setup 1</h3>
+<h3 id="setup-1">Setup 1</h3>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
@@ -969,7 +969,7 @@ export default StateList
 
 </code></pre>
  <div line-highlight="2,5,22-23,25,39,only"></div>
-<h3>Verify 1</h3>
+<h3 id="verify-1">Verify 1</h3>
 <p>✏️ Update <strong>src/screens/StateList/StateList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { render, screen } from &quot;@testing-library/react-native&quot;
@@ -997,12 +997,12 @@ describe(&quot;Screens/StateList&quot;, () =&gt; {
 
 </code></pre>
  <div line-highlight="6-10,13,16-17,only"></div>
-<h3>Exercise 1</h3>
+<h3 id="exercise-1">Exercise 1</h3>
 <ul>
 <li>Update the typing of <code>StateList</code> component, using the type <code>Props</code> made by the <code>StackScreenProps</code>.</li>
 <li>Navigate to the CityList view.</li>
 </ul>
-<h3>Solution 1</h3>
+<h3 id="solution-1">Solution 1</h3>
 <p><strong>Note:</strong> The tests will pass before you make any changes, so use the application in the emulator to verify your solution!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -1061,9 +1061,9 @@ export default StateList
 </code></pre>
  <div line-highlight="25,38,only"></div>
 <p></details></p>
-<h2>Objective 2: Implement city and restaurant params</h2>
+<h2 id="objective-2-implement-city-and-restaurant-params">Objective 2: Implement city and restaurant params</h2>
 <p>Now let’s implement the <code>CityList</code> and <code>RestaurantList</code> params!</p>
-<h3>Setup 2</h3>
+<h3 id="setup-2">Setup 2</h3>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
@@ -1342,7 +1342,7 @@ export default RestaurantList
 
 </code></pre>
  <div line-highlight="2,5,9-10,53-55,65,only"></div>
-<h3>Verify 2</h3>
+<h3 id="verify-2">Verify 2</h3>
 <p>✏️ Update <strong>src/screens/CityList/CityList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { render, screen } from &quot;@testing-library/react-native&quot;
@@ -1412,14 +1412,14 @@ describe(&quot;Screens/RestaurantList&quot;, () =&gt; {
 
 </code></pre>
  <div line-highlight="6-20,26-27,only"></div>
-<h3>Exercise 2</h3>
+<h3 id="exercise-2">Exercise 2</h3>
 <p>For both the <code>CityList</code> and <code>RestaurantList</code> components:</p>
 <ul>
 <li>Update the the typing of each component to use the given <code>Props</code>.</li>
 <li>Destructure the <code>route</code> for each component, to fetch its stored state.</li>
 <li>Update the <code>navigation.navigate</code> to accept the necessary parameters.</li>
 </ul>
-<h3>Solution 2</h3>
+<h3 id="solution-2">Solution 2</h3>
 <p><strong>Note:</strong> The tests will pass before you make any changes, so use the application in the emulator to verify your solution!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -1552,7 +1552,7 @@ export default RestaurantList
 </code></pre>
  <div line-highlight="53,63-65,only"></div>
 <p></details></p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>Next, we’ll cover an essential part of nearly all web applications: <a href="./making-http-requests.html">Making HTTP Requests</a>.</p>
 
 </section>

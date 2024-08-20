@@ -543,7 +543,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, we will:</p>
 <ul>
 <li>Define interfaces for <code>useState</code></li>
@@ -557,9 +557,9 @@ covering CanJS core libraries.">
 <li>Handle HTTP error statuses</li>
 <li>Catch network errors</li>
 </ul>
-<h2>Objective 1: Add a <code>fetch</code> request for states</h2>
+<h2 id="objective-1-add-a-codefetchcode-request-for-states">Objective 1: Add a <code>fetch</code> request for states</h2>
 <p>So far we’ve only had hard-coded data for our states, cities, and restaurants. Let’s start loading data from an API server, beginning with the list of states!</p>
-<h3>Defining interfaces for <code>useState</code></h3>
+<h3 id="defining-interfaces-for-codeusestatecode">Defining interfaces for <code>useState</code></h3>
 <p>When building React components, you may sometimes have local state variables that always change together, and thus would benefit by being in a single <code>useState()</code> variable together:</p>
 <pre><code class="language-tsx">import { useState } from &quot;react&quot;
 
@@ -595,7 +595,7 @@ export default UserProfileComponent
 </code></pre>
 <div line-highlight='3-6, 9, 15-18, only'></div>
 <p>In the example above, we have a <code>UserProfile</code> interface that keeps track of an <code>email</code> and <code>name</code>. We can use that interface when we call <code>useState()</code> so TypeScript is aware of the typing for the state variable and its setter.</p>
-<h3>The <code>useEffect</code> Hook</h3>
+<h3 id="the-codeuseeffectcode-hook">The <code>useEffect</code> Hook</h3>
 <p><code>useEffect</code> is a React Hook that lets you perform side effects in your function components. It serves as a powerful tool to execute code in response to component renders or state changes.</p>
 <p>Here is an example component with <code>useEffect</code>:</p>
 <pre><code class="language-tsx">import { useEffect, useState } from &quot;react&quot;
@@ -638,14 +638,14 @@ export default GeolocationComponent
 </code></pre>
 <div line-highlight='1, 11-21, only'></div>
 <p>Let’s break this example down by the two arguments that <code>useEffect</code> takes:</p>
-<h3>Effect callback function</h3>
+<h3 id="effect-callback-function">Effect callback function</h3>
 <p>The first argument of <code>useEffect</code> is a function, often referred to as the “effect” function. This is where you perform your side effects, such as fetching data, setting up a subscription, or manually changing the DOM in React components.</p>
 <p>The key aspect of this function is that it’s executed after the component renders. The effects in <code>useEffect</code> don’t block the browser from updating the screen, leading to more responsive UIs.</p>
 <p>This effect function can optionally return another function, known as the “cleanup” function. The cleanup function is useful for performing any necessary cleanup activities when the component unmounts or before the component re-renders and the effect is re-invoked. Common examples include clearing timers, canceling network requests, or removing event listeners.</p>
-<h3>The dependency array</h3>
+<h3 id="the-dependency-array">The dependency array</h3>
 <p>The second argument of <code>useEffect</code> is an array, called the “dependency array”, which determines when your effect function should be called. The behavior of the effect changes based on the contents of this array:</p>
 <p>Consider three scenarios based on the dependency array:</p>
-<h4>Empty dependency array (<code>[]</code>)</h4>
+<h4 id="empty-dependency-array-codecode">Empty dependency array (<code>[]</code>)</h4>
 <p>If the dependency array is an empty array, the effect runs once after the initial render.</p>
 <pre><code class="language-tsx">import { useEffect, useState } from &quot;react&quot;
 
@@ -686,7 +686,7 @@ export default GeolocationComponent
 
 </code></pre>
 <div line-highlight='11-21, only'></div>
-<h4>Array with values</h4>
+<h4 id="array-with-values">Array with values</h4>
 <p>When you include values (variables, props, state) in the dependency array, the effect will only re-run if those specific values change between renders. This selective execution can optimize performance by avoiding unnecessary work.</p>
 <pre><code class="language-tsx">import { useEffect, useState } from &quot;react&quot;
 
@@ -713,7 +713,7 @@ export default NameStorage
 
 </code></pre>
 <div line-highlight='4, 6-8, only'></div>
-<h4>No dependency array</h4>
+<h4 id="no-dependency-array">No dependency array</h4>
 <p>If the dependency array is omitted, the effect runs after every render of the component. This should not be needed.</p>
 <pre><code class="language-tsx">import { useEffect, useState } from &quot;react&quot;
 
@@ -731,7 +731,7 @@ export default UpdateLogger
 
 </code></pre>
 <div line-highlight='8, only'></div>
-<h3>Async operations inside useEffect</h3>
+<h3 id="async-operations-inside-useeffect">Async operations inside useEffect</h3>
 <p>You can use APIs that return a <code>Promise</code> normally within a <code>useEffect</code>:</p>
 <pre><code class="language-tsx">import { useEffect, useState } from &quot;react&quot;
 
@@ -788,7 +788,7 @@ export default DataFetcher
 <div line-highlight='7-18, only'></div>
 <p>When using async/await, error handling is typically done using try-catch blocks. This allows you to gracefully handle any errors that occur during the execution of your async operation.</p>
 <p>In this example, if <code>fetch</code> throws an error, the <code>catch</code> block catches and handles it. This pattern is crucial to prevent unhandled promise rejections and ensure that your application can respond appropriately to failures in asynchronous tasks.</p>
-<h3>Cleanup functions</h3>
+<h3 id="cleanup-functions">Cleanup functions</h3>
 <p>The effect function can optionally return another function, known as the “cleanup” function. The cleanup function is useful for performing any necessary cleanup activities when the component unmounts or before the component re-renders and the effect is re-invoked. Common examples include clearing timers, canceling network requests, or removing event listeners.</p>
 <pre><code class="language-tsx">import { useEffect, useState } from &quot;react&quot;
 
@@ -825,7 +825,7 @@ export default WebSocketComponent
 <div line-highlight='7, 15-18, only'></div>
 <p>In the example above, we’re creating a WebSocket connection to an API when the component is first rendered (note the empty dependency array).</p>
 <p>When the component is removed from the DOM, the cleanup function will run and tear down the WebSocket connection.</p>
-<h3>Environment variables</h3>
+<h3 id="environment-variables">Environment variables</h3>
 <p>The way we’re accessing our locally run API during development may be different than how we access it in production. To prepare for this, we’ll set an environment variable to do what we need.</p>
 <p>Environment variables are dynamic-named values that can affect the way running processes on a computer will behave. In the context of software development, they are used to manage specific settings or configurations that should not be hardcoded within the application’s source code.</p>
 <p>This is particularly useful for:</p>
@@ -835,7 +835,7 @@ export default WebSocketComponent
 <li><strong>Convenience:</strong> Making it easier to update configuration settings without changing the application’s code.</li>
 </ul>
 <p>In our project, we’ll utilize environment variables to set ourselves up to be able to differentiate between the development and production environments, especially in how we connect to different instances of our API.</p>
-<h4>Using environment variables with Vite</h4>
+<h4 id="using-environment-variables-with-vite">Using environment variables with Vite</h4>
 <p>Vite, our build tool, provides an easy way to work with environment variables. In Vite, any environment variable prefixed with <code>VITE_</code> is made available in our client-side source code. This prefix is necessary because Vite only exposes variables that are explicitly meant for client-side consumption, ensuring server-side variables remain secure.</p>
 <p>Here’s how we can use it: in our project’s root directory, we can create a <code>.env</code> file with variables like this:</p>
 <pre><code>VITE_PMO_API = '//localhost:7070'
@@ -854,8 +854,8 @@ const data = await response.json()
 })
 </code></pre>
 <div line-highlight='1'></div>
-<h3>Setup 1</h3>
-<h4>Install the Place My Order API</h4>
+<h3 id="setup-1">Setup 1</h3>
+<h4 id="install-the-place-my-order-api">Install the Place My Order API</h4>
 <p>Before we begin requesting data from our API, we need to install the <code>place-my-order-api</code> module, which will generate fake restaurant data and serve it from port <code>7070</code>.</p>
 <p>✏️ Run:</p>
 <pre><code class="language-bash">npm install place-my-order-api@1
@@ -913,7 +913,7 @@ const data = await response.json()
 </code></pre>
 <p>Double check the API by navigating to <a href="http://localhost:7070/restaurants">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data.</p>
 <p>It will be helpful to have a third terminal tab for the <code>npm run api</code> command.</p>
-<h4>Create and update files</h4>
+<h4 id="create-and-update-files">Create and update files</h4>
 <p>✏️ Create <strong>.env</strong> and update it to be:</p>
 <pre><code>VITE_PMO_API = '//localhost:7070'
 </code></pre>
@@ -1057,7 +1057,7 @@ export default RestaurantList
 
 </code></pre>
  <div line-highlight="1,4,8-11,74-91,93-95,107,134,only"></div>
-<h3>Verify 1</h3>
+<h3 id="verify-1">Verify 1</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
 import { act, render, screen } from &quot;@testing-library/react&quot;
@@ -1165,14 +1165,14 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
 
 </code></pre>
  <div line-highlight="2-3,5,8-9,11-12,14,16-17,19-23,27-29,32-36,38,103,only"></div>
-<h3>Exercise 1</h3>
+<h3 id="exercise-1">Exercise 1</h3>
 <ul>
 <li>Update <code>RestaurantList.tsx</code> to call <code>useState()</code> and use the <code>StateResponse</code> interface.</li>
 <li>Call <code>useEffect()</code> and <code>fetch</code> data from <code>${import.meta.env.VITE_PMO_API}/states</code>.</li>
 </ul>
 <p>Hint: Call your state setter after you parse the JSON response from <code>fetch()</code>.</p>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/01-problem?file=src/pages/RestaurantList/RestaurantList.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/01-problem?file=src/pages/RestaurantList/RestaurantList.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution 1</h3>
+<h3 id="solution-1">Solution 1</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
@@ -1335,10 +1335,10 @@ export default RestaurantList
  <div line-highlight="18-22,24-28,30,32-39,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/01-solution?file=src/pages/RestaurantList/RestaurantList.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/01-solution?file=src/pages/RestaurantList/RestaurantList.tsx">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Objective 2: Move the fetch to a <code>useStates</code> Hook</h2>
+<h2 id="objective-2-move-the-fetch-to-a-codeusestatescode-hook">Objective 2: Move the fetch to a <code>useStates</code> Hook</h2>
 <p>In a previous section, we created a <code>useCities</code> Hook in our <code>hooks.ts</code> file so that our code would be more maintainable, then we used the Hook in our <code>&lt;RestaurantList&gt;</code> component.</p>
 <p>Our <code>&lt;RestaurantList&gt;</code> component is starting to get long again with the new state list data fetching code that we just added. Let’s refactor it and move our <code>fetch</code> logic to a custom Hook!</p>
-<h3>Setup 2</h3>
+<h3 id="setup-2">Setup 2</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
 import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
@@ -1512,7 +1512,7 @@ export function useCities(state: string): City[] {
 
 </code></pre>
  <div line-highlight="1-2,only"></div>
-<h3>Verify 2</h3>
+<h3 id="verify-2">Verify 2</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
 import { act, render, screen } from &quot;@testing-library/react&quot;
@@ -1663,13 +1663,13 @@ describe(&quot;useStates Hook&quot;, () =&gt; {
 
 </code></pre>
  <div line-highlight="1-3,24-28,30-34,36,38-44,only"></div>
-<h3>Exercise 2</h3>
+<h3 id="exercise-2">Exercise 2</h3>
 <ul>
 <li>Refactor the existing <code>useState</code> and <code>useEffect</code> logic into a new <code>useStates</code> Hook.</li>
 </ul>
 <p>Hint: After moving the state and effect logic into <code>hooks.ts</code>, use your new Hook in <code>RestaurantList.tsx</code>.</p>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-problem?file=src/services/restaurant/hooks.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-problem?file=src/services/restaurant/hooks.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution 2</h3>
+<h3 id="solution-2">Solution 2</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
@@ -1853,10 +1853,10 @@ export function useStates(): StatesResponse {
  <div line-highlight="4-7,18,20-25,27-31,33,35-42,44-45,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-solution?file=src/services/restaurant/hooks.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-solution?file=src/services/restaurant/hooks.ts">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Objective 3: Update the <code>useCities</code> Hook to fetch data from the API</h2>
+<h2 id="objective-3-update-the-codeusecitiescode-hook-to-fetch-data-from-the-api">Objective 3: Update the <code>useCities</code> Hook to fetch data from the API</h2>
 <p>Let’s continue our quest to load data from our API and update our <code>useCities</code> Hook to fetch data.</p>
 <p>To do this, we’ll need to include query parameters in our API call to the <code>/cities</code> endpoint.</p>
-<h3>Including query parameters in API calls</h3>
+<h3 id="including-query-parameters-in-api-calls">Including query parameters in API calls</h3>
 <p>Query parameters are a defined set of parameters attached to the end of a URL. They are used to define and pass data in the form of key-value pairs. The parameters are separated from the URL itself by a <code>?</code> symbol, and individual key-value pairs are separated by the <code>&amp;</code> symbol.</p>
 <p>A basic URL with query parameters looks like this:
 <code>http://www.example.com/page?param1=value1&amp;param2=value2</code></p>
@@ -1870,7 +1870,7 @@ export function useStates(): StatesResponse {
 <li><code>param2=value2</code></li>
 </ul></li>
 </ul>
-<h3>Setup 3</h3>
+<h3 id="setup-3">Setup 3</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
 import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
@@ -2010,7 +2010,7 @@ export default RestaurantList
 
 </code></pre>
  <div line-highlight="89-113,only"></div>
-<h3>Verify 3</h3>
+<h3 id="verify-3">Verify 3</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
 import { act, render, screen } from &quot;@testing-library/react&quot;
@@ -2172,13 +2172,13 @@ describe(&quot;useStates Hook&quot;, () =&gt; {
 
 </code></pre>
  <div line-highlight="6,10-12,15,17-18,23-30,32,34-35,37-38,45,52,56-57,59-60,only"></div>
-<h3>Exercise 3</h3>
+<h3 id="exercise-3">Exercise 3</h3>
 <p>Update our <code>useCities()</code> Hook to fetch cities from the Place My Order API, given a selected state.</p>
 <p>When calling the Place My Order API, include the <code>state</code> query parameter:
 <code>http://localhost:7070/cities?state=MO</code></p>
 <p>Hint: Remember to include the <code>state</code> in the dependency array of the <code>useEffect()</code> in <code>useCities()</code>.</p>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-problem?file=src/services/restaurant/hooks.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-problem?file=src/services/restaurant/hooks.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution 3</h3>
+<h3 id="solution-3">Solution 3</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
@@ -2397,9 +2397,9 @@ export function useStates(): StatesResponse {
  <div line-highlight="4-5,12-13,16-17,25-30,41,48-50,53-54,59,61-67,70-71,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-solution?file=src/services/restaurant/hooks.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-solution?file=src/services/restaurant/hooks.ts">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Objective 4: Create an <code>apiRequest</code> helper and use it in the Hooks.</h2>
+<h2 id="objective-4-create-an-codeapirequestcode-helper-and-use-it-in-the-hooks">Objective 4: Create an <code>apiRequest</code> helper and use it in the Hooks.</h2>
 <p>Now that we have two Hooks that fetch data in a similar way, let’s create an <code>apiRequest</code> helper function that both Hooks can use.</p>
-<h3>Handle HTTP error statuses</h3>
+<h3 id="handle-http-error-statuses">Handle HTTP error statuses</h3>
 <p>When you make a request with the Fetch API, it does not reject on HTTP error statuses (like <code>404</code> or <code>500</code>). Instead, it resolves normally (with an <code>ok</code> status set to <code>false</code>), and it only rejects on network failure or if anything prevented the request from completing.</p>
 <p>Here’s the API that <code>fetch</code> provides to handle these HTTP errors:</p>
 <ul>
@@ -2418,7 +2418,7 @@ const error = response.ok
 
 </code></pre>
 <p>In the example above, we check the <code>response.ok</code> property to see if the status code is in the <code>200</code>-<code>299</code> (successful) range. If not, we create an <code>error</code> object that contains the status code and text (e.g. <code>404 Not Found</code>).</p>
-<h3>Catch network errors</h3>
+<h3 id="catch-network-errors">Catch network errors</h3>
 <p>Network errors occur when there is a problem in completing the request, like when the user is offline, the server is unreachable, or there is a DNS lookup failure.</p>
 <p>In these cases, the <code>fetch</code> API will <em>not</em> resolve with data, but instead it will throw an error that needs to be caught.</p>
 <p>Let’s take a look at how to handle these types of errors:</p>
@@ -2440,7 +2440,7 @@ const error = response.ok
 
 </code></pre>
 <p>In the example above, we <code>catch</code> the <code>error</code> and check its type. If it’s already an <code>instanceof Error</code>, then it will have a <code>message</code> property and we can use it as-is. If it’s not, then we can create our own <code>new Error()</code> so we <em>always</em> have an error to consume in our Hooks or components.</p>
-<h3>Setup 4</h3>
+<h3 id="setup-4">Setup 4</h3>
 <p>✏️ Create <strong>src/services/api.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export async function apiRequest&lt;Data = never, Params = unknown&gt;({
   method,
@@ -2546,7 +2546,7 @@ export function useStates(): StatesResponse {
 
 </code></pre>
  <div line-highlight="3,only"></div>
-<h3>Verify 4</h3>
+<h3 id="verify-4">Verify 4</h3>
 <p>✏️ Create <strong>src/services/api.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { apiRequest, stringifyQuery } from &quot;./api&quot;
 import { afterEach, beforeEach, describe, expect, it, vi } from &quot;vitest&quot;
@@ -2713,7 +2713,7 @@ describe(&quot;Hooks&quot;, () =&gt; {
 
 </code></pre>
  <div line-highlight="2-3,6-9,11,13,16-22,24,26-30,33-35,37,39-43,47-53,55,57-61,64-66,68,70-74,only"></div>
-<h3>Exercise 4</h3>
+<h3 id="exercise-4">Exercise 4</h3>
 <ul>
 <li>Implement the <code>apiRequest</code> helper function to handle errors returned and thrown from <code>fetch()</code>.</li>
 <li>Update the <code>useCities</code> and <code>useStates</code> Hooks to use the <code>data</code> and <code>error</code> returned from <code>apiRequest</code>.</li>
@@ -2725,7 +2725,7 @@ describe(&quot;Hooks&quot;, () =&gt; {
 })
 </code></pre>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/04-problem?file=src/services/restaurant/hooks.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/04-problem?file=src/services/restaurant/hooks.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution 4</h3>
+<h3 id="solution-4">Solution 4</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/services/api.ts</strong> to be:</p>
@@ -2855,11 +2855,11 @@ export function useStates(): StatesResponse {
  <div line-highlight="26,28-30,36,55-57,62,64,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/04-solution?file=src/services/restaurant/hooks.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/04-solution?file=src/services/restaurant/hooks.ts">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Objective 5: Fetch the list of restaurants</h2>
+<h2 id="objective-5-fetch-the-list-of-restaurants">Objective 5: Fetch the list of restaurants</h2>
 <p>Let’s finish our quest to load data from our API by creating a Hook to fetch the list of restaurants and use it in our component.</p>
 <p>Now that we are able to capture a user’s state and city preferences, we want to only show the restaurants in the selected city:</p>
 <p><img alt="A web page titled “Restaurants” from place-my-order.com showing that “Illinois” and “Chicago” are selected. Underneath the dropdowns is a list of restaurants that are in Chicago." src="../static/img/react-vite/09-making-http-requests/05-solution-with-selection.png" style="max-width: 689px;"/></p>
-<h3>Setup 5</h3>
+<h3 id="setup-5">Setup 5</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
 import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
@@ -3138,7 +3138,7 @@ export function useStates(): StatesResponse {
 
 </code></pre>
  <div line-highlight="1,only"></div>
-<h3>Verify 5</h3>
+<h3 id="verify-5">Verify 5</h3>
 <p>If you’ve implemented the solution correctly, when you use the select boxes to choose state and city, you should see a list of just restaurants from the selected city returned.</p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
@@ -3383,14 +3383,14 @@ describe(&quot;Hooks&quot;, () =&gt; {
 
 </code></pre>
  <div line-highlight="4,47-51,53-55,58-60,64,69-70,73-75,81,90,95-96,98-100,104,108-114,only"></div>
-<h3>Exercise 5</h3>
+<h3 id="exercise-5">Exercise 5</h3>
 <ul>
 <li>Create a <code>useRestaurants</code> Hook for fetching the list of restaurants.</li>
 <li>Update <code>RestaurantList.tsx</code> to use our new <code>useRestaurants</code> Hook.</li>
 </ul>
 <p>Hint: The requested URL with query parameters should look like this: <code>'/restaurants?filter[address.state]=IL&amp;filter[address.city]=Chicago'</code></p>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/05-problem?file=src/services/restaurant/hooks.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/05-problem?file=src/services/restaurant/hooks.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution 5</h3>
+<h3 id="solution-5">Solution 5</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
@@ -3634,7 +3634,7 @@ export function useStates(): StatesResponse {
  <div line-highlight="11-12,19-20,52-56,64,66-70,80,83,87-90,92-93,95,97,99-105,108-109,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/05-solution?file=src/services/restaurant/hooks.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/05-solution?file=src/services/restaurant/hooks.ts">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>Next, let’s learn how to have <a href="./nested-routes.html">child routes within parent routes</a> with React Router.</p>
 
 </section>

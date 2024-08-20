@@ -678,7 +678,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, you will:</p>
 <ul>
 <li>Use the <code>style</code> prop.</li>
@@ -686,15 +686,15 @@ covering CanJS core libraries.">
 <li>Combine stylesheets together.</li>
 <li>Use CSS shorthands in React Native.</li>
 </ul>
-<h2>Objective: Styling an individual element</h2>
+<h2 id="objective-styling-an-individual-element">Objective: Styling an individual element</h2>
 <p>Styling is a crucial part of building visually appealing and responsive applications.
 Understanding how to effectively use the <code>style</code> prop and the <code>StyleSheet</code> APIs is fundamental for creating React Native applications.</p>
 <p><img alt="Screenshot of a mobile application interface with new stylings." src="../static/img/react-native/08-styling/01-solution-styling.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/></p>
-<h3>The <code>style</code> prop</h3>
+<h3 id="the-codestylecode-prop">The <code>style</code> prop</h3>
 <p>In React Native, almost every component can receive a <code>style</code> prop.
 This prop can accept a JavaScript object that defines various CSS-like properties to control the appearance of the component.</p>
 <p>There are a couple main ways how the <code>style</code> prop is generally used:</p>
-<h3>Inline styling</h3>
+<h3 id="inline-styling">Inline styling</h3>
 <p>You can directly pass an object to the <code>style</code> prop.
 This is convenient for dynamic styles that depend on the component’s state or props, but it can be less performant for static styles.</p>
 <pre><code class="language-tsx">const InlineStyleExample = () =&gt; (
@@ -702,7 +702,7 @@ This is convenient for dynamic styles that depend on the component’s state or 
 )
 </code></pre>
 <p>In the code above, we pass an object to the <code>style</code> prop that uses keys similar to CSS properties.</p>
-<h3>The <code>StyleSheet</code> API</h3>
+<h3 id="the-codestylesheetcode-api">The <code>StyleSheet</code> API</h3>
 <p>More commonly, and recommended for performance reasons (unless the styles are dynamic), styles are defined using <code>StyleSheet.create()</code>.
 This method abstracts the style objects and validates them at the application start-up, reducing the overhead of creating styles on the fly.</p>
 <pre><code class="language-tsx">const styles = StyleSheet.create({
@@ -719,7 +719,7 @@ const StyleSheetStyleExample = () =&gt; (
 <p>In the code above, we call <code>StyleSheet.create()</code> with an object.
 If you’re familiar with front-end web development, the object keys are similar to classes in CSS.
 We can then reference those styles as objects we pass into the <code>style</code> prop.</p>
-<h3>Why is the <code>StyleSheet</code> API better?</h3>
+<h3 id="why-is-the-codestylesheetcode-api-better">Why is the <code>StyleSheet</code> API better?</h3>
 <p><code>StyleSheet</code> is a React Native API that provides an abstraction similar to CSS stylesheets.
 Using <code>StyleSheet</code> has several advantages:</p>
 <ul>
@@ -728,7 +728,7 @@ Using <code>StyleSheet</code> has several advantages:</p>
 <li><strong>Reusability:</strong> Styles can be defined once and reused across components, reducing code duplication and improving maintainability.</li>
 </ul>
 <p>We will look more into reusing styles in the next module.</p>
-<h3>Composing stylesheets</h3>
+<h3 id="composing-stylesheets">Composing stylesheets</h3>
 <p><code>StyleSheet.compose</code> is a method provided by React Native that lets you merge two styles into a single style object.
 This is useful when you want to combine base styles with additional styles based on certain conditions.</p>
 <p>Let’s look at an example:</p>
@@ -762,7 +762,7 @@ export default App
 </code></pre>
 <div line-highlight='4-10, 16, 20, only'></div>
 <p>In the example above, the resulting <code>combinedStyle</code> will have the <code>fontSize</code> and <code>color</code> from <code>base</code> and the <code>fontWeight</code> from <code>bold</code>.</p>
-<h3>CSS shorthands</h3>
+<h3 id="css-shorthands">CSS shorthands</h3>
 <p>CSS shorthands in React Native allow developers to combine multiple related style properties into a single property.
 This not only reduces the amount of code but also helps in managing multiple style attributes efficiently.
 React Native has adapted some of these shorthand properties to suit the styling paradigms of mobile app development, which includes handling layout, padding, margin, and border styling more effectively.</p>
@@ -782,7 +782,7 @@ React Native has adapted some of these shorthand properties to suit the styling 
 })
 </code></pre>
 <p>Find more information about these shorthands in the <a href="https://reactnative.dev/docs/layout-props?language=typescript">Layout Props</a> documentation.</p>
-<h3>Setup</h3>
+<h3 id="setup">Setup</h3>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to remove the <code>debugger</code> we had in the last exercise:</p>
 <pre><code class="language-tsx">import { ScrollView, Text, View } from &quot;react-native&quot;
 
@@ -837,7 +837,7 @@ export default ListItem
 
 </code></pre>
  <div line-highlight="1,8,only"></div>
-<h3>Verify</h3>
+<h3 id="verify">Verify</h3>
 <p>✏️ Update <strong>src/screens/StateList/components/ListItem/ListItem.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
 
@@ -867,7 +867,7 @@ describe(&quot;Screens/StateList/ListItem&quot;, () =&gt; {
 
 </code></pre>
  <div line-highlight="11-12,14-15,17-24,only"></div>
-<h3>Exercise</h3>
+<h3 id="exercise">Exercise</h3>
 <p>Apply the following CSS styles to the <code>Text</code> view inside the <code>ListItem</code>:</p>
 <pre><code class="language-css">.text {
   font-size: 21px;
@@ -878,7 +878,7 @@ describe(&quot;Screens/StateList/ListItem&quot;, () =&gt; {
   margin-top: 8px;
 }
 </code></pre>
-<h3>Solution</h3>
+<h3 id="solution">Solution</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -908,7 +908,7 @@ export default ListItem
 </code></pre>
  <div line-highlight="8,11-19,only"></div>
 <p></details></p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>Next, let’s learn about how <a href="react-context.html" title="Learn how to share a common theme by creating a React Context.">React Context</a> can help us build a theme system.</p>
 
 </section>

@@ -678,7 +678,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this part, we will:</p>
 <ul>
 <li>Install the <code>place-my-order</code> API</li>
@@ -688,9 +688,9 @@ covering CanJS core libraries.">
 <li>Write a method to make an HTTP request</li>
 <li>Write interfaces to describe response object and restaurant object</li>
 </ul>
-<h2>Problem 1: Write a Restaurant Service to Fetch a List of Restaurants</h2>
+<h2 id="problem-1-write-a-restaurant-service-to-fetch-a-list-of-restaurants">Problem 1: Write a Restaurant Service to Fetch a List of Restaurants</h2>
 <p>We want to create an Angular service with a method that will get a list of restaurants from our Place My Order API.</p>
-<h2>P1: What you need to know</h2>
+<h2 id="p1-what-you-need-to-know">P1: What you need to know</h2>
 <p>To complete this problem, you’ll need to know:</p>
 <ul>
 <li>The basics of Angular Services.</li>
@@ -698,7 +698,7 @@ covering CanJS core libraries.">
 <li>How to inject <code>HttpClientModule</code> into your app.</li>
 <li>How to use <code>HttpClient</code> to make an HTTP request in a service.</li>
 </ul>
-<h2>Angular Service Basics</h2>
+<h2 id="angular-service-basics">Angular Service Basics</h2>
 <p>Angular <a href="https://angular.io/guide/architecture-services">Services</a> are pieces of functionality that may not need to be tied to a view like components. A common example of a service is making an HTTP request to get data. Many components may require functionality to fetch data, and a Service can help abstract that logic into one place to be used across components.</p>
 <p>The following example shows a <code>UsersService</code> with methods on it that return a list of users and get a user by ID, and shows how the <code>UsersService</code> is injected into the <code>AppComponent</code> and calls the <code>getUsers</code> to get the list of users to display in the template.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -835,7 +835,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='18-48,81-83,90,95, only'></div>
-<h2>Generating a service</h2>
+<h2 id="generating-a-service">Generating a service</h2>
 <p>To generate a <code>UsersService</code>, you run:</p>
 <pre><code class="language-shell">ng g service users
 </code></pre>
@@ -844,10 +844,10 @@ test file.</p>
 <blockquote>
 <p>Hint: You can generate a service in a folder <code>ng g service folder/users</code></p>
 </blockquote>
-<h2>Injectable</h2>
+<h2 id="injectable">Injectable</h2>
 <p><a href="https://angular.io/api/core/Injectable"><code>Injectable</code></a> is an Angular decorator that makes the class it’s decorating available to Angular’s <a href="https://angular.io/api/core/Injector">Injector</a> for creation. In the case of creating service to get data to use in our application, we want those services to be able to be injected into the app components we need the services in.</p>
 <p>Angular uses the injector to create dependencies using providers - which know how to create said dependencies. We can then inject our service into our components constructor to take advantage of Angular’s dependency injection pattern.</p>
-<h2>Importing <code>HttpClientModule</code> into <em>app.module.ts</em></h2>
+<h2 id="importing-codehttpclientmodulecode-into-emappmoduletsem">Importing <code>HttpClientModule</code> into <em>app.module.ts</em></h2>
 <p>For making HTTP requests to interact with an API, Angular provides <a href="https://angular.io/api/common/http/HttpClientModule">HttpClient Module</a>. To use it we’ll need to import it in the root module of our app and include it the imports array.</p>
 <p><strong>src/app/app.module.ts</strong></p>
 <pre><code class="language-ts">import { HttpClientModule } from '@angular/common/http';
@@ -879,7 +879,7 @@ export class AppModule { }
 
 </code></pre>
 <div line-highlight='1,21'></div>
-<h2>Using HttpClient to Make a Request</h2>
+<h2 id="using-httpclient-to-make-a-request">Using HttpClient to Make a Request</h2>
 <p><a href="https://angular.io/api/common/http/HttpClient">HttpClient</a> is a class with methods for making HTTP requests. Methods will return <a href="https://angular.io/guide/observables">RxJS Observables</a>.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -1002,7 +1002,7 @@ platformBrowserDynamic()
 <div line-highlight='23,25-27,29-31, only'></div>
 <p>This tutorial won’t cover RxJS in depth, but it’s worth being aware of Angular’s
 heavy use of it. Check out our <a href="../learn-rxjs.html" title="Learn RxJS by creating a validating credit card form.">Learn RxJS</a> tutorial for more information.</p>
-<h2>P1: Technical requirements</h2>
+<h2 id="p1-technical-requirements">P1: Technical requirements</h2>
 <p>Write a <code>RestaurantService</code> with a method <code>getRestaurants</code> that uses <code>httpClient</code> to get a list of restaurants from an environment variable + <code>/restaurants</code>. For example, we could get restaurants like:</p>
 <pre><code class="language-typescript">const httpClient = new HttpClient();
 const restaurantService = new RestaurantService(httpClient);
@@ -1018,13 +1018,13 @@ restaurants.</li>
 as shown above.</li>
 <li>We want to create <code>RestaurantService</code> in <code>src/app/restaurant/restaurant.service.ts</code>.</li>
 </ul>
-<h2>P1: Setup</h2>
+<h2 id="p1-setup">P1: Setup</h2>
 <p>Before we begin making services, we must:</p>
 <ul>
 <li>Install the place-my-order API</li>
 <li>Create an environment variable to point to the API</li>
 </ul>
-<h3>Installing the Place My Order API</h3>
+<h3 id="installing-the-place-my-order-api">Installing the Place My Order API</h3>
 <p>We’ve done some work to create a Place My Order API for use in this app by creating an npm package that will generate fake restaurant data and serve it from port 7070.</p>
 <p>✏️ Run:</p>
 <pre><code class="language-bash">npm install place-my-order-api@1
@@ -1078,7 +1078,7 @@ as shown above.</li>
 <pre><code class="language-bash">npm run api
 </code></pre>
 <p>Double check the api by navigating to <a href="http://localhost:7070/restaurants">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data. It will be helpful to have a second terminal tab to run the api command from.</p>
-<h3>Create an Environment Variable</h3>
+<h3 id="create-an-environment-variable">Create an Environment Variable</h3>
 <p>The way we’re accessing our locally run API during development may be different than how we access it in production. To prepare for this, we’ll set an environment variable to do what we need.</p>
 <p>✏️ To generate the environment files, run:</p>
 <pre><code class="language-bash">ng generate environments
@@ -1124,14 +1124,14 @@ export class RestaurantService {
 
 </code></pre>
 <div line-highlight='1, 3-4, only'></div>
-<h3>Having issues with your local setup?</h3>
+<h3 id="having-issues-with-your-local-setup">Having issues with your local setup?</h3>
 <p>You can get through most of this tutorial by using an online code editor. You won’t be able to run our tests to verify your solution, but you will be able to make changes to your app and see them live.</p>
 <p>You can use one of these two online editors:</p>
 <ul>
 <li><p><a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/angular/6-restaurant-service/problem?file=src/app/image-url.pipe.ts">StackBlitz</a></p></li>
 <li><p><a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/angular/6-restaurant-service/problem?file=src/app/image-url.pipe.ts">CodeSandbox</a></p></li>
 </ul>
-<h2>P1: How to verify your solution is correct</h2>
+<h2 id="p1-how-to-verify-your-solution-is-correct">P1: How to verify your solution is correct</h2>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import {
   HttpClientTestingModule,
@@ -1242,7 +1242,7 @@ describe('RestaurantService', () =&gt; {
 <p>✏️ Quit the previous tests running and restart them:</p>
 <pre><code class="language-shell">npm run test
 </code></pre>
-<h2>P1: Solution</h2>
+<h2 id="p1-solution">P1: Solution</h2>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary>
@@ -1297,17 +1297,17 @@ export class RestaurantService {
 </code></pre>
  <div line-highlight="11,13-15,only"></div>
 <p></details></p>
-<h2>Problem 2: Write an Interface to Describe the Restaurant Object and Data Response</h2>
+<h2 id="problem-2-write-an-interface-to-describe-the-restaurant-object-and-data-response">Problem 2: Write an Interface to Describe the Restaurant Object and Data Response</h2>
 <p>Currently, from TypeScript’s perspective, <code>getRestaurants()</code> can return anything. This
 means if we use the data from <code>getRestaurants()</code>, TypeScript will not be able to notice
 any mistakes. This undermines the whole point of TypeScript!</p>
-<h2>P2: What you need to know</h2>
+<h2 id="p2-what-you-need-to-know">P2: What you need to know</h2>
 <p>To solve this problem, you’ll need to:</p>
 <ul>
 <li>Understand interfaces in TypeScript</li>
 <li>How to generate an interface with Angular’s CLI.</li>
 </ul>
-<h2>Interfaces in TypeScript</h2>
+<h2 id="interfaces-in-typescript">Interfaces in TypeScript</h2>
 <p>Thanks to TypeScript we can write interfaces to describe what we expect objects to look like. Consider the user service below returning an array of users. This interface describes what a user (and array of users) should look like:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -1453,14 +1453,14 @@ platformBrowserDynamic()
 <pre><code class="language-javascript">users: Array&lt;User&gt;
 </code></pre>
 <p>To learn more about interfaces in TypeScript, check out our <a href="../learn-typescript/interfaces.html" title="Learn how to write Interfaces, set optional properties, and use interfaces in classes and functions.">TypeScript guide</a>.</p>
-<h2>Generate an Interface</h2>
+<h2 id="generate-an-interface">Generate an Interface</h2>
 <p>Use the following to generate an interface with the CLI:</p>
 <pre><code class="language-bash">ng g interface user
 </code></pre>
 <p>This will generate:</p>
 <pre><code class="language-typescript">export interface User {}
 </code></pre>
-<h2>P2: Technical requirements</h2>
+<h2 id="p2-technical-requirements">P2: Technical requirements</h2>
 <p>Write interfaces to tell TypeScript what we expect restaurant and other related objects to look like and use them in our restaurant service. A <code>Restaurant</code> interface should represent an object like this:</p>
 <pre><code class="language-javascript">let restaurant = {
   name: '', //string
@@ -1494,7 +1494,7 @@ platformBrowserDynamic()
 };
 </code></pre>
 <p>This interface should be written in the <strong>src/app/restaurant/restaurant.ts</strong> file.</p>
-<h2>P2: Setup</h2>
+<h2 id="p2-setup">P2: Setup</h2>
 <p>We’ve already written a <code>ResponseData</code> interface that will take an array of restaurants for you. Here’s the code to get you started:</p>
 <p>✏️ Generate the restaurant interface:</p>
 <pre><code class="language-bash">ng g interface restaurant/restaurant
@@ -1551,7 +1551,7 @@ export class RestaurantService {
 
 </code></pre>
  <div line-highlight="5,7-8,18-21,23,"></div>
-<h2>P2: How to verify your solution is correct</h2>
+<h2 id="p2-how-to-verify-your-solution-is-correct">P2: How to verify your solution is correct</h2>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import {
   HttpClientTestingModule,
@@ -1692,7 +1692,7 @@ describe('RestaurantService', () =&gt; {
 </code></pre>
  <div line-highlight="6-7,90,103-134,only"></div>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>! If you haven’t written the interfaces correctly, you’ll see a compile error before the tests runs. You might need to restart the test script to see the compile error.</p>
-<h2>P2: Solution</h2>
+<h2 id="p2-solution">P2: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/restaurant/restaurant.ts</strong> to:</p>

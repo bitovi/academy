@@ -606,15 +606,15 @@ covering CanJS core libraries.">
     <blockquote>
 <p><strong>Quick Start</strong>: You can checkout <a href="https://github.com/bitovi/angular-ngrx-chat/tree/test-reducer">this branch</a> to get your codebase ready to work on this section.</p>
 </blockquote>
-<h2>Overview</h2>
+<h2 id="overview">Overview</h2>
 <ol>
 <li><p>Create Selector for <code>userId</code>.</p></li>
 <li><p>Create Selector for <code>username</code>.</p></li>
 <li><p>Create Selector for <code>token</code>.</p></li>
 </ol>
-<h2>Problem 1: Creating a Feature Selector For <code>userId</code></h2>
+<h2 id="problem-1-creating-a-feature-selector-for-codeuseridcode">Problem 1: Creating a Feature Selector For <code>userId</code></h2>
 <p>There should be a Selector that obtains the <code>userId</code> from the Login State.</p>
-<h2>P1: What you need to know</h2>
+<h2 id="p1-what-you-need-to-know">P1: What you need to know</h2>
 <p>NgRx Selectors are <code>pure</code> functions used for <a href="https://ngrx.io/guide/store/selectors#using-a-selector-for-one-piece-of-state">obtaining slices of state</a>.</p>
 <p>NgRx provide 2 helper functions when creating Selectors:</p>
 <ol>
@@ -636,7 +636,7 @@ export const selectContactEmailAddress = createSelector(
   state =&gt; state.emailAddress
 );
 </code></pre>
-<h2>P1: Solution</h2>
+<h2 id="p1-solution">P1: Solution</h2>
 <p><details>
 <summary>src/app/store/login/login.selectors.ts</summary></p>
 <pre><code class="language-ts">// src/app/store/login/login.selectors.ts
@@ -656,9 +656,9 @@ export const selectUserId = createSelector(
 </code></pre>
  <div line-highlight="10-13,only"></div>
 </details>
-<h2>Problem 2: Creating a Feature Selector For <code>username</code> and <code>token</code></h2>
+<h2 id="problem-2-creating-a-feature-selector-for-codeusernamecode-and-codetokencode">Problem 2: Creating a Feature Selector For <code>username</code> and <code>token</code></h2>
 <p>There should be a Selector that obtains the <code>username</code> and another Selector for <code>token</code>. Both should obtain values from the Login State.</p>
-<h2>P2: Solution</h2>
+<h2 id="p2-solution">P2: Solution</h2>
 <p><details>
 <summary>src/app/store/login/login.selectors.ts</summary></p>
 <pre><code class="language-ts">// src/app/store/login/login.selectors.ts

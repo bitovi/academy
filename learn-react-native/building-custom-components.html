@@ -678,7 +678,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, you will:</p>
 <ul>
 <li>Create components in React and structuring them properly.</li>
@@ -686,9 +686,9 @@ covering CanJS core libraries.">
 <li>Use component props in React using TypeScript interfaces.</li>
 <li>Structure code in the Modlets pattern.</li>
 </ul>
-<h2>Objective 1: Creating a custom component</h2>
+<h2 id="objective-1-creating-a-custom-component">Objective 1: Creating a custom component</h2>
 <p>Our <code>App</code> component currently shows our state list, but eventually we’ll want to show other page content. Let’s prepare now by moving all of the JSX from <code>App</code> to a new component called <code>StateList</code>.</p>
-<h3>What are components?</h3>
+<h3 id="what-are-components">What are components?</h3>
 <p>So far, we have placed all of our JSX inside the <code>App</code> function. Notice two things about the <code>App</code> function:</p>
 <ol>
 <li><p>The name starts with a capital letter.</p></li>
@@ -701,7 +701,7 @@ covering CanJS core libraries.">
 </code></pre>
 <p>In React, we call this a component. When you create a component in React, you are creating building blocks that can be composed, reordered, and reused much like HTML elements.</p>
 <p>React makes it relatively straightforward to create new components. Let’s learn to build our own.</p>
-<h3>Component structure</h3>
+<h3 id="component-structure">Component structure</h3>
 <p>Let’s start by creating a component from a commonly reused element, the button.</p>
 <p>First, React component names must start with a capital letter, so we can call this <code>Button</code>. By convention component names use PascalCase when naming components, so longer component names will look like <code>IconButton</code>. Avoid hyphens and underscores.</p>
 <p>Second, our component must return either <code>null</code> or something renderable, like JSX. The return value of our components is almost always JSX, though JavaScript primitives like <code>string</code> and <code>number</code> are also valid. Components cannot return complex types like arrays or objects.</p>
@@ -728,7 +728,7 @@ const PrimaryButton: React.FC = () =&gt; {
 }
 
 </code></pre>
-<h3>React Native components are functions</h3>
+<h3 id="react-native-components-are-functions">React Native components are functions</h3>
 <p>The JSX syntax allows function components to look like XML, but underneath they are still functions. The return of each component is unique and you can use the same component multiple times.</p>
 <p>You can think of components as fancy functions.</p>
 <p>While you can’t actually do the following, this is functionally similar to what React is doing for you.</p>
@@ -744,7 +744,7 @@ const PrimaryButton: React.FC = () =&gt; {
 
 </code></pre>
 <p>Did you notice the <code>FC</code> that was used in the previous example to type the <code>App</code> const? Because we’re using TypeScript with our project, we can apply types to help make sure the function component is properly formed. React provides the type <code>FC</code> (Function component) that can be applied to a function component. This type defines the arguments and return value that a function component must implement.</p>
-<h3>Setup 1</h3>
+<h3 id="setup-1">Setup 1</h3>
 <p>✏️ Update <strong>App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
 
@@ -787,7 +787,7 @@ export default App
 
 </code></pre>
  <div line-highlight="14-15,26,36,only"></div>
-<h3>Verify 1</h3>
+<h3 id="verify-1">Verify 1</h3>
 <p>✏️ Update <strong>App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
 
@@ -816,12 +816,12 @@ describe(&quot;Screens/StateList&quot;, () =&gt; {
 
 </code></pre>
  <div line-highlight="3,18-24,only"></div>
-<h3>Exercise 1</h3>
+<h3 id="exercise-1">Exercise 1</h3>
 <ul>
 <li>Update the <code>StateList</code> component to contain the logic that iterates over the <code>states</code> list.</li>
 <li>Use the new <code>StateList</code> component inside of the <code>App</code> component.</li>
 </ul>
-<h3>Solution 1</h3>
+<h3 id="solution-1">Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -869,10 +869,10 @@ export default App
 </code></pre>
  <div line-highlight="16-27,32,34,36,only"></div>
 <p></details></p>
-<h2>Objective 2: Passing props</h2>
+<h2 id="objective-2-passing-props">Objective 2: Passing props</h2>
 <p>We’ve taken a great step to make our code more readable and our app more maintainable by creating the <code>StateList</code> component.</p>
 <p>Let’s keep the good refactoring rolling by creating a <code>ListItem</code> component to house the JSX used to render each state in the list.</p>
-<h3>Using component props</h3>
+<h3 id="using-component-props">Using component props</h3>
 <p>In React, props are how we pass data from a parent component to a child component. Since function React components are fundamentally JavaScript functions, you can think of props like the arguments you pass to a function.</p>
 <p>To clarify, props in React Native should not be confused with the properties on HTML elements in web development, even though they sound similar.</p>
 <p>To receive props, function components must implement a React API that allows an optional object argument, usually referred to as <code>props</code>.</p>
@@ -917,7 +917,7 @@ const SubmitButton: React.FC&lt;SubmitButtonProps&gt; = ({ label, onPress }) =&g
 
 </code></pre>
 <div line-highlight='9'></div>
-<h3>Passing component props</h3>
+<h3 id="passing-component-props">Passing component props</h3>
 <p>Now, how do we use this <code>SubmitButton</code>? In JSX syntax a component’s props look like an HTML tag’s &quot;attributes&quot; and accept a value.</p>
 <ul>
 <li>If a prop’s value type is a string, then the prop value is set using quotes.</li>
@@ -931,13 +931,13 @@ const SubmitButton: React.FC&lt;SubmitButtonProps&gt; = ({ label, onPress }) =&g
 
 </code></pre>
 <p>In the example above, we’re setting the <code>label</code> prop to the string “Activate” and the <code>onPress</code> prop to a function that displays an alert.</p>
-<h3>Reserved prop names</h3>
+<h3 id="reserved-prop-names">Reserved prop names</h3>
 <p>There are two prop names that you cannot use and are reserved by React:</p>
 <ul>
 <li><p><code>children</code>: this prop is automatically provided by React to every component. We will see this prop in later examples.</p></li>
 <li><p><code>key</code>: this prop is one you’ve seen before in the <a href="intro-to-jsx.html#the-key-prop">Introduction to JSX module</a>! It’s not actually part of the component’s props in a traditional sense. Instead, it’s used by React itself to manage lists of elements and identify which items have changed, been added, or been removed.</p></li>
 </ul>
-<h3>Setup 2</h3>
+<h3 id="setup-2">Setup 2</h3>
 <p>✏️ Update <strong>App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { SafeAreaView, ScrollView, Text, View } from &quot;react-native&quot;
 
@@ -990,7 +990,7 @@ export default App
 
 </code></pre>
  <div line-highlight="14-15,18-19,23,38,46,only"></div>
-<h3>Verify 2</h3>
+<h3 id="verify-2">Verify 2</h3>
 <p>✏️ Update <strong>App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
 
@@ -1028,13 +1028,13 @@ describe(&quot;Screens/StateList/ListItem&quot;, () =&gt; {
 
 </code></pre>
  <div line-highlight="3,26-33,only"></div>
-<h3>Exercise 2</h3>
+<h3 id="exercise-2">Exercise 2</h3>
 <ul>
 <li>Update the <code>ListItemProps</code> type to enforce a <code>name</code> prop of the appropriate primitive type.</li>
 <li>Update the <code>ListItem</code> component to use the <code>ListItemProps</code> and returns the <code>&lt;Text&gt;</code> element.</li>
 <li>Update the <code>StateList</code> component to use the <code>ListItem</code> component to handle each state item.</li>
 </ul>
-<h3>Solution 2</h3>
+<h3 id="solution-2">Solution 2</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -1092,9 +1092,9 @@ export default App
 </code></pre>
  <div line-highlight="15,18-19,30-32,only"></div>
 <p></details></p>
-<h2>Objective 3: Organize code with the Modlet pattern</h2>
+<h2 id="objective-3-organize-code-with-the-modlet-pattern">Objective 3: Organize code with the Modlet pattern</h2>
 <p>Our efforts to refactor have been going swimmingly; however, the <code>App.tsx</code> file is getting a bit crowded. It’s about time we take the time to organize our code, while doing so we’ll also introduce a useful pattern to follow.</p>
-<h3>Modlets</h3>
+<h3 id="modlets">Modlets</h3>
 <p>Modlets are a folder/file structure that place a heavy emphasis on the idea of abstraction.</p>
 <p>They are completely self contained; each modlet is basically its own application. It has everything it needs inside of it.</p>
 <p>Each modlet is treated as a black box that can only be accessed through a single point: its index file.</p>
@@ -1105,7 +1105,7 @@ export default App
 <li>Each modlet is a “black box” that controls what it exports through its index file. Anything exported in the index should be stable: Don’t change those api’s unless you have to!</li>
 </ol>
 <p>These will make sense as we go along.</p>
-<h3>Modlets example</h3>
+<h3 id="modlets-example">Modlets example</h3>
 <p>We’re building a simple product page for an e-commerce site. It has three components:</p>
 <ul>
 <li>Product Details.</li>
@@ -1175,7 +1175,7 @@ export default App
 <li>Location of relevant code is clear.</li>
 <li>Related functionality bundled in same folder.</li>
 </ul>
-<h4>Writing Modlet components</h4>
+<h4 id="writing-modlet-components">Writing Modlet components</h4>
 <p>For more clarity, the <code>ProductDetails</code> component has a default export.</p>
 <pre><code class="language-tsx">const ProductDetails: React.FC = () =&gt; {
   return (
@@ -1192,7 +1192,7 @@ export default ProductDetails
 <pre><code class="language-ts">export { default } from &quot;./ProductDetails&quot;
 
 </code></pre>
-<h4>Importing Modlets</h4>
+<h4 id="importing-modlets">Importing Modlets</h4>
 <p>With the Modlet structure, the top-level component’s imports statements look as follows:</p>
 <pre><code class="language-tsx">import CartButton from &quot;./components/CartButton&quot;
 import ImageCarousel from &quot;./components/ImageCarousel&quot;
@@ -1217,7 +1217,7 @@ const ProductPage: React.FC = (props) =&gt; {
 <p>Notice that we don’t import specific files, but rather the modlet we want to use.</p>
 <p>This allows the modlet to maintain control over what it exposes.</p>
 <p>Also, every import is from a child of that top level modlet. We are only reaching down to grab imports!</p>
-<h3>Setup 3</h3>
+<h3 id="setup-3">Setup 3</h3>
 <p>It’s best practice to create a new folder that will contain all of the related files for each component, including test files.</p>
 <p>✏️ Create <strong>src/</strong> (folder)</p>
 <p>✏️ Move <strong>App.tsx</strong> to <strong>src/App.tsx</strong></p>
@@ -1265,7 +1265,7 @@ export default ListItem
 export * from &quot;./ListItem&quot;
 
 </code></pre>
-<h3>Verify 3</h3>
+<h3 id="verify-3">Verify 3</h3>
 <p>✏️ Move <strong>App.test.tsx</strong> to <strong>src/App.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
 
@@ -1302,12 +1302,12 @@ import ListItem from &quot;./ListItem&quot;
 // Exercise: Move the `ListItem` test logic here.
 
 </code></pre>
-<h3>Exercise 3</h3>
+<h3 id="exercise-3">Exercise 3</h3>
 <ul>
 <li>Move the <code>StateList</code> and <code>ListItem</code> component logic into the correct file.</li>
 <li>Make sure to properly update each <code>import</code> and to reference every component’s essential files.</li>
 </ul>
-<h3>Solution 3</h3>
+<h3 id="solution-3">Solution 3</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -1383,7 +1383,7 @@ export default ListItem
 </code></pre>
  <div line-highlight="3-5,7-9,only"></div>
 <p></details></p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>Next we will learn about debugging by using <a href="./debugging-devtools.html">React Devtools</a>.</p>
 
 </section>

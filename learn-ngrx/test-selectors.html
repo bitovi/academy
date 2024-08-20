@@ -606,24 +606,24 @@ covering CanJS core libraries.">
     <blockquote>
 <p><strong>Quick Start</strong>: You can checkout <a href="https://github.com/bitovi/angular-ngrx-chat/tree/create-selectors">this branch</a> to get your codebase ready to work on this section.</p>
 </blockquote>
-<h2>Overview</h2>
+<h2 id="overview">Overview</h2>
 <ol>
 <li><p>Verify <code>selectUserId()</code> Selector returns <code>userId</code>.</p></li>
 <li><p>Verify <code>selectUsername()</code> Selector returns <code>username</code>.</p></li>
 <li><p>Verify <code>selectToken()</code> Selector returns <code>token</code>.</p></li>
 </ol>
-<h2>Running Tests</h2>
+<h2 id="running-tests">Running Tests</h2>
 <p>To run unit tests in your project, you can either use the <code>test</code> npm script, or the <code>ng test</code> command:</p>
 <pre><code class="language-bash">npm run test
 # or
 ng test --watch
 </code></pre>
 <p>The <code>--watch</code> switch will rerun your tests whenever a code file changes. You can skip it to just run all tests once.</p>
-<h2>Description</h2>
+<h2 id="description">Description</h2>
 <p>When testing Selectors, we will mock the Login State and verify that each Selector returns the expected result. Like testing the Reducer, we don’t need a <code>TestBed</code> since there shouldn’t be any dependencies when dealing with Selectors since they are pure functions.</p>
-<h2>Update <code>login.selectors.spec.ts</code></h2>
+<h2 id="update-codeloginselectorsspectscode">Update <code>login.selectors.spec.ts</code></h2>
 <p>We will walk through updating <code>src/app/store/login/login.selectors.spec.ts</code> to run tests for your Selectors.</p>
-<h2>Verify Feature State Selector</h2>
+<h2 id="verify-feature-state-selector">Verify Feature State Selector</h2>
 <p>This test has already been written in a previous section where we were testing the Reducer (<a href="test-reducer.html" title="Learn how to write unit tests for NgRx Reducers.">Testing Reducers</a>):</p>
 <p><details open>
 <summary>src/app/store/login/login.selectors.spec.ts</summary></p>
@@ -655,7 +655,7 @@ describe('Login Selectors', () =&gt; {
 <div line-highlight='6-23'></div>
 </details>
 <p>The Feature State Selector is unique to all other Selectors for a Feature Store because this Selector is the source for all other Selectors for a Feature Store and is the only Selector generated using the <a href="https://ngrx.io/guide/store/selectors#selecting-feature-states"><code>createFeatureSelector()</code></a> helper. Testing the Feature State Selector should be straight-forward since it should return all of the Login State.</p>
-<h2>Verify <code>selectUserId</code> Selector Returns <code>userId</code></h2>
+<h2 id="verify-codeselectuseridcode-selector-returns-codeuseridcode">Verify <code>selectUserId</code> Selector Returns <code>userId</code></h2>
 <p>To properly test Selectors in a way that ensures that each Selector does not rely on mutations on the Login State, we will use <code>beforeEach()</code> to create a fresh Login State per test:</p>
 <p><details open>
 <summary>src/app/store/login/login.selectors.spec.ts</summary></p>
@@ -739,7 +739,7 @@ describe('Login Selectors', () =&gt; {
 </code></pre>
  <div line-highlight="4-7,33-35,37-39,only"></div>
 </details>
-<h2>Verify <code>selectUsername()</code> Selector Returns <code>username</code></h2>
+<h2 id="verify-codeselectusernamecode-selector-returns-codeusernamecode">Verify <code>selectUsername()</code> Selector Returns <code>username</code></h2>
 <p><details open>
 <summary>src/app/store/login/login.selectors.spec.ts</summary></p>
 <pre><code class="language-ts">// src/app/store/login/login.selectors.spec.ts
@@ -796,7 +796,7 @@ describe('Login Selectors', () =&gt; {
 </code></pre>
  <div line-highlight="7,43-45,47-49,only"></div>
 </details>
-<h2>Verify <code>selectToken()</code> Selector Returns <code>token</code></h2>
+<h2 id="verify-codeselecttokencode-selector-returns-codetokencode">Verify <code>selectToken()</code> Selector Returns <code>token</code></h2>
 <p><details open>
 <summary>src/app/store/login/login.selectors.spec.ts</summary></p>
 <pre><code class="language-ts">// src/app/store/login/login.selectors.spec.ts
@@ -861,7 +861,7 @@ describe('Login Selectors', () =&gt; {
 </code></pre>
  <div line-highlight="6,51-53,55-57,only"></div>
 </details>
-<h2>Final Result</h2>
+<h2 id="final-result">Final Result</h2>
 <p>At the end of this section, the following spec file(s) should be updated. After each spec file has been updated and all the tests have passed, this means that all the previous sections have been completed successfully:</p>
 <p><details>
 <summary>src/app/store/login/login.selectors.spec.ts</summary></p>

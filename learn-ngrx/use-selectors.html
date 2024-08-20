@@ -606,14 +606,14 @@ covering CanJS core libraries.">
     <blockquote>
 <p><strong>Quick Start</strong>: You can checkout <a href="https://github.com/bitovi/angular-ngrx-chat/tree/test-selectors">this branch</a> to get your codebase ready to work on this section.</p>
 </blockquote>
-<h2>Overview</h2>
+<h2 id="overview">Overview</h2>
 <ol>
 <li><p>Update <code>DashboardComponent</code>’s <code>username$</code> and <code>userId$</code> members to use Login Selectors.</p></li>
 <li><p>Update <code>AuthenticationGuard</code>’s <code>canActivate()</code> method to use Login Selector.</p></li>
 </ol>
-<h2>Problem 1: Update <code>username$</code> and <code>userId$</code> to use Login Selectors on <code>DashboardComponent</code></h2>
+<h2 id="problem-1-update-codeusernamecode-and-codeuseridcode-to-use-login-selectors-on-codedashboardcomponentcode">Problem 1: Update <code>username$</code> and <code>userId$</code> to use Login Selectors on <code>DashboardComponent</code></h2>
 <p><code>DashboardComponent</code> should use the <code>LoginSelectors.selectUsername</code> and <code>LoginSelectors.selectUserId</code> Selectors for its <code>username$</code> and <code>userId$</code> members.</p>
-<h2>P1: What you need to know</h2>
+<h2 id="p1-what-you-need-to-know">P1: What you need to know</h2>
 <p>Now that we have our Selectors defined, we can inject <code>Store</code> into our <code>Components</code> and use the <code>select()</code> method to obtain slices of state using our Selectors:</p>
 <pre><code class="language-ts">// Note: This example code is not part of our application repo or solution
 
@@ -635,7 +635,7 @@ export class ContactComponent {
 </code></pre>
 <div line-highlight='2, 3, 11, 13'></div>
 <p>In the <code>DashboardComponent</code>, there is are <code>TODO</code>’s where the Login Selectors should be used.</p>
-<h2>P1: Solution</h2>
+<h2 id="p1-solution">P1: Solution</h2>
 <p><details>
 <summary>src/app/dashboard/dashboard.component.ts</summary></p>
 <pre><code class="language-ts">// src/app/dashboard/dashboard.component.ts
@@ -667,11 +667,11 @@ export class DashboardComponent {
 </code></pre>
  <div line-highlight="6,15,18,only"></div>
 </details>
-<h2>Problem 2: Update <code>canActivate()</code> to use Login Selector on <code>AuthenticationGuard</code></h2>
+<h2 id="problem-2-update-codecanactivatecode-to-use-login-selector-on-codeauthenticationguardcode">Problem 2: Update <code>canActivate()</code> to use Login Selector on <code>AuthenticationGuard</code></h2>
 <p><code>AuthenticationGuard</code>’s <code>canActivate()</code> method should use the <code>LoginSelectors.selectToken</code> Selector.</p>
-<h2>P2: What you need to know</h2>
+<h2 id="p2-what-you-need-to-know">P2: What you need to know</h2>
 <p>In the <code>AuthenticationGuard</code>, there is a <code>TODO</code> where the Login Selector should be used.</p>
-<h2>P2: Solution</h2>
+<h2 id="p2-solution">P2: Solution</h2>
 <p><details>
 <summary>src/app/guards/authentication.guard.ts</summary></p>
 <pre><code class="language-ts">// src/app/guards/authentication.guard.ts

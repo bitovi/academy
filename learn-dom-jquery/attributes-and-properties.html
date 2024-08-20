@@ -497,15 +497,15 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>We will learn about:</p>
 <ul>
 <li>The difference between attributes and properties</li>
 <li>How to set and read styles on an element</li>
 </ul>
-<h2>Slides</h2>
+<h2 id="slides">Slides</h2>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQQSSVUteY_8gHdxcxuVeGXX548wxO_i_BfxGiohaYTuR_lskKGFIg9rCc-zfP-KIvckvqn2UvAOJ0O/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-<h2>Setup</h2>
+<h2 id="setup">Setup</h2>
 <p>Run the following example in CodePen:</p>
 <pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
 &lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
@@ -658,8 +658,8 @@ covering CanJS core libraries.">
 <div line-highlight='138-141,only'></div>
 <p>Each exercise builds on the previous exercise. There is a completed solution
 at the end of this page.</p>
-<h2>Exercise: <code>collection.attr( attrName [,value] )</code></h2>
-<h3>The problem</h3>
+<h2 id="exercise-codecollectionattr-attrname-value-code">Exercise: <code>collection.attr( attrName [,value] )</code></h2>
+<h3 id="the-problem">The problem</h3>
 <p><a href="http://api.jquery.com/attr/">collection.attr</a> either:</p>
 <ul>
 <li>Gets the value of an attribute for the first element in the set of matched elements, or</li>
@@ -703,12 +703,12 @@ at the end of this page.</p>
 });
 </code></pre>
 <p></details></p>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <ul>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getAttribute">getAttribute</a> reads an attribute value</li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute">setAttribute</a> sets an attribute value</li>
 </ul>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">    attr: function(attrName, value) {
@@ -724,8 +724,8 @@ at the end of this page.</p>
 </code></pre>
 <div line-highlight='2-8'></div>
 <p></details></p>
-<h2>Exercise: <code>collection.css( propertyName [,value] )</code></h2>
-<h3>The problem</h3>
+<h2 id="exercise-codecollectioncss-propertyname-value-code">Exercise: <code>collection.css( propertyName [,value] )</code></h2>
+<h3 id="the-problem">The problem</h3>
 <p><a href="http://api.jquery.com/css/">collection.css</a> either:</p>
 <ul>
 <li>Gets the value of a computed style property for the first element in the set of matched elements,</li>
@@ -761,7 +761,7 @@ at the end of this page.</p>
 });
 </code></pre>
 <p></details></p>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <ul>
 <li><p>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style">style</a> property
 is used to set and get the inline style of an element.</p>
@@ -792,7 +792,7 @@ returns an object containing the values of all CSS properties of an element.</p>
 </code></pre></li>
 </ul>
 <div class='codepen' data-codepen=''></div>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">    css: function(cssPropName, value) {
@@ -809,8 +809,8 @@ returns an object containing the values of all CSS properties of an element.</p>
 </code></pre>
 <div line-highlight='2-10'></div>
 <p></details></p>
-<h2>Bonus Exercise: <code>collection.addClass(className)</code> and <code>collection.removeClass(className)</code></h2>
-<h3>The problem</h3>
+<h2 id="bonus-exercise-codecollectionaddclassclassnamecode-and-codecollectionremoveclassclassnamecode">Bonus Exercise: <code>collection.addClass(className)</code> and <code>collection.removeClass(className)</code></h2>
+<h3 id="the-problem">The problem</h3>
 <p><a href="https://api.jquery.com/addclass/">collection.addClass</a> adds a class to each element’s <code>className</code>.
 <a href="https://api.jquery.com/removeclass/">collection.removeClass</a> removes a class to each element’s <code>className</code>.</p>
 <p>The following changes the <code>&lt;div&gt;</code> from green to red after one second.</p>
@@ -867,7 +867,7 @@ returns an object containing the values of all CSS properties of an element.</p>
 });
 </code></pre>
 <p></details></p>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <ul>
 <li><p>An element’s <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/classList">classList</a>
 lets you add and remove class names on it.</p>
@@ -889,7 +889,7 @@ lets you add and remove class names on it.</p>
 </code></pre></li>
 </ul>
 <div class='codepen'></div>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">      addClass: function(className) {
@@ -905,7 +905,7 @@ lets you add and remove class names on it.</p>
 </code></pre>
 <div line-highlight='2-9'></div>
 <p></details></p>
-<h2>Complete Solution</h2>
+<h2 id="complete-solution">Complete Solution</h2>
 <p><details>
 <summary>Click to see completed solution</summary></p>
 <pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;

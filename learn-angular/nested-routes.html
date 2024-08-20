@@ -678,7 +678,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this part, we will:</p>
 <ul>
 <li>Create a restaurant detail component</li>
@@ -686,16 +686,16 @@ covering CanJS core libraries.">
 <li>Get restaurant slug from route param in component</li>
 <li>Get restaurant data from service based on slug</li>
 </ul>
-<h2>Problem</h2>
+<h2 id="problem">Problem</h2>
 <p>We want to have a component to display individual restaurants details, and want the path to be nested under the restaurants path.</p>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <p>To solve this exercise you will need to know:</p>
 <ul>
 <li>How to create a nested component</li>
 <li>How to create a route with a param</li>
 <li>How to get a route param using ActivatedRoute</li>
 </ul>
-<h2>Route parameters &amp; child views</h2>
+<h2 id="route-parameters-amp-child-views">Route parameters &amp; child views</h2>
 <p>A common pattern in SPA architecture is to serve a view of an individual piece of data from a path with an identifying parameter. Previously we’ve defined static paths with Angular’s <a href="https://angular.io/guide/router">router</a>. To create a nested route, we’ll need the slug after the slash to be dynamic. We can set a token for the router parameter with <code>:</code>. To get the slug from the route in a component, we use the <a href="https://angular.io/api/router/ActivatedRoute">ActivatedRoute</a> interface.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -844,9 +844,9 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='93-94,101,105,107,115,only'></div>
-<h2>Technical requirements</h2>
+<h2 id="technical-requirements">Technical requirements</h2>
 <p>Create a new component called <code>detail</code> in the restaurant component folder that is a detail view for an individual restaurant that is served from the path <code>'/restaurants/restaurant-slug'</code>. Create the route as well, and use the <code>getRestaurant</code> method on the <code>RestaurantService</code> to fetch the restaurant based on the route snapshot. The detail component should have a member <code>restaurant</code> that is a type of Restaurant and an <code>isLoading</code> member set to true or false based on when the restaurant data has been fetched.</p>
-<h2>Setup</h2>
+<h2 id="setup">Setup</h2>
 <p>✏️ Run:</p>
 <pre><code class="language-bash">ng g component restaurant/detail
 </code></pre>
@@ -895,7 +895,7 @@ platformBrowserDynamic()
 &lt;/ng-container&gt;
 
 </code></pre>
-<h2>How to verify your solution is correct</h2>
+<h2 id="how-to-verify-your-solution-is-correct">How to verify your solution is correct</h2>
 <p>When you click the detail button on a restaurant from the restaurant list view you’ll see the detail view of that restaurant.</p>
 <p>✏️ Update the spec file <strong>src/app/restaurant/detail/detail.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -1370,7 +1370,7 @@ describe('AppComponent', () =&gt; {
 
 </code></pre>
  <div line-highlight="18,206,259,262-265,298,302,309,only"></div>
-<h2>Solution</h2>
+<h2 id="solution">Solution</h2>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary>

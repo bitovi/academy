@@ -528,42 +528,42 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this part we will:</p>
 <ul>
 <li>Use CSS custom properties to allow users of our component to modify the component’s encapsulated styles.</li>
 </ul>
-<h2>Problem</h2>
+<h2 id="problem">Problem</h2>
 <p>We want the users of our component to be able to customize the styling. For example we think they should be able to change the header’s <code>background-color</code> and the heading’s <code>text-transform</code>.</p>
 <p>Open up the styling for this component by providing supported CSS custom properties. In the end a custom header should look something like this:</p>
 <p><img src="../static/img/web-components/bt-header-styles.jpg"
 style="border: solid 1px black; max-width: 100%;"
 alt="Custom header styles applied to our element." /></p>
-<h2>How to Solve This Problem</h2>
+<h2 id="how-to-solve-this-problem">How to Solve This Problem</h2>
 <ol>
 <li>Style the <code>bus-tracker</code> using custom properties in the global CSS.</li>
 <li>Change the <code>bus-tracker</code> component’s own CSS to use those properties in the <code>header</code> and <code>header h1</code> elements.</li>
 </ol>
-<h2>Technical requirements</h2>
+<h2 id="technical-requirements">Technical requirements</h2>
 <p>Use the following CSS property names and values:</p>
 <ul>
 <li><code>--header-background</code> - Pick any color you want. I’ll use <code>salmon</code>.</li>
 <li><code>--header-text-transform</code> - Use <code>capitalize</code>.</li>
 </ul>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <ul>
 <li>How to define CSS custom properties.</li>
 <li>How to use CSS custom properties to set the value of styles.</li>
 <li>How to pass CSS custom properties into custom elements.</li>
 </ul>
-<h3>Defining custom properties</h3>
+<h3 id="defining-custom-properties">Defining custom properties</h3>
 <p>Custom properties start with two hyphens <code>--</code>. Otherwise they can have any name, but usually use hyphens to separate each word, ex: <code>--this-class-name</code>. Defining custom properties works the same way as other style properties, use a colon to delimit the name and the value.</p>
 <p>This example sets a default border style on the root (html) element:</p>
 <pre><code class="language-css">:root {
   --border: 1px solid DarkBlue;
 }
 </code></pre>
-<h3>Using var()</h3>
+<h3 id="using-var">Using var()</h3>
 <p>The <code>var()</code> syntax is a way to get a value from a variable (custom property). Using <code>var(--color, blue)</code> says: Use the <code>--color</code> variable if it is defined, otherwise fallback to <code>blue</code>. This gives us what we need to both have a custom background-color / text-transform, and also allow the consumer to override these styles.</p>
 <pre><code class="language-css">:root {
   --theme-alt: MidnightBlue;
@@ -573,13 +573,13 @@ alt="Custom header styles applied to our element." /></p>
   color: var(--theme-alt, DarkBlue);
 }
 </code></pre>
-<h3>Passing custom properties</h3>
+<h3 id="passing-custom-properties">Passing custom properties</h3>
 <p>You can pass custom properties to custom elements by defining the property on a CSS selector matching the element.</p>
 <pre><code class="language-css">bus-tracker {
   --header-background: salmon;
 }
 </code></pre>
-<h2>Solution</h2>
+<h2 id="solution">Solution</h2>
 <p>✏️ Add a <code>bus-tracker { }</code> section to the CSS and set <code>--header-background</code> and <code>--header-text-transform</code> CSS properties. Using <code>var()</code>, apply these styles in the appropriate place within the Shadow DOM CSS.</p>
 <p><details>
 <summary>Click to see the solution</summary></p>

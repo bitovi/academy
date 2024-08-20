@@ -606,21 +606,21 @@ covering CanJS core libraries.">
     <blockquote>
 <p><strong>Quick Start</strong>: You can checkout <a href="https://github.com/bitovi/angular-ngrx-chat/tree/create-reducer">this branch</a> to get your codebase ready to work on this section.</p>
 </blockquote>
-<h2>Overview</h2>
+<h2 id="overview">Overview</h2>
 <ol>
 <li><p>Verify Login State updates properly when the <code>LoginActions.loginSuccess</code> Action dispatches.</p></li>
 <li><p>Verify Login State resets properly when the <code>LoginActions.logoutSuccess</code> Action dispatches.</p></li>
 </ol>
-<h2>Running Tests</h2>
+<h2 id="running-tests">Running Tests</h2>
 <p>To run unit tests in your project, you can either use the <code>test</code> npm script, or the <code>ng test</code> command:</p>
 <pre><code class="language-bash">npm run test
 # or
 ng test --watch
 </code></pre>
 <p>The <code>--watch</code> switch will rerun your tests whenever a code file changes. You can skip it to just run all tests once.</p>
-<h2>Description</h2>
+<h2 id="description">Description</h2>
 <p>When testing a Reducer, we will test each of its <code>on()</code> handlers by verifying each pure function returns the expected value given an Action and a Login State (typically the <code>initialState</code>). Unlike the previous testing sections, when testing the Reducer, we don’t need a <code>TestBed</code> since there shouldn’t be any dependencies when dealing with the Reducer.</p>
-<h2>Update <code>login.selectors.spec.ts</code></h2>
+<h2 id="update-codeloginselectorsspectscode">Update <code>login.selectors.spec.ts</code></h2>
 <p>Before we can test our Reducer, our tests involving our Selectors are failing. This is because we’ve changed the shape and initial value of our Login State. To continue, we need to update them. Copy the following code to replace the contents of <code>src/app/store/login/login.selectors.spec.ts</code>:</p>
 <p><details>
 <summary>src/app/store/login/login.selectors.spec.ts</summary></p>
@@ -677,9 +677,9 @@ describe('Login Selectors', () =&gt; {
  <div line-highlight="9-14,17-21,only"></div>
 </details>
 <p>We will go over these changes in the upcoming section where we go over testing Selectors (<a href="test-selectors.html" title="Learn how to write unit tests for NgRx Selectors.">Testing Selectors</a>). For now after you update <code>src/app/store/login/login.selectors.spec.ts</code>, all of your tests should pass.</p>
-<h2>Update <code>login.reducer.spec.ts</code></h2>
+<h2 id="update-codeloginreducerspectscode">Update <code>login.reducer.spec.ts</code></h2>
 <p>We will walk through updating <code>src/app/store/login/login.reducer.spec.ts</code> to run tests for your Reducer.</p>
-<h3>Verify Login State Updates Properly When the <code>LoginActions.loginSuccess</code> Action Dispatches</h3>
+<h3 id="verify-login-state-updates-properly-when-the-codeloginactionsloginsuccesscode-action-dispatches">Verify Login State Updates Properly When the <code>LoginActions.loginSuccess</code> Action Dispatches</h3>
 <p>To test the <code>on()</code> handler associated with <code>LoginActions.loginSuccess</code>, we will define 3 values:</p>
 <ol>
 <li><p>Expected Login State after Reducer handles Action.</p></li>
@@ -777,7 +777,7 @@ describe('Login Reducer', () =&gt; {
 </code></pre>
  <div line-highlight="25-26,28-29,only"></div>
 </details>
-<h3>Verify Login State Resets Properly When the <code>LoginActions.logoutSuccess</code> Action Dispatches</h3>
+<h3 id="verify-login-state-resets-properly-when-the-codeloginactionslogoutsuccesscode-action-dispatches">Verify Login State Resets Properly When the <code>LoginActions.logoutSuccess</code> Action Dispatches</h3>
 <p>We will do the same when testing the <code>on()</code> handler associated with <code>LoginActions.logoutSuccess</code>, but instead of defining an expected Login State, we will just use the <code>initialState</code> since it already is our expected Login State. And instead of passing our <code>initialState</code> to the <code>reducer()</code>, we will pass some updated Login State instead to ensure that all values are reset properly:</p>
 <p><details open>
 <summary>src/app/store/login/login.reducer.spec.ts</summary></p>
@@ -850,7 +850,7 @@ describe('Login Reducer', () =&gt; {
 </code></pre>
  <div line-highlight="33-35,37-45,47-48,50-51,61,63-64,only"></div>
 </details>
-<h2>Final Result</h2>
+<h2 id="final-result">Final Result</h2>
 <p>At the end of this section, the following spec file(s) should be updated. After each spec file has been updated and all the tests have passed, this means that all the previous sections have been completed successfully:</p>
 <p><details>
 <summary>src/app/store/login/login.reducer.spec.ts</summary></p>

@@ -530,7 +530,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, you will:</p>
 <ul>
 <li>Export values from a file.</li>
@@ -538,14 +538,14 @@ covering CanJS core libraries.">
 <li>Learn why named exports are preferred over default exports.</li>
 <li>Import and export functions between modules.</li>
 </ul>
-<h2>Objective 1: Export and import values</h2>
+<h2 id="objective-1-export-and-import-values">Objective 1: Export and import values</h2>
 <p>A fundamental part of writing code is creating values that you can use across multiple files.
 Modules are a way of grouping code to be executed within their own scope, opposed to a global scope.
 Modules give us a way to write DRY code, scope our variables, re-use parts of our code, test our code in discrete units, and avoid writing applications full of dreadful spaghetti code.
 Let’s break down how to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export">export</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">import</a> values in TypeScript.</p>
 <p>In TypeScript, you can export any type of value: variables, functions, classes, interfaces, etc.</p>
 <p>There are two types of exports: default exports and named exports.</p>
-<h3>Default exports</h3>
+<h3 id="default-exports">Default exports</h3>
 <p>Imagine we have a <code>config.ts</code> file:</p>
 <pre><code class="language-ts">const config = {
   name: &quot;Bitovi Academy&quot;,
@@ -564,7 +564,7 @@ const appName = appConfig.name;
 <div line-highlight='1'></div>
 <p>In the code above, the <code>appConfig</code> variable is the same as the <code>config</code> variable exported from <code>config.ts</code>.
 Note that the <code>appConfig</code> variable name does not need to match the name in the file that has the <code>export</code>.</p>
-<h3>Named exports</h3>
+<h3 id="named-exports">Named exports</h3>
 <p>Named exports are called that because there is an explicit name in the file with the <code>export</code>.</p>
 <p>Let’s imagine we have a <code>helpers.ts</code> file:</p>
 <pre><code class="language-ts">export function constrain(value: number, min: number, max: number): number {
@@ -580,7 +580,7 @@ const constrained = constrain(-18, 0, 100);
 </code></pre>
 <div line-highlight='1'></div>
 <p>In the code above, we can import the <code>constrain</code> function by name from <code>helpers.ts</code> and use it in our code.</p>
-<h3>Default exports vs. named exports</h3>
+<h3 id="default-exports-vs-named-exports">Default exports vs. named exports</h3>
 <p>While you can prefer one style of export over the other, each serves a different purpose.</p>
 <ul>
 <li>Use default exports for the primary output of a module.</li>
@@ -591,7 +591,7 @@ const constrained = constrain(-18, 0, 100);
 <li>If you have a module called <code>AuthProvider</code> that exports a React component and several helper hooks, the component would be the primary (default) export and the hook would be secondary (named).</li>
 <li>If you have a module called <code>transforms</code> that exports the functions <code>formatPercent</code> and <code>formatCurrency</code>, both of these would be named exports; there is no primary export.</li>
 </ul>
-<h3>Importing types</h3>
+<h3 id="importing-types">Importing types</h3>
 <p>From time to time, you may need to only import the <code>type</code> from another file and not the full implementation.
 TypeScript provides a special syntax, <code>import type</code>, which is used specifically to import type declarations.
 This can help to make the import intention clearer and can also have some performance benefits during compilation.</p>
@@ -623,7 +623,7 @@ logUser(user);
 <p>In the code above, the <code>User</code> type import will not be included in the JavaScript output after compilation (because it’s only used for static type checking by TypeScript).</p>
 <p>Use <code>import type</code> whenever you are importing types like interfaces, types, or type aliases from another module and you do not need to import any runtime variables, classes, or functions.
 This not only makes your imports cleaner and more specific, but it also optimizes your project’s output size and compilation time.</p>
-<h3>Setup</h3>
+<h3 id="setup">Setup</h3>
 <p>✏️ Create <strong>src/modules/exporter.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">function greeter(person: string) {
     return &quot;Hello, &quot; + person;
@@ -638,7 +638,7 @@ export default function () {
     return greeter(&quot;Earth&quot;);
 }
 </code></pre>
-<h3>Verify</h3>
+<h3 id="verify">Verify</h3>
 <p>✏️ Create <strong>src/modules/importer.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
@@ -651,14 +651,14 @@ describe('Importer', () =&gt; {
     });
 });
 </code></pre>
-<h3>Exercise</h3>
+<h3 id="exercise">Exercise</h3>
 <p>Use your knowledge of named exports and imports to do the following:</p>
 <ul>
 <li>Export <code>greeter</code> from <code>exporter.ts</code></li>
 <li>Import <code>greeter</code> in <code>importer.ts</code></li>
 </ul>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/05-modules/01-problem?file=src/modules/exporter.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/05-modules/01-problem?file=src/modules/exporter.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution</h3>
+<h3 id="solution">Solution</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -680,13 +680,13 @@ export default function () {
  <div line-highlight="1,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/05-modules/01-solution?file=src/modules/exporter.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/05-modules/01-solution?file=src/modules/exporter.ts">CodeSandbox</a>.</p>
 <p></details></p>
-<h3>Bonus exploration</h3>
+<h3 id="bonus-exploration">Bonus exploration</h3>
 <p>What does your IDE show when you try to:</p>
 <ul>
 <li>Hover over <code>greeter</code>?</li>
 <li>Pass a number to <code>greeter</code>?</li>
 </ul>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>Next, let’s learn how to <a href="./types.html">declare types</a> in TypeScript.</p>
 
 </section>

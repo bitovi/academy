@@ -678,7 +678,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Problem</h2>
+    <h2 id="problem">Problem</h2>
 <p>You may have noticed an image error in our rendered html page. We’re using an API in this demo that wasn’t built for our exact purposes, and we need a different image path for our app to serve.</p>
 <p><img src="../static/img/angular/3-creating-components/restaurant-component.png"
 style="border: solid 1px black; max-width: 320px;"/></p>
@@ -696,17 +696,17 @@ style="border: solid 1px black; max-width: 320px;"/></p>
 <div line-highlight='3'></div>
 <p><code>restaurant.images.thumbnail</code> will be a path like <code>node_modules/place-my-order-assets/image.png</code>. We need to change that path to be more like <code>./assets/image.png</code>. Once
 the path rewriting is fixed, images will show up correctly.</p>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <ul>
 <li>How to generate a pipe</li>
 <li>How to use a pipe to transform data</li>
 </ul>
-<h2>How to Generate a Pipe via the CLI</h2>
+<h2 id="how-to-generate-a-pipe-via-the-cli">How to Generate a Pipe via the CLI</h2>
 <p>Generate a pipe with the following command:</p>
 <pre><code class="language-bash">ng g pipe imageUrl
 </code></pre>
 <p>This will generate a pipe file: <code>image-url.pipe.ts</code></p>
-<h2>How to Build a Pipe</h2>
+<h2 id="how-to-build-a-pipe">How to Build a Pipe</h2>
 <p><a href="https://angular.io/guide/pipes">Angular Pipes</a> come in handy to transform content in our templates. Pipes allow us to transform data to display to the user in our HTML without modifying the original source.</p>
 <p>Angular comes with several built-it pipes like DatePipe, UpperCasePipe, LowerCasePipe, CurrencyPipe, and PercentPipe. These pipes can be used in templates to modify the way data displays. We can build custom pipes as well. Pipes require one parameter - the value we want to change, but can take an additional parameters as well.</p>
 <p>This example takes a price to be transformed and a parameter to use as the currency symbol.</p>
@@ -768,7 +768,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='15-20, 26,only'></div>
-<h2>Technical requirements</h2>
+<h2 id="technical-requirements">Technical requirements</h2>
 <ol>
 <li>Use an <code>imageUrl</code> <strong>pipe</strong> in <strong>src/app/restaurant/restaurant.component.html</strong> to rewrite the path. Using a pipe looks like the following:</li>
 </ol>
@@ -787,7 +787,7 @@ platformBrowserDynamic()
 <blockquote>
 <p>Hint: Use String.prototype.replace to create the new path with image name.</p>
 </blockquote>
-<h2>Setup</h2>
+<h2 id="setup">Setup</h2>
 <p>✏️ Run the following to generate the <strong>pipe</strong> and the pipe’s tests:</p>
 <pre><code class="language-bash">ng g pipe imageUrl
 </code></pre>
@@ -825,14 +825,14 @@ platformBrowserDynamic()
 
 </code></pre>
  <div line-highlight="5-10,only"></div>
-<h3>Having issues with your local setup?</h3>
+<h3 id="having-issues-with-your-local-setup">Having issues with your local setup?</h3>
 <p>You can get through most of this tutorial by using an online code editor. You won’t be able to run our tests to verify your solution, but you will be able to make changes to your app and see them live.</p>
 <p>You can use one of these two online editors:</p>
 <ul>
 <li><p><a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/angular/3a-pipes/problem?file=src/app/image-url.pipe.ts">StackBlitz</a></p></li>
 <li><p><a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/angular/3a-pipes/problem?file=src/app/image-url.pipe.ts">CodeSandbox</a></p></li>
 </ul>
-<h2>How to verify your solution is correct</h2>
+<h2 id="how-to-verify-your-solution-is-correct">How to verify your solution is correct</h2>
 <p>✏️ Update the restaurant spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to include the new pipe:</p>
 <pre><code class="language-ts">import {
   ComponentFixture,
@@ -914,7 +914,7 @@ describe('ImageUrlPipe', () =&gt; {
 
 </code></pre>
 <div line-highlight='8-14'></div>
-<h2>Solution</h2>
+<h2 id="solution">Solution</h2>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary>

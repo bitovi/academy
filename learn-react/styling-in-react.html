@@ -543,7 +543,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, we will:</p>
 <ul>
 <li>Review how plain CSS works in React applications</li>
@@ -551,13 +551,13 @@ covering CanJS core libraries.">
 <li>Create a component-specific stylesheet</li>
 <li>Apply styles in a component</li>
 </ul>
-<h2>Objective: Add a styled link</h2>
+<h2 id="objective-add-a-styled-link">Objective: Add a styled link</h2>
 <p>We have the navigation links in the header, but it’d be nice if our <code>Home</code> component had a nice big Call to Action (CTA) in it so our users were directed to the next step: Choose a Restaurant.</p>
-<h3>Styling options in React applications</h3>
+<h3 id="styling-options-in-react-applications">Styling options in React applications</h3>
 <p>There is no prescribed approach for styling React apps. It’s entirely possible to style components using regular CSS. This approach works fine for many applications, especially smaller ones.</p>
 <p>However, as your application grows in complexity, you might encounter challenges with style management. For instance, CSS written for one component can unintentionally affect other parts of your application.</p>
 <p>The community has built several styling options. We will be using CSS Modules as it is one of the most popular styling libraries and is very approachable for anyone that is used to styling in plain CSS. CSS Modules offer a way to write CSS that’s scoped to individual components, thus preventing style clashes and maintaining a cleaner codebase.</p>
-<h3>Reviewing how plain CSS works</h3>
+<h3 id="reviewing-how-plain-css-works">Reviewing how plain CSS works</h3>
 <p>In a standard React application using regular CSS, styles are global. This means that any style you define can potentially affect any element in your application that matches the style’s selector.</p>
 <p>Let’s imagine that we have two components in our application: <code>&lt;BlogPost&gt;</code> and <code>&lt;UserProfile&gt;</code>. Both of them feature an avatar image, one for the author of a post and the other for the signed-in user.</p>
 <p>Here’s what the <code>BlogPost.css</code> file might look like:</p>
@@ -606,7 +606,7 @@ const UserProfile: React.FC = () =&gt; {
 </code></pre>
 <p>This is no good! When someone edits one component, it looks like they’re only changing the styles for that single component, but in fact they are changing any instance where that <code>class</code> name is used globally throughout the entire application.</p>
 <p>Let’s solve this!</p>
-<h3>Introducing CSS modules</h3>
+<h3 id="introducing-css-modules">Introducing CSS modules</h3>
 <p>CSS Modules works like regular CSS, but the class names are randomized to prevent conflicts between components. When using CSS Modules, if multiple components implement a <code>.avatar</code> class, those classes will be unique and conflict-free because CSS Modules will rename each class with a unique random string like <code>.avatar_R8f2</code>.</p>
 <p>For example, these styles in a CSS module:</p>
 <pre><code class="language-css">/* BlogPost.module.css */
@@ -634,7 +634,7 @@ const UserProfile: React.FC = () =&gt; {
 </ul></li>
 </ul>
 </div>
-<h3>Importing and applying styles</h3>
+<h3 id="importing-and-applying-styles">Importing and applying styles</h3>
 <p>During the build process, the CSS classes will be randomized and added to a global stylesheet. The randomized class names are imported into components as an object where the key is the original class and the value is the new, randomized string.</p>
 <p>Here’s an example of what the JS object imported from <code>BlogPost.module.css</code> might look like:</p>
 <pre><code class="language-tsx">export default { avatar: &quot;avatar_R8f2&quot; }
@@ -656,7 +656,7 @@ const BlogPost: React.FC = ({ authorAvatar, content }) =&gt; {
 }
 </code></pre>
 <div line-highlight='1, 8'></div>
-<h3>Avoid plain selectors</h3>
+<h3 id="avoid-plain-selectors">Avoid plain selectors</h3>
 <p>Note that CSS Modules cannot rename HTML tags, so all of your styling should use classes to avoid unexpected styling bugs. The following will apply to all <code>img</code> elements in the project and should be avoided.</p>
 <pre><code class="language-css">/* Don’t do this with CSS Modules as tag names can not be randomized */
 img {
@@ -672,9 +672,9 @@ img {
   float: right;
 }
 </code></pre>
-<h3>Install CSS Modules</h3>
+<h3 id="install-css-modules">Install CSS Modules</h3>
 <p>Already done! Vite, our build tool, ships with first-class CSS Modules support. Vite also supports a few <a href="https://vitejs.dev/guide/features#css">other styling options</a> out of the box.</p>
-<h3>Setup</h3>
+<h3 id="setup">Setup</h3>
 <p>We’ve created some CSS for this exercise. Create a CSS Modules file and copy the following styles into it.</p>
 <p>✏️ Create <strong>src/pages/Home/Home.module.css</strong> and update it to be:</p>
 <pre><code class="language-css">a {
@@ -709,7 +709,7 @@ a:active {
 }
 
 </code></pre>
-<h3>Verify</h3>
+<h3 id="verify">Verify</h3>
 <p>✏️ Update <strong>src/pages/Home/Home.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
 import { render, screen } from &quot;@testing-library/react&quot;
@@ -755,7 +755,7 @@ describe(&quot;Home component&quot;, () =&gt; {
 
 </code></pre>
  <div line-highlight="3-4,9-13,27,34,36-40,only"></div>
-<h3>Exercise</h3>
+<h3 id="exercise">Exercise</h3>
 <p>Now that we’ve learned to apply styling in React with CSS Modules, it’s time to practice by styling a link in the Home component. You’ll bring in a <code>Link</code> component from React Router.</p>
 <ul>
 <li>Update the styles in <code>Home.module.css</code> to be usable as a CSS Module.</li>
@@ -766,7 +766,7 @@ describe(&quot;Home component&quot;, () =&gt; {
 </ul></li>
 </ul>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/07-styling-in-react/01-problem?file=src/pages/Home/Home.module.css">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/07-styling-in-react/01-problem?file=src/pages/Home/Home.module.css">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution</h3>
+<h3 id="solution">Solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/pages/Home/Home.module.css</strong> to be:</p>
@@ -840,7 +840,7 @@ export default Home
  <div line-highlight="2-3,22-26,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/07-styling-in-react/01-solution?file=src/pages/Home/Home.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/07-styling-in-react/01-solution?file=src/pages/Home/Home.tsx">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>In the next section, we’ll learn to manage state.</p>
 
 </section>

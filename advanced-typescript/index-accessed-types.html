@@ -453,9 +453,9 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>There are many times we would like to forego defining a type and rather use some other type as a reference instead. Index Accessed Types is a TypeScript feature that allows us to do just that! In this section, we will look at index accessed types, how they work, and how they are defined. Towards the end we will see a practical application!</p>
-<h2>Index Accessed Types</h2>
+<h2 id="index-accessed-types">Index Accessed Types</h2>
 <p>Index accessed types are a way to look up types on other types. TypeScript uses square bracket notation (<code>[]</code>) to grab the desired type off of object types, much like how you can access a specific property from a JavaScript object using square brackets (<code>someObject[&quot;someKey&quot;]</code>).</p>
 <pre><code class="language-ts">type Pokemon = {
   power: number;
@@ -497,7 +497,7 @@ type GymLeader = {
 type InvalidExample2 = Pokemon[GymLeader];
 </code></pre>
 <div line-highlight='8-18'></div>
-<h3>Multiple Types as Indices</h3>
+<h3 id="multiple-types-as-indices">Multiple Types as Indices</h3>
 <p>When TypeScript sees more than one type being passed in it will create a union of the property types — <code>keyof</code> and string unions illustrate this.</p>
 <pre><code class="language-ts">type PokemonTypeOrPower = Pokemon[&quot;power&quot; | &quot;type&quot;]; // number | &quot;fire&quot; | &quot;water&quot; | &quot;grass&quot;
 
@@ -522,7 +522,7 @@ type Pokemon = {
 
 type PokemonMoveName = Pokemon[&quot;firstMove&quot;][&quot;name&quot;]; // string
 </code></pre>
-<h3>With Generics</h3>
+<h3 id="with-generics">With Generics</h3>
 <p>Index accessed types also work with generics, let’s take a look at an example they may seem familiar if you did the exercises from the last section</p>
 <pre><code class="language-ts">function getStarterPokemonInfomation&lt;Starters, Name extends keyof Starters&gt;(
   starter: Starters,
@@ -532,7 +532,7 @@ type PokemonMoveName = Pokemon[&quot;firstMove&quot;][&quot;name&quot;]; // stri
 }
 </code></pre>
 <p>In this exercise we didn’t define the return type of this function; instead opting for TypeScript’s type inference to define it for us. If we were to define it the return type would be <code>Starters[Name]</code>. The reason this works is that we have constrained the <code>Name</code> generic to extend <code>keyof Starters</code>.</p>
-<h2>Practical Indices</h2>
+<h2 id="practical-indices">Practical Indices</h2>
 <p>Index accessed types really shine when deriving types from other types. Imagine we’re building a game that uses some sort of restful service. The backend has done a wonderful job of building a consistent API that describes all entities in the following way.</p>
 <div style='width:100%;display:flex;justify-content:center;'>
 <table style='width: 50%;'>
@@ -599,8 +599,8 @@ function factory&lt;T extends Entity&gt;(path: string): Requests&lt;T&gt; {
 <div line-highlight='2, 5-6'></div>
 <p>Using index accessed types we have resolved this issue and any future issue like it down the road.</p>
 <p>As we’ve seen, indexed access types are a powerful feature from TypeScript which helps our typing become more flexible and dynamic. Like generics, they will become a staple in our types as we progress through other TypeScript features.</p>
-<h2>Exercises</h2>
-<h3>Exercise 1</h3>
+<h2 id="exercises">Exercises</h2>
+<h3 id="exercise-1">Exercise 1</h3>
 <p>Below is an array of Pokemon trainers and a <code>FavoritePokemon</code> type currently assigned to any.
 Using the <code>pokemonTrainers</code> array replace the <code>any</code> with a type that has the same shape as <code>favoritePokemon</code> on the
 trainers in the array.</p>

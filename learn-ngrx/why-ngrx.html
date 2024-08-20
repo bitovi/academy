@@ -612,14 +612,14 @@ covering CanJS core libraries.">
 <li><p>Maintainability - While NgRx allegedly has a lot of boilerplate code, NgRx does help keep your code tidy!</p></li>
 <li><p>Performance - NgRx is carefully implemented with performance in mind, and it complements the Angular Ecosystem perfectly because of its Reactive approach.</p></li>
 </ol>
-<h2>Understanding the Key Concepts of NgRx</h2>
-<h3>Redux Pattern</h3>
+<h2 id="understanding-the-key-concepts-of-ngrx">Understanding the Key Concepts of NgRx</h2>
+<h3 id="redux-pattern">Redux Pattern</h3>
 <p>The Redux pattern manages the Global State of an application and aims at code testability and predictability.</p>
 <p>Redux is known for its boilerplate code. At first, it might seem like a lot of effort to implement Redux, but in fact it is a tradeoff. Redux adds a layer of indirection in order to improve maintainability, testability and predictability of your application. The tradeoff pays off more often than not particularly if your application is complex, large and maintained by a large team.</p>
 <p><a href="https://redux.js.org/tutorials/essentials/part-1-overview-concepts#immutability">Redux expects updates to the state to be done immutably</a>. Not only does Immutability help Redux implement patterns that increase testability and predictability, it also improves performance, as change detection is achieved with less effort.</p>
-<h4>Store</h4>
+<h4 id="store">Store</h4>
 <p>A Store is an object that wraps the state. The Store also provides helper functions to update the state and listen to state changes.</p>
-<h4>Actions</h4>
+<h4 id="actions">Actions</h4>
 <p>Actions are objects that represent individual events in your application.</p>
 <p>Actions are created using two properties:</p>
 <ol>
@@ -627,18 +627,18 @@ covering CanJS core libraries.">
 <li><p><code>payload</code> (optional) - Holds additional information.</p></li>
 </ol>
 <p>Actions are necessary to update the state by triggering Reducers.</p>
-<h4>Reducers</h4>
+<h4 id="reducers">Reducers</h4>
 <p>To put it simply, Reducers are <code>pure</code> functions that take the state and an Action as arguments, and return a new state. In other words, Reducers are functions that, given an Action, know how to update the state.</p>
 <p>Reducers functions must be <code>pure</code>:</p>
 <ol>
 <li><p>do not depend on any information other than the Action and current state.</p></li>
 <li><p>do not perform side-effects, like mutating the current state. When using NgRx, side-effects are already handled through Effects.</p></li>
 </ol>
-<h4>Dispatch</h4>
+<h4 id="dispatch">Dispatch</h4>
 <p>A Dispatch is a <code>Store</code> method that will provide an Action to the Reducer function. You can see the <code>dispatch()</code> method as the API to update the state. Effects also listen for every Action dispatched from the Store to handle <em>side-effects</em>.</p>
-<h4>Selectors</h4>
+<h4 id="selectors">Selectors</h4>
 <p>Selectors are functions that extract data from the state. Selectors can return derived data or slices of the state.</p>
-<h4>One-way Data Flow</h4>
+<h4 id="one-way-data-flow">One-way Data Flow</h4>
 <p>To help you understand how Redux pieces work together, let’s take a look at the most basic representation of how data is passed around in an application that uses Redux, also known as a <em>one-way data flow</em>, <a href="https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow#state-management">taken from the Redux Official Documentation</a>.</p>
 <figure>
     <img src="../static/img/ngrx/1-why-ngrx/ngrx-one-way-data-flow.png" alt="One-way data flow" style="width: 640px">
@@ -650,13 +650,13 @@ covering CanJS core libraries.">
 <li><p>A <code>reducer</code> function takes the <code>action</code> type and payload and current <code>state</code> to return a new <code>state</code>.</p></li>
 <li><p>The <code>view</code>, which is subscribed to <code>state</code> changes through <code>selectors</code>, triggers a re-render of the <code>view</code> based on the new <code>state</code>.</p></li>
 </ol>
-<h3>NgRx State Management Lifecycle</h3>
+<h3 id="ngrx-state-management-lifecycle">NgRx State Management Lifecycle</h3>
 <p>NgRx abstracts away from <em>one-way data flow</em> to represent its own Store implementation pieces and interaction with external entities, such as Components and Services, to what is referred to as the <em>State Management Lifecycle</em>.</p>
 <figure>
     <img src="../static/img/ngrx/1-why-ngrx/state-management-lifecycle.png" alt="NgRx State Management Lifecycle diagram" style="width: 640px">
     <figcaption style="text-align: center; width: 640px">NgRx State Management Lifecycle (<a href="https://ngrx.io/guide/store">Source</a>)</figcaption>
 </figure>
-<h4>Effects</h4>
+<h4 id="effects">Effects</h4>
 <p>We’ve mentioned <em>side-effects</em> before: Reducer functions must be pure and not perform side-effects. While the <a href="https://redux.js.org/faq/actions#how-can-i-represent-side-effects-such-as-ajax-calls-why-do-we-need-things-like-action-creators-thunks-and-middleware-to-do-async-behavior">Redux pattern suggests that side-effects should be performed as part of the Action creation process</a>, NgRx’s solution - Effects - is a more reactive approach.</p>
 <p>In NgRx, Effects will:</p>
 <ol>
@@ -666,7 +666,7 @@ covering CanJS core libraries.">
 <blockquote>
 <p>Note that for a given Action, Effects will always happen after the state has been updated by the Reducer.</p>
 </blockquote>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>Now that we’ve taken a good look at the bigger picture, let’s dive in and set our environment up so we can get our hands dirty with some coding!</p>
 
 </section>

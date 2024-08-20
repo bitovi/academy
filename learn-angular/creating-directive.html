@@ -678,7 +678,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Problem</h2>
+    <h2 id="problem">Problem</h2>
 <p>While filling out the <code>phone number</code> field, you might have noticed that users can type in both letters and numbers. This is a problem because we do not want users entering letters in the <code>phone number</code> field.</p>
 <p><img src="../static/img/angular/15-directives/order-form-thumbnails.png"
 style="border: solid 1px black; max-width: 420px;"/></p>
@@ -691,14 +691,14 @@ style="border: solid 1px black; max-width: 420px;"/></p>
 /&gt;
 </code></pre>
 <div line-highlight='4'></div>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <ul>
 <li>What are Directives?</li>
 <li>What is <code>ElementRef</code>?</li>
 <li>What are <code>HostListeners</code>?</li>
 <li>How to create a Directive</li>
 </ul>
-<h2>What are Directives?</h2>
+<h2 id="what-are-directives">What are Directives?</h2>
 <p>Directives are classes that tell Angular to change the appearance or behavior of DOM Elements. Angular comes with a set of <a href="https://angular.io/guide/built-in-directives">Built-in</a> Directives,
 and they consist of three types:</p>
 <ul>
@@ -706,7 +706,7 @@ and they consist of three types:</p>
 <li>Structural Directives</li>
 <li>Attribute Directives</li>
 </ul>
-<h3>Components</h3>
+<h3 id="components">Components</h3>
 <p>In this training, we previously talked about <a href="creating-components.html" title="Learn how to create basic components in Angular and iterate through data using an Angular for loop.">Components</a>.
 Components are a type of Directive. Components use the <code>@Component</code> decorator function along with a template, style, and other logic needed for the view.
 This was previously discussed in detail <a href="creating-components.html#p2-what-you-need-to-know" title="Learn how to create basic components in Angular and iterate through data using an Angular for loop.">here</a>. The official <a href="https://angular.io/guide/built-in-directives#:~:text=Components%E2%80%94-,directives,-with%20a%20template">Angular documentation</a> has more information on this as well.</p>
@@ -718,7 +718,7 @@ This was previously discussed in detail <a href="creating-components.html#p2-wha
 })
 export class AppButtonComponent {}
 </code></pre>
-<h3>Structural Directives</h3>
+<h3 id="structural-directives">Structural Directives</h3>
 <p>Structural Directives are types of Directives that are used to change HTML DOM layout by adding, removing or manipulating Elements.
 <a href="https://angular.io/guide/structural-directives">Learn more about structural directives.</a></p>
 <pre><code class="language-ts">import { Component } from '@angular/core';
@@ -740,7 +740,7 @@ export class AppMessageComponent {
   }
 }
 </code></pre>
-<h3>Attribute Directives</h3>
+<h3 id="attribute-directives">Attribute Directives</h3>
 <p>Attribute Directives are a type of directive that are mainly used to listen or change the behavior or appearance of DOM Elements,
 Attributes and Components.
 <a href="https://angular.io/guide/attribute-directives">Learn more about attribute directives</a>.</p>
@@ -758,7 +758,7 @@ export class AppColorDirective {
   constructor(private el: ElementRef) {}
 }
 </code></pre>
-<h2>ElementRef</h2>
+<h2 id="elementref">ElementRef</h2>
 <p>ElementRef (Element Reference) is a wrapper around a native DOM Element inside of a View.
 The ElementRef class contains a property <code>nativeElement</code>, which references the underlying DOM object that we can use to manipulate the DOM.
 <a href="https://angular.io/api/core/ElementRef">Read more</a>.</p>
@@ -790,7 +790,7 @@ export class HighlightDirective implements OnInit {
 })
 export class AppButtonComponent {}
 </code></pre>
-<h2>HostListener</h2>
+<h2 id="hostlistener">HostListener</h2>
 <p>HostListener is a function decorator that allows you to listen and handle DOM events from the host element.
 Some examples of events include <code>keyboard</code> and <code>mouse</code> events.
 <a href="https://angular.io/api/core/HostListener">Read more</a>.</p>
@@ -831,11 +831,11 @@ export class ClickTrackerDirective {
 })
 export class AppButtonComponent {}
 </code></pre>
-<h2>How to Generate a Directive via the CLI</h2>
+<h2 id="how-to-generate-a-directive-via-the-cli">How to Generate a Directive via the CLI</h2>
 <pre><code class="language-bash">ng generate directive onlyNumbers
 </code></pre>
 <p>This will generate the directive file: <code>only-numbers.directive.ts</code> and the spec file: <code>only-numbers.directive.spec.ts</code></p>
-<h2>How to Build a Directive</h2>
+<h2 id="how-to-build-a-directive">How to Build a Directive</h2>
 <p>As we have discussed above, Directives are very useful tools in Angular that can help improve your web application. The example below shows an Attribute Directive that would allow a user to enter only <code>letters</code> in an input field.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -908,7 +908,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='14-34, 40,only'></div>
-<h2>Technical requirements</h2>
+<h2 id="technical-requirements">Technical requirements</h2>
 <ol>
 <li>Use an <code>onlyNumber</code> <strong>Directive</strong> in <strong>src/app/order/order.component.html</strong> in the phone number input field. Using the Directive should look like this:</li>
 </ol>
@@ -927,7 +927,7 @@ platformBrowserDynamic()
 <blockquote>
 <p>Hint: Use regex <code>regExp: RegExp = new RegExp(/^[0-9]*$/g)</code> to test if the input value contains any letters.</p>
 </blockquote>
-<h2>Setup</h2>
+<h2 id="setup">Setup</h2>
 <p>✏️ Update <strong>src/app/order/order.component.html</strong> file to use the Directive we will create:</p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
   &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;&lt;/ng-container&gt;
@@ -996,7 +996,7 @@ platformBrowserDynamic()
 <p>✏️ Run the following to generate the <strong>Directive</strong> and the directive’s tests:</p>
 <pre><code class="language-bash">ng g directive onlyNumbers
 </code></pre>
-<h2>How to verify your solution is correct</h2>
+<h2 id="how-to-verify-your-solution-is-correct">How to verify your solution is correct</h2>
 <p>✏️ Update the spec file <strong>src/app/only-numbers.directive.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -1070,7 +1070,7 @@ describe('OnlyNumbersDirective', () =&gt; {
 
 </code></pre>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
-<h2>Solution</h2>
+<h2 id="solution">Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/only-numbers.directive.ts</strong> to:</p>

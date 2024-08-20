@@ -606,14 +606,14 @@ covering CanJS core libraries.">
     <blockquote>
 <p><strong>Quick Start</strong>: You can checkout <a href="https://github.com/bitovi/angular-ngrx-chat/tree/create-actions">this branch</a> to get your codebase ready to work on this section.</p>
 </blockquote>
-<h2>Overview</h2>
+<h2 id="overview">Overview</h2>
 <ol>
 <li><p>Update <code>LoginComponent</code> to dispatch <code>LoginActions.login</code> Action.</p></li>
 <li><p>Update <code>DashboardComponent</code> to dispatch <code>LoginActions.logout</code> Action.</p></li>
 </ol>
-<h2>Problem 1: Dispatch Login Action on <code>LoginComponent</code></h2>
+<h2 id="problem-1-dispatch-login-action-on-codelogincomponentcode">Problem 1: Dispatch Login Action on <code>LoginComponent</code></h2>
 <p>Now that we have our Actions, let’s use them. The <code>LoginComponent</code> should have the Login Action be dispatched when the submit button is clicked.</p>
-<h2>P1: What you need to know</h2>
+<h2 id="p1-what-you-need-to-know">P1: What you need to know</h2>
 <p>We can import our Action creators from <code>src/app/store/login/login.actions.ts</code> to create Actions and then use the NgRx Store to dispatch them:</p>
 <pre><code class="language-ts">// Note: This example code is not part of our application repo or solution
 
@@ -638,7 +638,7 @@ export class ContactComponent {
 <div line-highlight='4, 5, 16'></div>
 <p>In upcoming sections, we will discuss how dispatched Actions can trigger Reducer functions (<a href="create-reducer.html" title="Learn how to create an NgRx Reducer.">Create a Reducer</a>) and how Effects listen to Actions dispatched from the Store to handle <em>side-effects</em> (<a href="create-api-effects.html" title="Create an NgRx Effect to connect the Login Store to an authentication API.">Create an API Effect</a>). You can learn more about how to write Actions and how to dispatch them in the <a href="https://ngrx.io/guide/store/actions#writing-actions">NgRx documentation on Actions</a>.</p>
 <p>In the <code>LoginComponent</code>, there is a <code>TODO</code> where the Login Action should be dispatched.</p>
-<h2>P1: Solution</h2>
+<h2 id="p1-solution">P1: Solution</h2>
 <p><details>
 <summary>src/app/login/login.component.ts</summary></p>
 <pre><code class="language-ts">// src/app/login/login.component.ts
@@ -679,11 +679,11 @@ export class LoginComponent {
 </code></pre>
  <div line-highlight="5-6,19,27-32,only"></div>
 </details>
-<h2>Problem 2: Dispatch Logout Action on <code>DashboardComponent</code></h2>
+<h2 id="problem-2-dispatch-logout-action-on-codedashboardcomponentcode">Problem 2: Dispatch Logout Action on <code>DashboardComponent</code></h2>
 <p>And the <code>DashboardComponent</code> should have the Logout Action be dispatched when the logout button is clicked.</p>
-<h2>P2: What you need to know</h2>
+<h2 id="p2-what-you-need-to-know">P2: What you need to know</h2>
 <p>In the <code>DashboardComponent</code>, there is a <code>TODO</code> where the Logout Action should be dispatched.</p>
-<h2>P2: Solution</h2>
+<h2 id="p2-solution">P2: Solution</h2>
 <p><details>
 <summary>src/app/dashboard/dashboard.component.ts</summary></p>
 <pre><code class="language-ts">// src/app/dashboard/dashboard.component.ts

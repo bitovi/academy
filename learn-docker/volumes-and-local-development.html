@@ -469,7 +469,7 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/8sGPAiFu66s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<h2>Overview</h2>
+<h2 id="overview">Overview</h2>
 <p>With the concepts we’ve explored so far, building an image and starting a container after every  code change would be incredibly inefficient. To test every code change, a developer would have to</p>
 <ol>
 <li>Make the code change</li>
@@ -478,7 +478,7 @@ covering CanJS core libraries.">
 <li>Run the container (<code>docker run ...</code>)</li>
 </ol>
 <p>In particular, rebuilding an image with <code>docker build</code> takes too long. We’re going to explore how to make things much more efficient.</p>
-<h2>Volumes</h2>
+<h2 id="volumes">Volumes</h2>
 <p>A Docker container has no built in persistence. Beyond the image itself, all other data is discarded when a container is destroyed. Without volumes, running databases or applications that require state would be impossible.</p>
 <p>Volumes provide a persistent storage mechanism that can be managed through Docker’s CLI. They can be shared between multiple containers and can be stored on remote hosts or cloud providers.</p>
 <p>The following creates a volume called <code>my-vol</code> and on container creation is mounted to the <code>/data</code> directory. As the application runs, the contents of <code>/data</code> are persisted in the volume so that when the container is destroyed, the data is not lost.</p>
@@ -487,7 +487,7 @@ docker run -v my-vol:/data my-image
 </code></pre>
 <p>The above commands create a volume called <code>my-vol</code> and on container creation is mounted to the <code>/data</code> directory. As the application runs, the contents of <code>/data</code> are persisted in the volume so that when the container is destroyed, the data is not lost.</p>
 <p><a href="https://docs.docker.com/storage/volumes/">Official Docs</a></p>
-<h2>Bind Mounts</h2>
+<h2 id="bind-mounts">Bind Mounts</h2>
 <p>Bind mounts are similar to volumes, but in comparison have limited functionality. Instead of creating a named volume, the contents of a host machine’s directory can be mounted to a directory in a container.</p>
 <p>For example the following command will overwrite the contents of the <code>/data</code> directory in the container with the contents of <code>/Users/connor/data</code>. When the container is running, the contents are mirrored between the two locations regardless if a change originates from the container or the host machine.</p>
 <pre><code class="language-bash">docker run -v /Users/connor/data:/data my-image
@@ -496,7 +496,7 @@ docker run -v my-vol:/data my-image
 <pre><code class="language-bash">docker run -v $PWD/data:/data my-image
 </code></pre>
 <p><a href="https://docs.docker.com/storage/bind-mounts/">Official Docs</a></p>
-<h2>Local Development</h2>
+<h2 id="local-development">Local Development</h2>
 <p>The most common use case for bind mounts is in local development environments. Instead of rebuilding an image on every code change, we can mount our application’s <code>src/</code> directory to the <code>/app/src</code> directory of our container.</p>
 <p>Open a terminal at the root of your application and run</p>
 <pre><code class="language-bash">docker run --name my-container -p 8000:8000 -d -v $PWD/src:/app/src my-node-app:latest

@@ -678,7 +678,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, you will:</p>
 <ul>
 <li>Understand why navigation is important.</li>
@@ -687,22 +687,22 @@ covering CanJS core libraries.">
 <li>Learn about the difference between stack and native stack navigation.</li>
 <li>Implement a stack navigation pattern.</li>
 </ul>
-<h2>Objective 1: Using React Native bottom tab navigation</h2>
+<h2 id="objective-1-using-react-native-bottom-tab-navigation">Objective 1: Using React Native bottom tab navigation</h2>
 <p>As our application grows in complexity, more screens will be added. The React Navigation library provides a solution that allows us to move between these screens. In this section, we will cover both common navigation patterns used in both Android and iOS applications: tab navigation and stack navigation.</p>
 <div style="display: flex; flex-direction: row; gap: 2rem">
   <img alt="Screen Shot of the StateList in Navigation" src="../static/img/react-native/11-navigation/01-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 </div>
-<h3>What is navigation?</h3>
+<h3 id="what-is-navigation">What is navigation?</h3>
 <p>Navigation in React Native refers to the process of moving between different screens in our application. It helps users transition between various parts of your application through interactions like tapping on buttons, list rows, and other UI elements.</p>
-<h3>Why is navigation important?</h3>
+<h3 id="why-is-navigation-important">Why is navigation important?</h3>
 <p>By introducing several screens in our application, it allows us to break down the user interface into smaller, more manageable parts. This makes our application easier to maintain and scale as it grows.</p>
-<h3>Deep Linking</h3>
+<h3 id="deep-linking">Deep Linking</h3>
 <p>Although out of scope for this training, deep linking is a way to navigate to a specific screen or piece of content within your mobile application from an external source. For example, a user might click on a link in an email that opens a specific screen in your app. Deep linking is a powerful tool for user engagement and retention.</p>
 <p>The React Navigation library used in this section supports deep linking and has a <a href="https://reactnavigation.org/docs/deep-linking/">guide</a> on how to set up your application to be notified of incoming links.</p>
-<h3>Navigation Lifecycle</h3>
+<h3 id="navigation-lifecycle">Navigation Lifecycle</h3>
 <p>Now that we have an understanding of how navigation works within a stack, let’s take a look at the implications of navigation on the component lifecycle.</p>
 <p>If we have a stack navigator with two screens, <code>ScreenA</code> and <code>ScreenB</code>, and navigate to <code>ScreenA</code>, then <code>ScreenA</code> will mount the component and render. If we then navigate to <code>ScreenB</code>, <code>ScreenA</code> will remain mounted but will be hidden from view, and <code>ScreenB</code> will mount and render. What happens when we navigate back to <code>ScreenA</code>? <code>ScreenB</code> will be unmounted, but <code>ScreenA</code> will <em>not</em> remount. Because it stayed in the stack, it remained mounted the entire time.</p>
-<h3>Bottom Tab Navigation</h3>
+<h3 id="bottom-tab-navigation">Bottom Tab Navigation</h3>
 <p>Tab navigation pattern is one of the most common navigation patterns used in both Android and iOS applications. It allows users to switch between different screens by tapping on tabs that are typically located at the bottom of the screen.</p>
 <p>Often tabs in a mobile application are made up of more than just one screen. Tab navigation is often used in conjunction with stack navigation to allow for more complex navigation patterns. We will cover how to use React Navigation's stack navigation in the next section.</p>
 <p>Here is an example of using tab-based navigation in React Native with React Navigation:</p>
@@ -742,19 +742,19 @@ export default function App() {
 </code></pre>
 <div line-highlight='1-2, 21, 25-30, only'></div>
 <p>Let’s break down the code above:</p>
-<h3>NavigationContainer</h3>
+<h3 id="navigationcontainer">NavigationContainer</h3>
 <p>The <code>NavigationContainer</code> component is responsible for managing our app state and linking.
 This component handles the platform-specific (Android, iOS, etc.) navigation logic and provides functionality to: deep link, notify state changes, and handle back button presses.</p>
-<h3>createBottomTabNavigator</h3>
+<h3 id="createbottomtabnavigator">createBottomTabNavigator</h3>
 <p>The <code>createBottomTabNavigator</code> function creates a navigator that renders a tab bar at the bottom of the screen. The components returned from this function are the <code>Tab.Navigator</code> and <code>Tab.Screen</code> components which we use together to define our tab navigation.</p>
 <p>The <code>Tab.Navigator</code> component takes <code>Tab.Screen</code> components as children. For each child, a tab button will be added to the tab bar at the bottom of the screen. The <code>Tab.Navigator</code> also has a set of props that can be used to customize the behavior of the tab bar. We can set the initial route with <code>initialRouteName</code>, specify the <code>backBehavior</code>, customize the styles through <code>screenOptions</code>, and more.</p>
 <p>The <code>Tab.Screen</code> component takes a <code>name</code> prop that is used to identify the screen and a <code>component</code> prop that is used to render the screen. The <code>name</code> prop must be unique among all the screens in the navigator. Similar to the <code>Tab.Navigator</code>, we can pass an <code>options</code> prop to the <code>Tab.Screen</code> component to customize the title, label, icon, and other props of the tab.</p>
-<h3>React Native Vector Icons</h3>
+<h3 id="react-native-vector-icons">React Native Vector Icons</h3>
 <p>The React Native Vector Icons repository is an invaluable resource for enhancing your React Native applications with high-quality icons.
 This library provides an extensive collection of icons from popular sets such as FontAwesome, Material Icons, and Ionicons.
 It integrates seamlessly with React Native, offering versatile components that you can style and scale to meet any design requirements.
 By importing your chosen icon set and utilizing the <code>&lt;Icon&gt;</code> component, you can easily specify properties like name, size, and color to incorporate icons into your apps.</p>
-<h3>Setup 1</h3>
+<h3 id="setup-1">Setup 1</h3>
 <p>✏️ Install the new dependencies:</p>
 <pre><code class="language-bash">npm install @react-navigation/native@6 @react-navigation/bottom-tabs@6 react-native-safe-area-context@4 react-native-screens@3 react-native-vector-icons@10
 </code></pre>
@@ -1009,7 +1009,7 @@ export default Settings
 export * from &quot;./Settings&quot;
 
 </code></pre>
-<h3>Verify 1</h3>
+<h3 id="verify-1">Verify 1</h3>
 <p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
 
@@ -1075,7 +1075,7 @@ describe(&quot;Screens/Settings&quot;, () =&gt; {
 })
 
 </code></pre>
-<h3>Exercise 1</h3>
+<h3 id="exercise-1">Exercise 1</h3>
 <ul>
 <li>For the <code>tabBarIcon</code> prop on <code>AppTabs.Navigator</code> update the <code>Icon</code> component’s name prop to be based on the given route.</li>
 <li>Add a screen tab for Restaurants (the <code>StateList</code> component) and for <code>Settings</code> component.</li>
@@ -1087,7 +1087,7 @@ describe(&quot;Screens/Settings&quot;, () =&gt; {
 <li><a href="https://reactnavigation.org/docs/navigation-prop/"><code>navigation</code></a></li>
 <li><a href="https://oblador.github.io/react-native-vector-icons/#Ionicons"><code>react-native-vector-icons</code></a></li>
 </ul>
-<h3>Solution 1</h3>
+<h3 id="solution-1">Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -1164,25 +1164,25 @@ export default App
 </code></pre>
  <div line-highlight="31-36,42-51,60-62,only"></div>
 <p></details></p>
-<h2>Objective 2: Using React Native stack navigation</h2>
+<h2 id="objective-2-using-react-native-stack-navigation">Objective 2: Using React Native stack navigation</h2>
 <p>Now that we’ve covered tab navigation, let’s move on to stack navigation. As mentioned in the previous section, most applications use a combination of both tab and stack navigation to create a seamless user experience.</p>
 <div style="display: flex; flex-direction: row; gap: 2rem">
   <img alt="Screen Shot of the CityList in Navigation" src="../static/img/react-native/11-navigation/02-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 </div>
-<h3>Stacks</h3>
+<h3 id="stacks">Stacks</h3>
 <p>In mobile applications, navigation isn’t managed by the browser through URLs (like in web applications) but through navigation stacks. When a user navigates to a new screen, this screen is pushed onto the navigation stack. If the user navigates back, the current screen is popped off the stack, and the app returns to the previous screen.</p>
 <p><em>Note: A stack is a data structure that follows the Last In, First Out (LIFO) principle.</em></p>
 <p>React Native does not have a built-in global history stack similar to a web browser. Luckily, there is a library called React Navigation that provides a way to manage navigation in a stack-like manner.</p>
-<h3>Stack vs Native Stack</h3>
+<h3 id="stack-vs-native-stack">Stack vs Native Stack</h3>
 <p>The React Navigation library provides both a stack navigator as well as a native stack navigator. The native stack navigator uses the native APIs provided by the platform, <code>UINavigationController</code> on iOS and <code>Fragment</code> on Android. Because it is using the native APIs, it provides native performance and exposes native-specific features. Although the stack navigator is not as performant, it does provide several other benefits:</p>
 <ul>
 <li><p>Flexibility and Customization: The JS navigator offers more flexibility in customization. You can tweak animations, transitions, and behaviors directly in JavaScript, which can be advantageous if you need highly customized navigation flows that aren’t easily achieved with native components.</p></li>
 <li><p>Simpler Setup and Debugging: Since JS navigators are implemented entirely in JavaScript, you don’t have to deal with native code, making setup, maintenance, and debugging generally simpler. This can speed up development, especially if your team specializes in JavaScript and does not have as much experience with native mobile development.</p></li>
 <li><p>Consistency Across Platforms: JS-based navigators can offer a more consistent look and feel across different platforms (Android and iOS), as the same JavaScript code controls the navigation on both platforms. This can be important for maintaining brand consistency or when you want to ensure the user experience is the same, regardless of the device.</p></li>
 </ul>
-<h3>Performance</h3>
+<h3 id="performance">Performance</h3>
 <p>Both the stack navigator and tab navigator have an optional prop, <code>detachInactiveScreens</code>, that defaults to <code>true</code>. This boolean value indicates whether inactive screens (screens that are not currently visible) should be detached from the view hierarchy. This can improve performance by reducing the number of views that need to be rendered and maintained in memory.</p>
-<h3>Stack Navigator</h3>
+<h3 id="stack-navigator">Stack Navigator</h3>
 <p>Let’s take a look at an example of using a stack navigator in React Native with React Navigation.</p>
 <pre><code class="language-tsx">import { createStackNavigator } from &quot;@react-navigation/stack&quot;
 
@@ -1225,13 +1225,13 @@ function MyStack() {
 </code></pre>
 <div line-highlight='1, 3, 7-36'></div>
 <p>Let’s break down the code above:</p>
-<h3>createStackNavigator</h3>
+<h3 id="createstacknavigator">createStackNavigator</h3>
 <p>Similar to the <code>createBottomTabNavigator</code> function, the <code>createStackNavigator</code> function creates a navigator that renders a stack of screens. The components returned from this function are the <code>Stack.Navigator</code> and <code>Stack.Screen</code> components which we use together to define our stack navigation. Unlike the tab navigator, we do not need to wrap our stack navigator in a <code>NavigationContainer</code> component.</p>
 <p>Just like the <code>Tab.Navigator</code>, the <code>Stack.Navigator</code> component takes <code>Stack.Screen</code> components as children.</p>
 <p>The <code>initialRouteName</code> specified on the <code>Stack.Navigator</code> component is the name of the screen that should be displayed first when the navigator is rendered and it is also the first entry in the stack. When navigating to a new screen, such as <code>ScreenB</code>, <code>ScreenB</code> will be pushed onto the stack and become the active screen. Now, if we were to press the back button or use a gesture to navigate back, <code>ScreenB</code> would be popped off the stack and <code>ScreenA</code> would become the active screen again.</p>
 <p>The <code>Stack.Navigator</code> also accepts a <code>screenOptions</code> prop that we can use to customize the appearance of the header. For example, if we would like to conditionally render a back button in the header, we could check the <code>navigation.canGoBack()</code> method inside of <code>screenOptions.header</code> and render a custom header with or without a back button.</p>
 <p>Similar to the <code>Tab.Screen</code> component, we can customize the behavior of our <code>Stack.Screen</code> with an <code>options</code> prop. This prop allows us to customize the header title, card style, whether gestures are enabled, and more.</p>
-<h3>Setup 2</h3>
+<h3 id="setup-2">Setup 2</h3>
 <p>✏️ Install the new dependencies:</p>
 <pre><code class="language-bash">npm install @react-navigation/stack@6 react-native-gesture-handler@2
 </code></pre>
@@ -1471,7 +1471,7 @@ export * from &quot;./CityList&quot;
 </code></pre>
 <p>✏️ Delete <strong>src/screens/StateList/components/</strong> and everything in it.</p>
 <p>We no longer need the <code>&lt;ListItem&gt;</code> component.</p>
-<h3>Verify 2</h3>
+<h3 id="verify-2">Verify 2</h3>
 <p>✏️ Update <strong>src/screens/StateList/StateList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { render, screen } from &quot;@testing-library/react-native&quot;
@@ -1507,13 +1507,13 @@ describe(&quot;Screens/CityList&quot;, () =&gt; {
 })
 
 </code></pre>
-<h3>Exercise 2</h3>
+<h3 id="exercise-2">Exercise 2</h3>
 <ul>
 <li>Using <code>RestaurantsStack</code> implement a <code>Navigator</code> with two screens, one for <code>StateList</code> and one for <code>CityList</code>.</li>
 <li>Use <code>navigation</code> in the <code>StateList</code> component, to link <code>StateList</code> to the <code>CityList</code> screen.</li>
 <li>Add logic for back navigation.</li>
 </ul>
-<h3>Solution 2</h3>
+<h3 id="solution-2">Solution 2</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -1674,12 +1674,12 @@ export default StateList
 </code></pre>
  <div line-highlight="31-36,only"></div>
 <p></details></p>
-<h2>Objective 3: Add Restaurant List and Restaurant Details pages with links</h2>
+<h2 id="objective-3-add-restaurant-list-and-restaurant-details-pages-with-links">Objective 3: Add Restaurant List and Restaurant Details pages with links</h2>
 <div style="display: flex; flex-direction: row; gap: 2rem; flex-wrap: wrap;">
   <img alt="Screen Shot of the RestaurantList in Navigation" src="../static/img/react-native/11-navigation/03-solution-restaurants.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
   <img alt="Screen Shot of the RestaurantDetails in Navigation" src="../static/img/react-native/11-navigation/03-solution-restaurant-details.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 </div>
-<h3>Setup 3</h3>
+<h3 id="setup-3">Setup 3</h3>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
@@ -2094,7 +2094,7 @@ export default RestaurantList
 export * from &quot;./RestaurantList&quot;
 
 </code></pre>
-<h3>Verify 3</h3>
+<h3 id="verify-3">Verify 3</h3>
 <p>✏️ Update <strong>src/screens/CityList/CityList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { render, screen } from &quot;@testing-library/react-native&quot;
@@ -2207,13 +2207,13 @@ describe(&quot;Screens/RestaurantList&quot;, () =&gt; {
 })
 
 </code></pre>
-<h3>Exercise 3</h3>
+<h3 id="exercise-3">Exercise 3</h3>
 <ul>
 <li>Add <code>RestaurantList</code> and <code>RestaurantDetails</code> to the <code>StackNavigator</code>.</li>
 <li>Use <code>navigation</code> in the <code>CityList</code> component, to link <code>CityList</code> to the <code>RestaurantList</code> screen.</li>
 <li>Use <code>navigation</code> in the <code>RestaurantList</code> component, to link <code>RestaurantList</code> to the <code>RestaurantDetails</code> screen.</li>
 </ul>
-<h3>Solution 3</h3>
+<h3 id="solution-3">Solution 3</h3>
 <p><strong>Note:</strong> The tests will pass before you make any changes, so use the application in the emulator to verify your solution!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -2448,7 +2448,7 @@ export default RestaurantList
 </code></pre>
  <div line-highlight="56-61,only"></div>
 <p></details></p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>Now that we understand how to use React Native Navigation, we’ll supplement that knowledge by <a href="./navigation-params.html">storing state in Navigation Parameters</a>.</p>
 
 </section>

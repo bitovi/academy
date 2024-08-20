@@ -452,7 +452,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>Before jumping into some powerful TypeScript features, let’s step back for a second and look at types again. There will be no exercises in this section - allowing us to focus on updating our mental model of how TypeScript perceives types.</p>
 <p>As previously discussed, types explain what you can and can’t do with a value. Given an object of the following type, we know what properties lie on it.</p>
 <pre><code class="language-ts">type ExampleType = {
@@ -494,7 +494,7 @@ let second: Second = {
 first = second; // ... is ok?!
 </code></pre>
 <p>Turns out, that TypeScript allows this. To understand why we need to look at how TypeScript evaluates and compares types.</p>
-<h2>Nominal and Structural Typing</h2>
+<h2 id="nominal-and-structural-typing">Nominal and Structural Typing</h2>
 <p>There are two main categories of typing systems when it comes to programming languages – nominal and structural. Nominal typing systems differentiate types based on their explicit name. This means that if a type has all the same properties within it, but is named differently, the two types are not equivalent. Take the following Swift example.</p>
 <pre><code class="language-swift">class Dog {
   let name: string
@@ -525,7 +525,7 @@ a = b; // All good!
 <p>If it walks like a duck and it quacks like a duck, then it must be a duck</p>
 </blockquote>
 <p>The tradeoffs of these two systems are flexibility and type-safety. With structural typing there is a lot more flexibility as to what is accepted as a type; however, this can cause some issues like accidental type equivalence (as we’ve seen above). Nominal type systems avoid type equivalence issues, but the extra rigidity can make them harder to work with.</p>
-<h2>TypeScript Types</h2>
+<h2 id="typescript-types">TypeScript Types</h2>
 <p>A good mental model to have when thinking about TypeScript types is to imagine them as sets, where all the values in the sets share a similar structure (be it their entire shape or some sub-shape within it), the type declaration we write defines that shared structure. Let’s take a look at a concrete example. Take the declaration below.</p>
 <pre><code class="language-ts">type WithName = {
   name: string;
@@ -563,7 +563,7 @@ withName = dog;
 withName = differentName;
 </code></pre>
 <p>Anything that has a <code>name</code> property of type <code>string</code> is in that set.</p>
-<h2>Trying to get the Best of Both Worlds</h2>
+<h2 id="trying-to-get-the-best-of-both-worlds">Trying to get the Best of Both Worlds</h2>
 <p>There are times when having some of the rigid type-safety of a nominally typed language would be helpful. Times when having a primitive type like string have special context in certain situations. Using TypeScript features there are some ways to provide some of the rigidity of nominal typing. Take an access token. A simple implementation could look something like this:</p>
 <pre><code class="language-ts">type AccessToken = string;
 </code></pre>

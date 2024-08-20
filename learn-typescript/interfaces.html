@@ -530,16 +530,16 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, you will:</p>
 <ul>
 <li>Write interfaces.</li>
 <li>Set optional properties.</li>
 <li>Use the power of interfaces in classes and functions.</li>
 </ul>
-<h2>Objective 1: Define interfaces for objects</h2>
+<h2 id="objective-1-define-interfaces-for-objects">Objective 1: Define interfaces for objects</h2>
 <p>Interfaces are a powerful way to enforce types and document what our code provides. Interfaces used in classes allow &quot;loose coupling&quot; while providing a shape. Multiple classes can use interfaces in many different ways. This section will cover how to write interfaces, setting optional properties, and the power of using interfaces in classes and functions.</p>
-<h3>Interfaces in TypeScript</h3>
+<h3 id="interfaces-in-typescript">Interfaces in TypeScript</h3>
 <p>An interface in TypeScript is a way to define the shape an entity should adhere to. An interface defines the members: properties, methods, and events. It may be easy to think of it as the signature of an API. It’s worth noting that interfaces aren’t transpiled into our output JavaScript; they’re only used for type-checking during the development process.</p>
 <pre><code class="language-ts">// Interface describing object
 interface Dinosaur {
@@ -564,7 +564,7 @@ trackDino(blue);
 // Logs &quot;Section B&quot;
 
 </code></pre>
-<h3>Interfaces in function parameters</h3>
+<h3 id="interfaces-in-function-parameters">Interfaces in function parameters</h3>
 <p>Interfaces are incredibly useful in describing the shape of objects we want to use in multiple situations. The following functions both require a <code>Dinosaur</code> object shape we’ve defined in the <code>Dinosaur</code> interface.</p>
 <pre><code class="language-ts">interface Dinosaur {
   name: string;
@@ -596,7 +596,7 @@ dinoCatcher(dinoB);
 
 </code></pre>
 <div line-highlight='18'></div>
-<h3>Optional properties</h3>
+<h3 id="optional-properties">Optional properties</h3>
 <p>Sometimes all properties on an object don’t need to be required, so using the <code>?</code> tells the TypeScript compiler which properties aren’t required.</p>
 <pre><code class="language-ts">interface Dinosaur {
   name: string;
@@ -620,7 +620,7 @@ trackDino(blue);
 
 </code></pre>
 <div line-highlight='4'></div>
-<h3>Classes implementing interfaces</h3>
+<h3 id="classes-implementing-interfaces">Classes implementing interfaces</h3>
 <p>In the case that a class needs to follow an object structure, we can use interfaces to define that 'contract'.</p>
 <pre><code class="language-ts">interface Dinosaur {
   name: string;
@@ -641,7 +641,7 @@ class DinoWithRoar implements Dinosaur {
 
 </code></pre>
 <div line-highlight='1, 8'></div>
-<h3>Setup 1</h3>
+<h3 id="setup-1">Setup 1</h3>
 <p>✏️ Create <strong>src/interfaces/address.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">interface Address {}
 
@@ -654,7 +654,7 @@ interface DinoPark {}
 
 export default DinoPark;
 </code></pre>
-<h3>Verify 1</h3>
+<h3 id="verify-1">Verify 1</h3>
 <p>✏️ Create <strong>src/interfaces/address.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import assert from &quot;node:assert/strict&quot;;
 import { describe, it } from &quot;node:test&quot;;
@@ -725,7 +725,7 @@ describe(&quot;Interfaces&quot;, () =&gt; {
 });
 
 </code></pre>
-<h3>Exercise 1</h3>
+<h3 id="exercise-1">Exercise 1</h3>
 <p>We’re going to write some interfaces to set up for the next problem. Edit the files <code>address.ts</code> and <code>dinoPark.ts</code> to create an interface to define an <code>Address</code> and <code>DinoPark</code> object shown below:</p>
 <pre><code class="language-javascript">const address = {
   street: &quot;&quot;,
@@ -758,7 +758,7 @@ const park = {
 </ul></li>
 </ul>
 <p><strong>Have issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/01-problem?file=src/address.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/01-problem?file=src/address.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution 1</h3>
+<h3 id="solution-1">Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -788,8 +788,8 @@ export default DinoPark;
 <p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/01-solution?file=src/interfaces/address.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/01-solution?file=src/interfaces/address.ts">CodeSandbox</a>.</p>
 <p></details></p>
 <p>Make sure you have this solution implemented correctly before moving on to the next exercise.</p>
-<h2>Objective 2: Define interfaces for functions</h2>
-<h3>Interfaces describing functions</h3>
+<h2 id="objective-2-define-interfaces-for-functions">Objective 2: Define interfaces for functions</h2>
+<h3 id="interfaces-describing-functions">Interfaces describing functions</h3>
 <p>We can also use interfaces to describe functions, basically creating reusable types for functions. On the left side (in parenthesis) we list the parameters, and to the right of the colon, we state the return type.</p>
 <pre><code class="language-ts">interface DinoDNAMixer {
   (dino1: string, dino2: string, spliceIdx: number): string;
@@ -816,14 +816,14 @@ console.info(newDino); // Logs 'CADCAA'
 
 </code></pre>
 <div line-highlight='1, 3'></div>
-<h3>Setup 2</h3>
+<h3 id="setup-2">Setup 2</h3>
 <p>✏️ Create <strong>src/interfaces/slug.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">
 export default function createParkSlug(dinoPark) {
   return dinoPark.name.toLowerCase().replace(/ /g, '-');
 }
 </code></pre>
-<h3>Verify 2</h3>
+<h3 id="verify-2">Verify 2</h3>
 <p>✏️ Create <strong>src/interfaces/slug.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import assert from &quot;node:assert/strict&quot;;
 import { describe, it } from &quot;node:test&quot;;
@@ -845,11 +845,11 @@ describe(&quot;Interfaces&quot;, () =&gt; {
 });
 
 </code></pre>
-<h3>Exercise 2</h3>
+<h3 id="exercise-2">Exercise 2</h3>
 <p>In the <code>slug.ts</code> file, edit the <code>createParkSlug</code> function to take a parameter that is the interface <code>DinoPark</code> created previously and returns a slug for the park by replacing any spaces with dashes.
 Example: the park <code>Isla Sorna Park</code> should return the slug <code>Isla-Sorna-Park</code>.</p>
 <p><strong>Have issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/02-problem?file=src/interfaces/slug.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/02-problem?file=src/interfaces/slug.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution 2</h3>
+<h3 id="solution-2">Solution 2</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -863,7 +863,7 @@ export function createParkSlug(dinoPark: DinoPark) {
  <div line-highlight="1,3,only"></div>
 <p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/02-solution?file=src/interfaces/slug.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/09-interfaces/02-solution?file=src/interfaces/slug.ts">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>Next, let’s take a look at <a href="./keyof-typeof.html">keyof and typeof</a> to create new types from types.</p>
 
 </section>

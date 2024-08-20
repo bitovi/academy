@@ -528,7 +528,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Before you begin</h2>
+    <h2 id="before-you-begin">Before you begin</h2>
 <p><a href="https://discord.gg/J7ejFsZnJ4">
 <img alt="" src="./static/img/discord.png"
 style="float:left; margin:20px" width="57"/> <span style="margin-top: 10px;display: inline-block;">Click here to join the<br/>Bitovi Community Discord</span></a></p>
@@ -539,35 +539,35 @@ Angular, React, CanJS and JavaScript problems.</p>
 <p><img alt="TypeScript" src="./static/img/typescript/logo.svg" width="50%"/></p>
 <p>TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.</p>
 <p>Many front-end frameworks use TypeScript to take advantage of its typechecking magic. While TypeScript may mean a bit of a learning curve for new developers, this guide covers the basics of TypeScript and work through examples to learn to harness the power of TypeScript.</p>
-<h2>How to follow this course</h2>
+<h2 id="how-to-follow-this-course">How to follow this course</h2>
 <p>This course will teach you about TypeScript concepts and have an environment for you to practice in. Running the tests will catch any problems if the code was not written correctly or as expected. Pay close attention to how you name and save the files.</p>
 <p>The ✏️ icon will be used to indicate when commands need to be run or when files need to be created or updated.</p>
 <p>If you have any issues or suggestions as you move through this training, we’d love for you to submit a <a href="https://github.com/bitovi/academy/issues/new">GitHub issue</a> for it! 💖</p>
-<h2>Outline</h2>
-<h3>Why TypeScript?</h3>
+<h2 id="outline">Outline</h2>
+<h3 id="why-typescript">Why TypeScript?</h3>
 <p>Learn what TypeScript is and why it’s valuable on a project.</p>
-<h3>IDE support</h3>
+<h3 id="ide-support">IDE support</h3>
 <p>Learn about different IDEs that help support TypeScript development.</p>
-<h3>Setting up your environment</h3>
+<h3 id="setting-up-your-environment">Setting up your environment</h3>
 <p>Install prerequisites and create a new Node project with TypeScript.</p>
-<h3>Exporting and importing</h3>
+<h3 id="exporting-and-importing">Exporting and importing</h3>
 <p>Export values from files and import them in other files.</p>
 <pre><code class="language-ts">export function constrain(value: number, min: number, max: number): number {
   return Math.min(Math.max(value, min), max);
 }
 </code></pre>
 <div line-highlight='5-7'></div>
-<h3>Types</h3>
+<h3 id="types">Types</h3>
 <p>Understand basic types and how to enforce them.</p>
 <pre><code class="language-typescript">let isCarnivore: boolean;
 </code></pre>
-<h3>Functions</h3>
+<h3 id="functions">Functions</h3>
 <p>Annotate functions parameters and return values, use different parameter types, and bind <code>this</code>.</p>
 <pre><code class="language-typescript">function add(x: number, y: number): number {
   return x + y;
 }
 </code></pre>
-<h3>Classes</h3>
+<h3 id="classes">Classes</h3>
 <p>Learn how to use classes and inheritance in TypeScript, understand the <code>constructor</code> method, and use the <code>public</code>, <code>private</code>, <code>protected</code>, and <code>readonly</code> modifiers.</p>
 <pre><code class="language-typescript">class Human {
   constructor(
@@ -580,7 +580,7 @@ Angular, React, CanJS and JavaScript problems.</p>
   }
 }
 </code></pre>
-<h3>Interfaces</h3>
+<h3 id="interfaces">Interfaces</h3>
 <p>Learn how to write Interfaces, set optional properties, and use interfaces in classes and functions.</p>
 <pre><code class="language-typescript">interface Dinosaur {
   name: string;
@@ -589,7 +589,7 @@ Angular, React, CanJS and JavaScript problems.</p>
   location: string;
 }
 </code></pre>
-<h3>Using <code>keyof</code> and <code>typeof</code></h3>
+<h3 id="using-codekeyofcode-and-codetypeofcode">Using <code>keyof</code> and <code>typeof</code></h3>
 <p>Learn how to use <code>keyof</code> and <code>typeof</code> to create new types from types and objects.</p>
 <pre><code class="language-typescript">type Dino = {
   name: string;
@@ -600,7 +600,7 @@ Angular, React, CanJS and JavaScript problems.</p>
 type DinoKeys = keyof Dino; // &quot;name&quot; | &quot;type&quot; | &quot;age&quot;
 </code></pre>
 <div line-highlight='7'></div>
-<h3>Generics</h3>
+<h3 id="generics">Generics</h3>
 <p>Learn about what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript.</p>
 <pre><code class="language-typescript">class GenericCollection&lt;T&gt; {
   private list: T[];
@@ -609,14 +609,14 @@ type DinoKeys = keyof Dino; // &quot;name&quot; | &quot;type&quot; | &quot;age&q
   }
 }
 </code></pre>
-<h3>Utility Types</h3>
+<h3 id="utility-types">Utility Types</h3>
 <p>Use utility types provided by TypeScript.</p>
 <pre><code class="language-typescript">type Species = &quot;Tyrannosaurus rex&quot; | &quot;Triceratops horridus&quot; | null | undefined;
 
 type NNSpecies = NonNullable&lt;Species&gt;;
 </code></pre>
 <div line-highlight='3'></div>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>✏️ Head over to the <a href="learn-typescript/why-typescript.html">first lesson</a> to learn about why TypeScript is valuable on projects.</p>
 
 </section>

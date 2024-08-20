@@ -543,18 +543,18 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>The problem</h2>
+    <h2 id="the-problem">The problem</h2>
 <p>In this section, we will:</p>
 <ul>
 <li>Disable the payment button while the promise is pending (or the card is invalid).</li>
 <li>Make sure that submitting the form does not produce two requests.</li>
 </ul>
-<h2>How to solve this problem</h2>
+<h2 id="how-to-solve-this-problem">How to solve this problem</h2>
 <ul>
 <li>Create a <code>this.disablePaymentButton$</code> observable that combines <code>isCardInvalid$</code> and <code>paymentStatus$</code> using a <code>disablePaymentButton(isCardInvalid$, paymentStatus$)</code> function.</li>
 <li>Convert <code>this.paymentStatus$</code> to a multicast <code>Subject</code>.</li>
 </ul>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <p>Observables and their operators execute with every new subscription. This can cause problems
 if that execution causes side effects. The following shows that the <code>square</code> mapping
 runs twice, once for every subscription on the <code>squares</code> observable.</p>
@@ -621,7 +621,7 @@ for all subscribers of <code>squares</code>:</p>
 </code></pre>
 <div class='codepen'></div>
 <p>Read more about this technique on <a href="https://rxjs.dev/guide/subject#multicasted-observables">RxJS's documentation</a>. Note that the <code>multicast</code> and <code>refCount</code> operators are <a href="https://rxjs.dev/deprecations/multicasting#multicast">deprecated</a> in RxJS 7, and the <a href="https://rxjs.dev/api/operators/share"><code>share</code></a> operator used above is analogous to the functionality formerly provided by <code>multicast(() =&gt; new Subject()), refCount()</code>.</p>
-<h2>The solution</h2>
+<h2 id="the-solution">The solution</h2>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;

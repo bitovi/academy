@@ -528,24 +528,24 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this part we will:</p>
 <ul>
 <li>Use <code>slot</code> elements to allow customization.</li>
 </ul>
-<h2>Problem</h2>
+<h2 id="problem">Problem</h2>
 <p>In the previous section we allowed the header to be styled with a few CSS properties. We could continue to add more custom properties so even more of the header could be customized. For example, we could allow the user of our component to change the heading text by providing an attribute like <code>title=&quot;My Bus Tracker&quot;</code>.</p>
 <p>An easier way to allow consumers of your component to have <em>complete</em> control is to use slots. In this part we want to allow the header to be replaced with a custom header. In the end it should look like:</p>
 <p><img src="../static/img/web-components/bt-slotted.jpg"
 style="border: solid 1px black; max-width: 100%;"
 alt="Header customized using slots." /></p>
-<h2>How to Solve This Problem</h2>
+<h2 id="how-to-solve-this-problem">How to Solve This Problem</h2>
 <ol>
 <li>Provide a slot for the custom header passed to <code>bus-tracker</code>.</li>
 <li>Use named slots to allow the <code>header</code> slot to be provided by the user.</li>
 <li>Add custom styles to style the new header.</li>
 </ol>
-<h2>Technical requirements</h2>
+<h2 id="technical-requirements">Technical requirements</h2>
 <p>Use this markup as the header that is passed into the component:</p>
 <pre><code class="language-html">&lt;header&gt;
   &lt;h1&gt;My Bus Tracker!&lt;/h1&gt;
@@ -556,12 +556,12 @@ alt="Header customized using slots." /></p>
 color: wheat;
 text-align: center;
 </code></pre>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <ul>
 <li>How the slot element works.</li>
 <li>How to give slots names to allow multiple slotted content.</li>
 </ul>
-<h3>Slots</h3>
+<h3 id="slots">Slots</h3>
 <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot">slot</a> has a curious effect when used within shadow DOM. It will take DOM within the custom element’s children and <em>inject</em> (but not move) those nodes as children of itself.</p>
 <p>Default content can be specified by nesting DOM inside of the <code>&lt;slot&gt;</code> element.</p>
 <pre><code class="language-html">&lt;template&gt;
@@ -588,7 +588,7 @@ document.body.append(one, two);
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
-<h3>Named slots</h3>
+<h3 id="named-slots">Named slots</h3>
 <p><strong>Named</strong> slots are used when you want to take <em>some</em> of the children content, but not all of it. This is useful when you have multiple things to be customized. It works like <code>&lt;slot name=&quot;header&quot;&gt;</code>, with the children needing to add a <code>slot</code> attribute.  <code>&lt;header slot=&quot;header&quot;&gt;</code>.</p>
 <pre><code class="language-html">&lt;div class=&quot;my-thing&quot;&gt;
   &lt;header slot=&quot;header&quot;&gt;
@@ -613,7 +613,7 @@ el.shadowRoot.append(frag);
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
-<h2>Solution</h2>
+<h2 id="solution">Solution</h2>
 <p>✏️ Wrap the <code>&lt;header&gt;</code> within the bus-tracker component with a <code>&lt;slot name=&quot;header&quot;&gt;</code>. This will completely replace the header if a child element provides the <code>slot=&quot;header&quot;</code> attribute value.</p>
 <p><details>
 <summary>Click to see the solution</summary></p>

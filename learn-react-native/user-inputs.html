@@ -678,7 +678,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, you will:</p>
 <ul>
 <li>Handle checkbox-like behavior with <code>&lt;Switch&gt;</code>.</li>
@@ -689,14 +689,14 @@ covering CanJS core libraries.">
 <li>Label text inputs.</li>
 <li>Create unique IDs with the <code>useId()</code> Hook.</li>
 </ul>
-<h2>Objective 1: Add switch controls to select menu items</h2>
+<h2 id="objective-1-add-switch-controls-to-select-menu-items">Objective 1: Add switch controls to select menu items</h2>
 <p>Now let’s create a <code>RestaurantOrder</code> view for users to start selecting menu items!</p>
 <p>We’ll start with switch controls to select menu items, with a message that warns users when no items are selected and a total that shows the sum of the selected items.</p>
 <div style="display: flex; flex-direction: row; gap: 2rem; flex-wrap: wrap;">
   <img alt="Screenshot of the top of the application restaurant order page." src="../static/img/react-native/14-user-input/01-solution-top.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
   <img alt="Screenshot of the bottom of the application restaurant order page." src="../static/img/react-native/14-user-input/01-solution-bottom.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 </div>
-<h3>Handling checkbox-like behavior with <code>&lt;Switch&gt;</code></h3>
+<h3 id="handling-checkbox-like-behavior-with-codeltswitchgtcode">Handling checkbox-like behavior with <code>&lt;Switch&gt;</code></h3>
 <p>For boolean values, such as toggles, React Native provides the <code>Switch</code> component.
 You handle changes using the <code>onValueChange</code> prop, which directly provides the new boolean value.</p>
 <p>[If you’re familiar with web development, React Native does not have a direct equivalent to the HTML <code>&lt;input type=&quot;checkbox&quot;&gt;</code>.
@@ -728,7 +728,7 @@ export default SwitchExample
 <p>In the example above, you can see the <code>value</code> passed in is the <code>isEnabled</code> state.</p>
 <p>Then, the <code>onValueChange</code> prop takes a function that will be called with the new value when the switch is toggled.
 This is usually what you need, although there is an <a href="https://reactnative.dev/docs/switch#onchange"><code>onChange</code></a> prop if you need your function to be called with an event object instead.</p>
-<h3>Using TypeScript’s <code>Record</code> interface</h3>
+<h3 id="using-typescripts-coderecordcode-interface">Using TypeScript’s <code>Record</code> interface</h3>
 <p>In our upcoming exercise, we want to store information in a JavaScript object.
 We also want to use TypeScript so we can constrain the types used as keys and values.</p>
 <p>TypeScript provides a handy interface named <code>Record</code> that we can use.
@@ -785,7 +785,7 @@ export default Selected
 <p>We’ve explicitly defined the type of <code>useState</code> as a <code>Record&lt;string, boolean&gt;</code>; all the keys must be strings, and all the values must be booleans.
 Fortunately, JavaScript’s <code>object</code> implements the <code>Record</code> interface, so we can set the default value to an empty <code>object</code> instance.</p>
 <p>Now let’s see how we can use a <code>Record</code> to store state data.</p>
-<h3>Setting state using an updater function</h3>
+<h3 id="setting-state-using-an-updater-function">Setting state using an updater function</h3>
 <p>One challenge we face when using an <code>object</code> for state is that we probably need to merge the current state value with the new state value.
 Why?
 Imagine we have a state object that already has multiple keys and values, and we need to add a new key and value.</p>
@@ -854,7 +854,7 @@ export default Selected
 The updater function accepts the <code>currentSelectedItems</code> argument, which is the object with the currently-selected items <em>before</em> our switch was toggled.</p>
 <p>We will dig into <em>how</em> we create the <code>updatedSelectedItems</code> object in just a bit, but for now let’s take note that we create a new <code>updatedSelectedItems</code> object and return it from our updater function.
 This gives React the updated <code>selected</code> state and allows React to re-render the component.</p>
-<h3>Updating reference types and rendering</h3>
+<h3 id="updating-reference-types-and-rendering">Updating reference types and rendering</h3>
 <p>Now let’s explain how the updater function works in the example above. The updater function <strong>does not mutate</strong> the current object, then return it; instead, it makes a new object and populates it with the contents of the current object.</p>
 <p>This is an important detail because, after the updater function runs, React will compare the values of the current and next objects to determine if they are different. If they are <strong>different</strong>, React will re-render the <code>Selected</code> component; if they are the same, then React will do nothing.</p>
 <p>The same rules apply when state is an array: create a new array, then update the contents of the new array.</p>
@@ -875,7 +875,7 @@ This gives React the updated <code>selected</code> state and allows React to re-
 })
 </code></pre>
 <p>OK, that was a lot. Let’s start making some code changes so we can select menu items for an order.</p>
-<h3>Setup 1</h3>
+<h3 id="setup-1">Setup 1</h3>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
@@ -1253,7 +1253,7 @@ export default FormSwitch
 export * from &quot;./FormSwitch&quot;
 
 </code></pre>
-<h3>Verify 1</h3>
+<h3 id="verify-1">Verify 1</h3>
 <p>✏️ Create <strong>src/screens/RestaurantOrder/RestaurantOrder.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { render, screen } from &quot;@testing-library/react-native&quot;
@@ -1387,7 +1387,7 @@ describe(&quot;Screens/RestaurantOrder&quot;, () =&gt; {
 
 </code></pre>
 <div line-highlight='67, 94, 110, only'></div>
-<h3>Exercise 1</h3>
+<h3 id="exercise-1">Exercise 1</h3>
 <ul>
 <li>Add <code>RestaurantOrder</code> to the <code>NavigatorStack</code>.</li>
 <li>Add a link from the <code>RestaurantOrder</code> view to the <code>RestaurantDetails</code> view.</li>
@@ -1403,7 +1403,7 @@ describe(&quot;Screens/RestaurantOrder&quot;, () =&gt; {
   &quot;Menu item 2 name&quot;: 4.56, // Menu item 2 price
 }
 </code></pre>
-<h3>Solution 1</h3>
+<h3 id="solution-1">Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -1813,13 +1813,13 @@ export default RestaurantOrder
 </code></pre>
  <div line-highlight="26,39-50,54,81,86-93,97-104,only"></div>
 <p></details></p>
-<h2>Objective 2: Add text fields to collect user data</h2>
+<h2 id="objective-2-add-text-fields-to-collect-user-data">Objective 2: Add text fields to collect user data</h2>
 <p>Next, we want to collect the user’s name, phone number, and address as part of the order.
 To do this, we’ll use React Native’s <code>TextInput</code> component.</p>
 <div style="display: flex; flex-direction: row; gap: 2rem; flex-wrap: wrap;">
   <img alt="Screenshot of the bottom of the application restaurant order page." src="../static/img/react-native/14-user-input/02-solution-bottom.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 </div>
-<h3>Using the <code>TextInput</code> component</h3>
+<h3 id="using-the-codetextinputcode-component">Using the <code>TextInput</code> component</h3>
 <p>For entering text, React Native uses the <code>TextInput</code> component.
 Changes in text input are managed using the <code>onChangeText</code> prop, which receives the new text directly.</p>
 <p>Here’s how you can use <code>TextInput</code> in your application:</p>
@@ -1842,7 +1842,7 @@ export default InputExample
 </code></pre>
 <div line-highlight='5, 10, only'></div>
 <p>In this example, the <code>onChangeText</code> prop is passed a function that calls <code>setText</code> to store the text as state in the component.</p>
-<h3>Labelling text inputs</h3>
+<h3 id="labelling-text-inputs">Labelling text inputs</h3>
 <p>In the code above, we have a <code>&lt;Text&gt;</code> component in the view but it does not have a programmatic relationship with the <code>&lt;TextInput&gt;</code> itself.
 This means that assistive technologies (such as screen readers) won’t know to announce the <code>Text</code> when the <code>TextInput</code> has focus.</p>
 <p>To fix this, we can use the accessibility APIs:</p>
@@ -1877,7 +1877,7 @@ export default InputExample
 </ul>
 <p>These three props combined will make the input accessible to assistive technologies.
 For example, a screen reader would announce “Input, Edit Box for Enter your name” when the <code>TextInput</code> receives focus.</p>
-<h3>Creating unique IDs with the <code>useId()</code> Hook</h3>
+<h3 id="creating-unique-ids-with-the-codeuseidcode-hook">Creating unique IDs with the <code>useId()</code> Hook</h3>
 <p>There’s one minor issue with the code we have above: the <code>nativeID</code> prop’s value is pretty generic (<code>&quot;name&quot;</code>) and might accidentally be used multiple times across multiple views, causing confusion about which component is the right one to refer to!</p>
 <p>To solve this, we can use the <code>useId</code> Hook to generate a unique ID:</p>
 <pre><code class="language-tsx">import { useId, useState } from &quot;react&quot;
@@ -1906,7 +1906,7 @@ export default InputExample
  <div line-highlight="1,5,10,13,only"></div>
 <p>The value of <code>useId</code> is guaranteed to be unique within the component where it is used.
 This is ideal for linking related components together, as is the case with <code>nativeID</code> and <code>accessibilityLabelledBy</code>.</p>
-<h3>Setup 2</h3>
+<h3 id="setup-2">Setup 2</h3>
 <p>✏️ Create <strong>src/components/FormTextField/FormTextField.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { useId } from &quot;react&quot;
 import { TextInput } from &quot;react-native&quot;
@@ -2141,7 +2141,7 @@ export default RestaurantOrder
 
 </code></pre>
  <div line-highlight="7,28,109-111,only"></div>
-<h3>Verify 2</h3>
+<h3 id="verify-2">Verify 2</h3>
 <p>✏️ Create <strong>src/components/FormTextField/FormTextField.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen, userEvent } from &quot;@testing-library/react-native&quot;
 
@@ -2315,7 +2315,7 @@ describe(&quot;Screens/RestaurantOrder&quot;, () =&gt; {
 
 </code></pre>
  <div line-highlight="93-95,only"></div>
-<h3>Exercise 2</h3>
+<h3 id="exercise-2">Exercise 2</h3>
 <p>Let’s fully implement our <code>FormTextField</code> component and have it:</p>
 <ul>
 <li>Create a unique ID with <code>useId()</code>.</li>
@@ -2332,7 +2332,7 @@ describe(&quot;Screens/RestaurantOrder&quot;, () =&gt; {
 <li>Have state variables and setters for <code>address</code>, <code>phone</code>, and <code>name</code>.</li>
 <li>Use <code>&lt;FormTextField&gt;</code> to create text fields for these three state variables.</li>
 </ul>
-<h3>Solution 2</h3>
+<h3 id="solution-2">Solution 2</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -2582,7 +2582,7 @@ export default RestaurantOrder
 </code></pre>
  <div line-highlight="28-30,112-114,only"></div>
 <p></details></p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>Next, in order to retain data to limit requests and migrating the same data, let’s look into <a href="./using-asyncstorage">Using AsyncStorage</a>.</p>
 
 </section>

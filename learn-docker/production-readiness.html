@@ -469,14 +469,14 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/aVCr1bGjw0k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<h2>Overview</h2>
+<h2 id="overview">Overview</h2>
 <p>We want to make our image as lightweight as possible. Reducing image size will make it faster to pull and run in production. In its current state, our simple Node.js app is a staggering <code>944MB</code>!</p>
 <pre><code class="language-bash">$ docker image ls my-node-app
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 my-node-app         latest              78ef31600011        7 seconds ago       944MB
 </code></pre>
 <p>We’re going to explore two simple ways to make our image small and ready for production.</p>
-<h2>Base Image Variants</h2>
+<h2 id="base-image-variants">Base Image Variants</h2>
 <p>The simplest and most significant change is updating the <code>FROM</code> instruction in our Dockerfile. The <code>node:15</code> image is <code>935MB</code>. That’s 99% of our image!</p>
 <pre><code class="language-bash">$ docker image ls node
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
@@ -499,7 +499,7 @@ node                15                  969d445a1755        6 days ago          
 node                15-alpine           7ddc154413f5        7 days ago          109MB
 </code></pre>
 <p>As you can see, <code>node:15-slim</code> is <code>159MB</code>, a fraction of the size of <code>node:15</code>. Meanwhile, <code>node:15-alpine</code> is even smaller at <code>109MB</code>. As a general rule, you’ll want to use the smallest base image that meets your needs.</p>
-<h2>Updating our <code>FROM</code> instruction</h2>
+<h2 id="updating-our-codefromcode-instruction">Updating our <code>FROM</code> instruction</h2>
 <p>Update <code>FROM node:15</code> in our Dockerfile to <code>FROM node:15-alpine</code>. The whole file should now look like this:</p>
 <pre><code class="language-dockerfile">FROM node:15-alpine
 
@@ -524,11 +524,11 @@ my-node-app         alpine              a86e7ef34019        12 seconds ago      
 my-node-app         latest              78ef31600011        18 minutes ago      944MB
 </code></pre>
 <p>By using the <code>alpine</code> node image variant, we’ve reduced the total image size by 87.5%!</p>
-<h2>Multi-Stage Builds</h2>
+<h2 id="multi-stage-builds">Multi-Stage Builds</h2>
 <p>We are using <code>npm install</code> to install application dependencies during the Docker build phase. By default, <code>npm install</code> installs both standard and dev dependencies. We want to conditionally install all dependencies when building for local development, but only download standard dependencies with <code>npm install --only=prod</code> when building to run in production.</p>
 <p>A multi-stage build is a Dockerfile with multiple <code>FROM</code> instructions. This is typically done to keep the final image size down by separating what is required to build an application from what is required to run it by allowing selective artifacts to be copied from one stage to another.</p>
 <p>This is especially powerful in compiled languages like Go or Java where multi-stage builds can be used to have your first stage compile the source code into a runtime artifact and then only the runtime artifact is copied into a leaner final image.</p>
-<h2>Targets</h2>
+<h2 id="targets">Targets</h2>
 <p>By using the <code>--target</code> cli argument when building our image, we can tell Docker to stop building at a specific stage. We will use this alone with a <code>prod</code> stage and a <code>dev</code> stage to give us our desired result.</p>
 <p>Replace our Node.js app’s Dockerfile to the following:</p>
 <pre><code class="language-dockerfile">FROM node:15-alpine as prod
@@ -573,7 +573,7 @@ my-node-app         latest              78ef31600011        About an hour ago   
 </code></pre>
 <p>The savings in size we see in this example are trivial (<code>3MB</code>) because we only have the one dev dependency (nodemon). The savings and complexity added from utilizing multi-stage builds increases as the number of dependencies increases. Running nodemon is also more memory and cpu intensive so there are also underlying performance savings with this approach.</p>
 <p>There are a lot of powerful things you can do with multi-stage builds. Check out the <a href="https://docs.docker.com/develop/develop-images/multistage-build/">Official Docs</a> for more inspiration.</p>
-<h2>Test our images</h2>
+<h2 id="test-our-images">Test our images</h2>
 <p>Let’s run both prod and dev images to make sure they work. Notice when we run our prod image, we don’t bother mounting our local source code as nodemon is not running to enable reloading.</p>
 <pre><code class="language-bash"># Start Dev image
 $ docker run --name my-dev-container -p 8000:8000 -d -v &quot;$(pwd)&quot;/src:/app/src my-node-app:dev
@@ -594,9 +594,9 @@ Hello Bitovi!
 # Kill our containers
 docker rm -f my-dev-container my-prod-container
 </code></pre>
-<h2>A word of caution</h2>
+<h2 id="a-word-of-caution">A word of caution</h2>
 <p>Using multi-stage builds to customize container behavior can create issues where an image works locally, but doesn’t work in production. Be sure to test your production image during your CI pipeline or before committing to source control.</p>
-<h2>Review</h2>
+<h2 id="review">Review</h2>
 <p>Our Dockerfile has been updated to be significantly smaller from a smaller base image and eliminating unnecessary dependencies. We also use multi-stage builds to allow local development to still be done efficiently.</p>
 <p>With all this complexity, there are a lot of cli commands and flags to remember. In the last section, we will be looking at using <code>docker-compose</code> to simplify the building and running of images.</p>
 

@@ -677,7 +677,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this part, we will:</p>
 <ul>
 <li>Create a Firebase account</li>
@@ -687,7 +687,7 @@ covering CanJS core libraries.">
 <li>Deploy app to Firebase</li>
 <li>Update npm script to include deploy</li>
 </ul>
-<h2>Add Production API URL</h2>
+<h2 id="add-production-api-url">Add Production API URL</h2>
 <p>For our production app, we won’t be running a local server, instead we’ll point to <code>https://www.place-my-order.com/api</code>. All we need to do is add the apiUrl variable to our production environment file. When we do a production build by running <code>ng build</code>, our production file will be used.</p>
 <p>✏️ Update <strong>src/environments/environment.prod.ts</strong>:</p>
 <pre><code class="language-ts">export const environment = {
@@ -696,18 +696,18 @@ covering CanJS core libraries.">
 };
 
 </code></pre>
-<h2>Create Firebase account</h2>
+<h2 id="create-firebase-account">Create Firebase account</h2>
 <p>Go to <a href="https://console.firebase.google.com">https://console.firebase.google.com</a> and sign in or create new account.</p>
-<h2>Create new project</h2>
+<h2 id="create-new-project">Create new project</h2>
 <p>Create a new project called <code>place my order</code> in the Firebase console.</p>
-<h2>Install Firebase CLI</h2>
+<h2 id="install-firebase-cli">Install Firebase CLI</h2>
 <pre><code class="language-shell">npm install -g firebase-tools
 </code></pre>
 <p>Now, log into firebase.</p>
 <pre><code class="language-shell">firebase login
 </code></pre>
 <p>This will launch a page in your browser asking you to authenticate.</p>
-<h2>Link Place My Order app to new Firebase app</h2>
+<h2 id="link-place-my-order-app-to-new-firebase-app">Link Place My Order app to new Firebase app</h2>
 <pre><code class="language-shell">firebase init
 </code></pre>
 <ol>
@@ -723,7 +723,7 @@ covering CanJS core libraries.">
 <li>Which project do you want to add? (select your place-my-order project)</li>
 <li>What alias do you want to use for this project? (prod)</li>
 </ol>
-<h2>Deploy App</h2>
+<h2 id="deploy-app">Deploy App</h2>
 <p>We need to get our app ready to deploy, so we’ll create a build.</p>
 <pre><code class="language-shell">ng build
 </code></pre>
@@ -731,7 +731,7 @@ covering CanJS core libraries.">
 firebase open hosting:site
 </code></pre>
 <p>Now when we view our project url from the page Firebase launches we’ll see our app!</p>
-<h2>Update npm scripts</h2>
+<h2 id="update-npm-scripts">Update npm scripts</h2>
 <pre><code class="language-json"> &quot;scripts&quot;: {
     &quot;ng&quot;: &quot;ng&quot;,
     &quot;start&quot;: &quot;ng serve&quot;,
@@ -742,7 +742,7 @@ firebase open hosting:site
     &quot;deploy&quot;: &quot;ng build &amp;&amp; firebase deploy&quot;
   },
 </code></pre>
-<h2>Survey</h2>
+<h2 id="survey">Survey</h2>
 <p>Thanks for taking this Bitovi training! We are constantly looking to improve this
 course. Please fill out the following survey and we will send you a t-shirt!</p>
 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScIukb7B5Q3d0I9xRge8_VDmQS9gNJqhJmjcJb_5aAKFMqFmA/viewform?embedded=true" width="640" height="1900" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>

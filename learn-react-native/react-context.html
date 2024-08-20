@@ -678,14 +678,14 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, you will:</p>
 <ul>
 <li>Create a theme with shared values.</li>
 <li>Understand the what, why, and how of React Context.</li>
 <li>Create a design system to unify the application.</li>
 </ul>
-<h2>Objective 1: Create a theme with shared values</h2>
+<h2 id="objective-1-create-a-theme-with-shared-values">Objective 1: Create a theme with shared values</h2>
 <p>Now that we understand how to style our components, let’s style everything!</p>
 <p>Styling components individually can quickly become a maintenance nightmare.
 For instance, if we use <code>#007980</code> for most highlights but occasionally use <code>#ca2f35</code>, what happens if we decide to change <code>#007980</code> to <code>#00a5ad</code>?</p>
@@ -697,17 +697,17 @@ A shared theme helps us:</p>
 <li>Use common language to describe colors and other styling parameters.</li>
 </ul>
 <p>Before we get too far into our style system though, we need to talk about how we will share it. While we could put it in a module that we import any time we need it, this would make it difficult to make dynamic changes to our styles, like dark mode. Instead, we can use <strong>React Context</strong>.</p>
-<h3>What is React Context?</h3>
+<h3 id="what-is-react-context">What is React Context?</h3>
 <p>Context is a feature in React that allows you to share data between components without having to explicitly pass props through every level of the component tree.
 It’s particularly useful for passing down global data (such as themes, user authentication, or language preferences) to components deep in the tree.</p>
-<h3>How do you use React Context?</h3>
+<h3 id="how-do-you-use-react-context">How do you use React Context?</h3>
 <p>Context consists of three parts:</p>
 <ol>
 <li>Context: Think of the context as a box of things. The box needs to be available to all who want to use it.</li>
 <li>Provider: The provider puts things into the box. Whatever data it handles is only available to its children.</li>
 <li>Consumer: The consumer takes things out of the box. It can only access the providers above it in the component hierarchy.</li>
 </ol>
-<h4>Creating the Context</h4>
+<h4 id="creating-the-context">Creating the Context</h4>
 <p>First we create a definition of what information will be stored, then we get the object that we’ll use to store it. The <code>createContext</code> function also accepts a default value, to be provided whenever we access the context without a provider. In this case, we’ve decided to not specify a default value.</p>
 <pre><code class="language-tsx">import {
   createContext,
@@ -769,7 +769,7 @@ export default App
 </code></pre>
 <div line-highlight='2, 14-20, only'></div>
 <p>In the code above, we create an <code>AuthContext</code> that will have <code>signIn</code> and <code>signOut</code> methods, as well as a <code>user</code> object.</p>
-<h4>Returning the Provider</h4>
+<h4 id="returning-the-provider">Returning the Provider</h4>
 <p>The Provider is how we actually tell React to store our data.
 We can render the provider anywhere in our tree, and the data will be accessible anywhere inside.
 To keep things performant, we will usually want to memoize these values.
@@ -833,7 +833,7 @@ export default App
 
 </code></pre>
 <div line-highlight='33-42, only'></div>
-<h4>Consuming the Context</h4>
+<h4 id="consuming-the-context">Consuming the Context</h4>
 <p>We can <code>useContext</code> to access the data from our closest Provider.</p>
 <pre><code class="language-tsx">import {
   createContext,
@@ -894,7 +894,7 @@ export default App
 
 </code></pre>
 <div line-highlight='46, 50, only'></div>
-<h3>Future-proofing your React Context</h3>
+<h3 id="future-proofing-your-react-context">Future-proofing your React Context</h3>
 <p>So far, we’ve covered the bare minimum for getting started with React Context.
 However, this simple approach poses a few problems:</p>
 <ul>
@@ -903,7 +903,7 @@ However, this simple approach poses a few problems:</p>
 <li>If the structure of the data changes, you will have to update the code every place you used the provide and every place you used the consumer.</li>
 </ul>
 <p>To help keep things clean in the future, it is best practice to keep this React Context object contained within this file, to avoid exporting it, and instead to export custom wrappers around each piece.</p>
-<h4>Future-proofing the Provider</h4>
+<h4 id="future-proofing-the-provider">Future-proofing the Provider</h4>
 <p>We can create a custom <code>AuthProvider</code> that hides all the complicated logic from other components. Sometimes a custom provider will even take props (such as an access token), though this one doesn’t require any.</p>
 <pre><code class="language-tsx">import {
   createContext,
@@ -967,7 +967,7 @@ export function useAuthentication() {
 
 </code></pre>
 <div line-highlight='22-45, only'></div>
-<h4>Future-proofing the Consumer</h4>
+<h4 id="future-proofing-the-consumer">Future-proofing the Consumer</h4>
 <p>Instead of calling <code>useContext</code> everywhere and needing to understand the structure of the context, we can provide custom Hooks that return the specific parts of the context that we need. If we change the context structure, all we have to do is update these hooks to return the same data as before and no other code has to change.</p>
 <pre><code class="language-tsx">import {
   createContext,
@@ -1031,7 +1031,7 @@ export function useAuthentication() {
 
 </code></pre>
 <div line-highlight='49-59, only'></div>
-<h3>Setup 1</h3>
+<h3 id="setup-1">Setup 1</h3>
 <p>✏️ Create <strong>src/design/theme/theme.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { TextStyle } from &quot;react-native&quot;
 
@@ -1205,7 +1205,7 @@ export default ListItem
 
 </code></pre>
  <div line-highlight="3,10-11,16-26,only"></div>
-<h3>Verify 1</h3>
+<h3 id="verify-1">Verify 1</h3>
 <p>✏️ Create <strong>src/design/theme/ThemeProvider.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
 import { View, Text } from &quot;react-native&quot;
@@ -1245,12 +1245,12 @@ describe(&quot;Design/Theme&quot;, () =&gt; {
 })
 
 </code></pre>
-<h3>Exercise 1</h3>
+<h3 id="exercise-1">Exercise 1</h3>
 <ul>
 <li>Update <code>ThemeProvider</code> to provide data according to the provided <code>ThemeContext</code>.</li>
 <li>Update <code>ListItem</code> to use the values from our context.</li>
 </ul>
-<h3>Solution 1</h3>
+<h3 id="solution-1">Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -1318,17 +1318,17 @@ export default ListItem
 </code></pre>
  <div line-highlight="10,19-23,only"></div>
 <p></details></p>
-<h2>Objective 2: Begin creating a design system to unify your application</h2>
+<h2 id="objective-2-begin-creating-a-design-system-to-unify-your-application">Objective 2: Begin creating a design system to unify your application</h2>
 <p>If we continue down this path, our entire codebase will become littered with <code>theme.typography.*</code>, <code>theme.palette.*</code>, etc. What if we decide to change the color pattern of one of our components? We'd have to update every place we used that pattern. Instead, we’ll create a design system.</p>
-<h3>What is a design system?</h3>
+<h3 id="what-is-a-design-system">What is a design system?</h3>
 <p>A design system is a collection of reusable components, guidelines, and principles that together help ensure consistency, efficiency, and scalability in designing and building digital products. It serves as a single source of truth for design and development teams, providing them with a set of predefined rules and assets to create cohesive user experiences across different platforms and devices.</p>
-<h3>Organizing a design system</h3>
+<h3 id="organizing-a-design-system">Organizing a design system</h3>
 <p>If you ask three designers and three developers how best to organize a design system, you’ll get 9 different answers…</p>
-<h4>Atomic Design Methodology</h4>
+<h4 id="atomic-design-methodology">Atomic Design Methodology</h4>
 <p>The most prolific organization method is Atomic Design. If you want to learn more about design systems, <a href="https://atomicdesign.bradfrost.com/chapter-2/">Atomic Design by Brad Frost</a> is the perfect place to start.</p>
-<h4>But… let’s keep things simple</h4>
+<h4 id="but-lets-keep-things-simple">But… let’s keep things simple</h4>
 <p>Atomic Design is a great system, but it can be overkill for many projects. For this project, we’re going to keep things much more simple: We’ll have the shared theme we created in the previous objective, and we’ll create a small collection of exported components.</p>
-<h3>Setup 2</h3>
+<h3 id="setup-2">Setup 2</h3>
 <p>✏️ Create <strong>src/design/Box/Box.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import {
   ViewProps,
@@ -1479,7 +1479,7 @@ export default StateList
 
 </code></pre>
  <div line-highlight="3-4,only"></div>
-<h3>Verify 2</h3>
+<h3 id="verify-2">Verify 2</h3>
 <p>✏️ Create <strong>src/design/Box/Box.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
 
@@ -1514,13 +1514,13 @@ describe(&quot;Design/Typography&quot;, () =&gt; {
 })
 
 </code></pre>
-<h3>Exercise 2</h3>
+<h3 id="exercise-2">Exercise 2</h3>
 <p>We’ve provided a basic <code>Box</code> component for you; because of the flexibility of the margin, padding, etc, a component like this can get complicated very quickly.</p>
 <ul>
 <li>Finish the <code>Typography</code> component using the same patterns.</li>
 <li>Update <code>StateList</code> to use <code>Box</code> and <code>Typography</code> instead of <code>View</code> and <code>Text</code>.</li>
 </ul>
-<h3>Solution 2</h3>
+<h3 id="solution-2">Solution 2</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -1605,7 +1605,7 @@ export default StateList
 </code></pre>
  <div line-highlight="1,22-25,31,33,only"></div>
 <p></details></p>
-<h2>Objective 3: Expand your design system</h2>
+<h2 id="objective-3-expand-your-design-system">Objective 3: Expand your design system</h2>
 <p>Now that we have the basics of a design system, we can expand it however we need. There are some basic components that most design systems will need:</p>
 <ol>
 <li>Page/Screen/etc. A main view of the app, which will often have a prop like <code>title</code>.</li>
@@ -1615,7 +1615,7 @@ export default StateList
 <li>Card. While this is a specific design pattern, it has become very ubiquitous lately.</li>
 </ol>
 <p>Beyond these, you’ll find all kinds of UI components like Tabs, Modal, Icon, Navigation, Badge, Progress, etc.</p>
-<h3>Setup 3</h3>
+<h3 id="setup-3">Setup 3</h3>
 <p>✏️ Create <strong>src/design/Button/Button.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import {
   PressableProps,
@@ -1923,12 +1923,12 @@ export default StateList
 
 </code></pre>
  <div line-highlight="4-5,27-31,only"></div>
-<h3>Exercise 3</h3>
+<h3 id="exercise-3">Exercise 3</h3>
 <p>We’ve provided three new design components for you: <code>Button</code>, <code>Card</code>, and <code>Screen</code>.</p>
 <ul>
 <li>Update <code>StateList</code> to use our new <code>Screen</code> and <code>Card</code> components. (We’ll use <code>Button</code> later.)</li>
 </ul>
-<h3>Solution 3</h3>
+<h3 id="solution-3">Solution 3</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -1970,7 +1970,7 @@ export default StateList
 </code></pre>
  <div line-highlight="20-21,23,29,only"></div>
 <p></details></p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>Next, let’s learn about how we can add dark mode with <a href="managing-state.html" title="Work with React’s useState Hook to manage a component’s state.">useState</a>.</p>
 
 </section>

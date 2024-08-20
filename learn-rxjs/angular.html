@@ -543,20 +543,20 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Video</h2>
+    <h2 id="video">Video</h2>
 <p>Who has time to read? This video covers the content on this page. Watch fullscreen.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/OAc-n1HK8ng" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<h2>The problem</h2>
+<h2 id="the-problem">The problem</h2>
 <p>In this section, we will:</p>
 <ul>
 <li>Create a CodePen setup with Angular and the HTML of our form.</li>
 <li>Write values to a <a href="https://rxjs.dev/guide/subject">Subject</a>
 and write out the value of the subject in the template.</li>
 </ul>
-<h2>Observables and the $ suffix</h2>
+<h2 id="observables-and-the--suffix">Observables and the $ suffix</h2>
 <p>At Bitovi, we follow the <a href="https://ts.dev/style/#naming-style">ts.dev Style Guide</a> and prefer to suffix Observables with <code>$</code>.</p>
 <p>Although <a href="https://angular.io/guide/rx-library#naming-conventions-for-observables">not enforced</a>, it is useful to visually differentiate between observable and non-observable values.</p>
-<h2>How to solve this problem</h2>
+<h2 id="how-to-solve-this-problem">How to solve this problem</h2>
 <ul>
 <li>Create a <code>userCardNumber$</code> <code>BehaviorSubject</code>.</li>
 <li>Write the value of the <code>cardNumber</code> input to the <code>userCardNumber$</code> <code>BehaviorSubject</code> on the <code>input</code> event.</li>
@@ -566,7 +566,7 @@ element like:
 UserCardNumber: {{ GET-CARD-NUMBER-HERE }} &lt;br /&gt;
 </code></pre></li>
 </ul>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <p>Click <em>&quot;Run in your browser&quot;</em> at the bottom of the following
 example to launch a CodePen with Angular and the HTML of
 the credit card form. You will edit this CodePen for the
@@ -774,7 +774,7 @@ be sent the last value.</p>
 <pre><code class="language-html">UserCardNumber: {{ userCardNumber$ | async }} &lt;br /&gt;
 </code></pre>
 <p>Read more about this technique <a href="https://angular.io/guide/observables-in-angular#async-pipe">here</a>.</p>
-<h2>The solution</h2>
+<h2 id="the-solution">The solution</h2>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;

@@ -678,18 +678,18 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, you will:</p>
 <ul>
 <li>Learn about the differences between APK and AAB files.</li>
 <li>Build an AAB file.</li>
 </ul>
-<h2>Objective 1: Create an Android App Bundle (AAB)</h2>
+<h2 id="objective-1-create-an-android-app-bundle-aab">Objective 1: Create an Android App Bundle (AAB)</h2>
 <p>When developing Android applications, understanding the different formats used for packaging and distributing your app is crucial.
 Two primary formats you’ll encounter are the Android App Bundle (AAB) and the Android Package (APK).</p>
 <p>Each serves distinct purposes and offers unique benefits.
 Let’s dive into what these formats are and why they matter.</p>
-<h3>What is an APK?</h3>
+<h3 id="what-is-an-apk">What is an APK?</h3>
 <p>An Android Package (APK) is the traditional file format used to distribute and install applications on Android devices.
 Essentially, an APK is a compressed archive that contains all the necessary components for an app to run, including the compiled code, resources, assets, and manifest file.
 When you download an app from the Google Play Store or another source, it typically comes in the form of an APK.</p>
@@ -699,7 +699,7 @@ When you download an app from the Google Play Store or another source, it typica
 <li><strong>Universal packaging:</strong> An APK contains all resources and code required for every possible device configuration, such as different screen sizes, densities, and CPU architectures.</li>
 <li><strong>Larger file size:</strong> Because it includes resources for all configurations, an APK file can be quite large and may include unnecessary data for a particular device.</li>
 </ul>
-<h3>What is an AAB?</h3>
+<h3 id="what-is-an-aab">What is an AAB?</h3>
 <p>An Android App Bundle (AAB) is a more modern and efficient format introduced by Google.
 Unlike an APK, an AAB is not a final package that can be installed on a device.
 Instead, it contains all the compiled code and resources of an app, but in a way that allows Google Play to generate optimized APKs specifically tailored for each device configuration.</p>
@@ -709,7 +709,7 @@ Instead, it contains all the compiled code and resources of an app, but in a way
 <li><strong>Mandatory for Play Store:</strong> Starting in 2021, Google Play requires new apps to be published using the AAB format.</li>
 <li><strong>Efficient updates:</strong> By using AAB, incremental updates can be more efficient as only the necessary changes are downloaded, reducing the update size.</li>
 </ul>
-<h3>Building an AAB</h3>
+<h3 id="building-an-aab">Building an AAB</h3>
 <p>AAB files can be built by using this command provided by React Native:</p>
 <pre><code class="language-shell">react-native build-android --mode=release
 </code></pre>
@@ -717,7 +717,7 @@ Instead, it contains all the compiled code and resources of an app, but in a way
 <pre><code>android/app/build/outputs/bundle/release/app-release.aab
 </code></pre>
 <p>You are able to create an AAB with or without signing it. However, if you want to upload the AAB to the Google Play store, you must sign it using an upload key keystore.</p>
-<h3>Setup 1</h3>
+<h3 id="setup-1">Setup 1</h3>
 <p>✏️ Update <strong>package.json</strong> to be:</p>
 <pre><code class="language-json">{
   &quot;name&quot;: &quot;PlaceMyOrder&quot;,
@@ -793,7 +793,7 @@ Instead, it contains all the compiled code and resources of an app, but in a way
 
 </code></pre>
  <div line-highlight="7,only"></div>
-<h3>Verify 1</h3>
+<h3 id="verify-1">Verify 1</h3>
 <p>The build logs will look something like this (but much, much longer):</p>
 <pre><code>npm run android:build
 
@@ -822,17 +822,17 @@ BUILD SUCCESSFUL in 30s
 216 actionable tasks: 211 executed, 5 up-to-date
 </code></pre>
 <div line-highlight='1, 24, only'></div>
-<h3>Exercise 1</h3>
+<h3 id="exercise-1">Exercise 1</h3>
 <p>✏️ Run the script to generate the AAB file:</p>
 <pre><code class="language-shell">npm run android:build
 </code></pre>
-<h3>Solution 1</h3>
+<h3 id="solution-1">Solution 1</h3>
 <p>After the build runs successfully, you can find the AAB in your project:</p>
 <pre><code>android/app/build/outputs/bundle/release/app-release.aab
 </code></pre>
 <p>Since the <code>aab</code> file is really a <code>zip</code> in disguise, change the filename to <code>app-release.zip</code> and open it.
 What can you find?</p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>Next, we will learn about <a href="publishing-and-updating.html" title="Preparation for the steps to Publish and Update a production application on Stores.">Publishing and Updating</a>.</p>
 
 </section>

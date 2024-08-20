@@ -606,14 +606,14 @@ covering CanJS core libraries.">
     <blockquote>
 <p><strong>Quick Start</strong>: You can checkout <a href="https://github.com/bitovi/angular-ngrx-chat/tree/test-api-effects">this branch</a> to get your codebase ready to work on this section.</p>
 </blockquote>
-<h2>Overview</h2>
+<h2 id="overview">Overview</h2>
 <ol>
 <li><p>Add <code>loginSuccess$</code> Effect to <code>LoginEffects</code> to navigate to dashboard page.</p></li>
 <li><p>Add <code>logoutSuccess$</code> Effect to <code>LoginEffects</code> to navigate to login page.</p></li>
 </ol>
-<h2>Problem 1: Create <code>loginSuccess$</code> Effect to Handle Navigating to Dashboard Page</h2>
+<h2 id="problem-1-create-codeloginsuccesscode-effect-to-handle-navigating-to-dashboard-page">Problem 1: Create <code>loginSuccess$</code> Effect to Handle Navigating to Dashboard Page</h2>
 <p><code>LoginEffects</code> should use <code>Router</code> to navigate to the dashboard page at path <code>/dashboard</code> using an Effect called <code>loginSuccess$</code>.</p>
-<h2>P1: What you need to know</h2>
+<h2 id="p1-what-you-need-to-know">P1: What you need to know</h2>
 <p>Although it’s common for Effects to dispatch another Action after handling a side-effect, there is a way to update the configuration for an Effect to never dispatch an Action instead. This is useful when a side-effect resolves and there’s no need to trigger another side-effect or update state.</p>
 <p>To understand this better, let’s take a deeper dive into the <code>createEffect()</code> <a href="https://ngrx.io/api/effects/createEffect">helper function</a>:</p>
 <p><code>createEffect()</code> takes two arguments:</p>
@@ -664,7 +664,7 @@ export class ContactEffects {
 
 </code></pre>
 <div line-highlight='14, 15, 18'></div>
-<h2>P1: Solution</h2>
+<h2 id="p1-solution">P1: Solution</h2>
 <p><details>
 <summary>src/app/store/login/login.effects.ts</summary></p>
 <pre><code class="language-ts">// src/app/store/login/login.effects.ts
@@ -744,9 +744,9 @@ export class LoginEffects {
 </code></pre>
  <div line-highlight="9,33-37,39-41,57,61-65,only"></div>
 </details>
-<h2>Problem 2: Create <code>logoutSuccess$</code> Effect to Handle Navigating to Login Page</h2>
+<h2 id="problem-2-create-codelogoutsuccesscode-effect-to-handle-navigating-to-login-page">Problem 2: Create <code>logoutSuccess$</code> Effect to Handle Navigating to Login Page</h2>
 <p><code>LoginEffects</code> should use <code>Router</code> to navigate to the dashboard page at path <code>/</code> using an Effect called <code>loginSuccess$</code>.</p>
-<h2>P2: Solution</h2>
+<h2 id="p2-solution">P2: Solution</h2>
 <p><details>
 <summary>src/app/store/login/login.effects.ts</summary></p>
 <pre><code class="language-ts">// src/app/store/login/login.effects.ts
@@ -836,7 +836,7 @@ export class LoginEffects {
 </code></pre>
  <div line-highlight="61-69,only"></div>
 </details>
-<h2>Verify Implementation</h2>
+<h2 id="verify-implementation">Verify Implementation</h2>
 <p>At this point, you should be able to login on the login page:</p>
 <blockquote>
 <p>Note that authenication <strong>DOES NOT</strong> persist after a <strong>page refresh</strong>. This means that after you make code changes while serving the application, you will be signed out and will need to login again. Remember that the login page is located at <code>/</code>.</p>

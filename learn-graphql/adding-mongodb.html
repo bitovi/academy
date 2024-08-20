@@ -427,18 +427,18 @@ We’ll also go over some basic methods to perform CRUD operations, and how we w
   			
   			
   				<section class="body">
-    <h2>Setting up MongoDB in the cloud</h2>
+    <h2 id="setting-up-mongodb-in-the-cloud">Setting up MongoDB in the cloud</h2>
 <p>Rather than host a local instance of MongoDB, we can instead use <strong>MongoDB Atlas</strong> and leverage their free-tier option in order to set up a MongoDB instance. I would recommend to follow the first 5 minutes of the video to get your account and your <a href="https://www.youtube.com/watch?v=xrc7dIO_tXk&amp;ab_channel=MongoDB">cluster setup</a>. After this video I would suggest to keep your connection uri so that we can begin to use it in our project.</p>
-<h3>Dependencies</h3>
+<h3 id="dependencies">Dependencies</h3>
 <p>First things first, we’ll need to install some packages that we’ll be going to use:</p>
 <pre><code class="language-shell">npm i mongodb mongoose dotenv
 </code></pre>
 <p>We are deciding to use <code>dotenv</code> so that we can put our connection uri inside a file .env at the highest level of the directory. And this file won’t be committed to any repository so that we don’t share our precious connection uri! We’ll add the following line to the <code>.env</code> file:</p>
 <p><code>MONGODB_URL=&quot;mongodb+srv://&lt;your_connection_uri_here&gt;&quot;</code></p>
-<h2>Mongoose vs MongoDB Native Driver:</h2>
+<h2 id="mongoose-vs-mongodb-native-driver">Mongoose vs MongoDB Native Driver:</h2>
 <p>In this tutorial we’ll be going with Mongoose as our package of choice, but let’s quickly go over our options on why we might use one or the other. For us, Mongoose provides a nice way to create a Model of any entity we want to refer to, and when we want to create a new document using that Model, we get inherent model validation out of the box. Rather than having to include document validation ourselves within our resolvers or dataSource files, Mongoose will throw an error if an incorrect field is placed during a <code>save</code> operation. You can also create and manage relationships data relatively quickly by making the schema strict (in terms of validation), and using the <code>populate</code> method. Some drawbacks are that Mongoose can hide some complexity of what it is doing away from developers making it really difficult to understand complex concepts.</p>
 <p>The MongoDB native driver is definitely more performant than Mongoose and a lot of methods between the two are fairly similar in syntax. However you might have to create some boilerplate validation code since MongoDB will allow you store a document that doesn’t have to follow the same schema as other objects within the same collection. However depending on your use-case that may be better, for example where some sub-fields are not meant to be a consistent <strong>type</strong> between different documents. For this tutorial though, it keeps the GraphQL schema definition and the Mongoose definition fairly rigid to keep our entities consistent.</p>
-<h2>Adding the Mongoose connection to our server</h2>
+<h2 id="adding-the-mongoose-connection-to-our-server">Adding the Mongoose connection to our server</h2>
 <p>Add this line to the top of the <code>/index.js</code> file:</p>
 <pre><code class="language-js">require('dotenv').config();
 </code></pre>
@@ -447,7 +447,7 @@ We’ll also go over some basic methods to perform CRUD operations, and how we w
 mongoose.connect(process.env.MONGODB_URL);
 </code></pre>
 <p><strong>Note:</strong> We are adding this <code>strictQuery</code> to <code>false</code> because Mongoose has a deprecation warning around this being set to false by default in Mongoose 7.</p>
-<h3>Creating the Mongoose Models</h3>
+<h3 id="creating-the-mongoose-models">Creating the Mongoose Models</h3>
 <p>In the <code>/src</code> folder we’ll create a <code>/models</code> folder and create three files: <code>property.js, propertyOwner.js, and renter.js</code>. We are keeping the model definitions separate from other parts of the code so we can keep our mongoose model definitions clean and concise.</p>
 <p>In our <code>/src/models/renter.js</code> file we’ll add the following lines of code:</p>
 <pre><code class="language-js">const { Schema, model } = require('mongoose');
@@ -552,7 +552,7 @@ module.exports = {
 };
 </code></pre>
 <p>In this model, the only notable fields are ensuring the relationship between <code>renters</code> and <code>propertyOwner</code> fields are created correctly and are referencing the same name that we passed into the <code>model</code> method for both renters and propertyOwners.</p>
-<h2>Creating a seed script</h2>
+<h2 id="creating-a-seed-script">Creating a seed script</h2>
 <p>At this point we have our models setup, but in order to start switching our resolvers to use Mongoose, we will need to create data within our database. That is where creating a seed file will come in handy, and we will learn some useful methods that we get from Mongoose. Create a <code>seed.js</code> file at the top-level of the project, we are going to use the static information we had before, and move it to the <code>seed.js</code> file with some adjustments:</p>
 <pre><code class="language-js">require('dotenv').config();
 const mongoose = require('mongoose');
@@ -670,7 +670,7 @@ runSeed();
 }
 </code></pre>
 <p>Your <code>package.json</code> should look like above for the <code>scripts</code> field.</p>
-<h2>Adding Mongoose to our dataSources</h2>
+<h2 id="adding-mongoose-to-our-datasources">Adding Mongoose to our dataSources</h2>
 <p>Now that we have created the baseline models we want that match our entities, all we need to do to add values into the database is to run <code>npm run seed</code> from a console within the project directory. If the seed successfully ran, you will know that our models are correct by viewing them within the MongoDB Atlas webpage. The next step is to go into our dataSources and begin porting over our operations, go into <code>src/renters/dataSource.js</code>:</p>
 <pre><code class="language-js">const { Renter } = require('../models');
 
@@ -791,7 +791,7 @@ async function getAllProperties() {
 }
 </code></pre>
 <p>Doing this will make the return object have other MongoDB-related fields and will break the return type for this GraphQL mutation.</p>
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 <p>During this tutorial we covered how to get MongoDB setup in the cloud, how to use <code>dotenv</code> in order to hide our connection string, and had walked through some of the features of Mongoose’s Schema creation methods. Next we created a <code>seed.js</code> script in order to initialize data within our database. Finally we used those models defined to upgrade our dataSource methods. We talked about some of the features of populate and how it can make entity resolution easier.</p>
 <p>At the end of this tutorial you should have a repository similar to <a href="https://github.com/bitovi/node-graphql-tutorial-2023/tree/mongodb">this</a></p>
 <p>I hope you learned something new in this tutorial, and in the next tutorial in the series will we cover  porting over our endpoints from Mongoose to Prisma!</p>

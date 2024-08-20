@@ -497,7 +497,7 @@ covering CanJS core libraries.">
     <blockquote>
 <p><strong>NOTE:</strong> This section is currently under development.  There are no exercises yet.</p>
 </blockquote>
-<h2>Overview</h2>
+<h2 id="overview">Overview</h2>
 <p>In JavaScript, a class is a structured way to define what you saw in the previous section - prototype-based <strong>constructor functions</strong>. Before <a href="https://en.wikipedia.org/wiki/ECMAScript#6th_Edition_-_ECMAScript_2015">ECMAScript 2015</a>, you would create <strong>constructor functions</strong> as follows:</p>
 <pre><code class="language-js">//prototype way
 function ParkEmployee(name) {
@@ -529,7 +529,7 @@ raptorGuy.sayHi();
 // Logs &quot;Hi, my name is Owen&quot;
 </code></pre>
 <div class='codepen'></div>
-<h2>Getters, Setters and Method Definitions</h2>
+<h2 id="getters-setters-and-method-definitions">Getters, Setters and Method Definitions</h2>
 <p>Classes initially only allowed
 getters, setters and method definitions
 in the body of the class.</p>
@@ -581,7 +581,7 @@ the following are <strong>not</strong> allowed:</p>
   name: null
 }
 </code></pre>
-<h2>Static Methods</h2>
+<h2 id="static-methods">Static Methods</h2>
 <p>The <code>static</code> keywords defines methods directly on the class.
 For example, the following creates a <code>ParkEmployee.mathematician()</code> method:</p>
 <pre><code class="language-js">class ParkEmployee {
@@ -602,7 +602,7 @@ raptorGuy.sayHi();
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='2-4'></div>
-<h2>Field Declarations</h2>
+<h2 id="field-declarations">Field Declarations</h2>
 <p>A few browsers (and Babel) support <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Field_declarations">field declarations</a>. <em>Field declarations</em> let you specify fields (properties) and their initial value up front.</p>
 <p>The following declares that <code>ParkEmployee</code> instances will be created with <code>name</code> initialized to <code>undefined</code>
 and <code>age</code> initialized to <code>36</code>:</p>
@@ -623,7 +623,7 @@ console.log( raptorGuy.age );
 </code></pre>
 <div line-highlight='2-3'></div>
 <div class='codepen'></div>
-<h2>Sub Classing</h2>
+<h2 id="sub-classing">Sub Classing</h2>
 <p>Classes (and even constructor functions) can be extended with the <code>extends</code> keyword as follows:</p>
 <pre><code class="language-js">class ParkEmployee {
   constructor( runningSpeed ) {

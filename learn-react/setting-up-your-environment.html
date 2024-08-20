@@ -543,7 +543,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, we will:</p>
 <ul>
 <li>Learn about Node.js</li>
@@ -552,23 +552,23 @@ covering CanJS core libraries.">
 <li>Set up testing</li>
 <li>Verify that the new application can be served to the browser and tested</li>
 </ul>
-<h2>Objective 1: Install prerequisites</h2>
-<h3>Install a code editor</h3>
+<h2 id="objective-1-install-prerequisites">Objective 1: Install prerequisites</h2>
+<h3 id="install-a-code-editor">Install a code editor</h3>
 <p>There are a variety of code editors that support React, the most popular is Microsoft’s <a href="https://code.visualstudio.com/">Visual Studio Code</a>. VS Code is available for most operating systems and has extensive support for React and JSX including: code completion, code highlighting, and linting. It’s also used by cloud environments like CodeSandbox and StackBlitz, making it easy to switch among different runtime environments.</p>
 <p>These VS Code extensions will help you format your code consistently:</p>
 <ul>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">ESLint</a></li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</a></li>
 </ul>
-<h3>Install Node.js and npm</h3>
+<h3 id="install-nodejs-and-npm">Install Node.js and npm</h3>
 <p>Our solution requires the <a href="https://nodejs.org/">Node.js</a> JavaScript runtime environment. Node.js and its included package manager <code>npm</code> will be used to do a variety of tasks including: installing required packages, running the development server, executing tests, and building the application for deployment.</p>
-<h3>Setup 1</h3>
+<h3 id="setup-1">Setup 1</h3>
 <p>This course requires Node.js version 18 or 20 (we suggest using the long-term support release of version 20).</p>
 <p>The simplest approach is to download the <a href="https://nodejs.org/en/download">Node.js installer</a> for your operating system. Any installation of Node.js will also include npm.</p>
 <p>Alternatively, you can <a href="https://nodejs.org/en/download/package-manager">install Node.js via package manager</a>; this is the reccomendation for most professional setups.</p>
 <p>During the installation process you may be prompted to make selections or install prerequisites, use the default selections and proceed with the installation.</p>
 <p>The installation process can take 10 to 15 minutes to complete.</p>
-<h3>Verify 1</h3>
+<h3 id="verify-1">Verify 1</h3>
 <p>✏️ Run the following command in a terminal to verify Node.js is installed correctly.</p>
 <p>🔦 <em>If you encounter an error running <code>node --version</code> you may need to restart for node to be completely installed.</em></p>
 <pre><code class="language-shell">node --version
@@ -578,9 +578,9 @@ covering CanJS core libraries.">
 <pre><code class="language-shell">npm --version
 </code></pre>
 <p>The output of the command will be the current version of <code>npm</code>, we expect it to start with either &quot;9&quot; or &quot;10&quot;.</p>
-<h2>Objective 2: Generate the “Place My Order” application</h2>
+<h2 id="objective-2-generate-the-place-my-order-application">Objective 2: Generate the “Place My Order” application</h2>
 <p>Create a new React application named “Place My Order” that supports TypeScript and can be served and tested.</p>
-<h3>Use Vite to generate a new React application</h3>
+<h3 id="use-vite-to-generate-a-new-react-application">Use Vite to generate a new React application</h3>
 <p>For this course we will use <a href="https://vitejs.dev">Vite</a> to manage our React project. Vite is a Node.js application that simplifies the creation, development, testing, and building of web application frontends. We will use a Vite &quot;template&quot; to specify that we are creating a React project with support for TypeScript.</p>
 <p>After generating the React app the following folders and files will be included in the &quot;place-my-order&quot; folder:</p>
 <pre><code class="language-code">├── public/
@@ -601,7 +601,7 @@ covering CanJS core libraries.">
 <p><strong>index.html</strong> is the entry point for your users. This is what loads <code>main.tsx</code>.</p>
 <p><strong>main.tsx</strong> is the entry point of the React application. This is where our application is initialized and mounted in the DOM.</p>
 <p><strong>App.tsx</strong> is your React application itself.</p>
-<h3>Setup 2</h3>
+<h3 id="setup-2">Setup 2</h3>
 <p>✏️ Open a terminal and move to a location where you want to generate your React application, then execute the following command:</p>
 <pre><code class="language-shell">npm create vite@5 place-my-order -- --template react-ts
 </code></pre>
@@ -610,7 +610,7 @@ covering CanJS core libraries.">
 <pre><code class="language-shell">cd place-my-order
 npm install
 </code></pre>
-<h3>Verify 2</h3>
+<h3 id="verify-2">Verify 2</h3>
 <p>Once you have completed the previous step you will be able to start the development server and see the default welcome page.</p>
 <p>The development server is a useful tool. When it starts, it <a href="https://en.wikipedia.org/wiki/Source-to-source_compiler">transpiles</a> the TypeScript and JSX code into JavaScript and bundles it for delivery to the browser. It also watches for changes to the source code, and when they occur, it repeats the process, then causes the browser to reload with those changes.</p>
 <p>✏️ Run the command:</p>
@@ -618,10 +618,10 @@ npm install
 </code></pre>
 <p>The server will output the &quot;Local&quot; URL for the dev server, copy and paste it into a browser. The browser will display a welcome page with &quot;Vite + React.&quot;</p>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/02-solution?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/02-solution?file=src/App.tsx">CodeSandbox</a>.</p>
-<h2>Objective 3: Add testing infrastructure</h2>
-<h3>Testing code with React Testing Library</h3>
+<h2 id="objective-3-add-testing-infrastructure">Objective 3: Add testing infrastructure</h2>
+<h3 id="testing-code-with-react-testing-library">Testing code with React Testing Library</h3>
 <p>We will create unit tests for our application using the <a href="https://testing-library.com/docs/react-testing-library/intro/">React Testing Library</a>. The unit tests for components will be focused on verifying that a component creates the correct DOM output based on the state the component is provided. We also need to create tests for any React custom Hooks we create to ensure they provide the expected results.</p>
-<h3>Setup 3</h3>
+<h3 id="setup-3">Setup 3</h3>
 <p>Before we can create or execute any tests, run the following command to install the packages related to the React Testing Library:</p>
 <p>✏️ Run:</p>
 <pre><code class="language-shell">npm install --save-dev vitest@1 @testing-library/react@14 @testing-library/user-event@14 @testing-library/jest-dom@6 jsdom@24
@@ -680,13 +680,13 @@ export default defineConfig({
 
 </code></pre>
 <div line-highlight='7, only'></div>
-<h3>Verify 3</h3>
+<h3 id="verify-3">Verify 3</h3>
 <p>After completing the previous steps you will be able to run unit tests. Execute the command:</p>
 <pre><code class="language-shell">npm run test
 </code></pre>
 <p>and &quot;No test files found&quot; will be written to the console.</p>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/03-solution?file=package.json">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/03-solution?file=package.json">CodeSandbox</a>.</p>
-<h2>Objective 4: Update our first page</h2>
+<h2 id="objective-4-update-our-first-page">Objective 4: Update our first page</h2>
 <p>Now, let’s updated our generated app to include our own header:</p>
 <figure>
   <img alt="A web browser displaying the root page of the newly created application served by the dev server. The page displays a single level 1 heading with the text 'Place My Order App: Coming Soon!'" src="../static/img/react-vite/02-setting-up-your-environment/04-solution.png" width="600px" />
@@ -694,7 +694,7 @@ export default defineConfig({
     Screen capture of the completed exercise.
   </figcaption>
 </figure>
-<h3>Setup 4</h3>
+<h3 id="setup-4">Setup 4</h3>
 <p>Before we begin adding any content, its a good idea to clean up generated files and add code quality tools.</p>
 <p>Remove these generated files that we won’t need. Some projects do need them, but this one won’t.</p>
 <ul>
@@ -784,7 +784,7 @@ npm install --save-dev @bitovi/eslint-config prettier
 
 </code></pre>
  <div line-highlight="7-9,12,14-16,18-21,25,only"></div>
-<h3>Verify 4</h3>
+<h3 id="verify-4">Verify 4</h3>
 <p>✏️ Create <strong>src/App.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
 import { render, screen } from &quot;@testing-library/react&quot;
@@ -808,14 +808,14 @@ npm run eslint
 npm run prettier
 </code></pre>
 <p>These scripts will pass when the solution has been implemented properly.</p>
-<h3>Exercise 4</h3>
+<h3 id="exercise-4">Exercise 4</h3>
 <p>This exercise will finish the objective of creating a new React application with TypeScript support that can be served and tested. To complete the exercise make code changes to accomplish the following:</p>
 <ul>
 <li>The root <code>/</code> web page shall display a single heading element with the text &quot;Place My Order App: Coming Soon!&quot;</li>
 <li>Make sure you remove the references to assets at the top, since they're no longer in use. (If you have the reccomended VS Code plugins installed, it should warn you about these!)</li>
 <li>Resolve any error from the code quality scripts.</li>
 </ul>
-<h3>Solution 4</h3>
+<h3 id="solution-4">Solution 4</h3>
 <p><details></p>
 <p><summary>Click to see the solution</summary></p>
 <ol>
@@ -840,7 +840,7 @@ export default App
  <div line-highlight="1,4,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/04-solution?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/04-solution?file=src/App.tsx">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>Next, let’s <a href="./intro-to-jsx.html">learn about JSX</a> to understand React’s templating language.</p>
 
 </section>

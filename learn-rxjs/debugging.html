@@ -543,21 +543,21 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Video</h2>
+    <h2 id="video">Video</h2>
 <p>Who has time to read? This video covers the content on this page. Watch fullscreen.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/kPKZ3ipcIIk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<h2>The problem</h2>
+<h2 id="the-problem">The problem</h2>
 <p>In this section, we will:</p>
 <ul>
 <li>Learn how to debug RxJS observables.</li>
 <li>Log the value of the <code>this.cardNumber$</code> observable everytime it changes.</li>
 </ul>
-<h2>How to solve this problem</h2>
+<h2 id="how-to-solve-this-problem">How to solve this problem</h2>
 <ul>
 <li>Create a <code>log</code> helper that <code>console.log</code>s emitted values without causing side-effects.</li>
 <li>Use the <code>log</code> helper to log values emitted by <code>this.cardNumber$</code>.</li>
 </ul>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <p>RxJS can be tricky to debug. It seems like you should simply be able to
 subscribe to an observable and output its values.</p>
 <p>The problem with this is that:</p>
@@ -656,7 +656,7 @@ there are two subscriptions on <code>cardNumber</code>:</p>
 <li>the other from <code>cardError$</code> in the template - <code>{{ cardError$ | async }}</code> - <code>cardError</code> derives from <code>cardNumber</code>.</li>
 </ul>
 </blockquote>
-<h2>The solution</h2>
+<h2 id="the-solution">The solution</h2>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;

@@ -528,21 +528,21 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this part we will:</p>
 <ul>
 <li>Handle selecting of routes.</li>
 <li>Fetch a list of vehicles for a selected route.</li>
 <li>Show the selected route name and number overlaying the map.</li>
 </ul>
-<h2>Problem</h2>
+<h2 id="problem">Problem</h2>
 <p>We have a list of routes and a map. We want to handle events when the button for a given route is clicked. It should fetch the vehicles for that route and log those to the console. In the next section we will use the vehicle list to display markers.</p>
 <p>Additionally the route name and number should be shown overlaying the map. There is a button where this information can be added.</p>
 <p>When a route is selected it should become active and show a checkmark by the name.</p>
 <p><img src="../static/img/web-components/bt-selecting-route.gif"
 style="border: solid 1px black; max-width: 100%;"
 alt="Selecting a route from the list and noticing that the item is highlighted as active and the route number and name is shown in an overlay on top of the map." /></p>
-<h2>How to Solve This Problem</h2>
+<h2 id="how-to-solve-this-problem">How to Solve This Problem</h2>
 <ol>
 <li>Add a <code>click</code> event listener on the <code>button</code> within each route <code>li</code>.</li>
 <li>Create a method that will be called within the listener that receives the <code>route</code> object and the <code>li</code>.</li>
@@ -555,8 +555,8 @@ alt="Selecting a route from the list and noticing that the item is highlighted a
 </ol></li>
 <li>Add the <code>active</code> class to the route’s <code>li</code>. If there is already an active route, remove the <code>active</code> class from that <code>li</code>.</li>
 </ol>
-<h2>Technical requirements</h2>
-<h3>Selected route button</h3>
+<h2 id="technical-requirements">Technical requirements</h2>
+<h3 id="selected-route-button">Selected route button</h3>
 <p>This HTML can be used to display the route name and number. It should be a child of the <code>#selected-route</code> button.</p>
 <pre><code class="language-html">&lt;small&gt;Route NUMBER:&lt;/small&gt; NAME
 </code></pre>
@@ -567,31 +567,31 @@ alt="Selecting a route from the list and noticing that the item is highlighted a
 &lt;/div&gt;
 </code></pre>
 <p>To make the <code>#selected-route</code> button visible, add the <code>route-selected</code> class.</p>
-<h3>Calling the API</h3>
+<h3 id="calling-the-api">Calling the API</h3>
 <p>To get the URL for this API request use:</p>
 <pre><code class="language-js">getVehiclesEndpoint + '?rt=' + NUMBER
 </code></pre>
 <p>Where <code>NUMBER</code> is the route number, which again can be gotten from the route object.</p>
-<h3>Marking the route active</h3>
+<h3 id="marking-the-route-active">Marking the route active</h3>
 <p>Set the <code>active</code> class on the <code>li</code> element associated with the route to mark it as active.</p>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <p>This part doesn’t have any new web component APIs to learn, but builds off what we’ve already done. You will need to know a few basic DOM APIs however:</p>
 <ul>
 <li>How to add event listeners to elements.</li>
 <li>How to add classes to elements.</li>
 </ul>
-<h3>Event listeners</h3>
+<h3 id="event-listeners">Event listeners</h3>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener">addEventListener</a> is a method on elements that takes an <strong>event name</strong>, and a <strong>callback function</strong>. When the event occurs the callback function will be called.</p>
 <p>Each route in our list contains a <code>button</code> element. Set the event listener on this element.</p>
 <pre><code class="language-js">element.addEventListener('click', ev =&gt; {
   // Do whatever you need.
 });
 </code></pre>
-<h3>Adding classes</h3>
+<h3 id="adding-classes">Adding classes</h3>
 <p>Each element contains a <code>classList</code> object which is a little like a JavaScript <code>Set</code> (but is subtley different). To add classes to an element use <code>classList.add()</code>.</p>
 <pre><code class="language-js">element.classList.add('some-new-class');
 </code></pre>
-<h2>Solution</h2>
+<h2 id="solution">Solution</h2>
 <p>✏️ In the <code>getRoutes</code> method inside of the <code>routes</code> loop, get a reference to the <code>button</code> for the route and add an event listener for <strong>click</strong> events. When that event occurs call a method that will call the API for vehicles and add the <code>active</code> class to the associated <code>li</code>.</p>
 <p>Add a reference to the <code>#selected-route</code> element in the constructor. When the API call completes update this element as needed and add the <code>route-selected</code> class so that it will be highlighted.</p>
 <p><details>

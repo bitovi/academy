@@ -678,7 +678,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, you will:</p>
 <ul>
 <li>Listen for changes to the network connection state.</li>
@@ -686,13 +686,13 @@ covering CanJS core libraries.">
 <li>Design offline-syncing behavior.</li>
 <li>Sync data between the device and server.</li>
 </ul>
-<h2>Objective 1: Show the current connection status</h2>
+<h2 id="objective-1-show-the-current-connection-status">Objective 1: Show the current connection status</h2>
 <p>Most mobile applications use a network connection for critical functionality.
 It’s important to communicate to the user when their device is offline and some functionality in the application may be disabled because of their current connection status.</p>
 <p>The way you communicate this info will depend on your application.
 In ours, we’re going to add some text to the Settings view that shows the current connection status.</p>
 <p><img alt="Screenshot of the application settings page with the connection status." src="../static/img/react-native/17-offline-support/01-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/></p>
-<h3>Listening for the network connection state</h3>
+<h3 id="listening-for-the-network-connection-state">Listening for the network connection state</h3>
 <p>The <code>@react-native-community/netinfo</code> is an incredible useful package for detecting the network status of the device.</p>
 <p>This package allows you to:</p>
 <ul>
@@ -700,7 +700,7 @@ In ours, we’re going to add some text to the Settings view that shows the curr
 <li>Determine the type of network connection (WiFi, cellular, etc.).</li>
 <li>React to changes in the network status, allowing the app to adapt accordingly.</li>
 </ul>
-<h3>Getting the current connection state</h3>
+<h3 id="getting-the-current-connection-state">Getting the current connection state</h3>
 <p>The <code>useNetInfo</code> Hook provided by the package simplifies the process of accessing network state information in functional components.
 This Hook returns an object containing details about the network status.</p>
 <pre><code class="language-tsx">import { useNetInfo } from &quot;@react-native-community/netinfo&quot;
@@ -721,7 +721,7 @@ export default NetworkStatusComponent
 
 </code></pre>
 <div line-highlight='1, 6, 10, only'></div>
-<h3>Setup 1</h3>
+<h3 id="setup-1">Setup 1</h3>
 <p>✏️ Install the new dependency:</p>
 <pre><code class="language-bash">npm install @react-native-community/netinfo@11
 </code></pre>
@@ -848,7 +848,7 @@ export default Settings
 
 </code></pre>
  <div line-highlight="1,17,53,only"></div>
-<h3>Verify 1</h3>
+<h3 id="verify-1">Verify 1</h3>
 <p>✏️ Update <strong>src/screens/Settings/Settings.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { fireEvent, render, screen } from &quot;@testing-library/react-native&quot;
@@ -910,12 +910,12 @@ describe(&quot;Screens/Settings&quot;, () =&gt; {
 
 </code></pre>
  <div line-highlight="46-53,55-56,only"></div>
-<h3>Exercise 1</h3>
+<h3 id="exercise-1">Exercise 1</h3>
 <ul>
 <li>Get the current connection state with the <code>useNetInfo()</code> Hook.</li>
 <li>Display the connection state in the Settings view.</li>
 </ul>
-<h3>Solution 1</h3>
+<h3 id="solution-1">Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -994,7 +994,7 @@ export default Settings
 </code></pre>
  <div line-highlight="17,53-57,only"></div>
 <p></details></p>
-<h2>Objective 2: Store restaurant favorites on device</h2>
+<h2 id="objective-2-store-restaurant-favorites-on-device">Objective 2: Store restaurant favorites on device</h2>
 <p>Now that you can detect when the device is online or offline, let’s build a feature that can work offline!</p>
 <p>Let’s add the ability to “favorite” a restaurant.
 In the <code>RestaurantDetails</code>, we’ll add an “Add to favorites” button when the user is signed in, and if they favorite a restaurant, we’ll change it to “Remove from favorites.”</p>
@@ -1004,7 +1004,7 @@ In the third objective, we’ll expand that to handle syncing when the device co
   <img alt="Screenshot of the application's Restaurant Details screen displaying the add favorite button." src="../static/img/react-native/17-offline-support/02-solution-addFavorites.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
   <img alt="Screenshot of the application's Restaurant Details screen displaying the remove favorite button." src="../static/img/react-native/17-offline-support/02-solution-removeFavorites.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
 </div>
-<h3>Defining the “favorites” feature</h3>
+<h3 id="defining-the-favorites-feature">Defining the “favorites” feature</h3>
 <p>There’s a lot that goes into building even a one or two-button feature like the “add to favorites” and “remove from favorites” feature that we’re about to build.</p>
 <p>Let’s think through what we want in the restaurant details view:</p>
 <ul>
@@ -1016,7 +1016,7 @@ In the third objective, we’ll expand that to handle syncing when the device co
 </ul>
 <p>Features like this are great to build into Hooks because it makes the logic more easily testable and reusable.
 Let’s look at the Hook code we are going to copy in the Setup step for this exercise.</p>
-<h3>Creating a <code>useFavorite()</code> Hook</h3>
+<h3 id="creating-a-codeusefavoritecode-hook">Creating a <code>useFavorite()</code> Hook</h3>
 <p>Our <code>useFavorite()</code> Hook will accept two arguments:</p>
 <pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
 
@@ -1136,7 +1136,7 @@ export const useFavorite = (
 </code></pre>
 <div line-highlight='8-11, only'></div>
 <p>You’ll remember that the Rules of Hooks state that Hooks must always be called at the top level of a component, so this Hook makes these properties optional because, for example, you may not be signed in (and thus won’t have a <code>userId</code>).</p>
-<h3>Determining if a restaurant is a favorite</h3>
+<h3 id="determining-if-a-restaurant-is-a-favorite">Determining if a restaurant is a favorite</h3>
 <p>The Hook will return a <code>true</code> or <code>false</code> value for <code>isFavorite</code>, depending on whether the restaurant is a favorite:</p>
 <pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
 
@@ -1255,7 +1255,7 @@ export const useFavorite = (
 
 </code></pre>
 <div line-highlight='13, 32-35, 110, only'></div>
-<h3>Getting favorites from storage</h3>
+<h3 id="getting-favorites-from-storage">Getting favorites from storage</h3>
 <p>The Hook gets all the favorite restaurants from Async Storage:</p>
 <pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
 
@@ -1374,7 +1374,7 @@ export const useFavorite = (
 
 </code></pre>
 <div line-highlight='23-30, only'></div>
-<h3>Toggling a restaurant’s favorite status</h3>
+<h3 id="toggling-a-restaurants-favorite-status">Toggling a restaurant’s favorite status</h3>
 <p>The Hook returns a <code>toggleFavorite</code> function that can be called to toggle whether the restaurant is a favorite or not:</p>
 <pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
 
@@ -1493,7 +1493,7 @@ export const useFavorite = (
 
 </code></pre>
 <div line-highlight='15, 37, 42, 45, 112, only'></div>
-<h3>Updating the API with the changed favorite status</h3>
+<h3 id="updating-the-api-with-the-changed-favorite-status">Updating the API with the changed favorite status</h3>
 <p>The Hook calls the API to update the favorite status for the restaurant:</p>
 <pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
 
@@ -1615,7 +1615,7 @@ export const useFavorite = (
 <p>The API may return an <code>error</code>, and that’s ok!
 The Hook can check if the API response was good and store the <code>_id</code> if it was.</p>
 <p>If there was an issue with the API call (e.g. the server was down, the device was offline, etc.) then there won’t be an <code>_id</code> in our Async Storage and we’ll know that we need to submit that favorite to the API.</p>
-<h3>Setup 2</h3>
+<h3 id="setup-2">Setup 2</h3>
 <p>✏️ Create <strong>src/services/pmo/favorite/interfaces.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export interface Favorite {
   userId: string
@@ -1930,7 +1930,7 @@ export default RestaurantDetails
 
 </code></pre>
  <div line-highlight="12-17,28,56-62,only"></div>
-<h3>Verify 2</h3>
+<h3 id="verify-2">Verify 2</h3>
 <p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { render, screen } from &quot;@testing-library/react-native&quot;
@@ -2073,7 +2073,7 @@ describe(&quot;Screens/RestaurantDetails&quot;, () =&gt; {
 
 </code></pre>
  <div line-highlight="4,72-75,86-89,93,105-108,124-127,only"></div>
-<h3>Exercise 2</h3>
+<h3 id="exercise-2">Exercise 2</h3>
 <p>In <code>RestaurantDetails</code>, add a button that uses the <code>toggleFavorite</code> helper:</p>
 <ul>
 <li>If the user is logged out: Render a button that says “Sign in to favorite this restaurant” and call the <code>signIn</code> method.</li>
@@ -2081,7 +2081,7 @@ describe(&quot;Screens/RestaurantDetails&quot;, () =&gt; {
 <li>If a request is pending: Change the button text to “Saving…”.</li>
 <li>If there’s an error: Render the error message.</li>
 </ul>
-<h3>Solution 2</h3>
+<h3 id="solution-2">Solution 2</h3>
 <p>If you’ve implemented the solution correctly, you will be able to sign in and out of your Google account within the application!</p>
 <p>You can test the error message by tapping “Sign in” and dismissing the modal.</p>
 <p><details>
@@ -2188,10 +2188,10 @@ export default RestaurantDetails
 </code></pre>
  <div line-highlight="27-35,65-69,72-78,80-84,86-87,89-90,92,only"></div>
 <p></details></p>
-<h2>Objective 3: Sync offline data when connectivity changes</h2>
+<h2 id="objective-3-sync-offline-data-when-connectivity-changes">Objective 3: Sync offline data when connectivity changes</h2>
 <p>Our app can handle when the API calls fail and it’ll still store the favorites on device in Async Storage.
 When the user’s device is offline, we can improve the app a lot by syncing the favorites to the API when the device comes back online.</p>
-<h3>Designing the sync behavior</h3>
+<h3 id="designing-the-sync-behavior">Designing the sync behavior</h3>
 <p>Here’s an overview of how we want our sync to work.</p>
 <p>If a favorite is modified:</p>
 <ul>
@@ -2199,7 +2199,7 @@ When the user’s device is offline, we can improve the app a lot by syncing the
 <li>On our current device while it’s offline, that change should be synced back to the API as soon as the device comes online.</li>
 <li>In both places (in the API and on the device), the data with the last modified date should “win.”</li>
 </ul>
-<h3>Fetching the favorites modified on the server</h3>
+<h3 id="fetching-the-favorites-modified-on-the-server">Fetching the favorites modified on the server</h3>
 <p>The Hook’s <code>syncWithServer</code> will first fetch the favorites from the server:</p>
 <pre><code class="language-ts">import { getData, storeData } from &quot;../../storage&quot;
 import { apiRequest } from &quot;../api&quot;
@@ -2317,7 +2317,7 @@ export const syncWithServer = async (userId: string): Promise&lt;void&gt; =&gt; 
 
 </code></pre>
 <div line-highlight='12-19, only'></div>
-<h3>Updating favorites modified on the device</h3>
+<h3 id="updating-favorites-modified-on-the-device">Updating favorites modified on the device</h3>
 <p>Next, the Hook will send any favorites that were modified while the device was offline to the API:</p>
 <pre><code class="language-ts">import { getData, storeData } from &quot;../../storage&quot;
 import { apiRequest } from &quot;../api&quot;
@@ -2435,7 +2435,7 @@ export const syncWithServer = async (userId: string): Promise&lt;void&gt; =&gt; 
 
 </code></pre>
 <div line-highlight='81-95, only'></div>
-<h3>Updating storage with the changes</h3>
+<h3 id="updating-storage-with-the-changes">Updating storage with the changes</h3>
 <p>Last, the Hook will update Async Storage with all the changes that have accumulated through the sync process:</p>
 <pre><code class="language-ts">import { getData, storeData } from &quot;../../storage&quot;
 import { apiRequest } from &quot;../api&quot;
@@ -2553,7 +2553,7 @@ export const syncWithServer = async (userId: string): Promise&lt;void&gt; =&gt; 
 
 </code></pre>
 <div line-highlight='97-111, only'></div>
-<h3>Setup 3</h3>
+<h3 id="setup-3">Setup 3</h3>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
@@ -2864,9 +2864,9 @@ export * from &quot;./sync&quot;
 
 </code></pre>
  <div line-highlight="1,3,only"></div>
-<h3>Verify 3</h3>
+<h3 id="verify-3">Verify 3</h3>
 <p>Use the <code>console</code> or debugger to check the <code>syncWithServer</code> function is called when signing in and out.</p>
-<h3>Exercise 3</h3>
+<h3 id="exercise-3">Exercise 3</h3>
 <ul>
 <li>Create a <code>FavoritesSync</code> component that does the following:
 <ul>
@@ -2875,7 +2875,7 @@ export * from &quot;./sync&quot;
 <li>Add the <code>FavoritesSync</code> component to the <code>App</code> JSX.</li>
 </ul>
 <p><strong>Hint:</strong> Use all of the imports provided in the <code>favorite.tsx</code> file.</p>
-<h3>Solution 3</h3>
+<h3 id="solution-3">Solution 3</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/services/pmo/favorite/favorite.tsx</strong> to be:</p>
@@ -3075,7 +3075,7 @@ export default App
 </code></pre>
  <div line-highlight="156,only"></div>
 <p></details></p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>Next, we will learn about <a href="google-maps.html" title="Learn how to integrate Google Maps into your React Native application.">Integrating Maps</a> to our application.</p>
 
 </section>

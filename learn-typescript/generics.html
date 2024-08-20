@@ -530,7 +530,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, you will:</p>
 <ul>
 <li>Understand the fundamentals and objectives of generic functions.</li>
@@ -538,8 +538,8 @@ covering CanJS core libraries.">
 <li>Combine recursion with generic classes.</li>
 <li>Create recursive generics.</li>
 </ul>
-<h2>Objective 1: The basics of generics</h2>
-<h3>The problem generics solve</h3>
+<h2 id="objective-1-the-basics-of-generics">Objective 1: The basics of generics</h2>
+<h3 id="the-problem-generics-solve">The problem generics solve</h3>
 <p>Generics are a way of writing abstract code that allows the determination of types to be handled when the code is used. Generics let us reuse code for different types and improve maintainability. Let’s see how with a small example.</p>
 <p>Consider a function that wraps a value in an object:</p>
 <pre><code class="language-js">function wrapAsValue(value) {
@@ -594,7 +594,7 @@ function wrapAsValue(value: any) {
 </code></pre>
 <p>The use of function overloading here introduces complexity by requiring you to manage multiple function signatures, complicating both the use and documentation of the function.
 Additionally, the implementation leverages the <code>any</code> type for a catch-all method, which undermines TypeScript’s robust type-checking by allowing <em>any</em> type to be passed, potentially leading to runtime errors that are difficult to detect during compilation, thereby reducing the effectiveness of using TypeScript.</p>
-<h3>Introducing generics</h3>
+<h3 id="introducing-generics">Introducing generics</h3>
 <p>With <strong>generics</strong>, this problem can be solved more simply:</p>
 <pre><code class="language-typescript">function wrapAsValue&lt;MyType&gt;(value: MyType): { value: MyType } {
   return { value: value };
@@ -620,7 +620,7 @@ getDollars(hiWrapped);
 part. This <code>&lt;MyType&gt;</code> allows us to capture the type the user provides so that we can use that information later. In this case, we are using it to specify that the
 return type is an object with a <code>MyType</code> <code>value</code>
 property (<code>{value: MyType}</code>). This allows us to traffic that type of information in one side of the function and out the other.</p>
-<h3>Calling generic functions</h3>
+<h3 id="calling-generic-functions">Calling generic functions</h3>
 <p>We can call generic functions in two ways.</p>
 <p>First, we can explicitly pass the type:</p>
 <pre><code class="language-typescript">wrapAsValue&lt;number&gt;(4);
@@ -633,14 +633,14 @@ are passed like <code>func&lt;Type1, Type2, Type3&gt;</code>.</p>
 </code></pre>
 <p>Notice that we didn’t explicitly pass the type n the angle brackets (<code>&lt;&gt;</code>). Instead,
 the compiler just looked at the value <code>&quot;hi&quot;</code> and set <code>MyType</code> to <code>string</code>.</p>
-<h3>Setup 1</h3>
+<h3 id="setup-1">Setup 1</h3>
 <p>✏️ Create <strong>src/generics/last.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export function returnLast(array) {
   return array[array.length - 1];
 }
 
 </code></pre>
-<h3>Verify 1</h3>
+<h3 id="verify-1">Verify 1</h3>
 <p>✏️ Create <strong>src/generics/last.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { returnLast } from &quot;./last&quot;;
 import { describe, it } from &quot;node:test&quot;;
@@ -660,10 +660,10 @@ describe(&quot;Generics&quot;, () =&gt; {
 });
 
 </code></pre>
-<h3>Exercise 1</h3>
+<h3 id="exercise-1">Exercise 1</h3>
 <p>Update the <code>last.ts</code> file to inform the function that it will be accepting an array of a certain type and return a single element of the same type.</p>
 <p><strong>Have issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-problem?file=src/generics/last.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-problem?file=src/generics/last.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution 1</h3>
+<h3 id="solution-1">Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -679,8 +679,8 @@ In the parenthesis, we use <code>T[]</code> to inform the user we are accepting 
 Finally, we use <code>): T{</code> to let us be aware what is the return type.</p>
 <p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-solution?file=src/generics/last.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/01-solution?file=src/generics/last.ts">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Objective 2: Generics in classes</h2>
-<h3>Using generics with classes</h3>
+<h2 id="objective-2-generics-in-classes">Objective 2: Generics in classes</h2>
+<h3 id="using-generics-with-classes">Using generics with classes</h3>
 <p>Generic classes are quite common.</p>
 <pre><code class="language-typescript">const cardNumber = new Subject&lt;string&gt;();
 
@@ -751,7 +751,7 @@ myListOfDinosaurs.pushItem({ name: &quot;Charlie&quot; });
 <div line-highlight='1, 8, 13, 24'></div>
 <p>In the example above, we are utilizing generics to inform <code>GenericCollection</code> what type it is receiving: <code>string</code>, <code>number</code>, or <code>Dinosaur</code>.</p>
 <p>A great example of the power of generics is creating a recursive data structure like a tree. In the following exercise, we will create a <code>TreeNode</code> class that can house a generic <code>value</code> and be used to create a tree structure of <code>left</code> and <code>right</code> nodes of the same generic type.</p>
-<h3>Setup 2</h3>
+<h3 id="setup-2">Setup 2</h3>
 <p>✏️ Create <strong>src/generics/tree.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">interface Comparison&lt;T&gt; {
   (v1: T, v2: T): number;
@@ -788,7 +788,7 @@ class TreeNode {
 export default TreeNode;
 
 </code></pre>
-<h3>Verify 2</h3>
+<h3 id="verify-2">Verify 2</h3>
 <p>✏️ Create <strong>src/generics/tree.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import TreeNode from &quot;./tree&quot;;
 import { describe, it } from &quot;node:test&quot;;
@@ -841,7 +841,7 @@ describe(&quot;Generics&quot;, () =&gt; {
 });
 
 </code></pre>
-<h3>Exercise 2</h3>
+<h3 id="exercise-2">Exercise 2</h3>
 <p>Update the <code>tree.ts</code> file to create a recursive <code>TreeNode</code> class that can house a <code>value</code> and be used to create a tree structure of <code>left</code> and <code>right</code> nodes.</p>
 <p>For example, we will be able to create a <code>TreeNode</code> with a root value and
 comparison function as follows:</p>
@@ -913,7 +913,7 @@ root.right.value; //-&gt; &quot;Tom&quot;
 root.right.left.value; //-&gt; &quot;Matthew&quot;
 </code></pre>
 <p><strong>Have issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/02-problem?file=src/generics/tree.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/02-problem?file=src/generics/tree.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution 2</h3>
+<h3 id="solution-2">Solution 2</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -957,7 +957,7 @@ export default TreeNode;
 <p>The use of generics in line 5 allows the <code>TreeNode</code> class to be flexible and reusable, accommodating different types of data and comparison logic.</p>
 <p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/11-generics/02-solution?file=src/generics/tree.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/11-generics/02-solution?file=src/generics/tree.ts">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>Next, let’s take a look at <a href="./utility-types.html">utility types</a> for type transformations.</p>
 
 </section>

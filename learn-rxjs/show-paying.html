@@ -544,14 +544,14 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>The problem</h2>
+    <h2 id="the-problem">The problem</h2>
 <p>In this section, we will:</p>
 <ul>
 <li>Change the button’s text to <strong>Paying</strong> while the
 <code>payments</code> promise is pending and to <strong>Pay</strong> while
 waiting to pay or payment has completed.</li>
 </ul>
-<h2>How to solve this problem</h2>
+<h2 id="how-to-solve-this-problem">How to solve this problem</h2>
 <ul>
 <li><p>Create a <code>this.paymentStatus$</code> observable that emits <strong>paymentStatus</strong> objects:</p>
 <ul>
@@ -578,7 +578,7 @@ that <code>paymentStatusObservables$</code> is an Observable of Observables of
 <p>Finally, <code>this.paymentStatus$</code> will be a result of merging (or flattening)
 the observables emitted by <code>paymentStatusObservables$</code>.</p></li>
 </ul>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <p>This is a tricky problem. A promise has state (if it’s pending or resolved). We need
 to convert this state to observables. The pattern is to map the promises to an observable of
 observables and then <em>flatten</em> that observable with <code>mergeAll</code>.</p>
@@ -759,7 +759,7 @@ conditional operator (<code>?.</code>) like:
 <pre><code class="language-html">{{ status === &quot;pending&quot; ? &quot;Paying&quot; : &quot;Pay&quot; }}
 </code></pre></li>
 </ul>
-<h2>The solution</h2>
+<h2 id="the-solution">The solution</h2>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;

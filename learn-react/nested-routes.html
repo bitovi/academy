@@ -543,17 +543,17 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, we will:</p>
 <ul>
 <li>Learn about nested routes</li>
 <li>Create a nested routing configuration</li>
 <li>Nest component folders</li>
 </ul>
-<h2>Objective 1: Restaurant details page</h2>
+<h2 id="objective-1-restaurant-details-page">Objective 1: Restaurant details page</h2>
 <p>We want to have a component to display individual restaurants details, and want the path to be nested under the restaurants path.</p>
 <p><img alt="Screenshot of the Place My Order app with a nested route, displaying the “/restaurants/lettuce-shack” URL in the browser’s address bar." src="../static/img/react-vite/10-nested-routes/01-solution.png" style="max-width: 640px;"/></p>
-<h3>Introduction to nested routes</h3>
+<h3 id="introduction-to-nested-routes">Introduction to nested routes</h3>
 <p>React Router nested routes provide a way to modify smaller portions of a page, rather than reloading everything. With nested routes, we can alter just sections of a page while also maintaining state in the URL so the page can still be reloaded or shared.</p>
 <p>Imagine a manufacturer’s product site. Not only do they have a lot of information about each product, but they also need to support both new and existing customers. New customers want to see list of features, specs, and where to buy the product. Old customers need to download owner’s manuals and a way to contact customer support. Nested routes provide a mechanism to handle this structure</p>
 <p>Our main product page loads at &quot;/product/:id&quot;. The matching route will load the product name, picture, and basic description. Within the main product page, we can create a tabbed section with our various types of content. The route to show the main product info along with support information is &quot;/product/:id/support&quot;. The full structure will look like the following tree:</p>
@@ -570,7 +570,7 @@ covering CanJS core libraries.">
 </ul>
 </div>
 <p>You could create this sort of page without nested routes, but using nested routes is a well-organized and performant solution that can be linked because it maintains state in the URL.</p>
-<h3>Creating a nested route config</h3>
+<h3 id="creating-a-nested-route-config">Creating a nested route config</h3>
 <p>Recall our router config from the <a href="./routing.html">first React Router lesson</a>.</p>
 <pre><code class="language-tsx">import React from &quot;react&quot;
 import ReactDOM from &quot;react-dom/client&quot;
@@ -660,7 +660,7 @@ ReactDOM.createRoot(document.getElementById(&quot;root&quot;)!).render(
 
 </code></pre>
 <div line-highlight='15, 19-32, only'></div>
-<h3>Nesting component folders</h3>
+<h3 id="nesting-component-folders">Nesting component folders</h3>
 <p>Notice that the child page components have simple names like <code>&lt;Support /&gt;</code> instead of <code>&lt;ProductSupport /&gt;</code>. Assuming this component is specifically designed for the product page and will not be reused elsewhere, the component file can reside within the product page’s folder. Since the files live together, longer names aren’t needed and will make your JSX a little harder to read.</p>
 <p>The larger directory tree should look like the following:</p>
 <div class="directory-list">
@@ -701,7 +701,7 @@ ReactDOM.createRoot(document.getElementById(&quot;root&quot;)!).render(
 </ul></li>
 </ul>
 </div>
-<h3>Setup 1</h3>
+<h3 id="setup-1">Setup 1</h3>
 <p>✏️ Create <strong>src/components/</strong> (folder)</p>
 <p>✏️ Create <strong>src/components/RestaurantHeader/</strong> (folder)</p>
 <p>✏️ Create <strong>src/components/RestaurantHeader/index.ts</strong> and update it to be:</p>
@@ -1008,7 +1008,7 @@ export function useStates(): StatesResponse {
 
 </code></pre>
  <div line-highlight="11-12,25-26,58-59,67,69,73,79,115,119-122,124-125,127,129,131,133-137,140-141,only"></div>
-<h3>Verify 1</h3>
+<h3 id="verify-1">Verify 1</h3>
 <p>The existing test already cover routing, so no new tests are needed. Ensure the existing tests pass when you run <code>npm run test</code>.</p>
 <p>✏️ Create <strong>src/components/RestaurantHeader/RestaurantHeader.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
@@ -1583,10 +1583,10 @@ describe(&quot;Hooks&quot;, () =&gt; {
 
 </code></pre>
  <div line-highlight="47-49,51,61,66-67,88,90,93-95,108-110,116,130-131,133-135,139,143-149,only"></div>
-<h3>Exercise 1</h3>
+<h3 id="exercise-1">Exercise 1</h3>
 <p>Let’s reorganize the existing <code>/restaurants</code> routes so they are nested. For this exercise, change the routing config so the restaurant list and details pages are nested under <code>/restaurants</code>.</p>
 <p>Refactor the router config in <strong>src/main.tsx</strong> to nest the restaurant routes.</p>
-<h3>Solution 1</h3>
+<h3 id="solution-1">Solution 1</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/main.tsx</strong> to be:</p>
@@ -1640,10 +1640,10 @@ ReactDOM.createRoot(document.getElementById(&quot;root&quot;)!).render(
  <div line-highlight="5,21-31,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/01-solution?file=src/main.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/01-solution?file=src/main.tsx">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Objective 2: Create the order page</h2>
+<h2 id="objective-2-create-the-order-page">Objective 2: Create the order page</h2>
 <p>We learned to create nested routes, let’s practice by adding another page to our application. Add the order page to the route config and add a link to it.</p>
 <p><img alt="Screenshot of the Place My Order app with a nested route, displaying the “/restaurants/lettuce-shack/order” URL in the browser’s address bar." src="../static/img/react-vite/10-nested-routes/02-solution.png" style="max-width: 640px;"/></p>
-<h3>Setup 2</h3>
+<h3 id="setup-2">Setup 2</h3>
 <p>Add the order page files.</p>
 <p>✏️ Create <strong>src/pages/RestaurantOrder/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./RestaurantOrder&quot;
@@ -1693,7 +1693,7 @@ const RestaurantOrder: React.FC = () =&gt; {
 export default RestaurantOrder
 
 </code></pre>
-<h3>Verify 2</h3>
+<h3 id="verify-2">Verify 2</h3>
 <p>✏️ Create <strong>src/pages/RestaurantOrder/RestaurantOrder.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
 import type { ReactNode } from &quot;react&quot;
@@ -1770,9 +1770,9 @@ describe(&quot;RestaurantOrder component&quot;, () =&gt; {
 })
 
 </code></pre>
-<h3>Exercise 2</h3>
+<h3 id="exercise-2">Exercise 2</h3>
 <p>Refactor the router config in <strong>src/main.tsx</strong> to contain the new RestaurantOrder components. You will need to come up with the route path on your own.</p>
-<h3>Solution 2</h3>
+<h3 id="solution-2">Solution 2</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/main.tsx</strong> to be:</p>
@@ -1831,7 +1831,7 @@ ReactDOM.createRoot(document.getElementById(&quot;root&quot;)!).render(
  <div line-highlight="7,32-35,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/02-solution?file=src/main.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/02-solution?file=src/main.tsx">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>Next, let’s learn how to <a href="./controlled-vs-uncontrolled.html">handle form data</a>.</p>
 
 </section>

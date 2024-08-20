@@ -499,7 +499,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>We will learn to:</p>
 <ul>
 <li>Find elements in the document</li>
@@ -508,11 +508,11 @@ covering CanJS core libraries.">
 <li>Find elements from an element and create <code>collection.find</code></li>
 <li>Create a <code>find</code> function</li>
 </ul>
-<h2>Video</h2>
+<h2 id="video">Video</h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/SB8bWiyedv4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<h2>Slides</h2>
+<h2 id="slides">Slides</h2>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vR_aHX8TbUJ8hqrD2OalxvG9kjjq1wweo8Sz3HaCAPdyILn4QWKJhdxOeA9-UOzQLMB6J5E7FRPbZ2J/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-<h2>Setup</h2>
+<h2 id="setup">Setup</h2>
 <p>Run the following example in CodePen:</p>
 <pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
 &lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
@@ -595,8 +595,8 @@ covering CanJS core libraries.">
 <div line-highlight='9,71-74,only'></div>
 <p>Each exercise builds on the previous exercise. There is a completed solution
 at the end of this page.</p>
-<h2>Exercise: <code>new $(selector) -&gt; collection</code></h2>
-<h3>The problem</h3>
+<h2 id="exercise-codenew-selector--gt-collectioncode">Exercise: <code>new $(selector) -&gt; collection</code></h2>
+<h3 id="the-problem">The problem</h3>
 <p>The <code>$</code> function creates instances of a jQuery collection of elements. We will change <code>$()</code>
 to be able to work without <code>new</code> later. But for now, <code>$</code> will be treated as a
 constructor function. It should return an instance of <code>$</code> with:</p>
@@ -623,7 +623,7 @@ constructor function. It should return an instance of <code>$</code> with:</p>
 });
 </code></pre>
 <p></details></p>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <ul>
 <li><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll">document.querySelectorAll</a> returns a NodeList of elements matching the selector.</p>
 <pre><code class="language-html">&lt;ul class=&quot;dogs&quot;&gt;
@@ -660,7 +660,7 @@ obj[&quot;1&quot;] = &quot;y&quot;;
 </code></pre></li>
 </ul>
 <div class='codepen' data-codepen=''></div>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">$ = function (selector) {
@@ -670,8 +670,8 @@ obj[&quot;1&quot;] = &quot;y&quot;;
 </code></pre>
 <div line-highlight='2-3'></div>
 <p></details></p>
-<h2>Exercise: <code>collection.html( [newHtml] )</code></h2>
-<h3>The problem</h3>
+<h2 id="exercise-codecollectionhtml-newhtml-code">Exercise: <code>collection.html( [newHtml] )</code></h2>
+<h3 id="the-problem">The problem</h3>
 <p><a href="http://api.jquery.com/html/">collection.html</a> either:</p>
 <ul>
 <li><p>gets the HTML contents of the first element in the set of matched elements.</p>
@@ -732,13 +732,13 @@ and returns the collection.
 });
 </code></pre>
 <p></details></p>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <ul>
 <li>Use <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML">innerHTML</a>
 to set the html contents of an element.</li>
 <li>Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments/length">arguments.length</a> to detect the number of arguments passed.</li>
 </ul>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">      html: function(newHtml) {
@@ -753,8 +753,8 @@ to set the html contents of an element.</li>
 </code></pre>
 <div line-highlight='2-8'></div>
 <p></details></p>
-<h2>Exercise: <code>collection.val( [newValue] )</code></h2>
-<h3>The problem</h3>
+<h2 id="exercise-codecollectionval-newvalue-code">Exercise: <code>collection.val( [newValue] )</code></h2>
+<h3 id="the-problem">The problem</h3>
 <p><a href="http://api.jquery.com/val/">collection.val</a> gets the current value of the first element in the set of matched elements or sets the value of every matched element.</p>
 <pre><code class="language-html">&lt;input type=&quot;text&quot; class=&quot;first&quot; value=&quot;first&quot; /&gt;
 &lt;input type=&quot;text&quot; class=&quot;second&quot; value=&quot;second&quot; /&gt;
@@ -787,11 +787,11 @@ to set the html contents of an element.</li>
 });
 </code></pre>
 <p></details></p>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <ul>
 <li>The <code>.value</code> property can be used to read and write an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input">input</a> element’s value.</li>
 </ul>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">      val: function(newVal) {
@@ -806,8 +806,8 @@ to set the html contents of an element.</li>
 </code></pre>
 <div line-highlight='2-8'></div>
 <p></details></p>
-<h2>Exercise: <code>$(selector)</code></h2>
-<h3>The problem</h3>
+<h2 id="exercise-codeselectorcode">Exercise: <code>$(selector)</code></h2>
+<h3 id="the-problem">The problem</h3>
 <p>Let’s remove the need to use <code>new</code> when using <code>$</code>.</p>
 <p><details>
 <summary>Click to see test code</summary></p>
@@ -828,7 +828,7 @@ to set the html contents of an element.</li>
 });
 </code></pre>
 <p></details></p>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <ul>
 <li><p>Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof">instanceof</a>
 to tell if something is an instance of something else:</p>
@@ -840,7 +840,7 @@ console.log(sponge instanceof Animal); //-&gt; true
 </code></pre></li>
 </ul>
 <div class='codepen' data-codepen=''></div>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">$ = function (selector) {
@@ -853,8 +853,8 @@ console.log(sponge instanceof Animal); //-&gt; true
 </code></pre>
 <div line-highlight='2-4'></div>
 <p></details></p>
-<h2>Exercise: <code>collection.text( [newText] )</code></h2>
-<h3>The problem</h3>
+<h2 id="exercise-codecollectiontext-newtext-code">Exercise: <code>collection.text( [newText] )</code></h2>
+<h3 id="the-problem">The problem</h3>
 <p><a href="http://api.jquery.com/text/">collection.text</a> get the combined text contents of each element in the set of matched elements, including their descendants, or sets the text contents of the matched elements.</p>
 <pre><code class="language-html">&lt;ul class=&quot;dogs&quot;&gt;
   &lt;li&gt;fido&lt;/li&gt;
@@ -889,7 +889,7 @@ console.log(sponge instanceof Animal); //-&gt; true
 });
 </code></pre>
 <p></details></p>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <ul>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent">textContent</a>
 can get and set the text content of an element.</li>
@@ -916,7 +916,7 @@ document.body.appendChild(textNode);
 </code></pre></li>
 </ul>
 <div class='codepen' data-codepen=''></div>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">      text: function(newText) {
@@ -960,8 +960,8 @@ document.body.appendChild(textNode);
 </code></pre>
 <div line-highlight='2-10'></div>
 <p></details></p>
-<h2>Exercise: <code>collection.find( selector )</code></h2>
-<h3>The problem</h3>
+<h2 id="exercise-codecollectionfind-selector-code">Exercise: <code>collection.find( selector )</code></h2>
+<h3 id="the-problem">The problem</h3>
 <p><a href="https://api.jquery.com/find/">collection.find</a> gets the descendants of each element in the current set of matched elements filtered by a selector.</p>
 <pre><code class="language-html">&lt;ul class=&quot;level-1&quot;&gt;
   &lt;li class=&quot;item-i&quot;&gt;I&lt;/li&gt;
@@ -1001,7 +1001,7 @@ document.body.appendChild(textNode);
 });
 </code></pre>
 <p></details></p>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <ul>
 <li><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelectorAll">Element.querySelectorAll</a> can be used to find all elements that match a selector who are
 descendants of the element on which it was called</p></li>
@@ -1029,7 +1029,7 @@ $([first, second])
 </code></pre></li>
 </ul>
 <div class='codepen' data-codepen=''></div>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">$ = function (selector) {
@@ -1058,8 +1058,8 @@ $([first, second])
 </code></pre>
 <div line-highlight='2-8'></div>
 <p></details></p>
-<h2>Bonus Exercise: Eliminate duplicate code in <code>.html</code>, <code>.val</code>, and <code>.text</code></h2>
-<h3>The problem</h3>
+<h2 id="bonus-exercise-eliminate-duplicate-code-in-codehtmlcode-codevalcode-and-codetextcode">Bonus Exercise: Eliminate duplicate code in <code>.html</code>, <code>.val</code>, and <code>.text</code></h2>
+<h3 id="the-problem">The problem</h3>
 <p>Use meta programming techniques to reduce the duplicate code in the
 <code>.html</code>, <code>.val</code>, and <code>.text</code> functions.</p>
 <pre><code class="language-js">      html: function(newHtml) {
@@ -1090,7 +1090,7 @@ $([first, second])
         }
       },
 </code></pre>
-<h3>What you need to know</h3>
+<h3 id="what-you-need-to-know">What you need to know</h3>
 <ul>
 <li>You can call a function that returns a function.
 <pre><code class="language-js">var makeLogger = function (text) {
@@ -1103,7 +1103,7 @@ logMe(); // Logs &quot;me&quot;
 </code></pre></li>
 </ul>
 <div class='codepen' data-codepen=''></div>
-<h3>The solution</h3>
+<h3 id="the-solution">The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">function makeSimpleGetterSetter(prop) {
@@ -1125,7 +1125,7 @@ logMe(); // Logs &quot;me&quot;
 </code></pre>
 <div line-highlight='1-3'></div>
 <p></details></p>
-<h2>Complete Solution</h2>
+<h2 id="complete-solution">Complete Solution</h2>
 <p><details>
 <summary>Click to see completed solution</summary></p>
 <pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;

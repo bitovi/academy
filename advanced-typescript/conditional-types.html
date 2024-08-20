@@ -453,9 +453,9 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, we will take a look at <code>any</code> and <code>never</code> again, the roles they play within TypeScript’s type system, along with their impact when mixed in with other types. We will also look at conditional types, what they are, how they behave, and how they can make our function signatures simpler with little overhead by defining complex types. Finally, we will discuss another use of conditional types and introduce a new syntax – <code>infer</code> – which makes conditional types even more powerful.</p>
-<h2>Top and Bottom Types</h2>
+<h2 id="top-and-bottom-types">Top and Bottom Types</h2>
 <p>Within type systems there exists a top type and a bottom type. A top type contains all types, meaning any other type is assignable to it. A bottom type is assignable to nothing. Going back to thinking of types in TypeScript as sets, the top type would be a superset containing all the other types; the bottom type would be the empty set containing nothing. TypeScript has two top types – <code>any</code> and <code>unknown</code> and a single bottom type <code>never</code>.</p>
 <p>We briefly touched on <code>any</code> and <code>never</code> in the introductory course. As a quick recap, any variable assigned type <code>any</code> essentially opts out of typing, as it can be anything. <code>unknown</code> is just like any but the only thing assignable to it is <code>any</code>.</p>
 <pre><code class="language-ts">let anything: any = 1;
@@ -493,7 +493,7 @@ type UnionWithNever = string | never; // string
 type IntersectionWithNever = string &amp; never; // never
 </code></pre>
 <p>Unions with bottom types will be especially important for us moving forward as we talk about conditional types.</p>
-<h2>Conditional Types</h2>
+<h2 id="conditional-types">Conditional Types</h2>
 <p>Conditional types act exactly as conditional statements do in programming – the output is based on whether or not an input satisfies a given condition. Conditional types allow us to define different types based on the type passed in as an input. The syntax for conditional types mimics that of a JavaScript ternary and the condition is specified just like a constraint on a generic.</p>
 <pre><code class="language-ts">type extends OtherThing ? TypeIfConditionIsMet : TypeIfConditionIsNotMet
 </code></pre>
@@ -569,7 +569,7 @@ type BattleTypes =
 const wild = createBattle(&quot;wild-pokemon-battle&quot;); // Type is WildPokemonBattle
 const gym = createBattle(&quot;gym-leader-battle&quot;); // Type is GymLeaderBattle
 </code></pre>
-<h2>Conditional Types With Unions</h2>
+<h2 id="conditional-types-with-unions">Conditional Types With Unions</h2>
 <p>Conditional types shine when it comes to refining unions into more distilled types. When given a union, conditional types distribute the condition to each member of the union. One of the simplest applications of this is the <code>NonNullable&lt;T&gt;</code> utility type provided by TypeScript. <code>NonNullable</code> creates a new type by removing <code>null</code> and <code>undefined</code> from the type passed into it.</p>
 <pre><code class="language-ts">type MaybeStringOrNumber = string | number | undefined | null;
 
@@ -732,7 +732,7 @@ function emitBattleStart&lt;BattleType extends PokemonBattles[&quot;battleType&q
 }
 </code></pre>
 <div line-highlight='5-9, 13-14, 18'></div>
-<h2>A New and Powerful Syntax</h2>
+<h2 id="a-new-and-powerful-syntax">A New and Powerful Syntax</h2>
 <p>Another use case of conditional types is to give us access to types we wouldn’t normally have access to by allowing us to unwrap types. A greater example of this is an <code>ArrayElement</code> type which checks if the type is an array and if it is, uses index accessed types to grab the shape inside.</p>
 <pre><code class="language-ts">type ArrayElement&lt;T&gt; = T extends Array&lt;any&gt; ? T[number] : never;
 </code></pre>
@@ -760,8 +760,8 @@ type ReturnType&lt;T extends (...args: any) =&gt; any&gt; = T extends (
   : any;
 </code></pre>
 <p>Conditional type’s refinement makes it a powerful utility. We’ve seen how conditional types can be used to simplify function signatures and create robust types for complex functions. Conditional types and <code>infer</code> will play a big role in our last section: template literal types.</p>
-<h2>Exercises</h2>
-<h3>Exercise 1</h3>
+<h2 id="exercises">Exercises</h2>
+<h3 id="exercise-1">Exercise 1</h3>
 <p>We used exclude in one of the examples in the content of this section.
 Let’s take a moment to create the type ourselves. Exlude takes two generics
 <code>T</code> and <code>U</code> and removes the memebers in <code>U</code> from <code>T</code>.</p>
@@ -802,7 +802,7 @@ type _Exclude&lt;T, U&gt; = any;
 </code></pre>
 <div line-highlight='1'></div>
 <p></details></p>
-<h3>Exercise 2</h3>
+<h3 id="exercise-2">Exercise 2</h3>
 <p>Let’s build out an example similar to <code>ArrayElement</code> provided by the TypeScript documentation (No cheating by looking it up!)</p>
 <p><code>Flatten</code> should a new type that unnests arrays by one level.</p>
 <pre><code class="language-ts">type FlattenedStringArray = Flatten&lt;string[]&gt;; // string

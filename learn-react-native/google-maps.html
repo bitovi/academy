@@ -678,7 +678,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, you will:</p>
 <ul>
 <li>Render Google Maps.</li>
@@ -686,11 +686,11 @@ covering CanJS core libraries.">
 <li>Configure the Android Manifest file.</li>
 <li>Add markers to a map.</li>
 </ul>
-<h2>Objective 1: Add a map view</h2>
+<h2 id="objective-1-add-a-map-view">Objective 1: Add a map view</h2>
 <p>A list of restaurants is a good start, but showing them on a map would make it easier to visualize where they are.</p>
 <p>Let’s start by adding a map to the application. We’ll add a <code>Tab</code> component to switch between the List and Map views.</p>
 <p><img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” There are two tabs at the top, List and Map, with Map selected. The map below is centered on Green Bay. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/01-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/></p>
-<h3>Rendering Google Maps</h3>
+<h3 id="rendering-google-maps">Rendering Google Maps</h3>
 <p>To use the Google Maps API, you will need to set up a <a href="https://developers.google.com/maps/documentation/javascript/get-api-key">Google Maps API key</a>.</p>
 <p>In this section, we will be using the <a href="https://www.npmjs.com/package/react-native-maps"><code>react-native-maps</code></a> package to integrate Google Maps into our application.
 This library provides several React Native components such as maps, polygons, markers, and more that can be used to build maps on both iOS and Android.
@@ -725,7 +725,7 @@ function Map() {
 <li><code>latitudeDelta</code> and <code>longitudeDelta</code>: the vertical and horizontal zoom levels of the map.</li>
 </ul></li>
 </ul>
-<h3>Storing secrets with Gradle</h3>
+<h3 id="storing-secrets-with-gradle">Storing secrets with Gradle</h3>
 <p>Gradle is a powerful build system used in Android development.
 It automates the building, testing, and deployment of your app.</p>
 <p>In a React Native project, you’ll encounter two key Gradle files:</p>
@@ -734,7 +734,7 @@ It automates the building, testing, and deployment of your app.</p>
 <li><p><code>android/app/build.gradle</code> (app level): Located in <code>android/app</code>, it specifies configurations for the app module, including dependencies, SDK versions, and build types.</p></li>
 </ul>
 <p>Gradle allows you to define how your project is structured, manage dependencies, and configure the build process in a flexible and customizable way.</p>
-<h4>Using <code>secrets-gradle-plugin</code></h4>
+<h4 id="using-codesecrets-gradle-plugincode">Using <code>secrets-gradle-plugin</code></h4>
 <p>Managing sensitive information like API keys securely is critical in mobile app development.
 The <a href="https://github.com/google/secrets-gradle-plugin"><code>secrets-gradle-plugin</code></a> helps you handle such secrets without exposing them in your source code.</p>
 <p>In our application, we will add a dependency to the project-level Gradle file:</p>
@@ -902,7 +902,7 @@ apply from: file(&quot;../../node_modules/@react-native-community/cli-platform-a
 apply from: file(&quot;../../node_modules/react-native-vector-icons/fonts.gradle&quot;)
 </code></pre>
 <div line-highlight='4, only'></div>
-<h3>Configuring the Android Manifest file</h3>
+<h3 id="configuring-the-android-manifest-file">Configuring the Android Manifest file</h3>
 <p>The Android Manifest file is an XML file that contains important information about our application such as permissions, activities and services, configuration settings, and more.</p>
 <p>The Android manifest file (<code>AndroidManifest.xml</code>) is a crucial part of any Android application.
 It resides in the <code>android/app/src/main/</code> directory of your React Native project.
@@ -945,7 +945,7 @@ This XML file provides essential information to the Android operating system abo
 
 </code></pre>
  <div line-highlight="24-26,only"></div>
-<h3>Setup 1</h3>
+<h3 id="setup-1">Setup 1</h3>
 <p>✏️ Install the new dependency:</p>
 <pre><code class="language-bash">npm install react-native-maps@1
 </code></pre>
@@ -1463,17 +1463,17 @@ export default RestaurantList
 
 </code></pre>
  <div line-highlight="2,6,12-13,26,44-51,54-58,only"></div>
-<h3>Verify 1</h3>
+<h3 id="verify-1">Verify 1</h3>
 <p>Navigate to the <code>Maps</code> tab of the <code>RestaurantsList</code> in your emulator and verify that the Map is rendering.</p>
 <p><img alt="Screenshot of how the application should look for the second solution." src="../static/img/react-native/18-maps/01-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/></p>
-<h3>Exercise 1</h3>
+<h3 id="exercise-1">Exercise 1</h3>
 <p>For this exercise, implement Google Map’s <code>MapView</code> for it to properly render when the <code>Map</code> tab is selected.</p>
 <p><strong>Hint:</strong> The <code>MapView</code> takes its own <code>style</code> prop.
 As a minimum it needs <code>minHeight</code> variable to render.
 If the view is too small, try adding another variable to increase its size.</p>
 <pre><code class="language-jsx">&lt;MapView style={{ minHeight: &quot;100%&quot; }} /&gt;
 </code></pre>
-<h3>Solution 1</h3>
+<h3 id="solution-1">Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the Map should be rendering in your application.</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -1506,11 +1506,11 @@ export default Map
 </code></pre>
  <div line-highlight="10-21,"></div>
 <p></details></p>
-<h2>Objective 2: Add restaurant markers with tooltips to the map</h2>
+<h2 id="objective-2-add-restaurant-markers-with-tooltips-to-the-map">Objective 2: Add restaurant markers with tooltips to the map</h2>
 <p>Now that we have a map, let’s add markers for each one of the restaurants.
 When we tap on them, we will navigate to the restaurant detail page, just like we do in the list view.</p>
 <p><img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” The map is still centered on Green Bay and now has several locations marked with red pins. One of the markers is labeled Cheese Curd City, 230 W Kinzie Street. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/></p>
-<h3>Adding markers to a map</h3>
+<h3 id="adding-markers-to-a-map">Adding markers to a map</h3>
 <p>The <code>Marker</code> component is used to render a pin on the map. It takes several props, but the most important ones are:</p>
 <ul>
 <li><code>coordinate</code>: The coordinates of the marker.</li>
@@ -1544,7 +1544,7 @@ function MapWithMarker({ initialRegion }) {
 }
 </code></pre>
 <div line-highlight='10-20'></div>
-<h3>Setup 2</h3>
+<h3 id="setup-2">Setup 2</h3>
 <p>✏️ Update <strong>src/screens/RestaurantList/components/Map/Map.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import MapView, { Marker, PROVIDER_GOOGLE } from &quot;react-native-maps&quot;
@@ -1576,16 +1576,16 @@ export default Map
 
 </code></pre>
  <div line-highlight="1-2,21-23,only"></div>
-<h3>Verify 2</h3>
+<h3 id="verify-2">Verify 2</h3>
 <p>Navigate to the <code>Maps</code> tab of the <code>RestaurantsList</code> in your emulator and verify that the Map is rendering.</p>
 <p><img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” The map is still centered on Green Bay and now has several locations marked with red pins. One of the markers is labeled Cheese Curd City, 230 W Kinzie Street. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/02-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/></p>
-<h3>Exercise 2</h3>
+<h3 id="exercise-2">Exercise 2</h3>
 <ul>
 <li>Using the <code>restaurants</code> prop, create a <code>Marker</code> for each restaurant.</li>
 <li>Fill out the <code>coordinate</code>, <code>title</code>, and <code>description</code> properties on Marker.</li>
 <li>Use <code>onCallOutPress</code> to add <code>navigate</code> to the <code>RestaurantDetails</code> screen.</li>
 </ul>
-<h3>Solution 2</h3>
+<h3 id="solution-2">Solution 2</h3>
 <p>If you’ve implemented the solution correctly, your Map should have Markers based on the coordinates of each Restaurant.
 Then, when you tap on a marker, it should show its info in a pop-up view.
 Then, you can tap on the pop-up view to navigate to the restaurant details view.</p>
@@ -1637,7 +1637,7 @@ export default Map
 </code></pre>
  <div line-highlight="11,24-36,"></div>
 <p></details></p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>We’ve accomplished a lot for our React Native App, in order to polish it just a bit more let’s get into some <a href="./performance-optimization">Performance and Optimization</a> practices.</p>
 
 </section>

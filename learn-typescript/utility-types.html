@@ -530,7 +530,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, you will:</p>
 <ul>
 <li>Make properties optional with <code>Partial&lt;Type&gt;</code>.</li>
@@ -544,8 +544,8 @@ covering CanJS core libraries.">
 <li>Exclude specific properties with <code>Omit&lt;Type, Keys&gt;</code>.</li>
 <li>Get function return type with <code>ReturnType&lt;Type&gt;</code>.</li>
 </ul>
-<h2>Objective 1: Property existence modifiers</h2>
-<h3>Using <code>Partial&lt;Type&gt;</code></h3>
+<h2 id="objective-1-property-existence-modifiers">Objective 1: Property existence modifiers</h2>
+<h3 id="using-codepartiallttypegtcode">Using <code>Partial&lt;Type&gt;</code></h3>
 <p>Converts all properties of a type to be optional.
 This is useful when you want to create a type that is a subset of another, with no property being strictly required.</p>
 <p>Partial is often used when you need to partially update an object.
@@ -591,7 +591,7 @@ const newDino: Dinosaur = updateDinosaur(oldDino, {
 <div line-highlight='25, 35, only'></div>
 <p>In the code above, the second parameter for the function <code>updateDinosaur</code> is a partial <code>Dinosaur</code>.
 This allows us to pass in a <code>Dinosaur</code> object with one or more of the key-value pairs, without having to pass in the entire <code>Dinosaur</code> object.</p>
-<h3>Using <code>Required&lt;Type&gt;</code></h3>
+<h3 id="using-coderequiredlttypegtcode">Using <code>Required&lt;Type&gt;</code></h3>
 <p>Converts all optional properties of a type to required, which is the opposite of <code>Partial</code>.
 You might use it when you can initialize all the properties of an object and want to avoid checking for <code>null</code> or <code>undefined</code> for the optional properties.</p>
 <pre><code class="language-typescript">enum Diet {
@@ -625,7 +625,7 @@ if (trex.age &gt; 30) {
 </code></pre>
 <div line-highlight='10, 13, 20, 26, only'></div>
 <p>In the code above, we are declaring <code>trex</code> to type <code>RequiredDinosaur</code>. This will help us skip the check if age is null step because it is a required property</p>
-<h3>Using <code>Readonly&lt;Type&gt;</code></h3>
+<h3 id="using-codereadonlylttypegtcode">Using <code>Readonly&lt;Type&gt;</code></h3>
 <p>Makes all properties in a type <code>readonly</code>, meaning that once an object is created, its properties cannot be modified.
 Use it to prevent objects from being mutated.</p>
 <pre><code class="language-typescript">enum Diet {
@@ -657,7 +657,7 @@ dino.age += 1;
 </code></pre>
 <div line-highlight='14, 17, 25, only'></div>
 <p>In the code above, we are declaring <code>dino</code> to type <code>ReadOnlyDinosaur</code>. This will prevent us from assigning a new value because it is a read-only object.</p>
-<h3>Using <code>NonNullable&lt;Type&gt;</code></h3>
+<h3 id="using-codenonnullablelttypegtcode">Using <code>NonNullable&lt;Type&gt;</code></h3>
 <p>Excludes <code>null</code> and <code>undefined</code> from the union of a type, ensuring that a type only contains “non-nullable” values.
 Useful to prevent any run-time errors from occurring because we forgot to assign to a property.</p>
 <pre><code class="language-typescript">type Species = &quot;Tyrannosaurus rex&quot; | &quot;Triceratops horridus&quot; | null | undefined;
@@ -667,7 +667,7 @@ type NNSpecies = NonNullable&lt;Species&gt;;
 </code></pre>
 <div line-highlight='3'></div>
 <p>In the code above, <code>NNSpecies</code> will not allow <code>null</code> or <code>undefined</code>.</p>
-<h3>Setup 1</h3>
+<h3 id="setup-1">Setup 1</h3>
 <p>✏️ Create <strong>src/utilities/property-existence.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">type Person = {
   role: &quot;developer&quot;;
@@ -684,7 +684,7 @@ export type FullyDefinedPerson = Person;
 
 export type NonEditablePerson = Person; 
 </code></pre>
-<h3>Verify 1</h3>
+<h3 id="verify-1">Verify 1</h3>
 <p>✏️ Create <strong>src/utilities/property-existence.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import {
   NonEditablePerson,
@@ -724,7 +724,7 @@ describe(&quot;Property existence modifiers&quot;, () =&gt; {
   });
 });
 </code></pre>
-<h3>Exercise 1</h3>
+<h3 id="exercise-1">Exercise 1</h3>
 <p>Update the <code>property-existence.ts</code> file so that:</p>
 <ul>
 <li><code>UpdateablePerson</code> allows all properties to be optional</li>
@@ -732,7 +732,7 @@ describe(&quot;Property existence modifiers&quot;, () =&gt; {
 <li><code>NonEditablePerson</code> won’t allow any update to a property</li>
 </ul>
 <p><strong>Have issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/01-problem?file=src/utilities/property-existence.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/01-problem?file=src/utilities/property-existence.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution 1</h3>
+<h3 id="solution-1">Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -755,8 +755,8 @@ export type NonEditablePerson = Readonly&lt;Person&gt;;
  <div line-highlight="10,12,14,only"></div>
 <p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/01-solution?file=src/utilities/property-existence.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/01-solution?file=src/utilities/property-existence.ts">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Objective 2: Construct an object type</h2>
-<h3>Using <code>Record&lt;Keys, Type&gt;</code></h3>
+<h2 id="objective-2-construct-an-object-type">Objective 2: Construct an object type</h2>
+<h3 id="using-coderecordltkeys-typegtcode">Using <code>Record&lt;Keys, Type&gt;</code></h3>
 <p>Shortcut for defining an object where the keys are all one type and the values are all one type.</p>
 <p>This is particularly useful when you have a type in which multiple keys share the same value <code>Type</code>, so you can avoid repeating the pattern <code>key: type;</code></p>
 <pre><code class="language-typescript">enum Diet {
@@ -789,7 +789,7 @@ const dinosCollection: Record&lt;string, Dinosaur&gt; = {
   [key: string]: Dinosaur
 }
 </code></pre>
-<h3>Setup 2</h3>
+<h3 id="setup-2">Setup 2</h3>
 <p>✏️ Create <strong>src/utilities/record.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export type Person =
   | {
@@ -811,7 +811,7 @@ const dinosCollection: Record&lt;string, Dinosaur&gt; = {
 
 export type PersonMap = unknown;
 </code></pre>
-<h3>Verify 2</h3>
+<h3 id="verify-2">Verify 2</h3>
 <p>✏️ Create <strong>src/utilities/record.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import type { Person, PersonMap } from &quot;./record&quot;;
 import { describe, it } from &quot;node:test&quot;;
@@ -860,7 +860,7 @@ describe(&quot;record tests&quot;, () =&gt; {
   });
 });
 </code></pre>
-<h3>Exercise 2</h3>
+<h3 id="exercise-2">Exercise 2</h3>
 <p>Update the <code>record.ts</code> file to create a new object type in which the keys are the IDs of the users and the values are the <code>User</code> type.</p>
 <p>Currently, the <code>PersonMap</code> type is <code>unknown</code>.
 Which utility type can we use here together with the <code>Person</code> type to create the appropriate <code>PersonMap</code> type?</p>
@@ -876,7 +876,7 @@ Which utility type can we use here together with the <code>Person</code> type to
 </code></pre>
 <p><strong>Hint:</strong> Remember to use the syntax <code>Person[&quot;id&quot;]</code> to access the type of the <code>id</code> property directly from the <code>Person</code> interface.</p>
 <p><strong>Have issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/02-problem?file=src/utilities/record.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/02-problem?file=src/utilities/record.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution 2</h3>
+<h3 id="solution-2">Solution 2</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -904,8 +904,8 @@ export type PersonMap = Record&lt;Person[&quot;id&quot;], Person&gt;;
  <div line-highlight="19,only"></div>
 <p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/02-solution?file=src/utilities/record.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/02-solution?file=src/utilities/record.ts">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Objective 3: Construct a new type by extracting from another type</h2>
-<h3>Using <code>Extract&lt;Type, Union&gt;</code></h3>
+<h2 id="objective-3-construct-a-new-type-by-extracting-from-another-type">Objective 3: Construct a new type by extracting from another type</h2>
+<h3 id="using-codeextractlttype-uniongtcode">Using <code>Extract&lt;Type, Union&gt;</code></h3>
 <p>Extracts from <code>Type</code> all types that are assignable to <code>Union</code>.
 It effectively filters out types from <code>Type</code> that do not fit into <code>Union</code>.
 This utility is particularly useful when you want to create a type based on a subset of another type’s possibilities that meet certain criteria.</p>
@@ -938,7 +938,7 @@ type PersonKeys = Extract&lt;keyof Kid, keyof Adult&gt;;
 </code></pre>
 <div line-highlight='15'></div>
 <p>In the code above, <code>PersonKeys</code> is the keys that both <code>Kid</code> and <code>Adult</code> have in common, which are <code>firstName</code> and <code>lastName</code>.</p>
-<h3>Setup 3</h3>
+<h3 id="setup-3">Setup 3</h3>
 <p>✏️ Create <strong>src/utilities/extract.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">type Person =
   | {
@@ -960,7 +960,7 @@ type PersonKeys = Extract&lt;keyof Kid, keyof Adult&gt;;
 
 export type Developer = unknown;
 </code></pre>
-<h3>Verify 3</h3>
+<h3 id="verify-3">Verify 3</h3>
 <p>✏️ Create <strong>src/utilities/extract.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import {
   Developer
@@ -982,10 +982,10 @@ describe(&quot;extract tests&quot;, () =&gt; {
   });
 });
 </code></pre>
-<h3>Exercise 3</h3>
+<h3 id="exercise-3">Exercise 3</h3>
 <p>Update the <code>extract.ts</code> file to use the utility type <code>extract</code> on the existing Person type. Extract one of the two possible types from Person to create a new type, <code>Developer</code>.</p>
 <p><strong>Have issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/03-problem?file=src/utilities/extract.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/03-problem?file=src/utilities/extract.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution 3</h3>
+<h3 id="solution-3">Solution 3</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -1013,8 +1013,8 @@ export type Developer = Extract&lt;Person, { role: &quot;developer&quot; }&gt;;
  <div line-highlight="19,only"></div>
 <p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/03-solution?file=src/utilities/extract.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/03-solution?file=src/utilities/extract.ts">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Objective 4: Construct a new type by excluding types from another type</h2>
-<h3>Using <code>Exclude&lt;Type, ExcludedUnion&gt;</code></h3>
+<h2 id="objective-4-construct-a-new-type-by-excluding-types-from-another-type">Objective 4: Construct a new type by excluding types from another type</h2>
+<h3 id="using-codeexcludelttype-excludeduniongtcode">Using <code>Exclude&lt;Type, ExcludedUnion&gt;</code></h3>
 <p>Excludes from <code>Type</code> all types that are assignable to <code>ExcludedUnion</code>.
 Useful if you want a subset of <code>Type</code>.</p>
 <pre><code class="language-typescript">type T1 = string | number | boolean;
@@ -1024,7 +1024,7 @@ const value: T2 = &quot;Hello&quot;; // Works
 </code></pre>
 <div line-highlight='2'></div>
 <p>In the code above, <code>Exclude&lt;T1, boolean&gt;</code> removes <code>boolean</code> from <code>T1</code>, leaving <code>string</code> and <code>number</code>.</p>
-<h3>Setup 4</h3>
+<h3 id="setup-4">Setup 4</h3>
 <p>✏️ Create <strong>src/utilities/exclude.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">type Person =
   | {
@@ -1050,7 +1050,7 @@ export interface FrontendDeveloper {
   team: string;
 }
 </code></pre>
-<h3>Verify 4</h3>
+<h3 id="verify-4">Verify 4</h3>
 <p>✏️ Create <strong>src/utilities/exclude.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { describe, it } from &quot;node:test&quot;;
 import { FrontendDeveloper } from &quot;./exclude&quot;;
@@ -1078,10 +1078,10 @@ describe(&quot;exclude tests&quot;, () =&gt; {
   });
 });
 </code></pre>
-<h3>Exercise 4</h3>
+<h3 id="exercise-4">Exercise 4</h3>
 <p>Update the <code>exclude.ts</code> file to create a new type, <code>FrontendDeveloper</code> that excludes the <code>backend</code> value from the team property. Build on the <code>Developer</code> type we previously created.</p>
 <p><strong>Have issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/04-problem?file=src/utilities/exclude.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/04-problem?file=src/utilities/exclude.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution 4</h3>
+<h3 id="solution-4">Solution 4</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -1113,8 +1113,8 @@ export interface FrontendDeveloper extends Developer {
  <div line-highlight="21-22,only"></div>
 <p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/04-solution?file=src/utilities/exclude.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/04-solution?file=src/utilities/exclude.ts">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Objective 5: Include and exclude specific properties</h2>
-<h3>Using <code>Pick&lt;Type, Keys&gt;</code></h3>
+<h2 id="objective-5-include-and-exclude-specific-properties">Objective 5: Include and exclude specific properties</h2>
+<h3 id="using-codepicklttype-keysgtcode">Using <code>Pick&lt;Type, Keys&gt;</code></h3>
 <p>Creates a type by picking the set of properties <code>Keys</code> from <code>Type</code>.
 Useful if you want a subset of <code>Type</code>.</p>
 <pre><code class="language-typescript">enum Diet {
@@ -1139,7 +1139,7 @@ const lesserDino: LesserDinosaur = {
 <div line-highlight='13, 16, 17, only'></div>
 <p>In the code above, if there is an attempt to add <code>diet</code> to <code>lesserDino</code> then TypeScript will throw an error.
 Object literals may only specify known properties, and <code>diet</code> does not exist in type <code>LesserDinosaur</code>.</p>
-<h3>Using <code>Omit&lt;Type, Keys&gt;</code></h3>
+<h3 id="using-codeomitlttype-keysgtcode">Using <code>Omit&lt;Type, Keys&gt;</code></h3>
 <p>Creates a type by omitting the set of properties <code>Keys</code> from <code>Type</code>.
 Useful if you want a subset of <code>Type</code>.</p>
 <pre><code class="language-typescript">enum Diet {
@@ -1166,7 +1166,7 @@ lesserDino.species = &quot;Tyrannosaurus rex&quot;;
 <p>In the code above, if there is an attempt to add <code>species</code> to <code>lesserDino</code> then TypeScript will throw an error.
 Property <code>species</code> does not exist on type <code>LesserDinosaur</code>.
 Both <code>species</code> and <code>age</code> key properties are gone!</p>
-<h3>Setup 5</h3>
+<h3 id="setup-5">Setup 5</h3>
 <p>✏️ Create <strong>src/utilities/include-exclude-properties.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">type Person =
   | {
@@ -1194,7 +1194,7 @@ interface FrontendDeveloper extends Developer {
 
 export interface AdminDeveloper extends FrontendDeveloper {}
 </code></pre>
-<h3>Verify 5</h3>
+<h3 id="verify-5">Verify 5</h3>
 <p>✏️ Create <strong>src/utilities/include-exclude-properties.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { AdminDeveloper } from &quot;./include-exclude-properties&quot;;
 import { describe, it } from &quot;node:test&quot;;
@@ -1215,10 +1215,10 @@ describe(&quot;include-exclude-properties tests&quot;, () =&gt; {
   });
 });
 </code></pre>
-<h3>Exercise 5</h3>
+<h3 id="exercise-5">Exercise 5</h3>
 <p>Update the <code>include-exclude-properties.ts</code> file to expand on the implementation of <code>FrontendDeveloper</code> to create a new type, <code>AdminDeveloper</code> where the <code>role</code> property should be replaced by a <code>permissions</code> array.</p>
 <p><strong>Have issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/05-problem?file=src/utilities/include-exclude-properties.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/05-problem?file=src/utilities/include-exclude-properties.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution 5</h3>
+<h3 id="solution-5">Solution 5</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -1254,8 +1254,8 @@ export interface AdminDeveloper extends Omit&lt;FrontendDeveloper, &quot;role&qu
  <div line-highlight="25-27,only"></div>
 <p><strong>Have issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/05-solution?file=src/utilities/include-exclude-properties.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/12-utility-types/05-solution?file=src/utilities/include-exclude-properties.ts">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Objective 6: Function utility types</h2>
-<h3>Using <code>ReturnType&lt;Type&gt;</code></h3>
+<h2 id="objective-6-function-utility-types">Objective 6: Function utility types</h2>
+<h3 id="using-codereturntypelttypegtcode">Using <code>ReturnType&lt;Type&gt;</code></h3>
 <p>Gets the return type of a function <code>Type</code>.</p>
 <pre><code class="language-typescript">enum Diet {
   &quot;Carnivore&quot;,
@@ -1277,7 +1277,7 @@ type D2 = ReturnType&lt;() =&gt; Dinosaur&gt;;
 </code></pre>
 <div line-highlight='15, 17'></div>
 <p>In the code above, <code>D1</code> and <code>D2</code> are both types <code>Dinosaur</code>.</p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>There are other built-in utility types:</p>
 <ul>
 <li><a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype"><code>Parameters&lt;Type&gt;</code></a></li>

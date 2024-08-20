@@ -543,9 +543,9 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>The problem</h2>
+    <h2 id="the-problem">The problem</h2>
 <p>In this section, we will do for <code>expiry</code> what was done for <code>cardNumber</code>.</p>
-<h2>How to solve this problem</h2>
+<h2 id="how-to-solve-this-problem">How to solve this problem</h2>
 <p>First:</p>
 <ul>
 <li>Write the <code>&lt;input name=&quot;expiry&quot;/&gt;</code> value to a <code>BehaviorSubject</code> called <code>this.userExpiry$</code>.</li>
@@ -579,10 +579,10 @@ we will update the displayed expiry error, if there is one, on every future keys
 <li>Create a <code>userExpiryBlurred$</code> <code>Subject</code> that emits when the <code>expiry</code> input is blurred.</li>
 <li>Create a <code>showExpiryError$</code> that emits true when the <code>expiry</code> error should be shown.</li>
 </ul>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <p>You already know everything you need to know. Apply what you learned from
 <code>cardNumber$</code>, <code>cardError$</code> and <code>showCardError$</code> to <code>expiry$</code>, <code>expiryError$</code>, and <code>showExpiryError$</code>.</p>
-<h2>The solution</h2>
+<h2 id="the-solution">The solution</h2>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;

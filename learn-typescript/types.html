@@ -530,7 +530,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, you will:</p>
 <ul>
 <li>Discover how to declare the various types used in TypeScript.</li>
@@ -540,7 +540,7 @@ covering CanJS core libraries.">
 <li>Create a typed variable.</li>
 <li>Use type unions and intersections.</li>
 </ul>
-<h2>Objective 1: Primitives, objects, and arrays</h2>
+<h2 id="objective-1-primitives-objects-and-arrays">Objective 1: Primitives, objects, and arrays</h2>
 <p>Types explain what we can and cannot do with a value.
 For instance, in JavaScript, you can access <code>.length</code> on strings but not on numbers.</p>
 <p>Types also determine the outcomes when operators are applied to values.
@@ -554,24 +554,24 @@ This distinction hinges on their underlying types.</p>
 <blockquote>
 <p><strong>Note:</strong> If you are familiar with JavaScript’s primitive types you may recognize some of the names coming up. The types <code>string</code> <code>boolean</code> and <code>number</code> should feel familiar. These types are the same in TypeScript as they are in JavaScript and are often referred to as primitive types.</p>
 </blockquote>
-<h3>Boolean</h3>
+<h3 id="boolean">Boolean</h3>
 <p>The <code>boolean</code> type is one of the simplest types in TypeScript. It can only be <code>true</code> or <code>false</code>.</p>
 <pre><code class="language-typescript">const isCarnivore: boolean = true;
 const isHerbivore: boolean = false;
 </code></pre>
-<h3>Number</h3>
+<h3 id="number">Number</h3>
 <p>All numeric values in TypeScript are represented by the <code>number</code> type.
 If you are familiar with other typed languages (e.g. C++), you may be familiar with specific number types like integers and floats.
 In TypeScript, there is only <code>number</code>.</p>
 <pre><code class="language-typescript">const teeth: number = 100;
 const hex: number = 0xf00d;
 </code></pre>
-<h3>String</h3>
+<h3 id="string">String</h3>
 <p>The <code>string</code> type is used to represent textual data.
 It’s similar to strings in JavaScript and can be enclosed in single quotes, double quotes, or backticks.</p>
 <pre><code class="language-typescript">const name: string = &quot;Leoplurodon&quot;;
 </code></pre>
-<h3>Literals</h3>
+<h3 id="literals">Literals</h3>
 <p>In TypeScript, there is a subset within <code>string</code>, <code>number</code>, and <code>boolean</code> which allows us to refine the specificity of the type.
 These are called type literals. A string literal is a single string for example:</p>
 <pre><code class="language-typescript">type StringLiteralExample = &quot;hello&quot;;
@@ -595,7 +595,7 @@ They allow us to expand our subset to include multiple values.</p>
 <p><strong>Note:</strong> In TypeScript projects and applications, unions are often used as a low-overhead version of <a href="#enum">enums</a>.</p>
 </blockquote>
 <p>While we spent the time going over what a literal is, for the remainder of this section (and sections to come), we will not make the distinction between type literals and types because literals <em>are</em> types.</p>
-<h3>Array</h3>
+<h3 id="array">Array</h3>
 <p>Arrays hold multiple values of the same type.
 Arrays can be written in one of two ways:</p>
 <pre><code class="language-typescript">const numberList: number[] = [1, 2, 3];
@@ -612,7 +612,7 @@ const raptors: Array&lt;Dino&gt; = [&quot;Steogosaurus&quot;, &quot;Triceratops&
 <p>But wait! There’s something wrong with the array we’ve provided in <code>raptors</code>. One of these things is not like the other. Since <code>Delta</code> isn’t a part of the string literal provided, we’ll get the error:</p>
 <pre><code class="language-bash">Type '&quot;Delta&quot;' is not assignable to type 'Dino'.
 </code></pre>
-<h4>Which one should you use?</h4>
+<h4 id="which-one-should-you-use">Which one should you use?</h4>
 <p>The bracket notation (<code>Dino[]</code>) is much cleaner and easier to read, but is also easy to miss in a large definition, as in this example:</p>
 <pre><code class="language-typescript">type Dinos = {
   type: &quot;land&quot;;
@@ -622,14 +622,14 @@ const raptors: Array&lt;Dino&gt; = [&quot;Steogosaurus&quot;, &quot;Triceratops&
 }[];
 </code></pre>
 <p>Because of this, we recommend using bracket notation for simple types and using the full array notation for complex types.</p>
-<h3>Object</h3>
+<h3 id="object">Object</h3>
 <p>Another basic JavaScript type, Object, can be used to more descriptively type a variable.</p>
 <pre><code class="language-typescript">const user: { name: string; age: number } = { name: &quot;Justin&quot;, age: 36 };
 </code></pre>
 <p>Later we will learn about <a href="interfaces.html" title="Learn how to write Interfaces, set optional properties, and use interfaces in classes and functions.">Interfaces</a>, which are
 a better way of describing Object values because the type
 can be reused.</p>
-<h3>Setup 1</h3>
+<h3 id="setup-1">Setup 1</h3>
 <p>✏️ Create <strong>src/types/fix-errors.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">let isLoading: boolean;
 isLoading = true;
@@ -650,7 +650,7 @@ export const tom = greet(&quot;Tom&quot;, 42, &quot;software&quot;);
 export { isLoading, inventory };
 
 </code></pre>
-<h3>Verify 1</h3>
+<h3 id="verify-1">Verify 1</h3>
 <p>✏️ Create <strong>src/types/fix-errors.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import assert from &quot;node:assert/strict&quot;;
 import { describe, it } from &quot;node:test&quot;;
@@ -669,7 +669,7 @@ describe(&quot;Fix Errors&quot;, () =&gt; {
 });
 
 </code></pre>
-<h3>Exercise 1</h3>
+<h3 id="exercise-1">Exercise 1</h3>
 <p>The <strong>src/types/fix-errors.ts</strong> file currently has the following errors:</p>
 <pre><code>TSError: ⨯ Unable to compile TypeScript:
 src/types/fix-errors.ts(3,1): error TS2322: Type 'string' is not assignable to type 'boolean'.
@@ -685,7 +685,7 @@ src/types/fix-errors.ts(15,37): error TS2554: Expected 2 arguments, but got 3.
 <li>Fix the function call for <code>tom</code>.</li>
 </ul>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/06-types/01-problem?file=src/types/fix-errors.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/06-types/01-problem?file=src/types/fix-errors.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution 1</h3>
+<h3 id="solution-1">Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -712,8 +712,8 @@ export { isLoading, inventory };
  <div line-highlight="3,5,13,15,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/06-types/01-solution?file=src/types/fix-errors.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/06-types/01-solution?file=src/types/fix-errors.ts">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Objective 2: More types and typed variables</h2>
-<h3>Tuple</h3>
+<h2 id="objective-2-more-types-and-typed-variables">Objective 2: More types and typed variables</h2>
+<h3 id="tuple">Tuple</h3>
 <p>A “tuple” is a typed array with a pre-defined length.
 Each index is capable of having its own type.</p>
 <pre><code class="language-typescript">type Dino = &quot;Stegosaurus&quot; | &quot;Triceratops&quot; | &quot;Velociraptor&quot;;
@@ -729,7 +729,7 @@ dinoTuple = [&quot;boop&quot;, &quot;Stegosaurus&quot;, 5];
 <p>For <code>boop</code>: <code>Type 'string' is not assignable to type 'number'.</code>
 and for <code>5</code>: <code>Type 'number' is not assignable to type 'Dino'.</code></p>
 <p>Both of these make sense, and while we intended <code>Stegosaurus</code> to line up with its StringLiteral typing provided by <code>Dino</code>, it still is a <code>string</code>.</p>
-<h3>Enum</h3>
+<h3 id="enum">Enum</h3>
 <p>Enums allow the aliasing of names to a list of numeric values. Like most indexing, enums start their first member at 0.</p>
 <pre><code class="language-typescript">enum Color {
   Red,
@@ -760,7 +760,7 @@ const feb = Month[2];
 
 const may = Month[5];
 </code></pre>
-<h4>String unions as enums</h4>
+<h4 id="string-unions-as-enums">String unions as enums</h4>
 <p>An alternative to full enums is to use a union of strings. This has a few benefits:</p>
 <ul>
 <li>It doesn't require an import to use.</li>
@@ -777,7 +777,7 @@ enum Color {
 // try
 type Color = &quot;Red&quot; | &quot;Green&quot; | &quot;Blue&quot;;
 </code></pre>
-<h3>Unknown</h3>
+<h3 id="unknown">Unknown</h3>
 <p>Unknown describes a variable where we may not know the type. Variables defined with the <code>unknown</code> type can later be narrowed to more specific types using <code>typeof</code> checks or comparisons.</p>
 <p>Note that variables of type <code>unknown</code> have no accessible properties or functions.</p>
 <pre><code class="language-typescript">let value: unknown = 5;
@@ -795,7 +795,7 @@ if (typeof value === &quot;string&quot;) {
   console.info(&quot;Length is&quot;, stringValue.length);
 }
 </code></pre>
-<h3>Any</h3>
+<h3 id="any">Any</h3>
 <p>The <code>any</code> type is useful when we want to opt-out of type checking.
 Using the <code>any</code> type will disable all compile-time checks, including access to properties and functions.</p>
 <p>This is mostly useful for third-party data structures that we do not know the shape of, or when incrementally opting in to types.
@@ -806,13 +806,13 @@ my3rdPartyData = &quot;five&quot;;
 my3rdPartyData.invalidFunction(3);
 </code></pre>
 <div line-highlight='4'></div>
-<h3>Void</h3>
+<h3 id="void">Void</h3>
 <p>No type at all — commonly used with functions that don’t return a value.</p>
 <pre><code class="language-typescript">function buttonClick(): void {
   console.info(&quot;I clicked a button that returns nothing&quot;);
 }
 </code></pre>
-<h3>Never</h3>
+<h3 id="never">Never</h3>
 <p>The <code>never</code> type represents a value that will never occur.</p>
 <pre><code class="language-typescript">function error(message: string): never {
   throw new Error(message);
@@ -820,7 +820,7 @@ my3rdPartyData.invalidFunction(3);
 </code></pre>
 <div line-highlight='2'></div>
 <p>When an error is thrown in the scope of a function that function doesn’t return, so this is an instance where <code>never</code> is an appropriate return type.</p>
-<h3>Type inference</h3>
+<h3 id="type-inference">Type inference</h3>
 <p>When we don’t provide explicit types for our variables, TypeScript will do its best to infer the types, and it’s very good at it. The following code will not compile due to type inference.</p>
 <pre><code class="language-typescript">let name = &quot;Sally&quot;;
 const height = 6;
@@ -843,7 +843,7 @@ person.name = 6;
 person.address.number = &quot;five fifty-five&quot;;
 // Type '&quot;five fifty-five&quot;' is not assignable to type 'number'.
 </code></pre>
-<h4>Dangers of type inference</h4>
+<h4 id="dangers-of-type-inference">Dangers of type inference</h4>
 <p>Be forewarned that type inference can come with some dangers. Among others, any string-like value will be inferred as a string. This can have unintended consequences when you intend those types to be more specific. For example:</p>
 <pre><code class="language-typescript">type Dino = &quot;Stegosaurus&quot; | &quot;Triceratops&quot; | &quot;Velociraptor&quot;;
 
@@ -867,7 +867,7 @@ const dinosaur = {
 dinosaur.kind = &quot;Unicorn&quot;;
 </code></pre>
 <p>Another would be to avoid inference altogether.</p>
-<h3>Type inference for functions</h3>
+<h3 id="type-inference-for-functions">Type inference for functions</h3>
 <p>TypeScript will infer the return value of functions as well.</p>
 <pre><code class="language-typescript">function multiplier(a: number, b: number) {
   return a * b;
@@ -886,15 +886,15 @@ str = multiplier(10, 20);
 <li>It ensures your function API is stable.</li>
 <li>It makes type errors easier to debug.</li>
 </ul>
-<h3>Type assertions</h3>
+<h3 id="type-assertions">Type assertions</h3>
 <p>Type assertions are a way to override the inferring of types, with the <code>as</code> keyword:</p>
 <pre><code class="language-typescript">const otherValue: any = &quot;this is a string&quot;;
 
 const otherLength: number = (otherValue as string).length;
 </code></pre>
 <p>Type assertions should be used sparingly, however.</p>
-<h2>Objective 3: Intersections and Unions</h2>
-<h3>Intersections</h3>
+<h2 id="objective-3-intersections-and-unions">Objective 3: Intersections and Unions</h2>
+<h3 id="intersections">Intersections</h3>
 <p>There are many different ways to create new types from existing ones in TypeScript.
 Intersections allow us to create a type containing all the properties of multiple types together.
 Put another way: Intersections combine multiple types into one.</p>
@@ -967,7 +967,7 @@ Both of these will appear to work, however, when used, the <code>Intersection</c
 <pre><code>Type 'Intersection' is not assignable to type 'never'.ts(2322)
 </code></pre>
 <p>We will learn more about <code>never</code> below!</p>
-<h3>Type unions</h3>
+<h3 id="type-unions">Type unions</h3>
 <p>In the earlier sections, we saw how we could make unions from primitive type literals; however, unions extend beyond the primitives. This section will explore how type unions work with object types.</p>
 <p>Type unions allow us to create a single type from two or more different types.
 Imagine we have the following:</p>
@@ -1016,7 +1016,7 @@ function getTotalDistanceAbleToTravel(dinos: Dinosaur[]): number {
 }
 </code></pre>
 <p>This solves our function signature problem and allows us to pass any collection of dinosaurs to our function. However, this introduces two new problems.</p>
-<h3>Object creation</h3>
+<h3 id="object-creation">Object creation</h3>
 <p>The first problem comes when creating a dinosaur object. Union types simplify creating an object — we need to pass it keys from any of the types in the union. The only keys that are required are the ones that are shared across all types in the union.</p>
 <p>In our case, the only shared key across <code>LandDinosaur</code>, <code>AirDinosaur</code>, and <code>WaterDinosaur</code> is <code>name</code>; anything else is fair game to add as long as the keys are from the same type.</p>
 <p>This means we can get type-safe objects that don’t make a lot of sense. Take, for example, this <code>pterodactyl</code> object.</p>
@@ -1065,7 +1065,7 @@ const pterodactyl: Dinosaur = {
 Object literal may only specify known properties, but 'distanceAbleToSwim' does not exist in type 'AirDinosaur'. Did you mean to write 'distanceAbleToFly'?
 </code></pre>
 <p>This translates to, “you said it’d be an <code>AirDinosaur</code>, but you gave me some stuff not on <code>AirDinosaur</code>&quot;. This solves our first problem of creating objects.</p>
-<h3>Object use</h3>
+<h3 id="object-use">Object use</h3>
 <p>The second problem with our solution comes with using our typed parameter in our function.
 Which looks like this:</p>
 <pre><code class="language-ts">type Dinosaur = AirDinosaur | WaterDinosaur | LandDinosaur;
@@ -1101,7 +1101,7 @@ function getTotalDistanceAbleToTravel(dinos: Dinosaur[]): number {
 <blockquote>
 <p><strong>Note:</strong> TypeScript is smart enough to figure out that there are only three types. If we had checked for the first two (air and water), it would know that the third must be land even if we didn't have that in a condition. Including the third condition and <code>return total</code> helps future-proof our code, however.</p>
 </blockquote>
-<h3>Setup 3</h3>
+<h3 id="setup-3">Setup 3</h3>
 <p>✏️ Create <strong>src/types/character.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">interface BaseCharacter {
   strength: number;
@@ -1205,7 +1205,7 @@ export const fusion: Dish = {
 
 </code></pre>
 <div line-highlight='16, 35-36, only'></div>
-<h3>Verify 3</h3>
+<h3 id="verify-3">Verify 3</h3>
 <p>✏️ Create <strong>src/types/character.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import assert from &quot;node:assert/strict&quot;;
 import { describe, it } from &quot;node:test&quot;;
@@ -1237,14 +1237,14 @@ describe(&quot;Food tests&quot;, () =&gt; {
 });
 
 </code></pre>
-<h3>Exercise 3</h3>
+<h3 id="exercise-3">Exercise 3</h3>
 <p>In this exercise, we will fix the TypeScript errors by using a combination of type unions and intersections.</p>
 <ul>
 <li><p>In <strong>character.ts</strong>, update the <code>Character</code> type so that the TypeScript errors are resolved for <code>fighter</code>, <code>mage</code>, and <code>thief</code>. The <code>paladin</code> and <code>civilian</code> type are expected to give errors.</p></li>
 <li><p>In <strong>food.ts</strong>, update the <code>Dish</code> type so that the TypeScript errors are resolved for <code>sushi</code>, <code>taco</code>, and <code>curry</code>. The <code>fusion</code> type is expected to give an error.</p></li>
 </ul>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/06-types/03-problem?file=src/types/character.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/06-types/03-problem?file=src/types/character.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution 3</h3>
+<h3 id="solution-3">Solution 3</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -1353,7 +1353,7 @@ export const fusion: Dish = {
  <div line-highlight="16,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/06-types/03-solution?file=src/types/character.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/06-types/03-solution?file=src/types/character.ts">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>Next up, we’ll be using TypeScript to annotate <a href="./functions.html">functions</a>.</p>
 
 </section>

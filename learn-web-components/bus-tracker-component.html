@@ -528,13 +528,13 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this part we will:</p>
 <ul>
 <li>Create another component named <code>bus-tracker</code>.</li>
 <li>Display the <code>google-map-view</code> component within this new component.</li>
 </ul>
-<h2>Problem</h2>
+<h2 id="problem">Problem</h2>
 <p>We want to build a component that displays the CTA bus tracker routes and displays a map. This part builds the <em>shell</em> of the component and includes:</p>
 <ul>
 <li>A header with a title</li>
@@ -544,14 +544,14 @@ covering CanJS core libraries.">
 <p><img src="../static/img/web-components/bus-tracker-shell.png"
 style="border: solid 1px black; max-width: 100%;"
 alt="The shell of our bus-tracker component showing a header and a Google map"/></p>
-<h2>How to Solve This Problem</h2>
+<h2 id="how-to-solve-this-problem">How to Solve This Problem</h2>
 <ol>
 <li>Create a template that contains the styles and markup for this new element.</li>
 <li>Create a custom element called <code>bus-tracker</code>.</li>
 <li>Include the styles/markup in this element’s <code>shadowRoot</code>.</li>
 <li>Place the <code>google-map-view</code> component within this new element’s <code>footer</code>.</li>
 </ol>
-<h2>Technical requirements</h2>
+<h2 id="technical-requirements">Technical requirements</h2>
 <p>The styles for our <code>bus-tracker</code> component should be contained within Shadow DOM. The CSS needed for the rest of the guide is:</p>
 <pre><code class="language-css">/* CSS to copy */
 :host {
@@ -703,13 +703,13 @@ p {
 &lt;/footer&gt;
 </code></pre>
 <p>The <code>google-map-view</code> component should be displayed in the <code>&lt;footer&gt;</code> section of the component.</p>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <p>To solve this problem you’ll need to:</p>
 <ul>
 <li>Know how to use CSS in a component that uses Shadow DOM.</li>
 <li>Use a component within another component.</li>
 </ul>
-<h3>Using styles within a component</h3>
+<h3 id="using-styles-within-a-component">Using styles within a component</h3>
 <p>Styles added to a page via <code>&lt;link rel=stylesheet&gt;</code> cannot be used within a shadowRoot. Services like <a href="https://codepen.io/">CodePen</a> that allow you to add CSS will add them this way. Instead place your styles within a <code>&lt;style&gt;</code> tag inside of the shadowRoot.</p>
 <pre><code class="language-html">&lt;style&gt;
   .foo { display: block; }
@@ -723,7 +723,7 @@ p {
 &lt;/style&gt;
 </code></pre>
 <p>In our component we are using <code>display: flex</code> to give space to the header, route list, and Google map.</p>
-<h3>Nesting components</h3>
+<h3 id="nesting-components">Nesting components</h3>
 <p>Any component defined using <code>customElements.define()</code> can be used within another element’s <code>shadowRoot</code> just as they can inside of the page’s HTML. To add the <code>google-map-view</code> to this new component, place the tag within the footer.</p>
 <pre><code class="language-html">&lt;parent-element&gt;&lt;/parent-element&gt;
 
@@ -767,7 +767,7 @@ customElements.define('parent-element', ParentElement);
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
-<h2>Solution</h2>
+<h2 id="solution">Solution</h2>
 <p>✏️ Create a new component called <code>bus-tracker</code>. Use the CSS and markup provided and place them in a <code>&lt;template&gt;</code> with the id of <code>#bt-template</code>. Create a shadowRoot for this element and append a clone of the template.</p>
 <p><details>
 <summary>Click to see the solution</summary></p>

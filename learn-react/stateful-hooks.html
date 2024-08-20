@@ -543,7 +543,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, we will:</p>
 <ul>
 <li>Get an overview of state management</li>
@@ -552,11 +552,11 @@ covering CanJS core libraries.">
 <li>Learn about the <code>useState</code> Hook</li>
 <li>Create custom Hooks as services</li>
 </ul>
-<h2>Objective 1: Add buttons to select a state</h2>
+<h2 id="objective-1-add-buttons-to-select-a-state">Objective 1: Add buttons to select a state</h2>
 <p>Currently, our restaurant list is a static array of restaurants. We want to work towards having a <code>&lt;select&gt;</code> dropdown for choosing a <em>state</em>, then a <em>city</em> in that state, then loading the list of restaurants for that city.</p>
 <p>To start, let’s focus on rendering buttons for each state that we can select. Then, when the button for a state is activated, we want to keep track of which state was chosen.</p>
 <p><img alt="A web page titled “Restaurants” from place-my-order.com showing two buttons labeled “Illinois” and “Wisconsin”. There is also a “Current state” paragraph that shows that no state is selected." src="../static/img/react-vite/08-stateful-hooks/01-solution.png" style="max-width:689px"></p>
-<h3>Overview of state management</h3>
+<h3 id="overview-of-state-management">Overview of state management</h3>
 <p>State in React is a crucial concept, as it represents the parts of an app that can change over time. Each component can have its own state, allowing them to maintain and manage their own data independently. When the state changes, React re-renders the component and updates the DOM if it needs to.</p>
 <p>There are different types of state within an application:</p>
 <ul>
@@ -565,7 +565,7 @@ covering CanJS core libraries.">
 <li><strong>Local State:</strong> This is data we manage in the component that uses it. Local state is managed in React using the <code>useState</code> Hook, which we will cover in Objective 2 below.</li>
 <li><strong>UI State:</strong> This is a subset of Local State, but is limited to minor UI effects, such as the visibility of a drawer or open section of an accordion.</li>
 </ul>
-<h3>Intro to React Hooks</h3>
+<h3 id="intro-to-react-hooks">Intro to React Hooks</h3>
 <p>We’ve mentioned before that <code>useState</code> is a Hook for managing state, but what does that mean?</p>
 <p>React Hooks (referred to as just Hooks for the rest of this training) are special functions that allow us to “hook” into React functionality. Hooks provide us with many conveniences like sharing stateful logic between components and simplifying what would be otherwise complex components.</p>
 <p>We’ve actually already seen and used a Hook while building Place My Order! Do you remember this code from earlier?</p>
@@ -602,14 +602,14 @@ export default App
 </code></pre>
 <div line-highlight='1, 5-6, only'></div>
 <p>The <code>useMatch</code> Hook from <code>react-router-dom</code> allowed us to check whether a given path “matched” the current route.</p>
-<h3>The Rules of Hooks</h3>
+<h3 id="the-rules-of-hooks">The Rules of Hooks</h3>
 <p>React imposes several rules around the use of Hooks:</p>
 <ul>
 <li><p><strong>First,</strong> only call Hooks from React function components or your own custom Hooks.</p></li>
 <li><p><strong>Second,</strong> all the Hooks in a React function must be invoked in the same order every time the function runs, so no Hooks can occur after an <code>if</code>, <code>loop</code>, or <code>return</code> statement. Typically this means all Hooks are placed at the top of the React function body.</p></li>
 <li><p><strong>Third,</strong> Hooks must be named by prefixing their functionality with <code>use</code> (e.g. <code>useMatch</code>).</p></li>
 </ul>
-<h3>The useState Hook</h3>
+<h3 id="the-usestate-hook">The useState Hook</h3>
 <p>We can store state that persists through component rendering with the <code>useState</code> hook. You can set the initial state value when the component <strong>first</strong> renders by providing the value as an argument to the Hook. <em>If you do not provide a value the initial state value will be <code>undefined</code>.</em></p>
 <p>This example shows a <code>useState</code> Hook being set with an initial value of <code>&quot;Auto&quot;</code>:</p>
 <pre><code class="language-tsx">import { useState } from &quot;react&quot;
@@ -664,7 +664,7 @@ export default Settings
 <div line-highlight='8, 14-16, only'></div>
 <p>Every time a <code>useState</code>’s setter is invoked with a new value, React compares the new value with the current value. If the values are the same, nothing happens; <strong>if the values are different, React will rerender the component</strong> so the new state value can be used to update the component.</p>
 <p>In the example above, when the user makes a selection, the <code>Settings</code> component is rendered again, and the paragraph is updated with the current value.</p>
-<h3>Setup 1</h3>
+<h3 id="setup-1">Setup 1</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to include the State and City dropdown lists.</p>
 <pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
 import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
@@ -750,7 +750,7 @@ export default RestaurantList
 
 </code></pre>
  <div line-highlight="3,7-10,50-61,only"></div>
-<h3>Verify 1</h3>
+<h3 id="verify-1">Verify 1</h3>
 <p>These tests will pass when the solution has been implemented properly.</p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong>:</p>
 <pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
@@ -853,7 +853,7 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
 
 </code></pre>
  <div line-highlight="3,71-75,77-78,80-81,83-87,89-90,92-96,only"></div>
-<h3>Exercise 1</h3>
+<h3 id="exercise-1">Exercise 1</h3>
 <p>Let’s create buttons for each state that we can select. Then, when the button for a state is activated, we want to keep track of which state was choosen.</p>
 <ul>
 <li>Call <code>useState()</code> to get a <code>state</code> variable and <code>setState</code> setter.</li>
@@ -862,7 +862,7 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
 <li>Update the paragraph to show the currently-selected state.</li>
 </ul>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/01-problem?file=src/pages/RestaurantList/RestaurantList.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/01-problem?file=src/pages/RestaurantList/RestaurantList.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution 1</h3>
+<h3 id="solution-1">Solution 1</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
@@ -962,12 +962,12 @@ export default RestaurantList
  <div line-highlight="7,47-49,60-64,69,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/01-solution?file=src/pages/RestaurantList/RestaurantList.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/01-solution?file=src/pages/RestaurantList/RestaurantList.tsx">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Objective 2: Add buttons to select a city</h2>
+<h2 id="objective-2-add-buttons-to-select-a-city">Objective 2: Add buttons to select a city</h2>
 <p>Now that we have buttons for selecting the state, let’s add buttons for selecting the city:</p>
 <p><img alt="The same “Restaurants” web page from before, but this time the “Current state” is “Illinois” and there is a button for selecting “Springfield” as the city. The “Current city” is currently “none.”" src="../static/img/react-vite/08-stateful-hooks/02-solution-2.png" style="max-width:689px"></p>
 <p>After selecting both the state and city, we will see those values reflected in our UI:</p>
 <p><img alt="The same “Restaurants” web page from before, but this time the “Current city” is set to “Springfield”." src="../static/img/react-vite/08-stateful-hooks/02-solution-3.png" style="max-width:689px"></p>
-<h3>Setup 2</h3>
+<h3 id="setup-2">Setup 2</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be the following:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
 import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
@@ -1083,7 +1083,7 @@ export default RestaurantList
 
 </code></pre>
  <div line-highlight="14-17,77-90,only"></div>
-<h3>Verify 2</h3>
+<h3 id="verify-2">Verify 2</h3>
 <p>These tests will pass when the solution has been implemented properly.</p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong> to be the following:</p>
 <pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
@@ -1198,7 +1198,7 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
 
 </code></pre>
  <div line-highlight="89,92-93,95-96,98,102,108,only"></div>
-<h3>Exercise 2</h3>
+<h3 id="exercise-2">Exercise 2</h3>
 <p>Similar to our state buttons, let’s create buttons for selecting a city.</p>
 <ul>
 <li>Call <code>useState()</code> to get a <code>city</code> variable and <code>setCity</code> setter.</li>
@@ -1209,7 +1209,7 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
 </ul>
 <p>Hint: Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter"><code>Array.filter()</code></a> to narrow down the list of cities based on which state is selected.</p>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/02-problem?file=src/pages/RestaurantList/RestaurantList.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/02-problem?file=src/pages/RestaurantList/RestaurantList.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution 2</h3>
+<h3 id="solution-2">Solution 2</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
@@ -1341,18 +1341,18 @@ export default RestaurantList
  <div line-highlight="8,18-20,57,60-62,89-93,101,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/02-solution?file=src/pages/RestaurantList/RestaurantList.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/02-solution?file=src/pages/RestaurantList/RestaurantList.tsx">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Objective 3: Refactor cities into a custom Hook</h2>
+<h2 id="objective-3-refactor-cities-into-a-custom-hook">Objective 3: Refactor cities into a custom Hook</h2>
 <p>Our <code>RestaurantList.tsx</code> file has started to get long again. Let’s refactor the cities code into its own custom Hook so our code is more maintainable.</p>
-<h3>What are custom Hooks?</h3>
+<h3 id="what-are-custom-hooks">What are custom Hooks?</h3>
 <p>React’s Hooks API provides a powerful and flexible way to encapsulate and reuse functionality across our components. While React comes with a set of built-in Hooks, we can also create our own custom Hooks. This allows us to abstract component logic into reusable functions. Custom Hooks are particularly useful when we find ourselves repeating the same logic in multiple components.</p>
 <p>Custom Hooks are JavaScript functions that can use other React Hooks and provide a way to share logic across multiple components. Like built-in Hooks, custom Hooks must adhere to React’s rules of Hooks. The naming convention for custom Hooks is to start with <code>use</code>, like <code>useCustomHook</code>.</p>
-<h3>Why use custom Hooks?</h3>
+<h3 id="why-use-custom-hooks">Why use custom Hooks?</h3>
 <p>Putting stateful logic into a custom Hook has numerous benefits:</p>
 <p><strong>Reusability:</strong> One of the primary reasons for creating custom Hooks is reusability. You might find yourself repeating the same logic in different components—for example, fetching data from an API, handling form input, or managing a subscription. By refactoring this logic into a custom Hook, you can easily reuse this functionality across multiple components, keeping your code DRY (Don’t Repeat Yourself).</p>
 <p><strong>Separation of concerns:</strong> Custom Hooks allow you to separate complex logic from the component logic. This makes your main component code cleaner and more focused on rendering UI, while the custom Hook handles the business logic or side effects. It aligns well with the principle of single responsibility, where a function or module should ideally do one thing only.</p>
 <p><strong>Easier testing and maintenance:</strong> Isolating logic into custom Hooks can make your code easier to test and maintain. Since Hooks are just JavaScript functions, they can be tested independently of any component. This isolation can lead to more robust and reliable code.</p>
 <p><strong>Simplifying components:</strong> If your component is becoming too large and difficult to understand, moving some logic to a custom Hook can simplify it. This not only improves readability but also makes it easier for other developers to grasp what the component is doing.</p>
-<h3>How to create a custom Hook</h3>
+<h3 id="how-to-create-a-custom-hook">How to create a custom Hook</h3>
 <p>To create a custom Hook, you start by defining a function that starts with <code>use</code>. This Hook can call other Hooks and return whatever value is necessary.</p>
 <p>Let’s create a Hook that keeps track of a boolean state, and also provides a function for toggling that state:</p>
 <pre><code class="language-tsx">import { useState } from &quot;react&quot;
@@ -1373,7 +1373,7 @@ export function useToggle(intialValue = true) {
 
 </code></pre>
 <p>In the example above, you can see that our <code>useToggle</code> Hook is a function that has an internal <code>useState</code> to keep track of the toggle’s on/off status. This hook has a <code>handleToggle</code> function for changing its internal state. Lastly, we can see that the <code>useToggle</code> Hook returns an array with the <code>on</code> status and the <code>handleToggle</code> function.</p>
-<h4>How to use a custom Hook</h4>
+<h4 id="how-to-use-a-custom-hook">How to use a custom Hook</h4>
 <p>How would we use this Hook? Let’s take a look at this example:</p>
 <pre><code class="language-tsx">import { useToggle } from &quot;./useToggle&quot;
 
@@ -1402,7 +1402,7 @@ export default Toggle
 <div line-highlight='1, 4, 11-12, 16, only'></div>
 <p>In this component, we call our <code>useToggle</code> Hook with the initial state (<code>true</code>). Our Hook returns the <code>active</code> state and <code>toggleActive</code> function for changing the on/off state.</p>
 <p>We will learn more about binding the <code>input</code> values in a later section, but for now the takeaway is that we can create our custom <code>useToggle</code> Hook and call it in our components, just like React’s built-in Hooks!</p>
-<h3>Setup 3</h3>
+<h3 id="setup-3">Setup 3</h3>
 <p>✏️ Create <strong>src/services/</strong> (folder)</p>
 <p>✏️ Create <strong>src/services/restaurant/</strong> (folder)</p>
 <p>✏️ Create <strong>src/services/restaurant/hooks.ts</strong> and update it to be:</p>
@@ -1553,7 +1553,7 @@ export default RestaurantList
 
 </code></pre>
  <div line-highlight="5,only"></div>
-<h3>Verify 3</h3>
+<h3 id="verify-3">Verify 3</h3>
 <p>✏️ Create <strong>src/services/restaurant/hooks.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { renderHook } from &quot;@testing-library/react&quot;
 import { describe, expect, it } from &quot;vitest&quot;
@@ -1579,13 +1579,13 @@ describe(&quot;useCities Hook&quot;, () =&gt; {
 })
 
 </code></pre>
-<h3>Exercise 3</h3>
+<h3 id="exercise-3">Exercise 3</h3>
 <ul>
 <li>Move the <code>cities</code> logic (including the filtering) into our custom <code>useCities()</code> Hook.</li>
 <li>Update the <code>&lt;RestaurantList&gt;</code> component to use the new <code>useCities()</code> Hook.</li>
 </ul>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/03-problem?file=src/services/restaurant/hooks.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/03-problem?file=src/services/restaurant/hooks.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution 3</h3>
+<h3 id="solution-3">Solution 3</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
@@ -1728,7 +1728,7 @@ export function useCities(state: string): City[] {
  <div line-highlight="4-10,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/03-solution?file=src/services/restaurant/hooks.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/03-solution?file=src/services/restaurant/hooks.ts">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>Next, let’s learn how to <a href="./making-http-requests.html">make HTTP requests</a> with <code>fetch</code> in React applications.</p>
 
 </section>

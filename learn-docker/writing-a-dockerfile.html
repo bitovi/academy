@@ -469,7 +469,7 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/LiAkpRc6z0Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<h2>Our Dockerfile</h2>
+<h2 id="our-dockerfile">Our Dockerfile</h2>
 <p>Starting with the solution, the <code>Dockerfile</code> for our Node.js app should look like this.</p>
 <p>✏️ Copy and paste this to the root of your project and name the file <code>Dockerfile</code>:</p>
 <pre><code class="language-dockerfile">FROM node:15
@@ -486,7 +486,7 @@ EXPOSE $PORT
 CMD npm start
 </code></pre>
 <p>Let’s break down each line.</p>
-<h2>FROM instruction</h2>
+<h2 id="from-instruction">FROM instruction</h2>
 <p>The <code>FROM</code> instruction is the first line of any Dockerfile. It sets the base image to be used as a starting point for all other instructions. Using base images allows deferring:</p>
 <ul>
 <li>installation of a kernel and</li>
@@ -496,17 +496,17 @@ CMD npm start
 <p>In our case, We are using <code>node:15</code>. <code>node</code> specifies the name of the base image and <code>15</code> is a tag specifying the version of the image. This base image has the latest version of Node.js 15 pre-installed, allowing the rest of the <code>Dockerfile</code> to focus on logic specific to our application. The <code>node:15</code> image also has a <code>Dockerfile</code> which means it also has a <code>FROM</code> instruction. <code>node:15</code> uses <a href="https://hub.docker.com/_/debian">Debian</a> as its base image. This layering of Docker images repeats until a Dockerfile uses <code>FROM scratch</code> as its base image.</p>
 <p>By default, Docker will look for images  on <a href="https://hub.docker.com/">Dockerhub</a>. For example, the <code>node</code> image we are using is pulled from <a href="https://hub.docker.com/_/node">here</a>, but you can create your own base images and share them publicly or privately to Dockerhub or other package registries.</p>
 <p>Keep reading about the <a href="https://docs.docker.com/engine/reference/builder/#from">FROM instruction</a></p>
-<h2>ARG instruction</h2>
+<h2 id="arg-instruction">ARG instruction</h2>
 <p>The <code>ARG</code> instruction is used to define variables that are only available during the image build process. The instruction follows the syntax <code>ARG &lt;name&gt; [=&lt;default value&gt;]</code>.</p>
 <p>In our case, <code>ARG PORT=8000</code> is defining an argument called <code>PORT</code> with a default value of <code>8000</code>. It can be accessed in later instructions in the <code>Dockerfile</code> like a standard environment variable (<code>$PORT</code>) and overwritten during the build process with the <code>--build-arg</code> cli argument (<a href="https://docs.docker.com/engine/reference/commandline/build/#set-build-time-variables---build-arg">Docs</a>).</p>
 <p>Keep reading about the <a href="https://docs.docker.com/engine/reference/builder/#arg">ARG instruction</a></p>
-<h2>ENV instruction</h2>
+<h2 id="env-instruction">ENV instruction</h2>
 <p>The <code>ENV</code> instruction is used to define environment variables. Like <code>ARG</code>, it follows the syntax <code>ENV &lt;name&gt; [=&lt;default value&gt;]</code>. The difference between <code>ARG</code> and <code>ENV</code> is that variables defined with the <code>ENV</code> instruction can be used during the image build process and also when the container is running as standard environment variables. However, only <code>ARG</code> defined variables can be actually overwritten during the build process with the <code>--build-arg</code> cli argument. <code>ENV</code> can be overwritten at run time with the <code>-e</code> cli argument or an env file (<a href="https://docs.docker.com/engine/reference/run/#env-environment-variables">Docs</a>).</p>
 <p>To give us the flexibility to set and use variables at build time and run time, we use both <code>ARG</code> and <code>ENV</code> instructions together:</p>
 <pre><code class="language-dockerfile">ARG PORT=8000
 ENV PORT=$PORT
 </code></pre>
-<h3>ARG vs ENV</h3>
+<h3 id="arg-vs-env">ARG vs ENV</h3>
 <table>
    <tr>
       <th>Capability</th>
@@ -536,7 +536,7 @@ ENV PORT=$PORT
    </table>
 </table>
 <p>Keep reading about <a href="https://docs.docker.com/engine/reference/builder/#env">ENV</a></p>
-<h2>WORKDIR instruction</h2>
+<h2 id="workdir-instruction">WORKDIR instruction</h2>
 <p>The <code>WORKDIR</code> instruction sets the working directory for any subsequent instructions. If the directory does not exist, it will be automatically created.</p>
 <p>The <code>WORKDIR</code> instruction can be used multiple times.</p>
 <pre><code class="language-dockerfile">WORKDIR x
@@ -547,7 +547,7 @@ RUN pwd
 <p>Will result in <code>RUN pwd</code> and any later instruction being run in the <code>/x/y/z/</code> directory.</p>
 <p>In our case, <code>WORKDIR app</code> will create the <code>/app/</code> directory for us to copy our source code in to.</p>
 <p>Keep reading about the <a href="https://docs.docker.com/engine/reference/builder/#workdir">WORKDIR instruction</a></p>
-<h2>COPY instruction</h2>
+<h2 id="copy-instruction">COPY instruction</h2>
 <p>The <code>COPY</code> instruction follows the syntax <code>COPY [--chown=&lt;user&gt;:&lt;group&gt;] &lt;src&gt;... &lt;dest&gt;</code>.</p>
 <ul>
 <li><code>--chown=&lt;user&gt;:&lt;group&gt;</code> allows setting the ownership of the target file or directory using <a href="https://linux.die.net/man/1/chown">chown</a>. This is only available to Linux based images</li>
@@ -566,11 +566,11 @@ COPY package.json .
 <p>This will result in our <code>src/</code> directory being copied to <code>/app/src/</code> and <code>package.json</code> file to <code>/app/package.json</code> within the image. Using two <code>COPY</code> instructions instead of one is just preference and has no functional difference one way or another.</p>
 <p>There are more complex cases on when a trailing slash is required on a <code>&lt;src&gt;</code> or <code>&lt;dest&gt;</code> and how to handle whitespace. These advanced rules can be found in the official docs.</p>
 <p><a href="https://docs.docker.com/engine/reference/builder/#copy">Official Docs</a></p>
-<h2>RUN instruction</h2>
+<h2 id="run-instruction">RUN instruction</h2>
 <p>The <code>RUN</code> instruction allows arbitrary commands to be run during build time.</p>
 <p>In our case, we are using <code>RUN npm install</code> to install dependencies from the <code>package.json</code> file copied in to our image. As a reminder, <code>npm</code> is pre-installed as a part of our <code>node:15</code> base image.</p>
 <p>Keep reading about the <a href="https://docs.docker.com/engine/reference/builder/#run">RUN instruction</a></p>
-<h2>EXPOSE instruction</h2>
+<h2 id="expose-instruction">EXPOSE instruction</h2>
 <p><code>EXPOSE</code> specifies which ports the when running the container. Each port is separated by a space (<code></code>). By default the container listens using TCP, but UDP can be used by adding <code>/udp</code> after the port.</p>
 <p>For example:</p>
 <pre><code class="language-dockerfile">EXPOSE 80/udp
@@ -583,11 +583,11 @@ EXPOSE $PORT
 </code></pre>
 <p><code>EXPOSE</code> does not actually publish the port. When running the container with <code>docker run</code>, the <code>-p</code> flag needs to be used to access the port from your host machine. More on this in the next section.
 Learn more about <a href="https://docs.docker.com/engine/reference/builder/#expose">EXPOSE</a></p>
-<h2>CMD instruction</h2>
+<h2 id="cmd-instruction">CMD instruction</h2>
 <p><code>CMD</code> is a special instruction. It is not run during build time like a <code>RUN</code> instruction. Instead, it is run at runtime. When the <code>CMD</code> instruction finishes, the docker container will be destroyed.</p>
 <p>In our case, we are running our express server with <code>CMD npm start</code>. This will cause our container to run until a fatal error occurs or it is manually killed.</p>
 <p>More information about <a href="https://docs.docker.com/engine/reference/builder/#cmd">CMD</a></p>
-<h2>What’s next</h2>
+<h2 id="whats-next">What’s next</h2>
 <p>That was a lot on Dockerfiles. Next we’ll be looking at actually building and running our image!</p>
 
 </section>

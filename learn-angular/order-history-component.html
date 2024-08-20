@@ -677,7 +677,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this part, we will:</p>
 <ul>
 <li>Create a new order history component</li>
@@ -686,14 +686,14 @@ covering CanJS core libraries.">
 <li>Create ways to update and delete orders in the view</li>
 <li>Add order history link to our main navigation</li>
 </ul>
-<h2>Problem 1: Generate a <code>HistoryComponent</code> and create a route for it</h2>
+<h2 id="problem-1-generate-a-codehistorycomponentcode-and-create-a-route-for-it">Problem 1: Generate a <code>HistoryComponent</code> and create a route for it</h2>
 <p>We want to create a component that will show the app’s order history.</p>
-<h2>P1: Technical requirements</h2>
+<h2 id="p1-technical-requirements">P1: Technical requirements</h2>
 <ol>
 <li>Generate a <code>HistoryComponent</code> in <code>src/app/order/history/history.component.ts</code></li>
 <li>Show <code>HistoryComponent</code> when we navigate to <code>/order-history</code></li>
 </ol>
-<h2>P1: How to verify your solution is correct</h2>
+<h2 id="p1-how-to-verify-your-solution-is-correct">P1: How to verify your solution is correct</h2>
 <p>If you’ve implemented the solution correctly you should be able to navigate to <a href="http://localhost:4200/order-history">http://localhost:4200/order-history</a> and see <em>'history works!'</em>.</p>
 <p>✏️ Update the spec file <strong>src/app/app.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { Location } from '@angular/common';
@@ -1032,7 +1032,7 @@ describe('AppComponent', () =&gt; {
 </code></pre>
  <div line-highlight="18,210,281,284-287,320,324,331,only"></div>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
-<h2>P1: What you need to know</h2>
+<h2 id="p1-what-you-need-to-know">P1: What you need to know</h2>
 <p>You got this already, but just in case, here’s some hints:</p>
 <ul>
 <li>How to generate a component
@@ -1040,7 +1040,7 @@ describe('AppComponent', () =&gt; {
 </code></pre></li>
 <li>Update <code>app-routing.module.ts</code> to import the component you want and create a path to it.</li>
 </ul>
-<h2>P1: solution</h2>
+<h2 id="p1-solution">P1: solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ First, run:</p>
@@ -1088,19 +1088,19 @@ export class AppRoutingModule {}
 </code></pre>
 <div line-highlight='4, 26-29, only'></div>
 <p></details></p>
-<h2>Problem 2: Add <code>HistoryComponent</code> to navigation</h2>
+<h2 id="problem-2-add-codehistorycomponentcode-to-navigation">Problem 2: Add <code>HistoryComponent</code> to navigation</h2>
 <p>We want a user to be able to navigate to the <code>HistoryComponent</code> via a link in the main navigation.</p>
-<h2>P2: Technical requirements</h2>
+<h2 id="p2-technical-requirements">P2: Technical requirements</h2>
 <ol>
 <li>Add a <strong>Order History</strong> link to the navigation bar at the top of the page.</li>
 <li>Add the class name <code>active</code> to the link if we are on the <code>OrderHistory</code> page.</li>
 </ol>
-<h2>P2: What you need to know</h2>
+<h2 id="p2-what-you-need-to-know">P2: What you need to know</h2>
 <p>You’ve seen this before. Check out how the <strong>Home</strong> link works in
 <code>app.component.html</code>.</p>
-<h2>P2: How to verify your solution is correct</h2>
+<h2 id="p2-how-to-verify-your-solution-is-correct">P2: How to verify your solution is correct</h2>
 <p>If you’ve implemented the solution correctly you should now be able to navigate to <a href="http://localhost:4200/order-history">http://localhost:4200/order-history</a> and see a list of all orders.</p>
-<h2>P2: Solution</h2>
+<h2 id="p2-solution">P2: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/app.component.html</strong></p>
@@ -1127,14 +1127,14 @@ export class AppRoutingModule {}
 </code></pre>
  <div line-highlight="13-15,"></div>
 <p></details></p>
-<h2>Problem 3: List All Orders</h2>
+<h2 id="problem-3-list-all-orders">Problem 3: List All Orders</h2>
 <p>We want to be able to see a list of all created orders and their varying statuses of &quot;new&quot;, &quot;preparing&quot;, &quot;delivery&quot;, and &quot;delivered&quot;.</p>
-<h2>P3: Technical requirements</h2>
+<h2 id="p3-technical-requirements">P3: Technical requirements</h2>
 <ol>
 <li>List all orders in the <code>HistoryComponent</code>.</li>
 <li>Make sure the <code>&lt;div&gt;</code> for each order has a class name of <em>'order'</em> and a class name that is the <code>order.status</code> value. Make sure you’ve created a new order.</li>
 </ol>
-<h2>P3: Setup</h2>
+<h2 id="p3-setup">P3: Setup</h2>
 <p>1. ✏️ Copy the following into <strong>src/app/order/history/history.component.ts</strong>. You will fill out its
 <code>getOrders</code> method. The getters <code>newOrders</code>, <code>preparingOrders</code>, <code>deliveryOrders</code>, and <code>deliveredOrders</code> will be used later.</p>
 <pre><code class="language-ts">import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -1237,7 +1237,7 @@ iterate through orders and add the right class names to the outer <code>&lt;div&
 
 </code></pre>
 <div line-highlight='9,10, only'></div>
-<h2>P3: How to verify your solution is correct</h2>
+<h2 id="p3-how-to-verify-your-solution-is-correct">P3: How to verify your solution is correct</h2>
 <p>✏️ Update the menu-items spec file <strong>src/app/order/history/history.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Observable, of } from 'rxjs';
@@ -1405,7 +1405,7 @@ describe('HistoryComponent', () =&gt; {
 
 </code></pre>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
-<h2>P3: What you need to know</h2>
+<h2 id="p3-what-you-need-to-know">P3: What you need to know</h2>
 <ul>
 <li>How to import a service and get data out of it. Hint: Import it and create a
 property in the constructor.</li>
@@ -1415,7 +1415,7 @@ property in the constructor.</li>
 <code>[ngClass]</code> and setting it to an array like:</p>
 <pre><code class="language-html">&lt;div [ngClass]=&quot;['first','second']&quot;&gt;&lt;/div&gt;
 </code></pre>
-<h2>P3: Solution</h2>
+<h2 id="p3-solution">P3: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/order/history.component.ts</strong></p>
@@ -1530,9 +1530,9 @@ export class HistoryComponent implements OnInit, OnDestroy {
 </code></pre>
  <div line-highlight="9-10,only"></div>
 <p></details></p>
-<h2>Problem 4: Creating a Child Component to Handle Order States</h2>
+<h2 id="problem-4-creating-a-child-component-to-handle-order-states">Problem 4: Creating a Child Component to Handle Order States</h2>
 <p>We want to create a child component that will take a list of orders by status and display them, as well as actions a user can perform on an order.</p>
-<h2>P4: Technical requirements</h2>
+<h2 id="p4-technical-requirements">P4: Technical requirements</h2>
 <ol>
 <li>Group the orders by status.</li>
 <li>Allow the user to change the status of an order.</li>
@@ -1571,7 +1571,7 @@ of orders and other values like:
 <li><code>total(items)</code> that will return the order total</li>
 </ul></li>
 </ul>
-<h2>P4: Setup</h2>
+<h2 id="p4-setup">P4: Setup</h2>
 <p>1. ✏️ Create the <code>ListComponent</code>:</p>
 <pre><code class="language-shell">ng g component order/list
 </code></pre>
@@ -1666,7 +1666,7 @@ of orders and other values like:
 &lt;div class=&quot;order empty&quot;&gt;{{ emptyMessage }}&lt;/div&gt;
 
 </code></pre>
-<h2>P4: How to verify your solution is correct</h2>
+<h2 id="p4-how-to-verify-your-solution-is-correct">P4: How to verify your solution is correct</h2>
 <p>✏️ Update <strong>src/app/order/history/history.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -1961,12 +1961,12 @@ describe('ListComponent', () =&gt; {
 
 </code></pre>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
-<h2>P4: What you need to know</h2>
+<h2 id="p4-what-you-need-to-know">P4: What you need to know</h2>
 <ul>
 <li>How to add <code>@Input()</code>s to a component so it can be passed values.</li>
 <li>How to call methods on a service that you get from the <code>constructor</code>.</li>
 </ul>
-<h2>P4: Solution</h2>
+<h2 id="p4-solution">P4: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/order/list.component.ts</strong></p>

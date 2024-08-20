@@ -574,7 +574,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>After estimating the value of an initiative and its costs, it’s time to decide where the initiative belongs in the product backlog. In this training, the product backlog is the initiatives with the <code>Ready</code> status.</p>
 <p><img src="../static/img/program-management-with-jira/prioritizing/kanban-board.png" class="content-400-800-shadow"/></p>
 <p>Typically, prioritization is outside of a Program Manager’s responsibility. So, we will not go into much detail about prioritization. However, we will review:</p>
@@ -586,10 +586,10 @@ covering CanJS core libraries.">
 <p>The following is the <a href="https://docs.google.com/presentation/d/1JiUiEqWRHhvqKaIfkixBZQUffnNt6tbZlj-sc1cD798/edit?usp=sharing">Google Slides presentation</a>
 for this material:</p>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQgQ0suP1xHN6JpkXwCsObHoz_-ttwK_whjjcU91lK1rIaa7rHvi0oL0-9Er5Kd6jvF61pg53YH1G7g/embed?start=false&loop=false&delayms=3000" frameborder="0" class="block-16-by-9" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-<h2>Prioritization Frameworks</h2>
+<h2 id="prioritization-frameworks">Prioritization Frameworks</h2>
 <p>Prioritization frameworks help guide people toward making a decision on what are the most valuable initiatives to pursue. Ultimately, there is no framework that can model all the complex factors that go into these decisions and rank initiatives accordingly. And because different frameworks omit important factors, sticking too closely to any one framework will likely result in uninspired and non-optimal product decisions.</p>
 <p>Fortunately, there are a wide variety of different prioritization frameworks to learn from. We will share the basics of each framework and our thoughts on their strengths and weaknesses. Finally, we will share some extra considerations not found in the frameworks below.</p>
-<h2>MoSCoW</h2>
+<h2 id="moscow">MoSCoW</h2>
 <p>The <a href="https://www.wrike.com/blog/guide-to-moscow-method/">MoSCoW</a> method is a quick filtering mechanism that groups initiative ideas into 4 categories:</p>
 <ul>
 <li><p><strong>M</strong>ust have</p></li>
@@ -602,7 +602,7 @@ for this material:</p>
 <p>The MoSCoW method is very simple and fast. MoSCoW is most useful when starting on a new product. It can quickly identify where to focus (the <em>Musts</em>). It can be a nice first-pass as you set out to build an MVP.</p>
 <p><strong>Weaknesses</strong></p>
 <p>MoSCoW doesn’t provide much guidance on how to prioritize within each of its categories. It’s also susceptible to having too many <em>Musts</em>.</p>
-<h2>Kano Model</h2>
+<h2 id="kano-model">Kano Model</h2>
 <p><img src="../static/img/program-management-with-jira/prioritizing/kano.png" class="content-400-800-shadow"/></p>
 <p>The <a href="https://en.wikipedia.org/wiki/Kano_model">Kano Model</a> attempts to model how customers think about products. It groups features into 3 main categories:</p>
 <ul>
@@ -622,7 +622,7 @@ Example: Self-driving cars.</p></li>
 <p>Kano can help product teams identify their core customer problem and how they will differentiate themselves.</p>
 <p><strong>Weaknesses</strong></p>
 <p>Kano doesn’t factor in the costs of feature development, nor does it attempt to gauge the financial benefits of a feature.</p>
-<h2>RICE Scoring</h2>
+<h2 id="rice-scoring">RICE Scoring</h2>
 <p><a href="https://roadmunk.com/guides/rice-score-prioritization-framework-product-management/">RICE Scoring</a> asks product teams to evaluate an initiative across three criteria:</p>
 <ul>
 <li><p>Reach - How many people will the initiative affect?<br />
@@ -648,7 +648,7 @@ Example: It will take 6 person-months between product design, development, QA, a
 <li><p>0.25 - minimal impact</p></li>
 </ul>
 <p>Using relative value means we can’t quantify the <em>value</em> being created. For example, it might be more valuable to have a high impact on a few high-value customers than a low impact on a many lower-value customers.</p>
-<h2>Shortest Weighted Job First</h2>
+<h2 id="shortest-weighted-job-first">Shortest Weighted Job First</h2>
 <p><a href="https://techbeacon.com/app-dev-testing/prioritize-your-backlog-use-weighted-shortest-job-first-wsjf-improved-roi">Shortest Weighted Job First</a> (SWJF) is similar to RICE, but includes a stronger recognition that, all things equal, projects that can add value earlier should outweigh projects that provide more value but take longer to acquire. The formula for SWJF is:</p>
 <pre><code class="language-java">SCORE = ( User-Business Value + 
           Time Criticality + 
@@ -666,7 +666,7 @@ Example: It will take 6 person-months between product design, development, QA, a
 <p>SWJF adds time criticality and non “value” benefits to its calculation. Furthermore, it uses Job Duration instead of Job Cost to add more weight to initiatives that can be delivered quickly.</p>
 <p><strong>Weaknesses</strong></p>
 <p>Like RICE, this uses relative weights so the quantity of value can not be determined. Also, it lacks a confidence field.</p>
-<h2>Projected Value Upside</h2>
+<h2 id="projected-value-upside">Projected Value Upside</h2>
 <p><a href="https://www.investopedia.com/terms/u/upside.asp">Projected Value Upside</a> is an investor tool for calculating the increased value of an investment in some specified timeframe. Typically, it’s calculated as follows:</p>
 <pre><code class="language-java">VALUE = ( Additional Revenue - Costs ) / Time
 </code></pre>
@@ -679,7 +679,7 @@ Example: It will take 6 person-months between product design, development, QA, a
 <p>First, different initiatives return on investment in different timescales. Some initiatives might provide a large value once. Others might provide less value but over a long time.</p>
 <p>Second, the value of items like tech debt are challenging to factor into value.</p>
 <p>Finally, it doesn’t naturally factor in the cost of delaying an initiative. For example, if a feature is a basic-need, adding it might not increase revenue, it will only prevent the product from losing revenue.</p>
-<h2>A Summary of Prioritization Considerations</h2>
+<h2 id="a-summary-of-prioritization-considerations">A Summary of Prioritization Considerations</h2>
 <p>The following is a list of items to consider when prioritizing pulled from the frameworks listed above:</p>
 <ul>
 <li><p>How much value do you expect the initiative to create?</p>
@@ -701,7 +701,7 @@ Example: It will take 6 person-months between product design, development, QA, a
 </ul></li>
 </ul>
 <p>Finally, consider the confidence of all your answers. Adjust for more or less certainty.</p>
-<h2>Prioritizing the Ready Column</h2>
+<h2 id="prioritizing-the-ready-column">Prioritizing the Ready Column</h2>
 <p>Making a decision on prioritization is typically outside the program manager’s responsibility. However, if you are making the decision, by now, you hopefully have an initiative that:</p>
 <ul>
 <li><p>Is validated to show a strong likelihood of returning value.</p></li>
@@ -721,11 +721,11 @@ Example: It will take 6 person-months between product design, development, QA, a
 <ul>
 <li>Leave in <code>Estimating</code> or <code>Validating</code> and prioritize the initiative in that column accordingly.</li>
 </ul>
-<h2>Exercise</h2>
+<h2 id="exercise">Exercise</h2>
 <p>In this exercise, the group will l prioritize the initiatives.</p>
-<h3>Step 1: Review each initiative</h3>
+<h3 id="step-1-review-each-initiative">Step 1: Review each initiative</h3>
 <p>Review each initiative and discuss prioritization considerations.</p>
-<h3>Step 2: Sort the initiatives</h3>
+<h3 id="step-2-sort-the-initiatives">Step 2: Sort the initiatives</h3>
 <p>Each team member should provide their sorted list. Combine the team’s sorted list into the final prioritized list.</p>
 
 </section>

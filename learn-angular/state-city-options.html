@@ -678,7 +678,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this part, we will:</p>
 <ul>
 <li>Learn About Reactive Forms</li>
@@ -686,14 +686,14 @@ covering CanJS core libraries.">
 <li>Create a reactive form in our Restaurant Component</li>
 <li>Create a form in our markup and connect inputs to reactive form</li>
 </ul>
-<h2>Problem</h2>
+<h2 id="problem">Problem</h2>
 <p>Currently, we are showing a list of all restaurants:</p>
 <p><img src="../static/img/angular/8-state-city-options/before.png"
 style="border: solid 1px black; max-width: 320px;"/></p>
 <p>We would like our user to be able to filter restaurants based on city and state. To accomplish this,
 we will need to implement a reactive form with two controls, <code>state</code> and <code>city</code>, that are dropdowns displaying a list of cities and states. It will look like the following:</p>
 <p><img src="../static/img/angular/pmo-dropdowns.gif" alt="Place My Order App city and state dropdowns" title="Place My Order App city and state dropdowns" /></p>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <p>To solve this, you will need to know:</p>
 <ul>
 <li>How to create a <code>FormControl</code></li>
@@ -702,13 +702,13 @@ we will need to implement a reactive form with two controls, <code>state</code> 
 <li>How to use <code>FormBuilder</code></li>
 <li>How to use <code>ngFor</code> (you learned this in the Creating Components section! ✔️)</li>
 </ul>
-<h2>Reactive Forms</h2>
+<h2 id="reactive-forms">Reactive Forms</h2>
 <p>We’re eventually going to use select boxes to handle our user’s input. Angular’s <a href="https://angular.io/guide/reactive-forms">Reactive Forms</a> API provides a clean way to get data from user input and do work based on it.</p>
 <p>From the Angular documentation:</p>
 <blockquote>
 <p>Reactive forms use an explicit and immutable approach to managing the state of a form at a given point in time. Each change to the form state returns a new state, which maintains the integrity of the model between changes. Reactive forms are built around observable streams, where form inputs and values are provided as streams of input values, which can be accessed synchronously.</p>
 </blockquote>
-<h2>ReactiveFormsModule</h2>
+<h2 id="reactiveformsmodule">ReactiveFormsModule</h2>
 <p>To use reactive forms we must import our ReactiveFormsModule into the root app.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -806,7 +806,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='79,only'></div>
-<h2>FormControl</h2>
+<h2 id="formcontrol">FormControl</h2>
 <p>The basic element of a reactive form is the <a href="https://angular.io/api/forms/FormControl">FormControl</a>. This class manages the form input model and connection to its input element in the DOM and inherits from the <a href="https://angular.io/api/forms/AbstractControl">AbstractControl</a>
 class. It’s worth getting familiar with the methods available in this class (like setValidators and setValue), as they’re used quite often in reactive form development. The formControl is bound to its element in the DOM using the <code>[formControl]</code> directive.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -869,7 +869,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='17, 24, 28, 33, only'></div>
-<h2>FormGroup</h2>
+<h2 id="formgroup">FormGroup</h2>
 <p>A <a href="https://angular.io/api/forms/FormGroup">FormGroup</a> is a way of grouping <code>FormControl</code>s and tracking the state of the entire group. For instance, if you want to get the values of all of your <code>FormControl</code>s to submit as an object of those values, you’d use <code>formGroupName.value</code>. Notice the way we connect our input in the markup is slightly different - we can use the <code>formControlName</code> directive to bind to the name value of a <code>FormControl</code> in our <code>FormGroup</code>. Groups can be nested within other groups or arrays.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -951,7 +951,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='17,23-37,39,43,45-49,53-55,only'></div>
-<h2>FormArray</h2>
+<h2 id="formarray">FormArray</h2>
 <p>A <a href="https://angular.io/api/forms/FormArray">FormArray</a> aggregates <code>FormControl</code>s into an array. It’s different than FormGroup in that the controls inside are serialized as an array. <code>FormArray</code>s are very useful when dealing with repeated <code>FormControl</code>s or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.</p>
 <p>This example shows the use of <code>FormArray</code> and using an <code>insert</code> method to dynamically add more <code>FormGroup</code>s to the <code>users</code> FormArray.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -1064,7 +1064,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='17,23-45,47,53-66,70-81,only'></div>
-<h2>FormBuilder</h2>
+<h2 id="formbuilder">FormBuilder</h2>
 <p><a href="https://angular.io/api/forms/FormBuilder">FormBuilder</a> is a shorthand way to quickly write forms by reducing boilerplate code of manually having to write <code>new FormControl</code>, <code>new FormGroup</code>, <code>new FormArray</code> repeatedly.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -1143,7 +1143,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='17,40,42,45-49,only'></div>
-<h2>Form Nullability</h2>
+<h2 id="form-nullability">Form Nullability</h2>
 <p>Since Angular v14, Angular Forms are strictly typed by default.</p>
 <p>By default, all controls include the type <code>null</code>. The reason for the <code>null</code> type is that when calling <code>reset</code> on the form or its controls, the values are updated to <code>null</code>.</p>
 <p>To avoid the default behavior and having to handle possible <code>null</code> values, we can use the <code>NonNullableFormBuilder</code>, either via injecting it or accessing the FormBuilder’s <code>nonNullable</code> property.</p>
@@ -1169,9 +1169,9 @@ platformBrowserDynamic()
   }
 }
 </code></pre>
-<h2>Technical requirements</h2>
+<h2 id="technical-requirements">Technical requirements</h2>
 <p>Create a reactive form with two formControls, <code>state</code> and <code>city</code>, and use the <code>formControlName</code> directive to bind the formControls to their select elements in the template.</p>
-<h2>Setup</h2>
+<h2 id="setup">Setup</h2>
 <p>Here’s some code to get you started. Notice that:</p>
 <ul>
 <li>The <code>cities</code> and <code>states</code> are hard coded (for this exercise).</li>
@@ -1335,7 +1335,7 @@ export class AppModule { }
 
 </code></pre>
  <div line-highlight="3,23,only"></div>
-<h2>How to verify your solution is correct</h2>
+<h2 id="how-to-verify-your-solution-is-correct">How to verify your solution is correct</h2>
 <p>When you visit <a href="http://localhost:4200/restaurants">localhost:4200/restaurants</a>, there will now be state and city dropdown options populated with fake data.</p>
 <p><img src="../static/img/angular/pmo-dropdowns.gif" alt="Place My Order App city and state dropdowns" title="Place My Order App city and state dropdowns" /></p>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
@@ -1959,7 +1959,7 @@ describe('AppComponent', () =&gt; {
 
 </code></pre>
  <div line-highlight="11,199,211-214,254,only"></div>
-<h2>The solution</h2>
+<h2 id="the-solution">The solution</h2>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary>

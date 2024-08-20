@@ -527,15 +527,15 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, you will:</p>
 <ul>
 <li>Learn about TypeScript configuration options to help us optimize our workflow.</li>
 <li>Learn about linting with TypeScript.</li>
 </ul>
-<h2>Configuring TypeScript</h2>
+<h2 id="configuring-typescript">Configuring TypeScript</h2>
 <p>We’re able to configure how our projects use TypeScript from selecting which files to compile to removing comments from those files. This is done through the creation of a <code>tsconfig.json</code> file.</p>
-<h3>tsconfig.json</h3>
+<h3 id="tsconfigjson">tsconfig.json</h3>
 <p>Customize the TypeScript compiling and linting options by creating a <code>tsconfig.json</code> file in the root directory of the TypeScript project. The following config will</p>
 <ul>
 <li>specify ECMAScript target version as 'es5'</li>
@@ -554,7 +554,7 @@ covering CanJS core libraries.">
 }
 </code></pre>
 <p>To learn more about all of the options tsconfig has, check out the <a href="https://www.typescriptlang.org/tsconfig">TypeScript TSConfig Reference</a>. The Schema can also be found <a href="http://json.schemastore.org/tsconfig">here</a>.</p>
-<h2>Linting</h2>
+<h2 id="linting">Linting</h2>
 <p>We can also configure linting options to catch bugs and help enforce uniform styling. The following options will warn on unused local variables and parameters, and expressions or declarations implying 'any'.</p>
 <p>Besides linting with the TypeScript compiler, <code>tsc</code>, it is recommended to use a specialized linter like <code>ESLint</code>.</p>
 <pre><code class="language-javascript">{
@@ -567,9 +567,9 @@ covering CanJS core libraries.">
     }
 }
 </code></pre>
-<h3>ESLint</h3>
+<h3 id="eslint">ESLint</h3>
 <p>ESLint is a static code analysis tool. It helps us find and fix problematic patterns with our code, enforce style guidelines and is highly customizable - we can code and plug in our own rules.</p>
-<h3>Why Migrate to ESLint?</h3>
+<h3 id="why-migrate-to-eslint">Why Migrate to ESLint?</h3>
 <blockquote>
 <p>If we are looking for migrating to ESLint on an existing Angular project, consider using <a href="https://github.com/angular-eslint/angular-eslint">angular-eslint</a>. We also have a <a href="https://www.bitovi.com/blog/angular-upgrades-painless-migration-from-tslint-to-eslint" title="Angular Upgrades: Painless Migration from TSLint to ESLint">blog post</a> to help you on that!</p>
 </blockquote>
@@ -578,16 +578,16 @@ covering CanJS core libraries.">
 <li><p>ESLint supports both TypeScript and JavaScript, so it can be used on a wider variety of projects when compared to TSLint.</p></li>
 <li><p>Performance improvements <a href="https://blog.palantir.com/tslint-in-2019-1a144c2317a9" title="TSLint in 2019">have been listed</a> as one of the reasons by the TSLint creators and maintainers for its deprecation.</p></li>
 </ul>
-<h3>Before Starting</h3>
+<h3 id="before-starting">Before Starting</h3>
 <p>It should be fairly painless to migrate to ESLint, but we do recommended checking if there are any TSLint rules that are considered essential to our project, and comparing those with ESLint to see if there are mismatches regarding our project’s requirements. This <a href="https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/TSLINT_RULE_ALTERNATIVES.md">Migration Guide</a> is a great source for comparing ESLint and TSLint rules.</p>
-<h3>Migration</h3>
+<h3 id="migration">Migration</h3>
 <p>The <a href="https://github.com/typescript-eslint/tslint-to-eslint-config">tslint-to-eslint-config repository</a> aims to convert the TSLint configuration to &quot;the closest possible ESLint equivalent&quot;.</p>
 <ol>
 <li>Depending on our project, we might want to take a look at some of the <a href="https://github.com/typescript-eslint/tslint-to-eslint-config#cli-flags">CLI flags available</a>;</li>
 <li>Run <code>npx tslint-to-eslint-config</code>.</li>
 </ol>
 <p>And that’s it!</p>
-<h3>ESLint Configuration</h3>
+<h3 id="eslint-configuration">ESLint Configuration</h3>
 <p>After the migration, we should see a new file called <code>.eslintrc.js</code> with ESLint configuration in it.
 It looks like this one:</p>
 <pre><code class="language-javascript">module.exports = {
@@ -607,7 +607,7 @@ It looks like this one:</p>
 <p>Yes, there is a <code>Yoda</code> rule in ESLint. It is a rule under &quot;best practice&quot; category, and what it does is that it can enforce developers to either write a condition like <code>if (lightsaber.color === 'red')</code> or <code>if ('red' === lightsaber.color)</code>.
 Here is a <a href="https://eslint.org/docs/rules/">list of ESLint rules</a>. Take some time getting to know them!</p>
 <p>For more information on TypeScript with ESLint, we can refer to the <a href="https://github.com/typescript-eslint/typescript-eslint">typescript-eslint repository</a>.</p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>Next we will learn how to import and export functions between <a href="modules.html" title="Learn how to export and import values from a file.">Modules</a>.</p>
 
 </section>

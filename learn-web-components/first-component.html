@@ -528,14 +528,14 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this part, we will:</p>
 <ul>
 <li>Learn how to use a web component in HTML.</li>
 <li>Write the JavaScript necessary for registering a custom element.</li>
 <li>Accept arguments, in the form of HTML attributes and JavaScript properties, to our component and respond when they change.</li>
 </ul>
-<h2>Problem</h2>
+<h2 id="problem">Problem</h2>
 <p>We want to build a hello world component. To do that, create a custom element that displays the greeting <code>Hello ${name}</code> in its <code>innerHTML</code>. It should accept the <code>name</code> argument either as an <a href="https://developer.mozilla.org/en-US/docs/Glossary/Attribute">attribute</a> or as a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors">property</a>.</p>
 <p>It should:</p>
 <ol>
@@ -547,7 +547,7 @@ covering CanJS core libraries.">
 <p><img src="../static/img/web-components/bt-hello-world.gif"
 style="border: solid 1px black; max-width: 100%;"
 alt="Text displaying 'Hello world' and a few other greetings." /></p>
-<h2>How to Solve This Problem</h2>
+<h2 id="how-to-solve-this-problem">How to Solve This Problem</h2>
 <ol>
 <li>Create a class that extends <code>HTMLElement</code>.</li>
 <li>Create a method on the class that renders <code>Hello ${name}</code>.</li>
@@ -556,8 +556,8 @@ alt="Text displaying 'Hello world' and a few other greetings." /></p>
 <li>Add the tag to the page.</li>
 <li>Use <code>setTimeout</code> to change the name as described in the Problem section above.</li>
 </ol>
-<h2>What you need to know</h2>
-<h3>Using custom elements</h3>
+<h2 id="what-you-need-to-know">What you need to know</h2>
+<h3 id="using-custom-elements">Using custom elements</h3>
 <p>Custom elements can be used the same way that regular elements can; with one bonus included. You can:</p>
 <ul>
 <li><p>Include them directly in HTML like so:</p>
@@ -581,7 +581,7 @@ document.body.appendChild(element);
 </code></pre>
 <div class='codepen'></div>
 <p>Click the &quot;Run in your browser&quot; button above and notice that... nothing happens. In order to do anything useful, we have to register our element.</p>
-<h3>Registering our tag</h3>
+<h3 id="registering-our-tag">Registering our tag</h3>
 <p>The <a href="https://html.spec.whatwg.org/multipage/custom-elements.html">custom elements API</a> provides a way to hook into the browser’s HTML parser and receive callbacks whenever a certain tag is encountered. Think about that; your code can run before the page has even finished loading (provided your script has run). That’s a lot of power.</p>
 <p>Custom elements are classes that extend <a href="https://html.spec.whatwg.org/multipage/dom.html#elements-in-the-dom">HTMLElement</a>. This is the base class from which all elements, both built-in and custom, derive. For example the <code>&lt;progress&gt;</code> element is an instance of <code>HTMLProgressElement</code>.</p>
 <p>To register our own tag we first extend HTMLElement like so:</p>
@@ -603,14 +603,14 @@ customElements.define('my-greeting', MyGreeting);
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
-<h3>Responding to attribute changes</h3>
+<h3 id="responding-to-attribute-changes">Responding to attribute changes</h3>
 <p>A component is only useful if it can receive parameters just like functions do through function arguments. There are two primary ways for a web component to receive arguments:</p>
 <ul>
 <li>Through attributes like <code>foo=&quot;bar&quot;</code>.</li>
 <li>Through properties in JavaScript like <code>element.foo = 'bar';</code></li>
 </ul>
 <p>In this exercise we are doing both.</p>
-<h4>attributeChangeCallback</h4>
+<h4 id="attributechangecallback">attributeChangeCallback</h4>
 <p>In order to understand attributes in custom elements we’ll learn about our first lifecycle callback. <code>attributeChangedCallback</code> is a method you define on your element class. It will be called back with the name of the attribute, as well as the new and old value.</p>
 <pre><code class="language-js">class MyGreeting extends HTMLElement {
   attributeChangedCallback(attributeName, oldValue, newValue) {
@@ -632,7 +632,7 @@ customElements.define('my-greeting', MyGreeting);
 
 customElements.define('my-greeting', MyGreeting);
 </code></pre>
-<h3>Responding to property changes</h3>
+<h3 id="responding-to-property-changes">Responding to property changes</h3>
 <p>This one is a bit easier if you are already familiar with JavaScript classes. Since an element is a JavaScript object it can receive properties the same way any JavaScript class can.</p>
 <p>We can add a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set">setter</a> to be notified when the <code>name</code> property is changed.</p>
 <p>Below is a greeting class that uses setters</p>
@@ -648,7 +648,7 @@ customElements.define('my-greeting', MyGreeting);
 </code></pre>
 <p>In the above we change it so that if an attribute changes it just calls the property setter. The property then saves its value in a &quot;private&quot; variable <code>this._name</code>.</p>
 <p>This mirrors the way most built-in elements work; changing a property does <strong>not</strong> reflect in the attribute; but changing an attribute does change the value of the property.</p>
-<h2>Solution</h2>
+<h2 id="solution">Solution</h2>
 <p>✏️ The following is a full greeting element that accepts <code>name</code> attribute and property, rendering when either changed.</p>
 <p><details>
 <summary>Click to see the solution</summary></p>

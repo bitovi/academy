@@ -678,7 +678,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this part, we will:</p>
 <ul>
 <li>Learn the differences between imperative and declarative state</li>
@@ -689,7 +689,7 @@ covering CanJS core libraries.">
 <p><strong>Note:</strong> You should complete <a href="../learn-rxjs.html">Bitovi Academy’s RxJS training</a> before attempting
 the following exercise. Although even if you haven’t, read on if you’re interested why you might want to use declarative
 state.</p>
-<h2>Imperative vs Declarative state</h2>
+<h2 id="imperative-vs-declarative-state">Imperative vs Declarative state</h2>
 <p>To understand the difference between imperative and declarative styles of programming we first need to review the
 concept of state. State is essentially the &quot;remembered information&quot; of a program, <em>i.e</em> the variables used as part of
 the program. Imperative &amp; declarative styles differ in how the program specifies the state.</p>
@@ -751,12 +751,12 @@ imperative code, which may modify state under conditions which may at first seem
 consequences.</p>
 <p>An additional benefit of Angular + RxJS is that declarative state can be used directly in the template with the async pipe, removing the need
 for most subscriptions in our component. Avoiding subscriptions eliminates the need to manage them in <code>onDestroy</code>.</p>
-<h2>Essential RxJS Operators &amp; Functions</h2>
+<h2 id="essential-rxjs-operators-amp-functions">Essential RxJS Operators &amp; Functions</h2>
 <p>RxJS operators are the actions that run to modify values in a stream. There are dozens of operators that do things
 like transform individual values, filter values, combine streams, and much more. We’ll just be touching on a small
 selection of operators.</p>
 <p>We’ll also demonstrate important RxJS static functions used to create and combine streams.</p>
-<h3>Creating A Stream</h3>
+<h3 id="creating-a-stream">Creating A Stream</h3>
 <p>The <a href="https://rxjs.dev/api/index/function/of"><code>of</code></a> function simply creates an observable that emits
 the values passed to <a href="https://rxjs.dev/api/index/function/of"><code>of</code></a>. This is often used when creating
 demo streams or composing streams.</p>
@@ -780,7 +780,7 @@ demo streams or composing streams.</p>
 <p>In the solution of this exercise we’ll use <a href="https://rxjs.dev/api/index/function/of"><code>of</code></a> to return a
 stream during <a href="https://rxjs.dev/api/operators/mergeMap"><code>mergeMap</code></a>. Look at the
 <a href="https://rxjs.dev/api/operators/mergeMap"><code>mergeMap</code></a> example below to see that in action.</p>
-<h3>Combining Streams</h3>
+<h3 id="combining-streams">Combining Streams</h3>
 <p><a href="https://rxjs.dev/api/index/function/combineLatest"><code>combineLatest</code></a> returns a
 stream that emits arrays containing the most recent values of each stream. One caveat is that
 <a href="https://rxjs.dev/api/index/function/combineLatest"><code>combineLatest</code></a> will only start emitting arrays
@@ -821,7 +821,7 @@ when all input streams have emitted a value.</p>
 
 </code></pre>
 <div class='codepen'></div>
-<h3>Initializing A Stream</h3>
+<h3 id="initializing-a-stream">Initializing A Stream</h3>
 <p>A common situation is working with streams that only produce a value after an event, for example when an HTTP request
 completes or when a value changes in a form control. When using a stream like this in your components, you’ll likely
 want to have an initial &quot;base state&quot; that your view can use during the initial render. In RxJS this is handled by the
@@ -849,7 +849,7 @@ stream is first subscribed to.</p>
 
 </code></pre>
 <div class='codepen'></div>
-<h3>Transforming The Values Of A Stream</h3>
+<h3 id="transforming-the-values-of-a-stream">Transforming The Values Of A Stream</h3>
 <p>When values are emitted from a stream it’s common to transform them in some way before they’re used by your application.
 One operator used for this is the <a href="https://rxjs.dev/api/operators/map"><code>map</code></a> operator, which
 takes an emitted value and returns a modified value that will be passed to the subsequent operators in the stream.</p>
@@ -872,7 +872,7 @@ takes an emitted value and returns a modified value that will be passed to the s
 
 </code></pre>
 <div class='codepen'></div>
-<h3>Emitting Values From Another Stream</h3>
+<h3 id="emitting-values-from-another-stream">Emitting Values From Another Stream</h3>
 <p>When using a stream you may want to emit values from another stream as part of the original stream. RxJS offers a
 variety of ways to do this, but the one we’ll demonstrate is the
 <a href="https://rxjs.dev/api/operators/mergeMap"><code>mergeMap</code></a> operator. Like the map operator it takes an
@@ -920,7 +920,7 @@ will be passed to the subsequent operators.</p>
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
-<h3>Combining Previous And Current Emissions Of A Stream</h3>
+<h3 id="combining-previous-and-current-emissions-of-a-stream">Combining Previous And Current Emissions Of A Stream</h3>
 <p>If you need to compare the current (latest) emitted value with the previous value of a stream, you can use the <a href="https://rxjs.dev/api/operators/pairwise"><code>pairwise</code></a> operator. Once there are at least 2 emitted values, it starts emitting an array: <code>[previous, current]</code>.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.3.3/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;module&quot;&gt;
@@ -949,7 +949,7 @@ will be passed to the subsequent operators.</p>
 
 </code></pre>
 <div class='codepen'></div>
-<h3>Handling Multiple Subscribers To A Stream</h3>
+<h3 id="handling-multiple-subscribers-to-a-stream">Handling Multiple Subscribers To A Stream</h3>
 <p>An advanced topic when working with streams is how streams behave when they have multiple subscribers. To understand
 this you first need an understanding of &quot;cold&quot; vs &quot;hot&quot; observables.</p>
 <p>A &quot;cold&quot; observable is one that creates a new producer of events whenever they receive a new subscriber. An example is
@@ -1041,9 +1041,9 @@ rendered and subscribes, it will receive the successful HTTP request and render 
 <li><a href="https://medium.com/@benlesh/hot-vs-cold-observables-f8094ed53339">Hot vs Cold Observables</a></li>
 <li><a href="https://itnext.io/the-magic-of-rxjs-sharing-operators-and-their-differences-3a03d699d255">The Magic Of RxJS Sharing Operators</a></li>
 </ul>
-<h2>Problem</h2>
+<h2 id="problem">Problem</h2>
 <p>Convert the imperatively managed state in the restaurant component to declarative state.</p>
-<h2>Technical requirements</h2>
+<h2 id="technical-requirements">Technical requirements</h2>
 <p>When you’re finished the component members <code>states$</code>, <code>cities$</code> &amp; <code>restaurants$</code> will be of the types <code>Observable&lt;Data&lt;State&gt;&gt;</code>,
 <code>Observable&lt;Data&lt;City&gt;&gt;</code> and <code>Observable&lt;Data&lt;Restaurant&gt;&gt;</code> respectively. Each will be defined as a set of RxJS
 operators that either produce values from a response emitted by a service layer request, or produce values from changes
@@ -1055,7 +1055,7 @@ in a form control (which in turn may make a request).</p>
 <li><code>toggleCitySelect$</code> which enables/disables the city select control if loading is ongoing or no values are available</li>
 <li><code>clearCityWhenStateChanges$</code> which clears the city select control value if the state select control has been changed</li>
 </ul>
-<h2>How to verify your solution is correct</h2>
+<h2 id="how-to-verify-your-solution-is-correct">How to verify your solution is correct</h2>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import {
   ComponentFixture,
@@ -1528,7 +1528,7 @@ describe('RestaurantComponent', () =&gt; {
 </code></pre>
 <div line-highlight='9, 11-13, 198-203, 306, 311-314, 319, 324-325, 357-362, 372, 390-395, 405, 421-427, 442-446, 450, 453, only'></div>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <ul>
 <li><p>Creating streams of Form Control values with <code>valueChanges</code> member (you previously learned this in the <a href="form-value-changes.html#listening-to-form-changes" title="Learn how to listen to form value changes with Angular.">Filter Cities by State</a> section! ✔️)</p></li>
 <li><p>How to perform common RxJS operations like:</p>
@@ -1543,7 +1543,7 @@ describe('RestaurantComponent', () =&gt; {
 <a href="../learn-rxjs.html">Bitovi Academy’s RxJS training</a> will help however.</p></li>
 </ul></li>
 </ul>
-<h2>Solution</h2>
+<h2 id="solution">Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong></p>

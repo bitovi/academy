@@ -678,15 +678,15 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this part, we will:</p>
 <ul>
 <li>Write a new <code>getRestaurant</code> method on our <code>RestaurantsService</code></li>
 <li>Write a unit test for the <code>getRestaurant</code> method</li>
 </ul>
-<h2>Problem</h2>
+<h2 id="problem">Problem</h2>
 <p>In the next section we’re going to be creating a restaurant detail view. We’ll need to have a <code>getRestaurant</code> method on our service that returns one restaurant from the list. Once the method is set up, write a unit test ensuring it makes the correct request and returns an object type of <code>Restaurant</code>.</p>
-<h2>What you need to know</h2>
+<h2 id="what-you-need-to-know">What you need to know</h2>
 <ul>
 <li><p>How to write a unit test. Here’s a codeblock to get you started:</p>
 <pre><code class="language-typescript">it('should make a GET request to get a restaurant based on its slug', () =&gt; {
@@ -695,7 +695,7 @@ covering CanJS core libraries.">
 </code></pre></li>
 <li><p>How to use <code>HttpTestingController</code> to test <code>HttpClient</code> calls.</p></li>
 </ul>
-<h2>HttpTestingController</h2>
+<h2 id="httptestingcontroller">HttpTestingController</h2>
 <p><a href="https://angular.io/guide/http-test-requests">Angular’s HTTP testing library</a> was designed with a pattern in mind:</p>
 <ol>
 <li>Make a request;</li>
@@ -708,23 +708,23 @@ covering CanJS core libraries.">
 <p>The <code>HttpClientTestingModule</code> needs to be imported in the TestBed, and <code>HttpTestingController</code> can be injected using the TestBed for usage within test blocks.</p>
 <p>For this exercise, both <code>HttpClientTestingModule</code> and <code>HttpTestingController</code> are already configured in <code>restaurant.service.spec.ts</code> file.</p>
 <p>You can access <code>HttpTestingController</code> with the <code>httpTestingController</code> variable.</p>
-<h3>Expecting a request to be made</h3>
+<h3 id="expecting-a-request-to-be-made">Expecting a request to be made</h3>
 <p><code>expectOne</code> method is handy when you want to test if a single request was made. <code>expectOne</code> will return a <a href="https://angular.io/api/common/http/testing/TestRequest">TestRequest</a> object in case a matching request was made. If no request or more than one request was made, it will fail with an error.</p>
 <pre><code class="language-typescript">const req = httpTestingController.expectOne('/api/states');
 </code></pre>
-<h3>Verifying the request</h3>
+<h3 id="verifying-the-request">Verifying the request</h3>
 <p>A <code>TestRequest</code>’s <code>request</code> property provides access to a wide variety of properties that may be used in a test. For example, if we want to ensure an HTTP GET request is made:</p>
 <pre><code class="language-typescript">expect(req.request.method).toEqual('GET');
 </code></pre>
-<h3>Flushing request data</h3>
+<h3 id="flushing-request-data">Flushing request data</h3>
 <p>Without a specific command, outgoing requests will keep waiting for a response forever. You can resolve requests by using the <code>TestRequest</code>’s <code>flush</code> method</p>
 <pre><code class="language-typescript">req.flush(mockStates);
 </code></pre>
-<h3>Avoiding the unexpected</h3>
+<h3 id="avoiding-the-unexpected">Avoiding the unexpected</h3>
 <p>When testing service methods in isolation, it’s better to ensure we don’t have unexpected effects. <code>HttpTestingController</code>’s <code>verify</code> method ensures there are no unmatched requests that were not handled.</p>
 <pre><code class="language-typescript">httpTestingController.verify();
 </code></pre>
-<h3>Putting it all together</h3>
+<h3 id="putting-it-all-together">Putting it all together</h3>
 <pre><code class="language-typescript">it('should make a GET request to get the states data', () =&gt; {
   const mockStates = {
     data: [{ name: 'California', short: 'CA' }]
@@ -744,7 +744,7 @@ covering CanJS core libraries.">
   httpTestingController.verify();
 });
 </code></pre>
-<h2>Setup</h2>
+<h2 id="setup">Setup</h2>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.service.ts</strong> file with the new getRestaurants method:</p>
 <pre><code class="language-ts">import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -809,7 +809,7 @@ export class RestaurantService {
 
 </code></pre>
  <div line-highlight="55-59,only"></div>
-<h2>Solution</h2>
+<h2 id="solution">Solution</h2>
 <blockquote>
 <p>Hint: you may use existing tests on the service as a guide.</p>
 </blockquote>

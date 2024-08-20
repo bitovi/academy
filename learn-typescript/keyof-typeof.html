@@ -530,15 +530,15 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2 id="overview">Overview</h2>
 <p>In this section, you will:</p>
 <ul>
 <li>Use the <code>keyof</code> operator.</li>
 <li>Use the <code>typeof</code> operator.</li>
 <li>Use these two operators together.</li>
 </ul>
-<h2>Objective 1: Use <code>keyof</code> and <code>typeof</code></h2>
-<h3>Index signatures</h3>
+<h2 id="objective-1-use-codekeyofcode-and-codetypeofcode">Objective 1: Use <code>keyof</code> and <code>typeof</code></h2>
+<h3 id="index-signatures">Index signatures</h3>
 <p>Before we discuss <code>keyof</code> and <code>typeof</code>, we need to learn about index signatures.</p>
 <p>An index signature defines the structure of an object where you don’t know the property names beforehand, but you do know the type of the values those properties will hold.
 The index signature specifies the type for the keys (typically strings or numbers) and the type for their corresponding values.</p>
@@ -556,7 +556,7 @@ const myWordCounts: WordCount = {
 </code></pre>
 <div line-highlight='2'></div>
 <p>In this example, <code>myWordCounts</code> is an object that can have any number of properties where each key is a <code>string</code> and each value is a <code>number</code>.</p>
-<h3>The <code>keyof</code> type operator</h3>
+<h3 id="the-codekeyofcode-type-operator">The <code>keyof</code> type operator</h3>
 <p>The <code>keyof</code> operator takes an object type and produces a union of its keys. For example, take the following type:</p>
 <pre><code class="language-ts">type Dino = {
   name: string;
@@ -583,7 +583,7 @@ type M = keyof VisitedParkMapping;
 <p>Both <code>a[1]</code> and <code>a[&quot;1&quot;]</code> evaluate to the same thing (<code>&quot;world&quot;</code>).</p>
 </blockquote>
 <p>By itself, <code>keyof</code> may not seem all too interesting. However, it becomes powerful when used in tandem with other TypeScript features (like <a href="generics.html" title="Learn about what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript.">Generics</a>) which we will see in the future.</p>
-<h3>The <code>typeof</code> type operator</h3>
+<h3 id="the-codetypeofcode-type-operator">The <code>typeof</code> type operator</h3>
 <p>The <code>typeof</code> operator is a way to create a type from a value.
 It can be used on values and properties of those values.
 <code>typeof</code> is useful for creating type queries and capturing types that aren’t strictly defined.</p>
@@ -673,7 +673,7 @@ type DinoFacts = typeof getDinoFacts();
 <p>So to review, the type <code>Dinosaur</code> will now have the <code>typeof dinosaur</code>: <code>{name: string; type: string;}</code>.</p>
 <p>The type <code>DinoName</code> will have the <code>typeof dinosaur.name</code>. The <code>name</code> property of <code>dinosaur</code> has the type of <code>string</code>, thus <code>DinoName</code>’s type is <code>string</code>.</p>
 <p>So what type will <code>DinoFacts</code> have? As mentioned before, <code>typeof</code> cannot be called on everything; the <code>getDinoFacts()</code> function is neither an identifier or property. As a result we get an error: <code>ERROR: Expression expected</code>.</p>
-<h3>Setup 1</h3>
+<h3 id="setup-1">Setup 1</h3>
 <p>✏️ Create <strong>src/keyof-typeof/dinofacts.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export const dinosaurFacts = {
   &quot;t-rex&quot;: {
@@ -710,7 +710,7 @@ export const getDinoFact = (
 };
 
 </code></pre>
-<h3>Verify 1</h3>
+<h3 id="verify-1">Verify 1</h3>
 <p>✏️ Create <strong>src/keyof-typeof/dinofacts.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import assert from 'node:assert/strict';
 import { describe, it } from &quot;node:test&quot;;
@@ -731,14 +731,14 @@ describe(&quot;Keyof Typeof Exercise 1&quot;, () =&gt; {
 });
 
 </code></pre>
-<h3>Exercise 1</h3>
+<h3 id="exercise-1">Exercise 1</h3>
 <p>Update the <code>DinosaurFacts</code> and <code>Dinosaur</code> type to gain type safety on the <code>getDinoFact</code> function. The function should, given a dinosaur’s name (<code>velociraptor</code> or <code>t-rex</code>) and the <code>dinosaurFacts</code> object, return the correct facts about the dinosaur.</p>
 <ul>
 <li>Replace <code>DinosaurFacts</code>’s <code>any</code> with a type that represents the <code>dinosaurFacts</code>.</li>
 <li>Replace <code>Dinosaur</code>’s <code>any</code> with a type that allows for any of the keys in the dinosaur fact object.</li>
 <li>The <code>getDinofact</code> should, given a <code>facts</code> object and <code>dino</code> name, return the facts for that creature.</li>
 </ul>
-<h3>Solution 1</h3>
+<h3 id="solution-1">Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -780,8 +780,8 @@ export const getDinoFact = (
 </code></pre>
  <div line-highlight="24,26,only"></div>
 <p></details></p>
-<h2>Objective 2: Create a union type of an object’s keys</h2>
-<h3>Using the <code>keyof</code> and <code>typeof</code> operators together</h3>
+<h2 id="objective-2-create-a-union-type-of-an-objects-keys">Objective 2: Create a union type of an object’s keys</h2>
+<h3 id="using-the-codekeyofcode-and-codetypeofcode-operators-together">Using the <code>keyof</code> and <code>typeof</code> operators together</h3>
 <p>The <code>keyof</code> and <code>typeof</code> operators independently may not seem interesting, but their utility lies when used together with each other.
 For example, we may want the <code>keyof</code> a value, such as the <code>carnivore</code> object below.
 The problem is the <code>keyof</code> operator only works on types; thankfully, the <code>typeof</code> operator is to grant us the type of <code>carnivore</code>.</p>
@@ -822,7 +822,7 @@ type DinosaurColorsKeys = keyof typeof DinosaurColors;
 <p>In the code above, <code>keyof</code> and <code>typeof</code> used together give <code>DinosaurColorKeys</code> the typing:
 <code>“blue” | “green” | “red” | &quot;purple | &quot;yellow&quot; | &quot;white&quot; | &quot;black&quot;</code></p>
 <p>In this case, <code>keyof typeof</code> definitely saves a lot of effort.</p>
-<h3>Setup 2</h3>
+<h3 id="setup-2">Setup 2</h3>
 <p>✏️ Create <strong>src/keyof-typeof/colorshex.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export enum Colors {
   red = &quot;0xFF0000&quot;,
@@ -837,7 +837,7 @@ export const getColorValue = (color: ColorNames): any =&gt; {
 };
 
 </code></pre>
-<h3>Verify 2</h3>
+<h3 id="verify-2">Verify 2</h3>
 <p>✏️ Create <strong>src/keyof-typeof/colorshex.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import assert from &quot;node:assert/strict&quot;;
 import { describe, it } from &quot;node:test&quot;;
@@ -853,14 +853,14 @@ describe(&quot;Keyof Typeof Exercise 2&quot;, () =&gt; {
 });
 
 </code></pre>
-<h3>Exercise 2</h3>
+<h3 id="exercise-2">Exercise 2</h3>
 <p>Update the <code>ColorNames</code> type so that it represents the keys of the enum (eg <code>'red'</code>, <code>'blue'</code>, and <code>'green'</code>)and then add all the necessary types to the <code>getColorValue</code> function signature.</p>
 <ul>
 <li>The <code>getColorValue</code> function should take one of color names, or <code>ColorNames</code> and return the hex string equivalent.</li>
 <li>Replace <code>ColorAsEasyReadName</code>’s <code>any</code> with a type so that it represents the keys of the enum (eg 'red', 'blue', and 'green').</li>
 <li>Fix the TypeScript errors by updating <code>getColorValue</code>’s <code>ReturnType</code>. Replace the <code>any</code> with the proper type.</li>
 </ul>
-<h3>Solution 2</h3>
+<h3 id="solution-2">Solution 2</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -880,7 +880,7 @@ export const getColorValue = (color: ColorNames): string =&gt; {
 </code></pre>
  <div line-highlight="7,9,only"></div>
 <p></details></p>
-<h2>Next steps</h2>
+<h2 id="next-steps">Next steps</h2>
 <p>The next section will cover <a href="./generics.html">generics</a>, which are useful for writing both maintainable and flexible TypeScript code.</p>
 
 </section>
