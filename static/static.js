@@ -22,54 +22,25 @@ window.PACKAGES = packages;
 })();
 
 (function () {
-  var articleContainer = document.querySelector("article.main");
+  /*
+    The bit-docs-html-toc package will listen for scrolls to the element
+    specified by heading-container-selector, but with our CSS, this will
+    only work when the document scroll events are listened to.
+  */
+  var highlight = debounce((function () {
+    document.querySelector("bit-toc").highlight();
 
-  if (articleContainer && window.history) {
-    var windowLoaded = false;
-    var pageScrollTimer;
+    var elementToScroll = document.querySelector(".list-items");
+    var article = document.querySelector(".main");
+    var distance = (window.scrollY + article.offsetHeight / 2) / document.body.scrollHeight;
+    elementToScroll.scrollTop = (elementToScroll.scrollHeight * distance) - (elementToScroll.offsetHeight / 2);
+  }).bind(this), 1);
 
-    // the page can change its layout up until load
-    window.addEventListener("load", function () {
-      windowLoaded = true;
-    });
-    // only wait 1 second at most
-    setTimeout(function () {
-      windowLoaded = true;
-    }, 1000);
+  // Listen for scroll events
+  document.addEventListener("scroll", highlight);
 
-    function setArticleScroll() {
-      var articleScroll =
-        window.history.state && window.history.state.articleScroll;
-      if (articleScroll) {
-        articleContainer.scrollTop = articleScroll;
-      } else if (window.location.hash) {
-        //if there’s no state before and the URL has a hash eg. #collecting-data
-        //then let’s scroll to #collecting-data element
-        var element = document.querySelector(window.location.hash);
-        if (element) {
-          articleContainer.scrollTop = element.offsetTop - 60; // ~60px for the navigation height
-        }
-      }
-    }
-    setArticleScroll();
-
-    // If there’s a scroll before page load, we ignore saving the spot
-    // and instead try to force the original position
-    articleContainer.addEventListener("scroll", function () {
-      if (windowLoaded) {
-        clearTimeout(pageScrollTimer);
-        pageScrollTimer = setTimeout(function () {
-          window.history.replaceState(
-            { articleScroll: articleContainer.scrollTop },
-            null,
-            window.location.href
-          );
-        }, 50);
-      } else {
-        setArticleScroll();
-      }
-    });
-  }
+  // Update the highlighting immediately on page load
+  highlight();
 })();
 
 (function () {
@@ -131,3 +102,25 @@ window.PACKAGES = packages;
     }
   }
 })();
+
+function debounce(func, wait) {
+  var timeout;
+
+  return function executedFunction() {
+    var context = this;
+    var args = arguments;
+
+    var later = function () {
+      timeout = null;
+      func.apply(context, args);
+    };
+
+    clearTimeout(timeout);
+
+    timeout = setTimeout(later, wait);
+
+    if (!timeout) {
+      func.apply(context, args);
+    }
+  };
+}
