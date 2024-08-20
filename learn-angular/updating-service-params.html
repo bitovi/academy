@@ -686,11 +686,11 @@ covering CanJS core libraries.">
 </ul>
 <h2 id="problem">Problem</h2>
 <p><img src="../static/img/angular/10-updating-service-params/before.png"
-style="border: solid 1px black; max-width: 400px;"/></p>
+style="border: solid 1px black;" width="400"/></p>
 <p>Now that we are able to capture a user’s state and city preferences, we want to only return restaurants in the selected city. Modify the <code>getRestaurants</code> method in the <strong>src/app/restaurant/restaurant.service.ts</strong> file to take two string parameters, one for city, and one for state.</p>
 <p>The requested URL with params should look like this: <code>'/api/restaurants?filter[address.state]=IL&amp;filter[address.city]=Chicago'</code></p>
 <p><img src="../static/img/angular/10-updating-service-params/after.png"
-style="border: solid 1px black; max-width: 400px;"/></p>
+style="border: solid 1px black;" width="400"/></p>
 <h2 id="what-you-need-to-know">What you need to know</h2>
 <ul>
 <li>How to use <a href="form-value-changes.html#how-to-use-httpparams" title="Learn how to listen to form value changes with Angular.">HttpParams</a> (you learned this in the previous section! ✔️)</li>

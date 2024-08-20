@@ -691,7 +691,7 @@ covering CanJS core libraries.">
 It’s important to communicate to the user when their device is offline and some functionality in the application may be disabled because of their current connection status.</p>
 <p>The way you communicate this info will depend on your application.
 In ours, we’re going to add some text to the Settings view that shows the current connection status.</p>
-<p><img alt="Screenshot of the application settings page with the connection status." src="../static/img/react-native/17-offline-support/01-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/></p>
+<p><img alt="Screenshot of the application settings page with the connection status." src="../static/img/react-native/17-offline-support/01-solution.png" style="border: 4px solid black; border-radius: 25px;" height="640"/></p>
 <h3 id="listening-for-the-network-connection-state">Listening for the network connection state</h3>
 <p>The <code>@react-native-community/netinfo</code> is an incredible useful package for detecting the network status of the device.</p>
 <p>This package allows you to:</p>
@@ -1001,8 +1001,8 @@ In the <code>RestaurantDetails</code>, we’ll add an “Add to favorites” but
 <p>For right now, we’ll write the code for adding and removing favorites in a way that will gracefully handle the user’s device being offline.
 In the third objective, we’ll expand that to handle syncing when the device comes back online.</p>
 <div style="display: flex; flex-direction: row; gap: 2rem; flex-wrap: wrap;">
-  <img alt="Screenshot of the application's Restaurant Details screen displaying the add favorite button." src="../static/img/react-native/17-offline-support/02-solution-addFavorites.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
-  <img alt="Screenshot of the application's Restaurant Details screen displaying the remove favorite button." src="../static/img/react-native/17-offline-support/02-solution-removeFavorites.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screenshot of the application's Restaurant Details screen displaying the add favorite button." src="../static/img/react-native/17-offline-support/02-solution-addFavorites.png" style="border: 4px solid black; border-radius: 25px;" height="640"/>
+  <img alt="Screenshot of the application's Restaurant Details screen displaying the remove favorite button." src="../static/img/react-native/17-offline-support/02-solution-removeFavorites.png" style="border: 4px solid black; border-radius: 25px;" height="640"/>
 </div>
 <h3 id="defining-the-favorites-feature">Defining the “favorites” feature</h3>
 <p>There’s a lot that goes into building even a one or two-button feature like the “add to favorites” and “remove from favorites” feature that we’re about to build.</p>

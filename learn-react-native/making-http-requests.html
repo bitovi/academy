@@ -694,7 +694,7 @@ covering CanJS core libraries.">
 </ul>
 <h2 id="objective-1-fetch-states-in-a-custom-hook">Objective 1: Fetch states in a custom Hook</h2>
 <p>So far we’ve only had hard-coded data for our states, cities, and restaurants. Let’s start loading data from an API server, beginning with the list of states!</p>
-<p><img alt="Screenshot of the application when it makes an API call to the states endpoint and is populated the list of states." src="../static/img/react-native/13-making-http-requests/1-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/></p>
+<p><img alt="Screenshot of the application when it makes an API call to the states endpoint and is populated the list of states." src="../static/img/react-native/13-making-http-requests/1-solution.png" style="border: 4px solid black; border-radius: 25px;" height="640"/></p>
 <h3 id="defining-interfaces-for-codeusestatecode">Defining interfaces for <code>useState</code></h3>
 <p>When building React Native components, you may sometimes have local state variables that always change together, and thus would benefit by being in a single <code>useState()</code> variable together:</p>
 <pre><code class="language-tsx">import { useState } from &quot;react&quot;
@@ -1585,7 +1585,7 @@ export default StateList
 <h2 id="objective-2-fetch-cities-in-a-custom-hook-with-query-parameters">Objective 2: Fetch cities in a custom Hook with query parameters</h2>
 <p>Let’s continue our quest to load data from our API and update our <code>&lt;CitiesList&gt;</code> to use a custom <code>useCities</code> Hook to fetch data.</p>
 <p>To do this, we’ll need to include query parameters in our API call to the <code>/cities</code> endpoint.</p>
-<p><img alt="Screenshot of the application when it makes an API call to the cities endpoint and is populated the list of cities." src="../static/img/react-native/13-making-http-requests/2-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/></p>
+<p><img alt="Screenshot of the application when it makes an API call to the cities endpoint and is populated the list of cities." src="../static/img/react-native/13-making-http-requests/2-solution.png" style="border: 4px solid black; border-radius: 25px;" height="640"/></p>
 <h3 id="including-query-parameters-in-api-calls">Including query parameters in API calls</h3>
 <p>Query parameters are a defined set of parameters attached to the end of a URL. They are used to define and pass data in the form of key-value pairs. The parameters are separated from the URL itself by a <code>?</code> symbol, and individual key-value pairs are separated by the <code>&amp;</code> symbol.</p>
 <p>A basic URL with query parameters looks like this:
@@ -2023,8 +2023,8 @@ export default CityList
 <p>Now that we have two Hooks that fetch data in a similar way, let’s create an <code>apiRequest</code> helper function that both Hooks can use.</p>
 <p>While we do this, let‘s add error handling for unsuccessful API requests:</p>
 <div style="display: flex; flex-direction: row; gap: 2rem; flex-wrap: wrap;">
-  <img alt="Screenshot of the application when it makes an API call to the cities endpoint and is populated the list of cities." src="../static/img/react-native/13-making-http-requests/2-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
-  <img alt="Screenshot of the application when it makes an API call and the API returns an error." src="../static/img/react-native/13-making-http-requests/3-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screenshot of the application when it makes an API call to the cities endpoint and is populated the list of cities." src="../static/img/react-native/13-making-http-requests/2-solution.png" style="border: 4px solid black; border-radius: 25px;" height="640"/>
+  <img alt="Screenshot of the application when it makes an API call and the API returns an error." src="../static/img/react-native/13-making-http-requests/3-solution.png" style="border: 4px solid black; border-radius: 25px;" height="640"/>
 </div>
 <h3 id="handle-http-error-statuses">Handle HTTP error statuses</h3>
 <p>When you make a request with the Fetch API, it does not reject HTTP error statuses (like <code>404</code> or <code>500</code>). Instead, it resolves normally (with an <code>ok</code> status set to <code>false</code>), and it only rejects on network failure or if anything prevented the request from completing.</p>
@@ -2454,8 +2454,8 @@ export function useStates(): StatesResponse {
 <p>Let’s finish our quest to load data from our API by creating a Hook to fetch the list of restaurants and use it in our component.</p>
 <p>Now that we are able to capture a user’s state and city preferences, we want to only show the restaurants in the selected city:</p>
 <div style="display: flex; flex-direction: row; gap: 2rem; flex-wrap: wrap;">
-  <img alt="Screenshot of the application when it makes an API call to the restaurants endpoint and is populated the list of restaurants." src="../static/img/react-native/13-making-http-requests/4-1-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
-  <img alt="Screenshot of the application when it makes an API call to the restaurant endpoint and is populated populated with the restaurants details." src="../static/img/react-native/13-making-http-requests/4-2-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screenshot of the application when it makes an API call to the restaurants endpoint and is populated the list of restaurants." src="../static/img/react-native/13-making-http-requests/4-1-solution.png" style="border: 4px solid black; border-radius: 25px;" height="640"/>
+  <img alt="Screenshot of the application when it makes an API call to the restaurant endpoint and is populated populated with the restaurants details." src="../static/img/react-native/13-making-http-requests/4-2-solution.png" style="border: 4px solid black; border-radius: 25px;" height="640"/>
 </div>
 <h3 id="setup-4">Setup 4</h3>
 <p>✏️ Update <strong>.env</strong> to be:</p>

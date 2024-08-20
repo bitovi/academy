@@ -689,10 +689,10 @@ covering CanJS core libraries.">
 <h2 id="problem">Problem</h2>
 <p>Currently, we are showing a list of all restaurants:</p>
 <p><img src="../static/img/angular/8-state-city-options/before.png"
-style="border: solid 1px black; max-width: 320px;"/></p>
+style="border: solid 1px black;" width="320"/></p>
 <p>We would like our user to be able to filter restaurants based on city and state. To accomplish this,
 we will need to implement a reactive form with two controls, <code>state</code> and <code>city</code>, that are dropdowns displaying a list of cities and states. It will look like the following:</p>
-<p><img src="../static/img/angular/pmo-dropdowns.gif" alt="Place My Order App city and state dropdowns" title="Place My Order App city and state dropdowns" /></p>
+<p><img alt="Place My Order App city and state dropdowns" src="../static/img/angular/pmo-dropdowns.gif"></p>
 <h2 id="what-you-need-to-know">What you need to know</h2>
 <p>To solve this, you will need to know:</p>
 <ul>
@@ -1337,7 +1337,7 @@ export class AppModule { }
  <div line-highlight="3,23,only"></div>
 <h2 id="how-to-verify-your-solution-is-correct">How to verify your solution is correct</h2>
 <p>When you visit <a href="http://localhost:4200/restaurants">localhost:4200/restaurants</a>, there will now be state and city dropdown options populated with fake data.</p>
-<p><img src="../static/img/angular/pmo-dropdowns.gif" alt="Place My Order App city and state dropdowns" title="Place My Order App city and state dropdowns" /></p>
+<p><img alt="Place My Order App city and state dropdowns" src="../static/img/angular/pmo-dropdowns.gif"></p>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import {
   ComponentFixture,

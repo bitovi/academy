@@ -475,12 +475,12 @@ covering CanJS core libraries.">
 <h2 id="vms-vs-docker-containers">VMs vs Docker Containers</h2>
 <p><a href="https://www.vmware.com/topics/glossary/content/virtual-machine">Virtual machines</a> (VM) are an abstraction of a physical server turning one server into many. A <a href="https://www.vmware.com/topics/glossary/content/hypervisor">hypervisor</a> is installed on the host server allowing multiple VMs to run on a single machine. Each VM includes a full copy of an operating system (OS) making it resource intensive to run and slow to boot.</p>
 <p>Containers are an abstraction at the app layer that packages application artifacts and dependencies together. The fundamental difference is containers share the same host operating system, but each container runs in it’s own isolated process controlled by the Docker Engine. Containers are more lightweight than VMs and typically boot in seconds instead of minutes.</p>
-<p><img src="../static/img/docker/1-what-is-docker/docker-arch.png" alt="Docker Architecture" /></p>
+<p><img alt="Docker Architecture" src="../static/img/docker/1-what-is-docker/docker-arch.png"></p>
 <h2 id="dockerfiles-images-and-containers">Dockerfiles, Images and Containers</h2>
 <p>A Dockerfile is used to build a Docker image. A dockerfile is a plain-text file that contains a series of instructions telling Docker what operating system, application dependencies and application source code is required to run the application.</p>
 <p>A Docker image is a static artifact that is built from a Dockerfile and is tagged and published to a registry where it can be shared.</p>
 <p>A Docker container is a running instance of a Docker image.</p>
-<p><img src="../static/img/docker/1-what-is-docker/dockerfile-images-containers.png" alt="Dockerfile images and containers" /></p>
+<p><img alt="Dockerfile images and containers" src=".../static/img/docker/1-what-is-docker/dockerfile-images-containers.png"></p>
 <h2 id="review">Review</h2>
 <p>Docker images combine source code with the dependencies required to run an application. Images are built from Dockerfiles and are more lightweight and portable than traditional VMs making them great for both developers and operators.</p>
 

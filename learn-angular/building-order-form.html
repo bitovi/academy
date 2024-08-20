@@ -1682,7 +1682,7 @@ export class AppModule { }
 </code></pre>
  <div line-highlight="10-37,only"></div>
 <p>Now when we view the order form of our route, we’ll see a nice form and tabs for lunch and dinner menu options.</p>
-<p><img src="../static/img/angular/pmo-tabs-working.gif" alt="Place My Order App tabs" title="Place My Order App tabs" /></p>
+<p><img alt="Place My Order App tabs" src="../static/img/angular/pmo-tabs-working.gif"></p>
 <h2 id="problem-3-create-a-codemenu-itemscode-component">Problem 3: Create a <code>menu-items</code> component</h2>
 <p>We’re going to build another component to use in our form to handle selecting order items. We use data-binding to pass data between components. We’ll use the <code>@Input()</code> to get our list of items from the restaurant to display in our child component, and eventually hook it into our Reactive Form using the <code>formControlName</code> attribute as shown below.</p>
 <pre><code class="language-html">&lt;pmo-menu-items
