@@ -22,7 +22,7 @@ Currently, our restaurant list is a static array of restaurants. We want to work
 
 To start, let’s focus on rendering buttons for each state that we can select. Then, when the button for a state is activated, we want to keep track of which state was chosen.
 
-<img alt="A web page titled “Restaurants” from place-my-order.com showing two buttons labeled “Illinois” and “Wisconsin”. There is also a “Current state” paragraph that shows that no state is selected." src="../static/img/react-vite/08-stateful-hooks/01-solution.png" style="max-width:689px">
+<img alt="A web page titled “Restaurants” from place-my-order.com showing two buttons labeled “Illinois” and “Wisconsin”. There is also a “Current state” paragraph that shows that no state is selected." src="../static/img/react-vite/08-stateful-hooks/01-solution.png" width="689">
 
 ### Overview of state management
 
@@ -120,11 +120,11 @@ Let’s create buttons for each state that we can select. Then, when the button 
 
 Now that we have buttons for selecting the state, let’s add buttons for selecting the city:
 
-<img alt="The same “Restaurants” web page from before, but this time the “Current state” is “Illinois” and there is a button for selecting “Springfield” as the city. The “Current city” is currently “none.”" src="../static/img/react-vite/08-stateful-hooks/02-solution-2.png" style="max-width:689px">
+<img alt="The same “Restaurants” web page from before, but this time the “Current state” is “Illinois” and there is a button for selecting “Springfield” as the city. The “Current city” is currently “none.”" src="../static/img/react-vite/08-stateful-hooks/02-solution-2.png" width="689">
 
 After selecting both the state and city, we will see those values reflected in our UI:
 
-<img alt="The same “Restaurants” web page from before, but this time the “Current city” is set to “Springfield”." src="../static/img/react-vite/08-stateful-hooks/02-solution-3.png" style="max-width:689px">
+<img alt="The same “Restaurants” web page from before, but this time the “Current city” is set to “Springfield”." src="../static/img/react-vite/08-stateful-hooks/02-solution-3.png" width="689">
 
 ### Setup 2
 

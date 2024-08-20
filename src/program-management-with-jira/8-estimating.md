@@ -375,7 +375,7 @@ The following video shows the steps to accomplishing this:
    
 
 
-<iframe class="block-16-by-9" src="https://www.youtube.com/embed/dFldN5ugf74" alt="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe class="block-16-by-9" src="https://www.youtube.com/embed/dFldN5ugf74" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 The following sub-sections detail the process in writing:
 

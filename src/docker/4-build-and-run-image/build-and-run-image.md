@@ -25,7 +25,7 @@ CMD npm start
 ```
 At this point, our directory should look like this
 
-![app directory](../static/img/docker/4-build-and-run-image/app-directory.png)
+<img alt="app directory" src="../static/img/docker/4-build-and-run-image/app-directory.png">
 
 ## Build our image
 Ensure you have docker desktop running on your machine, then open a terminal to your application directory and run

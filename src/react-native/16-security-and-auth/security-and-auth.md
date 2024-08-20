@@ -19,8 +19,8 @@ In this section, you will:
 ## Objective 1: Add Google Sign-In
 
 <div style="display: flex; flex-direction: row; gap: 2rem; flex-wrap: wrap;">
-  <img alt="Screenshot of the Settings tab with a Google “Sign in” button." src="../static/img/react-native/16-security/01-solution.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
-  <img alt="Screenshot of the Settings tab showing a sign-in user and a “Sign out” button." src="../static/img/react-native/16-security/01-solution-signed-in.png" style="max-height: 640px; border: 4px solid black; border-radius: 25px;"/>
+  <img alt="Screenshot of the Settings tab with a Google “Sign in” button." src="../static/img/react-native/16-security/01-solution.png" style="border: 4px solid black; border-radius: 25px;" height="640"/>
+  <img alt="Screenshot of the Settings tab showing a sign-in user and a “Sign out” button." src="../static/img/react-native/16-security/01-solution-signed-in.png" style="border: 4px solid black; border-radius: 25px;" height="640"/>
 </div>
 
 ### Authenticating with OAuth

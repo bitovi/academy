@@ -141,7 +141,7 @@ Now let’s add the markup to our order component implementing the tabs widget.
 
 Now when we view the order form of our route, we’ll see a nice form and tabs for lunch and dinner menu options.
 
-![Place My Order App tabs](../static/img/angular/pmo-tabs-working.gif 'Place My Order App tabs')
+<img alt="Place My Order App tabs" src="../static/img/angular/pmo-tabs-working.gif">
 
 ## Problem 3: Create a `menu-items` component
 

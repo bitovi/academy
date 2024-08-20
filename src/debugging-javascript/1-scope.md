@@ -66,7 +66,7 @@ c2();
 
 Chrome’s developers tools allows you to inspect variables in the scope as follows:
 
-<img src="../static/img/debugging/full-closure.png" width="90%" style="border: solid 1px black"/>
+<img src="../static/img/debugging/full-closure.png" style="border: solid 1px black"/>
 
 
 ## The solution

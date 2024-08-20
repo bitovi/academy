@@ -17,7 +17,7 @@ The most basic consulting maxim is to exceed expectations. To say this another w
 
 ## The Consulting Trifecta
 
-<img src="../static/img/technology-consulting/goodfastcheap.png" alt="Good fast cheap" width="640px"/>
+<img src="../static/img/technology-consulting/goodfastcheap.png" alt="Good fast cheap" width="640"/>
 
 You may have heard the following maxim: cheap, fast, good… pick two. While this may be useful (and true) for sales discussions, a more useful variation for project planning is:
 
