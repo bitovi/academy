@@ -41,8 +41,8 @@ Taking ownership means not only managing your specific responsibilities but also
 
 Ownership means understanding your role within the project and how your work impacts the overall goals. It’s about taking initiative, being accountable, and committing to delivering real value.
 
+- **Understand the objectives:** Make sure you understand the project’s aims and your role in achieving them. Break down big goals into smaller, actionable steps to make progress measurable and manageable. For example, if the project goal is to launch a new feature, set objectives for design, development, testing, and deployment phases.
 - **Clarify roles and responsibilities:** Clearly define what you are expected to do. Understand the scope of your tasks and how these tasks align with the wider project goals. If you’re not sure, ask!
-- **Set clear objectives:** Make sure you understand the project’s aims and your role in achieving them. Break down big goals into smaller, actionable steps to make progress measurable and manageable. For example, if the project goal is to launch a new feature, set objectives for design, development, testing, and deployment phases.
 - **Identify the Directly Responsible Individuals (DRIs):** Assign a DRI for each key component of the project. A DRI is the person accountable for the successful completion of a specific task or deliverable, ensuring there is clear ownership and no ambiguity about who is in charge.
 
 Tips and techniques:
@@ -77,9 +77,9 @@ This matrix helps clarify roles and responsibilities, ensuring that everyone kno
 
 Effective communication is key to successful ownership. Regular updates and open information sharing keep the team aligned and accountable.
 
-- **Share information openly:** Use shared tools (like Confluence) and project management tools (like Jira) to keep everyone informed. Use public chat channels whenever possible so it’s easier to reference conversations later. If those tools are not in place, be sure to use email or ask the stakeholders how they would prefer updates.
 - **Keep project management software updated:** Make sure tools like Jira are always up to date to reflect current progress. This helps in tracking tasks and identifying bottlenecks early.
 - **Give regular updates:** Use standups or weekly meetings to give updates. Set expectations for how frequently you’ll communicate progress and stick to that schedule.
+- **Share information openly:** Use shared tools (like Confluence) and project management tools (like Jira) to keep everyone informed. Use public chat channels whenever possible so it’s easier to reference conversations later. If those tools are not in place, be sure to use email or ask the stakeholders how they would prefer updates.
 - **Encourage and act on feedback:** Don’t hesitate to ask feedback directly from your stakeholders. When you receive feedback, think about how you can implement it and come up with a daily or weekly review system to see if you’re progressing.
 
 Tips and techniques:
@@ -115,11 +115,13 @@ Questions to reflect:
 
 **Unexpected roadblocks:** Midway through a project, a key team member falls ill, causing potential delays. How would you adjust the project plan and leverage team expertise to stay on track?
 
-## Balancing progress and oversight
+## Balancing making forward progress and stakeholder oversight
 
-There will always be a tradeoff between moving a project forward and getting sign-off from a client or stakeholder. You may often deal with clients who say they want to be involved in many layers of decisions but they are so busy or non-responsive that progress becomes blocked waiting for their approvals.
+There will always be a tradeoff between moving a project forward and getting sign-off from a client or stakeholder.
+You may deal with clients who say they want to be involved in many layers of decisions but they are so busy or unresponsive that progress becomes blocked waiting for their approvals.
 
-We’ve found the best practice for balancing these concerns is to optimize for progress, but give stakeholders plenty of opportunities to weigh in or course correct. In other words, in most cases, move forward with your best judgement, but visibly document your course via emails or tickets, in a way where clients can step in if they desire.
+We’ve found the best practice for balancing these concerns is to optimize for progress while giving stakeholders plenty of opportunities to weigh in or course correct.
+In other words, in most cases, move forward with your best judgement, but visibly document your course via emails or tickets, in a way where clients can step in if they desire.
 
 ### Keep stakeholders informed
 
@@ -128,7 +130,7 @@ During the normal course of your work, be sure to:
 - **Keep project management tools up to date:** Tools like Jira can provide a single source of truth for the project’s progress. Always keep it up to date and add comments to issues if it’s in progress for more than a day.
 - **Summarize project status in weekly updates:** This can be in the form of a Slack post or email, depending on the audience. Weekly updates provide a regular way for you to report progress and flag when a blocker needs to be addressed.
 - **Use sprint demos/reviews to show progress:** Ideally, all stakeholders will attend sprint demos to learn more about work that’s being implemented. Even if they don’t attend the meeting, it can be recorded and sent to them as a reference.
-- **Use backlog grooming to identify risks:** When refining issues in a backlog, point out the items that are unclear, need answers, or will need stakeholder input before they are worked on. The earlier those things can be addressed, the less risky the work will be when it’s picked up.
+- **Use backlog refinement to identify risks:** When refining issues in a backlog, point out the items that are unclear, need answers, or will need stakeholder input before they are worked on. The earlier those things can be addressed, the less risky the work will be when it’s picked up.
 
 Tips and techniques:
 
@@ -136,7 +138,7 @@ Tips and techniques:
 - **Tailor communication styles:** Adapt your communication style to suit the preferences of different stakeholders. For example, some stakeholders might prefer detailed reports, while others might prefer concise summaries or visual presentations.
 - **Implement weekly updates (even if you don’t think they’re required):** Send out weekly summary emails highlighting key achievements, upcoming tasks, and any issues needing attention. If things start to go off track, it’s easier to put that at the top of a weekly status update (vs. having to communicate bad news in the first update).
 - **Keep detailed notes about delays:** If a client starts to become unresponsive, keep detailed notes about the communication you’re sending them and how long it’s taking for them to get back to you. Having a timeline of events _before_ you need it can make it easier to communicate issues.
-- **Templates and formats:** Use standardized templates for reports and updates to maintain consistency and clarity in communication.
+- **Use a templated format for communication:** Use standardized templates for reports and updates to maintain consistency and clarity in communication.
 - **Add a Blocked column:** In tools like Jira, adding a “Blocked” column to the far left of the sprint board can make it very clear when there are blockers that need to be handled.
 
 Questions to reflect:
@@ -156,11 +158,11 @@ Stakeholders don’t typically need to be involved in:
 
 Stakeholders should be involved when there are blockers:
 
-- **Dependencies:** Either on another team or a stakeholder.
-- **Resource constraints:** If the right people aren’t available to help complete the work.
-- **Technical issues:** When an unexpected technical problem arises.
-- **Scope adjustments:** Alters the project scope or objectives.
-- **Timeline changes:** Affects the project deadlines or delivery dates.
+- **Dependencies:** Either on another team or a stakeholder, e.g. when someone else must finish their work first.
+- **Resource constraints:** If the right (number of) people aren’t available to help complete the work, e.g. when someone with specific knowledge is required.
+- **Technical issues:** When an unexpected technical problem arises, e.g. an environment is unavailable for testing.
+- **Scope adjustments:** Alters the project scope or objectives, e.g. a goal in the original scope seems unreachable in the alloted time.
+- **Timeline changes:** Affects the project deadlines or delivery dates, e.g. the expected end date changes due to any of these factors.
 
 Before escalating your communication, consider:
 
@@ -189,36 +191,33 @@ You’re in charge of adding a search box to a component. You could build it int
 **What do you do?**
 
 <details>
-<summary>
-Answer
-</summary>
+<summary>Answer</summary>
 
 How likely is it that the project will reuse the search feature in a future grid? For example, assume, based on your current knowledge, there’s a less than 25% chance of reuse. Therefore, I would recommend choosing the non-abstract approach, and writing an email, or writing a comment on the ticket tagging your client which summarizes your decision, the reasons for it, and states “I will proceed with this approach, but let me know if you disagree”. Forward progress is being made, but with transparency and giving your client the opportunity to course correct if they have different information.
 
-Principals used:
-
-- Balancing progress and oversight
-
 </details>
 
-## Advocating for tool and process change to improve efficiency
+## Advocating for change to improve efficiency and collaboration
 
-In consulting, advocating for tool and process changes can significantly enhance project efficiency and client satisfaction. This section aims to equip you with the skills to identify, propose, and implement changes that can lead to better performance and streamlined operations.
+In consulting, advocating for tool and process changes can significantly enhance project efficiency and client satisfaction.
+And although uncomfortable, even people change can be necessary for a fully-effective team.
+
+This section aims to equip you with the skills to identify, propose, and implement changes that can lead to better performance and streamlined operations.
 
 ### Understanding gaps in current tools and processes
 
-Before recommending changes, it’s crucial to understand the existing tools and processes thoroughly. 
-Additionally, conducting a gap analysis helps identify areas for improvement by comparing current practices with industry best practices.
+Before recommending changes, it’s crucial to thoroughly understand the existing tools and processes.
+Conducting a gap analysis helps identify areas for improvement by comparing current practices with industry best practices.
 
-- **Understand the existing tools:** Before suggesting change, get up to speed with how the existing tools can support your goals.
-- **Map current process workflows:** Create detailed workflow diagrams to visualize the existing processes. Identify bottlenecks, inefficiencies, and areas prone to errors. This visual representation helps in understanding the flow and pinpointing issues.
-- **Gather data:** Look for or start generating data to support your claim that a tool or process is inefficient. For example, track how much time it takes to complete a manual process or measure how long a slow tool is taking.
+- **Understand the existing tools and processes:** Before suggesting change, get up to speed with how the existing tools can support your goals.
 - **Compare with best practices:** Think through how the current tools and processes measure up against industry best practices. Highlight areas where improvements are needed.
+- **Gather data:** Look for or start generating data to support your claim that a tool or process is inefficient. For example, track how much time it takes to complete a manual process or measure how long a slow tool is taking.
 - **Prioritize actual problems (vs. preferences):** Evaluate the impact of identified gaps on project performance and prioritize them based on urgency and potential benefits. Focus on the most critical areas first for maximum impact.
 - **Consider the political capital required:** It is much easier to propose changes after you’ve built up trust and rapport with the decision makers
 
 Tips and techniques:
 
+- **Map current process workflows:** Create detailed workflow diagrams to visualize the existing processes. Identify bottlenecks, inefficiencies, and areas prone to errors. This visual representation helps in understanding the flow and pinpointing issues.
 - **Use software tools:** Use workflow mapping software like Lucidchart or Miro to create dynamic and interactive diagrams.
 - **Impact-effort matrix:** Use an impact-effort matrix to prioritize gaps based on their potential benefits and the effort required to address them.
 
@@ -233,12 +232,12 @@ Additionally, engaging stakeholders is critical for gaining support and ensuring
 
 Note: Stakeholders in this context may mean your other teammates!
 
-- **Brainstorm new tools and process tweaks:** Brainstorm potential solutions, including new tools or adjustments to existing processes, to address the identified gaps.
+- **Brainstorm new tools and process tweaks:** Brainstorm potential solutions, including new tools or adjustments to existing processes, to address the identified gaps. Make a pros and cons list for each option to understand the ramifications of choosing each one.
 - **Consider the cost:** Consider the ease of implementation, expected benefits, and total cost. For example, changing some processes (like meetings) can be no cost while buying tooling for everyone can be costly.
+- **Identify _all_ the stakeholders:** Figure out who has a vested interest in the change and who you exactly you will need approval from to move forward.
 - **Plan integration strategies:** Develop strategies for integrating new solutions with existing systems, ensuring minimal disruption. Plan for any necessary data migration, compatibility checks, and integration testing.
-- **Get early feedback:** Ask another teammate, Principal, etc. for feedback on your ideas before taking it to the key decision makers.
-- **Present findings and proposals:** Develop clear, data-backed presentations to communicate findings and proposed changes to stakeholders. Use visuals and real-world examples to make your case compelling.
-- **Conduct workshops and demos:** Organize workshops or demonstration sessions to show the benefits of proposed changes. Interactive sessions help stakeholders experience the potential improvements firsthand.
+- **Get early feedback:** Ask another teammate, Principal, etc. for feedback on your ideas before taking it to the key decision makers. Sharing your ideas as an RFC (Request For Comments) gives others an opportunity to offer suggestions or raise concerns.
+- **Present your findings or a Proof of Concept (POC):** Create a clear, data-backed presentation to communicate your findings and proposed changes to stakeholders. If applicable, POCs can demonstrate the change more effectively and make it engaging. Interactive sessions help stakeholders experience the potential improvements firsthand.
 - **Address concerns:** Prepare to address stakeholder concerns and answer questions to build support and consensus. Be transparent about potential challenges and your plans to mitigate them.
 
 Tips and techniques:
@@ -253,46 +252,51 @@ Questions to reflect:
 - How do you prepare for presenting findings and proposals to stakeholders? What key points do you focus on?
 - What strategies do you use to address stakeholder concerns and build support for proposed changes?
 
-### Analyzing the outcome of a pilot test
+### Testing and implementing the changes
 
-Testing proposed changes on a small scale helps validate their effectiveness before full-scale implementation.
-After the pilot, it’s important to analyze the outcomes and refine the implementation plan based on feedback.
+Testing proposed changes on a small scale, followed by a full-scale rollout, ensures that improvements are both effective and sustainable.
+Combining these phases allows for continuous refinement and minimizes disruption.
 
-- **Initiate a small-scale trial:** Implement the proposed changes on a small scale to test their effectiveness. Choose a pilot group that represents the broader user base.
-- **Define pilot goals:** Establish specific, measurable goals for the pilot, such as improved efficiency, reduced errors, or higher user satisfaction. Clear goals help in evaluating success.
-- **Evaluate pilot outcomes:** Analyze the results of the pilot against the established goals to determine its success. Look for improvements in key metrics and overall user experience.
-- **Revise implementation plan:** Adjust the implementation plan based on the pilot outcomes to ensure optimal results during full-scale rollout. Incorporate lessons learned to avoid potential pitfalls.
-
-Tips and techniques:
-
-- **Success criteria:** Establish clear success criteria to evaluate the pilot’s outcomes.
-- **Performance metrics:** Compare pilot outcomes against predefined metrics to objectively assess success.
-- **Iterative adjustments:** Make iterative adjustments to the implementation plan based on feedback to refine the process.
-- **Stakeholder review:** Share revised plans with stakeholders for final review and approval before full-scale rollout.
-
-### Rolling out the full-scale implementation
-
-Successful pilot testing paves the way for full-scale implementation, which requires careful planning and execution.
-Continuous improvement ensures that the new tools and processes remain effective and relevant over time.
-
-- **Develop a detailed rollout plan:** Create a comprehensive plan for the full-scale implementation of successful changes. Include timelines, responsibilities, and key milestones.
-- **Prepare documentation and support resources:** Create comprehensive documentation for the new tools and processes, including usage guidelines and best practices. Make sure that documentation is accessible and easy to understand. Offer support to address any issues.
-- **Implement in stages:** Roll out the changes in phases to manage risk and allow for incremental adjustments. This approach minimizes disruption and allows for continuous improvement.
-- **Establish a monitoring system:** Set up mechanisms to continuously track the performance of new tools and processes. Regular monitoring helps in identifying issues early and making timely adjustments.
-- **Align the team:** Standardize the changes across projects to ensure consistency and alignment within the team. Consistent practices lead to more predictable and reliable outcomes.
+- **Define measurable goals:** Establish specific, measurable goals for the pilot, such as improved efficiency, reduced errors, or higher user satisfaction. Clear goals help in evaluating success. Set up mechanisms to continuously track the performance of new tools and processes. Regular monitoring helps in identifying issues early and making timely adjustments.
+- **Start with a pilot test:** Implement the proposed changes on a small scale to test their effectiveness. Choose a pilot group that represents the broader user base. Analyze the results of the pilot against the established goals to determine its success. Look for improvements in key metrics and overall user experience.
+- **Revise the plan if necessary:** Create a comprehensive plan for the full-scale implementation of successful changes. Include timelines, responsibilities, and key milestones. Adjust the implementation plan based on the pilot outcomes to ensure optimal results during full-scale rollout. Incorporate lessons learned to avoid potential pitfalls.
+- **Get stakeholder sign-off:** Ensure relevant stakeholders sign off on the change. Hold meetings to get verbal agreements from all key parties.
+- **Prepare documentation and support resources:** Create comprehensive documentation for the new tools and processes, including usage guidelines and best practices. Make sure that documentation is accessible and easy to understand. Offer support to address any issues.
+- **Implement in stages:** Roll out the changes in phases to manage risk and allow for incremental adjustments. This approach minimizes disruption and allows for continuous improvement.
 
 Tips and techniques:
 
-- **Timeline:** Create a detailed timeline with key milestones and deliverables for the rollout.
-- **Phased rollout:** Implement changes in manageable phases to allow for adjustments and minimize disruptions.
-- **Performance dashboards:** Set up performance dashboards to continuously monitor key metrics and identify areas for improvement.
-- **Step-by-step guides:** Create detailed, step-by-step guides for each new process to ensure clarity and consistency.
+- **Success criteria:** Establish clear success criteria to evaluate the pilot’s outcomes and full-scale rollout.
+- **Performance metrics:** Compare pilot and rollout outcomes against predefined metrics to objectively assess success.
+- **Phased rollout:** Implement changes in manageable phases to allow for adjustments and minimize disruptions.
+- **Step-by-step guides:** Create detailed, step-by-step guides for each new process to ensure clarity and consistency.
 
 Questions to reflect:
 
 - How will you ensure that the rollout plan is detailed and comprehensive?
 - How do you ensure comprehensive documentation for new tools and processes?
 - What strategies do you use to standardize changes across projects and ensure team alignment?
+
+### Addressing ineffective leadership
+
+At times, inefficiencies in a project can stem not just from tools and processes, but also from the actions or decisions of leadership or other team members.
+When leadership or a peer is hindering progress, it’s crucial to approach the situation with care, gathering evidence and understanding the context before escalating the issue.
+
+- **Talk with your Principal:** Talk early and often with your Principal about the problems you see. Frame the conversation around the impact on the project rather than personal grievances, and use the data you’ve gathered to support your case.
+- **Observe and gather data:** Just as with process inefficiencies, start by observing and collecting data on how the individual’s actions are impacting the team. Document specific instances where their behavior or decisions are causing delays, confusion, or inefficiencies.
+- **Focus on actual problems:** Prioritize addressing specific issues rather than personal preferences or interpersonal conflicts. Identify how these behaviors or decisions affect the project’s goals and team dynamics.
+- **Understand the context:** Take the time to understand the reasons behind the individual’s actions. Consider factors like workload, communication styles, or external pressures that might be influencing their behavior.
+
+Tips and techniques:
+
+- **Confidentiality:** Maintain discretion when discussing these issues to protect professional relationships and ensure a constructive outcome.
+- **Objective assessment:** Use objective tools to evaluate the situation, focusing on the impact on project deliverables and team morale.
+
+Questions to Reflect:
+
+- How can you gather evidence of leadership or team member issues in a way that is objective and fair?
+- What strategies can you use to understand the underlying causes of a team member’s or leader’s behavior before escalating the issue?
+- How do you frame conversations about team dynamics in a way that is focused on solutions rather than blame?
 
 ## Pushing back
 
@@ -340,8 +344,20 @@ Questions to reflect:
 
 Negotiation is key to aligning client expectations with project realities.
 
-- **Set firm boundaries:** Clearly define what is achievable with the current resources. State these boundaries upfront to avoid misunderstandings later. For example, “Our team can deliver this module by the end of Q2, but not the entire project.”
-- **Propose viable alternatives:** Offer realistic options that align with the client’s objectives. If a client wants a complex feature quickly, suggest developing a simpler MVP (Minimum Viable Product) first.
+- **Set firm boundaries:** Clearly define what is achievable with the current resources. State these boundaries upfront to avoid misunderstandings later. For example, “Our team can deliver this module by the end of Q2, but not the entire project.” If appropriate, politely refer back to the original contract or agreement when a client requests something outside of the agreed scope.
+- **Propose viable alternatives:** Offer realistic options that align with the client’s objectives. If a client wants a complex feature quickly, suggest developing a simpler MVP (Minimum Viable Product) first. Clearly explain the benefits of the proposed alternatives, how they align with the client’s goals, and why they are more practical or effective than the original request.
+
+Tips and techniques:
+
+- **Define scope clearly:** At the outset of any project, clearly define the scope, deliverables, timelines, and responsibilities. Ensure these are documented and agreed upon by all parties.
+- **Refer to contracts and agreements:** When a client requests something outside of the agreed scope, politely refer back to the original contract or agreement. Highlight what was initially agreed upon and explain how the new request falls outside these boundaries.
+- **Be consistent:** Consistently enforce boundaries without wavering. If you allow one exception, it sets a precedent for future requests, making it harder to maintain those boundaries.
+- **Communicate early and often:** Regularly update the client on progress and any potential issues that might affect the project. Early communication can prevent misunderstandings and manage expectations.
+
+- **Understand the request:** Fully understand why the client is making the request. What are their underlying needs and objectives?
+- **Assess feasibility:** Evaluate whether the request is feasible within the current scope, timeline, and budget. If it’s not, think creatively about how you can still meet the client’s needs.
+- **Offer solutions:** Present alternative solutions that achieve the client’s objectives without compromising the project’s scope or quality. For instance, if a client wants an additional feature that is out of scope, propose a phased approach where the feature is included in a future phase of the project.
+- **Highlight benefits:** Clearly explain the benefits of the proposed alternatives, how they align with the client’s goals, and why they are more practical or effective than the original request.
 
 Questions to reflect:
 
@@ -353,13 +369,23 @@ Questions to reflect:
 
 Being able to influence and persuade clients is vital for successful expectation management.
 
-- **Guide the conversation:** Frame your feedback in a way that emphasizes achieving the best possible project outcome. For instance, “To ensure we deliver a robust and high-quality product, we recommend extending the timeline by two weeks.”
-- **Build and leverage credibility:** Use your experience and past project successes to support your perspectives on feasibility. Highlighting your expertise can build trust and make clients more receptive to your recommendations.
+- **Guide the conversation:** Use open-ended questions to understand the client’s priorities and constraints better. Frame your feedback in a way that aligns with their priorities. For instance, “To ensure we deliver a robust and high-quality product, we recommend extending the timeline by two weeks.”
+- **Leverage your credibility:** Use your experience and past project successes to support your perspectives on feasibility. Highlighting your expertise can build trust and make clients more receptive to your recommendations.
 
 Tips and techniques:
 
 - **Storytelling:** Use storytelling to make your points more relatable and compelling, sharing relevant past successes and challenges.
 - **Ethos, Pathos, Logos:** Structure your arguments around credibility (ethos), emotional appeal (pathos), and logical reasoning (logos).
+
+- **Use data and evidence:** Support your points with data, case studies, or examples from past projects. This adds credibility to your arguments and helps clients understand the rationale behind your recommendations.
+- **Ask questions:** Use open-ended questions to understand the client’s priorities and constraints better. This can help uncover the root cause of their requests and allow you to address their concerns more effectively.
+- **Be assertive, not aggressive:** Communicate confidently and assertively, but remain respectful and empathetic. Acknowledge the client’s needs and concerns while clearly explaining why certain requests may not be feasible.
+- **Stay solution-focused:** Keep the conversation focused on finding solutions. Avoid getting bogged down in problems or limitations and instead, direct the discussion towards what can be achieved.
+
+- **Demonstrate expertise:** Share your expertise through case studies, past successes, and industry knowledge. Show how your experience can bring value to the client’s project.
+- **Be transparent:** Be honest about what you can and cannot do. Transparency builds trust and reinforces your credibility.
+- **Deliver consistently:** Consistently deliver high-quality work on time and within budget. Reliability reinforces your reputation and makes clients more likely to trust your judgment.
+- **Communicate effectively:** Regularly communicate with the client about progress, challenges, and solutions. Keeping the client informed builds trust and demonstrates your commitment to their success.
 
 Questions to reflect:
 
@@ -391,9 +417,7 @@ Your client informs you that your team will be working on a new feature for your
 **What do you do?**
 
 <details>
-<summary>
-Answer
-</summary>
+<summary>Answer</summary>
 
 Let them know that plan is likely untenable, and that you’d like to evaluate the scope before committing to that deadline (otherwise there’s risk in not meeting it). Work with them to find a scope that keeps them within their time and staffing constraints. If they are not flexible, explain the scope-resources-deadline trifecta and the risks. Ask them to consider additional resources, or a more flexible deadline.
 
@@ -411,9 +435,7 @@ There is one particularly grumpy client developer that joins your team in the mi
 **What do you do?**
 
 <details>
-<summary>
-Answer
-</summary>
+<summary>Answer</summary>
 
 Reach out to the developer and try to get to know them better. Try to understand their concerns and be flexible when necessary. Do your best to communicate your position and find a way to work together. Remind the developer that you share the same goals, and that finding common ground will benefit everyone on the team.
 
@@ -435,11 +457,20 @@ Speaking truth to power means being honest and transparent with those in authori
 - **Why it matters:** It helps maintain honesty and responsibility in decision-making, creating an environment where truth matters more than rank.
 - **Possible hurdles:** Worrying about negative outcomes, damaging relationships, or being left out of future opportunities.
 
+Speaking truth to power is more than just about pushing back against unreasonable expectations. It can include:
+
+- **Tech debt:** The client prefers quick fixes over sustainable solutions, leading to accumulating technical debt.
+- **Ignoring accessibility:** The client overlooks the importance of making the product accessible to all users.
+- **Poor communication:** The communication between you and the client is inefficient, leading to misunderstandings and delays.
+- **Ignoring User Experience (UX):** The client prioritizes aesthetic elements over user experience, potentially leading to a poor user interface.
+- **Security concerns:** The client suggests a shortcut that could compromise the security of the application.
+- **Ethical concerns:** The client requests features or practices that might raise ethical concerns, such as deceptive design patterns.
+
 ### Preparing your message
 
 Before delivering difficult truths, it is essential to prepare thoroughly to ensure your message is well-received and impactful.
 
-- **Check your facts:** Make sure everything you say can be supported with data and evidence. This means doing your homework, double-checking your information, and thinking about potential challenges to your points. Providing a strong factual basis builds credibility and minimizes the risk of disputes over the accuracy of your statements.
+- **Check your facts:** Make sure everything you say can be supported with data and evidence. This means doing your homework and double-checking your information. Providing a strong factual basis builds credibility and minimizes the risk of disputes over the accuracy of your statements.
 - **Understand stakeholder perspectives:** Think through what each party stands to gain or lose and tailor your message to address these concerns effectively. Understanding different viewpoints helps in framing your message in a way that resonates with all stakeholders.
 - **Plan your approach:** Lay out your main points clearly and decide the best way to explain them convincingly. Structuring your argument logically makes it easier for others to follow and understand.
 - **Anticipate responses:** Think about the possible pushback and emotional responses you might get, and prepare thoughtful, calm replies. Being prepared for objections allows you to address concerns confidently and maintain control of the conversation.
@@ -469,15 +500,15 @@ Tips and techniques:
 When it’s time to convey your message, the manner of delivery can be just as important as the content itself.
 
 - **Pick the right moment:** Choose a setting that’s private and free from interruptions, e.g. a 1:1 chat. This ensures the conversation can proceed without distractions and allows for a candid exchange.
-- **Use clear, professional language:** Communicate in a straightforward and respectful manner, avoiding jargon unless everyone understands it. Clarity helps prevent misunderstandings and keeps the focus on the message.
 - **Start on a positive note:** Lead with what’s going well or the strengths of the project or plan, setting a positive tone for the conversation. This can help soften the impact of more critical feedback.
+- **Use open-ended questions:** Ask questions to start a dialogue and show you’re willing to consider other points of view. Engaging in a two-way conversation demonstrates respect and openness.
 - **Be direct yet courteous:** Convey your points clearly while maintaining politeness and professionalism. Being direct avoids ambiguity, but courtesy ensures the message is not perceived as hostile.
-- **Use the “data sandwich” method:** Begin with data to present the problem, explain what it means, and finish with more data to back up your conclusion. This method reinforces your points with evidence, making them harder to dismiss.
-- **Encourage discussion:** Ask questions to start a dialogue and show you’re willing to consider other points of view. Engaging in a two-way conversation demonstrates respect and openness.
 - **Show your commitment:** Remind everyone of your commitment to the project’s success and your supportive role as a consultant. Emphasizing your shared goals can foster a collaborative spirit.
 
 Tips and techniques:
 
+- **Use clear, professional language:** Communicate in a straightforward and respectful manner, avoiding jargon unless everyone understands it. Clarity helps prevent misunderstandings and keeps the focus on the message.
+- **Use the “data sandwich” method:** Begin with data to present the problem, explain what it means, and finish with more data to back up your conclusion. This method reinforces your points with evidence, making them harder to dismiss.
 - **Language refinement:** Use apps or tools to refine your language, ensuring it’s clear, professional, and free of unnecessary jargon.
 - **Clarity drills:** Practice delivering your main points in one to two sentences to ensure clarity and conciseness.
 
@@ -485,8 +516,8 @@ Tips and techniques:
 
 The conversation doesn’t end when you’ve delivered your message. Effective follow-up ensures your feedback leads to positive change.
 
-- **Keep the conversation going:** Provide more information or data if needed and help with any issues that come up. Continuous support shows your investment in the project’s success.
 - **Document key points:** Record the main points and agreed-upon actions to ensure progress is tracked. Documentation helps maintain clarity and accountability.
+- **Keep the conversation going:** Provide more information or data if needed and help with any issues that come up. Continuous support shows your investment in the project’s success.
 - **Review the impact:** Think about how your message was received and the discussion that followed to improve your technique next time. Reflecting on the outcomes allows for personal growth and better future interactions.
 
 Tips and techniques:
@@ -523,3 +554,74 @@ Questions to reflect:
 You discover that the project expectations set by the senior leadership are unrealistic given the current resources and timeline.
 
 **How would you present this issue to the leadership without causing alarm or defensiveness? What data and strategies would you use to support your message?**
+
+#### Scenario 2: Deceptive design patterns
+
+You are asked to design or implement a “feature” in which users will automatically be signed up to a mailing list with either no consent or consent hidden in fine print.
+
+**How would you prepare your message to the client? What would you include in your conversations with them? How would you avoid them becoming defensive?**
+
+<details>
+<summary>Answer</summary>
+
+##### Preparing your message
+
+Research deceptive design patterns:
+
+- Find data on the negative impacts of auto-enrollment in mailing lists without clear opt-out options. Look for case studies, user complaints, and regulatory actions.
+- Collect information on best practices for user consent and transparent communication.
+
+Consider the legal and ethical implications:
+
+- Review relevant regulations (e.g., GDPR, CAN-SPAM Act) regarding user consent for mailing lists.
+- Gather examples of companies that faced legal issues or fines due to non-compliance.
+
+Understand stakeholder perspectives:
+
+- Recognize the client’s objective of building a robust mailing list for marketing purposes.
+- Consider their perspective on how mailing lists can drive user engagement and sales.
+- Discuss the potential long-term benefits of building trust with users through transparent practices.
+- Highlight how user trust and satisfaction can lead to higher engagement and customer loyalty.
+
+Structure your argument:
+
+- Begin with the importance of user consent and transparency.
+- Present data on the negative impacts of deceptive practices.
+- Highlight legal risks and potential fines.
+- Offer alternative approaches that align with best practices and user expectations.
+
+Anticipate responses:
+
+- “This approach helps us grow our mailing list faster.”
+- “We’ve never had complaints about this practice.”
+- “Changing this might reduce our marketing reach.”
+- Present data showing long-term harm to user trust and brand reputation.
+- Highlight potential legal risks and recent cases of regulatory actions.
+- Emphasize the competitive advantage of building a trustworthy brand.
+
+##### Delivering your message effectively
+
+- Schedule a private meeting, such as a 1:1 chat, ensuring there are no interruptions.
+- Start with open-ended questions. Maybe user consent was in the design requirements but was missed, or there’s some other miscommunication.
+- Acknowledge the project’s successes so far and the client’s commitment to user growth.
+- Be direct yet courteous: “I’d like to discuss some concerns about our current practice of automatically enrolling users into mailing lists without clear opt-out options.”
+- Avoid jargon; explain terms like “deceptive design patterns” in simple language.
+
+Use the “data sandwich” method:
+
+- **Opening:** “Studies show that automatically enrolling users in mailing lists without clear opt-out options can lead to user frustration and increased unsubscribe rates.”
+- **Explanation:** “This practice can also result in users perceiving our brand as untrustworthy. Additionally, there are legal implications to consider. For instance, under the GDPR and CAN-SPAM Act, explicit user consent is required for adding them to mailing lists.”
+- **Closing:** “Implementing clear opt-in options and providing easy ways to manage communication preferences can increase user trust and engagement. According to a recent study, companies that prioritize user consent see higher long-term engagement and lower unsubscribe rates.”
+
+Encourage discussion and show your committment:
+
+- “What are your thoughts on this? Have we received any user feedback regarding our mailing list practices?”
+- “My goal is to ensure the project’s success by building a trustworthy and user-friendly platform. I’m here to help find the best solutions for both user satisfaction and business goals.”
+
+##### Tips and techniques
+
+- Imagine being a user who is automatically added to a mailing list without consent. How would you feel? How would it affect your perception of the brand?
+- Use tools like Grammarly to ensure your language is professional and clear.
+- Practice summarizing your main points succinctly: “Automatically enrolling users in mailing lists can harm trust and lead to legal issues. Clear opt-in options build trust and comply with regulations.”
+
+</details>

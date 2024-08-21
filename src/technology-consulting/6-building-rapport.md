@@ -18,7 +18,7 @@ We’re no experts at schmoozing, but this section includes helpful tips towards
 
 Trust takes time to build but it can be earned over time through consistent actions. On the flipside, trust can easily be lost in a short amount of time. Ultimately, consistently delivering what you promise — on time and within budget — is the best way to increase trust.
 
-On a perfect project, that’s easy. But in reality, projects rarely run that smoothly. In this section, we’ll discuss ways to boost trust on any project _and_ on projects where things aren’t perfect.
+On a perfect project, that’s easy. But in reality, projects rarely run that smoothly.
 
 Fortunately, clients understand that things aren’t always perfect. But as technology consultants, it’s up to us to communicate problems, questions, and concerns to clients. When you are up front and honest with clients, it builds trust that you are doing the right thing. Similarly, it’s important to set expectations so you can meet them. A client will trust you more if you regularly deliver early vs. being consistently late.
 
@@ -26,6 +26,8 @@ These are so important they have their own trainings!
 
 - [learn-technology-consulting/communication]
 - [learn-technology-consulting/setting-expectations]
+
+In this section, we’ll discuss ways to boost trust on any project _and_ on projects where things aren’t perfect.
 
 ### Make a great first impression
 
@@ -51,6 +53,10 @@ Use body language to your advantage:
 - **Be attentive:** Nod and use other small gestures to show you are actively listening. Lean in slightly to show your interest and engagement.
 - **Use open gestures:** Use open and approachable body language. Avoid crossing your arms, which can appear defensive.
 
+Tips and techniques:
+
+- **Wear professional clothing whenever you’re making a presentation:** Nice clothes can also make you feel better and put you in the right mindset for success.
+
 ### Deliver consistently and reliably
 
 You can establish trust quickly and effectively by setting expectations appropriately and consistently delivering on what you say.
@@ -70,9 +76,9 @@ Tips and techniques:
 
 When you’re candid about your capabilities and timelines, clients gain a clearer understanding of what to expect, which sets the stage for realistic expectations.
 
-- **Be up front and honest:** Clients appreciate transparency, especially when problems arise. Communicate issues, questions, and concerns openly. This honesty demonstrates your commitment to doing the right thing and builds trust.
+- **Be up front and honest:** Clients appreciate transparency, especially when problems arise. Communicate issues, questions, and concerns openly. This honesty demonstrates your commitment to doing the right thing and builds trust. The more open and honest you are with other people, the more open they will be with you.
 - **Give regular updates:** Provide regular and accurate updates to keep the client informed about the project’s status. Avoid surprises by communicating openly about any changes or issues.
-- **Admit mistakes:** If you make a mistake, acknowledge it quickly and work on a solution. Taking responsibility shows integrity and a commitment to excellence.
+- **Admit (personal) mistakes:** If you make a mistake, acknowledge it quickly and work on a solution. Taking responsibility shows integrity and a commitment to excellence. Be mindful not to take blame for something that is shared amongst the team or is due to a failure in process.
 
 Tips and techniques:
 
@@ -101,8 +107,8 @@ Tips and techniques:
 Demonstrating your expertise through detailed, high-quality work that exceeds expectations further solidifies this trust. By consistently showcasing your knowledge and attention to detail, you create a reliable and trustworthy partnership that encourages long-term collaboration and success.
 
 - **Show your expertise:** Share relevant knowledge and past experiences that address the client’s needs.
-- **Pay attention to details:** Deliver high-quality work that meets or exceeds client expectations.
-- **Be thorough:** Ensure all aspects of the project are well thought out and executed with precision.
+- **Pay attention to details:** Focus on the finer points and specific elements within a project. Notice and address small but important aspects that might otherwise be overlooked.
+- **Be thorough:** Take a comprehensive and exhaustive approach to ensure that all aspects of your project are considered, tested, and completed to a high standard.
 
 Tips and techniques:
 
@@ -170,6 +176,7 @@ It’s 10x easier to build rapport in person than it is over the Internet. We’
 
 Tips and techniques:
 
+- **Ask your Principal:** Some clients may have policies against receiving any gifts or being taken out for a meal, so always talk to your Principal first.
 - **Handwritten notes:** Include a personalized note with the swag to add a thoughtful touch.
 
 ### Build natural relationships
@@ -214,8 +221,8 @@ Likewise, adapting your communication style to match the client’s preferences 
 
 - **Be playful to get what you want:** Using humor in situations where you’re feeling frustrated and incredulous is often an effective way to get what you want while not making people hate you.
 - **Keep it light:** Use light-hearted jokes that don’t target anyone specifically.
-- **Know your audience:** Avoid no-go subjects like politics until the client brings it up.
-- **Learn their communication style:** If you don’t communicate in their style, you’re not only losing an opportunity to build rapport, you might be taking away from rapport you’ve already built. Be sure to learn how they want to communicate (email, chat, meetings, etc.) and always follow that.
+- **Know your audience:** Avoid swearing and no-go subjects (e.g. politics, religion, etc.) until the client brings it up.
+- **Learn their communication style:** If you don’t communicate in their style, you’re not only losing an opportunity to build rapport, you might be taking away from rapport you’ve already built. Be sure to learn how they want to communicate (direct/indirect, over email/chat/meetings, with small talk or not, etc.) and always follow that.
 - **Respect differences:** Show respect for cultural differences in communication, such as varying attitudes towards directness, gestures, and levels of formality.
 - **Avoid assumptions:** Avoid making assumptions about cultural practices. When in doubt, ask your client about their preferences and be open to learning.
 
@@ -223,22 +230,6 @@ Tips and techniques:
 
 - Use mirroring techniques in conversations to build rapport subtly.
 - Ask clients directly about their preferred communication styles and adapt accordingly.
-
-### Problem solving and conflict resolution
-
-Effectively managing problems and resolving conflicts is essential for maintaining a positive and productive client relationship. Proactive problem-solving and transparent conflict resolution can help prevent small issues from escalating and demonstrate your commitment to the client’s success.
-
-Here are some strategies for handling problems and conflicts:
-
-- **Be proactive:** Identify and address problems early. Suggest solutions quickly to demonstrate your commitment to the project’s success.
-- **Constructive approach:** Address conflicts constructively, focusing on the issue at hand rather than personal differences. Use “I” statements to express your perspective without sounding accusatory.
-- **Solution-oriented:** Focus on finding solutions rather than assigning blame. Present practical options to the client and discuss the best course of action collaboratively.
-- **Use mediation strategies:** Focus on finding mutually agreeable solutions to conflicts.
-- **Neutral mediation:** If necessary, bring in a neutral third party to mediate the conflict. This can help facilitate a fair and balanced resolution.
-
-Tips and techniques:
-
-- Use a structured approach to conflict resolution, such as the DESC model (Describe, Express, Specify, Consequences).
 
 ### Building long-term relationships
 
