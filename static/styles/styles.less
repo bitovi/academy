@@ -76,6 +76,11 @@ header, footer {
   grid-template-areas: "sidebar" "toc" "main";
   grid-template-columns: minmax(0, 1fr);
 
+  @media (min-width: 500px) {
+    grid-template-areas: "sidebar toc" "main main";
+    grid-template-columns: min-content 1fr;
+  }
+
   @media (min-width: 1024px) {
     grid-template-areas: "sidebar main toc";
     grid-template-columns: max-content minmax(0, 1fr) fit-content(25%);
