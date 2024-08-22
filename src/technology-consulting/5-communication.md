@@ -179,9 +179,7 @@ You recently attended a meeting where you were asked to discuss a new feature on
 **What can you do to make this meeting effective and to avoid this duplicate effort in the future?**
 
 <details>
-<summary>
-Answer
-</summary>
+<summary>Answer</summary>
 
 Send out an an agenda in advance of the meeting. Also, explain what happened with the confusion around the previous feature, and that you’d like to agree who will work on this feature at the meeting. During the meeting, ask clarifying questions about the new feature and who is expected to implement it. Offer to take ownership of the feature if appropriate. Take notes about all of this. After the meeting, send out a recap of what was discussed to all of those who attended, making it clear who will be implementing the feature.
 
@@ -214,9 +212,7 @@ Consider the following email:
 Once you’ve identified those problems, try to rewrite it to solve those problems.
 
 <details>
-<summary>
-Answer
-</summary>
+<summary>Answer</summary>
 
 > I am concerned that Rates & Fees will **miss** the June 27th deadline. **Let’s discuss how we can address this concern at today’s standup.**
 >
@@ -239,9 +235,7 @@ Improve the following email:
 > I felt that David wasn’t being very articulate as to why he needed access to Google Analytics so I gave him a call. I didn’t think he was being clear so I wanted to clarify with him before we made any decisions At first I didn’t quite understand his reasoning but after my phone call with him I changed my mind. I think it would be a good idea to give our designer access to Google Analytics. I think David would be more receptive to me and we could better communicate on issues and how to solve them.
 
 <details>
-<summary>
-Answer
-</summary>
+<summary>Answer</summary>
 
 > I think we should give David access to Google Analytics. I think it would be a good idea for 2 reasons:
 >
@@ -271,9 +265,7 @@ Consider the following thoughts. Find a way to organize this into relevant categ
 > - This means we’ll be maintaining separate code branches for the locator release and the Locator+Homepage release. This is why we’ll have Homepage on one server - http://samsminor.herokuapp.com - and locator on another - http://samsminor.herokuapp.com
 
 <details>
-<summary>
-Answer
-</summary>
+<summary>Answer</summary>
 
 > **Blockers**
 >

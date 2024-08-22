@@ -8,7 +8,7 @@
 
 ## Being a Consultant (not just a domain expert)
 
-At Bitovi, we pride ourselves in being able to deliver more than just staff augmentation. Being a consultant means understanding and engaging with the client’s broader business context, building strong relationships, asking insightful questions, and providing tailored solutions. Your role is to be a partner to the client, offering expertise that goes beyond fulfilling tasks to include strategic thinking and problem-solving.
+At Bitovi, we pride ourselves in being able to deliver more than just staff augmentation (additional staff on a project). Being a consultant means understanding and engaging with the client’s broader business context, building strong relationships, asking insightful questions, and providing solutions that benefit the client’s business and customers. Your role is to be a partner to the client, offering expertise that goes beyond fulfilling tasks to include strategic thinking and problem-solving.
 
 ### Common roles on software projects
 
@@ -25,15 +25,27 @@ There are _many_ roles on software projects:
 - **QA/QE**: Tests the application to identify bugs, ensure functionality, and verify that requirements are met.
 - **Business Analyst (BA)**: Gathers requirements, documents processes, and ensures the solution meets business needs.
 
-As a consultant, you are expected to be an expert in one of these roles, but being a consultant is a lot more than just being a domain expert.
+As a consultant, you are expected to be an expert in _one_ of these roles, but being a consultant is a lot more than just being a domain expert.
 
-### Understand the role of a consultant
+One of your jobs is to identify who the people are that either have these job titles or are operating in these roles. For example, you might not have a Scrum Master on your project, but someone should be facilitating the Agile ceremonies. This could be your Product Owner or your Project Manager.
 
-**Expand beyond domain expertise:** Recognize that your role is not just about completing tasks. You are a trusted advisor working on solutions that address real-world problems and deliver significant value.
+Similarly, you might not have separate people acting as the Project Manager and Product Owner. A Project Manager usually oversees the project, ensures it is on schedule, within budget, and meets requirements. In contrast, a Product Owner should define the vision for the product, prioritize the backlog, and refine issues. Sometimes, one person may fulfill both roles.
 
-**Build client partnerships:** View yourself as a partner, not just a service provider. Collaborate closely with clients to understand their vision, mission, and strategic goals. This knowledge will guide your technical decisions and ensure your contributions are strategically beneficial.
+The key point is that there are many different roles and it’s important to identify who is serving in these roles because if no one is performing these duties on a project, you must highlight this as a risk. For example, if there is no real Product Owner defining the vision, refining the backlog, and communicating with customers, we need to ask, “Who is doing this?” Sometimes, we must fill in those gaps ourselves.
 
-**Care deeply about results:** A key difference between great and average consultants is genuinely caring about making the project successful. Show your dedication, and others who care will be attracted to you and respect you, opening doors for further opportunities.
+### Your role as a consultant
+
+These are some of the ways you can differentiate yourself as not just a domain expert, but a partner to the client:
+
+- **Build client partnerships:** View yourself as a partner, not just a service provider. Collaborate closely with clients to understand their vision, mission, and strategic goals. This knowledge will guide your technical decisions and ensure your contributions are strategically beneficial.
+
+- **Become a trusted advisor:** Recognize that your role is not just about completing tasks. You are a trusted advisor working on solutions that address real-world problems and deliver significant value.
+
+- **Learn about the client/product/customer/project:** Understanding the client’s business context is crucial for delivering impactful work. By comprehending the client’s product, market, and customer base, you can better align your contributions with their broader goals.
+
+- **Contextualize your work:** Always consider how your work affects the client, customer, or project. For example, a frontend developer should think about how a new feature enhances user experience, aligns with business objectives, and meets customer needs.
+
+- **Care deeply about results:** A key difference between great and average consultants is genuinely caring about making the project successful. Show your dedication, and others who care will be attracted to you and respect you, opening doors for further opportunities.
 
 Tips and techniques:
 
@@ -44,14 +56,6 @@ Questions to reflect:
 
 - Reflect on a recent project. How did your role extend beyond providing domain expertise?
 - What strategies can you use to position yourself as a trusted advisor rather than just a service provider?
-
-### Grasp the business context
-
-Understanding the client’s business context is crucial for delivering impactful work. By comprehending the client’s product, market, and customer base, you can better align your contributions with their broader goals.
-
-- **Learn about the client/product/customer/project:** Before diving into tasks, invest time in learning about the client’s business, their product, the market they operate in, and their customers. This understanding will enable you to tailor your work for maximum positive impact.
-
-- **Contextualize your work:** Always consider how your work affects the client, customer, or project. For example, a frontend developer should think about how a new feature enhances user experience, aligns with business objectives, and meets customer needs.
 
 ### Ask questions and listen
 
@@ -69,9 +73,8 @@ Active listening is vital for understanding the client’s needs, concerns, and 
 
 As a consultant, your goal is to solve problems and empower clients to make informed decisions. This means thinking critically about the challenges they face and offering practical, well-considered advice.
 
-- **Consider multiple options:** When presented with a problem, don’t just accept it at face value. Consider various solutions, weighing their pros and cons, and how they align with the client’s goals.
-- **Address root causes:** Focus on solving the underlying problems rather than just the symptoms. This approach not only resolves the immediate problem but can also prevent future occurrences.
-- **Get creative:** There are almost certainly multiple solutions to every problem. Brainstorm ideas with your teammates to think outside the box and find opportunties in constraints.
+- **Address root causes:** When presented with a problem, don’t just accept it at face value. Focus on solving the underlying problems rather than just the symptoms. This approach not only resolves the immediate problem but can also prevent future occurrences.
+- **Get creative when brainstorming options:** Consider various solutions, weighing their pros and cons, and how they align with the client’s goals. There are almost certainly multiple solutions to every problem. Brainstorm ideas with your teammates to think outside the box and find opportunties in constraints.
 - **Think holistically:** Consider the big picture, understanding how different parts of a system interact and affect the business. Evaluate the interdependencies and potential ripple effects of your solutions, ensuring they align with the client’s overall strategy.
 - **Empower clients to make decisions**: Provide clients with the information they need to make decisions. This includes presenting different options, explaining the implications of each, and recommending the best course of action based on your expertise.
 
@@ -251,13 +254,13 @@ Questions to reflect:
 
 Thorough background research is useful for understanding the client’s context and preparing for effective engagement:
 
+- **Think of it like a job interview:** Approach this research with the same diligence as preparing for a job interview. Being well-informed about the client demonstrates professionalism and builds credibility.
+
 - **Research the company’s history:** Dive into sources such as the client’s website, Wikipedia page, and recent news articles to gather a comprehensive history of the company. Understand their milestones, key achievements, and significant changes over time.
 
 - **Check LinkedIn:** Review the LinkedIn profiles of the people you will be working with to understand their professional backgrounds and any shared connections or common experiences. For example, discovering shared educational backgrounds can serve as icebreakers.
 
-- **Think of it like a job interview:** Approach this research with the same diligence as preparing for a job interview. Being well-informed about the client demonstrates professionalism and builds credibility.
-
-- **Find industry insight:** Subscribe to industry newsletters and follow relevant publications to stay updated on trends and developments. For example, if consulting for a quick-service restaurant, reading articles from QSR Magazine can provide valuable industry insights.
+- **Subscribe to industry newsletters:** Find industry insight by following relevant publications (blogs, newsletters, magazines, etc.) to stay updated on trends and developments. For example, if consulting for a quick-service restaurant, reading articles from QSR Magazine can provide valuable industry insights.
 
 Tips and techniques:
 
@@ -315,9 +318,6 @@ Understanding the client:
 - What are the main revenue streams for the client?
 - What are the client’s values and how do they align with their business strategies?
 - Can you describe the organizational structure of the client’s company?
-- Who are the decision-makers and key stakeholders in the projects we will be consulting on?
-- What goals does the client hope to achieve with this project (e.g., increase sales, improve user experience, expand market share)?
-- Are there specific financial or time constraints the client is dealing with?
 - What are the client’s business objectives for the next 1-5 years?
 
 <details>
@@ -346,12 +346,10 @@ Asking the client for information:
 - Can you provide any internal or external research reports on market trends and competitor analysis?
 - Do you have access to customer feedback or market surveys that detail customer satisfaction with your and competitors’ products?
 - What internal metrics or KPIs do you use to measure your performance against competitors?
-- Can you think of past examples of projects or initiatives where understanding the competitive landscape has influenced the strategy?
 - How often do you review your competitive strategy, and who is involved in that process?
-- What are your expectations from your consulting project in terms of competitive analysis?
 - Are there particular areas or aspects where you feel the competition is ahead, and you want to catch up or differentiate?
 - What information do you regularly track or monitor about your competitors?
-- Are there specific competitive challenges you want your project to address directly?
+- Are there specific competitive challenges you want the project to address directly?
 - What outcomes would you consider a success for this project in the context of your competitive environment?
 
 </details>
@@ -472,11 +470,19 @@ Knowing who your audience is helps you tailor your approach to their specific ne
 
 **Categorize the audience:** Figure out if the audience is B2B (business-to-business), B2C (business-to-consumer), or internal employees. This affects how the client should design, function, and communicate about their product.
 
-For example, B2B products might need strong data integration and have different priorities than B2C products, which often focus more on looks and ease of use.
+B2B refers to transactions, products, or services that are sold from one business to another. In the context of software and applications, B2B solutions are developed specifically to meet the needs of businesses or organizations, rather than individual consumers. These applications are designed to solve business problems, improve efficiency, streamline operations, or facilitate business processes.
 
-**Understand the audience’s priorities:** Look at how the type of audience affects your product’s design and functionality.
+B2C refers to transactions, products, or services that are sold directly from a business to individual consumers. B2C applications are designed with the end-user in mind, focusing on delivering value, convenience, and a positive user experience. These applications are typically aimed at a broad audience and are used for personal rather than professional purposes.
 
-For example, tools for employees might prioritize efficiency and integration with existing systems, while products for consumers might focus on user engagement and customer support. Knowing these dynamics helps create products that fit into the users’ daily routines and workflows.
+Internal applications are software tools designed specifically for use within an organization. These apps are built to support the organization’s internal processes, streamline operations, and improve employee productivity. Unlike B2B and B2C applications, internal apps are not sold externally; they are intended solely for use by the company’s employees.
+
+**Understand the audience’s priorities:** Look at how the type of audience affects the product’s design and functionality.
+
+B2B products may prioritize security, handling large amounts of data, integrating with other systems, complying with government regulations, etc.
+
+B2C products may prioritize performance, SEO, loyalty, etc.
+
+Internal products may prioritize specific employee workflows, role-based access, flexibility in searching and viewing data, etc.
 
 Tips and techniques:
 
@@ -677,23 +683,30 @@ Questions to reflect:
 
 #### Understanding the project roadmap
 
-A well-defined project roadmap is essential for managing timelines, resources, and expectations. It provides a clear path to follow and helps in tracking progress.
+A project roadmap is great for managing timelines, resources, and expectations, providing a clear path to follow and a framework for tracking progress.
 
 ##### Clarify project milestones
 
-Clarifying project milestones helps break down the project into manageable phases, each with specific goals and deliverables.
+In many projects, milestones are used to define specific phases with distinct goals and deliverables. This approach is particularly useful in larger, more structured projects where breaking the work into clear stages ensures focus and direction.
+
+When working on a project aimed at developing a Minimum Viable Product (MVP), the focus may shift from rigid milestones to a more flexible, iterative approach. In these cases, the roadmap is guided by a continuous cycle of prototyping and customer feedback rather than fixed phases. Here, the emphasis is on adaptability, where each iteration brings the project closer to finding product-market fit.
+
+When you join a project, consider what phase in the product lifecycle the product is in.
+For more mature products, you should:
 
 - **Look for distinct milestones:** For larger projects, expect stakeholders to break down the project into distinct phases or milestones. Understand the goals and deliverables for each phase.
-- **Review milestones:** Schedule regular reviews to discuss progress and make adjustments as needed.
+- **Review milestones on a regular basis:** Schedule regular reviews to discuss progress and make adjustments as needed.
 
 Tips and techniques:
 
 - **Celebrate milestones:** Recognize achieving milestones with the team to boost morale and maintain momentum.
+- **Maintain a feedback loop:** In iterative projects, ensure a continuous cycle of prototyping, feedback, and refinement. This ongoing process can guide the project’s direction, even without traditional milestones.
 
 Questions to reflect:
 
-- Describe a project where regular milestone reviews significantly impacted its success. What were the key factors in these reviews?
-- How do you handle situations where a milestone is not met? What steps do you take to get the project back on track?
+- Describe a project where regular reviews of milestones or iterations significantly impacted its success. What were the key factors in these reviews?
+- How do you handle situations where progress is slower than expected, whether against a milestone or during an iterative phase? What steps do you take to get the project back on track?
+- Reflect on a project where the roadmap was more flexible, such as during MVP development. How did you adapt your approach, and what strategies did you use to keep the project aligned with its goals?
 
 ##### Reference the project timeline
 
@@ -739,9 +752,10 @@ Questions to reflect:
 
 Evaluating team dynamics involves understanding the strengths and weaknesses of the project team and fostering a collaborative working environment.
 
+- **Clarify leadership roles:** Ask who is in leadership roles and what responsibilities they have within the team. Understand who to go to for guidance, review, support, approval, etc.
 - **Assess the team:** Evaluate the strengths and weaknesses of the project team.
-- **Foster teamwork:** Encourage team-building activities to enhance teamwork and collaboration, fostering a positive and productive working environment.
-- **Clarify leadership roles:** Ask who is in leadership roles and what responsibilities they have within the team. Understand who to go to for guidance and support.
+- **Observe:** Pay attention to how team members communicate during meetings: Who talks the most? Who is quiet? Who do people seem to listen to or follow?
+- **Identify influencers:** Recognize who the informal leaders are (those who may not have a formal title but who others look to for guidance).
 
 Questions to reflect:
 
@@ -779,7 +793,7 @@ Understanding the people:
 - Can you provide an overview of all parties involved and their roles?
 - Who are the decision-makers, and what are their expectations?
 - Who will be your main point of contact throughout the project?
-- How should we communicate with the stakeholders (meetings, emails, reports)?
+- How should we communicate with the stakeholders (meetings, emails, etc.)?
 - What is the preferred frequency and format for project updates?
 - What is the team structure on the client side?
 - Are there any external consultants or teams involved, and what are their roles?
@@ -801,9 +815,9 @@ Setting personal goals is the foundation of continuous learning. Define clear, a
 Tips and techniques:
 
 - **Use SMART framework:** Break down your goals using the SMART (Specific, Measurable, Achievable, Relevant, Time-bound) framework to ensure they are clear and attainable.
-- **Vision board:** Create a digital or physical vision board that visualizes your goals and serves as a daily reminder.
-- **Weekly reviews:** Set aside time each week to review your progress and adjust your plans as needed.
 - **Progress journal:** Maintain a journal to document your achievements and challenges, which can also serve as a reflection tool.
+- **Weekly reviews:** Set aside time each week to review your progress and adjust your plans as needed.
+- **Vision board:** Create a digital or physical vision board that visualizes your goals and serves as a daily reminder.
 
 Questions to reflect:
 
