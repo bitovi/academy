@@ -177,7 +177,7 @@ application and team.
 <input type="radio"/> Yes
 <input type="radio"/> No
 
-**Are teams grouped by specialty?** _Example: client vs server_
+**Are teams grouped by specialty?** _Example: client vs. server_
 
 <input type="radio"/> Yes
 <input type="radio"/> No

@@ -95,7 +95,7 @@ QUnit.test("$.extend", function () {
   ```js
   var obj = { foo: "bar", zed: "ted" };
   for (var prop in obj) {
-    console.log(prop); //logs "foo" then "zed"
+    console.log(prop); // Logs "foo" then "zed"
   }
   ```
 
@@ -106,7 +106,7 @@ QUnit.test("$.extend", function () {
   ```js
   var obj = { foo: "bar" };
   var prop = "foo";
-  console.log(obj[prop]); //logs "bar"
+  console.log(obj[prop]); // Logs "bar"
   ```
 
   @codepen
@@ -117,7 +117,7 @@ QUnit.test("$.extend", function () {
   var obj = {};
   var prop = "foo";
   obj[prop] = "bar";
-  console.log(obj.prop); //logs "bar"
+  console.log(obj.prop); // Logs "bar"
   ```
 
   @codepen
@@ -127,7 +127,7 @@ QUnit.test("$.extend", function () {
 
   ```js
   var obj = { foo: "bar" };
-  console.log(obj.hasOwnProperty("foo")); //logs true
+  console.log(obj.hasOwnProperty("foo")); // Logs true
   ```
 
   @codepen
@@ -191,7 +191,7 @@ QUnit.test("$.isArray", function () {
 
   ```js
   console.log(Object.prototype.toString.call(new Date()));
-  //logs "[object Date]"
+  // Logs "[object Date]"
   ```
 
   @codepen
@@ -250,7 +250,7 @@ QUnit.test("$.isArrayLike", function () {
 - The [in operator ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in) returns `true` if the specified property is in the specified object or its prototype chain.
   ```js
   var obj = { foo: "bar" };
-  console.log("foo" in obj); //logs true
+  console.log("foo" in obj); // Logs true
   ```
   @codepen
 
@@ -495,7 +495,7 @@ var dog = {
 };
 
 var dogSpeak = $.proxy(dog.speak, dog);
-dogSpeak("ruff"); //logs 'fido says ruff'
+dogSpeak("ruff"); // Logs 'fido says ruff'
 ```
 
 @codepen
@@ -537,7 +537,7 @@ QUnit.test("$.proxy", function () {
     },
   };
 
-  dog.speak.apply(cat, []); //logs "sparky says woof"
+  dog.speak.apply(cat, []); // Logs "sparky says woof"
   ```
 
 ### The solution

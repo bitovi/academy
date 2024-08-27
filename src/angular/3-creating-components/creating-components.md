@@ -74,7 +74,7 @@ Data can also be passed to child components. Data can be passed with expression 
 Create a component that displays a title read from a component’s `title` member.
 
 <img src="../static/img/angular/3-creating-components/home-component.png"
-  style="border: solid 1px black; max-width: 640px;"/>
+  style="border: solid 1px black;" width="640"/>
 
 The component should provide the following HTML:
 
@@ -152,7 +152,7 @@ You can use one of these two online editors:
 
 ## P1: Solution
 
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 <details>
 <summary>Click to see the solution</summary>
@@ -171,7 +171,7 @@ You can use one of these two online editors:
 We want to display a list of restaurants in our UI once the data has been set on the restaurants member. It will look like:
 
 <img src="../static/img/angular/3-creating-components/restaurant-component.png"
-  style="border: solid 1px black; max-width: 640px;"/>
+  style="border: solid 1px black;" width="640"/>
 
 > Note: We will fix the missing images in the next step.
 
@@ -180,10 +180,10 @@ We want to display a list of restaurants in our UI once the data has been set on
 To solve this exercise, you’ll need to learn some of Angular’s more common
 template directives. Template directives in Angular help us iterate through and manipulate data we’ve bound to the DOM. You’ll need some of the following:
 
-- \*ngIf - conditionally show content.
-- \*ngFor - iterate through a list and create content for each item in the list.
-- ng-container - a container for content that is not rendered, but can be referenced by other directives.
-- ng-class - set classes on elements.
+- \*ngIf — conditionally show content.
+- \*ngFor — iterate through a list and create content for each item in the list.
+- ng-container — a container for content that is not rendered, but can be referenced by other directives.
+- ng-class — set classes on elements.
 
 ## \*ngIf
 
@@ -269,7 +269,7 @@ To solve this problem, use Angular directives to iterate through data and displa
 
 ## P2: Solution
 
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 <details>
 <summary>Click to see the solution</summary>

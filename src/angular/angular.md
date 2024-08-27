@@ -8,7 +8,7 @@
 ## Before you begin
 
 <p><a href="https://discord.gg/J7ejFsZnJ4">
-<img src="./static/img/discord.png"
+<img alt="" src="./static/img/discord.png"
   style="float:left; margin:20px" width="57"/> <span style="margin-top: 10px;display: inline-block;">Click here to join the<br/>Bitovi Community Discord</span></a></p>
 
 <br/>
@@ -24,8 +24,7 @@ If you find bugs in this training or have suggestions, create an [issue](https:/
 
 In this guide, we will build this restaurant ordering app with Angular:
 
-<img src="./static/img/place-my-order.png" title="Place My Order App screenshot"
-  style="max-width: 100%"/>
+<img src="./static/img/place-my-order.png" alt="Place My Order App screenshot"/>
 
 You can see a DoneJS implementation of this application at
 [www.place-my-order.com](http://www.place-my-order.com).

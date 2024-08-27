@@ -28,7 +28,7 @@ When to schedule team coordination meetings
 
 We believe there are many different ways of managing product teams, not limited to two-week scrum-style sprints. That being said, two-week sprints are the baseline we will use for part of the training, as two-week sprints are the most common pattern we see.
 
-For two-week product scrum teams, we strongly suggest breaking up the Sprint Planning meeting into two meetings, separated by at least one day for grooming. A two-week sprint might look like:
+For two-week product scrum teams, we strongly suggest breaking up the Sprint Planning meeting into two meetings, separated by at least one day for refinement. A two-week sprint might look like:
 
 <table>
 <thead>
@@ -43,7 +43,7 @@ The two meetings are:
 *   Sprint Planning - Product teams meet to commit to a sprint.
     
 
-We split out these meetings to enable more efficient sprint planning and give time for grooming. The reasons are beyond the scope of this training. If you would like to know more about how Bitovi manages a single team, please vote for “Agile Project Management with Jira”.
+We split out these meetings to enable more efficient sprint planning and give time for refinement. The reasons are beyond the scope of this training. If you would like to know more about how Bitovi manages a single team, please vote for “Agile Project Management with Jira”.
 
 When multiple teams use the calendar above, we suggest adding an additional meeting between Sprint Prototyping and Sprint Planning: <span class="color-purple bold">Program Sprint Planning</span>. For example, it might be scheduled the day after Sprint Prototyping as follows:
 

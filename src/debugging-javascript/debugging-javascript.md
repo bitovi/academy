@@ -27,11 +27,11 @@ If you find bugs in this training or have suggestions, create an [issue](https:/
 
 - [learn-to-debug-javascript/scope] - Learn how to see the variables available in the scope.   
 
-  <img src="./static/img/debugging/closure.png" width="300px" style="border: solid 1px black"/>
+  <img src="./static/img/debugging/closure.png" width="300" style="border: solid 1px black"/>
 
 - [learn-to-debug-javascript/call-stack] - Learn how to trace how functions are called.   
 
-  <img src="./static/img/debugging/stack.png" width="300px" style="border: solid 1px black"/>
+  <img src="./static/img/debugging/stack.png" width="300" style="border: solid 1px black"/>
 
 - [learn-to-debug-javascript/prototypes] - Learn how to explore an object’s proto chain.  
 

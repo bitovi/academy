@@ -74,7 +74,7 @@ The JSX syntax allows function components to look like HTML, but underneath they
 
 You can think of components as fancy functions.
 
-While you can't actually do the following, this is functionally similar to what React is doing for you.
+While you can’t actually do the following, this is functionally similar to what React is doing for you.
 
 ```tsx
 import type React from "react"
@@ -90,7 +90,7 @@ const App: React.FC = () => {
 }
 ```
 
-Did you notice the `React.FC` that was used in the previous example to type the `App` const? Because we're using TypeScript with our project, we can apply types to help make sure the function component is properly formed. React provides the type `FC` (an abbreviation for "function component") that can be applied to a function component. This type defines the arguments and return value that a function component must implement.
+Did you notice the `React.FC` that was used in the previous example to type the `App` const? Because we’re using TypeScript with our project, we can apply types to help make sure the function component is properly formed. React provides the type `FC` (an abbreviation for "function component") that can be applied to a function component. This type defines the arguments and return value that a function component must implement.
 
 ### Setup
 

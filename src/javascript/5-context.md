@@ -100,7 +100,7 @@ QUnit.test("DOT works", function(){
 - [hasOwnProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty) returns if an object has a direct property:
   ```js
   var obj = {foo: "bar"};
-  console.log( obj.hasOwnProperty("foo") ) //logs: true
+  console.log( obj.hasOwnProperty("foo") ) // Logs: true
   ```
   @codepen
 
@@ -108,7 +108,7 @@ QUnit.test("DOT works", function(){
   recommended way of reading the `__proto__` property.
   ```js
   var date = new Date()
-  console.log( Object.getPrototypeOf(date) === Date.prototype ) //logs: true
+  console.log( Object.getPrototypeOf(date) === Date.prototype ) // Logs: true
   ```
   @codepen
 
@@ -121,7 +121,7 @@ QUnit.test("DOT works", function(){
       return number * factorial(number-1);
     }
   }
-  console.log( factorial(4) ) //logs: 24
+  console.log( factorial(4) ) // Logs: 24
   ```
   @codepen
 

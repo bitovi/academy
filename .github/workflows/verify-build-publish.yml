@@ -8,21 +8,33 @@ on:
 jobs:
   job:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Use Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: "16"
+          node-version-file: ".nvmrc"
 
-      - name: "Install"
+      - name: Install
         run: npm ci
-
       - name: depcheck
         run: npm run depcheck
+
+      - name: Verify React Native Exercises
+        run: |
+          npm run lint:exercises
+
+      - name: Verify React Native Content
+        run: |
+          npm run lint:content
+
+      - name: Generate Exercises
+        run: npm run generate
+
+      - name: test
+        run: npm run test
 
       - name: Build
         run: npm run build

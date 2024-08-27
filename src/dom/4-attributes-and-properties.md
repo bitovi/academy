@@ -163,7 +163,7 @@ QUnit.test("$.fn.css", function () {
     theDiv.style.color = "red";
 
     console.log(theDiv.outerHTML);
-    //logs "<div id="theDiv" style="color: red;">theDiv</div>"
+    // Logs "<div id="theDiv" style="color: red;">theDiv</div>"
   </script>
   ```
 

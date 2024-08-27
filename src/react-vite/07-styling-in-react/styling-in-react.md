@@ -175,7 +175,7 @@ img {
 }
 ```
 
-Instead, make sure tags are used in conjunction with classes.
+Instead, make sure tags are used together with classes.
 
 ```css
 img.fancyImage {

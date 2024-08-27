@@ -20,7 +20,7 @@ if they are for the current page or not.
 
 <img src="../static/img/angular/pmo-working-nav.gif"
   style="border: solid 1px black; "
-  title="Place My Order App working nav"/>
+  alt="Place My Order App working nav"/>
 
 ## What you need to know
 
@@ -90,7 +90,7 @@ Make your changes in the **src/app/app.component.html** file. The markup structu
 You will know you’ve completed the exercise correctly when you can click the nav items to
 see the UI change and see the active class on the current nav item.
 
-![Place My Order App working nav](../static/img/angular/pmo-working-nav.gif 'Place My Order App working nav')
+<img alt="Place My Order App working nav" src="../static/img/angular/pmo-working-nav.gif">
 
 ✏️ Update the spec file **src/app/app.component.spec.ts** to be:
 
@@ -98,7 +98,7 @@ see the UI change and see the active class on the current nav item.
 
 ## Solution
 
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 <details>
 <summary>Click to see the solution</summary>

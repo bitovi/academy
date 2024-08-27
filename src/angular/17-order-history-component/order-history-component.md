@@ -31,7 +31,7 @@ If you’ve implemented the solution correctly you should be able to navigate to
 
 @diff ../14-building-order-form/app.component.spec.ts ./app.component.spec.ts only
 
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 ## P1: What you need to know
 
@@ -119,7 +119,7 @@ iterate through orders and add the right class names to the outer `<div>` for ea
 
 @sourceref ./history.component-1.spec.ts
 
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 ## P3: What you need to know
 
@@ -215,7 +215,7 @@ ng g component order/list
 
 @sourceref ./list.component.spec.ts
 
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 ## P4: What you need to know
 

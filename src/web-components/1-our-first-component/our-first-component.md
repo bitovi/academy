@@ -26,7 +26,7 @@ It looks like this:
 
 <img src="../static/img/web-components/bt-hello-world.gif"
   style="border: solid 1px black; max-width: 100%;"
-  title="Text displaying 'Hello world' and a few other greetings." />
+  alt="Text displaying 'Hello world' and a few other greetings." />
 
 ## How to Solve This Problem
 

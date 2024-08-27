@@ -1,9 +1,9 @@
-import assert from "node:assert";
+import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { jessica, tom, isLoading, inventory } from "./fix-errors";
 
 describe("Fix Errors", () => {
-  it("exports are correct", function () {
+  it("types are correct", function () {
     assert.equal(isLoading, false, "isLoading");
 
     assert.deepEqual(inventory, ["tacos", "hamburgers"], "inventory");

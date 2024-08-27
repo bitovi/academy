@@ -8,7 +8,7 @@
 ## Before you begin
 
 <a href="https://discord.gg/J7ejFsZnJ4">
-<img src="./static/img/discord.png"
+<img alt="" src="./static/img/discord.png"
   style="float:left; margin:20px" width="57"/> <span style="margin-top: 10px;display: inline-block;">Click here to join the<br/>Bitovi Community Discord</span></a>
 
 Join the Bitovi Community Discord to get help on Bitovi Academy courses or other
@@ -75,13 +75,13 @@ be a useful reference for understanding how the tutorial works:
 
 - Open Developer Tools and stack CodePen vertically:
 
-  <img src="./static/img/codepen-stack.png" width="50%" alt="CodePen stacked" title="CodePen stacked" style="border: solid 1px #808080" />
+  <img src="./static/img/codepen-stack.png" alt="CodePen stacked" style="border: solid 1px #808080" />
 
 - Save your CodePen
 - If you can’t figure out what is breaking, use an [online diff checker](https://www.diffchecker.com/) to
   compare your code with the solution.
 
-  <img src="./static/img/diff-checker.png" width="50%" alt="Diff Checker" title="DiffChecker" style="border: solid 1px #808080" />
+  <img src="./static/img/diff-checker.png" alt="DiffChecker" style="border: solid 1px #808080" />
 
 ## Prerequisites
 

@@ -19,7 +19,7 @@ In this section, we will:
 
 Now that we have our project set up, let’s update our page to look like the design below:
 
-<img alt="Screenshot of a web application interface titled “Restaurants” showing a single restaurant entry. The entry includes a photo of a sushi plate, an address, a price indicator, business hours, and a green badge stating “Open Now”. There is also a “Details” button to the right. The browser tab indicates “Vite + React + TS” and the URL is “localhost:5173”." src="../static/img/react-vite/03-intro-to-jsx/01-solution.png" style="max-width: 640px;"/>
+<img alt="Screenshot of a web application interface titled “Restaurants” showing a single restaurant entry. The entry includes a photo of a sushi plate, an address, a price indicator, business hours, and a green badge stating “Open Now”. There is also a “Details” button to the right. The browser tab indicates “Vite + React + TS” and the URL is “localhost:5173”." src="../static/img/react-vite/03-intro-to-jsx/01-solution.png" width="640"/>
 
 ### What is JSX?
 
@@ -120,7 +120,7 @@ In JSX, comments follow the JavaScript comment syntax. Since JSX is transpiled i
 ```tsx
 const content = (
   <p>
-    {/* This is a JSX comment */}
+    {/* This is a JSX comment. */}
     Visible content
   </p>
 )
@@ -166,7 +166,7 @@ function Form() {
 
 #### Convention: Implicit Returns
 
-When creating functions that have no logic and just return JSX, especially when they're an argument to a function, the convention is to use an arrow function with an implicit return. This is nearly always coupled with the parenthesis convention, too. (Don't worry: you'll learn about `.map` in the next objective.)
+When creating functions that have no logic and just return JSX, especially when they're an argument to a function, the convention is to use an arrow function with an implicit return. This is nearly always coupled with the parenthesis convention, too. (Don’t worry: you’ll learn about `.map` in the next objective.)
 
 ```tsx
 const data = ["one", "two"]
@@ -235,7 +235,7 @@ Take the below HTML and convert it to JSX in `app.tsx`:
 
 Next, we want to render a list of restaurants in our application:
 
-<img alt="Screenshot of the same web application interface from Objective 1, except now there are multiple restaurants listed in the UI." src="../static/img/react-vite/03-intro-to-jsx/02-solution.png" style="max-width: 640px;"/>
+<img alt="Screenshot of the same web application interface from Objective 1, except now there are multiple restaurants listed in the UI." src="../static/img/react-vite/03-intro-to-jsx/02-solution.png" width="640"/>
 
 To do so, we‘ll learn about:
 
@@ -446,9 +446,9 @@ That will produce the following HTML:
 </ul>
 ```
 
-🔦 _During development, If you forget to provide a `key` prop for items in an array React will log the following error to the browser's console:_
+🔦 _During development, If you forget to provide a `key` prop for items in an array React will log the following error to the browser’s console:_
 
-<img alt="A browser console with the error message 'Warning: Each child in a list should have a unique 'key' prop." src="../../../static/img/react-vite/03-intro-to-jsx/react-missing-key-error.png" style="width:100%" />
+<img alt="A browser console with the error message 'Warning: Each child in a list should have a unique 'key' prop." src="../static/img/react-vite/03-intro-to-jsx/react-missing-key-error.png"/>
 
 ### Setup 2
 

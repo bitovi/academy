@@ -10,6 +10,14 @@ The following sections detail how to make various improvements to the site. Make
 npm install
 ```
 
+```sh
+npm run generate
+```
+
+```sh
+npm run build
+```
+
 ### Dev Server
 
 You can start a development server at `http://localhost:8080/academy/` by running:
@@ -42,6 +50,55 @@ npm run rebuild-assets
 ```
 
 This should take about 5 seconds.
+
+### Generating Exercises
+
+Some courses have [dynamically generated exercises](./exercise-src/README.md). These courses will have a folder in `exercise-src` and a corresponding entry in `exercises/.gitignore`. To generate the exercises, run:
+
+```sh
+npm run generate
+```
+
+### Linting the content and code
+
+ESLint and Prettier are configured for some of the Academy content and exercises.
+
+In CI, this will run to verify both the content and exercises:
+
+```sh
+npm run lint
+```
+
+There are also individual `lint:content` and `lint:exercises` scripts if you want to lint just one and not the other.
+
+To fix them both locally, you can run this command:
+
+```sh
+npm run lint:fix
+```
+
+There are also individual `lint:content:fix` and `lint:exercises:fix` scripts if you want to fix just one and not the other.
+
+Be sure to let these commands finish completely because they delete the `node_modules` folders.
+If a `node_modules` folder is left inside `src`, it will be processed as content and cause issues with running `npm start`.
+
+### Testing the exercises
+
+The test script will look inside the `exercises` folder for any `-solution` folder that has a `package.json`, then install the dependencies and run the tests:
+
+```sh
+npm test
+```
+
+It will run up to three of the tests in parallel at a time. This is set in the test script.
+
+To benchmark how many parallel tests can be run at a time, run:
+
+```sh
+npm run test:benchmark
+```
+
+This command will run the tests with various levels of parallelism and print the results at the end.
 
 ### Building
 
@@ -96,8 +153,6 @@ Once you have a 1200x630 image, you can add a `@metaogimage` tag as follows
 ```md
 @metaogimage ../static/img/program-management-with-jira/og-thumbnail.png
 ```
-
-
 
 > In the first page, please include an overview of what the course will cover as well as a links for all subsequent pages in the course.
 
@@ -187,9 +242,11 @@ Internal and external links can be created with Markdown syntax:
 
 ```md
 <!-- Internal link -->
+
 [Bitovi Academy’s RxJS training](../learn-rxjs.html)
 
 <!-- External link: -->
+
 [`mergeMap`](https://rxjs-dev.firebaseapp.com/api/operators/mergeMap)
 ```
 

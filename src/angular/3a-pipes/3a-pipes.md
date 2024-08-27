@@ -10,12 +10,12 @@
 You may have noticed an image error in our rendered html page. We’re using an API in this demo that wasn’t built for our exact purposes, and we need a different image path for our app to serve.
 
 <img src="../static/img/angular/3-creating-components/restaurant-component.png"
-  style="border: solid 1px black; max-width: 320px;"/>
+  style="border: solid 1px black;" width="320"/>
 
 In this exercise, we will fix the path of the thumbnail images in **src/app/restaurant/restaurant.component.html**.
 
 <img src="../static/img/angular/3b-creating-pipes/restaurant-thumbnails.png"
-  style="border: solid 1px black; max-width: 320px;"/>
+  style="border: solid 1px black;" width="320"/>
 
 Currently the path is written out like:
 
@@ -114,7 +114,7 @@ You can use one of these two online editors:
 
 ## Solution
 
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 <details>
 <summary>Click to see the solution</summary>

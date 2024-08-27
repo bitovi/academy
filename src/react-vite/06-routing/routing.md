@@ -95,7 +95,7 @@ const Layout = () => {
     <>
       <header>My awesome site</header>
       <main>
-        <Outlet /> {/* Child routes will render here */}
+        <Outlet /> {/* Child routes will render here. */}
       </main>
       <footer>©</footer>
     </>

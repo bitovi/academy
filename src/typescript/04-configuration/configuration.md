@@ -1,7 +1,8 @@
 @page learn-typescript/configuration Configuration
 @parent learn-typescript 4
+@hide
 
-@description Learn about TypeScript Configurations and Linting
+@description Learn about TypeScript configuration and linting.
 
 @body
 
@@ -113,4 +114,4 @@ For more information on TypeScript with ESLint, we can refer to the [typescript-
 
 ## Next steps
 
-Next we will learn how to [import and export](./exporting-and-importing.html) functions between modules.
+Next we will learn how to import and export functions between [learn-typescript/modules].

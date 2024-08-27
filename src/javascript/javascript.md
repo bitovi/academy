@@ -8,7 +8,7 @@
 ## Before you begin
 
 <a href="https://discord.gg/J7ejFsZnJ4">
-<img src="./static/img/discord.png"
+<img alt="" src="./static/img/discord.png"
   style="float:left; margin:20px" width="57"/> <span style="margin-top: 10px;display: inline-block;">Click here to join the<br/>Bitovi Community Discord</span></a>
 
 Join the Bitovi Community Discord to get help on Bitovi Academy courses or other
@@ -38,4 +38,4 @@ If you find bugs in this training or have suggestions, create an [issue](https:/
 At the end, you should have a firm understanding of the core features of JavaScript.  We will
 be building the following mental model:
 
-<a href="./static/img/js-handout.png"><img src="./static/img/js-handout.png" width="50%"/></a>
+<a href="./static/img/js-handout.png"><img src="./static/img/js-handout.png"/></a>

@@ -48,7 +48,7 @@ Each exercise builds on the previous exercise. There is a completed solution at 
 <script type="module">
   import "https://unpkg.com/jquery@3/dist/jquery.js";
 
-  console.log($(".inner").width()); //logs 70
+  console.log($(".inner").width()); // Logs 70
 </script>
 ```
 
@@ -170,7 +170,7 @@ QUnit.test('$.fn.show and $.fn.hide', function(){
   import "https://unpkg.com/jquery@3/dist/jquery.js";
 
   console.log($(".inner").offset());
-  //logs { left: 30, top: 40 }
+  // Logs { left: 30, top: 40 }
 </script>
 ```
 

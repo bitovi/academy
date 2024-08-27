@@ -1,0 +1,8 @@
+ignores:
+  - "@types/*"
+  - "@babel/*"
+  - "babel-*"
+  - "*-babel"
+  - "@react-native/eslint-config"
+  - identity-obj-proxy
+  - react-native-dotenv

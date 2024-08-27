@@ -202,7 +202,7 @@ You’ll also add new single-responsibility streams:
 @sourceref ./restaurant.component.spec.ts
 @highlight 9, 11-13, 198-203, 306, 311-314, 319, 324-325, 357-362, 372, 390-395, 405, 421-427, 442-446, 450, 453, only
 
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 ## What you need to know
 

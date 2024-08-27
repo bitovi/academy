@@ -9,7 +9,7 @@
 
 <p>
   <a href="https://discord.gg/J7ejFsZnJ4">
-    <img src="./static/img/discord.png" style="float:left; margin:20px" width="57"/>
+    <img alt="" src="./static/img/discord.png" style="float:left; margin:20px" width="57"/>
     <span style="margin-top: 10px;display: inline-block;">
       Click here to join the
       <br/>
@@ -48,7 +48,7 @@ The second half of the guide will cover more intermediate topics like state mana
 
 Throughout this guide, we’ll be building out a feature-rich Place My Order application, gradually applying all of these concepts to produce a clean and optimized solution!
 
-<img src="./static/img/place-my-order.png" title="Place My Order App screenshot" style="max-width: 100%"/>
+<img src="./static/img/place-my-order.png" alt="Place My Order App screenshot"/>
 
 ## Next steps
 

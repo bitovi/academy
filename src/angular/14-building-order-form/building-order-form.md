@@ -41,7 +41,7 @@ When you navigate to the `/order` path from a restaurant detail page you should 
 
 @diff ../13-nested-routes/app.component.spec.ts ./app.component.spec.ts only
 
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 ## P1: Solution
 
@@ -141,7 +141,7 @@ Now let’s add the markup to our order component implementing the tabs widget.
 
 Now when we view the order form of our route, we’ll see a nice form and tabs for lunch and dinner menu options.
 
-![Place My Order App tabs](../static/img/angular/pmo-tabs-working.gif 'Place My Order App tabs')
+<img alt="Place My Order App tabs" src="../static/img/angular/pmo-tabs-working.gif">
 
 ## Problem 3: Create a `menu-items` component
 

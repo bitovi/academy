@@ -20,7 +20,7 @@ data from the service API. Instead of two hard coded restaurants, we will
 see a longer list:
 
 <img src="../static/img/angular/7-data-into-view/1-after.png"
-  style="border: solid 1px black; max-width: 640px;"/>
+  style="border: solid 1px black;" width="640"/>
 
 ## P1: What you need to know
 
@@ -87,7 +87,7 @@ You should be able see a list of all restaurants when you navigate to <a href="h
 
 ## P1: Solution
 
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 <details>
 <summary>Click to see the solution</summary>
@@ -143,7 +143,7 @@ You should be able see a list of restaurants when you navigate to <a href="http:
 
 ## P2: Solution
 
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 <details>
 <summary>Click to see the solution</summary>

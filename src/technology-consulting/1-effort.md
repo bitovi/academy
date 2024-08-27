@@ -1,5 +1,6 @@
 @page learn-technology-consulting/values Outcome Focused Effort
 @parent learn-technology-consulting 1
+@outline 2
 
 @description Learn what activities to prioritize in technology consulting. **Hint:** It is _not_ technology.
 

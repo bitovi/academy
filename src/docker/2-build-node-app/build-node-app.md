@@ -64,7 +64,7 @@ npm start
 ```
 Open your browser to `localhost:3000` and you should see `Hello World!`
 
-![node app in browser](../static/img/docker/2-build-node-app/node-hello-world.png)
+<img alt="node app in browser" src="../static/img/docker/2-build-node-app/node-hello-world.png">
 
 ## What’s next
 Now that we’ve created a simple Node.js app, we are going to containerize it.

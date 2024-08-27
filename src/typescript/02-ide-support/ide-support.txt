@@ -1,7 +1,7 @@
-Lets talk about configuring typescript ...
+Let’s talk about configuring TypeScript ...
 
 
-Using typescript without IDE support is like using
+Using TypeScript without IDE support is like using
 
 - a smartphone without plugging it in
 -

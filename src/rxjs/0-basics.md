@@ -252,7 +252,7 @@ Read the inline comments below to see how this works.
 
 Each time an observable is subscribed to, it creates a new
 and distinct execution context. This can be unexpected or
-even undesirable. Lets see what a distinct execution means.
+even undesirable. Let’s see what a distinct execution means.
 
 In the following example, the observable emits a random number
 after a second then completes. Notice that each subscriber gets a different

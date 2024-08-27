@@ -1,5 +1,6 @@
 @page learn-technology-consulting/goals Specific Goals
 @parent learn-technology-consulting 2
+@outline 2
 
 @description Learn how to establish clear goals that are well understood by your team.
 

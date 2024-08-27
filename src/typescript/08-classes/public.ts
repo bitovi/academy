@@ -4,10 +4,10 @@ class Dinosaur {
     this.name = name;
   }
   public walk(distanceInFeet: number): void {
-    console.log(`${this.name} walked ${distanceInFeet} feet.`);
+    console.info(`${this.name} walked ${distanceInFeet} feet.`);
   }
 }
 
-let myDino = new Dinosaur("Mildred");
-console.log(myDino.name);
+const myDino = new Dinosaur("Mildred");
+console.info(myDino.name);
 myDino.walk(7);

@@ -11,7 +11,7 @@ up card number without those spaces and dashes.
 
 Notice how CardNumber doesn’t have the spaces?
 
-Lets do this!
+Let’s do this!
 
 
 ======

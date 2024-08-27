@@ -5,9 +5,9 @@ class ParkEmployee {
   }
 
   sayHi() {
-    console.log(`Hi, my name is ${this.name}`);
+    console.info(`Hi, my name is ${this.name}`);
   }
 }
 
-let raptorGuy = new ParkEmployee("Owen");
+const raptorGuy = new ParkEmployee("Owen");
 raptorGuy.sayHi();

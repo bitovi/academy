@@ -35,7 +35,7 @@ Generics are a great way to reuse strongly typed code and create powerful abstra
 
 ## With Constraints
 
-Generics by themselves are a great way to encapsulate logic when we don’t really care what shape that type has. Take for example `Array`. Arrays are a list of things. It doesn’t matter what things are in it since when we do interact with items in an array we provide the logic to handle those items, making the array indifferent to what’s inside. Sometimes though, we do care about the shape of the thing being passed in or at least part of it. Take a `greeter` function, say we want it to greet something by name whether it be a bird, dog, person, cat, or pokemon. Reuse of logic across types screams generics. So what happens if we try to implement `greeter` using plain generics? Well, let’s try.
+Generics by themselves are a great way to encapsulate logic when we don’t really care what shape that type has. For example, take `Array`. Arrays are a list of things. It doesn’t matter what things are in it since when we do interact with items in an array we provide the logic to handle those items, making the array indifferent to what’s inside. Sometimes though, we do care about the shape of the thing being passed in or at least part of it. Take a `greeter` function, say we want it to greet something by name whether it be a bird, dog, person, cat, or pokemon. Reuse of logic across types screams generics. So what happens if we try to implement `greeter` using plain generics? Well, let’s try.
 
 ```ts
 function greeter<T>(thingToGreet: T): void {

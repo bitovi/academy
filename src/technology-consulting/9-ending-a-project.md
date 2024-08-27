@@ -1,5 +1,6 @@
 @page learn-technology-consulting/ending-a-project Ending a Project
-@parent learn-technology-consulting 9
+@parent learn-technology-consulting 10
+@outline 2
 
 @description Best practices for wrapping up a project.
 
@@ -35,7 +36,7 @@ Testimonials can be used on your website, shared on your social media, or used a
 
 ### _Referrals_
 
-If client stakeholders had a good experience working with you, they should be willing to refer you to friends and colleagues that may need similiar services. Don’t be afraid to reach out and ask them for a referal!
+If client stakeholders had a good experience working with you, they should be willing to refer you to friends and other Bitovians that may need similiar services. Don’t be afraid to reach out and ask them for a referal!
 
 ### _Social Media_
 

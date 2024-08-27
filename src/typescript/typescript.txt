@@ -12,9 +12,9 @@ TypeScript and works through some examples.
 
 Specifically, we will:
 
-- Learn why you might want to use typescript and
+- Learn why you might want to use TypeScript and
   show an example of compiling it.
-- See how to configure typescript and
+- See how to configure TypeScript and
   what integrated IDE support looks like
 - Declare types on variables.
 - Define functions to specify their

@@ -208,7 +208,7 @@ npm run test
 
 ## P1: Solution
 
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`!
 
 <details>
 <summary>Click to see the solution</summary>
@@ -331,7 +331,7 @@ it within the `ResponseData` interface which is used by `httpClient.get`:
 
 @diff ../../../exercises/angular/6-restaurant-service/problem/src/app/restaurant/restaurant.component.spec.ts ./restaurant.service-with-interface.spec.ts only
 
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass! If you haven’t written the interfaces correctly, you’ll see a compile error before the tests runs. You might need to restart the test script to see the compile error.
+If you’ve implemented the solution correctly, the tests will pass when you run `npm run test`! If you haven’t written the interfaces correctly, you’ll see a compile error before the tests runs. You might need to restart the test script to see the compile error.
 
 ## P2: Solution
 
