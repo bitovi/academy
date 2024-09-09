@@ -1,6 +1,6 @@
 @page learn-technology-consulting/consultant-vs-technologist Being a Consultant
 @parent learn-technology-consulting 7
-@outline 3
+@outline 2
 
 @description How to be more than just a domain expert on a consulting project.
 
@@ -8,22 +8,93 @@
 
 ## Being a Consultant (not just a domain expert)
 
-At Bitovi, we pride ourselves in being able to deliver more than just staff augmentation (additional staff on a project). Being a consultant means understanding and engaging with the client’s broader business context, building strong relationships, asking insightful questions, and providing solutions that benefit the client’s business and customers. Your role is to be a partner to the client, offering expertise that goes beyond fulfilling tasks to include strategic thinking and problem-solving.
+At Bitovi, we pride ourselves in being able to deliver more than just staff augmentation (additional staff on a project). Being a consultant requires a deep understanding of the client’s business, the ability to build strong relationships, and the skills to offer strategic value that goes beyond simply completing tasks.
 
-### Common roles on software projects
+As a consultant, your role is to be a partner who actively contributes to the client’s success, using your technical knowledge to solve problems in a way that aligns with their broader business objectives.
+
+### Build lasting partnerships
+
+Your role as a consultant is not just about executing tasks — it’s about building a partnership where you help clients achieve meaningful outcomes. This requires a shift from seeing yourself as a service provider to becoming a trusted partner who deeply understands the client’s goals.
+
+- **Partner, don’t just provide a service:** Approach every project as an opportunity to form a strategic partnership. Focus on understanding the client’s larger objectives, not just the immediate tasks at hand. For instance, if asked to implement a new feature, dig deeper to understand how this feature fits into the product’s long-term strategy and how it impacts the business. Align your work with these broader goals to ensure you’re adding value beyond simply delivering a feature.
+- **Become a trusted advisor:** Clients rely on you not just to complete tasks but to offer thoughtful advice. Proactively identify challenges or opportunities they may not have considered. For example, if a client is prioritizing a short-term deadline, help them weigh the potential long-term consequences of those decisions. By offering well-reasoned recommendations, you become someone they trust to guide them toward the best business outcomes.
+- **Learn about the client’s business, product, and customers:** To be an effective consultant, take the time to learn about the client’s industry, who their customers are, and how their product fits into the competitive landscape. This knowledge helps you provide more targeted and valuable solutions. For example, if you’re working with a client in retail, understanding the shopping habits of their customers will allow you to suggest improvements that better serve those customers and increase the client’s success.
+- **Show genuine care for results:** Being a great consultant means caring deeply about the client’s success. Show commitment to achieving the best outcomes, and others will recognize your dedication. This helps build trust and opens up further opportunities for collaboration and growth within the project.
+
+Examples:
+
+- **Aligning with business goals:** A Backend engineer notices that the client’s request for faster API response times aligns with their broader goal of improving the user experience to retain more customers. Rather than just optimizing the API, they propose adjustments to the data architecture that could lead to even greater performance improvements across the system.
+- **Suggesting process improvements:** A QA engineer identifies that the client’s frequent releases are creating quality issues. Rather than just testing, they recommend automating parts of the testing pipeline to reduce human error and ensure consistent quality in each release.
+- **Considering user experience:** While fixing a UI bug on the client’s website, a Frontend developer notices that the current navigation structure is cumbersome for users. Instead of just fixing the bug, they propose a streamlined navigation design to improve the overall user experience.
+- **Planning for cross-team impacts:** A TPO overseeing a feature rollout realizes that pushing too many updates at once could overwhelm the QA team. They suggest staggering the releases to ensure thorough testing and reduce the risk of bugs in production.
+- **Suggesting post-launch improvements:** After delivering a major design overhaul, a Product Designer offers to track key performance indicators (KPIs) like conversion rates post-launch to measure the success of the new design and suggest future tweaks.
+
+Tips and techniques:
+
+- **Refer to the Engagement Summary Document:** Regularly refer to the [learn-technology-consulting/transitioning-to-delivery#engagement-summary-document Engagement Summary Document] created at the start of the project to remind everyone of the shared objectives and reinforce the common goals.
+- **Frame your work in terms of client goals:** When presenting solutions or updates, explicitly connect how your work supports the client’s larger objectives. This helps the client see you as a strategic partner, not just a task executor.
+- **Take initiative to identify gaps:** Don’t wait for the client to ask for help. Actively look for areas in the product, process, or project where improvements could be made, and offer recommendations proactively.
+- **Document for future context:** When delivering a task, leave clear documentation not just of what you did but why you did it. This helps the client or future team members understand the decision-making process and maintain consistency.
+- **Collaborate with cross-functional teams:** Involve team members from other areas (design, QA, etc.) when making decisions that could impact their work. This ensures a more well-rounded approach and minimizes unforeseen issues.
+
+Questions to reflect:
+
+- How can I demonstrate that I understand the client’s larger objectives in my next project meeting?
+- Are there any risks or opportunities the client hasn’t yet considered that I could help identify?
+- How do I demonstrate my commitment to the client’s outcomes in my day-to-day interactions?
+
+### Ask insightful questions and truly listen
+
+Strong communication is essential for any consultant. It’s not just about delivering information but also about asking the right questions and actively listening to the answers. By asking thoughtful questions, you can avoid assumptions and gain a deeper understanding of the client’s needs, which leads to better solutions. Listening carefully ensures you are aligned with the client’s goals and can adapt your approach based on their feedback.
+
+#### Asking questions to gain clarity
+
+Asking questions allows you to fully understand the project’s context and avoid potential pitfalls caused by assumptions. Whether you’re new to a project or have been working with the client for a while, never hesitate to ask for clarification. The more you understand, the better positioned you are to provide meaningful solutions.
+
+- **Ask early, ask often:** Asking questions early in a project helps you lay a solid foundation. In the initial phases, you’re still learning about the client, their team dynamics, and their goals. This is the best time to ask about their business objectives, constraints, and expectations. The more you understand from the outset, the more effectively you can contribute as the project progresses.
+- **It’s okay to not know everything:** You aren’t expected to have all the answers. If something is unclear, don’t be afraid to ask — even if you feel you should know the answer. Admitting when you need more information demonstrates your focus on getting things right, not just moving quickly.
+- **Ask to avoid assumptions:** Assumptions can lead to misunderstandings and mistakes. If a client requests a feature without giving full context, don’t assume it’s similar to something you’ve done before. Always ask for clarification to understand the specific use case and how it fits into the project. Asking questions shows thoroughness and a commitment to delivering the right solution, not just a quick one.
+- **Frame questions as value-driven:** Position your questions as a way to help the client make informed decisions. Instead of simply asking for clarification, explain how understanding their broader goals will lead to better outcomes. For example, when discussing a new feature, ask how it impacts the overall strategy. This approach shows that you’re thinking strategically and not just gathering information for yourself.
+- **Turn discomfort into growth:** Don’t let fear of asking the wrong question or looking inexperienced hold you back. Every question you ask brings you closer to becoming a true expert in the client’s needs. Clients and team members appreciate your curiosity and commitment to understanding the project thoroughly. Embrace that discomfort, knowing it’s part of the process of delivering better results.
+
+#### Listening to understand
+
+Listening is just as important as asking questions. It’s not enough to simply hear what the client is saying — you need to understand their priorities and concerns to offer the best solutions.
+
+- **Listen actively:** When engaging with the client, listen carefully and take notes. Reflect back on what you’ve heard to confirm your understanding and clarify any uncertainties. This ensures you’re fully aligned with their goals and expectations.
+- **Address client concerns proactively:** Pay attention to what the client cares about most, and address those concerns in your solutions. If a client is worried about scalability, make sure your recommendations take that into account. By showing that you’ve listened and tailored your approach accordingly, you build trust and demonstrate your commitment to their success.
+
+Examples:
+
+- **Catching nuances in UI feedback:** A client asks a frontend developer to “make the button more prominent.” Instead of rushing to change the size, the developer listens further and realizes the real issue is user confusion around the entire form layout. This prompts a more holistic redesign of the form.
+- **Clarifying deployment environments:** A DevOps consultant is tasked with setting up CI/CD pipelines but notices the client hasn’t specified whether this is for production, staging, or both. By asking, the consultant uncovers that the client needs a multi-environment setup, which avoids potential future issues with mismatched environments.
+- **Listening to uncover business priorities:** A TPO is reviewing a product roadmap with the client and listens carefully as the client describes various features. By focusing on what the client repeatedly emphasizes, the TPO identifies that the real priority is improving time-to-market, even though the client initially focused on technical details.
+
+Tips and techniques:
+
+- **Reframe assumptions as questions:** If you feel you’re making an assumption, turn that into a question to verify your understanding. This can be as simple as, “Am I correct in thinking that…?” It encourages clarification without making assumptions.
+- **Summarize key points before asking questions:** After a client explains a need, summarize their points and then ask clarifying questions. This technique shows active engagement and ensures that your questions are based on what they’ve actually shared.
+- **Ask open-ended questions to clarify:** If you’re unsure about something, ask questions like “Can you tell me more about that?” This allows the client to expand on their thoughts and may reveal critical details.
+
+Questions to reflect:
+
+- Think of a recent project. What questions could you have asked earlier to improve outcomes or avoid problems later on?
+- How do you handle situations when the client’s priorities seem to change frequently? How can better listening help navigate those moments?
+
+### Help fill the gaps
 
 There are _many_ roles on software projects:
 
-- **Client Stakeholder**: Represents the client’s interests, provides feedback, and approves deliverables.
-- **Project Manager (PM)**: Oversees the project, ensuring it stays on schedule, within budget, and meets the client’s requirements.
-- **Product Owner (PO)**: Defines the product vision and prioritizes the product backlog to ensure the development team delivers maximum value.
-- **Scrum Master**: Facilitates Agile ceremonies, removes impediments, and supports the team in following Scrum practices.
-- **Backend**: Develops server-side logic, databases, and APIs, ensuring the application’s functionality and performance.
-- **DevOps**: Manages deployment processes, infrastructure, and continuous integration/continuous deployment (CI/CD) pipelines.
-- **Frontend**: Implements the user interface and client-side logic, ensuring a responsive and accessible web application.
-- **Product Design**: Designs the user interface and experience, focusing on usability, aesthetics, and overall user satisfaction.
-- **QA/QE**: Tests the application to identify bugs, ensure functionality, and verify that requirements are met.
-- **Business Analyst (BA)**: Gathers requirements, documents processes, and ensures the solution meets business needs.
+- **Client stakeholder:** Represents the client’s interests, provides feedback, and approves deliverables.
+- **Business Analyst (BA):** Gathers requirements, documents processes, and ensures the solution meets business needs.
+- **Product Owner (PO):** Defines the product vision and prioritizes the product backlog to ensure the development team delivers maximum value.
+- **Project Manager (PM):** Oversees the project, ensuring it stays on schedule, within budget, and meets the client’s requirements.
+- **Scrum Master:** Facilitates Agile ceremonies, removes impediments, and supports the team in following Scrum practices.
+- **Product Design:** Designs the user interface and experience, focusing on usability, aesthetics, and overall user satisfaction.
+- **DevOps:** Manages deployment processes, infrastructure, and continuous integration/continuous deployment (CI/CD) pipelines.
+- **Backend:** Develops server-side logic, databases, and APIs, ensuring the application’s functionality and performance.
+- **Frontend:** Implements the user interface and client-side logic, ensuring a responsive and accessible web application.
+- **Quality Assurance/Engineering (QA/QE):** Tests the application to identify bugs, ensure functionality, and verify that requirements are met.
 
 As a consultant, you are expected to be an expert in _one_ of these roles, but being a consultant is a lot more than just being a domain expert.
 
@@ -33,123 +104,139 @@ Similarly, you might not have separate people acting as the Project Manager and 
 
 The key point is that there are many different roles and it’s important to identify who is serving in these roles because if no one is performing these duties on a project, you must highlight this as a risk. For example, if there is no real Product Owner defining the vision, refining the backlog, and communicating with customers, we need to ask, “Who is doing this?” Sometimes, we must fill in those gaps ourselves.
 
-### Your role as a consultant
+### Drive towards business outcomes
 
-These are some of the ways you can differentiate yourself as not just a domain expert, but a partner to the client:
+As a consultant, your primary responsibility is to ensure that your work delivers real value to the client’s business. It’s not enough to complete tasks or deliver features — you need to focus on the business impact of your work. This means understanding how your contributions align with the client’s larger goals and ensuring that your efforts drive meaningful outcomes. Shifting from a task-oriented mindset to an outcome-driven approach is what sets a great consultant apart.
 
-- **Build client partnerships:** View yourself as a partner, not just a service provider. Collaborate closely with clients to understand their vision, mission, and strategic goals. This knowledge will guide your technical decisions and ensure your contributions are strategically beneficial.
+#### Focus on impact
 
-- **Become a trusted advisor:** Recognize that your role is not just about completing tasks. You are a trusted advisor working on solutions that address real-world problems and deliver significant value.
+Every task you perform should contribute to the client’s broader business objectives. It’s easy to get caught up in completing individual tasks, but the real value comes from understanding how each task moves the needle for the client.
 
-- **Learn about the client/product/customer/project:** Understanding the client’s business context is crucial for delivering impactful work. By comprehending the client’s product, market, and customer base, you can better align your contributions with their broader goals.
+- **Understand the “why” behind each request:** Before diving into a task, clarify the reason behind it. For instance, if a client requests a UX update, ask what they hope to achieve — whether it’s to reduce bounce rates, increase conversions, or enhance customer satisfaction. Understanding the “why” allows you to tailor your approach to meet their specific goals.
+- **Connect tasks to business goals:** Always ask yourself, “How does this task help the client’s business?” For example, if you’re building a new feature, think about how it impacts user engagement, increases revenue, or improves operational efficiency. Keeping these business outcomes in mind ensures you’re not just completing tasks, but contributing to the client’s success.
+- **Align technical decisions with business objectives:** Your expertise should guide the client in making decisions that benefit their business in the long term. For instance, when discussing a technical implementation, consider how it aligns with the client’s strategic goals, such as scaling the product, improving performance, or enhancing security. This alignment reinforces your role as a consultant who prioritizes business outcomes.
+- **Contextualize your work:** Always understand the bigger picture of the tasks you’re assigned. If you’re asked to fix a bug, think about how that fix could enhance the overall user experience or improve system performance. By seeing the broader context of your work, you can make decisions that not only solve immediate issues but also contribute to the project’s long-term success.
 
-- **Contextualize your work:** Always consider how your work affects the client, customer, or project. For example, a frontend developer should think about how a new feature enhances user experience, aligns with business objectives, and meets customer needs.
+#### Prioritize based on business objectives
 
-- **Care deeply about results:** A key difference between great and average consultants is genuinely caring about making the project successful. Show your dedication, and others who care will be attracted to you and respect you, opening doors for further opportunities.
+When everything seems urgent, it’s critical to focus on the tasks that have the most significant impact on the client’s business. Collaborating with the client to prioritize effectively ensures you’re working on what matters most.
+
+- **Help the client prioritize:** Clients may struggle with prioritization, especially when there are competing demands. Help them identify the tasks that align most closely with their key objectives. For example, if a client is focused on increasing user engagement, prioritize features that improve user experience or reduce friction in their product.
+- **Don’t treat everything as urgent:** While clients may present multiple urgent tasks, not everything requires immediate attention. Work with them to distinguish between critical tasks and those that can wait. By focusing on what drives the most business value, you can help the client allocate resources effectively.
+
+#### Measure success beyond completion
+
+Simply completing a project isn’t enough. You need to evaluate how well your work performs in the real world and whether it delivers the desired outcomes for the client.
+
+- **Establish metrics early:** At the beginning of a project, work with the client to define clear metrics for success. For example, if you’re working on a feature to improve user engagement, agree on specific targets such as reducing bounce rates or increasing time spent on the site. These metrics help you stay focused on what matters and allow for meaningful assessment of the project’s success.
+- **Measure business outcomes, not just outputs:** It’s not enough to deliver a product or feature — you need to know how it impacts the client’s business. Set up metrics to measure success, such as user engagement, customer satisfaction, or operational efficiency. Tracking these outcomes helps demonstrate the real value of your work.
+- **Iterate based on real-world feedback:** Once a feature or product is live, gather feedback to assess its performance. If something isn’t working as expected, be prepared to adjust and iterate. For example, if user adoption isn’t meeting expectations, collaborate with the client to find a solution — whether that’s tweaking the design or improving the onboarding process. Flexibility and responsiveness are key to delivering outcomes that matter.
+
+Examples:
+
+- **Frontend: Evaluating the business impact of a UI change:** A frontend developer implements a new design for a client’s landing page. After launch, they don’t just check for functionality; they monitor how the change affects conversion rates, ensuring the design drives the intended business goal of increasing sales.
+- **Aligning feature development with business goals:** A product owner is managing a backlog of feature requests. They prioritize features that will increase subscription renewal rates, rather than just addressing bugs or minor user requests, aligning development with the client’s goal to improve long-term customer retention.
+- **Balancing feature launches with ongoing maintenance:** A program manager is balancing the need to launch a new product feature with the need to maintain system stability. By working with the client to prioritize the feature that enhances customer experience, they align with the business objective of increasing user satisfaction while ensuring critical operations remain stable.
+- **Prioritizing a feature based on user feedback:** A product designer is working on several design improvements but chooses to prioritize a feature that removes a major pain point identified in user feedback. This decision aligns with the client’s goal of reducing churn by improving customer satisfaction.
 
 Tips and techniques:
 
-- **Active listening:** Practice active listening by summarizing client needs and concerns in your own words to ensure understanding.
-- **KPIs alignment:** Work with your client to define Key Performance Indicators (KPIs) that measure the success of your solutions in business terms.
+- **Use client metrics to guide decisions:** Before beginning work, ask for the key performance indicators (KPIs) the client values. Regularly check if your work is improving these metrics, whether they’re related to speed, engagement, or customer satisfaction.
+- **Track real-world results over time:** Don’t just measure success right after deployment. Set a timeline for tracking metrics — for example, measuring customer satisfaction or operational efficiency 30, 60, and 90 days after launch — to ensure sustained success.
+- **Map tasks to business outcomes:** Create a habit of mentally (or visually) mapping each task to a specific business outcome. This practice can help you avoid wasting time on tasks that have no measurable impact and focus on those that do.
+- **Use visuals to explain connections:** Create flowcharts or diagrams to show how tasks directly influence business goals. This can help clients and team members visualize the impact of the work being done.
+- **Use a priority matrix:** Create a simple priority matrix to help clients and team members categorize tasks based on urgency and impact. This will give a clear picture of where to focus efforts and what can be postponed.
+- **Facilitate impact discussions:** Initiate conversations about the potential business impact of various tasks. Encourage the client to think critically about which tasks are “nice to have” versus those that drive tangible business outcomes.
+- **Use real-world analogies:** When explaining prioritization, use analogies the client understands. For example, compare task prioritization to triaging patients in an emergency room, helping clients see why certain tasks must wait.
 
 Questions to reflect:
 
-- Reflect on a recent project. How did your role extend beyond providing domain expertise?
-- What strategies can you use to position yourself as a trusted advisor rather than just a service provider?
-
-### Ask questions and listen
-
-Ask thoughtful questions to understand the tasks at hand and the rationale behind them. This ensures that your implementation or solution is not just correct but also aligned with the client’s goals.
-
-- **Understand the purpose:** Ask why a task is important and how it fits into the bigger picture. This not only clarifies your understanding but also demonstrates your interest in contributing to the client’s success.
-- **Identify key roles**: Find out who is responsible for various aspects such as project management, design, UX research, understanding customers, etc. Engage with these individuals to gain insights that can inform your work.
-
-Active listening is vital for understanding the client’s needs, concerns, and expectations. It involves fully concentrating, understanding, responding, and remembering what the client says.
-
-- **Listen to understand**: Pay close attention during client interactions, and show that you value their input. Reflect back what you hear to confirm understanding and clarify any ambiguities.
-- **Address concerns**: Use the insights gained from listening to address client concerns proactively and to tailor your solutions to better meet their needs.
+- How does the work I’m doing right now tie into the client’s larger goals?
+- Have I asked enough questions to fully understand why this task is important to the client’s business?
+- Am I prioritizing the client’s business outcomes, or am I just focused on completing the work quickly?
+- What are the potential long-term effects of the decisions I’m making for the client’s business?
+- Are there any tasks I’m currently working on that don’t clearly align with business goals?
+- Have I defined what success looks like for this project, beyond just delivering the feature or task?
+- How can I show the client that the work I’m doing is making a meaningful difference in their business?
 
 ### Solve problems
 
-As a consultant, your goal is to solve problems and empower clients to make informed decisions. This means thinking critically about the challenges they face and offering practical, well-considered advice.
+Solving problems as a consultant involves more than just fixing immediate issues. It’s about understanding the root cause and developing solutions that prevent future problems.
 
-- **Address root causes:** When presented with a problem, don’t just accept it at face value. Focus on solving the underlying problems rather than just the symptoms. This approach not only resolves the immediate problem but can also prevent future occurrences.
-- **Get creative when brainstorming options:** Consider various solutions, weighing their pros and cons, and how they align with the client’s goals. There are almost certainly multiple solutions to every problem. Brainstorm ideas with your teammates to think outside the box and find opportunties in constraints.
-- **Think holistically:** Consider the big picture, understanding how different parts of a system interact and affect the business. Evaluate the interdependencies and potential ripple effects of your solutions, ensuring they align with the client’s overall strategy.
-- **Empower clients to make decisions**: Provide clients with the information they need to make decisions. This includes presenting different options, explaining the implications of each, and recommending the best course of action based on your expertise.
+#### Address root causes
 
-Tips and techniques:
+When problems arise, it’s tempting to focus on fixing the immediate issue. However, addressing the root cause is essential to providing long-term solutions. Your goal is to dig deeper and find the underlying reason for the problem, which prevents it from recurring and adds long-term value to the client’s operations.
 
-- **Knowledge transfer sessions:** Hold knowledge transfer meetings where you train your client on tools and processes, empowering them to take ownership.
-- **Use the “Five Whys” technique:** “Five Whys” ecnourages thoughtful thinking by drilling down into the reasons behind a task or requirement, ensuring you understand the core purpose.
+- **Investigate the underlying issue:** Don’t settle for surface-level fixes. If you encounter a bug or a system failure, take the time to explore what caused it in the first place. For example, if a feature is malfunctioning, look beyond the immediate error and examine whether there’s a deeper issue with the system architecture or workflows. By addressing root causes, you’re providing a more durable solution that benefits the client long term.
+- **Prevent future problems:** Solving problems at the root level helps reduce the chance of similar issues appearing again. For instance, if a performance issue arises due to inefficient database queries, instead of just optimizing the query, consider if there’s a broader issue with how data is being managed and processed. Solving the broader problem saves the client from future headaches and positions you as a proactive consultant.
 
-Questions to reflect:
+#### Collaborate to find the best solution
 
-- Describe a time when you had to adjust your solution to better meet your client’s needs.
-- What techniques do you use to empower your client to actively participate in the design, management, or technical process?
+There’s rarely a single “right” solution to a problem. Instead of approaching issues in isolation, collaborate with the client and your team to explore multiple approaches. Brainstorming together ensures you consider various factors, such as immediate impacts, long-term effects, and the client’s priorities.
 
-### Advocate for best practices
+- **Involve stakeholders in brainstorming:** Get input from both your team and the client to generate a range of potential solutions. For example, if a client is experiencing system performance issues, involve developers, product owners, and even operations teams to explore different avenues — whether that’s optimizing code, revisiting the system architecture, or adjusting resource allocation.
+- **Consider multiple options:** When presenting solutions, don’t limit the client to a single recommendation. Instead, offer a few different options, explaining the pros and cons of each. For example, if you’re discussing a change in the tech stack, explain how each option impacts performance, scalability, and maintenance. This helps the client make an informed decision based on their priorities.
+- **Be creative in problem-solving:** Encourage open-minded thinking when tackling complex problems. Solutions aren’t always linear, and sometimes the best answer comes from thinking outside of standard approaches. Engage the team in discussing unconventional solutions and weigh their feasibility in the context of the client’s goals.
+- **Think holistically:** Evaluate the ripple effects of your decisions. Every decision you make can affect other parts of the client’s business. For instance, a change in backend architecture might impact front-end performance or user satisfaction. Always think about how your work connects to other areas, and consider the broader implications of your choices. This holistic approach ensures you’re providing solutions that work across the entire system.
 
-**Lead by example:** Demonstrate best practices in your own work. This not only improves the product but can also be a reference to share what implementing best practices looks like.
+Examples:
 
-By holding yourself to a high standard in your own work, you set a benchmark for quality and excellence that your team can aspire to.
-
-**Explain your reasoning:** Help clients understand the rationale behind your recommendations, making them advocates for best practices. Explain the benefits of following best practices and how they can positively impact the project and business outcomes.
-
-How to offer strategic advisory:
-
-- Evaluate the client’s project and suggest updates to better meet project needs and support growth. Conduct thorough assessments and provide clear, actionable recommendations.
-- Create proofs of concept to demonstrate how different solutions perform under specific conditions. This helps your client visualize potential solutions and make informed decisions.
+- **Data inconsistency:** A backend developer notices occasional inconsistencies in customer data. Instead of creating a patch to correct the immediate data issue, they investigate the root cause and find that a flawed data migration process is introducing errors during updates. By redesigning the migration process, they ensure that future updates will not result in data loss or corruption.
 
 Tips and techniques:
 
-- **Build connections**: Develop rapport with key client stakeholders through regular communication and collaboration. This could involve informal catch-ups, joint problem-solving sessions, or simply being approachable and responsive. Strong relationships enable you to propose and implement changes more effectively. When stakeholders trust you, they are more likely to consider and support your recommendations.
-- **Conduct education sessions:** Hold sessions to update clients on the latest in technologies and best practices, showing how these can benefit their business.
+- **Use the 5 Whys technique:** To find root causes, ask “Why?” repeatedly until you reach the fundamental issue. Start with the immediate symptom, and for each answer, question the underlying reason until a root cause is uncovered.
+- **Document findings:** Write down your discoveries about root causes, including insights gained during the investigation. This can help prevent future issues and provides useful knowledge for both your team and the client.
+- **Encourage early involvement:** Involve stakeholders early in the problem-solving process to avoid missed considerations later. This also helps build trust and ensures that everyone feels heard and invested in the solution.
+- **Look beyond standard tools:** When tackling complex problems, research and experiment with emerging technologies, frameworks, or methodologies outside your usual toolkit.
+- **Encourage “wild” ideas in brainstorming:** Sometimes, the most unconventional suggestions can spark new ways of thinking. During collaborative discussions, encourage even impractical-sounding ideas, as they can lead to more feasible creative solutions.
 
 Questions to reflect:
 
-- How do you demonstrate best practices in your work?
-- Describe a situation where you had to guide a client to understand the rationale behind your recommendations.
+- When was the last time you encountered a recurring problem, and how did you investigate its root cause? Could you have gone deeper?
+- Have you ever solved a problem, only to find a related issue emerged later? What might you have missed initially?
+- How can understanding the broader system architecture or user workflow help you identify root causes in your role?
+- Think of a recent project where a decision was made with limited input. How might the result have been different if other stakeholders had been involved earlier?
+- Can you recall a time when you solved a problem with a non-traditional approach? What were the challenges and benefits?
+- Are there emerging tools or techniques you’ve considered using but haven’t yet explored? What could motivate you to experiment with them?
 
-### Manage scope, timeline, and risks
+### Validate decisions with data
 
-Effectively manage project boundaries and expectations to avoid scope creep and ensure successful outcomes:
+Your recommendations carry more weight when they’re backed by data. While intuition and experience are important, basing decisions on measurable evidence increases your credibility and ensures the solutions you propose are grounded in reality.
 
-- Clearly document project scopes in detail. Use project charters, scope statements, and detailed plans to define the project’s boundaries.
-- Use formal processes to handle scope changes, always with client approval. Establish change control procedures to manage and approve any alterations to the project scope.
-- Regularly explain the impact of scope changes to the client. Communicate the implications of any changes on the project’s timeline, budget, and outcomes.
+- **Test assumptions early and often:** Avoid costly missteps by validating your assumptions as early as possible. For example, if you’re suggesting a new feature or approach, gather feedback from key stakeholders before moving forward. This helps you course-correct early, saving time and resources later.
+- **Use data-driven recommendations:** Support your suggestions with data. For instance, if you recommend a design change, provide evidence from previous projects or relevant case studies to show how similar changes improved user engagement or system performance. This makes your advice more compelling and allows the client to see the tangible benefits of your approach.
+- **Iterate based on feedback:** Once a solution is implemented, gather real-world data to see how it performs. Whether it’s user behavior metrics, system performance benchmarks, or customer feedback, the data will tell you if the solution is delivering as expected. If it’s not, be ready to iterate and refine your approach. This flexibility ensures you stay focused on achieving the best possible outcomes for the client.
 
-How to proactively manage risks:
+#### Encourage clients to embrace validation
 
-- Identify potential risks early and develop mitigation strategies. Use risk management techniques such as risk assessments and contingency planning.
-- Conduct regular risk assessments and update mitigation plans as necessary. Continuously monitor and reassess risks throughout the project lifecycle.
+Some clients may be hesitant to base decisions on data or may not be familiar with data-driven approaches. As a consultant, it’s your role to advocate for validation and explain the value it brings to their business.
 
-Think of issues and challenges on projects as opportunities to show problem-solving skills and the value you can provide to clients:
+- **Promote data-driven decision-making:** Help clients understand that validation is key to making informed decisions. For example, suggest A/B testing if they’re unsure about a new feature, or encourage them to gather user feedback before making significant changes. By demonstrating the benefits of validation, you empower clients to make decisions with confidence.
+- **Explain the benefits of testing and feedback:** Clients may resist testing because of time constraints or perceived costs. It’s important to explain how gathering feedback or running tests can save them from costly mistakes later. For instance, a small usability test can prevent a major design flaw that could alienate users, saving both time and money in the long run.
+- **Stay flexible and objective:** Data-driven decision-making requires flexibility. Be prepared to pivot if the data suggests a solution isn’t working as expected. Staying objective and focusing on the best outcome for the client — even if it means changing course — shows that you are committed to their success, not just following a predetermined plan.
 
-- Use problem-solving frameworks and issue tracking tools to stay on top of challenges. Tools like root cause analysis and issue logs can help manage and resolve problems systematically.
-- After resolving any crisis, review what happened with your team to prevent future issues. Conduct post-mortem analyses and implement lessons learned to improve future performance.
+Examples:
+
+- **Convincing a client to gather user feedback before launching:** A Bitovi TPO suggests a client run a beta test for a major new feature, but the client is resistant, fearing it will delay the release. The consultant shows them case studies of previous projects where beta testing helped identify critical issues that would have been costly to fix after a full launch. The client agrees, and the beta testing uncovers several usability problems that were addressed before the wider release, saving the client from a potential PR nightmare.
+- **Validating test coverage assumptions:** A QA engineer suggests increasing automated testing to catch more bugs early in the development process. They gather data on bug reports from previous sprints and discover that 40% of bugs were in areas with little automated test coverage. Armed with this evidence, they recommend expanding test automation in specific areas, showing the client how this change could reduce bugs and save time during future sprints.
 
 Tips and techniques:
 
-- **Refer to the Engagement Summary Document:** Regularly refer to the [learn-technology-consulting/transitioning-to-delivery#engagement-summary-document Engagement Summary Document] created at the start of the project to remind everyone of the shared objectives and reinforce the common goals.
-- **Change request process:** Implement a formal change request process to manage and document any alterations to the project scope.
-- **Root Cause Analysis (RCA):** Use root cause analysis techniques (e.g. Five Whys) to identify and address the underlying causes of issues.
-- **Post-mortem reviews:** Conduct post-mortem reviews after major issues to learn from them and prevent recurrence.
+- **Use small-scale tests to validate assumptions early:** Before committing significant time and resources, run small-scale tests or pilot programs to validate your ideas. This could involve testing a new feature with a limited set of users or simulating a technical change in a controlled environment. The goal is to collect data quickly without a full rollout.
+- **Document your rationale and supporting data:** When presenting data-driven recommendations, keep a clear record of the data sources and methods used. This helps build trust with the client and allows others to follow your logic. Be prepared to explain why certain data points were used and how they support your recommendation.
+- **Leverage feedback loops for continuous improvement:** After implementing changes, establish a feedback loop with the client and end users. This could be through regular user testing, analytics dashboards, or performance monitoring tools. This ensures that data is constantly flowing in, allowing for iterative improvements based on real-world performance.
+- **Be mindful of data biases:** Always critically evaluate your data sources for potential biases or limitations. For example, survey results might skew towards certain user demographics, or performance metrics could be affected by external factors. Address these biases openly when presenting your findings to avoid misleading the client.
+- **Tailor your explanation to the client’s priorities:** Frame your arguments in a way that aligns with the client’s goals and pain points. For instance, if they’re concerned about costs, explain how validation can prevent expensive mistakes. If they’re focused on user satisfaction, show how testing can improve customer experience. Always tie the data back to what matters most to them.
+- **Provide examples of past successes:** Share stories of previous clients who saw positive outcomes from using validation techniques. Real-world examples can help build trust and make the benefits of data-driven decision-making more tangible to skeptical clients.
 
 Questions to reflect:
 
-- Can you describe a situation where you successfully managed scope changes?
-- What strategies do you use to proactively manage risks in a project?
-
-### Uphold ethics and professionalism
-
-**Maintaining confidentiality and integrity:** Handle sensitive information with care and maintain the highest level of professionalism. Make sure that client data and intellectual property are protected and handled ethically.
-
-**Committing to ethical standards:** Adhere to the highest ethical standards in every action and decision, building trust and credibility with clients. Be transparent, honest, and accountable in all your dealings, reinforcing the client’s confidence in your integrity.
-
-Questions to reflect:
-
-- Can you provide an example of how you adhered to ethical standards in a challenging situation?
+- How can I incorporate quick, data-driven tests into my current workflow to validate assumptions before making larger decisions?
+- How do I handle situations where data contradicts my experience or intuition? How do I balance both when advising clients?
+- In what ways can I encourage clients to see the value in testing and validation, especially if they’re hesitant or unfamiliar with data-driven approaches?
+- What are some common objections I’ve encountered from clients regarding data-driven decision-making? How can I address those concerns more effectively?
+- How can I demonstrate the value of small, incremental tests to clients who are focused on immediate results?
 
 ### Exercise
 
@@ -165,150 +252,77 @@ You are part of a project kick-off meeting where the client outlines several tas
 
 </details>
 
-## Understanding the client, customer, product, and project
+## Understanding the client’s business and goals
 
 When starting work on a new project, there are a few different parts of the entire project that you should consider:
 
 - **Client:** This refers to the company you’re working with, including their industry, operations, market position, and strategic goals. Understanding the client involves knowing their business model, organizational structure, and key decision-makers.
-
 - **Product:** The software applications or services provided to end-users. This includes the features, functionalities, and the value proposition of the product. Knowing the product thoroughly helps in identifying areas for improvement and innovation.
-
 - **Customer:** The end-users who interact with the software. Understanding their needs, preferences, and pain points is crucial for delivering a product that meets or exceeds expectations.
-
 - **Project:** The client’s goals to enhance the software to better meet customer needs and drive business success. This encompasses the project’s scope, objectives, timelines, and deliverables.
 
-### Understanding the client
+## Understanding the client
 
-A deep understanding of the client is fundamental to effective consulting. In this section, we’ll dig into understanding the client you’re working with.
+When you join a new client, it’s important to establish a clear understanding of their business environment, goals, and challenges. This will help you provide targeted, relevant consulting advice from day one. A strong foundation in their operations and strategy will ensure you can integrate seamlessly into their team and contribute meaningfully.
 
-#### Joining a new client with a Bitovi Principal
+- **Leverage Principal’s insights:** Start by reaching out to your Principal to gain valuable insights. Principals manage the client relationship and will have the most up-to-date and direct knowledge about the client’s priorities, personalities, and any key nuances you should be aware of. They can also offer context on historical challenges, the client’s communication style, and preferred ways of working.
+- **Understand their business:** Take the time to review the company’s mission, vision, and values. These elements give insight into the client’s core purpose and long-term goals. Understanding their “why” allows you to position your work within the broader scope of what the company is striving to achieve.
+- **Analyze products and revenue streams:** Identify all the products and services the company offers. Ask for a list or review publicly available data to understand how these products contribute to their bottom line. Knowing which products are strategic priorities or high-revenue drivers can help you tailor your recommendations to areas of the business that matter most.
+- **Industry and competition:** Research the client’s industry, focusing on trends, challenges, and key competitors. This context will give you a sense of where the company stands in its market and what external pressures may be influencing its decisions. Look at both direct competitors and emerging disruptors that could impact the client’s future.
+- **Identify challenges and pain points:** During your initial meetings, ask specific questions about the company’s key challenges. These might include operational inefficiencies, technology limitations, market competition, or internal team struggles. Understanding these pain points will help you position your solutions as directly solving their most pressing needs.
+- **Review past, current, and future initiatives:** Familiarize yourself with ongoing projects, recent completions, and the company’s future plans. This gives you an understanding of their priorities and potential areas where your expertise can be applied. It also helps you avoid duplicating efforts or suggesting solutions that have already been tried.
 
-You should be equipped with a comprehensive understanding of the client’s business:
+### Conduct research
 
-- **Clear vision, challenges, and expectations:** Get a detailed briefing from the Principal about the client’s overall vision, the specific business challenges they face, and the expectations for how the consultant can support their broader business goals.
+Thorough research is essential for becoming an informed and effective consultant. Think of this step as preparing for a job interview with the company—you’re not just learning about the company, you’re positioning yourself as someone who can bring unique value.
 
-- **Past, current, and future initiatives:** Gain insight into the client’s past and current business strategies. This includes understanding previous initiatives, successes, failures, and lessons learned to better align your contributions with their business goals.
+- **Approach it like an interview:** Treat your research as if you were preparing to interview for a role within the client’s company. Know the company’s history, the markets it serves, and its long-term strategy. This will ensure you’re prepared for in-depth conversations and can ask informed questions.
+- **Company’s digital footprint:** Review the client’s website, blog, and any recent news articles to get an up-to-date picture of their latest initiatives and how they present themselves publicly. This will help you speak their language and engage more meaningfully with their team.
+- **Historical context:** Learn about the company’s history. Understanding where the company has come from often provides key insights into why they operate as they do today. Are they an industry veteran adjusting to a new digital landscape, or a fast-growing startup still trying to find its footing? These dynamics shape their culture and decision-making.
+- **Leverage LinkedIn and social networks:** Research key stakeholders on LinkedIn to get a sense of their backgrounds, areas of expertise, and career paths. This can help you identify common ground for building rapport. Additionally, look for any shared connections who can provide insights into the stakeholders’ leadership styles or preferences.
+- **Subscribe to industry updates:** Stay informed about trends in the client’s industry by following relevant newsletters, blogs, or news sites. Being up-to-date on broader industry challenges or opportunities will make your recommendations more relevant and forward-looking.
 
-- **Revenue streams:** Identify the primary sources of revenue for the client. Is the project a cost center or profit center for the company?
+### SWOT analysis
 
-- **SWOT analysis:** Conduct a SWOT analysis to identify the strengths, weaknesses, opportunities, and threats related to the client’s business. This helps in forming a strategic approach to support their objectives.
-
-If any of these elements are missing, the Principal or Consultant should take proactive steps to gather this information.
-
-Tips and techniques:
-
-- **Meet with key stakeholders:** Having a conversation with key stakeholders will show them you’re interested in understanding their business and building a relationship. This will give you an opportunity to learn from their experiences and perspectives.
-
-- **Ask clarifying questions:** Don’t hesitate to ask for clarification on any point that seems unclear. It’s better to ask questions early than to make incorrect assumptions.
-
-Questions to reflect:
-
-- What are the client’s main business goals, and how does this project align with them?
-- What are the specific pain points the client is facing with this project?
-- How will success be measured for this project?
-
-#### SWOT analysis
-
-A SWOT analysis is a strategic planning tool used to identify and evaluate the Strengths, Weaknesses, Opportunities, and Threats related to a business or project. 
+A SWOT analysis is a strategic planning tool used to identify and evaluate the Strengths, Weaknesses, Opportunities, and Threats related to a business or project.
 
 - **Strengths:** Internal factors that give an organization an advantage over its competitors, such as strong brand reputation, loyal customer base, or unique technology.
-
 - **Weaknesses:** Internal factors that place an organization at a disadvantage, like limited resources, poor location, or outdated technology.
-
 - **Opportunities:** External factors that an organization can exploit to its advantage, such as market growth, favorable industry trends, or new technological advancements.
-
 - **Threats:** External factors that could cause trouble for the business, including economic downturns, increased competition, or regulatory changes.
 
 Conducting a SWOT analysis helps organizations understand their internal and external environments, aiding in strategic planning and decision-making.
 
-#### Learning their organizational culture and structure
+### Learn their structure
 
-A deep understanding of the client’s internal environment can help in aligning your approach:
+Understanding how the client’s organization operates will help you navigate internal dynamics, identify key players, and position yourself as a trusted advisor.
 
-- **Company culture:** Understand the company’s core values, mission, and vision. This includes understanding the work environment, employee engagement levels, and leadership style.
-- **Organizational structure:** Identify the organizational hierarchy and key departments. Understand how decisions are made and who the key decision-makers are.
+- **Understand the organizational hierarchy:** Take time to map out the company’s organizational structure. Knowing who the decision-makers, influencers, and gatekeepers are allows you to tailor your approach to the right people. It’s important to identify both formal and informal leaders within the company.
+- **Decision-making dynamics:** Every company has its own way of making decisions. Some companies rely on formal processes, while others are more ad-hoc. Understanding who influences decisions and how those decisions are made will help you better navigate internal politics and align your recommendations with the client’s internal priorities.
+- **Assess company culture:** Every organization has a unique culture that influences how people communicate, collaborate, and work. Learn about the company’s culture by observing how teams interact and how leadership communicates its vision. Aligning with their culture, whether it’s fast-paced and entrepreneurial or conservative and hierarchical, will help you integrate smoothly into their teams and build trust.
 
-Tips and techniques:
+Examples:
 
-- **Review internal documents:** Start by reading the company’s mission and vision statements on their website or internal documents. Ask if the company has an employee handbook, which often includes information about company values, expected behaviors, and organizational culture.
-- **Schedule 1:1s:** Try to meet with other team members on the project to understand their perspectives on the company culture and leadership style.
-
-#### Getting to know the stakeholders
-
-Understanding your stakeholders is the foundation of effective project management. It involves identifying who they are, assessing their influence, and establishing communication channels tailored to their needs.
-
-- **Identify key stakeholders:** Start by identifying the primary stakeholders involved in the project. These are the individuals or groups who have a vested interest in the project’s outcome. Examples include clients, project sponsors, team members, and end-users.
-- **Assess stakeholder influence:** Determine the level of influence each stakeholder has on the project. This includes understanding their authority to make decisions, their interest in the project, and their impact on its success. Use tools like stakeholder maps to visualize and assess these dynamics.
-- **Establish communication channels:** Set up clear and effective communication channels. Decide on the frequency and method of communication for each stakeholder based on their influence and interest. For example, high-influence stakeholders might need weekly updates via video calls, while others might prefer bi-weekly email summaries.
+- **Frontend context:** The client’s website has a high bounce rate, signaling usability issues. By asking the right questions, a frontend developer discovers that page load times are a key frustration for users and focuses on optimizing performance to address this pain point.
+- **QA/QE context:** The client’s QA process is causing delays in the release cycle. After discussing pain points, a QA engineer identifies the need for automated regression testing, allowing the team to move faster without compromising quality.
+- **Backend context:** A backend developer reviews a failed initiative to migrate from a monolithic to microservices architecture. Understanding why the project failed (e.g., lack of support or insufficient expertise) helps avoid repeating mistakes in future recommendations.
 
 Tips and techniques:
 
-- **Conduct stakeholder interviews:** Schedule one-on-one interviews with key stakeholders to understand their priorities, expectations, and concerns.
+- **Link your work to their mission:** Make a habit of explicitly tying your deliverables to the company’s mission or vision in presentations or reports. It shows that you’re thinking about the bigger picture, not just your individual tasks.
+- **Set Google alerts:** Stay informed on client competitors by setting Google alerts on relevant competitors and industry keywords. This helps you stay proactive in suggesting innovations or shifts based on market changes.
+- **Use probing questions:** During initial meetings, ask “what keeps you up at night?” to uncover pain points that may not be immediately obvious. Follow up with more specific questions to drill down into operational issues.
+- **Confirm the impact:** Always verify the magnitude of the pain points to ensure you’re focusing on areas that will have the most significant impact.
+- **Ask for lessons learned:** When reviewing past projects, ask the client what lessons they’ve learned. This gives you a clearer sense of what strategies to avoid or replicate.
 
 Questions to reflect:
 
-- Reflect on a previous project you were involved in. Who were the key stakeholders, and how did their influence and interest affect the project?
-- How do you establish trust and rapport with new stakeholders?
+- What are the long-term goals of the client, and how can I help drive initiatives that support these goals?
+- What competitive advantage can I help the client gain through my expertise?
+- How can I better uncover pain points that the client might not initially share?
+- What can I learn from past projects to ensure my contributions are effective?
 
-#### Conducting background research
-
-Thorough background research is useful for understanding the client’s context and preparing for effective engagement:
-
-- **Think of it like a job interview:** Approach this research with the same diligence as preparing for a job interview. Being well-informed about the client demonstrates professionalism and builds credibility.
-
-- **Research the company’s history:** Dive into sources such as the client’s website, Wikipedia page, and recent news articles to gather a comprehensive history of the company. Understand their milestones, key achievements, and significant changes over time.
-
-- **Check LinkedIn:** Review the LinkedIn profiles of the people you will be working with to understand their professional backgrounds and any shared connections or common experiences. For example, discovering shared educational backgrounds can serve as icebreakers.
-
-- **Subscribe to industry newsletters:** Find industry insight by following relevant publications (blogs, newsletters, magazines, etc.) to stay updated on trends and developments. For example, if consulting for a quick-service restaurant, reading articles from QSR Magazine can provide valuable industry insights.
-
-Tips and techniques:
-
-- **Document learnings:** Share what you learn with other teammates by creating a document and contributing to it over time.
-- **Personal connections:** Leverage any personal connections or network contacts for insider perspectives.
-
-Questions to reflect:
-
-- What significant changes has your client’s company undergone in recent years?
-- Are there any recent news articles or industry reports that could impact your client’s business?
-
-#### Analyzing competitors
-
-Generally, the client should be responsible for determining where they stand in the competitive landscape.
-
-However, some startups or young businesses may need help in figuring out who they are! In this case, conducting in-depth competitor research helps in understanding the client’s market position and identifying opportunities for improvement:
-
-- **Use reliable sources:** Explore competitors through reliable sources such as Bloomberg, CNBC, or industry-specific outlets. These sources provide credible and comprehensive information.
-
-- **Collect market data:** Gather information from industry reports, market analyses, and trade journals. This data provides a macro view of market trends and dynamics.
-
-- **Analyze digital presence:** Use tools like Google Analytics and SEMrush to assess competitors’ online performance. This includes website traffic, keyword rankings, and digital marketing strategies.
-
-- **Apply frameworks:** Use frameworks like Porter’s Five Forces and PESTEL to analyze the competitive environment. These tools help in understanding the external factors impacting the client’s business.
-
-- **Benchmark KPIs:** Compare the client’s performance against industry standards and top competitors. This benchmarking identifies areas where the client excels or needs improvement.
-
-Tips and techniques:
-
-- **SWOT for competitors:** Perform SWOT analyses for major competitors.
-- **Practical exercises:** Run through hypothetical scenarios using frameworks like Porter’s Five Forces and PESTEL.
-
-Questions to reflect:
-
-- Who are the client’s main competitors, and what are their strengths and weaknesses?
-
-#### Continuous strategy improvement
-
-Staying current and adapting strategies based on ongoing insights is useful for sustained success:
-
-- **Understand company drivers:** Recognize the factors driving the client’s business, such as corporate culture, mission, and strategic priorities.
-- **Follow trends:** Keep up with technological and industry developments by reading journals, blogs, and attending conferences. This helps in anticipating changes and staying ahead of the curve.
-
-Tips and techniques:
-
-- **RSS feeds:** Use RSS feeds to aggregate content from industry blogs and journals.
-
-#### Client questions
+### Client questions
 
 Understanding the client:
 
@@ -354,57 +368,65 @@ Asking the client for information:
 
 </details>
 
-### Understanding the product
+## Understanding the product
 
-By thoroughly analyzing the product, its market, and the client’s goals, you can provide valuable insights and recommendations that align with the client’s strategic vision.
+Understanding the product you’re consulting on is crucial to providing value and aligning with your client’s goals. As a consultant, your deep knowledge of the product will help you make informed decisions and recommendations. This section covers the key steps to gain a solid understanding of the product.
 
-#### Initial product analysis
+### Learn about the product
 
-**Determine core purpose:** Start by identifying the main functionality of the product. What problem does it solve, and how does it serve its users? Clarifying the core purpose helps ensure that all subsequent development efforts stay aligned with this primary goal.
+Before you can provide insightful advice, you need to fully understand the product’s purpose, functionality, and market position. This involves gathering relevant resources and getting hands-on experience.
 
-For example, if the product is a project management tool, its core purpose might be to streamline project tracking and team collaboration.
+- **Identify the core purpose:** Begin by clarifying the primary problem the product is designed to solve. Understanding this core function ensures that all further advice stays aligned with the product’s main goal. For instance, if the product is a project management tool, its goal might be to simplify project tracking and enhance collaboration.
+- **Request product documentation:** Collect all available resources—feature specs, user manuals, FAQs, and other documents that explain the product’s workings. These materials provide a foundation for understanding the product’s features and limitations quickly.
+- **Get hands-on experience:** Whenever possible, gain direct access to the product through demos or trial versions. Firsthand experience allows you to see how the product operates in practice, offering insights into its strengths and weaknesses. This familiarity makes it easier to engage with stakeholders and offer informed advice.
+- **Examine the product’s market position:** Research how the product fits into the broader market and what sets it apart from competitors. Understanding its unique selling points and why customers choose it over alternatives helps contextualize your recommendations within its competitive landscape.
+- **Analyze key features:** Focus on the product’s most important features, especially those that form its core value proposition. How do these features solve customer problems? Targeting the right features enables more precise suggestions while avoiding unnecessary complexity.
+- **Highlight the product’s uniqueness:** Identify what makes the product stand out. This could be through proprietary features, unique integrations, or other differentiators that competitors lack. Emphasizing these aspects can help refine development efforts and strengthen marketing strategies.
+- **Review the strategic roadmap:** Look at the product’s long-term vision and development plans. Anticipating future features or shifts in direction allows you to align your advice with the product’s evolving trajectory.
+- **Look for key metrics:** Request access to dashboards that track Key Performance Indicators (KPIs) such as user engagement, feature usage, or customer satisfaction. These metrics offer valuable insights into the product’s performance and highlight areas that may need improvement or attention.
+- **Determine if it’s a profit or cost center:** Establish whether the product generates revenue directly (profit center) or supports internal operations without direct revenue generation (cost center). This understanding is crucial for setting financial expectations and guiding strategic decisions.
 
-**Identify target audience:** Understanding who will use the product is crucial. Look at demographic data, user needs, and behaviors. Pinpointing the audience allows for more tailored features and user experiences.
+### Understand the target audience
 
-For instance, a product designed for busy professionals should emphasize ease of use and quick access to essential functions.
+Understanding who the product is for is just as crucial as understanding the product itself. The target audience’s needs, preferences, and behaviors heavily influence both strategy and consulting approaches. Tailoring recommendations to fit the audience is key to ensuring the product meets their expectations and delivers value.
 
-**Highlight uniqueness:** Emphasize what sets the product apart from competitors. This could be proprietary features, unique integrations, or specific capabilities that others lack.
+- **Categorize the audience:** Start by identifying whether the product is intended for B2B (business-to-business), B2C (business-to-consumer), or internal use. Each category has distinct characteristics, which directly impact how the product is designed, developed, and marketed:
+  - **B2B:** These products are tailored to meet business needs. They often focus on improving efficiency, solving operational challenges, and integrating with existing systems. B2B solutions may prioritize features like security, large-scale data handling, and compliance with industry regulations.
+  - **B2C:** Consumer-facing products are designed with individuals in mind, emphasizing convenience, performance, and user experience. SEO, brand loyalty, and broad accessibility tend to be key priorities for B2C applications.
+  - **Internal:** Internal tools are built for an organization’s employees and focus on improving operational efficiency. These products might prioritize specific workflows, role-based access, and flexibility for managing internal processes.
 
-Identifying these unique aspects can help in marketing and further development to maintain a competitive edge.
+- **Understand the target audience’s needs:** Once the audience type is clear, delve deeper into their specific needs by reviewing demographic data, user behaviors, and pain points. This insight allows for more personalized advice and helps ensure that the product aligns with user expectations. For example, busy professionals may prefer streamlined interfaces with quick access to core functions, while power users might value advanced customization options.
 
-**Determine if it’s a profit or cost center:** Assess whether the product functions as a profit center or a cost center. A profit center generates revenue directly through sales, subscriptions, or other means. In contrast, a cost center supports internal operations without directly generating revenue but may lead to cost savings or improved efficiency. Understanding this distinction helps in setting financial expectations, budgeting, and strategic planning.
+- **Understand the audience’s priorities:** Research what the target audience values most in the product. For B2B users, key priorities might include robust security, seamless integration with other systems, and regulatory compliance. B2C users might be more concerned with user experience, ease of use, and performance. For internal applications, priorities often revolve around employee workflows, flexibility in data access, and efficient process management. Tailoring your recommendations based on these priorities ensures that the product delivers on the most important aspects for its users.
 
-For instance, a customer relationship management (CRM) system sold to other businesses is a profit center, whereas an internal HR management tool used to streamline employee processes is typically a cost center.
+### Maintain product knowledge
 
-Questions to reflect:
+Product understanding is not a one-time task. As a consultant, you need to stay informed about updates, performance, and evolving user needs. This requires active, ongoing engagement with the product and its documentation.
 
-- What are the core functionalities of the product you’re currently working on, and how do they address the primary needs of the target audience?
-- Is the product intended to be a profit center or a cost center, and how does this impact its development and marketing strategies?
+- **Keep documentation up-to-date:** Make sure that all product documentation is regularly reviewed and updated to reflect changes in features, functionality, or strategy. Ensure that both your team and the client have access to this information.
+- **Encourage contributions:** Create an environment where team members can easily share their insights or add to the documentation. This is especially helpful in fast-moving projects where knowledge is continuously evolving.
+- **Track metrics and progress:** Continuously monitor dashboards and key performance indicators to stay on top of the product’s performance. Keeping an eye on these metrics will help you make data-driven recommendations and identify potential risks early on.
 
-#### Share the knowledge
+Examples:
 
-Effective documentation and reporting are key tools in understanding a product now and over time.
-
-Keep documentation fresh:
-
-- **Maintain documentation:** Keep a living document repository that evolves with the project.
-- **Encourage contributions:** Make sure every team member updates and accesses documentation. Collaborative documentation practices help in maintaining accuracy and completeness.
-- **Avoid silos:** Use documentation to onboard new team members and prevent knowledge silos. Well-maintained documentation can facilitate smoother transitions and knowledge transfer.
-
-Use performance dashboards:
-
-- **Build dashboards:** Create dynamic dashboards reflecting real-time data on product performance. Dashboards should highlight key metrics and provide an at-a-glance view of progress.
-- **Customize dashboards:** Highlight metrics crucial to the client’s strategic objectives. Tailored dashboards ensure that the most relevant information is always accessible.
+- **Adjusting UI for a B2C product:** A frontend developer consulting on a B2C e-commerce platform notices that users primarily access the site on mobile devices. They prioritize optimizing the mobile user experience by reducing page load times and ensuring the interface is responsive to mobile interactions.
+- **Refining UX for an internal tool:** A product designer working on an internal tool focuses on simplifying workflows for end users (company employees) by streamlining navigation and reducing the number of clicks required for common tasks. Internal audiences value efficiency and usability over aesthetics.
+- **Monitoring infrastructure changes:** A DevOps consultant stays aware of changes in server loads by tracking infrastructure performance metrics. This allows them to anticipate scaling needs or spot inefficiencies early before they become major issues.
 
 Tips and techniques:
 
-- **Maintain documentation:** Use collaborative documentation platforms like Confluence to keep documentation up to date and accessible.
+- **Use a “feature deep-dive” session:** Spend time doing a deep dive into each critical feature—what problem it solves, how it’s designed, and where it can be improved. Document your findings and any assumptions for discussion with the client.
+- **Segment the audience by pain points:** Instead of only focusing on B2B or B2C, go deeper by categorizing the audience into groups based on their specific challenges (e.g., cost concerns, speed, usability). This will help you tailor your advice and design decisions to address the most critical pain points.
+- **Use feedback loops effectively:** Implement frequent feedback loops with the actual end users of the product, whether they are B2B clients or B2C consumers. Their feedback will reveal what matters most to them and can influence both product adjustments and your recommendations.
+- **Map user journeys:** Build a clear map of the user journey from initial interaction to final conversion or goal completion. This will help you identify the most crucial moments in the user experience, allowing you to recommend strategic improvements.
 
 Questions to reflect:
 
-- How do you keep project documentation current and encourage team contributions?
+- How deeply have I explored the product beyond its surface-level functionality? Am I making decisions based on a full understanding?
+- Have I thoroughly identified the different types of users interacting with the product? How do their priorities differ?
+- How can I contribute to keeping product documentation up to date? What’s the best way for my team to share new knowledge and insights?
 
-#### Product questions
+### Product questions
 
 Product understanding:
 
@@ -460,109 +482,42 @@ Feedback and adjustments:
 
 </details>
 
-### Understanding the customer
+## Understanding the customer
 
-When you really understand the client’s customer, you can help create solutions that truly meet their needs.
+In consulting, truly understanding the product’s end users is critical to delivering solutions that meet their needs. This requires not just technical expertise but also an understanding of the motivations, pain points, and behaviors of the product’s customers. Below, we’ll cover key areas to focus on when developing a deep understanding of the product’s customers.
 
-#### Determine the target audience type
+### Customer personas
 
-Knowing who your audience is helps you tailor your approach to their specific needs.
+Before diving into the technical or design aspects of a product, consultants need to have a clear picture of who the product is for. Identifying and understanding customer personas helps guide decision-making across development, design, and product management.
 
-**Categorize the audience:** Figure out if the audience is B2B (business-to-business), B2C (business-to-consumer), or internal employees. This affects how the client should design, function, and communicate about their product.
+- **Know the target users:** Start by learning about the product’s key user groups. What are their demographics (age, location, role, etc.)? What are their pain points and needs? How does this product serve those needs? For example, if you’re building a product for enterprise users, understand how their workflow differs from that of smaller teams or individual users.
+- **Customer motivations:** Why do these users choose the product over competitors? What problems does it solve for them? Is it ease of use, cost, or specific features? Knowing this helps ensure that you’re focusing on the most critical parts of the product experience. For example, if customers are choosing the product because of its integration capabilities, make sure that aspect remains central in development or enhancements.
+- **Analyze customer behavior:** Pay attention to how users interact with the product. Which features do they use most often? Where do they encounter friction? What are the common workflows? This helps you understand which parts of the product drive the most value. For example, if analytics show users spend a lot of time on a particular feature, it’s worth looking deeper to see if it’s working smoothly or if they’re getting stuck.
 
-B2B refers to transactions, products, or services that are sold from one business to another. In the context of software and applications, B2B solutions are developed specifically to meet the needs of businesses or organizations, rather than individual consumers. These applications are designed to solve business problems, improve efficiency, streamline operations, or facilitate business processes.
+### Gathering customer feedback
 
-B2C refers to transactions, products, or services that are sold directly from a business to individual consumers. B2C applications are designed with the end-user in mind, focusing on delivering value, convenience, and a positive user experience. These applications are typically aimed at a broad audience and are used for personal rather than professional purposes.
+Collecting and analyzing customer feedback is one of the best ways to keep a pulse on how well the product is meeting user needs. Consultants can add a lot of value by helping clients interpret this data and use it to improve their product.
 
-Internal applications are software tools designed specifically for use within an organization. These apps are built to support the organization’s internal processes, streamline operations, and improve employee productivity. Unlike B2B and B2C applications, internal apps are not sold externally; they are intended solely for use by the company’s employees.
+- **Use analytics:** Start by reviewing the product’s analytics. This could include data such as how long users spend in the product, which features they use most often, or where they drop off. For example, if there’s high drop-off at a certain step in a checkout process, that’s a clear area where improvements could increase conversions.
+- **Collect feedback:** In addition to analytics, it’s important to understand how the client is actively gathering feedback from their users. Are they using surveys, interviews, or usability testing? How is the feedback being integrated into their development process? Encourage clients to share this data with you so you can help prioritize and address key issues.
+- **Leverage research:** Ensure that any available user research is integrated into your approach. This might include past customer interviews, user personas, or market research. For example, if a usability study found that users struggle with onboarding, work closely with the team to address those specific pain points in upcoming development cycles.
 
-**Understand the audience’s priorities:** Look at how the type of audience affects the product’s design and functionality.
+Examples:
 
-B2B products may prioritize security, handling large amounts of data, integrating with other systems, complying with government regulations, etc.
-
-B2C products may prioritize performance, SEO, loyalty, etc.
-
-Internal products may prioritize specific employee workflows, role-based access, flexibility in searching and viewing data, etc.
-
-Tips and techniques:
-
-- **Conduct stakeholder interviews:** Arrange meetings with key stakeholders to gather their perspectives on who the target audience is and how they interact with the product.
-- **Create scenario-based user stories:** Write user stories that illustrate different ways each audience type interacts with the product.
-
-Questions to reflect:
-
-- Reflect on a recent project. How did identifying the audience type (B2B, B2C, internal employees) impact your approach to the project?
-- How do the interaction dynamics differ between B2B and B2C audiences in your experience?
-
-#### Getting to know the customers
-
-Getting to know the customers involves understanding their characteristics, lifestyle, behaviors, and needs to tailor solutions that resonate with them.
-
-- **Identify who the customers are:** Look into the characteristics, lifestyle, behavior, and needs of the people using the client’s products. This includes demographic information, purchasing habits, and usage patterns.
-- **Understand customer objectives:** Determine what drives customers to use these products—what are their goals, desires, and issues they aim to resolve? This understanding helps in creating more targeted and effective solutions.
+- **Analyzing analytics for performance issues:** A QA engineer notices from product analytics that users consistently experience slow load times on a particular feature. By digging into the data, they discover that it’s linked to a performance bottleneck in the backend. Highlighting this issue to the team, they help prioritize a fix that improves the user experience and reduces frustration.
 
 Tips and techniques:
 
-- **Develop goal-oriented personas:** Create personas that include not only demographics but also goals and motivations.
-- **Conduct usability testing:** Regularly test products with real users to gather insights into how they interact with the product. This helps identify pain points, areas of confusion, and opportunities for improvement.
+- **Engage with customer-facing teams:** Regularly interact with the client’s customer support or sales teams. They often have the most direct insight into user complaints, needs, and expectations, providing valuable context that can be overlooked in technical discussions.
+- **Set up regular feedback review sessions:** Establish a recurring schedule for reviewing customer feedback and analytics with the client. This keeps everyone informed about current user pain points and successes, allowing you to identify trends early and propose timely improvements.
+- **Combine qualitative and quantitative data:** Don’t just rely on numbers. Pair analytics with direct customer quotes from surveys or interviews. This gives a fuller picture of the user experience and helps guide decisions that are not only data-driven but also customer-focused.
 
 Questions to reflect:
 
-- How do customer personas enhance your consulting process?
-- Explain a time when usability testing provided critical insights for a project.
+- Have you considered how the product’s design and functionality support the daily workflows of its target users? Are there areas where the user’s specific environment could impact their interaction with the product?
+- How do you ensure that you’re not just collecting feedback but actively incorporating it into your work? Are there any roadblocks that prevent feedback from influencing your development or design decisions?
 
-#### Explore why customers use the product
-
-Exploring why customers choose to use the client’s products helps us understand the unique value propositions that differentiate your client’s product or service from competitors.
-
-**Investigate customer choice:** Understand why customers choose this company’s product over competitors. What unique value or solution does it offer? This could be due to innovative features, superior customer service, or a strong brand reputation.
-
-For example, a tech company might attract customers because of its cutting-edge technology and commitment to continuous innovation.
-
-**Determine loyalty factors:** Identify what keeps customers returning and what aspects of the service or product they value most. This could include reliability, cost-effectiveness, or exceptional user experience. Understanding these loyalty factors allows us to emphasize and enhance these strengths in your consulting efforts.
-
-Tips and techniques:
-
-- **Perform root cause analysis:** Use techniques like the “5 Whys” to drill down into why customers choose your product over competitors.
-
-Questions to reflect:
-
-- Why do you think understanding why customers choose a company’s product is critical for a consultant?
-
-#### Define customer needs and goals
-
-Defining customer needs and goals ensures that your solutions are aligned with what the customers are aiming to achieve, addressing both their immediate and long-term aspirations.
-
-- **Identify key needs and requirements:** Pinpoint what customers are aiming to achieve through the product, including both their immediate and long-term goals. This can involve specific functionalities, performance metrics, or broader business objectives.
-- **Understand pain points:** Discover the challenges or gaps that the product helps the customers overcome. Identifying these pain points enables us to propose solutions that effectively address these issues, improving overall customer satisfaction and product adoption.
-
-Tips and techniques:
-
-- **Analyze customer support tickets:** Review support tickets and customer service logs to identify recurring issues.
-- **Run job-to-be-done (JTBD) interviews:** Conduct interviews focusing on the tasks customers are trying to accomplish with the product.
-
-Questions to reflect:
-
-- Describe a time when understanding a customer’s immediate and long-term goals helped you deliver a successful project.
-- How do you approach identifying and addressing customer pain points? Share specific techniques you use.
-
-#### Evaluate how feedback is collected
-
-Evaluating how feedback is collected helps us understand the effectiveness of current methods and identify opportunities for improvement, ensuring we capture accurate and actionable customer insights.
-
-- **List current channels:** Enumerate all methods the company uses to gather feedback, such as surveys, focus groups, user forums, or direct communication. Knowing the variety of channels helps us assess their reach and inclusivity.
-- **Assess feedback effectiveness:** Evaluate how well these channels capture accurate and actionable customer insights. Are the surveys generating meaningful responses? Do focus groups provide deep insights into user behavior? Understanding the strengths and weaknesses of these channels is crucial.
-- **Propose improvements:** Suggest ways to enhance or streamline the feedback collection process to ensure continuous alignment with customer needs and expectations. This could include leveraging new technologies, optimizing survey questions, or increasing the frequency of feedback sessions.
-
-#### Integrating insights into your work
-
-Integrating customer insights into your work ensures that your consulting efforts are always aligned with customer needs, leading to more successful outcomes.
-
-- **Reflect insights in deliverables:** Make sure your deliverables deeply reflect customer insights, which shows the value of the consulting services you provide. Deliverables that resonate with customer insights lead to higher client satisfaction and better project outcomes.
-- **Share insights regularly:** Make sure that insights are regularly communicated with both the team and the client. Regular sharing of insights keeps everyone informed and aligned.
-- **Align project goals:** Synchronize project goals and timelines with the evolving customer understanding. Aligning goals ensures that the project remains focused and relevant.
-
-#### Customer questions
+### Customer questions
 
 Customer identification:
 
@@ -632,137 +587,58 @@ Market and competitive environment:
 
 </details>
 
-### Understanding the project
+## Understanding the project
 
-Understanding the project thoroughly helps ensure that all efforts align with the client’s vision and business goals, setting a clear path for project execution.
+When you first step into a project, it’s crucial to understand not just the technical work but the overarching goals and how your role fits into achieving them. This understanding will guide your decisions and ensure that you align with the client’s expectations and project outcomes. You should take the time to clarify objectives, examine the roadmap, and understand the people involved.
 
-##### Clarify project objectives
+### Project objectives
 
-Clarifying project objectives involves clear and open communication with stakeholders to understand the project’s primary goals and ensure alignment with broader business objectives.
+Understanding the objectives is the foundation of effective consulting. Having clarity around the project’s goals will help you provide relevant advice and stay focused on the desired outcomes.
 
-- **Ask about the primary objectives:** Engage with stakeholders to understand the main goals of the project. Ask how these goals align with the broader business objectives and desired outcomes.
-- **Understand the success criteria:** Inquire about the criteria for success from stakeholders. Ask how these criteria are documented and agreed upon by all parties to avoid any ambiguity.
+- **Clarify with your Principal:** Before diving into the project, confirm the key objectives and goals with your Principal or project lead. Ask questions like: What are the core success metrics for this project? Are there any non-negotiable outcomes or priorities? This step ensures that you have a shared understanding with your team.
+- **Scope and deliverables:** Ensure you have a firm grasp of the project scope and the specific deliverables expected. Get clarity on the boundaries of the project to avoid scope creep, which can derail timelines and introduce unnecessary complexity. For example, if your role is focused on backend development, be clear on whether this includes building APIs, database management, or both.
+- **Identify risks and challenges:** Every project comes with risks and dependencies that can impact the schedule or deliverables. Identify and document these early. This could include potential delays due to client approvals, technical hurdles, or resource availability. For example, a client may rely on third-party software that could cause delays if integration issues arise.
 
-Tips and techniques:
+### Roadmap and progress
 
-- **Ask for documentation:** Ask if all the agreed-upon objectives and success criteria are documented.
+Having a clear roadmap ensures that your work aligns with the broader project plan, helping you deliver effectively and avoid potential issues. By understanding the timeline, key milestones, and the project’s phase, you can track progress and adjust your approach as needed.
 
-Questions to reflect:
+- **Identify key milestones:** In larger, more structured projects, milestones often define specific phases with distinct goals and deliverables. Collaborate with the team to identify these significant markers of progress, such as completing a project phase or delivering a prototype. These milestones provide clear points for evaluating whether the project is on track. For example, milestones could include completing a sprint, delivering a working MVP, or achieving a key user acceptance test.
+- **Consider the product’s lifecycle phase:** When you join a project, it’s crucial to assess the phase the product is in. For mature products, expect the project to follow a structured roadmap with well-defined milestones. For newer products, especially those developing a Minimum Viable Product (MVP), the approach may be more flexible and iterative, relying on prototyping and continuous customer feedback rather than rigid stages. This adaptability helps in refining the product and achieving product-market fit through each iteration.
+- **Request a timeline:** Whether the project uses fixed milestones or an iterative MVP approach, ensure you have access to the most up-to-date timeline. This could be a formal Gantt chart or a more flexible schedule shared in a project management tool. Use this timeline to align your tasks and prioritize effectively. If deadlines shift, recalibrate your tasks to stay in sync with the evolving project goals.
+- **Review and monitor progress regularly:** Don’t limit progress checks to the start of the project. Schedule regular milestone reviews or iteration assessments to discuss current progress and make adjustments as necessary. In more traditional projects, this might involve a formal milestone review process, while in an iterative MVP environment, it could involve frequent feedback loops and prototyping adjustments. Continuously monitor progress through tools like Jira or Trello, ensuring that any delays or changes are addressed before they affect the broader project.
 
-- Reflect on a recent project you were involved in. What were the primary goals, and how did you ensure they aligned with the broader business objectives?
-- Think about a time when project objectives were unclear. What steps did you take to clarify them, and how did it impact the project’s outcome?
-- How do you approach situations where different stakeholders have conflicting objectives?
+### People and communication
 
-##### Understand project scope
+Building relationships with stakeholders and staying connected through effective communication is vital to the success of any project. You must understand the team structure, dynamics, and communication preferences to collaborate effectively.
 
-Understanding the project scope is crucial for setting realistic expectations and defining the boundaries within which the project will operate.
+- **Identify stakeholders:** Know who the decision-makers and influencers are on the client side. This could include product owners, technical leads, or business stakeholders. Understand their priorities and how they measure success so you can align your contributions with their expectations.
+- **Set up communication channels:** Establish clear communication lines from the start. This could be regular standups, weekly check-ins, or Slack channels for quick updates. Set expectations for how often you’ll communicate and the best methods to use. For example, daily updates may be useful for fast-moving projects, while weekly meetings might suffice for longer timelines.
+- **Understand team roles and dynamics:** Get familiar with the different roles within the team, both on the Bitovi and client sides. Know who is responsible for what, and how different roles interact. For instance, if a client has multiple TPOs, understand which one oversees the area most relevant to your work to streamline communications.
+- **Align with the team:** Observe how the team works together and identify any potential interpersonal dynamics that could impact collaboration. If certain team members struggle to communicate effectively or if there’s tension between stakeholders, take note and find ways to foster smoother collaboration. For instance, if you notice two developers are consistently at odds over technical approaches, consider facilitating a technical discussion to help them reach common ground.
 
-- **Clarify the project scope:** Ask stakeholders to clearly outline what is included and excluded in the project. Make sure you understand the expected deliverables and specific tasks.
-- **Validate scope:** Regularly discuss the scope with stakeholders to prevent scope creep and ensure alignment throughout the project.
+Examples:
 
-Questions to reflect:
-
-- Describe a project where scope creep became an issue. How did you identify it, and what steps did you take to mitigate it?
-- Think about a project where the scope was well-defined from the beginning. What impact did this have on the project’s success?
-
-##### Assess project risks
-
-Assessing project risks involves identifying potential challenges and understanding strategies to mitigate them, ensuring smooth project execution.
-
-- **Identify risks:** Ask about potential risks that could impact the project. Consider factors such as technical challenges, resource availability, and external dependencies.
-- **Mitigate risks:** Inquire about the plans to minimize identified risks and establish contingencies to address issues that arise.
+- **Defining non-negotiable outcomes:** As a backend developer, you’re tasked with building an API. The client insists on performance benchmarks, such as a maximum response time of 200ms under peak traffic. This becomes a non-negotiable priority, guiding design choices and optimizations.
+- **Monitoring key milestones:** The QA team uses the roadmap to track when they should start testing a key module. By identifying that a critical feature will be delayed, they adjust their test cases and shift focus to lower-priority items to maintain productivity.
+- **Identifying key stakeholders:** A backend engineer is working on an API that impacts several other teams. Early on, they realize that the business analyst is the main stakeholder for defining data requirements. Building a relationship with this person helps ensure that changes to data structures don’t catch anyone off guard.
 
 Tips and techniques:
 
-- **Risk brainstorming:** Use techniques like brainwriting (silent brainstorming) to gather a wide range of potential risks from team members without the influence of groupthink.
+- **Mitigate risks early:** Don’t wait for issues to emerge—proactively ask about potential risks during the project planning phase. For instance, inquire about any expected delays, approval bottlenecks, or resource constraints that could slow down your deliverables.
+- **Frequent check-ins on milestones:** Don’t wait until a milestone is missed to identify a problem. Regularly review progress with your team to see if everything is on track. If any delays are spotted, adjust the plan and inform the client early to manage expectations.
+- **Tailor communication styles:** Different stakeholders will have different preferences for communication. Some might prefer detailed email updates, while others want quick Slack messages. Ask about their preferences early and adapt accordingly to avoid misunderstandings.
 
 Questions to reflect:
 
-- What process do you follow to identify potential risks in a project? Can you provide an example of a risk you identified early and how it impacted the project?
-- How do you prioritize risks once they are identified? What criteria do you use?
+- What assumptions have I made about the project scope that need clarification?
+- Have I fully understood which outcomes are critical and which are negotiable for this project?
+- What risks in my area of work could impact the overall project, and how can I address them early on?
+- How often do I check my tasks against the project roadmap, and could I be more proactive?
+- Have I built relationships with all the key stakeholders I need to collaborate with?
+- How well am I managing the team dynamics, and could I facilitate better communication?
 
-#### Understanding the project roadmap
-
-A project roadmap is great for managing timelines, resources, and expectations, providing a clear path to follow and a framework for tracking progress.
-
-##### Clarify project milestones
-
-In many projects, milestones are used to define specific phases with distinct goals and deliverables. This approach is particularly useful in larger, more structured projects where breaking the work into clear stages ensures focus and direction.
-
-When working on a project aimed at developing a Minimum Viable Product (MVP), the focus may shift from rigid milestones to a more flexible, iterative approach. In these cases, the roadmap is guided by a continuous cycle of prototyping and customer feedback rather than fixed phases. Here, the emphasis is on adaptability, where each iteration brings the project closer to finding product-market fit.
-
-When you join a project, consider what phase in the product lifecycle the product is in.
-For more mature products, you should:
-
-- **Look for distinct milestones:** For larger projects, expect stakeholders to break down the project into distinct phases or milestones. Understand the goals and deliverables for each phase.
-- **Review milestones on a regular basis:** Schedule regular reviews to discuss progress and make adjustments as needed.
-
-Tips and techniques:
-
-- **Celebrate milestones:** Recognize achieving milestones with the team to boost morale and maintain momentum.
-- **Maintain a feedback loop:** In iterative projects, ensure a continuous cycle of prototyping, feedback, and refinement. This ongoing process can guide the project’s direction, even without traditional milestones.
-
-Questions to reflect:
-
-- Describe a project where regular reviews of milestones or iterations significantly impacted its success. What were the key factors in these reviews?
-- How do you handle situations where progress is slower than expected, whether against a milestone or during an iterative phase? What steps do you take to get the project back on track?
-- Reflect on a project where the roadmap was more flexible, such as during MVP development. How did you adapt your approach, and what strategies did you use to keep the project aligned with its goals?
-
-##### Reference the project timeline
-
-The project timeline includes a detailed schedule with all the key milestones and deadlines.
-
-- **Ask for a detailed timeline:** Request a comprehensive timeline that includes key milestones and deadlines. Make sure to buffer time in for unexpected challenges.
-- **Understand deadlines:** Confirm that all deadlines are realistic and agreed upon by the project team and stakeholders. If there’s misalignment, raise this as a concern and try to make sure the expectations are set correctly as soon as possible.
-
-Tips and techniques:
-
-- **Timeboxing:** Implement timeboxing for tasks to keep project momentum.
-
-##### Track the project’s progress
-
-Tracking project progress is critical for maintaining momentum and ensuring the project stays on course.
-
-- **Monitor progress:** Make sure there are systems in place to track project progress against the roadmap. Understand how to use tools like Gantt charts or project management software.
-- **Review regularly:** Participate in regular progress reviews to ensure the project stays on track and address any deviations promptly.
-
-Questions to reflect:
-
-- Describe a project where tracking progress was particularly challenging. How did you overcome these challenges?
-- How do you ensure that progress reviews are effective and lead to actionable insights?
-
-#### Understanding the people involved
-
-Understanding the people involved in the project ensures effective collaboration, communication, and stakeholder management, which are vital for project success.
-
-##### Analyze stakeholders
-
-Analyzing stakeholders helps identify all individuals and groups involved in the project, understanding their interests, influence, and expectations.
-
-- **Identify stakeholders:** Work with stakeholders to identify all individuals and groups involved in the project. Understand their interests, influence, and expectations. Create a stakeholder map to visualize and manage these relationships.
-- **Engage stakeholders:** Develop a plan to engage stakeholders effectively, ensuring their input and feedback are incorporated throughout the project.
-
-Questions to reflect:
-
-- How do you identify all relevant stakeholders in a project? What methods do you use to understand their interests and expectations?
-- Describe a time when stakeholder engagement was crucial to the success of a project. How did you manage their involvement?
-- How do you handle conflicting interests among stakeholders?
-
-##### Evaluate team dynamics
-
-Evaluating team dynamics involves understanding the strengths and weaknesses of the project team and fostering a collaborative working environment.
-
-- **Clarify leadership roles:** Ask who is in leadership roles and what responsibilities they have within the team. Understand who to go to for guidance, review, support, approval, etc.
-- **Assess the team:** Evaluate the strengths and weaknesses of the project team.
-- **Observe:** Pay attention to how team members communicate during meetings: Who talks the most? Who is quiet? Who do people seem to listen to or follow?
-- **Identify influencers:** Recognize who the informal leaders are (those who may not have a formal title but who others look to for guidance).
-
-Questions to reflect:
-
-- Describe a time when you implemented team-building activities. What impact did these activities have on team dynamics and project success?
-- How do you handle conflicts within a project team?
-
-#### Project questions
+### Project questions
 
 Project understanding:
 
