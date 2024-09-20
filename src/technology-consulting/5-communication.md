@@ -10,356 +10,436 @@
 
 – Moulin Rouge, but for communication.
 
-## Core principles
+## Fundamental principles
 
-Effective communication is vital for consultants who work closely with clients and internal teams. By mastering core communication principles, you can convey information clearly, build trust, and foster collaboration, leading to successful outcomes. Below, we’ll dive into key areas that will enhance your ability to communicate effectively in your role.
+By mastering core communication principles, you can convey information clearly, build trust, and foster collaboration, leading to successful outcomes. Below, we’ll dive into key areas that will enhance your ability to communicate effectively in your role.
 
-### Defining communication goals
+The following best practices might seem basic, but surprisingly few people follow through with them. Simply performing “the basics” will make you stand out, ensure clarity, and reduce risk of an expectation gap growing over time.
 
-Setting clear communication goals is essential to make sure your message is received and acted upon as intended. It’s not just about what you say, but also about what you hope to achieve with your communication.
+### Purpose
 
-**Clarifying intent:** Start by identifying your primary goal — what are you trying to accomplish?
+First, figure out what you want to achieve. What’s the primary goal of the communication you’re sending, questions you’re asking, etc.?
 
-- **Building relationships:** Engaging in small talk, showing appreciation, and offering support to establish trust and rapport.
-- **Managing expectations:** Clearly communicating goals, timelines, and responsibilities to align everyone’s understanding and avoid misunderstandings.
-- **Asking questions:** Seeking clarification, gathering information, or prompting further discussion to gain a better understanding.
-- **Conveying information:** Sharing knowledge, updates, instructions, or decisions with others to keep everyone informed and aligned.
-- **Facilitating collaboration:** Guiding discussions, mediating conflicts, and fostering teamwork to promote productive interactions.
-- **Problem-solving and decision-making:** Collaborating to identify solutions, make decisions, and address challenges effectively.
-- **Providing feedback:** Offering constructive comments, critiques, or recognition to help others improve or feel valued.
+Direct communication focuses on delivering clear and concise information from one party to another without requiring an immediate response. This approach is essential for providing instructions, updates, and setting clear guidelines to ensure everyone is aligned and informed.
 
-Clearly defining your intent helps you shape your message accordingly.
+- **Share information:** Providing updates or instructions to keep everyone informed.
+- **Report or document:** Recording information systematically for transparency and future reference.
+- **Provide feedback:** Offering constructive insights to help improve performance or recognize achievements.
+- **Manage expectations:** Communicating goals, timelines, and responsibilities to prevent misunderstandings.
+- **Educate or train:** Sharing knowledge or teaching new skills to enhance team capabilities.
+- **Persuade or influence:** Convincing others to adopt a viewpoint, make a decision, or take action.
+- **Negotiate agreements:** Reaching compromises or settlements that benefit all parties involved.
+- **Establish credibility:** Demonstrating expertise and reliability to build trust with clients and colleagues.
+- **Motivate and inspire:** Encouraging and energizing others to boost morale and productivity.
+- **Celebrate successes:** Acknowledging and sharing achievements to foster a positive work environment.
 
-**Know your audience:** Adjust your message depending on who you’re communicating with. For technical teams, provide details and use relevant terminology. For stakeholders or clients less familiar with technical jargon, simplify your language and focus on the broader impact. Knowing your audience helps make sure your message is clear and impactful.
+Interactive communication emphasizes dialogue and mutual exchange between parties, fostering collaboration, understanding, and relationship-building. This method is crucial for addressing concerns, resolving conflicts, and enhancing team dynamics through active participation.
 
-**Structuring conversations to align with objectives:** Tailor your conversation based on your goals.
+- **Ask questions:** Clarifying details, gathering information, and encouraging discussion to improve understanding.
+- **Gather feedback:** Soliciting input to improve processes, products, or relationships.
+- **Build relationships:** Using small talk, expressing appreciation, or offering support to build rapport.
+- **Resolve conflicts:** Addressing and mediating disagreements to find mutually acceptable solutions.
+- **Provide support or counsel:** Offering assistance or guidance during challenging situations.
+- **Facilitate collaboration:** Leading discussions, working together to find solutions, making decisions, resolving conflicts, and promoting teamwork for productive outcomes.
+- **Provide support or counsel:** Offering assistance or guidance during challenging situations.
+- **Persuade or influence:** Convincing others to adopt a viewpoint, make a decision, or take action.
+- **Negotiate agreements:** Reaching compromises or settlements that benefit all parties involved.
 
-If your objective is to foster a discussion, use open-ended questions like, “What are your thoughts on this approach?” to encourage dialogue. Conversely, if you need specific information, opt for closed-ended questions, such as, “Did we meet the project deadline?” Structuring your conversations around your goals helps you guide the interaction effectively.
+### Clarity and conciseness
 
-**Offering controlled choices:** When you need to guide the conversation toward a specific outcome, offer controlled choices.
+*Clarity* refers to the quality of being easily understood and free from confusion or ambiguity. In communication, clarity ensures that the intended message is conveyed precisely and effectively to the audience. Achieving clarity involves using straightforward language, well-organized ideas, and logical structure to eliminate misunderstandings. Clear communication allows the receiver to grasp the meaning without unnecessary effort or interpretation.
 
-For example, ask, “Would you prefer we focus on X or Y for the next sprint?” This not only helps steer the discussion but also allows the other person to feel involved in the decision-making process.
+*Conciseness* is the practice of expressing ideas clearly and directly while using the fewest possible words. It involves eliminating redundant, repetitive, or unnecessary information without sacrificing the message’s completeness or meaning. Concise communication values brevity and efficiency, ensuring that the core message is delivered succinctly. This approach helps maintain the audience’s attention and makes the information easier to process and remember.
 
-Tips and techniques:
+Clarity and conciseness are closely intertwined and mutually reinforcing elements of effective communication:
 
-- **Practice active listening:** Before stating your objective, make sure you fully understand the current context by listening to the other party. This can help you match your communication goals with the conversation’s flow.
-- **Role-play scenarios:** Practice defining and articulating communication goals in various scenarios with colleagues. This can help you refine your approach to different types of interactions.
+- **Understanding:** Conciseness aids clarity by removing superfluous words and focusing on the essential message. This streamlined approach makes the content easier to understand and reduces the likelihood of confusion.
+- **Focus:** Both clarity and conciseness help keep the communication focused on the main points. By avoiding unnecessary details, the speaker or writer ensures that the audience remains engaged and comprehends the key ideas.
+- **Retention:** Concise and clear messages are more memorable. When information is presented straightforwardly and without excess, it is more likely to be retained by the audience.
+- **Efficiency:** Combining clarity with conciseness makes communication more efficient. It allows the conveyance of ideas quickly and effectively, which is especially valuable in contexts where time and attention are limited.
 
-Questions to reflect:
+In summary, clarity ensures that the message is understandable, while conciseness ensures that it is delivered efficiently. Together, they create powerful and effective communication that is both easy to grasp and succinct.
 
-- What are some recent communications where you felt your goal wasn’t clearly conveyed? How could you have defined or communicated your intent more effectively?
-- How do you determine whether your communication goals align with the recipient’s needs or expectations?
-- Can you think of a situation where having clear communication goals might have changed the outcome of a project or meeting?
+To make complex ideas more relatable:
 
-### Simplifying complex ideas
+- **Use analogies:** Compare unfamiliar concepts to familiar ones. For example, explain cloud computing as renting storage space instead of buying a physical hard drive.
+- **Break down information:** Split complex ideas into smaller, manageable parts. Outline each step in a multi-step process to prevent information overload.
+- **Employ visual aids:** Use diagrams, charts, or flowcharts to represent processes visually, helping stakeholders see how elements interconnect.
+- **Chunk information:** Present information in small, digestible segments with clear labels. In presentations, use bullet points or numbered lists to separate key points.
+- **Practice with laypersons:** Explain technical concepts to someone outside your field to ensure your explanation is clear and effective.
+- **Use the ’one idea per sentence’ rule:** Convey only one main idea per sentence to avoid overwhelming your audience.
 
-As a consultant, you’re often required to explain complex concepts to various audiences. Simplifying these ideas without losing essential details is crucial for effective communication.
+To structure your communication effectively:
 
-**Using analogies:** Analogies are powerful tools to make complex ideas more relatable.
+- **Start with a high-level overview:** Provide a summary before diving into details, adding information based on audience feedback or questions.
+- **Apply the Pyramid Principle:** Begin with the most important information, then add supporting details. For instance, start an email with the main point — “We need to push the deadline” — followed by reasons and implications.
+- **Use preview statements:** Begin communication with an overview of what will be covered to help your audience anticipate and absorb information.
+- **Leverage whitespace:** Format written communication with bullet points, headings, and spacing to make it easier to scan. Separate sections with headers like “Progress,” “Next Steps,” and “Risks” in project updates.
+- **Manage attention spans:** Keep messages brief yet comprehensive. Prioritize key information upfront, and use concise language, such as “We’re 90% complete with development, targeting full deployment by next Friday.”
+- **Summarize and prompt action:** End with a clear summary and call to action. After a meeting, outline decisions made and next steps, like “Please review the attached document by Friday, and let’s schedule a follow-up to discuss your feedback.”
+- **Draft and edit:** Write your message, then review and cut unnecessary words or details. Aim to reduce word count while retaining the core message.
 
-For instance, explaining cloud computing to someone unfamiliar with it could involve comparing it to renting storage space instead of buying a physical hard drive. By linking new information to something familiar, you make it easier for your audience to grasp the concept.
+To ensure your language is accessible:
 
-**Breaking down information:** When presenting complex ideas, split them into smaller, manageable parts.
+- **Avoid jargon:** Simplify technical language whenever possible. Instead of “We need to refactor the codebase to improve modularity,” say “We need to reorganize the code to make it easier to manage and update.”
+- **Define technical terms:** When technical terms are necessary, provide clear definitions to prevent confusion.
+- **Test your explanations:** After explaining a concept, ask a colleague to rephrase what they understood to identify areas needing simplification.
 
-For example, if you’re explaining a multi-step process, outline each step in order, making sure your audience can follow. This step-by-step approach helps prevent information overload and keeps things clear.
+### Empathy
 
-**Visual aids and documentation:** Diagrams, charts, and written documentation can significantly enhance understanding. A flowchart, for example, can visually represent a process, making it easier for stakeholders to see how various elements interconnect. Supplementing verbal explanations with visual aids can bridge gaps in understanding.
+Empathy is a key component of effective communication. By being empathetic and open-minded, you can build stronger relationships, improve collaboration, and foster better understanding. Below are practical ways to apply empathy in your day-to-day interactions.
 
-**Iterative explanation:** Start with a high-level overview of the concept and then add details as needed.
+First, remain open-minded. This involves staying curious and being willing to learn from every conversation.
 
-For example, begin by summarizing the key points of a proposal, then focus on specific sections based on the audience’s feedback or questions. This approach helps you provide the right amount of detail without overwhelming your listeners.
+- **Avoid assumptions:** Don’t expect others to know what you know. Ask questions to clarify their perspective.
+- **Stay curious:** Approach each conversation with the mindset that there’s always something new to learn.
+- **Be flexible:** When you receive feedback or new ideas, adapt your approach. Being open to change encourages better collaboration.
 
-Tips and techniques:
+Recognizing and validating emotions also plays a big role in effective communication. Acknowledging how someone feels can help you navigate challenging situations with more ease.
 
-- **Chunk information:** Break down information into small, digestible segments, each with a clear label.
+- **Acknowledge feelings:** Recognize the emotions of the person you’re speaking with, and make it clear you understand them.
+- **Reflect emotions:** Mirror the other person’s feelings to show understanding. For example, say, “I can see this situation is frustrating.”
+- **Pause before responding:** Especially in difficult conversations, take a moment to process what the other person is feeling before you respond. This helps ensure your reply is thoughtful and considerate.
 
-For example, in a presentation, use bullet points or numbered lists to separate key points.
-- **Test your explanations:** After explaining a complex concept, ask a colleague to rephrase what they understood. This can help you identify areas that need further simplification.
-- **Practice with laypersons:** Try explaining technical concepts to someone outside your field (e.g., a friend or family member). If they can understand it, your explanation is likely clear and effective.
+Building strong relationships requires genuine interest and follow-up. The more you invest in these connections, the better you’ll work together.
 
-Questions to reflect:
+- **Build rapport:** Show that you remember personal details from past conversations. This helps strengthen your relationship.
+- **Show you care:** Most people just go through the motions. If you care a lot, and you’re not ashamed to show it, people will notice. Other people who also care will be attracted to you and respect you, and doors will tend to open as a result. Care about making the project successful through any means necessary.
 
-- When was the last time you had to simplify a complex idea? What strategies did you use, and how successful were they?
-- How do you balance simplifying a concept with retaining its essential technical details?
-- Think of a time when someone effectively simplified a complex idea for you. What made their explanation clear and understandable?
+Handling difficult conversations requires empathy as well. Start by focusing on the other person’s concerns, and then work together on solutions.
 
-### Prioritizing clarity and conciseness
+- **Lead with empathy:** In tough discussions, acknowledge the impact the issue is having on the other person. For example, “I understand this delay affects your schedule.”
+- **Seek feedback:** After challenging conversations, ask for feedback on how you handled the situation. Use it to refine your approach for the future.
 
-Clear and concise communication is essential for making sure your message is understood and acted upon promptly. By organizing your communication carefully, you can make your message more accessible and meaningful.
+By focusing on empathy and open-mindedness, you’ll be better equipped to communicate effectively and navigate the complexities of working with others.
 
-**Structuring communication:** Use frameworks like the Pyramid Principle, where you start with the most important information and then add supporting details.
+### Adaptability
 
-For example, in an email, begin with the main point — “We need to push the deadline” — and follow with the reasons and implications. This way, the key information is conveyed even if the reader only skims the content.
+Adaptability in communication fosters an inclusive and productive team environment by ensuring everyone feels heard and understood. Recognizing and adjusting to different communication styles is key to effective collaboration.
 
-**Avoiding jargon:** While technical language might be second nature to you, it can be confusing for others. Simplify your language whenever possible.
-
-For example, instead of saying “We need to refactor the codebase to improve modularity,” you could say, “We need to reorganize the code to make it easier to manage and update.” When technical terms are necessary, be sure to define them.
-
-**Summarizing and prompting action:** End your communication with a clear summary and a call to action.
-
-For instance, after a meeting, summarize the decisions made and clearly outline the next steps, like “Please review the attached document by Friday, and let’s schedule a follow-up to discuss your feedback.” This way, everyone knows what is expected moving forward.
-
-**Leveraging whitespace:** In written communication, use formatting tools like bullet points, headings, and spacing to break up text and make it easier to scan. For example, in a project update, separate different sections with headers like “Progress,” “Next Steps,” and “Risks” to help readers quickly find the information they need.
-
-**Managing attention spans:** Keep your messages as brief as possible while making sure they’re comprehensive. Given that many people scan rather than read in depth, prioritize key information up front and use concise language.
-
-For example, a concise project update might start with “We’re 90% complete with development, targeting full deployment by next Friday.”
-
-Tips and techniques:
-
-- **Use the ‘one idea per sentence’ rule:** To avoid overwhelming your audience, make sure each sentence in your communication conveys only one main idea.
-- **Draft and edit:** Write your message, then review it to cut out any unnecessary words or details. Aim to reduce the word count while retaining the core message.
-- **Use preview statements:** Start your communication with a brief overview of what will be covered, helping your audience anticipate and absorb the information more effectively.
-
-Questions to reflect:
-
-- How often do you find yourself writing or speaking more than necessary? What steps can you take to streamline your communication?
-- In your recent communications, where could you have applied a more concise approach? What impact might this have had?
-- Can you recall a situation where a lack of clarity or excessive detail led to confusion? How could the message have been delivered more effectively?
-
-### Staying consistent and reliable
-
-Consistency and reliability in communication build trust and keep everyone on the same page. Regular updates and clear expectations help manage relationships well, especially in consulting roles.
-
-**Regular updates:** Establish a routine for communicating progress, such as weekly status reports or daily check-ins, especially in remote work settings. This helps maintain transparency and keeps everyone on the same page.
-
-For example, sending a brief daily update email can keep clients informed without overwhelming them with details.
-
-**Proactive communication:** Don’t wait for clients or stakeholders to ask for updates — anticipate their needs and communicate developments, especially when there are significant changes.
-
-For instance, if you foresee a delay, inform the client early, explain the reasons, and outline the steps being taken to mitigate the issue. This builds confidence in your ability to manage the project.
-
-**Stating expectations:** Clearly outline expectations regarding communication, including frequency of updates, preferred channels, and response times.
-
-For example, you might agree to provide a weekly project report every Friday afternoon and respond to emails within 24 hours. Setting these expectations upfront helps prevent misunderstandings.
-
-**Timeliness and follow-through:** Respond promptly to communication and follow through on commitments. If you promise to deliver a document by a certain time, make sure it’s done — or if a delay is unavoidable, communicate this in advance with a new deadline. Consistent follow-through strengthens your credibility.
-
-**Regular status updates:** Provide structured updates that cover key aspects such as progress, next steps, and potential risks.
-
-For instance, a weekly status email might include sections like “Completed Tasks,” “Upcoming Milestones,” and “Challenges/Risks.” This approach helps manage expectations and keeps everyone informed of the project’s trajectory.
+- **Understand your team members:** Learn about your team members’ communication preferences. Adapting to these preferences enhances overall team communication and efficiency.
+- **Tailor your message:** Tailor your communication based on who you’re communicating with. For technical teams, provide detailed information and use relevant terminology. For stakeholders or clients less familiar with technical jargon, simplify your language and focus on broader impacts to ensure clarity.
+- **Bridge communication gaps:** Act as a translator when working with team members from different technical backgrounds or communication styles. Explain technical concerns in easily understandable terms to non-technical stakeholders, ensuring everyone is on the same page.
+- **Encourage continuous feedback:** Regularly seek feedback on your communication effectiveness and be willing to adjust your style as needed. After meetings, ask if the information was clear or if a different approach would be preferred, fostering ongoing improvement in your communication strategies.
 
 Tips and techniques:
 
-- **Set reminders for regular updates:** Use tools like calendar alerts or project management software to make sure you don’t miss scheduled communication check-ins.
-- **Create templates:** Develop templates for common communications like status updates or progress reports. This keeps things consistent and saves time.
-- **Maintain a communication log:** Keep a log of key communications, including what was discussed and any follow-up actions. This helps track consistency and follow-through.
+- **Develop a team communication guide:** Create a simple guide outlining preferred communication styles and tools for your team to ensure everyone’s needs are considered.
+- **Observe and adapt:** Pay attention to how colleagues and clients communicate. If someone prefers detailed emails over verbal updates, adjust your communication to match their preference.
+- **Use multiple channels:** Share important information through various methods (e.g., email, chat, meetings) to accommodate different preferences and ensure the message is received.
 
-Questions to reflect:
+### Respect and professionalism
 
-- When was the last time a missed or delayed communication caused an issue? What could you have done differently to avoid it?
-- How do you keep your communications consistent in tone, frequency, and content across different projects or stakeholders?
-- Reflect on a time when consistent communication helped build trust with a client or colleague. What practices contributed to this success?
+Effective communication requires understanding and respecting the diverse identities and experiences of colleagues and clients. By fostering respectful, clear, and inclusive interactions, especially on sensitive issues, we create a more collaborative and productive workplace.
 
-### Practicing empathy and understanding
+Respecting individual identity is fundamental to promoting diversity and inclusion. Acknowledging and using the terms people prefer when referring to themselves is crucial.
 
-Empathy in communication goes beyond just understanding words — it involves recognizing emotions, perspectives, and concerns, which is crucial in building strong, collaborative relationships.
+- **Use preferred pronouns:** Always use people’s preferred pronouns in all communications. If you’re unsure, politely ask or listen to how they refer to themselves. For example, “Hi, my name is [Your Name], and I use he/him pronouns. How about you?”
+- **Employ inclusive language:** Choose words that respect and acknowledge the diversity of your audience. Avoid gendered terms like “guys” or “ladies”; instead, use neutral terms like “everyone,” “team,” or “folks.” Be mindful of cultural references or idioms that might not resonate with everyone.
 
-**Adopting the client’s perspective:** Make an effort to understand the client’s concerns and priorities by actively listening and asking clarifying questions.
+Being conscious of the impact your words and actions have on others helps maintain a respectful and inclusive workplace.
 
-For example, if a client is worried about a tight deadline, acknowledge their concern and discuss possible solutions, showing that you’re aligned with their goals.
+- **Avoid problematic colloquialisms:** Steer clear of expressions with unintended negative connotations or cultural insensitivity, such as “long time no see” or “rule of thumb.” Use clear and neutral phrases like “it’s been a while” or “general guideline.”
+- **Eliminate ableist language:** Refrain from using words like “crazy,” “lame,” “blind,” or “deaf” metaphorically. Instead, choose specific, non-derogatory language. For example, say “I didn’t notice that issue” instead of “I’m blind to that issue.”
+- **Be mindful of cultural differences:** Recognize that communication styles and meanings can vary across cultures. By being open to learning about and respecting different cultural norms, you can communicate more effectively in diverse teams.
 
-**Using empathy to influence:** Acknowledge the emotions or challenges faced by others and use this understanding to guide the conversation positively.
+Clear and inclusive communication ensures everyone can fully understand and engage in conversations.
 
-For instance, if a team member is frustrated with a task, empathize with their situation — “I can see this has been challenging” — and then offer support or alternative solutions. This approach can diffuse tension and foster collaboration.
-
-**Building rapport:** Establish a connection by showing genuine interest in your client’s or colleague’s challenges. Simple actions like remembering personal details or consistently following up on previous discussions can go a long way.
-
-For example, starting a meeting with a quick check-in — “How’s the progress on that project you mentioned last time?” — can help build a stronger relationship.
-
-**Managing difficult conversations:** When facing a challenging discussion, approach it with empathy and a problem-solving mindset.
-
-For example, if you need to address a project delay, start by acknowledging the impact on the client, then explain the cause and work collaboratively to find a solution. This approach helps maintain trust even in tough situations.
+- **Enunciate when speaking:** Speak clearly and at an appropriate pace to prevent misunderstandings, especially in virtual meetings or when communicating with non-native speakers.
+- **Communicate at an accessible level:** Explain concepts in simple, straightforward language without oversimplifying the content. Aim for clarity and directness to make your message accessible to a broad audience.
+- **Be aware of tone and body language:** Use your tone of voice, facial expressions, and body language consciously, as they often convey more than words. Ensure these non-verbal cues align with your message and promote inclusivity.
 
 Tips and techniques:
 
-- **Use mirroring:** Reflect the emotions or concerns of the person you’re communicating with by acknowledging their feelings before responding. For example, “I understand this situation is frustrating, let’s explore how we can resolve it.”
-- **Pause and consider:** Before responding in a difficult conversation, pause to consider the other person’s perspective. This brief moment can help you craft a more empathetic and understanding response.
-- **Seek feedback on your empathy:** After a difficult conversation, ask a trusted colleague or the person involved how well they felt understood. Use this feedback to refine your approach.
+- **Introduce pronouns during introductions:** Share your pronouns when meeting new people to normalize the practice and create an inclusive space.
+- **Respond to pronoun mistakes appropriately:** If a wrong pronoun is used, correct it promptly and move on without drawing excessive attention.
+- **Practice alternative phrases:** Replace common colloquialisms with neutral alternatives until they become second nature — for example, say “I’m extremely busy” instead of “I’m crazy busy.”
 
-Questions to reflect:
+A colleague’s perspective on pronouns:
 
-- How do you typically react to someone’s concerns during a conversation? Are you more focused on problem-solving or understanding their perspective first?
-- Can you identify a situation where showing more empathy might have led to a better outcome?
-- Think about a recent interaction where you felt genuinely understood. What did the other person do to make you feel this way?
+> If you witness or inflict a misgendering through name or pronouns in a brief quickly corrected accidental moment, in 99.9% of cases, you should not bring it up again with the person misgendered at all. Any conversation about it re-opens the wound/irritation/uncomfortable situation, keeps their attention on it much much longer than it needs to be, and can really cause a lot more damage than something that will have otherwise been completely forgotten.
+> 
+> It makes sense to bring it up with managers if you think it needs to be noted and want to be supportive; they can quietly keep an eye out for any patterns. Please try to avoid dragging it out with the misgendered person though.
 
-### Being assertive and confident
+### Consistency
 
-Assertive communication is about expressing your ideas and needs clearly and respectfully, making sure your voice is heard without dominating others.
+Consistency and reliability in communication build trust and keep everyone informed. In consulting roles, especially in remote settings, regular updates and clear expectations are crucial for effective collaboration.
 
-**Differentiating communication styles:** Understand the differences between passive, aggressive, and assertive communication. Assertive communication involves standing up for your ideas while respecting others’ viewpoints.
+#### Always be moving
 
-For instance, instead of saying, “We must do it my way” (aggressive) or “It doesn’t matter, whatever you decide” (passive), assertively state, “I believe this approach will work best because…,” inviting input while clearly expressing your position.
+Always ensure your progress is observable. _Not a single day should go by without some sort of observable progress._ Even if you’re working on a feature or bug that spans multiple days, avoid prolonged silence until it’s finished.
 
-**Articulating deadlines and deliverables:** Clearly state deadlines and deliverables to set expectations.
+To maintain transparency:
 
-For example, say, “We need to complete the initial design by next Wednesday to stay on track for our overall timeline. Can everyone commit to this deadline?” This way, all parties are aware of their responsibilities.
+- **Update task statuses promptly:** Change the status of tickets as you begin work, and open pull requests marked as “Work in Progress” (WIP).
+- **Push work regularly:** Ensure you push your work at the end of each day to keep progress visible.
+- **Engage with team members:** Reach out to clients or colleagues to review your work and confirm mutual understanding of tasks.
 
-**Projecting confidence under pressure:** In high-stakes situations, maintain a calm demeanor and express confidence in your team’s ability to overcome challenges.
+#### Tell before being asked
 
-For instance, if a project faces a significant obstacle, calmly outline the problem, propose potential solutions, and reassure the client of the team’s capability to handle it.
+Remote work adds additional challenges to an already difficult job. As a consultant you want to optimize for value — since your client can’t observe your work, you have to communicate it.
 
-- **Reassuring stakeholders:** Acknowledge stakeholders’ concerns and emphasize the steps being taken to address them. For example, if a client is worried about meeting a tight deadline, explain the contingency plans in place, reinforcing your commitment to delivering results.
+Be proactive in your communication. Don’t wait for clients or stakeholders to ask for updates — anticipate their needs and inform them of developments, especially significant changes. For example, if you foresee a delay, inform the client early, explain the reasons, and outline the steps to mitigate the issue. This approach builds confidence in your ability to manage the project.
 
-- **Dealing with crises:** In crisis situations, break down the problem, assess risks, and communicate a clear action plan. For instance, if a critical system fails, provide a concise overview of the issue, outline immediate steps to mitigate the impact, and set expectations for resolution.
+If your client has to ask you what that status of a ticket is, outside of a standup, you need to communicate more. Your client is your client, not your manager. You gain and keep confidence by lining up your progress with their expected progress.
 
-**Maintaining control with tone:** Your tone of voice plays a significant role in how your message is received. In tense situations, use a calm and steady tone to diffuse anxiety and keep the conversation focused on solutions.
+Never feel like you are bothering your client by sending them a gif or short movie every day, showing your progress.
 
-For example, during a heated discussion, maintaining a neutral, composed tone can help de-escalate emotions and steer the conversation back to productive ground.
+#### State expectations explicitly
 
-**Communicating uncertainty:** When you don’t have all the answers, it’s important to communicate this confidently.
+State expectations explicitly to avoid misunderstandings. When communicating, restate goals, actions, and tasks clearly, both verbally for immediate confirmation and in writing for documentation. If you’re unsure about your understanding, it’s better to clarify than to proceed incorrectly, which could lead to wasted time and frustration.
 
-For instance, if a client asks for a piece of information you’re unsure about, respond with, “I’m not certain of the answer right now, but I’ll find out and get back to you by tomorrow afternoon.” This shows that you’re on top of the situation, even if you don’t have immediate answers.
+Often, projects or discussions conclude without clear roles or responsibilities. In such cases, take the initiative to add structure:
+
+- **Outline a suggested plan:** Propose a plan and specify which parts you will handle.
+- **Request further direction if needed:** If more discussion is necessary, don’t hesitate to ask.
+
+Timeliness and follow-through are essential. Respond promptly to communications and honor your commitments. If you promise to deliver a document by a certain time, ensure it’s done. If delays are unavoidable, communicate them in advance and provide a new deadline. Consistent follow-through strengthens your credibility.
+
+Provide regular, structured updates covering key aspects like progress, next steps, and potential risks. For instance, a weekly status email might include sections such as “Completed Tasks,” “Upcoming Milestones,” and “Challenges/Risks.” This helps manage expectations and keeps everyone informed about the project’s trajectory.
 
 Tips and techniques:
 
-- **Practice ‘I’ statements:** Use “I” statements to express your views clearly and assertively, such as “I think we should consider another approach because…”. This helps you own your perspective without sounding accusatory.
-- **Rehearse difficult conversations:** Practice upcoming difficult conversations with a colleague or mentor. Focus on maintaining an assertive tone and standing firm on key points.
-- **Visualize success:** Before entering a high-stakes communication, visualize the conversation going well. This can help reduce anxiety and boost your confidence.
+- **Set reminders for updates:** Use calendar alerts or project management tools to ensure you don’t miss scheduled check-ins.
+- **Create communication templates:** Develop templates for status updates or progress reports to maintain consistency and save time.
+- **Maintain a communication log:** Keep track of key communications, discussions, and follow-up actions to monitor consistency and accountability.
 
-Questions to reflect:
+### Assertiveness and confidence
 
-- In what situations do you find it most challenging to be assertive? What strategies could you use to improve?
-- Can you recall a time when being assertive helped achieve a positive outcome? What did you do to maintain your confidence?
-- How do you balance assertiveness with empathy in your communications? What approaches have you found effective?
+There are different styles of communication:
+
+- **Passive communicators** tend to go along with what others want, keeping their own opinions to themselves, even if they disagree. This often leads to passive-aggressive behavior. Over time, their inability to stand up for themselves can cause frustration and resentment.
+
+- **Aggressive communicators** are controlling, demanding, and sometimes hostile. Unlike passive communicators, they express their opinions openly and forcefully, often in a loud and dominating way. They are often insensitive to the rights of others, and their disrespectful approach pushes people away. While expressing opinions is important, doing so in a hurtful, abusive manner makes communication ineffective.
+
+- **Passive-aggressive communicators** express frustration indirectly, using sarcasm, procrastination, or subtle resistance. They avoid direct confrontation, leading to confusion and unresolved tension in relationships.
+
+- **Submissive communicators** avoid conflict at all costs. They believe others’ needs and opinions are more important than their own, often feeling that others are more intelligent or valid. Psychologist Claire Newton highlights common behaviors of submissive communicators.
+
+- **Manipulative communicators** focus on gaining a personal advantage. Their speech often has hidden motives, and they try to influence others for their own benefit.
+
+- **Assertive communicators** express their thoughts honestly and respectfully, while also considering the opinions and feelings of others. Assertive communication is considered the most effective of the styles.
+
+Assertive communication means expressing your ideas and needs clearly and respectfully, ensuring your voice is heard without dominating others. Understanding different communication styles — passive, aggressive, and assertive — helps you stand up for your ideas while respecting others’ viewpoints.
+
+- **Use “I” statements to own your perspective:** Express your views assertively by saying, “I think we should consider another approach because…,” which helps you communicate without sounding accusatory.
+- **Articulate deadlines and deliverables to set expectations:** Clearly state what needs to be done and by when, such as, “We need to complete the initial design by next Wednesday to stay on track. Can everyone commit to this deadline?”
+- **Communicate uncertainty confidently by acknowledging gaps:** If you’re unsure about something, admit it while committing to find the answer. For example, “I’m not certain of the answer right now, but I’ll find out and get back to you by tomorrow afternoon.”
+
+In high-pressure situations, maintaining confidence and control is crucial. A calm demeanor and steady tone can diffuse anxiety and keep conversations focused on solutions.
+
+- **Project confidence under pressure by outlining problems and solutions:** If a project faces obstacles, calmly explain the issue, propose potential solutions, and reassure the client of the team’s ability to handle it.
+- **Maintain control with tone by using a calm and steady voice:** During heated discussions, keeping a neutral tone can de-escalate emotions and steer the conversation back to productive ground.
+- **Deal with crises by breaking down problems and outlining action plans:** In a crisis, provide a concise overview of the issue, assess risks, and communicate immediate steps to mitigate the impact and resolve the situation.
+- **Reassure stakeholders by acknowledging concerns and explaining steps:** If a client is worried about meeting a tight deadline, explain the contingency plans in place and reinforce your commitment to delivering results.
+
+Tips and techniques:
+
+- **Rehearse difficult conversations to build confidence:** Practice challenging discussions with a colleague or mentor, focusing on maintaining an assertive tone and standing firm on key points.
+- **Visualize success to reduce anxiety:** Before a high-stakes communication, visualize the conversation going well to boost your confidence.
 
 ### The impact of language
 
-The words you choose can have a significant impact on how your message is perceived. Careful selection of language can foster collaboration, clarity, and positive outcomes.
+Choosing the right words can significantly influence how your message is perceived, fostering collaboration, clarity, and positive outcomes. Being mindful of language allows you to shape conversations constructively.
 
-**Choosing words carefully:** Be mindful of the words and phrases you use, as they can shape the tone and direction of a conversation.
-
-For example, instead of saying, “This project is failing,” you could say, “We’re facing challenges that need to be addressed to get back on track.” This framing encourages a focus on solutions rather than problems.
-
-**Saying “no” effectively:** When you need to decline a request, do so in a way that keeps the door open for future collaboration.
-
-For instance, instead of simply saying “No, we can’t do that,” you could say, “I understand the importance of this request, but given our current priorities, we’ll need to focus on X for now. However, we can revisit this in the next quarter.” This approach shows respect for the other party’s needs while maintaining your own boundaries.
-
-**Emphasizing positive language:** Use language that focuses on solutions and possibilities.
-
-For example, instead of saying, “We have a problem,” you could say, “We have an opportunity to improve our process here.” Positive language can help keep the conversation constructive and forward-looking.
-
-**Avoiding misinterpretation:** Be precise and clear in your language to minimize the risk of misunderstandings.
-
-For example, instead of saying, “We should have this done soon,” provide a specific timeline, like “We should have this completed by the end of the day Friday.” Additionally, ask for confirmation to make sure your message was understood correctly — “Does that timeline work for you?”
-
-**Cultural awareness:** Recognize that communication norms vary across cultures, and adapt your language and tone accordingly.
-
-For instance, in some cultures, direct communication is valued, while in others, a more indirect approach is preferred. Being culturally aware can help you avoid misunderstandings and build stronger relationships with diverse teams.
+- **Focus on positive solutions:** When discussing setbacks, shift the conversation toward actions that can move things forward. For example, instead of saying, “This project is failing,” rephrase it as, “We’re encountering some challenges, but here’s how we can address them to get back on track.” This keeps the dialogue oriented toward solutions rather than dwelling on the problem.
+- **Use the “yes, and” technique:** When faced with ideas or proposals, acknowledge them and look for opportunities to build on top of them. For example, if a client says “We should prioritize the mobile version of the feature first,” you can respond with “Yes, and we can build it in a way that allows us to easily adapt it to the desktop version down the line.” This encourages further discussion and collaboration.
+- **Be careful saying “no”:** Saying “no” gives us a sense of control and comfort, and the opposite is true: saying “no” to a client takes away their power and can be a quick way to make the other person feel dismissed or shut down the conversation. This can quickly halt momentum, creating resistance or frustration, and making it harder to keep the conversation collaborative and forward-moving.
 
 Tips and techniques:
 
-- **Practice rephrasing negative statements:** When reviewing your communication, look for negative phrases and practice rephrasing them positively. For example, change “We can’t meet this deadline” to “Let’s explore how we can adjust our priorities to deliver quality work.”
-- **Be conscious of cultural nuances:** Research or ask about the preferred communication style of individuals from different cultural backgrounds to avoid unintended offense or miscommunication.
+- **Rephrase negative statements:** Regularly review your communication for negative phrases and practice rewording them positively. For instance, change, “We can’t meet this deadline” to, “Let’s explore how we can adjust our priorities to deliver quality work.”
+- **Be mindful of cultural nuances:** Research or ask about preferred communication styles of individuals from different cultural backgrounds to avoid unintended offense or miscommunication.
 
-Questions to reflect:
+### Exercise: communication plan
 
-- How does the language you use in communication influence the tone of the interaction? Can you identify a situation where word choice significantly impacted the outcome?
-- When have you had to communicate bad news? How did your choice of words affect the recipient’s response?
-- Think about a recent conversation where language barriers or cultural differences were present. How did you navigate this situation, and what could you improve?
+Skim through the scenarios below and choose one that resonates with you.
 
-### Adapting to diverse communication styles
+For your chosen scenario, create a communication plan by answering the following questions:
 
-In a collaborative environment, recognizing and adapting to different communication styles helps make sure everyone feels heard and understood, creating a more inclusive and productive team dynamic.
+- **Audience:** Who do I need to communicate with?
+- **Purpose:** What is my goal in communicating with them?
+- **Main point:** What is the one key idea I absolutely need to convey?
+- **Supporting details:** What details should I include? What should I leave out?
+- **Call to action:** What specific action or response do I need from them?
 
-**Understanding team dynamics:** Take the time to learn about the communication preferences of your team members.
+Outline your approach and think critically about how to tailor your message for each audience in the scenario you chose.
 
-For instance, some people may prefer detailed written reports, while others might appreciate brief verbal summaries. Adapting to these preferences can improve overall team communication and efficiency.
+#### Backend
 
-**Bridging communication gaps:** When working with team members from different technical backgrounds or communication styles, act as a translator to bridge these gaps.
+<details open>
+<summary>Backend API performance concerns</summary>
 
-For example, you might need to explain a developer’s technical concerns to a non-technical stakeholder in a way that is easily understandable. This helps confirm that everyone is on the same page.
+You’re a Backend Developer working on optimizing the API for a social media platform. Several performance issues have been reported by the frontend team, and the client is concerned about user retention:
 
-**Continuous feedback loops:** Encourage regular feedback on the effectiveness of your communication and be willing to adjust your style as necessary.
+- The API endpoints handling user search queries are timing out when large datasets are involved.
+- A specific feature that aggregates data from multiple services is significantly slowing down the overall API response time.
+- The frontend team is requesting pagination for large data sets, but implementing it requires restructuring several existing endpoints.
+- There’s pressure from the project manager to improve performance, but the client keeps adding new features that complicate optimization efforts.
+- The DevOps team is suggesting a different infrastructure setup to improve performance, but it may require rewriting parts of the code.
 
-For instance, after a meeting, you might ask, “Was the information presented clearly, or is there a different approach you would prefer?” This ongoing dialogue helps you continuously improve your communication strategies.
+<details>
+<summary>Communication plan</summary>
 
-**Personalizing communication:** Adjust your communication style to match the preferences of individual stakeholders or clients.
+- **Audience:** Frontend developers.
+- **Purpose:** Collaborate on how to handle large data sets and improve user experience.
+- **Main point:** Pagination will be introduced, but it will require restructuring the existing API endpoints.
+- **Supporting details**:
+  - Explain that implementing pagination will improve performance for large data sets.
+  - Highlight that restructuring the endpoints is necessary, but it will take time due to the volume of changes required.
+  - Acknowledge their performance issues, but explain that some delays are caused by the backend needing to fetch and process large datasets.
+- **Call to action:** Ask the frontend team to work with you to test the pagination feature once implemented and provide feedback on any potential impact on the user interface.
 
-For instance, some clients might prefer detailed documentation, while others may want high-level summaries. By matching your communication to their preferences, you make sure that your message is both received and valued.
+---
 
-Tips and techniques:
+- **Audience:** Client (who is adding new features).
+- **Purpose:** Set realistic expectations regarding performance improvements and feature development.
+- **Main point:** While the team is optimizing the API, adding more features can slow down progress and introduce complexity.
+- **Supporting details**:
+  - Explain that optimizing the search queries and aggregating data from multiple services is the current priority to improve user experience.
+  - Mention that adding new features at this stage may delay these performance optimizations.
+  - Suggest a balance between new features and performance improvements to meet user retention goals.
+- **Call to action:** Request a discussion on feature prioritization and suggest a phased approach to adding new features after critical optimizations are complete.
 
-- **Create a team communication guide:** Develop a straightforward guide that outlines the preferred communication styles and tools for your team. This can help make sure everyone’s needs are taken into account.
-- **Observe and adapt:** Pay attention to how your colleagues and clients communicate. If someone prefers detailed emails over verbal updates, adapt your communication to match their preference.
-- **Use multiple channels:** When sharing important information, use different communication methods (e.g., email, chat, meetings) to accommodate various preferences and make sure the message is received.
+---
 
-Questions to reflect:
+- **Audience:** Project Manager.
+- **Purpose:** Align on performance improvement priorities and manage scope creep from the client.
+- **Main point:** Performance improvements are achievable, but ongoing feature requests are complicating the optimization process.
+- **Supporting details**:
+  - Outline the current performance challenges, especially with search queries and data aggregation.
+  - Highlight that the client’s feature requests are adding complexity to the optimization efforts.
+  - Propose a focus on performance improvements before implementing further features.
+- **Call to action:** Seek support in pushing back on the client’s immediate feature demands and request that the project manager help manage client expectations to focus on core optimizations first.
 
-- How do you adapt your communication style when working with different teams or individuals? Are there situations where you’ve struggled to do so?
-- Can you think of an instance where adapting to another person’s communication style improved the effectiveness of the interaction?
-- What steps do you take to make sure your communication is inclusive and considerate of everyone’s preferences?
+---
 
-### Take notes
+- **Audience:** DevOps team.
+- **Purpose:** Collaborate on improving infrastructure to boost API performance while ensuring minimal code rewrites.
+- **Main point:** Any infrastructure changes must be balanced with the feasibility of backend code modifications.
+- **Supporting details**:
+  - Acknowledge their suggestions for infrastructure changes and the potential benefits for performance.
+  - Explain the code structure’s current state and how much of it might need to be rewritten for the new setup.
+  - Suggest evaluating how infrastructure changes could be phased in without a complete rewrite of the codebase.
+- **Call to action:** Request their help in outlining a more detailed plan for the infrastructure changes, including an analysis of how to integrate them without causing major disruptions to the backend code.
 
-Note-taking complements active listening by enhancing your ability to remember and act on key points discussed during a conversation. Clear and concise notes reinforce what was said and provide a record that can be referred back to, helping to avoid overlooking anything important. Additionally, effective note-taking shows accountability, as it indicates your commitment to following through on the actions and decisions made during the conversation.
+</details>
 
-Well-organized notes are not just a tool for personal reference — they are important for clear communication within your team and with clients. By capturing key points, decisions, and action items, you help keep everyone involved in the project on the same page, which is necessary for successful follow-up and documentation. This is especially important in consulting, where clear, actionable records of client interactions are vital for staying aligned and meeting project objectives.
+</details>
 
-Tips and techniques:
+<details>
+<summary>Incomplete database migrations</summary>
 
-- **Use symbols for key points:** Develop a system of symbols or shorthand (e.g., “*” for key points, “A” for action items) to quickly categorize information as you take notes.
-- **Review and summarize your notes immediately:** After the conversation, take a few minutes to review and summarize your notes while the details are still fresh.
-- **Use digital tools for organization:** Utilize digital note-taking tools like Notion, Evernote, or OneNote to keep your notes organized and easily searchable.
+You’re a Backend Developer in the middle of a database migration project for a major e-commerce site, but things aren’t going smoothly:
 
-Questions to reflect:
+- The database schema has changed during the migration process, causing certain legacy features to break.
+- There are inconsistencies between the data in the old and new databases, causing errors when querying customer data.
+- The frontend team is complaining about 404 errors when attempting to fetch product information due to missing records in the new database.
+- The migration process is taking longer than expected, and the client is worried about downtime affecting their business.
+- You’re coordinating with the DevOps team, but they are unsure how the new database will perform under load in production.
 
-- How effective are your current note-taking practices in capturing key information? What improvements could make your notes more actionable?
-- Think about a time when well-organized notes made a difference in a project’s outcome. How can you consistently take useful notes?
+</details>
 
-#### Techniques for efficient note-taking
+<details>
+<summary>Legacy system integration issues</summary>
 
-**Key point extraction:** Focus on capturing key points, decisions, and action items rather than transcribing entire conversations. Efficient note-taking involves identifying and recording the most important information rather than attempting to transcribe the conversation verbatim. This includes noting down key points, decisions made during the discussion, and any action items that need to be followed up on. By focusing on what’s most relevant, you can create a clear and concise record that is easy to review later.
+As a Backend Developer, you’re tasked with integrating a new service into a client’s outdated legacy system, and the process has been riddled with issues:
 
-**Use text replacement utilities:** Tools like Text Expander or using shorthand can significantly speed up the note-taking process and help you capture more information in real-time. Bullet points, for example, are a quick way to organize information clearly, making it easier to review and reference later. These techniques can help make your notes both thorough and efficient.
+- The legacy system uses outdated technology, making it hard to connect modern services.
+- The system documentation is incomplete, and there are no subject matter experts available to consult.
+- You’ve run into an issue where data formats between the new service and the legacy system aren’t compatible, leading to significant delays.
+- The client expects the new integration to be live in a week, but given the technical debt, it’s highly unlikely.
+- There’s been little involvement from the client’s internal development team, making it difficult to get approval for critical changes.
 
-**Organizing and reviewing notes:** After the conversation, it’s helpful to organize your notes so they’re easy to reference. This might involve categorizing information by topic, prioritizing action items, or summarizing key points. Regularly reviewing your notes helps you stay on top of your commitments and keeps them actionable and useful throughout the project.
+</details>
 
-Tips and techniques:
+#### Frontend
 
-- TODO
+<details>
+<summary>Integration issues with a backend API</summary>
 
-Questions to reflect:
+You’re a Frontend developer working on an internal tool for managing customer support requests. During the integration with the backend API, things aren’t going smoothly:
 
-- TODO
+- The API documentation is outdated, and some of the endpoints mentioned don’t exist.
+- An endpoint that returns customer data is extremely slow, impacting the frontend’s load time.
+- One endpoint consistently returns a 500 error, but the backend team hasn’t provided an update or resolution yet.
+- There’s a misalignment between the data structure expected by the frontend and the structure provided by the API.
+- The backend team is swamped with other priorities, and getting their attention has been difficult.
 
-### Exercise
+</details>
 
-#### 1. **Role-Playing Scenarios: “Consultant in Action”**
-- **Objective:** To practice communication skills in realistic consulting situations.
-- **Format:** Participants are split into small groups and given different scenarios based on their roles (e.g., developer, designer, TPO). Each scenario presents a common consulting challenge, such as managing a difficult client, explaining a technical issue to non-technical stakeholders, or facilitating a meeting with cross-functional teams.
-- **Instructions:**
-    - **Scenario 1:** A developer needs to explain a delay in the sprint to a non-technical client. The client is upset and needs reassurance.
-    - **Scenario 2:** A TPO is leading a meeting where they need to get buy-in from both the client and internal team on a new feature prioritization.
-    - **Scenario 3:** A designer must present a controversial design decision to a mixed audience of stakeholders with differing opinions.
-    - Each participant must play their role and use the core communication principles (e.g., defining goals, using empathy, being assertive) to navigate the situation.
-    - The rest of the group provides feedback, highlighting what was effective and suggesting improvements.
-- **Debrief:** Discuss as a group what strategies were most effective in each scenario, focusing on the application of the principles learned.
+<details>
+<summary>Performance issues found during testing</summary>
 
-#### 2. **The “Analogy Challenge”**
-- **Objective:** To simplify complex ideas using analogies.
-- **Format:** Individual or pair work followed by group sharing.
-- **Instructions:**
-    - Participants are given a list of complex technical concepts (e.g., microservices architecture, machine learning models, CI/CD pipelines).
-    - Their task is to create simple, relatable analogies that explain these concepts to a non-technical audience. For example, “Explaining a CI/CD pipeline could be likened to an assembly line in a factory that ensures every product is checked and tested before it’s shipped out.”
-    - After crafting their analogies, participants share them with the group. The group discusses which analogies were the most effective and why.
-- **Debrief:** Reflect on the importance of using relatable language and how this can impact client relationships and project success.
+As a Frontend developer, you’re preparing for the final stages of a project, but during performance testing, several issues surface that put the project’s timeline at risk:
 
-#### 3. **“Language Impact” Word Swap**
-- **Objective:** To understand the impact of language on communication.
-- **Format:** Pair or small group activity.
-- **Instructions:**
-    - Provide participants with a list of statements that are either overly negative, vague, or potentially confusing.
-    - Their task is to rewrite each statement to be more positive, clear, and action-oriented. For example, “This project is a disaster” could be rewritten as “We’re facing challenges, but we have an opportunity to refocus and get back on track.”
-    - After rewriting, each pair/group shares their revised statements and explains why their language choices are more effective.
-- **Debrief:** Discuss how word choice can shape the tone of communication and impact relationships with clients and teams.
+- The website’s load time is far slower than expected due to unoptimized images and excessive API calls.
+- A JavaScript library used for data visualization is significantly lagging in rendering large datasets.
+- The backend team claims the API responses are quick, but when rendering data on the frontend, performance drops considerably.
+- Stakeholders have expressed concerns about the user experience if these performance issues are not addressed.
+- The project manager is asking for a status update and how you plan to mitigate these issues in time for the launch.
 
+</details>
+
+<details>
+<summary>Ambiguous or incomplete requirements</summary>
+
+You’re working on a new feature for a mobile application, but the product requirements you’ve received are vague, making it hard to move forward:
+
+- The wireframes provided by the design team don’t cover all user flows.
+- There’s confusion on whether a certain feature should allow users to edit data after submitting it.
+- The requirements document mentions integrations with third-party services, but no API details have been provided.
+- The backend team is waiting on your input to start their work, but you don’t have enough clarity to move forward.
+- There’s pressure to stay on schedule, but you’re worried any assumptions you make could lead to rework later.
+
+</details>
+
+#### Product Design
+
+<details>
+<summary>Unclear business goals</summary>
+
+As a Product Designer, you’ve been tasked with creating the initial concepts for a financial dashboard, but the business objectives are hazy, and you’re struggling to create a focused design:
+
+- You’ve received conflicting feedback from the project’s stakeholders about whether the primary goal is ease of use or comprehensive data visualization.
+- The client hasn’t clearly communicated which key metrics should be displayed on the dashboard.
+- There’s uncertainty about whether this tool will be used by customers, internal staff, or both.
+- Some stakeholders have requested features that seem unnecessary and could overcomplicate the design.
+- The client is asking for design mockups, but without clear goals, you’re unsure how to prioritize functionality.
+
+</details>
+
+<details>
+<summary>Changing priorities mid-sprint</summary>
+
+You’re a Product Designer working on a new feature for an app, but halfway through the sprint, you’re informed that the client’s priorities have shifted, leaving you in a difficult position:
+
+- The feature you’ve been designing for two weeks is suddenly no longer a priority, and a new feature needs to be implemented instead.
+- The new feature has no wireframes or user stories written yet, and there’s minimal research to back up its necessity.
+- Your design is halfway through review with the frontend team, and now the sudden shift will require them to rework their efforts.
+- The project manager is pushing for rapid turnarounds, but you’re worried the rushed designs won’t be as polished as they need to be.
+- You’re unsure how to effectively communicate the impact this change will have on the overall user experience and timeline.
+
+</details>
+
+<details>
+<summary>Lack of design-to-development handoff process</summary>
+
+As a Product Designer, you’ve finished the designs for a new e-commerce feature, but the development team is struggling due to a lack of clear handoff processes:
+
+- The frontend team has asked for detailed specifications on spacing, colors, and interactions, which weren’t included in the initial design handoff.
+- Some of the design assets weren’t properly exported, and the developers are using incorrect placeholder assets instead.
+- You’re receiving several questions from developers about interaction states that weren’t clearly defined in the design mockups.
+- The project manager is concerned that these delays in communication are slowing down the development process.
+- You’re trying to balance assisting the development team while also working on new designs for other features.
+
+</details>
 
 ## Emotional intelligence
 
 Emotional intelligence is a key skill for consultants at Bitovi. It allows you to better manage both yourself and your relationships, which is critical when working closely with clients and teams.
 
-The key components of emotional intelligence—self-awareness, self-management, social awareness, and relationship management—give you the tools to navigate complex interpersonal dynamics and ensure successful collaborations.
+The key components of emotional intelligence — self-awareness, self-management, social awareness, and relationship management — give you the tools to navigate complex interpersonal dynamics and ensure successful collaborations.
 
 ### Self-awareness
 
@@ -367,7 +447,7 @@ Self-awareness is the foundation of emotional intelligence. It’s about underst
 
 #### Emotional self-awareness
 
-**Emotional self-awareness** involves recognizing your emotional state as it happens. This isn’t just about identifying if you’re happy, sad, or frustrated, but understanding the deeper impact those emotions might have. For example, if you’re feeling overwhelmed by a heavy workload, that stress might lead you to react more defensively in conversations, or cause you to rush through tasks. By recognizing this early on, you can take proactive steps—like taking a break, delegating tasks, or communicating your needs—to prevent negative outcomes.
+**Emotional self-awareness** involves recognizing your emotional state as it happens. This isn’t just about identifying if you’re happy, sad, or frustrated, but understanding the deeper impact those emotions might have. For example, if you’re feeling overwhelmed by a heavy workload, that stress might lead you to react more defensively in conversations, or cause you to rush through tasks. By recognizing this early on, you can take proactive steps — like taking a break, delegating tasks, or communicating your needs — to prevent negative outcomes.
 
 Developing emotional self-awareness also improves decision-making. If you’re aware that a particular situation, like a tight deadline, triggers stress or anxiety, you can approach it more thoughtfully, preparing yourself mentally and emotionally to handle it better.
 
@@ -403,25 +483,25 @@ An example might be aiming to not only finish a project on time but also find wa
 
 #### Positive outlook
 
-**Positive outlook** means focusing on potential solutions rather than getting stuck on problems. It’s not about ignoring challenges but approaching them with optimism and a solutions-oriented mindset. When setbacks occur—whether it’s a technical issue, a delay, or team miscommunication—a positive outlook helps you maintain morale and find a way forward.
+**Positive outlook** means focusing on potential solutions rather than getting stuck on problems. It’s not about ignoring challenges but approaching them with optimism and a solutions-oriented mindset. When setbacks occur — whether it’s a technical issue, a delay, or team miscommunication — a positive outlook helps you maintain morale and find a way forward.
 
 For example, if a client’s project faces an unexpected delay due to resource shortages, keeping a positive perspective can help the team remain focused on what can be done and how the situation can be salvaged. Positivity often spreads to others, helping lift the spirits of the whole team.
 
 Tips and techniques:
 
-- **Pause and assess before responding:** When you notice an emotional reaction, take a moment before responding to think about what you're feeling. This helps you avoid impulsive reactions and respond more thoughtfully.
-- **Label your emotions:** Actively name the emotions you're experiencing. This can help clarify what you're feeling and why, which makes it easier to manage those emotions.
+- **Pause and assess before responding:** When you notice an emotional reaction, take a moment before responding to think about what you’re feeling. This helps you avoid impulsive reactions and respond more thoughtfully.
+- **Label your emotions:** Actively name the emotions you’re experiencing. This can help clarify what you’re feeling and why, which makes it easier to manage those emotions.
 - **Identify patterns in your emotional responses:** Reflect on situations that commonly trigger strong emotions. Knowing these patterns helps you prepare for them in future interactions, making it easier to respond calmly.
 - **Practice mindfulness:** Regularly check in with yourself throughout the day. Mindfulness techniques, such as deep breathing or short breaks, can help you stay connected to your emotional state.
-- **Set boundaries when emotions run high:** If you recognize you're not in the right emotional space to engage, it’s okay to set a boundary or request time to process your feelings before addressing an issue.
-- **Share emotions responsibly:** When necessary, communicate your emotional state to others in a productive way. For example, "I'm feeling overwhelmed right now and would like to discuss this tomorrow." This creates an understanding environment while avoiding emotional escalation.
+- **Set boundaries when emotions run high:** If you recognize you’re not in the right emotional space to engage, it’s okay to set a boundary or request time to process your feelings before addressing an issue.
+- **Share emotions responsibly:** When necessary, communicate your emotional state to others in a productive way. For example, “I’m feeling overwhelmed right now and would like to discuss this tomorrow.” This creates an understanding environment while avoiding emotional escalation.
 
 Questions to reflect:
 
 - What are the most common emotions you experience in your work interactions, and how do they affect your communication?
 - Can you recall a recent situation where your emotions influenced how you responded to a colleague or client? What would you do differently if you had been more aware of your emotional state at the time?
 - Are there particular environments or situations that seem to trigger stronger emotions for you? How can you prepare for these in advance?
-- How do you typically manage emotions when they arise during stressful situations? Is there a method you haven't tried that might help you handle these feelings more effectively?
+- How do you typically manage emotions when they arise during stressful situations? Is there a method you haven’t tried that might help you handle these feelings more effectively?
 - How comfortable are you with communicating your emotional needs to others? What barriers might prevent you from doing so, and how could you overcome them?
 
 ### Social awareness
@@ -434,7 +514,7 @@ Social awareness helps you gauge the emotional tone of conversations and pick up
 
 Empathy is one of the most essential skills in communication, especially for consultants. It allows you to connect with clients, team members, and colleagues on a deeper level, fostering trust and understanding. In a consulting role, empathy helps you navigate complex interpersonal dynamics, understand client concerns, and address the emotional undercurrents that might affect project success. 
 
-There are three distinct types of empathy—**cognitive**, **emotional**, and **compassionate**—and each plays a role in effective communication.
+There are three distinct types of empathy — **cognitive**, **emotional**, and **compassionate** — and each plays a role in effective communication.
 
 ##### Cognitive empathy
 
@@ -464,7 +544,7 @@ Emotional empathy goes beyond understanding thoughts; it’s about feeling the e
 
 For example, if a client expresses frustration over a delay, emotional empathy allows you to respond with genuine concern rather than just a technical explanation of the issue. You might say, “I can see how this delay is frustrating, and I understand that it’s causing additional stress.” Acknowledging the client’s emotional state can prevent tension from escalating and open the door to a more collaborative and constructive conversation.
 
-Emotional empathy also applies within internal teams. If a colleague seems overwhelmed by their workload, recognizing their stress and offering support—whether through a simple check-in or offering to share the load—can help create a more supportive and effective working environment.
+Emotional empathy also applies within internal teams. If a colleague seems overwhelmed by their workload, recognizing their stress and offering support — whether through a simple check-in or offering to share the load — can help create a more supportive and effective working environment.
 
 Tips and techniques:
 
@@ -518,7 +598,7 @@ Tips and techniques:
   - Ask for an organizational chart or create one based on your interactions.
   - Note down key players and their roles in decision-making processes.
 
-- **Adapt your tone to your audience:** Match your communication style to the person you're speaking with. Senior executives may prefer concise and high-level information, while mid-level staff may need more details.
+- **Adapt your tone to your audience:** Match your communication style to the person you’re speaking with. Senior executives may prefer concise and high-level information, while mid-level staff may need more details.
   - When speaking with senior leaders, focus on outcomes and big-picture insights.
   - For team members directly involved in the work, dive into specifics and technical details.
 
@@ -569,7 +649,7 @@ Tips and techniques:
 Questions to reflect:
 
 - How often do I take time to understand my client or team’s goals before proposing solutions?
-- Have I been too focused on presenting solutions without fully exploring others' concerns?
+- Have I been too focused on presenting solutions without fully exploring others’ concerns?
 - When was the last time I successfully influenced a decision without relying on authority?
 - Do I maintain a balance between sharing my expertise and allowing others to contribute ideas?
 
@@ -585,7 +665,7 @@ Tips and techniques:
 - **Stay neutral and focused on solutions:** When mediating a conflict, avoid taking sides. Keep the focus on finding a solution that benefits the team or project, not on who’s right or wrong.
 - **Listen actively to all parties:** Ensure everyone involved feels heard by summarizing their perspectives and validating their concerns before suggesting solutions.
 - **Use “I” statements to reduce defensiveness:** When offering feedback or sharing your perspective in a conflict, use “I” statements (e.g., “I feel…” or “I’ve noticed…”) to avoid sounding accusatory.
-- **Look for underlying causes:** Conflicts are often symptoms of deeper issues. Try to uncover the root of the disagreement—whether it’s miscommunication, unclear expectations, or a deeper concern about the project.
+- **Look for underlying causes:** Conflicts are often symptoms of deeper issues. Try to uncover the root of the disagreement — whether it’s miscommunication, unclear expectations, or a deeper concern about the project.
 
 Questions to reflect:
 
@@ -604,7 +684,7 @@ Tips and techniques:
 
 - **Clarify roles and expectations upfront:** Make sure everyone knows their responsibilities and how their work fits into the bigger picture. This reduces confusion and potential friction down the line.
 - **Facilitate open communication:** Create an environment where team members feel comfortable sharing ideas, asking for help, or raising concerns without fear of judgment.
-- **Offer help proactively:** Don’t wait for team members to struggle—offer assistance when you see someone might need it, even if they don’t ask.
+- **Offer help proactively:** Don’t wait for team members to struggle — offer assistance when you see someone might need it, even if they don’t ask.
 - **Foster a culture of shared credit:** When the team achieves success, recognize the contributions of all members, not just the most visible ones.
 - **Set clear goals and regularly check progress:** Ensure the team is aligned on short- and long-term objectives. Regular check-ins keep everyone on track and address issues before they become roadblocks.
 
@@ -626,7 +706,7 @@ Tips and techniques:
 - **Tailor your feedback to individual needs:** Not everyone responds to feedback the same way. Adjust your approach based on the individual’s experience level and communication style, offering feedback in a way that resonates with them.
 - **Encourage self-discovery through questions:** Instead of always providing the answer, ask guiding questions that help others come to conclusions on their own. This builds their problem-solving skills.
 - **Celebrate small wins:** Recognize progress, no matter how small, to build confidence. Positive reinforcement encourages continued learning and development.
-- **Lead by example in continuous learning:** Share your own learning experiences—whether successes or failures. This normalizes the process of growth and shows that everyone, regardless of their role, can improve.
+- **Lead by example in continuous learning:** Share your own learning experiences — whether successes or failures. This normalizes the process of growth and shows that everyone, regardless of their role, can improve.
 - **Create a safe space for mistakes:** Let your team know that making mistakes is part of the learning process. This fosters a supportive environment where they feel safe taking risks.
 
 Questions to reflect:
@@ -640,7 +720,7 @@ Questions to reflect:
 
 **Inspirational leadership** means leading by example and motivating others to strive for excellence. This doesn’t require a formal leadership title. Inspirational leaders show up with a positive attitude, clear vision, and strong work ethic that encourages others to do the same.
 
-In a consulting environment, you can inspire others by consistently delivering quality work, helping others succeed, and maintaining a calm, solution-oriented mindset in difficult situations. For example, if a project hits a snag, an inspirational leader doesn’t just manage the crisis—they encourage the team to see it as a challenge to overcome together, fostering resilience and commitment.
+In a consulting environment, you can inspire others by consistently delivering quality work, helping others succeed, and maintaining a calm, solution-oriented mindset in difficult situations. For example, if a project hits a snag, an inspirational leader doesn’t just manage the crisis — they encourage the team to see it as a challenge to overcome together, fostering resilience and commitment.
 
 Tips and techniques:
 
@@ -661,7 +741,7 @@ Questions to reflect:
 
 <a href="../static/img/technology-consulting/emotions-wheel.png"><img alt="This image is an emotions wheel, showing six core emotions: Fearful, Angry, Disgusted, Sad, Happy, and Surprised. Each core emotion radiates outward into more specific feelings, like Angry leading to Frustrated, Mad, and Annoyed, or Happy branching into Joyful, Proud, and Loving. The wheel is color-coded to visually organize the emotions and their related states." src="../static/img/technology-consulting/emotions-wheel.png" width="505"/></a>
 
-### Exercise
+### Exercise: emotional intelligence
 
 TODO:
 
@@ -753,17 +833,25 @@ Questions to reflect:
 
 ### Ask clarifying questions
 
-Clarifying questions are essential for deepening your understanding of the speaker’s message and making sure you’re not making assumptions.
+Clarifying questions are essential for deepening your understanding of the speaker’s message and ensuring you’re not making assumptions. Always ask questions if something is unclear; don’t be embarrassed if you don’t understand something. In fact, asking for clarification shows confidence and a commitment to getting it right, not a lack of knowledge. Ironically, you never actually sound "dumb" when you ask for clarification; you come off as brave and intelligent.
 
-**Use open-ended “What” and “How” questions** to explore the speaker’s thoughts and feelings more deeply, avoiding closed or leading questions that limit responses. Clarifying questions are vital for deepening your understanding of the speaker’s message. Open-ended questions, particularly those starting with “What” or “How,” encourage the speaker to elaborate and provide more context. For example, asking, “What challenges are you facing with the current process?” or “How do you see this affecting the project timeline?” invites the speaker to share detailed insights, leading to a richer conversation.
+**Use open-ended “What” and “How” questions** to explore the speaker’s thoughts and feelings more deeply, encouraging dialogue. Open-ended questions like “What are your thoughts on this?” or “How do you see this affecting the project timeline?” prompt the speaker to elaborate and provide more context, leading to a richer conversation.
 
-**Ask for clarification on any points that are unclear or ambiguous** to prevent misunderstandings. If any part of the conversation is unclear, it’s important to seek clarification to avoid misinterpretation. Phrasing your questions in a neutral manner, such as “Can you elaborate on what you meant by that?” or “When you say ‘challenging,’ could you specify what aspects are the most difficult?” helps clear up any ambiguities and helps both parties share a common understanding of the topic.
+**Get specific information with closed-ended questions** when precise answers are needed. Asking questions like, “Did we meet the deadline?” helps you obtain specific information quickly.
+
+**Restate for clarity:** Summarize your understanding of key points and ask for confirmation if needed. If you’re unsure about something, restating a summary of your understanding and asking for confirmation ensures that you’re on the same page and helps prevent confusion later.
+
+**Seek full understanding:** Strive to never leave an interaction without fully understanding what was discussed or how something will work, even if it means asking follow-up questions. Clarifying ensures you’re aligned and helps prevent confusion later.
+
+**Don’t hesitate to ask for clarification:** Phrasing your questions in a neutral manner, such as “Can you elaborate on what you meant by that?” or “When you say ‘challenging,’ could you specify what aspects are the most difficult?” helps clear up any ambiguities and ensures both parties share a common understanding of the topic.
 
 Tips and techniques:
 
-- **Prepare a list of open-ended starters:** Have a mental or physical list of open-ended questions like “Can you walk me through…” or “What’s your perspective on…” to use during conversations.
+- **Prepare a list of open-ended starters:** Have a mental or physical list of open-ended questions like “Can you walk me through...” or “What’s your perspective on...” to use during conversations.
 - **Use silence as a tool:** After asking a clarifying question, allow silence to give the speaker time to think and provide a thoughtful response.
-- **Clarify jargon or unclear terms:** If the speaker uses technical terms or jargon, ask, “Can you explain what you mean by…” to help both parties have a mutual understanding.
+- **Clarify jargon or unclear terms:** If the speaker uses technical terms or jargon, ask, “Can you explain what you mean by...” to help both parties have a mutual understanding.
+- **Encourage dialogue:** Use open-ended questions like “What are your thoughts on this?” to prompt discussion.
+- **Get specific information:** Ask closed-ended questions like “Did we meet the deadline?” when you need precise answers.
 
 Questions to reflect:
 
@@ -962,7 +1050,7 @@ The consultant’s attempt to balance quality with timeline may make the client 
 
 #### With mirroring
 
-When using mirroring, repeat the last 1–3 words with curiosity. This keeps the conversation focused and shows you’re actively listening. Avoid asking “What do you mean?” as it can seem confrontational—mirroring achieves the same goal in a gentler way.
+When using mirroring, repeat the last 1–3 words with curiosity. This keeps the conversation focused and shows you’re actively listening. Avoid asking “What do you mean?” as it can seem confrontational — mirroring achieves the same goal in a gentler way.
 
 Here’s how this conversation can go with mirroring:
 
@@ -1201,7 +1289,7 @@ Here are some example conversations that show paraphrasing in action:
 “We’ve noticed that users are having a hard time with the new checkout process. Several testers have reported that the buttons are not clearly labeled, and some even missed a step entirely, which caused a lot of frustration. I think part of the issue is that the flow isn’t as intuitive as it could be, especially when users are moving quickly through it. I know we need to fix the button labels, but we may also need to rethink the overall flow to avoid these problems in the future.”
 
 **Consultant:**  
-“So, you’re saying that button labeling is definitely part of the problem, but you think the bigger issue might be the flow itself—people are missing steps and getting frustrated because it’s not intuitive. Should we focus on improving both the labels and the overall user flow?”
+“So, you’re saying that button labeling is definitely part of the problem, but you think the bigger issue might be the flow itself — people are missing steps and getting frustrated because it’s not intuitive. Should we focus on improving both the labels and the overall user flow?”
 
 </details>
 
@@ -1383,9 +1471,7 @@ Questions to reflect:
 - When have you experienced the benefits of summarizing in a conversation? How did it help provide clarity and mutual understanding?
 - How might summarizing more often change the quality of your client interactions?
 
-### Exercise
-
-#### Small talk questions
+### Exercise: small talk questions
 
 With a partner, ask them to pick one of the questions below. Then, ask them the question and actively listen to their response. Use mirroring and labeling to learn more about them and make them feel heard.
 
@@ -1725,7 +1811,7 @@ Questions to reflect:
 - Recall a time when your audience struggled to understand a technical concept. How could you have simplified your explanation?
 - What are some of your go-to analogies or metaphors? How effective are they in helping others understand complex topics?
 
-### Exercise
+### Exercise: communication styles
 
 TODO:
 
@@ -1858,9 +1944,9 @@ Cognitive biases related to kairos:
 
 ### Telos (purpose and ultimate goal)
 
-Telos refers to the purpose, aim, or final outcome you are working toward. It’s about the *why* behind your message—the end goal that your persuasion serves. While *ethos* focuses on credibility, *pathos* on emotional connection, *logos* on logic, and *kairos* on timing, **telos** ensures that your argument remains focused on achieving a clear, shared objective.
+Telos refers to the purpose, aim, or final outcome you are working toward. It’s about the *why* behind your message — the end goal that your persuasion serves. While *ethos* focuses on credibility, *pathos* on emotional connection, *logos* on logic, and *kairos* on timing, **telos** ensures that your argument remains focused on achieving a clear, shared objective.
 
-In consulting, understanding and clearly communicating **telos** is crucial because your audience—whether clients, stakeholders, or internal teams—needs to know not only *what* you are proposing but *why* it matters in the larger context of their goals.
+In consulting, understanding and clearly communicating **telos** is crucial because your audience — whether clients, stakeholders, or internal teams — needs to know not only *what* you are proposing but *why* it matters in the larger context of their goals.
 
 How to use telos:
 
@@ -1925,7 +2011,7 @@ Using this structure keeps your audience engaged and helps connect your message 
 
 To make your story more impactful, align it with your audience’s priorities. For example, is the client focused on reducing costs, improving efficiency, or customer satisfaction? Shape your story around what matters most to them.
 
-- **Understand motivations:** Identify what drives your audience—cost savings, reliability, innovation—and highlight how your solution addresses these points.
+- **Understand motivations:** Identify what drives your audience — cost savings, reliability, innovation — and highlight how your solution addresses these points.
 - **Use relatable examples:** Choose stories that reflect the types of challenges your audience faces so they can easily connect with your message.
 
 #### Story framework for technical storytelling
@@ -1952,7 +2038,7 @@ This structured approach is clear and familiar to technical audiences, making yo
 - What are some recurring challenges your clients face? How can you incorporate these into your storytelling to make your narratives more relevant?
 - Reflect on a time when a story you told didn’t land well with the audience. What elements could you adjust to make it more compelling and relatable?
 
-### Exercise
+### Exercise: persuasive communication
 
 TODO
 
@@ -2010,112 +2096,6 @@ TODO
 - Instructions: Ask each participant to use the drawing tool to create a simple visual representation of a story or event from their life (e.g., a memorable vacation, a hobby they enjoy, or a funny incident). Then, others have to guess what the story is before the person who drew it explains.
 - Purpose: This encourages creative expression and allows participants to share personal stories, fostering a relaxed and friendly atmosphere.
 
-## Fundamentals
-
-The following best practices might seem basic, but surprisingly few people follow through with them. Simply performing “the basics” will make you stand out, ensure clarity, and reduce risk of an expectation gap growing over time.
-
-### Remote Work
-
-Remote work adds additional challenges to an already difficult job. As a consultant you want to optimize for value - since your customer can’t observe your work, you have to communicate it.
-
-#### Always be moving
-
-_Not a single day should go by without some sort of observable progress._ Have an update prepared for standup for **every** task you’re working on.
-
-Let’s say you have a feature or bug that takes multiple days to complete. It shouldn’t be radio silence until it’s finished! So what is the difference between communicative and annoying? **Feedback**.
-
-For example, when you start the work you change the status of the ticket and then open a pull request and mark it as Work in Progress (WIP). Be sure to push your work up at the end of each day. You may even reach out to your customer or a team member to go over your work to make sure you both understand the ticket the same way.
-
-</details>
-
-#### Tell before being asked
-
-If your customer has to ask you what that status of a ticket is, outside of a standup, you need to communicate more. Your customer is your customer, not your manager. You gain and keep confidence by lining up your progress with their expected progress.
-
-Never feel like you are bothering your client by sending them a gif or short movie every day, showing your progress.
-
-</details>
-
-#### State expectations explicitly
-
-Communication is hard, and that is why it is one of the longest sections of this training. It is even harder to coordinate while not in the same room. When communicating with your customer restate goals, actions, and tasks explicitly. This should be done with words for immediate confirmation and clarification and in writing for documentation purposes.
-
-If you are off in your understanding or re-iteration the other person may be annoyed, but they will be even more annoyed if a large amount of time is spent working in the wrong direction.
-
-</details>
-
-### Standups
-
-The idea of a stand-up meeting is to ensure a brief discussion of important issues, current challenges and their solutions. Once the core issues are discussed, the team can quickly disperse to carry out that day’s initiatives. It’s important to do your part to make standups effective but efficient.
-
-#### Prepare in advance
-
-Take 10 minutes before the meeting to think about what you’re going to say. You will not waste precious minutes of your team’s time thinking of your update off the cuff, and doing so will make you sound prepared and keep your update concise.
-
-</details>
-
-#### Write it out/document
-
-Standups can be done in writing! This can be more efficient for a fully remote team, especially with major time zone differences. If you or your client prefers in person meetings, ask the team to submit their updates in advance ([there are tools for this](https://slack.com/slack-tips/run-daily-standups-or-check-ins)), or have someone document the updates in a shared wiki.
-
-</details>
-
-#### Frequency
-
-Consider the frequency in which you meet. The frequency should be based on the team size and usefulness of the information. Don’t meet daily if you’re giving the same updates every day. The best way to figure this out is to find out what information people need, and when, and plan the cadence around that. You can always adjust later!
-
-</details>
-
-#### Find out what information needs to be conveyed and to whom
-
-Know your audience! Think about what the audience needs to know vs. what you want to share. Save challenges or stories for another venue.
-
-</details>
-
-### Successful meetings
-
-#### Set an agenda
-
-Come into a meeting with an agenda. State the agenda at the start so everyone is aware of what you’d like to accomplish. This might include topics of discussion or key questions you’d like to answer.
-
-</details>
-
-#### Take notes
-
-Simply take notes during calls and meetings. Summarize the “next actions” and make sure its clear who is assigned each action.
-
-</details>
-
-#### Send recaps
-
-Simply send a summary of your notes and next steps out to all stakeholders or attendees. If you’re meeting alone with a client, send it to them.
-
-</details>
-
-#### Take ownership
-
-When appropriate, make it clear that you will complete certain tasks by a certain date.
-
-</details>
-
-### Ask questions
-
-Don’t be embarrassed if you don’t understand something. Strive to never leave an interaction without fully understanding what was discussed or how something will work. If you’re unsure, ask to restate a summary of your understanding back and ask for confirmation.
-
-Ironically, you never actually sound “dumb” when you ask for clarification or say you don’t understand something, you come off as brave and intelligent.
-
-### State expectations explicitly
-
-Often, a project or discussion will end without clear roles, responsibilities, or tasks. When that happens, it’s up to you to add structure to these fuzzy edges.
-
-Create a suggested plan and state which parts you will take ownership of. Or if more discussion or direction is needed, ask for that.
-
-### Care — no, for real!
-
-As simple as it sounds, I’ve found that one of the key differences between great consultants and average ones is _caring_ - really caring about making the project successful through any means necessary.
-
-Most people just go through the motions. If you care a lot, and you’re not ashamed to show it, people will notice. Other people who also care will be attracted to you and respect you, and doors will tend to open as a result.
-
 ## Communication Tools
 
 The following the communication tools that should be present on every project. With so many options, it important to pick the correct technology for the type of interaction you expect. Immediacy (as in how quickly you need a response) is the governing attribute for each tool. Below are a list of common tools used in today’s workplace in order from least immediate to most immediate.
@@ -2133,7 +2113,7 @@ Chat replies can be delayed but most modern tools like Slack give the sender the
 
 The best business writing puts the onus on the writer instead of the reader. Think hard about your audience, what they know, what they need to know, their time constraints, etc, and make it as easy on them as physically possible. If you follow this principal, you’ll be a very effective communicator.
 
-More often than not, people do the opposite. They write quickly, lazily, and from their perspective - leaving the reader to piece together the puzzle before they can understand the context and content of their message. Most people will give up and opt out rather than jump through these hoops, so make it easy on them.
+More often than not, people do the opposite. They write quickly, lazily, and from their perspective — leaving the reader to piece together the puzzle before they can understand the context and content of their message. Most people will give up and opt out rather than jump through these hoops, so make it easy on them.
 
 ### Optimize for a short attention span
 
@@ -2151,7 +2131,7 @@ The lede is the summary or the essence of your argument. If you “bury” it un
 
 ### Use whitespace
 
-Whitespace is pleasing to the eye and encourages further reading. By contrast, long blocks of text are intimidating and leads to abandonment - whether an article, email, marketing copy, or any form of writing. I’m sure there’s a UX study somewhere to prove this, but until we find it, just take my word for it.
+Whitespace is pleasing to the eye and encourages further reading. By contrast, long blocks of text are intimidating and leads to abandonment — whether an article, email, marketing copy, or any form of writing. I’m sure there’s a UX study somewhere to prove this, but until we find it, just take my word for it.
 
 1. Use
 1. Lists
@@ -2170,91 +2150,11 @@ Use **bold** and <span style="background-color: yellow">highlights</span> to emp
 
 In many cases the details are important and can’t be condensed to the brevity you might strive for. In these cases, consider 3 sections to your email:
 
-- The executive summary - one sentence that summarizes the problem
-- The details - a longer passage explaining the details
-- The recommendation - we’re consultants, so usually it’s appropriate to offer a suggested course of action, even if the ultimate decision is not ours to make
+- The executive summary — one sentence that summarizes the problem
+- The details — a longer passage explaining the details
+- The recommendation — we’re consultants, so usually it’s appropriate to offer a suggested course of action, even if the ultimate decision is not ours to make
 
 ## Exercises
-
-### Meetings
-
-You recently attended a meeting where you were asked to discuss a new feature on your project. You started on the work, but today at standup you learned another developer is working on the same feature. Furthermore, your project manager is asking you to attend another meeting today to discuss a different new feature.
-
-**What can you do to make this meeting effective and to avoid this duplicate effort in the future?**
-
-<details>
-<summary>Answer</summary>
-
-Send out an an agenda in advance of the meeting. Also, explain what happened with the confusion around the previous feature, and that you’d like to agree who will work on this feature at the meeting. During the meeting, ask clarifying questions about the new feature and who is expected to implement it. Offer to take ownership of the feature if appropriate. Take notes about all of this. After the meeting, send out a recap of what was discussed to all of those who attended, making it clear who will be implementing the feature.
-
-**Principles used:**
-
-- Come prepared (setting an agenda will make the meeting more focussed)
-- State expectations explicitly (explaining the confusion from before will help clarify the expectation you want to identify an explicit owner)
-- Take notes and send recaps (there’s no question of who will be implementing the feature this time)
-- Take ownership (your initiative creates less confusion)
-- State expectations explicitly (everyone knows that you own this feature)
-- Just care (having a clear purpose to the meeting and taking ownership show your dedication to the project)
-
-</details>
-
-### Email 1
-
-Consider the following email:
-
-> I wanted to make sure we are all on the same page for the navigation projects being delivered. It was recently brought to my attention that the delivery dates for navigation are as follows:
->
-> - Rates & Fees: ~June 27th
-> - Report Overview: ~July 2nd
->
-> It is my understanding that this is a polished UI experience with service integration, prepared for the next phase of testing. The team working on Report Overview is slated to meet their deadline, from the UI perspective and has already met many times with the business analysts to iron out specific details and behaviors. However, I am concerned that Rates & Fees will miss the June 27th deadline. Dedicated development started on Rates & Fees on June 2nd, with UI development starting June 9th. Dedicated development refers to team resources working full time on this project, not including Srini and I’s proof of concept.
-> Starting development this late, does not give the required time for UI testing and verifying the business requirements in order to deliver a solid application. I had hoped that a missed deadline would not occur while I was assisting in development, but I must stress the importance on starting early. The delay in starting Rates & Fees has led us to this point.
-> Note, I will continue to assist Sanjay in developing the UI for Rates & Fees, but would like to open a discussion on what steps we need to take to get this project back on track.
-
-**What do you think the biggest problems are with it?**
-
-Once you’ve identified those problems, try to rewrite it to solve those problems.
-
-<details>
-<summary>Answer</summary>
-
-> I am concerned that Rates & Fees will **miss** the June 27th deadline. **Let’s discuss how we can address this concern at today’s standup.**
->
-> This is mainly due to the fact that full time dev didn’t begin until June 2nd, which doesn’t give us enough time for QA and verification. Unfortunately, I only learned about this deadline very recently, or I would have notified you sooner.
-
-**Principles used:**
-
-- Optimize for a short attention span (condensed from 5 paragraphs to 2)
-- Don’t bury the lede (the point of the email is stated first)
-- Use whitespace (separating the first sentence from the rest makes the point clearer)
-- Use bold to emphasize the most important parts of your message (need to discuss this ASAP, so highlight the call to action)
-- Exec summaries and calls to action (it’s clear what the next step is)
-
-</details>
-
-### Email 2
-
-Improve the following email:
-
-> I felt that David wasn’t being very articulate as to why he needed access to Google Analytics so I gave him a call. I didn’t think he was being clear so I wanted to clarify with him before we made any decisions At first I didn’t quite understand his reasoning but after my phone call with him I changed my mind. I think it would be a good idea to give our designer access to Google Analytics. I think David would be more receptive to me and we could better communicate on issues and how to solve them.
-
-<details>
-<summary>Answer</summary>
-
-> I think we should give David access to Google Analytics. I think it would be a good idea for 2 reasons:
->
-> 1. He would be more receptive if he could see how his work was affecting the site (such as testing out the conversion rate of design changes to the contact form, etc).
-> 2. We could work better and at a faster pace when solving issues (For example, for the month of June, 87 people came to the Contact Us page but only about 13 people filled out a form. If David had firsthand access to this information, we could work together to debug that issue quicker).
->
-> Do you agree?
-
-**Principles used:**
-
-- Don’t bury the lede (the point of the email is stated first)
-- Use lists (the reasons are easier to see)
-- Exec summaries and calls to action (the email is easy to follow)
-
-</details>
 
 ### Organizing
 
@@ -2300,110 +2200,178 @@ Consider the following thoughts. Find a way to organize this into relevant categ
 
 This section provides practical techniques and best practices for various communication channels, including chat platforms, email, meetings, documentation, and feedback. By mastering these methods, you’ll be better equipped to convey ideas clearly, manage expectations, and foster positive working relationships.
 
-### Chat (Slack/etc.)
+## Chat (Slack/etc.)
 
-Chat platforms like Slack are integral to how we communicate in real-time, but using them efficiently requires intention and skill. When used well, these tools can streamline conversations and help maintain a focused and productive workflow.
+Chat platforms are a key tool for real-time communication. However, using them effectively requires intentionality to maintain clarity, minimize disruption, and streamline collaboration. This section breaks down best practices to help you communicate efficiently, focusing on channels, mentions, threads, managing your availability, and more.
 
-#### Techniques for efficient communication
+### Channels
 
-**Mastering @-mentions, threading, and message organization:** Use @-mentions judiciously to ensure the right people are alerted without overwhelming them. Thread conversations to keep discussions organized and maintain context, especially in busy channels. This helps prevent information overload and makes it easier for everyone to follow along.
+Shared channels should be the default space for most communication. When conversations happen in the open, everyone can stay aligned and informed.
 
-**Use threads to maintain context:** Threads are essential in group discussions as they keep conversations focused. This prevents important points from getting lost in a stream of unrelated messages, ensuring everyone can easily find and contribute to relevant discussions.
+- **Use shared channels as much as possible:** Unless the topic is sensitive or private, default to public channels so that others can benefit from the discussion or jump in if needed.
+- **Pin important messages:** Keep key resources, documents, or recurring information pinned to channels for quick access, especially for onboarding new team members.
+- **Proactively communicate absences:** If you know you’ll be unavailable for an extended period (e.g. deep work), send a quick message in relevant channels to notify others and provide an alternate contact if necessary.
 
-**Be explicit about response expectations:** When you don’t require an immediate response, state that explicitly to avoid unnecessary pressure. For example, “No rush on this, but I’d appreciate your feedback by Friday” helps manage expectations and allows others to prioritize their tasks effectively.
+Best practices for setting up a channel:
 
-**Manage availability and expectations:** Set up out-of-office (PTO) messages when you’re unavailable and regularly update your status to reflect your current work focus. This transparency helps others know when to expect responses and reduces potential frustration from delayed replies.
+- **Channel name:** Keep channel names descriptive and concise, so people can easily find the right place for discussions.
+- **Topic and description:** Set a topic and description for the channel so it’s clear what the channel is for when people are searching.
+- **Pin messages and use bookmarks:** Pin important messages or use bookmarks for quick access to key documents, links, or ongoing projects. Review pinned content regularly so it’s up to date with what’s currently relevant.
 
-**Pin messages to a channel:** Pinning important messages in a channel makes it easier for team members, especially newcomers, to find key information. This is particularly useful for frequently referenced resources, such as links to project documents or meeting notes.
+### Threads
 
-**Schedule messages to optimize response timing:** Use the message scheduling feature to send your communication at a time when it’s most likely to be seen and responded to, which also helps in respecting colleagues’ work-life balance.
+Threads are an essential feature in Slack (and other chat platforms) that help keep conversations organized and focused. By containing discussions related to a specific topic within a thread, you prevent broader channels from being cluttered with unrelated messages, making it easier for everyone to follow the conversation.
 
-Tips and techniques:
+- **Maintain context:** Threads keep all related replies grouped together, allowing participants to stay focused on a single topic without being distracted by other conversations happening in the main channel.
+- **Reduce channel clutter:** When conversations spill over into a channel, it can become difficult to keep track of various discussions. Threads help compartmentalize topics, making the main channel easier to navigate.
+- **Encourage participation:** Threads make it easier for team members to jump in or out of conversations when it’s relevant to them. By keeping discussions contained, people can follow along when they’re ready without being overwhelmed by messages outside their scope.
 
-- **Group mentions thoughtfully:** Use group mentions like `@channel` or `@here` sparingly. Overusing them can lead to notification fatigue, which might cause team members to start ignoring important alerts.
-- **Tagging to prioritize responses:** When seeking urgent input, pair an @-mention with a phrase like “urgent” or “needs response ASAP” in the message. This adds clarity to the level of attention required.
-- **Reference earlier points in threads:** When replying in a thread, quote or reference the specific part of the conversation you’re addressing. This keeps the discussion clear and helps participants understand the flow of the conversation.
-- **Convert unresolved threads into meetings:** If a thread loses focus or has too much back and forth, consider scheduling a meeting with the participants to resolve the thread faster. Be sure to link to the meeting notes afterwards to “close” the thread.
-- **Follow-up timing:** If you haven’t received a response, decide when it’s appropriate to follow up. A gentle nudge after 24 hours is often a good rule of thumb, unless the request is time-sensitive.
-- **Transparent status updates:** Regularly update your Slack status with information like “In meetings” or “Working on X project,” so colleagues have an idea of your current focus and availability.
-- **Proactive communication:** If you anticipate being unavailable for a long period (e.g., a few hours or a day), send a quick message in relevant channels to notify others, along with alternative points of contact.
-- **Reread before sending:** Before sending a message, reread it to ensure the tone is neutral and the instructions are clear. If possible, remove any unnecessary complexity or jargon that might confuse the reader.
-- **Use positive language:** Frame your messages positively to foster a collaborative atmosphere. Instead of saying, “We can’t do this,” try “Here’s what we can do instead.”
+Best practices:
+
+- **Always start a thread when responding to a specific message:** Whenever you respond to a particular message or topic, use a thread rather than responding directly in the channel. This ensures the original message and the replies stay connected and don’t get lost in the larger conversation.
+- **Encourage others to use threads:** If a conversation starts to unfold in a channel without a thread, gently remind others to continue in a thread. For example, you can respond within the thread and say, “Let’s keep this conversation in the thread to avoid losing context.”
+- **Keep separate ideas in separate threads:** Don’t hesitate to break out separate ideas or subtopics into their own threads. Even within a single channel, multiple threads can exist simultaneously. By breaking ideas apart, you make it easier for team members to engage with the specific topics that are relevant to them.
+- **Use threads to explore topics before moving to meetings:** If a discussion in a thread is becoming lengthy or is difficult to resolve via chat, consider scheduling a meeting to discuss the topic more deeply. This is especially useful when back-and-forth messaging is taking too much time. Once the meeting is completed, share meeting notes or a summary in the thread to “close the loop” and provide final resolution.
+
+Managing and following threads:
+
+- **Monitor threads you’re involved in:** Slack notifications will typically alert you when someone responds to a thread you’re part of, but in busy environments, it’s easy for important threads to get buried. Make it a habit to check back on threads you’re involved in, especially if you’re waiting for a response.
+- **Turn off notifications for irrelevant threads:** If a thread has become less relevant to you, or if you no longer need to track it closely, you can turn off notifications for that specific thread. This allows you to focus on the conversations that matter to you without being constantly pinged by updates you don’t need.
+- **Set reminders for important threads:** If you respond to a thread but don’t want to receive ongoing notifications, you can set a reminder to check back later. This is especially useful for lengthy conversations that don’t require immediate attention but need to be revisited at a specific time.
+- **Close out threads when the discussion is complete:** When a conversation in a thread has reached a conclusion, especially after a meeting or final decision, consider summarizing the outcome in a final post. This wraps up the conversation neatly and provides closure for anyone following along later.
+
+Handling complex threads:
+
+- **Convert unresolved threads into meetings:** If a thread has too much back-and-forth or is becoming unfocused, it may be better to resolve the issue through a meeting. Threads are great for asynchronous discussions, but when they start dragging on without resolution, shifting to a real-time discussion is often more efficient. After the meeting, post the key takeaways or meeting notes back in the thread to ensure everyone involved has a record of the outcome.
+- **Use threads for follow-ups after meetings:** Threads are a great way to follow up on meeting discussions. If you had a meeting about a project or issue, start a thread in the relevant channel to continue discussing next steps or to gather feedback from team members who couldn’t attend.
+
+### Mentions
+
+Mentions are a powerful tool for grabbing attention, but overuse can lead to notification fatigue.
+
+- **Use mentions thoughtfully:** Only mention individuals directly when their input is needed.
+- **Sparingly use group mentions like @channel or @here:** These alert everyone in the channel and should be used only for urgent or critical matters. Overusing them can lead to important notifications being ignored.
+- **Tagging for priority:** When something needs someone’s attention, pair the mention with a clear message to indicate why it’s urgent and important.
+
+### Writing effective messages
+
+How you craft your message greatly affects how it is received and responded to.
+
+- **Reserve DMs for urgent or sensitive matters:** When possible, use public channels to discuss topics that could benefit the broader team. This keeps everyone in the loop and reduces duplicative conversations.
+- **Be clear and to the point:** Avoid starting conversations with [just “hey” or “hello.”](https://nohello.net/en/) Instead, get straight to the point. For example, instead of “Hey, do you have a minute?” say, “Hey, can you help with this task? I need advice on how to approach it.”
+- **Urgency in DMs:** If something is time-sensitive, state upfront why it’s urgent, when you need a response by, and what will happen if you don’t hear back. For example, say “Please respond to this question by 3:30 PM today or we will reschedule tomorrow’s production release” or “Please let me know your thoughts on these options by the end of this week, otherwise we will be moving forward with option one.”
+- **Reread before sending:** Always review your message before sending it to ensure clarity and neutral tone. Eliminate unnecessary jargon or complexity that may confuse the recipient.
+
+### Reacting with emoji
+
+Emojis can provide quick feedback or convey tone in an otherwise flat text-based environment. However, their use should be intentional.
+
+- **Use 👀 to acknowledge receipt:** If you’ve seen a message but don’t have time to respond right away, a quick 👀 reaction can let the sender know it’s on your radar.
+- **Use 👍 to show agreement or support:** This can eliminate the need for an additional reply and keep conversations moving without unnecessary clutter.
+- **Avoid using emojis to communicate “yes” unless specified:** Since emojis don’t trigger notifications, it’s better to reply with text unless the person has specified that an emoji will suffice.
+
+### Status updates
+
+Your status is a quick way to communicate your availability or focus to your team without sending explicit messages.
+
+Regularly update your status:
+
+- Update your Slack status to reflect your availability, whether you’re in meetings, focused on work, or out of the office.
+- If you are going offline for an extended period, use a clear out-of-office (PTO) message with your return date to manage expectations.
+
+Update your status when you are:
+
+- **In meetings or Out of Office (OOO):** [Sync your status with your calendar](https://slack.com/help/articles/4412365549075-Automations--Sync-your-status-with-your-calendar) so your status is automatically updated when you are in a meeting or out of office.
+- **Offline to focus:** Closing Slack to focus on deep work is great. Be sure to update your status to let people know why you’re offline.
+- **Out on PTO:** Include your return date in your status, e.g. “🪄 PTO, back on Thursday 2025-01-02.”
+
+### Scheduling messages
+
+Maintaining boundaries and respecting others’ work schedules is key when working across time zones or outside regular hours.
+
+- **Schedule messages to maintain boundaries:** If you flex your time and work outside of normal business hours, consider scheduling your message so it appears the next day when your colleagues are likely to be active.
+- **Follow-up timing:** If you haven’t received a response after 24 hours, consider a gentle follow-up. Adjust the timing based on the urgency of the original message.
+
+### Reminding yourself
+
+Slack reminders are a built-in way to get a notification about a message later.
+
+- **Set reminders:** If you’re worried about forgetting to follow up on something, set reminders for yourself to check back in later. You can also use reminders when you’ve turned off notifications for a thread but still want to stay in the loop.
+- **Use reminders to stay on top of threads:** If you respond to a thread that’s very active and you know you will not need to respond quickly (e.g. you respond to a question in [#ask-help](https://bitovi.slack.com/archives/C0G43SWR3) and don’t need to be distracted by the other replies immediately), consider setting a reminder for the thread and turning off reply notifications.
+
+### Structuring your workspace
+
+To avoid getting overwhelmed by messages, take time to organize your workspace.
+
+- **Group channels by priority:** Group channels that are critical or high-priority at the top of your sidebar so they’re easily accessible.
+- **Leave channels instead of muting them:** Reduce distractions by leaving channels that aren’t relevant to you.
+- **Bookmark important messages or threads:** If something is important but you don’t need to act on it right away, save or bookmark the message for quick access later.
+
+### Chat etiquette and best practices
+
+Maintaining a professional and respectful tone in your messages can prevent misunderstandings.
+
+- **Be mindful of tone:** Text-based communication can easily be misinterpreted. Avoid sarcasm, be clear and direct, and always assume the best intentions when reading others’ messages.
+- **Reread before sending:** Before hitting send, double-check that your message is clear, concise, and free from unnecessary jargon. A quick reread can also help you spot any potential ambiguities in tone.
+- **Use positive language:** Frame your messages in a way that fosters collaboration. Instead of “We can’t do this,” try “Here’s what we can do.”
 
 Questions to reflect:
 
-- Have you ever received a message without a clear deadline? How did that affect your prioritization? What can you do to make sure your messages include clear expectations?
-- Consider a scenario where you sent a message and didn’t receive a response within your expected timeframe. How could you have communicated differently to prevent this?
-- When was the last time you reviewed the pinned messages in your most-used channels? What could you do to ensure that the pinned content is always relevant?
+1. **Response expectations:** Have you ever received a message without a clear deadline? How did that affect your prioritization? What steps can you take to ensure your messages include clear expectations?
+2. **Lack of response:** Think of a time when you didn’t receive a response in your expected timeframe. What could you have done differently to clarify the urgency or expected response time?
+3. **Pinned content relevance:** When was the last time you reviewed the pinned messages in your most-used channels? What steps can you take to ensure the pinned content remains up-to-date and relevant?
 
-#### Etiquette and best practices
+### Exercise: Slack settings
 
-**Be mindful of tone and clarity:** Text-based communication lacks the nuances of voice, making it easy for messages to be misinterpreted. Write clearly and consider how your words might be received. Use simple, direct language to convey your message and avoid sarcasm or ambiguous phrasing.
+Apply the ideas above by updating your Slack settings and channels:
 
-**Limit the use of direct messaging:** Reserve direct messages for urgent or sensitive matters to respect others’ focus time. When possible, use public channels or threads to share information that might benefit the broader team.
+<label><input type="checkbox" /> **Set up Slack status to sync with meetings:** [Sync your status with your calendar](https://slack.com/help/articles/4412365549075-Automations--Sync-your-status-with-your-calendar) so it automatically updates when you’re in a meeting or out of the office.</label>
 
-**Use emojis and reactions thoughtfully:** Emojis can help convey tone and provide quick feedback without interrupting the conversation flow. However, use them appropriately — overuse can dilute their meaning.
+<label><input type="checkbox" /> **Set your notification preferences:** [Configure your Slack notifications](https://slack.com/help/articles/201355156-Configure-your-Slack-notifications) to notify you about direct messages, mentions, keywords, and replies to threads you’re following. While you’re in the Notifications preferences, scroll down to the “Notification schedule” section to set the time for reminders and check the “Show a badge on Slack’s icon” option under “Sound & appearance.”</label>
 
-**Use saved items and pinned messages:** Bookmark or save important messages for easy access later. Pinned messages in channels can also serve as quick references for critical information that everyone should be aware of.
+<!-- <label><input type="checkbox" /> **Enable “Notify me about replies to threads”:** Set up Slack to notify you when someone replies to a thread you’re involved in, so you can stay engaged without getting lost in the conversation.</label> -->
 
-**Avoid starting conversations with just “hey” or “hello”:** Jump straight to the point when starting a conversation to respect the recipient’s time. Instead of “Hey, do you have a minute?” try “Hey, can you help me with this task? I need advice on how to do it effectively.”
+<!-- <label><input type="checkbox" /> **Show a badge for unread messages:** Enable the badge icon on the Slack app, which shows unread messages, to keep track of conversations that need your attention.</label> -->
 
-Tips and techniques:
+<!-- <label><input type="checkbox" /> **Update your notification schedule:** Adjust Slack notifications to focus on important conversations. Turn off notifications for irrelevant threads and channels.</label> -->
 
-- **Use public channels for knowledge sharing:** Default to public channels unless the topic is truly sensitive. This way, information is shared transparently, and others can benefit from the discussion.
-- **React to acknowledge receipt:** Use reactions like 👍 or 👀 to quickly acknowledge that you’ve seen a message. This reduces the need for a separate reply and keeps the conversation streamlined.
-- **Use structured questions:** When initiating a conversation, frame your message with the key question or request right away. For example, “Hi [Name], can you assist with finalizing the [Project] report by EOD today?” This provides clarity from the outset.
-- **Use a friendly greeting with a purpose:** If you prefer to start with a greeting, follow it immediately with the topic. For example, “Good morning! I’m reaching out to discuss the upcoming client meeting. Can we align on our talking points?”
+<label><input type="checkbox" /> **Arrange your Slack workspace:** If you have a lot of channels or direct messages, consider [organizing your sidebar with custom sections](https://slack.com/help/articles/360043207674-Organize-your-sidebar-with-custom-sections) so higher-priority channels or people are towards the top of your sidebar.</label>
 
-Questions to reflect:
+<label><input type="checkbox" /> **Check the _bookmarks_ in the channels you frequent:** See if there are any valuable links you can add to the bookmarks.</label>
 
-- What types of information do you typically share in direct messages? Could any of these conversations benefit from being in a public channel?
-- Have you ever received a message that started with “hey” and found it frustrating or unclear? How can you structure your own messages to be more direct and efficient?
+<label><input type="checkbox" /> **Check the _pinned messages_ in the channels you frequent:** Remove any irrelevant messages and add any recent messages that you think would be useful for reference.</label>
 
-#### Exercise
-
-TODO
-
-##### Response Expectation Game
-
-- **Activity:** Present participants with a range of Slack messages that lack clear expectations (e.g., “Let me know when you have a minute”). Ask them to rewrite these messages with explicit response expectations (e.g., “Please get back to me by EOD Friday”).
-- **Objective:** Reinforce the importance of setting clear response expectations in chat communications.
-
-##### Tone Calibration Emoji Challenge
-
-- **Activity:** Provide participants with messages that could be interpreted in different ways depending on tone. They must select an appropriate emoji to convey the intended tone or rewrite the message to avoid ambiguity.
-- **Objective:** Develop an awareness of tone in text-based communication and the thoughtful use of emojis.
-
-### Email communication
+## Email communication
 
 Email remains a crucial tool for formal communication, particularly for conveying detailed information, following up on discussions, or coordinating with clients. Crafting and managing your emails effectively can make a significant difference in how your communication is received and acted upon.
 
-#### Writing effective emails
+### Writing effective emails
 
-**Craft clear, concise, and descriptive subject lines:** Your subject line should give the recipient a clear understanding of the email’s content. For example, “Update on Project Timeline – Action Required by 8/30” is more informative than “Project Update.”
+#### Subject lines
 
-**Structure emails with a clear introduction, body, and conclusion:** Start with a brief introduction that states the purpose of the email. The body should provide necessary details, and the conclusion should summarize the key points or requests. Bullet points or numbered lists can help organize information, making it easier to read and understand.
+Your subject line should give the recipient an immediate understanding of the email’s content.
 
-**Match the tone of your emails to the context and audience:** Always maintain professionalism, but adjust your tone to be more formal or casual depending on the recipient and context. For example, an email to a client might be more formal, while an internal email to a team member can be more relaxed.
+For example, “Action Required by 8/30 – Update on Project Timeline” is more informative than “Project Update.” Aim for subject lines under 50 characters to ensure they aren’t truncated in inbox previews. Use action words such as “Review,” “Action Required,” or “Proposal” to set clear expectations.
 
-Tips and techniques:
+#### Structure your email
 
-- **Prioritize the main point:** If your email covers multiple points, identify the most critical message and place it at the beginning of the subject line to ensure it grabs attention.
-- **Keep it brief:** Aim for subject lines that are under 50 characters. This keeps your email from being truncated in inbox previews, ensuring your message is fully visible.
-- **Use action words:** Words like “Review,” “Action Required,” “Update,” or “Proposal” help set clear expectations for what the recipient should do with the email.
-- **One point per paragraph:** Ensure each paragraph addresses a single idea or topic to maintain clarity and focus. This also makes it easier for the reader to follow your reasoning.
-- **Use headings for long emails:** If your email is lengthy, break it up with subheadings (e.g., “Project Overview,” “Next Steps”) to help the reader navigate the content.
-- **Repeat your Call to Action (CTA):** Repeat the CTA at the top of the email again in the conclusion. Specify what you expect the recipient to do next, such as “Please confirm receipt” or “Let me know your availability by Friday.”
-- **Assess the relationship:** Consider your relationship with the recipient before choosing your tone. A formal tone is often appropriate for new clients, while a more casual tone may suit long-time colleagues.
-- **Mirror the recipient’s tone:** If the recipient tends to be more formal or casual, you can mirror their tone to create rapport while maintaining professionalism.
-- **Use positive language:** Even when delivering bad news, frame your language positively, e.g., “We encountered a delay, but we’re working on a solution to get back on track.”
+- **Introduction:** Begin with a brief introduction that states the email’s purpose.
+- **Body:** Provide the necessary details in an organized manner. Bullet points or numbered lists can help present information clearly.
+- **Conclusion:** Summarize key points or requests, and restate your Call to Action (CTA) to ensure the recipient knows what to do next (e.g., “Please confirm receipt” or “Let me know your availability by Friday”).
 
-Questions to reflect:
+#### Focus on clarity and brevity
 
-- How do you ensure that your emails are not overwhelming the reader with too much information at once?
-- How do you determine the appropriate tone to use when emailing someone you’ve never communicated with before?
+- **Prioritize the main point:** If your email covers multiple topics, highlight the most critical message at the start to capture attention.
+- **One point per paragraph:** Keep each paragraph focused on a single idea to maintain clarity.
+- **Use headings for longer emails:** For lengthy emails, break up content with subheadings like “Project Overview” or “Next Steps” to improve readability.
 
-#### Managing email communications
+#### Use the correct tone
+
+- **Adapt your tone:** Maintain professionalism, but adjust the formality based on the recipient. A client email might require a more formal tone, while an internal email to a colleague can be more casual.
+- **Mirror the recipient’s tone:** Consider aligning your tone with how the recipient typically communicates, while still maintaining professionalism.
+- **Use positive language:** Even when delivering bad news, try to frame it in a positive way (e.g., “We encountered a delay, but we’re working on a solution to get back on track”).
+
+### Managing email communications
 
 **Schedule emails for optimal timing:** If you’re sending an email that doesn’t require immediate attention, consider scheduling it to be sent at a time when the recipient is more likely to see and respond to it, typically during regular working hours.
 
@@ -2426,20 +2394,78 @@ Questions to reflect:
 
 - Have you ever experienced delays in communication due to not setting clear expectations for when you’d respond? How could you have handled it differently?
 
-#### Exercise
+### Exercise: email communication
 
 TODO
 
-##### Email Structure Drill
+#### Email 1
+
+Consider the following email:
+
+> I wanted to make sure we are all on the same page for the navigation projects being delivered. It was recently brought to my attention that the delivery dates for navigation are as follows:
+>
+> - Rates & Fees: ~June 27th
+> - Report Overview: ~July 2nd
+>
+> It is my understanding that this is a polished UI experience with service integration, prepared for the next phase of testing. The team working on Report Overview is slated to meet their deadline, from the UI perspective and has already met many times with the business analysts to iron out specific details and behaviors. However, I am concerned that Rates & Fees will miss the June 27th deadline. Dedicated development started on Rates & Fees on June 2nd, with UI development starting June 9th. Dedicated development refers to team resources working full time on this project, not including Srini and I’s proof of concept.
+> Starting development this late, does not give the required time for UI testing and verifying the business requirements in order to deliver a solid application. I had hoped that a missed deadline would not occur while I was assisting in development, but I must stress the importance on starting early. The delay in starting Rates & Fees has led us to this point.
+> Note, I will continue to assist Sanjay in developing the UI for Rates & Fees, but would like to open a discussion on what steps we need to take to get this project back on track.
+
+**What do you think the biggest problems are with it?**
+
+Once you’ve identified those problems, try to rewrite it to solve those problems.
+
+<details>
+<summary>Answer</summary>
+
+> I am concerned that Rates & Fees will **miss** the June 27th deadline. **Let’s discuss how we can address this concern at today’s standup.**
+>
+> This is mainly due to the fact that full time dev didn’t begin until June 2nd, which doesn’t give us enough time for QA and verification. Unfortunately, I only learned about this deadline very recently, or I would have notified you sooner.
+
+**Principles used:**
+
+- Optimize for a short attention span (condensed from 5 paragraphs to 2)
+- Don’t bury the lede (the point of the email is stated first)
+- Use whitespace (separating the first sentence from the rest makes the point clearer)
+- Use bold to emphasize the most important parts of your message (need to discuss this ASAP, so highlight the call to action)
+- Exec summaries and calls to action (it’s clear what the next step is)
+
+</details>
+
+#### Email 2
+
+Improve the following email:
+
+> I felt that David wasn’t being very articulate as to why he needed access to Google Analytics so I gave him a call. I didn’t think he was being clear so I wanted to clarify with him before we made any decisions At first I didn’t quite understand his reasoning but after my phone call with him I changed my mind. I think it would be a good idea to give our designer access to Google Analytics. I think David would be more receptive to me and we could better communicate on issues and how to solve them.
+
+<details>
+<summary>Answer</summary>
+
+> I think we should give David access to Google Analytics. I think it would be a good idea for 2 reasons:
+>
+> 1. He would be more receptive if he could see how his work was affecting the site (such as testing out the conversion rate of design changes to the contact form, etc).
+> 2. We could work better and at a faster pace when solving issues (For example, for the month of June, 87 people came to the Contact Us page but only about 13 people filled out a form. If David had firsthand access to this information, we could work together to debug that issue quicker).
+>
+> Do you agree?
+
+**Principles used:**
+
+- Don’t bury the lede (the point of the email is stated first)
+- Use lists (the reasons are easier to see)
+- Exec summaries and calls to action (the email is easy to follow)
+
+</details>
+
+#### Email Structure Drill
 
 - **Activity:** Give participants a detailed but unstructured email. Their task is to reorganize it into a well-structured email with a clear introduction, body, and conclusion, using bullet points and proper formatting.
 - **Objective:** Practice structuring emails for clarity and effectiveness.
 
-### Meeting management
+## Meeting management
 
 Meetings are essential for collaboration, but they must be well-organized and purposeful to be effective. Whether you’re leading or participating in a meeting, the following strategies will help you make the most of this time.
 
-#### Organizing and leading effective meetings
+### Organizing and leading effective meetings
 
 **Preparation and planning:** A well-prepared meeting is halfway to success. Always share a clear agenda with participants well in advance. Include any relevant documents or links that participants should review beforehand. Clearly define the meeting’s objectives to ensure everyone knows what you aim to achieve.
 
@@ -2458,7 +2484,7 @@ Questions to reflect:
 - When was the last time you led a meeting? What worked well, and what could have been better in terms of preparation and planning?
 - Think about a time when a meeting you attended was poorly organized. How did it impact your participation, and what could have been done differently?
 
-#### Conducting the meeting
+### Conducting the meeting
 
 **Assign a note-taker:** Designate someone to document key discussion points, decisions, and action items. This ensures there’s a clear record of what was discussed and agreed upon.
 
@@ -2478,7 +2504,7 @@ Questions to reflect:
 - How do you typically respond when a meeting discussion goes off-topic? Could there be a more effective way to bring it back on track?
 - Can you recall a situation where a meeting leader either failed to engage or overly controlled the conversation? How did this impact the meeting’s outcome?
 
-#### Follow-up and accountability
+### Follow-up and accountability
 
 **Send a concise recap:** After the meeting, send out a summary that includes key points, decisions made, and assigned action items. This reinforces accountability and keeps everyone aligned.
 
@@ -2499,7 +2525,7 @@ Questions to reflect:
 - Think about a meeting where action items weren’t clearly defined or followed up on. How did this affect the project’s progress?
 - When have you seen shared meeting notes contribute to better outcomes? How did the collaborative aspect help?
 
-#### Being an effective meeting participant
+### Being an effective meeting participant
 
 **Respond to meeting invites promptly:** Indicate your availability and provide any relevant comments or concerns as soon as you receive an invite. This helps the organizer plan accordingly.
 
@@ -2522,7 +2548,40 @@ Questions to reflect:
 - How do you typically prepare for meetings? Are there any steps you might add to enhance your readiness?
 - How do you handle situations where you disagree with a point being made in a meeting? What strategies can you use to communicate your perspective constructively?
 
-#### Best practices for standups
+### Take notes
+
+Note-taking complements active listening by enhancing your ability to remember and act on key points discussed during a conversation. Clear and concise notes reinforce what was said and provide a record that can be referred back to, helping to avoid overlooking anything important. Additionally, effective note-taking shows accountability, as it indicates your commitment to following through on the actions and decisions made during the conversation.
+
+Well-organized notes are not just a tool for personal reference — they are important for clear communication within your team and with clients. By capturing key points, decisions, and action items, you help keep everyone involved in the project on the same page, which is necessary for successful follow-up and documentation. This is especially important in consulting, where clear, actionable records of client interactions are vital for staying aligned and meeting project objectives.
+
+Tips and techniques:
+
+- **Use symbols for key points:** Develop a system of symbols or shorthand (e.g., “*” for key points, “A” for action items) to quickly categorize information as you take notes.
+- **Review and summarize your notes immediately:** After the conversation, take a few minutes to review and summarize your notes while the details are still fresh.
+- **Use digital tools for organization:** Utilize digital note-taking tools like Notion, Evernote, or OneNote to keep your notes organized and easily searchable.
+
+Questions to reflect:
+
+- How effective are your current note-taking practices in capturing key information? What improvements could make your notes more actionable?
+- Think about a time when well-organized notes made a difference in a project’s outcome. How can you consistently take useful notes?
+
+#### Techniques for efficient note-taking
+
+**Key point extraction:** Focus on capturing key points, decisions, and action items rather than transcribing entire conversations. Efficient note-taking involves identifying and recording the most important information rather than attempting to transcribe the conversation verbatim. This includes noting down key points, decisions made during the discussion, and any action items that need to be followed up on. By focusing on what’s most relevant, you can create a clear and concise record that is easy to review later.
+
+**Use text replacement utilities:** Tools like Text Expander or using shorthand can significantly speed up the note-taking process and help you capture more information in real-time. Bullet points, for example, are a quick way to organize information clearly, making it easier to review and reference later. These techniques can help make your notes both thorough and efficient.
+
+**Organizing and reviewing notes:** After the conversation, it’s helpful to organize your notes so they’re easy to reference. This might involve categorizing information by topic, prioritizing action items, or summarizing key points. Regularly reviewing your notes helps you stay on top of your commitments and keeps them actionable and useful throughout the project.
+
+Tips and techniques:
+
+- TODO
+
+Questions to reflect:
+
+- TODO
+
+### Best practices for standups
 
 **Prepare your updates in advance:** Come to standups with a clear idea of what you need to share, focusing on what’s most relevant for the team to know.
 
@@ -2541,25 +2600,85 @@ Questions to reflect:
 
 - How do you ensure that your standup updates are concise yet informative? Are there any adjustments you could make to improve this balance?
 
-#### Exercise
+### Standups
+
+The idea of a stand-up meeting is to ensure a brief discussion of important issues, current challenges and their solutions. Once the core issues are discussed, the team can quickly disperse to carry out that day’s initiatives. It’s important to do your part to make standups effective but efficient.
+
+#### Prepare in advance
+
+Take 10 minutes before the meeting to think about what you’re going to say. You will not waste precious minutes of your team’s time thinking of your update off the cuff, and doing so will make you sound prepared and keep your update concise.
+
+#### Write it out/document
+
+Standups can be done in writing! This can be more efficient for a fully remote team, especially with major time zone differences. If you or your client prefers in person meetings, ask the team to submit their updates in advance ([there are tools for this](https://slack.com/slack-tips/run-daily-standups-or-check-ins)), or have someone document the updates in a shared wiki.
+
+#### Frequency
+
+Consider the frequency in which you meet. The frequency should be based on the team size and usefulness of the information. Don’t meet daily if you’re giving the same updates every day. The best way to figure this out is to find out what information people need, and when, and plan the cadence around that. You can always adjust later!
+
+#### Find out what information needs to be conveyed and to whom
+
+Know your audience! Think about what the audience needs to know vs. what you want to share. Save challenges or stories for another venue.
+
+### Successful meetings
+
+#### Set an agenda
+
+Come into a meeting with an agenda. State the agenda at the start so everyone is aware of what you’d like to accomplish. This might include topics of discussion or key questions you’d like to answer.
+
+#### Take notes
+
+Simply take notes during calls and meetings. Summarize the “next actions” and make sure its clear who is assigned each action.
+
+#### Send recaps
+
+Simply send a summary of your notes and next steps out to all stakeholders or attendees. If you’re meeting alone with a client, send it to them.
+
+#### Take ownership
+
+When appropriate, make it clear that you will complete certain tasks by a certain date.
+
+### Exercise: meeting management
 
 TODO
 
-##### Agenda Creation Workshop
+#### Meetings
+
+You recently attended a meeting where you were asked to discuss a new feature on your project. You started on the work, but today at standup you learned another developer is working on the same feature. Furthermore, your project manager is asking you to attend another meeting today to discuss a different new feature.
+
+**What can you do to make this meeting effective and to avoid this duplicate effort in the future?**
+
+<details>
+<summary>Answer</summary>
+
+Send out an an agenda in advance of the meeting. Also, explain what happened with the confusion around the previous feature, and that you’d like to agree who will work on this feature at the meeting. During the meeting, ask clarifying questions about the new feature and who is expected to implement it. Offer to take ownership of the feature if appropriate. Take notes about all of this. After the meeting, send out a recap of what was discussed to all of those who attended, making it clear who will be implementing the feature.
+
+**Principles used:**
+
+- Come prepared (setting an agenda will make the meeting more focussed)
+- State expectations explicitly (explaining the confusion from before will help clarify the expectation you want to identify an explicit owner)
+- Take notes and send recaps (there’s no question of who will be implementing the feature this time)
+- Take ownership (your initiative creates less confusion)
+- State expectations explicitly (everyone knows that you own this feature)
+- Just care (having a clear purpose to the meeting and taking ownership show your dedication to the project)
+
+</details>
+
+#### Agenda Creation Workshop
 
 - **Activity:** Participants are given a meeting topic and must create a detailed agenda, including objectives and any pre-meeting materials. They then present and critique each other’s agendas.
 - **Objective:** Practice creating effective meeting agendas.
 
-##### Role-Play Meetings
+#### Role-Play Meetings
 
 - **Activity:** Conduct role-playing sessions where participants lead a meeting with a set agenda. The meeting will include common disruptions (e.g., someone going off-topic, technical difficulties). The leader must manage the meeting efficiently, ensuring all agenda items are covered.
 - **Objective:** Build confidence in leading meetings and handling common challenges.
 
-### Documentation and knowledge sharing
+## Documentation and knowledge sharing
 
 Clear and accessible documentation is essential for knowledge sharing within and across teams. It ensures continuity, enables smoother onboarding, and helps maintain a high standard of work by providing a reliable reference.
 
-#### Creating and maintaining accessible documentation
+### Creating and maintaining accessible documentation
 
 **Differentiate between permanent and ephemeral communication:** Permanent communication (e.g., project documentation, procedures) should be well-documented and easily accessible. Ephemeral communication (e.g., chat messages) is more transient and doesn’t usually need long-term storage. Identify what requires formal documentation to avoid information loss.
 
@@ -2588,7 +2707,7 @@ Questions to reflect:
 - What strategies can you employ to balance the time spent on creating and updating documentation with other project demands?
 - Consider your role as a consultant working alongside a client’s team. How does your approach to documentation and knowledge sharing influence their perception of Bitovi’s professionalism and expertise?
 
-#### Using Confluence effectively
+### Using Confluence effectively
 
 **Edit pages for clarity:** Regularly review and edit Confluence pages to improve clarity, add new information, or update existing content. This way, documentation remains useful and relevant.
 
@@ -2609,11 +2728,11 @@ Questions to reflect:
 - Are you consistently notified about updates that impact your work? If not, how could you better utilize Confluence’s features to stay informed?
 - In what ways could your current Confluence documentation be more user-friendly or comprehensive?
 
-#### Exercise
+### Exercise: documentation
 
 TODO
 
-##### Documentation Editing Challenge
+#### Documentation Editing Challenge
 
 - **Activity:** Provide participants with poorly structured or outdated documentation. Their task is to edit and update the documentation to meet current standards, applying clear, concise, and logical structure.
 - **Objective:** Practice creating and maintaining high-quality documentation.
@@ -2871,7 +2990,7 @@ Questions to reflect:
 - How do you currently separate your work and personal time?
 - What changes can you make to make sure you fully disconnect from work at the end of the day?
 
-### Exercise
+### Exercise: choosing the right communication method
 
 TODO:
 
@@ -2977,6 +3096,23 @@ Questions to reflect:
 
 - How comfortable are you in recognizing non-verbal cues during conversations?
 - Have you ever misinterpreted a social cue at work? What did you learn from that experience?
+
+### Promoting a culture of sensitivity and respect
+
+Promoting a culture of sensitivity and respect goes beyond avoiding negative behaviors; it involves actively encouraging positive, inclusive practices in your workplace.
+
+- **Encourage open dialogue:** Creating an environment where team members feel comfortable discussing sensitive topics is essential for fostering inclusion. Encourage questions and discussions around diversity, equity, and inclusion by inviting input during meetings or setting up dedicated forums for these conversations. For example, you might say, “I’d like to hear everyone’s thoughts on how we can make our team meetings more inclusive. What are your suggestions?”
+
+- **Lead by example:** As a consultant, your behavior sets the tone for your interactions with clients and colleagues. By consistently demonstrating sensitivity, inclusivity, and respect, you model the behavior you expect from others. For instance, you might consistently use inclusive language, acknowledge your own mistakes, and actively listen to others’ perspectives. When you lead by example, you help to create a workplace culture that values and respects everyone’s contributions.
+
+Tips and techniques:
+
+- **Recognize inclusive behavior:** Publicly acknowledge and praise inclusive communication practices when you observe them. This not only reinforces positive behavior but also encourages others to follow suit.
+
+Questions to reflect:
+
+- When was the last time you encouraged someone to share their thoughts in a meeting? How can you improve in making sure all voices are heard?
+- How do you typically react to differing communication styles in your team? What adjustments can you make to better accommodate these differences?
 
 ### Enhancing collaboration through active listening and engagement
 
@@ -3158,7 +3294,7 @@ Questions to reflect:
 
 - Can you recall a situation where personal information was handled well or poorly in a team setting? What were the outcomes?
 
-### Exercise
+### Exercise: building strong social communication skills
 
 TODO
 
@@ -3199,116 +3335,6 @@ Maybe this exercise is more like the Consulting one — brainstorm ways to impro
 
 **Variation:** Include a “wildcard” round where participants must switch sides mid-debate, testing their adaptability and quick thinking.
 
-## Navigating sensitive topics
-
-Effective communication in a professional setting involves understanding and respecting the diverse identities and experiences of colleagues and clients. Navigating sensitive topics requires a high level of awareness and a commitment to inclusivity. This section will provide you with the tools to foster respectful, clear, and inclusive communication, especially when dealing with sensitive issues.
-
-### Respecting individual identity
-
-Respect for individual identity is foundational to fostering a workplace culture that values diversity and inclusion. This involves acknowledging and using the correct terms that people prefer when referring to themselves.
-
-- **Use preferred pronouns:** It’s essential to use people’s preferred pronouns in all communications, whether verbal or written. If you’re unsure of someone’s pronouns, it’s okay to ask politely or listen first to how they refer to themselves. Using correct pronouns shows respect for their identity and promotes an inclusive environment. For example, instead of assuming someone’s pronouns based on their appearance or name, you might say, “Hi, my name is [Your Name], and I use he/him pronouns. How about you?”
-- **Employ inclusive language:** Language shapes how we perceive the world and interact with each other. Using inclusive language means choosing words that respect and acknowledge the diversity of the people you’re communicating with. Avoid gendered terms like “guys” or “ladies,” which can unintentionally exclude non-binary individuals. Instead, opt for neutral terms like “everyone,” “team,” or “folks.” Similarly, be mindful of cultural references or idioms that might not resonate with everyone in your audience. For example, instead of saying “let’s go the extra mile,” consider “let’s do our best.”
-
-Tips and techniques:
-
-- **Introduce pronouns during introductions:** When starting a meeting or joining a new team, initiate introductions by sharing your pronouns, and encourage others to do the same. This normalizes the practice and creates an inclusive space from the outset.
-- **Responding to pronoun mistakes:** If you or someone else uses the wrong pronoun, correct it immediately and move on without making it a big deal. This approach normalizes the correction and minimizes discomfort.
-
-Questions to reflect:
-
-- How do you typically handle introductions in meetings, and how could you incorporate pronoun sharing more effectively?
-- Think of a time when you might have assumed someone’s identity or preferences. How could you approach the situation differently in the future?
-
-### Fostering clear and inclusive communication
-
-Clear communication ensures that everyone, regardless of their background or experience, can fully understand and engage in the conversation. Inclusive communication goes a step further by actively considering the needs of diverse audiences.
-
-- **Enunciate when speaking:** Clear enunciation and an appropriate pace are crucial in preventing misunderstandings. This is especially important in virtual meetings where audio quality can vary, or when communicating with non-native speakers. Speaking clearly doesn’t mean slowing down to a crawl; it’s about being mindful of your speech patterns and making sure your message is understandable to all listeners.
-
-- **Communicate at an accessible level:** To make your communication accessible, aim to explain concepts in simple, straightforward language. Using language that is easily understood by a broad audience doesn’t mean dumbing down the content; it means being clear and direct. Strive to communicate at a U.S. sixth-grade reading level, which helps confirm that your message is accessible to a wide range of people, including those who might be reading in a second language or who have different levels of expertise.
-
-- **Be aware of tone and body language:** Your tone of voice, facial expressions, and body language are powerful tools in communication. These non-verbal cues can often convey more than words. For instance, a calm, steady tone conveys professionalism and thoughtfulness, while crossed arms might unintentionally signal defensiveness. Be mindful of how your tone and body language may be interpreted, especially when discussing sensitive topics. This awareness helps create a more inclusive and welcoming environment.
-
-Tips and techniques:
-
-- **Pause for feedback:** Regularly pause during discussions to invite questions or clarifications. This can help ensure that everyone is following along and provides an opportunity for non-native speakers to catch up or clarify points.
-- **Record meetings:** Offer to record virtual meetings so that participants can revisit the discussion at their own pace, which is particularly helpful for non-native speakers or those who may need more time to process information.
-
-Questions to reflect:
-
-- Consider a time when you felt that a communication was either too complex or too simplified. What could have been done to make it more accessible for you?
-
-### Avoiding problematic language and behaviors
-
-Understanding and avoiding problematic language and behaviors is key to maintaining a respectful and inclusive workplace. It’s important to be conscious of the impact your words and actions may have on others.
-
-- **Steer clear of problematic colloquialisms:** Certain expressions or idioms may carry unintended negative connotations or be culturally insensitive. For instance, phrases like “long time no see” or “rule of thumb” have problematic historical origins. Instead, opt for phrases that are clear and neutral, such as “it’s been a while” or “general guideline.” By avoiding outdated or potentially offensive language, you contribute to a more respectful communication environment.
-
-- **Avoid ableist language:** Words and phrases like “crazy,” “lame,” “blind,” or “deaf” are often used metaphorically to describe situations or people but can be hurtful and exclusionary. Ableist language can reinforce negative stereotypes and marginalize people with disabilities. Instead, choose language that is specific and non-derogatory. For example, instead of saying “I’m blind to that issue,” say “I didn’t notice that issue.”
-
-- **Be mindful of cultural differences:** Communication styles, gestures, and even the meaning of certain words can vary widely across cultures. It’s crucial to be aware that cultural backgrounds can affect how messages are received. For example, direct communication might be valued in some cultures, while others may prefer a more indirect approach. By being open to learning about and respecting cultural norms different from your own, you can avoid misunderstandings and communicate more effectively across diverse teams.
-
-Tips and techniques:
-
-- **Practice alternative phrases:** Replace common colloquialisms in your everyday language with neutral alternatives until they become second nature. For instance, instead of saying “I’m crazy busy,” practice saying “I’m extremely busy.”
-
-Questions to reflect:
-
-- What common phrases do you use that might have problematic origins? How can you replace them in your daily interactions?
-
-### Addressing inappropriate comments and behaviors
-
-There may be times when you need to address comments or behaviors that are inappropriate or unprofessional. Handling these situations with tact and professionalism is crucial to maintaining a respectful work environment.
-
-- **Manage professionalism and address issues directly:** When a colleague or client makes an inappropriate comment or behaves unprofessionally, it’s important to address the issue calmly and directly. For example, if someone uses a culturally insensitive term, you might say, “I understand that you may not have intended any harm, but that term can be seen as offensive. Let’s use [appropriate term] instead.” This approach upholds professional standards while showing respect for all parties involved.
-
-- **Handle sexist comments and sexual harassment:** Sexist remarks and any form of harassment should never be tolerated. If you encounter such behavior, it’s crucial to confront it immediately and follow your company’s policies on reporting and addressing these issues. For example, you could say, “That comment is inappropriate and goes against our commitment to respect and inclusion. I’m going to report this to HR as per our company policy.” Taking a firm stand not only supports those who might be affected but also reinforces a culture of respect.
-
-- **Establish clear boundaries:** Clear communication of your personal and professional boundaries is essential in fostering a respectful and safe environment. For example, if you’re uncomfortable with certain jokes or discussions, it’s okay to say, “I’m not comfortable with this conversation, let’s keep our discussions professional.” Encouraging others to do the same helps build a culture where everyone’s boundaries are respected.
-
-Tips and techniques:
-
-- **Use a prepared response:** Have a few neutral, prepared responses ready for addressing inappropriate comments. For example, “That language might not be appropriate here,” can help you address the issue without escalating the situation.
-- **Follow up in private:** If addressing the issue publicly seems difficult, consider having a private conversation with the person afterward. Use this as an opportunity to explain why the behavior or language was problematic and how it can be avoided in the future.
-- **Document incidents:** If you observe or experience inappropriate behavior, document the incident with details about what was said or done, who was involved, and the context. This documentation can be useful if further action is required.
-
-Questions to reflect:
-
-- Think about a time when you witnessed an inappropriate comment or behavior. How did you react, and what might you do differently now?
-- How comfortable do you feel addressing inappropriate comments directly? What steps can you take to build your confidence in these situations?
-
-### Promoting a culture of sensitivity and respect
-
-Promoting a culture of sensitivity and respect goes beyond avoiding negative behaviors; it involves actively encouraging positive, inclusive practices in your workplace.
-
-- **Encourage open dialogue:** Creating an environment where team members feel comfortable discussing sensitive topics is essential for fostering inclusion. Encourage questions and discussions around diversity, equity, and inclusion by inviting input during meetings or setting up dedicated forums for these conversations. For example, you might say, “I’d like to hear everyone’s thoughts on how we can make our team meetings more inclusive. What are your suggestions?”
-
-- **Lead by example:** As a consultant, your behavior sets the tone for your interactions with clients and colleagues. By consistently demonstrating sensitivity, inclusivity, and respect, you model the behavior you expect from others. For instance, you might consistently use inclusive language, acknowledge your own mistakes, and actively listen to others’ perspectives. When you lead by example, you help to create a workplace culture that values and respects everyone’s contributions.
-
-Tips and techniques:
-
-- **Recognize inclusive behavior:** Publicly acknowledge and praise inclusive communication practices when you observe them. This not only reinforces positive behavior but also encourages others to follow suit.
-
-Questions to reflect:
-
-- When was the last time you encouraged someone to share their thoughts in a meeting? How can you improve in making sure all voices are heard?
-- How do you typically react to differing communication styles in your team? What adjustments can you make to better accommodate these differences?
-
-### Exercise
-
-TODO
-
-Have a conversation with someone about the language that they use and how it’s affecting the team.
-
-#### Creative Writing: “Rewrite the Script”
-
-- **Purpose:** To practice transforming problematic communication into respectful, inclusive dialogue.
-- **Setup:** Provide participants with scripts of problematic or outdated communication examples (e.g., a condescending email, a biased meeting conversation).
-- **Execution:** In pairs or small groups, participants must rewrite the script to align with the inclusive communication principles discussed in the training. The new scripts should maintain professionalism, respect, and inclusivity while conveying the original message.
-- **Twist:** After rewriting, groups act out their new scripts, showcasing how the communication style has improved.
-- **Debrief:** Compare the original and rewritten versions, discussing the impact of the changes on the tone, clarity, and inclusivity of the message.
-
 ## Dealing with unclear or ineffective communication
 
 Even the best communicators can encounter situations where their messages are misunderstood or overlooked.
@@ -3333,7 +3359,7 @@ Tips and techniques:
 - **Clarify immediately:** If you notice repeated questions or silence, pause and ask directly if there’s anything unclear. This can prevent miscommunication from escalating.
 - **Request feedback:** After sharing information, ask the recipient to summarize what they’ve understood. This can quickly reveal any gaps in understanding.
 - **Document key points:** Write down or email important details from discussions. This reduces the chance of information being forgotten or misinterpreted.
-- **Simplify your language:** Avoid using complex terms or jargon unless you’re certain the other party is familiar with them. Use simple, clear language to convey your message.
+- **Simplify your language:** Avoid using complex terms or jargon unless you’re certain the other person is familiar with them. Use simple, clear language to convey your message.
 
 Questions to reflect:
 
@@ -3353,7 +3379,7 @@ Once you’ve identified a communication breakdown, the next step is to realign 
 
 **Restating and reinforcing key messages: use repetition and summary to emphasize critical points:** To ensure that your main points are understood, don’t hesitate to restate them in different ways. Summarize the key takeaways at the end of a conversation or in a follow-up email. For example, after a meeting, you might send a summary email that outlines the decisions made and the next steps, reinforcing what was discussed.
 
-**Achieving alignment by summarizing the other party’s perspective accurately: confirm you’ve understood their position and make sure both parties are on the same page:** One effective way to avoid misunderstandings is to restate what the other person has said in your own words. This technique, often called “mirroring,” helps confirm that you’ve understood their perspective correctly. For example, you might say, “Just to make sure we’re aligned, I understand that you’re concerned about the project timeline because of X, Y, and Z — does that sound right?”
+**Achieving alignment by summarizing the other person’s perspective accurately: confirm you’ve understood their position and make sure both parties are on the same page:** One effective way to avoid misunderstandings is to restate what the other person has said in your own words. This technique, often called “mirroring,” helps confirm that you’ve understood their perspective correctly. For example, you might say, “Just to make sure we’re aligned, I understand that you’re concerned about the project timeline because of X, Y, and Z — does that sound right?”
 
 **Seeking input and collaboration: involve others in finding a solution to the communication breakdown, fostering a collaborative approach to resolving issues:** When communication issues arise, invite others to help resolve them. This might involve brainstorming solutions together or getting feedback on how to improve communication moving forward. For example, if there’s a recurring issue with how tasks are assigned, you might work with the team to create a more streamlined process.
 
@@ -3401,7 +3427,28 @@ Questions to reflect:
 - Can you think of a time when your emotions influenced how you communicated? How did it affect the outcome of that interaction?
 - How well do you practice empathy in your communications? What steps could you take to better understand others’ perspectives before responding?
 
-### Exercise
+### Addressing inappropriate comments and behaviors
+
+There may be times when you need to address comments or behaviors that are inappropriate or unprofessional. Handling these situations with tact and professionalism is crucial to maintaining a respectful work environment.
+
+- **Manage professionalism and address issues directly:** When a colleague or client makes an inappropriate comment or behaves unprofessionally, it’s important to address the issue calmly and directly. For example, if someone uses a culturally insensitive term, you might say, “I understand that you may not have intended any harm, but that term can be seen as offensive. Let’s use [appropriate term] instead.” This approach upholds professional standards while showing respect for all parties involved.
+
+- **Handle sexist comments and sexual harassment:** Sexist remarks and any form of harassment should never be tolerated. If you encounter such behavior, it’s crucial to confront it immediately and follow your company’s policies on reporting and addressing these issues. For example, you could say, “That comment is inappropriate and goes against our commitment to respect and inclusion. I’m going to report this to HR as per our company policy.” Taking a firm stand not only supports those who might be affected but also reinforces a culture of respect.
+
+- **Establish clear boundaries:** Clear communication of your personal and professional boundaries is essential in fostering a respectful and safe environment. For example, if you’re uncomfortable with certain jokes or discussions, it’s okay to say, “I’m not comfortable with this conversation, let’s keep our discussions professional.” Encouraging others to do the same helps build a culture where everyone’s boundaries are respected.
+
+Tips and techniques:
+
+- **Use a prepared response:** Have a few neutral, prepared responses ready for addressing inappropriate comments. For example, “That language might not be appropriate here,” can help you address the issue without escalating the situation.
+- **Follow up in private:** If addressing the issue publicly seems difficult, consider having a private conversation with the person afterward. Use this as an opportunity to explain why the behavior or language was problematic and how it can be avoided in the future.
+- **Document incidents:** If you observe or experience inappropriate behavior, document the incident with details about what was said or done, who was involved, and the context. This documentation can be useful if further action is required.
+
+Questions to reflect:
+
+- Think about a time when you witnessed an inappropriate comment or behavior. How did you react, and what might you do differently now?
+- How comfortable do you feel addressing inappropriate comments directly? What steps can you take to build your confidence in these situations?
+
+### Exercise: dealing with unclear or ineffective communication
 
 TODO
 
@@ -3536,7 +3583,7 @@ Tips and techniques:
 
 - **Role-play objections:** Before a meeting, role-play potential objections with a colleague to prepare your responses and strengthen your position.
 - **Use data to back up your points:** When addressing objections, provide data or examples to support your reasoning, which can help counter negative perceptions.
-- **Acknowledge valid concerns first:** Start by acknowledging any valid points in the objections before presenting your counterarguments. This shows respect for the other party’s perspective.
+- **Acknowledge valid concerns first:** Start by acknowledging any valid points in the objections before presenting your counterarguments. This shows respect for the other person’s perspective.
 
 Questions to reflect:
 
@@ -3644,7 +3691,7 @@ Questions to reflect:
 - How do you communicate the seriousness of an escalation to internal teams effectively?
 - What can you learn from past escalations to improve your internal escalation process?
 
-### Exercise
+### Exercise: handling escalations
 
 TODO
 
@@ -3847,7 +3894,7 @@ Questions to reflect:
 - What are some ways to make sure that AI-generated content doesn’t come across as impersonal or generic to your clients?
 - How can you maintain strong, trust-based relationships with clients while still leveraging AI for efficiency?
 
-### Exercise
+### Exercise: effective use of tools
 
 TODO: take some communication written by an AI and improve it.
 
@@ -3966,7 +4013,7 @@ Questions to reflect:
 - Reflect on a time when you struggled to accept feedback. What made it difficult, and how could you approach similar situations differently in the future?
 - What steps can you take to make sure you actively apply feedback rather than just acknowledging it? How can you measure your progress over time?
 
-#### Exercise
+#### Exercise: feedback
 
 TODO
 
@@ -4040,7 +4087,7 @@ Questions to reflect:
 - How do you integrate feedback into your daily routines without it feeling forced or overwhelming?
 - What’s one communication habit you would like to change, and what steps will you take to address it?
 
-### Exercise
+### Exercise: continuous improvement
 
 TODO
 
