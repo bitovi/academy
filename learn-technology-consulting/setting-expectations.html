@@ -522,25 +522,13 @@ covering CanJS core libraries.">
 <li>Be careful to never over promise, especially when there are external dependencies or unknowns</li>
 <li>Pad estimates to account for external dependencies and unknowns</li>
 </ul>
-<h2 id="the-consulting-trifecta">The Consulting Trifecta</h2>
-<p><img src="../static/img/technology-consulting/goodfastcheap.png" alt="Good fast cheap" width="640"/></p>
-<p>You may have heard the following maxim: cheap, fast, good… pick two. While this may be useful (and true) for sales discussions, a more useful variation for project planning is:</p>
-<p>Scope, schedule, resources… pick two.</p>
-<p>This means that any project lead or PM can “fix”:</p>
-<ul>
-<li>the scope and number of resources is fixed, the schedule must be variable</li>
-<li>the number of resources and schedule is fixed, the scope must be variable</li>
-<li>the scope and schedule is fixed, the number of resources must be variable</li>
-</ul>
-<p>Think of a project as a balloon with three edges. If you squeeze two edges, the third must expand. If you squeeze all three edges, the balloon will pop.</p>
-<p>Bad or inexperienced project managers will attempt to tell you that all three factors are already set, and we must “work harder” to meet expectations. This is a trap and we must push back immediately or we’ll be setting ourselves up for failure. No matter how small the project, there must be an opportunity at the start for the team to set at least one of these factors.</p>
 <h2 id="taking-complete-ownership-of-tasks-and-the-overall-project-goals">Taking complete ownership of tasks and the overall project goals</h2>
 <p>Taking ownership means not only managing your specific responsibilities but also contributing to the broader success of the project. By embracing ownership, you can proactively solve problems, ensure effective communication, and drive the project toward its goals.</p>
 <h3 id="define-and-embrace-ownership">Define and embrace ownership</h3>
 <p>Ownership means understanding your role within the project and how your work impacts the overall goals. It’s about taking initiative, being accountable, and committing to delivering real value.</p>
 <ul>
 <li><strong>Understand the objectives:</strong> Make sure you understand the project’s aims and your role in achieving them. Break down big goals into smaller, actionable steps to make progress measurable and manageable. For example, if the project goal is to launch a new feature, set objectives for design, development, testing, and deployment phases.</li>
-<li><strong>Clarify roles and responsibilities:</strong> Clearly define what you are expected to do. Understand the scope of your tasks and how these tasks align with the wider project goals. If you’re not sure, ask!</li>
+<li><strong>Clarify roles and responsibilities:</strong> Clearly define your tasks and how they fit into the larger project. Know who is responsible for related tasks and where your work overlaps with theirs. For example, a backend developer should confirm if they’re responsible for defining the API or if someone else is handling architecture. If you’re not sure, ask!</li>
 <li><strong>Identify the Directly Responsible Individuals (DRIs):</strong> Assign a DRI for each key component of the project. A DRI is the person accountable for the successful completion of a specific task or deliverable, ensuring there is clear ownership and no ambiguity about who is in charge.</li>
 </ul>
 <p>Tips and techniques:</p>
@@ -702,10 +690,11 @@ Additionally, engaging stakeholders is critical for gaining support and ensuring
 <li><strong>Brainstorm new tools and process tweaks:</strong> Brainstorm potential solutions, including new tools or adjustments to existing processes, to address the identified gaps. Make a pros and cons list for each option to understand the ramifications of choosing each one.</li>
 <li><strong>Consider the cost:</strong> Consider the ease of implementation, expected benefits, and total cost. For example, changing some processes (like meetings) can be no cost while buying tooling for everyone can be costly.</li>
 <li><strong>Identify <em>all</em> the stakeholders:</strong> Figure out who has a vested interest in the change and who you exactly you will need approval from to move forward.</li>
-<li><strong>Plan integration strategies:</strong> Develop strategies for integrating new solutions with existing systems, ensuring minimal disruption. Plan for any necessary data migration, compatibility checks, and integration testing.</li>
 <li><strong>Get early feedback:</strong> Ask another teammate, Principal, etc. for feedback on your ideas before taking it to the key decision makers. Sharing your ideas as an RFC (Request For Comments) gives others an opportunity to offer suggestions or raise concerns.</li>
+<li><strong>Plan integration strategies:</strong> Develop strategies for integrating new solutions with existing systems, ensuring minimal disruption. Plan for any necessary data migration, compatibility checks, and integration testing.</li>
 <li><strong>Present your findings or a Proof of Concept (POC):</strong> Create a clear, data-backed presentation to communicate your findings and proposed changes to stakeholders. If applicable, POCs can demonstrate the change more effectively and make it engaging. Interactive sessions help stakeholders experience the potential improvements firsthand.</li>
 <li><strong>Address concerns:</strong> Prepare to address stakeholder concerns and answer questions to build support and consensus. Be transparent about potential challenges and your plans to mitigate them.</li>
+<li><strong>Engage in open dialogue:</strong> Encourage questions and feedback to ensure that the proposal is understood and that stakeholders feel heard.</li>
 </ul>
 <p>Tips and techniques:</p>
 <ul>
@@ -766,6 +755,18 @@ When leadership or a peer is hindering progress, it’s crucial to approach the 
 <h2 id="pushing-back">Pushing back</h2>
 <p>Inexperienced consultants tend to be pushovers and think of project constraints as fixed and unchangeable.</p>
 <p>Experienced consultants recognize that nothing in a project is truly unchangeable. The key to their success is identifying the largest problems standing in the way of the project success and pushing back on them, as hard as necessary.</p>
+<h3 id="the-consulting-trifecta">The Consulting Trifecta</h3>
+<p><img src="../static/img/technology-consulting/goodfastcheap.png" alt="The Venn diagram titled “GOOD, FAST, or CHEAP? Please choose 2” features three overlapping circles representing “GOOD,” “FAST,” and “CHEAP.” The overlaps show that choosing good and fast leads to high cost, good and cheap results in long duration, and fast and cheap causes low quality. The center note, “* You’re Dreaming,” suggests achieving all three is unrealistic." /></p>
+<p>You may have heard the following maxim: cheap, fast, good… pick two. While this may be useful (and true) for sales discussions, a more useful variation for project planning is:</p>
+<p>Scope, schedule, resources… pick two.</p>
+<p>This means that any project lead or PM can “fix”:</p>
+<ul>
+<li>the scope and number of resources is fixed, the schedule must be variable</li>
+<li>the number of resources and schedule is fixed, the scope must be variable</li>
+<li>the scope and schedule is fixed, the number of resources must be variable</li>
+</ul>
+<p>Think of a project as a balloon with three edges. If you squeeze two edges, the third must expand. If you squeeze all three edges, the balloon will pop.</p>
+<p>Bad or inexperienced project managers will attempt to tell you that all three factors are already set, and we must “work harder” to meet expectations. This is a trap and we must push back immediately or we’ll be setting ourselves up for failure. No matter how small the project, there must be an opportunity at the start for the team to set at least one of these factors.</p>
 <h3 id="identifying-unreasonable-expectations">Identifying unreasonable expectations</h3>
 <p>Understanding and identifying unreasonable expectations is the first step in managing client demands.</p>
 <ul>
@@ -786,9 +787,9 @@ When leadership or a peer is hindering progress, it’s crucial to approach the 
 <h3 id="effective-communication-techniques">Effective communication techniques</h3>
 <p>Clear and effective communication is essential to address and manage client expectations appropriately.</p>
 <ul>
+<li><strong>Practice active listening:</strong> Understand the client’s underlying needs by listening empathetically. If you’re preparing a response in your head while they’re still talking, you’re not actively listening.</li>
 <li><strong>Be transparent and direct:</strong> Always convey what your team can realistically achieve. Avoid overpromising to please the client initially. For example, if a client asks for a complex feature that requires six months, explain why it’s not possible to deliver it in three.</li>
 <li><strong>Support with evidence:</strong> Use data and past project experiences to justify your stance. For instance, create estimates for the individual pieces of work to show how they exceed the expected timeline.</li>
-<li><strong>Practice active listening:</strong> Understand the client’s underlying needs by listening empathetically. If you’re preparing a response in your head while they’re still talking, you’re not actively listening.</li>
 </ul>
 <p>Tips and techniques:</p>
 <ul>
@@ -808,14 +809,10 @@ When leadership or a peer is hindering progress, it’s crucial to approach the 
 </ul>
 <p>Tips and techniques:</p>
 <ul>
-<li><p><strong>Define scope clearly:</strong> At the outset of any project, clearly define the scope, deliverables, timelines, and responsibilities. Ensure these are documented and agreed upon by all parties.</p></li>
-<li><p><strong>Refer to contracts and agreements:</strong> When a client requests something outside of the agreed scope, politely refer back to the original contract or agreement. Highlight what was initially agreed upon and explain how the new request falls outside these boundaries.</p></li>
-<li><p><strong>Be consistent:</strong> Consistently enforce boundaries without wavering. If you allow one exception, it sets a precedent for future requests, making it harder to maintain those boundaries.</p></li>
-<li><p><strong>Communicate early and often:</strong> Regularly update the client on progress and any potential issues that might affect the project. Early communication can prevent misunderstandings and manage expectations.</p></li>
-<li><p><strong>Understand the request:</strong> Fully understand why the client is making the request. What are their underlying needs and objectives?</p></li>
-<li><p><strong>Assess feasibility:</strong> Evaluate whether the request is feasible within the current scope, timeline, and budget. If it’s not, think creatively about how you can still meet the client’s needs.</p></li>
-<li><p><strong>Offer solutions:</strong> Present alternative solutions that achieve the client’s objectives without compromising the project’s scope or quality. For instance, if a client wants an additional feature that is out of scope, propose a phased approach where the feature is included in a future phase of the project.</p></li>
-<li><p><strong>Highlight benefits:</strong> Clearly explain the benefits of the proposed alternatives, how they align with the client’s goals, and why they are more practical or effective than the original request.</p></li>
+<li><strong>Be consistent:</strong> Consistently enforce boundaries without wavering. If you allow one exception, it sets a precedent for future requests, making it harder to maintain those boundaries.</li>
+<li><strong>Refer to contracts and agreements:</strong> When a client requests something outside of the agreed scope, politely refer back to the original contract or agreement. Highlight what was initially agreed upon and explain how the new request falls outside these boundaries.</li>
+<li><strong>Understand the request:</strong> Fully understand why the client is making the request. What are their underlying needs and objectives?</li>
+<li><strong>Offer solutions:</strong> Present alternative solutions that achieve the client’s objectives without compromising the project’s scope or quality. For instance, if a client wants an additional feature that is out of scope, propose a phased approach where the feature is included in a future phase of the project.</li>
 </ul>
 <p>Questions to reflect:</p>
 <ul>
@@ -831,16 +828,10 @@ When leadership or a peer is hindering progress, it’s crucial to approach the 
 </ul>
 <p>Tips and techniques:</p>
 <ul>
-<li><p><strong>Storytelling:</strong> Use storytelling to make your points more relatable and compelling, sharing relevant past successes and challenges.</p></li>
-<li><p><strong>Ethos, Pathos, Logos:</strong> Structure your arguments around credibility (ethos), emotional appeal (pathos), and logical reasoning (logos).</p></li>
-<li><p><strong>Use data and evidence:</strong> Support your points with data, case studies, or examples from past projects. This adds credibility to your arguments and helps clients understand the rationale behind your recommendations.</p></li>
-<li><p><strong>Ask questions:</strong> Use open-ended questions to understand the client’s priorities and constraints better. This can help uncover the root cause of their requests and allow you to address their concerns more effectively.</p></li>
-<li><p><strong>Be assertive, not aggressive:</strong> Communicate confidently and assertively, but remain respectful and empathetic. Acknowledge the client’s needs and concerns while clearly explaining why certain requests may not be feasible.</p></li>
-<li><p><strong>Stay solution-focused:</strong> Keep the conversation focused on finding solutions. Avoid getting bogged down in problems or limitations and instead, direct the discussion towards what can be achieved.</p></li>
-<li><p><strong>Demonstrate expertise:</strong> Share your expertise through case studies, past successes, and industry knowledge. Show how your experience can bring value to the client’s project.</p></li>
-<li><p><strong>Be transparent:</strong> Be honest about what you can and cannot do. Transparency builds trust and reinforces your credibility.</p></li>
-<li><p><strong>Deliver consistently:</strong> Consistently deliver high-quality work on time and within budget. Reliability reinforces your reputation and makes clients more likely to trust your judgment.</p></li>
-<li><p><strong>Communicate effectively:</strong> Regularly communicate with the client about progress, challenges, and solutions. Keeping the client informed builds trust and demonstrates your commitment to their success.</p></li>
+<li><strong>Ask questions:</strong> Use open-ended questions to understand the client’s priorities and constraints better. This can help uncover the root cause of their requests and allow you to address their concerns more effectively.</li>
+<li><strong>Use data and evidence:</strong> Support your points with data, case studies, or examples from past projects. This adds credibility to your arguments and helps clients understand the rationale behind your recommendations.</li>
+<li><strong>Be assertive, not aggressive:</strong> Communicate confidently and assertively, but remain respectful and empathetic. Acknowledge the client’s needs and concerns while clearly explaining why certain requests may not be feasible.</li>
+<li><strong>Stay solution-focused:</strong> Keep the conversation focused on finding solutions. Avoid getting bogged down in problems or limitations and instead, direct the discussion towards what can be achieved.</li>
 </ul>
 <p>Questions to reflect:</p>
 <ul>
@@ -912,25 +903,11 @@ When leadership or a peer is hindering progress, it’s crucial to approach the 
 <li><strong>Understand stakeholder perspectives:</strong> Think through what each party stands to gain or lose and tailor your message to address these concerns effectively. Understanding different viewpoints helps in framing your message in a way that resonates with all stakeholders.</li>
 <li><strong>Plan your approach:</strong> Lay out your main points clearly and decide the best way to explain them convincingly. Structuring your argument logically makes it easier for others to follow and understand.</li>
 <li><strong>Anticipate responses:</strong> Think about the possible pushback and emotional responses you might get, and prepare thoughtful, calm replies. Being prepared for objections allows you to address concerns confidently and maintain control of the conversation.</li>
-<li><strong>Develop emotional intelligence:</strong> Enhance your ability to understand and manage emotional responses, both your own and those of others. High emotional intelligence helps in navigating sensitive conversations and maintaining a positive tone.</li>
 </ul>
 <p>Tips and techniques:</p>
 <ul>
 <li><strong>Role reversal:</strong> Put yourself in the shoes of your stakeholders to better understand their perspectives and concerns.</li>
-</ul>
-<h3 id="developing-emotional-intelligence">Developing emotional intelligence</h3>
-<p>Emotional intelligence is a critical skill for consultants, allowing you to navigate complex interpersonal dynamics and foster positive client relationships. Developing your emotional intelligence involves several key components:</p>
-<ul>
-<li><strong>Self-awareness:</strong> Learn to recognize your own emotions and understand how they affect your thoughts and behavior. This self-awareness allows you to stay in control during high-stakes interactions and reflect on how your emotions influence your decision-making and communication style.</li>
-<li><strong>Self-regulation:</strong> Practice techniques to manage your emotions healthily and productively. This could involve deep-breathing exercises, mindfulness practices, or taking a moment to pause before responding. Effective self-regulation helps you maintain professionalism and poise, even in challenging situations.</li>
-<li><strong>Motivation:</strong> Identify your intrinsic motivators and set personal goals aligned with them. Understanding what drives you can enhance your focus and resilience, ensuring you remain committed and enthusiastic about your work.</li>
-<li><strong>Empathy:</strong> Improve active listening and understanding of others’ perspectives. Empathy allows you to connect with clients and other Bitovians on a deeper level, fostering trust and cooperation. Practice empathy by listening without interrupting and validating others’ feelings.</li>
-<li><strong>Social skills:</strong> Build rapport, enhance communication, and develop conflict resolution strategies. Strong social skills enable you to navigate complex social landscapes, mediate disputes effectively, and build lasting, positive relationships with clients and team members.</li>
-</ul>
-<p>Tips and techniques:</p>
-<ul>
-<li><strong>Emotional labeling:</strong> Practice identifying and labeling emotions in yourself and others during interactions to improve emotional recognition.</li>
-<li><strong>Breathing techniques:</strong> Use techniques like the 4-7-8 breathing method to stay composed and manage stress.</li>
+<li><strong>Develop emotional intelligence:</strong> Enhance your ability to understand and manage emotional responses, both your own and those of others. High emotional intelligence helps in navigating sensitive conversations and maintaining a positive tone.</li>
 </ul>
 <h3 id="delivering-your-message-effectively">Delivering your message effectively</h3>
 <p>When it’s time to convey your message, the manner of delivery can be just as important as the content itself.</p>
@@ -945,7 +922,6 @@ When leadership or a peer is hindering progress, it’s crucial to approach the 
 <ul>
 <li><strong>Use clear, professional language:</strong> Communicate in a straightforward and respectful manner, avoiding jargon unless everyone understands it. Clarity helps prevent misunderstandings and keeps the focus on the message.</li>
 <li><strong>Use the “data sandwich” method:</strong> Begin with data to present the problem, explain what it means, and finish with more data to back up your conclusion. This method reinforces your points with evidence, making them harder to dismiss.</li>
-<li><strong>Language refinement:</strong> Use apps or tools to refine your language, ensuring it’s clear, professional, and free of unnecessary jargon.</li>
 <li><strong>Clarity drills:</strong> Practice delivering your main points in one to two sentences to ensure clarity and conciseness.</li>
 </ul>
 <h3 id="following-up-on-your-message">Following up on your message</h3>
@@ -959,18 +935,6 @@ When leadership or a peer is hindering progress, it’s crucial to approach the 
 <ul>
 <li><strong>Follow-up schedule:</strong> Establish a follow-up schedule with specific dates and times to discuss progress and next steps.</li>
 <li><strong>Summarization emails:</strong> Send a concise summary email after your meeting, highlighting key points and agreed-upon actions.</li>
-</ul>
-<h3 id="creating-a-feedback-friendly-culture">Creating a feedback-friendly culture</h3>
-<p>Creating a feedback-friendly culture is essential for continuous improvement and fostering an environment of trust and open communication. Here’s how to cultivate this culture:</p>
-<ul>
-<li><strong>Lead by example:</strong> Show how open you are to feedback in your own work, proving it’s a crucial part of improving. Share examples of how feedback has positively impacted your performance and decision-making. This demonstrates that feedback is a valuable tool rather than a threat.</li>
-<li><strong>Set the tone early:</strong> Make it clear from the beginning that honest, constructive communication is valued in your consulting work. Establish norms and expectations around feedback in initial meetings and reiterate its importance throughout the project. Encourage an atmosphere where team members feel safe to express their ideas and concerns.</li>
-<li><strong>Consider cultural differences:</strong> Recognize that different cultures have varying norms around hierarchy and directness. For instance, in cultures that value indirect communication, feedback might be framed more diplomatically, while in more direct cultures, straightforwardness can be appreciated. Being culturally sensitive in your approach ensures that feedback is received positively and constructively.</li>
-</ul>
-<p>Tips and techniques:</p>
-<ul>
-<li><strong>Feedback rituals:</strong> Establish regular rituals, such as end-of-project reviews, where feedback is a standard part of the process.</li>
-<li><strong>Anonymous feedback options:</strong> Provide anonymous feedback tools to encourage honest input from team members who may feel uncomfortable speaking up directly.</li>
 </ul>
 <h3 id="exercise">Exercise</h3>
 <p>Questions to reflect:</p>
