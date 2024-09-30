@@ -67,7 +67,7 @@ To make complex ideas more relatable:
 - **Employ visual aids:** Use diagrams, charts, or flowcharts to represent processes visually, helping stakeholders see how elements interconnect.
 - **Chunk information:** Present information in small, digestible segments with clear labels. In presentations, use bullet points or numbered lists to separate key points.
 - **Practice with laypersons:** Explain technical concepts to someone outside your field to ensure your explanation is clear and effective.
-- **Use the ’one idea per sentence’ rule:** Convey only one main idea per sentence to avoid overwhelming your audience.
+- **Use the “one idea per sentence” rule:** Convey only one main idea per sentence to avoid overwhelming your audience.
 
 To structure your communication effectively:
 
@@ -251,7 +251,7 @@ Tips and techniques:
 - **Rephrase negative statements:** Regularly review your communication for negative phrases and practice rewording them positively. For instance, change, “We can’t meet this deadline” to, “Let’s explore how we can adjust our priorities to deliver quality work.”
 - **Be mindful of cultural nuances:** Research or ask about preferred communication styles of individuals from different cultural backgrounds to avoid unintended offense or miscommunication.
 
-### Exercise: communication plan
+### Exercise: Communication plan
 
 Skim through the scenarios below and choose one that resonates with you.
 
@@ -284,7 +284,7 @@ You’re a Backend Developer working on optimizing the API for a social media pl
 - **Audience:** Frontend developers.
 - **Purpose:** Collaborate on how to handle large data sets and improve user experience.
 - **Main point:** Pagination will be introduced, but it will require restructuring the existing API endpoints.
-- **Supporting details**:
+- **Supporting details:**
   - Explain that implementing pagination will improve performance for large data sets.
   - Highlight that restructuring the endpoints is necessary, but it will take time due to the volume of changes required.
   - Acknowledge their performance issues, but explain that some delays are caused by the backend needing to fetch and process large datasets.
@@ -295,7 +295,7 @@ You’re a Backend Developer working on optimizing the API for a social media pl
 - **Audience:** Client (who is adding new features).
 - **Purpose:** Set realistic expectations regarding performance improvements and feature development.
 - **Main point:** While the team is optimizing the API, adding more features can slow down progress and introduce complexity.
-- **Supporting details**:
+- **Supporting details:**
   - Explain that optimizing the search queries and aggregating data from multiple services is the current priority to improve user experience.
   - Mention that adding new features at this stage may delay these performance optimizations.
   - Suggest a balance between new features and performance improvements to meet user retention goals.
@@ -306,7 +306,7 @@ You’re a Backend Developer working on optimizing the API for a social media pl
 - **Audience:** Project Manager.
 - **Purpose:** Align on performance improvement priorities and manage scope creep from the client.
 - **Main point:** Performance improvements are achievable, but ongoing feature requests are complicating the optimization process.
-- **Supporting details**:
+- **Supporting details:**
   - Outline the current performance challenges, especially with search queries and data aggregation.
   - Highlight that the client’s feature requests are adding complexity to the optimization efforts.
   - Propose a focus on performance improvements before implementing further features.
@@ -317,7 +317,7 @@ You’re a Backend Developer working on optimizing the API for a social media pl
 - **Audience:** DevOps team.
 - **Purpose:** Collaborate on improving infrastructure to boost API performance while ensuring minimal code rewrites.
 - **Main point:** Any infrastructure changes must be balanced with the feasibility of backend code modifications.
-- **Supporting details**:
+- **Supporting details:**
   - Acknowledge their suggestions for infrastructure changes and the potential benefits for performance.
   - Explain the code structure’s current state and how much of it might need to be rewritten for the new setup.
   - Suggest evaluating how infrastructure changes could be phased in without a complete rewrite of the codebase.
@@ -512,7 +512,7 @@ Social awareness helps you gauge the emotional tone of conversations and pick up
 
 #### Empathy
 
-Empathy is one of the most essential skills in communication, especially for consultants. It allows you to connect with clients, team members, and colleagues on a deeper level, fostering trust and understanding. In a consulting role, empathy helps you navigate complex interpersonal dynamics, understand client concerns, and address the emotional undercurrents that might affect project success. 
+Empathy is one of the most essential skills in communication, especially for consultants. It allows you to connect with clients, team members, and colleagues on a deeper level, fostering trust and understanding. In a consulting role, empathy helps you navigate complex interpersonal dynamics, understand client concerns, and address the emotional undercurrents that might affect project success.
 
 There are three distinct types of empathy — **cognitive**, **emotional**, and **compassionate** — and each plays a role in effective communication.
 
@@ -741,7 +741,7 @@ Questions to reflect:
 
 <a href="../static/img/technology-consulting/emotions-wheel.png"><img alt="This image is an emotions wheel, showing six core emotions: Fearful, Angry, Disgusted, Sad, Happy, and Surprised. Each core emotion radiates outward into more specific feelings, like Angry leading to Frustrated, Mad, and Annoyed, or Happy branching into Joyful, Proud, and Loving. The wheel is color-coded to visually organize the emotions and their related states." src="../static/img/technology-consulting/emotions-wheel.png" width="505"/></a>
 
-### Exercise: emotional intelligence
+### Exercise: Emotional intelligence
 
 TODO:
 
@@ -833,7 +833,7 @@ Questions to reflect:
 
 ### Ask clarifying questions
 
-Clarifying questions are essential for deepening your understanding of the speaker’s message and ensuring you’re not making assumptions. Always ask questions if something is unclear; don’t be embarrassed if you don’t understand something. In fact, asking for clarification shows confidence and a commitment to getting it right, not a lack of knowledge. Ironically, you never actually sound "dumb" when you ask for clarification; you come off as brave and intelligent.
+Clarifying questions are essential for deepening your understanding of the speaker’s message and ensuring you’re not making assumptions. Always ask questions if something is unclear; don’t be embarrassed if you don’t understand something. In fact, asking for clarification shows confidence and a commitment to getting it right, not a lack of knowledge. Ironically, you never actually sound “dumb” when you ask for clarification; you come off as brave and intelligent.
 
 **Use open-ended “What” and “How” questions** to explore the speaker’s thoughts and feelings more deeply, encouraging dialogue. Open-ended questions like “What are your thoughts on this?” or “How do you see this affecting the project timeline?” prompt the speaker to elaborate and provide more context, leading to a richer conversation.
 
@@ -847,9 +847,9 @@ Clarifying questions are essential for deepening your understanding of the speak
 
 Tips and techniques:
 
-- **Prepare a list of open-ended starters:** Have a mental or physical list of open-ended questions like “Can you walk me through...” or “What’s your perspective on...” to use during conversations.
+- **Prepare a list of open-ended starters:** Have a mental or physical list of open-ended questions like “Can you walk me through…” or “What’s your perspective on…” to use during conversations.
 - **Use silence as a tool:** After asking a clarifying question, allow silence to give the speaker time to think and provide a thoughtful response.
-- **Clarify jargon or unclear terms:** If the speaker uses technical terms or jargon, ask, “Can you explain what you mean by...” to help both parties have a mutual understanding.
+- **Clarify jargon or unclear terms:** If the speaker uses technical terms or jargon, ask, “Can you explain what you mean by…” to help both parties have a mutual understanding.
 - **Encourage dialogue:** Use open-ended questions like “What are your thoughts on this?” to prompt discussion.
 - **Get specific information:** Ask closed-ended questions like “Did we meet the deadline?” when you need precise answers.
 
@@ -1274,10 +1274,10 @@ Here are some example conversations that show paraphrasing in action:
 <details open>
 <summary>TPO with a DevOps engineer</summary>
 
-**Client:**  
+**Client:**
 “Right now, our deployment process is taking too long, and we’re running into issues with downtime during peak hours. We’ve been using a mix of manual and automated steps, but the manual part is where things keep going wrong. We need to find a way to automate more of the process so it’s more reliable and doesn’t disrupt the user experience. The last downtime incident caused a lot of frustration internally and with customers.”
 
-**Consultant:**  
+**Consultant:**
 “Sounds like the major issue is the manual steps in the deployment process, which are leading to errors and downtime, especially during peak hours. You want to increase automation to reduce that downtime and make things more reliable, especially after the last incident.”
 
 </details>
@@ -1285,10 +1285,10 @@ Here are some example conversations that show paraphrasing in action:
 <details>
 <summary>Product designer with a QA lead</summary>
 
-**Client:**  
+**Client:**
 “We’ve noticed that users are having a hard time with the new checkout process. Several testers have reported that the buttons are not clearly labeled, and some even missed a step entirely, which caused a lot of frustration. I think part of the issue is that the flow isn’t as intuitive as it could be, especially when users are moving quickly through it. I know we need to fix the button labels, but we may also need to rethink the overall flow to avoid these problems in the future.”
 
-**Consultant:**  
+**Consultant:**
 “So, you’re saying that button labeling is definitely part of the problem, but you think the bigger issue might be the flow itself — people are missing steps and getting frustrated because it’s not intuitive. Should we focus on improving both the labels and the overall user flow?”
 
 </details>
@@ -1296,10 +1296,10 @@ Here are some example conversations that show paraphrasing in action:
 <details>
 <summary>QA engineer with a developer</summary>
 
-**Client:**  
+**Client:**
 “We’re having trouble identifying what’s causing the performance bottleneck in the app. It’s most noticeable when the user switches between different pages quickly. We’ve tried optimizing the database queries, but it didn’t make much of a difference. I think it might be related to how the front-end components are handling state, but I’m not entirely sure. We’re running out of ideas, and we’re under pressure to get this fixed before the next release.”
 
-**Consultant:**  
+**Consultant:**
 “So, you’ve already tried optimizing the database queries but didn’t see much improvement, and now you suspect the issue might be with how the front-end components handle state when users switch pages. Are you thinking it’s a state management issue, or could there be something else at play that we haven’t considered?”
 
 </details>
@@ -1307,10 +1307,10 @@ Here are some example conversations that show paraphrasing in action:
 <details>
 <summary>Developer with a TPO</summary>
 
-**Client:**  
+**Client:**
 “We’ve been getting feedback from the users that the search functionality is slow, especially when there are multiple filters applied. We need it to be faster. But we also can’t compromise on the accuracy of the results or the way they’re displayed, because that’s key to how users engage with the product. And the leadership team is pushing for a release within the next month. So, we need this fixed quickly, but also without cutting corners on quality.”
 
-**Consultant:**  
+**Consultant:**
 “Okay, so what I’m hearing is that the search function’s speed is a top concern for users, especially with filters, but you don’t want to lose accuracy or the display quality. And on top of that, there’s pressure from leadership to get this resolved within a month. Does that capture everything?”
 
 </details>
@@ -1342,25 +1342,25 @@ Here are some examples of using mirroring, labeling, paraphrasing, and summarizi
 <details open>
 <summary>Team collaboration issue</summary>
 
-**Client:**  
+**Client:**
 “Our developers and designers are not on the same page, and it’s slowing down progress. They keep going back and forth about small details.”
 
-**Consultant:**  
+**Consultant:**
 “Not on the same page?”
 
-**Client:**  
+**Client:**
 “Yeah, the developers think the designs are too rigid, and the designers feel like the developers are ignoring their work.”
 
-**Consultant:**  
+**Consultant:**
 “It seems like there’s tension because the developers want more flexibility, while the designers are concerned about sticking to their vision.”
 
-**Client:**  
+**Client:**
 “Exactly. It’s like both sides are digging in their heels.”
 
-**Consultant:**  
+**Consultant:**
 “So, it sounds like the friction between the developers and designers is creating delays because each group feels the other isn’t valuing their perspective.”
 
-**Client:**  
+**Client:**
 “That’s right.”
 
 </details>
@@ -1368,31 +1368,31 @@ Here are some examples of using mirroring, labeling, paraphrasing, and summarizi
 <details>
 <summary>Project delay discussion</summary>
 
-**Client:**  
+**Client:**
 “We’re getting a lot of pushback from upper management about the timeline for this project. They don’t think it’s realistic.”
 
-**Consultant:**  
+**Consultant:**
 “Realistic?”
 
-**Client:**  
+**Client:**
 “Yeah, they think we’re behind schedule and won’t meet the deadline. But honestly, we’ve been doing everything we can. It’s just that every time we think we’re on track, another issue pops up.”
 
-**Consultant:**  
+**Consultant:**
 “Another issue pops up?”
 
-**Client:**  
+**Client:**
 “Exactly. It’s annoying because it feels like no matter how much we plan, something unexpected always throws us off.”
 
-**Consultant:**  
+**Consultant:**
 “It sounds like you’re feeling frustrated because, despite your team’s best efforts, new challenges keep emerging.”
 
-**Client:**  
+**Client:**
 “Yeah, it’s like we can’t catch a break.”
 
-**Consultant:**  
+**Consultant:**
 “So, if I’m hearing this right, upper management is concerned about the project timeline, and your team feels frustrated because these unexpected issues keep derailing the progress you’re making.”
 
-**Client:**  
+**Client:**
 “That’s it exactly.”
 
 </details>
@@ -1400,31 +1400,31 @@ Here are some examples of using mirroring, labeling, paraphrasing, and summarizi
 <details>
 <summary>Feature request conversation</summary>
 
-**Client:**  
+**Client:**
 “I feel like the feature we’re working on is just too complicated. It’s taking up a lot more time than I initially expected, and the team is getting frustrated.”
 
-**Consultant:**  
+**Consultant:**
 “Too complicated?”
 
-**Client:**  
+**Client:**
 “Yeah, it has so many moving parts. I thought we could get it done quickly, but it’s turning into a bigger task than we anticipated.”
 
-**Consultant:**  
+**Consultant:**
 “It sounds like you’re feeling overwhelmed by how complex this feature has become.”
 
-**Client:**  
+**Client:**
 “Exactly. It’s not what I expected, and the team’s starting to lose motivation.”
 
-**Consultant:**  
+**Consultant:**
 “You’re feeling the pressure because the project has expanded beyond what was originally planned, and now the team’s morale is dropping.”
 
-**Client:**  
+**Client:**
 “Yeah, that’s it.”
 
-**Consultant:**  
+**Consultant:**
 “So, the challenge is the feature is more complicated than expected, it’s taking longer, and the team is starting to feel discouraged by the delays. You’re concerned about both the timeline and the team’s motivation.”
 
-**Client:**  
+**Client:**
 “Spot on.”
 
 </details>
@@ -1432,31 +1432,31 @@ Here are some examples of using mirroring, labeling, paraphrasing, and summarizi
 <details>
 <summary>Budget constraints conversation</summary>
 
-**Client:**  
+**Client:**
 “We’re running into budget issues, and it’s making it hard to justify some of the extra features we wanted to add.”
 
-**Consultant:**  
+**Consultant:**
 “Budget issues?”
 
-**Client:**  
+**Client:**
 “Yeah, we’ve gone over our initial estimates, and now we’re looking at cutting some features or finding alternative solutions.”
 
-**Consultant:**  
+**Consultant:**
 “It sounds like you’re feeling stuck because the budget constraints are forcing you to reconsider the project’s scope.”
 
-**Client:**  
+**Client:**
 “Exactly. We had all these great ideas for features, but now we might have to scale back.”
 
-**Consultant:**  
+**Consultant:**
 “Scaling back after all the planning must be frustrating.”
 
-**Client:**  
+**Client:**
 “Yeah, it feels like we’re losing part of the vision for the project.”
 
-**Consultant:**  
+**Consultant:**
 “So, if I understand correctly, the project is running over budget, and now you’re in a tough spot where you have to make hard decisions about which features to keep, which feels like a setback to the original vision.”
 
-**Client:**  
+**Client:**
 “That’s correct.”
 
 </details>
@@ -1471,7 +1471,7 @@ Questions to reflect:
 - When have you experienced the benefits of summarizing in a conversation? How did it help provide clarity and mutual understanding?
 - How might summarizing more often change the quality of your client interactions?
 
-### Exercise: small talk questions
+### Exercise: Small talk questions
 
 With a partner, ask them to pick one of the questions below. Then, ask them the question and actively listen to their response. Use mirroring and labeling to learn more about them and make them feel heard.
 
@@ -1811,7 +1811,7 @@ Questions to reflect:
 - Recall a time when your audience struggled to understand a technical concept. How could you have simplified your explanation?
 - What are some of your go-to analogies or metaphors? How effective are they in helping others understand complex topics?
 
-### Exercise: communication styles
+### Exercise: Communication styles
 
 TODO:
 
@@ -2038,7 +2038,7 @@ This structured approach is clear and familiar to technical audiences, making yo
 - What are some recurring challenges your clients face? How can you incorporate these into your storytelling to make your narratives more relevant?
 - Reflect on a time when a story you told didn’t land well with the audience. What elements could you adjust to make it more compelling and relatable?
 
-### Exercise: persuasive communication
+### Exercise: Persuasive communication
 
 TODO
 
@@ -2096,26 +2096,59 @@ TODO
 - Instructions: Ask each participant to use the drawing tool to create a simple visual representation of a story or event from their life (e.g., a memorable vacation, a hobby they enjoy, or a funny incident). Then, others have to guess what the story is before the person who drew it explains.
 - Purpose: This encourages creative expression and allows participants to share personal stories, fostering a relaxed and friendly atmosphere.
 
-## Communication Tools
-
-The following the communication tools that should be present on every project. With so many options, it important to pick the correct technology for the type of interaction you expect. Immediacy (as in how quickly you need a response) is the governing attribute for each tool. Below are a list of common tools used in today’s workplace in order from least immediate to most immediate.
-
-- Wiki
-- Email
-- Chat
-- Meetings
-
-When deciding what tool to use, start at the top — it is the most respectful of your recipient’s time. Most communications are informational in nature and should be documented (like in a wiki) or emailed. If using email to ask a question or to get a response, follow the [business writing](#business-writing) principles outlined below.
-
-Chat replies can be delayed but most modern tools like Slack give the sender the ability to “demand” a recipients attention with notifications. Meetings should only be scheduled when decisions need to be made at that very moment.
-
-## Business Writing
+## Business writing
 
 The best business writing puts the onus on the writer instead of the reader. Think hard about your audience, what they know, what they need to know, their time constraints, etc, and make it as easy on them as physically possible. If you follow this principal, you’ll be a very effective communicator.
 
 More often than not, people do the opposite. They write quickly, lazily, and from their perspective — leaving the reader to piece together the puzzle before they can understand the context and content of their message. Most people will give up and opt out rather than jump through these hoops, so make it easy on them.
 
-### Optimize for a short attention span
+### Purpose
+
+Every message you write should have a clear purpose. Before you write, ask yourself: What do I want to achieve with this message? Is it to inform, request, confirm, or perhaps persuade? Defining the purpose upfront allows you to structure your message effectively and stay focused.
+
+For example, if you’re writing an email to a client about a project delay, the purpose might be to inform them about the issue, explain the cause, and outline the next steps. A clearly defined purpose will help you stay on topic and avoid adding unnecessary details that can confuse the reader.
+
+Tips and techniques:
+
+- **Define your objective:** Before writing, identify the key goal of your message to maintain focus.
+- **Lead with the main point:** Start your message by clearly stating its purpose or main request.
+- **Structure for clarity:** For complex information, provide an executive summary, then detailed content, and conclude with next steps.
+- **Specify actions and deadlines:** Clearly outline required actions from the recipient, including due dates. For example, “Please review the attached document and provide feedback by Friday.”
+- **Stay on topic:** Avoid unrelated information that might cause confusion.
+
+Questions to reflect:
+
+- How do you determine the primary goal of your message before you start writing?
+- In what ways can stating your purpose upfront improve the effectiveness of your communication?
+- Can you recall a situation where a lack of clear purpose in a message led to confusion or misunderstandings?
+
+### Clarity
+
+Clarity is crucial in all business writing. It ensures your message is understood the way you intend. Use straightforward language and avoid jargon that might not be familiar to everyone. Even if you’re communicating with domain experts, it’s important not to assume they have the same background knowledge as you do on the specific topic at hand.
+
+One useful tip for clarity is to keep your sentences simple and direct. Instead of writing, “Due to the unforeseen nature of recent circumstances, the project timeline will be adjusted accordingly,” you can say, “The project timeline has changed because of unexpected issues.” This removes ambiguity and helps the reader grasp your point faster.
+
+**Don’t bury the lede.** Journalists usually write their articles (at least in newspapers) in order of priority. They assumed people would read the first paragraph, or maybe the first two or three paragraphs, far more often than the entire article. Therefore, they put the most important summary in the first paragraph, then the second most important point in the second paragraph, etc. This is called “not burying the lede.”
+
+The lede is the summary or the essence of your argument. If you “bury” it under mountains of text, it’s unlikely many people will be able to dig it out.
+
+Tips and techniques:
+
+- **Organize logically:** Structure your message with a clear introduction, body, and conclusion to guide the reader smoothly.
+- **Simplify complex ideas:** Break down complicated topics into manageable parts using bullet points or numbered lists.
+- **Use clear and simple language:** Choose straightforward words and avoid jargon or acronyms unless the reader is familiar with them.
+- **Be specific and precise:** Provide exact details to prevent confusion or ambiguity.
+- **Enhance readability with formatting:** Use headings, bullet points, short paragraphs, and whitespace; emphasize key points with **bold text** or <mark>highlights</mark>.
+
+Questions to reflect:
+
+- What strategies can you employ to simplify complex information without losing essential details?
+- How might unclear language affect the recipient’s understanding and response to your message?
+- Have you ever misinterpreted a message due to lack of clarity? What could the sender have done differently?
+
+### Conciseness
+
+Be concise but not abrupt. Your readers are often busy, and they appreciate messages that get to the point quickly. Conciseness means using only the words that are necessary — no fluff, no filler. Every sentence should serve a purpose.
 
 Everyone has a short attention span, so get to the point.
 
@@ -2123,40 +2156,69 @@ The number one mistake we see in business writing (usually emails), is attemptin
 
 Ironically, your message has its best chance of actually working if you can boil it down to its essence and avoid writing long essays that no one will end up reading.
 
-### Don’t bury the lede
+For instance, instead of writing, “I am reaching out to see if you might be available for a meeting sometime next week to discuss the next steps regarding our ongoing project,” you could write, “Are you available next week to discuss our project’s next steps?” The revised version is shorter while still communicating all the necessary information.
 
-Journalists usually write their articles (at least in newspapers) in order of priority. They assumed people would read the first paragraph, or maybe the first two or three paragraphs, far more often than the entire article. Therefore, they put the most important summary in the first paragraph, then the second most important point in the second paragraph, etc. This is called “not burying the lede.”
+Tips and techniques:
 
-The lede is the summary or the essence of your argument. If you “bury” it under mountains of text, it’s unlikely many people will be able to dig it out.
+- **Focus on essential information:** Include only what the reader needs to understand and act.
+- **Use concise language and short sentences:** Keep sentences to 15–20 words and eliminate filler words like “very,” “just,” or “in order to.”
+- **Avoid redundancy:** Simplify phrases to remove unnecessary repetition without losing meaning.
+- **Edit for clarity and brevity:** Review your writing critically to shorten it while retaining key points and ensuring it’s direct and clear.
 
-### Use whitespace
+Questions to reflect:
 
-Whitespace is pleasing to the eye and encourages further reading. By contrast, long blocks of text are intimidating and leads to abandonment — whether an article, email, marketing copy, or any form of writing. I’m sure there’s a UX study somewhere to prove this, but until we find it, just take my word for it.
+- How can you balance being thorough with being concise in your communications?
+- What are common habits that lead to wordiness, and how can you address them?
+- Why is it important to consider the reader’s time when composing a message?
 
-1. Use
-1. Lists
+### Adaptability
 
-And short paragraphs. With short sentences.
+Adaptability means adjusting your tone and style to fit your audience. Different people prefer different types of communication. If you’re messaging a client, you may need a more formal tone. If you’re messaging a colleague, a casual but professional tone could be more appropriate. Adaptability is about understanding your audience’s expectations and adjusting your language accordingly.
 
-- Bullet lists
-- Work well
-- Too
+For example, when communicating with a client who might not have technical expertise, avoid using too many technical terms. Instead, explain concepts in a way that connects to their concerns or business goals. Conversely, when talking to a fellow developer, you can use domain-specific language, as it helps to communicate more efficiently.
 
-##### Break up your writing with headings
+Tips and techniques:
 
-Use **bold** and <span style="background-color: yellow">highlights</span> to emphasize the most important parts of your message.
+- **Know your audience:** Consider the reader’s background, knowledge level, and needs before writing.
+- **Adapt your language and tone:** Adjust your wording and style to make your message clear and easy to understand; use everyday terms when explaining complex topics to non-experts.
+- **Be culturally aware:** Keep cultural norms and sensitivities in mind to ensure your message is received as intended.
+- **Customize based on context and feedback:** Modify your approach based on the situation and any feedback you receive.
 
-### Summaries and calls to action
+Questions to reflect:
 
-In many cases the details are important and can’t be condensed to the brevity you might strive for. In these cases, consider 3 sections to your email:
+- How does understanding your audience influence the way you craft your message?
+- In what situations have you needed to adjust your communication style, and what was the outcome?
+- What steps can you take to become more adaptable in your writing?
 
-- The executive summary — one sentence that summarizes the problem
-- The details — a longer passage explaining the details
-- The recommendation — we’re consultants, so usually it’s appropriate to offer a suggested course of action, even if the ultimate decision is not ours to make
+### Assertiveness
 
-## Exercises
+Assertiveness is about being direct without being aggressive. It involves stating your needs or viewpoints clearly, ensuring that your message conveys confidence. An assertive tone helps to prevent misunderstandings, especially when decisions or responsibilities are involved.
 
-### Organizing
+Instead of writing, “I was hoping we could possibly look into fixing this issue at some point soon,” a more assertive version would be, “Please address this issue by the end of the day.” Assertiveness can also help when setting boundaries or communicating expectations. For instance, “I won’t be available for meetings this afternoon, but I can answer any questions tomorrow morning” is clear and respectful of your own time while setting a firm boundary.
+
+Tips and techniques:
+
+Here is a refined version that eliminates overlap and ensures clarity:
+
+- **Be direct and respectful:** Clearly communicate your needs and opinions with courtesy and professionalism; be assertive while acknowledging others’ needs.
+- **Use confident and definitive language:** Opt for assured terms like “will” instead of “might,” and avoid hedging phrases such as “I think” or “maybe” that weaken your message.
+- **State clear expectations and actions:** Precisely specify what you need, include a clear call to action, and avoid vague terms when requesting specific actions.
+- **Set boundaries clearly:** Outline your availability and limits to help manage expectations.
+- **Encourage feedback:** Invite questions or input to show that you value the other person’s perspective while remaining firm on critical points.
+
+Questions to reflect:
+
+- Why is assertiveness important in professional communication, and how can it impact outcomes?
+- Can you identify language that may weaken your message, and how can you strengthen it?
+- How do you balance assertiveness with empathy to maintain positive working relationships?
+
+### Exercise: Draft a message
+
+Look back at the communication plan you wrote for the “fundamental principles” exercise.
+
+Write a message to one of the audiences you identified.
+
+### Exercise: Organizing
 
 Consider the following thoughts. Find a way to organize this into relevant categories, and highlight the most important parts.
 
@@ -2381,22 +2443,30 @@ For example, “Action Required by 8/30 – Update on Project Timeline” is mor
 
 Tips and techniques:
 
-- **Avoid Mondays and Fridays:** Emails sent on Monday mornings can be overlooked due to the weekend backlog, while Friday afternoon emails might not be read until the next week. Mid-week mornings are often the most effective.
-- **Leverage email scheduling tools:** Use tools like Gmail’s “Schedule Send” to time your emails without having to manually send them during optimal hours.
-- **Don’t bother with labels:** “Organizing your email is like alphabetizing your recycling.” - [Merlin Mann](https://github.com/merlinmann/wisdom/blob/6320e9c140fed17cddcaea546f748ace1119a8a7/wisdom.md#the-wisdom-so-far)
 - **Set a regular time for inbox maintenance:** Dedicate 15 minutes at the start or end of your workday to sort through your inbox, archiving emails that don’t require further action.
-- **Unsubscribe from unnecessary emails:** Regularly review your subscriptions and opt out of newsletters or updates that no longer provide value.
-- **Archive, don’t delete:** For non-critical emails that might be needed later, consider archiving instead of deleting. This keeps your inbox clear while still preserving information for future reference.
 - **Set expectations for response time:** If you know you can’t reply right away, acknowledge receipt and provide a timeframe for your full response, e.g., “I’ll review this and respond by tomorrow afternoon.”
 - **Use auto-responses when needed:** If you’re out of the office or unable to check emails for an extended period, set an auto-response to inform senders when they can expect a reply.
+- **Leverage email scheduling tools:** Use tools like Gmail’s “Schedule Send” to time your emails without having to manually send them during optimal hours.
+- **Avoid Mondays and Fridays:** Emails sent on Monday mornings can be overlooked due to the weekend backlog, while Friday afternoon emails might not be read until the next week. Mid-week mornings are often the most effective.
+- **Archive, don’t delete:** For non-critical emails that might be needed later, consider archiving instead of deleting. This keeps your inbox clear while still preserving information for future reference.
+- **Unsubscribe from unnecessary emails:** Regularly review your subscriptions and opt out of newsletters or updates that no longer provide value.
+- **Don’t bother with labels:** “Organizing your email is like alphabetizing your recycling.” - [Merlin Mann](https://github.com/merlinmann/wisdom/blob/6320e9c140fed17cddcaea546f748ace1119a8a7/wisdom.md#the-wisdom-so-far)
 
 Questions to reflect:
 
 - Have you ever experienced delays in communication due to not setting clear expectations for when you’d respond? How could you have handled it differently?
 
-### Exercise: email communication
+### Exercise: Gmail settings
 
-TODO
+Apply the ideas above by updating your [Gmail settings](https://mail.google.com/mail/u/0/#settings/general):
+
+<label><input type="checkbox" /> **Update your signature:** Use the [Email Signature Template](https://bitovi.atlassian.net/wiki/spaces/HR/pages/87754196/Email+Signature+Template) in Bitovi’s Confluence to set your signature in Gmail.</label>
+
+<label><input type="checkbox" /> **Set a vacation responder:** Look at your upcoming Paid Time Off (PTO) and set a vacation responder.</label>
+
+Be sure to click “Save Changes” when you’re finished updating your settings.
+
+### Exercise: Email communication
 
 #### Email 1
 
@@ -2455,11 +2525,6 @@ Improve the following email:
 - Exec summaries and calls to action (the email is easy to follow)
 
 </details>
-
-#### Email Structure Drill
-
-- **Activity:** Give participants a detailed but unstructured email. Their task is to reorganize it into a well-structured email with a clear introduction, body, and conclusion, using bullet points and proper formatting.
-- **Objective:** Practice structuring emails for clarity and effectiveness.
 
 ## Meeting management
 
@@ -2638,11 +2703,18 @@ Simply send a summary of your notes and next steps out to all stakeholders or at
 
 When appropriate, make it clear that you will complete certain tasks by a certain date.
 
-### Exercise: meeting management
+### Exercise: Draft a meeting invite
 
-TODO
+Look back at the communication plan you wrote for the “fundamental principles” exercise and the message you drafted for the “Draft a message” exercise.
 
-#### Meetings
+Draft a meeting invite with this information:
+
+- Title
+- Required attendees
+- Optional attendees
+- Agenda
+
+### Exercise: Meetings
 
 You recently attended a meeting where you were asked to discuss a new feature on your project. You started on the work, but today at standup you learned another developer is working on the same feature. Furthermore, your project manager is asking you to attend another meeting today to discuss a different new feature.
 
@@ -2664,19 +2736,21 @@ Send out an an agenda in advance of the meeting. Also, explain what happened wit
 
 </details>
 
-#### Agenda Creation Workshop
-
-- **Activity:** Participants are given a meeting topic and must create a detailed agenda, including objectives and any pre-meeting materials. They then present and critique each other’s agendas.
-- **Objective:** Practice creating effective meeting agendas.
-
-#### Role-Play Meetings
-
-- **Activity:** Conduct role-playing sessions where participants lead a meeting with a set agenda. The meeting will include common disruptions (e.g., someone going off-topic, technical difficulties). The leader must manage the meeting efficiently, ensuring all agenda items are covered.
-- **Objective:** Build confidence in leading meetings and handling common challenges.
-
-## Documentation and knowledge sharing
+## Wikis
 
 Clear and accessible documentation is essential for knowledge sharing within and across teams. It ensures continuity, enables smoother onboarding, and helps maintain a high standard of work by providing a reliable reference.
+
+Confluence is a versatile collaboration tool that can significantly enhance communication, documentation, and knowledge sharing within your organization.
+
+You can use it for a variety of purposes:
+
+- **Onboarding materials:** Developing resources for onboarding new members and outlining standard operating procedures (SOPs) for consistent practices.
+- **Meeting notes:** Recording key points, decisions, and action items from meetings and retrospectives for alignment and continuous improvement.
+- **Project documentation:** Capturing all essential project information, including requirements, architecture, and decisions, to ensure continuity and clarity for current and future team members.
+- **Brainstorming ideas:** Providing a shared space for team collaboration, brainstorming, and contributing to early-stage ideas.
+- **Knowledge sharing:** Writing articles or guides to share domain knowledge, tips, and best practices within the organization or with clients.
+- **Technical documentation:** Writing detailed descriptions of system architectures, processes, or components to keep technical stakeholders informed.
+- **Dashboards:** Create dynamic reports that pull data from Jira to provide real-time project statuses and updates.
 
 ### Creating and maintaining accessible documentation
 
@@ -2707,6 +2781,21 @@ Questions to reflect:
 - What strategies can you employ to balance the time spent on creating and updating documentation with other project demands?
 - Consider your role as a consultant working alongside a client’s team. How does your approach to documentation and knowledge sharing influence their perception of Bitovi’s professionalism and expertise?
 
+### Purpose
+
+- **Define the goal of each page:** Clearly state what the page intends to achieve with an “executive summary” at the top.
+- **Create specific and focused pages:** Avoid overloading pages with multiple topics; instead, split them into dedicated pages.
+- **Use descriptive titles and headings:** Make it easy for users to find information by accurately labeling content.
+- **Organize content hierarchically:** Structure pages in a logical order to reflect their importance and relationship.
+
+### Clarity, conciseness, and consistency
+
+- **Break down complex ideas:** Use subheadings, bullet points, and numbered lists to simplify information.
+- **Include visual aids:** Add diagrams, images, or videos to complement text and enhance understanding.
+- **Provide context:** Link to other pages or Jira stories to provide background information.
+- **Avoid repetition:** Cross-reference other pages instead of repeating the same information.
+- **Use templates:** Employ adaptable templates that can be modified as needed.
+
 ### Using Confluence effectively
 
 **Edit pages for clarity:** Regularly review and edit Confluence pages to improve clarity, add new information, or update existing content. This way, documentation remains useful and relevant.
@@ -2728,16 +2817,30 @@ Questions to reflect:
 - Are you consistently notified about updates that impact your work? If not, how could you better utilize Confluence’s features to stay informed?
 - In what ways could your current Confluence documentation be more user-friendly or comprehensive?
 
-### Exercise: documentation
+### Exercise: Create a meeting notes page
 
-TODO
+In your Confluence space:
 
-#### Documentation Editing Challenge
-
-- **Activity:** Provide participants with poorly structured or outdated documentation. Their task is to edit and update the documentation to meet current standards, applying clear, concise, and logical structure.
-- **Objective:** Practice creating and maintaining high-quality documentation.
+1. Create a new Page.
+2. In the “More actions” menu, click on “Templates and import doc.”
+3. Select the “Meeting notes” template.
+4. Fill in the information to run a meeting related to your communication plan.
+5. Assign Chasen an action item to review the page by one week from now.
 
 ## Choosing the right method of communication
+
+The following the communication tools that should be present on every project. With so many options, it important to pick the correct technology for the type of interaction you expect. Immediacy (as in how quickly you need a response) is the governing attribute for each tool. Below are a list of common tools used in today’s workplace in order from least immediate to most immediate.
+
+- Wiki
+- Email
+- Chat
+- Meetings
+
+When deciding what tool to use, start at the top — it is the most respectful of your recipient’s time. Most communications are informational in nature and should be documented (like in a wiki) or emailed. If using email to ask a question or to get a response, follow the [business writing](#business-writing) principles outlined below.
+
+Chat replies can be delayed but most modern tools like Slack give the sender the ability to “demand” a recipients attention with notifications. Meetings should only be scheduled when decisions need to be made at that very moment.
+
+---
 
 In the consulting world, effective communication is crucial to building strong relationships and delivering successful projects. Understanding when and how to use different communication methods can greatly enhance your ability to collaborate with clients and colleagues, ensuring clarity, efficiency, and positive outcomes.
 
@@ -2990,7 +3093,7 @@ Questions to reflect:
 - How do you currently separate your work and personal time?
 - What changes can you make to make sure you fully disconnect from work at the end of the day?
 
-### Exercise: choosing the right communication method
+### Exercise: Choosing the right communication method
 
 TODO:
 
@@ -3294,7 +3397,7 @@ Questions to reflect:
 
 - Can you recall a situation where personal information was handled well or poorly in a team setting? What were the outcomes?
 
-### Exercise: building strong social communication skills
+### Exercise: Building strong social communication skills
 
 TODO
 
@@ -3448,7 +3551,7 @@ Questions to reflect:
 - Think about a time when you witnessed an inappropriate comment or behavior. How did you react, and what might you do differently now?
 - How comfortable do you feel addressing inappropriate comments directly? What steps can you take to build your confidence in these situations?
 
-### Exercise: dealing with unclear or ineffective communication
+### Exercise: Dealing with unclear or ineffective communication
 
 TODO
 
@@ -3691,7 +3794,7 @@ Questions to reflect:
 - How do you communicate the seriousness of an escalation to internal teams effectively?
 - What can you learn from past escalations to improve your internal escalation process?
 
-### Exercise: handling escalations
+### Exercise: Handling escalations
 
 TODO
 
@@ -3894,7 +3997,7 @@ Questions to reflect:
 - What are some ways to make sure that AI-generated content doesn’t come across as impersonal or generic to your clients?
 - How can you maintain strong, trust-based relationships with clients while still leveraging AI for efficiency?
 
-### Exercise: effective use of tools
+### Exercise: Effective use of tools
 
 TODO: take some communication written by an AI and improve it.
 
@@ -4013,7 +4116,7 @@ Questions to reflect:
 - Reflect on a time when you struggled to accept feedback. What made it difficult, and how could you approach similar situations differently in the future?
 - What steps can you take to make sure you actively apply feedback rather than just acknowledging it? How can you measure your progress over time?
 
-#### Exercise: feedback
+#### Exercise: Feedback
 
 TODO
 
@@ -4087,7 +4190,7 @@ Questions to reflect:
 - How do you integrate feedback into your daily routines without it feeling forced or overwhelming?
 - What’s one communication habit you would like to change, and what steps will you take to address it?
 
-### Exercise: continuous improvement
+### Exercise: Continuous improvement
 
 TODO
 
