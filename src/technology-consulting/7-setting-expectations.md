@@ -409,7 +409,7 @@ Your client informs you that your team will be working on a new feature for your
 
 Let them know that plan is likely untenable, and that you’d like to evaluate the scope before committing to that deadline (otherwise there’s risk in not meeting it). Work with them to find a scope that keeps them within their time and staffing constraints. If they are not flexible, explain the scope-resources-deadline trifecta and the risks. Ask them to consider additional resources, or a more flexible deadline.
 
-Principals used:
+Principles used:
 
 - The Consulting Trifecta
 - Pushing Back
