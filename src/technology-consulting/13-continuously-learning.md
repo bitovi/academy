@@ -1,5 +1,5 @@
 @page learn-technology-consulting/continuously-learning Continuously Learning
-@parent learn-technology-consulting 10
+@parent learn-technology-consulting 13
 @outline 2
 
 @description How to continuously improve your consulting skills over time.
