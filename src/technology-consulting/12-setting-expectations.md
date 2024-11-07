@@ -1,12 +1,10 @@
 @page learn-technology-consulting/setting-expectations Setting Expectations
-@parent learn-technology-consulting 8
+@parent learn-technology-consulting 12
 @outline 2
 
 @description Best practices for setting expectations to clients.
 
 @body
-
-## Setting Expectations
 
 > Results - Expectations = Performance
 
@@ -14,24 +12,6 @@ The most basic consulting maxim is to exceed expectations. To say this another w
 
 - Be careful to never over promise, especially when there are external dependencies or unknowns
 - Pad estimates to account for external dependencies and unknowns
-
-## The Consulting Trifecta
-
-<img src="../static/img/technology-consulting/goodfastcheap.png" alt="Good fast cheap" width="640"/>
-
-You may have heard the following maxim: cheap, fast, good… pick two. While this may be useful (and true) for sales discussions, a more useful variation for project planning is:
-
-Scope, schedule, resources… pick two.
-
-This means that any project lead or PM can “fix”:
-
-- the scope and number of resources is fixed, the schedule must be variable
-- the number of resources and schedule is fixed, the scope must be variable
-- the scope and schedule is fixed, the number of resources must be variable
-
-Think of a project as a balloon with three edges. If you squeeze two edges, the third must expand. If you squeeze all three edges, the balloon will pop.
-
-Bad or inexperienced project managers will attempt to tell you that all three factors are already set, and we must “work harder” to meet expectations. This is a trap and we must push back immediately or we’ll be setting ourselves up for failure. No matter how small the project, there must be an opportunity at the start for the team to set at least one of these factors.
 
 ## Taking complete ownership of tasks and the overall project goals
 
@@ -42,7 +22,7 @@ Taking ownership means not only managing your specific responsibilities but also
 Ownership means understanding your role within the project and how your work impacts the overall goals. It’s about taking initiative, being accountable, and committing to delivering real value.
 
 - **Understand the objectives:** Make sure you understand the project’s aims and your role in achieving them. Break down big goals into smaller, actionable steps to make progress measurable and manageable. For example, if the project goal is to launch a new feature, set objectives for design, development, testing, and deployment phases.
-- **Clarify roles and responsibilities:** Clearly define what you are expected to do. Understand the scope of your tasks and how these tasks align with the wider project goals. If you’re not sure, ask!
+- **Clarify roles and responsibilities:** Clearly define your tasks and how they fit into the larger project. Know who is responsible for related tasks and where your work overlaps with theirs. For example, a backend developer should confirm if they’re responsible for defining the API or if someone else is handling architecture. If you’re not sure, ask!
 - **Identify the Directly Responsible Individuals (DRIs):** Assign a DRI for each key component of the project. A DRI is the person accountable for the successful completion of a specific task or deliverable, ensuring there is clear ownership and no ambiguity about who is in charge.
 
 Tips and techniques:
@@ -235,10 +215,11 @@ Note: Stakeholders in this context may mean your other teammates!
 - **Brainstorm new tools and process tweaks:** Brainstorm potential solutions, including new tools or adjustments to existing processes, to address the identified gaps. Make a pros and cons list for each option to understand the ramifications of choosing each one.
 - **Consider the cost:** Consider the ease of implementation, expected benefits, and total cost. For example, changing some processes (like meetings) can be no cost while buying tooling for everyone can be costly.
 - **Identify _all_ the stakeholders:** Figure out who has a vested interest in the change and who you exactly you will need approval from to move forward.
-- **Plan integration strategies:** Develop strategies for integrating new solutions with existing systems, ensuring minimal disruption. Plan for any necessary data migration, compatibility checks, and integration testing.
 - **Get early feedback:** Ask another teammate, Principal, etc. for feedback on your ideas before taking it to the key decision makers. Sharing your ideas as an RFC (Request For Comments) gives others an opportunity to offer suggestions or raise concerns.
+- **Plan integration strategies:** Develop strategies for integrating new solutions with existing systems, ensuring minimal disruption. Plan for any necessary data migration, compatibility checks, and integration testing.
 - **Present your findings or a Proof of Concept (POC):** Create a clear, data-backed presentation to communicate your findings and proposed changes to stakeholders. If applicable, POCs can demonstrate the change more effectively and make it engaging. Interactive sessions help stakeholders experience the potential improvements firsthand.
 - **Address concerns:** Prepare to address stakeholder concerns and answer questions to build support and consensus. Be transparent about potential challenges and your plans to mitigate them.
+- **Engage in open dialogue:** Encourage questions and feedback to ensure that the proposal is understood and that stakeholders feel heard.
 
 Tips and techniques:
 
@@ -292,7 +273,7 @@ Tips and techniques:
 - **Confidentiality:** Maintain discretion when discussing these issues to protect professional relationships and ensure a constructive outcome.
 - **Objective assessment:** Use objective tools to evaluate the situation, focusing on the impact on project deliverables and team morale.
 
-Questions to Reflect:
+Questions to reflect:
 
 - How can you gather evidence of leadership or team member issues in a way that is objective and fair?
 - What strategies can you use to understand the underlying causes of a team member’s or leader’s behavior before escalating the issue?
@@ -303,6 +284,24 @@ Questions to Reflect:
 Inexperienced consultants tend to be pushovers and think of project constraints as fixed and unchangeable.
 
 Experienced consultants recognize that nothing in a project is truly unchangeable. The key to their success is identifying the largest problems standing in the way of the project success and pushing back on them, as hard as necessary.
+
+### The Consulting Trifecta
+
+<img src="../static/img/technology-consulting/goodfastcheap.png" alt="The Venn diagram titled “GOOD, FAST, or CHEAP? Please choose 2” features three overlapping circles representing “GOOD,” “FAST,” and “CHEAP.” The overlaps show that choosing good and fast leads to high cost, good and cheap results in long duration, and fast and cheap causes low quality. The center note, “* You’re Dreaming,” suggests achieving all three is unrealistic." />
+
+You may have heard the following maxim: cheap, fast, good… pick two. While this may be useful (and true) for sales discussions, a more useful variation for project planning is:
+
+Scope, schedule, resources… pick two.
+
+This means that any project lead or PM can “fix”:
+
+- the scope and number of resources is fixed, the schedule must be variable
+- the number of resources and schedule is fixed, the scope must be variable
+- the scope and schedule is fixed, the number of resources must be variable
+
+Think of a project as a balloon with three edges. If you squeeze two edges, the third must expand. If you squeeze all three edges, the balloon will pop.
+
+Bad or inexperienced project managers will attempt to tell you that all three factors are already set, and we must “work harder” to meet expectations. This is a trap and we must push back immediately or we’ll be setting ourselves up for failure. No matter how small the project, there must be an opportunity at the start for the team to set at least one of these factors.
 
 ### Identifying unreasonable expectations
 
@@ -326,9 +325,9 @@ Questions to reflect:
 
 Clear and effective communication is essential to address and manage client expectations appropriately.
 
+- **Practice active listening:** Understand the client’s underlying needs by listening empathetically. If you’re preparing a response in your head while they’re still talking, you’re not actively listening.
 - **Be transparent and direct:** Always convey what your team can realistically achieve. Avoid overpromising to please the client initially. For example, if a client asks for a complex feature that requires six months, explain why it’s not possible to deliver it in three.
 - **Support with evidence:** Use data and past project experiences to justify your stance. For instance, create estimates for the individual pieces of work to show how they exceed the expected timeline.
-- **Practice active listening:** Understand the client’s underlying needs by listening empathetically. If you’re preparing a response in your head while they’re still talking, you’re not actively listening.
 
 Tips and techniques:
 
@@ -349,15 +348,10 @@ Negotiation is key to aligning client expectations with project realities.
 
 Tips and techniques:
 
-- **Define scope clearly:** At the outset of any project, clearly define the scope, deliverables, timelines, and responsibilities. Ensure these are documented and agreed upon by all parties.
-- **Refer to contracts and agreements:** When a client requests something outside of the agreed scope, politely refer back to the original contract or agreement. Highlight what was initially agreed upon and explain how the new request falls outside these boundaries.
 - **Be consistent:** Consistently enforce boundaries without wavering. If you allow one exception, it sets a precedent for future requests, making it harder to maintain those boundaries.
-- **Communicate early and often:** Regularly update the client on progress and any potential issues that might affect the project. Early communication can prevent misunderstandings and manage expectations.
-
+- **Refer to contracts and agreements:** When a client requests something outside of the agreed scope, politely refer back to the original contract or agreement. Highlight what was initially agreed upon and explain how the new request falls outside these boundaries.
 - **Understand the request:** Fully understand why the client is making the request. What are their underlying needs and objectives?
-- **Assess feasibility:** Evaluate whether the request is feasible within the current scope, timeline, and budget. If it’s not, think creatively about how you can still meet the client’s needs.
 - **Offer solutions:** Present alternative solutions that achieve the client’s objectives without compromising the project’s scope or quality. For instance, if a client wants an additional feature that is out of scope, propose a phased approach where the feature is included in a future phase of the project.
-- **Highlight benefits:** Clearly explain the benefits of the proposed alternatives, how they align with the client’s goals, and why they are more practical or effective than the original request.
 
 Questions to reflect:
 
@@ -374,18 +368,10 @@ Being able to influence and persuade clients is vital for successful expectation
 
 Tips and techniques:
 
-- **Storytelling:** Use storytelling to make your points more relatable and compelling, sharing relevant past successes and challenges.
-- **Ethos, Pathos, Logos:** Structure your arguments around credibility (ethos), emotional appeal (pathos), and logical reasoning (logos).
-
-- **Use data and evidence:** Support your points with data, case studies, or examples from past projects. This adds credibility to your arguments and helps clients understand the rationale behind your recommendations.
 - **Ask questions:** Use open-ended questions to understand the client’s priorities and constraints better. This can help uncover the root cause of their requests and allow you to address their concerns more effectively.
+- **Use data and evidence:** Support your points with data, case studies, or examples from past projects. This adds credibility to your arguments and helps clients understand the rationale behind your recommendations.
 - **Be assertive, not aggressive:** Communicate confidently and assertively, but remain respectful and empathetic. Acknowledge the client’s needs and concerns while clearly explaining why certain requests may not be feasible.
 - **Stay solution-focused:** Keep the conversation focused on finding solutions. Avoid getting bogged down in problems or limitations and instead, direct the discussion towards what can be achieved.
-
-- **Demonstrate expertise:** Share your expertise through case studies, past successes, and industry knowledge. Show how your experience can bring value to the client’s project.
-- **Be transparent:** Be honest about what you can and cannot do. Transparency builds trust and reinforces your credibility.
-- **Deliver consistently:** Consistently deliver high-quality work on time and within budget. Reliability reinforces your reputation and makes clients more likely to trust your judgment.
-- **Communicate effectively:** Regularly communicate with the client about progress, challenges, and solutions. Keeping the client informed builds trust and demonstrates your commitment to their success.
 
 Questions to reflect:
 
@@ -421,7 +407,7 @@ Your client informs you that your team will be working on a new feature for your
 
 Let them know that plan is likely untenable, and that you’d like to evaluate the scope before committing to that deadline (otherwise there’s risk in not meeting it). Work with them to find a scope that keeps them within their time and staffing constraints. If they are not flexible, explain the scope-resources-deadline trifecta and the risks. Ask them to consider additional resources, or a more flexible deadline.
 
-Principals used:
+Principles used:
 
 - The Consulting Trifecta
 - Pushing Back
@@ -474,26 +460,11 @@ Before delivering difficult truths, it is essential to prepare thoroughly to ens
 - **Understand stakeholder perspectives:** Think through what each party stands to gain or lose and tailor your message to address these concerns effectively. Understanding different viewpoints helps in framing your message in a way that resonates with all stakeholders.
 - **Plan your approach:** Lay out your main points clearly and decide the best way to explain them convincingly. Structuring your argument logically makes it easier for others to follow and understand.
 - **Anticipate responses:** Think about the possible pushback and emotional responses you might get, and prepare thoughtful, calm replies. Being prepared for objections allows you to address concerns confidently and maintain control of the conversation.
-- **Develop emotional intelligence:** Enhance your ability to understand and manage emotional responses, both your own and those of others. High emotional intelligence helps in navigating sensitive conversations and maintaining a positive tone.
 
 Tips and techniques:
 
 - **Role reversal:** Put yourself in the shoes of your stakeholders to better understand their perspectives and concerns.
-
-### Developing emotional intelligence
-
-Emotional intelligence is a critical skill for consultants, allowing you to navigate complex interpersonal dynamics and foster positive client relationships. Developing your emotional intelligence involves several key components:
-
-- **Self-awareness:** Learn to recognize your own emotions and understand how they affect your thoughts and behavior. This self-awareness allows you to stay in control during high-stakes interactions and reflect on how your emotions influence your decision-making and communication style.
-- **Self-regulation:** Practice techniques to manage your emotions healthily and productively. This could involve deep-breathing exercises, mindfulness practices, or taking a moment to pause before responding. Effective self-regulation helps you maintain professionalism and poise, even in challenging situations.
-- **Motivation:** Identify your intrinsic motivators and set personal goals aligned with them. Understanding what drives you can enhance your focus and resilience, ensuring you remain committed and enthusiastic about your work.
-- **Empathy:** Improve active listening and understanding of others’ perspectives. Empathy allows you to connect with clients and other Bitovians on a deeper level, fostering trust and cooperation. Practice empathy by listening without interrupting and validating others’ feelings.
-- **Social skills:** Build rapport, enhance communication, and develop conflict resolution strategies. Strong social skills enable you to navigate complex social landscapes, mediate disputes effectively, and build lasting, positive relationships with clients and team members.
-
-Tips and techniques:
-
-- **Emotional labeling:** Practice identifying and labeling emotions in yourself and others during interactions to improve emotional recognition.
-- **Breathing techniques:** Use techniques like the 4-7-8 breathing method to stay composed and manage stress.
+- **Develop emotional intelligence:** Enhance your ability to understand and manage emotional responses, both your own and those of others. High emotional intelligence helps in navigating sensitive conversations and maintaining a positive tone.
 
 ### Delivering your message effectively
 
@@ -509,7 +480,6 @@ Tips and techniques:
 
 - **Use clear, professional language:** Communicate in a straightforward and respectful manner, avoiding jargon unless everyone understands it. Clarity helps prevent misunderstandings and keeps the focus on the message.
 - **Use the “data sandwich” method:** Begin with data to present the problem, explain what it means, and finish with more data to back up your conclusion. This method reinforces your points with evidence, making them harder to dismiss.
-- **Language refinement:** Use apps or tools to refine your language, ensuring it’s clear, professional, and free of unnecessary jargon.
 - **Clarity drills:** Practice delivering your main points in one to two sentences to ensure clarity and conciseness.
 
 ### Following up on your message
@@ -524,19 +494,6 @@ Tips and techniques:
 
 - **Follow-up schedule:** Establish a follow-up schedule with specific dates and times to discuss progress and next steps.
 - **Summarization emails:** Send a concise summary email after your meeting, highlighting key points and agreed-upon actions.
-
-### Creating a feedback-friendly culture
-
-Creating a feedback-friendly culture is essential for continuous improvement and fostering an environment of trust and open communication. Here’s how to cultivate this culture:
-
-- **Lead by example:** Show how open you are to feedback in your own work, proving it’s a crucial part of improving. Share examples of how feedback has positively impacted your performance and decision-making. This demonstrates that feedback is a valuable tool rather than a threat.
-- **Set the tone early:** Make it clear from the beginning that honest, constructive communication is valued in your consulting work. Establish norms and expectations around feedback in initial meetings and reiterate its importance throughout the project. Encourage an atmosphere where team members feel safe to express their ideas and concerns.
-- **Consider cultural differences:** Recognize that different cultures have varying norms around hierarchy and directness. For instance, in cultures that value indirect communication, feedback might be framed more diplomatically, while in more direct cultures, straightforwardness can be appreciated. Being culturally sensitive in your approach ensures that feedback is received positively and constructively.
-
-Tips and techniques:
-
-- **Feedback rituals:** Establish regular rituals, such as end-of-project reviews, where feedback is a standard part of the process.
-- **Anonymous feedback options:** Provide anonymous feedback tools to encourage honest input from team members who may feel uncomfortable speaking up directly.
 
 ### Exercise
 
