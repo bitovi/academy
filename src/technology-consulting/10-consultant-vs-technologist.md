@@ -1,5 +1,5 @@
 @page learn-technology-consulting/consultant-vs-technologist Being a Consultant
-@parent learn-technology-consulting 7
+@parent learn-technology-consulting 10
 @outline 2
 
 @description How to be more than just a domain expert on a consulting project.

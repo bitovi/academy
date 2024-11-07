@@ -1,5 +1,5 @@
 @page learn-technology-consulting/building-rapport Building Trust and Rapport
-@parent learn-technology-consulting 6
+@parent learn-technology-consulting 9
 @outline 2
 
 @description Best practices for building trust and rapport with clients.
