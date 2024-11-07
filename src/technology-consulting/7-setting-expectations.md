@@ -1,12 +1,10 @@
 @page learn-technology-consulting/setting-expectations Setting Expectations
-@parent learn-technology-consulting 8
+@parent learn-technology-consulting 9
 @outline 2
 
 @description Best practices for setting expectations to clients.
 
 @body
-
-## Setting Expectations
 
 > Results - Expectations = Performance
 
@@ -275,7 +273,7 @@ Tips and techniques:
 - **Confidentiality:** Maintain discretion when discussing these issues to protect professional relationships and ensure a constructive outcome.
 - **Objective assessment:** Use objective tools to evaluate the situation, focusing on the impact on project deliverables and team morale.
 
-Questions to Reflect:
+Questions to reflect:
 
 - How can you gather evidence of leadership or team member issues in a way that is objective and fair?
 - What strategies can you use to understand the underlying causes of a team member’s or leader’s behavior before escalating the issue?
