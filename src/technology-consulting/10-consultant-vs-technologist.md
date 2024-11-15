@@ -53,9 +53,12 @@ Asking questions allows you to fully understand the project’s context and avoi
 
 - **Ask early, ask often:** Asking questions early in a project helps you lay a solid foundation. In the initial phases, you’re still learning about the client, their team dynamics, and their goals. This is the best time to ask about their business objectives, constraints, and expectations. The more you understand from the outset, the more effectively you can contribute as the project progresses.
 - **It’s okay to not know everything:** You aren’t expected to have all the answers. If something is unclear, don’t be afraid to ask — even if you feel you should know the answer. Admitting when you need more information demonstrates your focus on getting things right, not just moving quickly.
+- **Prepare before asking questions:** Research your question first and show your effort. This demonstrates respect for others’ time.
+- **Share your efforts:** When asking questions like “Have we worked with [company] before?”, include what you’ve already done to search for the answer. This shows that you have invested effort in trying to find the answer yourself first.
 - **Ask to avoid assumptions:** Assumptions can lead to misunderstandings and mistakes. If a client requests a feature without giving full context, don’t assume it’s similar to something you’ve done before. Always ask for clarification to understand the specific use case and how it fits into the project. Asking questions shows thoroughness and a commitment to delivering the right solution, not just a quick one.
 - **Frame questions as value-driven:** Position your questions as a way to help the client make informed decisions. Instead of simply asking for clarification, explain how understanding their broader goals will lead to better outcomes. For example, when discussing a new feature, ask how it impacts the overall strategy. This approach shows that you’re thinking strategically and not just gathering information for yourself.
 - **Turn discomfort into growth:** Don’t let fear of asking the wrong question or looking inexperienced hold you back. Every question you ask brings you closer to becoming a true expert in the client’s needs. Clients and team members appreciate your curiosity and commitment to understanding the project thoroughly. Embrace that discomfort, knowing it’s part of the process of delivering better results.
+
 
 #### Listening to understand
 

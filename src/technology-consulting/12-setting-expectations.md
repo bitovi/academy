@@ -58,7 +58,7 @@ This matrix helps clarify roles and responsibilities, ensuring that everyone kno
 Effective communication is key to successful ownership. Regular updates and open information sharing keep the team aligned and accountable.
 
 - **Keep project management software updated:** Make sure tools like Jira are always up to date to reflect current progress. This helps in tracking tasks and identifying bottlenecks early.
-- **Give regular updates:** Use standups or weekly meetings to give updates. Set expectations for how frequently you’ll communicate progress and stick to that schedule.
+- **Give regular updates:** Use daily scrum meetings or weekly meetings to give updates. Set expectations for how frequently you’ll communicate progress and stick to that schedule.
 - **Share information openly:** Use shared tools (like Confluence) and project management tools (like Jira) to keep everyone informed. Use public chat channels whenever possible so it’s easier to reference conversations later. If those tools are not in place, be sure to use email or ask the stakeholders how they would prefer updates.
 - **Encourage and act on feedback:** Don’t hesitate to ask feedback directly from your stakeholders. When you receive feedback, think about how you can implement it and come up with a daily or weekly review system to see if you’re progressing.
 
