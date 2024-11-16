@@ -561,6 +561,7 @@ Questions to reflect:
 
 - Brené Brown’s _Atlas of the Heart_ [List of Emotions](https://brenebrown.com/resources/atlas-of-the-heart-list-of-emotions/)
 - [Nonviolent Communication: A Language of Life](https://www.google.com/books/edition/Nonviolent_Communication_A_Language_of_L/A3qACgAAQBAJ?hl=en&gbpv=0)
+- Microsoft’s [Exercise your emotional intelligence](https://learn.microsoft.com/en-us/training/modules/exercise-your-emotional-intelligence/)
 
 ### Game: Identify the emotion
 
@@ -613,6 +614,7 @@ Identify the specific emotion in each phrase that’s read aloud.
 - **Dismissiveness:** “I’m not sure why this is even being considered as a solution.”
 
 #### Sad
+
 - **Regret:** “I wish we had caught this issue earlier—it’s going to cost us a lot of time.”
 - **Sadness:** “It’s disappointing to see all that effort go to waste.”
 - **Resignation:** “I guess this is just the way it’s going to be, even if it’s not ideal.”
@@ -620,13 +622,48 @@ Identify the specific emotion in each phrase that’s read aloud.
 
 These scenarios provide a mix of common workplace emotions, allowing participants to practice identifying the tone and emotional context of communication.
 
-## Fundamental principles
+## Planning communication
 
-Effective communication relies on understanding a few key principles: purpose, audience, content, and call to action. By focusing on these, we can structure our communication to achieve clear and actionable outcomes. Let’s break each one down and explore how to apply them in real-world situations.
+Effective communication starts with good planning. Before you share any information, it’s essential to think through the key elements that will guide your approach. These elements are **purpose**, **audience**, **content**, and **call to action**. Together, these form the foundation of thoughtful and effective communication, ensuring that your message is clear, relevant, and actionable.
 
 The following best practices might seem basic, but surprisingly few people follow through with them. Simply performing “the basics” will make you stand out, ensure clarity, and reduce the risk of an expectation gap growing over time.
 
 ### Purpose
+
+The first step in any communication is to clarify your purpose. This means identifying the primary goal you want to accomplish. Are you sharing information, giving feedback, managing expectations, or something else? Without a clear purpose, communication can become scattered or unclear.
+
+**Example**: You’re planning to take PTO. Your primary purposes might be:
+- Informing your team and stakeholders about your absence.
+- Ensuring there’s coverage for your responsibilities.
+- Demonstrating that you’ve planned for a smooth handoff of your tasks.
+
+Having a clear purpose keeps your communication focused and ensures you address the most important aspects of the situation.
+
+**Common communication purposes include:**
+- **Sharing information**: Providing updates, reports, or documentation.
+  - *Example*: “Here’s the status of our sprint progress.”
+- **Giving feedback**: Offering constructive input to improve work or processes.
+  - *Example*: “I noticed a few areas where this design could align better with user needs.”
+- **Managing expectations**: Setting clear boundaries or deliverables.
+  - *Example*: “This task will take two more days because of the additional requirements.”
+- **Educating or training**: Explaining concepts, tools, or workflows.
+  - *Example*: “Let me walk you through how this API works.”
+- **Collaborating or resolving conflict**: Working toward consensus or troubleshooting disagreements.
+  - *Example*: “Can we align on the next steps for this feature?”
+- **Motivating or celebrating success**: Recognizing achievements to build morale.
+  - *Example*: “Let’s celebrate hitting our project milestone!”
+
+Knowing your purpose helps focus your message and sets the tone for the conversation.
+
+Tips and techniques:
+
+- **Define your goal:** Before initiating communication, ask yourself what you want to achieve—whether it’s sharing knowledge, resolving a problem, or aligning on next steps. *Example*: “I want to let my stakeholders know how my project is going.”
+
+- **Then ask yourself, “why?”** Start by identifying what you need to accomplish. Are you aiming to inform, persuade, clarify, or resolve? Writing this down in one sentence can help you focus. *Example*: “I want my stakeholders to feel taken care of and think highly of me.”
+
+- **Be specific with verbs to define your purpose:** Frame your purpose as an action to clarify intent. Words like “inform,” “clarify,” “propose,” or “align” can help sharpen your focus. *Example*: Instead of “I need to talk about this project,” think, “I need to clarify blockers so we can align on next steps.”
+
+---
 
 First, figure out what you want to achieve. What’s the primary goal of the communication you’re sending, questions you’re asking, etc.?
 
@@ -659,46 +696,7 @@ TODO: When you introduce yourself, highlight your skills and experience that are
 
 ### Audience
 
-Adaptability in communication fosters an inclusive and productive team environment by ensuring everyone feels heard and understood. Recognizing and adjusting to different communication styles is key to effective collaboration.
-
-- **Understand your team members:** Learn about your team members’ communication preferences. Adapting to these preferences enhances overall team communication and efficiency.
-- **Tailor your message:** Tailor your communication based on who you’re communicating with. For technical teams, provide detailed information and use relevant terminology. For stakeholders or clients less familiar with technical jargon, simplify your language and focus on broader impacts to ensure clarity.
-- **Bridge communication gaps:** Act as a translator when working with team members from different technical backgrounds or communication styles. Explain technical concerns in easily understandable terms to non-technical stakeholders, ensuring everyone is on the same page.
-- **Encourage continuous feedback:** Regularly seek feedback on your communication effectiveness and be willing to adjust your style as needed. After meetings, ask if the information was clear or if a different approach would be preferred, fostering ongoing improvement in your communication strategies.
-
-Tips and techniques:
-
-- **Develop a team communication guide:** Create a simple guide outlining preferred communication styles and tools for your team to ensure everyone’s needs are considered.
-- **Observe and adapt:** Pay attention to how colleagues and clients communicate. If someone prefers detailed emails over verbal updates, adjust your communication to match their preference.
-- **Use multiple channels:** Share important information through various methods (e.g., email, chat, meetings) to accommodate different preferences and ensure the message is received.
-
-### Purpose: Define what you want to achieve
-
-The first step in any communication is to clarify your purpose. This means identifying the primary goal you want to accomplish. Are you sharing information, giving feedback, managing expectations, or something else? Without a clear purpose, communication can become scattered or unclear.
-
-Example: For a project status update, you want to communicate so others are aware whether the project is on track or if there are any blockers that need to be addressed.
-
-**Common communication purposes include:**
-- **Sharing information**: Providing updates, reports, or documentation.
-  - *Example*: “Here’s the status of our sprint progress.”
-- **Giving feedback**: Offering constructive input to improve work or processes.
-  - *Example*: “I noticed a few areas where this design could align better with user needs.”
-- **Managing expectations**: Setting clear boundaries or deliverables.
-  - *Example*: “This task will take two more days because of the additional requirements.”
-- **Educating or training**: Explaining concepts, tools, or workflows.
-  - *Example*: “Let me walk you through how this API works.”
-- **Collaborating or resolving conflict**: Working toward consensus or troubleshooting disagreements.
-  - *Example*: “Can we align on the next steps for this feature?”
-- **Motivating or celebrating success**: Recognizing achievements to build morale.
-  - *Example*: “Let’s celebrate hitting our project milestone!”
-
-Knowing your purpose helps focus your message and sets the tone for the conversation.
-
-### Audience: Know who you’re communicating with
-
 Once your purpose is clear, think about your audience. Who needs to hear this message? Different people may require different approaches, levels of detail, or styles of communication. Tailoring your message ensures it lands effectively.
-
-Example: For a project status update, your Product Owner, Project Manager, and other client stakeholders should be aware of the project’s status.
 
 **Questions to consider about your audience:**
 - Who needs this information? 
@@ -716,11 +714,32 @@ Example: For a project status update, your Product Owner, Project Manager, and o
 
 By anticipating your audience’s needs and questions, you can create more effective and engaging communication.
 
-### Content: Deliver a clear and focused message
+For example, when sharing your plan for PTO, different audiences may need different levels of detail or focus:
+- **Managers/Stakeholders**:
+  - They likely care about whether your work is covered and how your absence will impact the project timeline.
+  - Example message: “Hi [Manager], I’ll be out of the office from [dates]. I’ve ensured all tasks are completed or handed off to [colleague]. Please review the plan below and let me know if anything is missing by [date].”
+- **Team Members**:
+  - They might only need a heads-up about your absence and who to contact for help.
+  - Example message: “Hi Team, I’ll be on PTO from [dates]. If you need assistance with anything I normally handle, please reach out to [colleague].”
+
+#### Adaptability
+
+Adaptability in communication fosters an inclusive and productive team environment by ensuring everyone feels heard and understood. Recognizing and adjusting to different communication styles is key to effective collaboration.
+
+- **Understand your team members:** Learn about your team members’ communication preferences. Adapting to these preferences enhances overall team communication and efficiency.
+- **Tailor your message:** Tailor your communication based on who you’re communicating with. For technical teams, provide detailed information and use relevant terminology. For stakeholders or clients less familiar with technical jargon, simplify your language and focus on broader impacts to ensure clarity.
+- **Bridge communication gaps:** Act as a translator when working with team members from different technical backgrounds or communication styles. Explain technical concerns in easily understandable terms to non-technical stakeholders, ensuring everyone is on the same page.
+- **Encourage continuous feedback:** Regularly seek feedback on your communication effectiveness and be willing to adjust your style as needed. After meetings, ask if the information was clear or if a different approach would be preferred, fostering ongoing improvement in your communication strategies.
+
+Tips and techniques:
+
+- **Develop a team communication guide:** Create a simple guide outlining preferred communication styles and tools for your team to ensure everyone’s needs are considered.
+- **Observe and adapt:** Pay attention to how colleagues and clients communicate. If someone prefers detailed emails over verbal updates, adjust your communication to match their preference.
+- **Use multiple channels:** Share important information through various methods (e.g., email, chat, meetings) to accommodate different preferences and ensure the message is received.
+
+### Content
 
 The content of your communication is what you’re actually saying. It includes the main point you want to get across and any supporting details. Organizing your content well ensures that your message is both clear and actionable.
-
-Example: For a project status update, any blockers should be the main concern, and whether the project is overall on track or not.
 
 **Crafting strong content involves:**
 1. **Identifying the main point**: What’s the single most important idea or question you need to convey?
@@ -735,7 +754,20 @@ Example: For a project status update, any blockers should be the main concern, a
 
 Clear content ensures that your message is understood the first time.
 
-### Call to Action: Clarify the next steps
+**Example: Planning PTO Communication**
+- For a manager or stakeholder:
+  - Share key details: your PTO dates, completed work, task coverage plan.
+  - Highlight readiness: “I’ve ensured that [specific project/task] will not be disrupted.”
+- For team members:
+  - Focus on practical details: “I’ll be out from [dates]. [Colleague] will be handling [specific tasks].”
+
+Tips and techniques:
+
+- **Break it into primary and secondary goals:** Determine the main goal and any secondary objectives. This ensures your communication stays focused but doesn’t miss opportunities to address related topics. *Example*: Primary goal: Communicate project blockers. Secondary goal: Align on a resolution plan.
+
+- **Revisit your purpose as you prepare:** As you organize your message, double-check if every part serves your purpose. If it doesn’t, consider whether it’s necessary or if it should be saved for a separate conversation.
+
+### Call to action
 
 A call to action (CTA) tells your audience what you want them to do after receiving your message. While not every communication needs a formal CTA, most benefit from clarifying the desired outcome or next steps.
 
@@ -749,6 +781,8 @@ Example: For a project status update, resolving any blockers should be the main 
 - **When resolving conflict**: “Can we agree to these steps to move forward?”
 
 A strong CTA helps ensure that your communication leads to action or resolution.
+
+- **Consider the impact of your communication:** Think about what will change as a result of your message. Will someone take action, feel reassured, or make a decision? If the purpose isn’t clear to you, it won’t be clear to your audience.
 
 ### Example scenarios
 
