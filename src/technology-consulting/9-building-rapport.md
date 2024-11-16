@@ -39,7 +39,7 @@ Here are key strategies to ensure you make a great first impression:
 
 - **Dress the part:** Wear business casual attire for your initial meeting, whether in-person or virtual. Adjust your attire to align with the client’s workplace culture subsequently.
 - **Be punctual:** Arrive on time for meetings, whether they are in-person or virtual. Being punctual shows respect for the client’s time and demonstrates reliability.
-- **Introduce yourself:** Prepare a brief, engaging introduction that includes a unique fact about yourself to make you memorable.
+- **Introduce yourself:** Prepare a brief, engaging introduction that includes how your skills and experience are relevant to the client’s project.
 
 Be present in virtual calls:
 
@@ -198,7 +198,8 @@ Tips and techniques:
 - **Be present:** Show genuine interest in the client’s business and personal interests.
 - **Follow up:** Regularly follow up on previous conversations to show that you care and remember details about their life or business.
 - **Use people’s names:** Use names in conversations to create a more personal and respectful interaction. Don’t overdo it though!
-- **Make notes:** Take notes about your client and teammates to remember and refer to in conversations.
+- **Take notes:** Write down what you learn about your client and teammates to remember and refer to in conversations.
+- **Apply the “reminds me of” technique for small talk:** Relate something from your experience to what the other person shares to keep conversations flowing.
 
 ### Remember that you share common goals
 
@@ -222,7 +223,7 @@ Likewise, adapting your communication style to match the client’s preferences 
 - **Know your audience:** Avoid swearing and no-go subjects (e.g. politics, religion, etc.) until the client brings it up.
 - **Learn their communication style:** If you don’t communicate in their style, you’re not only losing an opportunity to build rapport, you might be taking away from rapport you’ve already built. Be sure to learn how they want to communicate (direct/indirect, over email/chat/meetings, with small talk or not, etc.) and always follow that.
 - **Be playful to get what you want:** Using humor in situations where you’re feeling frustrated and incredulous is often an effective way to get what you want while not making people hate you.
-- **Keep it light:** Use light-hearted jokes that don’t target anyone specifically.
+- **Use light-hearted humor:** Light jokes can make you seem more approachable and help others feel comfortable. Be sure to be inclusive, non-offensive, and don’t target anyone specifically.
 - **Respect differences:** Show respect for cultural differences in communication, such as varying attitudes towards directness, gestures, and levels of formality.
 - **Avoid assumptions:** Avoid making assumptions about cultural practices. When in doubt, ask your client about their preferences and be open to learning.
 
