@@ -1,5 +1,5 @@
 @page learn-technology-consulting/building-rapport Building Trust and Rapport
-@parent learn-technology-consulting 6
+@parent learn-technology-consulting 9
 @outline 2
 
 @description Best practices for building trust and rapport with clients.
@@ -39,7 +39,7 @@ Here are key strategies to ensure you make a great first impression:
 
 - **Dress the part:** Wear business casual attire for your initial meeting, whether in-person or virtual. Adjust your attire to align with the client’s workplace culture subsequently.
 - **Be punctual:** Arrive on time for meetings, whether they are in-person or virtual. Being punctual shows respect for the client’s time and demonstrates reliability.
-- **Introduce yourself:** Prepare a brief, engaging introduction that includes a unique fact about yourself to make you memorable.
+- **Introduce yourself:** Prepare a brief, engaging introduction that includes how your skills and experience are relevant to the client’s project.
 
 Be present in virtual calls:
 
@@ -70,7 +70,7 @@ Here are key strategies to build and sustain your credibility:
 Tips and techniques:
 
 - **Use a personal tracking system:** Implement a system (e.g. daily notes documents or a to-do list app) to keep track of what you’ve promised and meet deadlines on time.
-- **Break down tasks:** Divide larger tasks into smaller, manageable deliverables. Include buffer time for each to accommodate unexpected delays, and communicate these milestones to clients.
+- **Break down tasks:** Divide larger tasks into smaller pieces so they’re easier to estimate and you can report progress on the pieces if a task lasts longer than a day or so.
 
 ### Foster honesty and transparency
 
@@ -106,7 +106,7 @@ Tips and techniques:
 
 Demonstrating your expertise through detailed, high-quality work that exceeds expectations further solidifies this trust. By consistently showcasing your knowledge and attention to detail, you create a reliable and trustworthy partnership that encourages long-term collaboration and success.
 
-- **Show your expertise:** Share relevant knowledge and past experiences that address the client’s needs.
+- **Share your past experiences:** Share relevant knowledge and past experiences that address the client’s needs. Don’t have relevant experience? Use [Bitovi’s Slack](https://bitovi.slack.com/archives/C0G43SWR3) and your 1:1s to learn from other people’s experiences.
 - **Pay attention to details:** Focus on the finer points and specific elements within a project. Notice and address small but important aspects that might otherwise be overlooked.
 - **Be thorough:** Take a comprehensive and exhaustive approach to ensure that all aspects of your project are considered, tested, and completed to a high standard.
 
@@ -121,9 +121,9 @@ Tips and techniques:
 Maintaining a high standard of professionalism and integrity is one key to building trust:
 
 - **Maintain integrity:** Always be honest about what you can do and how long it will take. This honesty reinforces your reliability.
-- **Respond quickly during working hours:** Respond to client inquiries and messages promptly.
+- **Be responsive:** Reply quickly to emails and messages, or set clear expectations for when you will be available.
 - **Securely store and share passwords:** Use 1Password (or the client’s preferred tool) to securely share credentials with clients. Do not trust Slack (or any other chat tool) with secrets because all messages may be logged or retained.
-- **Secure document sharing:** Use Google Drive (or the client’s preferred tool) with proper access controls to ensure that sensitive documents are only accessible to authorized individuals.
+- **Store and share documents securely:** Use Google Drive (or the client’s preferred tool) with proper access controls to ensure that sensitive documents are only accessible to authorized individuals.
 
 Tips and techniques:
 
@@ -189,7 +189,7 @@ When meeting with clients, use the opportunity to get to know the person outside
 - **Don’t forget the “hellos” and “see you tomorrows”.** Polite phrases like “Hello,” “Goodbye,” “Good morning,” and “See you tomorrow” all go a long way in increasing the frequency of pleasant interactions.
 - **Engage in small talk:** Use the quiet time at the beginning of meetings to ask about their day and engage in small talk.
 - **Remember personal details:** Pay close attention to hints of birthdays, weekend plans, kids, or things you might have in common. Anything that closes that gap between consultant and client increases likability and trust.
-- **Meet for one-on-ones:** Schedule regular one-on-one meetings, ideally once every one or two weeks, to maintain a strong connection.
+- **Meet for one-on-ones:** Meet at least one with everyone who’s in the same meetings as you, and introduce yourself to everyone a level out from your day-to-day work.
 - **Reach out for second opinions:** Use these opportunities to increase trust in your work output by seeking feedback and second opinions.
 
 Tips and techniques:
@@ -197,8 +197,9 @@ Tips and techniques:
 - **Find common ground:** Plan your first in-person meeting to include a mix of business and casual conversation to establish a personal connection. Identify shared interests or experiences to create a natural bond.
 - **Be present:** Show genuine interest in the client’s business and personal interests.
 - **Follow up:** Regularly follow up on previous conversations to show that you care and remember details about their life or business.
-- **Use people’s names:** Use names frequently in conversations to create a more personal and respectful interaction.
-- **Make notes:** Take notes about your client and teammates to remember and refer to in conversations.
+- **Use people’s names:** Use names in conversations to create a more personal and respectful interaction. Don’t overdo it though!
+- **Take notes:** Write down what you learn about your client and teammates to remember and refer to in conversations.
+- **Apply the “reminds me of” technique for small talk:** Relate something from your experience to what the other person shares to keep conversations flowing.
 
 ### Remember that you share common goals
 
@@ -219,10 +220,10 @@ When bureaucratic red tape stands in the way of progress, don’t take no for an
 
 Likewise, adapting your communication style to match the client’s preferences enhances comfort and rapport.
 
-- **Be playful to get what you want:** Using humor in situations where you’re feeling frustrated and incredulous is often an effective way to get what you want while not making people hate you.
-- **Keep it light:** Use light-hearted jokes that don’t target anyone specifically.
 - **Know your audience:** Avoid swearing and no-go subjects (e.g. politics, religion, etc.) until the client brings it up.
 - **Learn their communication style:** If you don’t communicate in their style, you’re not only losing an opportunity to build rapport, you might be taking away from rapport you’ve already built. Be sure to learn how they want to communicate (direct/indirect, over email/chat/meetings, with small talk or not, etc.) and always follow that.
+- **Be playful to get what you want:** Using humor in situations where you’re feeling frustrated and incredulous is often an effective way to get what you want while not making people hate you.
+- **Use light-hearted humor:** Light jokes can make you seem more approachable and help others feel comfortable. Be sure to be inclusive, non-offensive, and don’t target anyone specifically.
 - **Respect differences:** Show respect for cultural differences in communication, such as varying attitudes towards directness, gestures, and levels of formality.
 - **Avoid assumptions:** Avoid making assumptions about cultural practices. When in doubt, ask your client about their preferences and be open to learning.
 
@@ -230,19 +231,6 @@ Tips and techniques:
 
 - Use mirroring techniques in conversations to build rapport subtly.
 - Ask clients directly about their preferred communication styles and adapt accordingly.
-
-### Building long-term relationships
-
-Building long-term relationships with clients is essential for sustained success in consulting. Strong, lasting relationships lead to repeat business, referrals, and a more stable client base. Here are strategies for fostering and maintaining long-term relationships:
-
-- **Network:** Connect with clients on professional social platforms like LinkedIn. Engage with their posts, share relevant content, and keep communication lines open.
-- **Client community:** Encourage your client to join Bitovi’s Discord where they can network with each other and share experiences. This can enhance your value proposition and keep you connected.
-- **Follow up:** Keep in touch even after the project ends to maintain the relationship and set the stage for future projects.
-- **Ask for feedback:** Encourage clients to provide feedback on what worked and what could be improved.
-
-Tips and techniques:
-
-- **Schedule regular check-ins:** Plan periodic meetings or calls to maintain the relationship and address any ongoing needs.
 
 ### Exercise
 

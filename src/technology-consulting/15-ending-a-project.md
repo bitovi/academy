@@ -1,5 +1,5 @@
 @page learn-technology-consulting/ending-a-project Ending a Project
-@parent learn-technology-consulting 10
+@parent learn-technology-consulting 15
 @outline 2
 
 @description Best practices for wrapping up a project.
