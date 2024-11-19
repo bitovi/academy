@@ -230,7 +230,7 @@ Apply the ideas above by updating your Slack settings and channels:
 
 <!-- <label><input type="checkbox" /> **Update your notification schedule:** Adjust Slack notifications to focus on important conversations. Turn off notifications for irrelevant threads and channels.</label> -->
 
-<label><input type="checkbox" /> **Update your profile:** [Edit your profile](https://slack.com/help/articles/204092246-Edit-your-profile) to include your email, time zone, preferred hours, pronouns, and name pronunciation.</label>
+<label><input type="checkbox" /> **Update your profile:** [Edit your profile](https://slack.com/help/articles/204092246-Edit-your-profile) to include a professional photo and your name, email, time zone, preferred hours, pronouns, and name pronunciation.</label>
 
 <label><input type="checkbox" /> **Arrange your Slack workspace:** If you have a lot of channels or direct messages, consider [organizing your sidebar with custom sections](https://slack.com/help/articles/360043207674-Organize-your-sidebar-with-custom-sections) so higher-priority channels or people are towards the top of your sidebar.</label>
 
@@ -660,6 +660,8 @@ In your Confluence space:
 
 ## Choosing the best method
 
+Effective communication requires selecting the appropriate tool based on the context, urgency, and purpose of your message. In consulting and team collaboration, this choice impacts clarity, efficiency, and overall effectiveness.
+
 The following the communication tools that should be present on every project. With so many options, it important to pick the correct technology for the type of interaction you expect. Immediacy (as in how quickly you need a response) is the governing attribute for each tool. Below are a list of common tools used in today’s workplace in order from least immediate to most immediate.
 
 - Wiki
@@ -667,20 +669,11 @@ The following the communication tools that should be present on every project. W
 - Chat
 - Meetings
 
-When deciding what tool to use, start at the top — it is the most respectful of your recipient’s time. Most communications are informational in nature and should be documented (like in a wiki) or emailed. If using email to ask a question or to get a response, follow the [business writing](#business-writing) principles outlined below.
-
-Chat replies can be delayed but most modern tools like Slack give the sender the ability to “demand” a recipients attention with notifications. Meetings should only be scheduled when decisions need to be made at that very moment.
+When deciding what tool to use, start at the top — it is the most respectful of your recipient’s time. Most communications are informational in nature and should be documented (like in a wiki) or emailed. If using email to ask a question or to get a response, follow the [learn-technology-consulting/communication#business-writing business writing] principles outlined in [learn-technology-consulting/communication].
 
 Choosing the right communication method ensures your message is delivered effectively. Sensitive topics might require a call, while persistent information belongs in a wiki. Understanding the strengths of each method helps you communicate efficiently, reducing friction and making collaboration with clients and teams smoother.
 
----
-
-When working in a consulting environment, the choice of how you communicate can significantly impact clarity, efficiency, and collaboration.
-
-Choosing the best method of communication is all about context and purpose. By considering factors like urgency, complexity, and the desired level of interaction, you can ensure you’re using the most effective way to share information. Document things that need to be referenced (wiki), discuss in real time when needed (meeting), ask quick questions (chat), and provide well-thought-out messages or summaries (email). This approach helps you balance efficiency and clarity, benefiting both your clients and internal teams at Bitovi.
-
-This section will help you determine the most suitable communication method — chat, email, meeting, or wiki — based on the context of your message, your audience, and your goals.
-ove communication effectiveness.
+By understanding the strengths of each tool and using them appropriately, you can reduce friction, foster collaboration, and communicate more effectively with both clients and internal teams at Bitovi.
 
 ### Understanding each method
 
