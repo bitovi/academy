@@ -79,7 +79,8 @@ How you craft your message greatly affects how it is received and responded to.
 Emojis can provide quick feedback or convey tone in an otherwise flat text-based environment. However, their use should be intentional.
 
 - **Use 👀 to acknowledge receipt:** If you’ve seen a message but don’t have time to respond right away, a quick 👀 reaction can let the sender know it’s on your radar.
-- **Use 👍 to show agreement or support:** This can eliminate the need for an additional reply and keep conversations moving without unnecessary clutter.
+- **Use 👍 to show agreement or support in large group threads:** This can keep conversations moving without unnecessary clutter in large group threads.
+- **Don’t assume everyone uses emoji the same way:** Emoji like 🙏 are used in a wide variety of ways, so be careful using them to convey meaning.
 - **Avoid using emojis to communicate “yes” unless specified:** Since emojis don’t trigger notifications, it’s better to reply with text unless the person has specified that an emoji will suffice.
 - **Provide clear responses to questions:** Avoid using just a thumbs-up reaction as an answer when there are two or more options for moving forward.
 
@@ -367,18 +368,15 @@ Meetings are essential for collaboration, but they must be well-organized and pu
 
 Well-run meetings save time and lead to actionable outcomes. Preparing an agenda, staying on topic, and sharing notes afterward ensure that everyone leaves with a clear understanding of next steps. This level of organization keeps clients and teammates on the same page and helps avoid missed deadlines or miscommunication.
 
-### Organizing and leading effective meetings
+### Scheduling a meeting
 
-**Preparation and planning:** A well-prepared meeting is halfway to success. Always share a clear agenda with participants well in advance. Include any relevant documents or links that participants should review beforehand. Clearly define the meeting’s objectives to ensure everyone knows what you aim to achieve.
-
-**Set clear objectives and expectations:** Clearly define the goals of the meeting and what you expect to achieve by the end. This helps keep the discussion on track and ensures that all participants are aligned with the meeting’s purpose.
-
-**Be realistic about the agenda:** Prioritize the most critical items and be mindful of the time available. It’s better to cover fewer topics thoroughly than to rush through many without proper discussion.
-
-**Encourage attendees to be on video:** Video helps build rapport and ensures more engaged participation. Mention in your meeting invite that video is encouraged, but also be respectful of participants’ circumstances.
+- **Purpose:** What is the end goal you’re trying to achieve?
+- **Attendees:** Who is required to fulfill the purpose of the meeting? For anyone that’s not required, consider sending them the meeting notes afterwards for any additional input.
+- **Title and agenda:** Set your attendees up for success and reduce their anxiety. The title should clearly state the purpose of the meeting. The agenda should include additional information (see below).
 
 Tips and techniques:
 
+- **Use clear meeting titles and agendas:** Always include a title and an agenda when scheduling meetings to reduce anxiety and set expectations.
 - **Incorporate breaks for longer meetings:** If your meeting will last more than an hour, schedule a brief break halfway through. This helps participants stay focused and engaged.
 - **Match schedules to roles:** Be aware of the different time management needs of makers (developers, designers) and managers. Schedule meetings accordingly.
 
@@ -387,11 +385,25 @@ Questions to reflect:
 - When was the last time you led a meeting? What worked well, and what could have been better in terms of preparation and planning?
 - Think about a time when a meeting you attended was poorly organized. How did it impact your participation, and what could have been done differently?
 
-### Conducting the meeting
+### Writing a great agenda
+
+A well-prepared meeting is halfway to success. Always share a clear agenda with participants well in advance. Clearly define the meeting’s objectives to ensure everyone knows what you aim to achieve.
+
+- **Goals:** Clearly define the goals of the meeting and what you expect to achieve by the end. This helps keep the discussion on track and ensures that all participants are aligned with the meeting’s purpose.
+- **Pre-requisites:** Specify what people need to do or think about beforehand.
+- **Links:** Include any relevant documents or links that participants should review beforehand. Set up the meeting notes document before the meeting and include it in the agenda.
+- **Other information:** Share the billing code, encourage video participation, etc.
+
+Tips and techniques:
+
+- **Encourage attendees to be on video:** Video helps build rapport and ensures more engaged participation. Mention in your meeting invite that video is encouraged, but also be respectful of participants’ circumstances.
+- **Be realistic about the agenda:** Prioritize the most critical items and be mindful of the time available. It’s better to cover fewer topics thoroughly than to rush through many without proper discussion.
+
+### Running the meeting
 
 **Assign a note-taker:** Designate someone to document key discussion points, decisions, and action items. This ensures there’s a clear record of what was discussed and agreed upon.
 
-**Lead discussions assertively but diplomatically:** As the meeting leader, guide the conversation to stay on topic while making sure all voices are heard. If the discussion veers off-course, gently steer it back to the agenda.
+**Keep the meeting on track:** Lead discussions assertively but diplomatically. As the meeting leader, guide the conversation to stay on topic while making sure all voices are heard. If the discussion veers off-course, gently steer it back to the agenda.
 
 **Use time management techniques:** Implement methods like setting a timer for each agenda item or having periodic check-ins to ensure the meeting stays on track and covers all necessary points.
 
@@ -407,13 +419,47 @@ Questions to reflect:
 - How do you typically respond when a meeting discussion goes off-topic? Could there be a more effective way to bring it back on track?
 - Can you recall a situation where a meeting leader either failed to engage or overly controlled the conversation? How did this impact the meeting’s outcome?
 
+### Taking notes
+
+Note-taking complements active listening by enhancing your ability to remember and act on key points discussed during a conversation. Clear and concise notes reinforce what was said and provide a record that can be referred back to, helping to avoid overlooking anything important. Additionally, effective note-taking shows accountability, as it indicates your commitment to following through on the actions and decisions made during the conversation.
+
+Well-organized notes are not just a tool for personal reference — they are important for clear communication within your team and with clients. By capturing key points, decisions, and action items, you help keep everyone involved in the project on the same page, which is necessary for successful follow-up and documentation. This is especially important in consulting, where clear, actionable records of client interactions are vital for staying aligned and meeting project objectives.
+
+Tips and techniques:
+
+- **Share your screen:** Showing the notes helps keep everyone following along.
+- **Don’t transcribe:** Notes should contain key points, decisions, and action items.
+- **Review at the end:** Before ending the meeting, review the notes and confirm that everything captured looks correct.
+- **Send notes after:** Always share the notes over email, in Slack, etc. to inform others.
+
+Questions to reflect:
+
+- How effective are your current note-taking practices in capturing key information? What improvements could make your notes more actionable?
+- Think about a time when well-organized notes made a difference in a project’s outcome. How can you consistently take useful notes?
+
+#### Techniques for efficient note-taking
+
+**Key point extraction:** Focus on capturing key points, decisions, and action items rather than transcribing entire conversations. Efficient note-taking involves identifying and recording the most important information rather than attempting to transcribe the conversation verbatim. This includes noting down key points, decisions made during the discussion, and any action items that need to be followed up on. By focusing on what’s most relevant, you can create a clear and concise record that is easy to review later.
+
+**Use text replacement utilities:** Tools like Text Expander or using shorthand can significantly speed up the note-taking process and help you capture more information in real-time. Bullet points, for example, are a quick way to organize information clearly, making it easier to review and reference later. These techniques can help make your notes both thorough and efficient.
+
+**Organizing and reviewing notes:** After the conversation, it’s helpful to organize your notes so they’re easy to reference. This might involve categorizing information by topic, prioritizing action items, or summarizing key points. Regularly reviewing your notes helps you stay on top of your commitments and keeps them actionable and useful throughout the project.
+
+Tips and techniques:
+
+- TODO
+
+Questions to reflect:
+
+- TODO
+
 ### Follow-up and accountability
 
-**Send a concise recap:** After the meeting, send out a summary that includes key points, decisions made, and assigned action items. This reinforces accountability and keeps everyone aligned.
+**Share the notes link and recap:** After the meeting, send out a summary that includes key points, decisions made, and assigned action items. This reinforces accountability and keeps everyone aligned.
 
-**Make meeting notes accessible:** Store the meeting notes in a shared space, such as a Confluence page or a shared drive, where all relevant parties can easily access them.
+**Follow through on action items:** Try to handle your action items sooner rather than later.
 
-**Follow through on action items:** Regularly check in on the progress of assigned tasks, and keep the team updated to ensure that agreed-upon actions are completed on time.
+**Prepare for the next meeting:** For recurring meetings, create the next shared notes document so people can add items before the meeting. For meetings like retrospectives, this is great because it encourages attendees to add items as they come up during a sprint.
 
 Tips and techniques:
 
@@ -430,7 +476,7 @@ Questions to reflect:
 - Think about a meeting where action items weren’t clearly defined or followed up on. How did this affect the project’s progress?
 - When have you seen shared meeting notes contribute to better outcomes? How did the collaborative aspect help?
 
-### Being an effective meeting participant
+### Being a great attendee
 
 **Respond to meeting invites promptly:** Indicate your availability and provide any relevant comments or concerns as soon as you receive an invite. This helps the organizer plan accordingly.
 
@@ -455,92 +501,36 @@ Questions to reflect:
 - How do you typically prepare for meetings? Are there any steps you might add to enhance your readiness?
 - How do you handle situations where you disagree with a point being made in a meeting? What strategies can you use to communicate your perspective constructively?
 
-### Take notes
-
-Note-taking complements active listening by enhancing your ability to remember and act on key points discussed during a conversation. Clear and concise notes reinforce what was said and provide a record that can be referred back to, helping to avoid overlooking anything important. Additionally, effective note-taking shows accountability, as it indicates your commitment to following through on the actions and decisions made during the conversation.
-
-Well-organized notes are not just a tool for personal reference — they are important for clear communication within your team and with clients. By capturing key points, decisions, and action items, you help keep everyone involved in the project on the same page, which is necessary for successful follow-up and documentation. This is especially important in consulting, where clear, actionable records of client interactions are vital for staying aligned and meeting project objectives.
-
-Tips and techniques:
-
-- **Use symbols for key points:** Develop a system of symbols or shorthand (e.g., “*” for key points, “A” for action items) to quickly categorize information as you take notes.
-- **Review and summarize your notes immediately:** After the conversation, take a few minutes to review and summarize your notes while the details are still fresh.
-- **Use digital tools for organization:** Utilize digital note-taking tools like Notion, Evernote, or OneNote to keep your notes organized and easily searchable.
-
-Questions to reflect:
-
-- How effective are your current note-taking practices in capturing key information? What improvements could make your notes more actionable?
-- Think about a time when well-organized notes made a difference in a project’s outcome. How can you consistently take useful notes?
-
-#### Techniques for efficient note-taking
-
-**Key point extraction:** Focus on capturing key points, decisions, and action items rather than transcribing entire conversations. Efficient note-taking involves identifying and recording the most important information rather than attempting to transcribe the conversation verbatim. This includes noting down key points, decisions made during the discussion, and any action items that need to be followed up on. By focusing on what’s most relevant, you can create a clear and concise record that is easy to review later.
-
-**Use text replacement utilities:** Tools like Text Expander or using shorthand can significantly speed up the note-taking process and help you capture more information in real-time. Bullet points, for example, are a quick way to organize information clearly, making it easier to review and reference later. These techniques can help make your notes both thorough and efficient.
-
-**Organizing and reviewing notes:** After the conversation, it’s helpful to organize your notes so they’re easy to reference. This might involve categorizing information by topic, prioritizing action items, or summarizing key points. Regularly reviewing your notes helps you stay on top of your commitments and keeps them actionable and useful throughout the project.
-
-Tips and techniques:
-
-- TODO
-
-Questions to reflect:
-
-- TODO
-
-### Best practices for daily scrum meetings
-
-**Prepare your updates in advance:** Come to daily scrum meetings with a clear idea of what you need to share, focusing on what’s most relevant for the team to know.
-
-**Keep daily scrum meetings brief:** Stick to the essentials — mention any blockers, risks, and expectations for progress without getting into unnecessary details. This ensures daily scrum meetings remain short and to the point.
-
-**Determine the appropriate frequency:** Daily scrum meetings should match the pace of the project. For fast-moving projects, daily daily scrum meetings might be necessary; for slower projects, twice a week might suffice.
-
-**Over chat/Slack:** When giving daily scrum meeting updates via chat, include meaningful descriptions along with any issue numbers. For example, instead of saying, “Working on issue #123,” say, “Working on issue #123 – Fixing bug in user authentication flow.” This clarity helps everyone understand the context without extra effort.
-
-Tips and techniques:
-
-- **Keep a daily log:** Maintain a brief daily log of your work to help you quickly recall what you’ve done when preparing for daily scrum meetings. This also helps in tracking progress over time.
-- **Clarify the focus:** Make sure everyone knows what’s most relevant for the team to hear. Encourage sharing blockers, dependencies, and key progress rather than getting into the weeds.
-- **Listen to everyone else:** Look for opportunities to support your other team mates, 
-
-
-Questions to reflect:
-
-- How do you ensure that your daily scrum meeting updates are concise yet informative? Are there any adjustments you could make to improve this balance?
-
 ### Daily scrum meetings
 
-The idea of a daily scrum meeting is to ensure a brief discussion of important issues, current challenges and their solutions. Once the core issues are discussed, the team can quickly disperse to carry out that day’s initiatives. It’s important to do your part to make daily scrum meetings effective but efficient.
+Daily scrum meetings are essential for fostering team alignment and addressing critical updates. To make these meetings effective and efficient, follow these best practices:
 
-#### Prepare in advance
+#### Prepare beforehand
 
-Take 10 minutes before the meeting to think about what you’re going to say. You will not waste precious minutes of your team’s time thinking of your update off the cuff, and doing so will make you sound prepared and keep your update concise.
+- **Plan your updates in advance:** Take 10 minutes before the meeting to organize your thoughts. Focus on what’s most relevant for the team, ensuring your updates are clear and concise. Avoid wasting time by preparing your key points ahead of time.
+- **Keep a daily log:** Maintaining a brief record of your work helps you recall progress quickly and share updates effectively during the meeting. This also serves as a useful tool for tracking overall progress.
 
-#### Write it out/document
+#### Trust dynamics
 
-Daily scrum meetings can be done in writing! This can be more efficient for a fully remote team, especially with major time zone differences. If you or your client prefers in person meetings, ask the team to submit their updates in advance ([there are tools for this](https://slack.com/slack-tips/run-daily-daily scrum meetings-or-check-ins)), or have someone document the updates in a shared wiki.
+- **Low-trust teams:** In environments with lower trust, daily scrum meetings may require more detailed reporting. Team members may need to provide explicit descriptions of what was completed to ensure accountability and visibility. This approach can help build confidence over time as progress becomes clear and consistent.
+- **High-trust teams:** In high-trust environments, daily scrum meetings often focus on addressing blockers, coordinating efforts, and aligning priorities rather than detailed reporting. The assumption is that team members are completing their work independently and effectively, which reduces the need for granular updates.
 
-#### Frequency
+#### Consider the format
 
-Consider the frequency in which you meet. The frequency should be based on the team size and usefulness of the information. Don’t meet daily if you’re giving the same updates every day. The best way to figure this out is to find out what information people need, and when, and plan the cadence around that. You can always adjust later!
+- **Keep it brief:** Focus on the essentials — blockers, key progress, and any risks or dependencies. Avoid unnecessary details to ensure the meeting stays short and actionable.
+- **Adapt the frequency:** Align the frequency of meetings with the pace of the project. For fast-moving initiatives, daily check-ins may be necessary; for slower projects, consider fewer meetings, such as twice a week. Adjust as needed to suit the team’s needs.
+- **Use written updates when appropriate:** For fully remote teams or teams working across time zones, written updates can save time. Provide meaningful descriptions (e.g., “Working on issue #123 – fixing bug in user authentication flow”) to offer clarity without requiring follow-up questions. Written updates can also be shared in advance or documented in a central repository for easy reference.
 
-#### Find out what information needs to be conveyed and to whom
+#### Communication tips
 
-Know your audience! Think about what the audience needs to know vs. what you want to share. Save challenges or stories for another venue.
+- **Clarify the focus:** Share information that’s most relevant to the team, such as blockers, dependencies, and significant progress. Avoid getting into unnecessary details or unrelated topics.
+- **Listen actively:** Pay attention to others’ updates to identify areas where you can offer support or collaboration.
+- **Tailor to your audience:** Consider what information your audience needs to hear versus what you want to share. Save in-depth discussions or challenges for another venue.
 
-### Successful meetings
+#### Reflection and adjustment
 
-- **Set an agenda:** Come into a meeting with an agenda. State the agenda at the start so everyone is aware of what you’d like to accomplish. This might include topics of discussion or key questions you’d like to answer.
-- **Take notes:** Simply take notes during calls and meetings. Summarize the “next actions” and make sure its clear who is assigned each action.
-- **Send recaps:** Simply send a summary of your notes and next steps out to all stakeholders or attendees. If you’re meeting alone with a client, send it to them.
-- **Take ownership:** When appropriate, make it clear that you will complete certain tasks by a certain date.
-
-Tips and techniques:
-
-- **Use clear meeting titles and agendas:** Always include a title and an agenda when scheduling meetings to reduce anxiety and set expectations.
-- **Take notes with meaning:** Focus on the main points rather than trying to write everything down. Aim for understanding and summarizing key takeaways.
-- **Explore note-taking techniques:** Use methods such as bullet lists, the Cornell method, or mind mapping. Write down conclusions, not just facts, and review your notes to organize them later.
+- **Evaluate effectiveness:** Regularly assess whether your updates are concise yet informative. Reflect on whether adjustments are needed to improve the balance of clarity and brevity.
+- **Adjust cadence as needed:** If updates are repetitive or meetings feel unproductive, reassess the frequency and content to better meet the team’s needs.
 
 ### Exercise: Draft a meeting invite
 
