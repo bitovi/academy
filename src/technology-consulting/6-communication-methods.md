@@ -1,24 +1,24 @@
 @page learn-technology-consulting/communication-methods Communication Methods
-@parent learn-technology-consulting 7
+@parent learn-technology-consulting 6
 @outline 2
 
 @description Learn how to make the most out of chat, email, meetings, and wikis.
 
 @body
 
-## Effective communication methods for consultants
-
 This section provides practical techniques and best practices for various communication channels, including chat platforms, email, meetings, documentation, and feedback. By mastering these methods, you’ll be better equipped to convey ideas clearly, manage expectations, and foster positive working relationships.
 
-## Chat (Slack/etc.)
+## Chat
 
 Chat platforms are a key tool for real-time communication. However, using them effectively requires intentionality to maintain clarity, minimize disruption, and streamline collaboration. This section breaks down best practices to help you communicate efficiently, focusing on channels, mentions, threads, managing your availability, and more.
+
+Clear and professional chat communication keeps teams connected and informed. By using shared channels, providing updates, and setting appropriate boundaries, you avoid confusion and maintain focus. This ensures that everyone stays aligned, especially in fast-paced client projects where quick decisions matter.
 
 ### Channels
 
 Shared channels should be the default space for most communication. When conversations happen in the open, everyone can stay aligned and informed.
 
-- **Use shared channels as much as possible:** Unless the topic is sensitive or private, default to public channels so that others can benefit from the discussion or jump in if needed.
+- **Use shared channels as much as possible:** Unless the topic is sensitive or private, default to shared channels so that others can benefit from the discussion or jump in if needed.
 - **Pin important messages:** Keep key resources, documents, or recurring information pinned to channels for quick access, especially for onboarding new team members.
 - **Proactively communicate absences:** If you know you’ll be unavailable for an extended period (e.g. deep work), send a quick message in relevant channels to notify others and provide an alternate contact if necessary.
 
@@ -38,7 +38,7 @@ Threads are an essential feature in Slack (and other chat platforms) that help k
 
 Best practices:
 
-- **Always start a thread when responding to a specific message:** Whenever you respond to a particular message or topic, use a thread rather than responding directly in the channel. This ensures the original message and the replies stay connected and don’t get lost in the larger conversation.
+- **Always start a thread when responding to a specific message:** Whenever you respond to a particular message or topic, use a thread rather than responding directly in the channel. This ensures the original message and the replies stay connected and don’t get lost in the larger conversation. This also prevents unnecessary notifications and keeps conversations organized.
 - **Encourage others to use threads:** If a conversation starts to unfold in a channel without a thread, gently remind others to continue in a thread. For example, you can respond within the thread and say, “Let’s keep this conversation in the thread to avoid losing context.”
 - **Keep separate ideas in separate threads:** Don’t hesitate to break out separate ideas or subtopics into their own threads. Even within a single channel, multiple threads can exist simultaneously. By breaking ideas apart, you make it easier for team members to engage with the specific topics that are relevant to them.
 - **Use threads to explore topics before moving to meetings:** If a discussion in a thread is becoming lengthy or is difficult to resolve via chat, consider scheduling a meeting to discuss the topic more deeply. This is especially useful when back-and-forth messaging is taking too much time. Once the meeting is completed, share meeting notes or a summary in the thread to “close the loop” and provide final resolution.
@@ -54,6 +54,7 @@ Handling complex threads:
 
 - **Convert unresolved threads into meetings:** If a thread has too much back-and-forth or is becoming unfocused, it may be better to resolve the issue through a meeting. Threads are great for asynchronous discussions, but when they start dragging on without resolution, shifting to a real-time discussion is often more efficient. After the meeting, post the key takeaways or meeting notes back in the thread to ensure everyone involved has a record of the outcome.
 - **Use threads for follow-ups after meetings:** Threads are a great way to follow up on meeting discussions. If you had a meeting about a project or issue, start a thread in the relevant channel to continue discussing next steps or to gather feedback from team members who couldn’t attend.
+- **Create documentation from conversations:** When useful info comes up, write it in a wiki or other documentation tool. This turns one-off answers into long-term resources.
 
 ### Mentions
 
@@ -62,12 +63,13 @@ Mentions are a powerful tool for grabbing attention, but overuse can lead to not
 - **Use mentions thoughtfully:** Only mention individuals directly when their input is needed.
 - **Sparingly use group mentions like @channel or @here:** These alert everyone in the channel and should be used only for urgent or critical matters. Overusing them can lead to important notifications being ignored.
 - **Tagging for priority:** When something needs someone’s attention, pair the mention with a clear message to indicate why it’s urgent and important.
+- **Avoid @team-handles without DRIs:** Using a whole-team Slack handle without assigning a Directly Responsible Individual (DRI) can create confusion. Always clarify who is responsible for responding.
 
 ### Writing effective messages
 
 How you craft your message greatly affects how it is received and responded to.
 
-- **Reserve DMs for urgent or sensitive matters:** When possible, use public channels to discuss topics that could benefit the broader team. This keeps everyone in the loop and reduces duplicative conversations.
+- **Reserve DMs for urgent or sensitive matters:** When possible, use shared channels to discuss topics that could benefit the broader team. This keeps everyone in the loop and reduces duplicative conversations.
 - **Be clear and to the point:** Avoid starting conversations with [just “hey” or “hello.”](https://nohello.net/en/) Instead, get straight to the point. For example, instead of “Hey, do you have a minute?” say, “Hey, can you help with this task? I need advice on how to approach it.”
 - **Urgency in DMs:** If something is time-sensitive, state upfront why it’s urgent, when you need a response by, and what will happen if you don’t hear back. For example, say “Please respond to this question by 3:30 PM today or we will reschedule tomorrow’s production release” or “Please let me know your thoughts on these options by the end of this week, otherwise we will be moving forward with option one.”
 - **Reread before sending:** Always review your message before sending it to ensure clarity and neutral tone. Eliminate unnecessary jargon or complexity that may confuse the recipient.
@@ -79,6 +81,7 @@ Emojis can provide quick feedback or convey tone in an otherwise flat text-based
 - **Use 👀 to acknowledge receipt:** If you’ve seen a message but don’t have time to respond right away, a quick 👀 reaction can let the sender know it’s on your radar.
 - **Use 👍 to show agreement or support:** This can eliminate the need for an additional reply and keep conversations moving without unnecessary clutter.
 - **Avoid using emojis to communicate “yes” unless specified:** Since emojis don’t trigger notifications, it’s better to reply with text unless the person has specified that an emoji will suffice.
+- **Provide clear responses to questions:** Avoid using just a thumbs-up reaction as an answer when there are two or more options for moving forward.
 
 ### Status updates
 
@@ -163,6 +166,7 @@ Tips and techniques:
 - **Set a routine for disconnecting:** Develop a ritual, such as a short walk or closing your laptop, to signal the end of your workday and transition into personal time.
 - **Lead by example:** If you’re in a leadership position, model the behavior of disconnecting after work hours to encourage your team to do the same.
 - **Create clear boundaries with clients:** Establish clear communication boundaries with clients regarding after-hours contact, and provide them with alternative ways to address emergencies if they arise.
+- **Watch for weekend communication:** Respect work boundaries by avoiding messages or task assignments that imply weekend work without prior discussion.
 
 Questions to reflect:
 
@@ -184,6 +188,15 @@ To avoid getting overwhelmed by messages, take time to organize your workspace.
 - **Leave channels instead of muting them:** Reduce distractions by leaving channels that aren’t relevant to you.
 - **Bookmark important messages or threads:** If something is important but you don’t need to act on it right away, save or bookmark the message for quick access later.
 
+### Profiles
+
+Your Slack profile helps others quickly understand who you are, what you do, and how to contact you. Keeping your profile up-to-date is a small but effective way to improve communication and collaboration.
+
+- **Use a clear and professional profile picture:** A clear headshot or other professional image helps others recognize you, especially when working with new team members or clients.
+- **Add your full name, title, pronouns, and name pronunciation:** This helps everyone address you correctly and creates a more inclusive environment.
+- **Set your preferred hours and time zone:** This is especially important for distributed teams, so others know when to expect responses from you.
+- **Include your role and expertise:** Use the “Role Description” field to briefly describe your role and areas of expertise for external people.
+
 ### Chat etiquette and best practices
 
 Maintaining a professional and respectful tone in your messages can prevent misunderstandings.
@@ -191,6 +204,10 @@ Maintaining a professional and respectful tone in your messages can prevent misu
 - **Be mindful of tone:** Text-based communication can easily be misinterpreted. Avoid sarcasm, be clear and direct, and always assume the best intentions when reading others’ messages.
 - **Reread before sending:** Before hitting send, double-check that your message is clear, concise, and free from unnecessary jargon. A quick reread can also help you spot any potential ambiguities in tone.
 - **Use positive language:** Frame your messages in a way that fosters collaboration. Instead of “We can’t do this,” try “Here’s what we can do.”
+- **Don’t delete messages after solving an issue:** Instead, add the solution as a follow-up message to maintain context and transparency.
+- **Be mindful with private channels:** Avoid adding people unexpectedly to private channels. Check with them first to respect their preferences.
+- **Avoid anxiety with clear requests:** When reaching out, say what you’re contacting them about instead of just asking, “Do you have a minute?”.
+- **Keep your profile updated:** Ensure your Slack or team profiles have relevant contact details like your email.
 
 Questions to reflect:
 
@@ -212,13 +229,15 @@ Apply the ideas above by updating your Slack settings and channels:
 
 <!-- <label><input type="checkbox" /> **Update your notification schedule:** Adjust Slack notifications to focus on important conversations. Turn off notifications for irrelevant threads and channels.</label> -->
 
+<label><input type="checkbox" /> **Update your profile:** [Edit your profile](https://slack.com/help/articles/204092246-Edit-your-profile) to include your email, time zone, preferred hours, pronouns, and name pronunciation.</label>
+
 <label><input type="checkbox" /> **Arrange your Slack workspace:** If you have a lot of channels or direct messages, consider [organizing your sidebar with custom sections](https://slack.com/help/articles/360043207674-Organize-your-sidebar-with-custom-sections) so higher-priority channels or people are towards the top of your sidebar.</label>
 
 <label><input type="checkbox" /> **Check the _bookmarks_ in the channels you frequent:** See if there are any valuable links you can add to the bookmarks.</label>
 
 <label><input type="checkbox" /> **Check the _pinned messages_ in the channels you frequent:** Remove any irrelevant messages and add any recent messages that you think would be useful for reference.</label>
 
-## Email communication
+## Email
 
 Email remains a crucial tool for formal communication, particularly for conveying detailed information, following up on discussions, or coordinating with clients. Crafting and managing your emails effectively can make a significant difference in how your communication is received and acted upon.
 
@@ -259,6 +278,7 @@ For example, “Action Required by 8/30 – Update on Project Timeline” is mor
 Tips and techniques:
 
 - **Set a regular time for inbox maintenance:** Dedicate 15 minutes at the start or end of your workday to sort through your inbox, archiving emails that don’t require further action.
+- **Respond to action-required emails:** If you get an email that asks for action, respond promptly or find the right person to respond if it’s not you.
 - **Set expectations for response time:** If you know you can’t reply right away, acknowledge receipt and provide a timeframe for your full response, e.g., “I’ll review this and respond by tomorrow afternoon.”
 - **Use auto-responses when needed:** If you’re out of the office or unable to check emails for an extended period, set an auto-response to inform senders when they can expect a reply.
 - **Leverage email scheduling tools:** Use tools like Gmail’s “Schedule Send” to time your emails without having to manually send them during optimal hours.
@@ -341,9 +361,11 @@ Improve the following email:
 
 </details>
 
-## Meeting management
+## Meetings
 
 Meetings are essential for collaboration, but they must be well-organized and purposeful to be effective. Whether you’re leading or participating in a meeting, the following strategies will help you make the most of this time.
+
+Well-run meetings save time and lead to actionable outcomes. Preparing an agenda, staying on topic, and sharing notes afterward ensure that everyone leaves with a clear understanding of next steps. This level of organization keeps clients and teammates on the same page and helps avoid missed deadlines or miscommunication.
 
 ### Organizing and leading effective meetings
 
@@ -358,6 +380,7 @@ Meetings are essential for collaboration, but they must be well-organized and pu
 Tips and techniques:
 
 - **Incorporate breaks for longer meetings:** If your meeting will last more than an hour, schedule a brief break halfway through. This helps participants stay focused and engaged.
+- **Match schedules to roles:** Be aware of the different time management needs of makers (developers, designers) and managers. Schedule meetings accordingly.
 
 Questions to reflect:
 
@@ -397,6 +420,8 @@ Tips and techniques:
 - **Review your action items regularly:** Tools like Confluence make it easy to see all the incomplete action items assigned to you. For example, here are the [tasks assigned to you in Bitovi’s Confluence](https://bitovi.atlassian.net/wiki/home/tasks).
 - **Clarify deadlines:** When summarizing action items, make sure to specify deadlines for each task. If the timeline isn’t clear during the meeting, follow up immediately to get agreement.
 - **Use collaborative tools for meeting notes:** Instead of sending a static document, use a shared platform where all participants can add comments or updates. This makes the notes dynamic and allows for ongoing collaboration.
+- **Recap meetings with summaries:** Send a brief summary after meetings and check for alignment to ensure everyone understands the same conclusions.
+- **Share weekly documents in advance:** If your team uses a shared weekly document, create the new one right after the meeting so it can be updated throughout the week.
 - **Revisit action items in the next meeting:** Start the next meeting by reviewing the status of action items from the previous one. This ensures accountability and continuous progress.
 
 Questions to reflect:
@@ -419,9 +444,11 @@ Questions to reflect:
 
 Tips and techniques:
 
+- **Notify meeting organizers before declining:** If you need to decline a meeting invite, inform the organizer beforehand and explain why.
 - **Prepare talking points in advance:** Before the meeting, jot down the key points you want to discuss. This helps you stay focused and ensures you don’t forget important contributions.
 - **Anticipate potential questions:** Think about the topics on the agenda and what questions might arise. Preparing answers in advance can help you respond confidently and quickly.
 - **Be mindful of body language:** Even in virtual meetings, body language matters. Maintain good posture, nod in agreement, and avoid multitasking, which can be distracting to others.
+- **Mute yourself when not speaking in meetings:** This minimizes background noise and distractions.
 
 Questions to reflect:
 
@@ -467,7 +494,7 @@ Questions to reflect:
 
 **Keep daily scrum meetings brief:** Stick to the essentials — mention any blockers, risks, and expectations for progress without getting into unnecessary details. This ensures daily scrum meetings remain short and to the point.
 
-**Determine the appropriate frequency:** Standups should match the pace of the project. For fast-moving projects, daily daily scrum meetings might be necessary; for slower projects, twice a week might suffice.
+**Determine the appropriate frequency:** Daily scrum meetings should match the pace of the project. For fast-moving projects, daily daily scrum meetings might be necessary; for slower projects, twice a week might suffice.
 
 **Over chat/Slack:** When giving daily scrum meeting updates via chat, include meaningful descriptions along with any issue numbers. For example, instead of saying, “Working on issue #123,” say, “Working on issue #123 – Fixing bug in user authentication flow.” This clarity helps everyone understand the context without extra effort.
 
@@ -475,14 +502,16 @@ Tips and techniques:
 
 - **Keep a daily log:** Maintain a brief daily log of your work to help you quickly recall what you’ve done when preparing for daily scrum meetings. This also helps in tracking progress over time.
 - **Clarify the focus:** Make sure everyone knows what’s most relevant for the team to hear. Encourage sharing blockers, dependencies, and key progress rather than getting into the weeds.
+- **Listen to everyone else:** Look for opportunities to support your other team mates, 
+
 
 Questions to reflect:
 
 - How do you ensure that your daily scrum meeting updates are concise yet informative? Are there any adjustments you could make to improve this balance?
 
-### Standups
+### Daily scrum meetings
 
-The idea of a stand-up meeting is to ensure a brief discussion of important issues, current challenges and their solutions. Once the core issues are discussed, the team can quickly disperse to carry out that day’s initiatives. It’s important to do your part to make daily scrum meetings effective but efficient.
+The idea of a daily scrum meeting is to ensure a brief discussion of important issues, current challenges and their solutions. Once the core issues are discussed, the team can quickly disperse to carry out that day’s initiatives. It’s important to do your part to make daily scrum meetings effective but efficient.
 
 #### Prepare in advance
 
@@ -490,7 +519,7 @@ Take 10 minutes before the meeting to think about what you’re going to say. Yo
 
 #### Write it out/document
 
-Standups can be done in writing! This can be more efficient for a fully remote team, especially with major time zone differences. If you or your client prefers in person meetings, ask the team to submit their updates in advance ([there are tools for this](https://slack.com/slack-tips/run-daily-daily scrum meetings-or-check-ins)), or have someone document the updates in a shared wiki.
+Daily scrum meetings can be done in writing! This can be more efficient for a fully remote team, especially with major time zone differences. If you or your client prefers in person meetings, ask the team to submit their updates in advance ([there are tools for this](https://slack.com/slack-tips/run-daily-daily scrum meetings-or-check-ins)), or have someone document the updates in a shared wiki.
 
 #### Frequency
 
@@ -502,21 +531,16 @@ Know your audience! Think about what the audience needs to know vs. what you wan
 
 ### Successful meetings
 
-#### Set an agenda
+- **Set an agenda:** Come into a meeting with an agenda. State the agenda at the start so everyone is aware of what you’d like to accomplish. This might include topics of discussion or key questions you’d like to answer.
+- **Take notes:** Simply take notes during calls and meetings. Summarize the “next actions” and make sure its clear who is assigned each action.
+- **Send recaps:** Simply send a summary of your notes and next steps out to all stakeholders or attendees. If you’re meeting alone with a client, send it to them.
+- **Take ownership:** When appropriate, make it clear that you will complete certain tasks by a certain date.
 
-Come into a meeting with an agenda. State the agenda at the start so everyone is aware of what you’d like to accomplish. This might include topics of discussion or key questions you’d like to answer.
+Tips and techniques:
 
-#### Take notes
-
-Simply take notes during calls and meetings. Summarize the “next actions” and make sure its clear who is assigned each action.
-
-#### Send recaps
-
-Simply send a summary of your notes and next steps out to all stakeholders or attendees. If you’re meeting alone with a client, send it to them.
-
-#### Take ownership
-
-When appropriate, make it clear that you will complete certain tasks by a certain date.
+- **Use clear meeting titles and agendas:** Always include a title and an agenda when scheduling meetings to reduce anxiety and set expectations.
+- **Take notes with meaning:** Focus on the main points rather than trying to write everything down. Aim for understanding and summarizing key takeaways.
+- **Explore note-taking techniques:** Use methods such as bullet lists, the Cornell method, or mind mapping. Write down conclusions, not just facts, and review your notes to organize them later.
 
 ### Exercise: Draft a meeting invite
 
@@ -566,6 +590,8 @@ You can use it for a variety of purposes:
 - **Knowledge sharing:** Writing articles or guides to share domain knowledge, tips, and best practices within the organization or with clients.
 - **Technical documentation:** Writing detailed descriptions of system architectures, processes, or components to keep technical stakeholders informed.
 - **Dashboards:** Create dynamic reports that pull data from Jira to provide real-time project statuses and updates.
+
+Wikis provide a central hub for important information, but they only work well when structured clearly. Using headings, templates, and concise language makes pages easier to navigate, while highlighting decisions and action items ensures key details don’t get lost. This clarity benefits everyone working on the project by providing a reliable reference point.
 
 ### Creating and maintaining accessible documentation
 
@@ -642,7 +668,7 @@ In your Confluence space:
 4. Fill in the information to run a meeting related to your communication plan.
 5. Assign Chasen an action item to review the page by one week from now.
 
-## Choosing the best method of communication
+## Choosing the best method
 
 The following the communication tools that should be present on every project. With so many options, it important to pick the correct technology for the type of interaction you expect. Immediacy (as in how quickly you need a response) is the governing attribute for each tool. Below are a list of common tools used in today’s workplace in order from least immediate to most immediate.
 
@@ -654,6 +680,8 @@ The following the communication tools that should be present on every project. W
 When deciding what tool to use, start at the top — it is the most respectful of your recipient’s time. Most communications are informational in nature and should be documented (like in a wiki) or emailed. If using email to ask a question or to get a response, follow the [business writing](#business-writing) principles outlined below.
 
 Chat replies can be delayed but most modern tools like Slack give the sender the ability to “demand” a recipients attention with notifications. Meetings should only be scheduled when decisions need to be made at that very moment.
+
+Choosing the right communication method ensures your message is delivered effectively. Sensitive topics might require a call, while persistent information belongs in a wiki. Understanding the strengths of each method helps you communicate efficiently, reducing friction and making collaboration with clients and teams smoother.
 
 ---
 
@@ -668,7 +696,7 @@ ove communication effectiveness.
 
 Each form of communication has its own strengths and limitations. It’s important to match the method to the message to make sure everyone involved is informed and engaged in the best possible way.
 
-#### Wikis
+#### Wikis (Confluence, SharePoint, etc.)
 
 Wikis are a great option for documenting information that needs to be easily referenced, updated, and shared in the future. When you create a wiki entry, you’re making it accessible to the entire team or company in a centralized way.
 
@@ -731,7 +759,7 @@ Don’t use chat when:
 - _Information needs to be preserved or tracked:_ If the content is important for the future, put it in an email or a wiki.
 - _Complex topics need detailed thought:_ Longer discussions or multi-part topics should be documented in a more structured way, either in a wiki or an email.
 
-#### Meetings
+#### Meetings (Google Meet, Microsoft Teams, Zoom, etc.)
 
 Meetings are helpful for conveying complex information, building understanding, and establishing relationships. They’re ideal when tone and nuance are key, or when collaborative decision-making is needed.
 
@@ -813,6 +841,8 @@ Tips and techniques:
 
 - **Ask about preferences early:** At the start of a project or relationship, directly ask your clients and colleagues about their preferred communication methods and availability.
 - **Respect personal work rhythms:** If someone prefers to do deep work in the mornings, try to schedule meetings in the afternoon. Understanding these nuances can significantly impr
+- **Choose the right communication mode:** Remember that tone and quick follow-ups are easier in spoken conversations. Written forms can lack immediate context.
+
 ### When to switch modes
 
 It’s often necessary to switch between communication methods to suit the flow of information and the needs of the project. Below are some scenarios for choosing or changing communication methods:
