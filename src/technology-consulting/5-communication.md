@@ -64,17 +64,17 @@ Communication planning
 
 - State expectations explicitly and determine the purpose and audience of your communication.
 
-Effectively Using Tools to Enhance Communication
-
-- Use Grammarly to catch errors, but review AI-generated content before sending.
-- Use LLMs for brainstorming, creating visual aids, or gathering feedback.
-- Be transparent about AI usage in your communication process.
-
 Business Writing
 
 - Write with clarity and specify clear actions and deadlines.
 - Avoid assuming shared context — be concise but thorough.
 - Eliminate emotionally charged language from written communication.
+
+Effectively Using Tools to Enhance Communication
+
+- Use Grammarly to catch errors, but review AI-generated content before sending.
+- Use LLMs for brainstorming, creating visual aids, or gathering feedback.
+- Be transparent about AI usage in your communication process.
 
 Professional communication
 
@@ -288,62 +288,62 @@ Let’s take a look at this “emotion wheel” which shows a broad range of emo
 <table>
   <thead>
     <tr>
-      <th>Emotion</th>
-      <th>Voice</th>
-      <th>Pacing</th>
-      <th>Facial Expression</th>
-      <th>Descriptors</th>
+      <th scope="col">Emotion</th>
+      <th scope="col">Descriptors</th>
+      <th scope="col">Voice</th>
+      <th scope="col">Pacing</th>
+      <th scope="col">Facial Expression</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Angry</td>
+      <th scope="row">Angry</th>
+      <td>Aggressive, Bitter, Critical, Distant, Frustrated, Humiliated, Let down, Mad</td>
       <td>Loud, forceful, with hard consonants.</td>
       <td>Quick, with intensity.</td>
       <td>Scowling, clenched jaw, narrowed eyes.</td>
-      <td>Aggressive, Bitter, Critical, Distant, Frustrated, Humiliated, Let down, Mad</td>
     </tr>
     <tr>
-      <td>Bad</td>
+      <th scope="row">Bad</th>
+      <td>Bored, Busy, Stressed, Tired</td>
       <td>Low, flat, resigned.</td>
       <td>Monotone, slow.</td>
       <td>Neutral or subtly grimacing.</td>
-      <td>Bored, Busy, Stressed, Tired</td>
     </tr>
     <tr>
-      <td>Disgusted</td>
+      <th scope="row">Disgusted</th>
+      <td>Awful, Disapproving, Disappointed, Repelled</td>
       <td>Low, nasal, and sharp with emphasis on the negative emotion.</td>
       <td>Clipped, abrupt.</td>
       <td>Scrunched nose, narrowed eyes, tightened lips.</td>
-      <td>Awful, Disapproving, Disappointed, Repelled</td>
     </tr>
     <tr>
-      <td>Fearful</td>
+      <th scope="row">Fearful</th>
+      <td>Anxious, Insecure, Rejected, Scared, Threatened, Weak</td>
       <td>Quieter, with a tremble or shakiness.</td>
       <td>Hesitant, with frequent pauses.</td>
       <td>Wide eyes, tense expression, possibly biting lip.</td>
-      <td>Anxious, Insecure, Rejected, Scared, Threatened, Weak</td>
     </tr>
     <tr>
-      <td>Happy</td>
+      <th scope="row">Happy</th>
+      <td>Accepted, Content, Interested, Optimistic, Peaceful, Playful, Powerful, Proud, Trusting</td>
       <td>Bright, enthusiastic, with a higher pitch than usual.</td>
       <td>Slightly faster, with energy.</td>
       <td>Big smile, open eyes.</td>
-      <td>Accepted, Content, Interested, Optimistic, Peaceful, Playful, Powerful, Proud, Trusting</td>
     </tr>
     <tr>
-      <td>Sad</td>
+      <th scope="row">Sad</th>
+      <td>Depressed, Despair, Guilty, Hurt, Lonely, Vulnerable</td>
       <td>Slow, soft, with a downward inflection.</td>
       <td>Drawn-out, with pauses.</td>
       <td>Frown, furrowed brows, downcast eyes.</td>
-      <td>Depressed, Despair, Guilty, Hurt, Lonely, Vulnerable</td>
     </tr>
     <tr>
-      <td>Surprised</td>
+      <th scope="row">Surprised</th>
+      <td>Amazed, Confused, Excited, Startled</td>
       <td>High-pitched, with a sharp rise in intonation.</td>
       <td>Sudden shifts, sometimes speeding up mid-sentence.</td>
       <td>Wide eyes, raised eyebrows, open mouth.</td>
-      <td>Amazed, Confused, Excited, Startled</td>
     </tr>
   </tbody>
 </table>
@@ -1017,17 +1017,17 @@ Skim through the scenarios below and choose one that resonates with you.
 
 For your chosen scenario, create a communication plan by answering the following questions:
 
-- **Purpose:** What is my goal in communicating with them?
-- **Audience:** Who do I need to communicate with?
-- **Content (main point):** What is the one key idea I absolutely need to convey?
-- **Content (supporting details):** What details should I include? What should I leave out?
-- **Call to action:** What specific action or response do I need from them?
+- **Audience:** With whom do you need to communicate?
+- **Purpose:** Why do you need to communicate with them? What do you want them to feel?
+- **Content (main point):** What is the one key idea you want to communicate?
+- **Content (supporting details):** What are the supporting details that contribute to your main point? [What should you leave out?]
+- **Call to action:** What specific action or response do you need from your audience?
 
 Outline your approach and think critically about how to tailor your message for each audience in the scenario you chose.
 
 #### Backend
 
-<details open>
+<details>
 <summary>Backend API performance concerns</summary>
 
 You’re a Backend Developer working on optimizing the API for a social media platform. Several performance issues have been reported by the frontend team, and the client is concerned about user retention:
@@ -1037,53 +1037,6 @@ You’re a Backend Developer working on optimizing the API for a social media pl
 - The frontend team is requesting pagination for large data sets, but implementing it requires restructuring several existing endpoints.
 - There’s pressure from the project manager to improve performance, but the client keeps adding new features that complicate optimization efforts.
 - The DevOps team is suggesting a different infrastructure setup to improve performance, but it may require rewriting parts of the code.
-
-<details>
-<summary>Communication plan</summary>
-
-- **Purpose:** Collaborate on how to handle large data sets and improve user experience.
-- **Audience:** Frontend developers.
-- **Content (main point):** Pagination will be introduced, but it will require restructuring the existing API endpoints.
-- **Content (supporting details):**
-  - Explain that implementing pagination will improve performance for large data sets.
-  - Highlight that restructuring the endpoints is necessary, but it will take time due to the volume of changes required.
-  - Acknowledge their performance issues, but explain that some delays are caused by the backend needing to fetch and process large datasets.
-- **Call to action:** Ask the frontend team to work with you to test the pagination feature once implemented and provide feedback on any potential impact on the user interface.
-
----
-
-- **Purpose:** Set realistic expectations regarding performance improvements and feature development.
-- **Audience:** Client (who is adding new features).
-- **Content (main point):** While the team is optimizing the API, adding more features can slow down progress and introduce complexity.
-- **Content (supporting details):**
-  - Explain that optimizing the search queries and aggregating data from multiple services is the current priority to improve user experience.
-  - Mention that adding new features at this stage may delay these performance optimizations.
-  - Suggest a balance between new features and performance improvements to meet user retention goals.
-- **Call to action:** Request a discussion on feature prioritization and suggest a phased approach to adding new features after critical optimizations are complete.
-
----
-
-- **Purpose:** Align on performance improvement priorities and manage scope creep from the client.
-- **Audience:** Project Manager.
-- **Content (main point):** Performance improvements are achievable, but ongoing feature requests are complicating the optimization process.
-- **Content (supporting details):**
-  - Outline the current performance challenges, especially with search queries and data aggregation.
-  - Highlight that the client’s feature requests are adding complexity to the optimization efforts.
-  - Propose a focus on performance improvements before implementing further features.
-- **Call to action:** Seek support in pushing back on the client’s immediate feature demands and request that the project manager help manage client expectations to focus on core optimizations first.
-
----
-
-- **Purpose:** Collaborate on improving infrastructure to boost API performance while ensuring minimal code rewrites.
-- **Audience:** DevOps team.
-- **Content (main point):** Any infrastructure changes must be balanced with the feasibility of backend code modifications.
-- **Content (supporting details):**
-  - Acknowledge their suggestions for infrastructure changes and the potential benefits for performance.
-  - Explain the code structure’s current state and how much of it might need to be rewritten for the new setup.
-  - Suggest evaluating how infrastructure changes could be phased in without a complete rewrite of the codebase.
-- **Call to action:** Request their help in outlining a more detailed plan for the infrastructure changes, including an analysis of how to integrate them without causing major disruptions to the backend code.
-
-</details>
 
 </details>
 
