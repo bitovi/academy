@@ -173,20 +173,16 @@ Recognizing that others communicate differently helps you avoid misunderstanding
 
 You can identify communication styles by paying attention to:
 
+- **Pace:** Fast or slow talker?
+- **Priority (task vs. people-oriented):** Focused on goals or relationships?
+
 - **Tone of voice:** Formal, casual, encouraging, or direct?
-- **Pacing:** Fast or slow talker?
+- **Conflict resolution:** Avoid, confront, or mediate?
+- **Decision-making:** Quick or deliberate?
 - **Body language:** Do they gesture or stay reserved?
 - **Formality:** Structured or relaxed in conversation?
 
 Observing these cues helps you adapt your communication to match the other person’s style, leading to more productive conversations.
-
-### Behavioral clues
-
-Behavioral clues give insight into whether someone is task-oriented or people-oriented and how they handle conflict or decision-making. This can help you collaborate more effectively with new teams or clients.
-
-- **Task vs. people-oriented:** Focused on goals or relationships?
-- **Conflict resolution:** Avoid, confront, or mediate?
-- **Decision-making:** Quick or deliberate?
 
 ## Adapting to others
 
