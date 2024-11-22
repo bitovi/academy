@@ -10,6 +10,8 @@
 
 Feedback is a critical part of both individual growth and team success. When delivered thoughtfully, it helps build trust, improves performance, and enhances collaboration. Whether giving or receiving feedback, the way you approach it can make all the difference in its effectiveness. This module is designed to help you develop the skills needed to navigate feedback situations confidently and constructively.
 
+Delivering feedback with empathy and receiving it thoughtfully builds trust and encourages improvement. Taking notes and choosing the right time to share feedback ensures it’s constructive and actionable. By confirming understanding, you create a culture of accountability and continuous learning, benefiting your work with clients and colleagues alike.
+
 ### Before giving feedback
 
 Before offering feedback, it’s essential to prepare thoughtfully. This means understanding both your intention and the potential impact of your words.
