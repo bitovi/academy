@@ -10,6 +10,10 @@
 
 Communication styles refer to how people express themselves, both verbally and nonverbally. Understanding these styles helps reduce misunderstandings and build stronger relationships with colleagues, clients, and managers.
 
+## Understanding ourselves
+
+Understanding your own communication style helps you recognize habits that might seem unprofessional or unclear to others. By identifying these tendencies, you can adjust how you engage with clients and teammates, ensuring your intentions are understood and relationships remain positive.
+
 ### Personality trait models
 
 Personality models, like the Big Five, focus on traits that stay consistent over time.
@@ -79,6 +83,24 @@ This table compares four popular behavior style models: Integrity Solutions’ B
 Each model categorizes individuals based on their communication, decision-making, and interaction tendencies.
 While these models use different terminology and frameworks, they roughly align in their groupings of individuals by behavior.
 
+### Understanding the spectrums
+
+Both **direct vs. indirect** and **open vs. guarded** represent spectrums, not binary categories. People can shift along these spectrums depending on the context (e.g., work vs. home), the relationship with the other person, or the situation at hand.
+
+- **Direct and indirect** refer to **how** people communicate — whether they get straight to the point or approach things more subtly.
+- **Open and guarded** refer to **what** they share — whether they freely share personal feelings and opinions or keep them more private.
+
+Each person may display varying levels of directness and openness, depending on circumstances:
+
+- **Highly direct and open:** Tends to be very expressive, sharing opinions and feelings with little hesitation.
+- **Highly direct and guarded:** Communicates clearly and assertively but keeps personal details private.
+- **Indirect and open:** May share personal experiences but does so in a softer, more cautious way.
+- **Indirect and guarded:** Offers little personal information and communicates subtly, often prioritizing harmony and avoiding conflict.
+
+These spectrums help us understand the nuances of communication and interaction in different settings, allowing for more adaptable and effective communication strategies.
+
+All four of the main Behavior Styles categories are present at Bitovi. Each category has strengths that they bring to the table. Diversity in a team is useful because diverse communication styles can excel in different areas, so together they can be more than the sum of their individual parts.
+
 ### Direct vs. indirect communication
 
 #### Direct communication
@@ -143,21 +165,9 @@ Observable behaviors:
 - Keeps professional and personal life distinctly separated.
 - Appears more cautious and deliberate in how they communicate.
 
-### Understanding the spectrums
+## Understanding others
 
-Both **direct vs. indirect** and **open vs. guarded** represent spectrums, not binary categories. People can shift along these spectrums depending on the context (e.g., work vs. home), the relationship with the other person, or the situation at hand.
-
-- **Direct and indirect** refer to **how** people communicate — whether they get straight to the point or approach things more subtly.
-- **Open and guarded** refer to **what** they share — whether they freely share personal feelings and opinions or keep them more private.
-
-Each person may display varying levels of directness and openness, depending on circumstances:
-
-- **Highly direct and open:** Tends to be very expressive, sharing opinions and feelings with little hesitation.
-- **Highly direct and guarded:** Communicates clearly and assertively but keeps personal details private.
-- **Indirect and open:** May share personal experiences but does so in a softer, more cautious way.
-- **Indirect and guarded:** Offers little personal information and communicates subtly, often prioritizing harmony and avoiding conflict.
-
-These spectrums help us understand the nuances of communication and interaction in different settings, allowing for more adaptable and effective communication strategies.
+Recognizing that others communicate differently helps you avoid misunderstandings. By considering their unique styles, you can interpret their behavior more accurately and anticipate their needs. This makes your collaboration more effective and helps you adapt to different work environments.
 
 ### Observing communication styles
 
@@ -178,6 +188,10 @@ Behavioral clues give insight into whether someone is task-oriented or people-or
 - **Conflict resolution:** Avoid, confront, or mediate?
 - **Decision-making:** Quick or deliberate?
 
+## Adapting to others
+
+Adapting your communication style makes your messages more effective and professional. By tailoring your approach to meet others’ preferences, you avoid missteps and strengthen connections. This flexibility helps teams work together more cohesively, improving outcomes for your projects.
+
 ### Adapting your communication
 
 To communicate effectively, adjust your style without changing your personality. For example:
@@ -187,6 +201,10 @@ To communicate effectively, adjust your style without changing your personality.
 - Send written communication to those who prefer it over face-to-face meetings.
 
 Small adjustments help build stronger relationships with clients and colleagues.
+
+Tips and techniques:
+
+- **Be aware of neurodiversity:** Understand that communication preferences can vary between neurotypical and neurodivergent individuals. Adapt your style to meet different needs.
 
 ### Cultural background and communication styles
 
