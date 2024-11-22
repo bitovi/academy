@@ -2109,7 +2109,7 @@ Here’s an example where a client’s frontend developer comes to you with a re
 
 **Consultant:** “Everything? Why is that necessary?”
 
-**Client:** “Well, we need flexibility to access everything without having to constantly go back and forth.”
+**Client:** “Well, it’s necessary because we need flexibility for the future without having to constantly go back and forth.”
 
 **Consultant:** “I understand that, but exposing everything could introduce security risks or performance issues. Can you explain more about why you need all the data?”
 
