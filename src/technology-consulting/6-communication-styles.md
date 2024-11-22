@@ -188,8 +188,6 @@ Observing these cues helps you adapt your communication to match the other perso
 
 Adapting your communication style makes your messages more effective and professional. By tailoring your approach to meet others’ preferences, you avoid missteps and strengthen connections. This flexibility helps teams work together more cohesively, improving outcomes for your projects.
 
-### Adapting your communication
-
 To communicate effectively, adjust your style without changing your personality. For example:
 
 - Provide context to a detail-oriented person.
@@ -204,14 +202,66 @@ Tips and techniques:
 
 ### Cultural background and communication styles
 
-Culture shapes communication styles, from directness to power dynamics. Here’s how culture impacts communication:
+[Hofstede's cultural dimensions theory](https://en.wikipedia.org/wiki/Hofstede%27s_cultural_dimensions_theory) (6-D model) describes six dimensions of culture that help explain how people in different countries interact, work, and communicate. Understanding these dimensions can improve how we collaborate with both clients and teammates from diverse cultural backgrounds.
 
-- **Direct vs. indirect:** Direct cultures (e.g., U.S., Germany) value clear communication. Indirect cultures (e.g., Asian, Latin American) rely on subtlety and context.
-- **High vs. low-context cultures:** High-context cultures rely on non-verbal signals and shared experiences, while low-context cultures prioritize explicit communication.
-- **Power distance:** High power distance cultures are more hierarchical, while low power distance cultures encourage open dialogue.
-- **Individualism vs. collectivism:** Individualist cultures focus on self-expression, while collectivist cultures prioritize group harmony.
+- **Individualism vs. Collectivism (IDV):** Measures whether people prioritize personal goals (Individualism) or group goals (Collectivism).
+  - **Individualistic cultures:** Emphasize personal achievement, autonomy, and individual rights. Examples: U.S. (highly individualistic), Canada, France, Israel.
+  - **Collectivist cultures:** Value group harmony, loyalty, and interdependence. Examples: India, Brazil, Egypt.
+  - **Comparison:** The U.S. scores high on individualism, meaning people value independence and personal responsibility, whereas countries like India or Brazil lean more towards group harmony and interdependence.
+  - **Anecdote:** Received feedback from multiple Bitovians that U.S. folks tend to ask about the weather, whereas in their cultures they are used to talking about deeper topics like “work, sports, music, politics, and sometimes even religion.”
+  - **Adaptation example:** A U.S. consultant working with a team in India might emphasize group benefits and team success over personal achievements to align with the collectivist mindset.
+
+- **Power Distance Index (PDI):** Indicates how much less powerful members of a society accept unequal power distribution.
+  - **Low power distance cultures:** Favor egalitarian workplaces, open communication, and questioning authority. Examples: U.S., Canada, Israel.
+  - **High power distance cultures:** Value clear hierarchies, respect for authority, and less expectation of challenging leaders. Examples: India, Brazil, Egypt, France.
+  - **Comparison:** The U.S. has a lower power distance, favoring flatter organizational structures compared to more hierarchical cultures like India or Egypt.
+  - **Adaptation example:** When collaborating with a client in Brazil, a U.S. consultant might avoid directly challenging a senior team member's decision in public, opting instead to address concerns privately.
+
+- **Uncertainty Avoidance Index (UAI):** Reflects how comfortable people are with ambiguity and uncertainty.
+  - **Low uncertainty avoidance cultures:** Willingness to take risks, flexibility, and innovation. Examples: U.S., Canada, Israel.
+  - **High uncertainty avoidance cultures:** Prefer rules, structure, and predictability. Examples: France, Brazil, Egypt, India.
+  - **Comparison:** The U.S. is relatively low on uncertainty avoidance, valuing adaptability over rigid rules, unlike countries like France or Brazil, where people prefer more structure.
+  - **Adaptation example:** While working with a client in France, a U.S. consultant might provide more detailed project plans and documentation to address their preference for structure and predictability.
+
+- **Motivation Towards Achievement and Success (MAS):** Examines whether a culture prioritizes achievement and competition (Achievement) or care and quality of life (Success).
+  - **Achievement cultures:** Focus on ambition, success, and material rewards. Examples: U.S., India, Brazil.
+  - **Success cultures:** Emphasize cooperation, equality, and work-life balance. Examples: France, Canada, Israel, Egypt.
+  - **Comparison:** The U.S. leans Achievement, favoring achievement and competition, while countries like Canada or France prioritize balance and collaboration.
+  - **Adaptation example:** A U.S. consultant working with a Canadian team might focus on discussing work-life balance and the overall team’s well-being rather than emphasizing competition and individual accomplishments.
+
+- **Long-Term vs. Short-Term Orientation (LTO):** Distinguishes between cultures that value long-term planning and perseverance (Long-Term) versus immediate results and traditions (Short-Term).
+  - **Short-term oriented cultures:** Focus on the present, quick outcomes, and maintaining traditions. Examples: U.S., Canada, Brazil, Egypt.
+  - **Long-term oriented cultures:** Emphasize future planning, thrift, and persistence. Examples: India, France, Israel.
+  - **Comparison:** The U.S. is short-term oriented, favoring quick wins, while countries like India focus more on long-term strategies.
+  - **Adaptation example:** When collaborating with a team in India, a U.S. consultant might frame discussions around long-term benefits and sustainability rather than focusing on quick wins.
+
+- **Indulgence vs. Restraint (IVR):** Determines whether people allow themselves to enjoy life and indulge (Indulgence) or practice restraint due to strict societal norms.
+  - **Indulgent cultures:** Encourage leisure, happiness, and personal freedom. Examples: U.S., Canada, Brazil, Israel.
+  - **Restrained cultures:** Value discipline, duty, and control over desires. Examples: India, France, Egypt.
+  - **Comparison:** The U.S. is indulgent, valuing freedom and enjoyment, while countries like Egypt or India lean towards restraint.
+  - **Adaptation example:** A U.S. consultant working with a team in Egypt might moderate expressions of enthusiasm and avoid overly casual discussions to align with the more restrained cultural approach.
 
 Understanding these cultural factors helps you tailor your communication style to fit the audience.
+
+### Tension
+
+- **Supporter vs. Doer:** Double Tensions of Patience vs. Urgency & People vs. Task
+  - The Supporter’s slower pace and focus on people rather than results and tasks can conflict with the Doer’s sense of urgency to get results NOW.
+
+- **Talker vs. Controller:** Double Tensions of Urgency vs. Patience & People vs. Task
+  - The Talker’s higher urgency and focus on people can conflict with the Controller’s lack of urgency with a primary focus on tasks/results.
+
+- **Supporter vs. Controller:** People vs. Tasks
+  - The Supporter’s focus on other people, teamwork, and personal connection can conflict with the Controller’s focus on data, analysis, accuracy, and precision.
+
+- **Talker vs. Doer:** People vs. Tasks
+  - The Talker’s focus on other people, feelings, and political correctness can conflict with the Doer’s focus on results, tasks, and action.
+
+- **Doer vs. Controller:** Urgency vs. Patience
+  - The Doer’s focus on results and immediate action can conflict with the Controller’s focus on exercising patience to assure accuracy and avoid errors.
+
+- **Talker vs. Supporter:** Urgency vs. Patience
+  - The Talker’s sense of urgency and being direct can conflict with the Supporter’s innate patience and preference for being indirect.
 
 ### Understanding your audience
 
@@ -315,36 +365,3 @@ Questions to reflect:
 - In what situations do you find yourself needing to code-switch the most? How do you adapt your language and tone?
 - Reflect on a time when you successfully adjusted your communication style for a specific audience. What was the outcome?
 - How can you improve your ability to code-switch without losing the authenticity of your message?
-
-#### Simplifying complex ideas and using analogies
-
-Simplifying complex ideas requires a deep understanding of the subject matter. Break down the concept into smaller, digestible parts and explain each in plain language. Use step-by-step explanations and check for understanding along the way.
-
-For instance, when explaining how a blockchain works to a non-technical audience, you could describe it as a “digital ledger that records transactions in a way that makes them secure and unchangeable, like writing in pen instead of pencil.”
-
-**Using analogies, metaphors, and storytelling to make technical information relatable to non-experts:** Analogies and metaphors are useful for making technical concepts easier to understand. Relate the concept to something familiar to your audience.
-
-For example, you might compare a computer’s CPU to a brain, where the brain (CPU) processes information and makes decisions, helping the body (computer) function.
-
-Storytelling can also be helpful, such as describing how a user interacts with a system from start to finish to show the impact of a new feature. For instance, “Imagine you’re ordering a pizza online. The front-end design is like the user-friendly app interface you see, while the backend processes make sure your order is correctly sent to the pizza shop.”
-
-Tips and techniques:
-
-- **Break it down:** Divide complex ideas into smaller, logical steps. Explain each step clearly before moving on to the next, making sure your audience follows along.
-- **Use relatable analogies:** Choose analogies that are relevant to your audience’s experience. For example, use sports analogies for a sports enthusiast or business analogies for executives.
-- **Simplify your language:** Avoid technical jargon unless necessary. Use simple, straightforward language and then check for understanding.
-- **Incorporate storytelling:** Turn data or technical details into a narrative. For example, instead of explaining the intricacies of a database migration, tell the story of how the migration improved a client’s operations.
-
-Questions to reflect:
-
-- How do you currently simplify complex ideas when communicating with non-experts?
-- Recall a time when your audience struggled to understand a technical concept. How could you have simplified your explanation?
-- What are some of your go-to analogies or metaphors? How effective are they in helping others understand complex topics?
-
-### Exercise: Communication styles
-
-TODO:
-
-- Try to figure out another person’s behavior style (the two people exercise in the PDF).
-- Given a prompt, try to understand the other person’s style.
-- Chasen reads some text and everyone tries to guess what style the person embodies. Maybe have a volunteer for each style to figure it out.
