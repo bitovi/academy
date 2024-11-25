@@ -31,109 +31,109 @@ Communication impacts every aspect of our work. It can make or break a project, 
 
 Communication builds trust over time. When it’s done poorly, it either fails to establish trust or erodes the trust that has already been built.
 
-We have a whole section on Trust and Rapport because they form the foundation for everything else. Communication is a key component in that foundation.
+We have a whole page on [learn-technology-consulting/building-rapport] because they form the foundation for everything else. Communication is a key component in that foundation.
 
 When communication is strong:
 
 - Projects run more smoothly.
-- We build better relationships with clients.
-- Clients are more satisfied with our work.
-- Opportunities to grow our business increase.
+- We build stronger relationships with our clients.
+- Clients are happier with the work we deliver.
+- We have more opportunities to grow our business.
 
 When communication breaks down:
 
 - Projects experience tension and misalignment.
-- Opportunities are missed because we didn’t listen or understand priorities.
-- Clients may feel unheard or undervalued.
 - Relationships with clients or teammates can deteriorate, sometimes irreparably.
+- Clients may feel unheard or undervalued.
+- Opportunities are missed because we didn’t listen or understand priorities.
 
 ### Overview
 
-Nonverbal communication
+This page starts off by discussing [non-verbal communication](#nonverbal-communication), which includes body language, tone, and other cues that can communicate as much — or more — than words. It highlights the importance of aligning non-verbal cues with your intended message while being aware of cultural nuances.
 
-- Avoid unintended negativity, sarcasm, or passive-aggressive remarks.
-- Be mindful of cultural differences, tone, and body language.
+- Avoid negativity, sarcasm, or passive-aggressive remarks.
+- Be mindful of tone, body language, and cultural differences.
 
-Emotional Intelligence
+Next, the section on [emotional intelligence](#emotional-intelligence) explains its four components: self-awareness, self-regulation, social awareness, and organizational awareness. It focuses on managing emotions, understanding others, and fostering effective interactions.
 
-- Be self-aware of emotional triggers and avoid reactive communication.
-- Develop organizational awareness to identify who needs to be informed.
-- Practice compassionate empathy by taking thoughtful actions to help others.
+- Recognize emotional triggers to avoid reactive communication.
+- Use organizational awareness to inform the right people.
+- Practice compassionate empathy through thoughtful actions.
 
-Communication planning
+The [communication planning](#communication-planning) section covers strategies to make your messages purposeful, clear, and audience-focused.
 
-- State expectations explicitly and determine the purpose and audience of your communication.
+- Define the purpose of your communication and state expectations explicitly.
 
-Business Writing
+The [learn-technology-consulting/communication-methods] page outlines best practices for effectively communicating over [learn-technology-consulting/communication-methods#chat chat].
 
-- Write with clarity and specify clear actions and deadlines.
-- Avoid assuming shared context — be concise but thorough.
-- Eliminate emotionally charged language from written communication.
-
-Effectively Using Tools to Enhance Communication
-
-- Use Grammarly to catch errors, but review AI-generated content before sending.
-- Use LLMs for brainstorming, creating visual aids, or gathering feedback.
-- Be transparent about AI usage in your communication process.
-
-Professional communication
-
-- Use inclusive language, show compassion, and stay open-minded.
-- Make observable progress and communicate updates before being asked.
-- Ask clarifying questions and encourage collaboration to reduce ambiguity.
-
-Active Listening
-
-- Avoid interrupting and encourage others to share by paraphrasing or summarizing.
-- Use techniques like mirroring and labeling to uncover unspoken concerns and reduce ambiguity.
-
-Communication Styles: Understanding Ourselves
-
-- Identify tendencies that may come across as unprofessional.
-- Recognize when you’re too task-focused and need to communicate proactively.
-- Understand how your style might be misinterpreted.
-
-Communication Styles: Understanding Others
-
-- Learn how others’ communication styles may seem unprofessional but are not intentional.
-- Anticipate others’ needs and communicate in a way that works best for them.
-- Be aware of differences in style to avoid misunderstandings.
-
-Communication Styles: Adapting to Others
-
-- Tailor your communication to be more effective for different styles.
-- Recognize and meet the frequency or type of communication others need.
-- Adjust your style to create clarity and professionalism for others.
-
-Effectively Communicating Over Chat
-
-- Use shared channels to communicate updates and follow up on threads.
+- Use shared channels to post updates and follow up on threads.
 - Keep status indicators (e.g., meetings, PTO) up-to-date.
-- Re-read messages before sending and avoid ambiguous emoji reactions.
+- Review messages for clarity and avoid vague emoji reactions.
 
-Effectively Attending and Running Meetings
+In [learn-technology-consulting/communication-methods#meetings meetings], guidance is provided for keeping discussions productive and actionable.
 
-- Always provide an agenda and share notes or actionable items afterward.
-- Complete action items on time and clarify pre-requisites before meetings.
-- Keep discussions on topic and avoid unnecessary tangents.
+- Prepare an agenda and share notes or action items afterward.
+- Complete assigned tasks on time and clarify pre-requisites.
+- Keep discussions focused to avoid unnecessary tangents.
 
-Effectively Communicating with Wikis
+The [learn-technology-consulting/communication-methods#wikis wikis] section emphasizes organizing and presenting information effectively.
 
-- Use formatting (subheadings, bullets) and templates for clarity.
-- Make action items and decisions easy to find.
-- Structure and organize pages to reduce confusion.
+- Use subheadings, bullets, and templates for clarity.
+- Highlight decisions and action items prominently.
+- Structure pages to reduce confusion and improve navigation.
 
-Choosing the Best Method of Communication
+The section on [learn-technology-consulting/communication-methods#choosing-the-best-method choosing the best communication method] helps determine the most effective medium for your message.
 
-- Select the appropriate medium based on the sensitivity and context of the message.
-- Move information requiring long-term reference into wikis.
-- Use higher-bandwidth methods like meetings for complex discussions.
+- Use meetings for complex or sensitive discussions.
+- Move long-term reference material to wikis.
+- Choose high-bandwidth methods, like meetings, for nuanced topics.
 
-Giving and Receiving Feedback
+The [professional communication](#professional-communication) section highlights maintaining consistency, proactivity, and inclusivity in your interactions.
 
-- Deliver feedback empathetically and at the right time.
-- Take notes during situations to provide specific, actionable feedback later.
-- Check for understanding when giving or receiving feedback to ensure clarity.
+- Use inclusive language and remain open-minded.
+- Provide updates before being asked, showing progress.
+- Ask clarifying questions to encourage collaboration and reduce ambiguity.
+
+When reading about [business writing](#business-writing), you'll learn how to create clear, concise, and actionable communication.
+
+- Specify clear actions and deadlines in your writing.
+- Avoid assumptions — write for clarity without losing context.
+- Remove emotionally charged language from professional communication.
+
+The [effectively using tools](#communication-tools) section discusses using tools like Grammarly and LLMs to support communication, while emphasizing transparency.
+
+- Use Grammarly for proofreading but review AI suggestions for accuracy.
+- Leverage LLMs for brainstorming and gathering feedback.
+- Be transparent about AI usage in your process.
+
+The [learn-technology-consulting/communication-styles] page starts with [learn-technology-consulting/communication-styles#understanding-ourselves understanding yourself]. This section explores how your communication tendencies might be perceived by others.
+
+- Identify behaviors that could seem unprofessional.
+- Notice when being task-focused affects your communication.
+- Recognize how your style might be misinterpreted.
+
+The section on [learn-technology-consulting/communication-styles#understanding-others understanding others’ communication styles] explains how different approaches may appear unprofessional but aren’t intentional.
+
+- Anticipate others’ communication needs and adapt accordingly.
+- Tailor your tone, frequency, and message style for better collaboration.
+- Be aware of style differences to avoid misunderstandings.
+
+The section on [learn-technology-consulting/communication-styles#adapting-to-others adapting to others] focuses on tailoring your communication to better suit the needs of others.
+
+- Adjust your communication style to be more effective for different personalities.
+- Meet the preferred frequency or type of communication others need.
+- Adapt your approach to create clarity and professionalism for your audience.
+
+The importance of [active listening](#active-listening) is addressed through practical techniques for engaging effectively in conversations.
+
+- Avoid interrupting and encourage others by paraphrasing or summarizing.
+<!-- - Use mirroring and labeling techniques to address unspoken concerns. -->
+
+Finally, the [learn-technology-consulting/giving-receiving-feedback] page outlines methods for delivering and receiving feedback effectively.
+
+- Provide empathetic, timely, and actionable feedback.
+- Take notes during situations to offer specific feedback later.
+- Confirm understanding to ensure alignment during feedback exchanges.
 
 ## Nonverbal communication
 
@@ -168,39 +168,39 @@ Tips and techniques:
 > “The project is going live next week.”
 
 **Angry:**
-  - Voice: Loud, forceful, with hard consonants.  
-  - Pacing: Quick, with intensity.  
-  - Facial Expression: Scowling, clenched jaw, narrowed eyes.  
+  - Voice: Loud, forceful, with hard consonants.
+  - Pacing: Quick, with intensity.
+  - Facial Expression: Scowling, clenched jaw, narrowed eyes.
 
 **Bad:**
-  - Voice: Low, flat, resigned.  
-  - Pacing: Monotone, slow.  
-  - Facial Expression: Neutral or subtly grimacing.  
+  - Voice: Low, flat, resigned.
+  - Pacing: Monotone, slow.
+  - Facial Expression: Neutral or subtly grimacing.
 
 **Disgusted:**
-  - Voice: Low, nasal, and sharp with emphasis on the negative emotion.  
-  - Pacing: Clipped, abrupt.  
-  - Facial Expression: Scrunched nose, narrowed eyes, tightened lips.  
+  - Voice: Low, nasal, and sharp with emphasis on the negative emotion.
+  - Pacing: Clipped, abrupt.
+  - Facial Expression: Scrunched nose, narrowed eyes, tightened lips.
 
 **Fearful:**
-  - Voice: Quieter, with a tremble or shakiness.  
-  - Pacing: Hesitant, with frequent pauses.  
-  - Facial Expression: Wide eyes, tense expression, possibly biting lip.  
+  - Voice: Quieter, with a tremble or shakiness.
+  - Pacing: Hesitant, with frequent pauses.
+  - Facial Expression: Wide eyes, tense expression, possibly biting lip.
 
 **Happy:**
-  - Voice: Bright, enthusiastic, with a higher pitch than usual.  
-  - Pacing: Slightly faster, with energy.  
-  - Facial Expression: Big smile, open eyes.  
+  - Voice: Bright, enthusiastic, with a higher pitch than usual.
+  - Pacing: Slightly faster, with energy.
+  - Facial Expression: Big smile, open eyes.
 
 **Sad:**
-  - Voice: Slow, soft, with a downward inflection.  
-  - Pacing: Drawn-out, with pauses.  
-  - Facial Expression: Frown, furrowed brows, downcast eyes.  
+  - Voice: Slow, soft, with a downward inflection.
+  - Pacing: Drawn-out, with pauses.
+  - Facial Expression: Frown, furrowed brows, downcast eyes.
 
 **Surprised:**
-  - Voice: High-pitched, with a sharp rise in intonation.  
-  - Pacing: Sudden shifts, sometimes speeding up mid-sentence.  
-  - Facial Expression: Wide eyes, raised eyebrows, open mouth.  
+  - Voice: High-pitched, with a sharp rise in intonation.
+  - Pacing: Sudden shifts, sometimes speeding up mid-sentence.
+  - Facial Expression: Wide eyes, raised eyebrows, open mouth.
 
 ---
 
@@ -214,7 +214,7 @@ Tips and techniques:
   - Example: “The *project is going live* next week!” Who thought that was a good idea?  
 
 **Sad:**
-  - Example: “The project is… going live next week…” I just hope it’s ready.  
+  - Example: “The project is… going live next week…” I just hope it’s ready.
 
 **Surprised:**
   - Example: “The *project is going live* next week?” I didn’t see that coming!  
@@ -223,7 +223,7 @@ Tips and techniques:
   - Example: “*The project* is going live next week.” Ugh, can you believe this?  
 
 **Bad:**
-  - Example: “*The project is going live* next week.” I guess there’s no stopping it.  
+  - Example: “*The project is going live* next week.” I guess there’s no stopping it.
 
 
 ### Delivery and pace
@@ -399,13 +399,11 @@ Questions to reflect:
   
 ### Self-regulation
 
-Self-regulation is the ability to manage your emotions, impulses, and reactions, especially in challenging situations. It involves staying calm, being adaptable, and maintaining professionalism.
+Self-regulation is the ability to manage your emotions, impulses, and reactions, especially in challenging situations. It means staying calm, being adaptable, and maintaining professionalism under pressure.
 
-You may frequently face high-pressure situations, such as tight deadlines or conflicting client expectations. Self-regulation ensures you can remain composed, adapt to changing project requirements, and focus on problem-solving instead of reacting emotionally to setbacks.
+High-pressure situations, like tight deadlines or conflicting client expectations, can trigger strong emotions. Self-regulation doesn’t mean suppressing those feelings but pausing to process them so you can respond calmly and constructively. For example, if a client pushes back on a deliverable, you might feel frustrated or disappointed. Instead of reacting immediately, take a moment to collect your thoughts and express your concerns in a clear, measured way.
 
-When a project hits a roadblock, it can be tempting to react with frustration or panic, but emotional self-control allows you to stay calm and focus on solutions. For instance, if a client pushes back on a key deliverable, you might feel disappointed or stressed. Instead of expressing those emotions in the moment, pause and consider how best to address the issue constructively.
-
-Developing emotional self-control takes practice. Everyone has emotional triggers — specific situations or comments that provoke strong emotional responses. To manage these triggers, start by reflecting on past interactions where you felt a strong emotional reaction. Identify common themes or situations that set off these feelings. Once you’ve identified your triggers, you can develop strategies to manage your responses, such as taking a pause before reacting or practicing deep breathing to stay calm.
+Developing emotional control takes practice. Reflect on situations where you’ve had strong emotional reactions and identify patterns or triggers. Once you recognize these, use strategies like pausing before responding or deep breathing to stay composed and articulate your feelings effectively. This approach allows for honest, professional communication without escalating tension.
 
 Examples of self-regulation in action:
 
@@ -466,22 +464,22 @@ Tips and techniques:
 
 Empathy is a key component of effective communication. By being empathetic and open-minded, you can build stronger relationships, improve collaboration, and foster better understanding. Below are practical ways to apply empathy in your day-to-day interactions.
 
-First, remain open-minded. This involves staying curious and being willing to learn from every conversation.
+First, **stay open-minded.** This involves staying curious and being willing to learn from every conversation.
 
 - **Avoid assumptions:** Don’t expect others to know what you know. Ask questions to clarify their perspective.
 - **Stay curious:** Approach each conversation with the mindset that there’s always something new to learn.
 - **Be flexible:** When you receive feedback or new ideas, adapt your approach. Being open to change encourages better collaboration.
 
-Recognizing and validating emotions also plays a big role in effective communication. Acknowledging how someone feels can help you navigate challenging situations with more ease.
+**Acknowledge how other people feel** to navigate challenging situations with more ease.
 
 - **Acknowledge feelings:** Recognize the emotions of the person you’re speaking with, and make it clear you understand them.
 - **Reflect emotions:** Mirror the other person’s feelings to show understanding. For example, say, “I can see this situation is frustrating.”
 - **Pause before responding:** Especially in difficult conversations, take a moment to process what the other person is feeling before you respond. This helps ensure your reply is thoughtful and considerate.
 
-Building strong relationships requires genuine interest and follow-up. The more you invest in these connections, the better you’ll work together.
+**Show compassionate empathy** with other people by taking action on their emotions. Ask how you can best support others before offering practical help or solutions.
 
-- **Build rapport:** Show that you remember personal details from past conversations. This helps strengthen your relationship.
 - **Show you care:** Most people just go through the motions. If you care a lot, and you’re not ashamed to show it, people will notice. Other people who also care will be attracted to you and respect you, and doors will tend to open as a result. Care about making the project successful through any means necessary.
+- **Build rapport:** Show that you remember personal details from past conversations. This helps strengthen your relationship.
 
 Handling difficult conversations requires empathy as well. Start by focusing on the other person’s concerns, and then work together on solutions.
 
@@ -957,18 +955,6 @@ A strong CTA helps ensure that your communication leads to action or resolution.
 
 Below are some example scenarios that show how to apply Purpose, Audience, Content, and Call to Action.
 
-#### Explaining a delay in deliverables
-
-- **Purpose:** Communicate the delay, provide context, and maintain trust by being transparent.
-- **Audience:** People relying on the deliverable, such as clients, teammates, or managers.
-- **Content (main point):** The deliverable is delayed, but steps are being taken to minimize the impact and avoid future delays.
-- **Content (supporting details):**
-  - Briefly state the delay and its scope (e.g., “The feature originally due on Friday will now be completed by Wednesday”).
-  - Explain why the delay occurred, avoiding unnecessary technical jargon.
-  - Highlight steps being taken to resolve the issue and prevent similar delays in the future.
-- **Call to action:** Ask for input on adjusting timelines or priorities. For example:
-  - “Let me know if this impacts any critical dependencies, and we can discuss adjustments.”
-
 #### I’m about to go on vacation
 
 - **Purpose:** Notify others about your upcoming absence, provide details about coverage, and prevent disruptions.
@@ -983,6 +969,18 @@ Below are some example scenarios that show how to apply Purpose, Audience, Conte
   - “Is there anything you’d like me to complete or document before I go?”
   - “Let me know if you need additional context about [handoff details].”
   - “Does my coverage plan work for everyone?”
+
+#### Explaining a delay in deliverables
+
+- **Purpose:** Communicate the delay, provide context, and maintain trust by being transparent.
+- **Audience:** People relying on the deliverable, such as clients, teammates, or managers.
+- **Content (main point):** The deliverable is delayed, but steps are being taken to minimize the impact and avoid future delays.
+- **Content (supporting details):**
+  - Briefly state the delay and its scope (e.g., “The feature originally due on Friday will now be completed by Wednesday”).
+  - Explain why the delay occurred, avoiding unnecessary technical jargon.
+  - Highlight steps being taken to resolve the issue and prevent similar delays in the future.
+- **Call to action:** Ask for input on adjusting timelines or priorities. For example:
+  - “Let me know if this impacts any critical dependencies, and we can discuss adjustments.”
 
 #### Addressing an ambiguous situation
 
@@ -1066,6 +1064,47 @@ As a Backend Developer, you’re tasked with integrating a new service into a cl
 
 </details>
 
+#### DevOps
+
+<details>
+<summary>Conflicting deployment requirements</summary>
+
+During the final phase of deployment, you find that different teams within the client’s organization have conflicting requirements:
+
+- The security team mandates that all deployments must include specific audit logging and monitoring integrations, which require additional setup.
+- The development team insists on reducing deployment latency, asking for relaxed post-deployment validation checks.
+- The operations team highlights concerns about rollback mechanisms, fearing potential instability with the current process.
+- Stakeholders demand clear communication about deployment risks and trade-offs.
+- The project manager requests an action plan to align the teams and ensure a successful deployment that meets all requirements.
+
+</details>
+
+<details>
+<summary>Performance issues found during deployment</summary>
+
+As a DevOps engineer, you’re preparing for the final stages of a project’s deployment, but during pre-production testing, several issues surface that put the project’s timeline at risk:
+
+- The deployment pipeline takes far longer than expected due to poorly optimized Docker images and unnecessary build steps.
+- The application suffers from intermittent outages in the staging environment due to insufficient container resource limits.
+- Monitoring tools reveal high latency in the load balancer, despite the backend team reporting fast API response times.
+- Stakeholders have raised concerns about system reliability and scalability if these issues persist.
+- The project manager is requesting a status update and how you plan to address these issues to ensure the production rollout proceeds as planned.
+
+</details>
+
+<details>
+<summary>Unclear ownership of deployment artifacts</summary>
+
+As you review the deployment process, it becomes unclear who is responsible for maintaining critical deployment artifacts, leading to delays:
+
+- The development team insists that operations should maintain Docker images, but the operations team claims it’s a developer responsibility.
+- Security scanning tools reveal outdated base images that no team has updated, creating compliance risks.
+- The QA team identifies issues in pre-built test environments that stem from discrepancies in artifact management practices.
+- Stakeholders ask for clarity on who owns which part of the artifact lifecycle to prevent further delays.
+- The project manager asks for an interim solution to ensure the current deployment is not blocked while long-term ownership is defined.
+
+</details>
+
 #### Frontend
 
 <details>
@@ -1112,13 +1151,13 @@ You’re working on a new feature for a mobile application, but the product requ
 <details>
 <summary>Unclear business goals</summary>
 
-As a Product Designer, you’ve been tasked with creating the initial concepts for a financial dashboard, but the business objectives are hazy, and you’re struggling to create a focused design:
+As a Product Designer, you’ve been tasked with creating the initial concepts for a financial dashboard, but the business objectives are unclear, making it difficult to create a cohesive and focused design:
 
-- You’ve received conflicting feedback from the project’s stakeholders about whether the primary goal is ease of use or comprehensive data visualization.
-- The client hasn’t clearly communicated which key metrics should be displayed on the dashboard.
-- There’s uncertainty about whether this tool will be used by customers, internal staff, or both.
-- Some stakeholders have requested features that seem unnecessary and could overcomplicate the design.
-- The client is asking for design mockups, but without clear goals, you’re unsure how to prioritize functionality.
+- The marketing team prioritizes ease of use to attract new customers, while the operations team emphasizes detailed, customizable data visualizations for internal analysis.
+- The client has not specified which key metrics must be displayed on the dashboard, leaving the design direction ambiguous.
+- There’s confusion about the primary user base — some stakeholders believe the tool should focus on external customers, while others think it will primarily serve internal staff.
+- Feature requests have been inconsistent, with some teams proposing ideas that risk overcomplicating the interface without clear justification.
+- The client is asking for high-fidelity mockups by the end of the week, but without clear goals or a prioritized feature set, you’re unsure how to proceed.
 
 </details>
 
@@ -1188,14 +1227,14 @@ Tips and techniques:
 
 - **Use simple language:** Avoid technical jargon or overly complex words unless necessary. For example, instead of “leverage,” write “use.”  
 - **Define acronyms and terms:** If you do use jargon, be sure to define it. Write: “The API (Application Programming Interface) integration is complete,” the first time you use “API.”  
-- **Use full words over abbreviations:** Avoid using abbreviations like “xscriptions” for “transcriptions” to keep communication clear, especially for ESL colleagues.
+- **Use full words over abbreviations:** Avoid using abbreviations like “xscriptions” for “transcriptions” to keep communication clear, especially for ESL colleagues. If you find yourself using abbreviations often, use a text replacement utility (e.g. Text Expander) to have the abbreviation expanded to the full text.
 - **Use universal date formats:** Stick to clear, universally understood date formats (e.g., YYYY-MM-DD) to avoid confusion. For example, 12/9 could mean September 12 or December 9, so use 2024-12-09 instead.
+- **Illustrate your point:** Use analogies or visual aids to make your writing easier to understand.
 
 - **Focus on one idea per sentence:** Instead of: “The module is outdated, and the performance issues it causes impact users,” write: “The outdated module causes performance issues that impact users.”  
 - **Simplify complex ideas:** Break down complicated topics into manageable parts using bullet points or numbered lists.
-- **Read it aloud:** If it sounds confusing to you, it will likely be unclear to the reader.  
+- **Read it aloud:** If it sounds confusing to you, it will likely be unclear to the reader.
 - **Ask a colleague to review:** A fresh perspective can highlight areas for improvement.
-
 
 To ensure your language is accessible:
 
@@ -1227,7 +1266,7 @@ For instance, instead of writing, “I am reaching out to see if you might be av
 Tips and techniques:
 
 - **Focus on essential information:** Include only what the reader needs to understand and act.
-- **Use concise language and short sentences:** Keep sentences to 15–20 words and eliminate filler words like “very,” “just,” or “in order to.”
+- **Use concise language and short sentences:** Keep sentences to 15–20 words and eliminate filler words and phrases like “very,” “just,” or “in order to.”
 - **Avoid redundancy:** Simplify phrases to remove unnecessary repetition without losing meaning.
 - **Edit for clarity and brevity:** Review your writing critically to shorten it while retaining key points and ensuring it’s direct and clear.
 - **Use bullet points or lists:** Instead of a dense paragraph, a more readable list.
@@ -1378,8 +1417,8 @@ Good structure makes your writing easier to navigate and understand. Structured 
 
 **Example:** Instead of a long email with unstructured text, use headings like:  
 **Subject:** "Next Steps for API Integration"  
-1. **What’s completed:** Initial API tests are done.  
-2. **What’s next:** We need feedback on the test results.  
+1. **What’s completed:** Initial API tests are done.
+2. **What’s next:** We need feedback on the test results.
 3. **Deadline:** Please provide feedback by Friday.
 
 **Don’t bury the lede.** Journalists usually write their articles (at least in newspapers) in order of priority. They assumed people would read the first paragraph, or maybe the first two or three paragraphs, far more often than the entire article. Therefore, they put the most important summary in the first paragraph, then the second most important point in the second paragraph, etc. This is called “not burying the lede.”
@@ -1388,10 +1427,10 @@ The lede is the summary or the essence of your argument. If you “bury” it un
 
 Tips and techniques:
 
-- **Start with a CTA, summary, or clear objective:** Begin with: “This email outlines the next steps for the project” instead of diving into details.  
+- **Start with a CTA, summary, or clear objective:** Begin with: “This email outlines the next steps for the project” instead of diving into details.
 - **Use headings and subheadings:** Divide content into sections like “Overview,” “Challenges,” and “Recommendations.”  
-- **Keep paragraphs short:** Aim for 3–5 sentences per paragraph to improve readability.  
-- **Use the “inverted pyramid” method:** Begin with critical information, like: “Deployment will occur on Friday at 10 AM,” then provide supporting details.  
+- **Keep paragraphs short:** Aim for 3–5 sentences per paragraph to improve readability.
+- **Use the “inverted pyramid” method:** Begin with critical information, like: “Deployment will occur on Friday at 10 AM,” then provide supporting details.
 - **End with a call to action or summary:** Conclude with: “Please confirm your availability for a quick sync on this by Thursday.”
 
 To structure your communication effectively:
@@ -1510,18 +1549,20 @@ Tips and techniques:
 - **Create communication templates:** Develop templates for status updates or progress reports to maintain consistency and save time.
 - **Maintain a communication log:** Keep track of key communications, discussions, and follow-up actions to monitor consistency and accountability.
 
-### Respect and professionalism
+### Respect
 
-Effective communication requires understanding and respecting the diverse identities and experiences of colleagues and clients. By fostering respectful, clear, and inclusive interactions, especially on sensitive issues, we create a more collaborative and productive workplace.
-
-Respecting individual identity is fundamental to promoting diversity and inclusion. Acknowledging and using the terms people prefer when referring to themselves is crucial.
-
-- **Use preferred pronouns:** Always use people’s preferred pronouns in all communications. If you’re unsure, politely ask or listen to how they refer to themselves. For example, “Hi, my name is [Your Name], and I use he/him pronouns. How about you?”
-- **Use inclusive language:** Choose words that respect and acknowledge the diversity of your audience. Avoid gendered terms like “guys” or “ladies”; instead, use neutral terms like “everyone,” “team,” or “folks.” Be mindful of cultural references or idioms that might not resonate with everyone.
+Effective communication means respecting the diverse identities and experiences of your coworkers and clients. Using clear, inclusive, and respectful language helps everyone work better together, especially when dealing with sensitive topics.
 
 Being conscious of the impact your words and actions have on others helps maintain a respectful and inclusive workplace.
 
+- **Use preferred pronouns:** Always use people’s preferred pronouns in all communications. If you’re unsure, politely ask or listen to how they refer to themselves. For example, “Hi, my name is [Your Name], and I use he/him pronouns. How about you?”
+- **When in doubt, ask:** Respectfully ask others about their names, pronouns, accessibility needs, or anything else to maintain respect.
+
+Inclusivity is a core Bitovi value. Part of that is recognizing how people want to be identified and making an effort to use the terms they prefer. It’s a small step that goes a long way in creating a positive, collaborative environment.
+
 - **Avoid problematic colloquialisms:** Steer clear of expressions with unintended negative connotations or cultural insensitivity, such as “long time no see.” Use clear and neutral phrases like “it’s been a while” or “general guideline.”
+- **Use gender-inclusive language:** Choose words that respect and acknowledge the diversity of your audience. Avoid gendered terms like “guys” or “ladies”; instead, use neutral terms like “everyone,” “team,” or “folks.” Be mindful of cultural references or idioms that might not resonate with everyone.
+- **Avoid words with racial bias:** Allowlist/denylist (not whitelist/blacklist), pre–approved (not grandfathered in), etc.
 - **Eliminate ableist language:** Refrain from using words like “blind,” “crazy,” “crippling,” “crutch,” “lame,” or “deaf” metaphorically. Instead, choose specific, non-derogatory language. For example, say “I didn’t notice that issue” instead of “I’m blind to that issue.”
 - **Be mindful of cultural differences:** Recognize that communication styles and meanings can vary across cultures. By being open to learning about and respecting different cultural norms, you can communicate more effectively in diverse teams.
 

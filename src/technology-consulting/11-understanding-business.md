@@ -28,7 +28,7 @@ When you join a new client, it’s important to establish a clear understanding 
 
 ### Conduct research
 
-Thorough research is essential for becoming an informed and effective consultant. Think of this step as preparing for a job interview with the company—you’re not just learning about the company, you’re positioning yourself as someone who can bring unique value.
+Thorough research is essential for becoming an informed and effective consultant. Think of this step as preparing for a job interview with the company — you’re not just learning about the company, you’re positioning yourself as someone who can bring unique value.
 
 - **Approach it like an interview:** Treat your research as if you were preparing to interview for a role within the client’s company. Know the company’s history, the markets it serves, and its long-term strategy. This will ensure you’re prepared for in-depth conversations and can ask informed questions.
 - **Company’s digital footprint:** Review the client’s website, blog, and any recent news articles to get an up-to-date picture of their latest initiatives and how they present themselves publicly. This will help you speak their language and engage more meaningfully with their team.
@@ -131,7 +131,7 @@ Understanding the product you’re consulting on is crucial to providing value a
 Before you can provide insightful advice, you need to fully understand the product’s purpose, functionality, and market position. This involves gathering relevant resources and getting hands-on experience.
 
 - **Identify the core purpose:** Begin by clarifying the primary problem the product is designed to solve. Understanding this core function ensures that all further advice stays aligned with the product’s main goal. For instance, if the product is a project management tool, its goal might be to simplify project tracking and enhance collaboration.
-- **Request product documentation:** Collect all available resources—feature specs, user manuals, FAQs, and other documents that explain the product’s workings. These materials provide a foundation for understanding the product’s features and limitations quickly.
+- **Request product documentation:** Collect all available resources — feature specs, user manuals, FAQs, and other documents that explain the product’s workings. These materials provide a foundation for understanding the product’s features and limitations quickly.
 - **Get hands-on experience:** Whenever possible, gain direct access to the product through demos or trial versions. Firsthand experience allows you to see how the product operates in practice, offering insights into its strengths and weaknesses. This familiarity makes it easier to engage with stakeholders and offer informed advice.
 - **Examine the product’s market position:** Research how the product fits into the broader market and what sets it apart from competitors. Understanding its unique selling points and why customers choose it over alternatives helps contextualize your recommendations within its competitive landscape.
 - **Analyze key features:** Focus on the product’s most important features, especially those that form its core value proposition. How do these features solve customer problems? Targeting the right features enables more precise suggestions while avoiding unnecessary complexity.
@@ -169,7 +169,7 @@ Examples:
 
 Tips and techniques:
 
-- **Use a “feature deep-dive” session:** Spend time doing a deep dive into each critical feature—what problem it solves, how it’s designed, and where it can be improved. Document your findings and any assumptions for discussion with the client.
+- **Use a “feature deep-dive” session:** Spend time doing a deep dive into each critical feature — what problem it solves, how it’s designed, and where it can be improved. Document your findings and any assumptions for discussion with the client.
 - **Segment the audience by pain points:** Instead of only focusing on B2B or B2C, go deeper by categorizing the audience into groups based on their specific challenges (e.g., cost concerns, speed, usability). This will help you tailor your advice and design decisions to address the most critical pain points.
 - **Use feedback loops effectively:** Implement frequent feedback loops with the actual end users of the product, whether they are B2B clients or B2C consumers. Their feedback will reveal what matters most to them and can influence both product adjustments and your recommendations.
 - **Map user journeys:** Build a clear map of the user journey from initial interaction to final conversion or goal completion. This will help you identify the most crucial moments in the user experience, allowing you to recommend strategic improvements.
@@ -379,7 +379,7 @@ Examples:
 
 Tips and techniques:
 
-- **Mitigate risks early:** Don’t wait for issues to emerge—proactively ask about potential risks during the project planning phase. For instance, inquire about any expected delays, approval bottlenecks, or resource constraints that could slow down your deliverables.
+- **Mitigate risks early:** Don’t wait for issues to emerge — proactively ask about potential risks during the project planning phase. For instance, inquire about any expected delays, approval bottlenecks, or resource constraints that could slow down your deliverables.
 - **Frequent check-ins on milestones:** Don’t wait until a milestone is missed to identify a problem. Regularly review progress with your team to see if everything is on track. If any delays are spotted, adjust the plan and inform the client early to manage expectations.
 - **Tailor communication styles:** Different stakeholders will have different preferences for communication. Some might prefer detailed email updates, while others want quick Slack messages. Ask about their preferences early and adapt accordingly to avoid misunderstandings.
 
