@@ -401,6 +401,8 @@ Tips and techniques:
 
 ### Running the meeting
 
+**Set expectations at the start:** Restate the agenda, goals, and any ground rules around muting, hand-raising, having video on, etc.
+
 **Assign a note-taker:** Designate someone to document key discussion points, decisions, and action items. This ensures there’s a clear record of what was discussed and agreed upon.
 
 **Keep the meeting on track:** Lead discussions assertively but diplomatically. As the meeting leader, guide the conversation to stay on topic while making sure all voices are heard. If the discussion veers off-course, gently steer it back to the agenda.
@@ -431,38 +433,7 @@ Tips and techniques:
 - **Don’t transcribe:** Notes should contain key points, decisions, and action items.
 - **Review at the end:** Before ending the meeting, review the notes and confirm that everything captured looks correct.
 - **Send notes after:** Always share the notes over email, in Slack, etc. to inform others.
-
-Questions to reflect:
-
-- How effective are your current note-taking practices in capturing key information? What improvements could make your notes more actionable?
-- Think about a time when well-organized notes made a difference in a project’s outcome. How can you consistently take useful notes?
-
-#### Techniques for efficient note-taking
-
-**Key point extraction:** Focus on capturing key points, decisions, and action items rather than transcribing entire conversations. Efficient note-taking involves identifying and recording the most important information rather than attempting to transcribe the conversation verbatim. This includes noting down key points, decisions made during the discussion, and any action items that need to be followed up on. By focusing on what’s most relevant, you can create a clear and concise record that is easy to review later.
-
-**Use text replacement utilities:** Tools like Text Expander or using shorthand can significantly speed up the note-taking process and help you capture more information in real-time. Bullet points, for example, are a quick way to organize information clearly, making it easier to review and reference later. These techniques can help make your notes both thorough and efficient.
-
-**Organizing and reviewing notes:** After the conversation, it’s helpful to organize your notes so they’re easy to reference. This might involve categorizing information by topic, prioritizing action items, or summarizing key points. Regularly reviewing your notes helps you stay on top of your commitments and keeps them actionable and useful throughout the project.
-
-Tips and techniques:
-
-- TODO
-
-Questions to reflect:
-
-- TODO
-
-### Follow-up and accountability
-
-**Share the notes link and recap:** After the meeting, send out a summary that includes key points, decisions made, and assigned action items. This reinforces accountability and keeps everyone aligned.
-
-**Follow through on action items:** Try to handle your action items sooner rather than later.
-
-**Prepare for the next meeting:** For recurring meetings, create the next shared notes document so people can add items before the meeting. For meetings like retrospectives, this is great because it encourages attendees to add items as they come up during a sprint.
-
-Tips and techniques:
-
+- **Prepare for the next meeting:** For recurring meetings, create the next shared notes document so people can add items before the meeting. For meetings like retrospectives, this is great because it encourages attendees to add items as they come up during a sprint.
 - **Review your action items regularly:** Tools like Confluence make it easy to see all the incomplete action items assigned to you. For example, here are the [tasks assigned to you in Bitovi’s Confluence](https://bitovi.atlassian.net/wiki/home/tasks).
 - **Clarify deadlines:** When summarizing action items, make sure to specify deadlines for each task. If the timeline isn’t clear during the meeting, follow up immediately to get agreement.
 - **Use collaborative tools for meeting notes:** Instead of sending a static document, use a shared platform where all participants can add comments or updates. This makes the notes dynamic and allows for ongoing collaboration.
@@ -475,6 +446,8 @@ Questions to reflect:
 - How effective have your follow-ups been in the past? Are there tools or methods you could adopt to improve this process?
 - Think about a meeting where action items weren’t clearly defined or followed up on. How did this affect the project’s progress?
 - When have you seen shared meeting notes contribute to better outcomes? How did the collaborative aspect help?
+- How effective are your current note-taking practices in capturing key information? What improvements could make your notes more actionable?
+- Think about a time when well-organized notes made a difference in a project’s outcome. How can you consistently take useful notes?
 
 ### Being a great attendee
 
