@@ -184,10 +184,6 @@ Questions to reflect:
 - Reflect on a time when you struggled to accept feedback. What made it difficult, and how could you approach similar situations differently in the future?
 - What steps can you take to make sure you actively apply feedback rather than just acknowledging it? How can you measure your progress over time?
 
-#### Exercise: Feedback
-
-TODO
-
 ##### Feedback Role-Play
 
 - **Activity:** Participants role-play giving and receiving feedback in pairs or small groups. One participant gives feedback on a simulated task, following the “Praise-Critique-Suggestion” structure, while the other practices active listening and asking clarifying questions.
@@ -257,20 +253,3 @@ Questions to reflect:
 - What new communication skills have you recently started to develop, and how are you progressing?
 - How do you integrate feedback into your daily routines without it feeling forced or overwhelming?
 - What’s one communication habit you would like to change, and what steps will you take to address it?
-
-### Exercise: Continuous improvement
-
-TODO
-
-Focus on giving feedback.
-
-### 1. **SBI Model Role-Playing Game**
-- **Objective:** Practice giving and receiving feedback using the SBI (Situation-Behavior-Impact) model.
-- **Setup:**
-  - Split the participants into pairs or small groups.
-  - Provide each group with scenarios relevant to their roles (e.g., a DevOps engineer giving feedback on code deployment, a Product Owner providing feedback on a backlog refinement session).
-- **Exercise:**
-  - One participant acts as the feedback giver, using the SBI model to deliver constructive feedback based on the scenario.
-  - The other participant acts as the receiver and then provides feedback on how well the SBI model was used.
-  - Rotate roles and scenarios so everyone gets a chance to practice both giving and receiving feedback.
-- **Debrief:** Discuss as a larger group what worked well, challenges encountered, and key takeaways.

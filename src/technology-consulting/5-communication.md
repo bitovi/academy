@@ -49,6 +49,30 @@ When communication breaks down:
 
 ### Overview
 
+The [professional communication](#professional-communication) section highlights maintaining consistency, proactivity, and inclusivity in your interactions.
+
+- Use inclusive language and remain open-minded.
+- Provide updates before being asked, showing progress.
+- Ask clarifying questions to encourage collaboration and reduce ambiguity.
+
+The [learn-technology-consulting/communication-styles] page starts with [learn-technology-consulting/communication-styles#understanding-ourselves understanding yourself]. This section explores how your communication tendencies might be perceived by others.
+
+- Identify behaviors that could seem unprofessional.
+- Notice when being task-focused affects your communication.
+- Recognize how your style might be misinterpreted.
+
+The section on [learn-technology-consulting/communication-styles#understanding-others understanding others’ communication styles] explains how different approaches may appear unprofessional but aren’t intentional.
+
+- Anticipate others’ communication needs and adapt accordingly.
+- Tailor your tone, frequency, and message style for better collaboration.
+- Be aware of style differences to avoid misunderstandings.
+
+The section on [learn-technology-consulting/communication-styles#adapting-to-others adapting to others] focuses on tailoring your communication to better suit the needs of others.
+
+- Adjust your communication style to be more effective for different personalities.
+- Meet the preferred frequency or type of communication others need.
+- Adapt your approach to create clarity and professionalism for your audience.
+
 This page starts off by discussing [non-verbal communication](#nonverbal-communication), which includes body language, tone, and other cues that can communicate as much — or more — than words. It highlights the importance of aligning non-verbal cues with your intended message while being aware of cultural nuances.
 
 - Avoid negativity, sarcasm, or passive-aggressive remarks.
@@ -60,9 +84,10 @@ Next, the section on [emotional intelligence](#emotional-intelligence) explains 
 - Use organizational awareness to inform the right people.
 - Practice compassionate empathy through thoughtful actions.
 
-The [communication planning](#communication-planning) section covers strategies to make your messages purposeful, clear, and audience-focused.
+The importance of [active listening](#active-listening) is addressed through practical techniques for engaging effectively in conversations.
 
-- Define the purpose of your communication and state expectations explicitly.
+- Avoid interrupting and encourage others by paraphrasing or summarizing.
+<!-- - Use mirroring and labeling techniques to address unspoken concerns. -->
 
 The [learn-technology-consulting/communication-methods] page outlines best practices for effectively communicating over [learn-technology-consulting/communication-methods#chat chat].
 
@@ -88,11 +113,9 @@ The section on [learn-technology-consulting/communication-methods#choosing-the-b
 - Move long-term reference material to wikis.
 - Choose high-bandwidth methods, like meetings, for nuanced topics.
 
-The [professional communication](#professional-communication) section highlights maintaining consistency, proactivity, and inclusivity in your interactions.
+The [communication planning](#communication-planning) section covers strategies to make your messages purposeful, clear, and audience-focused.
 
-- Use inclusive language and remain open-minded.
-- Provide updates before being asked, showing progress.
-- Ask clarifying questions to encourage collaboration and reduce ambiguity.
+- Define the purpose of your communication and state expectations explicitly.
 
 When reading about [business writing](#business-writing), you'll learn how to create clear, concise, and actionable communication.
 
@@ -105,29 +128,6 @@ The [effectively using tools](#communication-tools) section discusses using tool
 - Use Grammarly for proofreading but review AI suggestions for accuracy.
 - Leverage LLMs for brainstorming and gathering feedback.
 - Be transparent about AI usage in your process.
-
-The [learn-technology-consulting/communication-styles] page starts with [learn-technology-consulting/communication-styles#understanding-ourselves understanding yourself]. This section explores how your communication tendencies might be perceived by others.
-
-- Identify behaviors that could seem unprofessional.
-- Notice when being task-focused affects your communication.
-- Recognize how your style might be misinterpreted.
-
-The section on [learn-technology-consulting/communication-styles#understanding-others understanding others’ communication styles] explains how different approaches may appear unprofessional but aren’t intentional.
-
-- Anticipate others’ communication needs and adapt accordingly.
-- Tailor your tone, frequency, and message style for better collaboration.
-- Be aware of style differences to avoid misunderstandings.
-
-The section on [learn-technology-consulting/communication-styles#adapting-to-others adapting to others] focuses on tailoring your communication to better suit the needs of others.
-
-- Adjust your communication style to be more effective for different personalities.
-- Meet the preferred frequency or type of communication others need.
-- Adapt your approach to create clarity and professionalism for your audience.
-
-The importance of [active listening](#active-listening) is addressed through practical techniques for engaging effectively in conversations.
-
-- Avoid interrupting and encourage others by paraphrasing or summarizing.
-<!-- - Use mirroring and labeling techniques to address unspoken concerns. -->
 
 Finally, the [learn-technology-consulting/giving-receiving-feedback] page outlines methods for delivering and receiving feedback effectively.
 
@@ -171,47 +171,54 @@ Tips and techniques:
   - Voice: Loud, forceful, with hard consonants.
   - Pacing: Quick, with intensity.
   - Facial Expression: Scowling, clenched jaw, narrowed eyes.
+  - Example: “The *project is going live* next week!” Who thought that was a good idea?
 
 **Bad:**
   - Voice: Low, flat, resigned.
   - Pacing: Monotone, slow.
   - Facial Expression: Neutral or subtly grimacing.
+  - Example: “*The project is going live* next week.” I guess there’s no stopping it.
 
 **Disgusted:**
   - Voice: Low, nasal, and sharp with emphasis on the negative emotion.
   - Pacing: Clipped, abrupt.
   - Facial Expression: Scrunched nose, narrowed eyes, tightened lips.
+  - Example: “*The project* is going live next week.” Ugh, can you believe this?
 
 **Fearful:**
   - Voice: Quieter, with a tremble or shakiness.
   - Pacing: Hesitant, with frequent pauses.
   - Facial Expression: Wide eyes, tense expression, possibly biting lip.
+  - Example: “The… project is going live… next week.” What if something goes wrong?
 
 **Happy:**
   - Voice: Bright, enthusiastic, with a higher pitch than usual.
   - Pacing: Slightly faster, with energy.
   - Facial Expression: Big smile, open eyes.
+  - Example: “The *project is going live* next week!” Isn’t that great?
 
 **Sad:**
   - Voice: Slow, soft, with a downward inflection.
   - Pacing: Drawn-out, with pauses.
   - Facial Expression: Frown, furrowed brows, downcast eyes.
+  - Example: “The project is… going live next week…” I just hope it’s ready.
 
 **Surprised:**
   - Voice: High-pitched, with a sharp rise in intonation.
   - Pacing: Sudden shifts, sometimes speeding up mid-sentence.
   - Facial Expression: Wide eyes, raised eyebrows, open mouth.
+  - Example: “The *project is going live* next week?” I didn’t see that coming!  
 
 ---
 
 **Fearful:**
-  - Example: “The… project is going live… next week.” What if something goes wrong?  
+  - Example: “The… project is going live… next week.” What if something goes wrong?
 
 **Happy:**
-  - Example: “The *project is going live* next week!” Isn’t that great?  
+  - Example: “The *project is going live* next week!” Isn’t that great?
 
 **Angry:**
-  - Example: “The *project is going live* next week!” Who thought that was a good idea?  
+  - Example: “The *project is going live* next week!” Who thought that was a good idea?
 
 **Sad:**
   - Example: “The project is… going live next week…” I just hope it’s ready.
@@ -220,11 +227,10 @@ Tips and techniques:
   - Example: “The *project is going live* next week?” I didn’t see that coming!  
 
 **Disgusted:**
-  - Example: “*The project* is going live next week.” Ugh, can you believe this?  
+  - Example: “*The project* is going live next week.” Ugh, can you believe this?
 
 **Bad:**
   - Example: “*The project is going live* next week.” I guess there’s no stopping it.
-
 
 ### Delivery and pace
 
@@ -386,8 +392,8 @@ Strategies for developing self-awareness:
 - **Reflect after meetings:** After high-stakes meetings, take five minutes to reflect. Ask yourself: “How did my emotions show up, and how did they affect the conversation?” This reflection helps you identify what worked and what could be improved next time.
 - **Get feedback after stressful moments:** Choose one trusted colleague and ask them how you came across after a meeting where you felt stressed or frustrated. Compare their feedback with your self-perception.
 - **Practice mindfulness:** Spend a few minutes each day observing your thoughts and feelings without judgment. This will help you recognize emotional patterns as they occur in real-time.
-- **Track emotional triggers:** Identify situations that trigger strong emotions and develop strategies to manage your reactions.
 - **Keep a journal:** After key interactions, jot down what you were feeling and why. Include prompts like “What situation caused my emotion?” and “How did I react?” Reviewing your journal weekly can reveal patterns in how you respond emotionally.
+- **Reflect weekly:** Review your journal for recurring triggers that evoke emotions.
 
 Questions to reflect:
 
@@ -859,7 +865,7 @@ Interactive communication emphasizes dialogue and mutual exchange between partie
 - **Persuade or influence:** Convincing others to adopt a viewpoint, make a decision, or take action.
 - **Negotiate agreements:** Reaching compromises or settlements that benefit everyone involved.
 
-TODO: When you introduce yourself, highlight your skills and experience that are relevant to a client project.
+<!-- TODO: When you introduce yourself, highlight your skills and experience that are relevant to a client project. -->
 
 ### Audience
 
@@ -2179,7 +2185,7 @@ Here’s an example where a client comes to you with a request:
 
 **Client:** “I don’t want to waste time discussing every detail. Just get all the buttons in. Why are we even arguing about this?”
 
-TODO: In this scenario, the consultant’s direct questioning about “everything” and challenging the client’s decision without fully understanding the underlying reasons makes the client feel defensive. They interpret the consultant’s questions as pushback or criticism rather than a desire to better understand the requirements. This defensiveness could lead to tension, less collaboration, and difficulty in getting the right information for a good solution.
+<!-- TODO: In this scenario, the consultant’s direct questioning about “everything” and challenging the client’s decision without fully understanding the underlying reasons makes the client feel defensive. They interpret the consultant’s questions as pushback or criticism rather than a desire to better understand the requirements. This defensiveness could lead to tension, less collaboration, and difficulty in getting the right information for a good solution. -->
 
 </details>
 
@@ -2202,7 +2208,7 @@ Here’s an example where a client’s engineering manager comes to you with a r
 
 **Client:** “We don’t have time for this back-and-forth. Just give them all the permissions so we can move forward.”
 
-TODO: In this scenario, the consultant’s direct questioning about “everything” and challenging the client’s decision without fully understanding the underlying reasons makes the client feel defensive. They interpret the consultant’s questions as pushback or criticism rather than a desire to better understand the requirements. This defensiveness could lead to tension, less collaboration, and difficulty in getting the right information for a good solution.
+<!-- TODO: In this scenario, the consultant’s direct questioning about “everything” and challenging the client’s decision without fully understanding the underlying reasons makes the client feel defensive. They interpret the consultant’s questions as pushback or criticism rather than a desire to better understand the requirements. This defensiveness could lead to tension, less collaboration, and difficulty in getting the right information for a good solution. -->
 
 </details>
 
@@ -2248,7 +2254,7 @@ Here’s an example where a stakeholder comes to you with a request:
 
 **Client:** “We don’t have time to go into specifics. Just target everyone so we can launch the campaign.”
 
-TODO: In this scenario, the consultant’s direct questioning about “everything” and challenging the client’s decision without fully understanding the underlying reasons makes the client feel defensive. They interpret the consultant’s questions as pushback or criticism rather than a desire to better understand the requirements. This defensiveness could lead to tension, less collaboration, and difficulty in getting the right information for a good solution.
+<!-- TODO: In this scenario, the consultant’s direct questioning about “everything” and challenging the client’s decision without fully understanding the underlying reasons makes the client feel defensive. They interpret the consultant’s questions as pushback or criticism rather than a desire to better understand the requirements. This defensiveness could lead to tension, less collaboration, and difficulty in getting the right information for a good solution. -->
 
 </details>
 
@@ -4001,10 +4007,6 @@ Questions to reflect:
 - How can you frame your use of LLMs to highlight its benefits while making sure that human expertise is still valued?
 - What steps can you take to ensure that the use of LLMs recording tools does not compromise client confidentiality?
 - What criteria should you use to decide when LLMs recording is or isn’t appropriate for a client meeting?
-
-### Exercise: Effectively using tools
-
-TODO: take some communication written by LLMs and improve it.
 
 ## Effective use of LLMs in communication
 
