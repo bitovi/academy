@@ -130,11 +130,11 @@ Maintaining boundaries and respecting others’ work schedules is key when worki
 
 #### Maintaining clear boundaries between work and personal time
 
-It’s easy for work to spill over into personal time, leading to burnout and reduced productivity. To maintain a healthy work-life balance, it’s essential to establish and adhere to clear boundaries between work and personal time. This section provides practical steps and policies to help you achieve that balance, ensuring both your well-being and your effectiveness as a consultant.
+It’s easy for work to spill over into personal time, leading to burnout and reduced productivity. To maintain a healthy work-life balance, it’s essential to establish and adhere to clear boundaries between work and personal time.
 
 To prevent work from encroaching on personal time, it’s important to set clear expectations about when you’re available for work-related communication. Here’s how you can do that effectively:
 
-- **Define standard working hours:** At Bitovi, you are expected to have at least TODO hours of overlap with your client. These are the hours when you are generally expected to be available for communication and work-related tasks. Ensure that these hours are communicated to clients and colleagues at the start of any project.
+<!-- - **Define standard working hours:** At Bitovi, you are expected to have at least TODO hours of overlap with your client. These are the hours when you are generally expected to be available for communication and work-related tasks. Ensure that these hours are communicated to clients and colleagues at the start of any project. -->
 
 - **Establish a clear after-hours communication policy:** Non-urgent communication should be avoided outside of standard working hours. For example, emails and messages sent after 6 PM should generally not expect a response until the next business day. This policy helps protect personal time and reduces the pressure to be constantly “on.”
 
@@ -212,9 +212,9 @@ Maintaining a professional and respectful tone in your messages can prevent misu
 
 Questions to reflect:
 
-1. **Response expectations:** Have you ever received a message without a clear deadline? How did that affect your prioritization? What steps can you take to ensure your messages include clear expectations?
-2. **Lack of response:** Think of a time when you didn’t receive a response in your expected timeframe. What could you have done differently to clarify the urgency or expected response time?
-3. **Pinned content relevance:** When was the last time you reviewed the pinned messages in your most-used channels? What steps can you take to ensure the pinned content remains up-to-date and relevant?
+- **Response expectations:** Have you ever received a message without a clear deadline? How did that affect your prioritization? What steps can you take to ensure your messages include clear expectations?
+- **Lack of response:** Think of a time when you didn’t receive a response in your expected timeframe. What could you have done differently to clarify the urgency or expected response time?
+- **Pinned content relevance:** When was the last time you reviewed the pinned messages in your most-used channels? What steps can you take to ensure the pinned content remains up-to-date and relevant?
 
 ### Exercise: Slack settings
 
