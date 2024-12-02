@@ -8,39 +8,90 @@
 
 ## Communication styles
 
-Communication styles refer to how people express themselves, both verbally and nonverbally. Understanding these styles helps reduce misunderstandings and build stronger relationships with colleagues, clients, and managers.
+Communication styles refer to how people express themselves, both verbally and nonverbally. Understanding these styles helps reduce misunderstandings and build stronger relationships with colleagues, clients, stakeholders, etc.
+
+This three-part page explains how to [learn-technology-consulting/communication-styles#understanding-ourselves understand your own style], [learn-technology-consulting/communication-styles#understanding-others understanding others’ style], and [learn-technology-consulting/communication-styles#adapting-to-others adapt your style] to better suit the needs of others.
 
 ## Understanding ourselves
 
-Understanding your own communication style helps you recognize habits that might seem unprofessional or unclear to others. By identifying these tendencies, you can adjust how you engage with clients and teammates, ensuring your intentions are understood and relationships remain positive.
+Understanding your own communication style helps you recognize how your communication is perceived by other people. Oftentimes, perception is reality. When you understand how you’re perceived, you can emphasize the parts of your style that are helpful in the moment, and be mindful when your default style might not fit the situation you’re in.
 
-### Personality trait models
+The overall goal is to understand our own style so we can make sure we convey the right message, regardless of the situation we’re in.
+
+### Personality vs. behavior models
 
 Personality models, like the Big Five, focus on traits that stay consistent over time.
-
-- **Stable:** Traits are consistent across different situations.
-- **Internal:** Traits reflect inherent tendencies.
-- **Predictable:** They help forecast how someone will generally act.
-- **Descriptive:** Traits describe “what” a person is like.
-- **Universal:** Traits apply broadly across contexts.
-
 They provide general insights into behavior but are less useful in predicting real-time communication.
 
-### Behavior style models
+Behavior models, on the other hand, focus on how people act in specific situations.
+These models explain how people adjust their behavior based on the context.
 
-Behavior models focus on how people act in specific situations. These models explain how people adjust their behavior based on the context.
+- **Consistency across situations**
+  - **Personality:** Traits are consistent across different situations.
+  - **Behavior:** Behavior changes based on environment.
 
-- **Situational:** Behavior changes based on environment.
-- **Observable:** Behavior is visible and measurable.
-- **Adaptable:** People adjust their behavior to fit in.
-- **Action-oriented:** Focuses on how people act.
-- **Variable:** Behavior can change frequently.
+- **Source or origin of actions or tendencies**
+  - **Personality:** Traits reflect inherent tendencies.
+  - **Behavior:** Behavior is visible and measurable.
 
-Behavior models may oversimplify human behavior and aren’t always reliable for long-term predictions, but they serve as helpful, flexible tools for everyday communication. They offer a shared, straightforward way to discuss preferences without diving into complex theories.
+- **Predictability over time or in patterns**
+  - **Personality:** They help forecast how someone will generally act.
+  - **Behavior:** Behavior can change frequently.
+
+- **Primary focus of the description**
+  - **Personality:** Traits describe “what” a person is like.
+  - **Behavior:** Focuses on how people act.
+
+- **Adaptability to different contexts**
+  - **Personality:** Traits apply broadly across contexts.
+  - **Behavior:** People adjust their behavior to fit in.
+
+Obviously, it’s not feasible to have every single person you interact with take a personality test. It’s also not as useful because people’s behavior changes depending on the situations they are in.
+
+Behavior models that focus on actions that we can see are more useful in everyday communication because they offer a path to understanding what someone needs based on how they’re behaving.
 
 The key benefit is their flexibility — allowing you to adjust your communication style based on the situation. If someone prefers concise answers, keep it brief; if they favor open-ended conversations, ask more questions. This adaptability smooths interactions and is especially valuable for consultants working with new teams and clients who need to build rapport quickly.
 
-### Comparing popular behavior models
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Personality</th>
+      <th>Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Consistency across situations</td>
+      <td>Stable</td>
+      <td>Situational</td>
+    </tr>
+    <tr>
+      <td>Source or origin of actions or tendencies</td>
+      <td>Inherent</td>
+      <td>Observable</td>
+    </tr>
+    <tr>
+      <td>Predictability over time or in patterns</td>
+      <td>Predictable</td>
+      <td>Variable</td>
+    </tr>
+    <tr>
+      <td>Primary focus of the description</td>
+      <td>Descriptive</td>
+      <td>Action-oriented</td>
+    </tr>
+    <tr>
+      <td>Adaptability to different contexts</td>
+      <td>Universal</td>
+      <td>Adaptable</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<details>
+<summary>Comparing popular behavior models</summary>
 
 <table>
   <thead>
@@ -83,6 +134,8 @@ This table compares four popular behavior style models: Integrity Solutions’ B
 Each model categorizes individuals based on their communication, decision-making, and interaction tendencies.
 While these models use different terminology and frameworks, they roughly align in their groupings of individuals by behavior.
 
+</details>
+
 ### Understanding the spectrums
 
 Both **direct vs. indirect** and **open vs. guarded** represent spectrums, not binary categories. People can shift along these spectrums depending on the context (e.g., work vs. home), the relationship with the other person, or the situation at hand.
@@ -92,22 +145,88 @@ Both **direct vs. indirect** and **open vs. guarded** represent spectrums, not b
 
 Each person may display varying levels of directness and openness, depending on circumstances:
 
-- **Highly direct and open:** Tends to be very expressive, sharing opinions and feelings with little hesitation.
-- **Highly direct and guarded:** Communicates clearly and assertively but keeps personal details private.
-- **Indirect and open:** May share personal experiences but does so in a softer, more cautious way.
-- **Indirect and guarded:** Offers little personal information and communicates subtly, often prioritizing harmony and avoiding conflict.
+- **Highly direct and open (Talker):** Tends to be very expressive, sharing opinions and feelings with little hesitation.
+- **Highly direct and guarded (Doer):** Communicates clearly and assertively but keeps personal details private.
+- **Indirect and open (Supporter):** May share personal experiences but does so in a softer, more cautious way.
+- **Indirect and guarded (Controller):** Offers little personal information and communicates subtly, often prioritizing harmony and avoiding conflict.
 
 These spectrums help us understand the nuances of communication and interaction in different settings, allowing for more adaptable and effective communication strategies.
 
-All four of the main Behavior Styles categories are present at Bitovi. Each category has strengths that they bring to the table. Diversity in a team is useful because diverse communication styles can excel in different areas, so together they can be more than the sum of their individual parts.
+**All four of the main Behavior Styles categories are present at Bitovi.** Each category has strengths that they bring to the table. Diversity in a team is useful because diverse communication styles can excel in different areas, so together they can be more than the sum of their individual parts.
 
 ### Direct vs. indirect communication
 
-#### Direct communication
-
 Direct communication is clear, straightforward, and often more assertive. People who tend toward direct communication prefer to get straight to the point, focus on facts, and may use a more confident or commanding tone. In a spectrum, this is one end, where clarity and brevity are highly valued.
 
-Observable behaviors:
+Indirect communication, on the other end of the spectrum, involves more subtlety and nuance. Indirect communicators tend to soften their language, often prioritizing the feelings of others and context over the content of the message. They may avoid conflict by phrasing things gently or using hints.
+
+- **Conflict handling**
+  - **Direct:** May interrupt or take control of conversations to ensure points are made. Can come across as blunt or overly candid.
+  - **Indirect:** Avoids conflict or confrontation by phrasing things gently or using suggestions. Reluctant to express disagreement or make demands.
+
+- **Focus of communication**
+  - **Direct:** Focuses on facts and logic rather than emotions. Prefers clarity and brevity.
+  - **Indirect:** Prioritizes the feelings of others and context over the content of the message. Often hints at deeper meaning through tone or body language.
+
+- **Tone and phrasing**
+  - **Direct:** Confident or commanding tone. Assertive language that is action-focused.
+  - **Indirect:** Gentle and nuanced. Frequently uses qualifiers like “perhaps” or “possibly.”
+
+- **Decision-making**
+  - **Direct:** Often quick to make decisions and take action. Prefers efficiency and dislikes small talk.
+  - **Indirect:** Frequently seeks consensus or approval from others before making decisions. Prefers a slower pace of decision-making.
+
+- **Pace of communication**
+  - **Direct:** Prefers efficiency and a focused pace. Often quick to take action.
+  - **Indirect:** Prefers a slower, more deliberate pace of conversation, taking time to consider the feelings and responses of others.
+
+- **Language style**
+  - **Direct:** Uses concise, straightforward language. Frequently uses strong, assertive phrases like “I want” or “I need.”
+  - **Indirect:** Uses more polite, softened, or vague language, such as “Maybe we could” or “What do you think about…”
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Direct Communication</th>
+      <th>Indirect Communication</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Conflict handling</td>
+      <td>Blunt, may interrupt</td>
+      <td>Gentle, avoids conflict</td>
+    </tr>
+    <tr>
+      <td>Focus of communication</td>
+      <td>Facts and clarity</td>
+      <td>Feelings and context</td>
+    </tr>
+    <tr>
+      <td>Tone and phrasing</td>
+      <td>Assertive, confident</td>
+      <td>Nuanced, polite</td>
+    </tr>
+    <tr>
+      <td>Decision-making</td>
+      <td>Quick, action-oriented</td>
+      <td>Consensus-driven</td>
+    </tr>
+    <tr>
+      <td>Pace of communication</td>
+      <td>Efficient, fast</td>
+      <td>Deliberate, slow</td>
+    </tr>
+    <tr>
+      <td>Language style</td>
+      <td>Concise, strong</td>
+      <td>Polite, softened</td>
+    </tr>
+  </tbody>
+</table>
+
+Observable “direct communication” behaviors:
 
 - Makes statements or requests without hesitation.
 - Uses concise, straightforward language.
@@ -118,11 +237,7 @@ Observable behaviors:
 - Prefers efficiency and tends to dislike small talk.
 - May come across as blunt or overly candid.
 
-#### Indirect communication
-
-Indirect communication, on the other end of the spectrum, involves more subtlety and nuance. Indirect communicators tend to soften their language, often prioritizing the feelings of others and context over the content of the message. They may avoid conflict by phrasing things gently or using hints.
-
-Observable behaviors:
+Observable “indirect communication” behaviors:
 
 - Uses more polite, softened, or vague language (e.g., “Maybe we could,” “What do you think about…”).
 - Reluctant to express disagreement or make demands.
@@ -135,11 +250,86 @@ Observable behaviors:
 
 ### Open vs. guarded communication
 
-#### Open communication
-
 Open communication is characterized by a willingness to share personal feelings, opinions, and information. People who are more open tend to be transparent and expressive, comfortable with revealing their thoughts and experiences. On a spectrum, this represents individuals who are easy to “read” and who value openness in others.​
 
-Observable behaviors:
+Guarded communication, on the other end of the spectrum, reflects a more private or reserved approach. People who are guarded often keep personal information to themselves, are more selective in what they share, and may appear more cautious or detached.
+
+- **Sharing personal information**
+  - **Open:** Freely shares personal information and experiences.
+  - **Guarded:** Rarely shares personal thoughts or feelings.
+
+- **Emotional expression**
+  - **Open:** Expresses emotions openly and comfortably.
+  - **Guarded:** Reserved and avoids discussing emotions or deep topics.
+
+- **Feedback and input**
+  - **Open:** Frequently asks for feedback or input from others.
+  - **Guarded:** Rarely asks for feedback and may appear self-contained.
+
+- **Body language**
+  - **Open:** Uses expressive body language, such as open posture, smiles, and gestures.
+  - **Guarded:** Uses limited or neutral body language.
+
+- **Focus of communication**
+  - **Open:** Shows visible interest in personal connections and rapport.
+  - **Guarded:** Prefers to focus on tasks and facts rather than personal topics.
+
+- **Work-life separation**
+  - **Open:** Blends personal and professional aspects, showing enthusiasm for personal engagement.
+  - **Guarded:** Keeps professional and personal life distinctly separate.
+
+- **Approachability**
+  - **Open:** Approachable, empathetic, and encourages others to share their feelings.
+  - **Guarded:** Appears cautious, deliberate, and less inviting to personal sharing.
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Open Communication</th>
+      <th>Guarded Communication</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Sharing personal information</td>
+      <td>Freely shares</td>
+      <td>Rarely shares</td>
+    </tr>
+    <tr>
+      <td>Emotional expression</td>
+      <td>Open and expressive</td>
+      <td>Reserved, avoids emotions</td>
+    </tr>
+    <tr>
+      <td>Feedback and input</td>
+      <td>Frequently seeks</td>
+      <td>Rarely asks</td>
+    </tr>
+    <tr>
+      <td>Body language</td>
+      <td>Expressive, open posture</td>
+      <td>Minimal, neutral</td>
+    </tr>
+    <tr>
+      <td>Focus of communication</td>
+      <td>Personal connections</td>
+      <td>Tasks and facts</td>
+    </tr>
+    <tr>
+      <td>Work-life separation</td>
+      <td>Blends personal and professional</td>
+      <td>Keeps strictly separate</td>
+    </tr>
+    <tr>
+      <td>Approachability</td>
+      <td>Enthusiastic, empathetic</td>
+      <td>Cautious, deliberate</td>
+    </tr>
+  </tbody>
+</table>
+
+Observable “open communication” behaviors:
 
 - Freely shares personal information and experiences.
 - Expresses emotions openly and comfortably.
@@ -150,11 +340,7 @@ Observable behaviors:
 - Tends to be approachable and seeks to establish rapport.
 - Shows empathy and encourages others to share their feelings.
 
-#### Guarded communication
-
-Guarded communication, on the other end of the spectrum, reflects a more private or reserved approach. People who are guarded often keep personal information to themselves, are more selective in what they share, and may appear more cautious or detached.
-
-Observable behaviors:
+Observable “guarded communication” behaviors:
 
 - Rarely shares personal thoughts or feelings.
 - Maintains a neutral or closed-off demeanor.
@@ -165,13 +351,45 @@ Observable behaviors:
 - Keeps professional and personal life distinctly separated.
 - Appears more cautious and deliberate in how they communicate.
 
+### Adapted vs. natural
+
+On page 19 you’ll find your personalized adapted and natural style graphs. On the left is the Adapted Style, and on the right is the Natural Style. The **Adapted Style** reflects the behaviors you perceive you should use in a specific context, like at work. Essentially, it represents how you adapt to meet the expectations of your role, whether that's with clients, colleagues, or within a professional environment. The **Natural Style,** on the other hand, shows your instinctive behaviors and motivations — your default mode of operation. Think of it as how you might act at home or in a setting where you feel entirely comfortable.
+
+This course focuses on communication in a professional context, so the Adapted Style is the primary focus. However, it’s important to be aware of the Natural Style, as it often emerges in different situations, **especially under stress.** When the two styles align closely, it indicates that you tend to operate naturally in that environment. If there’s a significant difference, it may cause stress over time since you’re relying on behaviors that feel less comfortable or natural.
+
+Below the graphs, there are four-digit segment numbers that correspond to specific adjectives in the Word Sketch pages. These adjectives describe tendencies in both Adapted and Natural Styles. The height of the points on the graphs indicates the intensity of these behaviors. Higher points represent a stronger impact on work and interactions, while lower points show less pronounced traits.
+
+A key takeaway is that **self-awareness and adaptability are essential for effective communication.** Recognizing these patterns allows you to intentionally adjust behaviors to suit different situations. Permanent behavior changes require both awareness and practice, and the Behavior Adaptability Charts in the PDF are valuable tools to help develop this versatility.
+
+It’s important to note that this is a **psychometric tool,** which is not designed to perfectly describe every aspect of personality. On average, these assessments are about **80% accurate,** providing a strong general sense of behaviors but not definitive details. For most people, around 80% of the assessment resonates. If something doesn’t seem to fit, it can be helpful to reflect on how others perceive your behavior. 
+
+For example, you might encounter traits in the assessment that don’t align with how you see yourself. Seeking feedback from colleagues, friends, or family can provide insight into how others experience your behavior. Understanding these perceptions is a crucial step in improving self-awareness and fostering better connections with others.
+
+### Word sketch
+
+The word sketch on pages 17–18 focuses on the relationship between emotions, behaviors, and underlying motivators or needs. To recap from earlier: all emotions are valid — they aren’t inherently good or bad. However, the behaviors exhibited based on those emotions can be either productive or counterproductive. This chart, called a *Word Sketch*, connects behaviors, emotions, and needs to provide a framework for understanding what drives people’s actions.
+
+Start by looking at the bottom row of the chart, which highlights observable behaviors — what others see and perceive. The purpose of this *Word Sketch* is to help interpret those behaviors and understand the motivations or needs behind them. Recognizing these patterns allows for better prediction of how someone prefers to communicate and respond in various situations, improving relationships and collaboration.
+
+Take the “Supporter” column as an example. The observable behaviors for someone with high Supporter tendencies include being calming*, loyal, patient, peaceful, serene, and team-focused. What drives those behaviors? Looking at the associated needs and emotions, Supporters typically value stable environments, strong teams, and systems. Their primary emotion is patience or a stabilizing influence.
+
+On the flip side, a Supporter’s fear is sudden change, instability, or loss of security. This connection is logical: someone who prioritizes stability will naturally fear losing it. From there, it makes sense to see behaviors like loyalty — staying committed to people or systems that provide stability — or calming and patient actions that contribute to a harmonious and predictable environment.
+
+This same logic applies to the other behavior styles as well. The key takeaway is that **behaviors, emotions, and needs are interconnected.**
+
+Psychometric assessments like this one are designed to provide insight into these patterns, though they are not perfect — they are meant to be about *80% accurate*. Still, they serve as a valuable tool for understanding both personal tendencies and those of others in various interactions.
+
 ## Understanding others
+
+Now that we've explored understanding our own communication styles, let’s look at the differences between other communication styles.
 
 Recognizing that others communicate differently helps you avoid misunderstandings. By considering their unique styles, you can interpret their behavior more accurately and anticipate their needs. This makes your collaboration more effective and helps you adapt to different work environments.
 
 ### Observing communication styles
 
-You can identify communication styles by paying attention to:
+This is about recognizing that we all have unique needs, motivations, and behaviors. *If we can understand the needs or motivators driving someone else’s behavior, we can adjust our communication to meet those needs more effectively.*
+
+On **page 5 of the PDF**, there’s a chart that outlines the characteristics of the four basic communication styles. We’re not going to go through every detail, but you can use it as a reference. Here are some key traits to observe when identifying someone else’s style:
 
 - **Pace:** Fast or slow talker?
 - **Priority (task vs. people-oriented):** Focused on goals or relationships?
@@ -182,23 +400,15 @@ You can identify communication styles by paying attention to:
 - **Body language:** Do they gesture or stay reserved?
 - **Formality:** Structured or relaxed in conversation?
 
-Observing these cues helps you adapt your communication to match the other person’s style, leading to more productive conversations.
+*Understanding these cues allows you to adapt your communication style to align with theirs, which can lead to more productive and meaningful conversations.*
 
-## Adapting to others
+Let’s dive into some examples. For instance, **pace** can reveal a lot. Someone with a faster communication style might prefer to wrap up meetings with quick decisions and clear next steps. On the other hand, someone with a slower style might need time to process, preferring to revisit decisions later or discuss them over Slack. *Neither approach is better or worse—just different.*
 
-Adapting your communication style makes your messages more effective and professional. By tailoring your approach to meet others’ preferences, you avoid missteps and strengthen connections. This flexibility helps teams work together more cohesively, improving outcomes for your projects.
+**Priority** is another interesting area. Some people prioritize tasks and goals, focusing on the big picture or specific execution details. Others might prioritize relationships and participation, seeking collaboration or feedback. *Both approaches are valid and are sometimes more useful in certain situations than others.*
 
-To communicate effectively, adjust your style without changing your personality. For example:
+The chart also outlines **strengths and growth areas** for each style. For example, someone with “doer” tendencies might excel at leadership, administration, and innovation but may also be perceived as impatient or insensitive. *These aren’t flaws—they’re perceptions.* Being aware of how your style might come across to others helps you adjust accordingly.
 
-- Provide context to a detail-oriented person.
-- Keep it brief with someone who values conciseness.
-- Send written communication to those who prefer it over face-to-face meetings.
-
-Small adjustments help build stronger relationships with clients and colleagues.
-
-Tips and techniques:
-
-- **Be aware of neurodiversity:** Understand that communication preferences can vary between neurotypical and neurodivergent individuals. Adapt your style to meet different needs.
+Ultimately, *this is about recognizing that different communication styles lead to different perceptions.* By being mindful of those differences, we can adapt our approach to foster better understanding and collaboration.
 
 ### Cultural background and communication styles
 
@@ -242,6 +452,29 @@ Tips and techniques:
   - **Adaptation example:** A U.S. consultant working with a team in Egypt might moderate expressions of enthusiasm and avoid overly casual discussions to align with the more restrained cultural approach.
 
 Understanding these cultural factors helps you tailor your communication style to fit the audience.
+
+Tips and techniques:
+
+- **Be aware of cultural norms:** Different cultures may have different norms regarding eye contact, personal space, or how direct to be in conversations. Take the time to learn about these differences when working with a diverse team.
+- **Adjust your communication:** If you notice that a particular style — such as very direct communication — is causing discomfort, adapt accordingly. For example, some cultures value indirect communication, so it may be helpful to soften feedback in those contexts.
+- **Recognize and celebrate differences:** Take time to acknowledge the different backgrounds and experiences within your team. Small gestures, like learning how to pronounce someone’s name correctly, show respect and inclusion. When in doubt, ask!
+- **Language considerations:** Avoid jargon or idioms that might be confusing to those whose first language isn’t English. Use straightforward language to ensure everyone is on the same page.
+
+## Adapting to others
+
+Adapting your communication style makes your messages more effective and professional. By tailoring your approach to meet others’ preferences, you avoid missteps and strengthen connections. This flexibility helps teams work together more cohesively, improving outcomes for your projects.
+
+To communicate effectively, adjust your style without changing your personality. For example:
+
+- Provide context to a detail-oriented person.
+- Keep it brief with someone who values conciseness.
+- Send written communication to those who prefer it over face-to-face meetings.
+
+Small adjustments help build stronger relationships with clients and colleagues.
+
+Tips and techniques:
+
+- **Be aware of neurodiversity:** Understand that communication preferences can vary between neurotypical and neurodivergent individuals. Adapt your style to meet different needs.
 
 ### Tension
 
@@ -365,3 +598,89 @@ Questions to reflect:
 - In what situations do you find yourself needing to code-switch the most? How do you adapt your language and tone?
 - Reflect on a time when you successfully adjusted your communication style for a specific audience. What was the outcome?
 - How can you improve your ability to code-switch without losing the authenticity of your message?
+
+### Group discussion: Adapting to others
+
+#### Selling a potential client on Bitovi’s work
+
+- **Doers:** Focus on results and efficiency. Emphasize how Bitovi delivers tangible outcomes quickly and solves pressing problems.
+- **Talkers:** Highlight collaboration and exciting possibilities. Use an engaging, energetic tone and share success stories.
+- **Supporters:** Emphasize trustworthiness and relationship-building. Show how Bitovi works closely with clients to ensure success.
+- **Controllers:** Provide detailed, logical reasoning. Present data, case studies, and a structured plan for achieving goals.
+
+One dimension:
+
+- **More direct:** Highlight specific results Bitovi has achieved for similar clients. Focus on measurable outcomes and state what you can deliver confidently.
+- **Less direct:** Share examples of past successes in a conversational tone. Suggest possibilities rather than guarantees.
+- **More open:** Share personal enthusiasm for the project, including your excitement about collaborating and solving challenges together.
+- **More guarded:** Stick to facts and deliverables without sharing personal opinions or over-promising.
+
+#### Building trust and rapport
+
+- **Doers:** Keep the conversation goal-oriented. Show competence and a strong track record to build respect.
+- **Talkers:** Engage in friendly, informal conversation. Find common interests and be enthusiastic about shared goals.
+- **Supporters:** Be empathetic and attentive. Show genuine care for their needs and listen actively.
+- **Controllers:** Be professional and consistent. Deliver on promises and be prepared to answer questions thoroughly.
+
+One dimension:
+
+- **More direct:** State your goals and expectations for the relationship upfront. Share how you’ll contribute to their success.
+- **Less direct:** Use small talk and indirect ways to build a connection, like asking about their day or interests.
+- **More open:** Share personal anecdotes or experiences to find common ground and encourage them to share in return.
+- **More guarded:** Keep the conversation professional, focusing only on the immediate goals or topics at hand.
+
+#### Learning about a client’s business
+
+- **Doers:** Ask direct, goal-oriented questions about what matters most to them and how they measure success.
+- **Talkers:** Use open-ended questions to explore ideas and build a conversational flow. Let them share their vision enthusiastically.
+- **Supporters:** Approach with curiosity and a collaborative tone. Show interest in how their work impacts people.
+- **Controllers:** Focus on structured, fact-based questions. Dive into processes, systems, and measurable outcomes.
+
+One dimension:
+
+- **More direct:** Ask focused, specific questions about their business model, goals, and challenges.
+- **Less direct:** Use broader, open-ended questions that allow them to share at their own pace.
+- **More open:** Share your own thoughts or relevant experiences as they describe their business to encourage a dialogue.
+- **More guarded:** Limit your input to clarifying questions without sharing personal opinions or experiences.
+
+#### Advocating for tool, process, or people change
+
+- **Doers:** Present the change as a way to achieve faster, better results. Be concise and action-focused.
+- **Talkers:** Frame the change as exciting and innovative. Highlight how it will foster collaboration and energy.
+- **Supporters:** Emphasize how the change will benefit the team and strengthen relationships or workflows.
+- **Controllers:** Use logical arguments backed by data. Provide detailed evidence and a clear roadmap for implementation.
+
+One dimension:
+
+- **More direct:** Clearly explain why the change is necessary and outline specific benefits and steps to implement it.
+- **Less direct:** Suggest the change as an idea for exploration, inviting feedback and discussion.
+- **More open:** Share your excitement about the potential of the change and relate it to personal success stories or positive outcomes.
+- **More guarded:** Focus strictly on data and logic to justify the change, avoiding personal anecdotes or enthusiasm.
+
+#### Pushing back against unrealistic expectations
+
+- **Doers:** Be direct and solutions-oriented. Propose an alternative approach that balances ambition with practicality.
+- **Talkers:** Use a positive tone and explain collaboratively why the expectations may not be feasible, offering creative alternatives.
+- **Supporters:** Be diplomatic and empathetic. Frame your response as wanting to ensure the best possible outcome for everyone.
+- **Controllers:** Present facts and risks clearly. Use data to justify why the expectations are unrealistic and offer structured solutions.
+
+One dimension:
+
+- **More direct:** State clearly that the expectations are not feasible and explain the reasons concisely.
+- **Less direct:** Suggest alternative approaches while framing the conversation as collaborative and constructive.
+- **More open:** Share how the expectations could impact you or the team, and invite them to discuss adjustments.
+- **More guarded:** Stick to objective facts and risks without expressing personal views or emotions.
+
+#### Speaking truth to power
+
+- **Doers:** Be concise and confident. Stick to the facts and provide actionable suggestions.
+- **Talkers:** Use an approachable tone and frame your input as a valuable perspective that supports shared goals.
+- **Supporters:** Be respectful and considerate. Emphasize how your input aligns with broader team or organizational values.
+- **Controllers:** Present a well-reasoned case supported by data. Maintain professionalism and anticipate follow-up questions.
+
+One dimension:
+
+- **More direct:** Present your perspective clearly and confidently, focusing on the core message without embellishments.
+- **Less direct:** Frame your input as a suggestion or question, softening the delivery to make it less confrontational.
+- **More open:** Share your thought process or feelings about the situation to add context and invite a two-way discussion.
+- **More guarded:** Deliver your message with only the necessary facts, avoiding personal perspectives or emotional undertones.
