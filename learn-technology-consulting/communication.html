@@ -667,6 +667,22 @@ covering CanJS core libraries.">
 <li>Avoid interrupting and encourage others by paraphrasing or summarizing.</li>
 </ul>
 <!-- - Use mirroring and labeling techniques to address unspoken concerns. -->
+<p>The <a href="#communication-planning">communication planning</a> section covers strategies to make your messages purposeful, clear, and audience-focused.</p>
+<ul>
+<li>Define the purpose of your communication and state expectations explicitly.</li>
+</ul>
+<p>When reading about <a href="#business-writing">business writing</a>, you’ll learn how to create clear, concise, and actionable communication.</p>
+<ul>
+<li>Specify clear actions and deadlines in your writing.</li>
+<li>Avoid assumptions — write for clarity without losing context.</li>
+<li>Remove emotionally charged language from professional communication.</li>
+</ul>
+<p>The <a href="#communication-tools">effectively using tools</a> section discusses using tools like Grammarly and LLMs to support communication, while emphasizing transparency.</p>
+<ul>
+<li>Use Grammarly for proofreading but review AI suggestions for accuracy.</li>
+<li>Leverage LLMs for brainstorming and gathering feedback.</li>
+<li>Be transparent about AI usage in your process.</li>
+</ul>
 <p>The <a href="communication-methods.html" title="Learn how to make the most out of chat, email, meetings, and wikis.">Communication Methods</a> page outlines best practices for effectively communicating over <a href="communication-methods.html#chat" title="Learn how to make the most out of chat, email, meetings, and wikis.">chat</a>.</p>
 <ul>
 <li>Use shared channels to post updates and follow up on threads.</li>
@@ -690,22 +706,6 @@ covering CanJS core libraries.">
 <li>Use meetings for complex or sensitive discussions.</li>
 <li>Move long-term reference material to wikis.</li>
 <li>Choose high-bandwidth methods, like meetings, for nuanced topics.</li>
-</ul>
-<p>The <a href="#communication-planning">communication planning</a> section covers strategies to make your messages purposeful, clear, and audience-focused.</p>
-<ul>
-<li>Define the purpose of your communication and state expectations explicitly.</li>
-</ul>
-<p>When reading about <a href="#business-writing">business writing</a>, you’ll learn how to create clear, concise, and actionable communication.</p>
-<ul>
-<li>Specify clear actions and deadlines in your writing.</li>
-<li>Avoid assumptions — write for clarity without losing context.</li>
-<li>Remove emotionally charged language from professional communication.</li>
-</ul>
-<p>The <a href="#communication-tools">effectively using tools</a> section discusses using tools like Grammarly and LLMs to support communication, while emphasizing transparency.</p>
-<ul>
-<li>Use Grammarly for proofreading but review AI suggestions for accuracy.</li>
-<li>Leverage LLMs for brainstorming and gathering feedback.</li>
-<li>Be transparent about AI usage in your process.</li>
 </ul>
 <p>Finally, the <a href="giving-receiving-feedback.html" title="Learn how to give and receive feedback effectively.">Giving and Receiving Feedback</a> page outlines methods for delivering and receiving feedback effectively.</p>
 <ul>
@@ -1592,6 +1592,15 @@ covering CanJS core libraries.">
 <li><strong>Call to action:</strong> What specific action or response do you need from your audience?</li>
 </ul>
 <p>Outline your approach and think critically about how to tailor your message for each audience in the scenario you chose.</p>
+<p>Here are some ideas to consider while completing this exercise:</p>
+<ul>
+<li>Identify anyone who needs to take action or provide input to resolve the issue.</li>
+<li>Consider people who may not be directly involved but still need to be informed (e.g., stakeholders, leadership, etc.).</li>
+<li>Remember that audiences may have different priorities, so you may need different messages for each group.</li>
+<li>Avoid assuming a single communication will solve the problem — complex scenarios often require ongoing dialogue with multiple audiences.</li>
+<li>Double-check your plan for gaps: Does every group involved in the scenario have a clear purpose, message, and call to action?</li>
+<li>If you’re unsure about an audience’s needs, consider what questions they might ask and whether your communication plan addresses them.</li>
+</ul>
 <h4 id="backend">Backend</h4>
 <p><details>
 <summary>Backend API performance concerns</summary></p>
@@ -1628,36 +1637,38 @@ covering CanJS core libraries.">
 <p></details></p>
 <h4 id="devops">DevOps</h4>
 <p><details>
-<summary>Conflicting deployment requirements</summary></p>
-<p>During the final phase of deployment, you find that different teams within the client’s organization have conflicting requirements:</p>
+<summary>Disaster recovery (DR) concerns</summary></p>
+<p>Your team has discovered critical weaknesses during a regular disaster recovery (DR) drill that could jeopardize the organization in a major failure:</p>
 <ul>
-<li>The security team mandates that all deployments must include specific audit logging and monitoring integrations, which require additional setup.</li>
-<li>The development team insists on reducing deployment latency, asking for relaxed post-deployment validation checks.</li>
-<li>The operations team highlights concerns about rollback mechanisms, fearing potential instability with the current process.</li>
-<li>Stakeholders demand clear communication about deployment risks and trade-offs.</li>
-<li>The project manager requests an action plan to align the teams and ensure a successful deployment that meets all requirements.</li>
+<li>Production data backups are outdated and fail to restore properly during testing.</li>
+<li>The primary database failover configuration causes prolonged downtime during simulated disruptions.</li>
+<li>The disaster recovery process documentation is outdated, leaving newer team members unsure of their responsibilities.</li>
+<li>Development teams haven’t incorporated DR considerations into their feature designs, leading to incompatibilities when switching to backup systems.</li>
+<li>Some team members believe addressing these issues will hinder ongoing feature development, despite project manager demands for rapid solutions.</li>
+<li>The project manager is pushing for a quick fix but may not fully grasp the complexity of the issues.</li>
 </ul>
 <p></details></p>
 <p><details>
-<summary>Performance issues found during deployment</summary></p>
-<p>As a DevOps engineer, you’re preparing for the final stages of a project’s deployment, but during pre-production testing, several issues surface that put the project’s timeline at risk:</p>
+<summary>Major outage</summary></p>
+<p>A major data center outage reveals critical flaws in the disaster recovery (DR) plan:</p>
 <ul>
-<li>The deployment pipeline takes far longer than expected due to poorly optimized Docker images and unnecessary build steps.</li>
-<li>The application suffers from intermittent outages in the staging environment due to insufficient container resource limits.</li>
-<li>Monitoring tools reveal high latency in the load balancer, despite the backend team reporting fast API response times.</li>
-<li>Stakeholders have raised concerns about system reliability and scalability if these issues persist.</li>
-<li>The project manager is requesting a status update and how you plan to address these issues to ensure the production rollout proceeds as planned.</li>
+<li><strong>Data Loss Risk:</strong> Significant data loss is imminent without immediate restoration.</li>
+<li><strong>Client Expectations:</strong> Clients expect a seamless recovery, believing the DR plan is robust and operational.</li>
+<li><strong>Team Unpreparedness:</strong> The team lacks proper training on DR protocols, resulting in disorganized responses.</li>
+<li><strong>Compliance Deadlines:</strong> Legal requirements mandate data recovery within strict timeframes to avoid penalties.</li>
+<li><strong>Coordination Breakdown:</strong> Internal teams are unaware of the full scope of the issue, leading to uncoordinated efforts.</li>
 </ul>
 <p></details></p>
 <p><details>
-<summary>Unclear ownership of deployment artifacts</summary></p>
-<p>As you review the deployment process, it becomes unclear who is responsible for maintaining critical deployment artifacts, leading to delays:</p>
+<summary>Major outage</summary></p>
+<p>In the midst of a significant data center outage, you realize that the disaster recovery (DR) plan is outdated and insufficient. As a DevOps engineer, you’re faced with multiple challenges:</p>
 <ul>
-<li>The development team insists that operations should maintain Docker images, but the operations team claims it’s a developer responsibility.</li>
-<li>Security scanning tools reveal outdated base images that no team has updated, creating compliance risks.</li>
-<li>The QA team identifies issues in pre-built test environments that stem from discrepancies in artifact management practices.</li>
-<li>Stakeholders ask for clarity on who owns which part of the artifact lifecycle to prevent further delays.</li>
-<li>The project manager asks for an interim solution to ensure the current deployment is not blocked while long-term ownership is defined.</li>
+<li><strong>Data Loss Threat</strong>: Without immediate action, there’s a high risk of significant data loss affecting critical services.</li>
+<li><strong>Client Expectations</strong>: The client assumes a robust DR plan is in place and expects rapid recovery with minimal downtime.</li>
+<li><strong>Unprepared Team</strong>: Team members lack training in DR procedures, leading to confusion and delays in response.</li>
+<li><strong>Legal and Compliance Issues</strong>: Failure to recover data within specific timeframes could result in regulatory penalties and legal repercussions.</li>
+<li><strong>Communication Breakdown</strong>: Internal teams are unaware of the outage’s severity and are not coordinating efforts effectively.</li>
+<li><strong>Stakeholder Pressure</strong>: Senior management demands immediate updates and solutions, adding to the urgency.</li>
 </ul>
 <p></details></p>
 <h4 id="frontend">Frontend</h4>
@@ -3750,10 +3761,7 @@ covering CanJS core libraries.">
 </ul>
 <p>Questions to reflect:</p>
 <ul>
-<li>How can you communicate your use of LLMs in a way that maintains trust and transparency with clients and colleagues?</li>
 <li>What are the potential consequences of not being transparent about LLMs use in your communications?</li>
-<li>How can you frame your use of LLMs to highlight its benefits while making sure that human expertise is still valued?</li>
-<li>What steps can you take to ensure that the use of LLMs recording tools does not compromise client confidentiality?</li>
 <li>What criteria should you use to decide when LLMs recording is or isn’t appropriate for a client meeting?</li>
 </ul>
 <h2 id="effective-use-of-llms-in-communication">Effective use of LLMs in communication</h2>
