@@ -70,7 +70,7 @@ Mentions are a powerful tool for grabbing attention, but overuse can lead to not
 How you craft your message greatly affects how it is received and responded to.
 
 - **Reserve DMs for urgent or sensitive matters:** When possible, use shared channels to discuss topics that could benefit the broader team. This keeps everyone in the loop and reduces duplicative conversations.
-- **Be clear and to the point:** Avoid starting conversations with [just “hey” or “hello.”](https://nohello.net/en/) Instead, get straight to the point. For example, instead of “Hey, do you have a minute?” say, “Hey, can you help with this task? I need advice on how to approach it.”
+- **Be clear and to the point:** Avoid starting conversations with [just “hey” or “hello.”](https://nohello.net/en/) Instead, get straight to the point. For example, instead of “Hey, do you have a minute?” say, “Hey, can you help with this task? I need advice on how to approach it.” *Note that this can also be a difference in communication styles.*
 - **Urgency in DMs:** If something is time-sensitive, state upfront why it’s urgent, when you need a response by, and what will happen if you don’t hear back. For example, say “Please respond to this question by 3:30 PM today or we will reschedule tomorrow’s production release” or “Please let me know your thoughts on these options by the end of this week, otherwise we will be moving forward with option one.”
 - **Reread before sending:** Always review your message before sending it to ensure clarity and neutral tone. Eliminate unnecessary jargon or complexity that may confuse the recipient.
 
@@ -212,17 +212,25 @@ Maintaining a professional and respectful tone in your messages can prevent misu
 
 Questions to reflect:
 
-- **Response expectations:** Have you ever received a message without a clear deadline? How did that affect your prioritization? What steps can you take to ensure your messages include clear expectations?
-- **Lack of response:** Think of a time when you didn’t receive a response in your expected timeframe. What could you have done differently to clarify the urgency or expected response time?
-- **Pinned content relevance:** When was the last time you reviewed the pinned messages in your most-used channels? What steps can you take to ensure the pinned content remains up-to-date and relevant?
+- Have you ever received a message without a clear deadline? How did that affect your prioritization? What steps can you take to ensure your messages include clear expectations?
+- Think of a time when you didn’t receive a response in your expected timeframe. What could you have done differently to clarify the urgency or expected response time?
+- When was the last time you reviewed the pinned messages in your most-used channels? What steps can you take to ensure the pinned content remains up-to-date and relevant?
 
 ### Exercise: Slack settings
 
 Apply the ideas above by updating your Slack settings and channels:
 
-<label><input type="checkbox" /> **Set up Slack status to sync with meetings:** [Sync your status with your calendar](https://slack.com/help/articles/4412365549075-Automations--Sync-your-status-with-your-calendar) so it automatically updates when you’re in a meeting or out of the office.</label>
+<label><input type="checkbox" /> **[Sync your status with your calendar](https://slack.com/help/articles/4412365549075-Automations--Sync-your-status-with-your-calendar)** so it automatically updates when you’re in a meeting or out of the office.</label>
 
-<label><input type="checkbox" /> **Set your notification preferences:** [Configure your Slack notifications](https://slack.com/help/articles/201355156-Configure-your-Slack-notifications) to notify you about direct messages, mentions, keywords, and replies to threads you’re following. While you’re in the Notifications preferences, scroll down to the “Notification schedule” section to set the time for reminders and check the “Show a badge on Slack’s icon” option under “Sound & appearance.”</label>
+<label><input type="checkbox" /> **[Edit your profile](https://slack.com/help/articles/204092246-Edit-your-profile)** to include a professional photo and your name, email, time zone, preferred hours, pronouns, and name pronunciation.</label>
+
+<label><input type="checkbox" /> **[Configure your Slack notifications](https://slack.com/help/articles/201355156-Configure-your-Slack-notifications)** to:</label>
+
+<ul style="list-style: none">
+<li><label><input type="checkbox" /> Notify you about “direct messages, mentions, & keywords” or “all new messages.”</label></li>
+<li><label><input type="checkbox" /> Notify you “about replies to threads I’m following.”</label></li>
+<li><label><input type="checkbox" /> Scroll down to the “Notification schedule” section to set the time for reminders and check the “Show a badge on Slack’s icon” option under “Sound & appearance.”</label></li>
+</ul>
 
 <!-- <label><input type="checkbox" /> **Enable “Notify me about replies to threads”:** Set up Slack to notify you when someone replies to a thread you’re involved in, so you can stay engaged without getting lost in the conversation.</label> -->
 
@@ -230,7 +238,8 @@ Apply the ideas above by updating your Slack settings and channels:
 
 <!-- <label><input type="checkbox" /> **Update your notification schedule:** Adjust Slack notifications to focus on important conversations. Turn off notifications for irrelevant threads and channels.</label> -->
 
-<label><input type="checkbox" /> **Update your profile:** [Edit your profile](https://slack.com/help/articles/204092246-Edit-your-profile) to include a professional photo and your name, email, time zone, preferred hours, pronouns, and name pronunciation.</label>
+
+Recommended “spring cleaning”:
 
 <label><input type="checkbox" /> **Arrange your Slack workspace:** If you have a lot of channels or direct messages, consider [organizing your sidebar with custom sections](https://slack.com/help/articles/360043207674-Organize-your-sidebar-with-custom-sections) so higher-priority channels or people are towards the top of your sidebar.</label>
 
@@ -478,32 +487,21 @@ Questions to reflect:
 
 Daily scrum meetings are essential for fostering team alignment and addressing critical updates. To make these meetings effective and efficient, follow these best practices:
 
-#### Prepare beforehand
-
-- **Plan your updates in advance:** Take 10 minutes before the meeting to organize your thoughts. Focus on what’s most relevant for the team, ensuring your updates are clear and concise. Avoid wasting time by preparing your key points ahead of time.
-- **Keep a daily log:** Maintaining a brief record of your work helps you recall progress quickly and share updates effectively during the meeting. This also serves as a useful tool for tracking overall progress.
-
-#### Trust dynamics
-
-- **Low-trust teams:** In environments with lower trust, daily scrum meetings may require more detailed reporting. Team members may need to provide explicit descriptions of what was completed to ensure accountability and visibility. This approach can help build confidence over time as progress becomes clear and consistent.
-- **High-trust teams:** In high-trust environments, daily scrum meetings often focus on addressing blockers, coordinating efforts, and aligning priorities rather than detailed reporting. The assumption is that team members are completing their work independently and effectively, which reduces the need for granular updates.
-
 #### Consider the format
 
 - **Keep it brief:** Focus on the essentials — blockers, key progress, and any risks or dependencies. Avoid unnecessary details to ensure the meeting stays short and actionable.
 - **Adapt the frequency:** Align the frequency of meetings with the pace of the project. For fast-moving initiatives, daily check-ins may be necessary; for slower projects, consider fewer meetings, such as twice a week. Adjust as needed to suit the team’s needs.
 - **Use written updates when appropriate:** For fully remote teams or teams working across time zones, written updates can save time. Provide meaningful descriptions (e.g., “Working on issue #123 – fixing bug in user authentication flow”) to offer clarity without requiring follow-up questions. Written updates can also be shared in advance or documented in a central repository for easy reference.
 
-#### Communication tips
+#### Trust dynamics
 
-- **Clarify the focus:** Share information that’s most relevant to the team, such as blockers, dependencies, and significant progress. Avoid getting into unnecessary details or unrelated topics.
-- **Listen actively:** Pay attention to others’ updates to identify areas where you can offer support or collaboration.
-- **Tailor to your audience:** Consider what information your audience needs to hear versus what you want to share. Save in-depth discussions or challenges for another venue.
+- **Low-trust teams:** In environments with lower trust, daily scrum meetings may require more detailed reporting. Team members may need to provide explicit descriptions of what was completed to ensure accountability and visibility. This approach can help build confidence over time as progress becomes clear and consistent.
+- **High-trust teams:** In high-trust environments, daily scrum meetings often focus on addressing blockers, coordinating efforts, and aligning priorities rather than detailed reporting. The assumption is that team members are completing their work independently and effectively, which reduces the need for granular updates.
 
-#### Reflection and adjustment
+#### Prepare beforehand
 
-- **Evaluate effectiveness:** Regularly assess whether your updates are concise yet informative. Reflect on whether adjustments are needed to improve the balance of clarity and brevity.
-- **Adjust cadence as needed:** If updates are repetitive or meetings feel unproductive, reassess the frequency and content to better meet the team’s needs.
+- **Plan your updates in advance:** Take 10 minutes before the meeting to organize your thoughts. Focus on what’s most relevant for the team, ensuring your updates are clear and concise. Avoid wasting time by preparing your key points ahead of time.
+- **Keep a daily log:** Maintaining a brief record of your work helps you recall progress quickly and share updates effectively during the meeting. This also serves as a useful tool for tracking overall progress.
 
 ### Exercise: Draft a meeting invite
 

@@ -91,6 +91,22 @@ The importance of [active listening](#active-listening) is addressed through pra
 - Avoid interrupting and encourage others by paraphrasing or summarizing.
 <!-- - Use mirroring and labeling techniques to address unspoken concerns. -->
 
+The [communication planning](#communication-planning) section covers strategies to make your messages purposeful, clear, and audience-focused.
+
+- Define the purpose of your communication and state expectations explicitly.
+
+When reading about [business writing](#business-writing), you’ll learn how to create clear, concise, and actionable communication.
+
+- Specify clear actions and deadlines in your writing.
+- Avoid assumptions — write for clarity without losing context.
+- Remove emotionally charged language from professional communication.
+
+The [effectively using tools](#communication-tools) section discusses using tools like Grammarly and LLMs to support communication, while emphasizing transparency.
+
+- Use Grammarly for proofreading but review AI suggestions for accuracy.
+- Leverage LLMs for brainstorming and gathering feedback.
+- Be transparent about AI usage in your process.
+
 The [learn-technology-consulting/communication-methods] page outlines best practices for effectively communicating over [learn-technology-consulting/communication-methods#chat chat].
 
 - Use shared channels to post updates and follow up on threads.
@@ -114,22 +130,6 @@ The section on [learn-technology-consulting/communication-methods#choosing-the-b
 - Use meetings for complex or sensitive discussions.
 - Move long-term reference material to wikis.
 - Choose high-bandwidth methods, like meetings, for nuanced topics.
-
-The [communication planning](#communication-planning) section covers strategies to make your messages purposeful, clear, and audience-focused.
-
-- Define the purpose of your communication and state expectations explicitly.
-
-When reading about [business writing](#business-writing), you’ll learn how to create clear, concise, and actionable communication.
-
-- Specify clear actions and deadlines in your writing.
-- Avoid assumptions — write for clarity without losing context.
-- Remove emotionally charged language from professional communication.
-
-The [effectively using tools](#communication-tools) section discusses using tools like Grammarly and LLMs to support communication, while emphasizing transparency.
-
-- Use Grammarly for proofreading but review AI suggestions for accuracy.
-- Leverage LLMs for brainstorming and gathering feedback.
-- Be transparent about AI usage in your process.
 
 Finally, the [learn-technology-consulting/giving-receiving-feedback] page outlines methods for delivering and receiving feedback effectively.
 
@@ -1049,6 +1049,15 @@ For your chosen scenario, create a communication plan by answering the following
 
 Outline your approach and think critically about how to tailor your message for each audience in the scenario you chose.
 
+Here are some ideas to consider while completing this exercise:
+
+- Identify anyone who needs to take action or provide input to resolve the issue.
+- Consider people who may not be directly involved but still need to be informed (e.g., stakeholders, leadership, etc.).
+- Remember that audiences may have different priorities, so you may need different messages for each group.
+- Avoid assuming a single communication will solve the problem — complex scenarios often require ongoing dialogue with multiple audiences.
+- Double-check your plan for gaps: Does every group involved in the scenario have a clear purpose, message, and call to action?
+- If you’re unsure about an audience’s needs, consider what questions they might ask and whether your communication plan addresses them.
+
 #### Backend
 
 <details>
@@ -1093,41 +1102,43 @@ As a Backend Developer, you’re tasked with integrating a new service into a cl
 #### DevOps
 
 <details>
-<summary>Conflicting deployment requirements</summary>
+<summary>Disaster recovery (DR) concerns</summary>
 
-During the final phase of deployment, you find that different teams within the client’s organization have conflicting requirements:
+Your team has discovered critical weaknesses during a regular disaster recovery (DR) drill that could jeopardize the organization in a major failure:
 
-- The security team mandates that all deployments must include specific audit logging and monitoring integrations, which require additional setup.
-- The development team insists on reducing deployment latency, asking for relaxed post-deployment validation checks.
-- The operations team highlights concerns about rollback mechanisms, fearing potential instability with the current process.
-- Stakeholders demand clear communication about deployment risks and trade-offs.
-- The project manager requests an action plan to align the teams and ensure a successful deployment that meets all requirements.
-
-</details>
-
-<details>
-<summary>Performance issues found during deployment</summary>
-
-As a DevOps engineer, you’re preparing for the final stages of a project’s deployment, but during pre-production testing, several issues surface that put the project’s timeline at risk:
-
-- The deployment pipeline takes far longer than expected due to poorly optimized Docker images and unnecessary build steps.
-- The application suffers from intermittent outages in the staging environment due to insufficient container resource limits.
-- Monitoring tools reveal high latency in the load balancer, despite the backend team reporting fast API response times.
-- Stakeholders have raised concerns about system reliability and scalability if these issues persist.
-- The project manager is requesting a status update and how you plan to address these issues to ensure the production rollout proceeds as planned.
+- Production data backups are outdated and fail to restore properly during testing.
+- The primary database failover configuration causes prolonged downtime during simulated disruptions.
+- The disaster recovery process documentation is outdated, leaving newer team members unsure of their responsibilities.
+- Development teams haven’t incorporated DR considerations into their feature designs, leading to incompatibilities when switching to backup systems.
+- Some team members believe addressing these issues will hinder ongoing feature development, despite project manager demands for rapid solutions.
+- The project manager is pushing for a quick fix but may not fully grasp the complexity of the issues.
 
 </details>
 
 <details>
-<summary>Unclear ownership of deployment artifacts</summary>
+<summary>Major outage</summary>
 
-As you review the deployment process, it becomes unclear who is responsible for maintaining critical deployment artifacts, leading to delays:
+A major data center outage reveals critical flaws in the disaster recovery (DR) plan:
 
-- The development team insists that operations should maintain Docker images, but the operations team claims it’s a developer responsibility.
-- Security scanning tools reveal outdated base images that no team has updated, creating compliance risks.
-- The QA team identifies issues in pre-built test environments that stem from discrepancies in artifact management practices.
-- Stakeholders ask for clarity on who owns which part of the artifact lifecycle to prevent further delays.
-- The project manager asks for an interim solution to ensure the current deployment is not blocked while long-term ownership is defined.
+- **Data Loss Risk:** Significant data loss is imminent without immediate restoration.
+- **Client Expectations:** Clients expect a seamless recovery, believing the DR plan is robust and operational.
+- **Team Unpreparedness:** The team lacks proper training on DR protocols, resulting in disorganized responses.
+- **Compliance Deadlines:** Legal requirements mandate data recovery within strict timeframes to avoid penalties.
+- **Coordination Breakdown:** Internal teams are unaware of the full scope of the issue, leading to uncoordinated efforts.
+
+</details>
+
+<details>
+<summary>Major outage</summary>
+
+In the midst of a significant data center outage, you realize that the disaster recovery (DR) plan is outdated and insufficient. As a DevOps engineer, you’re faced with multiple challenges:
+
+- **Data Loss Threat**: Without immediate action, there’s a high risk of significant data loss affecting critical services.
+- **Client Expectations**: The client assumes a robust DR plan is in place and expects rapid recovery with minimal downtime.
+- **Unprepared Team**: Team members lack training in DR procedures, leading to confusion and delays in response.
+- **Legal and Compliance Issues**: Failure to recover data within specific timeframes could result in regulatory penalties and legal repercussions.
+- **Communication Breakdown**: Internal teams are unaware of the outage’s severity and are not coordinating efforts effectively.
+- **Stakeholder Pressure**: Senior management demands immediate updates and solutions, adding to the urgency.
 
 </details>
 
@@ -3995,10 +4006,7 @@ Tips and techniques:
 
 Questions to reflect:
 
-- How can you communicate your use of LLMs in a way that maintains trust and transparency with clients and colleagues?
 - What are the potential consequences of not being transparent about LLMs use in your communications?
-- How can you frame your use of LLMs to highlight its benefits while making sure that human expertise is still valued?
-- What steps can you take to ensure that the use of LLMs recording tools does not compromise client confidentiality?
 - What criteria should you use to decide when LLMs recording is or isn’t appropriate for a client meeting?
 
 ## Effective use of LLMs in communication
