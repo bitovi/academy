@@ -171,7 +171,11 @@ npm run test
 
 and "No test files found" will be written to the console.
 
-Note: may need to set execution policy if running on windows
+Note: may need to set execution policy if running on windows 
+
+```shell
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser
+```
 
 <strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/03-solution?file=package.json) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/03-solution?file=package.json).
 
