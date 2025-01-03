@@ -196,7 +196,7 @@ Remove these generated files that we won’t need. Some projects do need them, b
 - `src/assets`
 - `src/App.css`
 - `tsconfig.node.json`
-- `.eslintrc.cjs` TODO: didn't have this, had `eslint.config.js` instead
+- `eslint.config.js`
 
 ✏️ Uninstall unneeded packages and Install our eslint config and prettier:
 
