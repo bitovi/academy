@@ -132,8 +132,6 @@ The server will output the "Local" URL for the dev server, copy and paste it int
 
 <strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/02-solution?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/02-solution?file=src/App.tsx).
 
-ERROR: Failed to resolve import "./assets/react.svg" from "src/App.tsx". Does the file exist?
-
 ## Objective 3: Add testing infrastructure
 
 ### Testing code with React Testing Library
@@ -171,7 +169,7 @@ npm run test
 
 and "No test files found" will be written to the console.
 
-Note: may need to set execution policy if running on windows 
+Note: may need to set execution policy if running on Windows.
 
 ```shell
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser
@@ -200,7 +198,7 @@ Remove these generated files that we won’t need. Some projects do need them, b
 - `src/assets`
 - `src/App.css`
 - `tsconfig.node.json`
-- `eslint.config.js`
+- `.eslintrc.cjs` or `eslint.config.js`
 
 ✏️ Uninstall unneeded packages and Install our eslint config and prettier:
 
