@@ -176,6 +176,8 @@ npm install place-my-order-api@1
 npm run api
 ```
 
+// TODO fix this ref to the api
+
 Double check the API by navigating to <a href="http://localhost:7070/restaurants">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data.
 
 It will be helpful to have a third terminal tab for the `npm run api` command.
