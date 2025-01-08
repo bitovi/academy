@@ -165,7 +165,7 @@ Before we begin requesting data from our API, we need to install the `place-my-o
 npm install place-my-order-api@1
 ```
 
-✏️ Next add an API script to your `package.json`
+✏️ Next add an API script to your `package.json`. NOTE: change `/` to `\\` if on windows
 
 @sourceref ../../../exercises/react-vite/09-making-http-requests/02-solution/package.json
 @highlight 7, only
