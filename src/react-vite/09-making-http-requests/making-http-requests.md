@@ -167,7 +167,7 @@ npm install place-my-order-api@1
 
 ✏️ Next add an API script to your `package.json`. NOTE: if on windows, change `/` to `\\`.
 
-@sourceref ../../../exercises/react-vite/09-making-http-requests/02-solution/package.json
+@sourceref ../../../exercises/react-vite/09-making-http-requests/01-problem/package.json
 @highlight 7, only
 
 ✏️ In a **new** terminal window, start the API server by running:
