@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "api":"./node_modules/.bin/place-my-order-api -p 7070",
     "typecheck": "tsc",
     "eslint": "eslint vite.config.ts src",
     "prettier": "prettier --check vite.config.ts src",

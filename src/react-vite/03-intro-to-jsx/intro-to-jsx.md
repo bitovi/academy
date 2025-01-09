@@ -95,7 +95,7 @@ In HTML, some elements are self-closing and don’t need a closing tag.
 For example: the `img` element is a self-closing element:
 
 ```html
-<img alt="" src="image.png" />
+<img alt="" src="image.png">
 ```
 
 In JSX, no elements are self-closing, which means that _all_ elements must have a closing tag, like the `img` below:
