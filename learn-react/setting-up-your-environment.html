@@ -563,8 +563,9 @@ covering CanJS core libraries.">
 <h3 id="install-nodejs-and-npm">Install Node.js and npm</h3>
 <p>Our solution requires the <a href="https://nodejs.org/">Node.js</a> JavaScript runtime environment. Node.js and its included package manager <code>npm</code> will be used to do a variety of tasks including: installing required packages, running the development server, executing tests, and building the application for deployment.</p>
 <h3 id="setup-1">Setup 1</h3>
-<p>This course requires Node.js version 18 or 20 (we suggest using the long-term support release of version 20).</p>
-<p>The simplest approach is to download the <a href="https://nodejs.org/en/download">Node.js installer</a> for your operating system. Any installation of Node.js will also include npm.</p>
+<p>This course requires Node.js version 22 (we suggest using the long-term support (LTS) release of version 22).</p>
+<p>The simplest approach is to download the <a href="https://nodejs.org/en/download">Node.js installer</a> for your operating system. Any installation of Node.js will also include npm.
+Note: if using a terminal, then you may need to close and reopen it for the changes to the path to take effect.</p>
 <p>Alternatively, you can <a href="https://nodejs.org/en/download/package-manager">install Node.js via package manager</a>; this is the reccomendation for most professional setups.</p>
 <p>During the installation process you may be prompted to make selections or install prerequisites, use the default selections and proceed with the installation.</p>
 <p>The installation process can take 10 to 15 minutes to complete.</p>
@@ -573,11 +574,11 @@ covering CanJS core libraries.">
 <p>🔦 <em>If you encounter an error running <code>node --version</code> you may need to restart for node to be completely installed.</em></p>
 <pre><code class="language-shell">node --version
 </code></pre>
-<p>The output of the command will be the current version of Node.js, we expect it to start with either &quot;v18&quot; or &quot;v20&quot;.</p>
+<p>The output of the command will be the current version of Node.js, we expect it to start with &quot;v22&quot;.</p>
 <p>✏️ Run the following command in a terminal to verify <code>npm</code> is installed correctly:</p>
 <pre><code class="language-shell">npm --version
 </code></pre>
-<p>The output of the command will be the current version of <code>npm</code>, we expect it to start with either &quot;9&quot; or &quot;10&quot;.</p>
+<p>The output of the command will be the current version of <code>npm</code>, we expect it to start with &quot;10&quot;.</p>
 <h2 id="objective-2-generate-the-place-my-order-application">Objective 2: Generate the “Place My Order” application</h2>
 <p>Create a new React application named “Place My Order” that supports TypeScript and can be served and tested.</p>
 <h3 id="use-vite-to-generate-a-new-react-application">Use Vite to generate a new React application</h3>
@@ -616,7 +617,7 @@ npm install
 <p>✏️ Run the command:</p>
 <pre><code class="language-shell">npm run dev
 </code></pre>
-<p>The server will output the &quot;Local&quot; URL for the dev server, copy and paste it into a browser. The browser will display a welcome page with &quot;Vite + React.&quot;</p>
+<p>The server will output the &quot;Local&quot; URL for the dev server, copy and paste it into a browser. The browser will display a welcome page with &quot;Vite + React.&quot; You can use <code>Control-C</code> to stop the dev server.</p>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/02-solution?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/02-solution?file=src/App.tsx">CodeSandbox</a>.</p>
 <h2 id="objective-3-add-testing-infrastructure">Objective 3: Add testing infrastructure</h2>
 <h3 id="testing-code-with-react-testing-library">Testing code with React Testing Library</h3>
@@ -685,6 +686,9 @@ export default defineConfig({
 <pre><code class="language-shell">npm run test
 </code></pre>
 <p>and &quot;No test files found&quot; will be written to the console.</p>
+<p>Note: may need to set execution policy if running on Windows.</p>
+<pre><code class="language-shell">Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser
+</code></pre>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/03-solution?file=package.json">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/03-solution?file=package.json">CodeSandbox</a>.</p>
 <h2 id="objective-4-update-our-first-page">Objective 4: Update our first page</h2>
 <p>Now, let’s updated our generated app to include our own header:</p>
@@ -702,7 +706,7 @@ export default defineConfig({
 <li><code>src/assets</code></li>
 <li><code>src/App.css</code></li>
 <li><code>tsconfig.node.json</code></li>
-<li><code>.eslintrc.cjs</code></li>
+<li><code>.eslintrc.cjs</code> or <code>eslint.config.js</code></li>
 </ul>
 <p>✏️ Uninstall unneeded packages and Install our eslint config and prettier:</p>
 <pre><code class="language-shell">npm uninstall @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react-hooks eslint-plugin-react-refresh
