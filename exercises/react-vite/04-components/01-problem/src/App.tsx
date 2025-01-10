@@ -1,7 +1,6 @@
 import CheeseThumbnail from "place-my-order-assets/images/2-thumbnail.jpg"
 import PoutineThumbnail from "place-my-order-assets/images/4-thumbnail.jpg"
 import RestaurantList from "./pages/RestaurantList"
-import "./App.css"
 
 function App() {
   const restaurants = {

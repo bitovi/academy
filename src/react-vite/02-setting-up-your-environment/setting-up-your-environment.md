@@ -33,9 +33,10 @@ Our solution requires the [Node.js](https://nodejs.org/) JavaScript runtime envi
 
 ### Setup 1
 
-This course requires Node.js version 18 or 20 (we suggest using the long-term support release of version 20).
+This course requires Node.js version 22 (we suggest using the long-term support (LTS) release of version 22).
 
 The simplest approach is to download the [Node.js installer](https://nodejs.org/en/download) for your operating system. Any installation of Node.js will also include npm.
+Note: if using a terminal, then you may need to close and reopen it for the changes to the path to take effect.
 
 Alternatively, you can [install Node.js via package manager](https://nodejs.org/en/download/package-manager); this is the reccomendation for most professional setups.
 
@@ -53,7 +54,7 @@ The installation process can take 10 to 15 minutes to complete.
 node --version
 ```
 
-The output of the command will be the current version of Node.js, we expect it to start with either "v18" or "v20".
+The output of the command will be the current version of Node.js, we expect it to start with "v22".
 
 ✏️ Run the following command in a terminal to verify `npm` is installed correctly:
 
@@ -61,7 +62,7 @@ The output of the command will be the current version of Node.js, we expect it t
 npm --version
 ```
 
-The output of the command will be the current version of `npm`, we expect it to start with either "9" or "10".
+The output of the command will be the current version of `npm`, we expect it to start with "10".
 
 ## Objective 2: Generate the “Place My Order” application
 
@@ -127,7 +128,7 @@ The development server is a useful tool. When it starts, it [transpiles](https:/
 npm run dev
 ```
 
-The server will output the "Local" URL for the dev server, copy and paste it into a browser. The browser will display a welcome page with "Vite + React."
+The server will output the "Local" URL for the dev server, copy and paste it into a browser. The browser will display a welcome page with "Vite + React." You can use `Control-C` to stop the dev server.
 
 <strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/02-solution?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/02-solution?file=src/App.tsx).
 
@@ -168,6 +169,12 @@ npm run test
 
 and "No test files found" will be written to the console.
 
+Note: may need to set execution policy if running on Windows.
+
+```shell
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser
+```
+
 <strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/03-solution?file=package.json) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/03-solution?file=package.json).
 
 ## Objective 4: Update our first page
@@ -191,7 +198,7 @@ Remove these generated files that we won’t need. Some projects do need them, b
 - `src/assets`
 - `src/App.css`
 - `tsconfig.node.json`
-- `.eslintrc.cjs`
+- `.eslintrc.cjs` or `eslint.config.js`
 
 ✏️ Uninstall unneeded packages and Install our eslint config and prettier:
 
