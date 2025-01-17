@@ -1,0 +1,67 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js"/></script>
+<script src="https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js"/></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js"></script>
+<script src="https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js"></script>
+<script src="https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js"></script>
+<script src="https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js"></script>
+<script src="https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js"></script>
+<my-app></my-app>
+<script type="typescript">
+// app.js
+const { Component, VERSION, Input } = ng.core;
+
+@Component({
+  selector: 'child-component',
+  template: `
+    <p>{{childData}}</p>
+    <p>{{childObject | json}}</p>
+  `
+})
+class ChildComponent {
+  @Input() childData: string;
+  @Input() childObject: any;
+  constructor() {}
+}
+
+@Component({
+  selector: 'my-app',
+  template: `
+    <child-component childData="Hello string."></child-component>
+    <child-component [childData]="parentTitle"></child-component>
+    <child-component [childObject]="parentObject"></child-component>
+  `
+})
+class AppComponent {
+  parentTitle = 'Hello world.';
+  parentObject = {
+    name: 'hello there',
+    id: 5
+  }
+  constructor() {
+  }
+}
+
+// main.js
+const { BrowserModule } = ng.platformBrowser;
+const { NgModule } = ng.core;
+const { CommonModule } = ng.common;
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    CommonModule,
+  ],
+  declarations: [AppComponent, ChildComponent],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err => console.error(err));
+</script>
+

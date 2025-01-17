@@ -390,6 +390,21 @@ a.quote-link:hover{
       </div>
       <div class="academy-card course">
           <div class="course-logo">
+            <img src="./static/img/angular-gradient.png" height="70">
+          </div>
+          <h4>Modern Angular</h4>
+          <p>Build a multi-page ordering app with the latest and greatest Angular APIs.</p>
+          <div class="width100">
+            <p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
+            <p class='detail'><strong>Goal:</strong> Learn modern Angular concepts.</p>
+            <p class='detail'><strong>Time:</strong> 6 hours</p>
+          </div>
+          <a href="./learn-modern-angular.html" class="button button-grey full-width">Take this course</a>
+      </div>
+    </div>
+    <div class="courses">
+      <div class="academy-card course">
+          <div class="course-logo">
             <img src="./static/img/angular.png" height="70">
           </div>
           <h4>Angular</h4>
@@ -403,8 +418,6 @@ a.quote-link:hover{
           </div>
           <a href="./learn-angular.html" class="button button-grey full-width">Take this course</a>
       </div>
-    </div>
-    <div class="courses">
       <div class="academy-card course">
         <div class="course-logo">
           <img src="./static/img/ngrx.png" height="70">
@@ -432,6 +445,8 @@ with Jira.</p>
         </div>
         <a href="./learn-agile-program-management-with-jira.html" class="button button-grey full-width">Take this course</a>
       </div>
+    </div>
+    <div class="courses">
       <div class="academy-card course">
         <div class="course-logo">
           <img src="./static/img/docker/logo.png" height="70">
@@ -445,8 +460,6 @@ with Jira.</p>
         </div>
         <a href="./learn-docker.html" class="button button-grey full-width">Take this course</a>
       </div>
-    </div>
-    <div class="courses">
       <div class="academy-card course">
           <div class="course-logo">
             <img src="./static/img/javascript.png" height="70">
@@ -473,6 +486,8 @@ with Jira.</p>
           </div>
           <a href="./learn-web-components.html" class="button button-grey full-width">Take this course</a>
       </div>
+    </div>
+    <div class="courses">
       <div class="academy-card course">
           <div class="course-logo">
             <img src="./static/img/typescript.png" width="140">
@@ -486,8 +501,6 @@ with Jira.</p>
           </div>
           <a href="./learn-typescript.html" class="button button-grey full-width">Take this course</a>
       </div>
-    </div>
-    <div class="courses">
       <div class="academy-card course">
           <div class="course-logo">
             <img src="./static/img/javascript.png" height="70">
@@ -515,7 +528,10 @@ with Jira.</p>
           </div>
           <a href="./learn-dom-jquery.html" class="button button-grey full-width">Take this course</a>
       </div>
-      <div class="academy-card course" style="background: transparent; border: none;">&nbsp;</div>
+      <!--
+        uncomment if there are 2 items on the last row
+        <div class="academy-card course" style="background: transparent; border: none;">&nbsp;</div>
+      -->
     </div>
     
   </div>
