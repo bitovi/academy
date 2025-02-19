@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "api": "./node_modules/.bin/place-my-order-api -p 7070",
     "typecheck": "tsc",
     "eslint": "eslint vite.config.ts src",
     "prettier": "prettier --check vite.config.ts src",
@@ -16,6 +17,7 @@
     "trailingComma": "all"
   },
   "dependencies": {
+    "place-my-order-api": "^1.3.0",
     "place-my-order-assets": "^0.2.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
