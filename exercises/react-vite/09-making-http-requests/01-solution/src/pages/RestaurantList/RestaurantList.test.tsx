@@ -32,8 +32,8 @@ afterEach(() => {
 describe("RestaurantList component", () => {
   beforeEach(async () => {
     vi.spyOn(restaurantHooks, "useCities").mockReturnValue([
-      { name: "Green Bay" },
-      { name: "Madison" },
+      { name: "Green Bay", state: "WI" },
+      { name: "Madison", state: "WI" },
     ])
     render(<RestaurantList />)
     await act(() => {})
