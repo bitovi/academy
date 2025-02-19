@@ -51,15 +51,6 @@ const RestaurantOrder: React.FC = () => {
     })
   }
 
-  const setValue = (key: string, value: string) => {
-    return setNewOrder((newOrder) => {
-      return {
-        ...newOrder,
-        [key]: value,
-      }
-    })
-  }
-
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
     alert("Order submitted!")

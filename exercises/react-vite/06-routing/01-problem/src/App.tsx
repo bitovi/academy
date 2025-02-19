@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom"
 import RestaurantList from "./pages/RestaurantList"
 
-function App() {
+const App: React.FC = () => {
   return (
     <>
       <header>

@@ -1,5 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react"
 import { beforeEach, describe, expect, it, vi } from "vitest"
+import type { ArgumentsType, Mock } from "vitest"
 import { apiRequest } from "../api"
 import { useCities, useRestaurants, useStates } from "./hooks"
 
@@ -7,6 +8,8 @@ import { useCities, useRestaurants, useStates } from "./hooks"
 vi.mock("../api", () => ({
   apiRequest: vi.fn(),
 }))
+
+const mockApiRequest = apiRequest as Mock<ArgumentsType<typeof apiRequest>, ReturnType<typeof apiRequest>>
 
 describe("Hooks", () => {
   beforeEach(() => {
@@ -19,7 +22,7 @@ describe("Hooks", () => {
         { id: 1, name: "City1" },
         { id: 2, name: "City2" },
       ]
-      apiRequest.mockResolvedValue({ data: { data: mockCities }, error: null })
+      mockApiRequest.mockResolvedValue({ data: { data: mockCities }, error: null })
 
       const { result } = renderHook(() => useCities("test-state"))
 
@@ -32,7 +35,7 @@ describe("Hooks", () => {
 
     it("should handle error when fetching cities data", async () => {
       const mockError = new Error("Error fetching cities")
-      apiRequest.mockResolvedValue({ data: null, error: mockError })
+      mockApiRequest.mockResolvedValue({ data: null, error: mockError })
 
       const { result } = renderHook(() => useCities("test-state"))
 
@@ -47,7 +50,7 @@ describe("Hooks", () => {
   describe("useRestaurant hook", () => {
     it("should return restaurant data successfully", async () => {
       const mockRestaurant = { id: 1, name: "Restaurant1" }
-      apiRequest.mockResolvedValue({
+      mockApiRequest.mockResolvedValue({
         data: { data: mockRestaurant },
         error: null,
       })
@@ -65,7 +68,7 @@ describe("Hooks", () => {
 
     it("should handle error when fetching restaurant data", async () => {
       const mockError = new Error("Error fetching restaurant")
-      apiRequest.mockResolvedValue({ data: null, error: mockError })
+      mockApiRequest.mockResolvedValue({ data: null, error: mockError })
 
       const { result } = renderHook(() =>
         useRestaurants("test-state", "test-city"),
@@ -85,7 +88,7 @@ describe("Hooks", () => {
         { id: 1, name: "Restaurant1" },
         { id: 2, name: "Restaurant2" },
       ]
-      apiRequest.mockResolvedValue({
+      mockApiRequest.mockResolvedValue({
         data: { data: mockRestaurants },
         error: null,
       })
@@ -103,7 +106,7 @@ describe("Hooks", () => {
 
     it("should handle error when fetching restaurants data", async () => {
       const mockError = new Error("Error fetching restaurants")
-      apiRequest.mockResolvedValue({ data: null, error: mockError })
+      mockApiRequest.mockResolvedValue({ data: null, error: mockError })
 
       const { result } = renderHook(() =>
         useRestaurants("test-state", "test-city"),
@@ -123,7 +126,7 @@ describe("Hooks", () => {
         { id: 1, name: "State1" },
         { id: 2, name: "State2" },
       ]
-      apiRequest.mockResolvedValue({ data: { data: mockStates }, error: null })
+      mockApiRequest.mockResolvedValue({ data: { data: mockStates }, error: null })
 
       const { result } = renderHook(() => useStates())
 
@@ -136,7 +139,7 @@ describe("Hooks", () => {
 
     it("should handle error when fetching states data", async () => {
       const mockError = new Error("Error fetching states")
-      apiRequest.mockResolvedValue({ data: null, error: mockError })
+      mockApiRequest.mockResolvedValue({ data: null, error: mockError })
 
       const { result } = renderHook(() => useStates())
 

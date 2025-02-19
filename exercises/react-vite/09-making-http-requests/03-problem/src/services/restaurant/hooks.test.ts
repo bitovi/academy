@@ -1,9 +1,10 @@
 import { renderHook, waitFor } from "@testing-library/react"
-import { describe, expect, it, vi } from "vitest"
+import { beforeEach, describe, expect, it, Mock, vi } from "vitest"
 import { useCities, useStates } from "./hooks"
 
 describe("useCities Hook", () => {
   beforeEach(() => {
+    // @ts-ignore `global` exists in node environments like our test runner.
     global.fetch = vi.fn()
   })
 
@@ -42,12 +43,13 @@ describe("useCities Hook", () => {
 describe("useStates Hook", () => {
   beforeEach(async () => {
     // Mocking the fetch function
+    // @ts-ignore `global` exists in node environments like our test runner.
     global.fetch = vi.fn()
   })
 
   it("should set the states data on successful fetch", async () => {
     const mockStates = [{ name: "State1" }, { name: "State2" }]
-    fetch.mockResolvedValueOnce({
+    ;(fetch as Mock).mockResolvedValueOnce({
       json: () => Promise.resolve({ data: mockStates }),
     })
 

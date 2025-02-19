@@ -3,6 +3,7 @@ import type { ReactNode } from "react"
 import { render, screen } from "@testing-library/react"
 import { MemoryRouter } from "react-router-dom"
 import { describe, expect, it, vi } from "vitest"
+import type { ArgumentsType, Mock } from "vitest"
 import RestaurantDetails from "./RestaurantDetails"
 
 import { useRestaurant } from "../../services/restaurant/hooks"
@@ -18,12 +19,15 @@ vi.mock("../../components/RestaurantHeader", () => ({
   )),
 }))
 
+const mockUseRestaurant = useRestaurant as Mock<ArgumentsType<typeof useRestaurant>, ReturnType<typeof useRestaurant>>
+
 const mockRestaurantData = {
   data: {
     _id: "1",
     name: "Test Restaurant",
     slug: "test-restaurant",
-    images: { owner: "owner.jpg" },
+    images: { owner: "owner.jpg", banner: '', thumbnail: '' },
+    menu: { dinner: [], lunch: [] },
   },
   isPending: false,
   error: null,
@@ -43,29 +47,29 @@ const renderWithRouter = (
 
 describe("RestaurantDetails component", () => {
   it("renders loading state", () => {
-    useRestaurant.mockReturnValue({ data: null, isPending: true, error: null })
+    mockUseRestaurant.mockReturnValue({ data: null, isPending: true, error: null })
     renderWithRouter(<RestaurantDetails />)
     expect(screen.getByText(/Loading restaurant…/i)).toBeInTheDocument()
   })
 
   it("renders error state", () => {
-    useRestaurant.mockReturnValue({
+    mockUseRestaurant.mockReturnValue({
       data: null,
       isPending: false,
-      error: { message: "Error loading" },
+      error: { name: '', message: "Error loading" },
     })
     renderWithRouter(<RestaurantDetails />)
     expect(screen.getByText(/Error loading restaurant/i)).toBeInTheDocument()
   })
 
   it("renders no restaurant found state", () => {
-    useRestaurant.mockReturnValue({ data: null, isPending: false, error: null })
+    mockUseRestaurant.mockReturnValue({ data: null, isPending: false, error: null })
     renderWithRouter(<RestaurantDetails />)
     expect(screen.getByText(/No restaurant found/i)).toBeInTheDocument()
   })
 
   it("renders the RestaurantHeader and content when data is available", () => {
-    useRestaurant.mockReturnValue(mockRestaurantData)
+    mockUseRestaurant.mockReturnValue(mockRestaurantData)
     renderWithRouter(<RestaurantDetails />)
 
     expect(screen.getByTestId("mock-restaurant-header")).toBeInTheDocument()

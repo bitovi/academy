@@ -1,7 +1,7 @@
 import CheeseThumbnail from "place-my-order-assets/images/2-thumbnail.jpg"
 import PoutineThumbnail from "place-my-order-assets/images/4-thumbnail.jpg"
 
-function App() {
+const App: React.FC = () => {
   const restaurants = {
     data: [
       {

@@ -4,6 +4,7 @@ import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { MemoryRouter } from "react-router-dom"
 import { describe, expect, it, vi } from "vitest"
+import type { ArgumentsType, Mock } from "vitest"
 
 import RestaurantList from "./RestaurantList"
 
@@ -38,6 +39,10 @@ vi.mock("../../services/restaurant/hooks", () => ({
   }),
 }))
 
+const mockUseCities = useCities as Mock<ArgumentsType<typeof useCities>, ReturnType<typeof useCities>>
+const mockUseStates = useStates as Mock<ArgumentsType<typeof useStates>, ReturnType<typeof useStates>>
+const mockUseRestaurants = useRestaurants as Mock<ArgumentsType<typeof useRestaurants>, ReturnType<typeof useRestaurants>>
+
 // Wrap component with MemoryRouter to mock routing
 const renderWithRouter = (ui: ReactNode, { route = "/" } = {}) => {
   window.history.pushState({}, "Test page", route)
@@ -57,9 +62,9 @@ describe("RestaurantList component", () => {
   })
 
   it("renders correctly with initial states", () => {
-    useStates.mockReturnValue({ data: null, isPending: true, error: null })
-    useCities.mockReturnValue({ data: null, isPending: false, error: null })
-    useRestaurants.mockReturnValue({
+    mockUseStates.mockReturnValue({ data: null, isPending: true, error: null })
+    mockUseCities.mockReturnValue({ data: null, isPending: false, error: null })
+    mockUseRestaurants.mockReturnValue({
       data: null,
       isPending: false,
       error: null,
@@ -72,20 +77,20 @@ describe("RestaurantList component", () => {
   })
 
   it("displays error messages correctly", () => {
-    useStates.mockReturnValue({
+    mockUseStates.mockReturnValue({
       data: null,
       isPending: false,
-      error: { message: "Error loading states" },
+      error: { name: 'loading-error', message: "Error loading states" },
     })
-    useCities.mockReturnValue({
+    mockUseCities.mockReturnValue({
       data: null,
       isPending: false,
-      error: { message: "Error loading cities" },
+      error: { name: 'loading-error', message: "Error loading cities" },
     })
-    useRestaurants.mockReturnValue({
+    mockUseRestaurants.mockReturnValue({
       data: null,
       isPending: false,
-      error: { message: "Error loading restaurants" },
+      error: { name: 'loading-error', message: "Error loading restaurants" },
     })
 
     render(<RestaurantList />)
@@ -94,24 +99,25 @@ describe("RestaurantList component", () => {
   })
 
   it("renders restaurants correctly", async () => {
-    useStates.mockReturnValue({
+    mockUseStates.mockReturnValue({
       data: [{ short: "CA", name: "California" }],
       isPending: false,
       error: null,
     })
-    useCities.mockReturnValue({
-      data: [{ name: "Los Angeles" }],
+    mockUseCities.mockReturnValue({
+      data: [{ name: "Los Angeles", state: "CA" }],
       isPending: false,
       error: null,
     })
-    useRestaurants.mockReturnValue({
+    mockUseRestaurants.mockReturnValue({
       data: [
         {
           _id: "1",
           slug: "test-restaurant",
           name: "Test Restaurant",
-          address: "123 Test St",
-          images: { thumbnail: "test.jpg" },
+          address: { street: "123 Test St", city: "Anytown", "state": "USA", zip: "12345" },
+          images: { thumbnail: "test.jpg", banner: "", owner: "" },
+          menu: { dinner: [], lunch: [] }
         },
       ],
       isPending: false,

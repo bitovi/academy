@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom"
 import { act, render, screen } from "@testing-library/react"
-import { describe, expect, it, vi } from "vitest"
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 
 import * as restaurantHooks from "../../services/restaurant/hooks"
 import RestaurantList from "./RestaurantList"
@@ -11,6 +11,7 @@ vi.mock("../../services/restaurant/hooks")
 // Mocking the global fetch function
 const mockFetch = vi.fn()
 
+// @ts-ignore `global` exists in node environments like our test runner.
 global.fetch = mockFetch
 
 beforeEach(() => {

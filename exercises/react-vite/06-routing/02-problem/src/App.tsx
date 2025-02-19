@@ -1,6 +1,6 @@
 import { Link, Outlet, useMatch } from "react-router-dom"
 
-function App() {
+const App: React.FC = () => {
   return (
     <>
       <header>
