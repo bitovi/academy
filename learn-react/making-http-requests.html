@@ -860,14 +860,14 @@ const data = await response.json()
 <p>✏️ Run:</p>
 <pre><code class="language-bash">npm install place-my-order-api@1
 </code></pre>
-<p>✏️ Next add an API script to your <code>package.json</code>. NOTE: if on windows, change <code>/</code> to <code>\\</code>.</p>
+<p>✏️ Next add an API script to your <code>package.json</code>. NOTE: if on Windows, change <code>/</code> to <code>\\</code>.</p>
 <pre><code class="language-json">{
   &quot;name&quot;: &quot;place-my-order&quot;,
   &quot;private&quot;: true,
   &quot;version&quot;: &quot;0.0.0&quot;,
   &quot;type&quot;: &quot;module&quot;,
   &quot;scripts&quot;: {
-    &quot;api&quot;:&quot;./node_modules/.bin/place-my-order-api -p 7070&quot;,
+    &quot;api&quot;: &quot;./node_modules/.bin/place-my-order-api -p 7070&quot;,
     &quot;typecheck&quot;: &quot;tsc&quot;,
     &quot;eslint&quot;: &quot;eslint vite.config.ts src&quot;,
     &quot;prettier&quot;: &quot;prettier --check vite.config.ts src&quot;,
