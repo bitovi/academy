@@ -8,7 +8,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postinstall": "node -e \"try{process.env.CODESANDBOX_HOST || require('@blitz/internal/env')}catch(e){process.exit(1)};fs=require('fs');fs.writeFileSync('.env', 'VITE_PMO_API=https://www.place-my-order.com/api\\n');process.env.CODESANDBOX_HOST&&fs.writeFileSync('vite.config.ts', fs.readFileSync('vite.config.ts').toString().replace(/defineConfig\\(\\{\\n(?! *server)/,'defineConfig({\\nserver:{allowedHosts:true},\\n'))\""
   },
   "dependencies": {
     "react": "^18.3.1",
