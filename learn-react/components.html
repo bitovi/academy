@@ -629,7 +629,7 @@ export default RestaurantList
 import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
 import RestaurantList from &quot;./pages/RestaurantList&quot;
 
-function App() {
+const App: React.FC = () =&gt; {
   const restaurants = {
     data: [
       {
@@ -815,7 +815,7 @@ describe(&quot;App Component&quot;, () =&gt; {
 <pre><code class="language-tsx">import RestaurantList from &quot;./pages/RestaurantList&quot;
 import &quot;./App.css&quot;
 
-function App() {
+const App: React.FC = () =&gt; {
   return (
     &lt;&gt;
       &lt;RestaurantList /&gt;

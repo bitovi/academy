@@ -571,7 +571,7 @@ covering CanJS core libraries.">
 <p>We’ve actually already seen and used a Hook while building Place My Order! Do you remember this code from earlier?</p>
 <pre><code class="language-tsx">import { Link, Outlet, useMatch } from &quot;react-router-dom&quot;
 
-function App() {
+const App: React.FC = () =&gt; {
   const homeMatch = useMatch(&quot;/&quot;)
   const restaurantsMatch = useMatch(&quot;/restaurants&quot;)
 

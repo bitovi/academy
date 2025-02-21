@@ -734,7 +734,7 @@ export default Home
 <pre><code class="language-tsx">import { Outlet } from &quot;react-router-dom&quot;
 import RestaurantList from &quot;./pages/RestaurantList&quot;
 
-function App() {
+const App: React.FC = () =&gt; {
   return (
     &lt;&gt;
       &lt;header&gt;
@@ -855,7 +855,7 @@ describe(&quot;App component&quot;, () =&gt; {
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { Outlet } from &quot;react-router-dom&quot;
 
-function App() {
+const App: React.FC = () =&gt; {
   return (
     &lt;&gt;
       &lt;header&gt;
@@ -961,7 +961,7 @@ function App() {
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { Link, Outlet, useMatch } from &quot;react-router-dom&quot;
 
-function App() {
+const App: React.FC = () =&gt; {
   return (
     &lt;&gt;
       &lt;header&gt;
@@ -1055,7 +1055,7 @@ describe(&quot;App component&quot;, () =&gt; {
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { Link, Outlet, useMatch } from &quot;react-router-dom&quot;
 
-function App() {
+const App: React.FC = () =&gt; {
   const homeMatch = useMatch(&quot;/&quot;)
   const restaurantsMatch = useMatch(&quot;/restaurants&quot;)
 

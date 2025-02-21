@@ -1111,6 +1111,7 @@ import type { ReactNode } from &quot;react&quot;
 import { render, screen } from &quot;@testing-library/react&quot;
 import { MemoryRouter } from &quot;react-router-dom&quot;
 import { describe, expect, it, vi } from &quot;vitest&quot;
+import type { ArgumentsType, Mock } from &quot;vitest&quot;
 import RestaurantDetails from &quot;./RestaurantDetails&quot;
 
 import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
@@ -1126,12 +1127,15 @@ vi.mock(&quot;../../components/RestaurantHeader&quot;, () =&gt; ({
   )),
 }))
 
+const mockUseRestaurant = useRestaurant as Mock&lt;ArgumentsType&lt;typeof useRestaurant&gt;, ReturnType&lt;typeof useRestaurant&gt;&gt;
+
 const mockRestaurantData = {
   data: {
     _id: &quot;1&quot;,
     name: &quot;Test Restaurant&quot;,
     slug: &quot;test-restaurant&quot;,
-    images: { owner: &quot;owner.jpg&quot; },
+    images: { owner: &quot;owner.jpg&quot;, banner: '', thumbnail: '' },
+    menu: { dinner: [], lunch: [] },
   },
   isPending: false,
   error: null,
@@ -1151,29 +1155,29 @@ const renderWithRouter = (
 
 describe(&quot;RestaurantDetails component&quot;, () =&gt; {
   it(&quot;renders loading state&quot;, () =&gt; {
-    useRestaurant.mockReturnValue({ data: null, isPending: true, error: null })
+    mockUseRestaurant.mockReturnValue({ data: null, isPending: true, error: null })
     renderWithRouter(&lt;RestaurantDetails /&gt;)
     expect(screen.getByText(/Loading restaurant…/i)).toBeInTheDocument()
   })
 
   it(&quot;renders error state&quot;, () =&gt; {
-    useRestaurant.mockReturnValue({
+    mockUseRestaurant.mockReturnValue({
       data: null,
       isPending: false,
-      error: { message: &quot;Error loading&quot; },
+      error: { name: '', message: &quot;Error loading&quot; },
     })
     renderWithRouter(&lt;RestaurantDetails /&gt;)
     expect(screen.getByText(/Error loading restaurant/i)).toBeInTheDocument()
   })
 
   it(&quot;renders no restaurant found state&quot;, () =&gt; {
-    useRestaurant.mockReturnValue({ data: null, isPending: false, error: null })
+    mockUseRestaurant.mockReturnValue({ data: null, isPending: false, error: null })
     renderWithRouter(&lt;RestaurantDetails /&gt;)
     expect(screen.getByText(/No restaurant found/i)).toBeInTheDocument()
   })
 
   it(&quot;renders the RestaurantHeader and content when data is available&quot;, () =&gt; {
-    useRestaurant.mockReturnValue(mockRestaurantData)
+    mockUseRestaurant.mockReturnValue(mockRestaurantData)
     renderWithRouter(&lt;RestaurantDetails /&gt;)
 
     expect(screen.getByTestId(&quot;mock-restaurant-header&quot;)).toBeInTheDocument()
@@ -1304,6 +1308,7 @@ import { render, screen } from &quot;@testing-library/react&quot;
 import userEvent from &quot;@testing-library/user-event&quot;
 import { MemoryRouter } from &quot;react-router-dom&quot;
 import { describe, expect, it, vi } from &quot;vitest&quot;
+import type { ArgumentsType, Mock } from &quot;vitest&quot;
 
 import RestaurantList from &quot;./RestaurantList&quot;
 
@@ -1338,6 +1343,10 @@ vi.mock(&quot;../../services/restaurant/hooks&quot;, () =&gt; ({
   }),
 }))
 
+const mockUseCities = useCities as Mock&lt;ArgumentsType&lt;typeof useCities&gt;, ReturnType&lt;typeof useCities&gt;&gt;
+const mockUseStates = useStates as Mock&lt;ArgumentsType&lt;typeof useStates&gt;, ReturnType&lt;typeof useStates&gt;&gt;
+const mockUseRestaurants = useRestaurants as Mock&lt;ArgumentsType&lt;typeof useRestaurants&gt;, ReturnType&lt;typeof useRestaurants&gt;&gt;
+
 // Wrap component with MemoryRouter to mock routing
 const renderWithRouter = (ui: ReactNode, { route = &quot;/&quot; } = {}) =&gt; {
   window.history.pushState({}, &quot;Test page&quot;, route)
@@ -1357,9 +1366,9 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
   })
 
   it(&quot;renders correctly with initial states&quot;, () =&gt; {
-    useStates.mockReturnValue({ data: null, isPending: true, error: null })
-    useCities.mockReturnValue({ data: null, isPending: false, error: null })
-    useRestaurants.mockReturnValue({
+    mockUseStates.mockReturnValue({ data: null, isPending: true, error: null })
+    mockUseCities.mockReturnValue({ data: null, isPending: false, error: null })
+    mockUseRestaurants.mockReturnValue({
       data: null,
       isPending: false,
       error: null,
@@ -1372,20 +1381,20 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
   })
 
   it(&quot;displays error messages correctly&quot;, () =&gt; {
-    useStates.mockReturnValue({
+    mockUseStates.mockReturnValue({
       data: null,
       isPending: false,
-      error: { message: &quot;Error loading states&quot; },
+      error: { name: 'loading-error', message: &quot;Error loading states&quot; },
     })
-    useCities.mockReturnValue({
+    mockUseCities.mockReturnValue({
       data: null,
       isPending: false,
-      error: { message: &quot;Error loading cities&quot; },
+      error: { name: 'loading-error', message: &quot;Error loading cities&quot; },
     })
-    useRestaurants.mockReturnValue({
+    mockUseRestaurants.mockReturnValue({
       data: null,
       isPending: false,
-      error: { message: &quot;Error loading restaurants&quot; },
+      error: { name: 'loading-error', message: &quot;Error loading restaurants&quot; },
     })
 
     render(&lt;RestaurantList /&gt;)
@@ -1394,24 +1403,25 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
   })
 
   it(&quot;renders restaurants correctly&quot;, async () =&gt; {
-    useStates.mockReturnValue({
+    mockUseStates.mockReturnValue({
       data: [{ short: &quot;CA&quot;, name: &quot;California&quot; }],
       isPending: false,
       error: null,
     })
-    useCities.mockReturnValue({
-      data: [{ name: &quot;Los Angeles&quot; }],
+    mockUseCities.mockReturnValue({
+      data: [{ name: &quot;Los Angeles&quot;, state: &quot;CA&quot; }],
       isPending: false,
       error: null,
     })
-    useRestaurants.mockReturnValue({
+    mockUseRestaurants.mockReturnValue({
       data: [
         {
           _id: &quot;1&quot;,
           slug: &quot;test-restaurant&quot;,
           name: &quot;Test Restaurant&quot;,
-          address: &quot;123 Test St&quot;,
-          images: { thumbnail: &quot;test.jpg&quot; },
+          address: { street: &quot;123 Test St&quot;, city: &quot;Anytown&quot;, &quot;state&quot;: &quot;USA&quot;, zip: &quot;12345&quot; },
+          images: { thumbnail: &quot;test.jpg&quot;, banner: &quot;&quot;, owner: &quot;&quot; },
+          menu: { dinner: [], lunch: [] }
         },
       ],
       isPending: false,
@@ -1428,10 +1438,11 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="2,5,41-45,121,only"></div>
+ <div line-highlight="2,5-7,46-50,108,127,only"></div>
 <p>✏️ Update <strong>src/services/restaurant/hooks.test.ts</strong> to be:</p>
 <pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react&quot;
 import { beforeEach, describe, expect, it, vi } from &quot;vitest&quot;
+import type { ArgumentsType, Mock } from &quot;vitest&quot;
 import { apiRequest } from &quot;../api&quot;
 import { useCities, useRestaurants, useStates } from &quot;./hooks&quot;
 
@@ -1439,6 +1450,8 @@ import { useCities, useRestaurants, useStates } from &quot;./hooks&quot;
 vi.mock(&quot;../api&quot;, () =&gt; ({
   apiRequest: vi.fn(),
 }))
+
+const mockApiRequest = apiRequest as Mock&lt;ArgumentsType&lt;typeof apiRequest&gt;, ReturnType&lt;typeof apiRequest&gt;&gt;
 
 describe(&quot;Hooks&quot;, () =&gt; {
   beforeEach(() =&gt; {
@@ -1451,7 +1464,7 @@ describe(&quot;Hooks&quot;, () =&gt; {
         { id: 1, name: &quot;City1&quot; },
         { id: 2, name: &quot;City2&quot; },
       ]
-      apiRequest.mockResolvedValue({ data: { data: mockCities }, error: null })
+      mockApiRequest.mockResolvedValue({ data: { data: mockCities }, error: null })
 
       const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
 
@@ -1464,7 +1477,7 @@ describe(&quot;Hooks&quot;, () =&gt; {
 
     it(&quot;should handle error when fetching cities data&quot;, async () =&gt; {
       const mockError = new Error(&quot;Error fetching cities&quot;)
-      apiRequest.mockResolvedValue({ data: null, error: mockError })
+      mockApiRequest.mockResolvedValue({ data: null, error: mockError })
 
       const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
 
@@ -1479,7 +1492,7 @@ describe(&quot;Hooks&quot;, () =&gt; {
   describe(&quot;useRestaurant hook&quot;, () =&gt; {
     it(&quot;should return restaurant data successfully&quot;, async () =&gt; {
       const mockRestaurant = { id: 1, name: &quot;Restaurant1&quot; }
-      apiRequest.mockResolvedValue({
+      mockApiRequest.mockResolvedValue({
         data: { data: mockRestaurant },
         error: null,
       })
@@ -1497,7 +1510,7 @@ describe(&quot;Hooks&quot;, () =&gt; {
 
     it(&quot;should handle error when fetching restaurant data&quot;, async () =&gt; {
       const mockError = new Error(&quot;Error fetching restaurant&quot;)
-      apiRequest.mockResolvedValue({ data: null, error: mockError })
+      mockApiRequest.mockResolvedValue({ data: null, error: mockError })
 
       const { result } = renderHook(() =&gt;
         useRestaurants(&quot;test-state&quot;, &quot;test-city&quot;),
@@ -1517,7 +1530,7 @@ describe(&quot;Hooks&quot;, () =&gt; {
         { id: 1, name: &quot;Restaurant1&quot; },
         { id: 2, name: &quot;Restaurant2&quot; },
       ]
-      apiRequest.mockResolvedValue({
+      mockApiRequest.mockResolvedValue({
         data: { data: mockRestaurants },
         error: null,
       })
@@ -1535,7 +1548,7 @@ describe(&quot;Hooks&quot;, () =&gt; {
 
     it(&quot;should handle error when fetching restaurants data&quot;, async () =&gt; {
       const mockError = new Error(&quot;Error fetching restaurants&quot;)
-      apiRequest.mockResolvedValue({ data: null, error: mockError })
+      mockApiRequest.mockResolvedValue({ data: null, error: mockError })
 
       const { result } = renderHook(() =&gt;
         useRestaurants(&quot;test-state&quot;, &quot;test-city&quot;),
@@ -1555,7 +1568,7 @@ describe(&quot;Hooks&quot;, () =&gt; {
         { id: 1, name: &quot;State1&quot; },
         { id: 2, name: &quot;State2&quot; },
       ]
-      apiRequest.mockResolvedValue({ data: { data: mockStates }, error: null })
+      mockApiRequest.mockResolvedValue({ data: { data: mockStates }, error: null })
 
       const { result } = renderHook(() =&gt; useStates())
 
@@ -1568,7 +1581,7 @@ describe(&quot;Hooks&quot;, () =&gt; {
 
     it(&quot;should handle error when fetching states data&quot;, async () =&gt; {
       const mockError = new Error(&quot;Error fetching states&quot;)
-      apiRequest.mockResolvedValue({ data: null, error: mockError })
+      mockApiRequest.mockResolvedValue({ data: null, error: mockError })
 
       const { result } = renderHook(() =&gt; useStates())
 
@@ -1582,7 +1595,7 @@ describe(&quot;Hooks&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="47-49,51,61,66-67,88,90,93-95,108-110,116,130-131,133-135,139,143-149,only"></div>
+ <div line-highlight="50-52,54,64,69-70,91,93,96-98,111-113,119,133-134,136-138,142,146-152,only"></div>
 <h3 id="exercise-1">Exercise 1</h3>
 <p>Let’s reorganize the existing <code>/restaurants</code> routes so they are nested. For this exercise, change the routing config so the restaurant list and details pages are nested under <code>/restaurants</code>.</p>
 <p>Refactor the router config in <strong>src/main.tsx</strong> to nest the restaurant routes.</p>
@@ -1700,9 +1713,12 @@ import type { ReactNode } from &quot;react&quot;
 import { render, screen } from &quot;@testing-library/react&quot;
 import { MemoryRouter } from &quot;react-router-dom&quot;
 import { describe, expect, it, vi } from &quot;vitest&quot;
+import type { ArgumentsType, Mock } from &quot;vitest&quot;
 import RestaurantOrder from &quot;./RestaurantOrder&quot;
 
 import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
+
+const mockUseRestaurant = useRestaurant as Mock&lt;ArgumentsType&lt;typeof useRestaurant&gt;, ReturnType&lt;typeof useRestaurant&gt;&gt;
 
 // Mock the hooks and components used in RestaurantOrder
 vi.mock(&quot;../../services/restaurant/hooks&quot;, () =&gt; ({
@@ -1720,7 +1736,7 @@ const mockRestaurantData = {
     _id: &quot;1&quot;,
     name: &quot;Test Restaurant&quot;,
     slug: &quot;test-restaurant&quot;,
-    images: { owner: &quot;owner.jpg&quot; },
+    images: { owner: &quot;owner.jpg&quot;, banner: &quot;&quot;, thumbnail: &quot;&quot; },
   },
   isPending: false,
   error: null,
@@ -1740,29 +1756,29 @@ const renderWithRouter = (
 
 describe(&quot;RestaurantOrder component&quot;, () =&gt; {
   it(&quot;renders loading state&quot;, () =&gt; {
-    useRestaurant.mockReturnValue({ data: null, isPending: true, error: null })
+    mockUseRestaurant.mockReturnValue({ data: null, isPending: true, error: null })
     renderWithRouter(&lt;RestaurantOrder /&gt;)
     expect(screen.getByText(/Loading restaurant…/i)).toBeInTheDocument()
   })
 
   it(&quot;renders error state&quot;, () =&gt; {
-    useRestaurant.mockReturnValue({
+    mockUseRestaurant.mockReturnValue({
       data: null,
       isPending: false,
-      error: { message: &quot;Error loading&quot; },
+      error: { name: &quot;loading-error&quot;, message: &quot;Error loading&quot; },
     })
     renderWithRouter(&lt;RestaurantOrder /&gt;)
     expect(screen.getByText(/Error loading restaurant/i)).toBeInTheDocument()
   })
 
   it(&quot;renders no restaurant found state&quot;, () =&gt; {
-    useRestaurant.mockReturnValue({ data: null, isPending: false, error: null })
+    mockUseRestaurant.mockReturnValue({ data: null, isPending: false, error: null })
     renderWithRouter(&lt;RestaurantOrder /&gt;)
     expect(screen.getByText(/No restaurant found/i)).toBeInTheDocument()
   })
 
   it(&quot;renders the RestaurantHeader when data is available&quot;, () =&gt; {
-    useRestaurant.mockReturnValue(mockRestaurantData)
+    mockUseRestaurant.mockReturnValue(mockRestaurantData)
     renderWithRouter(&lt;RestaurantOrder /&gt;)
 
     expect(screen.getByTestId(&quot;mock-restaurant-header&quot;)).toBeInTheDocument()

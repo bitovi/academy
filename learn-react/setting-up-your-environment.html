@@ -654,28 +654,33 @@ export default defineConfig({
   &quot;scripts&quot;: {
     &quot;test&quot;: &quot;vitest&quot;,
     &quot;dev&quot;: &quot;vite&quot;,
-    &quot;build&quot;: &quot;tsc &amp;&amp; vite build&quot;,
-    &quot;lint&quot;: &quot;eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0&quot;,
-    &quot;preview&quot;: &quot;vite preview&quot;
+    &quot;build&quot;: &quot;tsc -b &amp;&amp; vite build&quot;,
+    &quot;lint&quot;: &quot;eslint .&quot;,
+    &quot;preview&quot;: &quot;vite preview&quot;,
+    &quot;postinstall&quot;: &quot;node -e \&quot;try{process.env.CODESANDBOX_HOST || require('@blitz/internal/env')}catch(e){process.exit(1)};fs=require('fs');fs.writeFileSync('.env', 'VITE_PMO_API=https://www.place-my-order.com/api\\n');process.env.CODESANDBOX_HOST&amp;&amp;fs.writeFileSync('vite.config.ts', fs.readFileSync('vite.config.ts').toString().replace(/defineConfig\\(\\{\\n(?! *server)/,'defineConfig({\\nserver:{allowedHosts:true},\\n'))\&quot;&quot;
   },
   &quot;dependencies&quot;: {
-    &quot;react&quot;: &quot;^18.2.0&quot;,
-    &quot;react-dom&quot;: &quot;^18.2.0&quot;
+    &quot;react&quot;: &quot;^18.3.1&quot;,
+    &quot;react-dom&quot;: &quot;^18.3.1&quot;
   },
   &quot;devDependencies&quot;: {
-    &quot;@bitovi/eslint-config&quot;: &quot;^1.8.0&quot;,
-    &quot;@testing-library/jest-dom&quot;: &quot;^6.4.2&quot;,
-    &quot;@testing-library/react&quot;: &quot;^14.2.1&quot;,
-    &quot;@testing-library/user-event&quot;: &quot;^14.5.2&quot;,
-    &quot;@types/react&quot;: &quot;^18.2.43&quot;,
-    &quot;@types/react-dom&quot;: &quot;^18.2.17&quot;,
-    &quot;@vitejs/plugin-react&quot;: &quot;^4.2.1&quot;,
-    &quot;eslint&quot;: &quot;^8.55.0&quot;,
-    &quot;jsdom&quot;: &quot;^24.0.0&quot;,
-    &quot;prettier&quot;: &quot;^3.2.5&quot;,
-    &quot;typescript&quot;: &quot;^5.2.2&quot;,
-    &quot;vite&quot;: &quot;^5.0.8&quot;,
-    &quot;vitest&quot;: &quot;^1.2.2&quot;
+    &quot;@eslint/js&quot;: &quot;^9.13.0&quot;,
+    &quot;@testing-library/jest-dom&quot;: &quot;^6.6.3&quot;,
+    &quot;@testing-library/react&quot;: &quot;^14.3.1&quot;,
+    &quot;@testing-library/user-event&quot;: &quot;^14.6.1&quot;,
+    &quot;@types/react&quot;: &quot;^18.3.12&quot;,
+    &quot;@types/react-dom&quot;: &quot;^18.3.1&quot;,
+    &quot;@vitejs/plugin-react&quot;: &quot;^4.3.3&quot;,
+    &quot;eslint&quot;: &quot;^9.13.0&quot;,
+    &quot;eslint-plugin-react-hooks&quot;: &quot;^5.0.0&quot;,
+    &quot;eslint-plugin-react-refresh&quot;: &quot;^0.4.14&quot;,
+    &quot;globals&quot;: &quot;^15.11.0&quot;,
+    &quot;jsdom&quot;: &quot;^24.1.3&quot;,
+    &quot;prettier&quot;: &quot;^3.5.1&quot;,
+    &quot;typescript&quot;: &quot;~5.6.2&quot;,
+    &quot;typescript-eslint&quot;: &quot;^8.11.0&quot;,
+    &quot;vite&quot;: &quot;^5.4.10&quot;,
+    &quot;vitest&quot;: &quot;^1.6.1&quot;
   }
 }
 
@@ -687,6 +692,7 @@ export default defineConfig({
 </code></pre>
 <p>and &quot;No test files found&quot; will be written to the console.</p>
 <p>Note: may need to set execution policy if running on Windows.</p>
+<p>Note: if tests fail on MacOS with an error like <code>fsevents.watch is not a function</code>, running <code>npm install fsevents@^1.0.0</code> should fix the error.</p>
 <pre><code class="language-shell">Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser
 </code></pre>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/03-solution?file=package.json">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/03-solution?file=package.json">CodeSandbox</a>.</p>
@@ -706,11 +712,10 @@ export default defineConfig({
 <li><code>src/assets</code></li>
 <li><code>src/App.css</code></li>
 <li><code>tsconfig.node.json</code></li>
-<li><code>.eslintrc.cjs</code> or <code>eslint.config.js</code></li>
+<li><code>tsconfig.app.json</code></li>
 </ul>
-<p>✏️ Uninstall unneeded packages and Install our eslint config and prettier:</p>
-<pre><code class="language-shell">npm uninstall @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react-hooks eslint-plugin-react-refresh
-npm install --save-dev @bitovi/eslint-config prettier
+<p>✏️ Install eslint configs and prettier:</p>
+<pre><code class="language-shell">npm install --save-dev eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-testing-library prettier
 </code></pre>
 <p>✏️ Update <strong>tsconfig.json</strong> to be:</p>
 <pre><code class="language-json">{
@@ -743,6 +748,7 @@ npm install --save-dev @bitovi/eslint-config prettier
 }
 
 </code></pre>
+ <div line-highlight="2-7,9-11,13-27,"></div>
 <p>✏️ Update <strong>package.json</strong> to be:</p>
 <pre><code class="language-json">{
   &quot;name&quot;: &quot;place-my-order&quot;,
@@ -755,39 +761,141 @@ npm install --save-dev @bitovi/eslint-config prettier
     &quot;prettier&quot;: &quot;prettier --check vite.config.ts src&quot;,
     &quot;test&quot;: &quot;vitest&quot;,
     &quot;dev&quot;: &quot;vite&quot;,
-    &quot;build&quot;: &quot;tsc &amp;&amp; vite build&quot;
-  },
-  &quot;eslintConfig&quot;: {
-    &quot;root&quot;: true,
-    &quot;extends&quot;: &quot;@bitovi/eslint-config/react&quot;
+    &quot;build&quot;: &quot;tsc &amp;&amp; vite build&quot;,
+    &quot;postinstall&quot;: &quot;node -e \&quot;try{process.env.CODESANDBOX_HOST || require('@blitz/internal/env')}catch(e){process.exit(1)};fs=require('fs');fs.writeFileSync('.env', 'VITE_PMO_API=https://www.place-my-order.com/api\\n');process.env.CODESANDBOX_HOST&amp;&amp;fs.writeFileSync('vite.config.ts', fs.readFileSync('vite.config.ts').toString().replace(/defineConfig\\(\\{\\n(?! *server)/,'defineConfig({\\nserver:{allowedHosts:true},\\n'))\&quot;&quot;
   },
   &quot;prettier&quot;: {
     &quot;semi&quot;: false,
     &quot;trailingComma&quot;: &quot;all&quot;
   },
   &quot;dependencies&quot;: {
-    &quot;react&quot;: &quot;^18.2.0&quot;,
-    &quot;react-dom&quot;: &quot;^18.2.0&quot;
+    &quot;react&quot;: &quot;^18.3.1&quot;,
+    &quot;react-dom&quot;: &quot;^18.3.1&quot;
   },
   &quot;devDependencies&quot;: {
-    &quot;@bitovi/eslint-config&quot;: &quot;^1.8.0&quot;,
     &quot;@testing-library/jest-dom&quot;: &quot;^6.4.2&quot;,
     &quot;@testing-library/react&quot;: &quot;^14.2.1&quot;,
     &quot;@testing-library/user-event&quot;: &quot;^14.5.2&quot;,
     &quot;@types/react&quot;: &quot;^18.2.43&quot;,
     &quot;@types/react-dom&quot;: &quot;^18.2.17&quot;,
     &quot;@vitejs/plugin-react&quot;: &quot;^4.2.1&quot;,
-    &quot;eslint&quot;: &quot;^8.55.0&quot;,
+    &quot;eslint&quot;: &quot;^9.13.0&quot;,
+    &quot;eslint-plugin-import&quot;: &quot;^2.31.0&quot;,
+    &quot;eslint-plugin-jest&quot;: &quot;^28.11.0&quot;,
+    &quot;eslint-plugin-jsx-a11y&quot;: &quot;^6.10.2&quot;,
+    &quot;eslint-plugin-react&quot;: &quot;^7.37.4&quot;,
+    &quot;eslint-plugin-react-hooks&quot;: &quot;^5.0.0&quot;,
+    &quot;eslint-plugin-react-refresh&quot;: &quot;^0.4.14&quot;,
+    &quot;eslint-plugin-testing-library&quot;: &quot;^7.1.1&quot;,
+    &quot;globals&quot;: &quot;^15.15.0&quot;,
     &quot;jsdom&quot;: &quot;^24.0.0&quot;,
     &quot;prettier&quot;: &quot;^3.2.5&quot;,
-    &quot;typescript&quot;: &quot;^5.2.2&quot;,
+    &quot;typescript&quot;: &quot;~5.6.2&quot;,
+    &quot;typescript-eslint&quot;: &quot;^8.11.0&quot;,
     &quot;vite&quot;: &quot;^5.0.8&quot;,
     &quot;vitest&quot;: &quot;^1.2.2&quot;
   }
 }
 
 </code></pre>
- <div line-highlight="7-9,12,14-16,18-21,25,only"></div>
+ <div line-highlight="7-9,12,15-17,22,24-29,31-34,37-40,43-44,only"></div>
+<p>✏️ Update <strong>eslint.config.js</strong> to be:</p>
+<pre><code class="language-js">import js from '@eslint/js'
+import globals from 'globals'
+import react from 'eslint-plugin-react'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import jsxa11y from 'eslint-plugin-jsx-a11y'
+import tseslint from 'typescript-eslint'
+import jest from 'eslint-plugin-jest'
+import pluginImport from 'eslint-plugin-import'
+import testingLibrary from 'eslint-plugin-testing-library'
+
+export default tseslint.config(
+  { ignores: ['dist'] },
+  {
+    extends: [js.configs.recommended, ...tseslint.configs.recommended],
+    files: ['**/*.{ts,tsx}'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
+    },
+    plugins: {
+      'react': react,
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
+      'jsx-a11y': jsxa11y,
+      'import': pluginImport,
+    },
+    rules: {
+      ...reactHooks.configs.recommended.rules,
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
+      &quot;no-unused-vars&quot;: &quot;off&quot;,
+
+      &quot;@typescript-eslint/no-unused-vars&quot;: [
+        &quot;error&quot;,
+        {
+          ignoreRestSiblings: true,
+          args: &quot;none&quot;,
+        },
+      ],
+
+      &quot;@typescript-eslint/ban-ts-comment&quot;: &quot;off&quot;,
+      &quot;@typescript-eslint/explicit-function-return-type&quot;: &quot;off&quot;,
+      &quot;@typescript-eslint/no-inferrable-types&quot;: &quot;off&quot;,
+
+      &quot;@typescript-eslint/array-type&quot;: [&quot;error&quot;, { default: &quot;array-simple&quot; }],
+      &quot;@typescript-eslint/explicit-module-boundary-types&quot;: &quot;error&quot;,
+
+      &quot;import/no-unresolved&quot;: &quot;off&quot;,
+
+      &quot;@typescript-eslint/consistent-type-imports&quot;: &quot;error&quot;,
+      &quot;import/consistent-type-specifier-style&quot;: [&quot;error&quot;, &quot;prefer-top-level&quot;],
+      &quot;import/first&quot;: &quot;error&quot;,
+      &quot;import/newline-after-import&quot;: &quot;error&quot;,
+      &quot;import/no-absolute-path&quot;: &quot;error&quot;,
+      &quot;import/no-useless-path-segments&quot;: &quot;error&quot;,
+
+      &quot;no-use-before-define&quot;: &quot;off&quot;,
+      &quot;@typescript-eslint/no-use-before-define&quot;: &quot;off&quot;,
+
+      &quot;no-console&quot;: [&quot;warn&quot;, { allow: [&quot;warn&quot;, &quot;error&quot;] }],
+      &quot;no-warning-comments&quot;: [&quot;warn&quot;, { terms: [&quot;todo&quot;], location: &quot;start&quot; }],
+
+      &quot;react/no-unknown-property&quot;: &quot;off&quot;,
+      &quot;react/prop-types&quot;: &quot;off&quot;,
+    },
+  },
+  {
+    // update this to match your test files
+    files: ['**/*.test.{ts,tsx}'],
+    plugins: { jest, 'testing-library': testingLibrary },
+    languageOptions: {
+      globals: jest.environments.globals.globals,
+    },
+    rules: {
+      &quot;jest/consistent-test-it&quot;: &quot;error&quot;,
+      &quot;jest/prefer-hooks-in-order&quot;: &quot;error&quot;,
+      &quot;jest/prefer-hooks-on-top&quot;: &quot;error&quot;,
+      &quot;testing-library/prefer-user-event&quot;: &quot;error&quot;,
+      'jest/no-disabled-tests': 'warn',
+      'jest/no-focused-tests': 'error',
+      'jest/no-identical-title': 'error',
+      'jest/prefer-to-have-length': 'warn',
+      'jest/valid-expect': 'error',
+      &quot;@typescript-eslint/explicit-module-boundary-types&quot;: &quot;off&quot;,
+    },
+  },
+)
+
+</code></pre>
+ <div line-highlight="3,6,8-10,19-22,25,28-29,37,39-45,47-49,51-52,54,56-61,63-64,66-67,69-70,73-92,"></div>
 <h3 id="verify-4">Verify 4</h3>
 <p>✏️ Create <strong>src/App.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;

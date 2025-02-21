@@ -760,7 +760,7 @@ describe(&quot;App component&quot;, () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">function App() {
+<pre><code class="language-tsx">const App: React.FC = () =&gt; {
   return (
     &lt;&gt;
       &lt;div className=&quot;restaurants&quot;&gt;
@@ -797,7 +797,7 @@ describe(&quot;App component&quot;, () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="4-30,only"></div>
+ <div line-highlight="1,4-30,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/01-solution?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/01-solution?file=src/App.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 <h2 id="objective-2-expressions-and-loops-in-jsx">Objective 2: Expressions and loops in JSX</h2>
@@ -965,7 +965,7 @@ const content = (
 <pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
 import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
 
-function App() {
+const App: React.FC = () =&gt; {
   const restaurants = {
     data: [
       {
@@ -1126,7 +1126,7 @@ describe(&quot;App component&quot;, () =&gt; {
 <pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
 import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
 
-function App() {
+const App: React.FC = () =&gt; {
   const restaurants = {
     data: [
       {

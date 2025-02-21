@@ -845,9 +845,12 @@ import { render, screen } from &quot;@testing-library/react&quot;
 import userEvent from &quot;@testing-library/user-event&quot;
 import { MemoryRouter } from &quot;react-router-dom&quot;
 import { describe, expect, it, vi } from &quot;vitest&quot;
+import type { ArgumentsType, Mock } from &quot;vitest&quot;
 import RestaurantOrder from &quot;./RestaurantOrder&quot;
 
 import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
+
+const mockUseRestaurant = useRestaurant as Mock&lt;ArgumentsType&lt;typeof useRestaurant&gt;, ReturnType&lt;typeof useRestaurant&gt;&gt;
 
 // Mock the hooks and components used in RestaurantOrder
 vi.mock(&quot;../../services/restaurant/hooks&quot;, () =&gt; ({
@@ -865,7 +868,7 @@ const mockRestaurantData = {
     _id: &quot;1&quot;,
     name: &quot;Test Restaurant&quot;,
     slug: &quot;test-restaurant&quot;,
-    images: { owner: &quot;owner.jpg&quot; },
+    images: { owner: &quot;owner.jpg&quot;, banner: &quot;&quot;, thumbnail: &quot;&quot; },
     menu: {
       lunch: [
         { name: &quot;Lunch Item 1&quot;, price: 10 },
@@ -895,36 +898,36 @@ const renderWithRouter = (
 
 describe(&quot;RestaurantOrder component&quot;, () =&gt; {
   it(&quot;renders loading state&quot;, () =&gt; {
-    useRestaurant.mockReturnValue({ data: null, isPending: true, error: null })
+    mockUseRestaurant.mockReturnValue({ data: null, isPending: true, error: null })
     renderWithRouter(&lt;RestaurantOrder /&gt;)
     expect(screen.getByText(/Loading restaurant…/i)).toBeInTheDocument()
   })
 
   it(&quot;renders error state&quot;, () =&gt; {
-    useRestaurant.mockReturnValue({
+    mockUseRestaurant.mockReturnValue({
       data: null,
       isPending: false,
-      error: { message: &quot;Error loading&quot; },
+      error: { name: &quot;loading-error&quot;, message: &quot;Error loading&quot; },
     })
     renderWithRouter(&lt;RestaurantOrder /&gt;)
     expect(screen.getByText(/Error loading restaurant/i)).toBeInTheDocument()
   })
 
   it(&quot;renders no restaurant found state&quot;, () =&gt; {
-    useRestaurant.mockReturnValue({ data: null, isPending: false, error: null })
+    mockUseRestaurant.mockReturnValue({ data: null, isPending: false, error: null })
     renderWithRouter(&lt;RestaurantOrder /&gt;)
     expect(screen.getByText(/No restaurant found/i)).toBeInTheDocument()
   })
 
   it(&quot;renders the RestaurantHeader when data is available&quot;, () =&gt; {
-    useRestaurant.mockReturnValue(mockRestaurantData)
+    mockUseRestaurant.mockReturnValue(mockRestaurantData)
     renderWithRouter(&lt;RestaurantOrder /&gt;)
 
     expect(screen.getByTestId(&quot;mock-restaurant-header&quot;)).toBeInTheDocument()
   })
 
   it(&quot;renders the order form when restaurant data is available&quot;, () =&gt; {
-    useRestaurant.mockReturnValue(mockRestaurantData)
+    mockUseRestaurant.mockReturnValue(mockRestaurantData)
     render(&lt;RestaurantOrder /&gt;)
 
     expect(screen.getByTestId(&quot;mock-restaurant-header&quot;)).toBeInTheDocument()
@@ -933,7 +936,7 @@ describe(&quot;RestaurantOrder component&quot;, () =&gt; {
   })
 
   it(&quot;updates subtotal when menu items are selected&quot;, async () =&gt; {
-    useRestaurant.mockReturnValue(mockRestaurantData)
+    mockUseRestaurant.mockReturnValue(mockRestaurantData)
     render(&lt;RestaurantOrder /&gt;)
 
     const checkboxes = screen.getAllByRole(&quot;checkbox&quot;)
@@ -948,7 +951,7 @@ describe(&quot;RestaurantOrder component&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="4,28-37,85-87,89-92,94-96,98-99,101,103,105-106,only"></div>
+ <div line-highlight="4,31-40,88-90,92-95,97-99,101-102,104,106,108-109,only"></div>
 <h3 id="exercise-1">Exercise 1</h3>
 <ul>
 <li>Call <code>useState()</code> and use the <code>OrderItems</code> interface to create an <code>items</code> state.</li>
@@ -1400,9 +1403,12 @@ import { render, screen } from &quot;@testing-library/react&quot;
 import userEvent from &quot;@testing-library/user-event&quot;
 import { MemoryRouter } from &quot;react-router-dom&quot;
 import { afterEach, beforeEach, describe, expect, it, vi } from &quot;vitest&quot;
+import type { ArgumentsType, Mock } from &quot;vitest&quot;
 import RestaurantOrder from &quot;./RestaurantOrder&quot;
 
 import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
+
+const mockUseRestaurant = useRestaurant as Mock&lt;ArgumentsType&lt;typeof useRestaurant&gt;, ReturnType&lt;typeof useRestaurant&gt;&gt;
 
 // Mock the hooks and components used in RestaurantOrder
 vi.mock(&quot;../../services/restaurant/hooks&quot;, () =&gt; ({
@@ -1434,6 +1440,7 @@ vi.mock(&quot;../../components/RestaurantHeader&quot;, () =&gt; ({
 // Mocking the global fetch function
 const mockAlert = vi.fn()
 
+// @ts-ignore `global` exists in node environments like our test runner.
 global.alert = mockAlert
 
 beforeEach(() =&gt; {
@@ -1449,7 +1456,7 @@ const mockRestaurantData = {
     _id: &quot;1&quot;,
     name: &quot;Test Restaurant&quot;,
     slug: &quot;test-restaurant&quot;,
-    images: { owner: &quot;owner.jpg&quot; },
+    images: { owner: &quot;owner.jpg&quot;, banner: &quot;&quot;, thumbnail: &quot;&quot; },
     menu: {
       lunch: [
         { name: &quot;Lunch Item 1&quot;, price: 10 },
@@ -1479,36 +1486,36 @@ const renderWithRouter = (
 
 describe(&quot;RestaurantOrder component&quot;, () =&gt; {
   it(&quot;renders loading state&quot;, () =&gt; {
-    useRestaurant.mockReturnValue({ data: null, isPending: true, error: null })
+    mockUseRestaurant.mockReturnValue({ data: null, isPending: true, error: null })
     renderWithRouter(&lt;RestaurantOrder /&gt;)
     expect(screen.getByText(/Loading restaurant…/i)).toBeInTheDocument()
   })
 
   it(&quot;renders error state&quot;, () =&gt; {
-    useRestaurant.mockReturnValue({
+    mockUseRestaurant.mockReturnValue({
       data: null,
       isPending: false,
-      error: { message: &quot;Error loading&quot; },
+      error: { name: &quot;loading-error&quot;, message: &quot;Error loading&quot; },
     })
     renderWithRouter(&lt;RestaurantOrder /&gt;)
     expect(screen.getByText(/Error loading restaurant/i)).toBeInTheDocument()
   })
 
   it(&quot;renders no restaurant found state&quot;, () =&gt; {
-    useRestaurant.mockReturnValue({ data: null, isPending: false, error: null })
+    mockUseRestaurant.mockReturnValue({ data: null, isPending: false, error: null })
     renderWithRouter(&lt;RestaurantOrder /&gt;)
     expect(screen.getByText(/No restaurant found/i)).toBeInTheDocument()
   })
 
   it(&quot;renders the RestaurantHeader when data is available&quot;, () =&gt; {
-    useRestaurant.mockReturnValue(mockRestaurantData)
+    mockUseRestaurant.mockReturnValue(mockRestaurantData)
     renderWithRouter(&lt;RestaurantOrder /&gt;)
 
     expect(screen.getByTestId(&quot;mock-restaurant-header&quot;)).toBeInTheDocument()
   })
 
   it(&quot;renders the order form when restaurant data is available&quot;, () =&gt; {
-    useRestaurant.mockReturnValue(mockRestaurantData)
+    mockUseRestaurant.mockReturnValue(mockRestaurantData)
     render(&lt;RestaurantOrder /&gt;)
 
     expect(screen.getByTestId(&quot;mock-restaurant-header&quot;)).toBeInTheDocument()
@@ -1517,7 +1524,7 @@ describe(&quot;RestaurantOrder component&quot;, () =&gt; {
   })
 
   it(&quot;updates subtotal when menu items are selected&quot;, async () =&gt; {
-    useRestaurant.mockReturnValue(mockRestaurantData)
+    mockUseRestaurant.mockReturnValue(mockRestaurantData)
     render(&lt;RestaurantOrder /&gt;)
 
     const checkboxes = screen.getAllByRole(&quot;checkbox&quot;)
@@ -1566,7 +1573,7 @@ describe(&quot;RestaurantOrder component&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="6,16-28,35-36,38-39,41,43-44,47-49,137-138,140-141,143-147,149-151,153-155,157-161,163-165,167-170,only"></div>
+ <div line-highlight="6,19-31,38-39,41-42,44-45,47-48,51-53,141-142,144-145,147-151,153-155,157-159,161-165,167-169,171-174,only"></div>
 <h3 id="exercise-3">Exercise 3</h3>
 <ul>
 <li>Create state variables and setters for <code>address</code>, <code>name</code>, and <code>phone</code>.</li>
