@@ -171,6 +171,9 @@ and "No test files found" will be written to the console.
 
 Note: may need to set execution policy if running on Windows.
 
+Note: if tests fail on MacOS with an error like `fsevents.watch is not a function`, running `npm install fsevents@^1.0.0` should fix the error.
+
+
 ```shell
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser
 ```
@@ -198,13 +201,12 @@ Remove these generated files that we won’t need. Some projects do need them, b
 - `src/assets`
 - `src/App.css`
 - `tsconfig.node.json`
-- `.eslintrc.cjs` or `eslint.config.js`
+- `tsconfig.app.json`
 
-✏️ Uninstall unneeded packages and Install our eslint config and prettier:
+✏️ Install eslint configs and prettier:
 
 ```shell
-npm uninstall @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react-hooks eslint-plugin-react-refresh
-npm install --save-dev @bitovi/eslint-config prettier
+npm install --save-dev eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-testing-library prettier
 ```
 
 ✏️ Update **tsconfig.json** to be:
@@ -214,6 +216,10 @@ npm install --save-dev @bitovi/eslint-config prettier
 ✏️ Update **package.json** to be:
 
 @diff ../../../exercises/react-vite/02-setting-up-your-environment/03-solution/package.json ../../../exercises/react-vite/02-setting-up-your-environment/04-solution/package.json only
+
+✏️ Update **eslint.config.js** to be:
+
+@diff ../../../exercises/react-vite/02-setting-up-your-environment/03-solution/eslint.config.js ../../../exercises/react-vite/02-setting-up-your-environment/04-solution/eslint.config.js
 
 ### Verify 4
 

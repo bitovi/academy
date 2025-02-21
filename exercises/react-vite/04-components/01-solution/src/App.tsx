@@ -1,7 +1,7 @@
 import RestaurantList from "./pages/RestaurantList"
 import "./App.css"
 
-function App() {
+const App: React.FC = () => {
   return (
     <>
       <RestaurantList />

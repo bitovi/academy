@@ -4,6 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 // Mocking the global fetch function
 const mockFetch = vi.fn()
 
+// @ts-ignore `global` exists in node environments like our test runner.
 global.fetch = mockFetch
 
 beforeEach(() => {

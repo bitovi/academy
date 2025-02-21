@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom"
 import { act, render, screen } from "@testing-library/react"
-import { describe, expect, it, vi } from "vitest"
+import { beforeEach, describe, expect, it, vi } from "vitest"
 
 import * as restaurantHooks from "../../services/restaurant/hooks"
 import RestaurantList from "./RestaurantList"
@@ -26,8 +26,8 @@ vi.mock("../../services/restaurant/hooks", () => ({
 describe("RestaurantList component", () => {
   beforeEach(async () => {
     vi.spyOn(restaurantHooks, "useCities").mockReturnValue([
-      { name: "Green Bay" },
-      { name: "Madison" },
+      { name: "Green Bay", state: "WI" },
+      { name: "Madison", state: "WI" },
     ])
     render(<RestaurantList />)
     await act(() => {})

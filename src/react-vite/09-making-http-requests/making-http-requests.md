@@ -131,6 +131,8 @@ Here’s how we can use it: in our project’s root directory, we can create a `
 
 @sourceref ../../../exercises/react-vite/09-making-http-requests/01-solution/.env
 
+Note: if you are using CodeSandbox or StackBlitz, `.env` has already been created with a remote connection to the PMO API at `https://www.place-my-order.com/`.  Leave it as is instead of changing to `localhost`, because these container services make it difficult to run the API alongside the Web server.
+
 Then we can access this variable using `import.meta.env`:
 
 ```tsx

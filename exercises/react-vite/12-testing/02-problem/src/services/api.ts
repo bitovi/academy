@@ -34,7 +34,7 @@ export async function apiRequest<Data = never, Params = unknown>({
   }
 }
 
-export function stringifyQuery(input: Record<string, string>): string {
+export function stringifyQuery(input: Record<string, string | null | undefined>): string {
   const output: string[] = []
 
   for (const [key, value] of Object.entries(input)) {
