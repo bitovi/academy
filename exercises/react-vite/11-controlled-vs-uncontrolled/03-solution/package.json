@@ -11,7 +11,7 @@
     "test": "vitest",
     "dev": "vite",
     "build": "tsc && vite build",
-    "postinstall": "node -e \"try{process.env.CODESANDBOX_HOST || require('@blitz/internal/env')}catch(e){process.exit(1)};fs=require('fs');fs.writeFileSync('.env', 'VITE_PMO_API=https://www.place-my-order.com/api\\n')\""
+    "postinstall": "node -e \"try{process.env.CODESANDBOX_HOST || require('@blitz/internal/env')}catch(e){process.exit(1)};fs=require('fs');fs.writeFileSync('.env', 'VITE_PMO_API=https://www.place-my-order.com/api\\n');process.env.CODESANDBOX_HOST&&fs.writeFileSync('vite.config.ts', fs.readFileSync('vite.config.ts').toString().replace(/defineConfig\\(\\{\\n(?! *server)/,'defineConfig({\\nserver:{allowedHosts:true},\\n'))\""
   },
   "prettier": {
     "semi": false,
