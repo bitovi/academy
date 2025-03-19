@@ -306,17 +306,17 @@ a.quote-link:hover{
     <a class="button button-large button-red" href="#courses-section">Browse our courses</a>
   </div>
   <div class="academy-section academy-logos">
-    <a href="./learn-advanced-javascript.html"><img class="academy-course-logo" src="./static/img/javascript.png"></a>
-    <a href="./learn-angular.html"><img class="academy-course-logo" src="./static/img/angular.png"></a>
-    <a href="./learn-react.html"><img class="academy-course-logo" src="./static/img/react.png"></a>
-    <a href="./learn-rxjs.html"><img class="academy-course-logo" src="./static/img/rxjs.png"></a>
-    <a href="./learn-typescript.html"><img class="academy-course-logo" src="./static/img/ts-logo.png"/></a>
+    <a href="./learn-advanced-javascript.html"><img alt="JavaScript" class="academy-course-logo" src="./static/img/javascript.png"></a>
+    <a href="./learn-angular.html"><img alt="Angular" class="academy-course-logo" src="./static/img/angular.png"></a>
+    <a href="./learn-react.html"><img alt="React" class="academy-course-logo" src="./static/img/react.png"></a>
+    <a href="./learn-rxjs.html"><img alt="RxJS" class="academy-course-logo" src="./static/img/rxjs.png"></a>
+    <a href="./learn-typescript.html"><img alt="TypeScript" class="academy-course-logo" src="./static/img/ts-logo.png"/></a>
   </div>
   <div class="academy-section page-details-section academy-section--grey">
     <div class="academy-cards-container">
       <div class="academy-card">
         <div class="academy-card--top">
-          <img class="card-image" src="./static/img/academy-4.png" width="75">
+          <img alt="" class="card-image" src="./static/img/academy-4.png" width="75">
           <h4>Learn by doing</h4>
           <p><a class="link" href="https://www.gse.harvard.edu/news/14/11/benefit-interactive-learning">Hands-on exercises</a> to teach you Angular, JavaScript, the DOM, TypeScript, RxJS, Angular and more.</p>
         </div>
@@ -324,15 +324,15 @@ a.quote-link:hover{
       </div>
       <div class="academy-card">
         <div class="academy-card--top">
-          <img class="card-image" src="./static/img/academy-2.png" width="75">
+          <img alt="" class="card-image" src="./static/img/academy-2.png" width="75">
           <h4>Get help when you need it</h4>
           <p>Our team of expert front-end developers is only a Discord message away.</p>
         </div>
-       <a class="button discord-button full-width" href="https://discord.gg/J7ejFsZnJ4"><img src="./static/img/discord-logo.svg" height="20">Join our Community Discord</a>
+       <a class="button discord-button full-width" href="https://discord.gg/J7ejFsZnJ4"><img alt="" src="./static/img/discord-logo.svg" height="20">Join our Community Discord</a>
       </div>
       <div class="academy-card">
         <div class="academy-card--top">
-          <img class="card-image" src="./static/img/academy-3.png" width="75">
+          <img alt="" class="card-image" src="./static/img/academy-3.png" width="75">
           <h4>Leverage battle-tested trainings</h4>
           <p>The same trainings materials have been sharpened over the past decade and delivered to enterprise front-end teams at Sony, Lowes, Walmart, and more. Free and <a class="link" href="https://github.com/bitovi/academy">open source</a>.</p>
         </div>
@@ -363,7 +363,7 @@ a.quote-link:hover{
     <div class="courses" id="courses">
       <div class="academy-card course">
           <div class="course-logo">
-            <img src="./static/img/react.png" width="70">
+            <img alt="" src="./static/img/react.png" width="70">
           </div>
           <h4>React</h4>
           <p>Build a multi-page, real-time ordering app in this beginner React guide.</p>
@@ -376,7 +376,7 @@ a.quote-link:hover{
       </div>
       <div class="academy-card course">
           <div class="course-logo">
-            <img src="./static/img/rxjs.png" height="68">
+            <img alt="" src="./static/img/rxjs.png" height="68">
           </div>
           <h4>RxJS</h4>
           <p>Build a validating credit card form with RxJS and a bit of Angular. Learn
@@ -390,7 +390,7 @@ a.quote-link:hover{
       </div>
       <div class="academy-card course">
           <div class="course-logo">
-            <img src="./static/img/angular.png" height="70">
+            <img alt="" src="./static/img/angular.png" height="70">
           </div>
           <h4>Angular</h4>
           <p>Build a multi-page, real-time ordering app with Angular. Learn
@@ -407,7 +407,7 @@ a.quote-link:hover{
     <div class="courses">
       <div class="academy-card course">
         <div class="course-logo">
-          <img src="./static/img/ngrx.png" height="70">
+          <img alt="" src="./static/img/ngrx.png" height="70">
         </div>
         <h4>NgRx</h4>
         <p> Build an NgRx feature store to manage login state through actions, reducers, effects, and selectors.</p>
@@ -420,7 +420,7 @@ a.quote-link:hover{
       </div>
       <div class="academy-card course">
         <div class="course-logo">
-          <img src="./static/img/program-management-with-jira/jira-logo.png" height="70">
+          <img alt="" src="./static/img/program-management-with-jira/jira-logo.png" height="70">
         </div>
         <h4>Agile Program Management with Jira</h4>
         <p> Learn how to build, maintain, and report on accurate multi-team plans
@@ -434,7 +434,7 @@ with Jira.</p>
       </div>
       <div class="academy-card course">
         <div class="course-logo">
-          <img src="./static/img/docker/logo.png" height="70">
+          <img alt="" src="./static/img/docker/logo.png" height="70">
         </div>
         <h4>Docker</h4>
         <p>Build and containerize a Node app then orchestrate a more complex example with docker-compose in this Docker guide.</p>
@@ -449,7 +449,7 @@ with Jira.</p>
     <div class="courses">
       <div class="academy-card course">
           <div class="course-logo">
-            <img src="./static/img/javascript.png" height="70">
+            <img alt="" src="./static/img/javascript.png" height="70">
           </div>
           <h4>Debug JavaScript</h4>
           <p>Learn breakpoints and how to debug the scope, stack, prototypes, and property changes.</p>
@@ -462,7 +462,7 @@ with Jira.</p>
       </div>
       <div class="academy-card course">
           <div class="course-logo">
-            <img src="./static/img/web-components.png" height="70">
+            <img alt="" src="./static/img/web-components.png" height="70">
           </div>
           <h4>Web Components</h4>
           <p>Build a bus tracker component that can be used anywhere with web components. Learn the core APIs.</p>
@@ -475,7 +475,7 @@ with Jira.</p>
       </div>
       <div class="academy-card course">
           <div class="course-logo">
-            <img src="./static/img/typescript.png" width="140">
+            <img alt="" src="./static/img/typescript.png" width="140">
           </div>
           <h4>TypeScript</h4>
           <p>Learn the essentials of TypeScript: types, functions, classes, interfaces and generics.</p>
@@ -490,7 +490,7 @@ with Jira.</p>
     <div class="courses">
       <div class="academy-card course">
           <div class="course-logo">
-            <img src="./static/img/javascript.png" height="70">
+            <img alt="" src="./static/img/javascript.png" height="70">
           </div>
           <h4>Advanced JavaScript</h4>
           <p>Learn all the hard but important stuff you should know when programming JavaScript.</p>
@@ -503,7 +503,7 @@ with Jira.</p>
       </div>
       <div class="academy-card course">
           <div class="course-logo">
-            <img src="./static/img/jquery.png" width="150">
+            <img alt="" src="./static/img/jquery.png" width="150">
           </div>
           <h4>DOM and jQuery</h4>
           <p>Build your own version of jQuery and use it to make a basic tabs widget. Enjoy the
@@ -549,7 +549,7 @@ with Jira.</p>
     <div class="courses">
       <div class="academy-card course">
           <div class="course-logo">
-            <img src="./static/img/bitovi-logo-x2.png" height="70">
+            <img alt="" src="./static/img/bitovi-logo-x2.png" height="70">
           </div>
           <h4>Technology Consulting</h4>
           <p>Learn to perform aspects of technology consulting:
@@ -562,8 +562,23 @@ with Jira.</p>
           <a href="./learn-technology-consulting.html" class="button button-grey full-width">Take this course</a>
       </div>
       <div class="academy-card course">
+          <div class="course-logo">
+            <img alt="" src="./static/img/react.png" width="70">
+          </div>
+          <h4>React Native</h4>
+          <p>Build a feature-rich Place My Order application in this beginner React Native guide.</p>
+          <div class="width100">
+            <p class='detail'><strong>Audience:</strong> Intermediate JS developers who are new to React Native.</p>
+            <p class='detail'><strong>Goal:</strong> Learn the basics of React Native.</p>
+            <p class='detail'><strong>Time:</strong> 5 days</p>
+          </div>
+          <a href="./learn-react-native.html" class="button button-grey full-width">Take this course</a>
+      </div>
+    </div>
+    <div class="courses">
+      <div class="academy-card course">
         <div class="course-logo">
-          <img src="./static/img/javascript.png" width="60">
+          <img alt="" src="./static/img/javascript.png" width="60">
         </div>
         <h4>Your Course Here</h4>
         <p>Got an idea for a course? Let us know by submitting an issue.</p>
@@ -571,7 +586,7 @@ with Jira.</p>
       </div>
       <div class="academy-card course">
         <div class="course-logo">
-          <img src="./static/img/discord.png" width="90">
+          <img alt="" src="./static/img/discord.png" width="90">
         </div>
         <h4>Need Help?</h4>
         <p>Reach out to our team via Discord. We can help answer any questions you have about our courses.</p>
