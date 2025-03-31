@@ -1,4 +1,4 @@
-import type { City, State } from "./interfaces"
+import type { City, Restaurant, State } from "./interfaces"
 import { useEffect, useState } from "react"
 import { apiRequest } from "../api"
 
@@ -23,18 +23,17 @@ export function useCities(state: string): CitiesResponse {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(
-        `${import.meta.env.VITE_PMO_API}/cities?state=${state}`,
-        {
-          method: "GET",
+      const { data, error } = await apiRequest<CitiesResponse>({
+        method: "GET",
+        path: "/cities",
+        params: {
+          state: state,
         },
-      )
-
-      const data = await response.json()
+      })
 
       setResponse({
         data: data?.data || null,
-        error: null,
+        error: error,
         isPending: false,
       })
     }
@@ -53,15 +52,14 @@ export function useStates(): StatesResponse {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`${import.meta.env.VITE_PMO_API}/states`, {
+      const { data, error } = await apiRequest<StatesResponse>({
         method: "GET",
+        path: "/states",
       })
-
-      const data = await response.json()
 
       setResponse({
         data: data?.data || null,
-        error: null,
+        error: error,
         isPending: false,
       })
     }

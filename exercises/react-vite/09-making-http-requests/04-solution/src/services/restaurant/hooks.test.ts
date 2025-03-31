@@ -2,14 +2,14 @@ import { renderHook, waitFor } from "@testing-library/react"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 import type { ArgumentsType, Mock } from "vitest"
 import { apiRequest } from "../api"
-import { useCities, useStates } from "./hooks"
+import { useCities, useRestaurants, useStates } from "./hooks"
 
 // Mock the apiRequest function
 vi.mock("../api", () => ({
   apiRequest: vi.fn(),
 }))
 
-const mockApiRequest = apiRequest as Mock<ArgumentsType<typeof apiRequest>, ReturnType<typeof apiRequest>>;
+const mockApiRequest = apiRequest as Mock<ArgumentsType<typeof apiRequest>, ReturnType<typeof apiRequest>>
 
 describe("Hooks", () => {
   beforeEach(() => {
@@ -38,6 +38,44 @@ describe("Hooks", () => {
       mockApiRequest.mockResolvedValue({ data: null, error: mockError })
 
       const { result } = renderHook(() => useCities("test-state"))
+
+      await waitFor(() => {
+        expect(result.current.isPending).toBeFalsy()
+        expect(result.current.data).toBeNull()
+        expect(result.current.error).toEqual(mockError)
+      })
+    })
+  })
+
+  describe("useRestaurants hook", () => {
+    it("should return restaurants data successfully", async () => {
+      const mockRestaurants = [
+        { id: 1, name: "Restaurant1" },
+        { id: 2, name: "Restaurant2" },
+      ]
+      mockApiRequest.mockResolvedValue({
+        data: { data: mockRestaurants },
+        error: null,
+      })
+
+      const { result } = renderHook(() =>
+        useRestaurants("test-state", "test-city"),
+      )
+
+      await waitFor(() => {
+        expect(result.current.isPending).toBeFalsy()
+        expect(result.current.data).toEqual(mockRestaurants)
+        expect(result.current.error).toBeNull()
+      })
+    })
+
+    it("should handle error when fetching restaurants data", async () => {
+      const mockError = new Error("Error fetching restaurants")
+      mockApiRequest.mockResolvedValue({ data: null, error: mockError })
+
+      const { result } = renderHook(() =>
+        useRestaurants("test-state", "test-city"),
+      )
 
       await waitFor(() => {
         expect(result.current.isPending).toBeFalsy()

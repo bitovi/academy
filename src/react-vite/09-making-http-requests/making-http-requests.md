@@ -21,7 +21,7 @@ In this section, we will:
 - Handle HTTP error statuses
 - Catch network errors
 
-## Objective 1: Add a `fetch` request for states
+## Objective 1: Add a `fetch` request for states in a custom Hook
 
 So far we’ve only had hard-coded data for our states, cities, and restaurants. Let’s start loading data from an API server, beginning with the list of states!
 
@@ -192,18 +192,28 @@ It will be helpful to have a third terminal tab for the `npm run api` command.
 
 @diff ../../../exercises/react-vite/08-stateful-hooks/03-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/09-making-http-requests/01-problem/src/pages/RestaurantList/RestaurantList.tsx only
 
+✏️ Update **src/services/restaurant/hooks.ts** to be:
+
+@diff ../../../exercises/react-vite/08-stateful-hooks/03-solution//src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/01-problem/src/services/restaurant/hooks.ts only
+
 ### Verify 1
 
 ✏️ Update **src/pages/RestaurantList/RestaurantList.test.tsx** to be:
 
 @diff ../../../exercises/react-vite/08-stateful-hooks/02-solution/src/pages/RestaurantList/RestaurantList.test.tsx ../../../exercises/react-vite/09-making-http-requests/01-solution/src/pages/RestaurantList/RestaurantList.test.tsx only
 
+✏️ Update **src/services/restaurant/hooks.test.ts** to be:
+
+@diff ../../../exercises/react-vite/08-stateful-hooks/03-solution/src/services/restaurant/hooks.test.ts ../../../exercises/react-vite/09-making-http-requests/01-problem/src/services/restaurant/hooks.test.ts only
+
 ### Exercise 1
 
-- Update `RestaurantList.tsx` to call `useState()` and use the `StateResponse` interface.
-- Call `useEffect()` and `fetch` data from `${import.meta.env.VITE_PMO_API}/states`.
+- Update the `useStates` in `hooks.ts` to call `useEffect()` and `fetch` data from `${process.env.PMO_API}/states`.
+- Update `StateList.tsx` to call `useStates()` and use the `StateResponse` interface.
 
-Hint: Call your state setter after you parse the JSON response from `fetch()`.
+**Hint:** Call your state setter after you parse the JSON response from `fetch()`.
+
+**Hint:** `useStates()` return `isPending` and `error`. Use these states to inform the user the status.
 
 <strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/01-problem?file=src/pages/RestaurantList/RestaurantList.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/01-problem?file=src/pages/RestaurantList/RestaurantList.tsx) to do this exercise in an online code editor.
 
@@ -216,62 +226,15 @@ Hint: Call your state setter after you parse the JSON response from `fetch()`.
 
 @diff ../../../exercises/react-vite/09-making-http-requests/01-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/09-making-http-requests/01-solution/src/pages/RestaurantList/RestaurantList.tsx only
 
+✏️ Update **src/services/restaurant/hooks.ts** to be:
+
+@diff ../../../exercises/react-vite/09-making-http-requests/01-problem/src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/01-solution/src/services/restaurant/hooks.ts only
+
 <strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/01-solution?file=src/pages/RestaurantList/RestaurantList.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/01-solution?file=src/pages/RestaurantList/RestaurantList.tsx).
 
 </details>
 
-## Objective 2: Move the fetch to a `useStates` Hook
-
-In a previous section, we created a `useCities` Hook in our `hooks.ts` file so that our code would be more maintainable, then we used the Hook in our `<RestaurantList>` component.
-
-Our `<RestaurantList>` component is starting to get long again with the new state list data fetching code that we just added. Let’s refactor it and move our `fetch` logic to a custom Hook!
-
-### Setup 2
-
-✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
-
-@diff ../../../exercises/react-vite/09-making-http-requests/01-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/09-making-http-requests/02-problem/src/pages/RestaurantList/RestaurantList.tsx only
-
-✏️ Update **src/services/restaurant/hooks.ts** to be:
-
-@diff ../../../exercises/react-vite/09-making-http-requests/01-solution/src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/02-problem/src/services/restaurant/hooks.ts only
-
-### Verify 2
-
-✏️ Update **src/pages/RestaurantList/RestaurantList.test.tsx** to be:
-
-@diff ../../../exercises/react-vite/09-making-http-requests/01-solution/src/pages/RestaurantList/RestaurantList.test.tsx ../../../exercises/react-vite/09-making-http-requests/02-solution/src/pages/RestaurantList/RestaurantList.test.tsx only
-
-✏️ Update **src/services/restaurant/hooks.test.ts** to be:
-
-@diff ../../../exercises/react-vite/09-making-http-requests/01-solution/src/services/restaurant/hooks.test.ts ../../../exercises/react-vite/09-making-http-requests/02-solution/src/services/restaurant/hooks.test.ts only
-
-### Exercise 2
-
-- Refactor the existing `useState` and `useEffect` logic into a new `useStates` Hook.
-
-Hint: After moving the state and effect logic into `hooks.ts`, use your new Hook in `RestaurantList.tsx`.
-
-<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-problem?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-problem?file=src/services/restaurant/hooks.ts) to do this exercise in an online code editor.
-
-### Solution 2
-
-<details>
-<summary>Click to see the solution</summary>
-
-✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
-
-@diff ../../../exercises/react-vite/09-making-http-requests/02-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/09-making-http-requests/02-solution/src/pages/RestaurantList/RestaurantList.tsx only
-
-✏️ Update **src/services/restaurant/hooks.ts** to be:
-
-@diff ../../../exercises/react-vite/09-making-http-requests/02-problem/src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/02-solution/src/services/restaurant/hooks.ts only
-
-<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-solution?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-solution?file=src/services/restaurant/hooks.ts).
-
-</details>
-
-## Objective 3: Update the `useCities` Hook to fetch data from the API
+## Objective 2: Update the `useCities` Hook to fetch data from the API
 
 Let’s continue our quest to load data from our API and update our `useCities` Hook to fetch data.
 
@@ -292,23 +255,23 @@ Here’s a breakdown of this URL:
   - `param1=value1`
   - `param2=value2`
 
-### Setup 3
+### Setup 2
 
 ✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/02-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/09-making-http-requests/03-problem/src/pages/RestaurantList/RestaurantList.tsx only
+@diff ../../../exercises/react-vite/09-making-http-requests/01-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/09-making-http-requests/02-problem/src/pages/RestaurantList/RestaurantList.tsx only
 
-### Verify 3
+### Verify 2
 
 ✏️ Update **src/pages/RestaurantList/RestaurantList.test.tsx** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/02-solution/src/pages/RestaurantList/RestaurantList.test.tsx ../../../exercises/react-vite/09-making-http-requests/03-solution/src/pages/RestaurantList/RestaurantList.test.tsx only
+@diff ../../../exercises/react-vite/09-making-http-requests/01-solution/src/pages/RestaurantList/RestaurantList.test.tsx ../../../exercises/react-vite/09-making-http-requests/02-solution/src/pages/RestaurantList/RestaurantList.test.tsx only
 
 ✏️ Update **src/services/restaurant/hooks.test.ts** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/02-solution/src/services/restaurant/hooks.test.ts ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/restaurant/hooks.test.ts only
+@diff ../../../exercises/react-vite/09-making-http-requests/01-solution/src/services/restaurant/hooks.test.ts ../../../exercises/react-vite/09-making-http-requests/02-solution/src/services/restaurant/hooks.test.ts only
 
-### Exercise 3
+### Exercise 2
 
 Update our `useCities()` Hook to fetch cities from the Place My Order API, given a selected state.
 
@@ -317,26 +280,26 @@ When calling the Place My Order API, include the `state` query parameter:
 
 Hint: Remember to include the `state` in the dependency array of the `useEffect()` in `useCities()`.
 
-<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-problem?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-problem?file=src/services/restaurant/hooks.ts) to do this exercise in an online code editor.
+<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-problem?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-problem?file=src/services/restaurant/hooks.ts) to do this exercise in an online code editor.
 
-### Solution 3
+### Solution 2
 
 <details>
 <summary>Click to see the solution</summary>
 
 ✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/03-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/09-making-http-requests/03-solution/src/pages/RestaurantList/RestaurantList.tsx only
+@diff ../../../exercises/react-vite/09-making-http-requests/02-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/09-making-http-requests/02-solution/src/pages/RestaurantList/RestaurantList.tsx only
 
 ✏️ Update **src/services/restaurant/hooks.ts** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/03-problem/src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/restaurant/hooks.ts only
+@diff ../../../exercises/react-vite/09-making-http-requests/02-problem/src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/02-solution/src/services/restaurant/hooks.ts only
 
-<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-solution?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-solution?file=src/services/restaurant/hooks.ts).
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-solution?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-solution?file=src/services/restaurant/hooks.ts).
 
 </details>
 
-## Objective 4: Create an `apiRequest` helper and use it in the Hooks.
+## Objective 3: Create an `apiRequest` helper and use it in the Hooks.
 
 Now that we have two Hooks that fetch data in a similar way, let’s create an `apiRequest` helper function that both Hooks can use.
 
@@ -366,27 +329,27 @@ Let’s take a look at how to handle these types of errors:
 
 In the example above, we `catch` the `error` and check its type. If it’s already an `instanceof Error`, then it will have a `message` property and we can use it as-is. If it’s not, then we can create our own `new Error()` so we _always_ have an error to consume in our Hooks or components.
 
-### Setup 4
+### Setup 3
 
 ✏️ Create **src/services/api.ts** and update it to be:
 
-@sourceref ../../../exercises/react-vite/09-making-http-requests/04-problem/src/services/api.ts
+@sourceref ../../../exercises/react-vite/09-making-http-requests/03-problem/src/services/api.ts
 
 ✏️ Update **src/services/restaurant/hooks.ts** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/04-problem/src/services/restaurant/hooks.ts only
+@diff ../../../exercises/react-vite/09-making-http-requests/02-solution/src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/03-problem/src/services/restaurant/hooks.ts only
 
-### Verify 4
+### Verify 3
 
 ✏️ Create **src/services/api.test.ts** and update it to be:
 
-@sourceref ../../../exercises/react-vite/09-making-http-requests/04-solution/src/services/api.test.ts
+@sourceref ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/api.test.ts
 
 ✏️ Update **src/services/restaurant/hooks.test.ts** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/restaurant/hooks.test.ts ../../../exercises/react-vite/09-making-http-requests/04-solution/src/services/restaurant/hooks.test.ts only
+@diff ../../../exercises/react-vite/09-making-http-requests/02-solution/src/services/restaurant/hooks.test.ts ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/restaurant/hooks.test.ts only
 
-### Exercise 4
+### Exercise 3
 
 - Implement the `apiRequest` helper function to handle errors returned and thrown from `fetch()`.
 - Update the `useCities` and `useStates` Hooks to use the `data` and `error` returned from `apiRequest`.
@@ -400,6 +363,66 @@ stringifyQuery({
 })
 ```
 
+<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-problem?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-problem?file=src/services/restaurant/hooks.ts) to do this exercise in an online code editor.
+
+### Solution 3
+
+<details>
+<summary>Click to see the solution</summary>
+
+✏️ Update **src/services/api.ts** to be:
+
+@diff ../../../exercises/react-vite/09-making-http-requests/03-problem/src/services/api.ts ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/api.ts only
+
+✏️ Update **src/services/restaurant/hooks.ts** to be:
+
+@diff ../../../exercises/react-vite/09-making-http-requests/03-problem/src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/restaurant/hooks.ts only
+
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-solution?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-solution?file=src/services/restaurant/hooks.ts).
+
+</details>
+
+## Objective 4: Fetch the list of restaurants
+
+Let’s finish our quest to load data from our API by creating a Hook to fetch the list of restaurants and use it in our component.
+
+Now that we are able to capture a user’s state and city preferences, we want to only show the restaurants in the selected city:
+
+<img alt="A web page titled “Restaurants” from place-my-order.com showing that “Illinois” and “Chicago” are selected. Underneath the dropdowns is a list of restaurants that are in Chicago." src="../static/img/react-vite/09-making-http-requests/04-solution-with-selection.png" width="689"/>
+
+### Setup 4
+
+✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
+
+@diff ../../../exercises/react-vite/09-making-http-requests/03-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/09-making-http-requests/04-problem/src/pages/RestaurantList/RestaurantList.tsx only
+
+✏️ Update **src/services/restaurant/interfaces.ts** to be:
+
+@diff ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/restaurant/interfaces.ts ../../../exercises/react-vite/09-making-http-requests/04-solution/src/services/restaurant/interfaces.ts only
+
+✏️ Update **src/services/restaurant/hooks.ts** to be:
+
+@diff ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/04-problem/src/services/restaurant/hooks.ts only
+
+### Verify 4
+
+If you’ve implemented the solution correctly, when you use the select boxes to choose state and city, you should see a list of just restaurants from the selected city returned.
+
+✏️ Update **src/pages/RestaurantList/RestaurantList.test.tsx** to be:
+
+@diff ../../../exercises/react-vite/09-making-http-requests/03-solution/src/pages/RestaurantList/RestaurantList.test.tsx ../../../exercises/react-vite/09-making-http-requests/04-solution/src/pages/RestaurantList/RestaurantList.test.tsx only
+
+✏️ Update **src/services/restaurant/hooks.test.ts** to be:
+
+@diff ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/restaurant/hooks.test.ts ../../../exercises/react-vite/09-making-http-requests/04-solution/src/services/restaurant/hooks.test.ts only
+
+### Exercise 4
+
+- Create a `useRestaurants` Hook for fetching the list of restaurants.
+- Update `RestaurantList.tsx` to use our new `useRestaurants` Hook.
+
+Hint: The requested URL with query parameters should look like this: `'/restaurants?filter[address.state]=IL&filter[address.city]=Chicago'`
+
 <strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/04-problem?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/04-problem?file=src/services/restaurant/hooks.ts) to do this exercise in an online code editor.
 
 ### Solution 4
@@ -407,75 +430,15 @@ stringifyQuery({
 <details>
 <summary>Click to see the solution</summary>
 
-✏️ Update **src/services/api.ts** to be:
+✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/04-problem/src/services/api.ts ../../../exercises/react-vite/09-making-http-requests/04-solution/src/services/api.ts only
+@diff ../../../exercises/react-vite/09-making-http-requests/04-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/09-making-http-requests/04-solution/src/pages/RestaurantList/RestaurantList.tsx only
 
 ✏️ Update **src/services/restaurant/hooks.ts** to be:
 
 @diff ../../../exercises/react-vite/09-making-http-requests/04-problem/src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/04-solution/src/services/restaurant/hooks.ts only
 
 <strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/04-solution?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/04-solution?file=src/services/restaurant/hooks.ts).
-
-</details>
-
-## Objective 5: Fetch the list of restaurants
-
-Let’s finish our quest to load data from our API by creating a Hook to fetch the list of restaurants and use it in our component.
-
-Now that we are able to capture a user’s state and city preferences, we want to only show the restaurants in the selected city:
-
-<img alt="A web page titled “Restaurants” from place-my-order.com showing that “Illinois” and “Chicago” are selected. Underneath the dropdowns is a list of restaurants that are in Chicago." src="../static/img/react-vite/09-making-http-requests/05-solution-with-selection.png" width="689"/>
-
-### Setup 5
-
-✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
-
-@diff ../../../exercises/react-vite/09-making-http-requests/04-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/09-making-http-requests/05-problem/src/pages/RestaurantList/RestaurantList.tsx only
-
-✏️ Update **src/services/restaurant/interfaces.ts** to be:
-
-@diff ../../../exercises/react-vite/09-making-http-requests/04-solution/src/services/restaurant/interfaces.ts ../../../exercises/react-vite/09-making-http-requests/05-solution/src/services/restaurant/interfaces.ts only
-
-✏️ Update **src/services/restaurant/hooks.ts** to be:
-
-@diff ../../../exercises/react-vite/09-making-http-requests/04-solution/src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/05-problem/src/services/restaurant/hooks.ts only
-
-### Verify 5
-
-If you’ve implemented the solution correctly, when you use the select boxes to choose state and city, you should see a list of just restaurants from the selected city returned.
-
-✏️ Update **src/pages/RestaurantList/RestaurantList.test.tsx** to be:
-
-@diff ../../../exercises/react-vite/09-making-http-requests/04-solution/src/pages/RestaurantList/RestaurantList.test.tsx ../../../exercises/react-vite/09-making-http-requests/05-solution/src/pages/RestaurantList/RestaurantList.test.tsx only
-
-✏️ Update **src/services/restaurant/hooks.test.ts** to be:
-
-@diff ../../../exercises/react-vite/09-making-http-requests/04-solution/src/services/restaurant/hooks.test.ts ../../../exercises/react-vite/09-making-http-requests/05-solution/src/services/restaurant/hooks.test.ts only
-
-### Exercise 5
-
-- Create a `useRestaurants` Hook for fetching the list of restaurants.
-- Update `RestaurantList.tsx` to use our new `useRestaurants` Hook.
-
-Hint: The requested URL with query parameters should look like this: `'/restaurants?filter[address.state]=IL&filter[address.city]=Chicago'`
-
-<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/05-problem?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/05-problem?file=src/services/restaurant/hooks.ts) to do this exercise in an online code editor.
-
-### Solution 5
-
-<details>
-<summary>Click to see the solution</summary>
-
-✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
-
-@diff ../../../exercises/react-vite/09-making-http-requests/05-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/09-making-http-requests/05-solution/src/pages/RestaurantList/RestaurantList.tsx only
-
-✏️ Update **src/services/restaurant/hooks.ts** to be:
-
-@diff ../../../exercises/react-vite/09-making-http-requests/05-problem/src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/05-solution/src/services/restaurant/hooks.ts only
-
-<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/05-solution?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/05-solution?file=src/services/restaurant/hooks.ts).
 
 </details>
 

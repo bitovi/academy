@@ -256,12 +256,12 @@ It will be helpful to have a third command-line interface (CLI) tab for the `npm
 
 ### Exercise 1
 
-- Update the `useState` in `hooks.ts` to call `useEffect()` and `fetch` data from `${process.env.PMO_API}/states`.
-- Update `StateList.tsx` to call `useState()` and use the `StateResponse` interface.
+- Update the `useStates` in `hooks.ts` to call `useEffect()` and `fetch` data from `${process.env.PMO_API}/states`.
+- Update `StateList.tsx` to call `useStates()` and use the `StateResponse` interface.
 
 **Hint:** Call your state setter after you parse the JSON response from `fetch()`.
 
-**Hint:** `useState()` return `isPending` and `error`. Use these states to inform the user the status.
+**Hint:** `useStates()` return `isPending` and `error`. Use these states to inform the user the status.
 
 **Hint:** Use `Array.isArray(data) ? data : data?.data ?? undefined` when you need to check for `data` being an Array or an Object response.
 

@@ -1,8 +1,8 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import Home from "./pages/Home"
-import RestaurantList from "./pages/RestaurantList"
+import Home from "./pages/Home/index.ts"
+import RestaurantList from "./pages/RestaurantList/index.ts"
 import App from "./App.tsx"
 import "./index.css"
 

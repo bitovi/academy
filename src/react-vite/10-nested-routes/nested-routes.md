@@ -114,11 +114,11 @@ The larger directory tree should look like the following:
 
 ✏️ Update **src/pages/RestaurantList/ListItem.tsx** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/05-solution/src/pages/RestaurantList/ListItem.tsx ../../../exercises/react-vite/10-nested-routes/01-solution/src/pages/RestaurantList/ListItem.tsx only
+@diff ../../../exercises/react-vite/09-making-http-requests/04-solution/src/pages/RestaurantList/ListItem.tsx ../../../exercises/react-vite/10-nested-routes/01-solution/src/pages/RestaurantList/ListItem.tsx only
 
 ✏️ Update **src/services/restaurant/hooks.ts** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/05-solution/src/services/restaurant/hooks.ts ../../../exercises/react-vite/10-nested-routes/01-solution/src/services/restaurant/hooks.ts only
+@diff ../../../exercises/react-vite/09-making-http-requests/04-solution/src/services/restaurant/hooks.ts ../../../exercises/react-vite/10-nested-routes/01-solution/src/services/restaurant/hooks.ts only
 
 ### Verify 1
 
@@ -134,15 +134,15 @@ The existing test already cover routing, so no new tests are needed. Ensure the 
 
 ✏️ Update **src/pages/RestaurantList/ListItem.test.tsx** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/05-solution/src/pages/RestaurantList/ListItem.test.tsx ../../../exercises/react-vite/10-nested-routes/01-solution/src/pages/RestaurantList/ListItem.test.tsx only
+@diff ../../../exercises/react-vite/09-making-http-requests/04-solution/src/pages/RestaurantList/ListItem.test.tsx ../../../exercises/react-vite/10-nested-routes/01-solution/src/pages/RestaurantList/ListItem.test.tsx only
 
 ✏️ Update **src/pages/RestaurantList/RestaurantList.test.tsx** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/05-solution/src/pages/RestaurantList/RestaurantList.test.tsx ../../../exercises/react-vite/10-nested-routes/01-solution/src/pages/RestaurantList/RestaurantList.test.tsx only
+@diff ../../../exercises/react-vite/09-making-http-requests/04-solution/src/pages/RestaurantList/RestaurantList.test.tsx ../../../exercises/react-vite/10-nested-routes/01-solution/src/pages/RestaurantList/RestaurantList.test.tsx only
 
 ✏️ Update **src/services/restaurant/hooks.test.ts** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/05-solution/src/services/restaurant/hooks.test.ts ../../../exercises/react-vite/10-nested-routes/01-solution/src/services/restaurant/hooks.test.ts only
+@diff ../../../exercises/react-vite/09-making-http-requests/04-solution/src/services/restaurant/hooks.test.ts ../../../exercises/react-vite/10-nested-routes/01-solution/src/services/restaurant/hooks.test.ts only
 
 ### Exercise 1
 
@@ -157,7 +157,7 @@ Refactor the router config in **src/main.tsx** to nest the restaurant routes.
 
 ✏️ Update **src/main.tsx** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/05-solution/src/main.tsx ../../../exercises/react-vite/10-nested-routes/01-solution/src/main.tsx only
+@diff ../../../exercises/react-vite/09-making-http-requests/04-solution/src/main.tsx ../../../exercises/react-vite/10-nested-routes/01-solution/src/main.tsx only
 
 <strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/01-solution?file=src/main.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/01-solution?file=src/main.tsx).
 

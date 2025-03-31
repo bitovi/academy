@@ -10,7 +10,7 @@ const RestaurantList: React.FC = () => {
 
   const statesResponse = useStates()
 
-  const cities = useCities(state)
+  const citiesResponse = useCities(state)
 
   const restaurants = {
     data: [
@@ -86,22 +86,31 @@ const RestaurantList: React.FC = () => {
           </div>
 
           <div className="form-group">
-            City:
-            {state ? (
-              cities.map(({ name }) => (
-                <button
-                  key={name}
-                  onClick={() => updateCity(name)}
-                  type="button"
-                >
-                  {name}
-                </button>
-              ))
-            ) : (
-              <> Choose a state before selecting a city</>
-            )}
-            <hr />
-            <p>Current city: {city || "(none)"}</p>
+            <label className="control-label" htmlFor="citySelect">
+              City
+            </label>
+            <select
+              className="form-control"
+              id="citySelect"
+              onChange={(event) => updateCity(event.target.value)}
+              value={city}
+            >
+              <option key="choose_city" value="">
+                {state
+                  ? citiesResponse.isPending
+                    ? "Loading cities…"
+                    : citiesResponse.error
+                      ? citiesResponse.error.message
+                      : "Choose a city"
+                  : "Choose a state before selecting a city"}
+              </option>
+              {state &&
+                citiesResponse.data?.map(({ name }) => (
+                  <option key={name} value={name}>
+                    {name}
+                  </option>
+                ))}
+            </select>
           </div>
         </form>
 

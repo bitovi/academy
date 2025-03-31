@@ -10,7 +10,7 @@ const RestaurantList: React.FC = () => {
 
   const statesResponse = useStates()
 
-  const cities = useCities(state)
+  const citiesResponse = useCities(state)
 
   const restaurants = {
     data: [

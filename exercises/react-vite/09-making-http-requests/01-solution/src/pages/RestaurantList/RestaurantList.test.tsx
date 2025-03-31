@@ -1,33 +1,27 @@
 import "@testing-library/jest-dom"
 import { act, render, screen } from "@testing-library/react"
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
+import { beforeEach, describe, expect, it, vi } from "vitest"
 
 import * as restaurantHooks from "../../services/restaurant/hooks"
 import RestaurantList from "./RestaurantList"
 
-// Mocking necessary modules
-vi.mock("../../services/restaurant/hooks")
-
-// Mocking the global fetch function
-const mockFetch = vi.fn()
-
-// @ts-ignore `global` exists in node environments like our test runner.
-global.fetch = mockFetch
-
-beforeEach(() => {
-  mockFetch.mockClear()
-
-  mockFetch.mockResolvedValueOnce({
-    ok: true,
-    json: () => Promise.resolve({ message: "success" }),
-    statusText: "OK",
-    status: 200,
-  })
-})
-
-afterEach(() => {
-  mockFetch.mockClear()
-})
+// Mock the hooks used in the component
+vi.mock("../../services/restaurant/hooks", () => ({
+  useCities: vi.fn(() => {
+    return {
+      data: null,
+      error: null,
+      isPending: false,
+    }
+  }),
+  useStates: vi.fn(() => {
+    return {
+      data: null,
+      error: null,
+      isPending: false,
+    }
+  }),
+}))
 
 describe("RestaurantList component", () => {
   beforeEach(async () => {

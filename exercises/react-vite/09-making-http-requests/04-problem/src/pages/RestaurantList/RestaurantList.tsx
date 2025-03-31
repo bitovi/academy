@@ -1,7 +1,11 @@
 import CheeseThumbnail from "place-my-order-assets/images/2-thumbnail.jpg"
 import PoutineThumbnail from "place-my-order-assets/images/4-thumbnail.jpg"
 import { useState } from "react"
-import { useCities, useStates } from "../../services/restaurant/hooks"
+import {
+  useCities,
+  useRestaurants,
+  useStates,
+} from "../../services/restaurant/hooks"
 import ListItem from "./ListItem"
 
 const RestaurantList: React.FC = () => {
@@ -114,19 +118,35 @@ const RestaurantList: React.FC = () => {
           </div>
         </form>
 
-        {restaurants.data ? (
-          restaurants.data.map(({ _id, address, images, name, slug }) => (
-            <ListItem
-              key={_id}
-              address={address}
-              name={name}
-              slug={slug}
-              thumbnail={images.thumbnail}
-            />
-          ))
-        ) : (
-          <p>No restaurants.</p>
+        {city && restaurantsResponse.error && (
+          <p aria-live="polite" className="restaurant">
+            Error loading restaurants: {restaurantsResponse.error.message}
+          </p>
         )}
+
+        {city && restaurantsResponse.isPending && (
+          <p aria-live="polite" className="restaurant loading">
+            Loading restaurants…
+          </p>
+        )}
+
+        {city &&
+          restaurantsResponse.data &&
+          (restaurantsResponse.data.length === 0
+            ? !restaurantsResponse.isPending && (
+                <p aria-live="polite">No restaurants found.</p>
+              )
+            : restaurantsResponse.data.map(
+                ({ _id, slug, name, address, images }) => (
+                  <ListItem
+                    key={_id}
+                    address={address}
+                    name={name}
+                    slug={slug}
+                    thumbnail={images.thumbnail}
+                  />
+                ),
+              ))}
       </div>
     </>
   )
