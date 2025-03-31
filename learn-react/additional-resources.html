@@ -3,15 +3,15 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/react-vite/07-styling-in-react/styling-in-react.md
-	@page learn-react/styling-in-react
+	source: src/react-vite/13-addtional-resources/additional-recources.md
+	@page learn-react/additional-resources
 ######################################################################## -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn about different ways to apply CSS styles in React applications. 
+  <meta name="description" content="Continue your learning journey with our curated resources! Explore the next course to take, stay updated with our latest blog posts, join the conversation on Discord, and access helpful documentation. We’d also love your feedback — take our quick survey to help us improve your experience. 
 ">
   
   <!-- Google Tag Manager -->
@@ -22,7 +22,7 @@
   })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
   <!-- End Google Tag Manager -->
 
-  <title>Bitovi Academy - Styling in React</title>
+  <title>Bitovi Academy - Additional Resources</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -316,17 +316,14 @@
 		
 			
 				
-					<li class="current
-           						parent
-           						expanded">
+					<li class="
+           						
+           						">
 						<a class="page"
 							href="styling-in-react.html"
 							title="Learn about different ways to apply CSS styles in React applications.">
 							Styling in React
 						</a>
-						
-							
-
 						
 					</li>
 				
@@ -409,14 +406,17 @@
 		
 			
 				
-					<li class="
-           						
-           						">
+					<li class="current
+           						parent
+           						expanded">
 						<a class="page"
 							href="additional-resources.html"
 							title="Continue your learning journey with our curated resources! Explore the next course to take, stay updated with our latest blog posts, join the conversation on Discord, and access helpful documentation. We’d also love your feedback — take our quick survey to help us improve your experience.">
 							Additional Resources
 						</a>
+						
+							
+
 						
 					</li>
 				
@@ -537,7 +537,7 @@ covering CanJS core libraries.">
     <div class="main-content">
   		
   			<section class="title">
-	<h1>Styling in React <code>page</code></h1>
+	<h1>Additional Resources <code>page</code></h1>
 </section>
 
   		
@@ -545,7 +545,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn about different ways to apply CSS styles in React applications.</p>
+    <p>Continue your learning journey with our curated resources! Explore the next course to take, stay updated with our latest blog posts, join the conversation on Discord, and access helpful documentation. We’d also love your feedback — take our quick survey to help us improve your experience.</p>
 
 </section>
 
@@ -558,305 +558,16 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2 id="overview">Overview</h2>
-<p>In this section, we will:</p>
-<ul>
-<li>Review how plain CSS works in React applications</li>
-<li>Introduce CSS Modules</li>
-<li>Create a component-specific stylesheet</li>
-<li>Apply styles in a component</li>
-</ul>
-<h2 id="objective-add-a-styled-link">Objective: Add a styled link</h2>
-<p>We have the navigation links in the header, but it’d be nice if our <code>Home</code> component had a nice big Call to Action (CTA) in it so our users were directed to the next step: Choose a Restaurant.</p>
-<h3 id="styling-options-in-react-applications">Styling options in React applications</h3>
-<p>There is no prescribed approach for styling React apps. It’s entirely possible to style components using regular CSS. This approach works fine for many applications, especially smaller ones.</p>
-<p>However, as your application grows in complexity, you might encounter challenges with style management. For instance, CSS written for one component can unintentionally affect other parts of your application.</p>
-<p>The community has built several styling options. We will be using CSS Modules as it is one of the most popular styling libraries and is very approachable for anyone that is used to styling in plain CSS. CSS Modules offer a way to write CSS that’s scoped to individual components, thus preventing style clashes and maintaining a cleaner codebase.</p>
-<h3 id="reviewing-how-plain-css-works">Reviewing how plain CSS works</h3>
-<p>In a standard React application using regular CSS, styles are global. This means that any style you define can potentially affect any element in your application that matches the style’s selector.</p>
-<p>Let’s imagine that we have two components in our application: <code>&lt;BlogPost&gt;</code> and <code>&lt;UserProfile&gt;</code>. Both of them feature an avatar image, one for the author of a post and the other for the signed-in user.</p>
-<p>Here’s what the <code>BlogPost.css</code> file might look like:</p>
-<pre><code class="language-css">.avatar {
-  float: left;
-  margin-right: 10px;
-}
-</code></pre>
-<p>And the <code>BlogPost.tsx</code> component:</p>
-<pre><code class="language-tsx">import &quot;./BlogPost.css&quot;
-
-const BlogPost: React.FC = ({ authorAvatar, content }) =&gt; {
-  return (
-    &lt;article&gt;
-      &lt;img alt=&quot;Headshot showing…&quot; className=&quot;avatar&quot; src={authorAvatar} /&gt;
-      &lt;p&gt;{content}&lt;/p&gt;
-    &lt;/article&gt;
-  )
-}
-</code></pre>
-<p>Here’s what the <code>UserProfile.css</code> file might look like:</p>
-<pre><code class="language-css">.avatar {
-  border-radius: 50%;
-  height: 100px;
-  width: 100px;
-}
-</code></pre>
-<p>And the <code>UserProfile.tsx</code> component:</p>
-<pre><code class="language-tsx">import &quot;./UserProfile.css&quot;
-
-const UserProfile: React.FC = () =&gt; {
-  return (
-    &lt;img alt=&quot;User avatar showing…&quot; className=&quot;avatar&quot; src=&quot;user-profile.jpg&quot; /&gt;
-  )
-}
-</code></pre>
-<p>What will the final CSS be?</p>
-<p>In this case, the two style declarations combined will be applied to both images:</p>
-<pre><code class="language-css">.avatar {
-  border-radius: 50%;
-  float: left;
-  height: 100px;
-  margin-right: 10px;
-  width: 100px;
-}
-</code></pre>
-<p>This is no good! When someone edits one component, it looks like they’re only changing the styles for that single component, but in fact they are changing any instance where that <code>class</code> name is used globally throughout the entire application.</p>
-<p>Let’s solve this!</p>
-<h3 id="introducing-css-modules">Introducing CSS modules</h3>
-<p>CSS Modules works like regular CSS, but the class names are randomized to prevent conflicts between components. When using CSS Modules, if multiple components implement a <code>.avatar</code> class, those classes will be unique and conflict-free because CSS Modules will rename each class with a unique random string like <code>.avatar_R8f2</code>.</p>
-<p>For example, these styles in a CSS module:</p>
-<pre><code class="language-css">/* BlogPost.module.css */
-.avatar {
-  float: left;
-  margin-right: 10px;
-}
-</code></pre>
-<p>Will be converted into the following:</p>
-<pre><code class="language-css">/* bundle.css */
-.avatar_R8f2 {
-  float: left;
-  margin-right: 10px;
-}
-</code></pre>
-<p>The standard procedure with CSS Modules is to create a stylesheet for each component. That stylesheet is placed in the same folder as the component. In order to identify the file as a CSS Module, the filename should end with <code>.module.css</code>. The file structure for a BlogPost component will look like the following:</p>
-<div class="directory-list">
-<ul>
-<li>BlogPost
-<ul>
-<li>BlogPost.module.css</li>
-<li>BlogPost.test.tsx</li>
-<li>BlogPost.tsx</li>
-<li>index.ts</li>
-</ul></li>
-</ul>
-</div>
-<h3 id="importing-and-applying-styles">Importing and applying styles</h3>
-<p>During the build process, the CSS classes will be randomized and added to a global stylesheet. The randomized class names are imported into components as an object where the key is the original class and the value is the new, randomized string.</p>
-<p>Here’s an example of what the JS object imported from <code>BlogPost.module.css</code> might look like:</p>
-<pre><code class="language-tsx">export default { avatar: &quot;avatar_R8f2&quot; }
-</code></pre>
-<p>In order to add the <code>.avatar</code> class to a component, import the CSS Modules styling object and apply the class using the original class name as the key. Note the HTML <code>class</code> attribute is renamed to <code>className</code> in JSX because <code>class</code> is a reserved word in JavaScript.</p>
-<pre><code class="language-tsx">import styles from &quot;./BlogPost.module.css&quot;
-
-const BlogPost: React.FC = ({ authorAvatar, content }) =&gt; {
-  return (
-    &lt;article&gt;
-      &lt;img
-        alt=&quot;Headshot showing…&quot;
-        className={styles[&quot;avatar&quot;]}
-        src={authorAvatar}
-      /&gt;
-      &lt;p&gt;{content}&lt;/p&gt;
-    &lt;/article&gt;
-  )
-}
-</code></pre>
-<div line-highlight='1, 8'></div>
-<h3 id="avoid-plain-selectors">Avoid plain selectors</h3>
-<p>Note that CSS Modules cannot rename HTML tags, so all of your styling should use classes to avoid unexpected styling bugs. The following will apply to all <code>img</code> elements in the project and should be avoided.</p>
-<pre><code class="language-css">/* Don’t do this with CSS Modules as tag names can not be randomized */
-img {
-  float: right;
-}
-</code></pre>
-<p>Instead, make sure tags are used together with classes.</p>
-<pre><code class="language-css">img.fancyImage {
-  float: right;
-}
-
-.avatar img {
-  float: right;
-}
-</code></pre>
-<h3 id="install-css-modules">Install CSS Modules</h3>
-<p>Already done! Vite, our build tool, ships with first-class CSS Modules support. Vite also supports a few <a href="https://vitejs.dev/guide/features#css">other styling options</a> out of the box.</p>
-<h3 id="setup">Setup</h3>
-<p>We’ve created some CSS for this exercise. Create a CSS Modules file and copy the following styles into it.</p>
-<p>✏️ Create <strong>src/pages/Home/Home.module.css</strong> and update it to be:</p>
-<pre><code class="language-css">a {
-  background-color: #337ab7;
-  border-color: #2e6da4;
-  border-radius: 6px;
-  color: #fff;
-  display: inline-block;
-  font-weight: normal;
-  padding: 10px 16px;
-}
-
-a:focus {
-  background-color: #286090;
-  border-color: #122b40;
-  color: #fff;
-  text-decoration: none;
-}
-
-a:hover {
-  background-color: #286090;
-  border-color: #204d74;
-  color: #fff;
-  text-decoration: none;
-}
-
-a:active {
-  background-color: #204d74;
-  border-color: #122b40;
-  color: #fff;
-  text-decoration: none;
-}
-
-</code></pre>
-<h3 id="verify">Verify</h3>
-<p>✏️ Update <strong>src/pages/Home/Home.test.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
-import { render, screen } from &quot;@testing-library/react&quot;
-import { MemoryRouter } from &quot;react-router-dom&quot;
-import { beforeEach, describe, expect, it } from &quot;vitest&quot;
-
-import Home from &quot;./Home&quot;
-
-describe(&quot;Home component&quot;, () =&gt; {
-  beforeEach(() =&gt; {
-    render(
-      &lt;MemoryRouter&gt;
-        &lt;Home /&gt;
-      &lt;/MemoryRouter&gt;,
-    )
-  })
-
-  it(&quot;renders the image with correct attributes&quot;, () =&gt; {
-    const image = screen.getByAltText(/Restaurant table with glasses./i)
-    expect(image).toBeInTheDocument()
-    expect(image).toHaveAttribute(&quot;width&quot;, &quot;250&quot;)
-    expect(image).toHaveAttribute(&quot;height&quot;, &quot;380&quot;)
-  })
-
-  it(&quot;renders the title&quot;, () =&gt; {
-    const titleElement = screen.getByText(
-      /Ordering food has never been easier/i,
-    )
-    expect(titleElement).toBeInTheDocument()
-  })
-
-  it(&quot;renders the description paragraph&quot;, () =&gt; {
-    const description = screen.getByText(/We make it easier/i)
-    expect(description).toBeInTheDocument()
-  })
-
-  it(&quot;renders the link to the restaurants page&quot;, () =&gt; {
-    const link = screen.getByRole(&quot;link&quot;, { name: /choose a restaurant/i })
-    expect(link).toBeInTheDocument()
-    expect(link).toHaveAttribute(&quot;href&quot;, &quot;/restaurants&quot;)
-  })
-})
-
-</code></pre>
- <div line-highlight="3-4,9-13,27,34,36-40,only"></div>
-<h3 id="exercise">Exercise</h3>
-<p>Now that we’ve learned to apply styling in React with CSS Modules, it’s time to practice by styling a link in the Home component. You’ll bring in a <code>Link</code> component from React Router.</p>
-<ul>
-<li>Update the styles in <code>Home.module.css</code> to be usable as a CSS Module.</li>
-<li>Update the <code>&lt;Home&gt;</code> component to include a styled link:
-<ul>
-<li>Use <code>&lt;Link&gt;</code> (from the previous section!) to create a link to the <code>/restaurants</code> page.</li>
-<li>Import the <code>styles</code> from <code>Home.module.css</code> and apply them to the new link.</li>
-</ul></li>
-</ul>
-<p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/07-styling-in-react/01-problem?file=src/pages/Home/Home.module.css">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/07-styling-in-react/01-problem?file=src/pages/Home/Home.module.css">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3 id="solution">Solution</h3>
-<p><details>
-<summary>Click to see the solution</summary></p>
-<p>✏️ Update <strong>src/pages/Home/Home.module.css</strong> to be:</p>
-<pre><code class="language-css">.chooseButton {
-  background-color: #337ab7;
-  border-color: #2e6da4;
-  border-radius: 6px;
-  color: #fff;
-  display: inline-block;
-  font-weight: normal;
-  padding: 10px 16px;
-}
-
-.chooseButton:focus {
-  background-color: #286090;
-  border-color: #122b40;
-  color: #fff;
-  text-decoration: none;
-}
-
-.chooseButton:hover {
-  background-color: #286090;
-  border-color: #204d74;
-  color: #fff;
-  text-decoration: none;
-}
-
-.chooseButton:active {
-  background-color: #204d74;
-  border-color: #122b40;
-  color: #fff;
-  text-decoration: none;
-}
-
-</code></pre>
- <div line-highlight="1,11,18,25,only"></div>
-<p>✏️ Update <strong>src/pages/Home/Home.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import HeroImage from &quot;place-my-order-assets/images/homepage-hero.jpg&quot;
-import { Link } from &quot;react-router-dom&quot;
-import styles from &quot;./Home.module.css&quot;
-
-const Home: React.FC = () =&gt; {
-  return (
-    &lt;div className=&quot;homepage&quot; style={{ margin: &quot;auto&quot; }}&gt;
-      &lt;img
-        alt=&quot;Restaurant table with glasses.&quot;
-        height=&quot;380&quot;
-        src={HeroImage}
-        width=&quot;250&quot;
-      /&gt;
-
-      &lt;h1&gt;Ordering food has never been easier&lt;/h1&gt;
-
-      &lt;p&gt;
-        We make it easier than ever to order gourmet food from your favorite
-        local restaurants.
-      &lt;/p&gt;
-
-      &lt;p&gt;
-        &lt;Link className={styles.chooseButton} to=&quot;/restaurants&quot;&gt;
-          Choose a Restaurant
-        &lt;/Link&gt;
-      &lt;/p&gt;
-    &lt;/div&gt;
-  )
-}
-
-export default Home
-
-</code></pre>
- <div line-highlight="2-3,22-26,only"></div>
-<p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/07-styling-in-react/01-solution?file=src/pages/Home/Home.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/07-styling-in-react/01-solution?file=src/pages/Home/Home.tsx">CodeSandbox</a>.</p>
-<p></details></p>
-<h2 id="next-steps">Next steps</h2>
-<p>In the next section, we’ll learn to manage state.</p>
+    <h2 id="blogs">Blogs</h2>
+<p>Stay in the loop with the latest content on how to build better apps! <a href="https://www.bitovi.com/blog/topic/react">Subscribe to our blog</a> and be the first to get updates on industry trends and expert advice delivered straight to your inbox.</p>
+<h2 id="discord">Discord</h2>
+<p>Join our community on <a href="https://discord.com/invite/J7ejFsZnJ4">Discord</a>! Connect with fellow learners and other Bitovians, ask questions, share insights, and get support as you progress through your learning journey.</p>
+<h2 id="documentation">Documentation</h2>
+<p>Looking for more resources? Check out the official <a href="https://react.dev/reference/react">React Documentation</a> and <a href="https://www.typescriptlang.org/docs/">TypeScript Documentation</a> for detailed guides, best practices, and expert insights to support your learning journey.</p>
+<h2 id="survey">Survey</h2>
+<p>Thanks for taking this Bitovi training! We are constantly looking to improve this
+course. Please fill out the following survey and we will send you a t-shirt!</p>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeFgRHlnNpDkUWN3JJRVuqwdKpQaJu3_LZK20Ut-aPKCzh65Q/viewform?embedded=true" width="640" height="1900" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
 
 </section>
 
@@ -895,7 +606,7 @@ export default Home
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-vite/07-styling-in-react/styling-in-react.md"},"description":"Learn about different ways to apply CSS styles in React applications. \n","name":"learn-react/styling-in-react","title":"Styling in React","type":"page","parent":"learn-react","order":7,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-vite/13-addtional-resources/additional-recources.md"},"description":"Continue your learning journey with our curated resources! Explore the next course to take, stay updated with our latest blog posts, join the conversation on Discord, and access helpful documentation. We’d also love your feedback — take our quick survey to help us improve your experience. \n","name":"learn-react/additional-resources","title":"Additional Resources","type":"page","parent":"learn-react","order":13,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
