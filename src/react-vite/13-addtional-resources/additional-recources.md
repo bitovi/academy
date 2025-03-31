@@ -16,7 +16,7 @@ Join our community on [Discord](https://discord.com/invite/J7ejFsZnJ4)! Connect 
 
 ## Documentation
 
-Looking for more resources? Check out our [React Documentation](https://react.dev/reference/react) and [TypeScript Documentation](https://www.typescriptlang.org/docs/) for detailed guides, best practices, and expert insights to support your learning journey.
+Looking for more resources? Check out the official [React Documentation](https://react.dev/reference/react) and [TypeScript Documentation](https://www.typescriptlang.org/docs/) for detailed guides, best practices, and expert insights to support your learning journey.
 
 ## Survey
 
