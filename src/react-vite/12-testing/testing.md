@@ -243,3 +243,5 @@ Compared to the prior test, this one inputs a string that is not a valid email a
 ## Next steps
 
 Congrats, you’ve completed this Bitovi Academy training!
+
+To continue your learning journey, be sure to check out our [Additional Resources](./additional-resources.html) page for further reading, hands-on exercises, and helpful guides.
