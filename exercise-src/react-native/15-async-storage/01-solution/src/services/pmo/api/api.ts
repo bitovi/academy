@@ -62,7 +62,7 @@ export async function apiRequest<
 
     if (method === "GET" && response.ok) {
       await storeData<CachedResponse<Data>>(keyPrefix + requestUrl, {
-        data: data,
+        data: "data" in data ? data.data : data,
         dateTime: new Date().toJSON(),
       })
     }
@@ -73,7 +73,7 @@ export async function apiRequest<
     }
 
     return {
-      data: data,
+      data: "data" in data ? data.data : data,
       error: undefined,
     }
   } catch (error) {
