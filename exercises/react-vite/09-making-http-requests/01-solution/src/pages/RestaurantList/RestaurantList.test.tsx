@@ -2,11 +2,11 @@ import "@testing-library/jest-dom"
 import { act, render, screen } from "@testing-library/react"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
-import * as restaurantHooks from "../../services/restaurant/hooks"
+import * as restaurantHooks from "../../services/pmo/restaurant"
 import RestaurantList from "./RestaurantList"
 
 // Mock the hooks used in the component
-vi.mock("../../services/restaurant/hooks", () => ({
+vi.mock("../../services/pmo/restaurant", () => ({
   useCities: vi.fn(() => {
     return {
       data: null,

@@ -192,9 +192,9 @@ It will be helpful to have a third terminal tab for the `npm run api` command.
 
 @diff ../../../exercises/react-vite/08-stateful-hooks/03-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/09-making-http-requests/01-problem/src/pages/RestaurantList/RestaurantList.tsx only
 
-✏️ Update **src/services/restaurant/hooks.ts** to be:
+✏️ Update **src/services/pmo/restaurant/hooks.ts** to be:
 
-@diff ../../../exercises/react-vite/08-stateful-hooks/03-solution//src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/01-problem/src/services/restaurant/hooks.ts only
+@diff ../../../exercises/react-vite/08-stateful-hooks/03-solution//src/services/pmo/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/01-problem/src/services/pmo/restaurant/hooks.ts only
 
 ### Verify 1
 
@@ -202,9 +202,9 @@ It will be helpful to have a third terminal tab for the `npm run api` command.
 
 @diff ../../../exercises/react-vite/08-stateful-hooks/02-solution/src/pages/RestaurantList/RestaurantList.test.tsx ../../../exercises/react-vite/09-making-http-requests/01-solution/src/pages/RestaurantList/RestaurantList.test.tsx only
 
-✏️ Update **src/services/restaurant/hooks.test.ts** to be:
+✏️ Update **src/services/pmo/restaurant/hooks.test.ts** to be:
 
-@diff ../../../exercises/react-vite/08-stateful-hooks/03-solution/src/services/restaurant/hooks.test.ts ../../../exercises/react-vite/09-making-http-requests/01-problem/src/services/restaurant/hooks.test.ts only
+@diff ../../../exercises/react-vite/08-stateful-hooks/03-solution/src/services/pmo/restaurant/hooks.test.ts ../../../exercises/react-vite/09-making-http-requests/01-problem/src/services/pmo/restaurant/hooks.test.ts only
 
 ### Exercise 1
 
@@ -226,9 +226,9 @@ It will be helpful to have a third terminal tab for the `npm run api` command.
 
 @diff ../../../exercises/react-vite/09-making-http-requests/01-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/09-making-http-requests/01-solution/src/pages/RestaurantList/RestaurantList.tsx only
 
-✏️ Update **src/services/restaurant/hooks.ts** to be:
+✏️ Update **src/services/pmo/restaurant/hooks.ts** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/01-problem/src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/01-solution/src/services/restaurant/hooks.ts only
+@diff ../../../exercises/react-vite/09-making-http-requests/01-problem/src/services/pmo/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/01-solution/src/services/pmo/restaurant/hooks.ts only
 
 <strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/01-solution?file=src/pages/RestaurantList/RestaurantList.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/01-solution?file=src/pages/RestaurantList/RestaurantList.tsx).
 
@@ -267,9 +267,9 @@ Here’s a breakdown of this URL:
 
 @diff ../../../exercises/react-vite/09-making-http-requests/01-solution/src/pages/RestaurantList/RestaurantList.test.tsx ../../../exercises/react-vite/09-making-http-requests/02-solution/src/pages/RestaurantList/RestaurantList.test.tsx only
 
-✏️ Update **src/services/restaurant/hooks.test.ts** to be:
+✏️ Update **src/services/pmo/restaurant/hooks.test.ts** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/01-solution/src/services/restaurant/hooks.test.ts ../../../exercises/react-vite/09-making-http-requests/02-solution/src/services/restaurant/hooks.test.ts only
+@diff ../../../exercises/react-vite/09-making-http-requests/01-solution/src/services/pmo/restaurant/hooks.test.ts ../../../exercises/react-vite/09-making-http-requests/02-solution/src/services/pmo/restaurant/hooks.test.ts only
 
 ### Exercise 2
 
@@ -280,7 +280,7 @@ When calling the Place My Order API, include the `state` query parameter:
 
 Hint: Remember to include the `state` in the dependency array of the `useEffect()` in `useCities()`.
 
-<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-problem?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-problem?file=src/services/restaurant/hooks.ts) to do this exercise in an online code editor.
+<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-problem?file=src/services/pmo/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-problem?file=src/services/pmo/restaurant/hooks.ts) to do this exercise in an online code editor.
 
 ### Solution 2
 
@@ -291,11 +291,11 @@ Hint: Remember to include the `state` in the dependency array of the `useEffect(
 
 @diff ../../../exercises/react-vite/09-making-http-requests/02-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/09-making-http-requests/02-solution/src/pages/RestaurantList/RestaurantList.tsx only
 
-✏️ Update **src/services/restaurant/hooks.ts** to be:
+✏️ Update **src/services/pmo/restaurant/hooks.ts** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/02-problem/src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/02-solution/src/services/restaurant/hooks.ts only
+@diff ../../../exercises/react-vite/09-making-http-requests/02-problem/src/services/pmo/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/02-solution/src/services/pmo/restaurant/hooks.ts only
 
-<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-solution?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-solution?file=src/services/restaurant/hooks.ts).
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-solution?file=src/services/pmo/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-solution?file=src/services/pmo/restaurant/hooks.ts).
 
 </details>
 
@@ -331,23 +331,27 @@ In the example above, we `catch` the `error` and check its type. If it’s alrea
 
 ### Setup 3
 
-✏️ Create **src/services/api.ts** and update it to be:
+✏️ Create **src/services/pmo/api/api.ts** and update it to be:
 
-@sourceref ../../../exercises/react-vite/09-making-http-requests/03-problem/src/services/api.ts
+@sourceref ../../../exercises/react-vite/09-making-http-requests/03-problem/src/services/pmo/api/api.ts
 
-✏️ Update **src/services/restaurant/hooks.ts** to be:
+✏️ Create **src/services/pmo/api/index.ts** and update it to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/02-solution/src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/03-problem/src/services/restaurant/hooks.ts only
+@sourceref ../../../exercises/react-vite/09-making-http-requests/03-problem/src/services/pmo/api/index.ts
+
+✏️ Update **src/services/pmo/restaurant/hooks.ts** to be:
+
+@diff ../../../exercises/react-vite/09-making-http-requests/02-solution/src/services/pmo/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/03-problem/src/services/pmo/restaurant/hooks.ts only
 
 ### Verify 3
 
-✏️ Create **src/services/api.test.ts** and update it to be:
+✏️ Create **src/services/pmo/api/api.test.ts** and update it to be:
 
-@sourceref ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/api.test.ts
+@sourceref ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/pmo/api/api.test.ts
 
-✏️ Update **src/services/restaurant/hooks.test.ts** to be:
+✏️ Update **src/services/pmo/restaurant/hooks.test.ts** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/02-solution/src/services/restaurant/hooks.test.ts ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/restaurant/hooks.test.ts only
+@diff ../../../exercises/react-vite/09-making-http-requests/02-solution/src/services/pmo/restaurant/hooks.test.ts ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/pmo/restaurant/hooks.test.ts only
 
 ### Exercise 3
 
@@ -363,22 +367,22 @@ stringifyQuery({
 })
 ```
 
-<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-problem?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-problem?file=src/services/restaurant/hooks.ts) to do this exercise in an online code editor.
+<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-problem?file=src/services/pmo/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-problem?file=src/services/pmo/restaurant/hooks.ts) to do this exercise in an online code editor.
 
 ### Solution 3
 
 <details>
 <summary>Click to see the solution</summary>
 
-✏️ Update **src/services/api.ts** to be:
+✏️ Update **src/services/pmo/api/api.ts** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/03-problem/src/services/api.ts ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/api.ts only
+@diff ../../../exercises/react-vite/09-making-http-requests/03-problem/src/services/pmo/api/api.ts ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/pmo/api/api.ts only
 
-✏️ Update **src/services/restaurant/hooks.ts** to be:
+✏️ Update **src/services/pmo/restaurant/hooks.ts** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/03-problem/src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/restaurant/hooks.ts only
+@diff ../../../exercises/react-vite/09-making-http-requests/03-problem/src/services/pmo/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/pmo/restaurant/hooks.ts only
 
-<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-solution?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-solution?file=src/services/restaurant/hooks.ts).
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-solution?file=src/services/pmo/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-solution?file=src/services/pmo/restaurant/hooks.ts).
 
 </details>
 
@@ -396,13 +400,13 @@ Now that we are able to capture a user’s state and city preferences, we want t
 
 @diff ../../../exercises/react-vite/09-making-http-requests/03-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/09-making-http-requests/04-problem/src/pages/RestaurantList/RestaurantList.tsx only
 
-✏️ Update **src/services/restaurant/interfaces.ts** to be:
+✏️ Update **src/services/pmo/restaurant/interfaces.ts** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/restaurant/interfaces.ts ../../../exercises/react-vite/09-making-http-requests/04-solution/src/services/restaurant/interfaces.ts only
+@diff ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/pmo/restaurant/interfaces.ts ../../../exercises/react-vite/09-making-http-requests/04-solution/src/services/pmo/restaurant/interfaces.ts only
 
-✏️ Update **src/services/restaurant/hooks.ts** to be:
+✏️ Update **src/services/pmo/restaurant/hooks.ts** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/04-problem/src/services/restaurant/hooks.ts only
+@diff ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/pmo/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/04-problem/src/services/pmo/restaurant/hooks.ts only
 
 ### Verify 4
 
@@ -412,9 +416,9 @@ If you’ve implemented the solution correctly, when you use the select boxes to
 
 @diff ../../../exercises/react-vite/09-making-http-requests/03-solution/src/pages/RestaurantList/RestaurantList.test.tsx ../../../exercises/react-vite/09-making-http-requests/04-solution/src/pages/RestaurantList/RestaurantList.test.tsx only
 
-✏️ Update **src/services/restaurant/hooks.test.ts** to be:
+✏️ Update **src/services/pmo/restaurant/hooks.test.ts** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/restaurant/hooks.test.ts ../../../exercises/react-vite/09-making-http-requests/04-solution/src/services/restaurant/hooks.test.ts only
+@diff ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/pmo/restaurant/hooks.test.ts ../../../exercises/react-vite/09-making-http-requests/04-solution/src/services/pmo/restaurant/hooks.test.ts only
 
 ### Exercise 4
 
@@ -423,7 +427,7 @@ If you’ve implemented the solution correctly, when you use the select boxes to
 
 Hint: The requested URL with query parameters should look like this: `'/restaurants?filter[address.state]=IL&filter[address.city]=Chicago'`
 
-<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/04-problem?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/04-problem?file=src/services/restaurant/hooks.ts) to do this exercise in an online code editor.
+<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/04-problem?file=src/services/pmo/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/04-problem?file=src/services/pmo/restaurant/hooks.ts) to do this exercise in an online code editor.
 
 ### Solution 4
 
@@ -434,11 +438,11 @@ Hint: The requested URL with query parameters should look like this: `'/restaura
 
 @diff ../../../exercises/react-vite/09-making-http-requests/04-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/09-making-http-requests/04-solution/src/pages/RestaurantList/RestaurantList.tsx only
 
-✏️ Update **src/services/restaurant/hooks.ts** to be:
+✏️ Update **src/services/pmo/restaurant/hooks.ts** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/04-problem/src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/04-solution/src/services/restaurant/hooks.ts only
+@diff ../../../exercises/react-vite/09-making-http-requests/04-problem/src/services/pmo/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/04-solution/src/services/pmo/restaurant/hooks.ts only
 
-<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/04-solution?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/04-solution?file=src/services/restaurant/hooks.ts).
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/04-solution?file=src/services/pmo/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/04-solution?file=src/services/pmo/restaurant/hooks.ts).
 
 </details>
 

@@ -3,7 +3,7 @@ import {
   useCities,
   useRestaurants,
   useStates,
-} from "../../services/restaurant/hooks"
+} from "../../services/pmo/restaurant/"
 import ListItem from "./ListItem"
 
 const RestaurantList: React.FC = () => {

@@ -3,11 +3,11 @@ import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
-import * as restaurantHooks from "../../services/restaurant/hooks"
+import * as restaurantHooks from "../../services/pmo/restaurant"
 import RestaurantList from "./RestaurantList"
 
 // Mocking necessary modules
-vi.mock("../../services/restaurant/hooks")
+vi.mock("../../services/pmo/restaurant")
 
 describe("RestaurantList component", () => {
   beforeEach(() => {

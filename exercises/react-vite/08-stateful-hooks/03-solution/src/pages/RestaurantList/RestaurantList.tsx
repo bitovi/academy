@@ -2,7 +2,7 @@ import CheeseThumbnail from "place-my-order-assets/images/2-thumbnail.jpg"
 import PoutineThumbnail from "place-my-order-assets/images/4-thumbnail.jpg"
 import { useState } from "react"
 import ListItem from "./ListItem"
-import { useCities } from "../../services/restaurant/hooks"
+import { useCities } from "../../services/pmo/restaurant"
 
 const RestaurantList: React.FC = () => {
   const [state, setState] = useState("")

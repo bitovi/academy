@@ -116,9 +116,9 @@ The larger directory tree should look like the following:
 
 @diff ../../../exercises/react-vite/09-making-http-requests/04-solution/src/pages/RestaurantList/ListItem.tsx ../../../exercises/react-vite/10-nested-routes/01-solution/src/pages/RestaurantList/ListItem.tsx only
 
-✏️ Update **src/services/restaurant/hooks.ts** to be:
+✏️ Update **src/services/pmo/restaurant/hooks.ts** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/04-solution/src/services/restaurant/hooks.ts ../../../exercises/react-vite/10-nested-routes/01-solution/src/services/restaurant/hooks.ts only
+@diff ../../../exercises/react-vite/09-making-http-requests/04-solution/src/services/pmo/restaurant/hooks.ts ../../../exercises/react-vite/10-nested-routes/01-solution/src/services/pmo/restaurant/hooks.ts only
 
 ### Verify 1
 
@@ -140,9 +140,9 @@ The existing test already cover routing, so no new tests are needed. Ensure the 
 
 @diff ../../../exercises/react-vite/09-making-http-requests/04-solution/src/pages/RestaurantList/RestaurantList.test.tsx ../../../exercises/react-vite/10-nested-routes/01-solution/src/pages/RestaurantList/RestaurantList.test.tsx only
 
-✏️ Update **src/services/restaurant/hooks.test.ts** to be:
+✏️ Update **src/services/pmo/restaurant/hooks.test.ts** to be:
 
-@diff ../../../exercises/react-vite/09-making-http-requests/04-solution/src/services/restaurant/hooks.test.ts ../../../exercises/react-vite/10-nested-routes/01-solution/src/services/restaurant/hooks.test.ts only
+@diff ../../../exercises/react-vite/09-making-http-requests/04-solution/src/services/pmo/restaurant/hooks.test.ts ../../../exercises/react-vite/10-nested-routes/01-solution/src/services/pmo/restaurant/hooks.test.ts only
 
 ### Exercise 1
 

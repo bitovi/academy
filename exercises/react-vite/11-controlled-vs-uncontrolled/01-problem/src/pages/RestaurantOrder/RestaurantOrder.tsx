@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useParams } from "react-router-dom"
 import RestaurantHeader from "../../components/RestaurantHeader"
-import { useRestaurant } from "../../services/restaurant/hooks"
+import { useRestaurant } from "../../services/pmo/restaurant/"
 
 type OrderItems = Record<string, number>
 

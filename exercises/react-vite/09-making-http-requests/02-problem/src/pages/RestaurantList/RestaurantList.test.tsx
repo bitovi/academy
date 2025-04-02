@@ -5,10 +5,10 @@ import { describe, expect, it, vi } from "vitest"
 
 import RestaurantList from "./RestaurantList"
 
-import { useCities, useStates } from "../../services/restaurant/hooks"
+import { useCities, useStates } from "../../services/pmo/restaurant/"
 
 // Mock the hooks used in the component
-vi.mock("../../services/restaurant/hooks", () => ({
+vi.mock("../../services/pmo/restaurant", () => ({
   useCities: vi.fn(() => {
     return {
       data: null,

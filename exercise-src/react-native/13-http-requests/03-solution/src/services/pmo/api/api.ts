@@ -35,7 +35,7 @@ export async function apiRequest<
     }
 
     return {
-      data: data,
+      data: "data" in data ? data.data : data,
       error: undefined,
     }
   } catch (error) {

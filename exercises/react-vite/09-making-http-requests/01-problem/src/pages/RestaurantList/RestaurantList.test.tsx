@@ -2,11 +2,11 @@ import "@testing-library/jest-dom"
 import { act, render, screen } from "@testing-library/react"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 
-import * as restaurantHooks from "../../services/restaurant/hooks"
+import * as restaurantHooks from "../../services/pmo/restaurant"
 import RestaurantList from "./RestaurantList"
 
 // Mocking necessary modules
-vi.mock("../../services/restaurant/hooks")
+vi.mock("../../services/pmo/restaurant")
 
 // Mocking the global fetch function
 const mockFetch = vi.fn()

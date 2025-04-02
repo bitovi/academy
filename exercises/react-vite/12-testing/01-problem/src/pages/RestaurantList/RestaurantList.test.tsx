@@ -12,10 +12,10 @@ import {
   useCities,
   useRestaurants,
   useStates,
-} from "../../services/restaurant/hooks"
+} from "../../services/pmo/restaurant/"
 
 // Mock the hooks used in the component
-vi.mock("../../services/restaurant/hooks", () => ({
+vi.mock("../../services/pmo/restaurant", () => ({
   useCities: vi.fn(() => {
     return {
       data: null,
