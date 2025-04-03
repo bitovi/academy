@@ -763,7 +763,7 @@ setUpdatedRestaurant((current) =&gt; {
 <pre><code class="language-tsx">import { useState } from &quot;react&quot;
 import { useParams } from &quot;react-router-dom&quot;
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
-import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant/&quot;
 
 type OrderItems = Record&lt;string, number&gt;
 
@@ -863,12 +863,12 @@ import { describe, expect, it, vi } from &quot;vitest&quot;
 import type { ArgumentsType, Mock } from &quot;vitest&quot;
 import RestaurantOrder from &quot;./RestaurantOrder&quot;
 
-import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant/&quot;
 
 const mockUseRestaurant = useRestaurant as Mock&lt;ArgumentsType&lt;typeof useRestaurant&gt;, ReturnType&lt;typeof useRestaurant&gt;&gt;
 
 // Mock the hooks and components used in RestaurantOrder
-vi.mock(&quot;../../services/restaurant/hooks&quot;, () =&gt; ({
+vi.mock(&quot;../../services/pmo/restaurant&quot;, () =&gt; ({
   useRestaurant: vi.fn(),
 }))
 
@@ -988,7 +988,7 @@ describe(&quot;RestaurantOrder component&quot;, () =&gt; {
 <pre><code class="language-tsx">import { useState } from &quot;react&quot;
 import { useParams } from &quot;react-router-dom&quot;
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
-import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant/&quot;
 
 type OrderItems = Record&lt;string, number&gt;
 
@@ -1283,7 +1283,7 @@ import { useState } from &quot;react&quot;
 import { useParams } from &quot;react-router-dom&quot;
 import FormTextField from &quot;../../components/FormTextField&quot;
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
-import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant/&quot;
 
 type OrderItems = Record&lt;string, number&gt;
 
@@ -1421,12 +1421,12 @@ import { afterEach, beforeEach, describe, expect, it, vi } from &quot;vitest&quo
 import type { ArgumentsType, Mock } from &quot;vitest&quot;
 import RestaurantOrder from &quot;./RestaurantOrder&quot;
 
-import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant/&quot;
 
 const mockUseRestaurant = useRestaurant as Mock&lt;ArgumentsType&lt;typeof useRestaurant&gt;, ReturnType&lt;typeof useRestaurant&gt;&gt;
 
 // Mock the hooks and components used in RestaurantOrder
-vi.mock(&quot;../../services/restaurant/hooks&quot;, () =&gt; ({
+vi.mock(&quot;../../services/pmo/restaurant&quot;, () =&gt; ({
   useRestaurant: vi.fn(),
 }))
 
@@ -1604,7 +1604,7 @@ import { useState } from &quot;react&quot;
 import { useParams } from &quot;react-router-dom&quot;
 import FormTextField from &quot;../../components/FormTextField&quot;
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
-import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant/&quot;
 
 type OrderItems = Record&lt;string, number&gt;
 

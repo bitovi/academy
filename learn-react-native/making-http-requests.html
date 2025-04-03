@@ -1467,11 +1467,11 @@ describe(&quot;Screens/StateList&quot;, () =&gt; {
  <div line-highlight="4,9-16,18-21,25-29,33,36,39,41-46,48-52,54-55,only"></div>
 <h3 id="exercise-1">Exercise 1</h3>
 <ul>
-<li>Update the <code>useState</code> in <code>hooks.ts</code> to call <code>useEffect()</code> and <code>fetch</code> data from <code>${process.env.PMO_API}/states</code>.</li>
-<li>Update <code>StateList.tsx</code> to call <code>useState()</code> and use the <code>StateResponse</code> interface.</li>
+<li>Update the <code>useStates</code> in <code>hooks.ts</code> to call <code>useEffect()</code> and <code>fetch</code> data from <code>${process.env.PMO_API}/states</code>.</li>
+<li>Update <code>StateList.tsx</code> to call <code>useStates()</code> and use the <code>StateResponse</code> interface.</li>
 </ul>
 <p><strong>Hint:</strong> Call your state setter after you parse the JSON response from <code>fetch()</code>.</p>
-<p><strong>Hint:</strong> <code>useState()</code> return <code>isPending</code> and <code>error</code>. Use these states to inform the user the status.</p>
+<p><strong>Hint:</strong> <code>useStates()</code> return <code>isPending</code> and <code>error</code>. Use these states to inform the user the status.</p>
 <p><strong>Hint:</strong> Use <code>Array.isArray(data) ? data : data?.data ?? undefined</code> when you need to check for <code>data</code> being an Array or an Object response.</p>
 <h3 id="solution-1">Solution 1</h3>
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
@@ -2219,7 +2219,7 @@ describe(&quot;Services/PMO/Restaurant/useStates&quot;, () =&gt; {
       { id: 2, name: &quot;State2&quot; },
     ]
     apiRequest.mockResolvedValue({
-      data: { data: mockStates },
+      data: mockStates,
       error: undefined,
     })
 
@@ -2253,7 +2253,7 @@ describe(&quot;Services/PMO/Restaurant/useCities&quot;, () =&gt; {
       { id: 2, name: &quot;City2&quot; },
     ]
     apiRequest.mockResolvedValue({
-      data: { data: mockCities },
+      data: mockCities,
       error: undefined,
     })
 
@@ -2335,7 +2335,7 @@ export async function apiRequest&lt;
     }
 
     return {
-      data: data,
+      data: &quot;data&quot; in data ? data.data : data,
       error: undefined,
     }
   } catch (error) {
@@ -2395,7 +2395,7 @@ export function useCities({ state }: UseCitiesParams): CitiesResponse {
 
   useEffect(() =&gt; {
     const fetchData = async () =&gt; {
-      const { data, error } = await apiRequest&lt;CitiesResponse&gt;({
+      const { data, error } = await apiRequest&lt;City[]&gt;({
         method: &quot;GET&quot;,
         path: &quot;/cities&quot;,
         params: {
@@ -2404,7 +2404,7 @@ export function useCities({ state }: UseCitiesParams): CitiesResponse {
       })
 
       setResponse({
-        data: Array.isArray(data) ? data : data?.data ?? undefined,
+        data: data,
         error: error,
         isPending: false,
       })
@@ -2430,13 +2430,13 @@ export function useStates(): StatesResponse {
         isPending: true,
       })
 
-      const { data, error } = await apiRequest&lt;StatesResponse&gt;({
+      const { data, error } = await apiRequest&lt;State[]&gt;({
         method: &quot;GET&quot;,
         path: &quot;/states&quot;,
       })
 
       setResponse({
-        data: Array.isArray(data) ? data : data?.data ?? undefined,
+        data: data,
         error: error,
         isPending: false,
       })
@@ -2448,7 +2448,7 @@ export function useStates(): StatesResponse {
 }
 
 </code></pre>
- <div line-highlight="32,34-36,42,61-62,64-65,67-70,72-76,only"></div>
+ <div line-highlight="32,34-36,41-42,61-62,64-65,67-70,72-76,only"></div>
 <p></details></p>
 <h2 id="objective-4-fetch-restaurants-in-a-custom-hook">Objective 4: Fetch restaurants in a custom Hook</h2>
 <p>Let’s finish our quest to load data from our API by creating a Hook to fetch the list of restaurants and use it in our component.</p>
@@ -2676,7 +2676,7 @@ export function useCities({ state }: UseCitiesParams): CitiesResponse {
 
   useEffect(() =&gt; {
     const fetchData = async () =&gt; {
-      const { data, error } = await apiRequest&lt;CitiesResponse&gt;({
+      const { data, error } = await apiRequest&lt;City[]&gt;({
         method: &quot;GET&quot;,
         path: &quot;/cities&quot;,
         params: {
@@ -2685,7 +2685,7 @@ export function useCities({ state }: UseCitiesParams): CitiesResponse {
       })
 
       setResponse({
-        data: Array.isArray(data) ? data : data?.data ?? undefined,
+        data: data,
         error: error,
         isPending: false,
       })
@@ -2722,15 +2722,13 @@ export function useStates(): StatesResponse {
         isPending: true,
       })
 
-      const { data, error } = await apiRequest&lt;StatesResponse&gt;({
+      const { data, error } = await apiRequest&lt;State[]&gt;({
         method: &quot;GET&quot;,
         path: &quot;/states&quot;,
       })
 
       setResponse({
-        data: Array.isArray(data)
-          ? undefined
-          : (data?.data as Restaurant | undefined),
+        data: data,
         error: error,
         isPending: false,
       })
@@ -2742,7 +2740,7 @@ export function useStates(): StatesResponse {
 }
 
 </code></pre>
- <div line-highlight="3,5,16-17,22-23,26-29,32-35,39-41,70,72-74,76-81,104-106,115,only"></div>
+ <div line-highlight="3,5,16-17,22-23,26-29,32-35,39-41,70,72-74,76-81,113,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
@@ -2845,7 +2843,7 @@ describe(&quot;Services/PMO/Restaurant/useStates&quot;, () =&gt; {
       { id: 2, name: &quot;State2&quot; },
     ]
     apiRequest.mockResolvedValue({
-      data: { data: mockStates },
+      data: mockStates,
       error: undefined,
     })
 
@@ -2879,7 +2877,7 @@ describe(&quot;Services/PMO/Restaurant/useCities&quot;, () =&gt; {
       { id: 2, name: &quot;City2&quot; },
     ]
     apiRequest.mockResolvedValue({
-      data: { data: mockCities },
+      data: mockCities,
       error: undefined,
     })
 
@@ -2913,7 +2911,7 @@ describe(&quot;Services/PMO/Restaurant/useRestaurants&quot;, () =&gt; {
       { id: 2, name: &quot;Restaurant2&quot; },
     ]
     apiRequest.mockResolvedValue({
-      data: { data: mockRestaurants },
+      data: mockRestaurants,
       error: undefined,
     })
 
@@ -2948,7 +2946,7 @@ describe(&quot;Services/PMO/Restaurant/useRestaurant&quot;, () =&gt; {
   it(&quot;returns a restaurant&quot;, async () =&gt; {
     const mockRestaurant = { id: 1, name: &quot;Restaurant1&quot; }
     apiRequest.mockResolvedValue({
-      data: { data: mockRestaurant },
+      data: mockRestaurant,
       error: undefined,
     })
 
@@ -3347,7 +3345,7 @@ export function useCities({ state }: UseCitiesParams): CitiesResponse {
 
   useEffect(() =&gt; {
     const fetchData = async () =&gt; {
-      const { data, error } = await apiRequest&lt;CitiesResponse&gt;({
+      const { data, error } = await apiRequest&lt;City[]&gt;({
         method: &quot;GET&quot;,
         path: &quot;/cities&quot;,
         params: {
@@ -3356,7 +3354,7 @@ export function useCities({ state }: UseCitiesParams): CitiesResponse {
       })
 
       setResponse({
-        data: Array.isArray(data) ? data : data?.data ?? undefined,
+        data: data,
         error: error,
         isPending: false,
       })
@@ -3376,13 +3374,13 @@ export function useRestaurant({ slug }: UseRestaurant): RestaurantResponse {
 
   useEffect(() =&gt; {
     const fetchData = async () =&gt; {
-      const { data, error } = await apiRequest&lt;RestaurantResponse&gt;({
+      const { data, error } = await apiRequest&lt;Restaurant&gt;({
         method: &quot;GET&quot;,
         path: `/restaurants/${slug}`,
       })
 
       setResponse({
-        data: data &amp;&amp; &quot;data&quot; in data ? data.data : data || undefined,
+        data: data,
         error: error,
         isPending: false,
       })
@@ -3405,7 +3403,7 @@ export function useRestaurants({
 
   useEffect(() =&gt; {
     const fetchData = async () =&gt; {
-      const { data, error } = await apiRequest&lt;RestaurantsResponse&gt;({
+      const { data, error } = await apiRequest&lt;Restaurant[]&gt;({
         method: &quot;GET&quot;,
         path: &quot;/restaurants&quot;,
         params: {
@@ -3415,7 +3413,7 @@ export function useRestaurants({
       })
 
       setResponse({
-        data: Array.isArray(data) ? data : data?.data ?? undefined,
+        data: data,
         error: error,
         isPending: false,
       })
@@ -3441,13 +3439,13 @@ export function useStates(): StatesResponse {
         isPending: true,
       })
 
-      const { data, error } = await apiRequest&lt;StatesResponse&gt;({
+      const { data, error } = await apiRequest&lt;State[]&gt;({
         method: &quot;GET&quot;,
         path: &quot;/states&quot;,
       })
 
       setResponse({
-        data: Array.isArray(data) ? data : data?.data ?? undefined,
+        data: data,
         error: error,
         isPending: false,
       })
@@ -3459,7 +3457,7 @@ export function useStates(): StatesResponse {
 }
 
 </code></pre>
- <div line-highlight="73,81,83,87,93,102-106,108-116,120-126,128,133-136,138-140,144,147,149,151-157,160,only"></div>
+ <div line-highlight="73,81,83,93,102-106,108-116,120-126,128,133-136,138-140,144,147,149,151-157,160,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;

@@ -724,7 +724,7 @@ ReactDOM.createRoot(document.getElementById(&quot;root&quot;)!).render(
 
 </code></pre>
 <p>✏️ Create <strong>src/components/RestaurantHeader/RestaurantHeader.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import type { Restaurant } from &quot;../../services/restaurant/interfaces&quot;
+<pre><code class="language-tsx">import type { Restaurant } from &quot;../../services/pmo/restaurant&quot;
 
 const RestaurantHeader: React.FC&lt;{ restaurant: Restaurant }&gt; = ({
   restaurant,
@@ -770,7 +770,7 @@ export default RestaurantHeader
 <p>✏️ Create <strong>src/pages/RestaurantDetails/RestaurantDetails.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { Link, useParams } from &quot;react-router-dom&quot;
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
-import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant/&quot;
 
 const RestaurantDetails: React.FC = () =&gt; {
   const params = useParams() as { slug: string }
@@ -878,7 +878,7 @@ export default ListItem
 
 </code></pre>
  <div line-highlight="1,42,44,only"></div>
-<p>✏️ Update <strong>src/services/restaurant/hooks.ts</strong> to be:</p>
+<p>✏️ Update <strong>src/services/pmo/restaurant/hooks.ts</strong> to be:</p>
 <pre><code class="language-ts">import type { City, Restaurant, State } from &quot;./interfaces&quot;
 import { useEffect, useState } from &quot;react&quot;
 import { apiRequest } from &quot;../api&quot;
@@ -916,7 +916,7 @@ export function useCities(state: string): CitiesResponse {
 
   useEffect(() =&gt; {
     const fetchData = async () =&gt; {
-      const { data, error } = await apiRequest&lt;CitiesResponse&gt;({
+      const { data, error } = await apiRequest&lt;City[]&gt;({
         method: &quot;GET&quot;,
         path: &quot;/cities&quot;,
         params: {
@@ -925,7 +925,7 @@ export function useCities(state: string): CitiesResponse {
       })
 
       setResponse({
-        data: data?.data || null,
+        data: data,
         error: error,
         isPending: false,
       })
@@ -945,13 +945,13 @@ export function useRestaurant(slug: string): RestaurantResponse {
 
   useEffect(() =&gt; {
     const fetchData = async () =&gt; {
-      const { data, error } = await apiRequest({
+      const { data, error } = await apiRequest&lt;Restaurant&gt;({
         method: &quot;GET&quot;,
         path: `/restaurants/${slug}`,
       })
 
       setResponse({
-        data: data || null,
+        data: data,
         error: error,
         isPending: false,
       })
@@ -974,7 +974,7 @@ export function useRestaurants(
 
   useEffect(() =&gt; {
     const fetchData = async () =&gt; {
-      const { data, error } = await apiRequest&lt;RestaurantsResponse&gt;({
+      const { data, error } = await apiRequest&lt;Restaurant[]&gt;({
         method: &quot;GET&quot;,
         path: &quot;/restaurants&quot;,
         params: {
@@ -984,7 +984,7 @@ export function useRestaurants(
       })
 
       setResponse({
-        data: data?.data || null,
+        data: data,
         error: error,
         isPending: false,
       })
@@ -1004,13 +1004,13 @@ export function useStates(): StatesResponse {
 
   useEffect(() =&gt; {
     const fetchData = async () =&gt; {
-      const { data, error } = await apiRequest&lt;StatesResponse&gt;({
+      const { data, error } = await apiRequest&lt;State[]&gt;({
         method: &quot;GET&quot;,
         path: &quot;/states&quot;,
       })
 
       setResponse({
-        data: data?.data || null,
+        data: data,
         error: error,
         isPending: false,
       })
@@ -1022,12 +1022,12 @@ export function useStates(): StatesResponse {
 }
 
 </code></pre>
- <div line-highlight="11-12,25-26,58-59,67,69,73,79,115,119-122,124-125,127,129,131,133-137,140-141,only"></div>
+ <div line-highlight="11-12,25-26,58-59,67,69,79,115,119-122,124-125,127,129,131-137,140-141,only"></div>
 <h3 id="verify-1">Verify 1</h3>
 <p>The existing test already cover routing, so no new tests are needed. Ensure the existing tests pass when you run <code>npm run test</code>.</p>
 <p>✏️ Create <strong>src/components/RestaurantHeader/RestaurantHeader.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
-import type { Restaurant } from &quot;../../services/restaurant/interfaces&quot;
+import type { Restaurant } from &quot;../../services/pmo/restaurant/&quot;
 import { render, screen } from &quot;@testing-library/react&quot;
 import { describe, expect, it } from &quot;vitest&quot;
 import RestaurantHeader from &quot;./RestaurantHeader&quot;
@@ -1129,10 +1129,10 @@ import { describe, expect, it, vi } from &quot;vitest&quot;
 import type { ArgumentsType, Mock } from &quot;vitest&quot;
 import RestaurantDetails from &quot;./RestaurantDetails&quot;
 
-import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant/&quot;
 
 // Mock the hooks and components used in RestaurantDetails
-vi.mock(&quot;../../services/restaurant/hooks&quot;, () =&gt; ({
+vi.mock(&quot;../../services/pmo/restaurant&quot;, () =&gt; ({
   useRestaurant: vi.fn(),
 }))
 
@@ -1331,10 +1331,10 @@ import {
   useCities,
   useRestaurants,
   useStates,
-} from &quot;../../services/restaurant/hooks&quot;
+} from &quot;../../services/pmo/restaurant/&quot;
 
 // Mock the hooks used in the component
-vi.mock(&quot;../../services/restaurant/hooks&quot;, () =&gt; ({
+vi.mock(&quot;../../services/pmo/restaurant&quot;, () =&gt; ({
   useCities: vi.fn(() =&gt; {
     return {
       data: null,
@@ -1454,7 +1454,7 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
 
 </code></pre>
  <div line-highlight="2,5-7,46-50,108,127,only"></div>
-<p>✏️ Update <strong>src/services/restaurant/hooks.test.ts</strong> to be:</p>
+<p>✏️ Update <strong>src/services/pmo/restaurant/hooks.test.ts</strong> to be:</p>
 <pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react&quot;
 import { beforeEach, describe, expect, it, vi } from &quot;vitest&quot;
 import type { ArgumentsType, Mock } from &quot;vitest&quot;
@@ -1479,7 +1479,7 @@ describe(&quot;Hooks&quot;, () =&gt; {
         { id: 1, name: &quot;City1&quot; },
         { id: 2, name: &quot;City2&quot; },
       ]
-      mockApiRequest.mockResolvedValue({ data: { data: mockCities }, error: null })
+      mockApiRequest.mockResolvedValue({ data: mockCities , error: null })
 
       const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
 
@@ -1508,7 +1508,7 @@ describe(&quot;Hooks&quot;, () =&gt; {
     it(&quot;should return restaurant data successfully&quot;, async () =&gt; {
       const mockRestaurant = { id: 1, name: &quot;Restaurant1&quot; }
       mockApiRequest.mockResolvedValue({
-        data: { data: mockRestaurant },
+        data: mockRestaurant,
         error: null,
       })
 
@@ -1546,7 +1546,7 @@ describe(&quot;Hooks&quot;, () =&gt; {
         { id: 2, name: &quot;Restaurant2&quot; },
       ]
       mockApiRequest.mockResolvedValue({
-        data: { data: mockRestaurants },
+        data: mockRestaurants,
         error: null,
       })
 
@@ -1583,7 +1583,7 @@ describe(&quot;Hooks&quot;, () =&gt; {
         { id: 1, name: &quot;State1&quot; },
         { id: 2, name: &quot;State2&quot; },
       ]
-      mockApiRequest.mockResolvedValue({ data: { data: mockStates }, error: null })
+      mockApiRequest.mockResolvedValue({ data: mockStates , error: null })
 
       const { result } = renderHook(() =&gt; useStates())
 
@@ -1680,7 +1680,7 @@ ReactDOM.createRoot(document.getElementById(&quot;root&quot;)!).render(
 <p>✏️ Create <strong>src/pages/RestaurantOrder/RestaurantOrder.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { useParams } from &quot;react-router-dom&quot;
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
-import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant/&quot;
 
 const RestaurantOrder: React.FC = () =&gt; {
   const params = useParams() as { slug: string }
@@ -1731,12 +1731,12 @@ import { describe, expect, it, vi } from &quot;vitest&quot;
 import type { ArgumentsType, Mock } from &quot;vitest&quot;
 import RestaurantOrder from &quot;./RestaurantOrder&quot;
 
-import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant/&quot;
 
 const mockUseRestaurant = useRestaurant as Mock&lt;ArgumentsType&lt;typeof useRestaurant&gt;, ReturnType&lt;typeof useRestaurant&gt;&gt;
 
 // Mock the hooks and components used in RestaurantOrder
-vi.mock(&quot;../../services/restaurant/hooks&quot;, () =&gt; ({
+vi.mock(&quot;../../services/pmo/restaurant&quot;, () =&gt; ({
   useRestaurant: vi.fn(),
 }))
 

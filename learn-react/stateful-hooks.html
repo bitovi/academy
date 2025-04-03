@@ -1418,8 +1418,9 @@ export default Toggle
 <p>We will learn more about binding the <code>input</code> values in a later section, but for now the takeaway is that we can create our custom <code>useToggle</code> Hook and call it in our components, just like React’s built-in Hooks!</p>
 <h3 id="setup-3">Setup 3</h3>
 <p>✏️ Create <strong>src/services/</strong> (folder)</p>
-<p>✏️ Create <strong>src/services/restaurant/</strong> (folder)</p>
-<p>✏️ Create <strong>src/services/restaurant/hooks.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/services/pmo/</strong> (folder)</p>
+<p>✏️ Create <strong>src/services/pmo/restaurant/</strong> (folder)</p>
+<p>✏️ Create <strong>src/services/pmo/restaurant/hooks.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import type { City } from &quot;./interfaces&quot;
 
 export function useCities(state: string): City[] {
@@ -1427,7 +1428,7 @@ export function useCities(state: string): City[] {
 }
 
 </code></pre>
-<p>✏️ Create <strong>src/services/restaurant/interfaces.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/services/pmo/restaurant/interfaces.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export interface City {
   name: string
   state: string
@@ -1439,12 +1440,17 @@ export interface State {
 }
 
 </code></pre>
+<p>✏️ Create <strong>src/services/pmo/restaurant/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export * from &quot;./interfaces&quot;
+export * from &quot;./hooks&quot;
+
+</code></pre>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
 import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
 import { useState } from &quot;react&quot;
 import ListItem from &quot;./ListItem&quot;
-import { useCities } from &quot;../../services/restaurant/hooks&quot;
+import { useCities } from &quot;../../services/pmo/restaurant&quot;
 
 const RestaurantList: React.FC = () =&gt; {
   const [state, setState] = useState(&quot;&quot;)
@@ -1568,7 +1574,7 @@ export default RestaurantList
 </code></pre>
  <div line-highlight="5,only"></div>
 <h3 id="verify-3">Verify 3</h3>
-<p>✏️ Create <strong>src/services/restaurant/hooks.test.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/services/pmo/restaurant/hooks.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { renderHook } from &quot;@testing-library/react&quot;
 import { describe, expect, it } from &quot;vitest&quot;
 import { useCities } from &quot;./hooks&quot;
@@ -1598,7 +1604,7 @@ describe(&quot;useCities Hook&quot;, () =&gt; {
 <li>Move the <code>cities</code> logic (including the filtering) into our custom <code>useCities()</code> Hook.</li>
 <li>Update the <code>&lt;RestaurantList&gt;</code> component to use the new <code>useCities()</code> Hook.</li>
 </ul>
-<p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/03-problem?file=src/services/restaurant/hooks.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/03-problem?file=src/services/restaurant/hooks.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
+<p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/03-problem?file=src/services/pmo/restaurant/hooks.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/03-problem?file=src/services/pmo/restaurant/hooks.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
 <h3 id="solution-3">Solution 3</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -1607,7 +1613,7 @@ describe(&quot;useCities Hook&quot;, () =&gt; {
 import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
 import { useState } from &quot;react&quot;
 import ListItem from &quot;./ListItem&quot;
-import { useCities } from &quot;../../services/restaurant/hooks&quot;
+import { useCities } from &quot;../../services/pmo/restaurant&quot;
 
 const RestaurantList: React.FC = () =&gt; {
   const [state, setState] = useState(&quot;&quot;)
@@ -1725,7 +1731,7 @@ export default RestaurantList
 
 </code></pre>
  <div line-highlight="16,only"></div>
-<p>✏️ Update <strong>src/services/restaurant/hooks.ts</strong> to be:</p>
+<p>✏️ Update <strong>src/services/pmo/restaurant/hooks.ts</strong> to be:</p>
 <pre><code class="language-ts">import type { City } from &quot;./interfaces&quot;
 
 export function useCities(state: string): City[] {
@@ -1740,7 +1746,7 @@ export function useCities(state: string): City[] {
 
 </code></pre>
  <div line-highlight="4-10,only"></div>
-<p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/03-solution?file=src/services/restaurant/hooks.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/03-solution?file=src/services/restaurant/hooks.ts">CodeSandbox</a>.</p>
+<p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/03-solution?file=src/services/pmo/restaurant/hooks.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/03-solution?file=src/services/pmo/restaurant/hooks.ts">CodeSandbox</a>.</p>
 <p></details></p>
 <h2 id="next-steps">Next steps</h2>
 <p>Next, let’s learn how to <a href="./making-http-requests.html">make HTTP requests</a> with <code>fetch</code> in React applications.</p>
