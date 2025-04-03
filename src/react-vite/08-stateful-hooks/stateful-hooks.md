@@ -214,15 +214,21 @@ We will learn more about binding the `input` values in a later section, but for 
 
 ✏️ Create **src/services/** (folder)
 
-✏️ Create **src/services/restaurant/** (folder)
+✏️ Create **src/services/pmo/** (folder)
 
-✏️ Create **src/services/restaurant/hooks.ts** and update it to be:
+✏️ Create **src/services/pmo/restaurant/** (folder)
 
-@sourceref ../../../exercises/react-vite/08-stateful-hooks/03-problem/src/services/restaurant/hooks.ts
+✏️ Create **src/services/pmo/restaurant/hooks.ts** and update it to be:
 
-✏️ Create **src/services/restaurant/interfaces.ts** and update it to be:
+@sourceref ../../../exercises/react-vite/08-stateful-hooks/03-problem/src/services/pmo/restaurant/hooks.ts
 
-@sourceref ../../../exercises/react-vite/09-making-http-requests/01-solution/src/services/restaurant/interfaces.ts
+✏️ Create **src/services/pmo/restaurant/interfaces.ts** and update it to be:
+
+@sourceref ../../../exercises/react-vite/09-making-http-requests/01-solution/src/services/pmo/restaurant/interfaces.ts
+
+✏️ Create **src/services/pmo/restaurant/index.ts** and update it to be:
+
+@sourceref ../../../exercises/react-vite/09-making-http-requests/01-solution/src/services/pmo/restaurant/index.ts
 
 ✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
 
@@ -230,16 +236,16 @@ We will learn more about binding the `input` values in a later section, but for 
 
 ### Verify 3
 
-✏️ Create **src/services/restaurant/hooks.test.ts** and update it to be:
+✏️ Create **src/services/pmo/restaurant/hooks.test.ts** and update it to be:
 
-@sourceref ../../../exercises/react-vite/08-stateful-hooks/03-solution/src/services/restaurant/hooks.test.ts
+@sourceref ../../../exercises/react-vite/08-stateful-hooks/03-solution/src/services/pmo/restaurant/hooks.test.ts
 
 ### Exercise 3
 
 - Move the `cities` logic (including the filtering) into our custom `useCities()` Hook.
 - Update the `<RestaurantList>` component to use the new `useCities()` Hook.
 
-<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/03-problem?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/03-problem?file=src/services/restaurant/hooks.ts) to do this exercise in an online code editor.
+<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/03-problem?file=src/services/pmo/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/03-problem?file=src/services/pmo/restaurant/hooks.ts) to do this exercise in an online code editor.
 
 ### Solution 3
 
@@ -250,11 +256,11 @@ We will learn more about binding the `input` values in a later section, but for 
 
 @diff ../../../exercises/react-vite/08-stateful-hooks/03-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/08-stateful-hooks/03-solution/src/pages/RestaurantList/RestaurantList.tsx only
 
-✏️ Update **src/services/restaurant/hooks.ts** to be:
+✏️ Update **src/services/pmo/restaurant/hooks.ts** to be:
 
-@diff ../../../exercises/react-vite/08-stateful-hooks/03-problem/src/services/restaurant/hooks.ts ../../../exercises/react-vite/08-stateful-hooks/03-solution/src/services/restaurant/hooks.ts only
+@diff ../../../exercises/react-vite/08-stateful-hooks/03-problem/src/services/pmo/restaurant/hooks.ts ../../../exercises/react-vite/08-stateful-hooks/03-solution/src/services/pmo/restaurant/hooks.ts only
 
-<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/03-solution?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/03-solution?file=src/services/restaurant/hooks.ts).
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/03-solution?file=src/services/pmo/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/03-solution?file=src/services/pmo/restaurant/hooks.ts).
 
 </details>
 

@@ -17,7 +17,7 @@ describe("Services/PMO/Restaurant/useStates", () => {
       { id: 2, name: "State2" },
     ]
     apiRequest.mockResolvedValue({
-      data: { data: mockStates },
+      data: mockStates,
       error: undefined,
     })
 
@@ -51,7 +51,7 @@ describe("Services/PMO/Restaurant/useCities", () => {
       { id: 2, name: "City2" },
     ]
     apiRequest.mockResolvedValue({
-      data: { data: mockCities },
+      data: mockCities,
       error: undefined,
     })
 

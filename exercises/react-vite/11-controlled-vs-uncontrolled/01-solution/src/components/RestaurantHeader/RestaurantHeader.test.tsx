@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom"
-import type { Restaurant } from "../../services/restaurant/interfaces"
+import type { Restaurant } from "../../services/pmo/restaurant/"
 import { render, screen } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
 import RestaurantHeader from "./RestaurantHeader"

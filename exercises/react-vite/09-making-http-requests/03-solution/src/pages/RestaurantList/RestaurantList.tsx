@@ -1,7 +1,7 @@
 import CheeseThumbnail from "place-my-order-assets/images/2-thumbnail.jpg"
 import PoutineThumbnail from "place-my-order-assets/images/4-thumbnail.jpg"
 import { useState } from "react"
-import { useCities, useStates } from "../../services/restaurant/hooks"
+import { useCities, useStates } from "../../services/pmo/restaurant"
 import ListItem from "./ListItem"
 
 const RestaurantList: React.FC = () => {

@@ -49,7 +49,7 @@ export function useCities({ state }: UseCitiesParams): CitiesResponse {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data, error } = await apiRequest<CitiesResponse>({
+      const { data, error } = await apiRequest<City[]>({
         method: "GET",
         path: "/cities",
         params: {
@@ -58,7 +58,7 @@ export function useCities({ state }: UseCitiesParams): CitiesResponse {
       })
 
       setResponse({
-        data: Array.isArray(data) ? data : data?.data ?? undefined,
+        data: data,
         error: error,
         isPending: false,
       })
@@ -78,13 +78,13 @@ export function useRestaurant({ slug }: UseRestaurant): RestaurantResponse {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data, error } = await apiRequest<RestaurantResponse>({
+      const { data, error } = await apiRequest<Restaurant>({
         method: "GET",
         path: `/restaurants/${slug}`,
       })
 
       setResponse({
-        data: data && "data" in data ? data.data : data || undefined,
+        data: data,
         error: error,
         isPending: false,
       })
@@ -107,7 +107,7 @@ export function useRestaurants({
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data, error } = await apiRequest<RestaurantsResponse>({
+      const { data, error } = await apiRequest<Restaurant[]>({
         method: "GET",
         path: "/restaurants",
         params: {
@@ -117,7 +117,7 @@ export function useRestaurants({
       })
 
       setResponse({
-        data: Array.isArray(data) ? data : data?.data ?? undefined,
+        data: data,
         error: error,
         isPending: false,
       })
@@ -143,13 +143,13 @@ export function useStates(): StatesResponse {
         isPending: true,
       })
 
-      const { data, error } = await apiRequest<StatesResponse>({
+      const { data, error } = await apiRequest<State[]>({
         method: "GET",
         path: "/states",
       })
 
       setResponse({
-        data: Array.isArray(data) ? data : data?.data ?? undefined,
+        data: data,
         error: error,
         isPending: false,
       })

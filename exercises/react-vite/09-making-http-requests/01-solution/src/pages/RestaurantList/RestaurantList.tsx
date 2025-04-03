@@ -1,42 +1,14 @@
-import type { State } from "../../services/restaurant/interfaces"
 import CheeseThumbnail from "place-my-order-assets/images/2-thumbnail.jpg"
 import PoutineThumbnail from "place-my-order-assets/images/4-thumbnail.jpg"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import ListItem from "./ListItem"
-import { useCities } from "../../services/restaurant/hooks"
-
-interface StatesResponse {
-  data: State[] | null
-  error: Error | null
-  isPending: boolean
-}
+import { useCities, useStates } from "../../services/pmo/restaurant"
 
 const RestaurantList: React.FC = () => {
   const [state, setState] = useState("")
   const [city, setCity] = useState("")
 
-  const [statesResponse, setStatesResponse] = useState<StatesResponse>({
-    data: null,
-    error: null,
-    isPending: true,
-  })
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(`${import.meta.env.VITE_PMO_API}/states`, {
-        method: "GET",
-      })
-
-      const data = await response.json()
-
-      setStatesResponse({
-        data: data?.data || null,
-        error: null,
-        isPending: false,
-      })
-    }
-    fetchData()
-  }, [])
+  const statesResponse = useStates()
 
   const cities = useCities(state)
 

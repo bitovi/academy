@@ -6,10 +6,10 @@ import { describe, expect, it, vi } from "vitest"
 import type { ArgumentsType, Mock } from "vitest"
 import RestaurantDetails from "./RestaurantDetails"
 
-import { useRestaurant } from "../../services/restaurant/hooks"
+import { useRestaurant } from "../../services/pmo/restaurant/"
 
 // Mock the hooks and components used in RestaurantDetails
-vi.mock("../../services/restaurant/hooks", () => ({
+vi.mock("../../services/pmo/restaurant", () => ({
   useRestaurant: vi.fn(),
 }))
 

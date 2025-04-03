@@ -1,41 +1,14 @@
 import CheeseThumbnail from "place-my-order-assets/images/2-thumbnail.jpg"
 import PoutineThumbnail from "place-my-order-assets/images/4-thumbnail.jpg"
 import { useState } from "react"
+import { useCities, useStates } from "../../services/pmo/restaurant/"
 import ListItem from "./ListItem"
-import { useCities, useStates } from "../../services/restaurant/hooks"
-
-interface StatesResponse {
-  data: State[] | null
-  error: Error | null
-  isPending: boolean
-}
 
 const RestaurantList: React.FC = () => {
   const [state, setState] = useState("")
   const [city, setCity] = useState("")
 
-  const [statesResponse, setStatesResponse] = useState<StatesResponse>({
-    data: null,
-    error: null,
-    isPending: true,
-  })
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(`${import.meta.env.VITE_PMO_API}/states`, {
-        method: "GET",
-      })
-
-      const data = await response.json()
-
-      setStatesResponse({
-        data: data?.data || null,
-        error: null,
-        isPending: false,
-      })
-    }
-    fetchData()
-  }, [])
+  const statesResponse = useStates()
 
   const cities = useCities(state)
 
@@ -113,22 +86,31 @@ const RestaurantList: React.FC = () => {
           </div>
 
           <div className="form-group">
-            City:
-            {state ? (
-              cities.map(({ name }) => (
-                <button
-                  key={name}
-                  onClick={() => updateCity(name)}
-                  type="button"
-                >
-                  {name}
-                </button>
-              ))
-            ) : (
-              <> Choose a state before selecting a city</>
-            )}
-            <hr />
-            <p>Current city: {city || "(none)"}</p>
+            <label className="control-label" htmlFor="citySelect">
+              City
+            </label>
+            <select
+              className="form-control"
+              id="citySelect"
+              onChange={(event) => updateCity(event.target.value)}
+              value={city}
+            >
+              <option key="choose_city" value="">
+                {state
+                  ? citiesResponse.isPending
+                    ? "Loading cities…"
+                    : citiesResponse.error
+                      ? citiesResponse.error.message
+                      : "Choose a city"
+                  : "Choose a state before selecting a city"}
+              </option>
+              {state &&
+                citiesResponse.data?.map(({ name }) => (
+                  <option key={name} value={name}>
+                    {name}
+                  </option>
+                ))}
+            </select>
           </div>
         </form>
 

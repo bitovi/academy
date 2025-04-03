@@ -49,7 +49,7 @@ export function useCities({ state }: UseCitiesParams): CitiesResponse {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data, error } = await apiRequest<CitiesResponse>({
+      const { data, error } = await apiRequest<City[]>({
         method: "GET",
         path: "/cities",
         params: {
@@ -58,7 +58,7 @@ export function useCities({ state }: UseCitiesParams): CitiesResponse {
       })
 
       setResponse({
-        data: Array.isArray(data) ? data : data?.data ?? undefined,
+        data: data,
         error: error,
         isPending: false,
       })
@@ -95,15 +95,13 @@ export function useStates(): StatesResponse {
         isPending: true,
       })
 
-      const { data, error } = await apiRequest<StatesResponse>({
+      const { data, error } = await apiRequest<State[]>({
         method: "GET",
         path: "/states",
       })
 
       setResponse({
-        data: Array.isArray(data)
-          ? undefined
-          : (data?.data as Restaurant | undefined),
+        data: data,
         error: error,
         isPending: false,
       })
