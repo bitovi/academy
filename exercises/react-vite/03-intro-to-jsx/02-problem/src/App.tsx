@@ -41,7 +41,7 @@ const App: React.FC = () => {
         <h2 className="page-header">Restaurants</h2>
         <div className="restaurant">
           <img
-            alt=""
+            alt="A thumbnail for Restaurants"
             src="/node_modules/place-my-order-assets/images/4-thumbnail.jpg"
             width="100"
             height="100"

@@ -1,5 +1,5 @@
 import RestaurantList from "./pages/RestaurantList"
-import "./App.css"
+import "./index.css"
 
 const App: React.FC = () => {
   return (
