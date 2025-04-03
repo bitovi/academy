@@ -16,7 +16,6 @@ export async function apiRequest<Data = never, Params = unknown>({
   }
 }
 
-
 export function stringifyQuery(input: Record<string, string | null | undefined>): string {
   const output: string[] = []
 
