@@ -804,7 +804,7 @@ const RestaurantDetails: React.FC = () =&gt; {
         &lt;h3&gt;The best food this side of the Mississippi&lt;/h3&gt;
 
         &lt;p className=&quot;description&quot;&gt;
-          &lt;img alt=&quot;&quot; src={`/${restaurant.data.images.owner}`} /&gt;
+          &lt;img alt={`The owner of ${restaurant.data.name}`} src={`/${restaurant.data.images.owner}`} /&gt;
           Description for {restaurant.data.name}
         &lt;/p&gt;
         &lt;p className=&quot;order-link&quot;&gt;
@@ -847,7 +847,7 @@ const ListItem: React.FC&lt;ListItemProps&gt; = ({
   return (
     &lt;&gt;
       &lt;div className=&quot;restaurant&quot;&gt;
-        &lt;img src={`/${thumbnail}`} alt=&quot;&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+        &lt;img src={thumbnail} alt={`A thumbnail for ${name}`} width=&quot;100&quot; height=&quot;100&quot; /&gt;
         &lt;h3&gt;{name}&lt;/h3&gt;
 
         {address &amp;&amp; (

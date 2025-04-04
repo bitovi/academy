@@ -690,7 +690,7 @@ const RestaurantList: React.FC = () =&gt; {
         {restaurants.data ? (
           restaurants.data.map(({ _id, address, images, name, slug }) =&gt; (
             &lt;div key={_id} className=&quot;restaurant&quot;&gt;
-              &lt;img src={images.thumbnail} alt=&quot;&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+              &lt;img src={images.thumbnail} alt={`A thumbnail for ${name}`} width=&quot;100&quot; height=&quot;100&quot; /&gt;
               &lt;h3&gt;{name}&lt;/h3&gt;
 
               {address &amp;&amp; (
@@ -858,7 +858,7 @@ const ListItem: React.FC&lt;ListItemProps&gt; = ({
   return (
     &lt;&gt;
       &lt;div className=&quot;restaurant&quot;&gt;
-        &lt;img src={thumbnail} alt=&quot;&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+        &lt;img src={thumbnail} alt={`A thumbnail for ${name}`} width=&quot;100&quot; height=&quot;100&quot; /&gt;
         &lt;h3&gt;{name}&lt;/h3&gt;
 
         {address &amp;&amp; (

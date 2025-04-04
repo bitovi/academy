@@ -685,7 +685,7 @@ const App: React.FC = () =&gt; {
         {restaurants.data ? (
           restaurants.data.map(({ _id, address, images, name, slug }) =&gt; (
             &lt;div key={_id} className=&quot;restaurant&quot;&gt;
-              &lt;img src={images.thumbnail} alt=&quot;&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+              &lt;img src={images.thumbnail} alt={`A thumbnail for ${name}`} width=&quot;100&quot; height=&quot;100&quot; /&gt;
               &lt;h3&gt;{name}&lt;/h3&gt;
 
               {address &amp;&amp; (
@@ -828,7 +828,7 @@ describe(&quot;App Component&quot;, () =&gt; {
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/App.tsx</strong></p>
 <pre><code class="language-tsx">import RestaurantList from &quot;./pages/RestaurantList&quot;
-import &quot;./App.css&quot;
+import &quot;./index.css&quot;
 
 const App: React.FC = () =&gt; {
   return (
@@ -887,7 +887,7 @@ const RestaurantList: React.FC = () =&gt; {
         {restaurants.data ? (
           restaurants.data.map(({ _id, address, images, name, slug }) =&gt; (
             &lt;div key={_id} className=&quot;restaurant&quot;&gt;
-              &lt;img src={images.thumbnail} alt=&quot;&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+              &lt;img src={images.thumbnail} alt={`A thumbnail for ${name}`} width=&quot;100&quot; height=&quot;100&quot; /&gt;
               &lt;h3&gt;{name}&lt;/h3&gt;
 
               {address &amp;&amp; (

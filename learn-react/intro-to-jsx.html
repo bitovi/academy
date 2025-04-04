@@ -743,7 +743,7 @@ describe(&quot;App component&quot;, () =&gt; {
   &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
   &lt;div class=&quot;restaurant&quot;&gt;
     &lt;img
-      alt=&quot;&quot;
+      alt=&quot;A thumbnail for Poutine Palace&quot;
       src=&quot;/node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;
       width=&quot;100&quot;
       height=&quot;100&quot;
@@ -782,7 +782,7 @@ describe(&quot;App component&quot;, () =&gt; {
         &lt;h2 className=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
         &lt;div className=&quot;restaurant&quot;&gt;
           &lt;img
-            alt=&quot;&quot;
+            alt=&quot;A thumbnail for Poutine Palace&quot;
             src=&quot;/node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;
             width=&quot;100&quot;
             height=&quot;100&quot;
@@ -1020,7 +1020,7 @@ const App: React.FC = () =&gt; {
         &lt;h2 className=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
         &lt;div className=&quot;restaurant&quot;&gt;
           &lt;img
-            alt=&quot;&quot;
+            alt=&quot;A thumbnail for Restaurants&quot;
             src=&quot;/node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;
             width=&quot;100&quot;
             height=&quot;100&quot;
@@ -1050,7 +1050,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="1-2,5-36,only"></div>
+ <div line-highlight="1-2,5-36,44,only"></div>
 <h3 id="verify-2">Verify 2</h3>
 <p>Add these tests into your application to verify you have met the acceptance criteria. Note how React Testing Library allows our tests to specify exact elements.</p>
 <p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
@@ -1182,7 +1182,7 @@ const App: React.FC = () =&gt; {
         {restaurants.data ? (
           restaurants.data.map(({ _id, address, images, name, slug }) =&gt; (
             &lt;div key={_id} className=&quot;restaurant&quot;&gt;
-              &lt;img src={images.thumbnail} alt=&quot;&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+              &lt;img src={images.thumbnail} alt={`A thumbnail for ${name}`} width=&quot;100&quot; height=&quot;100&quot; /&gt;
               &lt;h3&gt;{name}&lt;/h3&gt;
 
               {address &amp;&amp; (
