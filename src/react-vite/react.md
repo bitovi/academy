@@ -48,7 +48,7 @@ The second half of the guide will cover more intermediate topics like state mana
 
 Throughout this guide, we’ll be building out a feature-rich Place My Order application, gradually applying all of these concepts to produce a clean and optimized solution!
 
-<img src="./static/img/place-my-order.png" alt="Place My Order App screenshot"/>
+<img src="./static/img/place-my-order.png" alt="A screenshot of the home page of Place My Order. It has a navigation at the header with Home, Restaurants, and Order History buttons. The homepage has a section with a container featuring a 'Choose a Restaurant' button, a headline introducing the site, and an image of an upscale bar scene."/>
 
 ## Next steps
 
