@@ -61,7 +61,7 @@ export async function apiRequest<
     const error = response.ok
       ? undefined
       : new Error(`${response.status} (${response.statusText})`)
-      
+
     if (method === "GET" && response.ok) {
       await storeData<CachedResponse<Data>>(keyPrefix + requestUrl, {
         data: "data" in data ? data.data : data,
