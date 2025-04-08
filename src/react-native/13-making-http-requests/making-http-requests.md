@@ -391,6 +391,10 @@ Let’s take a look at how to handle these types of errors:
 
 In the example above, we `catch` the `error` and check its type. If it’s already an `instanceof Error`, then it will have a `message` property and we can use it as-is. If it’s not, then we can create our own `new Error()` so we _always_ have an error to consume in our Hooks or components.
 
+**Note:** This implementation demonstrates a basic approach to data fetching using fetch. While it works for simple use cases, it lacks important features that production-ready apps typically need — such as caching, refetching, error retries, and background updates.
+
+As your app grows, maintaining these features manually becomes complex and error-prone. At that point, we strongly recommend using a dedicated data-fetching library like [TanStack Query](https://tanstack.com/query/latest) to handle these concerns efficiently.
+
 ### Setup 3
 
 ✏️ Create **src/services/pmo/api/api.ts** and update it to be:

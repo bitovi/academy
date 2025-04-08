@@ -23,7 +23,7 @@ export async function apiRequest<
   params?: Params
   path: string
   body?: Body
-}): Promise<{ data: Data | undefined; error: Error | undefined }> {
+}): Promise<{ data?: Data; error?: Error }> {
   try {
     const query = params ? stringifyQuery(params) : ""
     const requestUrl = `${baseUrl}${path}?${query}`
@@ -58,7 +58,10 @@ export async function apiRequest<
     })
 
     const data = await response.json()
-
+    const error = response.ok
+      ? undefined
+      : new Error(`${response.status} (${response.statusText})`)
+      
     if (method === "GET" && response.ok) {
       await storeData<CachedResponse<Data>>(keyPrefix + requestUrl, {
         data: "data" in data ? data.data : data,
@@ -66,14 +69,9 @@ export async function apiRequest<
       })
     }
 
-    if (!response.ok) {
-      const error = new Error(`${response.status} (${response.statusText})`)
-      return { data: data, error: error }
-    }
-
     return {
       data: "data" in data ? data.data : data,
-      error: undefined,
+      error: error,
     }
   } catch (error) {
     return {
