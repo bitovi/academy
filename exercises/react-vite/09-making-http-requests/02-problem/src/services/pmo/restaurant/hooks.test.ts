@@ -16,8 +16,8 @@ describe("useCities Hook", () => {
     const { result } = renderHook(() => useCities("someState"))
     await waitFor(() => {
       expect(result.current.isPending).toBe(true)
-      expect(result.current.data).toBeNull()
-      expect(result.current.error).toBeNull()
+      expect(result.current.data).toBeUndefined()
+      expect(result.current.error).toBeUndefined()
     })
   })
 
@@ -35,7 +35,7 @@ describe("useCities Hook", () => {
     await waitFor(() => {
       expect(result.current.data).toEqual(mockCities)
       expect(result.current.isPending).toBe(false)
-      expect(result.current.error).toBeNull()
+      expect(result.current.error).toBeUndefined()
     })
   })
 })
@@ -58,7 +58,7 @@ describe("useStates Hook", () => {
     await waitFor(() => {
       expect(result.current.isPending).toBe(false)
       expect(result.current.data).toEqual(mockStates)
-      expect(result.current.error).toBeNull()
+      expect(result.current.error).toBeUndefined()
     })
   })
 })

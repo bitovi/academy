@@ -30,7 +30,7 @@ describe("apiRequest function", () => {
       path: "/test",
     })
 
-    expect(response).toEqual({ data: { message: "success" }, error: null })
+    expect(response).toEqual({ data: { message: "success" }, error: undefined })
     expect(mockFetch).toHaveBeenCalledWith(
       `${import.meta.env.VITE_PMO_API}/test?`,
       { method: "GET" },
@@ -66,7 +66,7 @@ describe("apiRequest function", () => {
       path: "/test",
     })
 
-    expect(response).toEqual({ data: null, error: new Error("Network Error") })
+    expect(response).toEqual({ data: undefined, error: new Error("Network Error") })
   })
 })
 

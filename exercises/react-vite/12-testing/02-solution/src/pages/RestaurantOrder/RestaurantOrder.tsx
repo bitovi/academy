@@ -3,7 +3,7 @@ import { useState } from "react"
 import { useParams } from "react-router-dom"
 import FormTextField from "../../components/FormTextField"
 import RestaurantHeader from "../../components/RestaurantHeader"
-import { useRestaurant } from "../../services/pmo/restaurant/"
+import { useRestaurant } from "../../services/pmo/restaurant"
 
 type OrderItems = Record<string, number>
 

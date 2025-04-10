@@ -21,7 +21,7 @@ const ListItem: React.FC<ListItemProps> = ({
   return (
     <>
       <div className="restaurant">
-        <img src={`${thumbnail}`} alt={`A thumbnail for ${name}`} width="100" height="100" />
+        <img src={`/${thumbnail}`} alt={`A thumbnail for ${name}`} width="100" height="100" />
         <h3>{name}</h3>
 
         {address && (

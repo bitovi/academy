@@ -1,4 +1,4 @@
-import type { Restaurant } from "../../services/pmo/restaurant/"
+import type { Restaurant } from "../../services/pmo/restaurant"
 
 const RestaurantHeader: React.FC<{ restaurant: Restaurant }> = ({
   restaurant,

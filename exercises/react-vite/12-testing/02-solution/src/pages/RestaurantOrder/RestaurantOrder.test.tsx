@@ -7,7 +7,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import type { ArgumentsType, Mock } from "vitest"
 import RestaurantOrder from "./RestaurantOrder"
 
-import { useRestaurant } from "../../services/pmo/restaurant/"
+import { useRestaurant } from "../../services/pmo/restaurant"
 
 const mockUseRestaurant = useRestaurant as Mock<ArgumentsType<typeof useRestaurant>, ReturnType<typeof useRestaurant>>
 
@@ -70,7 +70,7 @@ const mockRestaurantData = {
     },
   },
   isPending: false,
-  error: null,
+  error: undefined,
 }
 
 const renderWithRouter = (
@@ -87,14 +87,14 @@ const renderWithRouter = (
 
 describe("RestaurantOrder component", () => {
   it("renders loading state", () => {
-    mockUseRestaurant.mockReturnValue({ data: null, isPending: true, error: null })
+    mockUseRestaurant.mockReturnValue({ data: undefined, isPending: true, error: undefined })
     renderWithRouter(<RestaurantOrder />)
     expect(screen.getByText(/Loading restaurant…/i)).toBeInTheDocument()
   })
 
   it("renders error state", () => {
     mockUseRestaurant.mockReturnValue({
-      data: null,
+      data: undefined,
       isPending: false,
       error: { name: "loading-error", message: "Error loading" },
     })
@@ -103,7 +103,7 @@ describe("RestaurantOrder component", () => {
   })
 
   it("renders no restaurant found state", () => {
-    mockUseRestaurant.mockReturnValue({ data: null, isPending: false, error: null })
+    mockUseRestaurant.mockReturnValue({ data: undefined, isPending: false, error: undefined })
     renderWithRouter(<RestaurantOrder />)
     expect(screen.getByText(/No restaurant found/i)).toBeInTheDocument()
   })

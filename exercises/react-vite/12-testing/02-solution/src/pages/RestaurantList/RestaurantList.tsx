@@ -3,7 +3,7 @@ import {
   useCities,
   useRestaurants,
   useStates,
-} from "../../services/pmo/restaurant/"
+} from "../../services/pmo/restaurant"
 import ListItem from "./ListItem"
 import FormSelect from "../../components/FormSelect"
 

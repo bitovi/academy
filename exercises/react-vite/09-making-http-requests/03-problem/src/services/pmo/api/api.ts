@@ -6,13 +6,13 @@ export async function apiRequest<Data = never, Params = unknown>({
   method: string
   params?: Params
   path: string
-}): Promise<{ data: Data | null; error: Error | null }> {
+}): Promise<{ data?: Data; error?: Error }> {
   
   // Exercise: Implement the `apiRequest` helper function to handle errors returned and thrown from `fetch()`.
 
   return {
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
   }
 }
 
