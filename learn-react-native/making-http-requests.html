@@ -2040,7 +2040,7 @@ export default CityList
 
 const data = await response.json()
 const error = response.ok
-  ? null
+  ? undefined
   : new Error(`${response.status} (${response.statusText})`)
 
 </code></pre>
@@ -2056,7 +2056,7 @@ const error = response.ok
 
   const data = await response.json()
   const error = response.ok
-    ? null
+    ? undefined
     : new Error(`${response.status} (${response.statusText})`)
   // Do something with data and error
 } catch (error) {
@@ -2067,6 +2067,8 @@ const error = response.ok
 
 </code></pre>
 <p>In the example above, we <code>catch</code> the <code>error</code> and check its type. If it’s already an <code>instanceof Error</code>, then it will have a <code>message</code> property and we can use it as-is. If it’s not, then we can create our own <code>new Error()</code> so we <em>always</em> have an error to consume in our Hooks or components.</p>
+<p><strong>Note:</strong> This implementation demonstrates a basic approach to data fetching using fetch. While it works for simple use cases, it lacks important features that production-ready apps typically need — such as caching, refetching, error retries, and background updates.</p>
+<p>As your app grows, maintaining these features manually becomes complex and error-prone. At that point, we strongly recommend using a dedicated data-fetching library like <a href="https://tanstack.com/query/latest">TanStack Query</a> to handle these concerns efficiently.</p>
 <h3 id="setup-3">Setup 3</h3>
 <p>✏️ Create <strong>src/services/pmo/api/api.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">const baseUrl = process.env.PMO_API
@@ -2085,7 +2087,7 @@ export async function apiRequest&lt;
   params?: Params
   path: string
   body?: Body
-}): Promise&lt;{ data: Data | undefined; error: Error | undefined }&gt; {}
+}): Promise&lt;{ data?: Data; error?: Error }&gt; {}
 
 export function stringifyQuery(
   input: Record&lt;string, string | undefined | undefined&gt;,
@@ -2314,7 +2316,7 @@ export async function apiRequest&lt;
   params?: Params
   path: string
   body?: Body
-}): Promise&lt;{ data: Data | undefined; error: Error | undefined }&gt; {
+}): Promise&lt;{ data?: Data; error?: Error }&gt; {
   try {
     const query = params ? stringifyQuery(params) : &quot;&quot;
     const requestUrl = `${baseUrl}${path}?${query}`
@@ -2328,15 +2330,13 @@ export async function apiRequest&lt;
     })
 
     const data = await response.json()
-
-    if (!response.ok) {
-      const error = new Error(`${response.status} (${response.statusText})`)
-      return { data: data, error: error }
-    }
+    const error = response.ok
+      ? undefined
+      : new Error(`${response.status} (${response.statusText})`)
 
     return {
       data: &quot;data&quot; in data ? data.data : data,
-      error: undefined,
+      error: error,
     }
   } catch (error) {
     return {
@@ -2362,7 +2362,7 @@ export function stringifyQuery(
 }
 
 </code></pre>
- <div line-highlight="17-20,22-28,30,32-34,37-46,58-59,62,only"></div>
+ <div line-highlight="17-20,22-28,30-33,35-37,39-44,56-57,60,only"></div>
 <p>✏️ Update <strong>src/services/pmo/restaurant/hooks.ts</strong> to be:</p>
 <pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
 

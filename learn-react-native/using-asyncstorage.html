@@ -901,15 +901,13 @@ export async function apiRequest&lt;
     })
 
     const data = await response.json()
-
-    if (!response.ok) {
-      const error = new Error(`${response.status} (${response.statusText})`)
-      return { data: data, error: error }
-    }
+    const error = response.ok
+      ? undefined
+      : new Error(`${response.status} (${response.statusText})`)
 
     return {
       data: &quot;data&quot; in data ? data.data : data,
-      error: undefined,
+      error: error,
     }
   } catch (error) {
     return {
@@ -935,7 +933,7 @@ export function stringifyQuery(
 }
 
 </code></pre>
- <div line-highlight="1,5-7,10,71,only"></div>
+ <div line-highlight="1,5-7,10,26,69,only"></div>
 <h3 id="verify-1">Verify 1</h3>
 <p>✏️ Create <strong>src/services/storage/storage.mock.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export const getData = async &lt;T&gt;(key: string): Promise&lt;T | undefined&gt; =&gt; {
@@ -1121,6 +1119,9 @@ export async function apiRequest&lt;
     })
 
     const data = await response.json()
+    const error = response.ok
+      ? undefined
+      : new Error(`${response.status} (${response.statusText})`)
 
     if (method === &quot;GET&quot; &amp;&amp; response.ok) {
       await storeData&lt;CachedResponse&lt;Data&gt;&gt;(keyPrefix + requestUrl, {
@@ -1129,14 +1130,9 @@ export async function apiRequest&lt;
       })
     }
 
-    if (!response.ok) {
-      const error = new Error(`${response.status} (${response.statusText})`)
-      return { data: data, error: error }
-    }
-
     return {
       data: &quot;data&quot; in data ? data.data : data,
-      error: undefined,
+      error: error,
     }
   } catch (error) {
     return {
@@ -1162,7 +1158,7 @@ export function stringifyQuery(
 }
 
 </code></pre>
- <div line-highlight="31-35,37-50,63-67,84,96,only"></div>
+ <div line-highlight="31-35,37-50,66-70,82,94,only"></div>
 <p>✏️ Update <strong>src/services/storage/storage.ts</strong> to be:</p>
 <pre><code class="language-ts">import AsyncStorage from &quot;@react-native-async-storage/async-storage&quot;
 
@@ -1252,6 +1248,9 @@ export async function apiRequest&lt;
     })
 
     const data = await response.json()
+    const error = response.ok
+      ? undefined
+      : new Error(`${response.status} (${response.statusText})`)
 
     if (method === &quot;GET&quot; &amp;&amp; response.ok) {
       await storeData&lt;CachedResponse&lt;Data&gt;&gt;(keyPrefix + requestUrl, {
@@ -1260,14 +1259,9 @@ export async function apiRequest&lt;
       })
     }
 
-    if (!response.ok) {
-      const error = new Error(`${response.status} (${response.statusText})`)
-      return { data: data, error: error }
-    }
-
     return {
       data: &quot;data&quot; in data ? data.data : data,
-      error: undefined,
+      error: error,
     }
   } catch (error) {
     return {
@@ -1320,7 +1314,7 @@ export async function apiRequest&lt;
   params?: Params
   path: string
   body?: Body
-}): Promise&lt;{ data: Data | undefined; error: Error | undefined }&gt; {
+}): Promise&lt;{ data?: Data; error?: Error }&gt; {
   try {
     const query = params ? stringifyQuery(params) : &quot;&quot;
     const requestUrl = `${baseUrl}${path}?${query}`
@@ -1355,6 +1349,9 @@ export async function apiRequest&lt;
     })
 
     const data = await response.json()
+    const error = response.ok
+      ? undefined
+      : new Error(`${response.status} (${response.statusText})`)
 
     if (method === &quot;GET&quot; &amp;&amp; response.ok) {
       await storeData&lt;CachedResponse&lt;Data&gt;&gt;(keyPrefix + requestUrl, {
@@ -1363,14 +1360,9 @@ export async function apiRequest&lt;
       })
     }
 
-    if (!response.ok) {
-      const error = new Error(`${response.status} (${response.statusText})`)
-      return { data: data, error: error }
-    }
-
     return {
       data: &quot;data&quot; in data ? data.data : data,
-      error: undefined,
+      error: error,
     }
   } catch (error) {
     return {
@@ -1396,7 +1388,7 @@ export function stringifyQuery(
 }
 
 </code></pre>
- <div line-highlight="7,38,65,only"></div>
+ <div line-highlight="7,26,38,68,only"></div>
 <p>If we make this change, it would be great if we could migrate the old cached data (with strings) to the new format (with numbers).
 Let’s dig into how we can add data migration to the application.</p>
 <h3 id="migrating-data">Migrating data</h3>
@@ -1591,7 +1583,7 @@ export async function apiRequest&lt;
   params?: Params
   path: string
   body?: Body
-}): Promise&lt;{ data: Data | undefined; error: Error | undefined }&gt; {
+}): Promise&lt;{ data?: Data; error?: Error }&gt; {
   try {
     const query = params ? stringifyQuery(params) : &quot;&quot;
     const requestUrl = `${baseUrl}${path}?${query}`
@@ -1626,6 +1618,9 @@ export async function apiRequest&lt;
     })
 
     const data = await response.json()
+    const error = response.ok
+      ? undefined
+      : new Error(`${response.status} (${response.statusText})`)
 
     if (method === &quot;GET&quot; &amp;&amp; response.ok) {
       await storeData&lt;CachedResponse&lt;Data&gt;&gt;(keyPrefix + requestUrl, {
@@ -1634,14 +1629,9 @@ export async function apiRequest&lt;
       })
     }
 
-    if (!response.ok) {
-      const error = new Error(`${response.status} (${response.statusText})`)
-      return { data: data, error: error }
-    }
-
     return {
       data: &quot;data&quot; in data ? data.data : data,
-      error: undefined,
+      error: error,
     }
   } catch (error) {
     return {
@@ -1667,7 +1657,7 @@ export function stringifyQuery(
 }
 
 </code></pre>
- <div line-highlight="7,38,65,only"></div>
+ <div line-highlight="7,26,38,68,only"></div>
 <h3 id="verify-2">Verify 2</h3>
 <p>✏️ Create <strong>src/services/DataMigration/DataMigration.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;

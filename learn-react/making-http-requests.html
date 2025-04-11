@@ -1077,8 +1077,8 @@ export default RestaurantList
 import { useEffect, useState } from &quot;react&quot;
 
 interface StatesResponse {
-  data: State[] | null
-  error: Error | null
+  data: State[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
@@ -1111,15 +1111,15 @@ import RestaurantList from &quot;./RestaurantList&quot;
 vi.mock(&quot;../../services/pmo/restaurant&quot;, () =&gt; ({
   useCities: vi.fn(() =&gt; {
     return {
-      data: null,
-      error: null,
+      data: undefined,
+      error: undefined,
       isPending: false,
     }
   }),
   useStates: vi.fn(() =&gt; {
     return {
-      data: null,
-      error: null,
+      data: undefined,
+      error: undefined,
       isPending: false,
     }
   }),
@@ -1243,7 +1243,7 @@ describe(&quot;useStates Hook&quot;, () =&gt; {
     await waitFor(() =&gt; {
       expect(result.current.isPending).toBe(false)
       expect(result.current.data).toEqual(mockStates)
-      expect(result.current.error).toBeNull()
+      expect(result.current.error).toBeUndefined()
     })
   })
 })
@@ -1396,8 +1396,8 @@ export default RestaurantList
 import { useEffect, useState } from &quot;react&quot;
 
 interface StatesResponse {
-  data: State[] | null
-  error: Error | null
+  data: State[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
@@ -1413,8 +1413,8 @@ export function useCities(state: string): City[] {
 
 export function useStates(): StatesResponse {
   const [response, setResponse] = useState&lt;StatesResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
@@ -1427,8 +1427,8 @@ export function useStates(): StatesResponse {
       const data = await response.json()
 
       setResponse({
-        data: data?.data || null,
-        error: null,
+        data: data?.data || undefined,
+        error: undefined,
         isPending: false,
       })
     }
@@ -1464,7 +1464,7 @@ export function useStates(): StatesResponse {
 <pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
 import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
 import { useState } from &quot;react&quot;
-import { useCities, useStates } from &quot;../../services/pmo/restaurant/&quot;
+import { useCities, useStates } from &quot;../../services/pmo/restaurant&quot;
 import ListItem from &quot;./ListItem&quot;
 
 const RestaurantList: React.FC = () =&gt; {
@@ -1598,7 +1598,7 @@ const RestaurantList: React.FC = () =&gt; {
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="4,89-113,only"></div>
+ <div line-highlight="89-113,only"></div>
 <h3 id="verify-2">Verify 2</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
@@ -1614,15 +1614,15 @@ import { useCities, useStates } from &quot;../../services/pmo/restaurant&quot;
 vi.mock(&quot;../../services/pmo/restaurant&quot;, () =&gt; ({
   useCities: vi.fn(() =&gt; {
     return {
-      data: null,
-      error: null,
+      data: undefined,
+      error: undefined,
       isPending: false,
     }
   }),
   useStates: vi.fn(() =&gt; {
     return {
-      data: null,
-      error: null,
+      data: undefined,
+      error: undefined,
       isPending: false,
     }
   }),
@@ -1643,8 +1643,8 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
   })
 
   it(&quot;renders correctly with initial states&quot;, async () =&gt; {
-    useStates.mockReturnValue({ data: null, isPending: true, error: null })
-    useCities.mockReturnValue({ data: null, isPending: false, error: null })
+    useStates.mockReturnValue({ data: undefined, isPending: true, error: undefined })
+    useCities.mockReturnValue({ data: undefined, isPending: false, error: undefined })
 
     render(&lt;RestaurantList /&gt;)
     await act(() =&gt; {})
@@ -1655,12 +1655,12 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
 
   it(&quot;displays error messages correctly&quot;, async () =&gt; {
     useStates.mockReturnValue({
-      data: null,
+      data: undefined,
       isPending: false,
       error: { message: &quot;Error loading states&quot; },
     })
     useCities.mockReturnValue({
-      data: null,
+      data: undefined,
       isPending: false,
       error: { message: &quot;Error loading cities&quot; },
     })
@@ -1675,12 +1675,12 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
     useStates.mockReturnValue({
       data: [{ short: &quot;CA&quot;, name: &quot;California&quot; }],
       isPending: false,
-      error: null,
+      error: undefined,
     })
     useCities.mockReturnValue({
       data: [{ name: &quot;Los Angeles&quot; }],
       isPending: false,
-      error: null,
+      error: undefined,
     })
 
     render(&lt;RestaurantList /&gt;)
@@ -1714,8 +1714,8 @@ describe(&quot;useCities Hook&quot;, () =&gt; {
     const { result } = renderHook(() =&gt; useCities(&quot;someState&quot;))
     await waitFor(() =&gt; {
       expect(result.current.isPending).toBe(true)
-      expect(result.current.data).toBeNull()
-      expect(result.current.error).toBeNull()
+      expect(result.current.data).toBeUndefined()
+      expect(result.current.error).toBeUndefined()
     })
   })
 
@@ -1733,7 +1733,7 @@ describe(&quot;useCities Hook&quot;, () =&gt; {
     await waitFor(() =&gt; {
       expect(result.current.data).toEqual(mockCities)
       expect(result.current.isPending).toBe(false)
-      expect(result.current.error).toBeNull()
+      expect(result.current.error).toBeUndefined()
     })
   })
 })
@@ -1756,7 +1756,7 @@ describe(&quot;useStates Hook&quot;, () =&gt; {
     await waitFor(() =&gt; {
       expect(result.current.isPending).toBe(false)
       expect(result.current.data).toEqual(mockStates)
-      expect(result.current.error).toBeNull()
+      expect(result.current.error).toBeUndefined()
     })
   })
 })
@@ -1910,27 +1910,27 @@ const RestaurantList: React.FC = () =&gt; {
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="4,13,only"></div>
+ <div line-highlight="13,only"></div>
 <p>✏️ Update <strong>src/services/pmo/restaurant/hooks.ts</strong> to be:</p>
 <pre><code class="language-ts">import type { City, State } from &quot;./interfaces&quot;
 import { useEffect, useState } from &quot;react&quot;
 
 interface CitiesResponse {
-  data: City[] | null
-  error: Error | null
+  data: City[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface StatesResponse {
-  data: State[] | null
-  error: Error | null
+  data: State[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 export function useCities(state: string): CitiesResponse {
   const [response, setResponse] = useState&lt;CitiesResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
@@ -1946,8 +1946,8 @@ export function useCities(state: string): CitiesResponse {
       const data = await response.json()
 
       setResponse({
-        data: data?.data || null,
-        error: null,
+        data: data?.data || undefined,
+        error: undefined,
         isPending: false,
       })
     }
@@ -1959,8 +1959,8 @@ export function useCities(state: string): CitiesResponse {
 
 export function useStates(): StatesResponse {
   const [response, setResponse] = useState&lt;StatesResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
@@ -1973,8 +1973,8 @@ export function useStates(): StatesResponse {
       const data = await response.json()
 
       setResponse({
-        data: data?.data || null,
-        error: null,
+        data: data?.data || undefined,
+        error: undefined,
         isPending: false,
       })
     }
@@ -2004,7 +2004,7 @@ export function useStates(): StatesResponse {
 
 const data = await response.json()
 const error = response.ok
-  ? null
+  ? undefined
   : new Error(`${response.status} (${response.statusText})`)
 
 </code></pre>
@@ -2020,7 +2020,7 @@ const error = response.ok
 
   const data = await response.json()
   const error = response.ok
-    ? null
+    ? undefined
     : new Error(`${response.status} (${response.statusText})`)
   // Do something with data and error
 } catch (error) {
@@ -2041,13 +2041,13 @@ const error = response.ok
   method: string
   params?: Params
   path: string
-}): Promise&lt;{ data: Data | null; error: Error | null }&gt; {
+}): Promise&lt;{ data?: Data; error?: Error }&gt; {
   
   // Exercise: Implement the `apiRequest` helper function to handle errors returned and thrown from `fetch()`.
 
   return {
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
   }
 }
 
@@ -2075,21 +2075,21 @@ import { useEffect, useState } from &quot;react&quot;
 import { apiRequest } from &quot;../api&quot;
 
 interface CitiesResponse {
-  data: City[] | null
-  error: Error | null
+  data: City[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface StatesResponse {
-  data: State[] | null
-  error: Error | null
+  data: State[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 export function useCities(state: string): CitiesResponse {
   const [response, setResponse] = useState&lt;CitiesResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
@@ -2105,8 +2105,8 @@ export function useCities(state: string): CitiesResponse {
       const data = await response.json()
 
       setResponse({
-        data: data?.data || null,
-        error: null,
+        data: data?.data || undefined,
+        error: undefined,
         isPending: false,
       })
     }
@@ -2118,8 +2118,8 @@ export function useCities(state: string): CitiesResponse {
 
 export function useStates(): StatesResponse {
   const [response, setResponse] = useState&lt;StatesResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
@@ -2132,8 +2132,8 @@ export function useStates(): StatesResponse {
       const data = await response.json()
 
       setResponse({
-        data: data?.data || null,
-        error: null,
+        data: data?.data || undefined,
+        error: undefined,
         isPending: false,
       })
     }
@@ -2179,7 +2179,7 @@ describe(&quot;apiRequest function&quot;, () =&gt; {
       path: &quot;/test&quot;,
     })
 
-    expect(response).toEqual({ data: { message: &quot;success&quot; }, error: null })
+    expect(response).toEqual({ data: { message: &quot;success&quot; }, error: undefined })
     expect(mockFetch).toHaveBeenCalledWith(
       `${import.meta.env.VITE_PMO_API}/test?`,
       { method: &quot;GET&quot; },
@@ -2215,7 +2215,7 @@ describe(&quot;apiRequest function&quot;, () =&gt; {
       path: &quot;/test&quot;,
     })
 
-    expect(response).toEqual({ data: null, error: new Error(&quot;Network Error&quot;) })
+    expect(response).toEqual({ data: undefined, error: new Error(&quot;Network Error&quot;) })
   })
 })
 
@@ -2257,26 +2257,26 @@ describe(&quot;Hooks&quot;, () =&gt; {
         { id: 1, name: &quot;City1&quot; },
         { id: 2, name: &quot;City2&quot; },
       ]
-      mockApiRequest.mockResolvedValue({ data: mockCities , error: null })
+      mockApiRequest.mockResolvedValue({ data: mockCities , error: undefined })
 
       const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
 
       await waitFor(() =&gt; {
         expect(result.current.isPending).toBeFalsy()
         expect(result.current.data).toEqual(mockCities)
-        expect(result.current.error).toBeNull()
+        expect(result.current.error).toBeUndefined()
       })
     })
 
     it(&quot;should handle error when fetching cities data&quot;, async () =&gt; {
       const mockError = new Error(&quot;Error fetching cities&quot;)
-      mockApiRequest.mockResolvedValue({ data: null, error: mockError })
+      mockApiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
       const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
 
       await waitFor(() =&gt; {
         expect(result.current.isPending).toBeFalsy()
-        expect(result.current.data).toBeNull()
+        expect(result.current.data).toBeUndefined()
         expect(result.current.error).toEqual(mockError)
       })
     })
@@ -2288,26 +2288,26 @@ describe(&quot;Hooks&quot;, () =&gt; {
         { id: 1, name: &quot;State1&quot; },
         { id: 2, name: &quot;State2&quot; },
       ]
-      mockApiRequest.mockResolvedValue({ data: mockStates , error: null })
+      mockApiRequest.mockResolvedValue({ data: mockStates , error: undefined })
 
       const { result } = renderHook(() =&gt; useStates())
 
       await waitFor(() =&gt; {
         expect(result.current.isPending).toBeFalsy()
         expect(result.current.data).toEqual(mockStates)
-        expect(result.current.error).toBeNull()
+        expect(result.current.error).toBeUndefined()
       })
     })
 
     it(&quot;should handle error when fetching states data&quot;, async () =&gt; {
       const mockError = new Error(&quot;Error fetching states&quot;)
-      mockApiRequest.mockResolvedValue({ data: null, error: mockError })
+      mockApiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
       const { result } = renderHook(() =&gt; useStates())
 
       await waitFor(() =&gt; {
         expect(result.current.isPending).toBeFalsy()
-        expect(result.current.data).toBeNull()
+        expect(result.current.data).toBeUndefined()
         expect(result.current.error).toEqual(mockError)
       })
     })
@@ -2341,7 +2341,7 @@ export async function apiRequest&lt;Data = never, Params = unknown&gt;({
   method: string
   params?: Params
   path: string
-}): Promise&lt;{ data: Data | null; error: Error | null }&gt; {
+}): Promise&lt;{ data?: Data; error?: Error }&gt; {
   try {
     const query = params ? stringifyQuery(params) : &quot;&quot;
     const response = await fetch(
@@ -2353,7 +2353,7 @@ export async function apiRequest&lt;Data = never, Params = unknown&gt;({
 
     const data = await response.json()
     const error = response.ok
-      ? null
+      ? undefined
       : new Error(`${response.status} (${response.statusText})`)
 
     return {
@@ -2362,7 +2362,7 @@ export async function apiRequest&lt;Data = never, Params = unknown&gt;({
     }
   } catch (error) {
     return {
-      data: null,
+      data: undefined,
       error:
         error instanceof Error ? error : new Error(&quot;An unknown error occurred&quot;),
     }
@@ -2389,21 +2389,21 @@ import { useEffect, useState } from &quot;react&quot;
 import { apiRequest } from &quot;../api&quot;
 
 interface CitiesResponse {
-  data: City[] | null
-  error: Error | null
+  data: City[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface StatesResponse {
-  data: State[] | null
-  error: Error | null
+  data: State[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 export function useCities(state: string): CitiesResponse {
   const [response, setResponse] = useState&lt;CitiesResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
@@ -2431,8 +2431,8 @@ export function useCities(state: string): CitiesResponse {
 
 export function useStates(): StatesResponse {
   const [response, setResponse] = useState&lt;StatesResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
@@ -2472,7 +2472,7 @@ import {
   useCities,
   useRestaurants,
   useStates,
-} from &quot;../../services/pmo/restaurant/&quot;
+} from &quot;../../services/pmo/restaurant&quot;
 import ListItem from &quot;./ListItem&quot;
 
 const RestaurantList: React.FC = () =&gt; {
@@ -2674,21 +2674,21 @@ import { useEffect, useState } from &quot;react&quot;
 import { apiRequest } from &quot;../api&quot;
 
 interface CitiesResponse {
-  data: City[] | null
-  error: Error | null
+  data: City[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface StatesResponse {
-  data: State[] | null
-  error: Error | null
+  data: State[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 export function useCities(state: string): CitiesResponse {
   const [response, setResponse] = useState&lt;CitiesResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
@@ -2716,8 +2716,8 @@ export function useCities(state: string): CitiesResponse {
 
 export function useStates(): StatesResponse {
   const [response, setResponse] = useState&lt;StatesResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
@@ -2756,28 +2756,28 @@ import {
   useCities,
   useRestaurants,
   useStates,
-} from &quot;../../services/pmo/restaurant/&quot;
+} from &quot;../../services/pmo/restaurant&quot;
 
 // Mock the hooks used in the component
 vi.mock(&quot;../../services/pmo/restaurant&quot;, () =&gt; ({
   useCities: vi.fn(() =&gt; {
     return {
-      data: null,
-      error: null,
+      data: undefined,
+      error: undefined,
       isPending: false,
     }
   }),
   useRestaurants: vi.fn(() =&gt; {
     return {
-      data: null,
-      error: null,
+      data: undefined,
+      error: undefined,
       isPending: false,
     }
   }),
   useStates: vi.fn(() =&gt; {
     return {
-      data: null,
-      error: null,
+      data: undefined,
+      error: undefined,
       isPending: false,
     }
   }),
@@ -2800,12 +2800,12 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
   })
 
   it(&quot;renders correctly with initial states&quot;, () =&gt; {
-    mockUseStates.mockReturnValue({ data: null, isPending: true, error: null })
-    mockUseCities.mockReturnValue({ data: null, isPending: false, error: null })
+    mockUseStates.mockReturnValue({ data: undefined, isPending: true, error: undefined })
+    mockUseCities.mockReturnValue({ data: undefined, isPending: false, error: undefined })
     mockUseRestaurants.mockReturnValue({
-      data: null,
+      data: undefined,
       isPending: false,
-      error: null,
+      error: undefined,
     })
 
     render(&lt;RestaurantList /&gt;)
@@ -2816,17 +2816,17 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
 
   it(&quot;displays error messages correctly&quot;, () =&gt; {
     mockUseStates.mockReturnValue({
-      data: null,
+      data: undefined,
       isPending: false,
       error: { name: 'loading-error', message: &quot;Error loading states&quot; },
     })
     mockUseCities.mockReturnValue({
-      data: null,
+      data: undefined,
       isPending: false,
       error: { name: 'loading-error', message: &quot;Error loading cities&quot; },
     })
     mockUseRestaurants.mockReturnValue({
-      data: null,
+      data: undefined,
       isPending: false,
       error: { name: 'loading-error', message: &quot;Error loading restaurants&quot; },
     })
@@ -2840,12 +2840,12 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
     mockUseStates.mockReturnValue({
       data: [{ short: &quot;CA&quot;, name: &quot;California&quot; }],
       isPending: false,
-      error: null,
+      error: undefined,
     })
     mockUseCities.mockReturnValue({
       data: [{ name: &quot;Los Angeles&quot;, state: 'CA' }],
       isPending: false,
-      error: null,
+      error: undefined,
     })
     mockUseRestaurants.mockReturnValue({
       data: [
@@ -2859,7 +2859,7 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
         },
       ],
       isPending: false,
-      error: null,
+      error: undefined,
     })
 
     render(&lt;RestaurantList /&gt;)
@@ -2898,26 +2898,26 @@ describe(&quot;Hooks&quot;, () =&gt; {
         { id: 1, name: &quot;City1&quot; },
         { id: 2, name: &quot;City2&quot; },
       ]
-      mockApiRequest.mockResolvedValue({ data: mockCities , error: null })
+      mockApiRequest.mockResolvedValue({ data: mockCities , error: undefined })
 
       const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
 
       await waitFor(() =&gt; {
         expect(result.current.isPending).toBeFalsy()
         expect(result.current.data).toEqual(mockCities)
-        expect(result.current.error).toBeNull()
+        expect(result.current.error).toBeUndefined()
       })
     })
 
     it(&quot;should handle error when fetching cities data&quot;, async () =&gt; {
       const mockError = new Error(&quot;Error fetching cities&quot;)
-      mockApiRequest.mockResolvedValue({ data: null, error: mockError })
+      mockApiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
       const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
 
       await waitFor(() =&gt; {
         expect(result.current.isPending).toBeFalsy()
-        expect(result.current.data).toBeNull()
+        expect(result.current.data).toBeUndefined()
         expect(result.current.error).toEqual(mockError)
       })
     })
@@ -2931,7 +2931,7 @@ describe(&quot;Hooks&quot;, () =&gt; {
       ]
       mockApiRequest.mockResolvedValue({
         data: mockRestaurants,
-        error: null,
+        error: undefined,
       })
 
       const { result } = renderHook(() =&gt;
@@ -2941,13 +2941,13 @@ describe(&quot;Hooks&quot;, () =&gt; {
       await waitFor(() =&gt; {
         expect(result.current.isPending).toBeFalsy()
         expect(result.current.data).toEqual(mockRestaurants)
-        expect(result.current.error).toBeNull()
+        expect(result.current.error).toBeUndefined()
       })
     })
 
     it(&quot;should handle error when fetching restaurants data&quot;, async () =&gt; {
       const mockError = new Error(&quot;Error fetching restaurants&quot;)
-      mockApiRequest.mockResolvedValue({ data: null, error: mockError })
+      mockApiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
       const { result } = renderHook(() =&gt;
         useRestaurants(&quot;test-state&quot;, &quot;test-city&quot;),
@@ -2955,7 +2955,7 @@ describe(&quot;Hooks&quot;, () =&gt; {
 
       await waitFor(() =&gt; {
         expect(result.current.isPending).toBeFalsy()
-        expect(result.current.data).toBeNull()
+        expect(result.current.data).toBeUndefined()
         expect(result.current.error).toEqual(mockError)
       })
     })
@@ -2967,26 +2967,26 @@ describe(&quot;Hooks&quot;, () =&gt; {
         { id: 1, name: &quot;State1&quot; },
         { id: 2, name: &quot;State2&quot; },
       ]
-      mockApiRequest.mockResolvedValue({ data: mockStates , error: null })
+      mockApiRequest.mockResolvedValue({ data: mockStates , error: undefined })
 
       const { result } = renderHook(() =&gt; useStates())
 
       await waitFor(() =&gt; {
         expect(result.current.isPending).toBeFalsy()
         expect(result.current.data).toEqual(mockStates)
-        expect(result.current.error).toBeNull()
+        expect(result.current.error).toBeUndefined()
       })
     })
 
     it(&quot;should handle error when fetching states data&quot;, async () =&gt; {
       const mockError = new Error(&quot;Error fetching states&quot;)
-      mockApiRequest.mockResolvedValue({ data: null, error: mockError })
+      mockApiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
       const { result } = renderHook(() =&gt; useStates())
 
       await waitFor(() =&gt; {
         expect(result.current.isPending).toBeFalsy()
-        expect(result.current.data).toBeNull()
+        expect(result.current.data).toBeUndefined()
         expect(result.current.error).toEqual(mockError)
       })
     })
@@ -3011,7 +3011,7 @@ import {
   useCities,
   useRestaurants,
   useStates,
-} from &quot;../../services/pmo/restaurant/&quot;
+} from &quot;../../services/pmo/restaurant&quot;
 import ListItem from &quot;./ListItem&quot;
 
 const RestaurantList: React.FC = () =&gt; {
@@ -3137,27 +3137,27 @@ import { useEffect, useState } from &quot;react&quot;
 import { apiRequest } from &quot;../api&quot;
 
 interface CitiesResponse {
-  data: City[] | null
-  error: Error | null
+  data: City[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface RestaurantsResponse {
-  data: Restaurant[] | null
-  error: Error | null
+  data: Restaurant[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface StatesResponse {
-  data: State[] | null
-  error: Error | null
+  data: State[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 export function useCities(state: string): CitiesResponse {
   const [response, setResponse] = useState&lt;CitiesResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
@@ -3188,8 +3188,8 @@ export function useRestaurants(
   city: string,
 ): RestaurantsResponse {
   const [response, setResponse] = useState&lt;RestaurantsResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
@@ -3218,8 +3218,8 @@ export function useRestaurants(
 
 export function useStates(): StatesResponse {
   const [response, setResponse] = useState&lt;StatesResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 

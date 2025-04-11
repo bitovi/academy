@@ -763,7 +763,7 @@ setUpdatedRestaurant((current) =&gt; {
 <pre><code class="language-tsx">import { useState } from &quot;react&quot;
 import { useParams } from &quot;react-router-dom&quot;
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
-import { useRestaurant } from &quot;../../services/pmo/restaurant/&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
 type OrderItems = Record&lt;string, number&gt;
 
@@ -863,7 +863,7 @@ import { describe, expect, it, vi } from &quot;vitest&quot;
 import type { ArgumentsType, Mock } from &quot;vitest&quot;
 import RestaurantOrder from &quot;./RestaurantOrder&quot;
 
-import { useRestaurant } from &quot;../../services/pmo/restaurant/&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
 const mockUseRestaurant = useRestaurant as Mock&lt;ArgumentsType&lt;typeof useRestaurant&gt;, ReturnType&lt;typeof useRestaurant&gt;&gt;
 
@@ -896,7 +896,7 @@ const mockRestaurantData = {
     },
   },
   isPending: false,
-  error: null,
+  error: undefined,
 }
 
 const renderWithRouter = (
@@ -913,14 +913,14 @@ const renderWithRouter = (
 
 describe(&quot;RestaurantOrder component&quot;, () =&gt; {
   it(&quot;renders loading state&quot;, () =&gt; {
-    mockUseRestaurant.mockReturnValue({ data: null, isPending: true, error: null })
+    mockUseRestaurant.mockReturnValue({ data: undefined, isPending: true, error: undefined })
     renderWithRouter(&lt;RestaurantOrder /&gt;)
     expect(screen.getByText(/Loading restaurant…/i)).toBeInTheDocument()
   })
 
   it(&quot;renders error state&quot;, () =&gt; {
     mockUseRestaurant.mockReturnValue({
-      data: null,
+      data: undefined,
       isPending: false,
       error: { name: &quot;loading-error&quot;, message: &quot;Error loading&quot; },
     })
@@ -929,7 +929,7 @@ describe(&quot;RestaurantOrder component&quot;, () =&gt; {
   })
 
   it(&quot;renders no restaurant found state&quot;, () =&gt; {
-    mockUseRestaurant.mockReturnValue({ data: null, isPending: false, error: null })
+    mockUseRestaurant.mockReturnValue({ data: undefined, isPending: false, error: undefined })
     renderWithRouter(&lt;RestaurantOrder /&gt;)
     expect(screen.getByText(/No restaurant found/i)).toBeInTheDocument()
   })
@@ -988,7 +988,7 @@ describe(&quot;RestaurantOrder component&quot;, () =&gt; {
 <pre><code class="language-tsx">import { useState } from &quot;react&quot;
 import { useParams } from &quot;react-router-dom&quot;
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
-import { useRestaurant } from &quot;../../services/pmo/restaurant/&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
 type OrderItems = Record&lt;string, number&gt;
 
@@ -1283,7 +1283,7 @@ import { useState } from &quot;react&quot;
 import { useParams } from &quot;react-router-dom&quot;
 import FormTextField from &quot;../../components/FormTextField&quot;
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
-import { useRestaurant } from &quot;../../services/pmo/restaurant/&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
 type OrderItems = Record&lt;string, number&gt;
 
@@ -1421,7 +1421,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from &quot;vitest&quo
 import type { ArgumentsType, Mock } from &quot;vitest&quot;
 import RestaurantOrder from &quot;./RestaurantOrder&quot;
 
-import { useRestaurant } from &quot;../../services/pmo/restaurant/&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
 const mockUseRestaurant = useRestaurant as Mock&lt;ArgumentsType&lt;typeof useRestaurant&gt;, ReturnType&lt;typeof useRestaurant&gt;&gt;
 
@@ -1484,7 +1484,7 @@ const mockRestaurantData = {
     },
   },
   isPending: false,
-  error: null,
+  error: undefined,
 }
 
 const renderWithRouter = (
@@ -1501,14 +1501,14 @@ const renderWithRouter = (
 
 describe(&quot;RestaurantOrder component&quot;, () =&gt; {
   it(&quot;renders loading state&quot;, () =&gt; {
-    mockUseRestaurant.mockReturnValue({ data: null, isPending: true, error: null })
+    mockUseRestaurant.mockReturnValue({ data: undefined, isPending: true, error: undefined })
     renderWithRouter(&lt;RestaurantOrder /&gt;)
     expect(screen.getByText(/Loading restaurant…/i)).toBeInTheDocument()
   })
 
   it(&quot;renders error state&quot;, () =&gt; {
     mockUseRestaurant.mockReturnValue({
-      data: null,
+      data: undefined,
       isPending: false,
       error: { name: &quot;loading-error&quot;, message: &quot;Error loading&quot; },
     })
@@ -1517,7 +1517,7 @@ describe(&quot;RestaurantOrder component&quot;, () =&gt; {
   })
 
   it(&quot;renders no restaurant found state&quot;, () =&gt; {
-    mockUseRestaurant.mockReturnValue({ data: null, isPending: false, error: null })
+    mockUseRestaurant.mockReturnValue({ data: undefined, isPending: false, error: undefined })
     renderWithRouter(&lt;RestaurantOrder /&gt;)
     expect(screen.getByText(/No restaurant found/i)).toBeInTheDocument()
   })
@@ -1604,7 +1604,7 @@ import { useState } from &quot;react&quot;
 import { useParams } from &quot;react-router-dom&quot;
 import FormTextField from &quot;../../components/FormTextField&quot;
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
-import { useRestaurant } from &quot;../../services/pmo/restaurant/&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
 type OrderItems = Record&lt;string, number&gt;
 

@@ -770,7 +770,7 @@ export default RestaurantHeader
 <p>✏️ Create <strong>src/pages/RestaurantDetails/RestaurantDetails.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { Link, useParams } from &quot;react-router-dom&quot;
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
-import { useRestaurant } from &quot;../../services/pmo/restaurant/&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
 const RestaurantDetails: React.FC = () =&gt; {
   const params = useParams() as { slug: string }
@@ -847,7 +847,7 @@ const ListItem: React.FC&lt;ListItemProps&gt; = ({
   return (
     &lt;&gt;
       &lt;div className=&quot;restaurant&quot;&gt;
-        &lt;img src={thumbnail} alt={`A thumbnail for ${name}`} width=&quot;100&quot; height=&quot;100&quot; /&gt;
+        &lt;img src={`/${thumbnail}`} alt={`A thumbnail for ${name}`} width=&quot;100&quot; height=&quot;100&quot; /&gt;
         &lt;h3&gt;{name}&lt;/h3&gt;
 
         {address &amp;&amp; (
@@ -884,33 +884,33 @@ import { useEffect, useState } from &quot;react&quot;
 import { apiRequest } from &quot;../api&quot;
 
 interface CitiesResponse {
-  data: City[] | null
-  error: Error | null
+  data: City[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface RestaurantResponse {
-  data: Restaurant | null
-  error: Error | null
+  data: Restaurant | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface RestaurantsResponse {
-  data: Restaurant[] | null
-  error: Error | null
+  data: Restaurant[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 interface StatesResponse {
-  data: State[] | null
-  error: Error | null
+  data: State[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
 export function useCities(state: string): CitiesResponse {
   const [response, setResponse] = useState&lt;CitiesResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
@@ -938,8 +938,8 @@ export function useCities(state: string): CitiesResponse {
 
 export function useRestaurant(slug: string): RestaurantResponse {
   const [response, setResponse] = useState&lt;RestaurantResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
@@ -967,8 +967,8 @@ export function useRestaurants(
   city: string,
 ): RestaurantsResponse {
   const [response, setResponse] = useState&lt;RestaurantsResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
@@ -997,8 +997,8 @@ export function useRestaurants(
 
 export function useStates(): StatesResponse {
   const [response, setResponse] = useState&lt;StatesResponse&gt;({
-    data: null,
-    error: null,
+    data: undefined,
+    error: undefined,
     isPending: true,
   })
 
@@ -1027,7 +1027,7 @@ export function useStates(): StatesResponse {
 <p>The existing test already cover routing, so no new tests are needed. Ensure the existing tests pass when you run <code>npm run test</code>.</p>
 <p>✏️ Create <strong>src/components/RestaurantHeader/RestaurantHeader.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
-import type { Restaurant } from &quot;../../services/pmo/restaurant/&quot;
+import type { Restaurant } from &quot;../../services/pmo/restaurant&quot;
 import { render, screen } from &quot;@testing-library/react&quot;
 import { describe, expect, it } from &quot;vitest&quot;
 import RestaurantHeader from &quot;./RestaurantHeader&quot;
@@ -1129,7 +1129,7 @@ import { describe, expect, it, vi } from &quot;vitest&quot;
 import type { ArgumentsType, Mock } from &quot;vitest&quot;
 import RestaurantDetails from &quot;./RestaurantDetails&quot;
 
-import { useRestaurant } from &quot;../../services/pmo/restaurant/&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
 // Mock the hooks and components used in RestaurantDetails
 vi.mock(&quot;../../services/pmo/restaurant&quot;, () =&gt; ({
@@ -1153,7 +1153,7 @@ const mockRestaurantData = {
     menu: { dinner: [], lunch: [] },
   },
   isPending: false,
-  error: null,
+  error: undefined,
 }
 
 const renderWithRouter = (
@@ -1170,14 +1170,14 @@ const renderWithRouter = (
 
 describe(&quot;RestaurantDetails component&quot;, () =&gt; {
   it(&quot;renders loading state&quot;, () =&gt; {
-    mockUseRestaurant.mockReturnValue({ data: null, isPending: true, error: null })
+    mockUseRestaurant.mockReturnValue({ data: undefined, isPending: true, error: undefined })
     renderWithRouter(&lt;RestaurantDetails /&gt;)
     expect(screen.getByText(/Loading restaurant…/i)).toBeInTheDocument()
   })
 
   it(&quot;renders error state&quot;, () =&gt; {
     mockUseRestaurant.mockReturnValue({
-      data: null,
+      data: undefined,
       isPending: false,
       error: { name: '', message: &quot;Error loading&quot; },
     })
@@ -1186,7 +1186,7 @@ describe(&quot;RestaurantDetails component&quot;, () =&gt; {
   })
 
   it(&quot;renders no restaurant found state&quot;, () =&gt; {
-    mockUseRestaurant.mockReturnValue({ data: null, isPending: false, error: null })
+    mockUseRestaurant.mockReturnValue({ data: undefined, isPending: false, error: undefined })
     renderWithRouter(&lt;RestaurantDetails /&gt;)
     expect(screen.getByText(/No restaurant found/i)).toBeInTheDocument()
   })
@@ -1331,28 +1331,28 @@ import {
   useCities,
   useRestaurants,
   useStates,
-} from &quot;../../services/pmo/restaurant/&quot;
+} from &quot;../../services/pmo/restaurant&quot;
 
 // Mock the hooks used in the component
 vi.mock(&quot;../../services/pmo/restaurant&quot;, () =&gt; ({
   useCities: vi.fn(() =&gt; {
     return {
-      data: null,
-      error: null,
+      data: undefined,
+      error: undefined,
       isPending: false,
     }
   }),
   useRestaurants: vi.fn(() =&gt; {
     return {
-      data: null,
-      error: null,
+      data: undefined,
+      error: undefined,
       isPending: false,
     }
   }),
   useStates: vi.fn(() =&gt; {
     return {
-      data: null,
-      error: null,
+      data: undefined,
+      error: undefined,
       isPending: false,
     }
   }),
@@ -1381,12 +1381,12 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
   })
 
   it(&quot;renders correctly with initial states&quot;, () =&gt; {
-    mockUseStates.mockReturnValue({ data: null, isPending: true, error: null })
-    mockUseCities.mockReturnValue({ data: null, isPending: false, error: null })
+    mockUseStates.mockReturnValue({ data: undefined, isPending: true, error: undefined })
+    mockUseCities.mockReturnValue({ data: undefined, isPending: false, error: undefined })
     mockUseRestaurants.mockReturnValue({
-      data: null,
+      data: undefined,
       isPending: false,
-      error: null,
+      error: undefined,
     })
 
     render(&lt;RestaurantList /&gt;)
@@ -1397,17 +1397,17 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
 
   it(&quot;displays error messages correctly&quot;, () =&gt; {
     mockUseStates.mockReturnValue({
-      data: null,
+      data: undefined,
       isPending: false,
       error: { name: 'loading-error', message: &quot;Error loading states&quot; },
     })
     mockUseCities.mockReturnValue({
-      data: null,
+      data: undefined,
       isPending: false,
       error: { name: 'loading-error', message: &quot;Error loading cities&quot; },
     })
     mockUseRestaurants.mockReturnValue({
-      data: null,
+      data: undefined,
       isPending: false,
       error: { name: 'loading-error', message: &quot;Error loading restaurants&quot; },
     })
@@ -1421,12 +1421,12 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
     mockUseStates.mockReturnValue({
       data: [{ short: &quot;CA&quot;, name: &quot;California&quot; }],
       isPending: false,
-      error: null,
+      error: undefined,
     })
     mockUseCities.mockReturnValue({
       data: [{ name: &quot;Los Angeles&quot;, state: &quot;CA&quot; }],
       isPending: false,
-      error: null,
+      error: undefined,
     })
     mockUseRestaurants.mockReturnValue({
       data: [
@@ -1440,7 +1440,7 @@ describe(&quot;RestaurantList component&quot;, () =&gt; {
         },
       ],
       isPending: false,
-      error: null,
+      error: undefined,
     })
 
     renderWithRouter(&lt;RestaurantList /&gt;)
@@ -1479,26 +1479,26 @@ describe(&quot;Hooks&quot;, () =&gt; {
         { id: 1, name: &quot;City1&quot; },
         { id: 2, name: &quot;City2&quot; },
       ]
-      mockApiRequest.mockResolvedValue({ data: mockCities , error: null })
+      mockApiRequest.mockResolvedValue({ data: mockCities , error: undefined })
 
       const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
 
       await waitFor(() =&gt; {
         expect(result.current.isPending).toBeFalsy()
         expect(result.current.data).toEqual(mockCities)
-        expect(result.current.error).toBeNull()
+        expect(result.current.error).toBeUndefined()
       })
     })
 
     it(&quot;should handle error when fetching cities data&quot;, async () =&gt; {
       const mockError = new Error(&quot;Error fetching cities&quot;)
-      mockApiRequest.mockResolvedValue({ data: null, error: mockError })
+      mockApiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
       const { result } = renderHook(() =&gt; useCities(&quot;test-state&quot;))
 
       await waitFor(() =&gt; {
         expect(result.current.isPending).toBeFalsy()
-        expect(result.current.data).toBeNull()
+        expect(result.current.data).toBeUndefined()
         expect(result.current.error).toEqual(mockError)
       })
     })
@@ -1509,7 +1509,7 @@ describe(&quot;Hooks&quot;, () =&gt; {
       const mockRestaurant = { id: 1, name: &quot;Restaurant1&quot; }
       mockApiRequest.mockResolvedValue({
         data: mockRestaurant,
-        error: null,
+        error: undefined,
       })
 
       const { result } = renderHook(() =&gt;
@@ -1519,13 +1519,13 @@ describe(&quot;Hooks&quot;, () =&gt; {
       await waitFor(() =&gt; {
         expect(result.current.isPending).toBeFalsy()
         expect(result.current.data).toEqual(mockRestaurant)
-        expect(result.current.error).toBeNull()
+        expect(result.current.error).toBeUndefined()
       })
     })
 
     it(&quot;should handle error when fetching restaurant data&quot;, async () =&gt; {
       const mockError = new Error(&quot;Error fetching restaurant&quot;)
-      mockApiRequest.mockResolvedValue({ data: null, error: mockError })
+      mockApiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
       const { result } = renderHook(() =&gt;
         useRestaurants(&quot;test-state&quot;, &quot;test-city&quot;),
@@ -1533,7 +1533,7 @@ describe(&quot;Hooks&quot;, () =&gt; {
 
       await waitFor(() =&gt; {
         expect(result.current.isPending).toBeFalsy()
-        expect(result.current.data).toBeNull()
+        expect(result.current.data).toBeUndefined()
         expect(result.current.error).toEqual(mockError)
       })
     })
@@ -1547,7 +1547,7 @@ describe(&quot;Hooks&quot;, () =&gt; {
       ]
       mockApiRequest.mockResolvedValue({
         data: mockRestaurants,
-        error: null,
+        error: undefined,
       })
 
       const { result } = renderHook(() =&gt;
@@ -1557,13 +1557,13 @@ describe(&quot;Hooks&quot;, () =&gt; {
       await waitFor(() =&gt; {
         expect(result.current.isPending).toBeFalsy()
         expect(result.current.data).toEqual(mockRestaurants)
-        expect(result.current.error).toBeNull()
+        expect(result.current.error).toBeUndefined()
       })
     })
 
     it(&quot;should handle error when fetching restaurants data&quot;, async () =&gt; {
       const mockError = new Error(&quot;Error fetching restaurants&quot;)
-      mockApiRequest.mockResolvedValue({ data: null, error: mockError })
+      mockApiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
       const { result } = renderHook(() =&gt;
         useRestaurants(&quot;test-state&quot;, &quot;test-city&quot;),
@@ -1571,7 +1571,7 @@ describe(&quot;Hooks&quot;, () =&gt; {
 
       await waitFor(() =&gt; {
         expect(result.current.isPending).toBeFalsy()
-        expect(result.current.data).toBeNull()
+        expect(result.current.data).toBeUndefined()
         expect(result.current.error).toEqual(mockError)
       })
     })
@@ -1583,26 +1583,26 @@ describe(&quot;Hooks&quot;, () =&gt; {
         { id: 1, name: &quot;State1&quot; },
         { id: 2, name: &quot;State2&quot; },
       ]
-      mockApiRequest.mockResolvedValue({ data: mockStates , error: null })
+      mockApiRequest.mockResolvedValue({ data: mockStates , error: undefined })
 
       const { result } = renderHook(() =&gt; useStates())
 
       await waitFor(() =&gt; {
         expect(result.current.isPending).toBeFalsy()
         expect(result.current.data).toEqual(mockStates)
-        expect(result.current.error).toBeNull()
+        expect(result.current.error).toBeUndefined()
       })
     })
 
     it(&quot;should handle error when fetching states data&quot;, async () =&gt; {
       const mockError = new Error(&quot;Error fetching states&quot;)
-      mockApiRequest.mockResolvedValue({ data: null, error: mockError })
+      mockApiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
       const { result } = renderHook(() =&gt; useStates())
 
       await waitFor(() =&gt; {
         expect(result.current.isPending).toBeFalsy()
-        expect(result.current.data).toBeNull()
+        expect(result.current.data).toBeUndefined()
         expect(result.current.error).toEqual(mockError)
       })
     })
@@ -1680,7 +1680,7 @@ ReactDOM.createRoot(document.getElementById(&quot;root&quot;)!).render(
 <p>✏️ Create <strong>src/pages/RestaurantOrder/RestaurantOrder.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { useParams } from &quot;react-router-dom&quot;
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
-import { useRestaurant } from &quot;../../services/pmo/restaurant/&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
 const RestaurantOrder: React.FC = () =&gt; {
   const params = useParams() as { slug: string }
@@ -1731,7 +1731,7 @@ import { describe, expect, it, vi } from &quot;vitest&quot;
 import type { ArgumentsType, Mock } from &quot;vitest&quot;
 import RestaurantOrder from &quot;./RestaurantOrder&quot;
 
-import { useRestaurant } from &quot;../../services/pmo/restaurant/&quot;
+import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
 const mockUseRestaurant = useRestaurant as Mock&lt;ArgumentsType&lt;typeof useRestaurant&gt;, ReturnType&lt;typeof useRestaurant&gt;&gt;
 
@@ -1754,7 +1754,7 @@ const mockRestaurantData = {
     images: { owner: &quot;owner.jpg&quot;, banner: &quot;&quot;, thumbnail: &quot;&quot; },
   },
   isPending: false,
-  error: null,
+  error: undefined,
 }
 
 const renderWithRouter = (
@@ -1771,14 +1771,14 @@ const renderWithRouter = (
 
 describe(&quot;RestaurantOrder component&quot;, () =&gt; {
   it(&quot;renders loading state&quot;, () =&gt; {
-    mockUseRestaurant.mockReturnValue({ data: null, isPending: true, error: null })
+    mockUseRestaurant.mockReturnValue({ data: undefined, isPending: true, error: undefined })
     renderWithRouter(&lt;RestaurantOrder /&gt;)
     expect(screen.getByText(/Loading restaurant…/i)).toBeInTheDocument()
   })
 
   it(&quot;renders error state&quot;, () =&gt; {
     mockUseRestaurant.mockReturnValue({
-      data: null,
+      data: undefined,
       isPending: false,
       error: { name: &quot;loading-error&quot;, message: &quot;Error loading&quot; },
     })
@@ -1787,7 +1787,7 @@ describe(&quot;RestaurantOrder component&quot;, () =&gt; {
   })
 
   it(&quot;renders no restaurant found state&quot;, () =&gt; {
-    mockUseRestaurant.mockReturnValue({ data: null, isPending: false, error: null })
+    mockUseRestaurant.mockReturnValue({ data: undefined, isPending: false, error: undefined })
     renderWithRouter(&lt;RestaurantOrder /&gt;)
     expect(screen.getByText(/No restaurant found/i)).toBeInTheDocument()
   })
