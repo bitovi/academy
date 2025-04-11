@@ -9,15 +9,15 @@ import RestaurantList from "./RestaurantList"
 vi.mock("../../services/pmo/restaurant", () => ({
   useCities: vi.fn(() => {
     return {
-      data: null,
-      error: null,
+      data: undefined,
+      error: undefined,
       isPending: false,
     }
   }),
   useStates: vi.fn(() => {
     return {
-      data: null,
-      error: null,
+      data: undefined,
+      error: undefined,
       isPending: false,
     }
   }),

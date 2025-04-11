@@ -5,21 +5,21 @@ import { describe, expect, it, vi } from "vitest"
 
 import RestaurantList from "./RestaurantList"
 
-import { useCities, useStates } from "../../services/pmo/restaurant/"
+import { useCities, useStates } from "../../services/pmo/restaurant"
 
 // Mock the hooks used in the component
 vi.mock("../../services/pmo/restaurant", () => ({
   useCities: vi.fn(() => {
     return {
-      data: null,
-      error: null,
+      data: undefined,
+      error: undefined,
       isPending: false,
     }
   }),
   useStates: vi.fn(() => {
     return {
-      data: null,
-      error: null,
+      data: undefined,
+      error: undefined,
       isPending: false,
     }
   }),
@@ -40,8 +40,8 @@ describe("RestaurantList component", () => {
   })
 
   it("renders correctly with initial states", async () => {
-    useStates.mockReturnValue({ data: null, isPending: true, error: null })
-    useCities.mockReturnValue({ data: null, isPending: false, error: null })
+    useStates.mockReturnValue({ data: undefined, isPending: true, error: undefined })
+    useCities.mockReturnValue({ data: undefined, isPending: false, error: undefined })
 
     render(<RestaurantList />)
     await act(() => {})
@@ -52,12 +52,12 @@ describe("RestaurantList component", () => {
 
   it("displays error messages correctly", async () => {
     useStates.mockReturnValue({
-      data: null,
+      data: undefined,
       isPending: false,
       error: { message: "Error loading states" },
     })
     useCities.mockReturnValue({
-      data: null,
+      data: undefined,
       isPending: false,
       error: { message: "Error loading cities" },
     })
@@ -72,12 +72,12 @@ describe("RestaurantList component", () => {
     useStates.mockReturnValue({
       data: [{ short: "CA", name: "California" }],
       isPending: false,
-      error: null,
+      error: undefined,
     })
     useCities.mockReturnValue({
       data: [{ name: "Los Angeles" }],
       isPending: false,
-      error: null,
+      error: undefined,
     })
 
     render(<RestaurantList />)

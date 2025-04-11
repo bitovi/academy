@@ -5,7 +5,7 @@ try {
 
   const data = await response.json()
   const error = response.ok
-    ? null
+    ? undefined
     : new Error(`${response.status} (${response.statusText})`)
   // Do something with data and error
 } catch (error) {

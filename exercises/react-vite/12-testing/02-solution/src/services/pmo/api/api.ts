@@ -6,7 +6,7 @@ export async function apiRequest<Data = never, Params = unknown>({
   method: string
   params?: Params
   path: string
-}): Promise<{ data: Data | null; error: Error | null }> {
+}): Promise<{ data?: Data; error?: Error }> {
   try {
     const query = params ? stringifyQuery(params) : ""
     const response = await fetch(
@@ -18,7 +18,7 @@ export async function apiRequest<Data = never, Params = unknown>({
 
     const data = await response.json()
     const error = response.ok
-      ? null
+      ? undefined
       : new Error(`${response.status} (${response.statusText})`)
 
       return {
@@ -27,7 +27,7 @@ export async function apiRequest<Data = never, Params = unknown>({
     }
   } catch (error) {
     return {
-      data: null,
+      data: undefined,
       error:
         error instanceof Error ? error : new Error("An unknown error occurred"),
     }

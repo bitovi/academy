@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
 import RestaurantHeader from "../../components/RestaurantHeader"
-import { useRestaurant } from "../../services/pmo/restaurant/"
+import { useRestaurant } from "../../services/pmo/restaurant"
 
 const RestaurantOrder: React.FC = () => {
   const params = useParams() as { slug: string }

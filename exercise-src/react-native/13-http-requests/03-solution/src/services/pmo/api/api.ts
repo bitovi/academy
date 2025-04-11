@@ -14,7 +14,7 @@ export async function apiRequest<
   params?: Params
   path: string
   body?: Body
-}): Promise<{ data: Data | undefined; error: Error | undefined }> {
+}): Promise<{ data?: Data; error?: Error }> {
   try {
     const query = params ? stringifyQuery(params) : ""
     const requestUrl = `${baseUrl}${path}?${query}`
@@ -28,15 +28,13 @@ export async function apiRequest<
     })
 
     const data = await response.json()
-
-    if (!response.ok) {
-      const error = new Error(`${response.status} (${response.statusText})`)
-      return { data: data, error: error }
-    }
+    const error = response.ok
+      ? undefined
+      : new Error(`${response.status} (${response.statusText})`)
 
     return {
       data: "data" in data ? data.data : data,
-      error: undefined,
+      error: error,
     }
   } catch (error) {
     return {

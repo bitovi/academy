@@ -22,26 +22,26 @@ describe("Hooks", () => {
         { id: 1, name: "City1" },
         { id: 2, name: "City2" },
       ]
-      mockApiRequest.mockResolvedValue({ data: mockCities , error: null })
+      mockApiRequest.mockResolvedValue({ data: mockCities , error: undefined })
 
       const { result } = renderHook(() => useCities("test-state"))
 
       await waitFor(() => {
         expect(result.current.isPending).toBeFalsy()
         expect(result.current.data).toEqual(mockCities)
-        expect(result.current.error).toBeNull()
+        expect(result.current.error).toBeUndefined()
       })
     })
 
     it("should handle error when fetching cities data", async () => {
       const mockError = new Error("Error fetching cities")
-      mockApiRequest.mockResolvedValue({ data: null, error: mockError })
+      mockApiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
       const { result } = renderHook(() => useCities("test-state"))
 
       await waitFor(() => {
         expect(result.current.isPending).toBeFalsy()
-        expect(result.current.data).toBeNull()
+        expect(result.current.data).toBeUndefined()
         expect(result.current.error).toEqual(mockError)
       })
     })
@@ -52,7 +52,7 @@ describe("Hooks", () => {
       const mockRestaurant = { id: 1, name: "Restaurant1" }
       mockApiRequest.mockResolvedValue({
         data: mockRestaurant,
-        error: null,
+        error: undefined,
       })
 
       const { result } = renderHook(() =>
@@ -62,13 +62,13 @@ describe("Hooks", () => {
       await waitFor(() => {
         expect(result.current.isPending).toBeFalsy()
         expect(result.current.data).toEqual(mockRestaurant)
-        expect(result.current.error).toBeNull()
+        expect(result.current.error).toBeUndefined()
       })
     })
 
     it("should handle error when fetching restaurant data", async () => {
       const mockError = new Error("Error fetching restaurant")
-      mockApiRequest.mockResolvedValue({ data: null, error: mockError })
+      mockApiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
       const { result } = renderHook(() =>
         useRestaurants("test-state", "test-city"),
@@ -76,7 +76,7 @@ describe("Hooks", () => {
 
       await waitFor(() => {
         expect(result.current.isPending).toBeFalsy()
-        expect(result.current.data).toBeNull()
+        expect(result.current.data).toBeUndefined()
         expect(result.current.error).toEqual(mockError)
       })
     })
@@ -90,7 +90,7 @@ describe("Hooks", () => {
       ]
       mockApiRequest.mockResolvedValue({
         data: mockRestaurants,
-        error: null,
+        error: undefined,
       })
 
       const { result } = renderHook(() =>
@@ -100,13 +100,13 @@ describe("Hooks", () => {
       await waitFor(() => {
         expect(result.current.isPending).toBeFalsy()
         expect(result.current.data).toEqual(mockRestaurants)
-        expect(result.current.error).toBeNull()
+        expect(result.current.error).toBeUndefined()
       })
     })
 
     it("should handle error when fetching restaurants data", async () => {
       const mockError = new Error("Error fetching restaurants")
-      mockApiRequest.mockResolvedValue({ data: null, error: mockError })
+      mockApiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
       const { result } = renderHook(() =>
         useRestaurants("test-state", "test-city"),
@@ -114,7 +114,7 @@ describe("Hooks", () => {
 
       await waitFor(() => {
         expect(result.current.isPending).toBeFalsy()
-        expect(result.current.data).toBeNull()
+        expect(result.current.data).toBeUndefined()
         expect(result.current.error).toEqual(mockError)
       })
     })
@@ -126,26 +126,26 @@ describe("Hooks", () => {
         { id: 1, name: "State1" },
         { id: 2, name: "State2" },
       ]
-      mockApiRequest.mockResolvedValue({ data: mockStates , error: null })
+      mockApiRequest.mockResolvedValue({ data: mockStates , error: undefined })
 
       const { result } = renderHook(() => useStates())
 
       await waitFor(() => {
         expect(result.current.isPending).toBeFalsy()
         expect(result.current.data).toEqual(mockStates)
-        expect(result.current.error).toBeNull()
+        expect(result.current.error).toBeUndefined()
       })
     })
 
     it("should handle error when fetching states data", async () => {
       const mockError = new Error("Error fetching states")
-      mockApiRequest.mockResolvedValue({ data: null, error: mockError })
+      mockApiRequest.mockResolvedValue({ data: undefined, error: mockError })
 
       const { result } = renderHook(() => useStates())
 
       await waitFor(() => {
         expect(result.current.isPending).toBeFalsy()
-        expect(result.current.data).toBeNull()
+        expect(result.current.data).toBeUndefined()
         expect(result.current.error).toEqual(mockError)
       })
     })

@@ -39,7 +39,7 @@ describe("useStates Hook", () => {
     await waitFor(() => {
       expect(result.current.isPending).toBe(false)
       expect(result.current.data).toEqual(mockStates)
-      expect(result.current.error).toBeNull()
+      expect(result.current.error).toBeUndefined()
     })
   })
 })

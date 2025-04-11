@@ -2,8 +2,8 @@ import type { City, State } from "./interfaces"
 import { useEffect, useState } from "react"
 
 interface StatesResponse {
-  data: State[] | null
-  error: Error | null
+  data: State[] | undefined
+  error: Error | undefined
   isPending: boolean
 }
 
