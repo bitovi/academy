@@ -3,12 +3,12 @@ import { StackScreenProps } from "@react-navigation/stack"
 import { FlatList } from "react-native"
 
 import { RestaurantsStackParamList } from "../../App"
-import Loading from "../../components/Loading"
-import Box from "../../design/Box"
-import Button from "../../design/Button"
-import Screen from "../../design/Screen"
-import Typography from "../../design/Typography"
-import { useCities } from "../../services/pmo/restaurant"
+import Loading from "@shared/components/Loading"
+import Box from "@shared/design/Box"
+import Button from "@shared/design/Button"
+import Screen from "@shared/design/Screen"
+import Typography from "@shared/design/Typography"
+import { useCities } from "@shared/services/pmo/restaurant"
 
 export interface CityListProps
   extends StackScreenProps<RestaurantsStackParamList, "CityList"> {}

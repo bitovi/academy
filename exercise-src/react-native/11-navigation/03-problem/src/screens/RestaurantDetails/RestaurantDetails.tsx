@@ -1,9 +1,9 @@
 import { useNavigation } from "@react-navigation/native"
 import { useEffect } from "react"
 
-import RestaurantHeader from "../../components/RestaurantHeader"
-import Button from "../../design/Button"
-import Screen from "../../design/Screen"
+import RestaurantHeader from "@shared/components/RestaurantHeader"
+import Button from "@shared/design/Button"
+import Screen from "@shared/design/Screen"
 
 const restaurant = {
   _id: "Ar0qBJHxM3ecOhcr",

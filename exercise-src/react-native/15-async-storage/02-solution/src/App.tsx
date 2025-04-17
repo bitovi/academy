@@ -5,16 +5,16 @@ import { Pressable } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import Icon from "react-native-vector-icons/Ionicons"
 
-import Box from "./design/Box"
-import ThemeProvider, { useTheme } from "./design/theme/ThemeProvider"
-import Typography from "./design/Typography"
+import Box from "@shared/design/Box"
+import ThemeProvider, { useTheme } from "@shared/design/theme"
+import Typography from "@shared/design/Typography"
 import CityList from "./screens/CityList"
 import RestaurantDetails from "./screens/RestaurantDetails"
 import RestaurantList from "./screens/RestaurantList"
 import RestaurantOrder from "./screens/RestaurantOrder"
 import Settings from "./screens/Settings"
 import StateList from "./screens/StateList"
-import DataMigration from "./services/DataMigration"
+import DataMigration from "@shared/services/DataMigration"
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

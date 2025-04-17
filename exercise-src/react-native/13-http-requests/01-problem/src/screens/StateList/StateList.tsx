@@ -1,12 +1,12 @@
 import { useNavigation } from "@react-navigation/native"
 import { FlatList } from "react-native"
 
-import Loading from "../../components/Loading"
-import Box from "../../design/Box"
-import Button from "../../design/Button"
-import Screen from "../../design/Screen"
-import Typography from "../../design/Typography"
-import { useStates } from "../../services/pmo/restaurant"
+import Loading from "@shared/components/Loading"
+import Box from "@shared/design/Box"
+import Button from "@shared/design/Button"
+import Screen from "@shared/design/Screen"
+import Typography from "@shared/design/Typography"
+import { useStates } from "@shared/services/pmo/restaurant"
 
 const StateList: React.FC = () => {
   const navigation = useNavigation()

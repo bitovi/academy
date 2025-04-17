@@ -1,6 +1,6 @@
-import Card from "../../design/Card"
-import Screen from "../../design/Screen"
-import Typography from "../../design/Typography"
+import Card from "@design/Card"
+import Screen from "@design/Screen"
+import Typography from "@design/Typography"
 
 import ListItem from "./components/ListItem"
 

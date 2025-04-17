@@ -3,14 +3,14 @@ import { StackScreenProps } from "@react-navigation/stack"
 import { useEffect, useState } from "react"
 
 import { RestaurantsStackParamList } from "../../App"
-import FormSwitch from "../../components/FormSwitch"
-import Loading from "../../components/Loading"
-import Box from "../../design/Box"
-import Button from "../../design/Button"
-import Card from "../../design/Card"
-import Screen from "../../design/Screen"
-import Typography from "../../design/Typography"
-import { useRestaurant } from "../../services/pmo/restaurant"
+import FormSwitch from "@shared/components/FormSwitch"
+import Loading from "@shared/components/Loading"
+import Box from "@shared/design/Box"
+import Button from "@shared/design/Button"
+import Card from "@shared/design/Card"
+import Screen from "@shared/design/Screen"
+import Typography from "@shared/design/Typography"
+import { useRestaurant } from "@shared/services/pmo/restaurant"
 
 export interface RestaurantOrderProps
   extends StackScreenProps<RestaurantsStackParamList, "RestaurantOrder"> {}

@@ -1,9 +1,9 @@
 import { ScrollView } from "react-native"
 
-import Box from "../../design/Box"
-import Card from "../../design/Card"
-import Screen from "../../design/Screen"
-import Typography from "../../design/Typography"
+import Box from "@shared/design/Box"
+import Card from "@shared/design/Card"
+import Screen from "@shared/design/Screen"
+import Typography from "@shared/design/Typography"
 
 import ListItem from "./components/ListItem"
 

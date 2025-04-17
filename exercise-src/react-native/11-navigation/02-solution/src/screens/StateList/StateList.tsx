@@ -1,10 +1,10 @@
 import { useNavigation } from "@react-navigation/native"
 import { FlatList } from "react-native"
 
-import Button from "../../design/Button"
-import Card from "../../design/Card"
-import Screen from "../../design/Screen"
-import Typography from "../../design/Typography"
+import Button from "@shared/design/Button"
+import Card from "@shared/design/Card"
+import Screen from "@shared/design/Screen"
+import Typography from "@shared/design/Typography"
 
 const states = [
   {

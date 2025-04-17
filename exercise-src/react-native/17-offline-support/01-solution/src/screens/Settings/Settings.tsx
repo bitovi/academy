@@ -2,13 +2,13 @@ import { useNetInfo } from "@react-native-community/netinfo"
 import { GoogleSigninButton } from "@react-native-google-signin/google-signin"
 import { StyleSheet, Switch, View } from "react-native"
 
-import Loading from "../../components/Loading"
-import Button from "../../design/Button"
-import Card from "../../design/Card"
-import Screen from "../../design/Screen"
-import { useThemeMode } from "../../design/theme"
-import Typography from "../../design/Typography"
-import { useAuthentication, useUser } from "../../services/auth"
+import Loading from "@shared/components/Loading"
+import Button from "@shared/design/Button"
+import Card from "@shared/design/Card"
+import Screen from "@shared/design/Screen"
+import { useThemeMode } from "@shared/design/theme"
+import Typography from "@shared/design/Typography"
+import { useAuthentication, useUser } from "@shared/services/auth"
 
 const Settings: React.FC = () => {
   const { error, isPending, signIn, signOut } = useAuthentication()

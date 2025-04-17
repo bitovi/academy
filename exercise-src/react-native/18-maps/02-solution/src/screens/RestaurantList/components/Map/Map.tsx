@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native"
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps"
 
-import { Restaurant } from "../../../../services/pmo/restaurant"
+import { Restaurant } from "@shared/services/pmo/restaurant"
 
 export interface MapProps {
   restaurants: Restaurant[]
