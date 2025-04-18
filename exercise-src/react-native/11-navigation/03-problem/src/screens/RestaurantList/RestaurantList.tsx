@@ -1,8 +1,7 @@
 import { useNavigation } from "@react-navigation/native"
-import { FlatList } from "react-native"
-
 import Button from "@shared/design/Button"
 import Screen from "@shared/design/Screen"
+import { FlatList } from "react-native"
 
 const restaurants = [
   {

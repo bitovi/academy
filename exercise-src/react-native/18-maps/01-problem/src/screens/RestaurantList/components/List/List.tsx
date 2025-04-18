@@ -1,9 +1,8 @@
 import { useNavigation } from "@react-navigation/native"
-import { FlatList } from "react-native"
-
 import Button from "@shared/design/Button"
 import Screen from "@shared/design/Screen"
 import { Restaurant } from "@shared/services/pmo/restaurant"
+import { FlatList } from "react-native"
 
 export interface ListProps {
   restaurants: Restaurant[]

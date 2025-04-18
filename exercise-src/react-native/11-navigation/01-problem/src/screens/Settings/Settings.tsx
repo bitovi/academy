@@ -1,9 +1,8 @@
-import { StyleSheet, Switch, View } from "react-native"
-
 import Card from "@shared/design/Card"
 import Screen from "@shared/design/Screen"
 import { useThemeMode } from "@shared/design/theme"
 import Typography from "@shared/design/Typography"
+import { StyleSheet, Switch, View } from "react-native"
 
 const user = {
   name: "Your Name",

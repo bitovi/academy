@@ -1,13 +1,13 @@
 import { StackScreenProps } from "@react-navigation/stack"
-import { Suspense, lazy, useState } from "react"
-
-import { RestaurantsStackParamList } from "../../App"
 import Loading from "@shared/components/Loading"
 import Tabs from "@shared/components/Tabs"
 import Box from "@shared/design/Box"
 import Screen from "@shared/design/Screen"
 import Typography from "@shared/design/Typography"
 import { useRestaurants } from "@shared/services/pmo/restaurant"
+import { Suspense, lazy, useState } from "react"
+
+import { RestaurantsStackParamList } from "../../App"
 
 import List from "./components/List"
 

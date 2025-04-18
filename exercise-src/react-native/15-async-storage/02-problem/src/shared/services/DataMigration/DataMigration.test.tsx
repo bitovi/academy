@@ -1,7 +1,6 @@
-import { render, screen } from "@testing-library/react-native"
-
 import Typography from "@shared/design/Typography"
 import * as storage from "@shared/services/storage"
+import { render, screen } from "@testing-library/react-native"
 
 import DataMigration from "./DataMigration"
 

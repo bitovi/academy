@@ -1,7 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native"
-import { fireEvent, render, screen } from "@testing-library/react-native"
-
 import AuthProvider from "@shared/services/auth/AuthProvider"
+import { fireEvent, render, screen } from "@testing-library/react-native"
 
 import Settings from "./Settings"
 

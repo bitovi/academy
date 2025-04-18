@@ -1,21 +1,21 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
+import Box from "@shared/design/Box"
+import ThemeProvider, { useTheme } from "@shared/design/theme/ThemeProvider"
+import Typography from "@shared/design/Typography"
+import AuthProvider from "@shared/services/auth/AuthProvider"
+import DataMigration from "@shared/services/DataMigration"
 import { Pressable } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import Icon from "react-native-vector-icons/Ionicons"
 
-import Box from "@shared/design/Box"
-import ThemeProvider, { useTheme } from "@shared/design/theme/ThemeProvider"
-import Typography from "@shared/design/Typography"
 import CityList from "./screens/CityList"
 import RestaurantDetails from "./screens/RestaurantDetails"
 import RestaurantList from "./screens/RestaurantList"
 import RestaurantOrder from "./screens/RestaurantOrder"
 import Settings from "./screens/Settings"
 import StateList from "./screens/StateList"
-import AuthProvider from "@shared/services/auth/AuthProvider"
-import DataMigration from "@shared/services/DataMigration"
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

@@ -1,9 +1,8 @@
-import { ScrollView } from "react-native"
-
 import Box from "@shared/design/Box"
 import Card from "@shared/design/Card"
 import Screen from "@shared/design/Screen"
 import Typography from "@shared/design/Typography"
+import { ScrollView } from "react-native"
 
 import ListItem from "./components/ListItem"
 

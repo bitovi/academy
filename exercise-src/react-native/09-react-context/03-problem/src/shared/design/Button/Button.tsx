@@ -1,3 +1,4 @@
+import { Theme, useTheme } from "@shared/design/theme"
 import {
   PressableProps,
   TextStyle,
@@ -5,8 +6,6 @@ import {
   Pressable,
   Text,
 } from "react-native"
-
-import { Theme, useTheme } from "@shared/design/theme"
 
 type Variant = "primary" | "secondary" | "outline"
 

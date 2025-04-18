@@ -1,8 +1,5 @@
 import { useNavigation } from "@react-navigation/native"
 import { StackScreenProps } from "@react-navigation/stack"
-import { useEffect, useState } from "react"
-
-import { RestaurantsStackParamList } from "../../App"
 import FormSwitch from "@shared/components/FormSwitch"
 import FormTextField from "@shared/components/FormTextField"
 import Loading from "@shared/components/Loading"
@@ -12,6 +9,9 @@ import Card from "@shared/design/Card"
 import Screen from "@shared/design/Screen"
 import Typography from "@shared/design/Typography"
 import { useRestaurant } from "@shared/services/pmo/restaurant"
+import { useEffect, useState } from "react"
+
+import { RestaurantsStackParamList } from "../../App"
 
 export interface RestaurantOrderProps
   extends StackScreenProps<RestaurantsStackParamList, "RestaurantOrder"> {}

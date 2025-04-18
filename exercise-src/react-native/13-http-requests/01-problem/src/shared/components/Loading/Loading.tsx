@@ -1,8 +1,7 @@
-import { ActivityIndicator } from "react-native"
-
 import Box from "@shared/design/Box"
 import { useTheme } from "@shared/design/theme"
 import Typography from "@shared/design/Typography"
+import { ActivityIndicator } from "react-native"
 
 const Loading: React.FC = () => {
   const theme = useTheme()

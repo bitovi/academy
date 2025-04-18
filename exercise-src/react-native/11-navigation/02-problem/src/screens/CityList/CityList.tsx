@@ -1,7 +1,6 @@
-import { FlatList } from "react-native"
-
 import Button from "@shared/design/Button"
 import Screen from "@shared/design/Screen"
+import { FlatList } from "react-native"
 
 const cities = [
   { name: "Madison", state: "WI" },

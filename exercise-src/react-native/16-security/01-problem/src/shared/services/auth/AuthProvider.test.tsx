@@ -1,8 +1,7 @@
 import { GoogleSigninButton } from "@react-native-google-signin/google-signin"
+import Button from "@shared/design/Button"
 import { render, screen, fireEvent } from "@testing-library/react-native"
 import { View, Text } from "react-native"
-
-import Button from "@shared/design/Button"
 
 import AuthProvider, {
   useAuthenticated,

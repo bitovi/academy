@@ -1,8 +1,7 @@
-import { Switch } from "react-native"
-
 import Box from "@shared/design/Box"
 import { useTheme } from "@shared/design/theme"
 import Typography from "@shared/design/Typography"
+import { Switch } from "react-native"
 
 export interface FormSwitchProps {
   label: string

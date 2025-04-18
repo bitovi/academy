@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react"
-
 import { apiRequest } from "@shared/services/pmo/api"
+import { useEffect, useState } from "react"
 
 import { City, Restaurant, State } from "./interfaces"
 

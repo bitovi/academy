@@ -1,7 +1,6 @@
-import { ScrollView, Text, View } from "react-native"
-
 import Box from "@shared/design/Box"
 import Typography from "@shared/design/Typography"
+import { ScrollView, Text, View } from "react-native"
 
 import ListItem from "./components/ListItem"
 

@@ -1,6 +1,5 @@
-import { TextProps, Text, StyleSheet } from "react-native"
-
 import { Theme, useTheme } from "@shared/design/theme"
+import { TextProps, Text, StyleSheet } from "react-native"
 
 export interface TypographyProps extends TextProps {
   variant?: keyof Theme["typography"]

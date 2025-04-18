@@ -1,7 +1,6 @@
 import { useNetInfo } from "@react-native-community/netinfo"
-import { useEffect } from "react"
-
 import { useUser } from "@shared/services/auth"
+import { useEffect } from "react"
 
 import { syncWithServer } from "./sync"
 

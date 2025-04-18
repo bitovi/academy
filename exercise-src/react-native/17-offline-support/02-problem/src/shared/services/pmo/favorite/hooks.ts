@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react"
-
-import { getData, storeData } from "@shared/services/storage"
 import { apiRequest } from "@shared/services/pmo/api"
+import { getData, storeData } from "@shared/services/storage"
+import { useEffect, useState } from "react"
 
 import { Favorite, FavoriteResponse, StoredFavorites } from "./interfaces"
 

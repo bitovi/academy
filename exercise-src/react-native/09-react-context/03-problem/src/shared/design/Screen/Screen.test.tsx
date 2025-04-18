@@ -1,6 +1,5 @@
-import { render, screen } from "@testing-library/react-native"
-
 import Typography from "@shared/design/Typography"
+import { render, screen } from "@testing-library/react-native"
 
 import Screen from "./Screen"
 

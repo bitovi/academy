@@ -1,6 +1,5 @@
-import { StyleSheet, Text } from "react-native"
-
 import { Theme, useTheme } from "@shared/design/theme"
+import { StyleSheet, Text } from "react-native"
 
 export interface ListItemProps {
   name: string

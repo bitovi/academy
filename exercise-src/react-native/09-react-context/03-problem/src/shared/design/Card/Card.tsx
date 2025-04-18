@@ -1,8 +1,7 @@
-import { StyleSheet } from "react-native"
-
 import Box, { BoxProps } from "@shared/design/Box"
 import { Theme, useTheme } from "@shared/design/theme"
 import Typography from "@shared/design/Typography"
+import { StyleSheet } from "react-native"
 
 export interface CardProps extends BoxProps {
   title?: string

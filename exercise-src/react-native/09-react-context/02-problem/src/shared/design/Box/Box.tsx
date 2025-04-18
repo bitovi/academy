@@ -1,11 +1,15 @@
 import {
+  Theme,
+  ThemeMargin,
+  ThemePadding,
+  useTheme,
+} from "@shared/design/theme"
+import {
   ViewProps,
   StyleSheet,
   ScrollView,
   View as StaticView,
 } from "react-native"
-
-import { Theme, ThemeMargin, ThemePadding, useTheme } from "@shared/design/theme"
 
 export interface BoxProps extends ViewProps {
   scrollable?: boolean

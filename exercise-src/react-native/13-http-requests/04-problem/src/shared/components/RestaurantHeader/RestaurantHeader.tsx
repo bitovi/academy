@@ -1,8 +1,7 @@
-import { ImageBackground, StyleSheet } from "react-native"
-
 import Box from "@shared/design/Box"
 import { Theme, useTheme } from "@shared/design/theme"
 import Typography from "@shared/design/Typography"
+import { ImageBackground, StyleSheet } from "react-native"
 
 const assetsUrl = process.env.PMO_ASSETS
 
