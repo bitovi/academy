@@ -160,6 +160,10 @@ npm run start
 @sourceref ../../../exercises/react-native/15-async-storage/01-problem/src/shared/services/storage/storage.test.ts
 @highlight 27, 49, 61, 75, only
 
+✏️ Update **src/shared/services/pmo/api/api.mock.ts** to be:
+
+@diff ../../../exercises/react-native/14-user-input/01-solution/src/shared/services/pmo/api/api.mock.ts ../../../exercises/react-native/15-async-storage/01-problem/src/shared/services/pmo/api/api.mock.ts only
+
 ### Exercise 1
 
 For this exercise, let’s implement the storage APIs and use them to cache network responses:

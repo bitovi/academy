@@ -406,11 +406,24 @@ As your app grows, maintaining these features manually becomes complex and error
 
 @sourceref ../../../exercises/react-native/13-http-requests/03-problem/src/shared/services/pmo/api/index.ts
 
+✏️ Update **jest-setup.ts** to be:
+
+@diff ../../../exercises/react-native/13-http-requests/02-solution//jest-setup.ts ../../../exercises/react-native/13-http-requests/03-problem/jest-setup.ts only
+
 ✏️ Update **src/shared/services/pmo/restaurant/hooks.ts** to be:
 
 @diff ../../../exercises/react-native/13-http-requests/02-solution/src/shared/services/pmo/restaurant/hooks.ts ../../../exercises/react-native/13-http-requests/03-problem/src/shared/services/pmo/restaurant/hooks.ts only
 
 ### Verify 3
+
+✏️ Create **src/shared/services/pmo/api/api.mock.ts** and update it to be:
+
+@sourceref ../../../exercises/react-native/13-http-requests/03-problem/src/shared/services/pmo/api/api.mock.ts
+
+✏️ Create **src/shared/services/pmo/api/api.test.ts** and update it to be:
+
+@sourceref ../../../exercises/react-native/13-http-requests/03-problem/src/shared/services/pmo/api/api.test.ts
+@highlight 13, 37, 57, 74, 79, only
 
 ✏️ Update **src/shared/services/pmo/restaurant/hooks.test.ts** to be:
 

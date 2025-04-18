@@ -14,8 +14,12 @@ jest.mock("@react-navigation/native", () => {
   }
 })
 
-jest.mock("./src/services/storage/storage", () =>
-  require("./src/services/storage/storage.mock"),
+jest.mock("@shared/services/pmo/api", () =>
+  require("@shared/services/pmo/api/api.mock"),
+)
+
+jest.mock("@shared/services/storage", () =>
+  require("@shared/services/storage/storage.mock"),
 )
 
 jest.mock("@react-native-async-storage/async-storage", () =>
