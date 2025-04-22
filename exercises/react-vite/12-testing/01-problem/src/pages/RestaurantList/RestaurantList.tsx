@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useCallback } from "react"
 import {
   useCities,
   useRestaurants,
@@ -23,6 +23,31 @@ const RestaurantList: React.FC = () => {
   const updateCity = (newValue: string) => {
     setCity(newValue)
   }
+  const chooseStatePlaceholder = useCallback(()=>{
+    let placeholderText = "Choose a state";
+
+    if(statesResponse.isPending) {
+      placeholderText = "Loading states…";
+    } else if (statesResponse.error) {
+      placeholderText = statesResponse.error.message
+    }
+
+    return placeholderText;
+  }, [statesResponse])
+
+  const chooseCityPlaceholder = useCallback(()=>{
+    let placeholderText = "Choose a city";
+
+    if(!state) {
+      placeholderText = "Choose a state before selecting a city";
+    } else if (citiesResponse.isPending) {
+      placeholderText = "Loading cities…";
+    } else if (citiesResponse.error) {
+      placeholderText = citiesResponse.error.message;
+    } 
+
+    return placeholderText;
+  }, [state, citiesResponse])
 
   return (
     <>
@@ -32,11 +57,7 @@ const RestaurantList: React.FC = () => {
         <form className="form">
           <FormSelect label="State" onChange={updateState} value={state}>
             <option key="choose_state" value="">
-              {statesResponse.isPending
-                ? "Loading states…"
-                : statesResponse.error
-                  ? statesResponse.error.message
-                  : "Choose a state"}
+              {chooseStatePlaceholder()}
             </option>
             {statesResponse.data?.map(({ short, name }) => (
               <option key={short} value={short}>
@@ -47,13 +68,7 @@ const RestaurantList: React.FC = () => {
 
           <FormSelect label="City" onChange={updateCity} value={city}>
             <option key="choose_city" value="">
-              {state
-                ? citiesResponse.isPending
-                  ? "Loading cities…"
-                  : citiesResponse.error
-                    ? citiesResponse.error.message
-                    : "Choose a city"
-                : "Choose a state before selecting a city"}
+              {chooseCityPlaceholder()}
             </option>
             {state &&
               citiesResponse.data?.map(({ name }) => (
