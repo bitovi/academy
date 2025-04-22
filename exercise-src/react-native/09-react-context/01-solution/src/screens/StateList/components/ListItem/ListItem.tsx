@@ -1,6 +1,5 @@
+import { Theme, useTheme } from "@shared/design/theme"
 import { StyleSheet, Text } from "react-native"
-
-import { Theme, useTheme } from "../../../../design/theme"
 
 export interface ListItemProps {
   name: string

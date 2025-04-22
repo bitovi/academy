@@ -331,21 +331,21 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 @diff ../../../exercises/react-native/11-navigation/02-solution/src/App.tsx ../../../exercises/react-native/11-navigation/03-problem/src/App.tsx only
 
-✏️ Create **src/components/** (folder)
+✏️ Create **src/shared/components/** (folder)
 
-✏️ Create **src/components/RestaurantHeader/** (folder)
+✏️ Create **src/shared/components/RestaurantHeader/** (folder)
 
-✏️ Create **src/components/RestaurantHeader/RestaurantHeader.tsx** and update it to be:
+✏️ Create **src/shared/components/RestaurantHeader/RestaurantHeader.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-native/11-navigation/03-problem/src/components/RestaurantHeader/RestaurantHeader.tsx
+@sourceref ../../../exercises/react-native/11-navigation/03-problem/src/shared/components/RestaurantHeader/RestaurantHeader.tsx
 
-✏️ Create **src/components/RestaurantHeader/mocks.ts** and update it to be:
+✏️ Create **src/shared/components/RestaurantHeader/mocks.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/11-navigation/03-problem/src/components/RestaurantHeader/mocks.ts
+@sourceref ../../../exercises/react-native/11-navigation/03-problem/src/shared/components/RestaurantHeader/mocks.ts
 
-✏️ Create **src/components/RestaurantHeader/index.ts** and update it to be:
+✏️ Create **src/shared/components/RestaurantHeader/index.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/11-navigation/03-problem/src/components/RestaurantHeader/index.ts
+@sourceref ../../../exercises/react-native/11-navigation/03-problem/src/shared/components/RestaurantHeader/index.ts
 
 ✏️ Update **src/screens/CityList/CityList.tsx** to be:
 
@@ -377,9 +377,9 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 @diff ../../../exercises/react-native/11-navigation/02-solution/src/screens/CityList/CityList.test.tsx ../../../exercises/react-native/11-navigation/03-problem/src/screens/CityList/CityList.test.tsx only
 
-✏️ Create **src/components/RestaurantHeader/RestaurantHeader.test.tsx** and update it to be:
+✏️ Create **src/shared/components/RestaurantHeader/RestaurantHeader.test.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-native/11-navigation/03-problem/src/components/RestaurantHeader/RestaurantHeader.test.tsx
+@sourceref ../../../exercises/react-native/11-navigation/03-problem/src/shared/components/RestaurantHeader/RestaurantHeader.test.tsx
 
 ✏️ Create **src/screens/RestaurantDetails/RestaurantDetails.test.tsx** and update it to be:
 

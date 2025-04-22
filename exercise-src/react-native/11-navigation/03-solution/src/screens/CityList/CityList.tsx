@@ -1,8 +1,7 @@
 import { useNavigation } from "@react-navigation/native"
+import Button from "@shared/design/Button"
+import Screen from "@shared/design/Screen"
 import { FlatList } from "react-native"
-
-import Button from "../../design/Button"
-import Screen from "../../design/Screen"
 
 const cities = [
   { name: "Madison", state: "WI" },

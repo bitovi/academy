@@ -1,7 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native"
+import * as restaurantHooks from "@shared/services/pmo/restaurant/hooks"
 import { render, screen } from "@testing-library/react-native"
-
-import * as restaurantHooks from "../../services/pmo/restaurant/hooks"
 
 import CityList from "./CityList"
 

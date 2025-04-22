@@ -1,6 +1,5 @@
+import { Restaurant } from "@shared/services/pmo/restaurant"
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps"
-
-import { Restaurant } from "../../../../services/pmo/restaurant"
 
 export interface MapProps {
   restaurants: Restaurant[]

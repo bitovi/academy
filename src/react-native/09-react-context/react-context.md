@@ -96,19 +96,19 @@ Instead of calling `useContext` everywhere and needing to understand the structu
 
 ### Setup 1
 
-✏️ Create **src/design/theme/theme.ts** and update it to be:
+✏️ Create **src/shared/design/theme/theme.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/09-react-context/01-problem/src/design/theme/theme.ts
+@sourceref ../../../exercises/react-native/09-react-context/01-problem/src/shared/design/theme/theme.ts
 @highlight 48, 51, 63-64, 70, only
 
-✏️ Create **src/design/theme/ThemeProvider.tsx** and update it to be:
+✏️ Create **src/shared/design/theme/ThemeProvider.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-native/09-react-context/01-problem/src/design/theme/ThemeProvider.tsx
+@sourceref ../../../exercises/react-native/09-react-context/01-problem/src/shared/design/theme/ThemeProvider.tsx
 @highlight 9, 12, 18, only
 
-✏️ Create **src/design/theme/index.ts** and update it to be:
+✏️ Create **src/shared/design/theme/index.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/09-react-context/01-problem/src/design/theme/index.ts
+@sourceref ../../../exercises/react-native/09-react-context/01-problem/src/shared/design/theme/index.ts
 
 ✏️ Update **src/App.tsx** to be:
 
@@ -120,9 +120,9 @@ Instead of calling `useContext` everywhere and needing to understand the structu
 
 ### Verify 1
 
-✏️ Create **src/design/theme/ThemeProvider.test.tsx** and update it to be:
+✏️ Create **src/shared/design/theme/ThemeProvider.test.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-native/09-react-context/01-problem/src/design/theme/ThemeProvider.test.tsx
+@sourceref ../../../exercises/react-native/09-react-context/01-problem/src/shared/design/theme/ThemeProvider.test.tsx
 
 ### Exercise 1
 
@@ -136,9 +136,9 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 <details>
 <summary>Click to see the solution</summary>
 
-✏️ Update **src/design/theme/ThemeProvider.tsx** to be:
+✏️ Update **src/shared/design/theme/ThemeProvider.tsx** to be:
 
-@diff ../../../exercises/react-native/09-react-context/01-problem/src/design/theme/ThemeProvider.tsx ../../../exercises/react-native/09-react-context/01-solution/src/design/theme/ThemeProvider.tsx only
+@diff ../../../exercises/react-native/09-react-context/01-problem/src/shared/design/theme/ThemeProvider.tsx ../../../exercises/react-native/09-react-context/01-solution/src/shared/design/theme/ThemeProvider.tsx only
 
 ✏️ Update **src/screens/StateList/components/ListItem/ListItem.tsx** to be:
 
@@ -168,21 +168,21 @@ Atomic Design is a great system, but it can be overkill for many projects. For t
 
 ### Setup 2
 
-✏️ Create **src/design/Box/Box.tsx** and update it to be:
+✏️ Create **src/shared/design/Box/Box.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-native/09-react-context/02-problem/src/design/Box/Box.tsx
+@sourceref ../../../exercises/react-native/09-react-context/02-problem/src/shared/design/Box/Box.tsx
 
-✏️ Create **src/design/Box/index.ts** and update it to be:
+✏️ Create **src/shared/design/Box/index.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/09-react-context/02-problem/src/design/Box/index.ts
+@sourceref ../../../exercises/react-native/09-react-context/02-problem/src/shared/design/Box/index.ts
 
-✏️ Create **src/design/Typography/Typography.tsx** and update it to be:
+✏️ Create **src/shared/design/Typography/Typography.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-native/09-react-context/02-problem/src/design/Typography/Typography.tsx
+@sourceref ../../../exercises/react-native/09-react-context/02-problem/src/shared/design/Typography/Typography.tsx
 
-✏️ Create **src/design/Typography/index.ts** and update it to be:
+✏️ Create **src/shared/design/Typography/index.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/09-react-context/02-problem/src/design/Typography/index.ts
+@sourceref ../../../exercises/react-native/09-react-context/02-problem/src/shared/design/Typography/index.ts
 
 ✏️ Update **src/screens/StateList/StateList.tsx** to be:
 
@@ -190,13 +190,13 @@ Atomic Design is a great system, but it can be overkill for many projects. For t
 
 ### Verify 2
 
-✏️ Create **src/design/Box/Box.test.tsx** and update it to be:
+✏️ Create **src/shared/design/Box/Box.test.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-native/09-react-context/02-problem/src/design/Box/Box.test.tsx
+@sourceref ../../../exercises/react-native/09-react-context/02-problem/src/shared/design/Box/Box.test.tsx
 
-✏️ Create **src/design/Typography/Typography.test.tsx** and update it to be:
+✏️ Create **src/shared/design/Typography/Typography.test.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-native/09-react-context/02-problem/src/design/Typography/Typography.test.tsx
+@sourceref ../../../exercises/react-native/09-react-context/02-problem/src/shared/design/Typography/Typography.test.tsx
 
 ### Exercise 2
 
@@ -212,9 +212,9 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 <details>
 <summary>Click to see the solution</summary>
 
-✏️ Update **src/design/Typography/Typography.tsx** to be:
+✏️ Update **src/shared/design/Typography/Typography.tsx** to be:
 
-@diff ../../../exercises/react-native/09-react-context/02-problem/src/design/Typography/Typography.tsx ../../../exercises/react-native/09-react-context/02-solution/src/design/Typography/Typography.tsx only
+@diff ../../../exercises/react-native/09-react-context/02-problem/src/shared/design/Typography/Typography.tsx ../../../exercises/react-native/09-react-context/02-solution/src/shared/design/Typography/Typography.tsx only
 
 ✏️ Update **src/screens/StateList/StateList.tsx** to be:
 
@@ -236,41 +236,41 @@ Beyond these, you’ll find all kinds of UI components like Tabs, Modal, Icon, N
 
 ### Setup 3
 
-✏️ Create **src/design/Button/Button.tsx** and update it to be:
+✏️ Create **src/shared/design/Button/Button.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-native/09-react-context/03-problem/src/design/Button/Button.tsx
+@sourceref ../../../exercises/react-native/09-react-context/03-problem/src/shared/design/Button/Button.tsx
 
-✏️ Create **src/design/Button/Button.test.tsx** and update it to be:
+✏️ Create **src/shared/design/Button/Button.test.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-native/09-react-context/03-problem/src/design/Button/Button.test.tsx
+@sourceref ../../../exercises/react-native/09-react-context/03-problem/src/shared/design/Button/Button.test.tsx
 
-✏️ Create **src/design/Button/index.ts** and update it to be:
+✏️ Create **src/shared/design/Button/index.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/09-react-context/03-problem/src/design/Button/index.ts
+@sourceref ../../../exercises/react-native/09-react-context/03-problem/src/shared/design/Button/index.ts
 
-✏️ Create **src/design/Card/Card.tsx** and update it to be:
+✏️ Create **src/shared/design/Card/Card.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-native/09-react-context/03-problem/src/design/Card/Card.tsx
+@sourceref ../../../exercises/react-native/09-react-context/03-problem/src/shared/design/Card/Card.tsx
 
-✏️ Create **src/design/Card/Card.test.tsx** and update it to be:
+✏️ Create **src/shared/design/Card/Card.test.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-native/09-react-context/03-problem/src/design/Card/Card.test.tsx
+@sourceref ../../../exercises/react-native/09-react-context/03-problem/src/shared/design/Card/Card.test.tsx
 
-✏️ Create **src/design/Card/index.ts** and update it to be:
+✏️ Create **src/shared/design/Card/index.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/09-react-context/03-problem/src/design/Card/index.ts
+@sourceref ../../../exercises/react-native/09-react-context/03-problem/src/shared/design/Card/index.ts
 
-✏️ Create **src/design/Screen/Screen.tsx** and update it to be:
+✏️ Create **src/shared/design/Screen/Screen.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-native/09-react-context/03-problem/src/design/Screen/Screen.tsx
+@sourceref ../../../exercises/react-native/09-react-context/03-problem/src/shared/design/Screen/Screen.tsx
 
-✏️ Create **src/design/Screen/Screen.test.tsx** and update it to be:
+✏️ Create **src/shared/design/Screen/Screen.test.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-native/09-react-context/03-problem/src/design/Screen/Screen.test.tsx
+@sourceref ../../../exercises/react-native/09-react-context/03-problem/src/shared/design/Screen/Screen.test.tsx
 
-✏️ Create **src/design/Screen/index.ts** and update it to be:
+✏️ Create **src/shared/design/Screen/index.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/09-react-context/03-problem/src/design/Screen/index.ts
+@sourceref ../../../exercises/react-native/09-react-context/03-problem/src/shared/design/Screen/index.ts
 
 ✏️ Update **src/screens/StateList/StateList.tsx** to be:
 

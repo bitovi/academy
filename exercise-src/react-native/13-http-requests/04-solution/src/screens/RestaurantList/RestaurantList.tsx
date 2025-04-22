@@ -1,14 +1,14 @@
 import { useNavigation } from "@react-navigation/native"
 import { StackScreenProps } from "@react-navigation/stack"
+import Loading from "@shared/components/Loading"
+import Box from "@shared/design/Box"
+import Button from "@shared/design/Button"
+import Screen from "@shared/design/Screen"
+import Typography from "@shared/design/Typography"
+import { useRestaurants } from "@shared/services/pmo/restaurant"
 import { FlatList } from "react-native"
 
 import { RestaurantsStackParamList } from "../../App"
-import Loading from "../../components/Loading"
-import Box from "../../design/Box"
-import Button from "../../design/Button"
-import Screen from "../../design/Screen"
-import Typography from "../../design/Typography"
-import { useRestaurants } from "../../services/pmo/restaurant"
 
 export interface RestaurantListProps
   extends StackScreenProps<RestaurantsStackParamList, "RestaurantList"> {}

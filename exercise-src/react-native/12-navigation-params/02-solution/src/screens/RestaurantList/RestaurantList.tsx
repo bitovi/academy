@@ -1,10 +1,10 @@
 import { useNavigation } from "@react-navigation/native"
 import { StackScreenProps } from "@react-navigation/stack"
+import Button from "@shared/design/Button"
+import Screen from "@shared/design/Screen"
 import { FlatList } from "react-native"
 
 import { RestaurantsStackParamList } from "../../App"
-import Button from "../../design/Button"
-import Screen from "../../design/Screen"
 
 export interface RestaurantListProps
   extends StackScreenProps<RestaurantsStackParamList, "RestaurantList"> {}

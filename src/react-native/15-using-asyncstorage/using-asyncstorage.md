@@ -136,29 +136,33 @@ npm run start
 
 @diff ../../../exercises/react-native/14-user-input/01-solution/jest-setup.ts ../../../exercises/react-native/15-async-storage/01-problem/jest-setup.ts only
 
-✏️ Create **src/services/storage/storage.ts** and update it to be:
+✏️ Create **src/shared/services/storage/storage.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/15-async-storage/01-problem/src/services/storage/storage.ts
+@sourceref ../../../exercises/react-native/15-async-storage/01-problem/src/shared/services/storage/storage.ts
 @highlight 3
 
-✏️ Create **src/services/storage/index.ts** and update it to be:
+✏️ Create **src/shared/services/storage/index.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/15-async-storage/01-problem/src/services/storage/index.ts
+@sourceref ../../../exercises/react-native/15-async-storage/01-problem/src/shared/services/storage/index.ts
 
-✏️ Update **src/services/pmo/api/api.ts** to be:
+✏️ Update **src/shared/services/pmo/api/api.ts** to be:
 
-@diff ../../../exercises/react-native/14-user-input/01-solution/src/services/pmo/api/api.ts ../../../exercises/react-native/15-async-storage/01-problem/src/services/pmo/api/api.ts only
+@diff ../../../exercises/react-native/14-user-input/01-solution/src/shared/services/pmo/api/api.ts ../../../exercises/react-native/15-async-storage/01-problem/src/shared/services/pmo/api/api.ts only
 
 ### Verify 1
 
-✏️ Create **src/services/storage/storage.mock.ts** and update it to be:
+✏️ Create **src/shared/services/storage/storage.mock.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/15-async-storage/01-problem/src/services/storage/storage.mock.ts
+@sourceref ../../../exercises/react-native/15-async-storage/01-problem/src/shared/services/storage/storage.mock.ts
 
-✏️ Create **src/services/storage/storage.test.ts** and update it to be:
+✏️ Create **src/shared/services/storage/storage.test.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/15-async-storage/01-problem/src/services/storage/storage.test.ts
+@sourceref ../../../exercises/react-native/15-async-storage/01-problem/src/shared/services/storage/storage.test.ts
 @highlight 27, 49, 61, 75, only
+
+✏️ Update **src/shared/services/pmo/api/api.mock.ts** to be:
+
+@diff ../../../exercises/react-native/14-user-input/01-solution/src/shared/services/pmo/api/api.mock.ts ../../../exercises/react-native/15-async-storage/01-problem/src/shared/services/pmo/api/api.mock.ts only
 
 ### Exercise 1
 
@@ -184,13 +188,13 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 <details>
 <summary>Click to see the solution</summary>
 
-✏️ Update **src/services/pmo/api/api.ts** to be:
+✏️ Update **src/shared/services/pmo/api/api.ts** to be:
 
-@diff ../../../exercises/react-native/15-async-storage/01-problem/src/services/pmo/api/api.ts ../../../exercises/react-native/15-async-storage/01-solution/src/services/pmo/api/api.ts only
+@diff ../../../exercises/react-native/15-async-storage/01-problem/src/shared/services/pmo/api/api.ts ../../../exercises/react-native/15-async-storage/01-solution/src/shared/services/pmo/api/api.ts only
 
-✏️ Update **src/services/storage/storage.ts** to be:
+✏️ Update **src/shared/services/storage/storage.ts** to be:
 
-@diff ../../../exercises/react-native/15-async-storage/01-problem/src/services/storage/storage.ts ../../../exercises/react-native/15-async-storage/01-solution/src/services/storage/storage.ts only
+@diff ../../../exercises/react-native/15-async-storage/01-problem/src/shared/services/storage/storage.ts ../../../exercises/react-native/15-async-storage/01-solution/src/shared/services/storage/storage.ts only
 
 </details>
 
@@ -200,12 +204,12 @@ Our overall approach to caching the network responses seems great, although ther
 
 Right now, we’re storing the datetime as a string in Async Storage, which means we have to parse it every time we check the cached response:
 
-@sourceref ../../../exercises/react-native/15-async-storage/01-solution/src/services/pmo/api/api.ts
+@sourceref ../../../exercises/react-native/15-async-storage/01-solution/src/shared/services/pmo/api/api.ts
 @highlight 7, 38-39, 66, only
 
 We could improve this by storing the datetime as a number instead, so we don’t have to parse it when fetching from the cache:
 
-@diff ../../../exercises/react-native/15-async-storage/01-solution/src/services/pmo/api/api.ts ../../../exercises/react-native/15-async-storage/02-problem/src/services/pmo/api/api.ts only
+@diff ../../../exercises/react-native/15-async-storage/01-solution/src/shared/services/pmo/api/api.ts ../../../exercises/react-native/15-async-storage/02-problem/src/shared/services/pmo/api/api.ts only
 
 If we make this change, it would be great if we could migrate the old cached data (with strings) to the new format (with numbers).
 Let’s dig into how we can add data migration to the application.
@@ -257,24 +261,24 @@ We’ll assume that the data is version `1` if we haven’t stored the version n
 
 ### Setup 2
 
-✏️ Create **src/services/DataMigration/DataMigration.tsx** and update it to be:
+✏️ Create **src/shared/services/DataMigration/DataMigration.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-native/15-async-storage/02-problem/src/services/DataMigration/DataMigration.tsx
+@sourceref ../../../exercises/react-native/15-async-storage/02-problem/src/shared/services/DataMigration/DataMigration.tsx
 @highlight 13, 21-23, only
 
-✏️ Create **src/services/DataMigration/index.ts** and update it to be:
+✏️ Create **src/shared/services/DataMigration/index.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/15-async-storage/02-problem/src/services/DataMigration/index.ts
+@sourceref ../../../exercises/react-native/15-async-storage/02-problem/src/shared/services/DataMigration/index.ts
 
-✏️ Update **src/services/pmo/api/api.ts** to be:
+✏️ Update **src/shared/services/pmo/api/api.ts** to be:
 
-@diff ../../../exercises/react-native/15-async-storage/01-solution/src/services/pmo/api/api.ts ../../../exercises/react-native/15-async-storage/02-problem/src/services/pmo/api/api.ts only
+@diff ../../../exercises/react-native/15-async-storage/01-solution/src/shared/services/pmo/api/api.ts ../../../exercises/react-native/15-async-storage/02-problem/src/shared/services/pmo/api/api.ts only
 
 ### Verify 2
 
-✏️ Create **src/services/DataMigration/DataMigration.test.tsx** and update it to be:
+✏️ Create **src/shared/services/DataMigration/DataMigration.test.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-native/15-async-storage/02-problem/src/services/DataMigration/DataMigration.test.tsx
+@sourceref ../../../exercises/react-native/15-async-storage/02-problem/src/shared/services/DataMigration/DataMigration.test.tsx
 @highlight 33, 45, 57, 89, only
 
 ### Exercise 2
@@ -306,9 +310,9 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 <details>
 <summary>Click to see the solution</summary>
 
-✏️ Update **src/services/DataMigration/DataMigration.tsx** to be:
+✏️ Update **src/shared/services/DataMigration/DataMigration.tsx** to be:
 
-@diff ../../../exercises/react-native/15-async-storage/02-problem/src/services/DataMigration/DataMigration.tsx ../../../exercises/react-native/15-async-storage/02-solution/src/services/DataMigration/DataMigration.tsx only
+@diff ../../../exercises/react-native/15-async-storage/02-problem/src/shared/services/DataMigration/DataMigration.tsx ../../../exercises/react-native/15-async-storage/02-solution/src/shared/services/DataMigration/DataMigration.tsx only
 
 ✏️ Update **src/App.tsx** to be:
 

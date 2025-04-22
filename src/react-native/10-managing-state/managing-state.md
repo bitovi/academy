@@ -141,11 +141,11 @@ if (colorScheme === "dark") {
 
 ✏️ Update **src/design/theme/theme.ts** to be:
 
-@diff ../../../exercises/react-native/09-react-context/03-solution/src/design/theme/theme.ts ../../../exercises/react-native/10-managing-state/01-problem/src/design/theme/theme.ts only
+@diff ../../../exercises/react-native/09-react-context/03-solution/src/shared/design/theme/theme.ts ../../../exercises/react-native/10-managing-state/01-problem/src/shared/design/theme/theme.ts only
 
 ✏️ Update **src/design/theme/ThemeProvider.tsx** to be:
 
-@diff ../../../exercises/react-native/09-react-context/03-solution/src/design/theme/ThemeProvider.tsx ../../../exercises/react-native/10-managing-state/01-problem/src/design/theme/ThemeProvider.tsx only
+@diff ../../../exercises/react-native/09-react-context/03-solution/src/shared/design/theme/ThemeProvider.tsx ../../../exercises/react-native/10-managing-state/01-problem/src/shared/design/theme/ThemeProvider.tsx only
 
 ✏️ Update **src/screens/StateList/StateList.tsx** to be:
 
@@ -155,7 +155,7 @@ if (colorScheme === "dark") {
 
 ✏️ Update **src/design/theme/ThemeProvider.test.tsx** to be:
 
-@diff ../../../exercises/react-native/09-react-context/03-solution/src/design/theme/ThemeProvider.test.tsx ../../../exercises/react-native/10-managing-state/01-problem/src/design/theme/ThemeProvider.test.tsx only
+@diff ../../../exercises/react-native/09-react-context/03-solution/src/shared/design/theme/ThemeProvider.test.tsx ../../../exercises/react-native/10-managing-state/01-problem/src/shared/design/theme/ThemeProvider.test.tsx only
 
 ✏️ Update **src/screens/StateList/StateList.test.tsx** to be:
 
@@ -182,9 +182,9 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 <details>
 <summary>Click to see the solution</summary>
 
-✏️ Update **src/design/theme/ThemeProvider.tsx** to be:
+✏️ Update **src/shared/design/theme/ThemeProvider.tsx** to be:
 
-@diff ../../../exercises/react-native/10-managing-state/01-problem/src/design/theme/ThemeProvider.tsx ../../../exercises/react-native/10-managing-state/01-solution/src/design/theme/ThemeProvider.tsx only
+@diff ../../../exercises/react-native/10-managing-state/01-problem/src/shared/design/theme/ThemeProvider.tsx ../../../exercises/react-native/10-managing-state/01-solution/src/shared/design/theme/ThemeProvider.tsx only
 
 ✏️ Update **src/screens/StateList/StateList.tsx** to be:
 

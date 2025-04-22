@@ -1,12 +1,12 @@
 import { useNavigation } from "@react-navigation/native"
 import { StackScreenProps } from "@react-navigation/stack"
+import Button from "@shared/design/Button"
+import Card from "@shared/design/Card"
+import Screen from "@shared/design/Screen"
+import Typography from "@shared/design/Typography"
 import { FlatList } from "react-native"
 
 import { RestaurantsStackParamList } from "../../App"
-import Button from "../../design/Button"
-import Card from "../../design/Card"
-import Screen from "../../design/Screen"
-import Typography from "../../design/Typography"
 
 const states = [
   {
