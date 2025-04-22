@@ -59,4 +59,4 @@ Throughout this guide, we’ll be building out a feature-rich Place My Order app
 
 ## Next steps
 
-✏️ Head over to the [first lesson](learn-react-native/intro-to-react.html) to get a more thorough overview of React Native and the technologies it provides.
+✏️ Head over to the [first lesson](learn-react-native/intro-to-react-native.html) to get a more thorough overview of React Native and the technologies it provides.
