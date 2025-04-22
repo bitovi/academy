@@ -880,13 +880,13 @@ This gives React the updated <code>selected</code> state and allows React to re-
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import Box from &quot;@shared/design/Box&quot;
+import ThemeProvider, { useTheme } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
 import { Pressable } from &quot;react-native&quot;
 import { SafeAreaView } from &quot;react-native-safe-area-context&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
-import Box from &quot;./design/Box&quot;
-import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
-import Typography from &quot;./design/Typography&quot;
 import CityList from &quot;./screens/CityList&quot;
 import RestaurantDetails from &quot;./screens/RestaurantDetails&quot;
 import RestaurantList from &quot;./screens/RestaurantList&quot;
@@ -1036,16 +1036,16 @@ export default App
 <p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import Loading from &quot;@shared/components/Loading&quot;
+import RestaurantHeader from &quot;@shared/components/RestaurantHeader&quot;
+import Box from &quot;@shared/design/Box&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { useRestaurant } from &quot;@shared/services/pmo/restaurant&quot;
 import { useEffect } from &quot;react&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
-import Loading from &quot;../../components/Loading&quot;
-import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
-import Box from &quot;../../design/Box&quot;
-import Button from &quot;../../design/Button&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
-import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
 export interface RestaurantDetailsProps
   extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantDetails&quot;&gt; {}
@@ -1096,17 +1096,17 @@ export default RestaurantDetails
 <p>✏️ Create <strong>src/screens/RestaurantOrder/RestaurantOrder.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import FormSwitch from &quot;@shared/components/FormSwitch&quot;
+import Loading from &quot;@shared/components/Loading&quot;
+import Box from &quot;@shared/design/Box&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Card from &quot;@shared/design/Card&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { useRestaurant } from &quot;@shared/services/pmo/restaurant&quot;
 import { useEffect, useState } from &quot;react&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
-import FormSwitch from &quot;../../components/FormSwitch&quot;
-import Loading from &quot;../../components/Loading&quot;
-import Box from &quot;../../design/Box&quot;
-import Button from &quot;../../design/Button&quot;
-import Card from &quot;../../design/Card&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
-import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
 export interface RestaurantOrderProps
   extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantOrder&quot;&gt; {}
@@ -1206,12 +1206,11 @@ export default RestaurantOrder
 export * from &quot;./RestaurantOrder&quot;
 
 </code></pre>
-<p>✏️ Create <strong>src/components/FormSwitch/FormSwitch.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { Switch } from &quot;react-native&quot;
-
-import Box from &quot;../../design/Box&quot;
-import { useTheme } from &quot;../../design/theme&quot;
-import Typography from &quot;../../design/Typography&quot;
+<p>✏️ Create <strong>src/shared/components/FormSwitch/FormSwitch.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import Box from &quot;@shared/design/Box&quot;
+import { useTheme } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { Switch } from &quot;react-native&quot;
 
 export interface FormSwitchProps {
   label: string
@@ -1248,7 +1247,7 @@ export default FormSwitch
 
 </code></pre>
 <div line-highlight='27-33, only'></div>
-<p>✏️ Create <strong>src/components/FormSwitch/index.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/components/FormSwitch/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./FormSwitch&quot;
 export * from &quot;./FormSwitch&quot;
 
@@ -1256,9 +1255,8 @@ export * from &quot;./FormSwitch&quot;
 <h3 id="verify-1">Verify 1</h3>
 <p>✏️ Create <strong>src/screens/RestaurantOrder/RestaurantOrder.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import * as restaurantHooks from &quot;@shared/services/pmo/restaurant/hooks&quot;
 import { render, screen } from &quot;@testing-library/react-native&quot;
-
-import * as restaurantHooks from &quot;../../services/pmo/restaurant/hooks&quot;
 
 import RestaurantOrder from &quot;./RestaurantOrder&quot;
 
@@ -1411,13 +1409,13 @@ describe(&quot;Screens/RestaurantOrder&quot;, () =&gt; {
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import Box from &quot;@shared/design/Box&quot;
+import ThemeProvider, { useTheme } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
 import { Pressable } from &quot;react-native&quot;
 import { SafeAreaView } from &quot;react-native-safe-area-context&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
-import Box from &quot;./design/Box&quot;
-import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
-import Typography from &quot;./design/Typography&quot;
 import CityList from &quot;./screens/CityList&quot;
 import RestaurantDetails from &quot;./screens/RestaurantDetails&quot;
 import RestaurantList from &quot;./screens/RestaurantList&quot;
@@ -1567,12 +1565,11 @@ export default App
 
 </code></pre>
  <div line-highlight="90-92,139,only"></div>
-<p>✏️ Update <strong>src/components/FormSwitch/FormSwitch.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { Switch } from &quot;react-native&quot;
-
-import Box from &quot;../../design/Box&quot;
-import { useTheme } from &quot;../../design/theme&quot;
-import Typography from &quot;../../design/Typography&quot;
+<p>✏️ Update <strong>src/shared/components/FormSwitch/FormSwitch.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import Box from &quot;@shared/design/Box&quot;
+import { useTheme } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { Switch } from &quot;react-native&quot;
 
 export interface FormSwitchProps {
   label: string
@@ -1610,20 +1607,20 @@ const FormSwitch: React.FC&lt;FormSwitchProps&gt; = ({ label, value, onChange })
 export default FormSwitch
 
 </code></pre>
- <div line-highlight="28-29,only"></div>
+ <div line-highlight="27-28,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import Loading from &quot;@shared/components/Loading&quot;
+import RestaurantHeader from &quot;@shared/components/RestaurantHeader&quot;
+import Box from &quot;@shared/design/Box&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { useRestaurant } from &quot;@shared/services/pmo/restaurant&quot;
 import { useEffect } from &quot;react&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
-import Loading from &quot;../../components/Loading&quot;
-import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
-import Box from &quot;../../design/Box&quot;
-import Button from &quot;../../design/Button&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
-import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
 export interface RestaurantDetailsProps
   extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantDetails&quot;&gt; {}
@@ -1677,17 +1674,17 @@ export default RestaurantDetails
 <p>✏️ Update <strong>src/screens/RestaurantOrder/RestaurantOrder.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import FormSwitch from &quot;@shared/components/FormSwitch&quot;
+import Loading from &quot;@shared/components/Loading&quot;
+import Box from &quot;@shared/design/Box&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Card from &quot;@shared/design/Card&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { useRestaurant } from &quot;@shared/services/pmo/restaurant&quot;
 import { useEffect, useState } from &quot;react&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
-import FormSwitch from &quot;../../components/FormSwitch&quot;
-import Loading from &quot;../../components/Loading&quot;
-import Box from &quot;../../design/Box&quot;
-import Button from &quot;../../design/Button&quot;
-import Card from &quot;../../design/Card&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
-import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
 export interface RestaurantOrderProps
   extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantOrder&quot;&gt; {}
@@ -1907,13 +1904,12 @@ export default InputExample
 <p>The value of <code>useId</code> is guaranteed to be unique within the component where it is used.
 This is ideal for linking related components together, as is the case with <code>nativeID</code> and <code>accessibilityLabelledBy</code>.</p>
 <h3 id="setup-2">Setup 2</h3>
-<p>✏️ Create <strong>src/components/FormTextField/FormTextField.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { useId } from &quot;react&quot;
+<p>✏️ Create <strong>src/shared/components/FormTextField/FormTextField.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import Box from &quot;@shared/design/Box&quot;
+import { useTheme } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { useId } from &quot;react&quot;
 import { TextInput } from &quot;react-native&quot;
-
-import Box from &quot;../../design/Box&quot;
-import { useTheme } from &quot;../../design/theme&quot;
-import Typography from &quot;../../design/Typography&quot;
 
 export interface FormTextFieldProps {
   label: string
@@ -1949,18 +1945,17 @@ export default FormTextField
 
 </code></pre>
 <div line-highlight='24, only'></div>
-<p>✏️ Create <strong>src/components/FormTextField/index.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/components/FormTextField/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./FormTextField&quot;
 export * from &quot;./FormTextField&quot;
 
 </code></pre>
-<p>✏️ Update <strong>src/components/FormSwitch/FormSwitch.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { useId } from &quot;react&quot;
+<p>✏️ Update <strong>src/shared/components/FormSwitch/FormSwitch.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import Box from &quot;@shared/design/Box&quot;
+import { useTheme } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { useId } from &quot;react&quot;
 import { Switch } from &quot;react-native&quot;
-
-import Box from &quot;../../design/Box&quot;
-import { useTheme } from &quot;../../design/theme&quot;
-import Typography from &quot;../../design/Typography&quot;
 
 export interface FormSwitchProps {
   label: string
@@ -1998,22 +1993,22 @@ const FormSwitch: React.FC&lt;FormSwitchProps&gt; = ({ label, value, onChange })
 export default FormSwitch
 
 </code></pre>
- <div line-highlight="1,only"></div>
+ <div line-highlight="4,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantOrder/RestaurantOrder.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import FormSwitch from &quot;@shared/components/FormSwitch&quot;
+import FormTextField from &quot;@shared/components/FormTextField&quot;
+import Loading from &quot;@shared/components/Loading&quot;
+import Box from &quot;@shared/design/Box&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Card from &quot;@shared/design/Card&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { useRestaurant } from &quot;@shared/services/pmo/restaurant&quot;
 import { useEffect, useState } from &quot;react&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
-import FormSwitch from &quot;../../components/FormSwitch&quot;
-import FormTextField from &quot;../../components/FormTextField&quot;
-import Loading from &quot;../../components/Loading&quot;
-import Box from &quot;../../design/Box&quot;
-import Button from &quot;../../design/Button&quot;
-import Card from &quot;../../design/Card&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
-import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
 export interface RestaurantOrderProps
   extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantOrder&quot;&gt; {}
@@ -2140,9 +2135,9 @@ function calculateTotal(items: OrderItems) {
 export default RestaurantOrder
 
 </code></pre>
- <div line-highlight="7,28,109-111,only"></div>
+ <div line-highlight="4,28,109-111,only"></div>
 <h3 id="verify-2">Verify 2</h3>
-<p>✏️ Create <strong>src/components/FormTextField/FormTextField.test.tsx</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/components/FormTextField/FormTextField.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen, userEvent } from &quot;@testing-library/react-native&quot;
 
 import FormTextField from &quot;./FormTextField&quot;
@@ -2180,9 +2175,8 @@ describe(&quot;Components/FormTextField&quot;, () =&gt; {
 <div line-highlight='11, only'></div>
 <p>✏️ Update <strong>src/screens/RestaurantOrder/RestaurantOrder.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import * as restaurantHooks from &quot;@shared/services/pmo/restaurant/hooks&quot;
 import { render, screen } from &quot;@testing-library/react-native&quot;
-
-import * as restaurantHooks from &quot;../../services/pmo/restaurant/hooks&quot;
 
 import RestaurantOrder from &quot;./RestaurantOrder&quot;
 
@@ -2314,7 +2308,7 @@ describe(&quot;Screens/RestaurantOrder&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="93-95,only"></div>
+ <div line-highlight="92-94,only"></div>
 <h3 id="exercise-2">Exercise 2</h3>
 <p>Let’s fully implement our <code>FormTextField</code> component and have it:</p>
 <ul>
@@ -2336,13 +2330,12 @@ describe(&quot;Screens/RestaurantOrder&quot;, () =&gt; {
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update <strong>src/components/FormTextField/FormTextField.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { useId } from &quot;react&quot;
+<p>✏️ Update <strong>src/shared/components/FormTextField/FormTextField.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import Box from &quot;@shared/design/Box&quot;
+import { useTheme } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { useId } from &quot;react&quot;
 import { TextInput } from &quot;react-native&quot;
-
-import Box from &quot;../../design/Box&quot;
-import { useTheme } from &quot;../../design/theme&quot;
-import Typography from &quot;../../design/Typography&quot;
 
 export interface FormTextFieldProps {
   label: string
@@ -2384,14 +2377,13 @@ const FormTextField: React.FC&lt;FormTextFieldProps&gt; = ({
 export default FormTextField
 
 </code></pre>
- <div line-highlight="21,25-27,29-32,only"></div>
-<p>✏️ Update <strong>src/components/FormSwitch/FormSwitch.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { useId } from &quot;react&quot;
+ <div line-highlight="20,24-26,28-31,only"></div>
+<p>✏️ Update <strong>src/shared/components/FormSwitch/FormSwitch.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import Box from &quot;@shared/design/Box&quot;
+import { useTheme } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { useId } from &quot;react&quot;
 import { Switch } from &quot;react-native&quot;
-
-import Box from &quot;../../design/Box&quot;
-import { useTheme } from &quot;../../design/theme&quot;
-import Typography from &quot;../../design/Typography&quot;
 
 export interface FormSwitchProps {
   label: string
@@ -2434,22 +2426,22 @@ const FormSwitch: React.FC&lt;FormSwitchProps&gt; = ({ label, value, onChange })
 export default FormSwitch
 
 </code></pre>
- <div line-highlight="16,28-30,32-33,only"></div>
+ <div line-highlight="15,27-29,31-32,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantOrder/RestaurantOrder.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import FormSwitch from &quot;@shared/components/FormSwitch&quot;
+import FormTextField from &quot;@shared/components/FormTextField&quot;
+import Loading from &quot;@shared/components/Loading&quot;
+import Box from &quot;@shared/design/Box&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Card from &quot;@shared/design/Card&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { useRestaurant } from &quot;@shared/services/pmo/restaurant&quot;
 import { useEffect, useState } from &quot;react&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
-import FormSwitch from &quot;../../components/FormSwitch&quot;
-import FormTextField from &quot;../../components/FormTextField&quot;
-import Loading from &quot;../../components/Loading&quot;
-import Box from &quot;../../design/Box&quot;
-import Button from &quot;../../design/Button&quot;
-import Card from &quot;../../design/Card&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
-import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
 export interface RestaurantOrderProps
   extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantOrder&quot;&gt; {}

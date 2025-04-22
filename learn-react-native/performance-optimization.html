@@ -874,15 +874,15 @@ This can be in views where there is a large dependency (like our Maps view), or 
 <h3 id="setup-1">Setup 1</h3>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import Loading from &quot;@shared/components/Loading&quot;
+import Tabs from &quot;@shared/components/Tabs&quot;
+import Box from &quot;@shared/design/Box&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { useRestaurants } from &quot;@shared/services/pmo/restaurant&quot;
 import { Suspense, lazy, useState } from &quot;react&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
-import Loading from &quot;../../components/Loading&quot;
-import Tabs from &quot;../../components/Tabs&quot;
-import Box from &quot;../../design/Box&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
-import { useRestaurants } from &quot;../../services/pmo/restaurant&quot;
 
 import List from &quot;./components/List&quot;
 import Map from &quot;./components/Map&quot;
@@ -939,7 +939,7 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="2,14,57,only"></div>
+ <div line-highlight="8,14,57,only"></div>
 <h3 id="verify-1">Verify 1</h3>
 <p>Watch the output of the <code>npm start</code> command while it’s running.</p>
 <p>When you’ve completed this exercise, you’ll notice that there’s a new bundle loaded when you go to the Map view:</p>
@@ -966,15 +966,15 @@ Starting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.L
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import Loading from &quot;@shared/components/Loading&quot;
+import Tabs from &quot;@shared/components/Tabs&quot;
+import Box from &quot;@shared/design/Box&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { useRestaurants } from &quot;@shared/services/pmo/restaurant&quot;
 import { Suspense, lazy, useState } from &quot;react&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
-import Loading from &quot;../../components/Loading&quot;
-import Tabs from &quot;../../components/Tabs&quot;
-import Box from &quot;../../design/Box&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
-import { useRestaurants } from &quot;../../services/pmo/restaurant&quot;
 
 import List from &quot;./components/List&quot;
 

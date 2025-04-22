@@ -1250,14 +1250,14 @@ describe(&quot;App&quot;, () =&gt; {
 
 </code></pre>
  <div line-highlight="5-8,10-12,15-21,24-29,33-34,36,only"></div>
-<p>✏️ Create <strong>src/services/pmo/restaurant/interfaces.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/services/pmo/restaurant/interfaces.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export interface State {
   name: string
   short: string
 }
 
 </code></pre>
-<p>✏️ Create <strong>src/services/pmo/restaurant/hooks.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/services/pmo/restaurant/hooks.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
 
 import { State } from &quot;./interfaces&quot;
@@ -1276,17 +1276,16 @@ export function useStates(): StatesResponse {
 
 </code></pre>
 <div line-highlight='14, only'></div>
-<p>✏️ Create <strong>src/services/pmo/restaurant/index.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/services/pmo/restaurant/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export * from &quot;./interfaces&quot;
 export * from &quot;./hooks&quot;
 
 </code></pre>
-<p>✏️ Create <strong>src/components/Loading/Loading.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { ActivityIndicator } from &quot;react-native&quot;
-
-import Box from &quot;../../design/Box&quot;
-import { useTheme } from &quot;../../design/theme&quot;
-import Typography from &quot;../../design/Typography&quot;
+<p>✏️ Create <strong>src/shared/components/Loading/Loading.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import Box from &quot;@shared/design/Box&quot;
+import { useTheme } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { ActivityIndicator } from &quot;react-native&quot;
 
 const Loading: React.FC = () =&gt; {
   const theme = useTheme()
@@ -1304,7 +1303,7 @@ const Loading: React.FC = () =&gt; {
 export default Loading
 
 </code></pre>
-<p>✏️ Create <strong>src/components/Loading/Loading.test.tsx</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/components/Loading/Loading.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
 
 import Loading from &quot;./Loading&quot;
@@ -1317,20 +1316,19 @@ describe(&quot;Components/Loading&quot;, () =&gt; {
 })
 
 </code></pre>
-<p>✏️ Create <strong>src/components/Loading/index.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/components/Loading/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./Loading&quot;
 
 </code></pre>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
+import Loading from &quot;@shared/components/Loading&quot;
+import Box from &quot;@shared/design/Box&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { useStates } from &quot;@shared/services/pmo/restaurant&quot;
 import { FlatList } from &quot;react-native&quot;
-
-import Loading from &quot;../../components/Loading&quot;
-import Box from &quot;../../design/Box&quot;
-import Button from &quot;../../design/Button&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
-import { useStates } from &quot;../../services/pmo/restaurant&quot;
 
 const StateList: React.FC = () =&gt; {
   const navigation = useNavigation()
@@ -1364,9 +1362,9 @@ const StateList: React.FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="4-5,9,11,13,17-35,only"></div>
+ <div line-highlight="2-3,7,10,12,16-34,only"></div>
 <h3 id="verify-1">Verify 1</h3>
-<p>✏️ Create <strong>src/services/pmo/restaurant/hooks.test.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/services/pmo/restaurant/hooks.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react-native&quot;
 
 import { useStates } from &quot;./hooks&quot;
@@ -1407,9 +1405,8 @@ describe(&quot;Services/PMO/Restaurant/useStates&quot;, () =&gt; {
 <div line-highlight='15, only'></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import * as restaurantHooks from &quot;@shared/services/pmo/restaurant/hooks&quot;
 import { render, screen } from &quot;@testing-library/react-native&quot;
-
-import * as restaurantHooks from &quot;../../services/pmo/restaurant/hooks&quot;
 
 import StateList from &quot;./StateList&quot;
 
@@ -1464,7 +1461,7 @@ describe(&quot;Screens/StateList&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="4,9-16,18-21,25-29,33,36,39,41-46,48-52,54-55,only"></div>
+ <div line-highlight="2,8-15,17-20,24-28,32,35,38,40-45,47-51,53-54,only"></div>
 <h3 id="exercise-1">Exercise 1</h3>
 <ul>
 <li>Update the <code>useStates</code> in <code>hooks.ts</code> to call <code>useEffect()</code> and <code>fetch</code> data from <code>${process.env.PMO_API}/states</code>.</li>
@@ -1477,7 +1474,7 @@ describe(&quot;Screens/StateList&quot;, () =&gt; {
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update <strong>src/services/pmo/restaurant/hooks.ts</strong> to be:</p>
+<p>✏️ Update <strong>src/shared/services/pmo/restaurant/hooks.ts</strong> to be:</p>
 <pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
 
 import { State } from &quot;./interfaces&quot;
@@ -1524,14 +1521,13 @@ export function useStates(): StatesResponse {
  <div line-highlight="14-18,20-27,29,31-38,40,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
+import Loading from &quot;@shared/components/Loading&quot;
+import Box from &quot;@shared/design/Box&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { useStates } from &quot;@shared/services/pmo/restaurant&quot;
 import { FlatList } from &quot;react-native&quot;
-
-import Loading from &quot;../../components/Loading&quot;
-import Box from &quot;../../design/Box&quot;
-import Button from &quot;../../design/Button&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
-import { useStates } from &quot;../../services/pmo/restaurant&quot;
 
 const StateList: React.FC = () =&gt; {
   const navigation = useNavigation()
@@ -1580,7 +1576,7 @@ const StateList: React.FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="13,15-24,26-28,only"></div>
+ <div line-highlight="12,14-23,25-27,only"></div>
 <p></details></p>
 <h2 id="objective-2-fetch-cities-in-a-custom-hook-with-query-parameters">Objective 2: Fetch cities in a custom Hook with query parameters</h2>
 <p>Let’s continue our quest to load data from our API and update our <code>&lt;CitiesList&gt;</code> to use a custom <code>useCities</code> Hook to fetch data.</p>
@@ -1601,7 +1597,7 @@ export default StateList
 </ul></li>
 </ul>
 <h3 id="setup-2">Setup 2</h3>
-<p>✏️ Update <strong>src/services/pmo/restaurant/interfaces.ts</strong> to be:</p>
+<p>✏️ Update <strong>src/shared/services/pmo/restaurant/interfaces.ts</strong> to be:</p>
 <pre><code class="language-ts">export interface State {
   name: string
   short: string
@@ -1614,7 +1610,7 @@ export interface City {
 
 </code></pre>
  <div line-highlight="6-9,only"></div>
-<p>✏️ Update <strong>src/services/pmo/restaurant/hooks.ts</strong> to be:</p>
+<p>✏️ Update <strong>src/shared/services/pmo/restaurant/hooks.ts</strong> to be:</p>
 <pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
 
 import { City, State } from &quot;./interfaces&quot;
@@ -1676,15 +1672,15 @@ export function useCities({ state }: UseCitiesParams): CitiesResponse {
 <p>✏️ Update <strong>src/screens/CityList/CityList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import Loading from &quot;@shared/components/Loading&quot;
+import Box from &quot;@shared/design/Box&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { useCities } from &quot;@shared/services/pmo/restaurant&quot;
 import { FlatList } from &quot;react-native&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
-import Loading from &quot;../../components/Loading&quot;
-import Box from &quot;../../design/Box&quot;
-import Button from &quot;../../design/Button&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
-import { useCities } from &quot;../../services/pmo/restaurant&quot;
 
 export interface CityListProps
   extends StackScreenProps&lt;RestaurantsStackParamList, &quot;CityList&quot;&gt; {}
@@ -1719,9 +1715,9 @@ const CityList: React.FC&lt;CityListProps&gt; = ({ route }) =&gt; {
 export default CityList
 
 </code></pre>
- <div line-highlight="6-7,10-11,19,only"></div>
+ <div line-highlight="3-4,7-8,19,only"></div>
 <h3 id="verify-2">Verify 2</h3>
-<p>✏️ Update <strong>src/services/pmo/restaurant/hooks.test.ts</strong> to be:</p>
+<p>✏️ Update <strong>src/shared/services/pmo/restaurant/hooks.test.ts</strong> to be:</p>
 <pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react-native&quot;
 
 import { useStates, useCities } from &quot;./hooks&quot;
@@ -1785,9 +1781,8 @@ describe(&quot;Services/PMO/Restaurant/useCities&quot;, () =&gt; {
  <div line-highlight="3,37-48,50,52-58,only"></div>
 <p>✏️ Update <strong>src/screens/CityList/CityList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import * as restaurantHooks from &quot;@shared/services/pmo/restaurant/hooks&quot;
 import { render, screen } from &quot;@testing-library/react-native&quot;
-
-import * as restaurantHooks from &quot;../../services/pmo/restaurant/hooks&quot;
 
 import CityList from &quot;./CityList&quot;
 
@@ -1853,7 +1848,7 @@ describe(&quot;Screens/CityList&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="4,9-10,20,22-31,35-39,47-49,51-56,58-63,65-66,only"></div>
+ <div line-highlight="2,8-9,19,21-30,34-38,46-48,50-55,57-62,64-65,only"></div>
 <h3 id="exercise-2">Exercise 2</h3>
 <ul>
 <li>Update our <code>useCities()</code> Hook to fetch cities from the Place My Order API, given a selected state.</li>
@@ -1865,7 +1860,7 @@ describe(&quot;Screens/CityList&quot;, () =&gt; {
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update <strong>src/services/pmo/restaurant/hooks.ts</strong> to be:</p>
+<p>✏️ Update <strong>src/shared/services/pmo/restaurant/hooks.ts</strong> to be:</p>
 <pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
 
 import { City, State } from &quot;./interfaces&quot;
@@ -1955,15 +1950,15 @@ export function useCities({ state }: UseCitiesParams): CitiesResponse {
 <p>✏️ Update <strong>src/screens/CityList/CityList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import Loading from &quot;@shared/components/Loading&quot;
+import Box from &quot;@shared/design/Box&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { useCities } from &quot;@shared/services/pmo/restaurant&quot;
 import { FlatList } from &quot;react-native&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
-import Loading from &quot;../../components/Loading&quot;
-import Box from &quot;../../design/Box&quot;
-import Button from &quot;../../design/Button&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
-import { useCities } from &quot;../../services/pmo/restaurant&quot;
 
 export interface CityListProps
   extends StackScreenProps&lt;RestaurantsStackParamList, &quot;CityList&quot;&gt; {}
@@ -2017,7 +2012,7 @@ const CityList: React.FC&lt;CityListProps&gt; = ({ route }) =&gt; {
 export default CityList
 
 </code></pre>
- <div line-highlight="6-7,10-11,19-23,25-34,36-38,only"></div>
+ <div line-highlight="3-4,7-8,19-23,25-34,36-38,only"></div>
 <p></details></p>
 <h2 id="objective-3-create-api-request-helper">Objective 3: Create API request helper</h2>
 <p>Now that we have two Hooks that fetch data in a similar way, let’s create an <code>apiRequest</code> helper function that both Hooks can use.</p>
@@ -2070,7 +2065,7 @@ const error = response.ok
 <p><strong>Note:</strong> This implementation demonstrates a basic approach to data fetching using fetch. While it works for simple use cases, it lacks important features that production-ready apps typically need — such as caching, refetching, error retries, and background updates.</p>
 <p>As your app grows, maintaining these features manually becomes complex and error-prone. At that point, we strongly recommend using a dedicated data-fetching library like <a href="https://tanstack.com/query/latest">TanStack Query</a> to handle these concerns efficiently.</p>
 <h3 id="setup-3">Setup 3</h3>
-<p>✏️ Create <strong>src/services/pmo/api/api.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/services/pmo/api/api.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">const baseUrl = process.env.PMO_API
 
 export async function apiRequest&lt;
@@ -2107,14 +2102,49 @@ export function stringifyQuery(
 
 </code></pre>
 <div line-highlight='30, only'></div>
-<p>✏️ Create <strong>src/services/pmo/api/index.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/services/pmo/api/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export * from &quot;./api&quot;
 
 </code></pre>
-<p>✏️ Update <strong>src/services/pmo/restaurant/hooks.ts</strong> to be:</p>
-<pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
+<p>✏️ Update <strong>jest-setup.ts</strong> to be:</p>
+<pre><code class="language-ts">import &quot;@testing-library/react-native/extend-expect&quot;
 
-import { apiRequest } from &quot;../api&quot;
+import &quot;react-native-gesture-handler/jestSetup&quot;
+
+jest.mock(&quot;@react-navigation/native&quot;, () =&gt; {
+  const actualNav = jest.requireActual(&quot;@react-navigation/native&quot;)
+  return {
+    ...actualNav,
+    useNavigation: () =&gt; ({
+      navigate: jest.fn(),
+      setOptions: jest.fn(),
+    }),
+  }
+})
+
+jest.mock(&quot;@shared/services/pmo/api&quot;, () =&gt;
+  require(&quot;@shared/services/pmo/api/api.mock&quot;),
+)
+
+const consoleError = console.error
+console.error = (message, ...args) =&gt; {
+  if (
+    typeof message === &quot;string&quot; &amp;&amp;
+    message.match(
+      /Warning: An update to .+ inside a test was not wrapped in act\(\.\.\.\)\./,
+    )
+  ) {
+    return
+  }
+
+  return consoleError(message, ...args)
+}
+
+</code></pre>
+ <div line-highlight="16-18,only"></div>
+<p>✏️ Update <strong>src/shared/services/pmo/restaurant/hooks.ts</strong> to be:</p>
+<pre><code class="language-ts">import { apiRequest } from &quot;@shared/services/pmo/api&quot;
+import { useEffect, useState } from &quot;react&quot;
 
 import { City, State } from &quot;./interfaces&quot;
 
@@ -2199,12 +2229,118 @@ export function useCities({ state }: UseCitiesParams): CitiesResponse {
 }
 
 </code></pre>
- <div line-highlight="3,only"></div>
+ <div line-highlight="1,only"></div>
 <h3 id="verify-3">Verify 3</h3>
-<p>✏️ Update <strong>src/services/pmo/restaurant/hooks.test.ts</strong> to be:</p>
-<pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react-native&quot;
+<p>✏️ Create <strong>src/shared/services/pmo/api/api.mock.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export const apiRequest = async &lt;
+  Data = never,
+  Params = unknown,
+  Body = unknown,
+&gt;({
+  method,
+  params,
+  path,
+  body,
+}: {
+  method: string
+  params?: Params
+  path: string
+  body?: Body
+}): Promise&lt;{ data?: Data; error?: Error }&gt; =&gt; {
+  return {}
+}
 
-import * as api from &quot;../api/api&quot;
+</code></pre>
+<p>✏️ Create <strong>src/shared/services/pmo/api/api.test.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import { apiRequest, stringifyQuery } from &quot;./api&quot;
+
+const oldFetch = global.fetch
+const mockFetch = jest.fn()
+beforeAll(() =&gt; {
+  global.fetch = mockFetch
+})
+afterAll(() =&gt; {
+  global.fetch = oldFetch
+})
+
+describe(&quot;Services/PMO/API/apiRequest&quot;, () =&gt; {
+  it(&quot;handles a successful request&quot;, async () =&gt; {
+    // Mock the fetch response
+    mockFetch.mockResolvedValueOnce({
+      ok: true,
+      json: () =&gt; Promise.resolve({ message: &quot;success&quot; }),
+      statusText: &quot;OK&quot;,
+      status: 200,
+    })
+
+    const response = await apiRequest({
+      method: &quot;GET&quot;,
+      path: &quot;/test&quot;,
+    })
+
+    expect(response).toEqual({ data: { message: &quot;success&quot; }, error: undefined })
+    expect(mockFetch).toHaveBeenCalledWith(`${process.env.PMO_API}/test?`, {
+      method: &quot;GET&quot;,
+      body: undefined,
+      headers: {
+        &quot;Content-Type&quot;: &quot;application/json&quot;,
+      },
+    })
+  })
+
+  it(&quot;handles a failed request&quot;, async () =&gt; {
+    // Mock the fetch response
+    mockFetch.mockResolvedValueOnce({
+      ok: false,
+      json: () =&gt; Promise.resolve({ message: &quot;error&quot; }),
+      statusText: &quot;Bad Request&quot;,
+      status: 400,
+    })
+
+    const response = await apiRequest({
+      method: &quot;GET&quot;,
+      path: &quot;/test&quot;,
+    })
+
+    expect(response).toEqual({
+      data: { message: &quot;error&quot; },
+      error: new Error(&quot;400 (Bad Request)&quot;),
+    })
+  })
+
+  it(&quot;handles network errors&quot;, async () =&gt; {
+    // Mock a network error
+    mockFetch.mockRejectedValueOnce(new Error(&quot;Network Error&quot;))
+
+    const response = await apiRequest({
+      method: &quot;GET&quot;,
+      path: &quot;/test&quot;,
+    })
+
+    expect(response).toEqual({
+      data: undefined,
+      error: new Error(&quot;Network Error&quot;),
+    })
+  })
+})
+
+describe(&quot;Services/PMO/API/stringifyQuery&quot;, () =&gt; {
+  it(&quot;stringifies query parameters&quot;, () =&gt; {
+    const query = stringifyQuery({ foo: &quot;bar&quot;, baz: &quot;qux&quot; })
+    expect(query).toBe(&quot;foo=bar&amp;baz=qux&quot;)
+  })
+
+  it(&quot;skips undefined and null values&quot;, () =&gt; {
+    const query = stringifyQuery({ foo: &quot;bar&quot;, baz: undefined, qux: undefined })
+    expect(query).toBe(&quot;foo=bar&quot;)
+  })
+})
+
+</code></pre>
+<div line-highlight='13, 37, 57, 74, 79, only'></div>
+<p>✏️ Update <strong>src/shared/services/pmo/restaurant/hooks.test.ts</strong> to be:</p>
+<pre><code class="language-ts">import * as api from &quot;@shared/services/pmo/api&quot;
+import { renderHook, waitFor } from &quot;@testing-library/react-native&quot;
 
 import { useStates, useCities } from &quot;./hooks&quot;
 
@@ -2283,7 +2419,7 @@ describe(&quot;Services/PMO/Restaurant/useCities&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="3,7-10,19-21,33-35,37,42-43,53-55,60-62,65,67-69,71,73-78,only"></div>
+ <div line-highlight="1,6-9,18-20,32-34,36,41-42,52-54,59-61,64,66-68,70,72-77,only"></div>
 <h3 id="exercise-3">Exercise 3</h3>
 <ul>
 <li>Implement the <code>apiRequest</code> helper function to handle errors returned and thrown from <code>fetch()</code>.</li>
@@ -2299,7 +2435,7 @@ describe(&quot;Services/PMO/Restaurant/useCities&quot;, () =&gt; {
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update <strong>src/services/pmo/api/api.ts</strong> to be:</p>
+<p>✏️ Update <strong>src/shared/services/pmo/api/api.ts</strong> to be:</p>
 <pre><code class="language-ts">const baseUrl = process.env.PMO_API
 
 export async function apiRequest&lt;
@@ -2363,10 +2499,9 @@ export function stringifyQuery(
 
 </code></pre>
  <div line-highlight="17-20,22-28,30-33,35-37,39-44,56-57,60,only"></div>
-<p>✏️ Update <strong>src/services/pmo/restaurant/hooks.ts</strong> to be:</p>
-<pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
-
-import { apiRequest } from &quot;../api&quot;
+<p>✏️ Update <strong>src/shared/services/pmo/restaurant/hooks.ts</strong> to be:</p>
+<pre><code class="language-ts">import { apiRequest } from &quot;@shared/services/pmo/api&quot;
+import { useEffect, useState } from &quot;react&quot;
 
 import { City, State } from &quot;./interfaces&quot;
 
@@ -2448,7 +2583,7 @@ export function useStates(): StatesResponse {
 }
 
 </code></pre>
- <div line-highlight="32,34-36,41-42,61-62,64-65,67-70,72-76,only"></div>
+ <div line-highlight="31,33-35,40-41,60-61,63-64,66-69,71-75,only"></div>
 <p></details></p>
 <h2 id="objective-4-fetch-restaurants-in-a-custom-hook">Objective 4: Fetch restaurants in a custom Hook</h2>
 <p>Let’s finish our quest to load data from our API by creating a Hook to fetch the list of restaurants and use it in our component.</p>
@@ -2489,12 +2624,11 @@ export {}
 <p>✏️ Terminate the existing dev server and start it again:</p>
 <pre><code class="language-bash">npm run start
 </code></pre>
-<p>✏️ Update <strong>src/components/RestaurantHeader/RestaurantHeader.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { ImageBackground, StyleSheet } from &quot;react-native&quot;
-
-import Box from &quot;../../design/Box&quot;
-import { Theme, useTheme } from &quot;../../design/theme&quot;
-import Typography from &quot;../../design/Typography&quot;
+<p>✏️ Update <strong>src/shared/components/RestaurantHeader/RestaurantHeader.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import Box from &quot;@shared/design/Box&quot;
+import { Theme, useTheme } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { ImageBackground, StyleSheet } from &quot;react-native&quot;
 
 const assetsUrl = process.env.PMO_ASSETS
 
@@ -2572,8 +2706,8 @@ function getStyles(theme: Theme) {
 export default RestaurantHeader
 
 </code></pre>
- <div line-highlight="7,34,only"></div>
-<p>✏️ Update <strong>src/services/pmo/restaurant/interfaces.ts</strong> to be:</p>
+ <div line-highlight="6,33,only"></div>
+<p>✏️ Update <strong>src/shared/services/pmo/restaurant/interfaces.ts</strong> to be:</p>
 <pre><code class="language-ts">export interface State {
   name: string
   short: string
@@ -2624,10 +2758,9 @@ interface MenuItem {
 
 </code></pre>
  <div line-highlight="11-19,21-26,28-31,33-37,39-42,44-47,only"></div>
-<p>✏️ Update <strong>src/services/pmo/restaurant/hooks.ts</strong> to be:</p>
-<pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
-
-import { apiRequest } from &quot;../api/api&quot;
+<p>✏️ Update <strong>src/shared/services/pmo/restaurant/hooks.ts</strong> to be:</p>
+<pre><code class="language-ts">import { apiRequest } from &quot;@shared/services/pmo/api&quot;
+import { useEffect, useState } from &quot;react&quot;
 
 import { City, Restaurant, State } from &quot;./interfaces&quot;
 
@@ -2740,19 +2873,19 @@ export function useStates(): StatesResponse {
 }
 
 </code></pre>
- <div line-highlight="3,5,16-17,22-23,26-29,32-35,39-41,70,72-74,76-81,113,only"></div>
+ <div line-highlight="4,15-16,21-22,25-28,31-34,38-40,69,71-73,75-80,112,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import Loading from &quot;@shared/components/Loading&quot;
+import Box from &quot;@shared/design/Box&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { useRestaurants } from &quot;@shared/services/pmo/restaurant&quot;
 import { FlatList } from &quot;react-native&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
-import Loading from &quot;../../components/Loading&quot;
-import Box from &quot;../../design/Box&quot;
-import Button from &quot;../../design/Button&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
-import { useRestaurants } from &quot;../../services/pmo/restaurant&quot;
 
 export interface RestaurantListProps
   extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantList&quot;&gt; {}
@@ -2785,20 +2918,20 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="6-7,10-11,18,only"></div>
+ <div line-highlight="3-4,7-8,18,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import Loading from &quot;@shared/components/Loading&quot;
+import RestaurantHeader from &quot;@shared/components/RestaurantHeader&quot;
+import Box from &quot;@shared/design/Box&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { useRestaurant } from &quot;@shared/services/pmo/restaurant&quot;
 import { useEffect } from &quot;react&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
-import Loading from &quot;../../components/Loading&quot;
-import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
-import Box from &quot;../../design/Box&quot;
-import Button from &quot;../../design/Button&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
-import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
 export interface RestaurantDetailsProps
   extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantDetails&quot;&gt; {}
@@ -2820,12 +2953,11 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
 export default RestaurantDetails
 
 </code></pre>
- <div line-highlight="2,5-6,8,11-12,14-15,17,19,only"></div>
+ <div line-highlight="2-3,5,8-9,12,14-15,17,19,only"></div>
 <h3 id="verify-4">Verify 4</h3>
-<p>✏️ Update <strong>src/services/pmo/restaurant/hooks.test.ts</strong> to be:</p>
-<pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react-native&quot;
-
-import * as api from &quot;../api/api&quot;
+<p>✏️ Update <strong>src/shared/services/pmo/restaurant/hooks.test.ts</strong> to be:</p>
+<pre><code class="language-ts">import * as api from &quot;@shared/services/pmo/api&quot;
+import { renderHook, waitFor } from &quot;@testing-library/react-native&quot;
 
 import { useStates, useCities, useRestaurants, useRestaurant } from &quot;./hooks&quot;
 
@@ -2975,12 +3107,11 @@ describe(&quot;Services/PMO/Restaurant/useRestaurant&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="5,7,82-91,93-95,97-102,104-106,108-110,112-118,120-126,128,130-135,137-139,141,143-145,147-150,only"></div>
+ <div line-highlight="4,6,81-90,92-94,96-101,103-105,107-109,111-117,119-125,127,129-134,136-138,140,142-144,146-149,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import * as restaurantHooks from &quot;@shared/services/pmo/restaurant/hooks&quot;
 import { render, screen } from &quot;@testing-library/react-native&quot;
-
-import * as restaurantHooks from &quot;../../services/pmo/restaurant/hooks&quot;
 
 import RestaurantList from &quot;./RestaurantList&quot;
 
@@ -3146,12 +3277,11 @@ describe(&quot;Screens/RestaurantList&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="4,25,27-106,108-113,117-121,129-131,133-138,140-145,147-148,150-155,157-162,164-166,only"></div>
+ <div line-highlight="2,24,26-105,107-112,116-120,128-130,132-137,139-144,146-147,149-154,156-161,163-165,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import * as restaurantHooks from &quot;@shared/services/pmo/restaurant/hooks&quot;
 import { render, screen } from &quot;@testing-library/react-native&quot;
-
-import * as restaurantHooks from &quot;../../services/pmo/restaurant/hooks&quot;
 
 import RestaurantDetails from &quot;./RestaurantDetails&quot;
 
@@ -3279,7 +3409,7 @@ describe(&quot;Screens/RestaurantDetails&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="1,4,8-22,36,38-43,46-64,67,69-74,76-77,79-86,88-89,91-96,98-103,105-106,108-113,115-120,122-128,only"></div>
+ <div line-highlight="1-2,7-21,35,37-42,45-63,66,68-73,75-76,78-85,87-88,90-95,97-102,104-105,107-112,114-119,121-127,only"></div>
 <h3 id="exercise-4">Exercise 4</h3>
 <ul>
 <li>Fill in <code>useRestaurant</code> Hook for fetching the details of the restaurant.</li>
@@ -3293,10 +3423,9 @@ describe(&quot;Screens/RestaurantDetails&quot;, () =&gt; {
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update <strong>src/services/pmo/restaurant/hooks.ts</strong> to be:</p>
-<pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
-
-import { apiRequest } from &quot;../api/api&quot;
+<p>✏️ Update <strong>src/shared/services/pmo/restaurant/hooks.ts</strong> to be:</p>
+<pre><code class="language-ts">import { apiRequest } from &quot;@shared/services/pmo/api&quot;
+import { useEffect, useState } from &quot;react&quot;
 
 import { City, Restaurant, State } from &quot;./interfaces&quot;
 
@@ -3457,19 +3586,19 @@ export function useStates(): StatesResponse {
 }
 
 </code></pre>
- <div line-highlight="73,81,83,93,102-106,108-116,120-126,128,133-136,138-140,144,147,149,151-157,160,only"></div>
+ <div line-highlight="72,80,82,92,101-105,107-115,119-125,127,132-135,137-139,143,146,148,150-156,159,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import Loading from &quot;@shared/components/Loading&quot;
+import Box from &quot;@shared/design/Box&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { useRestaurants } from &quot;@shared/services/pmo/restaurant&quot;
 import { FlatList } from &quot;react-native&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
-import Loading from &quot;../../components/Loading&quot;
-import Box from &quot;../../design/Box&quot;
-import Button from &quot;../../design/Button&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
-import { useRestaurants } from &quot;../../services/pmo/restaurant&quot;
 
 export interface RestaurantListProps
   extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantList&quot;&gt; {}
@@ -3527,16 +3656,16 @@ export default RestaurantList
 <p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import Loading from &quot;@shared/components/Loading&quot;
+import RestaurantHeader from &quot;@shared/components/RestaurantHeader&quot;
+import Box from &quot;@shared/design/Box&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { useRestaurant } from &quot;@shared/services/pmo/restaurant&quot;
 import { useEffect } from &quot;react&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
-import Loading from &quot;../../components/Loading&quot;
-import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
-import Box from &quot;../../design/Box&quot;
-import Button from &quot;../../design/Button&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
-import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
 
 export interface RestaurantDetailsProps
   extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantDetails&quot;&gt; {}

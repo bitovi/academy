@@ -1032,7 +1032,7 @@ export function useAuthentication() {
 </code></pre>
 <div line-highlight='49-59, only'></div>
 <h3 id="setup-1">Setup 1</h3>
-<p>✏️ Create <strong>src/design/theme/theme.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/design/theme/theme.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { TextStyle } from &quot;react-native&quot;
 
 interface Palette {
@@ -1123,7 +1123,7 @@ export default theme
 
 </code></pre>
 <div line-highlight='48, 51, 63-64, 70, only'></div>
-<p>✏️ Create <strong>src/design/theme/ThemeProvider.tsx</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/design/theme/ThemeProvider.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { createContext, useContext, useMemo } from &quot;react&quot;
 
 import theme, { Theme } from &quot;./theme&quot;
@@ -1146,7 +1146,7 @@ export function useTheme(): Theme {
 
 </code></pre>
 <div line-highlight='9, 12, 18, only'></div>
-<p>✏️ Create <strong>src/design/theme/index.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/design/theme/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export type * from &quot;./theme&quot;
 
 export { default } from &quot;./ThemeProvider&quot;
@@ -1154,9 +1154,9 @@ export * from &quot;./ThemeProvider&quot;
 
 </code></pre>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { SafeAreaView } from &quot;react-native&quot;
+<pre><code class="language-tsx">import ThemeProvider from &quot;@shared/design/theme&quot;
+import { SafeAreaView } from &quot;react-native&quot;
 
-import ThemeProvider from &quot;./design/theme/ThemeProvider&quot;
 import StateList from &quot;./screens/StateList&quot;
 
 const App: React.FC = () =&gt; {
@@ -1172,11 +1172,10 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="3,9-11,only"></div>
+ <div line-highlight="1,9-11,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/components/ListItem/ListItem.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { StyleSheet, Text } from &quot;react-native&quot;
-
-import { Theme, useTheme } from &quot;../../../../design/theme&quot;
+<pre><code class="language-tsx">import { Theme, useTheme } from &quot;@shared/design/theme&quot;
+import { StyleSheet, Text } from &quot;react-native&quot;
 
 export interface ListItemProps {
   name: string
@@ -1204,9 +1203,9 @@ function getStyles(theme: Theme) {
 export default ListItem
 
 </code></pre>
- <div line-highlight="3,10-11,16-26,only"></div>
+ <div line-highlight="1,9-10,15-25,only"></div>
 <h3 id="verify-1">Verify 1</h3>
-<p>✏️ Create <strong>src/design/theme/ThemeProvider.test.tsx</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/design/theme/ThemeProvider.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
 import { View, Text } from &quot;react-native&quot;
 
@@ -1254,7 +1253,7 @@ describe(&quot;Design/Theme&quot;, () =&gt; {
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update <strong>src/design/theme/ThemeProvider.tsx</strong> to be:</p>
+<p>✏️ Update <strong>src/shared/design/theme/ThemeProvider.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { createContext, useContext, useMemo } from &quot;react&quot;
 
 import theme, { Theme } from &quot;./theme&quot;
@@ -1286,9 +1285,8 @@ export function useTheme(): Theme {
 </code></pre>
  <div line-highlight="9,11-12,15-16,18,24,26-27,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/components/ListItem/ListItem.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { StyleSheet, Text } from &quot;react-native&quot;
-
-import { Theme, useTheme } from &quot;../../../../design/theme&quot;
+<pre><code class="language-tsx">import { Theme, useTheme } from &quot;@shared/design/theme&quot;
+import { StyleSheet, Text } from &quot;react-native&quot;
 
 export interface ListItemProps {
   name: string
@@ -1316,7 +1314,7 @@ function getStyles(theme: Theme) {
 export default ListItem
 
 </code></pre>
- <div line-highlight="10,19-23,only"></div>
+ <div line-highlight="9,18-22,only"></div>
 <p></details></p>
 <h2 id="objective-2-begin-creating-a-design-system-to-unify-your-application">Objective 2: Begin creating a design system to unify your application</h2>
 <p>If we continue down this path, our entire codebase will become littered with <code>theme.typography.*</code>, <code>theme.palette.*</code>, etc. What if we decide to change the color pattern of one of our components? We'd have to update every place we used that pattern. Instead, we’ll create a design system.</p>
@@ -1329,15 +1327,19 @@ export default ListItem
 <h4 id="but-lets-keep-things-simple">But… let’s keep things simple</h4>
 <p>Atomic Design is a great system, but it can be overkill for many projects. For this project, we’re going to keep things much more simple: We’ll have the shared theme we created in the previous objective, and we’ll create a small collection of exported components.</p>
 <h3 id="setup-2">Setup 2</h3>
-<p>✏️ Create <strong>src/design/Box/Box.tsx</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/design/Box/Box.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import {
+  Theme,
+  ThemeMargin,
+  ThemePadding,
+  useTheme,
+} from &quot;@shared/design/theme&quot;
+import {
   ViewProps,
   StyleSheet,
   ScrollView,
   View as StaticView,
 } from &quot;react-native&quot;
-
-import { Theme, ThemeMargin, ThemePadding, useTheme } from &quot;../theme&quot;
 
 export interface BoxProps extends ViewProps {
   scrollable?: boolean
@@ -1397,15 +1399,14 @@ function getStyles(
 }
 
 </code></pre>
-<p>✏️ Create <strong>src/design/Box/index.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/design/Box/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./Box&quot;
 export * from &quot;./Box&quot;
 
 </code></pre>
-<p>✏️ Create <strong>src/design/Typography/Typography.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { TextProps, Text, StyleSheet } from &quot;react-native&quot;
-
-import { Theme, useTheme } from &quot;../theme&quot;
+<p>✏️ Create <strong>src/shared/design/Typography/Typography.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { Theme, useTheme } from &quot;@shared/design/theme&quot;
+import { TextProps, Text, StyleSheet } from &quot;react-native&quot;
 
 export interface TypographyProps extends TextProps {
   variant?: keyof Theme[&quot;typography&quot;]
@@ -1432,16 +1433,15 @@ function getStyles(theme: Theme, variant: keyof Theme[&quot;typography&quot;]) {
 }
 
 </code></pre>
-<p>✏️ Create <strong>src/design/Typography/index.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/design/Typography/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./Typography&quot;
 export * from &quot;./Typography&quot;
 
 </code></pre>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { ScrollView, Text, View } from &quot;react-native&quot;
-
-import Box from &quot;../../design/Box&quot;
-import Typography from &quot;../../design/Typography&quot;
+<pre><code class="language-tsx">import Box from &quot;@shared/design/Box&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { ScrollView, Text, View } from &quot;react-native&quot;
 
 import ListItem from &quot;./components/ListItem&quot;
 
@@ -1478,12 +1478,11 @@ const StateList: React.FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="3-4,only"></div>
+ <div line-highlight="1-2,only"></div>
 <h3 id="verify-2">Verify 2</h3>
-<p>✏️ Create <strong>src/design/Box/Box.test.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
-
-import Typography from &quot;../Typography&quot;
+<p>✏️ Create <strong>src/shared/design/Box/Box.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import Typography from &quot;@shared/design/Typography&quot;
+import { render, screen } from &quot;@testing-library/react-native&quot;
 
 import Box from &quot;./Box&quot;
 
@@ -1500,7 +1499,7 @@ describe(&quot;Design/Box&quot;, () =&gt; {
 })
 
 </code></pre>
-<p>✏️ Create <strong>src/design/Typography/Typography.test.tsx</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/design/Typography/Typography.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
 
 import Typography from &quot;./Typography&quot;
@@ -1524,10 +1523,9 @@ describe(&quot;Design/Typography&quot;, () =&gt; {
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update <strong>src/design/Typography/Typography.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { TextProps, Text, StyleSheet } from &quot;react-native&quot;
-
-import { Theme, useTheme } from &quot;../theme&quot;
+<p>✏️ Update <strong>src/shared/design/Typography/Typography.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { Theme, useTheme } from &quot;@shared/design/theme&quot;
+import { TextProps, Text, StyleSheet } from &quot;react-native&quot;
 
 export interface TypographyProps extends TextProps {
   variant?: keyof Theme[&quot;typography&quot;]
@@ -1561,12 +1559,11 @@ function getStyles(theme: Theme, variant: keyof Theme[&quot;typography&quot;]) {
 }
 
 </code></pre>
- <div line-highlight="15-16,18-22,only"></div>
+ <div line-highlight="14-15,17-21,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { ScrollView } from &quot;react-native&quot;
-
-import Box from &quot;../../design/Box&quot;
-import Typography from &quot;../../design/Typography&quot;
+<pre><code class="language-tsx">import Box from &quot;@shared/design/Box&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { ScrollView } from &quot;react-native&quot;
 
 import ListItem from &quot;./components/ListItem&quot;
 
@@ -1603,7 +1600,7 @@ const StateList: React.FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="1,22-25,31,33,only"></div>
+ <div line-highlight="3,21-24,30,32,only"></div>
 <p></details></p>
 <h2 id="objective-3-expand-your-design-system">Objective 3: Expand your design system</h2>
 <p>Now that we have the basics of a design system, we can expand it however we need. There are some basic components that most design systems will need:</p>
@@ -1616,16 +1613,15 @@ export default StateList
 </ol>
 <p>Beyond these, you’ll find all kinds of UI components like Tabs, Modal, Icon, Navigation, Badge, Progress, etc.</p>
 <h3 id="setup-3">Setup 3</h3>
-<p>✏️ Create <strong>src/design/Button/Button.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import {
+<p>✏️ Create <strong>src/shared/design/Button/Button.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { Theme, useTheme } from &quot;@shared/design/theme&quot;
+import {
   PressableProps,
   TextStyle,
   StyleSheet,
   Pressable,
   Text,
 } from &quot;react-native&quot;
-
-import { Theme, useTheme } from &quot;../theme&quot;
 
 type Variant = &quot;primary&quot; | &quot;secondary&quot; | &quot;outline&quot;
 
@@ -1728,7 +1724,7 @@ function getStyles(theme: Theme, variant: Variant) {
 }
 
 </code></pre>
-<p>✏️ Create <strong>src/design/Button/Button.test.tsx</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/design/Button/Button.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { fireEvent, render, screen } from &quot;@testing-library/react-native&quot;
 
 import Button from &quot;./Button&quot;
@@ -1746,17 +1742,16 @@ describe(&quot;Design/Button&quot;, () =&gt; {
 })
 
 </code></pre>
-<p>✏️ Create <strong>src/design/Button/index.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/design/Button/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./Button&quot;
 export * from &quot;./Button&quot;
 
 </code></pre>
-<p>✏️ Create <strong>src/design/Card/Card.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { StyleSheet } from &quot;react-native&quot;
-
-import Box, { BoxProps } from &quot;../Box&quot;
-import { Theme, useTheme } from &quot;../theme&quot;
-import Typography from &quot;../Typography&quot;
+<p>✏️ Create <strong>src/shared/design/Card/Card.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import Box, { BoxProps } from &quot;@shared/design/Box&quot;
+import { Theme, useTheme } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { StyleSheet } from &quot;react-native&quot;
 
 export interface CardProps extends BoxProps {
   title?: string
@@ -1799,10 +1794,9 @@ function getStyles(theme: Theme) {
 }
 
 </code></pre>
-<p>✏️ Create <strong>src/design/Card/Card.test.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
-
-import Typography from &quot;../Typography&quot;
+<p>✏️ Create <strong>src/shared/design/Card/Card.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import Typography from &quot;@shared/design/Typography&quot;
+import { render, screen } from &quot;@testing-library/react-native&quot;
 
 import Card from &quot;./Card&quot;
 
@@ -1820,14 +1814,14 @@ describe(&quot;Design/Card&quot;, () =&gt; {
 })
 
 </code></pre>
-<p>✏️ Create <strong>src/design/Card/index.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/design/Card/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./Card&quot;
 export * from &quot;./Card&quot;
 
 </code></pre>
-<p>✏️ Create <strong>src/design/Screen/Screen.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import Box, { BoxProps } from &quot;../Box&quot;
-import { useTheme } from &quot;../theme&quot;
+<p>✏️ Create <strong>src/shared/design/Screen/Screen.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import Box, { BoxProps } from &quot;@shared/design/Box&quot;
+import { useTheme } from &quot;@shared/design/theme&quot;
 
 export interface ScreenProps extends BoxProps {
   noScroll?: boolean
@@ -1858,10 +1852,9 @@ const Screen: React.FC&lt;ScreenProps&gt; = ({
 export default Screen
 
 </code></pre>
-<p>✏️ Create <strong>src/design/Screen/Screen.test.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
-
-import Typography from &quot;../Typography&quot;
+<p>✏️ Create <strong>src/shared/design/Screen/Screen.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import Typography from &quot;@shared/design/Typography&quot;
+import { render, screen } from &quot;@testing-library/react-native&quot;
 
 import Screen from &quot;./Screen&quot;
 
@@ -1878,18 +1871,17 @@ describe(&quot;Design/Screen&quot;, () =&gt; {
 })
 
 </code></pre>
-<p>✏️ Create <strong>src/design/Screen/index.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/design/Screen/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./Screen&quot;
 export * from &quot;./Screen&quot;
 
 </code></pre>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { ScrollView } from &quot;react-native&quot;
-
-import Box from &quot;../../design/Box&quot;
-import Card from &quot;../../design/Card&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
+<pre><code class="language-tsx">import Box from &quot;@shared/design/Box&quot;
+import Card from &quot;@shared/design/Card&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { ScrollView } from &quot;react-native&quot;
 
 import ListItem from &quot;./components/ListItem&quot;
 
@@ -1922,7 +1914,7 @@ const StateList: React.FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="4-5,27-31,only"></div>
+ <div line-highlight="2-3,26-30,only"></div>
 <h3 id="exercise-3">Exercise 3</h3>
 <p>We’ve provided three new design components for you: <code>Button</code>, <code>Card</code>, and <code>Screen</code>.</p>
 <ul>
@@ -1933,9 +1925,9 @@ export default StateList
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import Card from &quot;../../design/Card&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
+<pre><code class="language-tsx">import Card from &quot;@shared/design/Card&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import Typography from &quot;@shared/design/Typography&quot;
 
 import ListItem from &quot;./components/ListItem&quot;
 

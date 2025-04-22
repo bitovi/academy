@@ -1248,12 +1248,11 @@ apply from: file(&quot;../../node_modules/react-native-vector-icons/fonts.gradle
 <p>✏️ Terminate the existing dev server and start it again:</p>
 <pre><code class="language-bash">npm run start
 </code></pre>
-<p>✏️ Create <strong>src/components/Tabs/Tabs.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { Pressable, StyleSheet } from &quot;react-native&quot;
-
-import Box from &quot;../../design/Box&quot;
-import { Theme, useTheme } from &quot;../../design/theme&quot;
-import Typography from &quot;../../design/Typography&quot;
+<p>✏️ Create <strong>src/shared/components/Tabs/Tabs.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import Box from &quot;@shared/design/Box&quot;
+import { Theme, useTheme } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { Pressable, StyleSheet } from &quot;react-native&quot;
 
 export interface TabsProps {
   options: Array&lt;{
@@ -1325,18 +1324,17 @@ function getStyles(theme: Theme) {
 
 </code></pre>
 <div line-highlight='16, only'></div>
-<p>✏️ Create <strong>src/components/Tabs/index.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/components/Tabs/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./Tabs&quot;
 export * from &quot;./Tabs&quot;
 
 </code></pre>
 <p>✏️ Create <strong>src/screens/RestaurantList/components/List/List.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import { Restaurant } from &quot;@shared/services/pmo/restaurant&quot;
 import { FlatList } from &quot;react-native&quot;
-
-import Button from &quot;../../../../design/Button&quot;
-import Screen from &quot;../../../../design/Screen&quot;
-import { Restaurant } from &quot;../../../../services/pmo/restaurant&quot;
 
 export interface ListProps {
   restaurants: Restaurant[]
@@ -1376,9 +1374,8 @@ export * from &quot;./List&quot;
 
 </code></pre>
 <p>✏️ Create <strong>src/screens/RestaurantList/components/Map/Map.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import MapView, { PROVIDER_GOOGLE } from &quot;react-native-maps&quot;
-
-import { Restaurant } from &quot;../../../../services/pmo/restaurant&quot;
+<pre><code class="language-tsx">import { Restaurant } from &quot;@shared/services/pmo/restaurant&quot;
+import MapView, { PROVIDER_GOOGLE } from &quot;react-native-maps&quot;
 
 export interface MapProps {
   restaurants: Restaurant[]
@@ -1399,15 +1396,15 @@ export * from &quot;./Map&quot;
 </code></pre>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { StackScreenProps } from &quot;@react-navigation/stack&quot;
+import Loading from &quot;@shared/components/Loading&quot;
+import Tabs from &quot;@shared/components/Tabs&quot;
+import Box from &quot;@shared/design/Box&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { useRestaurants } from &quot;@shared/services/pmo/restaurant&quot;
 import { useState } from &quot;react&quot;
 
 import { RestaurantsStackParamList } from &quot;../../App&quot;
-import Loading from &quot;../../components/Loading&quot;
-import Tabs from &quot;../../components/Tabs&quot;
-import Box from &quot;../../design/Box&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
-import { useRestaurants } from &quot;../../services/pmo/restaurant&quot;
 
 import List from &quot;./components/List&quot;
 import Map from &quot;./components/Map&quot;
@@ -1462,7 +1459,7 @@ const RestaurantList: React.FC&lt;RestaurantListProps&gt; = ({ route }) =&gt; {
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="2,6,12-13,26,44-51,54-58,only"></div>
+ <div line-highlight="3,8,12-13,26,44-51,54-58,only"></div>
 <h3 id="verify-1">Verify 1</h3>
 <p>Navigate to the <code>Maps</code> tab of the <code>RestaurantsList</code> in your emulator and verify that the Map is rendering.</p>
 <p><img alt="Screenshot of how the application should look for the second solution." src="../static/img/react-native/18-maps/01-solution.png" style="border: 4px solid black; border-radius: 25px;" height="640"/></p>
@@ -1478,9 +1475,8 @@ If the view is too small, try adding another variable to increase its size.</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/screens/RestaurantList/components/Map/Map.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import MapView, { PROVIDER_GOOGLE } from &quot;react-native-maps&quot;
-
-import { Restaurant } from &quot;../../../../services/pmo/restaurant&quot;
+<pre><code class="language-tsx">import { Restaurant } from &quot;@shared/services/pmo/restaurant&quot;
+import MapView, { PROVIDER_GOOGLE } from &quot;react-native-maps&quot;
 
 export interface MapProps {
   restaurants: Restaurant[]
@@ -1504,7 +1500,7 @@ const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
 export default Map
 
 </code></pre>
- <div line-highlight="10-21,"></div>
+ <div line-highlight="9-20,"></div>
 <p></details></p>
 <h2 id="objective-2-add-restaurant-markers-with-tooltips-to-the-map">Objective 2: Add restaurant markers with tooltips to the map</h2>
 <p>Now that we have a map, let’s add markers for each one of the restaurants.
@@ -1547,9 +1543,8 @@ function MapWithMarker({ initialRegion }) {
 <h3 id="setup-2">Setup 2</h3>
 <p>✏️ Update <strong>src/screens/RestaurantList/components/Map/Map.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
+import { Restaurant } from &quot;@shared/services/pmo/restaurant&quot;
 import MapView, { Marker, PROVIDER_GOOGLE } from &quot;react-native-maps&quot;
-
-import { Restaurant } from &quot;../../../../services/pmo/restaurant&quot;
 
 export interface MapProps {
   restaurants: Restaurant[]
@@ -1575,7 +1570,7 @@ const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
 export default Map
 
 </code></pre>
- <div line-highlight="1-2,21-23,only"></div>
+ <div line-highlight="1,3,20-22,only"></div>
 <h3 id="verify-2">Verify 2</h3>
 <p>Navigate to the <code>Maps</code> tab of the <code>RestaurantsList</code> in your emulator and verify that the Map is rendering.</p>
 <p><img alt="Screenshot of the restaurant view with the title “Green Bay, Wisconsin.” The map is still centered on Green Bay and now has several locations marked with red pins. One of the markers is labeled Cheese Curd City, 230 W Kinzie Street. The bottom tab bar has icons for Place My Order and Settings." src="../static/img/react-native/18-maps/02-solution.png" style="border: 4px solid black; border-radius: 25px;" height="640"/></p>
@@ -1593,9 +1588,8 @@ Then, you can tap on the pop-up view to navigate to the restaurant details view.
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/screens/RestaurantList/components/Map/Map.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
+import { Restaurant } from &quot;@shared/services/pmo/restaurant&quot;
 import MapView, { Marker, PROVIDER_GOOGLE } from &quot;react-native-maps&quot;
-
-import { Restaurant } from &quot;../../../../services/pmo/restaurant&quot;
 
 export interface MapProps {
   restaurants: Restaurant[]
@@ -1635,7 +1629,7 @@ const Map: React.FC&lt;MapProps&gt; = ({ restaurants }) =&gt; {
 export default Map
 
 </code></pre>
- <div line-highlight="11,24-36,"></div>
+ <div line-highlight="10,23-35,"></div>
 <p></details></p>
 <h2 id="next-steps">Next steps</h2>
 <p>We’ve accomplished a lot for our React Native App, in order to polish it just a bit more let’s get into some <a href="./performance-optimization">Performance and Optimization</a> practices.</p>

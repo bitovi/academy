@@ -819,8 +819,12 @@ jest.mock(&quot;@react-navigation/native&quot;, () =&gt; {
   }
 })
 
-jest.mock(&quot;./src/services/storage/storage&quot;, () =&gt;
-  require(&quot;./src/services/storage/storage.mock&quot;),
+jest.mock(&quot;@shared/services/pmo/api&quot;, () =&gt;
+  require(&quot;@shared/services/pmo/api/api.mock&quot;),
+)
+
+jest.mock(&quot;@shared/services/storage&quot;, () =&gt;
+  require(&quot;@shared/services/storage/storage.mock&quot;),
 )
 
 jest.mock(&quot;@react-native-async-storage/async-storage&quot;, () =&gt;
@@ -842,8 +846,8 @@ console.error = (message, ...args) =&gt; {
 }
 
 </code></pre>
- <div line-highlight="16-18,20-22,only"></div>
-<p>✏️ Create <strong>src/services/storage/storage.ts</strong> and update it to be:</p>
+ <div line-highlight="20-22,24-26,only"></div>
+<p>✏️ Create <strong>src/shared/services/storage/storage.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import AsyncStorage from &quot;@react-native-async-storage/async-storage&quot;
 
 // Exercise: Implement the four `AsyncStorage` helpers.
@@ -857,12 +861,12 @@ export const clearStorage = (): Promise&lt;void&gt; =&gt; {}
 
 </code></pre>
 <div line-highlight='3'></div>
-<p>✏️ Create <strong>src/services/storage/index.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/services/storage/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export * from &quot;./storage&quot;
 
 </code></pre>
-<p>✏️ Update <strong>src/services/pmo/api/api.ts</strong> to be:</p>
-<pre><code class="language-ts">import { getData, storeData } from &quot;../../storage&quot;
+<p>✏️ Update <strong>src/shared/services/pmo/api/api.ts</strong> to be:</p>
+<pre><code class="language-ts">import { getData, storeData } from &quot;@shared/storage&quot;
 
 const baseUrl = process.env.PMO_API
 
@@ -935,7 +939,7 @@ export function stringifyQuery(
 </code></pre>
  <div line-highlight="1,5-7,10,26,69,only"></div>
 <h3 id="verify-1">Verify 1</h3>
-<p>✏️ Create <strong>src/services/storage/storage.mock.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/services/storage/storage.mock.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export const getData = async &lt;T&gt;(key: string): Promise&lt;T | undefined&gt; =&gt; {
   return undefined
 }
@@ -953,7 +957,7 @@ export const clearStorage = async (): Promise&lt;void&gt; =&gt; {
 }
 
 </code></pre>
-<p>✏️ Create <strong>src/services/storage/storage.test.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/services/storage/storage.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import AsyncStorage from &quot;@react-native-async-storage/async-storage&quot;
 
 import { getData, getAllKeys, storeData, clearStorage } from &quot;./storage&quot; // Import your functions here
@@ -1039,6 +1043,34 @@ describe(&quot;Services/Storage&quot;, () =&gt; {
 
 </code></pre>
 <div line-highlight='27, 49, 61, 75, only'></div>
+<p>✏️ Update <strong>src/shared/services/pmo/api/api.mock.ts</strong> to be:</p>
+<pre><code class="language-ts">export const apiRequest = async &lt;
+  Data = never,
+  Params = unknown,
+  Body = unknown,
+&gt;({
+  method,
+  params,
+  path,
+  body,
+}: {
+  method: string
+  params?: Params
+  path: string
+  body?: Body
+}): Promise&lt;{ data?: Data; error?: Error }&gt; =&gt; {
+  return {}
+}
+
+export interface CachedResponse&lt;T&gt; {
+  data: T
+  dateTime: number
+}
+
+export const keyPrefix = &quot;apiRequest-&quot;
+
+</code></pre>
+ <div line-highlight="19-22,24,only"></div>
 <h3 id="exercise-1">Exercise 1</h3>
 <p>For this exercise, let’s implement the storage APIs and use them to cache network responses:</p>
 <ul>
@@ -1057,8 +1089,8 @@ describe(&quot;Services/Storage&quot;, () =&gt; {
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update <strong>src/services/pmo/api/api.ts</strong> to be:</p>
-<pre><code class="language-ts">import { getData, storeData } from &quot;../../storage&quot;
+<p>✏️ Update <strong>src/shared/services/pmo/api/api.ts</strong> to be:</p>
+<pre><code class="language-ts">import { getData, storeData } from &quot;@shared/services/storage&quot;
 
 const baseUrl = process.env.PMO_API
 
@@ -1158,8 +1190,8 @@ export function stringifyQuery(
 }
 
 </code></pre>
- <div line-highlight="31-35,37-50,66-70,82,94,only"></div>
-<p>✏️ Update <strong>src/services/storage/storage.ts</strong> to be:</p>
+ <div line-highlight="1,31-35,37-50,66-70,82,94,only"></div>
+<p>✏️ Update <strong>src/shared/services/storage/storage.ts</strong> to be:</p>
 <pre><code class="language-ts">import AsyncStorage from &quot;@react-native-async-storage/async-storage&quot;
 
 export const getData = async &lt;T&gt;(key: string): Promise&lt;T | undefined&gt; =&gt; {
@@ -1187,7 +1219,7 @@ export const clearStorage = (): Promise&lt;void&gt; =&gt; {
 <h2 id="objective-2-migrate-data-between-versions">Objective 2: Migrate data between versions</h2>
 <p>Our overall approach to caching the network responses seems great, although there is an improvement that we could make.</p>
 <p>Right now, we’re storing the datetime as a string in Async Storage, which means we have to parse it every time we check the cached response:</p>
-<pre><code class="language-ts">import { getData, storeData } from &quot;../../storage&quot;
+<pre><code class="language-ts">import { getData, storeData } from &quot;@shared/services/storage&quot;
 
 const baseUrl = process.env.PMO_API
 
@@ -1289,7 +1321,7 @@ export function stringifyQuery(
 </code></pre>
 <div line-highlight='7, 38-39, 66, only'></div>
 <p>We could improve this by storing the datetime as a number instead, so we don’t have to parse it when fetching from the cache:</p>
-<pre><code class="language-ts">import { getData, storeData } from &quot;../../storage&quot;
+<pre><code class="language-ts">import { getData, storeData } from &quot;@shared/services/storage&quot;
 
 const baseUrl = process.env.PMO_API
 
@@ -1522,12 +1554,16 @@ export default App
 <p>Ideally we would have added a version number when we first started storing the data, but that’s ok!
 We’ll assume that the data is version <code>1</code> if we haven’t stored the version number, and then we’ll call our new data version <code>2</code>.</p>
 <h3 id="setup-2">Setup 2</h3>
-<p>✏️ Create <strong>src/services/DataMigration/DataMigration.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { useEffect, useState } from &quot;react&quot;
-
-import Loading from &quot;../../components/Loading&quot;
-import { CachedResponse, keyPrefix } from &quot;../pmo/api&quot;
-import { getData, getAllKeys, storeData, clearStorage } from &quot;../storage&quot;
+<p>✏️ Create <strong>src/shared/services/DataMigration/DataMigration.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import Loading from &quot;@shared/components/Loading&quot;
+import { CachedResponse, keyPrefix } from &quot;@shared/services/pmo/api&quot;
+import {
+  getData,
+  getAllKeys,
+  storeData,
+  clearStorage,
+} from &quot;@shared/services/storage&quot;
+import { useEffect, useState } from &quot;react&quot;
 
 interface CachedResponseV1 {
   data: unknown
@@ -1552,13 +1588,13 @@ export default DataMigration
 
 </code></pre>
 <div line-highlight='13, 21-23, only'></div>
-<p>✏️ Create <strong>src/services/DataMigration/index.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/services/DataMigration/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./DataMigration&quot;
 export * from &quot;./DataMigration&quot;
 
 </code></pre>
-<p>✏️ Update <strong>src/services/pmo/api/api.ts</strong> to be:</p>
-<pre><code class="language-ts">import { getData, storeData } from &quot;../../storage&quot;
+<p>✏️ Update <strong>src/shared/services/pmo/api/api.ts</strong> to be:</p>
+<pre><code class="language-ts">import { getData, storeData } from &quot;@shared/services/storage&quot;
 
 const baseUrl = process.env.PMO_API
 
@@ -1659,11 +1695,10 @@ export function stringifyQuery(
 </code></pre>
  <div line-highlight="7,26,38,68,only"></div>
 <h3 id="verify-2">Verify 2</h3>
-<p>✏️ Create <strong>src/services/DataMigration/DataMigration.test.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
-
-import Typography from &quot;../../design/Typography&quot;
-import * as storage from &quot;../storage/storage&quot;
+<p>✏️ Create <strong>src/shared/services/DataMigration/DataMigration.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import Typography from &quot;@shared/design/Typography&quot;
+import * as storage from &quot;@shared/services/storage&quot;
+import { render, screen } from &quot;@testing-library/react-native&quot;
 
 import DataMigration from &quot;./DataMigration&quot;
 
@@ -1801,12 +1836,16 @@ We’ve already given you the changes to the <code>apiRequest</code> helper, so 
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update <strong>src/services/DataMigration/DataMigration.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { useEffect, useState } from &quot;react&quot;
-
-import Loading from &quot;../../components/Loading&quot;
-import { CachedResponse, keyPrefix } from &quot;../pmo/api&quot;
-import { getData, getAllKeys, storeData, clearStorage } from &quot;../storage&quot;
+<p>✏️ Update <strong>src/shared/services/DataMigration/DataMigration.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import Loading from &quot;@shared/components/Loading&quot;
+import { CachedResponse, keyPrefix } from &quot;@shared/services/pmo/api&quot;
+import {
+  getData,
+  getAllKeys,
+  storeData,
+  clearStorage,
+} from &quot;@shared/services/storage&quot;
+import { useEffect, useState } from &quot;react&quot;
 
 interface CachedResponseV1 {
   data: unknown
@@ -1862,25 +1901,25 @@ const DataMigration: React.FC&lt;DataMigrationProps&gt; = ({ children }) =&gt; {
 export default DataMigration
 
 </code></pre>
- <div line-highlight="13-27,35,37-43,45-46,48-49,51-53,55,only"></div>
+ <div line-highlight="17-31,39,41-47,49-50,52-53,55-57,59,only"></div>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import Box from &quot;@shared/design/Box&quot;
+import ThemeProvider, { useTheme } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import DataMigration from &quot;@shared/services/DataMigration&quot;
 import { Pressable } from &quot;react-native&quot;
 import { SafeAreaView } from &quot;react-native-safe-area-context&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
-import Box from &quot;./design/Box&quot;
-import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
-import Typography from &quot;./design/Typography&quot;
 import CityList from &quot;./screens/CityList&quot;
 import RestaurantDetails from &quot;./screens/RestaurantDetails&quot;
 import RestaurantList from &quot;./screens/RestaurantList&quot;
 import RestaurantOrder from &quot;./screens/RestaurantOrder&quot;
 import Settings from &quot;./screens/Settings&quot;
 import StateList from &quot;./screens/StateList&quot;
-import DataMigration from &quot;./services/DataMigration&quot;
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -2025,7 +2064,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="17,149-153,only"></div>
+ <div line-highlight="7,149-153,only"></div>
 <p></details></p>
 <h2 id="next-steps">Next steps</h2>
 <p>Next, we will learn <a href="security-and-auth.html" title="Learn about security, authentication, and authorization by implementing Google Sign-In.">Security and Authentication</a>.</p>

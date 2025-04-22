@@ -751,8 +751,12 @@ jest.mock(&quot;@react-navigation/native&quot;, () =&gt; {
   }
 })
 
-jest.mock(&quot;./src/services/storage/storage&quot;, () =&gt;
-  require(&quot;./src/services/storage/storage.mock&quot;),
+jest.mock(&quot;@shared/services/pmo/api&quot;, () =&gt;
+  require(&quot;@shared/services/pmo/api/api.mock&quot;),
+)
+
+jest.mock(&quot;@shared/services/storage&quot;, () =&gt;
+  require(&quot;@shared/services/storage/storage.mock&quot;),
 )
 
 jest.mock(&quot;@react-native-async-storage/async-storage&quot;, () =&gt;
@@ -781,15 +785,14 @@ console.error = (message, ...args) =&gt; {
 <p>✏️ Update <strong>src/screens/Settings/Settings.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNetInfo } from &quot;@react-native-community/netinfo&quot;
 import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
+import Loading from &quot;@shared/components/Loading&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Card from &quot;@shared/design/Card&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import { useThemeMode } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { useAuthentication, useUser } from &quot;@shared/services/auth&quot;
 import { StyleSheet, Switch, View } from &quot;react-native&quot;
-
-import Loading from &quot;../../components/Loading&quot;
-import Button from &quot;../../design/Button&quot;
-import Card from &quot;../../design/Card&quot;
-import Screen from &quot;../../design/Screen&quot;
-import { useThemeMode } from &quot;../../design/theme&quot;
-import Typography from &quot;../../design/Typography&quot;
-import { useAuthentication, useUser } from &quot;../../services/auth&quot;
 
 const Settings: React.FC = () =&gt; {
   const { error, isPending, signIn, signOut } = useAuthentication()
@@ -847,20 +850,19 @@ const styles = StyleSheet.create({
 export default Settings
 
 </code></pre>
- <div line-highlight="1,17,53,only"></div>
+ <div line-highlight="1,16,52,only"></div>
 <h3 id="verify-1">Verify 1</h3>
 <p>✏️ Update <strong>src/screens/Settings/Settings.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import AuthProvider from &quot;@shared/services/auth/AuthProvider&quot;
 import { fireEvent, render, screen } from &quot;@testing-library/react-native&quot;
-
-import AuthProvider from &quot;../../services/auth/AuthProvider&quot;
 
 import Settings from &quot;./Settings&quot;
 
 const mockSetMode = jest.fn()
 
-jest.mock(&quot;../../design/theme&quot;, () =&gt; ({
-  ...jest.requireActual(&quot;../../design/theme&quot;),
+jest.mock(&quot;@shared/design/theme&quot;, () =&gt; ({
+  ...jest.requireActual(&quot;@shared/design/theme&quot;),
   useThemeMode: () =&gt; ({
     mode: &quot;light&quot;,
     setMode: mockSetMode,
@@ -909,7 +911,7 @@ describe(&quot;Screens/Settings&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="46-53,55-56,only"></div>
+ <div line-highlight="45-52,54-55,only"></div>
 <h3 id="exercise-1">Exercise 1</h3>
 <ul>
 <li>Get the current connection state with the <code>useNetInfo()</code> Hook.</li>
@@ -922,15 +924,14 @@ describe(&quot;Screens/Settings&quot;, () =&gt; {
 <p>✏️ Update <strong>src/screens/Settings/Settings.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNetInfo } from &quot;@react-native-community/netinfo&quot;
 import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
+import Loading from &quot;@shared/components/Loading&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Card from &quot;@shared/design/Card&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import { useThemeMode } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { useAuthentication, useUser } from &quot;@shared/services/auth&quot;
 import { StyleSheet, Switch, View } from &quot;react-native&quot;
-
-import Loading from &quot;../../components/Loading&quot;
-import Button from &quot;../../design/Button&quot;
-import Card from &quot;../../design/Card&quot;
-import Screen from &quot;../../design/Screen&quot;
-import { useThemeMode } from &quot;../../design/theme&quot;
-import Typography from &quot;../../design/Typography&quot;
-import { useAuthentication, useUser } from &quot;../../services/auth&quot;
 
 const Settings: React.FC = () =&gt; {
   const { error, isPending, signIn, signOut } = useAuthentication()
@@ -992,7 +993,7 @@ const styles = StyleSheet.create({
 export default Settings
 
 </code></pre>
- <div line-highlight="17,53-57,only"></div>
+ <div line-highlight="16,52-56,only"></div>
 <p></details></p>
 <h2 id="objective-2-store-restaurant-favorites-on-device">Objective 2: Store restaurant favorites on device</h2>
 <p>Now that you can detect when the device is online or offline, let’s build a feature that can work offline!</p>
@@ -1018,10 +1019,9 @@ In the third objective, we’ll expand that to handle syncing when the device co
 Let’s look at the Hook code we are going to copy in the Setup step for this exercise.</p>
 <h3 id="creating-a-codeusefavoritecode-hook">Creating a <code>useFavorite()</code> Hook</h3>
 <p>Our <code>useFavorite()</code> Hook will accept two arguments:</p>
-<pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
-
-import { getData, storeData } from &quot;../../storage&quot;
-import { apiRequest } from &quot;../api&quot;
+<pre><code class="language-ts">import { apiRequest } from &quot;@shared/services/pmo/api&quot;
+import { getData, storeData } from &quot;@shared/services/storage&quot;
+import { useEffect, useState } from &quot;react&quot;
 
 import { Favorite, FavoriteResponse, StoredFavorites } from &quot;./interfaces&quot;
 
@@ -1138,10 +1138,9 @@ export const useFavorite = (
 <p>You’ll remember that the Rules of Hooks state that Hooks must always be called at the top level of a component, so this Hook makes these properties optional because, for example, you may not be signed in (and thus won’t have a <code>userId</code>).</p>
 <h3 id="determining-if-a-restaurant-is-a-favorite">Determining if a restaurant is a favorite</h3>
 <p>The Hook will return a <code>true</code> or <code>false</code> value for <code>isFavorite</code>, depending on whether the restaurant is a favorite:</p>
-<pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
-
-import { getData, storeData } from &quot;../../storage&quot;
-import { apiRequest } from &quot;../api&quot;
+<pre><code class="language-ts">import { apiRequest } from &quot;@shared/services/pmo/api&quot;
+import { getData, storeData } from &quot;@shared/services/storage&quot;
+import { useEffect, useState } from &quot;react&quot;
 
 import { Favorite, FavoriteResponse, StoredFavorites } from &quot;./interfaces&quot;
 
@@ -1257,10 +1256,9 @@ export const useFavorite = (
 <div line-highlight='13, 32-35, 110, only'></div>
 <h3 id="getting-favorites-from-storage">Getting favorites from storage</h3>
 <p>The Hook gets all the favorite restaurants from Async Storage:</p>
-<pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
-
-import { getData, storeData } from &quot;../../storage&quot;
-import { apiRequest } from &quot;../api&quot;
+<pre><code class="language-ts">import { apiRequest } from &quot;@shared/services/pmo/api&quot;
+import { getData, storeData } from &quot;@shared/services/storage&quot;
+import { useEffect, useState } from &quot;react&quot;
 
 import { Favorite, FavoriteResponse, StoredFavorites } from &quot;./interfaces&quot;
 
@@ -1376,10 +1374,9 @@ export const useFavorite = (
 <div line-highlight='23-30, only'></div>
 <h3 id="toggling-a-restaurants-favorite-status">Toggling a restaurant’s favorite status</h3>
 <p>The Hook returns a <code>toggleFavorite</code> function that can be called to toggle whether the restaurant is a favorite or not:</p>
-<pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
-
-import { getData, storeData } from &quot;../../storage&quot;
-import { apiRequest } from &quot;../api&quot;
+<pre><code class="language-ts">import { apiRequest } from &quot;@shared/services/pmo/api&quot;
+import { getData, storeData } from &quot;@shared/services/storage&quot;
+import { useEffect, useState } from &quot;react&quot;
 
 import { Favorite, FavoriteResponse, StoredFavorites } from &quot;./interfaces&quot;
 
@@ -1495,10 +1492,9 @@ export const useFavorite = (
 <div line-highlight='15, 37, 42, 45, 112, only'></div>
 <h3 id="updating-the-api-with-the-changed-favorite-status">Updating the API with the changed favorite status</h3>
 <p>The Hook calls the API to update the favorite status for the restaurant:</p>
-<pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
-
-import { getData, storeData } from &quot;../../storage&quot;
-import { apiRequest } from &quot;../api&quot;
+<pre><code class="language-ts">import { apiRequest } from &quot;@shared/services/pmo/api&quot;
+import { getData, storeData } from &quot;@shared/services/storage&quot;
+import { useEffect, useState } from &quot;react&quot;
 
 import { Favorite, FavoriteResponse, StoredFavorites } from &quot;./interfaces&quot;
 
@@ -1616,7 +1612,7 @@ export const useFavorite = (
 The Hook can check if the API response was good and store the <code>_id</code> if it was.</p>
 <p>If there was an issue with the API call (e.g. the server was down, the device was offline, etc.) then there won’t be an <code>_id</code> in our Async Storage and we’ll know that we need to submit that favorite to the API.</p>
 <h3 id="setup-2">Setup 2</h3>
-<p>✏️ Create <strong>src/services/pmo/favorite/interfaces.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/services/pmo/favorite/interfaces.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export interface Favorite {
   userId: string
   restaurantId: string
@@ -1644,11 +1640,10 @@ export interface StoredFavorites {
 
 </code></pre>
 <div line-highlight='1, 9, 15, 21, only'></div>
-<p>✏️ Create <strong>src/services/pmo/favorite/hooks.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
-
-import { getData, storeData } from &quot;../../storage&quot;
-import { apiRequest } from &quot;../api&quot;
+<p>✏️ Create <strong>src/shared/services/pmo/favorite/hooks.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import { apiRequest } from &quot;@shared/services/pmo/api&quot;
+import { getData, storeData } from &quot;@shared/services/storage&quot;
+import { useEffect, useState } from &quot;react&quot;
 
 import { Favorite, FavoriteResponse, StoredFavorites } from &quot;./interfaces&quot;
 
@@ -1762,11 +1757,10 @@ export const useFavorite = (
 
 </code></pre>
 <div line-highlight='8-16, 108-113, only'></div>
-<p>✏️ Create <strong>src/services/pmo/favorite/hooks.test.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">import { renderHook, waitFor } from &quot;@testing-library/react-native&quot;
-
-import * as storage from &quot;../../storage/storage&quot;
-import * as api from &quot;../api/api&quot;
+<p>✏️ Create <strong>src/shared/services/pmo/favorite/hooks.test.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import * as api from &quot;@shared/services/pmo/api&quot;
+import * as storage from &quot;@shared/services/storage&quot;
+import { renderHook, waitFor } from &quot;@testing-library/react-native&quot;
 
 import { useFavorite } from &quot;./hooks&quot;
 
@@ -1847,29 +1841,29 @@ describe(&quot;Services/PMO/Favorite&quot;, () =&gt; {
 
 </code></pre>
 <div line-highlight='40, 62, only'></div>
-<p>✏️ Create <strong>src/services/pmo/favorite/index.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/services/pmo/favorite/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export * from &quot;./hooks&quot;
 
 </code></pre>
 <p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
-import { useEffect } from &quot;react&quot;
-
-import { RestaurantsStackParamList } from &quot;../../App&quot;
-import Loading from &quot;../../components/Loading&quot;
-import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
-import Box from &quot;../../design/Box&quot;
-import Button from &quot;../../design/Button&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
+import Loading from &quot;@shared/components/Loading&quot;
+import RestaurantHeader from &quot;@shared/components/RestaurantHeader&quot;
+import Box from &quot;@shared/design/Box&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import Typography from &quot;@shared/design/Typography&quot;
 import {
   useAuthenticated,
   useUser,
   useAuthentication,
-} from &quot;../../services/auth&quot;
-import { useFavorite } from &quot;../../services/pmo/favorite/hooks&quot;
-import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
+} from &quot;@shared/services/auth&quot;
+import { useFavorite } from &quot;@shared/services/pmo/favorite/hooks&quot;
+import { useRestaurant } from &quot;@shared/services/pmo/restaurant&quot;
+import { useEffect } from &quot;react&quot;
+
+import { RestaurantsStackParamList } from &quot;../../App&quot;
 
 export interface RestaurantDetailsProps
   extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantDetails&quot;&gt; {}
@@ -1929,14 +1923,13 @@ const RestaurantDetails: React.FC&lt;RestaurantDetailsProps&gt; = ({ route }) =&
 export default RestaurantDetails
 
 </code></pre>
- <div line-highlight="12-17,28,56-62,only"></div>
+ <div line-highlight="9-14,28,56-62,only"></div>
 <h3 id="verify-2">Verify 2</h3>
 <p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import AuthProvider from &quot;@shared/services/auth/AuthProvider&quot;
+import * as restaurantHooks from &quot;@shared/services/pmo/restaurant/hooks&quot;
 import { render, screen } from &quot;@testing-library/react-native&quot;
-
-import AuthProvider from &quot;../../services/auth/AuthProvider&quot;
-import * as restaurantHooks from &quot;../../services/pmo/restaurant/hooks&quot;
 
 import RestaurantDetails from &quot;./RestaurantDetails&quot;
 
@@ -2072,7 +2065,7 @@ describe(&quot;Screens/RestaurantDetails&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="4,72-75,86-89,93,105-108,124-127,only"></div>
+ <div line-highlight="2,71-74,85-88,92,104-107,123-126,only"></div>
 <h3 id="exercise-2">Exercise 2</h3>
 <p>In <code>RestaurantDetails</code>, add a button that uses the <code>toggleFavorite</code> helper:</p>
 <ul>
@@ -2089,22 +2082,22 @@ describe(&quot;Screens/RestaurantDetails&quot;, () =&gt; {
 <p>✏️ Update <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
 import { StackScreenProps } from &quot;@react-navigation/stack&quot;
-import { useEffect } from &quot;react&quot;
-
-import { RestaurantsStackParamList } from &quot;../../App&quot;
-import Loading from &quot;../../components/Loading&quot;
-import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
-import Box from &quot;../../design/Box&quot;
-import Button from &quot;../../design/Button&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
+import Loading from &quot;@shared/components/Loading&quot;
+import RestaurantHeader from &quot;@shared/components/RestaurantHeader&quot;
+import Box from &quot;@shared/design/Box&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import Typography from &quot;@shared/design/Typography&quot;
 import {
   useAuthenticated,
   useUser,
   useAuthentication,
-} from &quot;../../services/auth&quot;
-import { useFavorite } from &quot;../../services/pmo/favorite/hooks&quot;
-import { useRestaurant } from &quot;../../services/pmo/restaurant&quot;
+} from &quot;@shared/services/auth&quot;
+import { useFavorite } from &quot;@shared/services/pmo/favorite/hooks&quot;
+import { useRestaurant } from &quot;@shared/services/pmo/restaurant&quot;
+import { useEffect } from &quot;react&quot;
+
+import { RestaurantsStackParamList } from &quot;../../App&quot;
 
 export interface RestaurantDetailsProps
   extends StackScreenProps&lt;RestaurantsStackParamList, &quot;RestaurantDetails&quot;&gt; {}
@@ -2201,8 +2194,8 @@ When the user’s device is offline, we can improve the app a lot by syncing the
 </ul>
 <h3 id="fetching-the-favorites-modified-on-the-server">Fetching the favorites modified on the server</h3>
 <p>The Hook’s <code>syncWithServer</code> will first fetch the favorites from the server:</p>
-<pre><code class="language-ts">import { getData, storeData } from &quot;../../storage&quot;
-import { apiRequest } from &quot;../api&quot;
+<pre><code class="language-ts">import { apiRequest } from &quot;@shared/services/pmo/api&quot;
+import { getData, storeData } from &quot;@shared/services/storage&quot;
 
 import {
   Favorite,
@@ -2319,8 +2312,8 @@ export const syncWithServer = async (userId: string): Promise&lt;void&gt; =&gt; 
 <div line-highlight='12-19, only'></div>
 <h3 id="updating-favorites-modified-on-the-device">Updating favorites modified on the device</h3>
 <p>Next, the Hook will send any favorites that were modified while the device was offline to the API:</p>
-<pre><code class="language-ts">import { getData, storeData } from &quot;../../storage&quot;
-import { apiRequest } from &quot;../api&quot;
+<pre><code class="language-ts">import { apiRequest } from &quot;@shared/services/pmo/api&quot;
+import { getData, storeData } from &quot;@shared/services/storage&quot;
 
 import {
   Favorite,
@@ -2437,8 +2430,8 @@ export const syncWithServer = async (userId: string): Promise&lt;void&gt; =&gt; 
 <div line-highlight='81-95, only'></div>
 <h3 id="updating-storage-with-the-changes">Updating storage with the changes</h3>
 <p>Last, the Hook will update Async Storage with all the changes that have accumulated through the sync process:</p>
-<pre><code class="language-ts">import { getData, storeData } from &quot;../../storage&quot;
-import { apiRequest } from &quot;../api&quot;
+<pre><code class="language-ts">import { apiRequest } from &quot;@shared/services/pmo/api&quot;
+import { getData, storeData } from &quot;@shared/services/storage&quot;
 
 import {
   Favorite,
@@ -2558,22 +2551,22 @@ export const syncWithServer = async (userId: string): Promise&lt;void&gt; =&gt; 
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import Box from &quot;@shared/design/Box&quot;
+import ThemeProvider, { useTheme } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import AuthProvider from &quot;@shared/services/auth/AuthProvider&quot;
+import DataMigration from &quot;@shared/services/DataMigration&quot;
+import FavoritesSync from &quot;@shared/services/pmo/favorite&quot;
 import { Pressable } from &quot;react-native&quot;
 import { SafeAreaView } from &quot;react-native-safe-area-context&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
-import Box from &quot;./design/Box&quot;
-import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
-import Typography from &quot;./design/Typography&quot;
 import CityList from &quot;./screens/CityList&quot;
 import RestaurantDetails from &quot;./screens/RestaurantDetails&quot;
 import RestaurantList from &quot;./screens/RestaurantList&quot;
 import RestaurantOrder from &quot;./screens/RestaurantOrder&quot;
 import Settings from &quot;./screens/Settings&quot;
 import StateList from &quot;./screens/StateList&quot;
-import AuthProvider from &quot;./services/auth/AuthProvider&quot;
-import DataMigration from &quot;./services/DataMigration&quot;
-import FavoritesSync from &quot;./services/pmo/favorite&quot;
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -2721,12 +2714,11 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="19,147,only"></div>
-<p>✏️ Create <strong>src/services/pmo/favorite/favorite.tsx</strong> and update it to be:</p>
+ <div line-highlight="5,9,147,only"></div>
+<p>✏️ Create <strong>src/shared/services/pmo/favorite/favorite.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { useNetInfo } from &quot;@react-native-community/netinfo&quot;
+import { useUser } from &quot;@shared/services/auth&quot;
 import { useEffect } from &quot;react&quot;
-
-import { useUser } from &quot;../../auth&quot;
 
 import { syncWithServer } from &quot;./sync&quot;
 
@@ -2740,9 +2732,9 @@ export default FavoritesSync
 
 </code></pre>
 <div line-highlight='9, only'></div>
-<p>✏️ Create <strong>src/services/pmo/favorite/sync.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">import { getData, storeData } from &quot;../../storage&quot;
-import { apiRequest } from &quot;../api&quot;
+<p>✏️ Create <strong>src/shared/services/pmo/favorite/sync.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import { apiRequest } from &quot;@shared/services/pmo/api&quot;
+import { getData, storeData } from &quot;@shared/services/storage&quot;
 
 import {
   Favorite,
@@ -2857,7 +2849,7 @@ export const syncWithServer = async (userId: string): Promise&lt;void&gt; =&gt; 
 
 </code></pre>
 <div line-highlight='11, only'></div>
-<p>✏️ Update <strong>src/services/pmo/favorite/index.ts</strong> to be:</p>
+<p>✏️ Update <strong>src/shared/services/pmo/favorite/index.ts</strong> to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./favorite&quot;
 export * from &quot;./hooks&quot;
 export * from &quot;./sync&quot;
@@ -2878,11 +2870,10 @@ export * from &quot;./sync&quot;
 <h3 id="solution-3">Solution 3</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update <strong>src/services/pmo/favorite/favorite.tsx</strong> to be:</p>
+<p>✏️ Update <strong>src/shared/services/pmo/favorite/favorite.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNetInfo } from &quot;@react-native-community/netinfo&quot;
+import { useUser } from &quot;@shared/services/auth&quot;
 import { useEffect } from &quot;react&quot;
-
-import { useUser } from &quot;../../auth&quot;
 
 import { syncWithServer } from &quot;./sync&quot;
 
@@ -2905,27 +2896,27 @@ const FavoritesSync: React.FC = () =&gt; {
 export default FavoritesSync
 
 </code></pre>
- <div line-highlight="9-10,12-19,only"></div>
+ <div line-highlight="8-9,11-18,only"></div>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import Box from &quot;@shared/design/Box&quot;
+import ThemeProvider, { useTheme } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import AuthProvider from &quot;@shared/services/auth/AuthProvider&quot;
+import DataMigration from &quot;@shared/services/DataMigration&quot;
+import FavoritesSync from &quot;@shared/services/pmo/favorite&quot;
 import { Pressable } from &quot;react-native&quot;
 import { SafeAreaView } from &quot;react-native-safe-area-context&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
-import Box from &quot;./design/Box&quot;
-import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
-import Typography from &quot;./design/Typography&quot;
 import CityList from &quot;./screens/CityList&quot;
 import RestaurantDetails from &quot;./screens/RestaurantDetails&quot;
 import RestaurantList from &quot;./screens/RestaurantList&quot;
 import RestaurantOrder from &quot;./screens/RestaurantOrder&quot;
 import Settings from &quot;./screens/Settings&quot;
 import StateList from &quot;./screens/StateList&quot;
-import AuthProvider from &quot;./services/auth/AuthProvider&quot;
-import DataMigration from &quot;./services/DataMigration&quot;
-import FavoritesSync from &quot;./services/pmo/favorite&quot;
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

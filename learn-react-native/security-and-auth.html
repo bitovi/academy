@@ -883,8 +883,12 @@ jest.mock(&quot;@react-navigation/native&quot;, () =&gt; {
   }
 })
 
-jest.mock(&quot;./src/services/storage/storage&quot;, () =&gt;
-  require(&quot;./src/services/storage/storage.mock&quot;),
+jest.mock(&quot;@shared/services/pmo/api&quot;, () =&gt;
+  require(&quot;@shared/services/pmo/api/api.mock&quot;),
+)
+
+jest.mock(&quot;@shared/services/storage&quot;, () =&gt;
+  require(&quot;@shared/services/storage/storage.mock&quot;),
 )
 
 jest.mock(&quot;@react-native-async-storage/async-storage&quot;, () =&gt;
@@ -911,21 +915,21 @@ console.error = (message, ...args) =&gt; {
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import Typography from &quot;@shared//design/Typography&quot;
+import Box from &quot;@shared/design/Box&quot;
+import ThemeProvider, { useTheme } from &quot;@shared/design/theme/ThemeProvider&quot;
+import AuthProvider from &quot;@shared/services/auth/AuthProvider&quot;
+import DataMigration from &quot;@shared/services/DataMigration&quot;
 import { Pressable } from &quot;react-native&quot;
 import { SafeAreaView } from &quot;react-native-safe-area-context&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
-import Box from &quot;./design/Box&quot;
-import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
-import Typography from &quot;./design/Typography&quot;
 import CityList from &quot;./screens/CityList&quot;
 import RestaurantDetails from &quot;./screens/RestaurantDetails&quot;
 import RestaurantList from &quot;./screens/RestaurantList&quot;
 import RestaurantOrder from &quot;./screens/RestaurantOrder&quot;
 import Settings from &quot;./screens/Settings&quot;
 import StateList from &quot;./screens/StateList&quot;
-import AuthProvider from &quot;./services/auth/AuthProvider&quot;
-import DataMigration from &quot;./services/DataMigration&quot;
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -1071,7 +1075,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="17,146,only"></div>
+ <div line-highlight="4,6-7,146,only"></div>
 <p>✏️ Update <strong>src/env.d.ts</strong> to be:</p>
 <pre><code class="language-ts">/* eslint-disable @typescript-eslint/no-namespace */
 
@@ -1102,15 +1106,14 @@ PMO_ASSETS=https://www.place-my-order.com/
 </code></pre>
 <p>✏️ Update <strong>src/screens/Settings/Settings.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
+import Loading from &quot;@shared/components/Loading&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Card from &quot;@shared/design/Card&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import { useThemeMode } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { useAuthentication, useUser } from &quot;@shared/services/auth&quot;
 import { StyleSheet, Switch, View } from &quot;react-native&quot;
-
-import Loading from &quot;../../components/Loading&quot;
-import Button from &quot;../../design/Button&quot;
-import Card from &quot;../../design/Card&quot;
-import Screen from &quot;../../design/Screen&quot;
-import { useThemeMode } from &quot;../../design/theme&quot;
-import Typography from &quot;../../design/Typography&quot;
-import { useAuthentication, useUser } from &quot;../../services/auth&quot;
 
 const Settings: React.FC = () =&gt; {
   // Exercise: use the Hooks from the Auth service to get: error, isPending, signIn, signOut.
@@ -1152,8 +1155,8 @@ const styles = StyleSheet.create({
 export default Settings
 
 </code></pre>
- <div line-highlight="1,4-5,10,13,19-26,only"></div>
-<p>✏️ Create <strong>src/services/auth/AuthProvider.tsx</strong> and update it to be:</p>
+ <div line-highlight="1-3,8,12,18-25,only"></div>
+<p>✏️ Create <strong>src/shared/services/auth/AuthProvider.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import {
   User as UserInfo,
   GoogleSignin,
@@ -1290,7 +1293,7 @@ export function useUser(): UserInfo[&quot;user&quot;] | undefined {
 
 </code></pre>
 <div line-highlight='26, 31, 49, 54, 76, only'></div>
-<p>✏️ Create <strong>src/services/auth/context.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/services/auth/context.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { User as UserInfo } from &quot;@react-native-google-signin/google-signin&quot;
 import { createContext, useContext } from &quot;react&quot;
 
@@ -1336,7 +1339,7 @@ export function useAuthContext(): AuthContext {
 
 </code></pre>
 <div line-highlight='4-28, only'></div>
-<p>✏️ Create <strong>src/services/auth/index.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/services/auth/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./AuthProvider&quot;
 export * from &quot;./AuthProvider&quot;
 
@@ -1344,16 +1347,15 @@ export * from &quot;./AuthProvider&quot;
 <h3 id="verify-1">Verify 1</h3>
 <p>✏️ Update <strong>src/screens/Settings/Settings.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import AuthProvider from &quot;@shared/services/auth/AuthProvider&quot;
 import { fireEvent, render, screen } from &quot;@testing-library/react-native&quot;
-
-import AuthProvider from &quot;../../services/auth/AuthProvider&quot;
 
 import Settings from &quot;./Settings&quot;
 
 const mockSetMode = jest.fn()
 
-jest.mock(&quot;../../design/theme&quot;, () =&gt; ({
-  ...jest.requireActual(&quot;../../design/theme&quot;),
+jest.mock(&quot;@shared/design/theme&quot;, () =&gt; ({
+  ...jest.requireActual(&quot;@shared/design/theme&quot;),
   useThemeMode: () =&gt; ({
     mode: &quot;light&quot;,
     setMode: mockSetMode,
@@ -1390,13 +1392,12 @@ describe(&quot;Screens/Settings&quot;, () =&gt; {
 })
 
 </code></pre>
- <div line-highlight="4,21-25,27,32-36,only"></div>
-<p>✏️ Create <strong>src/services/auth/AuthProvider.test.tsx</strong> and update it to be:</p>
+ <div line-highlight="2,20-24,26,31-35,only"></div>
+<p>✏️ Create <strong>src/shared/services/auth/AuthProvider.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
+import Button from &quot;@shared/design/Button&quot;
 import { render, screen, fireEvent } from &quot;@testing-library/react-native&quot;
 import { View, Text } from &quot;react-native&quot;
-
-import Button from &quot;../../design/Button&quot;
 
 import AuthProvider, {
   useAuthenticated,
@@ -1477,21 +1478,21 @@ describe(&quot;Services/Auth/AuthProvider&quot;, () =&gt; {
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import Box from &quot;@shared/design/Box&quot;
+import ThemeProvider, { useTheme } from &quot;@shared/design/theme/ThemeProvider&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import AuthProvider from &quot;@shared/services/auth/AuthProvider&quot;
+import DataMigration from &quot;@shared/services/DataMigration&quot;
 import { Pressable } from &quot;react-native&quot;
 import { SafeAreaView } from &quot;react-native-safe-area-context&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
-import Box from &quot;./design/Box&quot;
-import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
-import Typography from &quot;./design/Typography&quot;
 import CityList from &quot;./screens/CityList&quot;
 import RestaurantDetails from &quot;./screens/RestaurantDetails&quot;
 import RestaurantList from &quot;./screens/RestaurantList&quot;
 import RestaurantOrder from &quot;./screens/RestaurantOrder&quot;
 import Settings from &quot;./screens/Settings&quot;
 import StateList from &quot;./screens/StateList&quot;
-import AuthProvider from &quot;./services/auth/AuthProvider&quot;
-import DataMigration from &quot;./services/DataMigration&quot;
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -1638,18 +1639,17 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="150-156,only"></div>
+ <div line-highlight="6,150-156,only"></div>
 <p>✏️ Update <strong>src/screens/Settings/Settings.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
+import Loading from &quot;@shared/components/Loading&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Card from &quot;@shared/design/Card&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import { useThemeMode } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { useAuthentication, useUser } from &quot;@shared/services/auth&quot;
 import { StyleSheet, Switch, View } from &quot;react-native&quot;
-
-import Loading from &quot;../../components/Loading&quot;
-import Button from &quot;../../design/Button&quot;
-import Card from &quot;../../design/Card&quot;
-import Screen from &quot;../../design/Screen&quot;
-import { useThemeMode } from &quot;../../design/theme&quot;
-import Typography from &quot;../../design/Typography&quot;
-import { useAuthentication, useUser } from &quot;../../services/auth&quot;
 
 const Settings: React.FC = () =&gt; {
   const { error, isPending, signIn, signOut } = useAuthentication()
@@ -1705,8 +1705,8 @@ const styles = StyleSheet.create({
 export default Settings
 
 </code></pre>
- <div line-highlight="13-14,20-40,only"></div>
-<p>✏️ Update <strong>src/services/auth/AuthProvider.tsx</strong> to be:</p>
+ <div line-highlight="12-13,19-39,only"></div>
+<p>✏️ Update <strong>src/shared/services/auth/AuthProvider.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import {
   User as UserInfo,
   GoogleSignin,

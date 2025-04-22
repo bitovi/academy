@@ -1034,12 +1034,11 @@ export function useThemeMode(): {
 </code></pre>
  <div line-highlight="1-2,4,6,9-10,13-16,22,31,38-44,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { StyleSheet, Switch, View } from &quot;react-native&quot;
-
-import Card from &quot;../../design/Card&quot;
-import Screen from &quot;../../design/Screen&quot;
-import { useThemeMode } from &quot;../../design/theme&quot;
-import Typography from &quot;../../design/Typography&quot;
+<pre><code class="language-tsx">import Card from &quot;@shared/design/Card&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import { useThemeMode } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { StyleSheet, Switch, View } from &quot;react-native&quot;
 
 import ListItem from &quot;./components/ListItem&quot;
 
@@ -1083,7 +1082,7 @@ const styles = StyleSheet.create({
 export default StateList
 
 </code></pre>
- <div line-highlight="1,5,22,34,39-45,only"></div>
+ <div line-highlight="3,5,21,33,38-44,only"></div>
 <h3 id="verify">Verify</h3>
 <p>✏️ Update <strong>src/design/theme/ThemeProvider.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import {
@@ -1153,8 +1152,8 @@ import StateList from &quot;./StateList&quot;
 
 const mockSetMode = jest.fn()
 
-jest.mock(&quot;../../design/theme&quot;, () =&gt; ({
-  ...jest.requireActual(&quot;../../design/theme&quot;),
+jest.mock(&quot;@shared/design/theme&quot;, () =&gt; ({
+  ...jest.requireActual(&quot;@shared/design/theme&quot;),
   useThemeMode: () =&gt; ({
     mode: &quot;light&quot;,
     setMode: mockSetMode,
@@ -1198,7 +1197,7 @@ describe(&quot;Screens/StateList&quot;, () =&gt; {
 <p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm run test</code>!</p>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update <strong>src/design/theme/ThemeProvider.tsx</strong> to be:</p>
+<p>✏️ Update <strong>src/shared/design/theme/ThemeProvider.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useState, createContext, useContext, useMemo } from &quot;react&quot;
 import { Appearance } from &quot;react-native&quot;
 
@@ -1248,12 +1247,11 @@ export function useThemeMode(): {
 </code></pre>
  <div line-highlight="14-15,23,25,33,35,42,44,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { StyleSheet, Switch, View } from &quot;react-native&quot;
-
-import Card from &quot;../../design/Card&quot;
-import Screen from &quot;../../design/Screen&quot;
-import { useThemeMode } from &quot;../../design/theme&quot;
-import Typography from &quot;../../design/Typography&quot;
+<pre><code class="language-tsx">import Card from &quot;@shared/design/Card&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import { useThemeMode } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { StyleSheet, Switch, View } from &quot;react-native&quot;
 
 import ListItem from &quot;./components/ListItem&quot;
 
@@ -1306,7 +1304,7 @@ const styles = StyleSheet.create({
 export default StateList
 
 </code></pre>
- <div line-highlight="22,35-43,only"></div>
+ <div line-highlight="21,34-42,only"></div>
 <p></details></p>
 <h2 id="next-steps">Next steps</h2>
 <p>Next, we will learn how to switch screens with <a href="navigation.html" title="Learn how to use navigation to move between screens in a React Native app.">Navigation in React Native</a>.</p>

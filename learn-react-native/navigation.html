@@ -773,12 +773,13 @@ By importing your chosen icon set and utilizing the <code>&lt;Icon&gt;</code> co
     &quot;/node_modules/(?!((jest-)?react-native|@react-native(-community)?)|react-navigation|@react-navigation/.*)&quot;,
   ],
   moduleNameMapper: {
+    &quot;^@shared/(.*)$&quot;: &quot;&lt;rootDir&gt;/src/shared/$1&quot;,
     &quot;\\.(png)$&quot;: &quot;identity-obj-proxy&quot;,
   },
 }
 
 </code></pre>
- <div line-highlight="3,5-10,only"></div>
+ <div line-highlight="3,5-7,10,only"></div>
 <p>✏️ Update <strong>android/app/build.gradle</strong> to be:</p>
 <pre><code class="language-gradle">apply plugin: &quot;com.android.application&quot;
 apply plugin: &quot;org.jetbrains.kotlin.android&quot;
@@ -906,10 +907,10 @@ apply from: file(&quot;../../node_modules/react-native-vector-icons/fonts.gradle
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import ThemeProvider, { useTheme } from &quot;@shared/design/theme&quot;
 import { SafeAreaView } from &quot;react-native-safe-area-context&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
-import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
 import Settings from &quot;./screens/Settings&quot;
 import StateList from &quot;./screens/StateList&quot;
 
@@ -958,14 +959,13 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="1-4,6-7,10-12,15-37,42-43,49-50,only"></div>
+ <div line-highlight="1-5,7,10-12,15-37,42-43,49-50,only"></div>
 <p>✏️ Create <strong>src/screens/Settings/Settings.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { StyleSheet, Switch, View } from &quot;react-native&quot;
-
-import Card from &quot;../../design/Card&quot;
-import Screen from &quot;../../design/Screen&quot;
-import { useThemeMode } from &quot;../../design/theme&quot;
-import Typography from &quot;../../design/Typography&quot;
+<pre><code class="language-tsx">import Card from &quot;@shared/design/Card&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import { useThemeMode } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { StyleSheet, Switch, View } from &quot;react-native&quot;
 
 const user = {
   name: &quot;Your Name&quot;,
@@ -1041,8 +1041,8 @@ import Settings from &quot;./Settings&quot;
 
 const mockSetMode = jest.fn()
 
-jest.mock(&quot;../../design/theme&quot;, () =&gt; ({
-  ...jest.requireActual(&quot;../../design/theme&quot;),
+jest.mock(&quot;@shared/design/theme&quot;, () =&gt; ({
+  ...jest.requireActual(&quot;@shared/design/theme&quot;),
   useThemeMode: () =&gt; ({
     mode: &quot;light&quot;,
     setMode: mockSetMode,
@@ -1094,10 +1094,10 @@ describe(&quot;Screens/Settings&quot;, () =&gt; {
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
+import ThemeProvider, { useTheme } from &quot;@shared/design/theme&quot;
 import { SafeAreaView } from &quot;react-native-safe-area-context&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
-import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
 import Settings from &quot;./screens/Settings&quot;
 import StateList from &quot;./screens/StateList&quot;
 
@@ -1289,13 +1289,13 @@ console.error = (message, ...args) =&gt; {
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import Box from &quot;@shared/design/Box&quot;
+import ThemeProvider, { useTheme } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
 import { Pressable } from &quot;react-native&quot;
 import { SafeAreaView } from &quot;react-native-safe-area-context&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
-import Box from &quot;./design/Box&quot;
-import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
-import Typography from &quot;./design/Typography&quot;
 import CityList from &quot;./screens/CityList&quot;
 import Settings from &quot;./screens/Settings&quot;
 import StateList from &quot;./screens/StateList&quot;
@@ -1388,15 +1388,14 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="3-4,8,10-11,15-16,18-33,35,37-38,71,73,76,89,97-98,only"></div>
+ <div line-highlight="3-4,6-7,11,15-16,18-33,35,37-38,71,73,76,89,97-98,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Card from &quot;@shared/design/Card&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import Typography from &quot;@shared/design/Typography&quot;
 import { FlatList } from &quot;react-native&quot;
-
-import Button from &quot;../../design/Button&quot;
-import Card from &quot;../../design/Card&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
 
 const states = [
   {
@@ -1433,12 +1432,11 @@ const StateList: React.FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="1-2,4,21,24,28-36,only"></div>
+ <div line-highlight="1-2,6,20,23,27-35,only"></div>
 <p>✏️ Create <strong>src/screens/CityList/CityList.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { FlatList } from &quot;react-native&quot;
-
-import Button from &quot;../../design/Button&quot;
-import Screen from &quot;../../design/Screen&quot;
+<pre><code class="language-tsx">import Button from &quot;@shared/design/Button&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import { FlatList } from &quot;react-native&quot;
 
 const cities = [
   { name: &quot;Madison&quot;, state: &quot;WI&quot; },
@@ -1521,13 +1519,13 @@ describe(&quot;Screens/CityList&quot;, () =&gt; {
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import Box from &quot;@shared/design/Box&quot;
+import ThemeProvider, { useTheme } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
 import { Pressable } from &quot;react-native&quot;
 import { SafeAreaView } from &quot;react-native-safe-area-context&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
-import Box from &quot;./design/Box&quot;
-import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
-import Typography from &quot;./design/Typography&quot;
 import CityList from &quot;./screens/CityList&quot;
 import Settings from &quot;./screens/Settings&quot;
 import StateList from &quot;./screens/StateList&quot;
@@ -1625,12 +1623,11 @@ export default App
  <div line-highlight="21-22,25,38-39,only"></div>
 <p>✏️ Update <strong>src/screens/StateList/StateList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Card from &quot;@shared/design/Card&quot;
+import Screen from &quot;@shared/design/Screen&quot;
+import Typography from &quot;@shared/design/Typography&quot;
 import { FlatList } from &quot;react-native&quot;
-
-import Button from &quot;../../design/Button&quot;
-import Card from &quot;../../design/Card&quot;
-import Screen from &quot;../../design/Screen&quot;
-import Typography from &quot;../../design/Typography&quot;
 
 const states = [
   {
@@ -1672,7 +1669,7 @@ const StateList: React.FC = () =&gt; {
 export default StateList
 
 </code></pre>
- <div line-highlight="31-36,only"></div>
+ <div line-highlight="30-35,only"></div>
 <p></details></p>
 <h2 id="objective-3-add-restaurant-list-and-restaurant-details-pages-with-links">Objective 3: Add Restaurant List and Restaurant Details pages with links</h2>
 <div style="display: flex; flex-direction: row; gap: 2rem; flex-wrap: wrap;">
@@ -1684,13 +1681,13 @@ export default StateList
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import Box from &quot;@shared/design/Box&quot;
+import ThemeProvider, { useTheme } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
 import { Pressable } from &quot;react-native&quot;
 import { SafeAreaView } from &quot;react-native-safe-area-context&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
-import Box from &quot;./design/Box&quot;
-import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
-import Typography from &quot;./design/Typography&quot;
 import CityList from &quot;./screens/CityList&quot;
 import Settings from &quot;./screens/Settings&quot;
 import StateList from &quot;./screens/StateList&quot;
@@ -1787,14 +1784,13 @@ export default App
 
 </code></pre>
  <div line-highlight="40,only"></div>
-<p>✏️ Create <strong>src/components/</strong> (folder)</p>
-<p>✏️ Create <strong>src/components/RestaurantHeader/</strong> (folder)</p>
-<p>✏️ Create <strong>src/components/RestaurantHeader/RestaurantHeader.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import { ImageBackground, StyleSheet } from &quot;react-native&quot;
-
-import Box from &quot;../../design/Box&quot;
-import { Theme, useTheme } from &quot;../../design/theme&quot;
-import Typography from &quot;../../design/Typography&quot;
+<p>✏️ Create <strong>src/shared/components/</strong> (folder)</p>
+<p>✏️ Create <strong>src/shared/components/RestaurantHeader/</strong> (folder)</p>
+<p>✏️ Create <strong>src/shared/components/RestaurantHeader/RestaurantHeader.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import Box from &quot;@shared/design/Box&quot;
+import { Theme, useTheme } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
+import { ImageBackground, StyleSheet } from &quot;react-native&quot;
 
 export interface RestaurantHeaderProps {
   restaurant?: {
@@ -1870,7 +1866,7 @@ function getStyles(theme: Theme) {
 export default RestaurantHeader
 
 </code></pre>
-<p>✏️ Create <strong>src/components/RestaurantHeader/mocks.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/components/RestaurantHeader/mocks.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export const restaurantWithoutAddress = {
   _id: &quot;3ZOZyTY1LH26LnVw&quot;,
   images: {
@@ -1924,17 +1920,16 @@ export const restaurantWithAddress = {
 }
 
 </code></pre>
-<p>✏️ Create <strong>src/components/RestaurantHeader/index.ts</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/components/RestaurantHeader/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./RestaurantHeader&quot;
 export * from &quot;./RestaurantHeader&quot;
 
 </code></pre>
 <p>✏️ Update <strong>src/screens/CityList/CityList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Screen from &quot;@shared/design/Screen&quot;
 import { FlatList } from &quot;react-native&quot;
-
-import Button from &quot;../../design/Button&quot;
-import Screen from &quot;../../design/Screen&quot;
 
 const cities = [
   { name: &quot;Madison&quot;, state: &quot;WI&quot; },
@@ -1963,15 +1958,14 @@ const CityList: React.FC = () =&gt; {
 export default CityList
 
 </code></pre>
- <div line-highlight="1,13-14,only"></div>
+ <div line-highlight="1,12-13,only"></div>
 <p>✏️ Create <strong>src/screens/RestaurantDetails/</strong> (folder)</p>
 <p>✏️ Create <strong>src/screens/RestaurantDetails/RestaurantDetails.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
+import RestaurantHeader from &quot;@shared/components/RestaurantHeader&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Screen from &quot;@shared/design/Screen&quot;
 import { useEffect } from &quot;react&quot;
-
-import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
-import Button from &quot;../../design/Button&quot;
-import Screen from &quot;../../design/Screen&quot;
 
 const restaurant = {
   _id: &quot;Ar0qBJHxM3ecOhcr&quot;,
@@ -2021,10 +2015,9 @@ export * from &quot;./RestaurantDetails&quot;
 <p>✏️ Create <strong>src/screens/RestaurantList/</strong> (folder)</p>
 <p>✏️ Create <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Screen from &quot;@shared/design/Screen&quot;
 import { FlatList } from &quot;react-native&quot;
-
-import Button from &quot;../../design/Button&quot;
-import Screen from &quot;../../design/Screen&quot;
 
 const restaurants = [
   {
@@ -2116,7 +2109,7 @@ describe(&quot;Screens/CityList&quot;, () =&gt; {
 
 </code></pre>
  <div line-highlight="1,8-12,only"></div>
-<p>✏️ Create <strong>src/components/RestaurantHeader/RestaurantHeader.test.tsx</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/shared/components/RestaurantHeader/RestaurantHeader.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { render, screen } from &quot;@testing-library/react-native&quot;
 
 import { restaurantWithAddress, restaurantWithoutAddress } from &quot;./mocks&quot;
@@ -2221,13 +2214,13 @@ describe(&quot;Screens/RestaurantList&quot;, () =&gt; {
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { createStackNavigator } from &quot;@react-navigation/stack&quot;
+import Box from &quot;@shared/design/Box&quot;
+import ThemeProvider, { useTheme } from &quot;@shared/design/theme&quot;
+import Typography from &quot;@shared/design/Typography&quot;
 import { Pressable } from &quot;react-native&quot;
 import { SafeAreaView } from &quot;react-native-safe-area-context&quot;
 import Icon from &quot;react-native-vector-icons/Ionicons&quot;
 
-import Box from &quot;./design/Box&quot;
-import ThemeProvider, { useTheme } from &quot;./design/theme/ThemeProvider&quot;
-import Typography from &quot;./design/Typography&quot;
 import CityList from &quot;./screens/CityList&quot;
 import RestaurantDetails from &quot;./screens/RestaurantDetails&quot;
 import RestaurantList from &quot;./screens/RestaurantList&quot;
@@ -2335,10 +2328,9 @@ export default App
  <div line-highlight="12-13,42-44,46-48,90,95,only"></div>
 <p>✏️ Update <strong>src/screens/CityList/CityList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Screen from &quot;@shared/design/Screen&quot;
 import { FlatList } from &quot;react-native&quot;
-
-import Button from &quot;../../design/Button&quot;
-import Screen from &quot;../../design/Screen&quot;
 
 const cities = [
   { name: &quot;Madison&quot;, state: &quot;WI&quot; },
@@ -2371,13 +2363,12 @@ const CityList: React.FC = () =&gt; {
 export default CityList
 
 </code></pre>
- <div line-highlight="20-25,only"></div>
+ <div line-highlight="19-24,only"></div>
 <p>✏️ Update <strong>src/screens/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useNavigation } from &quot;@react-navigation/native&quot;
+import Button from &quot;@shared/design/Button&quot;
+import Screen from &quot;@shared/design/Screen&quot;
 import { FlatList } from &quot;react-native&quot;
-
-import Button from &quot;../../design/Button&quot;
-import Screen from &quot;../../design/Screen&quot;
 
 const restaurants = [
   {
@@ -2446,7 +2437,7 @@ const RestaurantList: React.FC = () =&gt; {
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="56-61,only"></div>
+ <div line-highlight="55-60,only"></div>
 <p></details></p>
 <h2 id="next-steps">Next steps</h2>
 <p>Now that we understand how to use React Native Navigation, we’ll supplement that knowledge by <a href="./navigation-params.html">storing state in Navigation Parameters</a>.</p>

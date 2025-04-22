@@ -731,10 +731,13 @@ With <code>npx react-native &lt;command&gt;</code>, the current stable version o
 <pre><code class="language-js">module.exports = {
   preset: 'react-native',
   setupFilesAfterEnv: ['&lt;rootDir&gt;/jest-setup.ts'],
+  moduleNameMapper: {
+    &quot;^@shared/(.*)$&quot;: &quot;&lt;rootDir&gt;/src/shared/$1&quot;,
+  },
 };
 
 </code></pre>
- <div line-highlight="3,only"></div>
+ <div line-highlight="3-6,only"></div>
 <p>✏️ Delete the unneeded generated folder <code>__tests__</code>.</p>
 <p>✏️ Create <strong>App.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import {render, screen} from '@testing-library/react-native';
@@ -969,6 +972,9 @@ module.exports = mergeConfig(getDefaultConfig(__dirname), config)
 <pre><code class="language-json">{
   &quot;extends&quot;: &quot;@react-native/typescript-config/tsconfig.json&quot;,
   &quot;compilerOptions&quot;: {
+    &quot;paths&quot;: {
+      &quot;@shared/*&quot;: [&quot;./src/shared/*&quot;]
+    },
     &quot;module&quot;: &quot;ES2022&quot;,
     &quot;types&quot;: [&quot;react-native&quot;, &quot;jest&quot;, &quot;node&quot;],
 
@@ -995,7 +1001,7 @@ module.exports = mergeConfig(getDefaultConfig(__dirname), config)
 }
 
 </code></pre>
- <div line-highlight="2-5,7-11,13-26,only"></div>
+ <div line-highlight="2-8,10-14,16-29,only"></div>
 <p>✏️ Now that we have prettier and eslint set up, we need to make sure our code is following the new standards. You can apply most of the rules automatically. Run:</p>
 <pre><code class="language-shell">npm run lint:fix
 </code></pre>
