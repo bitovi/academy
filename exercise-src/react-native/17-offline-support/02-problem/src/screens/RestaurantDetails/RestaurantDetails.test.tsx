@@ -1,8 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native"
+import AuthProvider from "@shared/services/auth/AuthProvider"
+import * as restaurantHooks from "@shared/services/pmo/restaurant/hooks"
 import { render, screen } from "@testing-library/react-native"
-
-import AuthProvider from "../../services/auth/AuthProvider"
-import * as restaurantHooks from "../../services/pmo/restaurant/hooks"
 
 import RestaurantDetails from "./RestaurantDetails"
 

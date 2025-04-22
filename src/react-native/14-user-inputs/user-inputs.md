@@ -136,14 +136,14 @@ OK, that was a lot. Let’s start making some code changes so we can select menu
 
 @sourceref ../../../exercises/react-native/14-user-input/01-problem/src/screens/RestaurantOrder/index.ts
 
-✏️ Create **src/components/FormSwitch/FormSwitch.tsx** and update it to be:
+✏️ Create **src/shared/components/FormSwitch/FormSwitch.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-native/14-user-input/01-problem/src/components/FormSwitch/FormSwitch.tsx
+@sourceref ../../../exercises/react-native/14-user-input/01-problem/src/shared/components/FormSwitch/FormSwitch.tsx
 @highlight 27-33, only
 
-✏️ Create **src/components/FormSwitch/index.ts** and update it to be:
+✏️ Create **src/shared/components/FormSwitch/index.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/14-user-input/01-problem/src/components/FormSwitch/index.ts
+@sourceref ../../../exercises/react-native/14-user-input/01-problem/src/shared/components/FormSwitch/index.ts
 
 ### Verify 1
 
@@ -182,9 +182,9 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 @diff ../../../exercises/react-native/14-user-input/01-problem/src/App.tsx ../../../exercises/react-native/14-user-input/01-solution/src/App.tsx only
 
-✏️ Update **src/components/FormSwitch/FormSwitch.tsx** to be:
+✏️ Update **src/shared/components/FormSwitch/FormSwitch.tsx** to be:
 
-@diff ../../../exercises/react-native/14-user-input/01-problem/src/components/FormSwitch/FormSwitch.tsx ../../../exercises/react-native/14-user-input/01-solution/src/components/FormSwitch/FormSwitch.tsx only
+@diff ../../../exercises/react-native/14-user-input/01-problem/src/shared/components/FormSwitch/FormSwitch.tsx ../../../exercises/react-native/14-user-input/01-solution/src/shared/components/FormSwitch/FormSwitch.tsx only
 
 ✏️ Update **src/screens/RestaurantDetails/RestaurantDetails.tsx** to be:
 
@@ -248,18 +248,18 @@ This is ideal for linking related components together, as is the case with `nati
 
 ### Setup 2
 
-✏️ Create **src/components/FormTextField/FormTextField.tsx** and update it to be:
+✏️ Create **src/shared/components/FormTextField/FormTextField.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-native/14-user-input/02-problem/src/components/FormTextField/FormTextField.tsx
+@sourceref ../../../exercises/react-native/14-user-input/02-problem/src/shared/components/FormTextField/FormTextField.tsx
 @highlight 24, only
 
-✏️ Create **src/components/FormTextField/index.ts** and update it to be:
+✏️ Create **src/shared/components/FormTextField/index.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/14-user-input/02-problem/src/components/FormTextField/index.ts
+@sourceref ../../../exercises/react-native/14-user-input/02-problem/src/shared/components/FormTextField/index.ts
 
-✏️ Update **src/components/FormSwitch/FormSwitch.tsx** to be:
+✏️ Update **src/shared/components/FormSwitch/FormSwitch.tsx** to be:
 
-@diff ../../../exercises/react-native/14-user-input/01-solution/src/components/FormSwitch/FormSwitch.tsx ../../../exercises/react-native/14-user-input/02-problem/src/components/FormSwitch/FormSwitch.tsx only
+@diff ../../../exercises/react-native/14-user-input/01-solution/src/shared/components/FormSwitch/FormSwitch.tsx ../../../exercises/react-native/14-user-input/02-problem/src/shared/components/FormSwitch/FormSwitch.tsx only
 
 ✏️ Update **src/screens/RestaurantOrder/RestaurantOrder.tsx** to be:
 
@@ -267,9 +267,9 @@ This is ideal for linking related components together, as is the case with `nati
 
 ### Verify 2
 
-✏️ Create **src/components/FormTextField/FormTextField.test.tsx** and update it to be:
+✏️ Create **src/shared/components/FormTextField/FormTextField.test.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-native/14-user-input/02-problem/src/components/FormTextField/FormTextField.test.tsx
+@sourceref ../../../exercises/react-native/14-user-input/02-problem/src/shared/components/FormTextField/FormTextField.test.tsx
 @highlight 11, only
 
 ✏️ Update **src/screens/RestaurantOrder/RestaurantOrder.test.tsx** to be:
@@ -301,13 +301,13 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 <details>
 <summary>Click to see the solution</summary>
 
-✏️ Update **src/components/FormTextField/FormTextField.tsx** to be:
+✏️ Update **src/shared/components/FormTextField/FormTextField.tsx** to be:
 
-@diff ../../../exercises/react-native/14-user-input/02-problem/src/components/FormTextField/FormTextField.tsx ../../../exercises/react-native/14-user-input/02-solution/src/components/FormTextField/FormTextField.tsx only
+@diff ../../../exercises/react-native/14-user-input/02-problem/src/shared/components/FormTextField/FormTextField.tsx ../../../exercises/react-native/14-user-input/02-solution/src/shared/components/FormTextField/FormTextField.tsx only
 
-✏️ Update **src/components/FormSwitch/FormSwitch.tsx** to be:
+✏️ Update **src/shared/components/FormSwitch/FormSwitch.tsx** to be:
 
-@diff ../../../exercises/react-native/14-user-input/02-problem/src/components/FormSwitch/FormSwitch.tsx ../../../exercises/react-native/14-user-input/02-solution/src/components/FormSwitch/FormSwitch.tsx only
+@diff ../../../exercises/react-native/14-user-input/02-problem/src/shared/components/FormSwitch/FormSwitch.tsx ../../../exercises/react-native/14-user-input/02-solution/src/shared/components/FormSwitch/FormSwitch.tsx only
 
 ✏️ Update **src/screens/RestaurantOrder/RestaurantOrder.tsx** to be:
 

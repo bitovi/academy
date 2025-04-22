@@ -4,8 +4,8 @@ import StateList from "./StateList"
 
 const mockSetMode = jest.fn()
 
-jest.mock("../../design/theme", () => ({
-  ...jest.requireActual("../../design/theme"),
+jest.mock("@shared/design/theme", () => ({
+  ...jest.requireActual("@shared/design/theme"),
   useThemeMode: () => ({
     mode: "light",
     setMode: mockSetMode,

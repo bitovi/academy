@@ -244,19 +244,19 @@ npm run start
 
 @diff ../../../exercises/react-native/15-async-storage/02-solution/src/screens/Settings/Settings.tsx ../../../exercises/react-native/16-security/01-problem/src/screens/Settings/Settings.tsx only
 
-✏️ Create **src/services/auth/AuthProvider.tsx** and update it to be:
+✏️ Create **src/shared/services/auth/AuthProvider.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-native/16-security/01-problem/src/services/auth/AuthProvider.tsx
+@sourceref ../../../exercises/react-native/16-security/01-problem/src/shared/services/auth/AuthProvider.tsx
 @highlight 26, 31, 49, 54, 76, only
 
-✏️ Create **src/services/auth/context.ts** and update it to be:
+✏️ Create **src/shared/services/auth/context.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/16-security/01-problem/src/services/auth/context.ts
+@sourceref ../../../exercises/react-native/16-security/01-problem/src/shared/services/auth/context.ts
 @highlight 4-28, only
 
-✏️ Create **src/services/auth/index.ts** and update it to be:
+✏️ Create **src/shared/services/auth/index.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/16-security/01-problem/src/services/auth/index.ts
+@sourceref ../../../exercises/react-native/16-security/01-problem/src/shared/services/auth/index.ts
 
 ### Verify 1
 
@@ -264,9 +264,9 @@ npm run start
 
 @diff ../../../exercises/react-native/15-async-storage/02-solution/src/screens/Settings/Settings.test.tsx ../../../exercises/react-native/16-security/01-problem/src/screens/Settings/Settings.test.tsx only
 
-✏️ Create **src/services/auth/AuthProvider.test.tsx** and update it to be:
+✏️ Create **src/shared/services/auth/AuthProvider.test.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-native/16-security/01-problem/src/services/auth/AuthProvider.test.tsx
+@sourceref ../../../exercises/react-native/16-security/01-problem/src/shared/services/auth/AuthProvider.test.tsx
 @highlight 43, only
 
 ### Exercise 1
@@ -300,9 +300,9 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 @diff ../../../exercises/react-native/16-security/01-problem/src/screens/Settings/Settings.tsx ../../../exercises/react-native/16-security/01-solution/src/screens/Settings/Settings.tsx only
 
-✏️ Update **src/services/auth/AuthProvider.tsx** to be:
+✏️ Update **src/shared/services/auth/AuthProvider.tsx** to be:
 
-@diff ../../../exercises/react-native/16-security/01-problem/src/services/auth/AuthProvider.tsx ../../../exercises/react-native/16-security/01-solution/src/services/auth/AuthProvider.tsx only
+@diff ../../../exercises/react-native/16-security/01-problem/src/shared/services/auth/AuthProvider.tsx ../../../exercises/react-native/16-security/01-solution/src/shared/services/auth/AuthProvider.tsx only
 
 </details>
 

@@ -214,30 +214,30 @@ It will be helpful to have a third command-line interface (CLI) tab for the `npm
 
 @diff ../../../exercises/react-native/12-navigation-params/01-solution/src/App.test.tsx ../../../exercises/react-native/13-http-requests/01-problem/src/App.test.tsx only
 
-✏️ Create **src/services/pmo/restaurant/interfaces.ts** and update it to be:
+✏️ Create **src/shared/services/pmo/restaurant/interfaces.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/restaurant/interfaces.ts
+@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/shared/services/pmo/restaurant/interfaces.ts
 
-✏️ Create **src/services/pmo/restaurant/hooks.ts** and update it to be:
+✏️ Create **src/shared/services/pmo/restaurant/hooks.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/restaurant/hooks.ts
+@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/shared/services/pmo/restaurant/hooks.ts
 @highlight 14, only
 
-✏️ Create **src/services/pmo/restaurant/index.ts** and update it to be:
+✏️ Create **src/shared/services/pmo/restaurant/index.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/restaurant/index.ts
+@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/shared/services/pmo/restaurant/index.ts
 
-✏️ Create **src/components/Loading/Loading.tsx** and update it to be:
+✏️ Create **src/shared/components/Loading/Loading.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/components/Loading/Loading.tsx
+@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/shared/components/Loading/Loading.tsx
 
-✏️ Create **src/components/Loading/Loading.test.tsx** and update it to be:
+✏️ Create **src/shared/components/Loading/Loading.test.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/components/Loading/Loading.test.tsx
+@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/shared/components/Loading/Loading.test.tsx
 
-✏️ Create **src/components/Loading/index.ts** and update it to be:
+✏️ Create **src/shared/components/Loading/index.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/components/Loading/index.ts
+@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/shared/components/Loading/index.ts
 
 ✏️ Update **src/screens/StateList/StateList.tsx** to be:
 
@@ -245,9 +245,9 @@ It will be helpful to have a third command-line interface (CLI) tab for the `npm
 
 ### Verify 1
 
-✏️ Create **src/services/pmo/restaurant/hooks.test.ts** and update it to be:
+✏️ Create **src/shared/services/pmo/restaurant/hooks.test.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/restaurant/hooks.test.ts
+@sourceref ../../../exercises/react-native/13-http-requests/01-problem/src/shared/services/pmo/restaurant/hooks.test.ts
 @highlight 15, only
 
 ✏️ Update **src/screens/StateList/StateList.test.tsx** to be:
@@ -272,9 +272,9 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 <details>
 <summary>Click to see the solution</summary>
 
-✏️ Update **src/services/pmo/restaurant/hooks.ts** to be:
+✏️ Update **src/shared/services/pmo/restaurant/hooks.ts** to be:
 
-@diff ../../../exercises/react-native/13-http-requests/01-problem/src/services/pmo/restaurant/hooks.ts ../../../exercises/react-native/13-http-requests/01-solution/src/services/pmo/restaurant/hooks.ts only
+@diff ../../../exercises/react-native/13-http-requests/01-problem/src/shared/services/pmo/restaurant/hooks.ts ../../../exercises/react-native/13-http-requests/01-solution/src/shared/services/pmo/restaurant/hooks.ts only
 
 ✏️ Update **src/screens/StateList/StateList.tsx** to be:
 
@@ -307,13 +307,13 @@ Here’s a breakdown of this URL:
 
 ### Setup 2
 
-✏️ Update **src/services/pmo/restaurant/interfaces.ts** to be:
+✏️ Update **src/shared/services/pmo/restaurant/interfaces.ts** to be:
 
-@diff ../../../exercises/react-native/13-http-requests/01-solution/src/services/pmo/restaurant/interfaces.ts ../../../exercises/react-native/13-http-requests/02-problem/src/services/pmo/restaurant/interfaces.ts only
+@diff ../../../exercises/react-native/13-http-requests/01-solution/src/shared/services/pmo/restaurant/interfaces.ts ../../../exercises/react-native/13-http-requests/02-problem/src/shared/services/pmo/restaurant/interfaces.ts only
 
-✏️ Update **src/services/pmo/restaurant/hooks.ts** to be:
+✏️ Update **src/shared/services/pmo/restaurant/hooks.ts** to be:
 
-@diff ../../../exercises/react-native/13-http-requests/01-solution/src/services/pmo/restaurant/hooks.ts ../../../exercises/react-native/13-http-requests/02-problem/src/services/pmo/restaurant/hooks.ts only
+@diff ../../../exercises/react-native/13-http-requests/01-solution/src/shared/services/pmo/restaurant/hooks.ts ../../../exercises/react-native/13-http-requests/02-problem/src/shared/services/pmo/restaurant/hooks.ts only
 
 ✏️ Update **src/screens/CityList/CityList.tsx** to be:
 
@@ -321,9 +321,9 @@ Here’s a breakdown of this URL:
 
 ### Verify 2
 
-✏️ Update **src/services/pmo/restaurant/hooks.test.ts** to be:
+✏️ Update **src/shared/services/pmo/restaurant/hooks.test.ts** to be:
 
-@diff ../../../exercises/react-native/13-http-requests/01-solution/src/services/pmo/restaurant/hooks.test.ts ../../../exercises/react-native/13-http-requests/02-problem/src/services/pmo/restaurant/hooks.test.ts only
+@diff ../../../exercises/react-native/13-http-requests/01-solution/src/shared/services/pmo/restaurant/hooks.test.ts ../../../exercises/react-native/13-http-requests/02-problem/src/shared/services/pmo/restaurant/hooks.test.ts only
 
 ✏️ Update **src/screens/CityList/CityList.test.tsx** to be:
 
@@ -344,9 +344,9 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 <details>
 <summary>Click to see the solution</summary>
 
-✏️ Update **src/services/pmo/restaurant/hooks.ts** to be:
+✏️ Update **src/shared/services/pmo/restaurant/hooks.ts** to be:
 
-@diff ../../../exercises/react-native/13-http-requests/02-problem/src/services/pmo/restaurant/hooks.ts ../../../exercises/react-native/13-http-requests/02-solution/src/services/pmo/restaurant/hooks.ts only
+@diff ../../../exercises/react-native/13-http-requests/02-problem/src/shared/services/pmo/restaurant/hooks.ts ../../../exercises/react-native/13-http-requests/02-solution/src/shared/services/pmo/restaurant/hooks.ts only
 
 ✏️ Update **src/screens/CityList/CityList.tsx** to be:
 
@@ -397,24 +397,37 @@ As your app grows, maintaining these features manually becomes complex and error
 
 ### Setup 3
 
-✏️ Create **src/services/pmo/api/api.ts** and update it to be:
+✏️ Create **src/shared/services/pmo/api/api.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/13-http-requests/03-problem/src/services/pmo/api/api.ts
+@sourceref ../../../exercises/react-native/13-http-requests/03-problem/src/shared/services/pmo/api/api.ts
 @highlight 30, only
 
-✏️ Create **src/services/pmo/api/index.ts** and update it to be:
+✏️ Create **src/shared/services/pmo/api/index.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/13-http-requests/03-problem/src/services/pmo/api/index.ts
+@sourceref ../../../exercises/react-native/13-http-requests/03-problem/src/shared/services/pmo/api/index.ts
 
-✏️ Update **src/services/pmo/restaurant/hooks.ts** to be:
+✏️ Update **jest-setup.ts** to be:
 
-@diff ../../../exercises/react-native/13-http-requests/02-solution/src/services/pmo/restaurant/hooks.ts ../../../exercises/react-native/13-http-requests/03-problem/src/services/pmo/restaurant/hooks.ts only
+@diff ../../../exercises/react-native/13-http-requests/02-solution//jest-setup.ts ../../../exercises/react-native/13-http-requests/03-problem/jest-setup.ts only
+
+✏️ Update **src/shared/services/pmo/restaurant/hooks.ts** to be:
+
+@diff ../../../exercises/react-native/13-http-requests/02-solution/src/shared/services/pmo/restaurant/hooks.ts ../../../exercises/react-native/13-http-requests/03-problem/src/shared/services/pmo/restaurant/hooks.ts only
 
 ### Verify 3
 
-✏️ Update **src/services/pmo/restaurant/hooks.test.ts** to be:
+✏️ Create **src/shared/services/pmo/api/api.mock.ts** and update it to be:
 
-@diff ../../../exercises/react-native/13-http-requests/02-solution/src/services/pmo/restaurant/hooks.test.ts ../../../exercises/react-native/13-http-requests/03-problem/src/services/pmo/restaurant/hooks.test.ts only
+@sourceref ../../../exercises/react-native/13-http-requests/03-problem/src/shared/services/pmo/api/api.mock.ts
+
+✏️ Create **src/shared/services/pmo/api/api.test.ts** and update it to be:
+
+@sourceref ../../../exercises/react-native/13-http-requests/03-problem/src/shared/services/pmo/api/api.test.ts
+@highlight 13, 37, 57, 74, 79, only
+
+✏️ Update **src/shared/services/pmo/restaurant/hooks.test.ts** to be:
+
+@diff ../../../exercises/react-native/13-http-requests/02-solution/src/shared/services/pmo/restaurant/hooks.test.ts ../../../exercises/react-native/13-http-requests/03-problem/src/shared/services/pmo/restaurant/hooks.test.ts only
 
 ### Exercise 3
 
@@ -437,13 +450,13 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 <details>
 <summary>Click to see the solution</summary>
 
-✏️ Update **src/services/pmo/api/api.ts** to be:
+✏️ Update **src/shared/services/pmo/api/api.ts** to be:
 
-@diff ../../../exercises/react-native/13-http-requests/03-problem/src/services/pmo/api/api.ts ../../../exercises/react-native/13-http-requests/03-solution/src/services/pmo/api/api.ts only
+@diff ../../../exercises/react-native/13-http-requests/03-problem/src/shared/services/pmo/api/api.ts ../../../exercises/react-native/13-http-requests/03-solution/src/shared/services/pmo/api/api.ts only
 
-✏️ Update **src/services/pmo/restaurant/hooks.ts** to be:
+✏️ Update **src/shared/services/pmo/restaurant/hooks.ts** to be:
 
-@diff ../../../exercises/react-native/13-http-requests/03-problem/src/services/pmo/restaurant/hooks.ts ../../../exercises/react-native/13-http-requests/03-solution/src/services/pmo/restaurant/hooks.ts only
+@diff ../../../exercises/react-native/13-http-requests/03-problem/src/shared/services/pmo/restaurant/hooks.ts ../../../exercises/react-native/13-http-requests/03-solution/src/shared/services/pmo/restaurant/hooks.ts only
 
 </details>
 
@@ -478,17 +491,17 @@ Now that we are able to capture a user’s state and city preferences, we want t
 npm run start
 ```
 
-✏️ Update **src/components/RestaurantHeader/RestaurantHeader.tsx** to be:
+✏️ Update **src/shared/components/RestaurantHeader/RestaurantHeader.tsx** to be:
 
-@diff ../../../exercises/react-native/13-http-requests/03-solution/src/components/RestaurantHeader/RestaurantHeader.tsx ../../../exercises/react-native/13-http-requests/04-problem/src/components/RestaurantHeader/RestaurantHeader.tsx only
+@diff ../../../exercises/react-native/13-http-requests/03-solution/src/shared/components/RestaurantHeader/RestaurantHeader.tsx ../../../exercises/react-native/13-http-requests/04-problem/src/shared/components/RestaurantHeader/RestaurantHeader.tsx only
 
-✏️ Update **src/services/pmo/restaurant/interfaces.ts** to be:
+✏️ Update **src/shared/services/pmo/restaurant/interfaces.ts** to be:
 
-@diff ../../../exercises/react-native/13-http-requests/03-solution/src/services/pmo/restaurant/interfaces.ts ../../../exercises/react-native/13-http-requests/04-problem/src/services/pmo/restaurant/interfaces.ts only
+@diff ../../../exercises/react-native/13-http-requests/03-solution/src/shared/services/pmo/restaurant/interfaces.ts ../../../exercises/react-native/13-http-requests/04-problem/src/shared/services/pmo/restaurant/interfaces.ts only
 
-✏️ Update **src/services/pmo/restaurant/hooks.ts** to be:
+✏️ Update **src/shared/services/pmo/restaurant/hooks.ts** to be:
 
-@diff ../../../exercises/react-native/13-http-requests/03-solution/src/services/pmo/restaurant/hooks.ts ../../../exercises/react-native/13-http-requests/04-problem/src/services/pmo/restaurant/hooks.ts only
+@diff ../../../exercises/react-native/13-http-requests/03-solution/src/shared/services/pmo/restaurant/hooks.ts ../../../exercises/react-native/13-http-requests/04-problem/src/shared/services/pmo/restaurant/hooks.ts only
 
 ✏️ Update **src/screens/RestaurantList/RestaurantList.tsx** to be:
 
@@ -500,9 +513,9 @@ npm run start
 
 ### Verify 4
 
-✏️ Update **src/services/pmo/restaurant/hooks.test.ts** to be:
+✏️ Update **src/shared/services/pmo/restaurant/hooks.test.ts** to be:
 
-@diff ../../../exercises/react-native/13-http-requests/03-solution/src/services/pmo/restaurant/hooks.test.ts ../../../exercises/react-native/13-http-requests/04-problem/src/services/pmo/restaurant/hooks.test.ts only
+@diff ../../../exercises/react-native/13-http-requests/03-solution/src/shared/services/pmo/restaurant/hooks.test.ts ../../../exercises/react-native/13-http-requests/04-problem/src/shared/services/pmo/restaurant/hooks.test.ts only
 
 ✏️ Update **src/screens/RestaurantList/RestaurantList.test.tsx** to be:
 
@@ -530,9 +543,9 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 <details>
 <summary>Click to see the solution</summary>
 
-✏️ Update **src/services/pmo/restaurant/hooks.ts** to be:
+✏️ Update **src/shared/services/pmo/restaurant/hooks.ts** to be:
 
-@diff ../../../exercises/react-native/13-http-requests/04-problem/src/services/pmo/restaurant/hooks.ts ../../../exercises/react-native/13-http-requests/04-solution/src/services/pmo/restaurant/hooks.ts only
+@diff ../../../exercises/react-native/13-http-requests/04-problem/src/shared/services/pmo/restaurant/hooks.ts ../../../exercises/react-native/13-http-requests/04-solution/src/shared/services/pmo/restaurant/hooks.ts only
 
 ✏️ Update **src/screens/RestaurantList/RestaurantList.tsx** to be:
 

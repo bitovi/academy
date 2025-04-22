@@ -1,21 +1,21 @@
 import { useNavigation } from "@react-navigation/native"
 import { StackScreenProps } from "@react-navigation/stack"
-import { useEffect } from "react"
-
-import { RestaurantsStackParamList } from "../../App"
-import Loading from "../../components/Loading"
-import RestaurantHeader from "../../components/RestaurantHeader"
-import Box from "../../design/Box"
-import Button from "../../design/Button"
-import Screen from "../../design/Screen"
-import Typography from "../../design/Typography"
+import Loading from "@shared/components/Loading"
+import RestaurantHeader from "@shared/components/RestaurantHeader"
+import Box from "@shared/design/Box"
+import Button from "@shared/design/Button"
+import Screen from "@shared/design/Screen"
+import Typography from "@shared/design/Typography"
 import {
   useAuthenticated,
   useUser,
   useAuthentication,
-} from "../../services/auth"
-import { useFavorite } from "../../services/pmo/favorite/hooks"
-import { useRestaurant } from "../../services/pmo/restaurant"
+} from "@shared/services/auth"
+import { useFavorite } from "@shared/services/pmo/favorite/hooks"
+import { useRestaurant } from "@shared/services/pmo/restaurant"
+import { useEffect } from "react"
+
+import { RestaurantsStackParamList } from "../../App"
 
 export interface RestaurantDetailsProps
   extends StackScreenProps<RestaurantsStackParamList, "RestaurantDetails"> {}

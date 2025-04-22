@@ -1,9 +1,9 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { NavigationContainer } from "@react-navigation/native"
+import ThemeProvider, { useTheme } from "@shared/design/theme"
 import { SafeAreaView } from "react-native-safe-area-context"
 import Icon from "react-native-vector-icons/Ionicons"
 
-import ThemeProvider, { useTheme } from "./design/theme/ThemeProvider"
 import Settings from "./screens/Settings"
 import StateList from "./screens/StateList"
 

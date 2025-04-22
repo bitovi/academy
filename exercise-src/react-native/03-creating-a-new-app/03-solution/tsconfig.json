@@ -1,6 +1,9 @@
 {
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
+    "paths": {
+      "@shared/*": ["./src/shared/*"]
+    },
     "module": "ES2022",
     "types": ["react-native", "jest", "node"],
 

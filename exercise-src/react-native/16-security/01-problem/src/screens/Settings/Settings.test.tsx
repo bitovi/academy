@@ -1,14 +1,13 @@
 import { NavigationContainer } from "@react-navigation/native"
+import AuthProvider from "@shared/services/auth/AuthProvider"
 import { fireEvent, render, screen } from "@testing-library/react-native"
-
-import AuthProvider from "../../services/auth/AuthProvider"
 
 import Settings from "./Settings"
 
 const mockSetMode = jest.fn()
 
-jest.mock("../../design/theme", () => ({
-  ...jest.requireActual("../../design/theme"),
+jest.mock("@shared/design/theme", () => ({
+  ...jest.requireActual("@shared/design/theme"),
   useThemeMode: () => ({
     mode: "light",
     setMode: mockSetMode,

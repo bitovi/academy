@@ -1,9 +1,8 @@
+import Card from "@shared/design/Card"
+import Screen from "@shared/design/Screen"
+import { useThemeMode } from "@shared/design/theme"
+import Typography from "@shared/design/Typography"
 import { StyleSheet, Switch, View } from "react-native"
-
-import Card from "../../design/Card"
-import Screen from "../../design/Screen"
-import { useThemeMode } from "../../design/theme"
-import Typography from "../../design/Typography"
 
 import ListItem from "./components/ListItem"
 

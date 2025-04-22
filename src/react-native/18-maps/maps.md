@@ -149,14 +149,14 @@ Replace the `INVALID_API_KEY` text that’s currently in the file with your key.
 npm run start
 ```
 
-✏️ Create **src/components/Tabs/Tabs.tsx** and update it to be:
+✏️ Create **src/shared/components/Tabs/Tabs.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-native/18-maps/01-problem/src/components/Tabs/Tabs.tsx
+@sourceref ../../../exercises/react-native/18-maps/01-problem/src/shared/components/Tabs/Tabs.tsx
 @highlight 16, only
 
-✏️ Create **src/components/Tabs/index.ts** and update it to be:
+✏️ Create **src/shared/components/Tabs/index.ts** and update it to be:
 
-@sourceref ../../../exercises/react-native/18-maps/01-problem/src/components/Tabs/index.ts
+@sourceref ../../../exercises/react-native/18-maps/01-problem/src/shared/components/Tabs/index.ts
 
 ✏️ Create **src/screens/RestaurantList/components/List/List.tsx** and update it to be:
 
