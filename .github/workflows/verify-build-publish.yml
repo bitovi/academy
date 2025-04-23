@@ -2,7 +2,7 @@ name: Verify/Build/Deploy
 
 on:
   push:
-    branches: [main]
+    branches: [main, FE-249-fix-hubspot-publish-script-to-avoid-going-over-limits]
   pull_request:
 
 jobs:
