@@ -50,7 +50,7 @@ jobs:
           user_email: "workflow@github"
 
       - name: Deploy
-        if: ${{ github.ref == 'refs/heads/main' }}
+        if: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/FE-249-fix-hubspot-publish-script-to-avoid-going-over-limits' }}
         env:
           HUBSPOT_TOKEN: ${{ secrets.HUBSPOT_TOKEN }}
           HUBSPOT_CAMPAIGN_ID: ${{ secrets.HUBSPOT_CAMPAIGN_ID }}
