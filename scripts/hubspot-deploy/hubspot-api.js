@@ -8,6 +8,7 @@ class HubSpotApi {
   constructor(accessToken, campaignId){
     this.accessToken = accessToken;
     this.campaignId = campaignId;
+    console.log('*****Token***', accessToken, campaignId)
     this.baseUrl = 'https://api.hubapi.com/cms/v3/pages/site-pages';
     this.limiter = new Bottleneck({
       reservoir: 150,
