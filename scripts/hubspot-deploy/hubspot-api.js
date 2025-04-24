@@ -28,6 +28,7 @@ class HubSpotApi {
   makeRequest(method, url, data){
       return this.limiter.schedule(() => this.axios({ method, url, data })
       .catch(error => {
+        console.log('makeRequest', error)
         if (data.name) {
           console.error(`Error on page ${data.name}`);
         }

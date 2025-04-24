@@ -2,7 +2,7 @@ name: Verify/Build/Deploy
 
 on:
   push:
-    branches: [main, FE-249-fix-hubspot-publish-script-to-avoid-going-over-limits]
+    branches: [main, FE-249-fix-hubspot-publish-script-to-avoid-going-over-limits] ##TODO remove fix hubspot branch 
   pull_request:
 
 jobs:
@@ -33,12 +33,13 @@ jobs:
       - name: Generate Exercises
         run: npm run generate
 
+        ##TODO uncomment test
       # - name: test
       #   run: npm run test
 
       - name: Build
         run: npm run build
-
+##TODO remove debug branch 
       - name: Debug Branch
         run: echo "Branch ${{ github.ref }}"
 
@@ -53,7 +54,7 @@ jobs:
           user_email: "workflow@github"
 
       - name: Deploy
-        if: ${{ github.ref == 'refs/heads/main'  || github.ref == 'refs/heads/FE-249-fix-hubspot-publish-script-to-avoid-going-over-limits'  }}
+        if: ${{ github.ref == 'refs/heads/main'  || github.ref == 'refs/heads/FE-249-fix-hubspot-publish-script-to-avoid-going-over-limits'  }} ##TODO remove fix hubspot branch 
         env:
           HUBSPOT_TOKEN: ${{ secrets.HUBSPOT_TOKEN }}
           HUBSPOT_CAMPAIGN_ID: ${{ secrets.HUBSPOT_CAMPAIGN_ID }}
