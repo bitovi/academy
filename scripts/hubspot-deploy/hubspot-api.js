@@ -42,12 +42,14 @@ class HubSpotApi {
   async getAllPaginatedResults(method, url, results = []) {
     try {
       const { data } = await this.makeRequest(method, url, {});
+      console.log('made request')
       results = results.concat(data.results)
       if (data.paging && data.paging.next) {
         return this.getAllPaginatedResults(method, data.paging.next.link, results)
       }
       return results
     } catch (error) {
+      console.log(error)
       throw new Error('There was an error while fetching all paginated results. See `getAllPaginatedResults` in `hubspot-api.js` for more details.')
     }
   }
