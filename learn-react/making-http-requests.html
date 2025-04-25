@@ -942,7 +942,7 @@ const data = await response.json()
 <pre><code class="language-tsx">import type { State } from &quot;../../services/pmo/restaurant&quot;
 import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
 import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
-import { useState } from &quot;react&quot;
+import { useState, useCallback } from &quot;react&quot;
 import ListItem from &quot;./ListItem&quot;
 import { useCities, useStates } from &quot;../../services/pmo/restaurant&quot;
 
@@ -999,6 +999,18 @@ const RestaurantList: React.FC = () =&gt; {
     setCity(cityName)
   }
 
+  const chooseStatePlaceholder = useCallback(()=&gt;{
+    let placeholderText = &quot;Choose a state&quot;;
+
+    if(statesResponse.isPending) {
+      placeholderText = &quot;Loading states…&quot;;
+    } else if (statesResponse.error) {
+      placeholderText = statesResponse.error.message
+    }
+
+    return placeholderText;
+  }, [statesResponse])
+
   return (
     &lt;&gt;
       &lt;div className=&quot;restaurants&quot;&gt;
@@ -1016,11 +1028,7 @@ const RestaurantList: React.FC = () =&gt; {
               value={state}
             &gt;
               &lt;option key=&quot;choose_state&quot; value=&quot;&quot;&gt;
-                {statesResponse.isPending
-                  ? &quot;Loading states…&quot;
-                  : statesResponse.error
-                    ? statesResponse.error.message
-                    : &quot;Choose a state&quot;}
+                {chooseStatePlaceholder()}
               &lt;/option&gt;
               {statesResponse.data?.map(({ short, name }) =&gt; (
                 &lt;option key={short} value={short}&gt;
@@ -1071,7 +1079,7 @@ const RestaurantList: React.FC = () =&gt; {
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="1,6,68-85,87-89,101,only"></div>
+ <div line-highlight="1,4,6,61-62,64-68,70-71,80-93,95-97,109,only"></div>
 <p>✏️ Update <strong>src/services/pmo/restaurant/hooks.ts</strong> to be:</p>
 <pre><code class="language-ts">import type { City, State } from &quot;./interfaces&quot;
 import { useEffect, useState } from &quot;react&quot;
@@ -1264,7 +1272,7 @@ describe(&quot;useStates Hook&quot;, () =&gt; {
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
 import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
-import { useState } from &quot;react&quot;
+import { useState, useCallback } from &quot;react&quot;
 import ListItem from &quot;./ListItem&quot;
 import { useCities, useStates } from &quot;../../services/pmo/restaurant&quot;
 
@@ -1318,6 +1326,19 @@ const RestaurantList: React.FC = () =&gt; {
     setCity(cityName)
   }
 
+  const chooseStatePlaceholder = useCallback(()=&gt;{
+    let placeholderText = &quot;Choose a state&quot;;
+
+    if(statesResponse.isPending) {
+      placeholderText = &quot;Loading states…&quot;;
+    } else if (statesResponse.error) {
+      placeholderText = statesResponse.error.message
+    }
+
+    return placeholderText;
+  }, [statesResponse])
+
+
   return (
     &lt;&gt;
       &lt;div className=&quot;restaurants&quot;&gt;
@@ -1335,11 +1356,7 @@ const RestaurantList: React.FC = () =&gt; {
               value={state}
             &gt;
               &lt;option key=&quot;choose_state&quot; value=&quot;&quot;&gt;
-                {statesResponse.isPending
-                  ? &quot;Loading states…&quot;
-                  : statesResponse.error
-                    ? statesResponse.error.message
-                    : &quot;Choose a state&quot;}
+                {chooseStatePlaceholder()}
               &lt;/option&gt;
               {statesResponse.data?.map(({ short, name }) =&gt; (
                 &lt;option key={short} value={short}&gt;
@@ -1463,7 +1480,7 @@ export function useStates(): StatesResponse {
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
 import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
-import { useState } from &quot;react&quot;
+import { useState, useCallback } from &quot;react&quot;
 import { useCities, useStates } from &quot;../../services/pmo/restaurant&quot;
 import ListItem from &quot;./ListItem&quot;
 
@@ -1517,6 +1534,32 @@ const RestaurantList: React.FC = () =&gt; {
     setCity(cityName)
   }
 
+  const chooseStatePlaceholder = useCallback(()=&gt;{
+    let placeholderText = &quot;Choose a state&quot;;
+
+    if(statesResponse.isPending) {
+      placeholderText = &quot;Loading states…&quot;;
+    } else if (statesResponse.error) {
+      placeholderText = statesResponse.error.message
+    }
+
+    return placeholderText;
+  }, [statesResponse])
+
+  const chooseCityPlaceholder = useCallback(()=&gt;{
+    let placeholderText = &quot;Choose a city&quot;;
+
+    if(!state) {
+      placeholderText = &quot;Choose a state before selecting a city&quot;;
+    } else if (citiesResponse.isPending) {
+      placeholderText = &quot;Loading cities…&quot;;
+    } else if (citiesResponse.error) {
+      placeholderText = citiesResponse.error.message;
+    } 
+
+    return placeholderText;
+  }, [state, citiesResponse])
+
   return (
     &lt;&gt;
       &lt;div className=&quot;restaurants&quot;&gt;
@@ -1534,11 +1577,7 @@ const RestaurantList: React.FC = () =&gt; {
               value={state}
             &gt;
               &lt;option key=&quot;choose_state&quot; value=&quot;&quot;&gt;
-                {statesResponse.isPending
-                  ? &quot;Loading states…&quot;
-                  : statesResponse.error
-                    ? statesResponse.error.message
-                    : &quot;Choose a state&quot;}
+                {chooseStatePlaceholder()}
               &lt;/option&gt;
               {statesResponse.data?.map(({ short, name }) =&gt; (
                 &lt;option key={short} value={short}&gt;
@@ -1559,13 +1598,7 @@ const RestaurantList: React.FC = () =&gt; {
               value={city}
             &gt;
               &lt;option key=&quot;choose_city&quot; value=&quot;&quot;&gt;
-                {state
-                  ? citiesResponse.isPending
-                    ? &quot;Loading cities…&quot;
-                    : citiesResponse.error
-                      ? citiesResponse.error.message
-                      : &quot;Choose a city&quot;
-                  : &quot;Choose a state before selecting a city&quot;}
+                {chooseCityPlaceholder()}
               &lt;/option&gt;
               {state &amp;&amp;
                 citiesResponse.data?.map(({ name }) =&gt; (
@@ -1598,7 +1631,7 @@ const RestaurantList: React.FC = () =&gt; {
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="89-113,only"></div>
+ <div line-highlight="69-70,72-78,80-81,111-129,only"></div>
 <h3 id="verify-2">Verify 2</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import &quot;@testing-library/jest-dom&quot;
@@ -1775,7 +1808,7 @@ describe(&quot;useStates Hook&quot;, () =&gt; {
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
 import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
-import { useState } from &quot;react&quot;
+import { useState, useCallback } from &quot;react&quot;
 import { useCities, useStates } from &quot;../../services/pmo/restaurant&quot;
 import ListItem from &quot;./ListItem&quot;
 
@@ -1829,6 +1862,32 @@ const RestaurantList: React.FC = () =&gt; {
     setCity(cityName)
   }
 
+  const chooseStatePlaceholder = useCallback(()=&gt;{
+    let placeholderText = &quot;Choose a state&quot;;
+
+    if(statesResponse.isPending) {
+      placeholderText = &quot;Loading states…&quot;;
+    } else if (statesResponse.error) {
+      placeholderText = statesResponse.error.message
+    }
+
+    return placeholderText;
+  }, [statesResponse])
+
+  const chooseCityPlaceholder = useCallback(()=&gt;{
+    let placeholderText = &quot;Choose a city&quot;;
+
+    if(!state) {
+      placeholderText = &quot;Choose a state before selecting a city&quot;;
+    } else if (citiesResponse.isPending) {
+      placeholderText = &quot;Loading cities…&quot;;
+    } else if (citiesResponse.error) {
+      placeholderText = citiesResponse.error.message;
+    } 
+
+    return placeholderText;
+  }, [state, citiesResponse])
+
   return (
     &lt;&gt;
       &lt;div className=&quot;restaurants&quot;&gt;
@@ -1846,11 +1905,7 @@ const RestaurantList: React.FC = () =&gt; {
               value={state}
             &gt;
               &lt;option key=&quot;choose_state&quot; value=&quot;&quot;&gt;
-                {statesResponse.isPending
-                  ? &quot;Loading states…&quot;
-                  : statesResponse.error
-                    ? statesResponse.error.message
-                    : &quot;Choose a state&quot;}
+                {chooseStatePlaceholder()}
               &lt;/option&gt;
               {statesResponse.data?.map(({ short, name }) =&gt; (
                 &lt;option key={short} value={short}&gt;
@@ -1871,13 +1926,7 @@ const RestaurantList: React.FC = () =&gt; {
               value={city}
             &gt;
               &lt;option key=&quot;choose_city&quot; value=&quot;&quot;&gt;
-                {state
-                  ? citiesResponse.isPending
-                    ? &quot;Loading cities…&quot;
-                    : citiesResponse.error
-                      ? citiesResponse.error.message
-                      : &quot;Choose a city&quot;
-                  : &quot;Choose a state before selecting a city&quot;}
+                {chooseCityPlaceholder()}
               &lt;/option&gt;
               {state &amp;&amp;
                 citiesResponse.data?.map(({ name }) =&gt; (
@@ -2467,7 +2516,7 @@ export function useStates(): StatesResponse {
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from &quot;place-my-order-assets/images/2-thumbnail.jpg&quot;
 import PoutineThumbnail from &quot;place-my-order-assets/images/4-thumbnail.jpg&quot;
-import { useState } from &quot;react&quot;
+import { useState, useCallback } from &quot;react&quot;
 import {
   useCities,
   useRestaurants,
@@ -2525,6 +2574,32 @@ const RestaurantList: React.FC = () =&gt; {
     setCity(cityName)
   }
 
+  const chooseStatePlaceholder = useCallback(()=&gt;{
+    let placeholderText = &quot;Choose a state&quot;;
+
+    if(statesResponse.isPending) {
+      placeholderText = &quot;Loading states…&quot;;
+    } else if (statesResponse.error) {
+      placeholderText = statesResponse.error.message
+    }
+
+    return placeholderText;
+  }, [statesResponse])
+
+  const chooseCityPlaceholder = useCallback(()=&gt;{
+    let placeholderText = &quot;Choose a city&quot;;
+
+    if(!state) {
+      placeholderText = &quot;Choose a state before selecting a city&quot;;
+    } else if (citiesResponse.isPending) {
+      placeholderText = &quot;Loading cities…&quot;;
+    } else if (citiesResponse.error) {
+      placeholderText = citiesResponse.error.message;
+    } 
+
+    return placeholderText;
+  }, [state, citiesResponse])
+
   return (
     &lt;&gt;
       &lt;div className=&quot;restaurants&quot;&gt;
@@ -2542,11 +2617,7 @@ const RestaurantList: React.FC = () =&gt; {
               value={state}
             &gt;
               &lt;option key=&quot;choose_state&quot; value=&quot;&quot;&gt;
-                {statesResponse.isPending
-                  ? &quot;Loading states…&quot;
-                  : statesResponse.error
-                    ? statesResponse.error.message
-                    : &quot;Choose a state&quot;}
+                {chooseStatePlaceholder()}
               &lt;/option&gt;
               {statesResponse.data?.map(({ short, name }) =&gt; (
                 &lt;option key={short} value={short}&gt;
@@ -2567,13 +2638,7 @@ const RestaurantList: React.FC = () =&gt; {
               value={city}
             &gt;
               &lt;option key=&quot;choose_city&quot; value=&quot;&quot;&gt;
-                {state
-                  ? citiesResponse.isPending
-                    ? &quot;Loading cities…&quot;
-                    : citiesResponse.error
-                      ? citiesResponse.error.message
-                      : &quot;Choose a city&quot;
-                  : &quot;Choose a state before selecting a city&quot;}
+                {chooseCityPlaceholder()}
               &lt;/option&gt;
               {state &amp;&amp;
                 citiesResponse.data?.map(({ name }) =&gt; (
@@ -2622,7 +2687,7 @@ const RestaurantList: React.FC = () =&gt; {
 export default RestaurantList
 
 </code></pre>
- <div line-highlight="4-8,121-124,127-131,133-149,only"></div>
+ <div line-highlight="4-8,137-140,143-147,149-165,only"></div>
 <p>✏️ Update <strong>src/services/pmo/restaurant/interfaces.ts</strong> to be:</p>
 <pre><code class="language-ts">export interface City {
   name: string
@@ -3006,7 +3071,7 @@ describe(&quot;Hooks&quot;, () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { useState } from &quot;react&quot;
+<pre><code class="language-tsx">import { useState, useCallback } from &quot;react&quot;
 import {
   useCities,
   useRestaurants,
@@ -3033,6 +3098,32 @@ const RestaurantList: React.FC = () =&gt; {
     setCity(cityName)
   }
 
+  const chooseStatePlaceholder = useCallback(()=&gt;{
+    let placeholderText = &quot;Choose a state&quot;;
+
+    if(statesResponse.isPending) {
+      placeholderText = &quot;Loading states…&quot;;
+    } else if (statesResponse.error) {
+      placeholderText = statesResponse.error.message
+    }
+
+    return placeholderText;
+  }, [statesResponse])
+
+  const chooseCityPlaceholder = useCallback(()=&gt;{
+    let placeholderText = &quot;Choose a city&quot;;
+
+    if(!state) {
+      placeholderText = &quot;Choose a state before selecting a city&quot;;
+    } else if (citiesResponse.isPending) {
+      placeholderText = &quot;Loading cities…&quot;;
+    } else if (citiesResponse.error) {
+      placeholderText = citiesResponse.error.message;
+    } 
+
+    return placeholderText;
+  }, [state, citiesResponse])
+
   return (
     &lt;&gt;
       &lt;div className=&quot;restaurants&quot;&gt;
@@ -3050,11 +3141,7 @@ const RestaurantList: React.FC = () =&gt; {
               value={state}
             &gt;
               &lt;option key=&quot;choose_state&quot; value=&quot;&quot;&gt;
-                {statesResponse.isPending
-                  ? &quot;Loading states…&quot;
-                  : statesResponse.error
-                    ? statesResponse.error.message
-                    : &quot;Choose a state&quot;}
+                {chooseStatePlaceholder()}
               &lt;/option&gt;
               {statesResponse.data?.map(({ short, name }) =&gt; (
                 &lt;option key={short} value={short}&gt;
@@ -3075,13 +3162,7 @@ const RestaurantList: React.FC = () =&gt; {
               value={city}
             &gt;
               &lt;option key=&quot;choose_city&quot; value=&quot;&quot;&gt;
-                {state
-                  ? citiesResponse.isPending
-                    ? &quot;Loading cities…&quot;
-                    : citiesResponse.error
-                      ? citiesResponse.error.message
-                      : &quot;Choose a city&quot;
-                  : &quot;Choose a state before selecting a city&quot;}
+                {chooseCityPlaceholder()}
               &lt;/option&gt;
               {state &amp;&amp;
                 citiesResponse.data?.map(({ name }) =&gt; (
