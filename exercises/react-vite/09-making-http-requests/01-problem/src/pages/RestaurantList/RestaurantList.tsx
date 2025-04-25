@@ -1,7 +1,7 @@
 import type { State } from "../../services/pmo/restaurant"
 import CheeseThumbnail from "place-my-order-assets/images/2-thumbnail.jpg"
 import PoutineThumbnail from "place-my-order-assets/images/4-thumbnail.jpg"
-import { useState } from "react"
+import { useState, useCallback } from "react"
 import ListItem from "./ListItem"
 import { useCities, useStates } from "../../services/pmo/restaurant"
 
@@ -58,6 +58,18 @@ const RestaurantList: React.FC = () => {
     setCity(cityName)
   }
 
+  const chooseStatePlaceholder = useCallback(()=>{
+    let placeholderText = "Choose a state";
+
+    if(statesResponse.isPending) {
+      placeholderText = "Loading states…";
+    } else if (statesResponse.error) {
+      placeholderText = statesResponse.error.message
+    }
+
+    return placeholderText;
+  }, [statesResponse])
+
   return (
     <>
       <div className="restaurants">
@@ -75,11 +87,7 @@ const RestaurantList: React.FC = () => {
               value={state}
             >
               <option key="choose_state" value="">
-                {statesResponse.isPending
-                  ? "Loading states…"
-                  : statesResponse.error
-                    ? statesResponse.error.message
-                    : "Choose a state"}
+                {chooseStatePlaceholder()}
               </option>
               {statesResponse.data?.map(({ short, name }) => (
                 <option key={short} value={short}>
