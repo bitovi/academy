@@ -8,13 +8,9 @@ class HubSpotApi {
   constructor(accessToken, campaignId){
     this.accessToken = accessToken;
     this.campaignId = campaignId;
-    console.log('*****Token***', accessToken, campaignId)
     this.baseUrl = 'https://api.hubapi.com/cms/v3/pages/site-pages';
-    this.limiter = new Bottleneck({
-      reservoir: 150,
-      reservoirRefreshAmount: 150,
-      reservoirRefreshInterval: 10 * 1000,
-    }),
+    this.limiter = new Bottleneck({minTime: 150}),
+
     this.axios = axios.create({
       baseURL: this.baseUrl,
       headers: {
@@ -28,7 +24,6 @@ class HubSpotApi {
   makeRequest(method, url, data){
       return this.limiter.schedule(() => this.axios({ method, url, data })
       .catch(error => {
-        console.log('makeRequest', error)
         if (data.name) {
           console.error(`Error on page ${data.name}`);
         }
@@ -43,14 +38,12 @@ class HubSpotApi {
   async getAllPaginatedResults(method, url, results = []) {
     try {
       const { data } = await this.makeRequest(method, url, {});
-      console.log('made request')
       results = results.concat(data.results)
       if (data.paging && data.paging.next) {
         return this.getAllPaginatedResults(method, data.paging.next.link, results)
       }
       return results
     } catch (error) {
-      console.log(error)
       throw new Error('There was an error while fetching all paginated results. See `getAllPaginatedResults` in `hubspot-api.js` for more details.')
     }
   }
