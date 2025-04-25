@@ -671,8 +671,7 @@ export default defineConfig({
     &quot;dev&quot;: &quot;vite&quot;,
     &quot;build&quot;: &quot;tsc -b &amp;&amp; vite build&quot;,
     &quot;lint&quot;: &quot;eslint .&quot;,
-    &quot;preview&quot;: &quot;vite preview&quot;,
-    &quot;postinstall&quot;: &quot;node -e \&quot;try{process.env.CODESANDBOX_HOST || require('@blitz/internal/env')}catch(e){process.exit(1)};fs=require('fs');fs.writeFileSync('.env', 'VITE_PMO_API=https://www.place-my-order.com/api\\n');process.env.CODESANDBOX_HOST&amp;&amp;fs.writeFileSync('vite.config.ts', fs.readFileSync('vite.config.ts').toString().replace(/defineConfig\\(\\{\\n(?! *server)/,'defineConfig({\\nserver:{allowedHosts:true},\\n'))\&quot;&quot;
+    &quot;preview&quot;: &quot;vite preview&quot;
   },
   &quot;dependencies&quot;: {
     &quot;react&quot;: &quot;^18.3.1&quot;,
@@ -776,8 +775,7 @@ export default defineConfig({
     &quot;prettier&quot;: &quot;prettier --check vite.config.ts src&quot;,
     &quot;test&quot;: &quot;vitest&quot;,
     &quot;dev&quot;: &quot;vite&quot;,
-    &quot;build&quot;: &quot;tsc &amp;&amp; vite build&quot;,
-    &quot;postinstall&quot;: &quot;node -e \&quot;try{process.env.CODESANDBOX_HOST || require('@blitz/internal/env')}catch(e){process.exit(1)};fs=require('fs');fs.writeFileSync('.env', 'VITE_PMO_API=https://www.place-my-order.com/api\\n');process.env.CODESANDBOX_HOST&amp;&amp;fs.writeFileSync('vite.config.ts', fs.readFileSync('vite.config.ts').toString().replace(/defineConfig\\(\\{\\n(?! *server)/,'defineConfig({\\nserver:{allowedHosts:true},\\n'))\&quot;&quot;
+    &quot;build&quot;: &quot;tsc &amp;&amp; vite build&quot;
   },
   &quot;prettier&quot;: {
     &quot;semi&quot;: false,
@@ -813,7 +811,7 @@ export default defineConfig({
 }
 
 </code></pre>
- <div line-highlight="7-9,12,15-17,22,24-29,31-34,37-40,43-44,only"></div>
+ <div line-highlight="7-9,12,14-16,21,23-28,30-33,36-39,42-43,only"></div>
 <p>✏️ Update <strong>eslint.config.js</strong> to be:</p>
 <pre><code class="language-js">import js from '@eslint/js'
 import globals from 'globals'
