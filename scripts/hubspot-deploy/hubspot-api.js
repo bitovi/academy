@@ -10,7 +10,6 @@ class HubSpotApi {
     this.campaignId = campaignId;
     this.baseUrl = 'https://api.hubapi.com/cms/v3/pages/site-pages';
     this.limiter = new Bottleneck({minTime: 150}),
-
     this.axios = axios.create({
       baseURL: this.baseUrl,
       headers: {
