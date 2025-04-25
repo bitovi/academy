@@ -2,7 +2,7 @@ name: Verify/Build/Deploy
 
 on:
   push:
-    branches: [main, FE-249-fix-hubspot-publish-script-to-avoid-going-over-limits]
+    branches: [main]
   pull_request:
 
 jobs:
@@ -50,7 +50,7 @@ jobs:
           user_email: "workflow@github"
 
       - name: Deploy
-        if: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/FE-249-fix-hubspot-publish-script-to-avoid-going-over-limits' }}
+        if: ${{ github.ref == 'refs/heads/main' }}
         env:
           HUBSPOT_TOKEN: ${{ secrets.HUBSPOT_TOKEN }}
           HUBSPOT_CAMPAIGN_ID: ${{ secrets.HUBSPOT_CAMPAIGN_ID }}
