@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
-import Typography from "@shared//design/Typography"
+import Typography from "@shared/design/Typography"
 import Box from "@shared/design/Box"
 import ThemeProvider, { useTheme } from "@shared/design/theme/ThemeProvider"
 import AuthProvider from "@shared/services/auth/AuthProvider"
