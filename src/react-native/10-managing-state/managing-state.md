@@ -60,7 +60,7 @@ React Native imposes several rules around the use of Hooks:
 
 ### The useState Hook
 
-We can store the state that persists through component rendering with the `useState` Hook. You can set the initial state value when the component **first** renders by providing the value as an argument to the Hook. \_If you do not provide a value the initial state value will be `undefined`.
+We can store the state that persists through component rendering with the `useState` Hook. You can set the initial state value when the component **first** renders by providing the value as an argument to the Hook. If you do not provide a value the initial state value will be `undefined`.
 
 This example shows a `useState` Hook being set with an initial value of `""`:
 
