@@ -1111,12 +1111,24 @@ yarn-error.log
  <div line-highlight="63-64,66-67,only"></div>
 <p>✏️ Update <strong>babel.config.js</strong> to be:</p>
 <pre><code class="language-js">module.exports = {
-  plugins: [&quot;module:react-native-dotenv&quot;],
   presets: [&quot;module:@react-native/babel-preset&quot;],
+  plugins: [
+    &quot;module:react-native-dotenv&quot;,
+    [
+      &quot;module-resolver&quot;,
+      {
+        root: [&quot;./&quot;],
+        extensions: [&quot;.js&quot;, &quot;.jsx&quot;, &quot;.tsx&quot;, &quot;.ts&quot;, &quot;.ios.js&quot;, &quot;.android.js&quot;],
+        alias: {
+          &quot;@shared&quot;: &quot;./src/shared&quot;,
+        },
+      },
+    ],
+  ],
 }
 
 </code></pre>
- <div line-highlight="2,only"></div>
+ <div line-highlight="4,9,11,only"></div>
 <p>✏️ Create <strong>src/env.d.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">/* eslint-disable @typescript-eslint/no-namespace */
 
@@ -1187,6 +1199,7 @@ export {}
     &quot;@types/react-native-vector-icons&quot;: &quot;^6.4.18&quot;,
     &quot;@types/react-test-renderer&quot;: &quot;^18.0.0&quot;,
     &quot;babel-jest&quot;: &quot;^29.6.3&quot;,
+    &quot;babel-plugin-module-resolver&quot;: &quot;^5.0.2&quot;,
     &quot;depcheck&quot;: &quot;^1.4.7&quot;,
     &quot;eslint&quot;: &quot;^8.19.0&quot;,
     &quot;identity-obj-proxy&quot;: &quot;^3.0.0&quot;,
