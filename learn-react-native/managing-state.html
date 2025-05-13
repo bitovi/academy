@@ -744,7 +744,7 @@ export function useTheme(): Theme {
 <li><p><strong>Third,</strong> Hooks must be named by prefixing their functionality with <code>use</code> (e.g. <code>useContext</code>).</p></li>
 </ul>
 <h3 id="the-usestate-hook">The useState Hook</h3>
-<p>We can store the state that persists through component rendering with the <code>useState</code> Hook. You can set the initial state value when the component <strong>first</strong> renders by providing the value as an argument to the Hook. _If you do not provide a value the initial state value will be <code>undefined</code>.</p>
+<p>We can store the state that persists through component rendering with the <code>useState</code> Hook. You can set the initial state value when the component <strong>first</strong> renders by providing the value as an argument to the Hook. If you do not provide a value the initial state value will be <code>undefined</code>.</p>
 <p>This example shows a <code>useState</code> Hook being set with an initial value of <code>&quot;&quot;</code>:</p>
 <pre><code class="language-tsx">import { ChangeEvent, useState } from &quot;react&quot;
 import { Text, TextInput, View } from &quot;react-native&quot;
