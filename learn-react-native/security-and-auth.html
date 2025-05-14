@@ -915,9 +915,9 @@ console.error = (message, ...args) =&gt; {
 <pre><code class="language-tsx">import { createBottomTabNavigator } from &quot;@react-navigation/bottom-tabs&quot;
 import { NavigationContainer } from &quot;@react-navigation/native&quot;
 import { createStackNavigator } from &quot;@react-navigation/stack&quot;
-import Typography from &quot;@shared//design/Typography&quot;
 import Box from &quot;@shared/design/Box&quot;
 import ThemeProvider, { useTheme } from &quot;@shared/design/theme/ThemeProvider&quot;
+import Typography from &quot;@shared/design/Typography&quot;
 import AuthProvider from &quot;@shared/services/auth/AuthProvider&quot;
 import DataMigration from &quot;@shared/services/DataMigration&quot;
 import { Pressable } from &quot;react-native&quot;
@@ -1075,7 +1075,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="4,6-7,146,only"></div>
+ <div line-highlight="5,7,146,only"></div>
 <p>✏️ Update <strong>src/env.d.ts</strong> to be:</p>
 <pre><code class="language-ts">/* eslint-disable @typescript-eslint/no-namespace */
 
@@ -1639,7 +1639,7 @@ const App: React.FC = () =&gt; {
 export default App
 
 </code></pre>
- <div line-highlight="6,150-156,only"></div>
+ <div line-highlight="150-156,only"></div>
 <p>✏️ Update <strong>src/screens/Settings/Settings.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { GoogleSigninButton } from &quot;@react-native-google-signin/google-signin&quot;
 import Loading from &quot;@shared/components/Loading&quot;
