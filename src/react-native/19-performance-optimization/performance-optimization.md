@@ -123,4 +123,4 @@ If you’ve implemented the solution correctly, you will see the new `BUNDLE` li
 
 ## Next steps
 
-Now we’ve got a complete and performant application. Let’s finish out our work by learning about [Building React Native Apps](./building).
+Now we’ve got a complete and performant application. Let’s finish out our work by learning about [Building React Native Apps](./building.html).
