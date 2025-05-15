@@ -112,7 +112,7 @@ In essence, the manifest file acts as a roadmap for the Android OS to understand
 ✏️ Install the new dependency:
 
 ```bash
-npm install react-native-maps@1
+npm install react-native-maps@1.15.1
 ```
 
 ✏️ Update **.gitignore** to be:
