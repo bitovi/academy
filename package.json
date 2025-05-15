@@ -60,7 +60,7 @@
     ]
   },
   "devDependencies": {
-    "axios": "^1.6.0",
+    "axios": "^1.8.2",
     "bit-docs": "0.2.0",
     "bottleneck": "^2.17.1",
     "cheerio": "^1.0.0-rc.3",
