@@ -136,7 +136,7 @@ npm run start
 Use these API docs for reference:
 
 - [`screenOptions`](https://reactnavigation.org/docs/screen-options/)
-- [`navigation`](https://reactnavigation.org/docs/navigation-prop/)
+- [`navigation`](https://reactnavigation.org/docs/navigation-container/#props)
 - [`react-native-vector-icons`](https://oblador.github.io/react-native-vector-icons/#Ionicons)
 
 ### Solution 1

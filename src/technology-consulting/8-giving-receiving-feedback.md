@@ -26,7 +26,7 @@ Before offering feedback, it’s essential to prepare thoughtfully. This means u
 
 When the time comes to actually deliver feedback, clear communication and empathy are key.
 
-- **SBI model:** The **Situation-Behavior-Impact (SBI)** model is a helpful way to frame feedback. Start by describing the **situation** where the behavior occurred, specify the **behavior** you observed, and explain the **impact** it had. For example: “In yesterday’s client meeting (situation), you interrupted John several times while he was speaking (behavior). This made it harder for him to express his points and may have come across as dismissive (impact).”
+- **Use the SBI model:** The **Situation-Behavior-Impact (SBI)** model is a helpful way to frame feedback. Start by describing the **situation** where the behavior occurred, specify the **behavior** you observed, and explain the **impact** it had. For example: “In yesterday’s client meeting (situation), you interrupted John several times while he was speaking (behavior). This made it harder for him to express his points and may have come across as dismissive (impact).”
 - **Make sure feedback is timely and relevant to the context:** Feedback is most effective when it’s given promptly after the observed behavior. This makes it easier for the recipient to connect the feedback with the specific actions or events in question. Additionally, keep feedback relevant to the current context and priorities of the team or project. This helps in addressing issues before they escalate and keeps the feedback aligned with ongoing goals.
 - **Offer specific, actionable, and objective feedback:** Avoid vague comments like “You need to be better at communication.” Instead, be specific and actionable: “When speaking with clients, try summarizing their points to show you understand before providing your input.”
 - **Be mindful of tone:** Tone plays a huge role in how feedback is received. Aim for a neutral and caring tone. Even well-phrased feedback can be taken poorly if the tone sounds accusatory or dismissive.
@@ -59,7 +59,7 @@ Proactively seeking feedback shows a commitment to self-improvement and openness
 
 - **Seek out feedback proactively:** Don’t wait for formal reviews to ask for feedback. Ask colleagues, clients, or supervisors regularly how you’re doing, and if there’s anything you can do differently or better. You might say, “I’d really appreciate your thoughts on how I handled that client meeting. Was there anything I could improve?”
 - **Frame your request positively:** Make it clear that you’re open to all types of feedback. A good way to do this is by saying, “I’m looking for ways to improve, and I would really value your honest input.” This sets the expectation that you’re genuinely interested in growing and encourages others to be candid.
-- **Be specific in your request:** Instead of asking for general feedback, be clear about what you want input on. For example, you could say, “Can you give me some feedback on how I handled the project kickoff meeting?” This helps the person giving feedback focus their response and makes it more useful for you.
+- **Be specific in your feedback request:** Instead of asking for general feedback, be clear about what you want input on and use open-ended “how” and “what” questions. For example, you could say, “What ways would you have approached that meeting differently to make it a better use of everyone’s time?” This helps the person giving feedback focus their response and makes it more useful for you.
 - **Ask different people for feedback:** Diversify the perspectives you get by asking for feedback from people with different working relationships with you. A colleague may offer insights into your teamwork skills, while a manager can provide feedback on strategic decision-making. Each perspective can help you understand your performance more fully.
 
 Questions to reflect:
@@ -75,7 +75,7 @@ Receiving feedback effectively requires an open mind and a willingness to grow. 
 - **It’s natural to feel defensive or emotional, so breathe and remember it’s not about you personally, it’s about growing professionally:** Feedback can stir up emotions, especially if it feels critical. Remind yourself that feedback is about the work, not you as a person. Taking a breath and focusing on the message rather than the delivery can help manage these feelings.
 
 - **Pause before responding:** It’s okay to take a moment before responding to feedback. Pausing helps you avoid reacting defensively and gives you time to consider what’s being said.
-- **Seek examples to understand feedback better:** If the feedback is unclear or too general, ask for specific examples. This helps you understand what actions or behaviors to adjust.
+- **Seek examples to understand feedback better:** If you receive feedback that is unclear or too general, ask for specific examples. This helps you understand what actions or behaviors to adjust.
 - **Express appreciation for feedback:** Regardless of how the feedback makes you feel, thank the person for their time and effort. A simple “Thanks for taking the time to share this with me” can help foster a positive environment for open communication.
 
 Questions to reflect:
@@ -92,7 +92,7 @@ Questions to reflect:
 The work doesn’t stop after you’ve received feedback — what you do with it is what makes a difference.
 
 - **Seek additional perspectives:** Sometimes it’s helpful to get a second opinion, especially if feedback seems unexpected or unclear. Ask a trusted colleague for their perspective to get a fuller picture.
-- **Turn feedback into actionable steps:** Break down the feedback into specific actions. For example, if you were told to improve communication in meetings, an action step might be “Summarize key points at the end of each meeting to ensure clarity.”
+- **Turn feedback into actionable steps:** Break down the feedback into specific actions. For example, if you were told to proactively communicate with your team members, an action step might be “Share my progress with the team daily.”
 - **Create a system for measuring progress:** Set up a way to track your progress. This could be as simple as writing down your goals and checking in weekly or asking for feedback from a trusted colleague to see if they’ve noticed improvements.
 
 ## Self-assessment and reflection

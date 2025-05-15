@@ -95,18 +95,6 @@ The [communication planning](#communication-planning) section covers strategies 
 
 - Define the purpose of your communication and state expectations explicitly.
 
-When reading about [business writing](#business-writing), you’ll learn how to create clear, concise, and actionable communication.
-
-- Specify clear actions and deadlines in your writing.
-- Avoid assumptions — write for clarity without losing context.
-- Remove emotionally charged language from professional communication.
-
-The [effectively using tools](#communication-tools) section discusses using tools like Grammarly and LLMs to support communication, while emphasizing transparency.
-
-- Use Grammarly for proofreading but review AI suggestions for accuracy.
-- Leverage LLMs for brainstorming and gathering feedback.
-- Be transparent about AI usage in your process.
-
 The [learn-technology-consulting/communication-methods] page outlines best practices for effectively communicating over [learn-technology-consulting/communication-methods#chat chat].
 
 - Use shared channels to post updates and follow up on threads.
@@ -130,6 +118,18 @@ The section on [learn-technology-consulting/communication-methods#choosing-the-b
 - Use meetings for complex or sensitive discussions.
 - Move long-term reference material to wikis.
 - Choose high-bandwidth methods, like meetings, for nuanced topics.
+
+The [effectively using tools](#communication-tools) section discusses using tools like Grammarly and LLMs to support communication, while emphasizing transparency.
+
+- Use Grammarly for proofreading but review AI suggestions for accuracy.
+- Leverage LLMs for brainstorming and gathering feedback.
+- Be transparent about AI usage in your process.
+
+When reading about [business writing](#business-writing), you’ll learn how to create clear, concise, and actionable communication.
+
+- Specify clear actions and deadlines in your writing.
+- Avoid assumptions — write for clarity without losing context.
+- Remove emotionally charged language from professional communication.
 
 Finally, the [learn-technology-consulting/giving-receiving-feedback] page outlines methods for delivering and receiving feedback effectively.
 
@@ -1142,6 +1142,22 @@ In the midst of a significant data center outage, you realize that the disaster 
 
 </details>
 
+#### Discovery
+
+<details>
+<summary>Discovery phase for conversion rate optimization</summary>
+
+In your role at Bitovi, you are leading the discovery phase for a new client seeking to improve their website’s conversion rate. The website struggles to turn visitors into leads, and your team has been tasked with delivering actionable, prioritized recommendations. However, the situation is complicated by conflicting perspectives among internal stakeholders:
+
+- Analytics reveal high bounce rates on key pages, including the blog, resources, and product landing pages.
+- User surveys indicate visitors struggle to locate relevant content quickly, leading to frustration and early exits.
+- The marketing team advocates for adding more direct, prominently placed calls to action across the site to drive conversions.
+- The design team recommends a full website redesign to tackle underlying usability issues, but has flagged concerns about budget constraints.
+- Leadership has delegated the task of reconciling these differing opinions to the client’s product owner, who lacks a clear framework for prioritization.
+- Some client stakeholders believe focusing solely on the homepage will yield the fastest improvements, while others push for a broader approach.
+
+</details>
+
 #### Frontend
 
 <details>
@@ -1183,6 +1199,28 @@ You’re working on a new feature for a mobile application, but the product requ
 
 </details>
 
+#### Leadership
+
+A new design system is being developed for internal use and for client projects. This system will be the go-to toolkit for internal projects and new clients. It promises consistent experiences and a recognizable brand presence that is customizable to fit every client’s needs.
+
+Challenges arise:
+
+- The Digital Product team is eager to highlight the design system on the company blog but needs a cohesive narrative and polished visuals.
+- A handful of developers responsible for integrating the system into ongoing client work are uncertain about its long-term benefits. They have questions about documentation and asset organization.
+- A group of existing clients, aware that a new system is in the works, are interested in how they could start using the new system for their upcoming projects, but aren’t sure how it works.
+- Company leadership hopes the system will raise the company’s profile, but they lack a clear sense of how it will drive revenue in the long run.
+
+---
+
+A new design system is in development for internal and external use. This system aims to . 
+
+Several challenges have come to a head in the last week:
+
+- The blog team wants to promote the system on the company blog and LinkedIn. They need a clear, compelling narrative and polished visuals to help both internal staff and external audiences understand what the system is and why it matters.
+- Developers integrating the system into current client work are skeptical about its usefulness. They need answers about documentation, asset organization, and how adopting the system will affect their day-to-day tasks.
+- A couple of existing clients have shown interest, but are unsure how using the system will impact their existing contracts, timelines, and established processes. They need a clear explanation of the path to adoption, the benefits they’ll gain, and how any transition will be managed.
+- Leadership is watching but does not see how the design system will directly support revenue goals. They want clarity on how this initiative leads to stronger sales, better retention, or new market opportunities.
+
 #### Product Design
 
 <details>
@@ -1223,6 +1261,62 @@ As a Product Designer, you’ve finished the designs for a new e-commerce featur
 - You’re trying to balance assisting the development team while also working on new designs for other features.
 
 </details>
+
+#### Sales
+
+##### Reviving a stalled lead
+
+You’ve been nurturing a promising lead for months, but they’ve stopped responding to emails. You suspect they’re still interested, but internal challenges and other distractions may be stalling their decision-making process:
+
+- Your point of contact, who was previously enthusiastic, has grown unresponsive. In their last interaction, they mentioned upcoming organizational changes, which may have affected priorities.
+- The company has recently had layoffs and budget cuts.
+- At the same time, a new director has joined their team, but you haven’t yet established a relationship with them.
+- Internally, the capability department Directors are pushing to close this deal, because it would be a big deal if we won it.
+- The client’s industry is experiencing rapid change, and you know Bitovi could address the emerging challenges, but you’re not sure if they see the urgency.
+
+Your task: Identify key audiences and strategies to re-engage this lead, address their concerns, and push the deal forward while maintaining professionalism and trust.
+
+---
+
+##### Overcoming Objections Late in the Sales Cycle
+
+You’re in the final stages of closing a deal with a prospective client, but during contract negotiations, unexpected objections arise that threaten to derail the agreement:
+
+- The procurement team, which previously approved preliminary budgets, is now flagging your pricing as too high compared to internal estimates.
+- The prospect’s legal team has raised concerns about liability clauses in the contract, requesting modifications that your internal leadership is hesitant to approve.
+- Your internal advocate at the prospect company, who has been pushing for the deal, is starting to feel sidelined by their leadership during final decision-making.
+- A competitor, thought to have been ruled out earlier, has resurfaced with a discounted offer that is creating additional pressure.
+- Your internal delivery team has allocated resources for this project, but a prolonged delay in closing may force you to reassign them.
+
+Your task: Develop a communication plan to address the objections, reaffirm your value, and guide the client toward closing the deal. Consider how to align your messaging for different audiences involved in this process.
+
+---
+
+##### Turning a Small Win into a Bigger Opportunity
+
+You’ve recently completed a small project for a client, delivering excellent results. While the client is pleased, they haven’t expressed interest in additional collaboration. You see potential for more work, but expanding the relationship requires careful communication:
+
+- The client’s team has praised your work but hasn’t provided clarity on their upcoming priorities or budget availability.
+- The client’s company is undergoing a leadership change, which could bring new opportunities or shifts in focus.
+- A competitor has begun pitching a larger, multi-phase engagement to the same client, branding themselves as a more comprehensive partner.
+- The small project revealed operational challenges in the client’s workflow that your team is uniquely positioned to solve.
+- Internally, your sales leadership is eager to explore additional opportunities, but there’s concern about coming across as pushy or overreaching.
+
+Your task: Identify the key audiences and craft a communication plan to build on the initial success, uncover the client’s future needs, and position Bitovi as their trusted partner for upcoming challenges.
+
+#### TPO
+
+##### Conflicting feature prioritization
+
+As a Technical Product Owner (TPO), you’re managing a product with a fast-approaching release date, but conflicting priorities among stakeholders are causing delays in decision-making.
+
+At the same time:
+
+- A flashy new feature is being requested that could attract users, but it adds significant complexity.
+- Technical concerns have been raised about the growing amount of unresolved technical debt.
+- Work on ongoing features has stalled due to unclear direction, leaving team members uncertain about their next steps.
+- There is pressure to meet the release timeline without sacrificing quality or user satisfaction.
+- Concerns about the feasibility of testing all new features thoroughly within the timeline are emerging.
 
 ## Business writing
 
@@ -1633,6 +1727,10 @@ Inclusivity is a core Bitovi value. Part of that is recognizing how people want 
 - **Eliminate ableist language:** Refrain from using words like “blind,” [“crazy,”](https://personifycorp.com/blog/10-words-you-should-stop-using-in-the-events-industryand-everywhere/) “crippling,” “crutch,” “lame,” or “deaf” metaphorically. Instead, choose specific, non-derogatory language. For example, say “I didn’t notice that issue” instead of “I’m blind to that issue.”
 - **Avoid problematic colloquialisms:** Steer clear of expressions with unintended negative connotations or cultural insensitivity, such as [“long time no see.”](https://personifycorp.com/blog/words-to-stop-using/) Use clear and neutral phrases like “it’s been a while” or “general guideline.”
 - **Be mindful of cultural differences:** Recognize that communication styles and meanings can vary across cultures. By being open to learning about and respecting different cultural norms, you can communicate more effectively in diverse teams.
+
+As a Bitovian, it is essential to use language that is as inclusive as possible, regardless of personal opinions about specific terms. Clients or colleagues may not always voice discomfort with phrases like “blacklist” or “whitelist,” but part of our responsibility is to proactively foster strong relationships through thoughtful, respectful communication. This is a key element of our role in working with customers, as establishing trust and rapport is foundational to our success.
+
+While you might not agree with every aspect of these guidelines, it’s important to put personal feelings aside and focus on what we are trying to accomplish as representatives of Bitovi. These standards are in place not to debate the validity of certain concerns but to reduce risks, align with client expectations, and ensure that we maintain a professional and inclusive presence. Following these guidelines reflects the professionalism and care that Bitovi values.
 
 Clear and inclusive communication ensures everyone can fully understand and engage in conversations.
 

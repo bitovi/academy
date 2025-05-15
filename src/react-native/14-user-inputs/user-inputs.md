@@ -317,4 +317,4 @@ If you’ve implemented the solution correctly, the tests will pass when you run
 
 ## Next steps
 
-Next, in order to retain data to limit requests and migrating the same data, let’s look into [Using AsyncStorage](./using-asyncstorage).
+Next, in order to retain data to limit requests and migrating the same data, let’s look into [Using AsyncStorage](./using-asyncstorage.html).
