@@ -292,4 +292,4 @@ Then, you can tap on the pop-up view to navigate to the restaurant details view.
 
 ## Next steps
 
-We’ve accomplished a lot for our React Native App, in order to polish it just a bit more let’s get into some [Performance and Optimization](./performance-optimization) practices.
+We’ve accomplished a lot for our React Native App, in order to polish it just a bit more let’s get into some [Performance and Optimization](./performance-optimization.html) practices.

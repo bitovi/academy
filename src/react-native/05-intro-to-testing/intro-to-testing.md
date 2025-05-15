@@ -22,7 +22,7 @@ Testing helps by verifying that given certain inputs our code generates expected
 
 ### Introducing React Native Testing Library
 
-[React Native Testing Library (RNTL)](https://callstack.github.io/react-native-testing-library/docs/getting-started) is a set of tools that helps us write robust tests for our React Native applications.
+[React Native Testing Library (RNTL)](https://callstack.github.io/react-native-testing-library) is a set of tools that helps us write robust tests for our React Native applications.
 Unlike some other testing libraries that focus on the internal state and implementation details of components, RNTL emphasizes testing the user interface (UI) behavior as experienced by the end users.
 
 In order to test components, it provides light utility functions using React Test Renderer. Most testing libraries use the DOM, but since React Native doesn’t use the DOM, the React Test Renderer is necessary.
