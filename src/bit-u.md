@@ -11,7 +11,7 @@ and management skills in these free courses!
 <style>
 .main-content {
   width: 100%;
-  padding-right: 0;
+  padding: 0;
 }
 .width100 {
   width: 100%;
