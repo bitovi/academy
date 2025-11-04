@@ -257,3 +257,5 @@ Internal links can also be created with the following format:
 ```
 
 - anchor links will also work
+
+---
