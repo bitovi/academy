@@ -12,7 +12,7 @@ and management skills in these free courses!
 /* Base Layout */
 .main-content {
   width: 100%;
-  padding-right: 0;
+  padding: 0;
 }
 .content {
   margin: 0;
@@ -26,13 +26,11 @@ and management skills in these free courses!
 }
 /* Hero Banner */
 .hero-banner {
-  margin-left: -30px;
-  margin-right: -30px;
   background: url('./static/img/academy-banner.png') no-repeat top center;
   background-size: cover;
   background-color: #428ac9;
   text-align: center;
-  padding: 60px;
+  padding: 60px 30px;
 }
 .hero-banner h1 {
   color: #fff;
@@ -61,7 +59,7 @@ and management skills in these free courses!
   flex-direction: column;
   background-color: white;
 }
-.academy-section--grey {
+.bg-grey {
   background-color: #f5f6f6;
 }
 .academy-section h3 {
@@ -75,30 +73,26 @@ and management skills in these free courses!
   justify-content: space-between;
   padding: 30px 60px;
 }
-/* Course Grid Layout */
+/* Course Flex Layout */
 .academy-section .courses {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   max-width: 100%;
-  gap: 60px;
+  gap: 30px;
   margin-bottom: 60px;
   width: 100%;
 }
 .academy-section .courses:last-of-type {
   margin-bottom: 0;
 }
-@media (min-width: 768px) {
-  .academy-section .courses {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-.academy-section .courses .card--course {
+.academy-section .courses .card-course {
   background-color: white;
   border: 1px solid #e7e8e6;
   padding: 30px;
-  flex: 1;
+  flex: 1 1 calc(33.333% - 20px);
   text-align: left;
-  min-width: 0;
+  /* min-width: 300px; */
+  /* max-width: calc(33.333% - 20px); */
   display: flex;
   justify-content: space-between;
 }
@@ -125,55 +119,54 @@ and management skills in these free courses!
   margin-top: 30px;
 }
 /* CTA Cards - Call to Action cards for main value props */
-.card--cta {
+.card-cta {
   /* Inherits base card styles */
 }
 /* Course Cards - Educational course listings */
-.card--course {
-  /* Inherits base card styles */
+.card-course {
+  h4 {
+    text-align: center;
+  }
+  a {
+    text-decoration: none;
+    color: #333;
+  }
 }
-.card--course h4 {
-  text-align: center;
-}
-.card--course a {
-  text-decoration: none;
-  color: #333;
-}
-.card--course .detail {
+.card-course .detail {
   padding: 0;
   margin: 0;
 }
 /* Testimonial Cards - Customer quotes and feedback */
-.card--testimonial {
+.card-testimonial {
   text-align: left;
   align-items: flex-end;
 }
-.card--testimonial--red {
+.card-red {
   background-color: #ca313c;
   border-color: #ca313c;
   color: white;
 }
-.card--testimonial--blue {
+.card-blue {
   background-color: #4270b7;
   border-color: #4270b7;
   color: white;
 }
-.card--testimonial--orange {
+.card-orange {
   background-color: #e47c3c;
   border-color: #e47c3c;
   color: white;
 }
 /* Card Containers */
 .cards-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
   align-items: stretch;
 }
-@media (min-width: 768px) {
-  .cards-container {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.cards-container .card {
+  flex: 1 1 calc(33.333% - 20px);
+  /* min-width: 250px; */
+  /* max-width: calc(33.333% - 20px); */
 }
 .cards-container .card h4,
 .cards-container .card p {
@@ -233,6 +226,9 @@ and management skills in these free courses!
 }
 .discord-button {
   margin-top: 15px;
+  img {
+    margin: 6px !important;
+  }
 }
 /* Links */
 a.link {
@@ -251,6 +247,10 @@ p.quote-author {
   opacity: 0.6;
   font-size: 14px;
 }
+/* remove empty space at bottom from missing course pagination */
+bit-prev-next {
+  display: none !important;
+}
 </style>
 <div class="container">
   <div class="hero-banner">
@@ -266,26 +266,26 @@ p.quote-author {
     <a href="./learn-typescript.html"><img alt="TypeScript" class="academy-course-logo" src="./static/img/ts-logo.png"/></a>
   </div>
   <!-- CTA Cards Section -->
-  <div class="academy-section page-details-section academy-section--grey">
+  <div class="academy-section page-details-section bg-grey">
     <div class="cards-container">
-      <div class="card card--cta">
-        <div class="card--top">
+      <div class="card card-cta">
+        <div class="card-top">
           <img alt="" class="card-image" src="./static/img/academy-4.png" width="75">
           <h4>Learn by doing</h4>
           <p><a class="link" href="https://www.gse.harvard.edu/news/14/11/benefit-interactive-learning">Hands-on exercises</a> to teach you Angular, JavaScript, the DOM, TypeScript, RxJS, Angular and more.</p>
         </div>
         <a class="button full-width" href="#courses-section">Take a course</a>
       </div>
-      <div class="card card--cta">
-        <div class="card--top">
+      <div class="card card-cta">
+        <div class="card-top">
           <img alt="" class="card-image" src="./static/img/academy-2.png" width="75">
           <h4>Get help when you need it</h4>
           <p>Our team of expert front-end developers is only a Discord message away.</p>
         </div>
-       <a class="button discord-button full-width" href="https://discord.gg/J7ejFsZnJ4"><img alt="" src="./static/img/discord-logo.svg" height="20">Join our Community Discord</a>
+       <a class="button discord-button full-width" href="https://discord.gg/J7ejFsZnJ4"><img alt="" src="./static/img/discord-logo.svg" height="20" width="20">Join our Community Discord</a>
       </div>
-      <div class="card card--cta">
-        <div class="card--top">
+      <div class="card card-cta">
+        <div class="card-top">
           <img alt="" class="card-image" src="./static/img/academy-3.png" width="75">
           <h4>Leverage battle-tested trainings</h4>
           <p>The same trainings materials have been sharpened over the past decade and delivered to enterprise front-end teams at Sony, Lowes, Walmart, and more. Free and <a class="link" href="https://github.com/bitovi/academy">open source</a>.</p>
@@ -298,15 +298,15 @@ p.quote-author {
   <div class="academy-section">
     <h3>What people are saying about us</h3>
     <div class="cards-container">
-      <div class="card card--testimonial card--testimonial--red">
+      <div class="card card-testimonial card-red">
           <p><a class="quote-link" href="https://www.meetup.com/DoneJS-Chicago/events/260347973/#commentsTitle">"Really enjoyed this class! The instructor, Justin, was phenomenal, and the content was both challenging and engaging. Even though framework usage is ubiquitous these days, it's rewarding to understand exactly how libraries interact with the DOM on a granular level. I am looking forward to more Bitovi events in the future."</a></p>
           <p class="quote-author">- Patrick Gallagher</p>
       </div>
-      <div class="card card--testimonial card--testimonial--blue">
+      <div class="card card-testimonial card-blue">
         <p><a class="quote-link" href="https://www.meetup.com/DoneJS-Chicago/events/260347973/#commentsTitle">"Bitovi, thanks for sharing this elite training with me. Thank you for your warmth and company, Maryann, Mike, Michael, Cherif, and Oscar, and thank you Justin for making this (another) memorable time. We went so far beyond "training" it was (as Michael would say) "sick." My best wishes of success to all."</a></p>
         <p class="quote-author">- Carson Wilson</p>
       </div>
-      <div class="card card--testimonial card--testimonial--orange">
+      <div class="card card-testimonial card-orange">
         <p><a class="quote-link" href="https://www.meetup.com/DoneJS-Chicago/events/260347973/#commentsTitle">"Highly recommended! Very solid training materials which dig deep into the fundamentals of JavaScript. Justin is great at explaining complex concepts clearly and simply. I have learned a lot. Looking forward to more events!"</a></p>
         <p class="quote-author">- Shaung</p>
       </div>
@@ -315,7 +315,7 @@ p.quote-author {
   <!-- end testimonial-cards -->
   <!-- start "course" cards -->
   <a name="courses-section" class="courses-section"></a>
-  <div class="academy-section academy-section--grey">
+  <div class="academy-section bg-grey">
     <h3>Courses</h3>
     <script>
     // Academy courses data array
@@ -468,7 +468,7 @@ p.quote-author {
     function createAcademyCard(course) {
       const logoSize = course.logoWidth ? `width="${course.logoWidth}"` : `height="${course.logoHeight}"`;
       return `
-        <div class="card card--course">
+        <div class="card card-course">
           <div class="course-logo">
             <img alt="${course.logoAlt}" src="${course.logo}" ${logoSize}>
           </div>
@@ -489,35 +489,19 @@ p.quote-author {
         // Add all academy courses
         for (let i = 0; i < academyCourses.length; i++) {
           coursesHTML += createAcademyCard(academyCourses[i]);
-        }
-        coursesHTML += '</div>';
+        };
         return coursesHTML;
       }
     // Insert the generated HTML
     document.write(generateCoursesHTML());
     </script>
-    <!-- end course cards -->
-    <!-- Additional CTA Cards Section -->
-    <div class="academy-section">
-      <div class="cards-container">
-        <div class="card card--cta">
-          <div class="course-logo">
-            <img alt="" src="./static/img/javascript.png" width="60">
-          </div>
-          <h4>Your Course Here</h4>
-          <p>Got an idea for a course? Let us know by submitting an issue.</p>
-          <a class="button full-width" style="color: white" href="https://github.com/bitovi/academy/issues/new">Submit your idea</a>
-        </div>
-        <div class="card card--cta">
-          <div class="course-logo">
-            <img alt="" src="./static/img/discord.png" width="90">
-          </div>
-          <h4>Need Help?</h4>
-          <p>Reach out to our team via Discord. We can help answer any questions you have about our courses.</p>
-          <a class="button full-width" style="color: white" href="https://discord.gg/J7ejFsZnJ4">Chat with us on Discord</a>
-        </div>
-      </div>
+  <div class="card card-course">
+    <div class="course-logo">
+      <img alt="" src="./static/img/javascript.png" width="60">
     </div>
+    <h4>Your Course Here</h4>
+    <p>Got an idea for a course? Let us know by submitting an issue.</p>
+    <a class="button full-width" style="color: white" href="https://github.com/bitovi/academy/issues/new">Submit your idea</a>
   </div>
 </div>
   <!-- todo: include new section in template if slug = -->
