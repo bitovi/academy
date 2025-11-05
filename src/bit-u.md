@@ -24,6 +24,9 @@ and management skills in these free courses!
 .full-width {
   width: 100%;
 }
+.bg-grey {
+  background-color: #f5f6f6;
+}
 /* Hero Banner */
 .hero-banner {
   background: url('./static/img/academy-banner.png') no-repeat top center;
@@ -57,10 +60,6 @@ and management skills in these free courses!
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: white;
-}
-.bg-grey {
-  background-color: #f5f6f6;
 }
 .academy-section h3 {
   font-size: 31px;
@@ -73,7 +72,7 @@ and management skills in these free courses!
   justify-content: space-between;
   padding: 30px 60px;
 }
-/* Course Flex Layout */
+/* Course Cards Layout */
 .academy-section .courses {
   display: flex;
   flex-wrap: wrap;
@@ -86,13 +85,10 @@ and management skills in these free courses!
   margin-bottom: 0;
 }
 .academy-section .courses .card-course {
-  background-color: white;
   border: 1px solid #e7e8e6;
   padding: 30px;
   flex: 1 1 calc(33.333% - 20px);
   text-align: left;
-  /* min-width: 300px; */
-  /* max-width: calc(33.333% - 20px); */
   display: flex;
   justify-content: space-between;
 }
@@ -118,11 +114,11 @@ and management skills in these free courses!
 .card .button {
   margin-top: 30px;
 }
-/* CTA Cards - Call to Action cards for main value props */
+/* CTA Cards */
 .card-cta {
   /* Inherits base card styles */
 }
-/* Course Cards - Educational course listings */
+/* Course Cards */
 .card-course {
   h4 {
     text-align: center;
@@ -136,7 +132,7 @@ and management skills in these free courses!
   padding: 0;
   margin: 0;
 }
-/* Testimonial Cards - Customer quotes and feedback */
+/* Testimonial Cards */
 .card-testimonial {
   text-align: left;
   align-items: flex-end;
@@ -165,8 +161,6 @@ and management skills in these free courses!
 }
 .cards-container .card {
   flex: 1 1 calc(33.333% - 20px);
-  /* min-width: 250px; */
-  /* max-width: calc(33.333% - 20px); */
 }
 .cards-container .card h4,
 .cards-container .card p {
@@ -247,7 +241,7 @@ p.quote-author {
   opacity: 0.6;
   font-size: 14px;
 }
-/* remove empty space at bottom from missing course pagination */
+/* Remove empty space at bottom from missing course pagination */
 bit-prev-next {
   display: none !important;
 }
@@ -290,6 +284,7 @@ bit-prev-next {
           <h4>Leverage battle-tested trainings</h4>
           <p>The same trainings materials have been sharpened over the past decade and delivered to enterprise front-end teams at Sony, Lowes, Walmart, and more. Free and <a class="link" href="https://github.com/bitovi/academy">open source</a>.</p>
         </div>
+        <!-- TODO: DMRKT-1594 (or another) will add the new section for this link -->
         <a class="button full-width" href="#live-events-section">See our live events</a>
       </div>
     </div>
