@@ -270,7 +270,7 @@ bit-prev-next {
     <div class="cards-container">
       <div class="card card-cta">
         <div class="card-top">
-          <img alt="" class="card-image" src="./static/img/academy-4.png" width="75">
+          <img alt="Person working at computer" class="card-image" src="./static/img/academy-4.png" width="75">
           <h4>Learn by doing</h4>
           <p><a class="link" href="https://www.gse.harvard.edu/news/14/11/benefit-interactive-learning">Hands-on exercises</a> to teach you Angular, JavaScript, the DOM, TypeScript, RxJS, Angular and more.</p>
         </div>
@@ -278,15 +278,15 @@ bit-prev-next {
       </div>
       <div class="card card-cta">
         <div class="card-top">
-          <img alt="" class="card-image" src="./static/img/academy-2.png" width="75">
+          <img alt="Person asking question" class="card-image" src="./static/img/academy-2.png" width="75">
           <h4>Get help when you need it</h4>
           <p>Our team of expert front-end developers is only a Discord message away.</p>
         </div>
-       <a class="button discord-button full-width" href="https://discord.gg/J7ejFsZnJ4"><img alt="" src="./static/img/discord-logo.svg" height="20" width="20">Join our Community Discord</a>
+       <a class="button discord-button full-width" href="https://discord.gg/J7ejFsZnJ4"><img alt="Discord" src="./static/img/discord-logo.svg" height="20" width="20" alt="Discord logo">Join our Community Discord</a>
       </div>
       <div class="card card-cta">
         <div class="card-top">
-          <img alt="" class="card-image" src="./static/img/academy-3.png" width="75">
+          <img alt="Person teaching a group" class="card-image" src="./static/img/academy-3.png" width="75">
           <h4>Leverage battle-tested trainings</h4>
           <p>The same trainings materials have been sharpened over the past decade and delivered to enterprise front-end teams at Sony, Lowes, Walmart, and more. Free and <a class="link" href="https://github.com/bitovi/academy">open source</a>.</p>
         </div>
@@ -312,196 +312,197 @@ bit-prev-next {
       </div>
     </div>
   </div>
-  <!-- end testimonial-cards -->
-  <!-- start "course" cards -->
+  <!-- Courses Cards Section -->
   <a name="courses-section" class="courses-section"></a>
   <div class="academy-section bg-grey">
     <h3>Courses</h3>
-    <script>
-    // Academy courses data array
-    const academyCourses = [
-      {
-        logo: './static/img/react.png',
-        logoAlt: 'React',
-        logoWidth: '70',
-        title: 'React',
-        description: 'Build a multi-page, real-time ordering app in this beginner React guide.',
-        audience: 'Intermediate JS developers who are new to React.',
-        goal: 'Learn the basics of React.',
-        time: '10 hours',
-        link: './learn-react.html'
-      },
-      {
-        logo: './static/img/rxjs.png',
-        logoAlt: 'RxJS',
-        logoHeight: '68',
-        title: 'RxJS',
-        description: 'Build a validating credit card form with RxJS and a bit of Angular. Learn the hard but fundamental operators.',
-        audience: 'Intermediate JS developers',
-        goal: 'Build complex state mechanics with observables.',
-        time: '6 hours',
-        link: './learn-rxjs.html'
-      },
-      {
-        logo: './static/img/angular.png',
-        logoAlt: 'Angular',
-        logoHeight: '70',
-        title: 'Angular',
-        description: 'Build a multi-page, real-time ordering app with Angular. Learn FormBuilder and FormGroup. Write tests too!',
-        audience: 'Intermediate JS developers',
-        goal: 'Build data driven applications with Angular.',
-        time: '10 hours',
-        link: './learn-angular.html'
-      },
-      {
-        logo: './static/img/ngrx.png',
-        logoAlt: 'NgRx',
-        logoHeight: '70',
-        title: 'NgRx',
-        description: 'Build an NgRx feature store to manage login state through actions, reducers, effects, and selectors.',
-        audience: 'Intermediate JS developers',
-        goal: 'Learn about the architecture of an NgRx application',
-        time: '5 hours',
-        link: './learn-ngrx.html'
-      },
-      {
-        logo: './static/img/program-management-with-jira/jira-logo.png',
-        logoAlt: 'Jira',
-        logoHeight: '70',
-        title: 'Agile Program Management with Jira',
-        description: 'Learn how to build, maintain, and report on accurate multi-team plans with Jira.',
-        audience: 'Program Managers',
-        goal: 'Coordinate large projects with multiple teams.',
-        time: '12 hours',
-        link: './learn-agile-program-management-with-jira.html'
-      },
-      {
-        logo: './static/img/docker/logo.png',
-        logoAlt: 'Docker',
-        logoHeight: '70',
-        title: 'Docker',
-        description: 'Build and containerize a Node app then orchestrate a more complex example with docker-compose in this Docker guide.',
-        audience: 'Intermediate developers, new DevOps Engineers',
-        goal: 'Learn Docker fundamentals and container orchestration.',
-        time: '2 hours',
-        link: './learn-docker.html'
-      },
-      {
-        logo: './static/img/javascript.png',
-        logoAlt: 'JavaScript',
-        logoHeight: '70',
-        title: 'Debug JavaScript',
-        description: 'Learn breakpoints and how to debug the scope, stack, prototypes, and property changes.',
-        audience: 'Beginner JS developers',
-        goal: 'Debug most problems with chrome developer tools.',
-        time: '1 hour',
-        link: './learn-to-debug-javascript.html'
-      },
-      {
-        logo: './static/img/web-components.png',
-        logoAlt: 'Web Components',
-        logoHeight: '70',
-        title: 'Web Components',
-        description: 'Build a bus tracker component that can be used anywhere with web components. Learn the core APIs.',
-        audience: 'Intermediate JS developers',
-        goal: 'Understand the web component APIs at the lowest level.',
-        time: '8 hours',
-        link: './learn-web-components.html'
-      },
-      {
-        logo: './static/img/typescript.png',
-        logoAlt: 'TypeScript',
-        logoWidth: '140',
-        title: 'TypeScript',
-        description: 'Learn the essentials of TypeScript: types, functions, classes, interfaces and generics.',
-        audience: 'Beginner JS developer',
-        goal: 'Be ready to develop a TypeScript project.',
-        time: '3 hours',
-        link: './learn-typescript.html'
-      },
-      {
-        logo: './static/img/javascript.png',
-        logoAlt: 'JavaScript',
-        logoHeight: '70',
-        title: 'Advanced JavaScript',
-        description: 'Learn all the hard but important stuff you should know when programming JavaScript.',
-        audience: 'Intermediate JS developers',
-        goal: 'Understand what\'s going on "under the hood".',
-        time: '6 hours',
-        link: './learn-advanced-javascript.html'
-      },
-      {
-        logo: './static/img/jquery.png',
-        logoAlt: 'jQuery',
-        logoWidth: '150',
-        title: 'DOM and jQuery',
-        description: 'Build your own version of jQuery and use it to make a basic tabs widget. Enjoy the meta programming too!',
-        audience: 'Intermediate JS developers',
-        goal: 'Understand the DOM enough to build widgets frameworks can\'t.',
-        time: '10 hours',
-        link: './learn-dom-jquery.html'
-      },
-      {
-        logo: './static/img/bitovi-logo-x2.png',
-        logoAlt: 'Bitovi',
-        logoHeight: '70',
-        title: 'Technology Consulting',
-        description: 'Learn to perform aspects of technology consulting: product management, communication, setting goals, etc.',
-        audience: 'Technology consultants or clients',
-        goal: 'Learn the basics of technology consulting',
-        time: '6 hours',
-        link: './learn-technology-consulting.html'
-      },
-      {
-        logo: './static/img/react.png',
-        logoAlt: 'React Native',
-        logoWidth: '70',
-        title: 'React Native',
-        description: 'Build a feature-rich Place My Order application in this beginner React Native guide.',
-        audience: 'Intermediate JS developers who are new to React Native.',
-        goal: 'Learn the basics of React Native.',
-        time: '5 days',
-        link: './learn-react-native.html'
-      }
-    ];
-    // Function to create academy card HTML
-    function createAcademyCard(course) {
-      const logoSize = course.logoWidth ? `width="${course.logoWidth}"` : `height="${course.logoHeight}"`;
-      return `
-        <div class="card card-course">
-          <div class="course-logo">
-            <img alt="${course.logoAlt}" src="${course.logo}" ${logoSize}>
-          </div>
-          <h4>${course.title}</h4>
-          <p>${course.description}</p>
-          <div class="full-width">
-            <p class='detail'><strong>Audience:</strong> ${course.audience}</p>
-            <p class='detail'><strong>Goal:</strong> ${course.goal}</p>
-            <p class='detail'><strong>Time:</strong> ${course.time}</p>
-          </div>
-          <a href="${course.link}" class="button button-grey full-width">Take this course</a>
-        </div>
-      `;
-    }
-   // Generate courses HTML
-      function generateCoursesHTML() {
-        let coursesHTML = '<div class="courses">';
-        // Add all academy courses
-        for (let i = 0; i < academyCourses.length; i++) {
-          coursesHTML += createAcademyCard(academyCourses[i]);
-        };
-        return coursesHTML;
-      }
-    // Insert the generated HTML
-    document.write(generateCoursesHTML());
-    </script>
-  <div class="card card-course">
-    <div class="course-logo">
-      <img alt="" src="./static/img/javascript.png" width="60">
+    <div class="courses" id='dynamic-courses'>
+      <script>
+        const academyCourses = [
+          {
+            logo: './static/img/react.png',
+            logoAlt: 'React',
+            logoWidth: '70',
+            title: 'React',
+            description: 'Build a multi-page, real-time ordering app in this beginner React guide.',
+            audience: 'Intermediate JS developers who are new to React.',
+            goal: 'Learn the basics of React.',
+            time: '10 hours',
+            link: './learn-react.html'
+          },
+          {
+            logo: './static/img/rxjs.png',
+            logoAlt: 'RxJS',
+            logoHeight: '68',
+            title: 'RxJS',
+            description: 'Build a validating credit card form with RxJS and a bit of Angular. Learn the hard but fundamental operators.',
+            audience: 'Intermediate JS developers',
+            goal: 'Build complex state mechanics with observables.',
+            time: '6 hours',
+            link: './learn-rxjs.html'
+          },
+          {
+            logo: './static/img/angular.png',
+            logoAlt: 'Angular',
+            logoHeight: '70',
+            title: 'Angular',
+            description: 'Build a multi-page, real-time ordering app with Angular. Learn FormBuilder and FormGroup. Write tests too!',
+            audience: 'Intermediate JS developers',
+            goal: 'Build data driven applications with Angular.',
+            time: '10 hours',
+            link: './learn-angular.html'
+          },
+          {
+            logo: './static/img/ngrx.png',
+            logoAlt: 'NgRx',
+            logoHeight: '70',
+            title: 'NgRx',
+            description: 'Build an NgRx feature store to manage login state through actions, reducers, effects, and selectors.',
+            audience: 'Intermediate JS developers',
+            goal: 'Learn about the architecture of an NgRx application',
+            time: '5 hours',
+            link: './learn-ngrx.html'
+          },
+          {
+            logo: './static/img/program-management-with-jira/jira-logo.png',
+            logoAlt: 'Jira',
+            logoHeight: '70',
+            title: 'Agile Program Management with Jira',
+            description: 'Learn how to build, maintain, and report on accurate multi-team plans with Jira.',
+            audience: 'Program Managers',
+            goal: 'Coordinate large projects with multiple teams.',
+            time: '12 hours',
+            link: './learn-agile-program-management-with-jira.html'
+          },
+          {
+            logo: './static/img/docker/logo.png',
+            logoAlt: 'Docker',
+            logoHeight: '70',
+            title: 'Docker',
+            description: 'Build and containerize a Node app then orchestrate a more complex example with docker-compose in this Docker guide.',
+            audience: 'Intermediate developers, new DevOps Engineers',
+            goal: 'Learn Docker fundamentals and container orchestration.',
+            time: '2 hours',
+            link: './learn-docker.html'
+          },
+          {
+            logo: './static/img/javascript.png',
+            logoAlt: 'JavaScript',
+            logoHeight: '70',
+            title: 'Debug JavaScript',
+            description: 'Learn breakpoints and how to debug the scope, stack, prototypes, and property changes.',
+            audience: 'Beginner JS developers',
+            goal: 'Debug most problems with chrome developer tools.',
+            time: '1 hour',
+            link: './learn-to-debug-javascript.html'
+          },
+          {
+            logo: './static/img/web-components.png',
+            logoAlt: 'Web Components',
+            logoHeight: '70',
+            title: 'Web Components',
+            description: 'Build a bus tracker component that can be used anywhere with web components. Learn the core APIs.',
+            audience: 'Intermediate JS developers',
+            goal: 'Understand the web component APIs at the lowest level.',
+            time: '8 hours',
+            link: './learn-web-components.html'
+          },
+          {
+            logo: './static/img/typescript.png',
+            logoAlt: 'TypeScript',
+            logoWidth: '140',
+            title: 'TypeScript',
+            description: 'Learn the essentials of TypeScript: types, functions, classes, interfaces and generics.',
+            audience: 'Beginner JS developer',
+            goal: 'Be ready to develop a TypeScript project.',
+            time: '3 hours',
+            link: './learn-typescript.html'
+          },
+          {
+            logo: './static/img/javascript.png',
+            logoAlt: 'JavaScript',
+            logoHeight: '70',
+            title: 'Advanced JavaScript',
+            description: 'Learn all the hard but important stuff you should know when programming JavaScript.',
+            audience: 'Intermediate JS developers',
+            goal: 'Understand what\'s going on "under the hood".',
+            time: '6 hours',
+            link: './learn-advanced-javascript.html'
+          },
+          {
+            logo: './static/img/jquery.png',
+            logoAlt: 'jQuery',
+            logoWidth: '150',
+            title: 'DOM and jQuery',
+            description: 'Build your own version of jQuery and use it to make a basic tabs widget. Enjoy the meta programming too!',
+            audience: 'Intermediate JS developers',
+            goal: 'Understand the DOM enough to build widgets frameworks can\'t.',
+            time: '10 hours',
+            link: './learn-dom-jquery.html'
+          },
+          {
+            logo: './static/img/bitovi-logo-x2.png',
+            logoAlt: 'Bitovi',
+            logoHeight: '70',
+            title: 'Technology Consulting',
+            description: 'Learn to perform aspects of technology consulting: product management, communication, setting goals, etc.',
+            audience: 'Technology consultants or clients',
+            goal: 'Learn the basics of technology consulting',
+            time: '6 hours',
+            link: './learn-technology-consulting.html'
+          },
+          {
+            logo: './static/img/react.png',
+            logoAlt: 'React Native',
+            logoWidth: '70',
+            title: 'React Native',
+            description: 'Build a feature-rich Place My Order application in this beginner React Native guide.',
+            audience: 'Intermediate JS developers who are new to React Native.',
+            goal: 'Learn the basics of React Native.',
+            time: '5 days',
+            link: './learn-react-native.html'
+          }
+        ];
+        // Function to create academy card HTML
+        function createAcademyCard(course) {
+          const logoSize = course.logoWidth ? `width="${course.logoWidth}"` : `height="${course.logoHeight}"`;
+          return `
+            <div class="card card-course">
+              <div class="course-logo">
+                <img alt="${course.logoAlt}" src="${course.logo}" ${logoSize}>
+              </div>
+              <h4>${course.title}</h4>
+              <p>${course.description}</p>
+              <div class="full-width">
+                <p class='detail'><strong>Audience:</strong> ${course.audience}</p>
+                <p class='detail'><strong>Goal:</strong> ${course.goal}</p>
+                <p class='detail'><strong>Time:</strong> ${course.time}</p>
+              </div>
+              <a href="${course.link}" class="button button-grey full-width">Take this course</a>
+            </div>
+          `;
+        }
+        // Generate courses HTML
+        function generateCoursesHTML() {
+          let coursesHTML = '';
+          // Add all academy courses
+          for (courseIndex in academyCourses) {
+            coursesHTML += createAcademyCard(academyCourses[courseIndex])
+          };
+          coursesHTML += `
+            <div class="card card-course">
+              <div class="course-logo">
+                <img alt="Javascript" src="./static/img/javascript.png" width="60">
+              </div>
+              <h4>Your Course Here</h4>
+              <p>Got an idea for a course? Let us know by submitting an issue.</p>
+              <a class="button full-width" style="color: white" href="https://github.com/bitovi/academy/issues/new">Submit your idea</a>
+            </div>
+          `
+          return coursesHTML;
+        }
+        document.getElementById('dynamic-courses').innerHTML=(generateCoursesHTML())
+      </script>
     </div>
-    <h4>Your Course Here</h4>
-    <p>Got an idea for a course? Let us know by submitting an issue.</p>
-    <a class="button full-width" style="color: white" href="https://github.com/bitovi/academy/issues/new">Submit your idea</a>
   </div>
 </div>
-  <!-- todo: include new section in template if slug = -->
