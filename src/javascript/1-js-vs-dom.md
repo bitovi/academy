@@ -6,7 +6,7 @@ fits in.
 
 ## Video
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Kq2K-4ZiVRI" frameborder="0" allowfullscreen></iframe>
+<iframe class="responsive-iframe-16-9" src="https://www.youtube.com/embed/Kq2K-4ZiVRI" frameborder="0" allowfullscreen></iframe>
 
 ## Slides
 

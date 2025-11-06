@@ -15,7 +15,7 @@ In this part, we will:
 
 ## Video
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/qoW-EYuESZA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe class="responsive-iframe-16-9" src="https://www.youtube.com/embed/qoW-EYuESZA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Slides
 

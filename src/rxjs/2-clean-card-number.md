@@ -10,7 +10,7 @@ another observable value.
 
 Who has time to read? This video covers the content on this page. Watch fullscreen.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/lk77m-Dwjro" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe class="responsive-iframe-16-9" src="https://www.youtube.com/embed/lk77m-Dwjro" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## The problem
 
