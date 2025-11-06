@@ -11,7 +11,7 @@ and management skills in these free courses!
 <style>
 .main-content {
   width: 100%;
-  padding-right: 0;
+  padding: 0;
 }
 .width100 {
   width: 100%;
@@ -128,13 +128,11 @@ and management skills in these free courses!
   align-items: flex-end;
 }
 .hero-banner {
-  margin-left: -30px;
-  margin-right: -30px;
   background: url('./static/img/academy-banner.png') no-repeat top center;
   background-size: cover;
   background-color: #428ac9;
   text-align: center;
-  padding: 60px;
+  padding: 60px 30px;
 }
 .hero-banner h1 {
   color: #fff;
