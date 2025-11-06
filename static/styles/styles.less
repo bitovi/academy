@@ -725,4 +725,15 @@ tr:nth-child(even) {
     height: auto;
     aspect-ratio: 4 / 3;
   }
+  .responsive-iframe-tall {
+    width: 100%;
+    max-width: 700px;
+    height: 1900px;
+    @media (max-width: 768px) {
+      height: 1500px; /* Slightly shorter on mobile */
+    }
+    @media (max-width: 480px) {
+      height: 1200px; /* Even shorter on small mobile */
+    }
+  }
 } 

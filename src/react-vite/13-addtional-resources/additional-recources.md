@@ -23,4 +23,4 @@ Looking for more resources? Check out the official [React Documentation](https:/
 Thanks for taking this Bitovi training! We are constantly looking to improve this
 course. Please fill out the following survey and we will send you a t-shirt!
 
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeFgRHlnNpDkUWN3JJRVuqwdKpQaJu3_LZK20Ut-aPKCzh65Q/viewform?embedded=true" width="640" height="1900" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+<iframe class="responsive-iframe-tall" src="https://docs.google.com/forms/d/e/1FAIpQLSeFgRHlnNpDkUWN3JJRVuqwdKpQaJu3_LZK20Ut-aPKCzh65Q/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>

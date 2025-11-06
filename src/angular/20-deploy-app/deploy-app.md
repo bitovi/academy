@@ -98,4 +98,4 @@ Now when we view our project url from the page Firebase launches we’ll see our
 Thanks for taking this Bitovi training! We are constantly looking to improve this
 course. Please fill out the following survey and we will send you a t-shirt!
 
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScIukb7B5Q3d0I9xRge8_VDmQS9gNJqhJmjcJb_5aAKFMqFmA/viewform?embedded=true" width="640" height="1900" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+<iframe class="responsive-iframe-tall" src="https://docs.google.com/forms/d/e/1FAIpQLScIukb7B5Q3d0I9xRge8_VDmQS9gNJqhJmjcJb_5aAKFMqFmA/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
