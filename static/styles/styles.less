@@ -27,9 +27,6 @@ Mobile:
 │ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ │
 │ ┃ body ▶ margin: auto         ┣━━ Kill default margins.
 │ ┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃ │
-│ ┃ ┃ header                  ┃ ┃ │
-│ ┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃ │
-│ ┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃ │
 │ ┃ ┃ .content                ┃ ┃ │
 │ ┃ ┃ ┏━━━━━━━━━━━━━━━━━━━━━┓ ┃ ┃ │
 │ ┃ ┃ ┃ .sidebar            ┃ ┃ ┃ │
@@ -40,9 +37,6 @@ Mobile:
 │ ┃ ┃ ┏━━━━━━━━━━━━━━━━━━━━━┓ ┃ ┃ │
 │ ┃ ┃ ┃ .main               ┃ ┃ ┃ │
 │ ┃ ┃ ┗━━━━━━━━━━━━━━━━━━━━━┛ ┃ ┃ │
-│ ┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃ │
-│ ┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃ │
-│ ┃ ┃ footer                  ┃ ┃ │
 │ ┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃ │
 │ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ │
 └─────────────────────────────────┘
@@ -65,10 +59,6 @@ body {
 
 .container {
   #helper.padding(left right);
-}
-
-header, footer {
-  &:extend(.container);
 }
 
 .content {
@@ -215,29 +205,14 @@ h2 {
     .courses{
       flex-direction: column;
     }
-    .academy-cards-container{
-      flex-direction: column;
-    }
-    .academy-section .courses .course{
-      width: 100%;
-    }
-    .academy-card{
-      margin-right: 0;
-      margin-bottom: 30px;
-    }
-    .academy-section .courses .academy-card:last-of-type{
-      margin-bottom: 0;
-    }
-    .academy-section .academy-cards-container .academy-card:last-of-type{
-      margin-bottom: 0;
-    }
-    .academy-logos{
-      .academy-course-logo{
-        width: 30px;
-      }
-    }
   }
 }
+
+// .academy-section {
+//   padding: 
+//   // padding: 60px;
+// }
+
 
 :not(pre)>code {
   padding: 3px 5px;
