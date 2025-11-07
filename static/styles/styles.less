@@ -713,41 +713,38 @@ tr:nth-child(even) {
 }
 
 .main-content {
-  // For 16:9 aspect ratio iframes, ex::after
-  // - YouTube embeds
-  .responsive-iframe-16-9 {
+  // Responsive iframe classes by aspect ratio. 16/9 or 4/3 are the base ratios.
+  // Variations with "plus-nav" account for extra height of Google Slides bottom nav bar
+  .iframe-16-9 {
+    // ex: YouTube embeds
     width: 100%;
     max-width: 1200px;
     height: auto;
     aspect-ratio: 16 / 9;
   }
-  // For 16:9 aspect ratio Google Slides iframes that add a bottom nav bar, ex:
-  // - Google Slides embeds
-  .responsive-iframe-16-9-plus-nav {
+  .iframe-16-9-plus-nav {
+    // ex: Google Slides with bottom nav bar
     width: 100%;
     max-width: 1200px;
     height: auto;
     aspect-ratio: 1.624 / 1; // 16:9 plus nav bar height
   }
-  // For 4:3 aspect ratio iframes, ex: 
-  // - Google Drive 
-  .responsive-iframe-4-3 {
+  .iframe-4-3 {
+    // ex: Google Drive
     width: 100%;
     max-width: 1200px;
     height: auto;
     aspect-ratio: 4 / 3;
   }
-  // for 4:3 aspect ratio slides with an added bottom nav bar, ex:
-  // - Google Slides in 4:3 with nav bar
-  .responsive-iframe-4-3-plus-nav {
+  .iframe-4-3-plus-nav {
+    // ex: Google Slides with bottom nav bar
     width: 100%;
     max-width: 1200px;
     height: auto;
     aspect-ratio: 1.247 / 1; // 4:3 plus nav bar height
   }
-  // For extra tall iframes, ex:
-  // - Google Forms
-  .responsive-iframe-tall {
+  .iframe-tall {
+    // ex: Google Forms that want extra tall height
     width: 100%;
     max-width: 1200px;
     height: 1900px;

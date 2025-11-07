@@ -34,7 +34,7 @@ QUnit.equal(todos.allComplete, true, "allComplete");
 
 ## What you need to know
 
-<iframe class="responsive-iframe-16-9-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vQTyb-tSlYyyzo8LF0fGOkxgtLHWnDhdIIXUiSScpDxJllG8QDdqS29gKnVBDYdDNPsPX2kYDA8pXth/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe class="iframe-16-9-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vQTyb-tSlYyyzo8LF0fGOkxgtLHWnDhdIIXUiSScpDxJllG8QDdqS29gKnVBDYdDNPsPX2kYDA8pXth/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 - [DefineList Basics Presentation](https://docs.google.com/presentation/d/1l7QzPJRSvTJf014pSVlJCw_xyKTG7vitSB7OXtPZgfw/edit?usp=sharing)
 - [https://canjs.com/doc/can-define/list/list.extend.html DefineList.extend] defines a new `ListType`.

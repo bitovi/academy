@@ -5,7 +5,7 @@
 
 @body
 
-<iframe class="responsive-iframe-16-9" src="https://www.youtube.com/embed/sQ4TG6cfSfw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe class="iframe-16-9" src="https://www.youtube.com/embed/sQ4TG6cfSfw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## App Review
 In the last section, we created a `Dockerfile` for our Node.js app.

@@ -5,7 +5,7 @@
 
 @body
 
-<iframe class="responsive-iframe-16-9" src="https://www.youtube.com/embed/LiAkpRc6z0Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe class="iframe-16-9" src="https://www.youtube.com/embed/LiAkpRc6z0Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Our Dockerfile
 Starting with the solution, the `Dockerfile` for our Node.js app should look like this. 

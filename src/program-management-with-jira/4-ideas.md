@@ -28,7 +28,7 @@ For the exercise, you will pick an idea, write it up, and add it to the ideas ba
 The following is the [Google Slides presentation](https://docs.google.com/presentation/d/1Va8YGzg8KIFwpAGJu1qOY3z1PKbnWXZIbm0ei6PkLzc/edit?usp=sharing)
 for this material:
 
-<iframe class="responsive-iframe-16-9-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vRuEfDoGOmSxCkLuD_WSeKsR_hgQINvxeW3OA4J-5bPK5ltRHdw_Fr0gQtD5zmvEQdhU28CIMh8yn-N/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe class="iframe-16-9-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vRuEfDoGOmSxCkLuD_WSeKsR_hgQINvxeW3OA4J-5bPK5ltRHdw_Fr0gQtD5zmvEQdhU28CIMh8yn-N/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 
 What is the `Ideas Backlog`?

@@ -5,7 +5,7 @@
 
 @body
 
-<iframe class="responsive-iframe-16-9" src="https://www.youtube.com/embed/8sGPAiFu66s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe class="iframe-16-9" src="https://www.youtube.com/embed/8sGPAiFu66s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Overview
 With the concepts we’ve explored so far, building an image and starting a container after every  code change would be incredibly inefficient. To test every code change, a developer would have to

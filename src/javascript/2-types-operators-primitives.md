@@ -17,8 +17,8 @@ delete & typeof
 
 ## Video
 
-<iframe class="responsive-iframe-16-9" src="https://www.youtube.com/embed/KLkGVL6zVps" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe class="iframe-16-9" src="https://www.youtube.com/embed/KLkGVL6zVps" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Slides
 
-<iframe class="responsive-iframe-4-3-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vTGVj1psbRG83n1TQ3jefdvxLw8E5Da6U3_NpeMd5zQ-T6ytaDrEVQEjdM48R9R6zqGR9oim3Fx1Lrz/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe class="iframe-v" src="https://docs.google.com/presentation/d/e/2PACX-1vTGVj1psbRG83n1TQ3jefdvxLw8E5Da6U3_NpeMd5zQ-T6ytaDrEVQEjdM48R9R6zqGR9oim3Fx1Lrz/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>

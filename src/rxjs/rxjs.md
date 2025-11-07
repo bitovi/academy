@@ -22,7 +22,7 @@ If you find bugs in this training or have suggestions, create an [issue](https:/
 
 Who has time to read? This video covers the content on this page. Watch fullscreen.
 
-<iframe class="responsive-iframe-16-9" src="https://www.youtube.com/embed/3uPT-gcxs0E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe class="iframe-16-9" src="https://www.youtube.com/embed/3uPT-gcxs0E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 ## Overview
@@ -68,7 +68,7 @@ Each section of the guide is broken down into the following sections:
 The following presentation shows how the observables are wired up. This will
 be a useful reference for understanding how the tutorial works:
 
-<iframe class="responsive-iframe-16-9-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vS1c0TjlkqGDCI0-R_QUvmZ3oFFTcapVK8zLosgq94g3_w2rQPifGHwZy209xadXI0EchaaB60vCcqj/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe class="iframe-16-9-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vS1c0TjlkqGDCI0-R_QUvmZ3oFFTcapVK8zLosgq94g3_w2rQPifGHwZy209xadXI0EchaaB60vCcqj/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 

@@ -68,7 +68,7 @@ __DELETE /api/todos/{id}__
 
 ## What you need to know
 
-<iframe class="responsive-iframe-4-3-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vQEV23MxsjypiV3edlA-JOIfK2Im5Jzlb30xmNqPkaa7nEMwh02hGU4lWCTwdU2XutbDLq0sEGpRuDQ/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe class="iframe-4-3-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vQEV23MxsjypiV3edlA-JOIfK2Im5Jzlb30xmNqPkaa7nEMwh02hGU4lWCTwdU2XutbDLq0sEGpRuDQ/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 - [The can-fixture Presentation](https://docs.google.com/presentation/d/1gBvNTzzcSl1h8I-pvxARqwvIjK2ELvGgyFTzxBKU_Vo/edit?usp=sharing)
 - [https://canjs.com/doc/can-fixture.html fixture] - is used to trap AJAX requests like:

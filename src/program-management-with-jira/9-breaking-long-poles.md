@@ -13,7 +13,7 @@ It barely needs to be said that finding ways to deliver a product faster is a ke
 The following is the [Google Slides presentation](https://docs.google.com/presentation/d/1lj9gs_40FEG2vne63fLt3_Ym4-y9GyHuQTtZLeGaAwE/edit?usp=sharing)
 for this material:
 
-<iframe class="responsive-iframe-16-9-plus-nav" src="https://docs.google.com/presentation/d/13-kgB-ijzcjGIHtpsRp43U5TAJswdfrJSiWaEvuxwVo/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe class="iframe-16-9-plus-nav" src="https://docs.google.com/presentation/d/13-kgB-ijzcjGIHtpsRp43U5TAJswdfrJSiWaEvuxwVo/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 
 Ways to Shorten the Long Pole

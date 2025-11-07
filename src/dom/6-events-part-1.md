@@ -15,11 +15,11 @@ In this part, we will:
 
 ## Video
 
-<iframe class="responsive-iframe-16-9" src="https://www.youtube.com/embed/qoW-EYuESZA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe class="iframe-16-9" src="https://www.youtube.com/embed/qoW-EYuESZA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Slides
 
-<iframe class="responsive-iframe-4-3-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vQGzElV5YC_q8hOcumq38Xi4IeRDnK94gABK_KvFRGWSbdgeTMGtefBWUu1dfqiiKGY-_jejqONDiYe/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe class="iframe-4-3-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vQGzElV5YC_q8hOcumq38Xi4IeRDnK94gABK_KvFRGWSbdgeTMGtefBWUu1dfqiiKGY-_jejqONDiYe/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 ## Setup
 

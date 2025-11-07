@@ -20,7 +20,7 @@ Once you have a plan, you must help coordinate and report on the plan. You will 
 The following is the [Google Slides presentation](https://docs.google.com/presentation/d/1njaKXLFC7eJ4pIF_Ek_HoivRdE4QL41j_SKBwg1Hsdw/edit?usp=sharing)
 for this material:
 
-<iframe class="responsive-iframe-16-9-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vRDDcYFHMf6-8HYB1xWS8OC6eCcGLlqen8V5e0PvqDaXPVfzO4K0lSt0bVC6bukKaDmZ1DoqVG259Q1/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe class="iframe-16-9-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vRDDcYFHMf6-8HYB1xWS8OC6eCcGLlqen8V5e0PvqDaXPVfzO4K0lSt0bVC6bukKaDmZ1DoqVG259Q1/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 When to schedule team coordination meetings
 -------------------------------------------

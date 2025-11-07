@@ -9,7 +9,7 @@
 
 Who has time to read? This video covers the content on this page. Watch fullscreen.
 
-<iframe class="responsive-iframe-16-9" src="https://www.youtube.com/embed/3cM-IaOO048" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe class="iframe-16-9" src="https://www.youtube.com/embed/3cM-IaOO048" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## The problem
 
