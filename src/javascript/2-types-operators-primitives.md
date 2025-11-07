@@ -21,4 +21,4 @@ delete & typeof
 
 ## Slides
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTGVj1psbRG83n1TQ3jefdvxLw8E5Da6U3_NpeMd5zQ-T6ytaDrEVQEjdM48R9R6zqGR9oim3Fx1Lrz/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe class="responsive-iframe-4-3-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vTGVj1psbRG83n1TQ3jefdvxLw8E5Da6U3_NpeMd5zQ-T6ytaDrEVQEjdM48R9R6zqGR9oim3Fx1Lrz/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>

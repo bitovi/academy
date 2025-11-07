@@ -713,21 +713,43 @@ tr:nth-child(even) {
 }
 
 .main-content {
+  // For 16:9 aspect ratio iframes, ex::after
+  // - YouTube embeds
   .responsive-iframe-16-9 {
     width: 100%;
-    max-width: 700px;
+    max-width: 1200px;
     height: auto;
     aspect-ratio: 16 / 9;
   }
+  // For 16:9 aspect ratio Google Slides iframes that add a bottom nav bar, ex:
+  // - Google Slides embeds
+  .responsive-iframe-16-9-plus-nav {
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    aspect-ratio: 1.624 / 1; // 16:9 plus nav bar height
+  }
+  // For 4:3 aspect ratio iframes, ex: 
+  // - Google Drive 
   .responsive-iframe-4-3 {
     width: 100%;
-    max-width: 700px;
+    max-width: 1200px;
     height: auto;
     aspect-ratio: 4 / 3;
   }
+  // for 4:3 aspect ratio slides with an added bottom nav bar, ex:
+  // - Google Slides in 4:3 with nav bar
+  .responsive-iframe-4-3-plus-nav {
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    aspect-ratio: 1.247 / 1; // 4:3 plus nav bar height
+  }
+  // For extra tall iframes, ex:
+  // - Google Forms
   .responsive-iframe-tall {
     width: 100%;
-    max-width: 700px;
+    max-width: 1200px;
     height: 1900px;
     @media (max-width: 768px) {
       height: 1500px; /* Slightly shorter on mobile */

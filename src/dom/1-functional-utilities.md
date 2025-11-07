@@ -19,7 +19,7 @@ We will learn about:
 
 ## Slides
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQS1BOdGeK3-TEHbLt_mWjc7Z3TAd5dk6lFCDEvOy5cXLHzrYx7OsmVAP72vwDvTxJ_lLG0y5UqEUfc/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe class="responsive-iframe-4-3-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vQS1BOdGeK3-TEHbLt_mWjc7Z3TAd5dk6lFCDEvOy5cXLHzrYx7OsmVAP72vwDvTxJ_lLG0y5UqEUfc/embed?start=false&loop=false&delayms=3000" frameborder="0"allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 ## Setup
 

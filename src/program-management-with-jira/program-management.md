@@ -60,7 +60,7 @@ Thanks Justin and Paul for hosting. And big thanks for open sourcing your traini
 Watch the following instead of reading the rest of the page:
 
 
-<iframe class="block-16-by-9" src="https://www.youtube.com/embed/X3F7cFnKMQc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe class="responsive-iframe-16-9" src="https://www.youtube.com/embed/X3F7cFnKMQc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 
 ## Purpose

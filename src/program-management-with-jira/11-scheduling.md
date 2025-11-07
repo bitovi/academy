@@ -35,7 +35,7 @@ The following video walk through the steps to set-up and use the Auto-scheduler:
 8. <code>[8:23](https://youtu.be/5bcDZFDjKgs?list=PL--xV5crGpX_EdvA-rcDXVC4qjiujYTKE&t=503)</code> Verify the epics are scheduled correctly
 
 
-<iframe class="block-16-by-9" src="https://www.youtube.com/embed/5bcDZFDjKgs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe class="responsive-iframe-16-9" src="https://www.youtube.com/embed/5bcDZFDjKgs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 
 ## Exercise

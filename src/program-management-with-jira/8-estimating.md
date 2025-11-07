@@ -33,7 +33,7 @@ For the exercise, you will break down your work into epics and work with the oth
 The following is the [Google Slides presentation](https://docs.google.com/presentation/d/1KG7_VD7lmkW06NP7G1_uolDN3zLr10P35fJZVfF12EE/edit?usp=sharing)
 for much of this material:
 
-<iframe src="https://docs.google.com/presentation/d/1KG7_VD7lmkW06NP7G1_uolDN3zLr10P35fJZVfF12EE/embed?start=false&loop=false&delayms=3000" frameborder="0" class="block-16-by-9" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe class="responsive-iframe-16-9-plus-nav" src="https://docs.google.com/presentation/d/1KG7_VD7lmkW06NP7G1_uolDN3zLr10P35fJZVfF12EE/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 > **NOTE:** The presentation on how to split initiatives into epics is below!
 
@@ -135,7 +135,7 @@ On a high level, we suggest repeating for each step of each use case:
 
 This process is explained in the following: [Google Slides presentation](https://docs.google.com/presentation/d/17yP8rbcjkajw2gA7C1WHhCT1Iy3-AE2Qk9Y5-9v4czw/edit?usp=sharing):
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRoQkGBxqt4_OohuLDYaXRRKw2VGFoERtO_-eSjY-0UZ2U-h_Qjn-emjkiSCwAVHFV4LYAIsC5gkCNA/embed?start=false&loop=false&delayms=3000" frameborder="0" class="block-16-by-9" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe class="responsive-iframe-16-9-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vRoQkGBxqt4_OohuLDYaXRRKw2VGFoERtO_-eSjY-0UZ2U-h_Qjn-emjkiSCwAVHFV4LYAIsC5gkCNA/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 
 The presentation walks through breaking down the initiative into the following 8 epics:
@@ -375,7 +375,7 @@ The following video shows the steps to accomplishing this:
    
 
 
-<iframe class="block-16-by-9" src="https://www.youtube.com/embed/dFldN5ugf74" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe class="responsive-iframe-16-9" src="https://www.youtube.com/embed/dFldN5ugf74" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 The following sub-sections detail the process in writing:
 

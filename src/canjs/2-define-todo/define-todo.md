@@ -28,7 +28,7 @@ QUnit.equal(todo.complete, true, "toggleComplete works");
 
 ## What you need to know
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSK5CTN9M9UGDSbkXFXG34lx2Pyf7N4sxUiV0so9Gwa6FRwB2SZ2MQZurZURE64INnMw-vqJGZB3EC8/embed?start=false&loop=false&delayms=3000" frameborder="0" width="640" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe class="responsive-iframe-16-9-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vSK5CTN9M9UGDSbkXFXG34lx2Pyf7N4sxUiV0so9Gwa6FRwB2SZ2MQZurZURE64INnMw-vqJGZB3EC8/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 - [DefineMap Basics Presentation](https://docs.google.com/presentation/d/1Y9G9aJMJgCzKMHROe4HuzRD_LY7UyGPbLOtl2TJAEqM/edit?usp=sharing)
 - [https://canjs.com/doc/can-define/map/map.extend.html DefineMap.extend] defines a new `Type`.

@@ -21,7 +21,7 @@ We will learn to:
 
 ## Slides
 
-<iframe class="responsive-iframe-4-3" src="https://docs.google.com/presentation/d/e/2PACX-1vR_aHX8TbUJ8hqrD2OalxvG9kjjq1wweo8Sz3HaCAPdyILn4QWKJhdxOeA9-UOzQLMB6J5E7FRPbZ2J/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe class="responsive-iframe-4-3-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vR_aHX8TbUJ8hqrD2OalxvG9kjjq1wweo8Sz3HaCAPdyILn4QWKJhdxOeA9-UOzQLMB6J5E7FRPbZ2J/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 ## Setup
 

@@ -18,7 +18,7 @@
 
 ## Slides
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vS3Rvip0mm-RctR1rq2W8DlGh2dFiqr9FTbL70Q5dmkwjfMdWCd6p8tztldRm5ZRXoiJCbscDNUnb0P/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe class="responsive-iframe-4-3-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vS3Rvip0mm-RctR1rq2W8DlGh2dFiqr9FTbL70Q5dmkwjfMdWCd6p8tztldRm5ZRXoiJCbscDNUnb0P/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 
 ## Exercise

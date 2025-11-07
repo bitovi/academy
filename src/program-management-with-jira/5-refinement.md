@@ -25,7 +25,7 @@ For the exercise, you will refine your initiative, using your team members and i
 The following is the [Google Slides presentation](https://docs.google.com/presentation/d/1iQpbLm1R55JdzCfdMBQ4ruoehmpz8v-pN0iEMNJWa18/edit?usp=sharing)
 for this material:
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRLJHc6dl9TqFCwtizJx0RrRgH8Vn9ziFkuGmNgfDaUWT0G6A9_5UvWg9urS5V4n6O2mmmQKv4OkhPu/embed?start=false&loop=false&delayms=3000" frameborder="0" class="block-16-by-9" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe class="responsive-iframe-16-9-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vRLJHc6dl9TqFCwtizJx0RrRgH8Vn9ziFkuGmNgfDaUWT0G6A9_5UvWg9urS5V4n6O2mmmQKv4OkhPu/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 
 
