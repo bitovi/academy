@@ -2,7 +2,8 @@ name: Verify/Build/Deploy
 
 on:
   push:
-    branches: [main]
+    # ❌❌❌TEMP❌❌❌
+    # branches: [main]
   pull_request:
 
 jobs:
@@ -41,7 +42,8 @@ jobs:
 
       # main needs to deploy to github pages because images point to github.io
       - name: Deploy to GitHub Pages
-        if: ${{ github.ref == 'refs/heads/main' }}
+      # ❌❌❌TEMP❌❌❌
+      # if: ${{ github.ref == 'refs/heads/main' }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -50,7 +52,8 @@ jobs:
           user_email: "workflow@github"
 
       - name: Deploy
-        if: ${{ github.ref == 'refs/heads/main' }}
+        # ❌❌❌TEMP❌❌❌
+        # if: ${{ github.ref == 'refs/heads/main' }}
         env:
           HUBSPOT_TOKEN: ${{ secrets.HUBSPOT_TOKEN }}
           HUBSPOT_CAMPAIGN_ID: ${{ secrets.HUBSPOT_CAMPAIGN_ID }}
