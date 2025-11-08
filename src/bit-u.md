@@ -10,14 +10,14 @@ and management skills in these free courses!
 
 <style>
 /* Base Layout */
-.main-content {
-  width: 100%;
-  padding: 0;
-}
 .content {
   margin: 0;
 }
 .content .main, .container {
+  padding: 0;
+}
+.main-content {
+  width: 100%;
   padding: 0;
 }
 /* Utility Classes */
@@ -34,24 +34,21 @@ and management skills in these free courses!
   background-color: #428ac9;
   text-align: center;
   padding: 60px 30px;
-}
-.hero-banner h1 {
   color: #fff;
-  font-family: Lato, Arial, sans-serif;
-  line-height: 1.1;
-  font-size: 56px;
-  font-weight: 300;
-  text-align: center;
-  margin: 0 auto 15px auto;
-}
-.hero-banner h2 {
-  color: #fff;
-  font-size: 18px !important;
-  font-weight: normal;
-  line-height: 1.6;
-  max-width: none;
-  text-align: center;
-  margin: 15px auto 30px auto !important;
+  h1 {
+    font-family: Lato, Arial, sans-serif;
+    line-height: 1.1;
+    font-size: 56px;
+    font-weight: 300;
+    margin: 0 auto 15px auto;
+  }
+  h2 {
+    font-size: 18px !important;
+    font-weight: normal;
+    line-height: 1.6;
+    margin: 15px auto 30px auto !important;
+    text-wrap: balance;
+  }
 }
 /* Academy Sections */
 .academy-section {
@@ -60,122 +57,97 @@ and management skills in these free courses!
   display: flex;
   align-items: center;
   flex-direction: column;
-}
-.academy-section h3 {
-  font-size: 31px;
-  font-weight: 300;
-  margin: 0 0 30px 0;
-}
-/* Academy Logos Section */
-.academy-section.academy-logos {
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 30px 60px;
-}
-/* Course Cards Layout */
-.academy-section .courses {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 100%;
-  gap: 30px;
-  margin-bottom: 60px;
-  width: 100%;
-}
-.academy-section .courses:last-of-type {
-  margin-bottom: 0;
-}
-.academy-section .courses .card-course {
-  border: 1px solid #e7e8e6;
-  padding: 30px;
-  flex: 1 1 calc(33.333% - 20px);
-  text-align: left;
-  display: flex;
-  justify-content: space-between;
-}
-/* Base Card Styles */
-.card {
-  border: 1px solid #e7e8e6;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 30px;
-  text-align: center;
-  background-color: white;
-}
-.card h4 {
-  font-size: 20px;
-  margin: 0;
-}
-.card .card-image {
-  margin-bottom: 30px;
-}
-.card .button {
-  margin-top: 30px;
-}
-/* CTA Cards */
-.card-cta {
-  /* Inherits base card styles */
-}
-/* Course Cards */
-.card-course {
-  h4 {
+  h3 {
+    font-size: 31px;
+    font-weight: 300;
+    margin: 0 0 30px 0;
+  }
+  &.framework-logos-row {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 30px 60px;
+    max-width: 2400px;
+    margin: 0 auto;
+    img {
+      width: 60px;
+    }
+  }
+  /* Card Containers */
+  .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    align-items: stretch;
+    max-width: 2050px;
+  }
+  /* Base Card Styles */
+  .card {
+    border: 1px solid #e7e8e6;
+    display: flex;
+    flex: 1 1 calc(33.333% - 20px); 
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px;
+    background-color: white;
+    h4 {
+      font-size: 20px;
+      margin: 0;
+    }
+    p {
+      margin: 0
+    }
+    .button {
+      margin-top: 30px;
+    }
+  }
+  /* CTA Cards */
+  .card-cta {
     text-align: center;
+    .card-image {
+      margin-bottom: 30px;
+    }
   }
-  a {
-    text-decoration: none;
-    color: #333;
+  /* Testimonial Cards */
+  .card-testimonial {
+    align-items: flex-end;
+    .quote-link {
+      color: white;
+      text-decoration: none;
+    }
+    p:has(.quote-link):hover > * {
+      opacity: 0.7;
+    }
+    .quote-author {
+      opacity: 0.6;
+      font-size: 14px;
+    }
   }
-}
-.card-course .detail {
-  padding: 0;
-  margin: 0;
-}
-/* Testimonial Cards */
-.card-testimonial {
-  text-align: left;
-  align-items: flex-end;
-}
-.card-red {
-  background-color: #ca313c;
-  border-color: #ca313c;
-  color: white;
-}
-.card-blue {
-  background-color: #4270b7;
-  border-color: #4270b7;
-  color: white;
-}
-.card-orange {
-  background-color: #e47c3c;
-  border-color: #e47c3c;
-  color: white;
-}
-/* Card Containers */
-.cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  align-items: stretch;
-}
-.cards-container .card {
-  flex: 1 1 calc(33.333% - 20px);
-}
-.cards-container .card h4,
-.cards-container .card p {
-  margin: 0;
-}
-/* Course Elements */
-.course-logo {
-  height: 70px;
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-  justify-content: center;
-}
-.academy-course-logo {
-  width: 60px;
+  /* Course Cards */
+  .card-course {
+    .course-logo {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+  }
+  .card-red {
+    background-color: #ca313c;
+    border-color: #ca313c;
+    color: white;
+  }
+  .card-blue {
+    background-color: #4270b7;
+    border-color: #4270b7;
+    color: white;
+  }
+  .card-orange {
+    background-color: #e47c3c;
+    border-color: #e47c3c;
+    color: white;
+  }
 }
 /* Buttons */
 .button {
@@ -188,14 +160,14 @@ and management skills in these free courses!
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  &.discord-button img {
+    margin: 6px;
+  }
 }
 .button:hover {
   background-color: #2F507F;
   border-color: #2F507F;
   cursor: pointer;
-}
-.button img {
-  margin-right: 7.5px;
 }
 .button-large {
   padding: 10px 35px;
@@ -218,28 +190,10 @@ and management skills in these free courses!
   background-color: #b4b5b5;
   border-color: #b4b5b5;
 }
-.discord-button {
-  margin-top: 15px;
-  img {
-    margin: 6px !important;
-  }
-}
 /* Links */
 a.link {
   font-weight: 600;
   text-decoration: none;
-}
-a.quote-link {
-  color: white;
-  text-decoration: none;
-}
-a.quote-link:hover {
-  opacity: 0.7;
-}
-/* Quote Elements */
-p.quote-author {
-  opacity: 0.6;
-  font-size: 14px;
 }
 /* Remove empty space at bottom from missing course pagination */
 bit-prev-next {
@@ -252,15 +206,15 @@ bit-prev-next {
     <h2>Whether you’re a beginner or experienced professional, Academy courses have something to help you perfect your design, development, or management skills.</h2>
     <a class="button button-large button-red" href="#courses-section">Browse our courses</a>
   </div>
-  <div class="academy-section academy-logos">
-    <a href="./learn-advanced-javascript.html"><img alt="JavaScript" class="academy-course-logo" src="./static/img/javascript.png"></a>
-    <a href="./learn-angular.html"><img alt="Angular" class="academy-course-logo" src="./static/img/angular.png"></a>
-    <a href="./learn-react.html"><img alt="React" class="academy-course-logo" src="./static/img/react.png"></a>
-    <a href="./learn-rxjs.html"><img alt="RxJS" class="academy-course-logo" src="./static/img/rxjs.png"></a>
-    <a href="./learn-typescript.html"><img alt="TypeScript" class="academy-course-logo" src="./static/img/ts-logo.png"/></a>
+  <div class="academy-section framework-logos-row">
+    <a href="./learn-advanced-javascript.html"><img alt="JavaScript" src="./static/img/javascript.png"></a>
+    <a href="./learn-angular.html"><img alt="Angular" src="./static/img/angular.png"></a>
+    <a href="./learn-react.html"><img alt="React" src="./static/img/react.png"></a>
+    <a href="./learn-rxjs.html"><img alt="RxJS" src="./static/img/rxjs.png"></a>
+    <a href="./learn-typescript.html"><img alt="TypeScript" src="./static/img/ts-logo.png"/></a>
   </div>
   <!-- CTA Cards Section -->
-  <div class="academy-section page-details-section bg-grey">
+  <div class="academy-section bg-grey">
     <div class="cards-container">
       <div class="card card-cta">
         <div class="card-top">
@@ -311,8 +265,8 @@ bit-prev-next {
   <a name="courses-section" class="courses-section"></a>
   <div class="academy-section bg-grey">
     <h3>Courses</h3>
-    <div class="courses" id='dynamic-courses'>
-      <script>
+    <div class="cards-container" id='dynamic-courses'>
+      <script id="dynamic-card-generator">
         const academyCourses = [
           {
             logo: './static/img/react.png',
