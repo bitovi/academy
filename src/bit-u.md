@@ -29,12 +29,22 @@ and management skills in these free courses!
 }
 /* Hero Banner */
 .hero-banner {
+  position: relative;
   background: url('./static/img/academy-banner.png') no-repeat top center;
   background-size: cover;
-  background-color: #428ac9;
   text-align: center;
   padding: 60px 30px;
   color: #fff;
+  &::before { /* banner color overlay */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--teal-900);
+    opacity: var(--hero-overlay-opacity);
+  }
+  > * { /* also for banner color overlay */
+    position: relative;
+  }
   h1 {
     font-family: Lato, Arial, sans-serif;
     line-height: 1.1;
