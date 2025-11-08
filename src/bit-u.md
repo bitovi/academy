@@ -39,11 +39,13 @@ and management skills in these free courses!
     content: '';
     position: absolute;
     inset: 0;
-    background: var(--teal-900);
+    background: var(--primary-teal-900);
     opacity: var(--hero-overlay-opacity);
+    z-index: 1;
   }
   > * { /* also for banner color overlay */
     position: relative;
+    z-index: 2;
   }
   h1 {
     font-family: Lato, Arial, sans-serif;
@@ -143,27 +145,17 @@ and management skills in these free courses!
       margin-bottom: 15px;
     }
   }
-  .card-red {
-    background-color: #ca313c;
-    border-color: #ca313c;
-    color: white;
-  }
-  .card-blue {
-    background-color: #4270b7;
-    border-color: #4270b7;
-    color: white;
-  }
-  .card-orange {
-    background-color: #e47c3c;
-    border-color: #e47c3c;
+  .card-teal {
+    background-color: var(--primary-teal-900, #023538);
+    border-color: var(--primary-teal-900, #023538);
     color: white;
   }
 }
 /* Buttons */
 .button {
   padding: 5px 15px;
-  background-color: #356FD1;
-  border: 1px solid #356FD1;
+  background-color: var(--primary-teal-600, #00848b);
+  border: 1px solid var(--primary-teal-600, #00848b);
   color: white;
   border-radius: 3px;
   text-decoration: none;
@@ -175,21 +167,13 @@ and management skills in these free courses!
   }
 }
 .button:hover {
-  background-color: #2F507F;
-  border-color: #2F507F;
+  background-color: var(--primary-teal-600-hover, #006a70);
+  border-color: var(--primary-teal-600-hover, #006a70);
   cursor: pointer;
 }
 .button-large {
   padding: 10px 35px;
   font-size: 20px;
-}
-.button-red {
-  background-color: #cb2036;
-  border-color: #cb2036;
-}
-.button-red:hover {
-  background-color: #961a2f;
-  border-color: #961a2f;
 }
 .button-grey {
   background-color: #e5eaea;
@@ -214,7 +198,7 @@ bit-prev-next {
   <div class="hero-banner">
     <h1>Level up your front-end skills</h1>
     <h2>Whether you’re a beginner or experienced professional, Academy courses have something to help you perfect your design, development, or management skills.</h2>
-    <a class="button button-large button-red" href="#courses-section">Browse our courses</a>
+    <a class="button button-large" href="#courses-section">Browse our courses</a>
   </div>
   <div class="academy-section framework-logos-row">
     <a href="./learn-advanced-javascript.html"><img alt="JavaScript" src="./static/img/javascript.png"></a>
@@ -257,15 +241,15 @@ bit-prev-next {
   <div class="academy-section">
     <h3>What people are saying about us</h3>
     <div class="cards-container">
-      <div class="card card-testimonial card-red">
+      <div class="card card-testimonial card-teal">
           <p><a class="quote-link" href="https://www.meetup.com/DoneJS-Chicago/events/260347973/#commentsTitle">"Really enjoyed this class! The instructor, Justin, was phenomenal, and the content was both challenging and engaging. Even though framework usage is ubiquitous these days, it's rewarding to understand exactly how libraries interact with the DOM on a granular level. I am looking forward to more Bitovi events in the future."</a></p>
           <p class="quote-author">- Patrick Gallagher</p>
       </div>
-      <div class="card card-testimonial card-blue">
+      <div class="card card-testimonial card-teal">
         <p><a class="quote-link" href="https://www.meetup.com/DoneJS-Chicago/events/260347973/#commentsTitle">"Bitovi, thanks for sharing this elite training with me. Thank you for your warmth and company, Maryann, Mike, Michael, Cherif, and Oscar, and thank you Justin for making this (another) memorable time. We went so far beyond "training" it was (as Michael would say) "sick." My best wishes of success to all."</a></p>
         <p class="quote-author">- Carson Wilson</p>
       </div>
-      <div class="card card-testimonial card-orange">
+      <div class="card card-testimonial card-teal">
         <p><a class="quote-link" href="https://www.meetup.com/DoneJS-Chicago/events/260347973/#commentsTitle">"Highly recommended! Very solid training materials which dig deep into the fundamentals of JavaScript. Justin is great at explaining complex concepts clearly and simply. I have learned a lot. Looking forward to more events!"</a></p>
         <p class="quote-author">- Shaung</p>
       </div>

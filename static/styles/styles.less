@@ -195,8 +195,13 @@ html {
   font: normal normal normal 1rem/1.6 Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   
+  // TODO: make more custom properties, use janitor to review this file and make suggestions?
   /* CSS Custom Properties */
-  --teal-900: #023538;
+  --primary-teal-900: #023538;
+  --primary-teal-600: #00848b;
+  --primary-teal-600-hover: #006a70; /* fallback */
+  --primary-teal-600-hover: color-mix(in srgb, var(--primary-teal-600) 85%, black); /* modern browsers */
+    
   --hero-overlay-opacity: 0.5;
 }
 
