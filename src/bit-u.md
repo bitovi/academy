@@ -48,15 +48,12 @@ and management skills in these free courses!
     z-index: 2;
   }
   h1 {
-    font-family: Lato, Arial, sans-serif;
     line-height: 1.1;
     font-size: 56px;
-    font-weight: 300;
     margin: 0 auto 15px auto;
   }
   h2 {
     font-size: 18px !important;
-    font-weight: normal;
     line-height: 1.6;
     margin: 15px auto 30px auto !important;
     text-wrap: balance;
@@ -71,7 +68,6 @@ and management skills in these free courses!
   flex-direction: column;
   h3 {
     font-size: 31px;
-    font-weight: 300;
     margin: 0 0 30px 0;
   }
   &.framework-logos-row {
