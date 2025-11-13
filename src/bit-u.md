@@ -323,7 +323,8 @@ bit-prev-next {
             audience: 'Intermediate JS developers who are new to React.',
             goal: 'Learn the basics of React.',
             time: '10 hours',
-            link: './learn-react.html'
+            link: './learn-react.html',
+            underConstruction: false
           },
           {
             logo: './static/img/rxjs.png',
@@ -334,7 +335,8 @@ bit-prev-next {
             audience: 'Intermediate JS developers',
             goal: 'Build complex state mechanics with observables.',
             time: '6 hours',
-            link: './learn-rxjs.html'
+            link: './learn-rxjs.html',
+            underConstruction: false
           },
           {
             logo: './static/img/angular.png',
@@ -345,7 +347,8 @@ bit-prev-next {
             audience: 'Intermediate JS developers',
             goal: 'Build data driven applications with Angular.',
             time: '10 hours',
-            link: './learn-angular.html'
+            link: './learn-angular.html',
+            underConstruction: false
           },
           {
             logo: './static/img/ngrx.png',
@@ -356,7 +359,8 @@ bit-prev-next {
             audience: 'Intermediate JS developers',
             goal: 'Learn about the architecture of an NgRx application',
             time: '5 hours',
-            link: './learn-ngrx.html'
+            link: './learn-ngrx.html',
+            underConstruction: false
           },
           {
             logo: './static/img/program-management-with-jira/jira-logo.png',
@@ -367,7 +371,8 @@ bit-prev-next {
             audience: 'Program Managers',
             goal: 'Coordinate large projects with multiple teams.',
             time: '12 hours',
-            link: './learn-agile-program-management-with-jira.html'
+            link: './learn-agile-program-management-with-jira.html',
+            underConstruction: false
           },
           {
             logo: './static/img/docker/logo.png',
@@ -378,7 +383,8 @@ bit-prev-next {
             audience: 'Intermediate developers, new DevOps Engineers',
             goal: 'Learn Docker fundamentals and container orchestration.',
             time: '2 hours',
-            link: './learn-docker.html'
+            link: './learn-docker.html',
+            underConstruction: false
           },
           {
             logo: './static/img/javascript.png',
@@ -389,7 +395,8 @@ bit-prev-next {
             audience: 'Beginner JS developers',
             goal: 'Debug most problems with chrome developer tools.',
             time: '1 hour',
-            link: './learn-to-debug-javascript.html'
+            link: './learn-to-debug-javascript.html',
+            underConstruction: false
           },
           {
             logo: './static/img/web-components.png',
@@ -400,7 +407,8 @@ bit-prev-next {
             audience: 'Intermediate JS developers',
             goal: 'Understand the web component APIs at the lowest level.',
             time: '8 hours',
-            link: './learn-web-components.html'
+            link: './learn-web-components.html',
+            underConstruction: false
           },
           {
             logo: './static/img/typescript.png',
@@ -411,7 +419,8 @@ bit-prev-next {
             audience: 'Beginner JS developer',
             goal: 'Be ready to develop a TypeScript project.',
             time: '3 hours',
-            link: './learn-typescript.html'
+            link: './learn-typescript.html',
+            underConstruction: false
           },
           {
             logo: './static/img/javascript.png',
@@ -422,7 +431,8 @@ bit-prev-next {
             audience: 'Intermediate JS developers',
             goal: 'Understand what\'s going on "under the hood".',
             time: '6 hours',
-            link: './learn-advanced-javascript.html'
+            link: './learn-advanced-javascript.html',
+            underConstruction: false
           },
           {
             logo: './static/img/jquery.png',
@@ -433,7 +443,8 @@ bit-prev-next {
             audience: 'Intermediate JS developers',
             goal: 'Understand the DOM enough to build widgets frameworks can\'t.',
             time: '10 hours',
-            link: './learn-dom-jquery.html'
+            link: './learn-dom-jquery.html',
+            underConstruction: false
           },
           {
             logo: './static/img/bitovi-logo-x2.png',
@@ -444,7 +455,8 @@ bit-prev-next {
             audience: 'Technology consultants or clients',
             goal: 'Learn the basics of technology consulting',
             time: '6 hours',
-            link: './learn-technology-consulting.html'
+            link: './learn-technology-consulting.html',
+            underConstruction: true
           },
           {
             logo: './static/img/react.png',
@@ -455,12 +467,14 @@ bit-prev-next {
             audience: 'Intermediate JS developers who are new to React Native.',
             goal: 'Learn the basics of React Native.',
             time: '5 days',
-            link: './learn-react-native.html'
+            link: './learn-react-native.html',
+            underConstruction: true
           }
         ];
         // Function to create academy card HTML
         function createAcademyCard(course) {
           const logoSize = course.logoWidth ? `width="${course.logoWidth}"` : `height="${course.logoHeight}"`;
+          const buttonText = course.underConstruction ? '🚧 Under construction 🚧' : 'Take this course';
           return `
             <div class="card card-course">
               <div class="course-logo">
@@ -473,7 +487,7 @@ bit-prev-next {
                 <p class='detail'><strong>Goal:</strong> ${course.goal}</p>
                 <p class='detail'><strong>Time:</strong> ${course.time}</p>
               </div>
-              <a href="${course.link}" class="button button-grey full-width">Take this course</a>
+              <a href="${course.link}" class="button button-grey full-width">${buttonText}</a>
             </div>
           `;
         }
