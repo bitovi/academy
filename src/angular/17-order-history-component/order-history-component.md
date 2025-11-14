@@ -186,7 +186,7 @@ To solve this problem:
   - `emptyMessage` - What to show when there are no orders in the list: "No new orders", "No orders preparing", "No orders are being delivered", "No delivered orders"
 - `ListComponent` will have the following methods:
   - `markAs(order, action)` that will update an order based on the action
-  - `delete(order._id)` that will delete an order
+  - `deleteOrder(order._id)` that will delete an order
   - `total(items)` that will return the order total
 
 ## P4: Setup
