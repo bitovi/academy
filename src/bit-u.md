@@ -62,7 +62,7 @@ and management skills in these free courses!
 /* Academy Sections */
 .academy-section {
   border-bottom: 1px solid #e7e8e6;
-  padding: 60px;
+  padding: 60px; /* mobile style in styles.less, due to media queries */
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -82,7 +82,7 @@ and management skills in these free courses!
   }
   /* Card Containers */
   .cards-container {
-    display: flex;
+    display: flex; /* mobile styles in styles.less, due to media queries */
     flex-wrap: wrap;
     gap: 30px;
     justify-content: center;
@@ -93,7 +93,7 @@ and management skills in these free courses!
   .card {
     border: 1px solid #e7e8e6;
     display: flex;
-    flex: 1 1 calc(33.333% - 20px); 
+    flex: 1 1 31%; 
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
