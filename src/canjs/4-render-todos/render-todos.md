@@ -27,7 +27,7 @@
 
 ## What you need to know
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSwcbjjwOyiYxruHZdLXg9k2mqzM2dkBtyJWfvVftUEwb3NHDHXU2VCtJVNVpmgBr4vaz85FENpCvag/embed?start=false&loop=false&delayms=3000" frameborder="0" width="640" height="509" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe class="iframe-4-3-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vSwcbjjwOyiYxruHZdLXg9k2mqzM2dkBtyJWfvVftUEwb3NHDHXU2VCtJVNVpmgBr4vaz85FENpCvag/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 - [Stache Basics Presentation](https://docs.google.com/presentation/d/13IX7PRiS2B4RdYXor8tMgb75FNjc9mq-mlzNX0dnlt0/edit?usp=sharing)
 - CanJS uses [stache](https://canjs.com/doc/can-stache.html) to render data in a template

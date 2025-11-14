@@ -17,11 +17,11 @@ We will learn to:
 
 ## Video
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/SB8bWiyedv4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe class="iframe-16-9" src="https://www.youtube.com/embed/SB8bWiyedv4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Slides
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vR_aHX8TbUJ8hqrD2OalxvG9kjjq1wweo8Sz3HaCAPdyILn4QWKJhdxOeA9-UOzQLMB6J5E7FRPbZ2J/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe class="iframe-4-3-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vR_aHX8TbUJ8hqrD2OalxvG9kjjq1wweo8Sz3HaCAPdyILn4QWKJhdxOeA9-UOzQLMB6J5E7FRPbZ2J/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 ## Setup
 

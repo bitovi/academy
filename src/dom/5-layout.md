@@ -7,7 +7,7 @@ get an elements dimensions and location.
 
 ## Slides
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTgZLYnFJSyxLhJ4k49f9zLRxBCi5LHUmQxxNL-4K1q6vNUojKCxxYte77y5QExxEP-np_rdS6HxmOO/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe class="iframe-4-3-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vTgZLYnFJSyxLhJ4k49f9zLRxBCi5LHUmQxxNL-4K1q6vNUojKCxxYte77y5QExxEP-np_rdS6HxmOO/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 ## Slider Demo
 

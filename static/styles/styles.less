@@ -749,3 +749,48 @@ tr:nth-child(even) {
 .main-content .body .directory-list li {
   margin-bottom: 0;
 }
+
+.main-content {
+  // Responsive iframe classes by aspect ratio. 16/9 or 4/3 are the base ratios.
+  // Variations with "plus-nav" account for extra height of Google Slides bottom nav bar
+  .iframe-16-9 {
+    // ex: YouTube embeds
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+  .iframe-16-9-plus-nav {
+    // ex: Google Slides with bottom nav bar
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    aspect-ratio: 1.624 / 1; // 16:9 plus nav bar height
+  }
+  .iframe-4-3 {
+    // ex: Google Drive
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+  .iframe-4-3-plus-nav {
+    // ex: Google Slides with bottom nav bar
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    aspect-ratio: 1.247 / 1; // 4:3 plus nav bar height
+  }
+  .iframe-tall {
+    // ex: Google Forms that want extra tall height
+    width: 100%;
+    max-width: 1200px;
+    height: 1900px;
+    @media (max-width: 768px) {
+      height: 1500px; /* Slightly shorter on mobile */
+    }
+    @media (max-width: 480px) {
+      height: 1200px; /* Even shorter on small mobile */
+    }
+  }
+} 

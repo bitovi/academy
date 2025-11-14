@@ -20,7 +20,7 @@ For the exercise, you will download the Continuous Exploration process document 
 The following is the [Google Slides presentation](https://docs.google.com/presentation/d/1I5ePcX45_0au1DqdoDvwjH0J-EGkyASvyOFmEUoPXxk/edit?usp=sharing)
 for this material:
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTdT9kQsnZRb4dqBmLKQ26GKqRjA3BtbYTm3UV4_vpbVQ_GjMefbIOGzJYp_mJVixRYEnTc1UPsi8bM/embed?start=false&loop=false&delayms=3000" frameborder="0" class="block-16-by-9" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe class="iframe-16-9-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vTdT9kQsnZRb4dqBmLKQ26GKqRjA3BtbYTm3UV4_vpbVQ_GjMefbIOGzJYp_mJVixRYEnTc1UPsi8bM/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 
 
