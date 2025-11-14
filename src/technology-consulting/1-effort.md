@@ -56,7 +56,7 @@ But **before** embarking on these trainings, it is _critical_ that everyone on t
 In 2014, Bitovi performed a review of its clients against a
 [checklist](https://github.com/bitovi/checklist) of best practices. While far from scientific, the following video goes through the results:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/20ebllexvuc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe class="iframe-16-9" src="https://www.youtube.com/embed/20ebllexvuc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### To Summarize:
 

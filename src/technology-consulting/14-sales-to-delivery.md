@@ -149,7 +149,7 @@ to create organized documents _now_ that can be shared with:
 
 Begin the process right away by making an [Engagement Summary](https://docs.google.com/document/d/e/2PACX-1vQ0b7KLMISgpX02xr5aC0VMK6EZxSv9w7oc-39C_6Ugjxclpr0WOv2iOExOrmQyyDhskBaPafGdddba/pub) document:
 
-<iframe src="https://drive.google.com/file/d/1DVPjsCgnD1hsYGaNXQMDJZvBxAP0JUzs/preview" width="640" height="480"></iframe>
+<iframe class="iframe-4-3" src="https://drive.google.com/file/d/1DVPjsCgnD1hsYGaNXQMDJZvBxAP0JUzs/preview"></iframe>
 
 Begin filling this out right away with the client. This document also needs to be
 shared with the delivery team.
@@ -167,7 +167,7 @@ shared with the delivery team.
 
 We have a [Consultancy Policies](https://drive.google.com/file/d/1Qc54E1w0qOEw3ZVrZzQXaUXxORopvWC9) document that outlines our policies like PTO and general workplace expectations. This can be shared with the client or the important parts clearly communicated.
 
-<iframe src="https://drive.google.com/file/d/1Qc54E1w0qOEw3ZVrZzQXaUXxORopvWC9/preview" width="640" height="480"></iframe>
+<iframe class="iframe-4-3" src="https://drive.google.com/file/d/1Qc54E1w0qOEw3ZVrZzQXaUXxORopvWC9/preview""></iframe>
 
 <a name="statement-of-work"></a>
 
@@ -176,7 +176,7 @@ We have a [Consultancy Policies](https://drive.google.com/file/d/1Qc54E1w0qOEw3Z
 A statement of work is the contractual agreement between the client and consultant. The  
 following is a template of a consulting agreement:
 
-<iframe src="https://drive.google.com/file/d/1wZjAKrpwVy6eqSijigDScT5c-Sjln3Tk/preview" width="640" height="480"></iframe>
+<iframe class="iframe-4-3" src="https://drive.google.com/file/d/1wZjAKrpwVy6eqSijigDScT5c-Sjln3Tk/preview""></iframe>
 
 This is a legal document that says what each party is responsible for. It is **critical**
 that these documents be reviewed by delivery before signing. The _detail of service_ section should also be reviewed with the client during the [Project Kickoff meeting](#project-kickoff).

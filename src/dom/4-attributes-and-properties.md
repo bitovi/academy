@@ -12,7 +12,7 @@ We will learn about:
 
 ## Slides
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQQSSVUteY_8gHdxcxuVeGXX548wxO_i_BfxGiohaYTuR_lskKGFIg9rCc-zfP-KIvckvqn2UvAOJ0O/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe class="iframe-4-3-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vQQSSVUteY_8gHdxcxuVeGXX548wxO_i_BfxGiohaYTuR_lskKGFIg9rCc-zfP-KIvckvqn2UvAOJ0O/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 ## Setup
 

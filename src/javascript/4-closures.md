@@ -14,11 +14,11 @@
 
 ## Video
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Y28w0TEV8g8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe class="iframe-16-9" src="https://www.youtube.com/embed/Y28w0TEV8g8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Slides
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vS3Rvip0mm-RctR1rq2W8DlGh2dFiqr9FTbL70Q5dmkwjfMdWCd6p8tztldRm5ZRXoiJCbscDNUnb0P/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe class="iframe-4-3-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vS3Rvip0mm-RctR1rq2W8DlGh2dFiqr9FTbL70Q5dmkwjfMdWCd6p8tztldRm5ZRXoiJCbscDNUnb0P/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 
 ## Exercise

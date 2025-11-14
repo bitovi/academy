@@ -16,7 +16,7 @@ custom element.
 
 ## What you need to know
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTpcn0do6Pu8REHxzp5HJkFoQgHqbdhXugio4UPUTPWGOZwi5Bbj9PIeVwCqew5MQ2kRKzjvicoZLdG/embed?start=false&loop=false&delayms=3000#slide=4" frameborder="0" width="640" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe class="iframe-16-9-plus-nav" src="https://docs.google.com/presentation/d/e/2PACX-1vTpcn0do6Pu8REHxzp5HJkFoQgHqbdhXugio4UPUTPWGOZwi5Bbj9PIeVwCqew5MQ2kRKzjvicoZLdG/embed?start=false&loop=false&delayms=3000#slide=4" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 - [The can-component presentation](https://docs.google.com/presentation/d/1CQbgIZScZjz6p-JvnITNrBYPmErJnvobwXUsbBU_0qo/edit?usp=sharing#slide=4) up to and including how to _define a component_.
 - A [Component](https://canjs.com/doc/can-component.html) combines a custom tag name, [stache](https://canjs.com/doc/can-stache.html) view and a [DefineMap](https://canjs.com/doc/can-define/map/map.html) ViewModel like:
