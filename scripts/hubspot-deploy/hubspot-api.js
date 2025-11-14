@@ -69,7 +69,8 @@ class HubSpotApi {
       htmlTitle: title,
       currentState: 'PUBLISHED',
       publishImmediately: true,
-      footerHtml: rawStart+ bodyHtml + rawEnd,
+      // Store content in a custom field instead of layoutSections
+      academyContent: rawStart + bodyHtml + rawEnd,
       headHtml,
       campaign: this.campaignId,
       subcategory: 'site_page',
@@ -84,7 +85,7 @@ class HubSpotApi {
     const data = {
       name: title,
       htmlTitle: title,
-      footerHtml: rawStart+ bodyHtml + rawEnd,
+      academyContent: rawStart + bodyHtml + rawEnd,
       headHtml,
       currentState: 'PUBLISHED',
       metaDescription: metaDescription || "",
