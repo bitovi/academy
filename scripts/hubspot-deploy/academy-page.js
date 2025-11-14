@@ -66,7 +66,15 @@ class AcademyPage {
 
 const updateStaticAssetLinks = (html) => {
   const assetBaseUrl = 'https://bitovi.github.io/academy/static';
-  return html
+
+  // Update ./static/ paths in JavaScript data (ie: not in hardcoded HTML)
+  let processedHtml = html.replace(/<script[^>]*id=["'`]dynamic-card-generator["'`][^>]*>([\s\S]*?)<\/script>/g, (match, scriptContent) => {
+    const updatedScript = scriptContent.replace(/\.\/static\//g, `${assetBaseUrl}/`);
+    return `<script id="dynamic-card-generator">${updatedScript}</script>`;
+  });
+  
+  // Then handle regular HTML attributes with simple replacements
+  return processedHtml
     .replace(/src="\.*\/static/g, `src="${assetBaseUrl}`)
     .replace(/src='\.*\/static/g, `src='${assetBaseUrl}`)
     .replace(/href="\.*\/static/g, `href="${assetBaseUrl}`)
@@ -74,7 +82,7 @@ const updateStaticAssetLinks = (html) => {
     .replace(/url\(&apos;\.*\/static/g, `url(&apos;${assetBaseUrl}`)
     .replace(/url\('\.*\/static/g, `url('${assetBaseUrl}`)
     .replace(/content='\.*\/static/g, `content='${assetBaseUrl}`)
-    .replace(/content="\.*\/static/g, `content="${assetBaseUrl}`)
+    .replace(/content="\.*\/static/g, `content="${assetBaseUrl}`);
 }
 
 module.exports = AcademyPage;
