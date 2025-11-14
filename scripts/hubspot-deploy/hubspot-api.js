@@ -69,7 +69,6 @@ class HubSpotApi {
       htmlTitle: title,
       currentState: 'PUBLISHED',
       publishImmediately: true,
-      // Store content in a custom field instead of layoutSections
       academyContent: rawStart + bodyHtml + rawEnd,
       headHtml,
       campaign: this.campaignId,
