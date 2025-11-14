@@ -474,7 +474,7 @@ bit-prev-next {
         // Function to create academy card HTML
         function createAcademyCard(course) {
           const logoSize = course.logoWidth ? `width="${course.logoWidth}"` : `height="${course.logoHeight}"`;
-          const buttonText = course.underConstruction ? '🚧 Under construction 🚧' : 'Take this course';
+          const buttonText = course.underConstruction ? '<em>Under construction</em>' : 'Take this course';
           return `
             <div class="card card-course">
               <div class="course-logo">
