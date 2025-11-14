@@ -104,7 +104,7 @@ and management skills in these free courses!
       margin: 0;
     }
     p {
-      margin: 0
+      margin: 0;
     }
     .button {
       margin-top: 30px;

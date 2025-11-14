@@ -14,6 +14,7 @@
  * The styles are very basic, and primarily focus on mobile and desktop layout.
  */
 
+@import (css) url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;600;700&display=swap'); //  uses import (css) syntax for Less compatibility
 @import "locate://bit-docs-site/styles/variables.less";
 @import "locate://bit-docs-site/styles/mixins.less";
 
@@ -22,8 +23,8 @@
 
 :root {
   /* Typography */
-  --font-poppins: "Poppins", system-ui, sans-serif;
-  --font-inter: "Inter", system-ui, sans-serif;
+  --font-poppins: "Poppins", "Segoe UI", "Roboto", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-inter: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Roboto", Arial, sans-serif;
   --font-weight-normal: 400;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
@@ -175,8 +176,8 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-inter, Poppins);
-  font-weight: var(--font-weight-bold, 700);
+  font-family: var(--font-poppins);
+  font-weight: var(--font-weight-bold);
 }
 
 a {
