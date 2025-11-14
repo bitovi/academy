@@ -84,6 +84,7 @@ class HubSpotApi {
     const url = `/${pageId}`;
     const data = {
       name: title,
+      templatePath: 'Custom/Page/Bitovi_July_2016_Theme/Academy.hubl.html',
       htmlTitle: title,
       academyContent: rawStart + bodyHtml + rawEnd,
       footerHtml: rawStart + bodyHtml + rawEnd,
