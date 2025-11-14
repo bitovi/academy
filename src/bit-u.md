@@ -248,8 +248,8 @@ bit-prev-next {
 </style>
 <div class="container">
   <div class="hero-banner">
-    <h1>Level up your front-end skills</h1>
-    <h2>Whether you’re a beginner or experienced professional, Academy courses have something to help you perfect your design, development, or management skills.</h2>
+    <h1>Level up your digital delivery skills</h1>
+    <h2>Whether you’re a beginner or an experienced professional, Bitovi Academy is here to help you perfect your delivery skills.</h2>
     <a class="button button-large button-red" href="#courses-section">Browse our courses</a>
   </div>
   <div class="academy-section academy-logos">
@@ -274,7 +274,7 @@ bit-prev-next {
         <div class="card-top">
           <img alt="Person asking question" class="card-image" src="./static/img/academy-2.png" width="75">
           <h4>Get help when you need it</h4>
-          <p>Our team of expert front-end developers is only a Discord message away.</p>
+          <p>Our team of expert developers is only a Discord message away.</p>
         </div>
        <a class="button discord-button full-width" href="https://discord.gg/J7ejFsZnJ4"><img alt="Discord" src="./static/img/discord-logo.svg" height="20" width="20" alt="Discord logo">Join our Community Discord</a>
       </div>
