@@ -64,13 +64,12 @@ class HubSpotApi {
   async createPage( {title, headHtml, bodyHtml, slug, metaDescription } ){
     const data = {
       name: title,
-      templatePath: 'Custom/Page/Bitovi_July_2016_Theme/Academy.hubl.html',
+      templatePath: 'Custom/Page/Bitovi_July_2016_Theme/Academy.html',
       slug: `${slug}`,
       htmlTitle: title,
       currentState: 'PUBLISHED',
       publishImmediately: true,
-      academyContent: rawStart + bodyHtml + rawEnd,
-      footerHtml: rawStart + bodyHtml + rawEnd,
+      composeBody: rawStart + bodyHtml + rawEnd,
       headHtml,
       campaign: this.campaignId,
       subcategory: 'site_page',
@@ -84,10 +83,8 @@ class HubSpotApi {
     const url = `/${pageId}`;
     const data = {
       name: title,
-      templatePath: 'Custom/Page/Bitovi_July_2016_Theme/Academy.html',
       htmlTitle: title,
-      academyContent: rawStart + bodyHtml + rawEnd,
-      footerHtml: rawStart + bodyHtml + rawEnd,
+      composeBody: rawStart + bodyHtml + rawEnd,
       headHtml,
       currentState: 'PUBLISHED',
       metaDescription: metaDescription || "",
