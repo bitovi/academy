@@ -64,7 +64,7 @@ class HubSpotApi {
   async createPage( {title, headHtml, bodyHtml, slug, metaDescription } ){
     const data = {
       name: title,
-      templatePath: 'Custom/Page/Bitovi_July_2016_Theme/Academy.html',
+      templatePath: 'Custom/Page/Bitovi_July_2016_Theme/Academy.hubl.html',
       slug: `${slug}`,
       htmlTitle: title,
       currentState: 'PUBLISHED',
