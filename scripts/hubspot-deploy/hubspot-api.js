@@ -69,7 +69,7 @@ class HubSpotApi {
       htmlTitle: title,
       currentState: 'PUBLISHED',
       publishImmediately: true,
-      footerHtml: rawStart+ bodyHtml + rawEnd,
+      composeBody: rawStart + bodyHtml + rawEnd,
       headHtml,
       campaign: this.campaignId,
       subcategory: 'site_page',
@@ -84,7 +84,7 @@ class HubSpotApi {
     const data = {
       name: title,
       htmlTitle: title,
-      footerHtml: rawStart+ bodyHtml + rawEnd,
+      composeBody: rawStart + bodyHtml + rawEnd,
       headHtml,
       currentState: 'PUBLISHED',
       metaDescription: metaDescription || "",
@@ -124,29 +124,3 @@ class HubSpotApi {
 }
 
 module.exports = HubSpotApi;
-
-/*
-Get Pages
-  docs: https://developers.hubspot.com/docs/methods/pages/get_pages
-  endpoint: GET https://api.hubapi.com/content/api/v2/pages?hapikey=mykey
-Create Page
-  docs: https://developers.hubspot.com/docs/methods/pages/post_pages
-  endpoint: POST https://api.hubapi.com/content/api/v2/pages?hapikey=mykey
-    body: {
-      "name": "Internal HubSpot Page Name",
-      "template_path": "Custom/Academy/academy-template.html",
-      "slug": "academy/custom/slug",
-      "html_title": "title in the <title /> tags",
-      "is_draft": false,
-      "publish_immediately": true,
-      "footer_html": "put all html for the file in here",
-      "head_html": "put any custom meta tags or asset links"
-    }
-    manage/site/domain/all/listing/all
-Publish Page
-  docs: https://developers.hubspot.com/docs/methods/pages/post_pages_page_id_publish_action
-  endpoint: POST https://api.hubapi.com/content/api/v2/pages/:page_id/publish-action?hapikey=mykey
-    body: {
-      "action": "schedule-publish"
-    }
-*/

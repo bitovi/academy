@@ -3,8 +3,7 @@
 @hidetitle
 @hidedescription
 @hidecontentnav
-@description Welcome to Bitovi Academy. Learn front-end development, design,
-and management skills in these free courses!
+@description Welcome to Bitovi Academy. Learn development, design, and management skills in these free courses!
 
 @body
 
