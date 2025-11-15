@@ -86,7 +86,6 @@ class HubSpotApi {
       htmlTitle: title,
       composeBody: rawStart + bodyHtml + rawEnd,
       headHtml,
-      footerHtml: null,
       currentState: 'PUBLISHED',
       metaDescription: metaDescription || "",
       campaign: this.campaignId
