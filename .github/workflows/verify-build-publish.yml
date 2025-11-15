@@ -33,15 +33,15 @@ jobs:
       - name: Generate Exercises
         run: npm run generate
 
-      # - name: test
-      #   run: npm run test
+      - name: test
+        run: npm run test
 
       - name: Build
         run: npm run build
 
       # main needs to deploy to github pages because images point to github.io
       - name: Deploy to GitHub Pages
-        # if: ${{ github.ref == 'refs/heads/main' }}
+        if: ${{ github.ref == 'refs/heads/main' }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -50,7 +50,7 @@ jobs:
           user_email: "workflow@github"
 
       - name: Deploy
-        # if: ${{ github.ref == 'refs/heads/main' }}
+        if: ${{ github.ref == 'refs/heads/main' }}
         env:
           HUBSPOT_TOKEN: ${{ secrets.HUBSPOT_TOKEN }}
           HUBSPOT_CAMPAIGN_ID: ${{ secrets.HUBSPOT_CAMPAIGN_ID }}
