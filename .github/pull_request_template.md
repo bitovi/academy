@@ -1,7 +1,14 @@
-- [ ] Link to Jira Ticket: 
+## Jira Ticket
+- [ ]
 
-      
-- [ ] Short description of changes:
+## Short description of changes
+- [ ]
 
-    
-- [ ] Any questionable code or known issues:
+### Screenshot Before (if relevant)
+- [ ]
+
+### Screenshot After (if relevant)
+- [ ]
+
+## Questionable code or known issues:
+- [ ]
