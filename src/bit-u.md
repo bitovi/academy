@@ -191,9 +191,9 @@ bit-prev-next {
 </style>
 <div class="container">
   <div class="hero-banner">
-    <h1>Level up your front-end skills</h1>
-    <h2>Whether you’re a beginner or experienced professional, Academy courses have something to help you perfect your design, development, or management skills.</h2>
-    <a class="button button-large" href="#courses-section">Browse our courses</a>
+    <h1>Level up your digital delivery skills</h1>
+    <h2>Whether you’re a beginner or an experienced professional, Bitovi Academy is here to help you perfect your delivery skills.</h2>
+    <a class="button button-large button-red" href="#courses-section">Browse our courses</a>
   </div>
   <div class="academy-section framework-logos-row">
     <a href="./learn-advanced-javascript.html"><img alt="JavaScript" src="./static/img/javascript.png"></a>
@@ -217,7 +217,7 @@ bit-prev-next {
         <div class="card-top">
           <img alt="Person asking question" class="card-image" src="./static/img/academy-2.png" width="75">
           <h4>Get help when you need it</h4>
-          <p>Our team of expert front-end developers is only a Discord message away.</p>
+          <p>Our team of expert developers is only a Discord message away.</p>
         </div>
        <a class="button discord-button full-width" href="https://discord.gg/J7ejFsZnJ4"><img alt="Discord" src="./static/img/discord-logo.svg" height="20" width="20" alt="Discord logo">Join our Community Discord</a>
       </div>
@@ -266,7 +266,8 @@ bit-prev-next {
             audience: 'Intermediate JS developers who are new to React.',
             goal: 'Learn the basics of React.',
             time: '10 hours',
-            link: './learn-react.html'
+            link: './learn-react.html',
+            underConstruction: false
           },
           {
             logo: './static/img/rxjs.png',
@@ -277,7 +278,8 @@ bit-prev-next {
             audience: 'Intermediate JS developers',
             goal: 'Build complex state mechanics with observables.',
             time: '6 hours',
-            link: './learn-rxjs.html'
+            link: './learn-rxjs.html',
+            underConstruction: false
           },
           {
             logo: './static/img/angular.png',
@@ -288,7 +290,8 @@ bit-prev-next {
             audience: 'Intermediate JS developers',
             goal: 'Build data driven applications with Angular.',
             time: '10 hours',
-            link: './learn-angular.html'
+            link: './learn-angular.html',
+            underConstruction: false
           },
           {
             logo: './static/img/ngrx.png',
@@ -299,7 +302,8 @@ bit-prev-next {
             audience: 'Intermediate JS developers',
             goal: 'Learn about the architecture of an NgRx application',
             time: '5 hours',
-            link: './learn-ngrx.html'
+            link: './learn-ngrx.html',
+            underConstruction: false
           },
           {
             logo: './static/img/program-management-with-jira/jira-logo.png',
@@ -310,7 +314,8 @@ bit-prev-next {
             audience: 'Program Managers',
             goal: 'Coordinate large projects with multiple teams.',
             time: '12 hours',
-            link: './learn-agile-program-management-with-jira.html'
+            link: './learn-agile-program-management-with-jira.html',
+            underConstruction: false
           },
           {
             logo: './static/img/docker/logo.png',
@@ -321,7 +326,8 @@ bit-prev-next {
             audience: 'Intermediate developers, new DevOps Engineers',
             goal: 'Learn Docker fundamentals and container orchestration.',
             time: '2 hours',
-            link: './learn-docker.html'
+            link: './learn-docker.html',
+            underConstruction: false
           },
           {
             logo: './static/img/javascript.png',
@@ -332,7 +338,8 @@ bit-prev-next {
             audience: 'Beginner JS developers',
             goal: 'Debug most problems with chrome developer tools.',
             time: '1 hour',
-            link: './learn-to-debug-javascript.html'
+            link: './learn-to-debug-javascript.html',
+            underConstruction: false
           },
           {
             logo: './static/img/web-components.png',
@@ -343,7 +350,8 @@ bit-prev-next {
             audience: 'Intermediate JS developers',
             goal: 'Understand the web component APIs at the lowest level.',
             time: '8 hours',
-            link: './learn-web-components.html'
+            link: './learn-web-components.html',
+            underConstruction: false
           },
           {
             logo: './static/img/typescript.png',
@@ -354,7 +362,8 @@ bit-prev-next {
             audience: 'Beginner JS developer',
             goal: 'Be ready to develop a TypeScript project.',
             time: '3 hours',
-            link: './learn-typescript.html'
+            link: './learn-typescript.html',
+            underConstruction: false
           },
           {
             logo: './static/img/javascript.png',
@@ -365,7 +374,8 @@ bit-prev-next {
             audience: 'Intermediate JS developers',
             goal: 'Understand what\'s going on "under the hood".',
             time: '6 hours',
-            link: './learn-advanced-javascript.html'
+            link: './learn-advanced-javascript.html',
+            underConstruction: false
           },
           {
             logo: './static/img/jquery.png',
@@ -376,7 +386,8 @@ bit-prev-next {
             audience: 'Intermediate JS developers',
             goal: 'Understand the DOM enough to build widgets frameworks can\'t.',
             time: '10 hours',
-            link: './learn-dom-jquery.html'
+            link: './learn-dom-jquery.html',
+            underConstruction: false
           },
           {
             logo: './static/img/bitovi-logo-x2.png',
@@ -387,7 +398,8 @@ bit-prev-next {
             audience: 'Technology consultants or clients',
             goal: 'Learn the basics of technology consulting',
             time: '6 hours',
-            link: './learn-technology-consulting.html'
+            link: './learn-technology-consulting.html',
+            underConstruction: true
           },
           {
             logo: './static/img/react.png',
@@ -398,12 +410,14 @@ bit-prev-next {
             audience: 'Intermediate JS developers who are new to React Native.',
             goal: 'Learn the basics of React Native.',
             time: '5 days',
-            link: './learn-react-native.html'
+            link: './learn-react-native.html',
+            underConstruction: true
           }
         ];
         // Function to create academy card HTML
         function createAcademyCard(course) {
           const logoSize = course.logoWidth ? `width="${course.logoWidth}"` : `height="${course.logoHeight}"`;
+          const buttonText = course.underConstruction ? '<em>Under construction</em>' : 'Take this course';
           return `
             <div class="card card-course">
               <div class="course-logo">
@@ -416,7 +430,7 @@ bit-prev-next {
                 <p class='detail'><strong>Goal:</strong> ${course.goal}</p>
                 <p class='detail'><strong>Time:</strong> ${course.time}</p>
               </div>
-              <a href="${course.link}" class="button button-grey full-width">Take this course</a>
+              <a href="${course.link}" class="button button-grey full-width">${buttonText}</a>
             </div>
           `;
         }
