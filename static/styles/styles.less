@@ -22,6 +22,8 @@
 @import "content.less";
 
 :root {
+  // --nav-header-height is set in website-hubspot-modules repo, use 80px as fallback.
+
   /* Typography */
   --font-poppins: "Poppins", "Segoe UI", "Roboto", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   --font-inter: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Roboto", Arial, sans-serif;
@@ -349,10 +351,11 @@ article summary {
   align-self: start;
 
   @media (min-width: 1024px) {
-    max-height: ~"calc(100vh - 57px)";// 57px should not be hard-coded and should be flexible with the .header
+    --sidebar-bottom-padding: 10px;
+    max-height: ~"calc(100vh - var(--nav-header-height, 80px) - var(--sidebar-bottom-padding))";
     overflow: auto;
     position: sticky;
-    top: 0;
+    top: var(--nav-header-height, 80px); // keep sidebar below sticky nav header module
   }
 }
 
