@@ -152,7 +152,7 @@
   background-color: var(--primary-teal-600, #00848b);
   border: 1px solid var(--primary-teal-600, #00848b);
   color: white;
-  border-radius: 3px;
+  border-radius: 8px;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
