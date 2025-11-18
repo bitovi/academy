@@ -24,28 +24,28 @@ Create a new service `order` in the order directory, and write and export `Creat
 
 ```typescript
 const createOrderDto = {
-  restaurant: '12345',
-  name: 'Jennifer',
-  address: '123 Main st',
-  phone: '867-5309',
+  restaurant: "12345",
+  name: "Jennifer",
+  address: "123 Main st",
+  phone: "867-5309",
   items: [
     {
-      name: 'tacos',
+      name: "tacos",
       price: 6.99,
     },
   ],
 };
 
 const order = {
-  _id: 'a123123bdd',
-  restaurant: '12345',
-  name: 'Jennifer',
-  address: '123 Main st',
-  phone: '867-5309',
-  status: 'new',
+  _id: "a123123bdd",
+  restaurant: "12345",
+  name: "Jennifer",
+  address: "123 Main st",
+  phone: "867-5309",
+  status: "new",
   items: [
     {
-      name: 'tacos',
+      name: "tacos",
       price: 6.99,
     },
   ],
@@ -96,9 +96,9 @@ ng test
 
 - The method signatures for the methods you’ll be adding to `OrderService`:
   - `getOrders(): Observable<{data: Order[]}>` should make a `GET` request
-  - `createOrder(orderForm: CreateOrderDto): Observable<Order>` should make a `POST` request
-  - `updateOrder(order: Order, status: string): Observable<Order>` should make a `PUT` request to `/orders/<order-id>`
-  - `deleteOrder(orderId: string): Observable<Order>` should make a `DELETE` request to `/orders/<order-id>`
+  - `createOrder(order: CreateOrderDto): Observable<Order>` should make a `POST` request
+  - `updateOrder(order: Order, action: string): Observable<Order>` should make a `PUT` request to `/orders/<order-id>`
+  - `deleteOrder(id: string): Observable<Order>` should make a `DELETE` request to `/orders/<order-id>`
 - You will need to make sure `HttpClient` is imported and
   added as a property in the `OrderService` constructor.
 - You can pass a request `body` using the second argument of `HttpClient` `post` and `put` methods.
