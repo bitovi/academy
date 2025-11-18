@@ -228,7 +228,7 @@ bit-prev-next {
           <p>The same trainings materials have been sharpened over the past decade and delivered to enterprise front-end teams at Sony, Lowes, Walmart, and more. Free and <a class="link" href="https://github.com/bitovi/academy">open source</a>.</p>
         </div>
         <!-- TODO: DMRKT-1594 (or another) will add the new section for this link -->
-        <a class="button full-width" href="#live-events-section">See our live events</a>
+        <a class="button full-width" href="https://calendar.google.com/calendar/embed?src=jupiterjs.com_g27vck36nifbnqrgkctkoanqb4%40group.calendar.google.com&ctz=America%2FDetroit">See our live events</a>
       </div>
     </div>
   </div>
