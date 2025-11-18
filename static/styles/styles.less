@@ -75,6 +75,17 @@
 
   /* Component-Specific Values */
   --hero-overlay-opacity: 0.5;
+
+  /* Sticky Header from website-hubspot-modules */
+  --nav-header-height: 62px; // Fallback value. Overridden in static.js
+  
+  // Ensure content stays below nav header on anchor link navigation
+  scroll-padding-top: var(--nav-header-height);
+}
+@media (min-width: 1024px) {
+  :root {
+    --nav-header-height: 80px; // Fallback for wider screens. Overridden in static.js
+  }
 }
 
 /*
@@ -349,10 +360,11 @@ article summary {
   align-self: start;
 
   @media (min-width: 1024px) {
-    max-height: ~"calc(100vh - 57px)";// 57px should not be hard-coded and should be flexible with the .header
+    --sidebar-bottom-padding: 10px;
+    max-height: ~"calc(100vh - var(--nav-header-height) - var(--sidebar-bottom-padding))";
     overflow: auto;
     position: sticky;
-    top: 0;
+    top: var(--nav-header-height); // keeps sidebars below sticky nav header module
   }
 }
 
