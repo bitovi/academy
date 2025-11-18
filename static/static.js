@@ -14,6 +14,31 @@ window.PACKAGES = packages;
 })();
 
 (function () {
+  /* Set --nav-header-height CSS variable based on actual header height */
+  // Note: If the HubSpot template is updated to no longer use a header module above the Academy-repo content, this should also be updated/removed
+ 
+ var setNavHeaderHeight = function () {
+   var bodyWrapper = document.querySelector('.body-wrapper.hs-site-page'); // target the hubspot-generated wrapper
+   var header = bodyWrapper ? bodyWrapper.firstElementChild : null;
+    
+    if (header) {
+      var height = header.offsetHeight;
+      document.documentElement.style.setProperty('--nav-header-height', height + 'px');
+    }
+  };
+
+  // Set on initial load
+  setNavHeaderHeight();
+
+  // Update on window resize (header height may change at different breakpoints)
+  var resizeDebounced = debounce(setNavHeaderHeight, 100);
+  window.addEventListener('resize', resizeDebounced);
+
+  // Re-check after all resources load (images/fonts can affect header height)
+  window.addEventListener('load', setNavHeaderHeight);
+})();
+
+(function () {
   document.body.addEventListener("click", function (event) {
     if (event.target.matches(".bit-academy-fullscreen")) {
       document.body.classList.toggle("bit-academy-show-fullscreen");

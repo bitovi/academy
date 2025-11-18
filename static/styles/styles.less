@@ -77,6 +77,17 @@
 
   /* Component-Specific Values */
   --hero-overlay-opacity: 0.5;
+
+  /* Sticky Header from website-hubspot-modules */
+  --nav-header-height: 62px; // Fallback value. Overridden in static.js
+  
+  // Ensure content stays below nav header on anchor link navigation
+  scroll-padding-top: var(--nav-header-height);
+}
+@media (min-width: 1024px) {
+  :root {
+    --nav-header-height: 80px; // Fallback for wider screens. Overridden in static.js
+  }
 }
 
 /*
@@ -352,10 +363,10 @@ article summary {
 
   @media (min-width: 1024px) {
     --sidebar-bottom-padding: 10px;
-    max-height: ~"calc(100vh - var(--nav-header-height, 80px) - var(--sidebar-bottom-padding))";
+    max-height: ~"calc(100vh - var(--nav-header-height) - var(--sidebar-bottom-padding))";
     overflow: auto;
     position: sticky;
-    top: var(--nav-header-height, 80px); // keep sidebar below sticky nav header module
+    top: var(--nav-header-height); // keeps sidebars below sticky nav header module
   }
 }
 
@@ -719,7 +730,7 @@ tr:nth-child(even) {
   font-weight: 700;
   text-decoration: none;
   display: inline-block;
-  border-radius: 3px;
+  border-radius: 8px;
   text-align: center;
   vertical-align: middle;
   white-space: nowrap;
