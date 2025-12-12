@@ -670,7 +670,7 @@ tr:nth-child(even) {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 10;
+  z-index: 0;
 }
 
 .email-modal-backdrop {
@@ -686,7 +686,7 @@ tr:nth-child(even) {
   background: var(--secondary-white);
   width: 750px;
   max-width: 100%;
-  z-index: 10;
+  z-index: 0;
   padding: 1rem;
   border: 1px solid var(--color-border-light);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 10%), 0 10px 10px -5px rgba(0, 0, 0, 4%);
@@ -806,5 +806,8 @@ tr:nth-child(even) {
     @media (max-width: 480px) {
       height: 1200px; /* Even shorter on small mobile */
     }
+  }
+  pre.line-numbers{
+    overflow: hidden;
   }
 } 
