@@ -23,6 +23,8 @@
 @import "content.less";
 
 :root {
+  // --nav-header-height is set in website-hubspot-modules repo, use 80px as fallback.
+
   /* Typography */
   --font-poppins: "Poppins", "Segoe UI", "Roboto", -apple-system,
     BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
@@ -696,7 +698,7 @@ tr:nth-child(even) {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 10;
+  z-index: 0;
 }
 
 .email-modal-backdrop {
@@ -712,7 +714,7 @@ tr:nth-child(even) {
   background: var(--secondary-white);
   width: 750px;
   max-width: 100%;
-  z-index: 10;
+  z-index: 0;
   padding: 1rem;
   border: 1px solid var(--color-border-light);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 10%),
@@ -834,4 +836,7 @@ tr:nth-child(even) {
       height: 1200px; /* Even shorter on small mobile */
     }
   }
-}
+  pre.line-numbers{
+    overflow: hidden;
+  }
+} 
