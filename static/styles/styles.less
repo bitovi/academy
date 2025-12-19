@@ -342,11 +342,11 @@ article summary {
 }
 
 // testing deployment of code toolbar styles
-.code-toolbar .toolbar {
-  z-index: 0;
+.code-toolbar > .toolbar {
+  z-index: 0 !important;
 }
 
-.code-toolbar .toolbar-item a {
+.code-toolbar > .toolbar-item a {
   color: var(--color-primary-blue) !important;
   text-decoration: none !important;
 }
@@ -688,7 +688,7 @@ tr:nth-child(even) {
 
 /* temporary fix for line-highlight not showing up */
 .line-highlight {
-  z-index: 0;
+  z-index: 1;
 }
 
 #email-modal,
@@ -836,7 +836,9 @@ tr:nth-child(even) {
       height: 1200px; /* Even shorter on small mobile */
     }
   }
-  pre.line-numbers{
+
+  // try to fix the highlighting overflow issue with line numbers
+  pre.line-numbers {
     overflow: hidden;
   }
-} 
+}
