@@ -3,54 +3,54 @@
 		{{> sidebar.mustache}}
 	{{/unless}}
 	<article class="main">
-    <div class="main-content">
-  		{{#unless hidetitle}}
-  			{{> title.mustache}}
-  		{{/unless}}
+	<div class="main-content">
+		{{#unless hidetitle}}
+			{{> title.mustache}}
+		{{/unless}}
 
-  		{{#unless hidedescription}}
-  			{{#if description}}
-  				{{> description.mustache}}
-  			{{/if}}
-  		{{/unless}}
+		{{#unless hidedescription}}
+			{{#if description}}
+				{{> description.mustache}}
+			{{/if}}
+		{{/unless}}
 
-  		{{#unless hideBody}}
-  			{{#if signatures}}
-  				{{#each signatures}}
-  					{{> signature.mustache}}
-  				{{/each}}
-  			{{else}}
-  				{{#types}}
-  					{{> signature.mustache}}
-  				{{/types}}
-  			{{/if}}
-  			{{#if body}}
-  				{{> body.mustache}}
-  			{{/if}}
-  			<bit-prev-next class="footer" list-selector=".sidebar-left ul li.parent.expanded ul"></bit-prev-next>
-  		{{/unless}}
-    </div>
+		{{#unless hideBody}}
+			{{#if signatures}}
+				{{#each signatures}}
+					{{> signature.mustache}}
+				{{/each}}
+			{{else}}
+				{{#types}}
+					{{> signature.mustache}}
+				{{/types}}
+			{{/if}}
+			{{#if body}}
+				{{> body.mustache}}
+			{{/if}}
+			<bit-prev-next class="footer" list-selector=".sidebar-left ul li.parent.expanded ul"></bit-prev-next>
+		{{/unless}}
+	</div>
 
-    {{#unless hidecontentnav}}
-      <div class="sidebar-right">
-        <div class="content-nav on-this-page-container">
-          <h6>On this page...</h6>
-          <div class="list-items" id="scroll-toc">
-            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
-          </div>
-        </div>
-        <div class="pullout discord">
-          <h6>Get help</h6>
-          <p>If you need <a href="https://discord.gg/J7ejFsZnJ4">help</a> with an exercise, please reach out to us on
-             <a href="https://discord.gg/J7ejFsZnJ4">Discord</a></p>
-        </div>
-        <div class="pullout bug">
-          <p>If you find a bug, please
-             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
-             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com</a></p>
-        </div>
-      </div>
-    {{/unless}}
+	{{#unless hidecontentnav}}
+	<div class="sidebar-right">
+		<div class="content-nav on-this-page-container">
+		<h6>On this page...</h6>
+		<div class="list-items" id="scroll-toc">
+			<bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+		</div>
+		</div>
+		<div class="pullout discord">
+		<h6>Get help</h6>
+		<p>If you need <a href="https://discord.gg/J7ejFsZnJ4">help</a> with an exercise, please reach out to us on
+			<a href="https://discord.gg/J7ejFsZnJ4">Discord</a></p>
+		</div>
+		<div class="pullout bug">
+		<p>If you find a bug, please
+			<a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+			<a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com</a></p>
+		</div>
+	</div>
+	{{/unless}}
 
 	</article>
 </div>
