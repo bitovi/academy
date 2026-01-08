@@ -23,7 +23,7 @@
 @import "content.less";
 
 :root {
-  // --nav-header-height is set in website-hubspot-modules repo, use 80px as fallback.
+  // --nav-header-height is set in website-hubspot-modules repo, use 62px as fallback.
 
   /* Typography */
   --font-poppins: "Poppins", "Segoe UI", "Roboto", -apple-system,
@@ -341,7 +341,7 @@ article summary {
   cursor: pointer;
 }
 
-// testing deployment of code toolbar styles
+// Adjust code toolbar layering and link styling for rendered code blocks
 .code-toolbar > .toolbar {
   z-index: 0 !important;
 }
@@ -837,7 +837,7 @@ tr:nth-child(even) {
     }
   }
 
-  // try to fix the highlighting overflow issue with line numbers
+  // Fix highlighting overflow issue with line numbers
   pre.line-numbers {
     overflow: hidden;
   }
