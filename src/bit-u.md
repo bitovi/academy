@@ -412,6 +412,42 @@ bit-prev-next {
             time: '5 days',
             link: './learn-react-native.html',
             underConstruction: true
+          },
+          {
+            logo: './static/img/bitovi-logo-x2.png',
+            logoAlt: 'APIs',
+            logoHeight: '70',
+            title: 'APIs',
+            description: 'Learn how REST, WebHooks, and RPC work — and when to reach for each.',
+            audience: 'Backend and full-stack developers',
+            goal: 'Understand REST, WebHooks, and gRPC/RPC.',
+            time: '2 hours',
+            link: './learn-apis.html',
+            underConstruction: false
+          },
+          {
+            logo: './static/img/docker/logo.png',
+            logoAlt: 'Docker',
+            logoHeight: '70',
+            title: 'Docker (Short)',
+            description: 'Follow an app from a folder on your laptop to a running, multi-container setup with Docker and Compose.',
+            audience: 'Developers new to Docker',
+            goal: 'Containerize apps and orchestrate multi-container setups.',
+            time: '1 hour',
+            link: './learn-docker-short.html',
+            underConstruction: false
+          },
+          {
+            logo: './static/img/bitovi-logo-x2.png',
+            logoAlt: 'Data Persistence',
+            logoHeight: '70',
+            title: 'Data Persistence',
+            description: 'Learn the three places data lives in a typical backend: databases, storage buckets, and key/value caches.',
+            audience: 'Backend and full-stack developers',
+            goal: 'Work with databases, S3-compatible storage, and Redis caches.',
+            time: '2 hours',
+            link: './learn-persistence.html',
+            underConstruction: false
           }
         ];
         // Function to create academy card HTML
