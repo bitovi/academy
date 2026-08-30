@@ -84,6 +84,7 @@ This is the right choice when many people need to reach one shared instance, or 
       <td>Many</td>
    </tr>
 </table>
+
 The choice isn't permanent. You can serve the same tools over either transport, and moving from stdio to HTTP later changes the file that serves your server, not the tools themselves.
 
 ## ✏️ Registering a stdio server with your assistant

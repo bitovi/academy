@@ -65,6 +65,7 @@ Once connected, the tab bar across the top carries one panel per capability your
       <td>Every registered resource by URI, and the content a read returns</td>
    </tr>
 </table>
+
 The monitoring panels sit in a separate column down the right-hand side rather than in that tab bar:
 
 <table>
@@ -81,6 +82,7 @@ The monitoring panels sit in a separate column down the right-hand side rather t
       <td>Your server process's stderr, which is where its own logging goes</td>
    </tr>
 </table>
+
 Keeping them in their own column is the point: you can watch the traffic while you work in Tools or Resources, instead of switching away from what you're doing.
 
 **Note**: A server with a `logging` capability, task support, or an HTTP transport also gets Logs, Tasks, or Network panels alongside those two. Yours has none of those, so they don't appear.

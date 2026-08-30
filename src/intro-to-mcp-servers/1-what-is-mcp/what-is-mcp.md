@@ -42,7 +42,42 @@ The <dfn title="Model Context Protocol: an open protocol that lets AI applicatio
       <td>What you'll build today</td>
    </tr>
 </table>
+
 A host runs one client per server and aggregates the context they provide. Add a new server to the host and its capabilities become available immediately, with no changes to the model or the host itself.
+
+<pre class="mermaid">
+graph LR
+    subgraph "Application Host Process"
+        H[Host]
+        C1[Client 1]
+        C2[Client 2]
+        C3[Client 3]
+        H --> C1
+        H --> C2
+        H --> C3
+    end
+    subgraph "Local machine"
+        S1[Server 1<br>Files & Git]
+        S2[Server 2<br>Database]
+        R1[("Local<br>Resource A")]
+        R2[("Local<br>Resource B")]
+        C1 --> S1
+        C2 --> S2
+        S1 <--> R1
+        S2 <--> R2
+    end
+    subgraph "Internet"
+        S3[Server 3<br>External APIs]
+        R3[("Remote<br>Resource C")]
+        C3 --> S3
+        S3 <--> R3
+    end
+</pre>
+
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict" });
+</script>
 
 **Note**: The server you build today runs as a <dfn title="Subprocess: a program started and owned by another program, communicating over its standard input and output streams.">subprocess</dfn> that the host launches on your own machine, with nothing listening on a port. "Server" here means a program that answers MCP requests, not a machine in a data center.
 
@@ -76,6 +111,7 @@ A server exposes three primitives. The useful way to tell them apart is by askin
       <td>Slash commands, menu options</td>
    </tr>
 </table>
+
 **Reference**: [Server Features](https://modelcontextprotocol.io/specification/2026-07-28/server)
 
 ## MCP is stateless

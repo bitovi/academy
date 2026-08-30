@@ -13,6 +13,21 @@ A tool doesn't have to answer with only what the caller gave it. It can stop mid
 
 A server can't ask directly. Every interaction in MCP begins with the client, and a server must never initiate a request of its own: it answers requests, and that's all. So a handler asks by returning `inputRequired(...)` in place of a result. The client reads the question, puts it to the user, and calls your tool a second time with the answer attached. The spec calls that two-round shape a multi round-trip request, or MRTR.
 
+<pre class="mermaid">
+sequenceDiagram
+    participant Client
+    participant Server
+    Client->>Server: request (id: 1)
+    Server-->>Client: InputRequiredResult (inputRequests)
+    Client->>Server: request (id: 2, original params + inputResponses)
+    Server-->>Client: response
+</pre>
+
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict" });
+</script>
+
 One action by the user, two `tools/call` requests with different ids, and your handler running once for each.
 
 Add a `clear-tasks` tool that confirms before wiping the list:

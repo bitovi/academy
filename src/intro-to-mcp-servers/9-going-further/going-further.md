@@ -67,6 +67,21 @@ for (const page of pages) {
 
 Nothing so far tells a client that your tool list grew or that a resource it read has changed. A client asks to be told by sending `subscriptions/listen` with a filter naming what it wants: `toolsListChanged`, `promptsListChanged`, `resourcesListChanged`, or `resourceSubscriptions` for specific URIs. That request stays open as a stream instead of answering once.
 
+<pre class="mermaid">
+sequenceDiagram
+    participant Client
+    participant Server
+    Client->>Server: subscriptions/listen
+    Server-->>Client: notifications/subscriptions/acknowledged
+    note over Client,Server: Stream stays open
+    Server-->>Client: notifications/* (tagged with subscriptionId)
+</pre>
+
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict" });
+</script>
+
 Your server must acknowledge the subscription before sending anything on it, and must never send a type the client didn't request. The SDK handles both, and it handles most of the sending too: `registerTool` and its siblings return a handle, and updating, disabling, or removing through that handle emits the matching list-changed notification by itself. You only send explicitly when something changes that the registration API can't see.
 
 ```ts
