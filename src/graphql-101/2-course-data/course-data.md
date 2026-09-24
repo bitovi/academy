@@ -1,0 +1,107 @@
+@page learn-graphql-101/course-data The Course Data
+@parent learn-graphql-101 2
+@outline 2
+
+@description Meet the policyholders and policies in the course API. Come back to this page whenever an exercise refers to specific data.
+
+@body
+
+## Overview
+
+Throughout this course, you'll work on the API for a fictional insurance company. It holds two kinds of data:
+
+- **Policyholders**: the company's customers
+- **Policies**: the insurance each policyholder owns (auto, home, life, or renters)
+
+This page shows the data the API starts with, so you know what to expect before writing a query. Field names are shown exactly as you'd use them in a query.
+
+## Policyholders
+
+<table>
+   <tr>
+      <th><code>id</code></th>
+      <th><code>name</code></th>
+      <th><code>email</code></th>
+   </tr>
+   <tr>
+      <td><code>ph1</code></td>
+      <td>Maria Alvarez</td>
+      <td>maria.alvarez@example.com</td>
+   </tr>
+   <tr>
+      <td><code>ph2</code></td>
+      <td>James Okafor</td>
+      <td>james.okafor@example.com</td>
+   </tr>
+   <tr>
+      <td><code>ph3</code></td>
+      <td>Priya Raman</td>
+      <td>priya.raman@example.com</td>
+   </tr>
+</table>
+
+## Policies
+
+<table>
+   <tr>
+      <th><code>policyNumber</code></th>
+      <th><code>type</code></th>
+      <th><code>monthlyPremium</code></th>
+      <th><code>effectiveDate</code></th>
+      <th><code>riskTier</code></th>
+      <th><code>policyholder</code></th>
+   </tr>
+   <tr>
+      <td>AUTO-100001</td>
+      <td><code>AUTO</code></td>
+      <td>142.50</td>
+      <td>2025-01-15</td>
+      <td>MEDIUM</td>
+      <td>Maria Alvarez</td>
+   </tr>
+   <tr>
+      <td>HOME-100002</td>
+      <td><code>HOME</code></td>
+      <td>98.00</td>
+      <td>2024-06-01</td>
+      <td>LOW</td>
+      <td>Maria Alvarez</td>
+   </tr>
+   <tr>
+      <td>AUTO-100003</td>
+      <td><code>AUTO</code></td>
+      <td>210.75</td>
+      <td>2025-03-10</td>
+      <td>HIGH</td>
+      <td>James Okafor</td>
+   </tr>
+   <tr>
+      <td>LIFE-100004</td>
+      <td><code>LIFE</code></td>
+      <td>45.00</td>
+      <td>2023-11-20</td>
+      <td>LOW</td>
+      <td>Priya Raman</td>
+   </tr>
+   <tr>
+      <td>RENTERS-100005</td>
+      <td><code>RENTERS</code></td>
+      <td>18.25</td>
+      <td>2025-08-01</td>
+      <td>MEDIUM</td>
+      <td>Priya Raman</td>
+   </tr>
+</table>
+
+Each policy also has an `id` (`p1` through `p5`, in the order above).
+
+## How the data is connected
+
+Each policy belongs to **one** policyholder, and a policyholder can have **several** policies. Maria Alvarez, for example, has both an auto and a home policy.
+
+In a query, you follow that connection with nested fields: from a policy to its `policyholder`, or from a policyholder to their `policies`. You'll do this in [Writing Queries](./writing-queries.html).
+
+## Good to know
+
+- **The data lives in memory.** Anything you add or change resets when the server restarts.
+- **`monthlyPremium`** is in US dollars. The API returns it as a number, so trailing zeros are dropped: `210.75` comes back as `210.75`, but `98.00` comes back as `98`.
