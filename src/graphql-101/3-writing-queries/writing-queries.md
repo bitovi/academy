@@ -149,7 +149,7 @@ The values are sent separately, as JSON. In Apollo Sandbox, they go in the **Var
 
 ### Multiple variables and fields
 
-One operation can declare several variables, separated by commas, and ask for several top-level fields at once. The response contains one entry per field:
+One operation can declare several variables, separated by commas, and **ask for several top-level fields at once**. The response contains one entry per field:
 
 ```graphql
 query PolicyAndHolder($policyId: ID!, $policyholderId: ID!) {
@@ -167,6 +167,8 @@ A variable's type must match the argument it's used for. `policy(id: ID!)` requi
 ### Exercise 2
 
 An agent's dashboard shows a policyholder's contact details next to a list of policies of one type.
+
+**This asks for two separate pieces of information, a policyholder and a list of policies, in a single request.**
 
 ✏️ Write one query named `AgentDashboard` that uses two variables:
 
@@ -247,7 +249,7 @@ Say underwriting wants a list of high-risk policies. Every policy has a `riskTie
 
 ```graphql
 {
-  policies(riskTier: "HIGH") {
+  policies(riskTier: HIGH) {
     policyNumber
     riskTier
   }

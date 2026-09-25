@@ -56,7 +56,7 @@ This page shows the data the API starts with, so you know what to expect before 
       <td><code>AUTO</code></td>
       <td>142.50</td>
       <td>2025-01-15</td>
-      <td>MEDIUM</td>
+      <td><code>MEDIUM</code></td>
       <td>Maria Alvarez</td>
    </tr>
    <tr>
@@ -64,7 +64,7 @@ This page shows the data the API starts with, so you know what to expect before 
       <td><code>HOME</code></td>
       <td>98.00</td>
       <td>2024-06-01</td>
-      <td>LOW</td>
+      <td><code>LOW</code></td>
       <td>Maria Alvarez</td>
    </tr>
    <tr>
@@ -72,7 +72,7 @@ This page shows the data the API starts with, so you know what to expect before 
       <td><code>AUTO</code></td>
       <td>210.75</td>
       <td>2025-03-10</td>
-      <td>HIGH</td>
+      <td><code>HIGH</code></td>
       <td>James Okafor</td>
    </tr>
    <tr>
@@ -80,7 +80,7 @@ This page shows the data the API starts with, so you know what to expect before 
       <td><code>LIFE</code></td>
       <td>45.00</td>
       <td>2023-11-20</td>
-      <td>LOW</td>
+      <td><code>LOW</code></td>
       <td>Priya Raman</td>
    </tr>
    <tr>
@@ -88,7 +88,7 @@ This page shows the data the API starts with, so you know what to expect before 
       <td><code>RENTERS</code></td>
       <td>18.25</td>
       <td>2025-08-01</td>
-      <td>MEDIUM</td>
+      <td><code>MEDIUM</code></td>
       <td>Priya Raman</td>
    </tr>
 </table>
@@ -103,5 +103,5 @@ In a query, you follow that connection with nested fields: from a policy to its 
 
 ## Good to know
 
-- **The data lives in memory.** Anything you add or change resets when the server restarts.
+- **Your changes are saved.** Policies you add or change are written to **services/policies/data.json**, so they're still there after the server restarts. To go back to the starting data, stop the server, run `npm run reset-data` in **services/policies**, and start it again.
 - **`monthlyPremium`** is in US dollars. The API returns it as a number, so trailing zeros are dropped: `210.75` comes back as `210.75`, but `98.00` comes back as `98`.

@@ -12,7 +12,7 @@ In this section, we will:
 
 - Read a GraphQL schema
 - Learn what resolvers are and how they receive arguments
-- Understand default resolvers
+- Understand default resolvers, and add a calculated field that needs its own resolver
 - Add a `riskTier` argument to the `policies` query
 
 ## Objective 1: Read the schema
@@ -28,7 +28,7 @@ type Policy {
   type: PolicyType!
   monthlyPremium: Float!
   effectiveDate: String!
-  riskTier: String
+  riskTier: RiskTier
   policyholder: Policyholder!
 }
 
@@ -37,6 +37,12 @@ enum PolicyType {
   HOME
   LIFE
   RENTERS
+}
+
+enum RiskTier {
+  LOW
+  MEDIUM
+  HIGH
 }
 
 type Query {
@@ -50,9 +56,9 @@ type Query {
 A few things to notice:
 
 - **Types and fields**: `Policy` is an object type with fields. `ID`, `String`, `Float`, `Int`, and `Boolean` are built-in scalar types.
-- **`!` means non-null**: `policyNumber: String!` always has a value. `riskTier: String` may be `null`.
+- **`!` means non-null**: `policyNumber: String!` always has a value. `riskTier: RiskTier` may be `null`.
 - **`[Policy!]!` is a list**: a non-null list of non-null policies.
-- **Enums**: `PolicyType` limits a value to a fixed set.
+- **Enums**: `PolicyType` and `RiskTier` limit a value to a fixed set.
 - **`Query` is special**: its fields are the entry points for reading data. `policies(type: PolicyType)` declares the argument we used in the last section.
 
 ## Objective 2: Understand resolvers
@@ -65,7 +71,10 @@ A **resolver** is a function that returns the data for one field. Ours live in *
 export const resolvers = {
   Query: {
     policies: (_: unknown, args: { type?: PolicyType }) =>
-      args.type ? policies.filter((p) => p.type === args.type) : policies,
+      policies.filter((p) => {
+        if (args.type && p.type !== args.type) return false;
+        return true;
+      }),
     // ...
   },
   Policy: {
@@ -84,6 +93,19 @@ Every resolver receives four arguments: `(parent, args, contextValue, info)`.
 - **`contextValue`** is shared by every resolver in a request. It's typically where the logged-in user or a database connection lives.
 - **`info`** describes the query itself.
 
+### Reading the `policies` resolver
+
+Here's what each part of `Query.policies` does:
+
+- **`args: { type?: PolicyType }`** lists the arguments this resolver expects. `type` is the argument from `policies(type: PolicyType)` in the schema. The `?` means it's optional: `args.type` is empty when the query doesn't pass a `type`.
+- **`policies.filter((p) => { ... })`** goes through every policy, one at a time, calling each one `p`. It keeps a policy when the code inside returns `true` and leaves it out when it returns `false`.
+- **`if (args.type && p.type !== args.type) return false;`** reads as: "if a type was requested, **and** this policy isn't that type, leave it out."
+- **`return true;`** keeps every policy that wasn't left out.
+
+So `policies(type: AUTO)` returns only the auto policies, and `policies` with no arguments returns all of them.
+
+The `if` line is a **filter**. Each argument you want to filter by gets its own `args` entry and its own `if` line, in the same shape.
+
 ### Resolvers chain together
 
 In `policies { policyholder { name } }`:
@@ -95,19 +117,118 @@ If a query doesn't ask for `policyholder`, `Policy.policyholder` never runs.
 
 ### Default resolvers
 
-There's no resolver for `Policy.policyNumber`, yet it works. When a field has no resolver, GraphQL uses a **default resolver**, which returns the property with the same name from the parent object.
+Look back at the resolvers above. There's a resolver for `Policy.policyholder`, but none for `Policy.policyNumber`, `Policy.type`, or any other `Policy` field. Yet all of them work.
 
-## Objective 3: Add a query argument
+When a field has no resolver, GraphQL uses a **default resolver**. It returns the property with the same name from the parent object. In `policies { policyNumber }`, `Query.policies` returns objects from **services/policies/src/data.ts** like this one:
 
-### Setup 3
-
-✏️ If your server isn't running, start it in the Codespace terminal:
-
-```shell
-cd services/policies && npm run dev
+```ts
+{ id: "p1", policyNumber: "AUTO-100001", type: "AUTO", monthlyPremium: 142.5, /* ... */ policyholderId: "ph1" }
 ```
 
+For each policy, GraphQL resolves `policyNumber` by reading `policy.policyNumber`. You get this for free whenever the schema's field names match your data's property names.
+
+**The default resolver only reads properties. It can't compute anything.** Two things follow from that:
+
+- **Data can have properties the schema doesn't expose.** `policyholderId` is on every policy object, but it isn't a field on `type Policy`, so clients can't ask for it. The `Policy.policyholder` resolver uses it behind the scenes.
+- **A field with no matching property comes back as `null`.** If the schema declares a field that isn't in the data and has no resolver, the default resolver finds nothing. For a non-null field (`!`), that's an error.
+
+When a field's value has to be looked up or calculated, write a resolver for it, the way `Policy.policyholder` looks up a policyholder from `policyholderId`.
+
+### Exercise 2
+
+Billing wants to show each policy's yearly cost, which is its `monthlyPremium` times 12. We'll add this as an `annualPremium` field. The data doesn't have an `annualPremium` property, so the server will calculate it.
+
+This exercise has two parts. The first one breaks things on purpose.
+
+**Part 1: Add the field to the schema only.**
+
+✏️ In **services/policies/src/schema.graphql**, add a required `annualPremium` field to the `Policy` type. Don't add a resolver yet.
+
 The server restarts automatically every time you save a file.
+
+✏️ Run this query:
+
+```graphql
+{
+  policies {
+    policyNumber
+    monthlyPremium
+    annualPremium
+  }
+}
+```
+
+The query fails with:
+
+```json
+{
+  "errors": [{ "message": "Cannot return null for non-nullable field Policy.annualPremium." }],
+  "data": null
+}
+```
+
+The schema accepted the new field, so the request passed validation. But no resolver was written for `annualPremium`, so the default resolver ran. It looked for `policy.annualPremium`, found nothing, and returned `null`, which breaks the `!`.
+
+**Part 2: Add the resolver.**
+
+✏️ In **services/policies/src/resolvers.ts**, add a resolver so `annualPremium` returns the policy's yearly cost.
+
+<strong>Hint:</strong> Look at how `Policy.policyholder` gets the policy it's resolving a field for.
+
+### Verify 2
+
+After **Part 2**, the query from Part 1 returns:
+
+```json
+{
+  "data": {
+    "policies": [
+      { "policyNumber": "AUTO-100001", "monthlyPremium": 142.5, "annualPremium": 1710 },
+      { "policyNumber": "HOME-100002", "monthlyPremium": 98, "annualPremium": 1176 },
+      { "policyNumber": "AUTO-100003", "monthlyPremium": 210.75, "annualPremium": 2529 },
+      { "policyNumber": "LIFE-100004", "monthlyPremium": 45, "annualPremium": 540 },
+      { "policyNumber": "RENTERS-100005", "monthlyPremium": 18.25, "annualPremium": 219 }
+    ]
+  }
+}
+```
+
+### Solution 2
+
+<details>
+<summary>Click to see the solution</summary>
+
+✏️ In **services/policies/src/schema.graphql**, add the field to `Policy`:
+
+```graphql
+type Policy {
+  id: ID!
+  policyNumber: String!
+  type: PolicyType!
+  monthlyPremium: Float!
+  annualPremium: Float!
+  effectiveDate: String!
+  riskTier: RiskTier
+  policyholder: Policyholder!
+}
+```
+
+✏️ In **services/policies/src/resolvers.ts**, add an `annualPremium` resolver next to `policyholder`:
+
+```ts
+  Policy: {
+    policyholder: (policy: Policy) => policyholders.find((ph) => ph.id === policy.policyholderId),
+    annualPremium: (policy: Policy) => policy.monthlyPremium * 12,
+  },
+```
+
+Like `policyholder`, `annualPremium` receives the policy as `parent`. Every other `Policy` field still uses the default resolver.
+
+The resolver runs only when a query asks for `annualPremium`, so the calculation costs nothing for queries that don't use it.
+
+</details>
+
+## Objective 3: Add a query argument
 
 ### Exercise 3
 
@@ -115,7 +236,7 @@ Let's make the query from the last section work:
 
 ```graphql
 {
-  policies(riskTier: "HIGH") {
+  policies(riskTier: HIGH) {
     policyNumber
     riskTier
   }
@@ -130,8 +251,8 @@ Let's make the query from the last section work:
 
 ✏️ In Apollo Sandbox, confirm that:
 
-- `policies(riskTier: "HIGH")` returns only `AUTO-100003`
-- `policies(type: AUTO, riskTier: "MEDIUM")` returns only `AUTO-100001`
+- `policies(riskTier: HIGH)` returns only `AUTO-100003`
+- `policies(type: AUTO, riskTier: MEDIUM)` returns only `AUTO-100001`
 - `policies` with no arguments still returns all five policies
 
 ### Solution 3
@@ -143,17 +264,17 @@ Let's make the query from the last section work:
 
 ```graphql
 type Query {
-  policies(type: PolicyType, riskTier: String): [Policy!]!
+  policies(type: PolicyType, riskTier: RiskTier): [Policy!]!
   policy(id: ID!): Policy
   policyholders: [Policyholder!]!
   policyholder(id: ID!): Policyholder
 }
 ```
 
-✏️ Update the `policies` resolver in **services/policies/src/resolvers.ts**:
+✏️ In **services/policies/src/resolvers.ts**, update the `policies` resolver:
 
 ```ts
-    policies: (_: unknown, args: { type?: PolicyType; riskTier?: string }) =>
+    policies: (_: unknown, args: { type?: PolicyType; riskTier?: RiskTier }) =>
       policies.filter((p) => {
         // A type was requested, and this policy isn't that type
         if (args.type && p.type !== args.type) return false;
@@ -164,19 +285,12 @@ type Query {
       }),
 ```
 
-`filter` calls the function once for each policy (`p`) and keeps the ones that return `true`. A filter only applies when its argument was provided, so `type` and `riskTier` can be combined or left out.
+Two things changed:
 
-Experienced Node developers will often write the same logic as a single expression:
+1. **`riskTier?: RiskTier`** was added to `args`, so the resolver knows about the new argument. `RiskTier` is already imported at the top of the file.
+2. **A second `if` line** was added. It follows the same shape as the `type` line: "if a risk tier was requested, **and** this policy isn't that tier, leave it out."
 
-```ts
-      policies.filter(
-        (p) =>
-          (!args.type || p.type === args.type) &&
-          (!args.riskTier || p.riskTier === args.riskTier)
-      ),
-```
-
-Each line reads as "no filter was requested, **or** this policy matches it." Both versions behave identically.
+Each filter only applies when its argument was provided, so `type` and `riskTier` can be combined or left out.
 
 </details>
 

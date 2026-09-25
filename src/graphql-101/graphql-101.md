@@ -41,5 +41,6 @@ The exercises run in a GitHub Codespace, so there's nothing to install locally.
 2. [The Course Data](learn-graphql-101/course-data.html): the policyholders and policies the API starts with
 3. [Writing Queries](learn-graphql-101/writing-queries.html): nested fields, arguments, variables, and request validation
 4. [Schemas and Resolvers](learn-graphql-101/schemas-and-resolvers.html): how the server answers queries, and adding a new argument
-5. **Mutations** (coming soon)
-6. **Final exam** (coming soon): model auto and home policies with a shared `Policy` interface
+5. [Mutations](learn-graphql-101/mutations.html): issue policies with input types, and make a field required
+6. [N+1 and DataLoader](learn-graphql-101/n-plus-one.html): why nested fields can multiply the work your server does, and batching with DataLoader
+7. [Final Exam](learn-graphql-101/final-exam.html): add insurance claims to the API, using everything from the course
