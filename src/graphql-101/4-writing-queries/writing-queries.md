@@ -1,8 +1,8 @@
 @page learn-graphql-101/writing-queries Writing Queries
-@parent learn-graphql-101 3
+@parent learn-graphql-101 4
 @outline 2
 
-@description Write GraphQL queries with nested fields, arguments, and variables, and see how the schema validates every request.
+@description Write GraphQL queries with nested fields, arguments, variables, and directives, and see how the schema validates every request.
 
 @body
 
@@ -13,6 +13,7 @@ In this section, we will:
 - Select fields, including fields of related objects
 - Filter results with arguments
 - Pass arguments as variables
+- Include or skip fields with directives
 - See how GraphQL validates every request against the schema
 
 Need a reminder of what's in the API? See [The Course Data](./course-data.html).
@@ -92,7 +93,7 @@ This time, build the query without typing it, using only the Documentation panel
 
 From `Query`, click **⊕** next to `policies`. Open `policies`, then click **⊕** next to `policyNumber` and `policyholder`. Open `policyholder`, then click **⊕** next to `name` and `email`.
 
-The response should be:
+Your response should be:
 
 ```json
 {
@@ -221,7 +222,97 @@ Variables:
 
 </details>
 
-## Objective 3: Understand request validation
+## Objective 3: Include or skip fields with directives
+
+### What is a directive?
+
+A **directive** is an instruction attached to part of a query or schema, written as `@` followed by a name. Some directives take arguments, just like fields do:
+
+```graphql
+policies @include(if: $withPolicies)
+```
+
+A directive changes how GraphQL treats the thing it's attached to. The [GraphQL specification](https://spec.graphql.org/September2025/#sec-Type-System.Directives) defines a few built-in directives that every GraphQL server supports. Two of them are for queries:
+
+- **`@include(if: Boolean!)`** returns a field only when `if` is `true`.
+- **`@skip(if: Boolean!)`** leaves a field out when `if` is `true`.
+
+They do the same job from opposite directions. Use whichever reads more naturally. You'll see directives used in schemas in the Mutations section.
+
+### Why use them
+
+These directives are most useful with a variable. A screen might show a policyholder's contact details, with a toggle that adds their policies. Without directives, the client would need two separate queries. With `@include`, one query covers both, and the variable decides which fields come back.
+
+When a field is left out, it's missing from the response entirely. It doesn't come back as `null`. GraphQL also doesn't run the resolver for a field that's left out, so the server doesn't do that work.
+
+### Exercise 3
+
+✏️ In Apollo Sandbox, write one query named `PolicyholderView` that takes two variables: `$id`, a policyholder id, and `$withPolicies`, a `Boolean!`. It returns the policyholder's `name` and `email`. Their policies, with each policy's `policyNumber` and `type`, are included only when `$withPolicies` is `true`.
+
+✏️ Run it with these variables:
+
+```json
+{ "id": "ph3", "withPolicies": false }
+```
+
+Your response should be:
+
+```json
+{
+  "data": {
+    "policyholder": { "name": "Priya Raman", "email": "priya.raman@example.com" }
+  }
+}
+```
+
+✏️ Change the variables so `withPolicies` is `true`, and run it again:
+
+```json
+{ "id": "ph3", "withPolicies": true }
+```
+
+Your response should be:
+
+```json
+{
+  "data": {
+    "policyholder": {
+      "name": "Priya Raman",
+      "email": "priya.raman@example.com",
+      "policies": [
+        { "policyNumber": "LIFE-100004", "type": "LIFE" },
+        { "policyNumber": "RENTERS-100005", "type": "RENTERS" }
+      ]
+    }
+  }
+}
+```
+
+### Solution 3
+
+<details>
+<summary>Click to see the solution</summary>
+
+```graphql
+query PolicyholderView($id: ID!, $withPolicies: Boolean!) {
+  policyholder(id: $id) {
+    name
+    email
+    policies @include(if: $withPolicies) {
+      policyNumber
+      type
+    }
+  }
+}
+```
+
+`@include` goes right after the field name, before its `{ }`. When `$withPolicies` is `false`, GraphQL leaves out `policies` and everything inside it.
+
+`policies @skip(if: $withoutPolicies)` would work too, with the variable's meaning flipped.
+
+</details>
+
+## Objective 4: Understand request validation
 
 ### Every request is checked against the schema
 
@@ -234,6 +325,8 @@ Before any of your server code runs, GraphQL checks the request against the sche
   }
 }
 ```
+
+The response (trimmed for readability) is:
 
 ```json
 {
@@ -256,7 +349,7 @@ Say underwriting wants a list of high-risk policies. Every policy has a `riskTie
 }
 ```
 
-But the request fails:
+But the request fails. The response (trimmed for readability) is:
 
 ```json
 {
@@ -268,4 +361,4 @@ But the request fails:
 
 ## Next steps
 
-Next we'll look inside the server at the schema and resolvers, and add the missing `riskTier` argument ourselves.
+Next, we'll ask the API to describe its own schema, using introspection.

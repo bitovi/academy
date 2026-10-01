@@ -1,5 +1,5 @@
 @page learn-graphql-101/schemas-and-resolvers Schemas and Resolvers
-@parent learn-graphql-101 4
+@parent learn-graphql-101 6
 @outline 2
 
 @description Learn how a GraphQL schema and its resolvers work together, then extend both to add a new query argument.
@@ -158,7 +158,7 @@ The server restarts automatically every time you save a file.
 }
 ```
 
-The query fails with:
+The query fails. The response (trimmed for readability) is:
 
 ```json
 {
@@ -175,9 +175,7 @@ The schema accepted the new field, so the request passed validation. But no reso
 
 <strong>Hint:</strong> Look at how `Policy.policyholder` gets the policy it's resolving a field for.
 
-### Verify 2
-
-After **Part 2**, the query from Part 1 returns:
+✏️ Run the query from Part 1 again. Your response should be:
 
 ```json
 {
@@ -247,13 +245,42 @@ Let's make the query from the last section work:
 
 <strong>Hint:</strong> Declaring an argument in the schema only gets it into `args`. The resolver still has to use it.
 
+✏️ Run the query above. Your response should be:
+
+```json
+{ "data": { "policies": [{ "policyNumber": "AUTO-100003", "riskTier": "HIGH" }] } }
+```
+
+✏️ Combine both filters:
+
+```graphql
+{
+  policies(type: AUTO, riskTier: MEDIUM) {
+    policyNumber
+    riskTier
+  }
+}
+```
+
+Your response should be:
+
+```json
+{ "data": { "policies": [{ "policyNumber": "AUTO-100001", "riskTier": "MEDIUM" }] } }
+```
+
 ### Verify 3
 
-✏️ In Apollo Sandbox, confirm that:
+✏️ Run `policies` with no arguments:
 
-- `policies(riskTier: HIGH)` returns only `AUTO-100003`
-- `policies(type: AUTO, riskTier: MEDIUM)` returns only `AUTO-100001`
-- `policies` with no arguments still returns all five policies
+```graphql
+{
+  policies {
+    policyNumber
+  }
+}
+```
+
+It still returns all five policies.
 
 ### Solution 3
 
@@ -296,4 +323,4 @@ Each filter only applies when its argument was provided, so `type` and `riskTier
 
 ## Next steps
 
-Next we'll change data with mutations.
+Next, we'll change data with mutations.

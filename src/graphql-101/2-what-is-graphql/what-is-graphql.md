@@ -1,5 +1,5 @@
 @page learn-graphql-101/what-is-graphql What is GraphQL?
-@parent learn-graphql-101 1
+@parent learn-graphql-101 2
 @outline 2
 
 @description Learn what GraphQL is, how it compares to REST, and run your first query.
@@ -13,7 +13,7 @@ In this section, we will:
 - Learn what GraphQL is (and what it isn't)
 - Compare GraphQL to a REST API
 - Weigh the benefits and trade-offs of using GraphQL
-- Launch the course environment and run our first query
+- Run our first query
 
 ## Objective 1: Understand GraphQL
 
@@ -75,7 +75,7 @@ The response has the same shape as the query:
 - **Fewer round trips** for related data.
 - **A strongly typed schema is the contract.** It powers tooling for free: autocomplete, documentation, validation, and code generation.
 - **APIs evolve without versioning.** New fields can be added at any time, and old ones retired with `@deprecated` instead of shipping a `/v2`.
-- **One graph over many services.** Several teams' APIs can be combined into a single graph, which we'll explore in GraphQL 102.
+- **One graph over many services.** Several teams' APIs can be combined into a single graph, using federation. Federation has its own training.
 
 ### Trade-offs
 
@@ -86,60 +86,11 @@ The response has the same shape as the query:
 
 ## Objective 2: Run your first query
 
-### Setup
+You'll run queries in **Apollo Sandbox**, which you opened in [Course Setup](./setup.html).
 
-The course environment runs in a GitHub Codespace, a cloud development environment that opens in your browser with everything preinstalled.
+### Exercise 2
 
-✏️ Click the button below to create a Codespace:
-
-<a href="https://codespaces.new/bitovi/graphql-and-kafka-workshop?devcontainer_path=.devcontainer/101/devcontainer.json"><img src="https://github.com/codespaces/badge.svg" alt="Open in GitHub Codespaces"/></a>
-
-✏️ Confirm these options, then click **Create codespace**:
-
-<table>
-   <tr>
-      <th>Option</th>
-      <th>Value</th>
-   </tr>
-   <tr>
-      <td><strong>Repository</strong></td>
-      <td><code>bitovi/graphql-and-kafka-workshop</code></td>
-   </tr>
-   <tr>
-      <td><strong>Branch</strong></td>
-      <td><code>main</code></td>
-   </tr>
-   <tr>
-      <td><strong>Dev container configuration</strong></td>
-      <td>GraphQL 101</td>
-   </tr>
-   <tr>
-      <td><strong>Region</strong></td>
-      <td>East US or West US</td>
-   </tr>
-   <tr>
-      <td><strong>Machine type</strong></td>
-      <td>8-core</td>
-   </tr>
-</table>
-
-✏️ Once the Codespace finishes loading, run this in its terminal:
-
-```shell
-cd services/policies && npm run dev
-```
-
-You should see:
-
-```shell
-🚀 Policies service ready at http://0.0.0.0:4001/
-```
-
-Codespaces opens port `4001` in a new browser tab, showing **Apollo Sandbox**, an in-browser editor for writing and running GraphQL queries. If the tab doesn't open, open the **Ports** tab in the Codespace and click the globe icon next to port `4001`.
-
-### Exercise
-
-✏️ In Apollo Sandbox, write a query that returns the response below, then click **Run**. Your response should match this shape exactly, with the same fields and nothing extra:
+✏️ In Apollo Sandbox, write a query that returns the response below, then click **Run**. It should have the same fields, in the same shape, and nothing extra. Your response should be:
 
 ```json
 {
@@ -157,7 +108,7 @@ Codespaces opens port `4001` in a new browser tab, showing **Apollo Sandbox**, a
 
 <strong>Hint:</strong> The **Documentation** panel on the left lists every field you can ask for. For a starting point, look at the query in **GraphQL vs REST** above; you'll only need to change which fields it asks for.
 
-### Solution
+### Solution 2
 
 <details>
 <summary>Click to see the solution</summary>
@@ -177,4 +128,4 @@ Each field in the query appears in the response, in the same order and nesting.
 
 ## Next steps
 
-Next we'll meet the policyholders and policies in the course API.
+Next, we'll meet the policyholders and policies in the course API.

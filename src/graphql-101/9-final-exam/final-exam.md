@@ -1,5 +1,5 @@
 @page learn-graphql-101/final-exam Final Exam
-@parent learn-graphql-101 7
+@parent learn-graphql-101 9
 @outline 2
 
 @description Put the whole course together by adding insurance claims to the API: a new type, queries, relationships, a calculated field, a mutation, and batching.
@@ -54,7 +54,7 @@ A claim belongs to **one** policy, and a policy can have **several** claims. `LI
 
 ✏️ Add a `claims` query that returns every claim, or only the claims with a given `status`.
 
-This query:
+Run this query:
 
 ```graphql
 {
@@ -67,7 +67,7 @@ This query:
 }
 ```
 
-should return:
+Your response should be:
 
 ```json
 {
@@ -88,7 +88,7 @@ should return:
 
 Before you start, look at **services/policies/src/data.ts** and check the shape of the `Claim` data. What does a claim store about its policy, and what does a policy store about its claims?
 
-This query:
+Run this query:
 
 ```graphql
 {
@@ -104,7 +104,7 @@ This query:
 }
 ```
 
-should return:
+Your response should be:
 
 ```json
 {
@@ -160,7 +160,7 @@ An agent wants to see all of a policyholder's policies and their claims, in one 
 
 ✏️ Add a required `totalClaimed` field to `Policy`: the total `amount` of that policy's **approved** claims. Open and denied claims don't count.
 
-`{ policies { policyNumber totalClaimed } }` should return:
+Run `{ policies { policyNumber totalClaimed } }`. Your response should be:
 
 ```json
 {
@@ -182,7 +182,7 @@ If you've issued policies in earlier sections, you'll see them too, with `"total
 
 ✏️ Add a `fileClaim` mutation that takes an input with a `policyId` and an `amount`, and returns the new `Claim`. The server fills in everything else: the `id`, the `claimNumber` (next in the `CLM-5001`, `CLM-5002`, … series), a `status` of `OPEN`, and today's date as the `filedDate`.
 
-This mutation:
+Run this mutation:
 
 ```graphql
 mutation {
@@ -198,7 +198,7 @@ mutation {
 }
 ```
 
-should return (with today's date):
+Your response should look like this, with today's date:
 
 ```json
 {
@@ -432,4 +432,10 @@ It's the same pattern as `policiesByPolicyholder`: each id maps to a **list**, s
 
 You've taken a GraphQL API from reading its schema to extending it with a new type, relationships, a calculated field, a mutation, and batching. Those are the core skills you'll use on any GraphQL API.
 
-To start fresh, stop the server and run `npm run reset-data` in **services/policies**. That restores the starting policies and claims.
+### Reset the course data
+
+To go back to the starting data, stop the server, run `npm run reset-data` in **services/policies**, and start it again. That restores the starting policies and claims.
+
+## Next steps
+
+[GraphQL 102](learn-graphql-102.html) picks up where this course ends, and gets the API ready for real users: pagination, custom scalars, error handling, security, authorization, caching, and subscriptions.

@@ -10,6 +10,8 @@
 
 GraphQL 102 runs in a new Codespace, separate from the one you used in 101. It starts with the finished 101 API: policies, policyholders, and claims, with every 101 exercise already done. You don't need to bring over any of your 101 work.
 
+The code is tidied up a little compared with what you wrote in 101. The `[RESOLVER]` and `[LOADER]` log lines are gone, and some comments are shorter, but everything works the same way.
+
 ✏️ Click the button below to create a Codespace:
 
 <a href="https://codespaces.new/bitovi/graphql-and-kafka-workshop?devcontainer_path=.devcontainer/102/devcontainer.json"><img src="https://github.com/codespaces/badge.svg" alt="Open in GitHub Codespaces"/></a>

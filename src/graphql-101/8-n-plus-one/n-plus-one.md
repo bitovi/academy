@@ -1,5 +1,5 @@
 @page learn-graphql-101/n-plus-one N+1 and DataLoader
-@parent learn-graphql-101 6
+@parent learn-graphql-101 8
 @outline 2
 
 @description See how nested fields can make a GraphQL server do far more work than it needs to, and fix it by batching with DataLoader.
@@ -228,7 +228,7 @@ import type { Loaders } from "./loaders.js";
 
 The resolver now uses three of its four arguments: `policy` (the parent), `_` for `args` (it has none), and `contextValue`. Instead of finding the policyholder itself, it asks the loader for one. The `[RESOLVER]` log stays, so you can compare how often the resolver runs with how often the loader does.
 
-### Verify 2
+### See the result
 
 ✏️ Run the query from Objective 1 again. The response is the same, but the terminal now shows:
 
@@ -271,9 +271,18 @@ The relationship goes both ways. `Policyholder.policies` has the same problem. I
 
 <strong>Hint:</strong> A policyholder can have several policies. The batch function still returns one result per id, but each result is a **list** of policies.
 
+✏️ Run the query again. The terminal shows the resolver running once per policyholder, and the batch function running **once**, with all three policyholder ids. For example:
+
+```text
+[RESOLVER] Looking up policies for policyholder ph1
+[RESOLVER] Looking up policies for policyholder ph2
+[RESOLVER] Looking up policies for policyholder ph3
+[LOADER] Loading policies for policyholders ph1, ph2, ph3
+```
+
 ### Verify 3
 
-✏️ Run the query again. The response is unchanged:
+✏️ Check the response from the last step. It's unchanged:
 
 ```json
 {
@@ -291,15 +300,6 @@ The relationship goes both ways. `Policyholder.policies` has the same problem. I
     ]
   }
 }
-```
-
-The terminal shows the resolver running once per policyholder, and the batch function running **once**, with all three policyholder ids. For example:
-
-```text
-[RESOLVER] Looking up policies for policyholder ph1
-[RESOLVER] Looking up policies for policyholder ph2
-[RESOLVER] Looking up policies for policyholder ph3
-[LOADER] Loading policies for policyholders ph1, ph2, ph3
 ```
 
 If you've issued policies in the Mutations section, you'll see them in the response too.

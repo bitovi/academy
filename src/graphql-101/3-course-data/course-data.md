@@ -1,5 +1,5 @@
 @page learn-graphql-101/course-data The Course Data
-@parent learn-graphql-101 2
+@parent learn-graphql-101 3
 @outline 2
 
 @description Meet the policyholders and policies in the course API. Come back to this page whenever an exercise refers to specific data.
@@ -103,5 +103,5 @@ In a query, you follow that connection with nested fields: from a policy to its 
 
 ## Good to know
 
-- **Your changes are saved.** Policies you add or change are written to **services/policies/data.json**, so they're still there after the server restarts. To go back to the starting data, stop the server, run `npm run reset-data` in **services/policies**, and start it again.
+- **Your changes are saved.** Policies you add or change are written to **services/policies/data.json**, and claims to **services/policies/claims.json**, so they're still there after the server restarts. To go back to the starting data, stop the server, run `npm run reset-data` in **services/policies**, and start it again.
 - **`monthlyPremium`** is in US dollars. The API returns it as a number, so trailing zeros are dropped: `210.75` comes back as `210.75`, but `98.00` comes back as `98`.

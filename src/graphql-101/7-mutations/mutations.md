@@ -1,8 +1,8 @@
 @page learn-graphql-101/mutations Mutations
-@parent learn-graphql-101 5
+@parent learn-graphql-101 7
 @outline 2
 
-@description Change data with GraphQL mutations and input types, and learn why making a field required is a promise your server has to keep.
+@description Change data with GraphQL mutations and input types, learn why making a field required is a promise your server has to keep, and change a schema without breaking clients.
 
 @body
 
@@ -15,6 +15,7 @@ In this section, we will:
 - See how the mutation's resolver creates data and reports errors
 - Make a field required, and see what breaks when data doesn't keep that promise
 - Understand why data saved before a schema change has to be fixed
+- Add a new way to look up a policy with `@oneOf`, and retire the old one with `@deprecated`
 
 ## Objective 1: Write a mutation
 
@@ -70,6 +71,8 @@ mutation {
   }
 }
 ```
+
+The response (trimmed for readability) is:
 
 ```json
 {
@@ -268,7 +271,7 @@ This exercise has two parts. The first one breaks things on purpose.
 
 Saving restarts the server, but the policy from Exercise 1 is still saved, and it still has no risk tier.
 
-✏️ Run `{ policies { policyNumber riskTier } }`. It fails:
+✏️ Run `{ policies { policyNumber riskTier } }`. It fails. The response (trimmed for readability) is:
 
 ```json
 {
@@ -286,7 +289,7 @@ The `path` points at `policies` entry `5` (counting from 0): the policy from Exe
 
 If you've issued other policies, your `path` may point at a different entry.
 
-✏️ Run the Exercise 1 mutation again, but also select `riskTier` in the response. It fails too:
+✏️ Run the Exercise 1 mutation again, but also select `riskTier` in the response. It fails too. The response (trimmed for readability) is:
 
 ```json
 {
@@ -306,7 +309,7 @@ Even though the mutation returned an error, **the policy was still created.** Th
 
 ✏️ In **services/policies/src/schema.graphql**, make sure a policy can't be issued without a risk tier.
 
-✏️ Run the Exercise 1 mutation again, without `riskTier`. It fails before the resolver runs, and nothing is created:
+✏️ Run the Exercise 1 mutation again, without `riskTier`. It fails before the resolver runs, and nothing is created. The response (trimmed for readability) is:
 
 ```json
 {
@@ -376,11 +379,9 @@ Part 2 protects new policies, but it can't do anything about the ones already sa
 
 The fix happens in the data, not in GraphQL. How the data gets fixed doesn't matter to GraphQL. In a real system it could be a database migration, a one-off script, an admin tool, or someone in underwriting filling in the missing values. GraphQL only cares that, by the time a resolver returns a policy, the value is there.
 
-✏️ For this course, restore the starting data, where every policy has a risk tier. Stop the server with `Ctrl+C`, then run:
+### Reset the course data
 
-```shell
-npm run reset-data && npm run dev
-```
+✏️ For this course, restore the starting data, where every policy has a risk tier. To go back to the starting data, stop the server, run `npm run reset-data` in **services/policies**, and start it again.
 
 This deletes the policies you've issued. `{ policies { policyNumber riskTier } }` works again.
 
@@ -394,6 +395,198 @@ This exercise tightened the schema first, then dealt with the data. That's why t
 
 Done in that order, clients never see an error.
 
+## Objective 4: Evolve the schema
+
+### Schema directives
+
+In the Writing Queries section, you used directives in queries: `@include` and `@skip`. Directives can also go in the **schema**, where the API's author uses them to add rules or information to a type or field. The [GraphQL specification](https://spec.graphql.org/September2025/#sec-Type-System.Directives) defines two that help a schema change over time.
+
+### `@oneOf`
+
+**`@oneOf`** goes on an input type. It means the client must set **exactly one** of the input's fields: not zero, and not two. It was added in the [September 2025 edition](https://spec.graphql.org/September2025/#sec-OneOf-Input-Objects) of the GraphQL specification.
+
+It's useful when there are several ways to identify the same thing. For example, if policyholders could be looked up by `id` or by `email`, the input would look like this:
+
+```graphql
+"Look up a policyholder by exactly one of these fields"
+input PolicyholderLookupInput @oneOf {
+  id: ID
+  email: String
+}
+```
+
+Because the client can only set one field, every field in a `@oneOf` input must be optional: `ID`, not `ID!`. GraphQL checks the "exactly one" rule itself, before any resolver runs. The course API has no `PolicyholderLookupInput`. This example only shows the shape.
+
+### `@deprecated`
+
+**`@deprecated(reason: String)`** marks a field, argument, input field, or enum value as retired. In What is GraphQL?, you saw that GraphQL APIs change without version numbers: new fields are added, and old ones are deprecated instead of removed.
+
+A schema directive goes after the thing it describes. For example, if the API had an old `premium` field that was replaced by `monthlyPremium`:
+
+```graphql
+type Policy {
+  # ...other fields
+  premium: Float @deprecated(reason: "Use monthlyPremium.")
+}
+```
+
+A deprecated field still works. Clients that use it keep getting data. What changes is how the field is shown to people writing new queries:
+
+- Introspection leaves it out of `fields` by default. A tool has to ask for `fields(includeDeprecated: true)` to see it.
+- When a tool does ask, introspection reports the field as deprecated, along with the `reason`, so the tool can warn whoever is writing the query.
+
+Once no clients use the field anymore, it can be removed from the schema. GraphQL doesn't track that for you: the server has to report which fields each request uses. Apollo GraphOS, for example, [shows when each field was first and last requested](https://www.apollographql.com/docs/graphos/platform/insights/field-usage), and which clients requested it.
+
+### Exercise 4
+
+Agents often know a policy's number, like `LIFE-100004`, but not its id. Right now, `policy(id:)` only accepts an id.
+
+✏️ In **services/policies/src/schema.graphql** and **services/policies/src/resolvers.ts**, add a `findPolicy` query that takes a required `by` argument. `by` is an input type named `PolicyLookupInput`, where the client sets exactly one of `id` or `policyNumber`. `findPolicy` returns the matching policy, or `null` if none matches.
+
+✏️ Run this query:
+
+```graphql
+{
+  findPolicy(by: { policyNumber: "LIFE-100004" }) {
+    id
+    policyNumber
+  }
+}
+```
+
+Your response should be:
+
+```json
+{ "data": { "findPolicy": { "id": "p4", "policyNumber": "LIFE-100004" } } }
+```
+
+✏️ Run it with both fields set:
+
+```graphql
+{
+  findPolicy(by: { id: "p4", policyNumber: "LIFE-100004" }) {
+    id
+    policyNumber
+  }
+}
+```
+
+It fails before your resolver runs. The response (trimmed for readability) is:
+
+```json
+{
+  "errors": [
+    {
+      "message": "OneOf Input Object \"PolicyLookupInput\" must specify exactly one key.",
+      "extensions": { "code": "GRAPHQL_VALIDATION_FAILED" }
+    }
+  ]
+}
+```
+
+✏️ Run it with neither field set:
+
+```graphql
+{
+  findPolicy(by: {}) {
+    id
+    policyNumber
+  }
+}
+```
+
+It fails with the same error.
+
+`findPolicy` does everything `policy(id:)` does, so `policy(id:)` can be retired.
+
+✏️ In **services/policies/src/schema.graphql**, deprecate the `policy` query, with the reason `Use findPolicy, which can look a policy up by id or policy number.`
+
+✏️ Run this query:
+
+```graphql
+{
+  policy(id: "p4") {
+    policyNumber
+  }
+}
+```
+
+It still works, and returns `LIFE-100004`.
+
+✏️ Run this introspection query. `policy` is missing from the list:
+
+```graphql
+{
+  __type(name: "Query") {
+    fields {
+      name
+    }
+  }
+}
+```
+
+✏️ Run it again, this time asking for deprecated fields too:
+
+```graphql
+{
+  __type(name: "Query") {
+    fields(includeDeprecated: true) {
+      name
+      isDeprecated
+      deprecationReason
+    }
+  }
+}
+```
+
+`policy` is back, with its reason:
+
+```json
+{ "name": "policy", "isDeprecated": true, "deprecationReason": "Use findPolicy, which can look a policy up by id or policy number." }
+```
+
+Every other field has `"isDeprecated": false` and `"deprecationReason": null`.
+
+### Solution 4
+
+<details>
+<summary>Click to see the solution</summary>
+
+✏️ In **services/policies/src/schema.graphql**, add the input type:
+
+```graphql
+"Look up a policy by exactly one of these fields"
+input PolicyLookupInput @oneOf {
+  id: ID
+  policyNumber: String
+}
+```
+
+✏️ Add `findPolicy` to `Query`, and deprecate `policy`:
+
+```graphql
+type Query {
+  # ...other fields
+  policy(id: ID!): Policy @deprecated(reason: "Use findPolicy, which can look a policy up by id or policy number.")
+  findPolicy(by: PolicyLookupInput!): Policy
+}
+```
+
+✏️ In **services/policies/src/resolvers.ts**, add a `findPolicy` resolver under `Query`:
+
+```ts
+    findPolicy: (_: unknown, { by }: { by: { id?: string; policyNumber?: string } }) =>
+      policies.find((p) => p.id === by.id || p.policyNumber === by.policyNumber),
+```
+
+The resolver doesn't check that exactly one field was set. By the time it runs, GraphQL has already rejected any request that set zero or two. Only one of `by.id` and `by.policyNumber` has a value, so only that one can match.
+
+`findPolicy` returns `Policy`, not `Policy!`, so a policy number that doesn't match anything returns `null` instead of an error.
+
+Nothing in **resolvers.ts** changes for the deprecation, because `policy` still works exactly as before.
+
+</details>
+
 ## Next steps
 
-Next we'll look at how nested fields can quietly multiply the work your server does, and how to fix it.
+Next, we'll look at how nested fields can quietly multiply the work your server does, and how to fix it.
