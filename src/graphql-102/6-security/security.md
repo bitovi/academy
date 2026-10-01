@@ -29,11 +29,11 @@ Right now, the course API tells anyone who asks exactly how it's built, in three
 
 The OWASP cheat sheet recommends [restricting introspection and turning off field suggestions](https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html#introspection-graphiql), and [not returning stack traces](https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html#dont-return-excessive-errors) in production. Apollo Server has an [option for each](https://www.apollographql.com/docs/apollo-server/api/apollo-server), set in the `ApolloServer` constructor:
 
-- **`introspection`**: when `false`, introspection queries are rejected. It's `true` by default, unless `NODE_ENV` is `production`. The course API sets it to `true` in **services/policies/src/index.ts**, so Apollo Sandbox works in the Codespace.
+- **`introspection`**: when `false`, introspection queries are rejected. It's `true` by default, unless `NODE_ENV` is `production`. The course API sets it to `true` in **services/policies/src/index.ts**, so Apollo Sandbox works in the Codespace. Setting it yourself overrides `NODE_ENV`: with `introspection: true`, introspection stays on even in production, including in the course API's Docker image.
 - **`hideSchemaDetailsFromClientErrors`**: when `true`, error messages leave out the "Did you mean" suggestions. It's `false` by default.
 - **`includeStacktraceInErrorResponses`**: when `false`, errors leave out the `stacktrace`. It's `true` by default, unless `NODE_ENV` is `production` or `test`.
 
-In a real deployment, setting `NODE_ENV` to `production` turns off introspection and stack traces for you. Suggestions have to be turned off yourself.
+In a real deployment, setting `NODE_ENV` to `production` turns off introspection and stack traces for you, as long as you haven't set `introspection` or `includeStacktraceInErrorResponses` yourself. Suggestions have to be turned off yourself.
 
 Hiding these details doesn't protect the data. Every field is still there for anyone who knows or guesses its name. Real protection comes from authorization and from limits on expensive queries, which the rest of this section and the Authorization section cover.
 
@@ -133,6 +133,12 @@ const server = new ApolloServer({
 Apollo checks for introspection while it validates the query, the same step that rejects a misspelled field. That's why the error has the code `GRAPHQL_VALIDATION_FAILED` and no resolver runs.
 
 Stack traces are still useful while you develop. A common setup leaves `includeStacktraceInErrorResponses` out, and lets `NODE_ENV` decide: stack traces on your own machine, and none in production. We set it here so you can see the difference in the Codespace.
+
+The course API keeps `introspection: true` so Sandbox works everywhere it runs. A real API would tie it to the environment instead, so it's on while you develop and off in production:
+
+```ts
+  introspection: process.env.NODE_ENV !== "production",
+```
 
 </details>
 
@@ -402,11 +408,20 @@ Choosing the limit is a judgment call. Set it deep enough for the deepest query 
 
 ## Other protections
 
-Depth and page-size limits stop the most common problems, but a query can still be expensive without being deep. The OWASP cheat sheet also recommends:
+Depth and page-size limits stop the most common problems, but a query can still be expensive without being deep. The OWASP cheat sheet and the GraphQL documentation also recommend:
 
 - **[Query cost analysis](https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html#query-cost-analysis)**: give each field a cost, add up the cost of each query before running it, and reject queries that cost too much.
 - **[Timeouts](https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html#timeouts)**: stop any request that runs too long.
-- **[Limits on batching](https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html#batching-attacks)**: stop one request from running the same expensive field many times at once.
+- **[Limits on aliases and batching](https://graphql.org/learn/security/#breadth-and-batch-limiting)**: stop one request from running the same expensive field many times at once. Aliases make this easy. This query is shallow, and each field stays within the page-size limit, so both limits from this section let it through:
+
+  ```graphql
+  {
+    a: claimsConnection(first: 100) { edges { cursor } }
+    b: claimsConnection(first: 100) { edges { cursor } }
+  }
+  ```
+
+  A client could repeat that field 50 times and ask for 5,000 claims in one request. The fix is a limit on the number of top-level fields and aliases in each operation, or query cost analysis, which counts every alias. OWASP covers the same attack under [batching attacks](https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html#batching-attacks).
 
 ## Next steps
 

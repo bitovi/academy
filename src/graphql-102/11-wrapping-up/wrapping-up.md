@@ -14,7 +14,7 @@ You started GraphQL 102 with a working API that wasn't ready for real users. Her
 - **Dates are real dates.** `LocalDate`, from a well-tested library, rejects dates that don't exist before they reach your code.
 - **Errors say what went wrong.** Mistakes come back in `errors` with a code a client can check, and expected problems, like a claim that's already decided, are part of the schema.
 - **The API gives away less.** Introspection, field suggestions, and stack traces can all be turned off, and page size and query depth are limited.
-- **Only the right people can change data.** The logged-in user reaches every resolver through `contextValue`, and only agents can issue policies.
+- **The API checks who's asking.** The logged-in user reaches every resolver through `contextValue`, and only agents can issue policies. `approveClaim` and `fileClaim` are still open to anyone. The same check, or the `requireRole` helper from the Authorization section, would protect them.
 - **Repeated queries are cheaper.** Cache hints say how long data stays correct, and the server can answer repeated queries from a cache.
 
 You also saw how subscriptions push live updates to clients, and what else to set up before running a GraphQL API in production: persisted queries, compression, monitoring, and health checks.

@@ -206,7 +206,7 @@ type Policyholder @cacheControl(maxAge: 60) {
 }
 ```
 
-A hint on a type goes after the type's name. A hint on a field goes after the field's type, the same place `@deprecated` went in the Directives section.
+A hint on a type goes after the type's name. A hint on a field goes after the field's type, the same place `@deprecated` goes, as you saw in 101's Mutations section.
 
 `policies` is a field on `Query`, so it would default to `0`. It returns `Policy` objects, and `Policy` now has a hint, so `policies` uses that instead.
 

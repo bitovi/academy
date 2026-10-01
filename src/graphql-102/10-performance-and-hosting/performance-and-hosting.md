@@ -144,7 +144,7 @@ A successful answer shows the server is up **and** can run GraphQL. The header i
 
 Most of what changes in production, you've already done in this course. Before putting a GraphQL API in front of real users:
 
-- **Set `NODE_ENV=production`.** It turns off introspection and stack traces. Also turn off field suggestions, as in the Security section.
+- **Set `NODE_ENV=production`.** It turns off introspection and stack traces, unless you've set `introspection` or `includeStacktraceInErrorResponses` yourself. An explicit `introspection: true` keeps introspection on, so tie it to the environment with `introspection: process.env.NODE_ENV !== "production"`. Also turn off field suggestions, as in the Security section.
 - **Limit what a query can ask for.** Cap page sizes and query depth, as in the Security section.
 - **Check who's asking.** Put the user in `contextValue`, and check permissions, as in the Authorization section.
 - **Share the cache.** With several copies of the server, use a shared store like Redis, as described in the Caching section.

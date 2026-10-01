@@ -90,7 +90,9 @@ Many GraphQL APIs return pages in the same shape, called a **connection**. The p
       }
     }
     pageInfo {
+      startCursor
       endCursor
+      hasPreviousPage
       hasNextPage
     }
   }
@@ -100,9 +102,11 @@ Many GraphQL APIs return pages in the same shape, called a **connection**. The p
 - **`first`**: how many items to return
 - **`after`** (not used here): the cursor to start after. Leave it out to start at the beginning.
 - **`edges`**: the items on this page. Each edge has the item itself, called the **`node`**, and the item's **`cursor`**.
-- **`pageInfo`**: information about the page as a whole. **`endCursor`** is the cursor of the last item, and **`hasNextPage`** says whether there's more after it.
+- **`pageInfo`**: information about the page as a whole. **`endCursor`** is the cursor of the last item, and **`hasNextPage`** says whether there's more after it. **`startCursor`** and **`hasPreviousPage`** are the same for the other end of the page: the first item's cursor, and whether there's anything before it.
 
 To get the next page, the client sends the same query with `after` set to the `endCursor` it just received. It keeps going until `hasNextPage` is `false`.
+
+The specification [requires all four `pageInfo` fields](https://relay.dev/graphql/connections.htm#sec-undefined.PageInfo). The course API only pages forward, with `first` and `after`, so `startCursor` and `hasPreviousPage` matter less here. They're still part of the shape clients expect, so the API includes them.
 
 `edges` and `node` look like extra nesting at first. They're there so the API can add information about an item's place in the list, like its cursor, without adding fields to `Claim` itself.
 
@@ -129,7 +133,7 @@ The API already has a `claims` query that returns a list. Changing it to return 
    </tr>
    <tr>
       <td><code>PageInfo</code> type</td>
-      <td>The page's <code>endCursor</code>, and whether it <code>hasNextPage</code></td>
+      <td>The page's <code>startCursor</code> and <code>endCursor</code>, and whether it <code>hasPreviousPage</code> and <code>hasNextPage</code></td>
    </tr>
    <tr>
       <td><code>claimsConnection</code> query</td>
@@ -137,9 +141,9 @@ The API already has a `claims` query that returns a list. Changing it to return 
    </tr>
 </table>
 
-`endCursor` can be `null`, because an empty page has no last item. Every other field, and every list item, is required.
+`startCursor` and `endCursor` can be `null`, because an empty page has no first or last item. Every other field, and every list item, is required.
 
-✏️ In **services/policies/src/resolvers.ts**, add a resolver for it that returns the first `first` claims, in the order they're stored. Each claim's cursor is its `id`, base64-encoded.
+✏️ In **services/policies/src/resolvers.ts**, add a resolver for it that returns the first `first` claims, in the order they're stored. Each claim's cursor is its `id`, base64-encoded. The first page never has anything before it, so `hasPreviousPage` is `false`.
 
 <strong>Hint:</strong> Node.js can base64-encode a string with `Buffer`.
 
@@ -156,7 +160,9 @@ The API already has a `claims` query that returns a list. Changing it to return 
       }
     }
     pageInfo {
+      startCursor
       endCursor
+      hasPreviousPage
       hasNextPage
     }
   }
@@ -173,7 +179,7 @@ Your response should be:
         { "cursor": "YzE=", "node": { "claimNumber": "CLM-5001", "status": "APPROVED" } },
         { "cursor": "YzI=", "node": { "claimNumber": "CLM-5002", "status": "DENIED" } }
       ],
-      "pageInfo": { "endCursor": "YzI=", "hasNextPage": true }
+      "pageInfo": { "startCursor": "YzE=", "endCursor": "YzI=", "hasPreviousPage": false, "hasNextPage": true }
     }
   }
 }
@@ -192,14 +198,16 @@ Your response should be:
       }
     }
     pageInfo {
+      startCursor
       endCursor
+      hasPreviousPage
       hasNextPage
     }
   }
 }
 ```
 
-You should get all six claims, ending with `CLM-5006`, and `"hasNextPage": false`.
+You should get all six claims, ending with `CLM-5006`, and `"hasPreviousPage": false` and `"hasNextPage": false`.
 
 ### Solution
 
@@ -222,8 +230,11 @@ type ClaimEdge {
 }
 
 type PageInfo {
+  "The cursor of the first item on this page"
+  startCursor: String
   "The cursor of the last item on this page. Pass it as after to get the next page."
   endCursor: String
+  hasPreviousPage: Boolean!
   hasNextPage: Boolean!
 }
 ```
@@ -250,7 +261,9 @@ type Query {
       return {
         edges,
         pageInfo: {
+          startCursor: edges.length > 0 ? edges[0].cursor : null,
           endCursor: edges.length > 0 ? edges[edges.length - 1].cursor : null,
+          hasPreviousPage: false,
           hasNextPage: args.first < claims.length,
         },
       };
@@ -259,7 +272,8 @@ type Query {
 
 - **`claims.slice(0, args.first)`** takes the first `first` claims.
 - **`Buffer.from(claim.id).toString("base64")`** turns `c1` into `YzE=`. Base64 isn't a secret code: anyone can decode it. It only signals to clients that the cursor isn't meant to be read.
-- **`edges[edges.length - 1]`** is the last edge on the page.
+- **`edges[0]`** is the first edge on the page, and **`edges[edges.length - 1]`** is the last.
+- **`hasPreviousPage: false`**: this resolver always starts at the beginning of the list, so there's never anything before the page.
 
 The resolver returns plain objects in the shape of the schema, so the default resolvers answer `edges`, `cursor`, `node`, and `pageInfo`. `node` is a `Claim`, so `Claim.policy` still works inside it.
 
@@ -273,7 +287,7 @@ The resolver returns plain objects in the shape of the schema, so the default re
 
 The client can get the first page, but not the next one.
 
-✏️ Update **services/policies/src/schema.graphql** and **services/policies/src/resolvers.ts** so `claimsConnection` also takes an optional `after` cursor, and starts with the claim after the one it points to.
+✏️ Update **services/policies/src/schema.graphql** and **services/policies/src/resolvers.ts** so `claimsConnection` also takes an optional `after` cursor, and starts with the claim after the one it points to. `hasPreviousPage` is now `true` whenever the page doesn't start at the first claim.
 
 ✏️ Get the second page by passing the `endCursor` from the first page, `YzI=`, as `after`:
 
@@ -288,7 +302,9 @@ The client can get the first page, but not the next one.
       }
     }
     pageInfo {
+      startCursor
       endCursor
+      hasPreviousPage
       hasNextPage
     }
   }
@@ -305,7 +321,7 @@ Your response should be:
         { "cursor": "YzM=", "node": { "claimNumber": "CLM-5003", "status": "APPROVED" } },
         { "cursor": "YzQ=", "node": { "claimNumber": "CLM-5004", "status": "OPEN" } }
       ],
-      "pageInfo": { "endCursor": "YzQ=", "hasNextPage": true }
+      "pageInfo": { "startCursor": "YzM=", "endCursor": "YzQ=", "hasPreviousPage": true, "hasNextPage": true }
     }
   }
 }
@@ -324,7 +340,9 @@ Your response should be:
       }
     }
     pageInfo {
+      startCursor
       endCursor
+      hasPreviousPage
       hasNextPage
     }
   }
@@ -341,7 +359,7 @@ Your response should be:
         { "cursor": "YzU=", "node": { "claimNumber": "CLM-5005", "status": "APPROVED" } },
         { "cursor": "YzY=", "node": { "claimNumber": "CLM-5006", "status": "OPEN" } }
       ],
-      "pageInfo": { "endCursor": "YzY=", "hasNextPage": false }
+      "pageInfo": { "startCursor": "YzU=", "endCursor": "YzY=", "hasPreviousPage": true, "hasNextPage": false }
     }
   }
 }
@@ -362,14 +380,16 @@ Your response should be:
       }
     }
     pageInfo {
+      startCursor
       endCursor
+      hasPreviousPage
       hasNextPage
     }
   }
 }
 ```
 
-There's nothing after the last claim, so you should get `"edges": []` and `"pageInfo": { "endCursor": null, "hasNextPage": false }`.
+There's nothing after the last claim, so you should get `"edges": []` and `"pageInfo": { "startCursor": null, "endCursor": null, "hasPreviousPage": true, "hasNextPage": false }`. `hasPreviousPage` is still `true`, because there are claims before the cursor.
 
 ### Solution
 
@@ -405,7 +425,9 @@ type Query {
       return {
         edges,
         pageInfo: {
+          startCursor: edges.length > 0 ? edges[0].cursor : null,
           endCursor: edges.length > 0 ? edges[edges.length - 1].cursor : null,
+          hasPreviousPage: start > 0,
           hasNextPage: start + args.first < claims.length,
         },
       };
@@ -415,6 +437,7 @@ type Query {
 - **`Buffer.from(args.after, "base64").toString("utf8")`** decodes the cursor back into a claim id: `YzI=` becomes `c2`.
 - **`findIndex(...) + 1`** finds that claim's position, and moves one past it. The page starts with the claim **after** the cursor.
 - **`hasNextPage`** now counts from `start`, since the page no longer begins at the start of the list.
+- **`hasPreviousPage: start > 0`** is `true` when there are claims before the page. The specification lets an API that only pages forward always return `false` here, but it may return `true` when that's cheap to work out, as it is here.
 
 Try passing a cursor that doesn't point to any claim, like `after: "bogus"`. `findIndex` returns `-1`, so `start` becomes `0`, and the client quietly gets the first page again. A client with a broken cursor would never find out. We'll fix that kind of problem in the Error Handling section.
 
