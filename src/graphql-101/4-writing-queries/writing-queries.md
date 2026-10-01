@@ -61,7 +61,7 @@ You don't have to memorize field names. Apollo Sandbox reads the API's schema an
 
 A field that returns an object, like `policyholder`, needs its own selection set. The Documentation panel shows this: its type is `Policyholder`, not a plain value like `String` or `Float`.
 
-### Exercise 1
+### Exercise
 
 This time, build the query without typing it, using only the Documentation panel.
 
@@ -86,7 +86,7 @@ This time, build the query without typing it, using only the Documentation panel
 
 <strong>Hint:</strong> Clicking a field's name (instead of its **⊕** button) opens it, so you can add the fields inside it.
 
-### Solution 1
+### Solution
 
 <details>
 <summary>Click to see the solution</summary>
@@ -165,7 +165,7 @@ query PolicyAndHolder($policyId: ID!, $policyholderId: ID!) {
 
 A variable's type must match the argument it's used for. `policy(id: ID!)` requires an ID, so `$policyId` is declared as `ID!`. The `!` makes the variable **required**: the request fails if you leave it out. `$type: PolicyType` above has no `!`, so it's optional.
 
-### Exercise 2
+### Exercise
 
 An agent's dashboard shows a policyholder's contact details next to a list of policies of one type.
 
@@ -192,7 +192,7 @@ An agent's dashboard shows a policyholder's contact details next to a list of po
 
 <strong>Hint:</strong> Check the Documentation panel for the type each argument expects. That's the type your variable needs.
 
-### Solution 2
+### Solution
 
 <details>
 <summary>Click to see the solution</summary>
@@ -245,7 +245,7 @@ These directives are most useful with a variable. A screen might show a policyho
 
 When a field is left out, it's missing from the response entirely. It doesn't come back as `null`. GraphQL also doesn't run the resolver for a field that's left out, so the server doesn't do that work.
 
-### Exercise 3
+### Exercise
 
 ✏️ In Apollo Sandbox, write one query named `PolicyholderView` that takes two variables: `$id`, a policyholder id, and `$withPolicies`, a `Boolean!`. It returns the policyholder's `name` and `email`. Their policies, with each policy's `policyNumber` and `type`, are included only when `$withPolicies` is `true`.
 
@@ -288,7 +288,7 @@ Your response should be:
 }
 ```
 
-### Solution 3
+### Solution
 
 <details>
 <summary>Click to see the solution</summary>

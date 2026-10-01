@@ -1,4 +1,4 @@
-@page learn-graphql-102/caching-and-performance Caching and Performance
+@page learn-graphql-102/caching Caching
 @parent learn-graphql-102 8
 @outline 2
 
@@ -53,7 +53,7 @@ So GraphQL caching happens in several other places instead.
    </tr>
 </table>
 
-**CDNs and browsers** can cache GraphQL responses, but only if the client sends queries as `GET` requests. [Apollo's documentation](https://www.apollographql.com/docs/apollo-server/performance/caching#caching-with-a-cdn) describes how, using [automatic persisted queries](https://www.apollographql.com/docs/apollo-server/performance/apq): the client sends a short hash of the query instead of the whole query, which keeps `GET` URLs short.
+**CDNs and browsers** can cache GraphQL responses, but only if the client sends queries as `GET` requests. [Apollo's documentation](https://www.apollographql.com/docs/apollo-server/performance/caching#caching-with-a-cdn) describes how, using [automatic persisted queries](https://www.apollographql.com/docs/apollo-server/performance/apq): the client sends a short hash of the query instead of the whole query, which keeps `GET` URLs short. The Performance and Hosting section describes them in more detail.
 
 **Client-side caches** are the most common kind in GraphQL apps. As you saw in 101's Exploring the Schema section, [Apollo Client](https://www.apollographql.com/docs/react/caching/overview) stores each object it receives under an ID made from its `__typename` and `id`, like `Policy:p1`. When two screens ask for the same policy, the second one reads it from the cache. When a mutation returns an updated policy, every screen showing it updates. That's one reason it's worth asking for `id` in your queries.
 
@@ -111,7 +111,7 @@ You'll check the header from a terminal with `curl`, a command-line tool that se
 
 ✏️ Open a second terminal in the Codespace, so the server keeps running in the first one. In the **Terminal** panel, click **+**.
 
-### Exercise 2
+### Exercise
 
 ✏️ In the second terminal, send a query for every policy's `policyNumber`, and show the response headers:
 
@@ -169,11 +169,11 @@ That's a problem. `totalClaimed` is a number, so it uses its parent's hint, the 
 cache-control: no-store
 ```
 
-### Verify 2
+### Verify
 
 ✏️ Run the first `curl` command, for `policyNumber` only, again. It still shows `cache-control: max-age=60, public`. Only responses that include `totalClaimed` lost their caching.
 
-### Solution 2
+### Solution
 
 <details>
 <summary>Click to see the solution</summary>
@@ -229,7 +229,7 @@ A few details from Apollo's documentation:
 
 The plugin is imported as the default export of `@apollo/server-plugin-response-cache`, and calling `responseCachePlugin()` creates it.
 
-### Exercise 3
+### Exercise
 
 ✏️ In **services/policies/src/resolvers.ts**, add a log line to the `policies` resolver, so you can see each time it runs:
 
@@ -275,7 +275,7 @@ It returns the new policy, `HOME-100006`, or a higher number if you've issued ot
 
 ✏️ Wait until a minute has passed since the first query, and run it once more. The saved response has expired, so the resolver runs again, and the new policy appears.
 
-### Solution 3
+### Solution
 
 <details>
 <summary>Click to see the solution</summary>

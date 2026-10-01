@@ -250,7 +250,7 @@ Five lookups became one.
 
 ## Objective 3: Batch the other direction
 
-### Exercise 3
+### Exercise
 
 The relationship goes both ways. `Policyholder.policies` has the same problem. In this query, it runs once for each policyholder:
 
@@ -280,7 +280,7 @@ The relationship goes both ways. `Policyholder.policies` has the same problem. I
 [LOADER] Loading policies for policyholders ph1, ph2, ph3
 ```
 
-### Verify 3
+### Verify
 
 ✏️ Check the response from the last step. It's unchanged:
 
@@ -304,7 +304,7 @@ The relationship goes both ways. `Policyholder.policies` has the same problem. I
 
 If you've issued policies in the Mutations section, you'll see them in the response too.
 
-### Solution 3
+### Solution
 
 <details>
 <summary>Click to see the solution</summary>

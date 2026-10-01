@@ -88,7 +88,7 @@ The response has the same shape as the query:
 
 You'll run queries in **Apollo Sandbox**, which you opened in [Course Setup](./setup.html).
 
-### Exercise 2
+### Exercise
 
 ✏️ In Apollo Sandbox, write a query that returns the response below, then click **Run**. It should have the same fields, in the same shape, and nothing extra. Your response should be:
 
@@ -108,7 +108,7 @@ You'll run queries in **Apollo Sandbox**, which you opened in [Course Setup](./s
 
 <strong>Hint:</strong> The **Documentation** panel on the left lists every field you can ask for. For a starting point, look at the query in **GraphQL vs REST** above; you'll only need to change which fields it asks for.
 
-### Solution 2
+### Solution
 
 <details>
 <summary>Click to see the solution</summary>

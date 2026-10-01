@@ -44,7 +44,7 @@ It succeeds, and saves a policy that starts on a day that doesn't exist:
 }
 ```
 
-If you've issued other policies, your `policyNumber` ends in a higher number. You'll clean this policy up in Exercise 1.
+If you've issued other policies, your `policyNumber` ends in a higher number. You'll clean this policy up in this objective's exercise.
 
 So would `"10/01/2026"`, or `"next Tuesday"`. Every client and every resolver has to check dates for itself, and a client developer can't tell from the schema which format to send.
 
@@ -109,7 +109,7 @@ The scalar goes at the top level of the resolvers object, next to `Query` and `M
 
 The course API doesn't use `EmailAddress`. This example only shows the pattern, which is the same for every scalar in the library.
 
-### Exercise 1
+### Exercise
 
 ✏️ In **services/policies/src/schema.graphql**, add a `LocalDate` scalar, and use it for every date in the schema:
 
@@ -241,7 +241,7 @@ This is the same problem you saw with `riskTier` in 101: tightening a type doesn
 
 ✏️ To go back to the starting data, stop the server, run `npm run reset-data` in **services/policies**, and start it again. Then run the `policies` query again. It returns the five starting policies, each with a valid `effectiveDate`.
 
-### Solution 1
+### Solution
 
 <details>
 <summary>Click to see the solution</summary>

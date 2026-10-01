@@ -83,7 +83,7 @@ The response (trimmed for readability) is:
 }
 ```
 
-### Exercise 1
+### Exercise
 
 James Okafor (`ph2`) wants home insurance at $112.00 a month.
 
@@ -104,7 +104,7 @@ James Okafor (`ph2`) wants home insurance at $112.00 a month.
 
 `effectiveDate` will be today's date. If you've already issued other policies, your `id` and `policyNumber` numbers will be higher.
 
-### Solution 1
+### Solution
 
 <details>
 <summary>Click to see the solution</summary>
@@ -203,9 +203,9 @@ The response (trimmed for readability) is:
 - **`path`** shows which field failed.
 - **`extensions.code`** gives clients a machine-readable reason, so they don't have to parse the message.
 
-### Exercise 2
+### Exercise
 
-✏️ Using the `id` from Exercise 1, query the new policy and ask for **every** field `Policy` has, including `riskTier`. Your response should look like:
+✏️ Using the `id` from the exercise in Objective 1, query the new policy and ask for **every** field `Policy` has, including `riskTier`. Your response should look like:
 
 ```json
 {
@@ -225,7 +225,7 @@ The response (trimmed for readability) is:
 ```
 
 
-### Solution 2
+### Solution
 
 <details>
 <summary>Click to see the solution</summary>
@@ -259,9 +259,9 @@ Underwriting says every policy must have a risk tier. In the schema, that means 
 
 A `!` isn't just documentation. It's a **promise** to every client that the field will never be `null`. If the server can't keep it, GraphQL returns an error instead of the bad value.
 
-Changing the schema doesn't change the data you already have. The policy you issued in Exercise 1 was saved without a risk tier, and it's still there. In a real system, there could be thousands of records like it.
+Changing the schema doesn't change the data you already have. The policy you issued in Objective 1 was saved without a risk tier, and it's still there. In a real system, there could be thousands of records like it.
 
-### Exercise 3
+### Exercise
 
 This exercise has two parts. The first one breaks things on purpose.
 
@@ -269,7 +269,7 @@ This exercise has two parts. The first one breaks things on purpose.
 
 ✏️ In **services/policies/src/schema.graphql**, make `riskTier` required for the `Policy` type.
 
-Saving restarts the server, but the policy from Exercise 1 is still saved, and it still has no risk tier.
+Saving restarts the server, but the policy you issued in Objective 1 is still saved, and it still has no risk tier.
 
 ✏️ Run `{ policies { policyNumber riskTier } }`. It fails. The response (trimmed for readability) is:
 
@@ -285,11 +285,27 @@ Saving restarts the server, but the policy from Exercise 1 is still saved, and i
 }
 ```
 
-The `path` points at `policies` entry `5` (counting from 0): the policy from Exercise 1. The schema now promises every policy has a risk tier, but data saved before the change breaks that promise. Because one policy breaks it, the whole `policies` query fails, not just that one policy.
+The `path` points at `policies` entry `5` (counting from 0): the policy you issued in Objective 1. The schema now promises every policy has a risk tier, but data saved before the change breaks that promise. Because one policy breaks it, the whole `policies` query fails, not just that one policy.
 
 If you've issued other policies, your `path` may point at a different entry.
 
-✏️ Run the Exercise 1 mutation again, but also select `riskTier` in the response. It fails too. The response (trimmed for readability) is:
+✏️ Run the mutation from Objective 1 again, this time also selecting `riskTier` in the response:
+
+```graphql
+mutation {
+  issuePolicy(input: { type: HOME, monthlyPremium: 112.0, policyholderId: "ph2" }) {
+    id
+    policyNumber
+    effectiveDate
+    riskTier
+    policyholder {
+      name
+    }
+  }
+}
+```
+
+It fails too. The response (trimmed for readability) is:
 
 ```json
 {
@@ -309,7 +325,23 @@ Even though the mutation returned an error, **the policy was still created.** Th
 
 ✏️ In **services/policies/src/schema.graphql**, make sure a policy can't be issued without a risk tier.
 
-✏️ Run the Exercise 1 mutation again, without `riskTier`. It fails before the resolver runs, and nothing is created. The response (trimmed for readability) is:
+✏️ Run the same mutation again. Its input still has no `riskTier`:
+
+```graphql
+mutation {
+  issuePolicy(input: { type: HOME, monthlyPremium: 112.0, policyholderId: "ph2" }) {
+    id
+    policyNumber
+    effectiveDate
+    riskTier
+    policyholder {
+      name
+    }
+  }
+}
+```
+
+It fails before the resolver runs, and nothing is created. The response (trimmed for readability) is:
 
 ```json
 {
@@ -317,11 +349,27 @@ Even though the mutation returned an error, **the policy was still created.** Th
 }
 ```
 
-✏️ Run it with `riskTier: LOW` in the input. It succeeds, and the response includes `"riskTier": "LOW"`.
+✏️ Run it with `riskTier: LOW` in the input:
+
+```graphql
+mutation {
+  issuePolicy(input: { type: HOME, monthlyPremium: 112.0, policyholderId: "ph2", riskTier: LOW }) {
+    id
+    policyNumber
+    effectiveDate
+    riskTier
+    policyholder {
+      name
+    }
+  }
+}
+```
+
+It succeeds, and the response includes `"riskTier": "LOW"`.
 
 ✏️ Run `{ policies { policyNumber riskTier } }` again. **It still fails**, with the same error as in Part 1. New policies keep the promise, but the two policies saved without a risk tier are still there. We'll talk about that after the solution.
 
-### Solution 3
+### Solution
 
 <details>
 <summary>Click to see the solution</summary>
@@ -437,7 +485,7 @@ A deprecated field still works. Clients that use it keep getting data. What chan
 
 Once no clients use the field anymore, it can be removed from the schema. GraphQL doesn't track that for you: the server has to report which fields each request uses. Apollo GraphOS, for example, [shows when each field was first and last requested](https://www.apollographql.com/docs/graphos/platform/insights/field-usage), and which clients requested it.
 
-### Exercise 4
+### Exercise
 
 Agents often know a policy's number, like `LIFE-100004`, but not its id. Right now, `policy(id:)` only accepts an id.
 
@@ -547,7 +595,7 @@ It still works, and returns `LIFE-100004`.
 
 Every other field has `"isDeprecated": false` and `"deprecationReason": null`.
 
-### Solution 4
+### Solution
 
 <details>
 <summary>Click to see the solution</summary>

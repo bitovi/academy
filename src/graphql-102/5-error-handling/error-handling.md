@@ -71,7 +71,7 @@ That only works if the failed field is allowed to be `null`. GraphQL replaces a 
 
 So when you design a schema, making a field required is also a choice about what a failure takes down with it. The [GraphQL specification](https://spec.graphql.org/September2025/#sec-Handling-Execution-Errors) describes the exact rules.
 
-### Exercise 1
+### Exercise
 
 <strong>Before you start:</strong> this exercise builds on `claimsConnection`, which you add in the Pagination section. Complete Pagination first.
 
@@ -171,7 +171,7 @@ Valid cursors still work: you get `CLM-5003` and `CLM-5004`.
 
 The response is the same as before: `"data": null`. `policies` worked, but its result is gone too. `claimsConnection` is required, so GraphQL made its parent `null`, and its parent is the whole `data` object.
 
-### Solution 1
+### Solution
 
 <details>
 <summary>Click to see the solution</summary>
@@ -270,7 +270,7 @@ The course API has no `search` field. This example only shows the shape of the q
 
 A union can hold a successful result **and** the expected problems. For example, a mutation can return `Claim | ClaimNotOpen`. The problems are now in the schema, visible through introspection, and the client handles each one with its own fragment.
 
-### Exercise 2
+### Exercise
 
 Adjusters need a way to approve claims. Only an open claim can be approved.
 
@@ -401,7 +401,7 @@ The query fails before it runs, so `c6` isn't approved. The response (trimmed fo
 
 A union has no fields of its own, so the client has to say which type it's asking about.
 
-### Solution 2
+### Solution
 
 <details>
 <summary>Click to see the solution</summary>

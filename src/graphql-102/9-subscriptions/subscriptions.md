@@ -60,8 +60,6 @@ Unlike a query, a subscription operation must have [exactly one root field](http
 
 ### When to use a subscription
 
-A subscription isn't the only way to show changing data. A client can also **poll**: run the same query every few seconds and show the latest result. Or it can refetch the query when the user does something, like opening a screen.
-
 The GraphQL documentation recommends subscriptions for data that changes **often and in small pieces**, where the client needs to see changes in **near real time**. For data that changes less often, polling or refetching is usually simpler.
 
 <table>
@@ -141,4 +139,4 @@ Subscriptions also make scaling harder. Each subscribed client [stays connected 
 
 ## Next steps
 
-Next, we'll wrap up the course.
+Next, we'll look at performance and hosting: how to send smaller requests, watch how long operations take, and run the API in production.

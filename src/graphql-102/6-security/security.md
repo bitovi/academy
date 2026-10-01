@@ -37,7 +37,7 @@ In a real deployment, setting `NODE_ENV` to `production` turns off introspection
 
 Hiding these details doesn't protect the data. Every field is still there for anyone who knows or guesses its name. Real protection comes from authorization and from limits on expensive queries, which the rest of this section and the Authorization section cover.
 
-### Exercise 1
+### Exercise
 
 ✏️ In **services/policies/src/index.ts**, turn introspection off.
 
@@ -110,7 +110,7 @@ The suggestion and the `stacktrace` are both gone. The error still says which fi
 
 ✏️ Turn introspection back on in **services/policies/src/index.ts**, and reload Sandbox. The rest of the course uses it. Leave suggestions and stack traces off.
 
-### Solution 1
+### Solution
 
 <details>
 <summary>Click to see the solution</summary>
@@ -153,7 +153,7 @@ The OWASP cheat sheet recommends [limiting both](https://cheatsheetseries.owasp.
 
 Most public APIs set a maximum. GitHub's GraphQL API, for example, [requires `first` to be between 1 and 100](https://docs.github.com/en/graphql/overview/rate-limits-and-query-limits-for-the-graphql-api#node-limit).
 
-### Exercise 2
+### Exercise
 
 <strong>Before you start:</strong> this exercise builds on `claimsConnection`, which you add in the Pagination section. Complete Pagination first.
 
@@ -222,7 +222,7 @@ It doesn't fail. `slice` treats a negative end as "count from the end of the lis
 
 It fails with the same error.
 
-### Verify 2
+### Verify
 
 ✏️ Run it with `first` at the maximum:
 
@@ -240,7 +240,7 @@ It fails with the same error.
 
 It works, and returns all six claims.
 
-### Solution 2
+### Solution
 
 <details>
 <summary>Click to see the solution</summary>
@@ -308,7 +308,7 @@ const server = new ApolloServer({
 
 Don't add this one. The course API uses introspection, and the `introspection` option already does the same job. It only shows how a rule is added.
 
-### Exercise 3
+### Exercise
 
 ✏️ In **services/policies/src/index.ts**, add a depth limit of `5`, using the default export of `graphql-depth-limit`, called `depthLimit`. `depthLimit(5)` returns a validation rule.
 
@@ -365,11 +365,11 @@ It fails before any resolver runs. The response (trimmed for readability) is:
 }
 ```
 
-### Verify 3
+### Verify
 
 ✏️ Reload Apollo Sandbox. The **Documentation** panel still loads. Sandbox's introspection query nests much deeper than 5 levels, but `graphql-depth-limit` doesn't count introspection.
 
-### Solution 3
+### Solution
 
 <details>
 <summary>Click to see the solution</summary>

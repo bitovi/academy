@@ -149,7 +149,7 @@ In a real API, `getUser` would check a signed token instead. Everything after it
 
 To send a token, open the **Headers** tab below the operation editor in Sandbox, next to **Variables**. Add a header with the name `Authorization` and a value like `Bearer agent-token`. Sandbox sends it with every request until you remove it.
 
-### Exercise 2
+### Exercise
 
 Agents sell insurance, so only agents should be able to issue policies. Right now, anyone can.
 
@@ -210,7 +210,7 @@ Your response (trimmed for readability) should be:
 
 If you've issued other policies, your `policyNumber` ends in a higher number.
 
-### Verify 2
+### Verify
 
 ✏️ Remove the header, and run a query:
 
@@ -224,7 +224,7 @@ If you've issued other policies, your `policyNumber` ends in a higher number.
 
 It still works without logging in, and returns `LIFE-100004`. Only `issuePolicy` checks the user.
 
-### Solution 2
+### Solution
 
 <details>
 <summary>Click to see the solution</summary>

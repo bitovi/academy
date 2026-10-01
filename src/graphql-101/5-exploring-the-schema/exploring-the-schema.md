@@ -78,7 +78,7 @@ In the schema, a type like `[Policy!]!` reads as one piece. Introspection breaks
 
 Each field in the introspection result has a `kind` (`SCALAR`, `OBJECT`, `ENUM`, `LIST`, `NON_NULL`, and so on) and a `name`. Wrappers have a `name` of `null`.
 
-### Exercise 1
+### Exercise
 
 Imagine you've just joined the team that owns this API, and you want to know what a `Policyholder` looks like without reading the server's code.
 
@@ -102,7 +102,7 @@ Imagine you've just joined the team that owns this API, and you want to know wha
 
 <strong>Hint:</strong> Autocomplete works inside introspection queries too. Start typing `__type` and see what Sandbox suggests.
 
-### Solution 1
+### Solution
 
 <details>
 <summary>Click to see the solution</summary>

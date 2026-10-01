@@ -30,6 +30,7 @@ After this course, you'll be able to:
 - Decide who can see and change which data
 - Mark how long data can be cached, and cache repeated queries on the server
 - Explain how subscriptions push live updates to clients
+- Describe what else changes when a GraphQL API runs in production
 
 ## Prerequisites
 
@@ -44,6 +45,7 @@ This course assumes you've completed [GraphQL 101](learn-graphql-101.html), or a
 5. [Error Handling](learn-graphql-102/error-handling.html): return coded errors for mistakes, and typed results for problems the user needs to see
 6. [Security](learn-graphql-102/security.html): turn off introspection, hide schema details from errors, and limit page size and query depth
 7. [Authorization](learn-graphql-102/authorization.html): decide who can see and change which data, and let only agents issue policies
-8. [Caching and Performance](learn-graphql-102/caching-and-performance.html): mark how long data can be cached, and serve repeated queries from a server-side cache
+8. [Caching](learn-graphql-102/caching.html): mark how long data can be cached, and serve repeated queries from a server-side cache
 9. [Subscriptions](learn-graphql-102/subscriptions.html): how a server pushes live updates to clients, and when to use them instead of polling
-10. [Wrapping Up](learn-graphql-102/wrapping-up.html): what you changed, and where to go next
+10. [Performance and Hosting](learn-graphql-102/performance-and-hosting.html): persisted queries, compression, monitoring, health checks, and a production checklist
+11. [Wrapping Up](learn-graphql-102/wrapping-up.html): what you changed, and where to go next

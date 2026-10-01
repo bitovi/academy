@@ -134,7 +134,7 @@ For each policy, GraphQL resolves `policyNumber` by reading `policy.policyNumber
 
 When a field's value has to be looked up or calculated, write a resolver for it, the way `Policy.policyholder` looks up a policyholder from `policyholderId`.
 
-### Exercise 2
+### Exercise
 
 Billing wants to show each policy's yearly cost, which is its `monthlyPremium` times 12. We'll add this as an `annualPremium` field. The data doesn't have an `annualPremium` property, so the server will calculate it.
 
@@ -191,7 +191,7 @@ The schema accepted the new field, so the request passed validation. But no reso
 }
 ```
 
-### Solution 2
+### Solution
 
 <details>
 <summary>Click to see the solution</summary>
@@ -228,7 +228,7 @@ The resolver runs only when a query asks for `annualPremium`, so the calculation
 
 ## Objective 3: Add a query argument
 
-### Exercise 3
+### Exercise
 
 Let's make the query from the last section work:
 
@@ -268,7 +268,7 @@ Your response should be:
 { "data": { "policies": [{ "policyNumber": "AUTO-100001", "riskTier": "MEDIUM" }] } }
 ```
 
-### Verify 3
+### Verify
 
 ✏️ Run `policies` with no arguments:
 
@@ -282,7 +282,7 @@ Your response should be:
 
 It still returns all five policies.
 
-### Solution 3
+### Solution
 
 <details>
 <summary>Click to see the solution</summary>

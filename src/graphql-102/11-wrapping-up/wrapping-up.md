@@ -1,5 +1,5 @@
 @page learn-graphql-102/wrapping-up Wrapping Up
-@parent learn-graphql-102 10
+@parent learn-graphql-102 11
 @outline 2
 
 @description Review what you changed to get the course API ready for real users, and where to go next.
@@ -17,7 +17,7 @@ You started GraphQL 102 with a working API that wasn't ready for real users. Her
 - **Only the right people can change data.** The logged-in user reaches every resolver through `contextValue`, and only agents can issue policies.
 - **Repeated queries are cheaper.** Cache hints say how long data stays correct, and the server can answer repeated queries from a cache.
 
-You also saw how subscriptions push live updates to clients, and what a server needs to support them.
+You also saw how subscriptions push live updates to clients, and what else to set up before running a GraphQL API in production: persisted queries, compression, monitoring, and health checks.
 
 ## Reset the course data
 

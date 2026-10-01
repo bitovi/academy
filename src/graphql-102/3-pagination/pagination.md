@@ -110,7 +110,7 @@ To get the next page, the client sends the same query with `after` set to the `e
 
 The API already has a `claims` query that returns a list. Changing it to return a connection would break every client that uses it today, because the response would have a different shape. Instead, we'll add a new `claimsConnection` query next to it. Clients can move over when they're ready. Once they have, `claims` can be marked `@deprecated`, as you did with `policy(id:)` in 101.
 
-### Exercise 2
+### Exercise
 
 ✏️ In **services/policies/src/schema.graphql**, add three new object types and a query:
 
@@ -201,7 +201,7 @@ Your response should be:
 
 You should get all six claims, ending with `CLM-5006`, and `"hasNextPage": false`.
 
-### Solution 2
+### Solution
 
 <details>
 <summary>Click to see the solution</summary>
@@ -269,13 +269,13 @@ The resolver returns plain objects in the shape of the schema, so the default re
 
 ## Objective 3: Get the next page
 
-### Exercise 3
+### Exercise
 
 The client can get the first page, but not the next one.
 
 ✏️ Update **services/policies/src/schema.graphql** and **services/policies/src/resolvers.ts** so `claimsConnection` also takes an optional `after` cursor, and starts with the claim after the one it points to.
 
-✏️ Get the second page by passing the `endCursor` from Exercise 2, `YzI=`, as `after`:
+✏️ Get the second page by passing the `endCursor` from the first page, `YzI=`, as `after`:
 
 ```graphql
 {
@@ -371,7 +371,7 @@ Your response should be:
 
 There's nothing after the last claim, so you should get `"edges": []` and `"pageInfo": { "endCursor": null, "hasNextPage": false }`.
 
-### Solution 3
+### Solution
 
 <details>
 <summary>Click to see the solution</summary>
