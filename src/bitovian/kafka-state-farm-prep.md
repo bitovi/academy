@@ -12,9 +12,8 @@
 This training gets you ready for Kafka work on the State Farm engagement. Work through it on your own, in order:
 
 1. Take Confluent's free [Apache Kafka 101](https://developer.confluent.io/courses/apache-kafka/events/) course.
-2. Read the pages in the [Additional topics](#additional-topics), in order. They cover the Confluent products, recent Kafka changes, and related tools the course doesn't.
-3. Answer the questions in [Check your understanding](#check-your-understanding) without looking back.
-4. Go on to the [Additional topics](#additional-topics).
+2. Answer the questions in [Check your understanding](#check-your-understanding) without looking back.
+3. Read the [Additional topics](#additional-topics), in order. They cover the Confluent products, recent Kafka changes, and related tools the course doesn't.
 
 ## Additional topics
 
