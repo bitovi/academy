@@ -330,6 +330,30 @@ bit-prev-next {
             underConstruction: false
           },
           {
+            logo: './static/img/graphql-logo.png',
+            logoAlt: 'GraphQL',
+            logoHeight: '50',
+            title: 'GraphQL 101',
+            description: 'Query a GraphQL API for a fictional insurance company, then extend it with new fields, arguments, mutations, and batching.',
+            audience: 'Developers who are new to GraphQL',
+            goal: 'Learn GraphQL fundamentals: schemas, resolvers, queries, and mutations.',
+            time: '2 hours',
+            link: './learn-graphql-101.html',
+            underConstruction: false
+          },
+          {
+            logo: './static/img/graphql-logo.png',
+            logoAlt: 'GraphQL',
+            logoHeight: '50',
+            title: 'GraphQL 102',
+            description: 'Get the API you built in GraphQL 101 ready for real users: pagination, custom scalars, error handling, security, authorization, and caching.',
+            audience: 'Developers who have completed GraphQL 101',
+            goal: 'Make a GraphQL API ready for production.',
+            time: '2 hours',
+            link: './learn-graphql-102.html',
+            underConstruction: false
+          },
+          {
             logo: './static/img/javascript.png',
             logoAlt: 'JavaScript',
             logoHeight: '70',
