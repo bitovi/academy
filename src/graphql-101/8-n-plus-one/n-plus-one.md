@@ -55,6 +55,8 @@ Starting the message with `[RESOLVER]` makes it easy to tell where each line in 
 
 ✏️ Run the query above in Apollo Sandbox, then look at the terminal where the server is running:
 
+<div data-toolbar-order="">
+
 ```text
 [RESOLVER] Looking up policyholder ph1
 [RESOLVER] Looking up policyholder ph1
@@ -62,6 +64,8 @@ Starting the message with `[RESOLVER]` makes it easy to tell where each line in 
 [RESOLVER] Looking up policyholder ph3
 [RESOLVER] Looking up policyholder ph3
 ```
+
+</div>
 
 Five lookups for three policyholders. Maria Alvarez (`ph1`) and Priya Raman (`ph3`) each have two policies, so they're each looked up **twice**.
 
@@ -73,9 +77,13 @@ Every field on every policy has a resolver. Most of them are **default resolvers
 
 `Policy.policyholder` is different. A saved policy doesn't contain its policyholder, only a `policyholderId`:
 
+<div data-toolbar-order="">
+
 ```ts
 { id: "p1", policyNumber: "AUTO-100001", /* ... */ policyholderId: "ph1" }
 ```
+
+</div>
 
 A default resolver would look for `policy.policyholder`, find nothing, and return `null`. So we **override** the default with our own resolver. It fetches the related data, the list of policyholders, and finds the one that matches the current policy's `policyholderId`. That lookup is the work that gets repeated for every policy.
 
@@ -100,6 +108,8 @@ It returns the same value the default resolver would, so the response doesn't ch
 
 ✏️ Run the query again. The terminal shows both resolvers, running once for each policy:
 
+<div data-toolbar-order="">
+
 ```text
 [RESOLVER] Overriding default resolver but still returning policyNumber value
 [RESOLVER] Looking up policyholder ph1
@@ -112,6 +122,8 @@ It returns the same value the default resolver would, so the response doesn't ch
 [RESOLVER] Overriding default resolver but still returning policyNumber value
 [RESOLVER] Looking up policyholder ph3
 ```
+
+</div>
 
 A few things to notice:
 
@@ -232,6 +244,8 @@ The resolver now uses three of its four arguments: `policy` (the parent), `_` fo
 
 ✏️ Run the query from Objective 1 again. The response is the same, but the terminal now shows:
 
+<div data-toolbar-order="">
+
 ```text
 [RESOLVER] Looking up policyholder ph1
 [RESOLVER] Looking up policyholder ph1
@@ -240,6 +254,8 @@ The resolver now uses three of its four arguments: `policy` (the parent), `_` fo
 [RESOLVER] Looking up policyholder ph3
 [LOADER] Loading policyholders ph1, ph2, ph3
 ```
+
+</div>
 
 - **The resolver still runs five times**, once per policy. Field resolvers always do. But each run now only hands an id to the loader, which costs almost nothing.
 - **The loader runs once**, after all five have asked, with each policyholder listed once.
@@ -273,6 +289,8 @@ The relationship goes both ways. `Policyholder.policies` has the same problem. I
 
 ✏️ Run the query again. The terminal shows the resolver running once per policyholder, and the batch function running **once**, with all three policyholder ids. For example:
 
+<div data-toolbar-order="">
+
 ```text
 [RESOLVER] Looking up policies for policyholder ph1
 [RESOLVER] Looking up policies for policyholder ph2
@@ -280,9 +298,13 @@ The relationship goes both ways. `Policyholder.policies` has the same problem. I
 [LOADER] Loading policies for policyholders ph1, ph2, ph3
 ```
 
+</div>
+
 ### Verify
 
 ✏️ Check the response from the last step. It's unchanged:
+
+<div data-toolbar-order="">
 
 ```json
 {
@@ -301,6 +323,8 @@ The relationship goes both ways. `Policyholder.policies` has the same problem. I
   }
 }
 ```
+
+</div>
 
 If you've issued policies in the Mutations section, you'll see them in the response too.
 

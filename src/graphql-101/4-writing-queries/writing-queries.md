@@ -24,6 +24,8 @@ Need a reminder of what's in the API? See [The Course Data](./course-data.html).
 
 The fields inside `{ }` are called a **selection set**. When a field returns an object instead of a plain value, like a policy's `policyholder`, you must give it its own selection set:
 
+<div data-toolbar-order="">
+
 ```graphql
 {
   policies {
@@ -36,7 +38,11 @@ The fields inside `{ }` are called a **selection set**. When a field returns an 
 }
 ```
 
+</div>
+
 Relationships work in both directions. A policyholder can list their policies:
+
+<div data-toolbar-order="">
 
 ```graphql
 {
@@ -49,6 +55,8 @@ Relationships work in both directions. A policyholder can list their policies:
   }
 }
 ```
+
+</div>
 
 ### Using the Documentation panel
 
@@ -72,6 +80,8 @@ This time, build the query without typing it, using only the Documentation panel
 
 ✏️ Keep using the **⊕** buttons to build this query, then click **Run**:
 
+<div data-toolbar-order="">
+
 ```graphql
 {
   policies {
@@ -84,6 +94,8 @@ This time, build the query without typing it, using only the Documentation panel
 }
 ```
 
+</div>
+
 <strong>Hint:</strong> Clicking a field's name (instead of its **⊕** button) opens it, so you can add the fields inside it.
 
 ### Solution
@@ -94,6 +106,8 @@ This time, build the query without typing it, using only the Documentation panel
 From `Query`, click **⊕** next to `policies`. Open `policies`, then click **⊕** next to `policyNumber` and `policyholder`. Open `policyholder`, then click **⊕** next to `name` and `email`.
 
 Your response should be:
+
+<div data-toolbar-order="">
 
 ```json
 {
@@ -109,6 +123,8 @@ Your response should be:
 }
 ```
 
+</div>
+
 </details>
 
 ## Objective 2: Filter with arguments and variables
@@ -116,6 +132,8 @@ Your response should be:
 ### Arguments
 
 Fields can accept **arguments**. The `policies` field accepts an optional `type` argument:
+
+<div data-toolbar-order="">
 
 ```graphql
 {
@@ -125,11 +143,15 @@ Fields can accept **arguments**. The `policies` field accepts an optional `type`
 }
 ```
 
+</div>
+
 `AUTO` has no quotes because `type` is an **enum**: one of a fixed set of values (`AUTO`, `HOME`, `LIFE`, `RENTERS`) defined by the schema.
 
 ### Variables
 
 Hard-coding values into a query works for exploring, but applications pass them as **variables** instead. A variable is declared on the operation with a `$` and a type, then used in place of the value:
+
+<div data-toolbar-order="">
 
 ```graphql
 query PoliciesByType($type: PolicyType) {
@@ -140,17 +162,25 @@ query PoliciesByType($type: PolicyType) {
 }
 ```
 
+</div>
+
 The values are sent separately, as JSON. In Apollo Sandbox, they go in the **Variables** panel:
+
+<div data-toolbar-order="">
 
 ```json
 { "type": "AUTO" }
 ```
+
+</div>
 
 `PoliciesByType` is the **operation name**. It's optional, but it makes requests easier to identify in logs and tools.
 
 ### Multiple variables and fields
 
 One operation can declare several variables, separated by commas, and **ask for several top-level fields at once**. The response contains one entry per field:
+
+<div data-toolbar-order="">
 
 ```graphql
 query PolicyAndHolder($policyId: ID!, $policyholderId: ID!) {
@@ -162,6 +192,8 @@ query PolicyAndHolder($policyId: ID!, $policyholderId: ID!) {
   }
 }
 ```
+
+</div>
 
 A variable's type must match the argument it's used for. `policy(id: ID!)` requires an ID, so `$policyId` is declared as `ID!`. The `!` makes the variable **required**: the request fails if you leave it out. `$type: PolicyType` above has no `!`, so it's optional.
 
@@ -178,6 +210,8 @@ An agent's dashboard shows a policyholder's contact details next to a list of po
 
 ✏️ Run it for policyholder `ph2` and `AUTO` policies. Your response should be:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "data": {
@@ -189,6 +223,8 @@ An agent's dashboard shows a policyholder's contact details next to a list of po
   }
 }
 ```
+
+</div>
 
 <strong>Hint:</strong> Check the Documentation panel for the type each argument expects. That's the type your variable needs.
 
@@ -228,9 +264,13 @@ Variables:
 
 A **directive** is an instruction attached to part of a query or schema, written as `@` followed by a name. Some directives take arguments, just like fields do:
 
+<div data-toolbar-order="">
+
 ```graphql
 policies @include(if: $withPolicies)
 ```
+
+</div>
 
 A directive changes how GraphQL treats the thing it's attached to. The [GraphQL specification](https://spec.graphql.org/September2025/#sec-Type-System.Directives) defines a few built-in directives that every GraphQL server supports. Two of them are for queries:
 
@@ -257,6 +297,8 @@ When a field is left out, it's missing from the response entirely. It doesn't co
 
 Your response should be:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "data": {
@@ -265,6 +307,8 @@ Your response should be:
 }
 ```
 
+</div>
+
 ✏️ Change the variables so `withPolicies` is `true`, and run it again:
 
 ```json
@@ -272,6 +316,8 @@ Your response should be:
 ```
 
 Your response should be:
+
+<div data-toolbar-order="">
 
 ```json
 {
@@ -287,6 +333,8 @@ Your response should be:
   }
 }
 ```
+
+</div>
 
 ### Solution
 
@@ -318,6 +366,8 @@ query PolicyholderView($id: ID!, $withPolicies: Boolean!) {
 
 Before any of your server code runs, GraphQL checks the request against the schema. Asking for a field that doesn't exist fails immediately:
 
+<div data-toolbar-order="">
+
 ```graphql
 {
   policies {
@@ -326,7 +376,11 @@ Before any of your server code runs, GraphQL checks the request against the sche
 }
 ```
 
+</div>
+
 The response (trimmed for readability) is:
+
+<div data-toolbar-order="">
 
 ```json
 {
@@ -334,11 +388,15 @@ The response (trimmed for readability) is:
 }
 ```
 
+</div>
+
 ### Fields and arguments are checked separately
 
 Arguments are validated the same way: an argument the schema doesn't declare is rejected before it reaches your code.
 
 Say underwriting wants a list of high-risk policies. Every policy has a `riskTier` field, so filtering on it seems reasonable:
+
+<div data-toolbar-order="">
 
 ```graphql
 {
@@ -349,13 +407,19 @@ Say underwriting wants a list of high-risk policies. Every policy has a `riskTie
 }
 ```
 
+</div>
+
 But the request fails. The response (trimmed for readability) is:
+
+<div data-toolbar-order="">
 
 ```json
 {
   "errors": [{ "message": "Unknown argument \"riskTier\" on field \"Query.policies\"." }]
 }
 ```
+
+</div>
 
 `riskTier` is a **field** you can ask for, but it isn't an **argument** that `policies` accepts. In the Documentation panel, `policies` lists only one argument: `type`. **Being able to read a value doesn't mean you can filter by it; the schema has to declare each one.**
 

@@ -53,6 +53,8 @@ Hiding these details doesn't protect the data. Every field is still there for an
 
 It fails before any resolver runs. The response (trimmed for readability) is:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "errors": [
@@ -63,6 +65,8 @@ It fails before any resolver runs. The response (trimmed for readability) is:
   ]
 }
 ```
+
+</div>
 
 ✏️ Reload Sandbox. It can no longer load the schema, so the **Documentation** panel and autocomplete stop working.
 
@@ -78,6 +82,8 @@ It fails before any resolver runs. The response (trimmed for readability) is:
 
 Introspection is off, but the error still suggests the real field name, and includes a stack trace. The response (trimmed for readability) is:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "errors": [
@@ -89,11 +95,15 @@ Introspection is off, but the error still suggests the real field name, and incl
 }
 ```
 
+</div>
+
 Your `stacktrace` is longer: a list of lines showing where in the server's code the error happened.
 
 ✏️ In **services/policies/src/index.ts**, also turn off field suggestions and stack traces in error responses.
 
 ✏️ Run the `claim` query again. The response (trimmed for readability) is:
+
+<div data-toolbar-order="">
 
 ```json
 {
@@ -105,6 +115,8 @@ Your `stacktrace` is longer: a list of lines showing where in the server's code 
   ]
 }
 ```
+
+</div>
 
 The suggestion and the `stacktrace` are both gone. The error still says which field is wrong, so a developer can fix the query.
 
@@ -136,9 +148,13 @@ Stack traces are still useful while you develop. A common setup leaves `includeS
 
 The course API keeps `introspection: true` so Sandbox works everywhere it runs. A real API would tie it to the environment instead, so it's on while you develop and off in production:
 
+<div data-toolbar-order="">
+
 ```ts
   introspection: process.env.NODE_ENV !== "production",
 ```
+
+</div>
 
 </details>
 
@@ -179,6 +195,8 @@ Most public APIs set a maximum. GitHub's GraphQL API, for example, [requires `fi
 
 It doesn't fail. `slice` treats a negative end as "count from the end of the list", so you get every claim except the last one:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "data": {
@@ -195,9 +213,13 @@ It doesn't fail. `slice` treats a negative end as "count from the end of the lis
 }
 ```
 
+</div>
+
 ✏️ In **services/policies/src/resolvers.ts**, make `claimsConnection` throw an error when `first` is less than 1 or more than 100. The message is `first must be between 1 and 100`, and the code is `BAD_USER_INPUT`.
 
 ✏️ Run the query again. Your response (trimmed for readability) should be:
+
+<div data-toolbar-order="">
 
 ```json
 {
@@ -211,6 +233,8 @@ It doesn't fail. `slice` treats a negative end as "count from the end of the lis
   "data": null
 }
 ```
+
+</div>
 
 ✏️ Run it with `first` too large:
 
@@ -274,6 +298,8 @@ The check comes first, so the resolver stops before it does any work.
 
 In 101, you saw that nested queries can get expensive, and that production APIs add depth limits. Policies have a policyholder, policyholders have policies, and policies have claims that point back to their policy. Those connections go in circles, so a client can nest them as deeply as it likes:
 
+<div data-toolbar-order="">
+
 ```graphql
 {
   policyholders {
@@ -292,6 +318,8 @@ In 101, you saw that nested queries can get expensive, and that production APIs 
 }
 ```
 
+</div>
+
 Each level multiplies the work, and a query can repeat the pattern hundreds of times. A real screen never needs that.
 
 A **depth limit** rejects any query that nests deeper than a set number of levels. The OWASP cheat sheet names the [`graphql-depth-limit`](https://github.com/stems/graphql-depth-limit) library for JavaScript APIs, and the course API already has it installed. It checks a query while GraphQL validates it, before any resolver runs, and it ignores introspection queries, so Sandbox keeps working.
@@ -302,6 +330,8 @@ A **validation rule** is a check GraphQL runs on every query before any resolver
 
 For example, the `graphql` package has a built-in rule, `NoSchemaIntrospectionCustomRule`, that rejects introspection queries. Adding it would look like this:
 
+<div data-toolbar-order="">
+
 ```ts
 import { NoSchemaIntrospectionCustomRule } from "graphql";
 
@@ -311,6 +341,8 @@ const server = new ApolloServer({
   validationRules: [NoSchemaIntrospectionCustomRule],
 });
 ```
+
+</div>
 
 Don't add this one. The course API uses introspection, and the `introspection` option already does the same job. It only shows how a rule is added.
 
@@ -360,6 +392,8 @@ query TooDeep {
 
 It fails before any resolver runs. The response (trimmed for readability) is:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "errors": [
@@ -370,6 +404,8 @@ It fails before any resolver runs. The response (trimmed for readability) is:
   ]
 }
 ```
+
+</div>
 
 ### Verify
 
@@ -414,12 +450,16 @@ Depth and page-size limits stop the most common problems, but a query can still 
 - **[Timeouts](https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html#timeouts)**: stop any request that runs too long.
 - **[Limits on aliases and batching](https://graphql.org/learn/security/#breadth-and-batch-limiting)**: stop one request from running the same expensive field many times at once. Aliases make this easy. This query is shallow, and each field stays within the page-size limit, so both limits from this section let it through:
 
+  <div data-toolbar-order="">
+
   ```graphql
   {
     a: claimsConnection(first: 100) { edges { cursor } }
     b: claimsConnection(first: 100) { edges { cursor } }
   }
   ```
+
+  </div>
 
   A client could repeat that field 50 times and ask for 5,000 claims in one request. The fix is a limit on the number of top-level fields and aliases in each operation, or query cost analysis, which counts every alias. OWASP covers the same attack under [batching attacks](https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html#batching-attacks).
 

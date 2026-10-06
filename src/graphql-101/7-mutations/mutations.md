@@ -23,16 +23,22 @@ In this section, we will:
 
 Queries read data. **Mutations** change it. They're declared on the `Mutation` type in the schema, the same way queries are declared on `Query`:
 
+<div data-toolbar-order="">
+
 ```graphql
 type Mutation {
   issuePolicy(input: IssuePolicyInput!): Policy!
 }
 ```
 
+</div>
+
 Writing one looks almost like a query, with two differences:
 
 - It starts with the `mutation` keyword. (A query can leave out `query`, but a mutation can't leave out `mutation`.)
 - It **does** something first, then returns the fields you select from the result.
+
+<div data-toolbar-order="">
 
 ```graphql
 mutation {
@@ -42,9 +48,13 @@ mutation {
 }
 ```
 
+</div>
+
 ### Input types
 
 `issuePolicy` takes a single argument, `input`, whose type is `IssuePolicyInput`:
+
+<div data-toolbar-order="">
 
 ```graphql
 input IssuePolicyInput {
@@ -55,6 +65,8 @@ input IssuePolicyInput {
 }
 ```
 
+</div>
+
 An **input type** groups the values a mutation needs into one object. It's declared with `input` instead of `type`, and it can only contain values, not fields with resolvers.
 
 - `type`, `monthlyPremium`, and `policyholderId` are required (`!`).
@@ -64,6 +76,8 @@ An **input type** groups the values a mutation needs into one object. It's decla
 
 Like any other request, a mutation is checked against the schema before the resolver runs. Leaving out required input fields fails immediately, and **no policy is created**:
 
+<div data-toolbar-order="">
+
 ```graphql
 mutation {
   issuePolicy(input: { type: HOME }) {
@@ -72,7 +86,11 @@ mutation {
 }
 ```
 
+</div>
+
 The response (trimmed for readability) is:
+
+<div data-toolbar-order="">
 
 ```json
 {
@@ -83,11 +101,15 @@ The response (trimmed for readability) is:
 }
 ```
 
+</div>
+
 ### Exercise
 
 James Okafor (`ph2`) wants home insurance at $112.00 a month.
 
 ✏️ Write and run a mutation that issues the policy and returns its `id`, `policyNumber`, `effectiveDate`, and the policyholder's `name`. Your response should look like:
+
+<div data-toolbar-order="">
 
 ```json
 {
@@ -101,6 +123,8 @@ James Okafor (`ph2`) wants home insurance at $112.00 a month.
   }
 }
 ```
+
+</div>
 
 `effectiveDate` will be today's date. If you've already issued other policies, your `id` and `policyNumber` numbers will be higher.
 
@@ -131,6 +155,8 @@ The response can include related data, like `policyholder`, because `issuePolicy
 ### Mutation resolvers work like query resolvers
 
 The resolver for `issuePolicy` lives in **services/policies/src/resolvers.ts**, under `Mutation`:
+
+<div data-toolbar-order="">
 
 ```ts
   Mutation: {
@@ -164,6 +190,8 @@ The resolver for `issuePolicy` lives in **services/policies/src/resolvers.ts**, 
   },
 ```
 
+</div>
+
 It follows the same `(parent, args, contextValue, info)` signature as any resolver. The difference is what it does:
 
 1. **Checks the input.** The schema can confirm `policyholderId` is an `ID`, but not that the policyholder exists. That check belongs in the resolver.
@@ -187,6 +215,8 @@ mutation {
 
 The response (trimmed for readability) is:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "errors": [
@@ -200,12 +230,16 @@ The response (trimmed for readability) is:
 }
 ```
 
+</div>
+
 - **`path`** shows which field failed.
 - **`extensions.code`** gives clients a machine-readable reason, so they don't have to parse the message.
 
 ### Exercise
 
 ✏️ Using the `id` from the exercise in Objective 1, query the new policy and ask for **every** field `Policy` has, including `riskTier`. Your response should look like:
+
+<div data-toolbar-order="">
 
 ```json
 {
@@ -223,6 +257,8 @@ The response (trimmed for readability) is:
   }
 }
 ```
+
+</div>
 
 
 ### Solution
@@ -273,6 +309,8 @@ Saving restarts the server, but the policy you issued in Objective 1 is still sa
 
 ✏️ Run `{ policies { policyNumber riskTier } }`. It fails. The response (trimmed for readability) is:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "errors": [
@@ -284,6 +322,8 @@ Saving restarts the server, but the policy you issued in Objective 1 is still sa
   "data": null
 }
 ```
+
+</div>
 
 The `path` points at `policies` entry `5` (counting from 0): the policy you issued in Objective 1. The schema now promises every policy has a risk tier, but data saved before the change breaks that promise. Because one policy breaks it, the whole `policies` query fails, not just that one policy.
 
@@ -307,6 +347,8 @@ mutation {
 
 It fails too. The response (trimmed for readability) is:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "errors": [
@@ -318,6 +360,8 @@ It fails too. The response (trimmed for readability) is:
   "data": null
 }
 ```
+
+</div>
 
 Even though the mutation returned an error, **the policy was still created.** The error happened while GraphQL was building the response, after the resolver had already saved the policy. Run `{ policies { id policyNumber } }` without `riskTier` and you'll see it listed. Now there are two policies without a risk tier.
 
@@ -343,11 +387,15 @@ mutation {
 
 It fails before the resolver runs, and nothing is created. The response (trimmed for readability) is:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "errors": [{ "message": "Field \"IssuePolicyInput.riskTier\" of required type \"RiskTier!\" was not provided." }]
 }
 ```
+
+</div>
 
 ✏️ Run it with `riskTier: LOW` in the input:
 
@@ -403,9 +451,13 @@ That's the only change needed. GraphQL checks every request against the schema b
 
 Near the top of **services/policies/src/resolvers.ts** there's a line that also describes the input:
 
+<div data-toolbar-order="">
+
 ```ts
 type IssuePolicyInput = Pick<Policy, "type" | "monthlyPremium" | "policyholderId"> & { effectiveDate?: string };
 ```
+
+</div>
 
 It reads as: "an `IssuePolicyInput` has the same `type`, `monthlyPremium`, and `policyholderId` fields as a `Policy`, plus an optional `effectiveDate`."
 
@@ -455,6 +507,8 @@ In the Writing Queries section, you used directives in queries: `@include` and `
 
 It's useful when there are several ways to identify the same thing. For example, if policyholders could be looked up by `id` or by `email`, the input would look like this:
 
+<div data-toolbar-order="">
+
 ```graphql
 "Look up a policyholder by exactly one of these fields"
 input PolicyholderLookupInput @oneOf {
@@ -462,6 +516,8 @@ input PolicyholderLookupInput @oneOf {
   email: String
 }
 ```
+
+</div>
 
 Because the client can only set one field, every field in a `@oneOf` input must be optional: `ID`, not `ID!`. GraphQL checks the "exactly one" rule itself, before any resolver runs. The course API has no `PolicyholderLookupInput`. This example only shows the shape.
 
@@ -471,12 +527,16 @@ Because the client can only set one field, every field in a `@oneOf` input must 
 
 A schema directive goes after the thing it describes. For example, if the API had an old `premium` field that was replaced by `monthlyPremium`:
 
+<div data-toolbar-order="">
+
 ```graphql
 type Policy {
   # ...other fields
   premium: Float @deprecated(reason: "Use monthlyPremium.")
 }
 ```
+
+</div>
 
 A deprecated field still works. Clients that use it keep getting data. What changes is how the field is shown to people writing new queries:
 
@@ -504,9 +564,13 @@ Agents often know a policy's number, like `LIFE-100004`, but not its id. Right n
 
 Your response should be:
 
+<div data-toolbar-order="">
+
 ```json
 { "data": { "findPolicy": { "id": "p4", "policyNumber": "LIFE-100004" } } }
 ```
+
+</div>
 
 ✏️ Run it with both fields set:
 
@@ -521,6 +585,8 @@ Your response should be:
 
 It fails before your resolver runs. The response (trimmed for readability) is:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "errors": [
@@ -531,6 +597,8 @@ It fails before your resolver runs. The response (trimmed for readability) is:
   ]
 }
 ```
+
+</div>
 
 ✏️ Run it with neither field set:
 
@@ -589,9 +657,13 @@ It still works, and returns `LIFE-100004`.
 
 `policy` is back, with its reason:
 
+<div data-toolbar-order="">
+
 ```json
 { "name": "policy", "isDeprecated": true, "deprecationReason": "Use findPolicy, which can look a policy up by id or policy number." }
 ```
+
+</div>
 
 Every other field has `"isDeprecated": false` and `"deprecationReason": null`.
 

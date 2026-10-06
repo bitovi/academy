@@ -31,12 +31,16 @@ Imagine we're building a screen for an insurance company that lists each policy 
 
 With a **REST API**, the server decides the shape of each response, and each resource lives at its own URL:
 
+<div data-toolbar-order="">
+
 ```shell
 GET /policies           # returns every field of every policy
 GET /policyholders/ph1  # then one request per policyholder...
 GET /policyholders/ph2
 GET /policyholders/ph3
 ```
+
+</div>
 
 This shows the two classic REST pain points:
 
@@ -58,6 +62,8 @@ With **GraphQL**, there is one endpoint, and the client describes exactly what i
 
 The response has the same shape as the query:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "data": {
@@ -68,6 +74,8 @@ The response has the same shape as the query:
   }
 }
 ```
+
+</div>
 
 ### Why teams choose GraphQL
 
@@ -92,6 +100,8 @@ You'll run queries in **Apollo Sandbox**, which you opened in [Course Setup](./s
 
 ✏️ In Apollo Sandbox, write a query that returns the response below, then click **Run**. It should have the same fields, in the same shape, and nothing extra. Your response should be:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "data": {
@@ -105,6 +115,8 @@ You'll run queries in **Apollo Sandbox**, which you opened in [Course Setup](./s
   }
 }
 ```
+
+</div>
 
 <strong>Hint:</strong> The **Documentation** panel on the left lists every field you can ask for. For a starting point, look at the query in **GraphQL vs REST** above; you'll only need to change which fields it asks for.
 

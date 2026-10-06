@@ -51,9 +51,13 @@ cd services/policies && npm run dev
 
 You should see:
 
+<div data-toolbar-order="">
+
 ```shell
 🚀 Policies service ready at http://0.0.0.0:4001/
 ```
+
+</div>
 
 Codespaces opens port `4001` in a new browser tab, showing **Apollo Sandbox**, an in-browser editor for writing and running GraphQL queries. If the tab doesn't open, open the **Ports** tab in the Codespace and click the globe icon next to port `4001`.
 

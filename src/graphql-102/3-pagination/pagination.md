@@ -27,6 +27,8 @@ Right now, `claims` returns every claim in one response. With six claims, that's
 
 The simplest approach is to count. The client asks for "2 claims, skipping the first 2", usually with arguments like `limit` and `offset`:
 
+<div data-toolbar-order="">
+
 ```graphql
 {
   claims(limit: 2, offset: 2) {
@@ -34,6 +36,8 @@ The simplest approach is to count. The client asks for "2 claims, skipping the f
   }
 }
 ```
+
+</div>
 
 This is easy to build, but it breaks when the list changes between requests. Imagine a screen that shows the newest claims first, 2 at a time:
 
@@ -80,6 +84,8 @@ Cursors are usually **opaque**: they look like random text, such as `YzQ=`, and 
 
 Many GraphQL APIs return pages in the same shape, called a **connection**. The pattern comes from Relay, a GraphQL client, which publishes it as the [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm). The official GraphQL documentation [recommends the same pattern](https://graphql.org/learn/pagination/) for any API, whether or not its clients use Relay. A query for the first 2 claims looks like this:
 
+<div data-toolbar-order="">
+
 ```graphql
 {
   claimsConnection(first: 2) {
@@ -98,6 +104,8 @@ Many GraphQL APIs return pages in the same shape, called a **connection**. The p
   }
 }
 ```
+
+</div>
 
 - **`first`**: how many items to return
 - **`after`** (not used here): the cursor to start after. Leave it out to start at the beginning.
@@ -171,6 +179,8 @@ The API already has a `claims` query that returns a list. Changing it to return 
 
 Your response should be:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "data": {
@@ -184,6 +194,8 @@ Your response should be:
   }
 }
 ```
+
+</div>
 
 ✏️ Run the same query with `first: 10`:
 
@@ -313,6 +325,8 @@ The client can get the first page, but not the next one.
 
 Your response should be:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "data": {
@@ -326,6 +340,8 @@ Your response should be:
   }
 }
 ```
+
+</div>
 
 ✏️ Get the third page by passing the `endCursor` from the second page, `YzQ=`, as `after`:
 
@@ -351,6 +367,8 @@ Your response should be:
 
 Your response should be:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "data": {
@@ -364,6 +382,8 @@ Your response should be:
   }
 }
 ```
+
+</div>
 
 `hasNextPage` is `false`, so this is the last page.
 

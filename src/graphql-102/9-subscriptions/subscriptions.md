@@ -27,13 +27,19 @@ A **subscription** is the third operation type. The client sends one request, an
 
 Subscriptions have their own root type in the schema, next to `Query` and `Mutation`:
 
+<div data-toolbar-order="">
+
 ```graphql
 type Subscription {
   claimStatusChanged(claimId: ID!): Claim!
 }
 ```
 
+</div>
+
 A client subscribes with the `subscription` keyword. The fields work the same way as in a query:
+
+<div data-toolbar-order="">
 
 ```graphql
 subscription WatchClaim {
@@ -44,7 +50,11 @@ subscription WatchClaim {
 }
 ```
 
+</div>
+
 Nothing comes back right away. When an adjuster later approves `CLM-5004`, the server pushes a response in the usual shape:
+
+<div data-toolbar-order="">
 
 ```json
 {
@@ -53,6 +63,8 @@ Nothing comes back right away. When an adjuster later approves `CLM-5004`, the s
   }
 }
 ```
+
+</div>
 
 If the claim changes again, the client gets another response. It keeps listening until it unsubscribes, or the connection closes.
 
@@ -100,6 +112,8 @@ Events usually come from a **pub/sub** (publish and subscribe) system. One part 
 
 For `claimStatusChanged`, the resolver could look like this:
 
+<div data-toolbar-order="">
+
 ```ts
 import { PubSub, withFilter } from "graphql-subscriptions";
 
@@ -118,14 +132,20 @@ export const resolvers = {
 };
 ```
 
+</div>
+
 - **`pubsub.asyncIterableIterator(["CLAIM_STATUS_CHANGED"])`** listens for events published as `CLAIM_STATUS_CHANGED`.
 - **`withFilter`** checks each event before it's sent. Every client listens to the same events, so without it, a client watching `c4` would also get updates for every other claim.
 
 The mutation that changes the data publishes the event. In `approveClaim`, after the claim is saved:
 
+<div data-toolbar-order="">
+
 ```ts
 pubsub.publish("CLAIM_STATUS_CHANGED", { claimStatusChanged: claim });
 ```
+
+</div>
 
 The payload is keyed by the subscription field's name, `claimStatusChanged`. GraphQL then resolves the fields the client asked for, like `claimNumber` and `status`, the same way it does for a query.
 

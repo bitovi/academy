@@ -69,6 +69,8 @@ Run this query:
 
 Your response should be:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "data": {
@@ -79,6 +81,8 @@ Your response should be:
   }
 }
 ```
+
+</div>
 
 `claims` with no arguments should return all six claims.
 
@@ -106,6 +110,8 @@ Run this query:
 
 Your response should be:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "data": {
@@ -123,6 +129,8 @@ Your response should be:
 }
 ```
 
+</div>
+
 A policy with no claims, like `LIFE-100004`, should return `"claims": []`.
 
 ## Part 3: Build the agent's view
@@ -132,6 +140,8 @@ An agent wants to see all of a policyholder's policies and their claims, in one 
 ✏️ Write one query named `PolicyholderClaims` that takes a `$policyholderId` variable and returns the policyholder's `name`, and for each of their policies, its `policyNumber` and the `claimNumber`, `status`, and `amount` of each claim.
 
 ✏️ Run it for `ph1`. Your response should be:
+
+<div data-toolbar-order="">
 
 ```json
 {
@@ -156,11 +166,15 @@ An agent wants to see all of a policyholder's policies and their claims, in one 
 }
 ```
 
+</div>
+
 ## Part 4 (stretch): Total claimed
 
 ✏️ Add a required `totalClaimed` field to `Policy`: the total `amount` of that policy's **approved** claims. Open and denied claims don't count.
 
 Run `{ policies { policyNumber totalClaimed } }`. Your response should be:
+
+<div data-toolbar-order="">
 
 ```json
 {
@@ -175,6 +189,8 @@ Run `{ policies { policyNumber totalClaimed } }`. Your response should be:
   }
 }
 ```
+
+</div>
 
 If you've issued policies in earlier sections, you'll see them too, with `"totalClaimed": 0`.
 
@@ -200,6 +216,8 @@ mutation {
 
 Your response should look like this, with today's date:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "data": {
@@ -213,6 +231,8 @@ Your response should look like this, with today's date:
   }
 }
 ```
+
+</div>
 
 Also check that:
 
@@ -228,6 +248,8 @@ Also check that:
 
 The response doesn't change. Your batch function should run **once** per request, with all the policy ids. With `[RESOLVER]` and `[LOADER]` log lines like the ones in the N+1 section, the terminal shows:
 
+<div data-toolbar-order="">
+
 ```text
 [RESOLVER] Looking up claims for policy p1
 [RESOLVER] Looking up claims for policy p2
@@ -236,6 +258,8 @@ The response doesn't change. Your batch function should run **once** per request
 [RESOLVER] Looking up claims for policy p5
 [LOADER] Loading claims for policies p1, p2, p3, p4, p5
 ```
+
+</div>
 
 ## Solution
 

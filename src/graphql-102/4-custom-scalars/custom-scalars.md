@@ -36,6 +36,8 @@ mutation {
 
 It succeeds, and saves a policy that starts on a day that doesn't exist:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "data": {
@@ -43,6 +45,8 @@ It succeeds, and saves a policy that starts on a day that doesn't exist:
   }
 }
 ```
+
+</div>
 
 If you've issued other policies, your `policyNumber` ends in a higher number. You'll clean this policy up in this objective's exercise.
 
@@ -52,9 +56,13 @@ So would `"10/01/2026"`, or `"next Tuesday"`. Every client and every resolver ha
 
 A **custom scalar** is a scalar type the API defines itself. In the schema, it's one line:
 
+<div data-toolbar-order="">
+
 ```graphql
 scalar LocalDate
 ```
+
+</div>
 
 A field can then use `LocalDate` wherever it used `String`. The schema only has the name. The rules live in server code, which tells GraphQL how to:
 
@@ -82,6 +90,8 @@ Using a scalar from the library takes two changes: one in the schema, and one in
 
 For example, `graphql-scalars` also has an `EmailAddress` scalar, which rejects values that aren't email addresses. To use it for `Policyholder.email`, you'd first name the scalar in the schema, and use it in place of `String`:
 
+<div data-toolbar-order="">
+
 ```graphql
 scalar EmailAddress
 
@@ -91,7 +101,11 @@ type Policyholder {
 }
 ```
 
+</div>
+
 Then, in the resolvers, you'd import the library's scalar and add it to the resolvers object, under the same name as in the schema:
+
+<div data-toolbar-order="">
 
 ```ts
 import { EmailAddressResolver } from "graphql-scalars";
@@ -104,6 +118,8 @@ export const resolvers = {
   },
 };
 ```
+
+</div>
 
 The scalar goes at the top level of the resolvers object, next to `Query` and `Mutation`, not inside them. The name on the left, `EmailAddress`, has to match the name in the schema. That's how GraphQL knows which code checks which scalar.
 
@@ -157,6 +173,8 @@ Both changes are needed. A scalar in the schema with no code in the resolvers ac
 
 The dates come back exactly as before:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "data": {
@@ -172,6 +190,8 @@ The dates come back exactly as before:
 }
 ```
 
+</div>
+
 ✏️ Run the February 30th mutation again:
 
 ```graphql
@@ -185,6 +205,8 @@ mutation {
 
 This time it fails before the resolver runs, and no policy is saved. The response (trimmed for readability) is:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "errors": [
@@ -195,6 +217,8 @@ This time it fails before the resolver runs, and no policy is saved. The respons
   ]
 }
 ```
+
+</div>
 
 ✏️ Run it with the date in a different format:
 
@@ -222,6 +246,8 @@ It fails the same way, with `Value is not a valid LocalDate: 10/01/2026`.
 
 It fails. The response (trimmed for readability) is:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "errors": [
@@ -234,6 +260,8 @@ It fails. The response (trimmed for readability) is:
   "data": null
 }
 ```
+
+</div>
 
 The policy you issued at the start of this section is still saved, with its February 30th date. `LocalDate` checks dates on the way **out** too, and that one isn't valid. The `path` points at `policies` entry `5` (counting from 0), which is that policy. If you've issued other policies, it may point at a different entry.
 
@@ -301,15 +329,21 @@ A client developer who sees `effectiveDate: LocalDate!` in the schema still has 
 
 `LocalDate` uses the `full-date` format from [RFC 3339, section 5.6](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6), the standard for dates on the internet. In a schema you write yourself, you'd add the URL to the scalar:
 
+<div data-toolbar-order="">
+
 ```graphql
 scalar LocalDate @specifiedBy(url: "https://datatracker.ietf.org/doc/html/rfc3339#section-5.6")
 ```
+
+</div>
 
 Introspection then reports the URL as the scalar type's `specifiedByURL`, so tools and developers can look up the format.
 
 ### A catch with library scalars
 
 With a scalar from a library, that isn't enough. The library's scalar **replaces** everything the schema file says about `LocalDate`, including its `@specifiedBy` URL and any description. `graphql-scalars` doesn't set a URL for `LocalDate`, so this introspection query returns `"specifiedByURL": null` even with the directive in the schema file:
+
+<div data-toolbar-order="">
 
 ```graphql
 {
@@ -320,7 +354,11 @@ With a scalar from a library, that isn't enough. The library's scalar **replaces
 }
 ```
 
+</div>
+
 To keep the URL, the resolvers have to build a copy of the library's scalar with the URL added:
+
+<div data-toolbar-order="">
 
 ```ts
 import { GraphQLScalarType } from "graphql";
@@ -330,6 +368,8 @@ import { GraphQLScalarType } from "graphql";
     specifiedByURL: "https://datatracker.ietf.org/doc/html/rfc3339#section-5.6",
   }),
 ```
+
+</div>
 
 `LocalDateResolver.toConfig()` returns the library scalar's settings, including the functions that check dates, and `...` copies them into the new scalar. The URL then lives in two places: the schema file, for people reading it, and **services/policies/src/resolvers.ts**, which is what the server actually reports. Keep them the same.
 

@@ -85,6 +85,8 @@ directive @cacheControl(
 
 You can put a hint on a type, or on a single field. For example, in an API with a `Coverage` type:
 
+<div data-toolbar-order="">
+
 ```graphql
 type Coverage @cacheControl(maxAge: 3600) {
   name: String!
@@ -92,6 +94,8 @@ type Coverage @cacheControl(maxAge: 3600) {
   remainingLimit: Float! @cacheControl(maxAge: 0)
 }
 ```
+
+</div>
 
 Every `Coverage` can be cached for an hour, but `remainingLimit` can't be cached at all. The course API has no `Coverage` type. This example only shows the shape.
 
@@ -121,17 +125,25 @@ curl -s -i http://localhost:4001/ -H 'content-type: application/json' --data '{"
 
 Look for the `cache-control` line near the top of the output. Nothing has a hint yet, so the response can't be cached:
 
+<div data-toolbar-order="">
+
 ```shell
 cache-control: no-store
 ```
+
+</div>
 
 ✏️ In **services/policies/src/schema.graphql**, add the `@cacheControl` declaration from **Cache hints**, and let every `Policy` and every `Policyholder` be cached for 60 seconds.
 
 ✏️ Run the same `curl` command again. The response can now be cached for 60 seconds:
 
+<div data-toolbar-order="">
+
 ```shell
 cache-control: max-age=60, public
 ```
+
+</div>
 
 ✏️ Ask for each policy's claims too:
 
@@ -141,9 +153,13 @@ curl -s -i http://localhost:4001/ -H 'content-type: application/json' --data '{"
 
 The response can't be cached anymore:
 
+<div data-toolbar-order="">
+
 ```shell
 cache-control: no-store
 ```
+
+</div>
 
 `Policy.claims` returns `Claim` objects, and `Claim` has no hint, so it defaults to `0`. The lowest `maxAge` in the response wins.
 
@@ -155,9 +171,13 @@ curl -s -i http://localhost:4001/ -H 'content-type: application/json' --data '{"
 
 It can be cached for 60 seconds:
 
+<div data-toolbar-order="">
+
 ```shell
 cache-control: max-age=60, public
 ```
+
+</div>
 
 That's a problem. `totalClaimed` is a number, so it uses its parent's hint, the policy's 60 seconds. But it's calculated from the policy's claims, and approving a claim changes it. A cached response could show the old total for up to a minute.
 
@@ -165,9 +185,13 @@ That's a problem. `totalClaimed` is a number, so it uses its parent's hint, the 
 
 ✏️ Run the `totalClaimed` command again. It can't be cached:
 
+<div data-toolbar-order="">
+
 ```shell
 cache-control: no-store
 ```
+
+</div>
 
 ### Verify
 
@@ -256,10 +280,14 @@ curl -s -i http://localhost:4001/ -H 'content-type: application/json' --data '{"
 
 The second response has an `age` header, showing how many seconds ago the saved copy was made:
 
+<div data-toolbar-order="">
+
 ```shell
 age: 3
 cache-control: max-age=60, public
 ```
+
+</div>
 
 ✏️ Look at the server's terminal. `[RESOLVER] Looking up policies` appears **once**. The second response came from the cache, and no resolver ran.
 

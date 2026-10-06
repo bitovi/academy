@@ -93,6 +93,8 @@ In the Pagination section, a cursor that doesn't point to any claim quietly retu
 
 There's no error. You get the first page, as if you hadn't passed a cursor at all:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "data": {
@@ -102,6 +104,8 @@ There's no error. You get the first page, as if you hadn't passed a cursor at al
   }
 }
 ```
+
+</div>
 
 A client paging through claims with a broken cursor would show the first two claims again, and never know anything was wrong.
 
@@ -123,6 +127,8 @@ A client paging through claims with a broken cursor would show the first two cla
 
 Your response (trimmed for readability) should be:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "errors": [
@@ -135,6 +141,8 @@ Your response (trimmed for readability) should be:
   "data": null
 }
 ```
+
+</div>
 
 ✏️ Run it with a valid cursor:
 
@@ -216,13 +224,19 @@ The alternative is to put them in the schema, as part of the data.
 
 A **union** is a type that can be one of several object types:
 
+<div data-toolbar-order="">
+
 ```graphql
 union SearchResult = Policy | Policyholder
 ```
 
+</div>
+
 A field that returns `SearchResult` returns either a `Policy` or a `Policyholder`. The two types don't need to share any fields.
 
 To query a union, the client uses **inline fragments**, written `... on TypeName`, to say which fields it wants for each type. `__typename`, which you used in 101's Exploring the Schema section, tells the client which type it got:
+
+<div data-toolbar-order="">
 
 ```graphql
 {
@@ -238,11 +252,15 @@ To query a union, the client uses **inline fragments**, written `... on TypeName
 }
 ```
 
+</div>
+
 ### Returning a union from a resolver
 
 A resolver for a union field has one extra job: it has to tell GraphQL which type each result is. A policy and a policyholder are both plain objects, so GraphQL can't tell them apart on its own.
 
 One way to tell it is to add a `__typename` property to each object the resolver returns. Here's what a resolver for `search` could look like:
+
+<div data-toolbar-order="">
 
 ```ts
     search: (_: unknown, args: { text: string }) => [
@@ -255,14 +273,20 @@ One way to tell it is to add a `__typename` property to each object the resolver
     ],
 ```
 
+</div>
+
 - **`{ __typename: "Policy", ...p }`** makes a new object with every property of the policy `p`, plus `__typename: "Policy"`. The saved policy itself doesn't change.
 - **The value of `__typename`** must be the exact name of one of the union's types. GraphQL uses it to decide which inline fragment applies.
 
 If the resolver returned the policyholders without `__typename`, the query would fail with an error like this:
 
+<div data-toolbar-order="">
+
 ```text
 Abstract type "SearchResult" must resolve to an Object type at runtime for field "Query.search".
 ```
+
+</div>
 
 The course API has no `search` field. This example only shows the shape of the query and the resolver.
 
@@ -323,6 +347,8 @@ mutation {
 
 Your response should be:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "data": {
@@ -331,7 +357,11 @@ Your response should be:
 }
 ```
 
+</div>
+
 ✏️ Run the same mutation again. `CLM-5004` is approved now, so your response should be:
+
+<div data-toolbar-order="">
 
 ```json
 {
@@ -340,6 +370,8 @@ Your response should be:
   }
 }
 ```
+
+</div>
 
 There's no `errors` array. The problem is part of the data, and the client can show `message` to the adjuster.
 
@@ -363,6 +395,8 @@ mutation {
 
 Your response (trimmed for readability) should be:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "errors": [
@@ -376,6 +410,8 @@ Your response (trimmed for readability) should be:
 }
 ```
 
+</div>
+
 ✏️ Run it without the fragments, asking for `claimNumber` directly:
 
 ```graphql
@@ -388,6 +424,8 @@ mutation {
 
 The query fails before it runs, so `c6` isn't approved. The response (trimmed for readability) is:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "errors": [
@@ -398,6 +436,8 @@ The query fails before it runs, so `c6` isn't approved. The response (trimmed fo
   ]
 }
 ```
+
+</div>
 
 A union has no fields of its own, so the client has to say which type it's asking about.
 

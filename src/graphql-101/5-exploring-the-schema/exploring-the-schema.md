@@ -29,6 +29,8 @@ Introspection queries use special fields that start with two underscores:
 
 For example, this query lists every field on `Query`:
 
+<div data-toolbar-order="">
+
 ```graphql
 {
   __schema {
@@ -41,6 +43,10 @@ For example, this query lists every field on `Query`:
 }
 ```
 
+</div>
+
+<div data-toolbar-order="">
+
 ```json
 {
   "data": {
@@ -52,6 +58,8 @@ For example, this query lists every field on `Query`:
   }
 }
 ```
+
+</div>
 
 ### Reading a field's type
 
@@ -84,6 +92,8 @@ Imagine you've just joined the team that owns this API, and you want to know wha
 
 ✏️ In Apollo Sandbox, write one query that returns the name of every field on `Policyholder`, with each field's type. Your response should be:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "data": {
@@ -99,6 +109,8 @@ Imagine you've just joined the team that owns this API, and you want to know wha
   }
 }
 ```
+
+</div>
 
 <strong>Hint:</strong> Autocomplete works inside introspection queries too. Start typing `__type` and see what Sandbox suggests.
 
@@ -138,6 +150,8 @@ Every `Policyholder` field is required, so every `type` is a `NON_NULL` wrapper,
 
 **`__typename`** returns the name of an object's type. Unlike `__schema` and `__type`, you can ask for it on any object, in any query:
 
+<div data-toolbar-order="">
+
 ```graphql
 {
   policies(type: AUTO) {
@@ -151,6 +165,10 @@ Every `Policyholder` field is required, so every `type` is a `NON_NULL` wrapper,
 }
 ```
 
+</div>
+
+<div data-toolbar-order="">
+
 ```json
 {
   "data": {
@@ -161,6 +179,8 @@ Every `Policyholder` field is required, so every `type` is a `NON_NULL` wrapper,
   }
 }
 ```
+
+</div>
 
 Here the answer is obvious, but `__typename` matters in two places:
 

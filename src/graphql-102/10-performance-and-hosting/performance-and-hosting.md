@@ -66,9 +66,13 @@ A **persisted query** replaces the text with a short ID: the query's SHA-256 has
 
 The hash goes in the request's `extensions`, an extra field next to `query` and `variables`:
 
+<div data-toolbar-order="">
+
 ```json
 { "persistedQuery": { "version": 1, "sha256Hash": "15e5dba064bd39d724f2b496de5e639781d5bf1dce7ca4df025b7053d647efda" } }
 ```
+
+</div>
 
 That hash is for the query `{ policies { policyNumber } }`. Once a query can be sent as a short hash, it fits in a `GET` URL, so browsers and CDNs can cache the response, as described in the Caching section. In real apps, a client library like Apollo Client handles all of this.
 
@@ -86,6 +90,8 @@ To improve performance, you first need to know which operations are slow. The Gr
 
 In Apollo Server, the place to measure is a **plugin**, like the response cache plugin from the Caching section. A plugin's functions run at points in each request's life, listed in Apollo's [plugin event reference](https://www.apollographql.com/docs/apollo-server/integrations/plugins-event-reference). For example, this plugin logs how long each operation takes:
 
+<div data-toolbar-order="">
+
 ```ts
 import { ApolloServer, type ApolloServerPlugin } from "@apollo/server";
 
@@ -102,6 +108,8 @@ const logTiming: ApolloServerPlugin = {
   },
 };
 ```
+
+</div>
 
 - **`requestDidStart`** runs when a request arrives, and records the time.
 - **`willSendResponse`** runs just before that same request's response is sent, and works out how long it took.
@@ -134,9 +142,13 @@ Apollo Server [has no built-in health check endpoint](https://www.apollographql.
 curl -s 'http://localhost:4001/?query=%7B__typename%7D' -H 'apollo-require-preflight: true'
 ```
 
+<div data-toolbar-order="">
+
 ```json
 { "data": { "__typename": "Query" } }
 ```
+
+</div>
 
 A successful answer shows the server is up **and** can run GraphQL. The header is needed because Apollo Server's [CSRF protection](https://www.apollographql.com/docs/apollo-server/security/cors#preventing-cross-site-request-forgery-csrf) blocks `GET` requests that could have come from an ordinary web page. Without it, the check fails with a `400` status.
 

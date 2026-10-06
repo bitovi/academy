@@ -33,6 +33,8 @@ In 101, you used `contextValue` to give each request its own DataLoaders. It's a
 
 Apollo's example looks like this:
 
+<div data-toolbar-order="">
+
 ```ts
 context: async ({ req }) => {
   const token = req.headers.authorization || "";
@@ -41,6 +43,8 @@ context: async ({ req }) => {
 },
 ```
 
+</div>
+
 `req` is the incoming HTTP request, so `req.headers.authorization` is the value of its `Authorization` header. `getUser` stands for whatever turns a token into a user. It might check the token's signature, or look it up in a database. It returns `null` when there's no valid token, so resolvers can tell a logged-out request from a logged-in one.
 
 The `context` function runs once per request, so every resolver in that request sees the same user.
@@ -48,6 +52,8 @@ The `context` function runs once per request, so every resolver in that request 
 ### Checking permissions in a resolver
 
 A resolver can read the user from `contextValue` and refuse the request. Here's what the start of `approveClaim` could look like:
+
+<div data-toolbar-order="">
 
 ```ts
     approveClaim: (_: unknown, args: { id: string }, contextValue: Context) => {
@@ -65,6 +71,8 @@ A resolver can read the user from `contextValue` and refuse the request. Here's 
 
       // ...the rest of the resolver is unchanged
 ```
+
+</div>
 
 `Context` is the type that describes `contextValue`. The course API already defines it at the top of **services/policies/src/resolvers.ts**, with the `loaders`. The user gets added to it next to them.
 
@@ -84,6 +92,8 @@ Checking in each resolver works, but it has a weakness. The same data can be rea
 The [OWASP GraphQL Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html#access-control) warns about exactly this: check permissions on every way into the data, including both the edges and the nodes of a connection.
 
 The GraphQL documentation recommends putting the rules in the [business logic layer](https://graphql.org/learn/authorization/): the code underneath your resolvers that loads and changes data. Every resolver calls that code, passing along the user, and the rule is written once:
+
+<div data-toolbar-order="">
 
 ```ts
 // The rules live here, once
@@ -107,6 +117,8 @@ export const claimRepository = {
 approveClaim: (_: unknown, args: { id: string }, contextValue: Context) =>
   claimRepository.approve(contextValue.user, args.id),
 ```
+
+</div>
 
 Any other API that uses the same business logic, like a REST API or a background job, gets the same rules too.
 
@@ -174,6 +186,8 @@ mutation {
 
 Your response (trimmed for readability) should be:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "errors": [
@@ -187,7 +201,11 @@ Your response (trimmed for readability) should be:
 }
 ```
 
+</div>
+
 ✏️ Add the header `Authorization: Bearer adjuster-token`, and run the same mutation. Your response (trimmed for readability) should be:
+
+<div data-toolbar-order="">
 
 ```json
 {
@@ -202,11 +220,17 @@ Your response (trimmed for readability) should be:
 }
 ```
 
+</div>
+
 ✏️ Change the header to `Authorization: Bearer agent-token`, and run it again. It works:
+
+<div data-toolbar-order="">
 
 ```json
 { "data": { "issuePolicy": { "policyNumber": "HOME-100006" } } }
 ```
+
+</div>
 
 If you've issued other policies, your `policyNumber` ends in a higher number.
 
@@ -287,6 +311,8 @@ type Context = { loaders: Loaders; user: User | null };
 
 The two checks in `issuePolicy` are the same ones `approveClaim` would need, with a different role and message. Instead of copying them into every resolver that needs a role, you could move them into a function in **services/policies/src/auth.ts**, next to `getUser`:
 
+<div data-toolbar-order="">
+
 ```ts
 import { GraphQLError } from "graphql";
 
@@ -306,12 +332,18 @@ export function requireRole(user: User | null, role: Role, action: string): User
 }
 ```
 
+</div>
+
 Each resolver then needs one line, and gets the same errors you saw in the exercise:
+
+<div data-toolbar-order="">
 
 ```ts
 requireRole(contextValue.user, "AGENT", "issue policies");
 requireRole(contextValue.user, "ADJUSTER", "approve claims");
 ```
+
+</div>
 
 This is a small step toward **Keep the rules in one place**: how a role is checked, and which errors come back, is now written once. Which resolvers call `requireRole` is still spread across **resolvers.ts**, so a larger API would move those decisions into its business logic layer too.
 

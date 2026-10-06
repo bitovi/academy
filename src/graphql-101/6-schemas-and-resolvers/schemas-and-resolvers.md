@@ -21,6 +21,8 @@ In this section, we will:
 
 The **schema** describes everything a client can ask for and what comes back. Ours lives in **services/policies/src/schema.graphql**:
 
+<div data-toolbar-order="">
+
 ```graphql
 type Policy {
   id: ID!
@@ -53,6 +55,8 @@ type Query {
 }
 ```
 
+</div>
+
 A few things to notice:
 
 - **Types and fields**: `Policy` is an object type with fields. `ID`, `String`, `Float`, `Int`, and `Boolean` are built-in scalar types.
@@ -66,6 +70,8 @@ A few things to notice:
 ### A resolver supplies one field's data
 
 A **resolver** is a function that returns the data for one field. Ours live in **services/policies/src/resolvers.ts**:
+
+<div data-toolbar-order="">
 
 ```ts
 export const resolvers = {
@@ -83,6 +89,8 @@ export const resolvers = {
   },
 };
 ```
+
+</div>
 
 Apollo matches resolvers to the schema by name: `resolvers.Query.policies` answers the `policies` field on `type Query`.
 
@@ -121,9 +129,13 @@ Look back at the resolvers above. There's a resolver for `Policy.policyholder`, 
 
 When a field has no resolver, GraphQL uses a **default resolver**. It returns the property with the same name from the parent object. In `policies { policyNumber }`, `Query.policies` returns objects from **services/policies/src/data.ts** like this one:
 
+<div data-toolbar-order="">
+
 ```ts
 { id: "p1", policyNumber: "AUTO-100001", type: "AUTO", monthlyPremium: 142.5, /* ... */ policyholderId: "ph1" }
 ```
+
+</div>
 
 For each policy, GraphQL resolves `policyNumber` by reading `policy.policyNumber`. You get this for free whenever the schema's field names match your data's property names.
 
@@ -160,12 +172,16 @@ The server restarts automatically every time you save a file.
 
 The query fails. The response (trimmed for readability) is:
 
+<div data-toolbar-order="">
+
 ```json
 {
   "errors": [{ "message": "Cannot return null for non-nullable field Policy.annualPremium." }],
   "data": null
 }
 ```
+
+</div>
 
 The schema accepted the new field, so the request passed validation. But no resolver was written for `annualPremium`, so the default resolver ran. It looked for `policy.annualPremium`, found nothing, and returned `null`, which breaks the `!`.
 
@@ -176,6 +192,8 @@ The schema accepted the new field, so the request passed validation. But no reso
 <strong>Hint:</strong> Look at how `Policy.policyholder` gets the policy it's resolving a field for.
 
 ✏️ Run the query from Part 1 again. Your response should be:
+
+<div data-toolbar-order="">
 
 ```json
 {
@@ -190,6 +208,8 @@ The schema accepted the new field, so the request passed validation. But no reso
   }
 }
 ```
+
+</div>
 
 ### Solution
 
@@ -247,9 +267,13 @@ Let's make the query from the last section work:
 
 ✏️ Run the query above. Your response should be:
 
+<div data-toolbar-order="">
+
 ```json
 { "data": { "policies": [{ "policyNumber": "AUTO-100003", "riskTier": "HIGH" }] } }
 ```
+
+</div>
 
 ✏️ Combine both filters:
 
@@ -264,9 +288,13 @@ Let's make the query from the last section work:
 
 Your response should be:
 
+<div data-toolbar-order="">
+
 ```json
 { "data": { "policies": [{ "policyNumber": "AUTO-100001", "riskTier": "MEDIUM" }] } }
 ```
+
+</div>
 
 ### Verify
 
