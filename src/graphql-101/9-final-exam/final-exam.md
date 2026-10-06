@@ -438,4 +438,4 @@ To go back to the starting data, stop the server, run `npm run reset-data` in **
 
 ## Next steps
 
-[GraphQL 102](learn-graphql-102.html) picks up where this course ends, and gets the API ready for real users: pagination, custom scalars, error handling, security, authorization, caching, and subscriptions.
+[GraphQL 102](../learn-graphql-102.html) picks up where this course ends, and gets the API ready for real users: pagination, custom scalars, error handling, security, authorization, caching, and subscriptions.
