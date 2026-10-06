@@ -1,0 +1,14 @@
+{{#if children.length}}
+	<ul>
+		{{#each (sortChildren children)}}
+			{{!-- A page marked @hide only shows in the menu while you're on it or one of its children. --}}
+			{{#if docObject.hide}}
+				{{#if (hasOrIsCurrent docObject)}}
+					{{> menu-item.mustache}}
+				{{/if}}
+			{{else}}
+				{{> menu-item.mustache}}
+			{{/if}}
+		{{/each}}
+	</ul>
+{{/if}}

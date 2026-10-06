@@ -1,0 +1,19 @@
+{{#if (isGroup docObject)}}
+	<li>
+		<span>{{getShortTitle docObject}}</span>
+		{{> menu.mustache}}
+	</li>
+{{else}}
+	<li class="{{#if (isCurrent docObject)}}current{{/if}}
+					{{#children.length}}parent{{/children.length}}
+					{{#if (hasCurrent docObject)}}expanded{{/if}}">
+		<a class="{{docObject.type}}"
+			href="{{urlTo docObject.name}}"
+			title="{{getLinkTitle docObject}}">
+			{{getShortTitle docObject}}
+		</a>
+		{{#if (hasOrIsCurrent docObject)}}
+			{{> menu.mustache}}
+		{{/if}}
+	</li>
+{{/if}}
