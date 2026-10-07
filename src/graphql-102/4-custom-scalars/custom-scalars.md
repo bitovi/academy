@@ -13,7 +13,7 @@ In this section, we will:
 - Learn what a custom scalar is, and why you'd use one instead of `String`
 - Learn why it's safer to use a scalar from a library than to write your own
 - Change the API's dates to a `LocalDate` scalar from the `graphql-scalars` library
-- Learn how `@specifiedBy` documents a scalar's format, and a catch when the scalar comes from a library
+- Link `LocalDate` to its format with `@specifiedBy`, and work around a catch when the scalar comes from a library
 
 ## Objective 1: Understand custom scalars
 
@@ -379,9 +379,15 @@ Introspection then reports the URL as the scalar type's `specifiedByURL`, so too
 
 ### A catch with library scalars
 
-With a scalar from a library, that isn't enough. The library's scalar **replaces** everything the schema file says about `LocalDate`, including its `@specifiedBy` URL and any description. `graphql-scalars` doesn't set a URL for `LocalDate`, so this introspection query returns `"specifiedByURL": null` even with the directive in the schema file:
+With a scalar from a library, the directive isn't enough. The library's scalar **replaces** everything the schema file says about `LocalDate`, including its `@specifiedBy` URL and any description. `graphql-scalars` doesn't set a URL for `LocalDate`, so introspection reports no URL, even with the directive in the schema file.
 
-<div data-toolbar-order="">
+To keep the URL, the resolvers have to use a copy of the library's scalar with the URL added. Every scalar has a `toConfig()` method that returns its settings, including the functions that check its values. Pass those settings, plus a `specifiedByURL`, to `new GraphQLScalarType(...)` from the `graphql` package, and you get the same scalar with a URL.
+
+The URL then lives in two places: the schema file, for people reading it, and **services/policies/src/resolvers.ts**, which is what the server actually reports. Keep them the same.
+
+### Exercise
+
+✏️ In Apollo Sandbox, ask the API how `LocalDate` is specified:
 
 ```graphql
 {
@@ -392,24 +398,72 @@ With a scalar from a library, that isn't enough. The library's scalar **replaces
 }
 ```
 
-</div>
-
-To keep the URL, the resolvers have to build a copy of the library's scalar with the URL added:
+It has no URL yet:
 
 <div data-toolbar-order="">
 
-```ts
-import { GraphQLScalarType } from "graphql";
-
-  LocalDate: new GraphQLScalarType({
-    ...LocalDateResolver.toConfig(),
-    specifiedByURL: "https://datatracker.ietf.org/doc/html/rfc3339#section-5.6",
-  }),
+```json
+{ "data": { "__type": { "name": "LocalDate", "specifiedByURL": null } } }
 ```
 
 </div>
 
-`LocalDateResolver.toConfig()` returns the library scalar's settings, including the functions that check dates, and `...` copies them into the new scalar. The URL then lives in two places: the schema file, for people reading it, and **services/policies/src/resolvers.ts**, which is what the server actually reports. Keep them the same.
+✏️ In **services/policies/src/schema.graphql** and **services/policies/src/resolvers.ts**, link `LocalDate` to RFC 3339's `full-date` format, `https://datatracker.ietf.org/doc/html/rfc3339#section-5.6`.
+
+✏️ Run the query again. Your response should be:
+
+<div data-toolbar-order="">
+
+```json
+{
+  "data": {
+    "__type": {
+      "name": "LocalDate",
+      "specifiedByURL": "https://datatracker.ietf.org/doc/html/rfc3339#section-5.6"
+    }
+  }
+}
+```
+
+</div>
+
+✏️ Make sure dates are still checked. Run the February 30th mutation from Objective 1 again. It should still fail with `Value is not a valid LocalDate: 2026-02-30`.
+
+### Solution
+
+<details>
+<summary>Click to see the solution</summary>
+
+✏️ In **services/policies/src/schema.graphql**, add the directive to the scalar:
+
+```graphql
+scalar LocalDate @specifiedBy(url: "https://datatracker.ietf.org/doc/html/rfc3339#section-5.6")
+```
+
+✏️ In **services/policies/src/resolvers.ts**, add `GraphQLScalarType` to the import from `"graphql"` at the top of the file:
+
+```ts
+import { GraphQLError, GraphQLScalarType } from "graphql";
+```
+
+✏️ Replace `LocalDate: LocalDateResolver` with a copy that has the URL:
+
+```ts
+export const resolvers = {
+  LocalDate: new GraphQLScalarType({
+    ...LocalDateResolver.toConfig(),
+    specifiedByURL: "https://datatracker.ietf.org/doc/html/rfc3339#section-5.6",
+  }),
+
+  Query: {
+    // ...
+```
+
+`...LocalDateResolver.toConfig()` copies the library scalar's settings, including the functions that check dates, so February 30th is still rejected. Only the URL is new.
+
+If you only add the directive to the schema file, the query still returns `null`. The server reports what the resolvers say.
+
+</details>
 
 ## Next steps
 
