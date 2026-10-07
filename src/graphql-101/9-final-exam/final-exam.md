@@ -17,7 +17,7 @@ The claims team wants insurance claims in the API. In this exam, you'll add them
 - Batching with DataLoader
 - A named query with variables
 
-This time there are no file paths or hints, only the goal and the response you should get. Look back at earlier sections whenever you need to.
+This time the exam's parts have no file paths or hints, only the goal and the response you should get. The one file named is where the claims data lives, so you can check its shape in Part 2. Look back at earlier sections whenever you need to.
 
 **Parts 1–3 are the core of the exam.** Parts 4–6 are stretch goals. Do them if you have time.
 
