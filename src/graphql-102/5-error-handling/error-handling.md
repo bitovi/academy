@@ -59,7 +59,7 @@ Apollo Server uses a set of [built-in error codes](https://www.apollographql.com
    </tr>
 </table>
 
-The first two happen before any resolver runs. `BAD_USER_INPUT` is one you throw yourself, from a resolver. When a resolver throws an ordinary `Error` instead of a `GraphQLError`, Apollo reports it as `INTERNAL_SERVER_ERROR`.
+The first two happen before any resolver runs. `BAD_USER_INPUT` can come from either side. Apollo sends it when a variable's value doesn't fit its type, like the February 30th date in the Custom Scalars section. You also throw it yourself, from a resolver, when a value has the right type but can't be used. When a resolver throws an ordinary `Error` instead of a `GraphQLError`, Apollo reports it as `INTERNAL_SERVER_ERROR`.
 
 You can also make up your own codes, like `CLAIM_LOCKED`, when a client needs to tell one problem apart from another.
 

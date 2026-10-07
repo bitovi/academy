@@ -233,6 +233,44 @@ mutation {
 
 It fails the same way, with `Value is not a valid LocalDate: 10/01/2026`.
 
+An app wouldn't type the date into the query. It would send it as a variable, as you did in 101's Writing Queries section.
+
+✏️ Send the February 30th date as a variable. In Apollo Sandbox, run this mutation:
+
+```graphql
+mutation IssuePolicy($input: IssuePolicyInput!) {
+  issuePolicy(input: $input) {
+    policyNumber
+    effectiveDate
+  }
+}
+```
+
+with these variables:
+
+```json
+{ "input": { "type": "HOME", "monthlyPremium": 112.0, "policyholderId": "ph2", "riskTier": "LOW", "effectiveDate": "2026-02-30" } }
+```
+
+It's rejected too, but the error looks different. The response (trimmed for readability) is:
+
+<div data-toolbar-order="">
+
+```json
+{
+  "errors": [
+    {
+      "message": "Variable \"$input\" got invalid value \"2026-02-30\" at \"input.effectiveDate\"; Value is not a valid LocalDate: 2026-02-30",
+      "extensions": { "code": "BAD_USER_INPUT" }
+    }
+  ]
+}
+```
+
+</div>
+
+GraphQL checks values typed into the query while it validates the request, so those errors have the code `GRAPHQL_VALIDATION_FAILED`. It checks variables separately, just before running the operation, and Apollo reports those errors as `BAD_USER_INPUT`. Apps send variables, so `BAD_USER_INPUT` is the code a frontend will usually see for a bad value.
+
 ✏️ Now list every policy's effective date:
 
 ```graphql
