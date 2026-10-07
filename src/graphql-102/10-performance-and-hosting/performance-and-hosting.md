@@ -21,7 +21,7 @@ This section has no exercise. It collects the recommendations you'll want to kno
 
 ### The recommendations
 
-The [GraphQL documentation's performance page](https://graphql.org/learn/performance/) lists six recommendations. You've already worked through most of them:
+The [GraphQL documentation's performance page](https://graphql.org/learn/performance/) covers six topics. You've already worked through most of them:
 
 <table>
    <tr>
@@ -93,7 +93,7 @@ In Apollo Server, the place to measure is a **plugin**, like the response cache 
 <div data-toolbar-order="">
 
 ```ts
-import { ApolloServer, type ApolloServerPlugin } from "@apollo/server";
+import type { ApolloServerPlugin } from "@apollo/server";
 
 // Logs how long each operation takes
 const logTiming: ApolloServerPlugin = {
@@ -114,7 +114,7 @@ const logTiming: ApolloServerPlugin = {
 - **`requestDidStart`** runs when a request arrives, and records the time.
 - **`willSendResponse`** runs just before that same request's response is sent, and works out how long it took.
 
-Added to the server's `plugins` list, it logs a line like `[TIMING] PolicyList took 7 ms` for each request. A query answered by the response cache shows up as much faster, often `0 ms`. A real API would send these numbers to a monitoring tool instead of the terminal, so it can show the slowest operations over time.
+Added to the server's `plugins` list, it logs a line like `[TIMING] AgentView took 7 ms` for each request. A query answered by the response cache shows up as much faster, often `0 ms`. A real API would send these numbers to a monitoring tool instead of the terminal, so it can show the slowest operations over time.
 
 ### What to watch
 
@@ -124,7 +124,7 @@ One thing is different from monitoring a REST API. As 101's What is GraphQL? sec
 
 A common starting point is:
 
-- **For each operation, by name:** how many requests it gets, how long the slowest 5% take (p95), and what share of its responses have errors. Watching each operation separately is why naming operations, like `PolicyList`, matters.
+- **For each operation, by name:** how many requests it gets, how long the slowest 5% take (p95), and what share of its responses have errors. Watching each operation separately is why naming operations, like the `AgentView` query from the Security section, matters.
 - **Errors by code:** count errors by `extensions.code`, like `BAD_USER_INPUT` or `INTERNAL_SERVER_ERROR`, so a spike in one kind stands out.
 - **The server itself:** a separate alert on HTTP `5xx` responses and failed health checks, for outages.
 

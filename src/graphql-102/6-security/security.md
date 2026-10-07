@@ -322,7 +322,7 @@ In 101, you saw that nested queries can get expensive, and that production APIs 
 
 Each level multiplies the work, and a query can repeat the pattern hundreds of times. A real screen never needs that.
 
-A **depth limit** rejects any query that nests deeper than a set number of levels. The OWASP cheat sheet names the [`graphql-depth-limit`](https://github.com/stems/graphql-depth-limit) library for JavaScript APIs, and the course API already has it installed. It checks a query while GraphQL validates it, before any resolver runs, and it ignores introspection queries, so Sandbox keeps working.
+A **depth limit** rejects any query that nests deeper than a set number of levels. The OWASP cheat sheet names the [`graphql-depth-limit`](https://github.com/stems/graphql-depth-limit) library for JavaScript APIs, and the course API already has it installed. It checks a query while GraphQL validates it, before any resolver runs, and it ignores introspection queries, so Sandbox keeps working. That doesn't leave introspection unprotected: the `graphql` package has its own built-in rule that rejects introspection queries nested too deeply, with the error `Maximum introspection depth exceeded`.
 
 ### Adding a validation rule
 
