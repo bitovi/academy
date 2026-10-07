@@ -71,11 +71,17 @@ A field can then use `LocalDate` wherever it used `String`. The schema only has 
 
 Because GraphQL checks arguments before any resolver runs, an invalid date is rejected before it reaches your code, the same way a missing required field is.
 
+### What the client receives
+
+A custom scalar changes what the server accepts, not what the client receives. A response is still JSON, and JSON has no date type, so a client gets a `LocalDate` as an ordinary string, like `"2025-01-15"`. Apollo Client doesn't turn it into a JavaScript `Date` for you.
+
+If an app wants a `Date`, it converts the value itself, for example in an Apollo Client [`read` function](https://www.apollographql.com/docs/react/caching/cache-field-behavior#the-read-function). Apps that generate TypeScript types from the schema can say which type each scalar becomes, with GraphQL Code Generator's [`scalars` option](https://the-guild.dev/graphql/codegen/plugins/typescript/typescript#scalars). Without it, a custom scalar's type is `unknown`, so TypeScript won't let you use it as a string or a `Date` until you check it.
+
 ### Use a scalar from a library
 
 You could write the code for a date scalar yourself, but dates are easy to get wrong. The code has to know that February has 29 days only in leap years, and that `2026-02-30` isn't a date even though it looks like one. Code that turns a date into a JavaScript `Date` can also shift it by a day, depending on the server's time zone.
 
-It's usually better to use a scalar that's already been written and tested. The [`graphql-scalars`](https://the-guild.dev/graphql/scalars/docs/scalars) library, from The Guild, has dozens of them: dates and times, email addresses, URLs, currencies, and more. The course API already has it installed.
+It's usually better to use a scalar that's already been written and tested. The [`graphql-scalars`](https://the-guild.dev/graphql/scalars/docs) library, from The Guild, has dozens of them: dates and times, email addresses, URLs, currencies, and more. The course API already has it installed.
 
 The library has two date scalars that look similar:
 
