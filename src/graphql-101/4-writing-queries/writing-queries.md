@@ -65,7 +65,7 @@ Relationships work in both directions. A policyholder can list their policies:
 You don't have to memorize field names. Apollo Sandbox reads the API's schema and lists everything you can ask for in the **Documentation** panel on the left.
 
 - **Start at Root.** Selecting **Root** near the top shows the root types: `Query` (fields for reading data) and `Mutation` (fields for changing data).
-- **Click a field to drill in.** Clicking `policies` shows its arguments (like `type`) and what it returns (a list of `Policy`). Clicking `Policy` then lists all of its fields, such as `policyNumber`, `monthlyPremium`, and `policyholder`.
+- **Click a field to drill in.** Clicking `policies` shows its arguments (like `type`), what it returns (a list of `Policy`), and below that, every field a `Policy` has, such as `policyNumber`, `monthlyPremium`, and `policyholder`.
 - **Read the descriptions.** Some fields include a short explanation written into the schema. For example, `monthlyPremium` says it's in US dollars.
 - **Add fields without typing.** Click the **⊕** button next to a field to add it to the query in the editor. Sandbox adds the surrounding braces for you.
 
@@ -80,12 +80,12 @@ This time, build the query without typing it, using only the Documentation panel
 1. In the Documentation panel, select **Root** near the top.
 2. Click the **⊕** button to the right of `Query`.
 
-✏️ Keep using the **⊕** buttons to build this query, then click **Run**:
+✏️ Keep using the **⊕** buttons to build this query. Sandbox names the operation `Query` for you, so the button that runs it says **Query** instead of **Run**. Click it:
 
 <div data-toolbar-order="">
 
 ```graphql
-{
+query Query {
   policies {
     policyNumber
     policyholder {
@@ -98,14 +98,14 @@ This time, build the query without typing it, using only the Documentation panel
 
 </div>
 
-<strong>Hint:</strong> Clicking a field's name (instead of its **⊕** button) opens it, so you can add the fields inside it.
+<strong>Hint:</strong> When you click **⊕** next to a field that returns an object, like `policies`, Sandbox adds it and opens it, so you can add the fields inside it. Clicking a field's name opens it without adding it.
 
 ### Solution
 
 <details>
 <summary>Click to see the solution</summary>
 
-From `Query`, click **⊕** next to `policies`. Open `policies`, then click **⊕** next to `policyNumber` and `policyholder`. Open `policyholder`, then click **⊕** next to `name` and `email`.
+From `Query`, click **⊕** next to `policies`. Sandbox opens `policies`. Click **⊕** next to `policyNumber`, then next to `policyholder`. Sandbox opens `policyholder`. Click **⊕** next to `name` and `email`.
 
 Your response should be:
 
