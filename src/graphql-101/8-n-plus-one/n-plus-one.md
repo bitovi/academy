@@ -326,7 +326,7 @@ The relationship goes both ways. `Policyholder.policies` has the same problem. I
 
 </div>
 
-If you've issued policies in the Mutations section, you'll see them in the response too.
+If you've issued any policies since you reset the data at the end of the Mutations section, you'll see them in the response too.
 
 ### Solution
 

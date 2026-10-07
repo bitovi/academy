@@ -192,7 +192,7 @@ Run `{ policies { policyNumber totalClaimed } }`. Your response should be:
 
 </div>
 
-If you've issued policies in earlier sections, you'll see them too, with `"totalClaimed": 0`.
+If you've issued any policies since you reset the data at the end of the Mutations section, you'll see them too, with `"totalClaimed": 0`.
 
 ## Part 5 (stretch): File a claim
 

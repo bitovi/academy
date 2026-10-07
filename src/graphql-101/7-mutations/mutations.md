@@ -38,6 +38,8 @@ Writing one looks almost like a query, with two differences:
 - It starts with the `mutation` keyword. (A query can leave out `query`, but a mutation can't leave out `mutation`.)
 - It **does** something first, then returns the fields you select from the result.
 
+For example, this mutation issues a new HOME policy to James Okafor. Don't run it yet. You'll run it in the exercise, and every time you run it, it saves another policy.
+
 <div data-toolbar-order="">
 
 ```graphql
@@ -363,7 +365,7 @@ It fails too. The response (trimmed for readability) is:
 
 </div>
 
-Even though the mutation returned an error, **the policy was still created.** The error happened while GraphQL was building the response, after the resolver had already saved the policy. Run `{ policies { id policyNumber } }` without `riskTier` and you'll see it listed. Now there are two policies without a risk tier.
+Even though the mutation returned an error, **the policy was still created.** The error happened while GraphQL was building the response, after the resolver had already saved the policy. Run `{ policies { id policyNumber } }` without `riskTier` and you'll see it listed. Now there are two policies without a risk tier, or more if you've issued others.
 
 **Part 2: Keep the promise for new policies.**
 
