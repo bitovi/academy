@@ -155,7 +155,7 @@ This exercise has two parts. The first one breaks things on purpose.
 
 **Part 1: Add the field to the schema only.**
 
-✏️ In **services/policies/src/schema.graphql**, add a required `annualPremium` field to the `Policy` type. Don't add a resolver yet.
+✏️ In **services/policies/src/schema.graphql**, add a required `annualPremium` field to the `Policy` type. It's a dollar amount, like `monthlyPremium`, so give it the same kind of type. Don't add a resolver yet.
 
 The server restarts automatically every time you save a file.
 
