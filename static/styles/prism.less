@@ -44,6 +44,21 @@
         }
       }
     }
+    .toolbar button {
+      background: var(--primary-teal-600);
+      color: #fff;
+      span {
+        background: transparent;
+        color: inherit;
+        padding: 0;
+      }
+      @media (hover: hover) {
+        &:hover {
+          background: var(--primary-teal-600-hover);
+          color: #fff;
+        }
+      }
+    }
   }
 
   pre code .collapse.collapsed {
