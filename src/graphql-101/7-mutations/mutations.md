@@ -487,13 +487,18 @@ This deletes the policies you've issued. `{ policies { policyNumber riskTier } }
 
 ### We did it in the wrong order on purpose
 
-This exercise tightened the schema first, then dealt with the data. That's why things broke along the way. When you make a field required in a real API, the safe order is:
+This exercise tightened the schema first, then dealt with the data. That's why things broke along the way.
 
-1. **Fix the existing data** (a *backfill*), so every record already has a value.
-2. **Require the field on writes**, on the input type, so no new record can be missing it.
-3. **Only then make the output field non-null** (`!`), once every record keeps the promise.
+It also broke something you couldn't see. Any app that already called `issuePolicy` without `riskTier` now gets the "was not provided" error from Part 2. Making an input field or argument required is a [breaking change](https://graphql.org/learn/governance-versioning/#identify-breaking-changes): requests that used to be valid are now rejected.
 
-Done in that order, clients never see an error.
+When you make a field required in a real API, a safer order is:
+
+1. **Add the field to the input as optional** (`riskTier: RiskTier`). Apps that don't send it keep working. Decide what the server does when it's missing, for example use a default value, so the mutation [behaves the way it did before](https://graphql.org/learn/governance-versioning/#handle-optional-arguments-carefully).
+2. **Fix the existing data** (a *backfill*), so every saved record has a value.
+3. **Make the output field non-null** (`riskTier: RiskTier!` on `Policy`). Every record now has a value, so apps that read it never get an error.
+4. **Make the input field required** (`riskTier: RiskTier!` on `IssuePolicyInput`) only once every app sends it. Until then, leave it optional.
+
+Steps 1 to 3 never break an app. Step 4 is the only breaking change, and you choose when to make it.
 
 ## Objective 4: Evolve the schema
 
