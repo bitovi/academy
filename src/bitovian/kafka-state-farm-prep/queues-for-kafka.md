@@ -98,4 +98,4 @@ Other clients are catching up:
 
 ## Next steps
 
-That's the last topic in the State Farm prep. To review, go back to the [overview](../kafka-state-farm-prep.html).
+Next, we'll look at how a GraphQL API and Kafka work together, and the problems teams run into when they combine them.

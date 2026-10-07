@@ -22,6 +22,7 @@ This training gets you ready for Kafka work on the State Farm engagement. Work t
 3. [KRaft and Kafka 4.0](kafka-state-farm-prep/kraft-and-kafka-4.html): how Kafka runs without ZooKeeper, and which 4.0 changes can break older clients
 4. [Tiered Storage](kafka-state-farm-prep/tiered-storage.html): moving older data off broker disks into remote storage
 5. [Queues for Kafka](kafka-state-farm-prep/queues-for-kafka.html): share groups, which let many consumers work through the same partitions like a queue
+6. [Kafka and GraphQL](kafka-state-farm-prep/kafka-and-graphql.html): the common ways a GraphQL API and Kafka work together, and the problems each one runs into
 
 ## Take Apache Kafka 101
 
