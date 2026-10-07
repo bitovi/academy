@@ -120,7 +120,7 @@ Added to the server's `plugins` list, it logs a line like `[TIMING] PolicyList t
 
 The GraphQL documentation doesn't recommend specific dashboards or alerts, and [OpenTelemetry's GraphQL conventions](https://opentelemetry.io/docs/specs/semconv/graphql/graphql-spans/) cover only traces: they name the attributes a trace should record, like `graphql.operation.name` and `graphql.operation.type`. Monitoring tools fill the gap. Apollo GraphOS, for example, can [alert on](https://www.apollographql.com/docs/graphos/platform/insights/notifications/performance-alerts) request rate, p50/p95/p99 response time, and error percentage, for the whole API or for one operation, measured over a rolling five-minute window.
 
-One thing is different from monitoring a REST API. A GraphQL request that fails often still returns HTTP `200`, with an `errors` array, as you saw in the Error Handling section. Monitoring that only counts HTTP error statuses misses those failures, so a tool has to look inside the response.
+One thing is different from monitoring a REST API. As 101's What is GraphQL? section explained, a query that fails while it runs usually still returns HTTP `200`, with the problem in an `errors` array. Only requests the server can't parse or validate get a `400`, unless your code sets a status itself, like the `401` in the Authorization section. Monitoring that only counts HTTP error statuses misses most failures, so a tool has to look inside the response.
 
 A common starting point is:
 

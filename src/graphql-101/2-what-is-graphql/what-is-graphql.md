@@ -87,10 +87,10 @@ The response has the same shape as the query:
 
 ### Trade-offs
 
-- **Caching is harder.** Every request is a `POST` to the same URL, so standard HTTP caching by URL doesn't apply. Teams rely on client-side caches or persisted queries instead.
+- **Caching is harder.** Most clients send every query as a `POST` to the same URL, and browsers and CDNs don't cache `POST` requests. A server can also accept queries [as `GET` requests](https://graphql.org/learn/serving-over-http/#get-request-and-parameters), which can be cached, but that takes extra setup, like persisted queries. Many teams rely on client-side caches instead.
 - **Nested queries can get expensive.** A client can ask for `policies → policyholder → policies → policyholder…` as deep as it likes. Production APIs add depth or complexity limits.
 - **More upfront work.** You write a schema and resolvers. For a simple CRUD API, that may be overkill.
-- **Errors look different.** A failed query often still returns HTTP `200`, with an `errors` array next to `data`.
+- **Errors look different.** A request the server can't parse or validate, like one asking for a field that doesn't exist, gets HTTP `400`. But a query that fails while it runs usually still gets [HTTP `200`](https://graphql.org/learn/serving-over-http/#status-codes), with the problem in an `errors` array next to `data`. Code that only checks the HTTP status misses those failures.
 
 ## Objective 2: Run your first query
 
