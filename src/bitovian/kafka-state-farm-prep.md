@@ -27,6 +27,7 @@ This training gets you ready for Kafka work on the State Farm engagement. Work t
 8. [Retries, Dead Letter Queues, and Replay](kafka-state-farm-prep/retries-dlq-and-replay.html): what a consumer can do with a record it can't process, and how to read a topic again from an earlier point
 9. [Flink Applications with Kafka](kafka-state-farm-prep/flink-applications.html): Flink's APIs beyond SQL, event time and watermarks, state and checkpoints, and exactly-once delivery to Kafka
 10. [Kafka Connect and Change Data Capture](kafka-state-farm-prep/connect-and-cdc.html): copying every database change into Kafka, what a change event looks like, and landing CDC data in a lakehouse's bronze layer
+11. [Other Useful Topics](kafka-state-farm-prep/other-useful-topics.html): short introductions to Multi-Region Clusters, back pressure, and circuit breakers
 
 ## Take Apache Kafka 101
 
