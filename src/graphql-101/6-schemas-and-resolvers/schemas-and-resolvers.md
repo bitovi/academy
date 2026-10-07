@@ -19,7 +19,7 @@ In this section, we will:
 
 ### The schema is the contract
 
-The **schema** describes everything a client can ask for and what comes back. Ours lives in **services/policies/src/schema.graphql**:
+The **schema** describes everything a client can ask for and what comes back. Ours lives in **services/policies/src/schema.graphql**. Here's part of it, with the descriptions left out:
 
 <div data-toolbar-order="">
 
@@ -63,7 +63,8 @@ A few things to notice:
 - **`!` means non-null**: `policyNumber: String!` always has a value. `riskTier: RiskTier` may be `null`.
 - **`[Policy!]!` is a list**: a non-null list of non-null policies.
 - **Enums**: `PolicyType` and `RiskTier` limit a value to a fixed set.
-- **`Query` is special**: its fields are the entry points for reading data. `policies(type: PolicyType)` declares the argument we used in the last section.
+- **`Query` is special**: its fields are the entry points for reading data. `policies(type: PolicyType)` declares the argument you used in the Writing Queries section.
+- **Descriptions**: in the real file, many types and fields have a string just above them, like `"Monthly premium in US dollars"` above `monthlyPremium`. That string is the field's **description**. Apollo Sandbox shows it in the Documentation panel. A description that needs more than one line uses three quotes on each side, `"""like this"""`.
 
 ## Objective 2: Understand resolvers
 
@@ -250,7 +251,7 @@ The resolver runs only when a query asks for `annualPremium`, so the calculation
 
 ### Exercise
 
-Let's make the query from the last section work:
+Let's make the query that failed in the Writing Queries section work:
 
 ```graphql
 {

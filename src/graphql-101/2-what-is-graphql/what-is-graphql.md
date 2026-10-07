@@ -60,7 +60,7 @@ With **GraphQL**, there is one endpoint, and the client describes exactly what i
 }
 ```
 
-The response has the same shape as the query:
+The response has the same shape as the query. Here are the first two of the five policies:
 
 <div data-toolbar-order="">
 
