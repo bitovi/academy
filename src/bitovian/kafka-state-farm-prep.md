@@ -25,6 +25,7 @@ This training gets you ready for Kafka work on the State Farm engagement. Work t
 6. [Kafka and GraphQL](kafka-state-farm-prep/kafka-and-graphql.html): the common ways a GraphQL API and Kafka work together, and the problems each one runs into
 7. [CloudEvents on Kafka](kafka-state-farm-prep/cloudevents-on-kafka.html): the CloudEvents event envelope, and how it's written to a Kafka message in binary and structured content mode
 8. [Retries, Dead Letter Queues, and Replay](kafka-state-farm-prep/retries-dlq-and-replay.html): what a consumer can do with a record it can't process, and how to read a topic again from an earlier point
+9. [Flink Applications with Kafka](kafka-state-farm-prep/flink-applications.html): Flink's APIs beyond SQL, event time and watermarks, state and checkpoints, and exactly-once delivery to Kafka
 
 ## Take Apache Kafka 101
 
