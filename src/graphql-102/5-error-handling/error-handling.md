@@ -292,7 +292,7 @@ The course API has no `search` field. This example only shows the shape of the q
 
 ### Unions for expected problems
 
-A union can hold a successful result **and** the expected problems. For example, a mutation can return `Claim | ClaimNotOpen`. The problems are now in the schema, visible through introspection, and the client handles each one with its own fragment.
+A union can hold a successful result **and** the expected problems. For example, a mutation can return `Claim | ClaimNotOpen`. The problems are now in the schema, visible through introspection, and the client handles each one with its own fragment. Apollo's documentation calls this pattern [errors as data](https://www.apollographql.com/docs/graphos/schema-design/guides/errors-as-data-explained#how-to-implement-errors-as-data).
 
 ### Exercise
 
@@ -501,6 +501,24 @@ type Mutation {
 Another way to pick the type is a `__resolveType` resolver on the union, which looks at each result and returns its type's name. That's useful when the results come from somewhere you can't add a property to.
 
 </details>
+
+### When a union gets a new type
+
+Right now, `approveClaim` can return one expected problem: `ClaimNotOpen`. Say the API later needs a second problem result that `approveClaim` can return, `ClaimLocked`, for when another adjuster is already reviewing the claim. You'd add it to the `ApproveClaimResult` union: `Claim | ClaimNotOpen | ClaimLocked`.
+
+Every existing query still works. Apollo's [schema checks](https://www.apollographql.com/docs/graphos/platform/schema-management/checks/reference#schema-additions) even list adding a type to a union as a safe change. But an app written before `ClaimLocked` existed has no fragment for it. When it gets a `ClaimLocked`, the response has none of the fields it asked for:
+
+<div data-toolbar-order="">
+
+```json
+{ "data": { "approveClaim": { "__typename": "ClaimLocked" } } }
+```
+
+</div>
+
+If the app checks `__typename` only for `Claim` and `ClaimNotOpen`, it might show nothing, or treat the request as a success. So a client should always handle a `__typename` it doesn't recognize, for example by showing a general "Couldn't approve this claim" message.
+
+The server can help with an **interface**: a set of fields that several types promise to have. Apollo's [example](https://www.apollographql.com/docs/graphos/schema-design/guides/errors-as-data-explained#example-implementation) gives all its problem types a shared interface. For claims, that could be `interface ClaimProblem { message: String! }`, with `type ClaimNotOpen implements ClaimProblem`. A client that asks for `... on ClaimProblem { message }` then gets a message from every problem type, including ones added later.
 
 ### Reset the course data
 
