@@ -39,7 +39,9 @@ The simplest approach is to count. The client asks for "2 claims, skipping the f
 
 </div>
 
-This is easy to build, but it breaks when the list changes between requests. Imagine a screen that shows the newest claims first, 2 at a time:
+The course API doesn't have `limit` and `offset` arguments. This example only shows the shape.
+
+Offsets are easy to build, but they break when the list changes between requests. Imagine a screen that shows the newest claims first, 2 at a time:
 
 <table>
    <tr>
@@ -77,6 +79,16 @@ Instead of counting, **cursor pagination** asks for "the next 2 claims **after t
 In the example above, the client would ask for the 2 claims after `CLM-5004`, and get `CLM-5002` and `CLM-5005`, no matter how many claims were filed at the front of the list.
 
 Cursors are usually **opaque**: they look like random text, such as `YzQ=`, and clients shouldn't try to read or build them. That leaves the server free to change what a cursor contains later without breaking any clients. The GraphQL documentation [suggests base64-encoding cursors](https://graphql.org/learn/pagination/) as a reminder that they're opaque, which is what we'll do.
+
+### What cursors cost
+
+Cursors fix the shifting-list problem, but they give up things offsets make easy. Slack's engineering team lists these [trade-offs](https://slack.engineering/evolving-api-pagination-at-slack/) from moving its API to cursors:
+
+- **No jumping to a page.** A client can't ask for page 7 directly. It has to load pages 1 to 6 first, to get the cursor that leads to page 7. Screens with numbered pages are easier to build with offsets.
+- **No page count.** A cursor doesn't say how far through the list you are, or how many pages there are.
+- **The order has to be stable.** A cursor means "after this item, in this order". The list needs an order that doesn't change between requests, with no ties, like newest `filedDate` first, then `id`.
+
+The GraphQL documentation still calls cursors [the most powerful option](https://graphql.org/learn/pagination/#pagination-and-edges), partly because an opaque cursor can hold an offset, an id, or anything else, and the server can change which later.
 
 ## Objective 2: Learn the connection pattern
 
@@ -460,6 +472,8 @@ type Query {
 - **`hasPreviousPage: start > 0`** is `true` when there are claims before the page. The specification lets an API that only pages forward always return `false` here, but it may return `true` when that's cheap to work out, as it is here.
 
 Try passing a cursor that doesn't point to any claim, like `after: "bogus"`. `findIndex` returns `-1`, so `start` becomes `0`, and the client quietly gets the first page again. A client with a broken cursor would never find out. We'll fix that kind of problem in the Error Handling section.
+
+The same thing happens if the claim a cursor points to is deleted: its id is no longer in the list. This course's cursors hold only an id, to keep the code short. Production APIs often put the values the list is sorted by in the cursor instead, like the claim's `filedDate` and `id`. The server can then find "everything after this point" even when that claim is gone.
 
 </details>
 
