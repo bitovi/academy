@@ -24,6 +24,7 @@ This training gets you ready for Kafka work on the State Farm engagement. Work t
 5. [Queues for Kafka](kafka-state-farm-prep/queues-for-kafka.html): share groups, which let many consumers work through the same partitions like a queue
 6. [Kafka and GraphQL](kafka-state-farm-prep/kafka-and-graphql.html): the common ways a GraphQL API and Kafka work together, and the problems each one runs into
 7. [CloudEvents on Kafka](kafka-state-farm-prep/cloudevents-on-kafka.html): the CloudEvents event envelope, and how it's written to a Kafka message in binary and structured content mode
+8. [Retries, Dead Letter Queues, and Replay](kafka-state-farm-prep/retries-dlq-and-replay.html): what a consumer can do with a record it can't process, and how to read a topic again from an earlier point
 
 ## Take Apache Kafka 101
 
