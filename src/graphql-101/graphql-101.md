@@ -32,6 +32,17 @@ After this course, you'll be able to:
 - Change a schema without breaking clients, using `@oneOf` and `@deprecated`
 - Describe GraphQL's trade-offs versus REST, including caching and the N+1 problem
 
+## Prerequisites
+
+This course is for frontend and backend developers who are new to GraphQL. You don't need to know GraphQL or Apollo Server before you start.
+
+You'll edit the API's server code, so you should be comfortable reading and writing JavaScript, including [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), array methods like [`filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) and [`map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) (`...`), and [`async` functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function). The API is written in TypeScript. You don't need to know TypeScript: the course explains the few types you'll see.
+
+You'll also need:
+
+- **A GitHub account.** The exercises run in a [GitHub Codespace](https://docs.github.com/en/codespaces/about-codespaces/what-are-codespaces), a development environment in your browser, so you don't install anything. Personal accounts include a [free monthly amount of Codespaces use](https://docs.github.com/en/billing/concepts/product-billing/github-codespaces#free-quota).
+- **Basic terminal use.** You'll run commands like `npm run dev` and `curl`.
+
 ## Outline
 
 1. [Course Setup](learn-graphql-101/setup.html): create the course Codespace and start the API
