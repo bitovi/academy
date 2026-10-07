@@ -149,6 +149,39 @@ pubsub.publish("CLAIM_STATUS_CHANGED", { claimStatusChanged: claim });
 
 The payload is keyed by the subscription field's name, `claimStatusChanged`. GraphQL then resolves the fields the client asked for, like `claimNumber` and `status`, the same way it does for a query.
 
+### Who can listen
+
+The `withFilter` above checks which claim an event is about, not who is listening. As written, anyone who can reach the server can watch any claim. A subscription is one more way into the data, and the Authorization section's rule applies to it too: [check permissions on every way in](https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html#access-control).
+
+Subscriptions need their own versions of the two checks from the Authorization section:
+
+- **Who is this?** WebSocket messages don't carry an `Authorization` header. Instead, the client sends its token once, in `connectionParams`, when it connects. The server reads the token in the WebSocket server's own `context` function, which is separate from the one for queries and mutations. It can also refuse the connection in `onConnect`. [Apollo's documentation shows both](https://www.apollographql.com/docs/apollo-server/data/subscriptions#operation-context).
+- **Can they see this?** Check when the client subscribes, and again for every event, using the same business logic layer as your queries:
+
+<div data-toolbar-order="">
+
+```ts
+claimStatusChanged: {
+  subscribe: withFilter(
+    (_: unknown, args: { claimId: string }, contextValue: Context) => {
+      // Throws if this user can't see the claim, so nothing is ever sent
+      claimRepository.get(contextValue.user, args.claimId);
+      return pubsub.asyncIterableIterator(["CLAIM_STATUS_CHANGED"]);
+    },
+    // Runs for every event
+    (payload, args, contextValue: Context) =>
+      payload.claimStatusChanged.id === args.claimId &&
+      claimRepository.canView(contextValue.user, payload.claimStatusChanged),
+  ),
+},
+```
+
+</div>
+
+Like `claimRepository.approve` in the Authorization section, `get` and `canView` stand for business logic the course API doesn't have.
+
+The check on every event matters because the answer can change while the client listens. If agents weren't allowed to see denied claims, an agent watching an open claim shouldn't receive the update that denies it.
+
 ### Events in production
 
 `PubSub` keeps its events in the server's memory. [Apollo's documentation](https://www.apollographql.com/docs/apollo-server/data/subscriptions#production-pubsub-libraries) warns that it isn't meant for production, because it only works within one copy of the server. If an adjuster's request reaches one copy, and the policyholder's subscription is connected to another, the policyholder never hears about it.
