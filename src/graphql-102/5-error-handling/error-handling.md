@@ -19,11 +19,14 @@ In this section, we will:
 
 ### What an error contains
 
-In 101, you saw that when a resolver throws a `GraphQLError`, the response has an `errors` array. Each error has:
+In 101, you saw that when a resolver throws a `GraphQLError`, the response has an `errors` array. The [GraphQL specification](https://spec.graphql.org/September2025/#sec-Errors) says what an error can contain:
 
-- **`message`**: a description for developers
-- **`path`**: which field failed
-- **`extensions.code`**: a short, fixed string that code can check, so clients don't have to read the message
+- **`message`**: a description for developers. Every error has one.
+- **`locations`**: the line and column in the query where the problem is
+- **`path`**: which field failed. Only errors that happen while the query runs have a `path`. Validation errors, like asking for a field that doesn't exist, don't.
+- **`extensions`**: anything else the server wants to add. The specification leaves it open.
+
+Apollo Server puts a **`code`** in `extensions`: a short, fixed string that code can check, so clients don't have to read the message. That's Apollo's convention, not part of the specification.
 
 While you're developing, Apollo Server also adds a `stacktrace` to `extensions`, showing where in the server's code the error happened. It leaves the stack trace out when `NODE_ENV` is `production` or `test`, so it isn't shown to real users. Apollo Sandbox shows it in the Codespace, but the examples on this page leave it out.
 

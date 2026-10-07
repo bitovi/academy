@@ -272,6 +272,8 @@ type Query {
 }
 ```
 
+`first` is required here (`Int!`), so every request says how big a page it wants. The connection specification also allows it to be optional, and many APIs give it a default instead, like `first: Int = 10`.
+
 ✏️ In **services/policies/src/resolvers.ts**, add a `claimsConnection` resolver under `Query`:
 
 ```ts

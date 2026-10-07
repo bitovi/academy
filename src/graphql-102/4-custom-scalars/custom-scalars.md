@@ -48,9 +48,9 @@ It succeeds, and saves a policy that starts on a day that doesn't exist:
 
 </div>
 
-If you've issued other policies, your `policyNumber` ends in a higher number. You'll clean this policy up in this objective's exercise.
-
 So would `"10/01/2026"`, or `"next Tuesday"`. Every client and every resolver has to check dates for itself, and a client developer can't tell from the schema which format to send.
+
+If you've issued other policies, your `policyNumber` ends in a higher number. You'll clean this policy up in this objective's exercise.
 
 ### What a custom scalar is
 
@@ -154,7 +154,7 @@ The course API doesn't use `EmailAddress`. This example only shows the pattern, 
 
 ✏️ In **services/policies/src/resolvers.ts**, connect the `LocalDate` scalar in the schema to the library's `LocalDateResolver`, which you import from `graphql-scalars`. It works the same way as the `EmailAddress` example in **Connecting a library scalar**.
 
-Both changes are needed. A scalar in the schema with no code in the resolvers accepts any value at all, just like `String`, so invalid dates still get through until the resolver is connected.
+Both changes are needed. A scalar in the schema with no code in the resolvers accepts any value at all, even looser than `String`: it also takes numbers, `true`, and objects. So invalid dates still get through until the resolver is connected.
 
 ✏️ Run this query:
 
@@ -355,7 +355,7 @@ export const resolvers = {
 
 `LocalDateResolver` isn't a function like the other resolvers. It's an object that holds the scalar's rules, and GraphQL uses it wherever the schema says `LocalDate`.
 
-No other resolver changes. `LocalDate` values are still strings, so `issuePolicy` and `fileClaim` keep saving dates the same way. Dates the server makes itself, like a new claim's `filedDate`, are already in `YYYY-MM-DD` format.
+No other resolver changes. `LocalDate` values are still strings, so `issuePolicy` and `fileClaim` keep saving dates the same way. Dates the server makes itself, like a new claim's `filedDate`, are already in `YYYY-MM-DD` format. They're the date in UTC, so in the evening in the Americas, a new claim can be dated tomorrow. A real API would decide which time zone its dates belong to.
 
 </details>
 
