@@ -39,7 +39,7 @@ The course environment runs in a GitHub Codespace, a cloud development environme
    </tr>
    <tr>
       <td><strong>Machine type</strong></td>
-      <td>8-core</td>
+      <td>2-core</td>
    </tr>
 </table>
 
@@ -62,6 +62,10 @@ You should see:
 Codespaces opens port `4001` in a new browser tab, showing **Apollo Sandbox**, an in-browser editor for writing and running GraphQL queries. If the tab doesn't open, open the **Ports** tab in the Codespace and click the globe icon next to port `4001`.
 
 Leave the server running while you work through the course. It restarts on its own when you save a change.
+
+### When you take a break
+
+GitHub [charges Codespaces use](https://docs.github.com/en/billing/concepts/product-billing/github-codespaces) by the hour while a Codespace is running, and personal accounts get a free amount each month. A Codespace stops on its own after [30 minutes without activity](https://docs.github.com/en/codespaces/setting-your-user-preferences/setting-your-timeout-period-for-github-codespaces), unless you've changed that setting. To stop it sooner, see [Stopping and starting a codespace](https://docs.github.com/en/codespaces/developing-in-a-codespace/stopping-and-starting-a-codespace). Your changes are kept, and you can start it again from the same page.
 
 ## Next steps
 
