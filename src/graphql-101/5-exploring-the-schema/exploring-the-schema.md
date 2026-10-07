@@ -18,7 +18,9 @@ In this section, we will:
 
 ### What is introspection?
 
-**Introspection** lets you query a GraphQL API about its own schema: what types it has, what fields each type has, and what arguments each field takes. You send it to the same endpoint, as an ordinary query. The [GraphQL documentation](https://graphql.org/learn/introspection/) covers it as part of the basics, because every GraphQL server supports it.
+**Introspection** lets you query a GraphQL API about its own schema: what types it has, what fields each type has, and what arguments each field takes. You send it to the same endpoint, as an ordinary query. Introspection is part of the [GraphQL specification](https://spec.graphql.org/September2025/#sec-Introspection).
+
+Not every API you meet will answer, though. [Turning introspection off in production is common](https://graphql.org/learn/introspection/#introspection-in-production), so attackers can't use it to map the whole API. [Apollo Server](https://www.apollographql.com/docs/apollo-server/api/apollo-server#introspection), which this course uses, turns it off by default when `NODE_ENV` is `production`. The course API turns it back on so that Sandbox works. You'll learn to turn it off in GraphQL 102.
 
 Introspection is how Apollo Sandbox knows what to show you. When Sandbox connects, it sends an introspection query and builds the **Documentation** panel and autocomplete from the answer. Code generators, editor plugins, and API gateways use it the same way.
 
