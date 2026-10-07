@@ -137,10 +137,10 @@ A few things to notice:
 
 ### What a DataLoader does
 
-**DataLoader** is a small library, made by the GraphQL team at Facebook, that fixes this. Instead of looking up a policyholder right away, each resolver **asks the loader** for one:
+**[DataLoader](https://github.com/graphql/dataloader)** is a small library that fixes this. Its README describes it as a JavaScript version of a data-loading API that Facebook built for its own servers, and it's now kept in the GraphQL project's GitHub organization. Instead of looking up a policyholder right away, each resolver **asks the loader** for one:
 
 1. Each `Policy.policyholder` resolver calls `load("ph1")`, `load("ph2")`, and so on.
-2. DataLoader waits until every resolver in that step has asked, and **collects the ids**.
+2. DataLoader waits until the code that's running right now finishes, one turn of the JavaScript event loop, and **collects the ids** asked for in the meantime. Here, that's every `Policy.policyholder` resolver, because GraphQL calls them one after another for the same list. The [README](https://github.com/graphql/dataloader#batching) describes this timing.
 3. It removes duplicates, then calls a **batch function** you write, **once**, with the whole list: `["ph1", "ph2", "ph3"]`.
 4. It hands each resolver back its own policyholder.
 
