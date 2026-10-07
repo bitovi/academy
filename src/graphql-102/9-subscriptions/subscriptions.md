@@ -93,14 +93,16 @@ The GraphQL documentation recommends subscriptions for data that changes **often
    </tr>
 </table>
 
+Subscriptions are for updates that keep coming. A different problem is one response that's slow because part of it takes longer to load. For that, the GraphQL community is drafting the `@defer` and `@stream` directives, which let the slow parts of one response arrive later. They aren't part of the GraphQL specification yet. A [working group](https://github.com/graphql/defer-stream-wg) is writing them.
+
 ## Objective 2: See how a server delivers subscriptions
 
 ### The connection
 
-GraphQL doesn't say how a subscription's responses travel to the client. Two approaches are common, each with a community specification:
+GraphQL doesn't say how a subscription's responses travel to the client. Two approaches are common, each with a protocol written by the community:
 
-- **WebSockets**, a connection that stays open in both directions. Most JavaScript servers use the [`graphql-ws`](https://github.com/enisdenjo/graphql-ws) library for this.
-- **Server-sent events (SSE)**, a standard way for a server to keep sending to the browser over one HTTP response.
+- **WebSockets**, a connection that stays open in both directions. Most JavaScript servers use the [`graphql-ws`](https://github.com/enisdenjo/graphql-ws) library for this, which follows its own [protocol](https://github.com/enisdenjo/graphql-ws/blob/master/PROTOCOL.md).
+- **Server-sent events (SSE)**, a standard way for a server to keep sending to the browser over one HTTP response. The [`graphql-sse`](https://github.com/enisdenjo/graphql-sse) library follows its own [protocol](https://github.com/enisdenjo/graphql-sse/blob/master/PROTOCOL.md).
 
 Apollo Server uses WebSockets through `graphql-ws`. It [doesn't support subscriptions](https://www.apollographql.com/docs/apollo-server/data/subscriptions) in `startStandaloneServer`, the function the course API uses to start. An API that needs them starts Apollo Server inside an Express app instead, with a separate WebSocket server next to it. That's why the course API has no subscriptions.
 
