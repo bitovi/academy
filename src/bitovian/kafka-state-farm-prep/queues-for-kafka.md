@@ -79,7 +79,7 @@ KIP-932 says a queue "is perfect for a situation in which messages are independe
 
 **Confluent Platform.** Confluent Platform 8.2 is "built on Apache Kafka 4.2" and its [launch post](https://www.confluent.io/blog/introducing-confluent-platform-8-2/) says "Queues for Kafka now in GA." The [share groups docs](https://docs.confluent.io/platform/current/config-manage/kafka-queues.html) say share groups "are enabled by default on Confluent Platform 8.3 clusters." On 8.2, an administrator turns them on with this command:
 
-```bash
+```shell
 kafka-features.sh --bootstrap-server localhost:9092 upgrade --feature share.version=1
 ```
 
@@ -95,3 +95,7 @@ Other clients are catching up:
 
 - [librdkafka v2.15.0](https://github.com/confluentinc/librdkafka/releases/tag/v2.15.0), the C/C++ Kafka library from Confluent, added a share consumer marked "Preview" that "should not be used in production environments."
 - The [Confluent JavaScript client changelog](https://github.com/confluentinc/confluent-kafka-javascript/blob/master/CHANGELOG.md) for `@confluentinc/kafka-javascript` doesn't mention share groups yet. Don't assume a Node.js service can join a share group.
+
+## Next steps
+
+That's the last topic in the State Farm prep. To review, go back to the [overview](../kafka-state-farm-prep.html).

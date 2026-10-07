@@ -58,3 +58,7 @@ From the [docs](https://docs.confluent.io/private-cloud-gateway/current/overview
 ## Confluent Cloud Gateway is a different product
 
 You'll also see [Confluent Cloud Gateway](https://docs.confluent.io/cloud/current/cp-component/gateway/overview.html) in Confluent's docs. It connects your own Kafka clients and clusters to Confluent Cloud. The docs say the two "share the same underlying proxy technology, but are separate, independently licensed products." Make sure you're reading the Private Cloud Gateway docs when the question is about Confluent Private Cloud.
+
+## Next steps
+
+Next, we'll look at KRaft and Kafka 4.0: how Kafka runs without ZooKeeper, and which 4.0 changes can break older clients.

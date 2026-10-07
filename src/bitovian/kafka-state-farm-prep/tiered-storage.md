@@ -93,3 +93,7 @@ The differences you're most likely to notice, from those docs:
 - JBOD (several separate data disks on one broker) is not supported.
 
 When you read docs or settings, check which of the two features they're about.
+
+## Next steps
+
+Next, we'll look at Queues for Kafka: share groups, which let many consumers work through the same partitions like a queue.

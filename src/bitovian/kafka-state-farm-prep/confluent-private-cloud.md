@@ -48,3 +48,7 @@ What matters for application developers: the docs say "No changes are required t
     <tr><td>Covered in Kafka 101</td><td>Yes</td><td>Yes</td><td>No</td></tr>
   </tbody>
 </table>
+
+## Next steps
+
+Next, we'll look at Confluent Gateway, the proxy that routes Kafka clients to the right cluster.

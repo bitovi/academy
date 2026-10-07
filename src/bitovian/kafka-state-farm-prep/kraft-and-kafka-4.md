@@ -97,3 +97,7 @@ The [Confluent Gateway docs](https://docs.confluent.io/private-cloud-gateway/cur
 As of this writing, the [downloads page](https://kafka.apache.org/community/downloads/) lists 4.3.1, 4.2.2, and 4.1.2 as the supported releases, with 4.3.1 the newest feature line. The [upgrade docs](https://kafka.apache.org/43/getting-started/upgrade/) confirm 4.3 still supports only KRaft mode.
 
 Kafka 4.0 also added early access to share groups, which give Kafka queue-like behavior. That's covered in [Queues for Kafka](./queues-for-kafka.html).
+
+## Next steps
+
+Next, we'll look at Tiered Storage, which moves older data off broker disks into remote storage.
