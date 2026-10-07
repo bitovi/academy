@@ -17,7 +17,7 @@ If you find bugs in this training or have suggestions, create an [issue](https:/
 
 ## Overview
 
-In [GraphQL 101](learn-graphql-101.html), you built an API for a fictional insurance company. It works, but it isn't ready for real users yet. It returns every claim in one response, it accepts dates that don't exist, it tells anyone who asks exactly how it's built, anyone can change its data, and nothing stops a client from sending a query big enough to slow it down.
+In [GraphQL 101](learn-graphql-101.html), you built an API for a fictional insurance company. It works, but it isn't ready for real users yet. It returns every claim in one response, it accepts dates that don't exist, it tells anyone who asks exactly how it's built, anyone can issue a policy, and nothing stops a client from sending a query big enough to slow it down.
 
 This course fixes those problems, one section and exercise at a time.
 
