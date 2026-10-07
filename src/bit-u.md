@@ -346,7 +346,7 @@ bit-prev-next {
             logoAlt: 'GraphQL',
             logoHeight: '50',
             title: 'GraphQL 102',
-            description: 'Get the API you built in GraphQL 101 ready for real users: pagination, custom scalars, error handling, security, authorization, and caching.',
+            description: 'Get the API you built in GraphQL 101 ready for real users: pagination, custom scalars, error handling, security, authorization, caching, subscriptions, and running the API in production.',
             audience: 'Developers who have completed GraphQL 101',
             goal: 'Make a GraphQL API ready for production.',
             time: '2 hours',

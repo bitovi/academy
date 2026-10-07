@@ -83,7 +83,7 @@ The response has the same shape as the query:
 - **Fewer round trips** for related data.
 - **A strongly typed schema is the contract.** It powers tooling for free: autocomplete, documentation, validation, and code generation.
 - **APIs evolve without versioning.** New fields can be added at any time, and old ones retired with `@deprecated` instead of shipping a `/v2`.
-- **One graph over many services.** Several teams' APIs can be combined into a single graph, using federation. Federation has its own training.
+- **One graph over many services.** Several teams' APIs can be combined into a single graph, using federation. Federation has [its own training](../learn-graphql-federation.html).
 
 ### Trade-offs
 
