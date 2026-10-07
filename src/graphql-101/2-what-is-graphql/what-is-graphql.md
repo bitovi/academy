@@ -33,7 +33,7 @@ With a **REST API**, the server decides the shape of each response, and each res
 
 <div data-toolbar-order="">
 
-```shell
+```text
 GET /policies           # returns every field of every policy
 GET /policyholders/ph1  # then one request per policyholder...
 GET /policyholders/ph2
