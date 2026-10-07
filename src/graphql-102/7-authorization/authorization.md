@@ -76,7 +76,7 @@ A resolver can read the user from `contextValue` and refuse the request. Here's 
 
 `Context` is the type that describes `contextValue`. The course API already defines it at the top of **services/policies/src/resolvers.ts**, with the `loaders`. The user gets added to it next to them.
 
-Apollo [recommends these two codes](https://www.apollographql.com/docs/apollo-server/data/errors#custom-errors):
+Apollo's documentation uses these two codes, `FORBIDDEN` in its [custom errors example](https://www.apollographql.com/docs/apollo-server/data/errors#custom-errors), and `UNAUTHENTICATED` in its [authentication guide](https://www.apollographql.com/docs/apollo-server/security/authentication#api-wide-authorization):
 
 - **`UNAUTHENTICATED`**: there's no logged-in user. The client should ask the user to log in.
 - **`FORBIDDEN`**: the user is logged in, but not allowed to do this. Logging in again won't help.

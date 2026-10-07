@@ -324,7 +324,7 @@ import responseCachePlugin from "@apollo/server-plugin-response-cache";
 
 ### Choosing a `maxAge`
 
-The missing policy isn't a bug in the plugin. `issuePolicy` changed the data, but nothing told the cache, so the saved response stayed until its `maxAge` ran out. Apollo's response cache plugin [doesn't support clearing out-of-date responses](https://github.com/apollographql/apollo-server/discussions/5361). Other tools do, like The Guild's [response cache for GraphQL Yoga](https://the-guild.dev/graphql/envelop/plugins/use-response-cache), which removes saved responses that contain the objects a mutation returned. Even then, changes made outside the API, like a nightly import writing straight to the database, never reach the cache.
+The missing policy isn't a bug in the plugin. `issuePolicy` changed the data, but nothing told the cache, so the saved response stayed until its `maxAge` ran out. Apollo's response cache plugin [doesn't support clearing out-of-date responses](https://github.com/apollographql/apollo-server/discussions/5361). Other tools do, like The Guild's [response cache plugin](https://the-guild.dev/graphql/envelop/plugins/use-response-cache) for servers built on Envelop, such as GraphQL Yoga, which removes saved responses that contain the objects a mutation returned. Even then, changes made outside the API, like a nightly import writing straight to the database, never reach the cache.
 
 So the `maxAge` you choose is how long you're willing to show data that might be out of date. It should come from how the data is used:
 

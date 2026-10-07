@@ -26,5 +26,5 @@ To go back to the starting data, stop the server, run `npm run reset-data` in **
 ## Where to go next
 
 - **Federation** combines APIs owned by separate teams into one graph that clients query through a single endpoint. It has [its own training](../learn-graphql-federation.html).
-- **The GraphQL documentation's [Best Practices](https://graphql.org/learn/best-practices/)** covers each topic in this course in more depth, along with others like schema design and performance monitoring.
+- **The GraphQL documentation's [Best Practices](https://graphql.org/learn/best-practices/)** covers many of the topics in this course in more depth, along with others like schema design and performance monitoring.
 - **The [OWASP GraphQL Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html)** is worth keeping at hand whenever you put a GraphQL API in front of real users.

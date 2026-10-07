@@ -94,7 +94,7 @@ The GraphQL documentation still calls cursors [the most powerful option](https:/
 
 ### The shape of a page
 
-Many GraphQL APIs return pages in the same shape, called a **connection**. The pattern comes from Relay, a GraphQL client, which publishes it as the [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm). The official GraphQL documentation [recommends the same pattern](https://graphql.org/learn/pagination/) for any API, whether or not its clients use Relay. A query for the first 2 claims looks like this:
+Many GraphQL APIs return pages in the same shape, called a **connection**. The pattern comes from Relay, a GraphQL client, which publishes it as the [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm). The official GraphQL documentation [points to that specification](https://graphql.org/learn/pagination/#connection-specification) as one you can follow for any API, whether or not its clients use Relay. A query for the first 2 claims looks like this:
 
 <div data-toolbar-order="">
 

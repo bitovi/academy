@@ -15,7 +15,7 @@ In this section, we will:
 - Limit how deeply a query can nest
 - Learn about other protections production APIs use
 
-The recommendations in this section come from the [OWASP GraphQL Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html). OWASP is a nonprofit that publishes widely used guidance on web application security.
+Most of the recommendations in this section come from the [OWASP GraphQL Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html). OWASP is a nonprofit that publishes widely used guidance on web application security. Others come from the GraphQL documentation's [Security page](https://graphql.org/learn/security/), or from how public APIs like GitHub's set their limits. Each recommendation links to its source.
 
 ## Objective 1: Stop leaking details
 
