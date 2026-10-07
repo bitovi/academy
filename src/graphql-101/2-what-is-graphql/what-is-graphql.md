@@ -21,7 +21,7 @@ In this section, we will:
 
 GraphQL is a query language for APIs, plus a server runtime that answers those queries using functions you write.
 
-GraphQL is **not a database**. It sits in front of your data sources: databases, REST APIs, or other services. The API in this course reads from a local JSON file, but the same API could read from Postgres without the client ever noticing.
+GraphQL is **not a database**. It sits in front of your data sources: databases, REST APIs, or other services. The API in this course starts with data written into its code, and saves your changes to a JSON file. The same API could read from Postgres instead, without the client ever noticing.
 
 GraphQL was created at Facebook in 2012, open-sourced in 2015, and is now governed by the GraphQL Foundation.
 
