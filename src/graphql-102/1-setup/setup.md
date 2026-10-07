@@ -55,7 +55,7 @@ You should see:
 
 <div data-toolbar-order="">
 
-```shell
+```text
 🚀 Policies service ready at http://0.0.0.0:4001/
 ```
 

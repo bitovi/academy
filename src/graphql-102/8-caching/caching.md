@@ -127,7 +127,7 @@ Look for the `cache-control` line near the top of the output. Nothing has a hint
 
 <div data-toolbar-order="">
 
-```shell
+```text
 cache-control: no-store
 ```
 
@@ -139,7 +139,7 @@ cache-control: no-store
 
 <div data-toolbar-order="">
 
-```shell
+```text
 cache-control: max-age=60, public
 ```
 
@@ -155,7 +155,7 @@ The response can't be cached anymore:
 
 <div data-toolbar-order="">
 
-```shell
+```text
 cache-control: no-store
 ```
 
@@ -173,7 +173,7 @@ It can be cached for 60 seconds:
 
 <div data-toolbar-order="">
 
-```shell
+```text
 cache-control: max-age=60, public
 ```
 
@@ -187,7 +187,7 @@ That's a problem. `totalClaimed` is a number, so it uses its parent's hint, the 
 
 <div data-toolbar-order="">
 
-```shell
+```text
 cache-control: no-store
 ```
 
@@ -282,7 +282,7 @@ The second response has an `age` header, showing how many seconds ago the saved 
 
 <div data-toolbar-order="">
 
-```shell
+```text
 age: 3
 cache-control: max-age=60, public
 ```
