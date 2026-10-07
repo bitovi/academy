@@ -2,7 +2,7 @@
 @parent learn-graphql-101 4
 @outline 2
 
-@description Write GraphQL queries with nested fields, arguments, variables, and directives, and see how the schema validates every request.
+@description Write GraphQL queries with nested fields, arguments, variables, directives, and fragments, send them from code, and see how the schema validates every request.
 
 @body
 
@@ -14,6 +14,8 @@ In this section, we will:
 - Filter results with arguments
 - Pass arguments as variables
 - Include or skip fields with directives
+- Reuse fields with fragments
+- Send a query from code, without Sandbox
 - See how GraphQL validates every request against the schema
 
 Need a reminder of what's in the API? See [The Course Data](./course-data.html).
@@ -360,7 +362,180 @@ query PolicyholderView($id: ID!, $withPolicies: Boolean!) {
 
 </details>
 
-## Objective 4: Understand request validation
+## Objective 4: Reuse fields with fragments
+
+### What is a fragment?
+
+The same object often appears in more than one place in a query. When it does, you list the same fields each time. A **fragment** is a named set of fields that you write once and reuse with `...`:
+
+<div data-toolbar-order="">
+
+```graphql
+query PolicyholderNames {
+  first: policyholder(id: "ph1") {
+    ...ContactDetails
+  }
+  second: policyholder(id: "ph2") {
+    ...ContactDetails
+  }
+}
+
+fragment ContactDetails on Policyholder {
+  name
+  email
+}
+```
+
+</div>
+
+- **`fragment ContactDetails on Policyholder`** names the fragment and says which type its fields come from. A fragment can only be used where that type is returned.
+- **`...ContactDetails`** (three dots, then the name) is replaced by the fragment's fields, as if you'd typed them there.
+- **`first:` and `second:`** are **aliases**. A response can't have two entries named `policyholder`, so an alias gives each one its own name.
+
+The response is the same as if you'd written out `name` and `email` both times. Fragments only change how the query is written. The [GraphQL documentation](https://graphql.org/learn/queries/#fragments) covers fragments with the rest of the query basics.
+
+### Why use them
+
+In a frontend app, fragments let each component declare the fields it needs. A `PolicyCard` component can own a `PolicyCard` fragment, and every query that shows a policy card includes it. When the card needs a new field, you change the fragment once. [Apollo Client's documentation](https://www.apollographql.com/docs/react/data/fragments#colocating-fragments) recommends this pattern, called **colocating** fragments.
+
+### Exercise
+
+The agent's dashboard now shows a policy card in two places: under the policyholder's details, for each of their policies, and in the list of policies of one type. Each card shows a policy's `policyNumber`, `type`, and `monthlyPremium`.
+
+✏️ In Apollo Sandbox, update your `AgentDashboard` query from Objective 2 so both places use one fragment named `PolicyCard`.
+
+✏️ Run it for policyholder `ph2` and `AUTO` policies. Your response should be:
+
+<div data-toolbar-order="">
+
+```json
+{
+  "data": {
+    "policyholder": {
+      "name": "James Okafor",
+      "email": "james.okafor@example.com",
+      "policies": [
+        { "policyNumber": "AUTO-100003", "type": "AUTO", "monthlyPremium": 210.75 }
+      ]
+    },
+    "policies": [
+      { "policyNumber": "AUTO-100001", "type": "AUTO", "monthlyPremium": 142.5 },
+      { "policyNumber": "AUTO-100003", "type": "AUTO", "monthlyPremium": 210.75 }
+    ]
+  }
+}
+```
+
+</div>
+
+### Solution
+
+<details>
+<summary>Click to see the solution</summary>
+
+```graphql
+query AgentDashboard($policyholderId: ID!, $type: PolicyType) {
+  policyholder(id: $policyholderId) {
+    name
+    email
+    policies {
+      ...PolicyCard
+    }
+  }
+  policies(type: $type) {
+    ...PolicyCard
+  }
+}
+
+fragment PolicyCard on Policy {
+  policyNumber
+  type
+  monthlyPremium
+}
+```
+
+Both `policyholder.policies` and `policies` return `Policy` objects, so both can use a fragment `on Policy`. To show a new field on every card, like `effectiveDate`, you'd add it to `PolicyCard` only.
+
+</details>
+
+## Objective 5: Send a query from code
+
+### What Sandbox sends
+
+Apollo Sandbox is a convenient way to explore, but an app sends queries itself. A GraphQL request over HTTP is usually a `POST` with a JSON body. The [GraphQL documentation](https://graphql.org/learn/serving-over-http/#post-request-and-body) describes its fields:
+
+- **`query`**: the operation, as a string
+- **`variables`**: the variables, as a JSON object (optional)
+- **`operationName`**: which operation to run, when the string has more than one (optional)
+
+You can send one from the Codespace's terminal with `curl`, a command-line tool that sends HTTP requests:
+
+```shell
+curl -s http://localhost:4001/ -H 'content-type: application/json' --data '{"query":"query PoliciesByType($type: PolicyType) { policies(type: $type) { policyNumber type } }","variables":{"type":"AUTO"}}'
+```
+
+The response is the same JSON you see in Sandbox:
+
+<div data-toolbar-order="">
+
+```json
+{"data":{"policies":[{"policyNumber":"AUTO-100001","type":"AUTO"},{"policyNumber":"AUTO-100003","type":"AUTO"}]}}
+```
+
+</div>
+
+In a browser app, `fetch` sends the same request:
+
+<div data-toolbar-order="">
+
+```js
+const response = await fetch("http://localhost:4001/", {
+  method: "POST",
+  headers: { "content-type": "application/json" },
+  body: JSON.stringify({
+    query: `query PoliciesByType($type: PolicyType) {
+      policies(type: $type) { policyNumber type }
+    }`,
+    variables: { type: "AUTO" },
+  }),
+});
+const { data, errors } = await response.json();
+```
+
+</div>
+
+Check `errors` as well as `data`. A request can reach the server and still fail, and the reason is in `errors`. You'll see examples in the next few sections.
+
+Most apps don't call `fetch` directly. A GraphQL client, like [Apollo Client](https://www.apollographql.com/docs/react/get-started), sends the same request for you, and also caches the results.
+
+### Exercise
+
+✏️ Open a second terminal in the Codespace, so the server keeps running in the first one. In the **Terminal** panel, click **+**.
+
+✏️ In the second terminal, use `curl` to send a query for policyholder `ph3`'s `name` and the `policyNumber` of each of their policies. Pass the policyholder's id as a variable, not in the query string. Your response should be:
+
+<div data-toolbar-order="">
+
+```json
+{"data":{"policyholder":{"name":"Priya Raman","policies":[{"policyNumber":"LIFE-100004"},{"policyNumber":"RENTERS-100005"}]}}}
+```
+
+</div>
+
+### Solution
+
+<details>
+<summary>Click to see the solution</summary>
+
+```shell
+curl -s http://localhost:4001/ -H 'content-type: application/json' --data '{"query":"query Holder($id: ID!) { policyholder(id: $id) { name policies { policyNumber } } }","variables":{"id":"ph3"}}'
+```
+
+The query string declares `$id`, and `variables` gives it a value. The single quotes around the whole body stop the terminal from treating `$id` as one of its own variables.
+
+</details>
+
+## Objective 6: Understand request validation
 
 ### Every request is checked against the schema
 

@@ -25,7 +25,8 @@ After this course, you'll be able to:
 
 - Explain GraphQL's operation types: queries and mutations
 - Explain how a schema and its resolvers relate
-- Write queries and mutations, with arguments, nested fields, variables, and directives, against a GraphQL API
+- Write queries and mutations, with arguments, nested fields, variables, directives, and fragments, against a GraphQL API
+- Send a query from code, the way an app does
 - Explore an unfamiliar API's schema with introspection
 - Extend an API by adding schema fields and arguments, and the resolvers that implement them
 - Change a schema without breaking clients, using `@oneOf` and `@deprecated`
@@ -36,7 +37,7 @@ After this course, you'll be able to:
 1. [Course Setup](learn-graphql-101/setup.html): create the course Codespace and start the API
 2. [What is GraphQL?](learn-graphql-101/what-is-graphql.html): how GraphQL compares to REST, and your first query
 3. [The Course Data](learn-graphql-101/course-data.html): the policyholders and policies the API starts with
-4. [Writing Queries](learn-graphql-101/writing-queries.html): nested fields, arguments, variables, directives, and request validation
+4. [Writing Queries](learn-graphql-101/writing-queries.html): nested fields, arguments, variables, directives, fragments, sending a query from code, and request validation
 5. [Exploring the Schema](learn-graphql-101/exploring-the-schema.html): ask the API to describe its own schema with introspection
 6. [Schemas and Resolvers](learn-graphql-101/schemas-and-resolvers.html): how the server answers queries, and adding a new argument
 7. [Mutations](learn-graphql-101/mutations.html): issue policies with input types, make a field required, and evolve the schema with `@oneOf` and `@deprecated`
