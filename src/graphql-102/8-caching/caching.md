@@ -334,6 +334,18 @@ So the `maxAge` you choose is how long you're willing to show data that might be
 
 When in doubt, leave data uncached. Apollo's defaults do the same: a field has to be given a hint before anything is cached.
 
+### Data that depends on who's asking
+
+The plugin saves responses by query and variables. It doesn't look at the `Authorization` header or at `contextValue.user`, and every hint is [`PUBLIC` unless you say otherwise](https://www.apollographql.com/docs/apollo-server/performance/caching#in-your-schema-static).
+
+So if a field's value depends on who's asking and its hint is `PUBLIC`, the plugin saves the first user's response and sends it to other users who send the same query. That includes people who aren't logged in. For example, suppose agents weren't allowed to see denied claims, and `Claim` had a `PUBLIC` hint. If an adjuster ran `{ claims { id status } }` first, the next agent to run it would get the adjuster's saved response, denied claims included.
+
+The course API doesn't have this problem. Every query returns the same data to everyone, and only mutations check who's asking. In a real API, for each field whose value depends on the user, do one of these:
+
+- **Don't cache it**: give it `maxAge: 0`.
+- **Cache one copy per user**: give it `scope: PRIVATE`, and give the plugin a [`sessionId` function](https://www.apollographql.com/docs/apollo-server/performance/caching#identifying-users-for-private-responses) that says which user sent the request.
+- **Decide while the query runs**: if only some answers depend on the user, set the hint in the resolver with [`info.cacheControl.setCacheHint`](https://www.apollographql.com/docs/apollo-server/performance/caching#in-your-resolvers-dynamic).
+
 ### Where the cache lives
 
 By default, the response cache plugin saves responses in the server's memory. Apollo Server's [default cache](https://www.apollographql.com/docs/apollo-server/performance/cache-backends#configuring-in-memory-caching) is limited to about 30 MiB. It's a **least recently used** (LRU) cache: when it's full, it throws out the entries that haven't been read in the longest time. So it can't grow until the server runs out of memory. On a busy API, entries are just thrown out sooner, and fewer queries are answered from the cache.
