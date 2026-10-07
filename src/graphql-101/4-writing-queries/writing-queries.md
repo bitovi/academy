@@ -274,7 +274,7 @@ policies @include(if: $withPolicies)
 
 </div>
 
-A directive changes how GraphQL treats the thing it's attached to. The [GraphQL specification](https://spec.graphql.org/September2025/#sec-Type-System.Directives) defines a few built-in directives that every GraphQL server supports. Two of them are for queries:
+A directive changes how GraphQL treats the thing it's attached to. The GraphQL specification defines a few **built-in** directives. Two of them are for queries, and the specification says [every GraphQL server should support them](https://spec.graphql.org/September2025/#sec-Type-System.Directives.Built-in-Directives):
 
 - **`@include(if: Boolean!)`** returns a field only when `if` is `true`.
 - **`@skip(if: Boolean!)`** leaves a field out when `if` is `true`.

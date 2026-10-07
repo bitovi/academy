@@ -504,11 +504,16 @@ Steps 1 to 3 never break an app. Step 4 is the only breaking change, and you cho
 
 ### Schema directives
 
-In the Writing Queries section, you used directives in queries: `@include` and `@skip`. Directives can also go in the **schema**, where the API's author uses them to add rules or information to a type or field. The [GraphQL specification](https://spec.graphql.org/September2025/#sec-Type-System.Directives) defines two that help a schema change over time.
+In the Writing Queries section, you used directives in queries: `@include` and `@skip`. Directives can also go in the **schema**, where the API's author uses them to add rules or information to a type or field. The [GraphQL specification](https://spec.graphql.org/September2025/#sec-Type-System.Directives.Built-in-Directives) defines several. This section covers two:
+
+- **`@oneOf`**, for an input that can be given in more than one way
+- **`@deprecated`**, for retiring part of a schema without breaking the clients that use it
+
+Together, they let you add a new way to look up a policy, then retire the old one. That's the exercise at the end of this section.
 
 ### `@oneOf`
 
-**`@oneOf`** goes on an input type. It means the client must set **exactly one** of the input's fields: not zero, and not two. It was added in the [September 2025 edition](https://spec.graphql.org/September2025/#sec-OneOf-Input-Objects) of the GraphQL specification.
+**`@oneOf`** goes on an input type. It means the client must set **exactly one** of the input's fields: not zero, and not two. It was added in the [September 2025 edition](https://spec.graphql.org/September2025/#sec-OneOf-Input-Objects) of the GraphQL specification, so some servers and tools don't support it yet. Apollo Server does, through the `graphql` package it's built on, which [added it in version 16.9](https://github.com/graphql/graphql-js/releases/tag/v16.9.0).
 
 It's useful when there are several ways to identify the same thing. For example, if policyholders could be looked up by `id` or by `email`, the input would look like this:
 
@@ -524,7 +529,9 @@ input PolicyholderLookupInput @oneOf {
 
 </div>
 
-Because the client can only set one field, every field in a `@oneOf` input must be optional: `ID`, not `ID!`. GraphQL checks the "exactly one" rule itself, before any resolver runs. The course API has no `PolicyholderLookupInput`. This example only shows the shape.
+Because the client can only set one field, every field in a `@oneOf` input must be optional (`ID`, not `ID!`), and none can have a default value. If a field breaks either rule, the server won't start, and the error names the field, like `OneOf input field PolicyholderLookupInput.id must be nullable.`
+
+When a request comes in, GraphQL checks that exactly one field is set and that it isn't `null`, before any resolver runs. The course API has no `PolicyholderLookupInput`. This example only shows the shape.
 
 ### `@deprecated`
 
