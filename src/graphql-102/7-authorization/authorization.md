@@ -96,31 +96,48 @@ The GraphQL documentation recommends putting the rules in the [business logic la
 <div data-toolbar-order="">
 
 ```ts
-// The rules live here, once
+// The rules live here, once. Nothing here depends on GraphQL.
+export class NotLoggedInError extends Error {}
+export class NotAllowedError extends Error {}
+
 export const claimRepository = {
   approve(user: User | null, claimId: string) {
     if (!user) {
-      throw new GraphQLError("You must be logged in to approve claims", {
-        extensions: { code: "UNAUTHENTICATED" },
-      });
+      throw new NotLoggedInError("You must be logged in to approve claims");
     }
     if (user.role !== "ADJUSTER") {
-      throw new GraphQLError("Only adjusters can approve claims", {
-        extensions: { code: "FORBIDDEN" },
-      });
+      throw new NotAllowedError("Only adjusters can approve claims");
     }
     // ...approve the claim
   },
 };
 
-// The resolver only passes the request along
-approveClaim: (_: unknown, args: { id: string }, contextValue: Context) =>
-  claimRepository.approve(contextValue.user, args.id),
+// The resolver passes the request along, and turns the
+// business logic's errors into GraphQL errors
+approveClaim: (_: unknown, args: { id: string }, contextValue: Context) => {
+  try {
+    return claimRepository.approve(contextValue.user, args.id);
+  } catch (error) {
+    if (error instanceof NotLoggedInError) {
+      throw new GraphQLError(error.message, {
+        extensions: { code: "UNAUTHENTICATED", http: { status: 401 } },
+      });
+    }
+    if (error instanceof NotAllowedError) {
+      throw new GraphQLError(error.message, {
+        extensions: { code: "FORBIDDEN" },
+      });
+    }
+    throw error;
+  }
+},
 ```
 
 </div>
 
-Any other API that uses the same business logic, like a REST API or a background job, gets the same rules too.
+The business logic throws its own errors, not `GraphQLError`, so it doesn't depend on GraphQL. Any other API that uses it, like a REST API or a background job, gets the same rules too, and turns the same errors into its own format. A REST API, for example, might send `401` and `403` responses.
+
+The resolver is the only place that knows about GraphQL error codes. In a larger API, that translation would be written once, in a helper every resolver uses, instead of in each resolver.
 
 ### Other approaches
 
