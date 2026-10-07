@@ -168,4 +168,4 @@ Several libraries that older tutorials use are no longer a safe choice:
 
 ## Next steps
 
-That's the last topic in the State Farm prep. To review, go back to the [overview](../kafka-state-farm-prep.html).
+Next, we'll look at CloudEvents on Kafka: a shared envelope for events, and how it's written to a Kafka message.

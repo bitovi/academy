@@ -23,6 +23,7 @@ This training gets you ready for Kafka work on the State Farm engagement. Work t
 4. [Tiered Storage](kafka-state-farm-prep/tiered-storage.html): moving older data off broker disks into remote storage
 5. [Queues for Kafka](kafka-state-farm-prep/queues-for-kafka.html): share groups, which let many consumers work through the same partitions like a queue
 6. [Kafka and GraphQL](kafka-state-farm-prep/kafka-and-graphql.html): the common ways a GraphQL API and Kafka work together, and the problems each one runs into
+7. [CloudEvents on Kafka](kafka-state-farm-prep/cloudevents-on-kafka.html): the CloudEvents event envelope, and how it's written to a Kafka message in binary and structured content mode
 
 ## Take Apache Kafka 101
 
