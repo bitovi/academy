@@ -76,7 +76,7 @@ The hash goes in the request's `extensions`, an extra field next to `query` and 
 
 That hash is for the query `{ policies { policyNumber } }`. Once a query can be sent as a short hash, it fits in a `GET` URL, so browsers and CDNs can cache the response, as described in the Caching section. In real apps, a client library like Apollo Client handles all of this.
 
-Automatic persisted queries make requests smaller, but any client can still register any query. Some APIs go further, with **trusted documents**: only queries registered ahead of time, by the API's own apps, are allowed at all. The GraphQL documentation [recommends them as a security measure](https://graphql.org/learn/security/#trusted-documents) too.
+Automatic persisted queries make requests smaller, but any client can still register any query. Some APIs go further, with **trusted documents**: only queries registered ahead of time, by the API's own apps, are allowed at all. As the Security section described, they're a [security measure](https://graphql.org/learn/security/#trusted-documents) too, and they work the same way: the app sends a hash, and the server only runs the queries it already knows.
 
 ### Compression
 
@@ -157,11 +157,12 @@ A successful answer shows the server is up **and** can run GraphQL. The header i
 Most of what changes in production, you've already done in this course. Before putting a GraphQL API in front of real users:
 
 - **Set `NODE_ENV=production`.** It turns off introspection and stack traces, unless you've set `introspection` or `includeStacktraceInErrorResponses` yourself. An explicit `introspection: true` keeps introspection on, so tie it to the environment with `introspection: process.env.NODE_ENV !== "production"`. Also turn off field suggestions, as in the Security section.
-- **Limit what a query can ask for.** Cap page sizes and query depth, as in the Security section.
+- **Limit what a query can ask for.** Cap page sizes and query depth, as in the Security section. Also limit aliases, or add query cost analysis, so one request can't repeat an expensive field many times.
+- **Limit how long and how often.** Set a timeout on each request, and rate-limit each client, as described in the Security section.
 - **Check who's asking.** Put the user in `contextValue`, and check permissions, as in the Authorization section.
 - **Share the cache.** With several copies of the server, use a shared store like Redis, as described in the Caching section.
 - **Share events.** If the API has subscriptions, publish events through a system every copy can reach, as described in the Subscriptions section.
-- **Send smaller requests.** Use persisted queries, or trusted documents if only your own apps should be able to query the API.
+- **Send smaller requests.** Use persisted queries, or trusted documents if only your own apps should be able to query the API. Trusted documents also block any query you haven't approved.
 - **Compress responses**, in the server or the proxy in front of it.
 - **Add a health check**, so the platform knows when a copy is down.
 - **Measure.** Send timings and errors to a monitoring tool, so you can see which operations are slow.
