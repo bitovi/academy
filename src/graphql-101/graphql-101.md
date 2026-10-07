@@ -23,7 +23,7 @@ In this course you'll work with a small API for a fictional insurance company, w
 
 After this course, you'll be able to:
 
-- Explain GraphQL's operation types: queries and mutations
+- Explain two of GraphQL's three operation types, queries and mutations (subscriptions come in GraphQL 102)
 - Explain how a schema and its resolvers relate
 - Write queries and mutations, with arguments, nested fields, variables, directives, and fragments, against a GraphQL API
 - Send a query from code, the way an app does
