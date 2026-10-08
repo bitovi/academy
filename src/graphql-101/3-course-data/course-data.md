@@ -99,6 +99,11 @@ Each policy also has an `id` (`p1` through `p5`, in the order above).
 
 Each policy belongs to **one** policyholder, and a policyholder can have **several** policies. Maria Alvarez, for example, has both an auto and a home policy.
 
+<figure style="margin: 1em 0">
+    <img src="../static/img/graphql-101/course-data.svg" alt="ph1 Maria Alvarez owns p1 AUTO-100001 and p2 HOME-100002. ph2 James Okafor owns p3 AUTO-100003. ph3 Priya Raman owns p4 LIFE-100004 and p5 RENTERS-100005." style="width: 100%; max-width: 800px">
+    <figcaption style="text-align: center">Which policyholder owns which policy.</figcaption>
+</figure>
+
 In a query, you follow that connection with nested fields: from a policy to its `policyholder`, or from a policyholder to their `policies`. You'll do this in [Writing Queries](./writing-queries.html).
 
 ## Good to know

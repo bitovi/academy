@@ -48,6 +48,11 @@ The server already loads this claims data, alongside the policies. Nothing in th
 
 A claim belongs to **one** policy, and a policy can have **several** claims. `LIFE-100004` has none.
 
+<figure style="margin: 1em 0">
+    <img src="../static/img/graphql-101/final-exam-data.svg" alt="The course data with claims added. p1 has claims c1 and c2, p2 has c3, p3 has c4 and c5, p4 has no claims, and p5 has c6." style="width: 100%; max-width: 800px">
+    <figcaption style="text-align: center">Policyholders, policies, and the claims on each policy.</figcaption>
+</figure>
+
 ## Part 1: Query claims
 
 ✏️ Add a `Claim` type with `id`, `claimNumber`, `amount`, `status`, and `filedDate`. A claim's `status` can only be `OPEN`, `APPROVED`, or `DENIED`. All of these fields are required.

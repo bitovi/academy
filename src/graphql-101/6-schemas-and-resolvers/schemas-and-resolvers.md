@@ -124,6 +124,11 @@ In `policies { policyholder { name } }`:
 
 If a query doesn't ask for `policyholder`, `Policy.policyholder` never runs.
 
+<figure style="margin: 1em 0">
+    <img src="../static/img/graphql-101/resolver-tree.svg" alt="For policies { policyholder { name } }, Query.policies runs once and returns p1 to p5. Policy.policyholder then runs once per policy with that policy as parent, returning ph1, ph1, ph2, ph3, ph3. A default resolver reads each name." style="width: 100%; max-width: 800px">
+    <figcaption style="text-align: center">How the resolvers run for <code>policies { policyholder { name } }</code>.</figcaption>
+</figure>
+
 ### Default resolvers
 
 Look back at the resolvers above. There's a resolver for `Policy.policyholder`, but none for `Policy.policyNumber`, `Policy.type`, or any other `Policy` field. Yet all of them work.
@@ -144,6 +149,11 @@ For each policy, GraphQL resolves `policyNumber` by reading `policy.policyNumber
 
 - **Data can have properties the schema doesn't expose.** `policyholderId` is on every policy object, but it isn't a field on `type Policy`, so clients can't ask for it. The `Policy.policyholder` resolver uses it behind the scenes.
 - **A field with no matching property comes back as `null`.** If the schema declares a field that isn't in the data and has no resolver, the default resolver finds nothing. For a non-null field (`!`), that's an error.
+
+<figure style="margin: 1em 0">
+    <img src="../static/img/graphql-101/default-resolvers.svg" alt="Policy fields matched to the properties of p1. Fields with matching names use the default resolver. policyholder uses a resolver you wrote, which reads policyholderId. policyholderId isn't in the schema, so clients can't ask for it. annualPremium has no property and no resolver, so it returns null, which is an error." style="width: 100%; max-width: 800px">
+    <figcaption style="text-align: center">Where each <code>Policy</code> field gets its value for <code>p1</code>.</figcaption>
+</figure>
 
 When a field's value has to be looked up or calculated, write a resolver for it, the way `Policy.policyholder` looks up a policyholder from `policyholderId`.
 

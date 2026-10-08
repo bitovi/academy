@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" role="img" aria-label="Policyholders, policies, and claims. ph1 Maria Alvarez owns p1 and p2, ph2 James Okafor owns p3, ph3 Priya Raman owns p4 and p5. p1 has claims c1 and c2, p2 has c3, p3 has c4 and c5, p4 has none, p5 has c6." font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#374151"/></marker><marker id="arrow-accent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="arrow-warn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b45309"/></marker><marker id="arrow-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6b7280"/></marker></defs>
+  <rect width="800" height="340" fill="#ffffff"/>
+  <text x="125" y="28" text-anchor="middle" fill="#6b7280" font-size="13">Policyholders</text>
+  <text x="400" y="28" text-anchor="middle" fill="#6b7280" font-size="13">Policies</text>
+  <text x="685" y="28" text-anchor="middle" fill="#6b7280" font-size="13">Claims</text>
+  <rect x="300" y="50" width="200" height="40" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="400" y="75" text-anchor="middle" fill="#1f2937" font-size="13" font-weight="600" font-family="Menlo, Consolas, monospace">p1  AUTO-100001</text>
+  <rect x="300" y="104" width="200" height="40" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="400" y="129" text-anchor="middle" fill="#1f2937" font-size="13" font-weight="600" font-family="Menlo, Consolas, monospace">p2  HOME-100002</text>
+  <rect x="300" y="158" width="200" height="40" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="400" y="183" text-anchor="middle" fill="#1f2937" font-size="13" font-weight="600" font-family="Menlo, Consolas, monospace">p3  AUTO-100003</text>
+  <rect x="300" y="212" width="200" height="40" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="400" y="237" text-anchor="middle" fill="#1f2937" font-size="13" font-weight="600" font-family="Menlo, Consolas, monospace">p4  LIFE-100004</text>
+  <rect x="300" y="266" width="200" height="40" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="400" y="291" text-anchor="middle" fill="#1f2937" font-size="13" font-weight="600" font-family="Menlo, Consolas, monospace">p5  RENTERS-100005</text>
+  <rect x="30" y="75.0" width="190" height="44" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="125" y="102" text-anchor="middle" fill="#1f2937" font-size="14" font-weight="600">ph1  Maria Alvarez</text>
+  <line x1="220" y1="97" x2="298" y2="70" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="220" y1="97" x2="298" y2="124" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="30" y="156.0" width="190" height="44" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="125" y="183" text-anchor="middle" fill="#1f2937" font-size="14" font-weight="600">ph2  James Okafor</text>
+  <line x1="220" y1="178" x2="298" y2="178" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="30" y="237.0" width="190" height="44" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="125" y="264" text-anchor="middle" fill="#1f2937" font-size="14" font-weight="600">ph3  Priya Raman</text>
+  <line x1="220" y1="259" x2="298" y2="232" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="220" y1="259" x2="298" y2="286" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="600" y="50.0" width="170" height="32" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="685" y="71" text-anchor="middle" fill="#1f2937" font-size="13" font-weight="600" font-family="Menlo, Consolas, monospace">c1  CLM-5001</text>
+  <line x1="500" y1="70" x2="598" y2="66" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="600" y="92.66666666666666" width="170" height="32" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="685" y="113.667" text-anchor="middle" fill="#1f2937" font-size="13" font-weight="600" font-family="Menlo, Consolas, monospace">c2  CLM-5002</text>
+  <line x1="500" y1="70" x2="598" y2="108.667" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="600" y="135.33333333333331" width="170" height="32" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="685" y="156.333" text-anchor="middle" fill="#1f2937" font-size="13" font-weight="600" font-family="Menlo, Consolas, monospace">c3  CLM-5003</text>
+  <line x1="500" y1="124" x2="598" y2="151.333" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="600" y="178.0" width="170" height="32" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="685" y="199" text-anchor="middle" fill="#1f2937" font-size="13" font-weight="600" font-family="Menlo, Consolas, monospace">c4  CLM-5004</text>
+  <line x1="500" y1="178" x2="598" y2="194" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="600" y="220.66666666666666" width="170" height="32" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="685" y="241.667" text-anchor="middle" fill="#1f2937" font-size="13" font-weight="600" font-family="Menlo, Consolas, monospace">c5  CLM-5005</text>
+  <line x1="500" y1="178" x2="598" y2="236.667" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="600" y="263.3333333333333" width="170" height="32" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="685" y="284.333" text-anchor="middle" fill="#1f2937" font-size="13" font-weight="600" font-family="Menlo, Consolas, monospace">c6  CLM-5006</text>
+  <line x1="500" y1="286" x2="598" y2="279.333" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="512" y="237" text-anchor="start" fill="#6b7280" font-size="13">no claims</text>
+</svg>

@@ -367,6 +367,11 @@ It fails too. The response (trimmed for readability) is:
 
 Even though the mutation returned an error, **the policy was still created.** The error happened while GraphQL was building the response, after the resolver had already saved the policy. Run `{ policies { id policyNumber } }` without `riskTier` and you'll see it listed. Now there are two policies without a risk tier, or more if you've issued others.
 
+<figure style="margin: 1em 0">
+    <img src="../static/img/graphql-101/mutation-failure-points.svg" alt="Three places an issuePolicy request can fail. A validation error, like monthlyPremium not provided, stops the request before anything runs. A resolver error, like Policyholder ph99 not found, happens before the policy is saved. An error while building the response, like a null riskTier, happens after the policy was already saved to data.json." style="width: 100%; max-width: 800px">
+    <figcaption style="text-align: center">Where a request can fail, and whether the policy was saved.</figcaption>
+</figure>
+
 **Part 2: Keep the promise for new policies.**
 
 ✏️ In **services/policies/src/schema.graphql**, make sure a policy can't be issued without a risk tier.

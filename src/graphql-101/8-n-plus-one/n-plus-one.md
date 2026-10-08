@@ -146,6 +146,11 @@ A few things to notice:
 
 With a real database, the batch function would run a single query for all the ids, such as `SELECT * FROM policyholders WHERE id IN ('ph1', 'ph2', 'ph3')`. Five queries become one.
 
+<figure style="margin: 1em 0">
+    <img src="../static/img/graphql-101/n-plus-one-dataloader.svg" alt="Without DataLoader, the five Policy.policyholder resolvers each look up a policyholder, so ph1 and ph3 are looked up twice: five lookups. With DataLoader, each resolver calls load with its id, the loader waits one event-loop turn, removes duplicates, and calls the batch function once with ph1, ph2, and ph3: one lookup." style="width: 100%; max-width: 800px">
+    <figcaption style="text-align: center">The same five resolvers, without and with DataLoader.</figcaption>
+</figure>
+
 DataLoader is already installed in the Codespace.
 
 ### Write the loader
