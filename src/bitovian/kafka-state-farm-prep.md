@@ -78,11 +78,13 @@ Two partitions each. Kafka gives each partition to exactly one consumer in the g
 
 </details>
 
-### 3. A producer sends an event that doesn't match the registered schema. Where does that get caught?
+### 3. A producer starts sending events whose schema isn't compatible with the versions already registered. Where does that get caught?
 
 <details>
 <summary>Click to see the answer</summary>
 
-In the producer, before the event reaches Kafka. The producer's serializer checks the event against the schema in Schema Registry, and the send fails if it doesn't match. Review: [Schema Registry](https://developer.confluent.io/courses/apache-kafka/schema-registry/).
+In the producer, before the event reaches Kafka. By default, the producer's serializer tries to register the event's schema with Schema Registry before sending. Schema Registry checks it against the subject's [compatibility rule](https://docs.confluent.io/platform/current/schema-registry/fundamentals/schema-evolution.html) (`BACKWARD` by default) and rejects it, so the send fails with an exception. A changed schema that *is* compatible is registered as a new version, and the send succeeds.
+
+Many teams turn this automatic registration off in production with [`auto.register.schemas=false`](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html), so only a build step or the platform team registers schemas. Then the send fails if the event's schema isn't already registered. Review: [Schema Registry](https://developer.confluent.io/courses/apache-kafka/schema-registry/).
 
 </details>

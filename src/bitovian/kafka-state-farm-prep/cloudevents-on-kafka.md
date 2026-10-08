@@ -101,7 +101,7 @@ content-type: application/avro
 
 ## Avro data and Schema Registry
 
-In the Schema Registry lesson of Kafka 101, the producer's serializer checks each event against a registered schema. That works the same in binary mode, because the value is just the data.
+In the Schema Registry lesson of Kafka 101, the producer's serializer registers each event's schema with Schema Registry, which rejects it if it isn't compatible with earlier versions. That works the same in binary mode, because the value is just the data.
 
 With Confluent's Avro serializer, the value isn't plain Avro. Confluent's [wire format](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#wire-format-schema-id-in-the-payload-prefix) puts a version byte and a 4-byte schema ID in front of the Avro bytes, so the consumer's deserializer can fetch the right schema. Use the matching deserializer to read it.
 
