@@ -13,7 +13,7 @@ This training gets you ready for Kafka work on the State Farm engagement. Work t
 
 1. Take Confluent's free [Apache Kafka 101](https://developer.confluent.io/courses/apache-kafka/events/) course.
 2. Answer the questions in [Check your understanding](#check-your-understanding) without looking back.
-3. Read the [Additional topics](#additional-topics), in order. They cover the Confluent products, recent Kafka changes, and related tools the course doesn't.
+3. Read the [Additional topics](#additional-topics), in order, and answer the questions at the end of each one. They cover the Confluent products, recent Kafka changes, and related tools the course doesn't.
 
 ## Additional topics
 
@@ -22,11 +22,11 @@ This training gets you ready for Kafka work on the State Farm engagement. Work t
 3. [KRaft and Kafka 4.0](kafka-state-farm-prep/kraft-and-kafka-4.html): how Kafka runs without ZooKeeper, and which 4.0 changes can break older clients
 4. [Tiered Storage](kafka-state-farm-prep/tiered-storage.html): moving older data off broker disks into remote storage
 5. [Queues for Kafka](kafka-state-farm-prep/queues-for-kafka.html): share groups, which let many consumers work through the same partitions like a queue
-6. [Kafka and GraphQL](kafka-state-farm-prep/kafka-and-graphql.html): the common ways a GraphQL API and Kafka work together, and the problems each one runs into
-7. [CloudEvents on Kafka](kafka-state-farm-prep/cloudevents-on-kafka.html): the CloudEvents event envelope, and how it's written to a Kafka message in binary and structured content mode
-8. [Retries, Dead Letter Queues, and Replay](kafka-state-farm-prep/retries-dlq-and-replay.html): what a consumer can do with a record it can't process, and how to read a topic again from an earlier point
-9. [Flink Applications with Kafka](kafka-state-farm-prep/flink-applications.html): Flink's APIs beyond SQL, event time and watermarks, state and checkpoints, and exactly-once delivery to Kafka
-10. [Kafka Connect and Change Data Capture](kafka-state-farm-prep/connect-and-cdc.html): copying every database change into Kafka, what a change event looks like, and landing CDC data in a lakehouse's bronze layer
+6. [CloudEvents on Kafka](kafka-state-farm-prep/cloudevents-on-kafka.html): the CloudEvents event envelope, and how it's written to a Kafka message in binary and structured content mode
+7. [Retries, Dead Letter Queues, and Replay](kafka-state-farm-prep/retries-dlq-and-replay.html): what a consumer can do with a record it can't process, and how to read a topic again from an earlier point
+8. [Flink Applications with Kafka](kafka-state-farm-prep/flink-applications.html): Flink's APIs beyond SQL, event time and watermarks, state and checkpoints, and exactly-once delivery to Kafka
+9. [Kafka Connect and Change Data Capture](kafka-state-farm-prep/connect-and-cdc.html): copying every database change into Kafka, what a change event looks like, and landing CDC data in a lakehouse's bronze layer
+10. [Kafka and GraphQL](kafka-state-farm-prep/kafka-and-graphql.html): the common ways a GraphQL API and Kafka work together, and the problems each one runs into
 11. [Other Useful Topics](kafka-state-farm-prep/other-useful-topics.html): short introductions to Multi-Region Clusters, back pressure, and circuit breakers
 
 ## Take Apache Kafka 101
@@ -65,7 +65,7 @@ Answer these after the course.
 <details>
 <summary>Click to see the answer</summary>
 
-Three copies of each partition, each on a different broker: one leader and two followers. When a broker fails, a follower on another broker takes over as leader for each partition the failed broker led, so producers and consumers keep working and no committed data is lost. Review: [Replication](https://developer.confluent.io/courses/apache-kafka/replication/).
+Three copies of each partition, each on a different broker: one leader and two followers. When a broker fails, a follower on another broker takes over as leader for each partition the failed broker led, so producers and consumers keep working. No committed data is lost. Committed means every in-sync replica has the record, which is what a producer waits for when it uses `acks=all`. Review: [Replication](https://developer.confluent.io/courses/apache-kafka/replication/).
 
 </details>
 

@@ -1,5 +1,5 @@
 @page bitovian/kafka-state-farm-prep/kafka-and-graphql Kafka and GraphQL
-@parent bitovian/kafka-state-farm-prep 6
+@parent bitovian/kafka-state-farm-prep 10
 @outline 2
 
 @description Learn the common ways a GraphQL API and Kafka work together, the problems each one runs into, and how teams solve them.
@@ -16,7 +16,6 @@ In this section, we will:
 - Handle mutations that finish their work later
 - Push live updates to clients from Kafka
 - Use the GraphQL API from inside a stream processor
-- Pick libraries that are still maintained
 
 GraphQL and Kafka solve different problems. GraphQL is how an app asks for exactly the data it needs, in one request, and gets an answer right away. Kafka is how services tell each other that something happened, without waiting on each other. In most systems that use both, GraphQL is the front door for apps, and Kafka moves data between the services behind it.
 
@@ -34,7 +33,7 @@ This is the most common setup. Services publish events to Kafka. A consumer read
 
 For example, a claims service publishes `ClaimFiled` and `ClaimUpdated` events. A consumer writes each claim into a `claims` table, along with the policy number and customer name the app shows on screen. The `claim(id:)` query reads one row from that table instead of calling three services.
 
-This is the CQRS pattern (Command Query Responsibility Segregation): writes and reads use different models, and the read side is a "view database" kept current by subscribing to events ([microservices.io](https://microservices.io/patterns/data/cqrs.html)). Wayfair runs it at scale: product changes flow through Kafka into a cache that takes 80 to 200 million writes a day, with a GraphQL service in front of it ([Wayfair tech blog](https://www.aboutwayfair.com/careers/tech-blog/streamlining-access-to-product-data-with-the-martech-product-service)).
+This is the CQRS pattern (Command Query Responsibility Segregation): writes and reads use different models, and the read side is a "view database" kept current by subscribing to events ([microservices.io](https://microservices.io/patterns/data/cqrs.html)). Wayfair runs it at scale: product changes flow through Kafka into a cache that takes over 80 million writes a day on average, peaking at 200 million, with a GraphQL service in front of it ([Wayfair tech blog](https://www.aboutwayfair.com/careers/tech-blog/streamlining-access-to-product-data-with-the-martech-product-service)).
 
 <table>
   <thead>
@@ -42,7 +41,7 @@ This is the CQRS pattern (Command Query Responsibility Segregation): writes and 
   </thead>
   <tbody>
     <tr><td>The store lags behind Kafka, so a query can return slightly old data.</td><td>Decide, per field, how fresh the data has to be. Show the app when data was last updated if it matters. See <a href="#stale-reads-after-a-write">Stale reads after a write</a>.</td></tr>
-    <tr><td>Kafka delivers some events more than once.</td><td>Make the consumer idempotent: write with an upsert keyed by the record's ID, so applying the same event twice gives the same row.</td></tr>
+    <tr><td>Kafka delivers some events more than once.</td><td>Make the consumer idempotent, meaning that handling the same event twice has the same result as handling it once. Write with an upsert (insert the row, or update it if it already exists) keyed by the record's ID, so applying the same event twice gives the same row. See <a href="./retries-dlq-and-replay.html#consumers-should-handle-duplicates">Consumers should handle duplicates</a>.</td></tr>
     <tr><td>Events for one record arrive out of order across partitions.</td><td>Key events by the record's ID, so all events for one claim go to the same partition and stay in order. Store a version or timestamp, and ignore events older than what's already stored.</td></tr>
     <tr><td>A bug in the consumer writes bad data into the store.</td><td>Fix the consumer, then rebuild the store by reading the topic again from the start. This only works if the topic keeps enough history, so check its retention or use a compacted topic.</td></tr>
   </tbody>
@@ -57,7 +56,7 @@ The obvious approach is to save to the database and then produce to Kafka in the
 The standard fix is the **transactional outbox** ([microservices.io](https://microservices.io/patterns/data/transactional-outbox.html)):
 
 1. In one database transaction, the resolver saves the claim and inserts a row into an `outbox` table describing the event.
-2. A separate process reads new outbox rows and produces them to Kafka. Many teams use change data capture (CDC) for this step, with a tool like Debezium reading the database's change log ([Azure Architecture Center](https://learn.microsoft.com/en-us/azure/architecture/databases/guide/transactional-out-box-cosmos)).
+2. A separate process reads new outbox rows and produces them to Kafka. Many teams use [change data capture](./connect-and-cdc.html) (CDC) for this step, with a tool like Debezium reading the database's change log ([Azure Architecture Center](https://learn.microsoft.com/en-us/azure/architecture/databases/guide/transactional-out-box-cosmos)).
 
 Because both rows are saved in the same transaction, there's never a claim without its event, or an event without its claim.
 
@@ -154,18 +153,30 @@ Netflix does this for search in its studio tools: Flink jobs read change events 
   </thead>
   <tbody>
     <tr><td>A busy topic sends a flood of queries at the GraphQL API.</td><td>Batch lookups, cache results for a short time, and rate-limit the processor so it can't overload the API.</td></tr>
-    <tr><td>The API is down or slow, and events back up.</td><td>Retry with a delay, and send events that keep failing to a dead letter topic so the rest keep moving.</td></tr>
+    <tr><td>The API is down or slow, and events back up.</td><td>Retry with a delay, and send events that keep failing to a <a href="./retries-dlq-and-replay.html#dead-letter-queues">dead letter topic</a> so the rest keep moving.</td></tr>
   </tbody>
 </table>
 
-## Picking libraries
+## Check your understanding
 
-Several libraries that older tutorials use are no longer a safe choice:
+### 1. A `fileClaim` resolver saves the claim to the database, then produces a `ClaimFiled` event to Kafka. What can go wrong, and what's the usual fix?
 
-- **KafkaJS** (Node.js) is no longer actively maintained. Its maintainer asked for replacements in 2023 ([KafkaJS issue #1603](https://github.com/tulios/kafkajs/issues/1603)). Confluent's [`@confluentinc/kafka-javascript`](https://github.com/confluentinc/confluent-kafka-javascript) offers a similar API and is supported by Confluent.
-- **Reactor Kafka** (Java and Spring) was discontinued in May 2025 ([Spring blog](https://spring.io/blog/2025/05/20/reactor-kafka-discontinued/)). Most older "Kafka to GraphQL subscription" examples in Spring use it.
-- The npm packages built to connect Kafka to GraphQL subscriptions are small, and one hasn't been released since 2020. A short hand-written bridge on top of a supported Kafka client is often easier to maintain.
+<details>
+<summary>Click to see the answer</summary>
+
+It's a dual write. If the produce fails or the server crashes after the commit, the claim exists but no event is sent. The usual fix is a transactional outbox: save the claim and an outbox row in one transaction, and have a separate process, often CDC, publish the outbox rows. Review: [Use case: send mutation changes to Kafka](#use-case-send-mutation-changes-to-kafka).
+
+</details>
+
+### 2. A GraphQL API runs on three servers. An event read from Kafka on server A never reaches a subscribed client connected to server B. How do teams fix this?
+
+<details>
+<summary>Click to see the answer</summary>
+
+Either give each server its own consumer group, so every server sees every event, or forward events between servers through a shared pub/sub. Review: [Use case: push live updates to clients](#use-case-push-live-updates-to-clients).
+
+</details>
 
 ## Next steps
 
-Next, we'll look at CloudEvents on Kafka: a shared envelope for events, and how it's written to a Kafka message.
+Next, we'll cover a few shorter topics that are useful to know: Multi-Region Clusters, back pressure, and circuit breakers.

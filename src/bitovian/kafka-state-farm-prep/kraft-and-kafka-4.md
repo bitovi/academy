@@ -94,9 +94,48 @@ The [Confluent Gateway docs](https://docs.confluent.io/private-cloud-gateway/cur
 
 ## Where Kafka is now
 
-As of this writing, the [downloads page](https://kafka.apache.org/community/downloads/) lists 4.3.1, 4.2.2, and 4.1.2 as the supported releases, with 4.3.1 the newest feature line. The [upgrade docs](https://kafka.apache.org/43/getting-started/upgrade/) confirm 4.3 still supports only KRaft mode.
+As of October 2026, the [downloads page](https://kafka.apache.org/community/downloads/) lists 4.3.1, 4.2.2, and 4.1.2 as the supported releases, and 4.3 is the newest feature line. The [upgrade docs](https://kafka.apache.org/43/getting-started/upgrade/) confirm 4.3 still supports only KRaft mode.
 
 Kafka 4.0 also added early access to share groups, which give Kafka queue-like behavior. That's covered in [Queues for Kafka](./queues-for-kafka.html).
+
+### Confluent Platform versions
+
+Confluent Platform has its own version numbers. Each release is built on one Apache Kafka release, per Confluent's [versions and interoperability](https://docs.confluent.io/platform/current/installation/versions-interoperability.html) page:
+
+<table>
+  <thead>
+    <tr><th>Confluent Platform</th><th>Apache Kafka</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>7.9</td><td>3.9, the last release with ZooKeeper</td></tr>
+    <tr><td>8.0</td><td>4.0</td></tr>
+    <tr><td>8.1</td><td>4.1</td></tr>
+    <tr><td>8.2</td><td>4.2</td></tr>
+    <tr><td>8.3</td><td>4.3</td></tr>
+  </tbody>
+</table>
+
+So "Kafka 4.0" on this page means Confluent Platform 8.0 or later. Confluent Private Cloud uses the same numbers as Confluent Platform.
+
+## Check your understanding
+
+### 1. A cluster runs Kafka 3.7 with ZooKeeper. Can it upgrade straight to Kafka 4.0?
+
+<details>
+<summary>Click to see the answer</summary>
+
+No. Kafka 4.0 only runs in KRaft mode, and a ZooKeeper cluster has to be migrated first. The path is: upgrade to 3.9, migrate to KRaft, then upgrade to 4.0. Review: [Getting from ZooKeeper to 4.0](#getting-from-zookeeper-to-40).
+
+</details>
+
+### 2. Your cluster runs Confluent Platform 8.1. Does a Java client from Kafka 2.0 still work with it?
+
+<details>
+<summary>Click to see the answer</summary>
+
+No. Confluent Platform 8.1 is built on Kafka 4.1, and Kafka 4.0 removed the request versions that clients older than 2.1 use. That client gets an `UNSUPPORTED_VERSION` error until it's upgraded. Review: [Old clients and brokers stop working together](#old-clients-and-brokers-stop-working-together) and [Confluent Platform versions](#confluent-platform-versions).
+
+</details>
 
 ## Next steps
 

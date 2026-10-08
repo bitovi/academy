@@ -21,6 +21,7 @@ Share groups let a pool of consumers pull work from the same partitions at once,
 
 ## How it got here
 
+- Apache Kafka 4.0, released March 18, 2025, offered "early access to Queues for Kafka (KIP-932)," per its [announcement](https://kafka.apache.org/blog/2025/03/18/apache-kafka-4.0.0-release-announcement/).
 - Apache Kafka 4.1.0, released September 4, 2025, shipped Queues for Kafka as a preview. The [announcement](https://kafka.apache.org/blog/2025/09/04/apache-kafka-4.1.0-release-announcement/) says it was "still not ready for production but you can start evaluating and testing it."
 - Apache Kafka 4.2.0, released February 17, 2026, made it ready for real use. The [announcement](https://kafka.apache.org/blog/2026/02/17/apache-kafka-4.2.0-release-announcement/) says "Kafka Queues (Share Groups) is now production-ready."
 
@@ -28,7 +29,7 @@ Share groups let a pool of consumers pull work from the same partitions at once,
 
 In the [Consumers lesson](https://developer.confluent.io/courses/apache-kafka/consumers/) of Kafka 101, you saw that "Kafka assigns each partition to one consumer in the group—no two consumers in the same group read from the same partition."
 
-That rule keeps records in order within each partition. It also means you can't have more busy consumers than partitions. KIP-932 puts it this way: it "does introduce coupling between the number of consumers in a consumer group and the number of partitions. Users of Kafka often have to "over-partition" simply to ensure they can have sufficient parallel consumption to cope with peak loads."
+That rule keeps records in order within each partition. It also means you can't have more busy consumers than partitions. KIP-932 puts it this way: it "does introduce coupling between the number of consumers in a consumer group and the number of partitions. Users of Kafka often have to 'over-partition' simply to ensure they can have sufficient parallel consumption to cope with peak loads."
 
 ## How share groups work
 
@@ -50,9 +51,11 @@ The consumer then acknowledges each record. In explicit mode, the [Confluent Pla
   </tbody>
 </table>
 
-RENEW arrived in Kafka 4.2 through [KIP-1222](https://kafka.apache.org/blog/2026/02/17/apache-kafka-4.2.0-release-announcement/). In the default implicit mode, the docs say all delivered records "are implicitly marked as successfully processed and acknowledged when commitSync(), commitAsync(), or poll() is called."
+RENEW arrived in Kafka 4.2 through [KIP-1222](https://cwiki.apache.org/confluence/display/KAFKA/KIP-1222%3A+Acquisition+lock+timeout+renewal+in+share+consumer+explicit+mode), according to the [4.2 announcement](https://kafka.apache.org/blog/2026/02/17/apache-kafka-4.2.0-release-announcement/). In the default implicit mode, the docs say all delivered records "are implicitly marked as successfully processed and acknowledged when commitSync(), commitAsync(), or poll() is called."
 
 The broker also keeps a **delivery count** for each record. This protects you from a "poison message", a record that crashes every consumer that tries it. From [KIP-932](https://cwiki.apache.org/confluence/display/KAFKA/KIP-932%3A+Queues+for+Kafka): "If the delivery count has reached the cluster's share delivery attempt limit (5 by default), the record moves into Archived state and is not eligible for additional delivery attempts."
+
+An archived record, or one the consumer rejects, isn't sent anywhere. It just stops being delivered. Released Kafka versions don't have a dead letter queue for share groups. [KIP-1191](https://cwiki.apache.org/confluence/display/KAFKA/KIP-1191%3A+Dead-letter+queues+for+share+groups) adds one, and the [Kafka 4.4 release plan](https://cwiki.apache.org/confluence/display/KAFKA/Release+Plan+4.4.0) lists it, but 4.4 hasn't been released as of October 2026. Until then, a consumer that wants to keep a failed record has to write it to its own topic before rejecting it.
 
 ## What you give up
 
@@ -96,6 +99,26 @@ Other clients are catching up:
 - [librdkafka v2.15.0](https://github.com/confluentinc/librdkafka/releases/tag/v2.15.0), the C/C++ Kafka library from Confluent, added a share consumer marked "Preview" that "should not be used in production environments."
 - The [Confluent JavaScript client changelog](https://github.com/confluentinc/confluent-kafka-javascript/blob/master/CHANGELOG.md) for `@confluentinc/kafka-javascript` doesn't mention share groups yet. Don't assume a Node.js service can join a share group.
 
+## Check your understanding
+
+### 1. A topic has four partitions, and you need 20 workers to send one email per record. Should the workers join a consumer group or a share group?
+
+<details>
+<summary>Click to see the answer</summary>
+
+A share group. In a consumer group, each partition goes to one consumer, so only four workers would get records. A share group lets all 20 read from the same partitions, and the emails don't depend on each other, so losing the order doesn't matter. Review: [When to use which](#when-to-use-which).
+
+</details>
+
+### 2. A record in a share group fails five times in a row. What happens to it?
+
+<details>
+<summary>Click to see the answer</summary>
+
+It moves to the Archived state and isn't delivered again. It isn't sent to a dead letter queue, because released Kafka versions don't have one for share groups. To keep it, the consumer has to write it to its own topic before rejecting it. Review: [How share groups work](#how-share-groups-work).
+
+</details>
+
 ## Next steps
 
-Next, we'll look at how a GraphQL API and Kafka work together, and the problems teams run into when they combine them.
+Next, we'll look at CloudEvents on Kafka: a shared envelope for events, and how it's written to a Kafka message.

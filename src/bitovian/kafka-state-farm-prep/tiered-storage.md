@@ -17,14 +17,14 @@ In this section, we will:
 
 In the [Brokers](https://developer.confluent.io/courses/apache-kafka/brokers/) lesson of Apache Kafka 101, you saw that each broker stores partitions on its own disks. The lesson calls this "tightly coupled storage right next to the processor, usually SSDs."
 
-Tiered Storage changes that. The [Kafka docs](https://kafka.apache.org/41/operations/tiered-storage/) describe a cluster "configured with two tiers of storage - local and remote":
+Tiered Storage changes that. The [Kafka docs](https://kafka.apache.org/43/operations/tiered-storage/) describe a cluster "configured with two tiers of storage - local and remote":
 
 - The **local tier** is the broker's own disks, the same storage Kafka has always used.
-- The **remote tier** is an outside storage system, "such as HDFS or S3," that holds "the completed log segments."
+- The **remote tier** is an outside storage system, "such as HDFS or S3," that holds "the completed log segments." HDFS is Hadoop's distributed file system, and S3 is Amazon's object storage.
 
 A **log segment** is one of the files a partition's data is split into on disk. Kafka writes new events to the newest segment. When that segment is full, Kafka closes it ("rolls" it) and starts a new one. [KIP-405](https://cwiki.apache.org/confluence/display/KAFKA/KIP-405%3A+Kafka+Tiered+Storage) says "When a log segment is rolled on the local tier, it is copied to the remote tier along with the corresponding indexes."
 
-The feature was proposed in [KIP-405](https://cwiki.apache.org/confluence/display/KAFKA/KIP-405%3A+Kafka+Tiered+Storage). A KIP (Kafka Improvement Proposal) is the design document the Kafka project writes and votes on before adding a major feature.
+The feature was proposed in [KIP-405](https://cwiki.apache.org/confluence/display/KAFKA/KIP-405%3A+Kafka+Tiered+Storage). A KIP (Kafka Improvement Proposal) is the design document the Kafka project writes and votes on before adding a major feature. The [3.9 release announcement](https://kafka.apache.org/blog/2024/11/06/apache-kafka-3.9.0-release-announcement/) says it has been "under development since Kafka 3.6" and is "now production-ready in Kafka 3.9."
 
 ## Why it exists
 
@@ -38,7 +38,7 @@ Its stated goal is to "extend Kafka's storage beyond the local storage available
 
 ## How reads work
 
-The [Kafka docs](https://kafka.apache.org/41/operations/tiered-storage/) point out that most consumers read the newest events, which Kafka serves from memory. Older data is read "for backfill or failure recovery purposes and is infrequent."
+The [Kafka docs](https://kafka.apache.org/43/operations/tiered-storage/) point out that most consumers read the newest events, which Kafka serves from memory. Older data is read "for backfill or failure recovery purposes and is infrequent."
 
 [KIP-405](https://cwiki.apache.org/confluence/display/KAFKA/KIP-405%3A+Kafka+Tiered+Storage) splits reads the same way. Consumers keeping up with new events are "served from local tier." Consumers that need "data older than what is in the local tier are served from the remote tier."
 
@@ -58,13 +58,13 @@ In the [Topics](https://developer.confluent.io/courses/apache-kafka/topics/) les
   </tbody>
 </table>
 
-The [Kafka docs](https://kafka.apache.org/41/operations/tiered-storage/) say that if the local settings are unset, Kafka uses the `retention.ms` and `retention.bytes` values for them. They also note that "a local log segment is eligible for deletion only after it gets uploaded to remote."
+The [Kafka docs](https://kafka.apache.org/43/operations/tiered-storage/) say that if the local settings are unset, Kafka uses the `retention.ms` and `retention.bytes` values for them. They also note that "a local log segment is eligible for deletion only after it gets uploaded to remote."
 
 [KIP-405](https://cwiki.apache.org/confluence/display/KAFKA/KIP-405%3A+Kafka+Tiered+Storage) gives the intended shape: local retention "can be significantly reduced from days to few hours," while remote retention "can be much longer, days, or even months."
 
 ## Turning it on
 
-Tiered Storage is off by default, at two levels. On each broker, `remote.log.storage.system.enable=true` turns the feature on. On each topic, `remote.storage.enable=true` opts that topic in. Both are described in the [Kafka docs](https://kafka.apache.org/41/operations/tiered-storage/).
+Tiered Storage is off by default, at two levels. On each broker, `remote.log.storage.system.enable=true` turns the feature on. On each topic, `remote.storage.enable=true` opts that topic in. Both are described in the [Kafka docs](https://kafka.apache.org/43/operations/tiered-storage/).
 
 The broker also needs a plugin that knows how to talk to your storage system. Kafka defines an interface called `RemoteStorageManager` for this, but the docs say "Apache Kafka doesn't provide an out-of-the-box RemoteStorageManager implementation." Kafka has no built-in S3 plugin, so you supply one.
 
@@ -72,13 +72,12 @@ Kafka also needs to track which segments live remotely. That's the job of `Remot
 
 ## Limitations
 
-The [Kafka docs](https://kafka.apache.org/41/operations/tiered-storage/) list these:
+The [Kafka docs](https://kafka.apache.org/43/operations/tiered-storage/) list these:
 
 - Compacted topics aren't supported. Those are the topics from the Topics lesson that keep only the latest event per key.
 - You must turn tiered storage off on every topic before turning it off on the broker.
 - Admin actions for tiered storage need clients on version 3.0 or later.
 - Segments without a producer snapshot file aren't supported. That can happen for topics created before 2.8.0.
-- Only one partition per fetch request is served from remote storage, which "can become a bottleneck for consumer client throughput."
 
 ## Confluent's Tiered Storage is a different feature
 
@@ -93,6 +92,26 @@ The differences you're most likely to notice, from those docs:
 - JBOD (several separate data disks on one broker) is not supported.
 
 When you read docs or settings, check which of the two features they're about.
+
+## Check your understanding
+
+### 1. A topic has `local.retention.ms` set to one day and `retention.ms` set to 30 days. A consumer asks for records from 10 days ago. Where do they come from, and does the consumer's code need to change?
+
+<details>
+<summary>Click to see the answer</summary>
+
+From the remote tier, because the local copy was deleted after a day. The broker fetches the records from remote storage and serves them, so the consumer's code doesn't change. Review: [How reads work](#how-reads-work) and [Retention on each tier](#retention-on-each-tier).
+
+</details>
+
+### 2. Can you turn on Apache Kafka's Tiered Storage for a compacted topic?
+
+<details>
+<summary>Click to see the answer</summary>
+
+No. Compacted topics aren't supported by Apache Kafka's Tiered Storage. Confluent's own Tiered Storage, a different feature, supports them starting with Confluent Platform 7.6. Review: [Limitations](#limitations).
+
+</details>
 
 ## Next steps
 

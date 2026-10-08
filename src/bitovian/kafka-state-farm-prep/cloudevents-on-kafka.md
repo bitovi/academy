@@ -1,5 +1,5 @@
 @page bitovian/kafka-state-farm-prep/cloudevents-on-kafka CloudEvents on Kafka
-@parent bitovian/kafka-state-farm-prep 7
+@parent bitovian/kafka-state-farm-prep 6
 @outline 2
 
 @description Learn what a CloudEvents envelope is, how it's written to a Kafka message in binary and structured content mode, and how an Avro payload fits in.
@@ -111,9 +111,29 @@ That means a binary mode event can describe its data twice: the `ce_type` and op
 
 ## Things to watch for
 
-- **An event with no data is a tombstone.** In binary mode the value is the data, so an event with no data becomes a message with no value. In a compacted topic, Kafka's [design docs](https://kafka.apache.org/42/design/design/) say "A message with a key and a null payload will be treated as a delete from the log", which is called a tombstone.
+- **An event with no data is a tombstone.** In binary mode the value is the data, so an event with no data becomes a message with no value. In a compacted topic, Kafka's [design docs](https://kafka.apache.org/43/design/design/) say "A message with a key and a null payload will be treated as a delete from the log", which is called a tombstone.
 - **Headers are text.** Every attribute value is sent as a UTF-8 string, so a consumer gets `ce_time` as text and has to parse it.
 - **Headers need Kafka 0.11 or later.** Older clients only support structured mode. Any client covered in this prep is far newer.
+
+## Check your understanding
+
+### 1. A message has the header `content-type: application/avro`. Is it in binary or structured content mode, and where are the CloudEvents attributes?
+
+<details>
+<summary>Click to see the answer</summary>
+
+Binary mode, because the content type doesn't start with `application/cloudevents`. The attributes are Kafka headers starting with `ce_`, the value is just the Avro data, and `datacontenttype` is the `content-type` header itself. Review: [Two ways to put a CloudEvent on Kafka](#two-ways-to-put-a-cloudevent-on-kafka).
+
+</details>
+
+### 2. A consumer gets two events with the same `source` and the same `id`. What can it assume?
+
+<details>
+<summary>Click to see the answer</summary>
+
+That they're the same event delivered twice. The spec says consumers "MAY assume that Events with identical `source` and `id` are duplicates," so the consumer can skip the second one. Review: [The attributes](#the-attributes).
+
+</details>
 
 ## Next steps
 

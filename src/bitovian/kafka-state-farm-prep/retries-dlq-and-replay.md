@@ -1,5 +1,5 @@
 @page bitovian/kafka-state-farm-prep/retries-dlq-and-replay Retries, Dead Letter Queues, and Replay
-@parent bitovian/kafka-state-farm-prep 8
+@parent bitovian/kafka-state-farm-prep 7
 @outline 2
 
 @description Learn what a consumer can do when it can't process a record: retry in place, move the record to a retry topic, park it in a dead letter queue, or replay a topic from an earlier point.
@@ -56,7 +56,7 @@ A DLQ is only useful if someone watches it. Teams usually alert when records arr
 
 ### Kafka Connect's DLQ
 
-Kafka Connect, from the Kafka Connect lesson of Kafka 101, has a DLQ built in for **sink** connectors. The [Kafka Connect configuration docs](https://kafka.apache.org/42/configuration/kafka-connect-configs/) describe three settings:
+Kafka Connect, from the Kafka Connect lesson of Kafka 101, has a DLQ built in for **sink** connectors. The [Kafka Connect configuration docs](https://kafka.apache.org/43/configuration/kafka-connect-configs/) describe three settings:
 
 <table>
   <thead>
@@ -71,15 +71,28 @@ Kafka Connect, from the Kafka Connect lesson of Kafka 101, has a DLQ built in fo
 
 Setting `errors.tolerance` to `all` without a DLQ topic skips bad records without keeping them. Confluent's [deep dive on Connect error handling](https://www.confluent.io/blog/kafka-connect-deep-dive-error-handling-dead-letter-queues/) walks through each combination.
 
+These settings don't cover every failure. They catch records that fail while Connect converts them (deserializing) or transforms them. A failed write to the target system, such as a database rejecting a row, isn't covered by them. The deep dive marks that step, `put()`, as not handled. A sink connector can send those records to the DLQ only if it uses the [`ErrantRecordReporter`](https://kafka.apache.org/43/javadoc/org/apache/kafka/connect/sink/ErrantRecordReporter.html) interface, added in Kafka 2.6 by [KIP-610](https://cwiki.apache.org/confluence/display/KAFKA/KIP-610%3A+Error+Reporting+in+Sink+Connectors). Check your connector's docs to see whether it does.
+
 ## Replay
 
 Because Kafka keeps records after they're read, a consumer group can go back and read them again. That's useful after fixing a bug that processed records wrongly, or to rebuild data in a new system.
 
-You replay by moving the group's committed offsets back. Kafka's [operations docs](https://kafka.apache.org/42/operations/basic-kafka-operations/) describe the `kafka-consumer-groups` tool's `--reset-offsets` option. It can move offsets to a time (`--to-datetime`), to the start (`--to-earliest`), by a number of records (`--shift-by`), and more. The docs add: "first make sure that the consumer instances are inactive."
+You replay by moving the group's committed offsets back. Kafka's [operations docs](https://kafka.apache.org/43/operations/basic-kafka-operations/) describe the `kafka-consumer-groups` tool's `--reset-offsets` option. It can move offsets to a time (`--to-datetime`), to the start (`--to-earliest`), by a number of records (`--shift-by`), and more. The docs add: "first make sure that the consumer instances are inactive."
+
+For example, this moves the `claims-view` group back to midnight on October 1 for the `claims` topic:
+
+```shell
+kafka-consumer-groups --bootstrap-server localhost:9092 \
+  --group claims-view --topic claims \
+  --reset-offsets --to-datetime 2026-10-01T00:00:00.000 \
+  --execute
+```
+
+Without `--execute`, the command only shows the offsets it would set and changes nothing. Run it once without `--execute` to check the result, then again with it. Apache Kafka's download names the tool `kafka-consumer-groups.sh`; Confluent Platform drops the `.sh`.
 
 Two limits apply:
 
-- **You can only replay what's still there.** The [`retention.ms` setting](https://kafka.apache.org/42/configuration/topic-configs/) controls how long records are kept. The docs say it "represents an SLA on how soon consumers must read their data."
+- **You can only replay what's still there.** The [`retention.ms` setting](https://kafka.apache.org/43/configuration/topic-configs/) controls how long records are kept. The docs say it "represents an SLA on how soon consumers must read their data."
 - **Replay delivers records again.** Anything the consumer did the first time, like sending an email or charging a card, happens again unless the consumer checks for duplicates.
 
 ## Consumers should handle duplicates
@@ -87,6 +100,35 @@ Two limits apply:
 Replays, retries, and producer retries can all deliver the same record more than once. Confluent's [Idempotent Reader pattern](https://developer.confluent.io/patterns/event-processing/idempotent-reader/) asks: "How can an application deal with duplicate Events when reading from an Event Stream?"
 
 Kafka's exactly-once features help when the consumer writes its results back to Kafka. When it writes somewhere else, like a database or another API, the consumer has to handle duplicates itself. A common way is to record the ID of each event it has handled, like the CloudEvents `source` and `id` from the previous section, and skip events it has already seen.
+
+## Check your understanding
+
+### 1. Events for each account must be handled in order, and a dependency is down for a few seconds. Should the consumer retry in place or use a retry topic?
+
+<details>
+<summary>Click to see the answer</summary>
+
+Retry in place. It keeps records in order, and a short outage only holds up the partition briefly. A retry topic keeps other records moving, but a retried record can be processed after records that arrived later. Review: [Retry topics](#retry-topics).
+
+</details>
+
+### 2. A JDBC sink connector has `errors.tolerance=all` and a DLQ topic. The database rejects a row. Does the record land in the DLQ?
+
+<details>
+<summary>Click to see the answer</summary>
+
+Only if the connector uses the `ErrantRecordReporter` interface. Connect's DLQ settings cover records that fail while being converted or transformed, not failed writes to the target system. Check the connector's docs. Review: [Kafka Connect's DLQ](#kafka-connects-dlq).
+
+</details>
+
+### 3. You run `kafka-consumer-groups --reset-offsets --to-earliest` for a group and topic, and the consumers don't reprocess anything. Why?
+
+<details>
+<summary>Click to see the answer</summary>
+
+The command was missing `--execute`. Without it, the tool only shows the offsets it would set and changes nothing. Review: [Replay](#replay).
+
+</details>
 
 ## Next steps
 

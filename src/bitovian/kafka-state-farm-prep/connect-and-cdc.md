@@ -1,5 +1,5 @@
 @page bitovian/kafka-state-farm-prep/connect-and-cdc Kafka Connect and Change Data Capture
-@parent bitovian/kafka-state-farm-prep 10
+@parent bitovian/kafka-state-farm-prep 9
 @outline 2
 
 @description Learn how Kafka Connect runs connectors, how change data capture copies every database change into Kafka, what a change event looks like, and how CDC data lands in a lakehouse's bronze layer.
@@ -17,13 +17,13 @@ In this section, we will:
 
 ## Kafka Connect, briefly
 
-In the Kafka Connect lesson of Kafka 101, you moved data between Kafka and another system without writing code. The [Kafka docs](https://kafka.apache.org/42/kafka-connect/overview/) describe Connect as "a tool for scalably and reliably streaming data between Apache Kafka and other systems."
+In the Kafka Connect lesson of Kafka 101, you moved data between Kafka and another system without writing code. The [Kafka docs](https://kafka.apache.org/43/kafka-connect/overview/) describe Connect as "a tool for scalably and reliably streaming data between Apache Kafka and other systems."
 
 A few terms to know:
 
 - A **source connector** reads from another system and writes to Kafka. A **sink connector** reads from Kafka and writes to another system.
 - Connectors run inside **Connect workers**, a service separate from the Kafka brokers.
-- Workers run in one of [two modes](https://kafka.apache.org/42/kafka-connect/user-guide/). In **distributed** mode, several workers share the work and "Kafka Connect stores the offsets, configs and task statuses in Kafka topics." **Standalone** mode runs everything in a single process.
+- Workers run in one of [two modes](https://kafka.apache.org/43/kafka-connect/user-guide/). In **distributed** mode, several workers share the work and "Kafka Connect stores the offsets, configs and task statuses in Kafka topics." **Standalone** mode runs everything in a single process.
 
 The dead letter queue settings from the Retries section are part of Connect, for sink connectors.
 
@@ -40,7 +40,7 @@ There are a few ways to find out what changed. You can poll for rows with a newe
 - "Requires no changes to your data model, such as a 'Last Updated' column"
 - "Can capture deletes"
 
-Debezium usually runs as a set of source connectors in Kafka Connect. Its [architecture docs](https://debezium.io/documentation/reference/stable/architecture.html) say "By default, changes from one database table are written to a Kafka topic whose name corresponds to the table name."
+Debezium usually runs as a set of source connectors in Kafka Connect. Its [architecture docs](https://debezium.io/documentation/reference/stable/architecture.html) say "By default, changes from one database table are written to a Kafka topic whose name corresponds to the table name." The full name also includes a prefix and the schema. The [PostgreSQL connector](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) names topics `topicPrefix.schemaName.tableName`, so changes to `public.claims` go to a topic like `claimsdb.public.claims`.
 
 Commercial tools do the same job. [IBM Data Replication](https://www.ibm.com/products/data-replication), for example, lists Kafka as one of its targets, and its sources include mainframe data stores such as Db2 for z/OS, VSAM, and IMS, alongside databases like Oracle, SQL Server, and PostgreSQL. The shape of the change events differs from tool to tool, so read the tool's docs for the exact format.
 
@@ -57,15 +57,16 @@ Debezium's change events are a common example of what CDC data looks like. Each 
     <tr><td><code>u</code></td><td>A row was updated</td></tr>
     <tr><td><code>d</code></td><td>A row was deleted</td></tr>
     <tr><td><code>r</code></td><td>A row was read during a snapshot</td></tr>
-    <tr><td><code>t</code></td><td>A table was truncated</td></tr>
+    <tr><td><code>t</code></td><td>A table was truncated. Off by default: the connector's <code>skipped.operations</code> setting defaults to <code>t</code>.</td></tr>
   </tbody>
 </table>
 
-Three things about CDC events are worth knowing before you consume them:
+Four things about CDC events are worth knowing before you consume them:
 
 - **They describe rows, not business events.** "The `status` column of row 42 changed" is a database detail. Consumers often turn it into something meaningful, like "a claim was approved," before other teams use it.
 - **A new connector usually starts with a snapshot.** A Debezium connector, by default, "performs an initial consistent snapshot of the database" the first time it starts. It reads the existing rows as `r` events, then streams changes from the log.
 - **The key is usually the row's primary key.** In Debezium, the key "contains a field for each column in the primary key of the table." So all changes to one row go to the same partition, and they're read in order.
+- **A delete arrives as two records.** By default (`tombstones.on.delete=true`), Debezium sends a `d` event and then a tombstone: a record with the same key and a null value. The tombstone lets a compacted topic drop the row's history. A consumer that doesn't expect a null value can crash on it every time, which turns it into the poison pill from [Retries, Dead Letter Queues, and Replay](./retries-dlq-and-replay.html). Check for null values before deserializing.
 
 ## Landing CDC data in a lakehouse
 
@@ -81,6 +82,26 @@ Later steps clean and validate the data into silver tables, then aggregate it in
 
 Because bronze keeps the raw history, a mistake further down the pipeline can be fixed by reprocessing from bronze, much like replaying a Kafka topic.
 
+## Check your understanding
+
+### 1. A new Debezium connector starts, and the topic fills with `r` events before any `c`, `u`, or `d` events. Why?
+
+<details>
+<summary>Click to see the answer</summary>
+
+By default, a Debezium connector takes an initial snapshot the first time it starts. It reads the existing rows as `r` events, then streams changes from the database log. Review: [A change event](#a-change-event).
+
+</details>
+
+### 2. A consumer of a Debezium topic crashes right after a row is deleted, on a record with a null value. What is that record?
+
+<details>
+<summary>Click to see the answer</summary>
+
+A tombstone. By default, Debezium follows each delete event with a record that has the same key and a null value, so a compacted topic can drop the row. The consumer should check for null values before deserializing. Review: [A change event](#a-change-event).
+
+</details>
+
 ## Next steps
 
-Next, we'll cover a few shorter topics that are useful to know: Multi-Region Clusters, back pressure, and circuit breakers.
+Next, we'll look at how a GraphQL API and Kafka work together, using the outbox, CDC, and retry patterns from the earlier sections.

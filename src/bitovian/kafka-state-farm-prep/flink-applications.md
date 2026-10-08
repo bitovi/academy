@@ -1,5 +1,5 @@
 @page bitovian/kafka-state-farm-prep/flink-applications Flink Applications with Kafka
-@parent bitovian/kafka-state-farm-prep 9
+@parent bitovian/kafka-state-farm-prep 8
 @outline 2
 
 @description Go beyond the Flink SQL from Kafka 101: Flink's APIs, reading and writing Kafka with the Kafka connector, event time and watermarks, state and checkpoints, and exactly-once delivery.
@@ -94,7 +94,7 @@ The two stronger guarantees need checkpointing turned on. Exactly-once has three
 
 - **Consumers must read only committed records.** Downstream consumers need `isolation.level=read_committed`, or they'll see records from transactions that never committed.
 - **Records show up later.** Exactly-once "delays record visibility effectively until a checkpoint is written."
-- **Transaction settings matter.** Each application needs its own `transactionalIdPrefix`, and the producer's `transaction.timeout.ms` should be well above the longest checkpoint plus restart time, "or data loss may happen when Kafka expires an uncommitted transaction."
+- **Transaction settings matter.** Each application needs its own `transactionalIdPrefix`, and the producer's `transaction.timeout.ms` should be well above the longest checkpoint plus restart time, "or data loss may happen when Kafka expires an uncommitted transaction." It also can't be higher than the broker's [`transaction.max.timeout.ms`](https://kafka.apache.org/43/configuration/broker-configs/), which defaults to 15 minutes. If it's higher, the broker "will return an error" and the job won't start. Raising the broker limit is a platform team change.
 
 Exactly-once covers what Flink writes to Kafka. Like the consumers in the previous section, a Flink job that calls an outside system can still repeat those calls after a replay.
 
@@ -106,6 +106,26 @@ Flink runs as a cluster of its own, separate from Kafka. Confluent offers it two
 - [Confluent Platform for Apache Flink](https://docs.confluent.io/cp-flink/current/overview.html) "runs on-premises alongside other Confluent Platform components." Its applications are deployed in Kubernetes and managed with Confluent Manager for Apache Flink (CMF).
 
 Teams can also run open-source Apache Flink themselves.
+
+## Check your understanding
+
+### 1. You reset a Flink job's consumer group offsets with `kafka-consumer-groups`, then restart the job from a checkpoint. Where does it start reading?
+
+<details>
+<summary>Click to see the answer</summary>
+
+From the positions saved in the checkpoint. Flink doesn't rely on committed offsets for recovery; it commits them only so you can monitor progress. Review: [Reading and writing Kafka](#reading-and-writing-kafka).
+
+</details>
+
+### 2. A Flink job writes to Kafka with `EXACTLY_ONCE`, but a downstream consumer sees records from transactions that never committed. What's missing?
+
+<details>
+<summary>Click to see the answer</summary>
+
+The downstream consumer needs `isolation.level=read_committed`. The Java client's default reads uncommitted records too. Review: [Exactly-once delivery to Kafka](#exactly-once-delivery-to-kafka).
+
+</details>
 
 ## Next steps
 
