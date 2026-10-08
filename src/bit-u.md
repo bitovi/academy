@@ -354,6 +354,18 @@ bit-prev-next {
             underConstruction: false
           },
           {
+            logo: './static/img/graphql-logo.png',
+            logoAlt: 'GraphQL',
+            logoHeight: '50',
+            title: 'Federated GraphQL + Kafka',
+            description: 'Split one GraphQL API into separately owned APIs that apps query through one endpoint, then connect them with Kafka events and live updates.',
+            audience: 'Developers who have completed GraphQL 102',
+            goal: 'Run a GraphQL API alongside other teams\' APIs, and connect them with events.',
+            time: '2 hours',
+            link: './learn-federated-graphql-and-kafka.html',
+            underConstruction: true
+          },
+          {
             logo: './static/img/javascript.png',
             logoAlt: 'JavaScript',
             logoHeight: '70',
