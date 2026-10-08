@@ -174,6 +174,11 @@ It exports a `User` type, a `Role` type (`AGENT` or `ADJUSTER`), and a `getUser`
 
 In a real API, `getUser` would check a signed token instead. Everything after it, in `context` and in the resolvers, would be the same.
 
+<figure style="margin: 1em 0">
+    <img src="../static/img/graphql-102/auth-request-path.svg" alt="What happens to issuePolicy for each Authorization header. No header: getUser returns null and issuePolicy throws UNAUTHENTICATED with HTTP 401. Bearer adjuster-token: Sam Rivera, an ADJUSTER, gets FORBIDDEN. Bearer agent-token: Alex Chen, an AGENT, issues the policy." style="width: 100%; max-width: 800px">
+    <figcaption style="text-align: center">What <code>issuePolicy</code> does for each user, once it's protected.</figcaption>
+</figure>
+
 ### Sending a header from Apollo Sandbox
 
 To send a token, open the **Headers** tab below the operation editor in Sandbox, next to **Variables**. Add a header with the name `Authorization` and a value like `Bearer agent-token`. Sandbox sends it with every request until you remove it.

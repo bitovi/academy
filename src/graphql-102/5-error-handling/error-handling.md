@@ -64,6 +64,11 @@ Apollo Server uses a set of [built-in error codes](https://www.apollographql.com
 
 The first two happen before any resolver runs. `BAD_USER_INPUT` can come from either side. Apollo sends it when a variable's value doesn't fit its type, like the February 30th date in the Custom Scalars section. You also throw it yourself, from a resolver, when a value has the right type but can't be used. When a resolver throws an ordinary `Error` instead of a `GraphQLError`, Apollo reports it as `INTERNAL_SERVER_ERROR`.
 
+<figure style="margin: 1em 0">
+    <img src="../static/img/graphql-102/error-phases.svg" alt="The phases of a request and the error codes each one produces. Parse, validate, and variable checks happen before any resolver runs, so their errors come back with no data. Errors from resolvers have a path, and other data can still come back." style="width: 100%; max-width: 800px">
+    <figcaption style="text-align: center">Where in a request each error code comes from.</figcaption>
+</figure>
+
 You can also make up your own codes, like `CLAIM_LOCKED`, when a client needs to tell one problem apart from another.
 
 ### One error can wipe out other data
@@ -71,6 +76,11 @@ You can also make up your own codes, like `CLAIM_LOCKED`, when a client needs to
 A response can contain both `data` and `errors`. If one field fails, the rest of the query can still succeed.
 
 That only works if the failed field is allowed to be `null`. GraphQL replaces a failed field with `null`. If the field is required, like `claimsConnection: ClaimConnection!`, GraphQL can't do that, so it makes the field's **parent** `null` instead. That keeps going up until it reaches a field that can be `null`, or the top of the response. You saw this in 101, when one policy without a risk tier made the whole `policies` query fail.
+
+<figure style="margin: 1em 0">
+    <img src="../static/img/graphql-102/null-bubbling.svg" alt="The same query with a bad cursor against two schemas. With a required ClaimConnection!, the null moves up to data, so the LIFE policy result is lost. With a nullable ClaimConnection, only claimsConnection is null and policies still returns LIFE-100004." style="width: 100%; max-width: 800px">
+    <figcaption style="text-align: center">What a failed <code>claimsConnection</code> takes down with it, required versus nullable.</figcaption>
+</figure>
 
 So when you design a schema, making a field required is also a choice about what a failure takes down with it. The [GraphQL specification](https://spec.graphql.org/September2025/#sec-Handling-Execution-Errors) describes the exact rules.
 

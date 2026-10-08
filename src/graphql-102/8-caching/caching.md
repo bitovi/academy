@@ -53,6 +53,11 @@ So GraphQL caching happens in several other places instead.
    </tr>
 </table>
 
+<figure style="margin: 1em 0">
+    <img src="../static/img/graphql-102/cache-layers.svg" alt="Where caching happens, from the client to the data: Apollo Client's InMemoryCache, a CDN or browser cache for GET requests, the server's response cache, the resolvers, DataLoader within one request, and the data. A hit at each cache skips everything to its right." style="width: 100%; max-width: 800px">
+    <figcaption style="text-align: center">The order of the caches. A hit answers the request there, so nothing to its right runs.</figcaption>
+</figure>
+
 **CDNs and browsers** can cache GraphQL responses, but only if the client sends queries as `GET` requests. [Apollo's documentation](https://www.apollographql.com/docs/apollo-server/performance/caching#caching-with-a-cdn) describes how, using [automatic persisted queries](https://www.apollographql.com/docs/apollo-server/performance/apq): the client sends a short hash of the query instead of the whole query, which keeps `GET` URLs short. The Performance and Hosting section describes them in more detail.
 
 **Client-side caches** are the most common kind in GraphQL apps. As you saw in 101's Exploring the Schema section, [Apollo Client](https://www.apollographql.com/docs/react/caching/overview) stores each object it receives under an ID made from its `__typename` and `id`, like `Policy:p1`. When two screens ask for the same policy, the second one reads it from the cache. When a mutation returns an updated policy, every screen showing it updates. That's one reason it's worth asking for `id` in your queries.
@@ -325,6 +330,11 @@ import responseCachePlugin from "@apollo/server-plugin-response-cache";
 ### Choosing a `maxAge`
 
 The missing policy isn't a bug in the plugin. `issuePolicy` changed the data, but nothing told the cache, so the saved response stayed until its `maxAge` ran out. Apollo's response cache plugin [doesn't support clearing out-of-date responses](https://github.com/apollographql/apollo-server/discussions/5361). Other tools do, like The Guild's [response cache plugin](https://the-guild.dev/graphql/envelop/plugins/use-response-cache) for servers built on Envelop, such as GraphQL Yoga, which removes saved responses that contain the objects a mutation returned. Even then, changes made outside the API, like a nightly import writing straight to the database, never reach the cache.
+
+<figure style="margin: 1em 0">
+    <img src="../static/img/graphql-102/response-cache-timeline.svg" alt="A timeline of the response cache. At 0 seconds the query misses and the resolver runs; the response is saved for 60 seconds. At 3 seconds it's a hit. At 20 seconds issuePolicy adds HOME-100006 to data.json, but the saved response doesn't change, so at 30 seconds the query still returns five policies. After 60 seconds the saved response expires and six policies come back." style="width: 100%; max-width: 800px">
+    <figcaption style="text-align: center">Why the new policy stays missing until the saved response expires.</figcaption>
+</figure>
 
 So the `maxAge` you choose is how long you're willing to show data that might be out of date. It should come from how the data is used:
 

@@ -190,6 +190,11 @@ The check on every event matters because the answer can change while the client 
 
 Production APIs publish events to a separate system that every copy of the server can listen to. Apollo lists libraries for Redis, Kafka, RabbitMQ, PostgreSQL, and others. With a system like Kafka, other services, like billing or notifications, can listen to the same events too.
 
+<figure style="margin: 1em 0">
+    <img src="../static/img/graphql-102/pubsub-across-copies.svg" alt="Two copies of the server. The adjuster's approveClaim reaches copy A, and the policyholder watching c4 is connected to copy B. With in-memory PubSub, the event stays in copy A and never arrives. With Redis or Kafka, copy A publishes, copy B receives the event, withFilter passes it, and B pushes it to the policyholder." style="width: 100%; max-width: 800px">
+    <figcaption style="text-align: center">Why in-memory <code>PubSub</code> breaks once there's more than one copy of the server.</figcaption>
+</figure>
+
 Subscriptions also make scaling harder. Each subscribed client [stays connected to one server](https://graphql.org/learn/subscriptions/) for as long as it listens, instead of sending short requests that any server can answer. Load balancers, deploys, and connection limits all have to account for that.
 
 ## Next steps

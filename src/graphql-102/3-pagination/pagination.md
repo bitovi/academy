@@ -126,6 +126,11 @@ Many GraphQL APIs return pages in the same shape, called a **connection**. The p
 
 To get the next page, the client sends the same query with `after` set to the `endCursor` it just received. It keeps going until `hasNextPage` is `false`.
 
+<figure style="margin: 1em 0">
+    <img src="../static/img/graphql-102/cursor-walk.svg" alt="Paging through claims two at a time. Request 1 asks for first: 2 and gets CLM-5001 and CLM-5002, with endCursor YzI= and hasNextPage true. Request 2 sends after: YzI= and gets CLM-5003 and CLM-5004. Request 3 sends after: YzQ= and gets CLM-5005 and CLM-5006, with hasNextPage false." style="width: 100%; max-width: 800px">
+    <figcaption style="text-align: center">Each page's <code>endCursor</code> becomes the next request's <code>after</code>.</figcaption>
+</figure>
+
 The specification [requires all four `pageInfo` fields](https://relay.dev/graphql/connections.htm#sec-undefined.PageInfo). The course API only pages forward, with `first` and `after`, so `startCursor` and `hasPreviousPage` matter less here. They're still part of the shape clients expect, so the API includes them.
 
 `edges` and `node` look like extra nesting at first. They're there so the API can add information about an item's place in the list, like its cursor, without adding fields to `Claim` itself.

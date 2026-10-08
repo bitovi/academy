@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 330" role="img" aria-label="A timeline of the response cache. At 0 seconds the policies query misses, the resolver runs, and the response is saved for 60 seconds. At 3 seconds the same query is a hit with age 3, and no resolver runs. At about 20 seconds issuePolicy saves HOME-100006 to data.json, but the saved response isn't changed, so at 30 seconds the query still returns five policies. After 60 seconds the saved response expires, the resolver runs again, and six policies come back." font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#374151"/></marker><marker id="arrow-accent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="arrow-warn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b45309"/></marker><marker id="arrow-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6b7280"/></marker></defs>
+  <rect width="800" height="330" fill="#ffffff"/>
+  <text x="20" y="65" text-anchor="start" fill="#6b7280" font-size="13">Requests</text>
+  <text x="20" y="155" text-anchor="start" fill="#6b7280" font-size="13">Response cache</text>
+  <text x="20" y="235" text-anchor="start" fill="#6b7280" font-size="13">data.json</text>
+  <line x1="130" y1="290" x2="780" y2="290" stroke="#6b7280" stroke-width="1.5" marker-end="url(#arrow-muted)"/>
+  <line x1="130" y1="286" x2="130" y2="294" stroke="#6b7280" stroke-width="1.5"/>
+  <text x="130" y="312" text-anchor="middle" fill="#6b7280" font-size="12">0s</text>
+  <line x1="221.429" y1="286" x2="221.429" y2="294" stroke="#6b7280" stroke-width="1.5"/>
+  <text x="221.429" y="312" text-anchor="middle" fill="#6b7280" font-size="12">10s</text>
+  <line x1="312.857" y1="286" x2="312.857" y2="294" stroke="#6b7280" stroke-width="1.5"/>
+  <text x="312.857" y="312" text-anchor="middle" fill="#6b7280" font-size="12">20s</text>
+  <line x1="404.286" y1="286" x2="404.286" y2="294" stroke="#6b7280" stroke-width="1.5"/>
+  <text x="404.286" y="312" text-anchor="middle" fill="#6b7280" font-size="12">30s</text>
+  <line x1="495.714" y1="286" x2="495.714" y2="294" stroke="#6b7280" stroke-width="1.5"/>
+  <text x="495.714" y="312" text-anchor="middle" fill="#6b7280" font-size="12">40s</text>
+  <line x1="587.143" y1="286" x2="587.143" y2="294" stroke="#6b7280" stroke-width="1.5"/>
+  <text x="587.143" y="312" text-anchor="middle" fill="#6b7280" font-size="12">50s</text>
+  <line x1="678.571" y1="286" x2="678.571" y2="294" stroke="#6b7280" stroke-width="1.5"/>
+  <text x="678.571" y="312" text-anchor="middle" fill="#6b7280" font-size="12">60s</text>
+  <line x1="770" y1="286" x2="770" y2="294" stroke="#6b7280" stroke-width="1.5"/>
+  <text x="770" y="312" text-anchor="middle" fill="#6b7280" font-size="12">70s</text>
+  <rect x="130" y="134" width="548.571" height="32" rx="4" fill="#e6f4f1" stroke="#0f766e"/>
+  <text x="404.286" y="155" text-anchor="middle" fill="#0f766e" font-size="13">saved response: 5 policies (maxAge 60)</text>
+  <rect x="724.286" y="134" width="45.7143" height="32" rx="4" fill="#e6f4f1" stroke="#0f766e"/>
+  <rect x="130" y="214" width="182.857" height="32" rx="4" fill="#f3f4f6" stroke="#9ca3af"/>
+  <text x="221.429" y="235" text-anchor="middle" fill="#1f2937" font-size="13">5 policies</text>
+  <rect x="312.857" y="214" width="457.143" height="32" rx="4" fill="#f3f4f6" stroke="#9ca3af"/>
+  <text x="541.429" y="235" text-anchor="middle" fill="#1f2937" font-size="13">6 policies (HOME-100006 added)</text>
+  <circle cx="130" cy="60" r="7" fill="#1f2937"/>
+  <text x="142" y="20" text-anchor="start" fill="#1f2937" font-size="13" font-weight="600">miss</text>
+  <text x="142" y="38" text-anchor="start" fill="#1f2937" font-size="12">resolver runs</text>
+  <line x1="130" y1="67" x2="130" y2="132" stroke="#1f2937" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <circle cx="157.429" cy="60" r="7" fill="#0f766e"/>
+  <text x="169.429" y="50" text-anchor="start" fill="#0f766e" font-size="13" font-weight="600">hit</text>
+  <text x="169.429" y="68" text-anchor="start" fill="#0f766e" font-size="12">age: 3</text>
+  <line x1="157.429" y1="67" x2="157.429" y2="132" stroke="#0f766e" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <circle cx="404.286" cy="60" r="7" fill="#b45309"/>
+  <text x="416.286" y="50" text-anchor="start" fill="#b45309" font-size="13" font-weight="600">hit</text>
+  <text x="416.286" y="68" text-anchor="start" fill="#b45309" font-size="12">still 5 policies</text>
+  <line x1="404.286" y1="67" x2="404.286" y2="132" stroke="#b45309" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <circle cx="724.286" cy="60" r="7" fill="#1f2937"/>
+  <text x="712.286" y="50" text-anchor="end" fill="#1f2937" font-size="13" font-weight="600">miss</text>
+  <text x="712.286" y="68" text-anchor="end" fill="#1f2937" font-size="12">6 policies</text>
+  <line x1="724.286" y1="67" x2="724.286" y2="132" stroke="#1f2937" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <circle cx="312.857" cy="100" r="6" fill="#ffffff" stroke="#374151" stroke-width="1.5"/>
+  <text x="322.857" y="104" text-anchor="start" fill="#1f2937" font-size="12" font-family="Menlo, Consolas, monospace">issuePolicy</text>
+  <line x1="312.857" y1="106" x2="312.857" y2="212" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="682.571" y="182" text-anchor="start" fill="#6b7280" font-size="12">expires</text>
+</svg>
