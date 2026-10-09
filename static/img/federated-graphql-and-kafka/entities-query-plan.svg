@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" role="img" aria-label="How the gateway answers policies { policyNumber claims(first: 2) }. 1: it asks the Policies subgraph for every policy's policyNumber and id. 2: Policies returns five policies, p1 to p5. 3: in one request, it sends the Claims subgraph's _entities field a representation of each policy: its __typename and id. 4: Claims returns each policy's claims. 5: the gateway merges both answers into one response." font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#374151"/></marker><marker id="arrow-accent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="arrow-warn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b45309"/></marker><marker id="arrow-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6b7280"/></marker></defs>
+  <rect width="800" height="400" fill="#ffffff"/>
+  <rect x="0.0" y="16" width="120" height="40" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="60" y="41" text-anchor="middle" fill="#1f2937" font-size="13" font-weight="600">Client</text>
+  <line x1="60" y1="56" x2="60" y2="380" stroke="#d1d5db" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <rect x="155.0" y="16" width="170" height="40" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="240" y="41" text-anchor="middle" fill="#1f2937" font-size="13" font-weight="600">Gateway</text>
+  <line x1="240" y1="56" x2="240" y2="380" stroke="#d1d5db" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <rect x="395.0" y="16" width="170" height="40" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="480" y="41" text-anchor="middle" fill="#1f2937" font-size="13" font-weight="600">Policies subgraph</text>
+  <line x1="480" y1="56" x2="480" y2="380" stroke="#d1d5db" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <rect x="615.0" y="16" width="170" height="40" rx="6" fill="#e6f4f1" stroke="#0f766e" stroke-width="2"/>
+  <text x="700" y="41" text-anchor="middle" fill="#0f766e" font-size="13" font-weight="600">Your Claims subgraph</text>
+  <line x1="700" y1="56" x2="700" y2="380" stroke="#d1d5db" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <line x1="60" y1="86" x2="236" y2="86" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="150" y="78" text-anchor="middle" fill="#6b7280" font-size="12">one query</text>
+  <line x1="240" y1="130" x2="476" y2="130" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <circle cx="254" cy="116" r="9" fill="#0f766e"/>
+  <text x="254" y="120" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">1</text>
+  <rect x="268.18" y="110.5" width="207.64" height="17.5" fill="#ffffff"/>
+  <text x="372" y="122" text-anchor="middle" fill="#1f2937" font-size="11.5" font-family="Menlo, Consolas, monospace">policies { policyNumber id }</text>
+  <line x1="480" y1="180" x2="244" y2="180" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <circle cx="466" cy="166" r="9" fill="#0f766e"/>
+  <text x="466" y="170" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">2</text>
+  <rect x="303.83" y="160.5" width="136.34" height="17.5" fill="#ffffff"/>
+  <text x="372" y="172" text-anchor="middle" fill="#1f2937" font-size="11.5" font-family="Menlo, Consolas, monospace">p1, p2, p3, p4, p5</text>
+  <line x1="240" y1="240" x2="696" y2="240" stroke="#0f766e" stroke-width="1.5" marker-end="url(#arrow-accent)"/>
+  <circle cx="254" cy="226" r="9" fill="#0f766e"/>
+  <text x="254" y="230" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">3</text>
+  <rect x="360.355" y="220.5" width="243.29" height="17.5" fill="#ffffff"/>
+  <text x="482" y="232" text-anchor="middle" fill="#1f2937" font-size="11.5" font-family="Menlo, Consolas, monospace">_entities(representations: [...])</text>
+  <rect x="297.68" y="246.5" width="368.64" height="17.5" fill="#ffffff"/>
+  <text x="482" y="258" text-anchor="middle" fill="#6b7280" font-size="11.5">one request: { __typename: "Policy", id: "p1" } ... "p5"</text>
+  <line x1="700" y1="300" x2="244" y2="300" stroke="#0f766e" stroke-width="1.5" marker-end="url(#arrow-accent)"/>
+  <circle cx="686" cy="286" r="9" fill="#0f766e"/>
+  <text x="686" y="290" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">4</text>
+  <rect x="371.05" y="280.5" width="221.9" height="17.5" fill="#ffffff"/>
+  <text x="482" y="292" text-anchor="middle" fill="#1f2937" font-size="11.5" font-family="Menlo, Consolas, monospace">each policy's claims, in order</text>
+  <line x1="240" y1="350" x2="64" y2="350" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <circle cx="226" cy="336" r="9" fill="#0f766e"/>
+  <text x="226" y="340" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">5</text>
+  <rect x="84.525" y="330.5" width="114.95" height="17.5" fill="#ffffff"/>
+  <text x="142" y="342" text-anchor="middle" fill="#1f2937" font-size="11.5" font-family="Menlo, Consolas, monospace">merged response</text>
+</svg>

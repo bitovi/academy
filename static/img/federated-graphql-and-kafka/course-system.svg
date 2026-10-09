@@ -42,7 +42,7 @@
 
   <rect x="310" y="240" width="180" height="56" rx="6" fill="#e6f4f1" stroke="#0f766e" stroke-width="2"/>
   <text x="400" y="263" text-anchor="middle" font-weight="600" fill="#0f766e">Claims API</text>
-  <text x="400" y="282" text-anchor="middle" fill="#0f766e" font-size="14">claims (yours)</text>
+  <text x="400" y="282" text-anchor="middle" fill="#0f766e" font-size="14">claims <tspan font-weight="700">(yours)</tspan></text>
 
   <rect x="560" y="240" width="180" height="56" rx="6" fill="#f3f4f6" stroke="#9ca3af"/>
   <text x="650" y="263" text-anchor="middle" font-weight="600" fill="#1f2937">Billing API</text>

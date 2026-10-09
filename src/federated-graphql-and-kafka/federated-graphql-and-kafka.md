@@ -24,7 +24,7 @@ This course solves both problems with two tools:
 - **Federation** combines several GraphQL APIs into one schema. Each API in it is called a **subgraph**. Apps send every query to one endpoint, the **gateway**, which asks each subgraph for its part of the answer.
 - **Kafka** carries events between the APIs. When a claim is approved, the Claims API publishes an event, and the Billing API records a payout without Claims ever calling Billing.
 
-You own the Claims API. The Policies API, the Billing API, and a Claims Desk web app are already running, and scripts play the teams that own them. Along the way, those teams change their schemas, send you events, and send the same event twice, and you'll handle each one without editing their code.
+**You own the Claims API.** The Policies API, the Billing API, and a Claims Desk web app are already running, and scripts play the teams that own them. Along the way, those teams change their schemas, send you events and you'll handle each one without editing their code.
 
 <figure style="margin: 1em 0">
     <img src="./static/img/federated-graphql-and-kafka/course-system.svg" alt="The Claims Desk app and the traffic script send every query to Hive Gateway, which asks the Policies, Claims, and Billing APIs for their parts. Your Claims API publishes to the claim-events topic, which Billing reads, and reads the adjuster-events topic, which the Adjusting team's script writes to." style="width: 100%; max-width: 800px">
