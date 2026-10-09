@@ -109,7 +109,7 @@ Leave it running too. It restarts on its own when you save a change to your code
 
 Codespaces gives each port its own web address. The **Ports** tab, next to the terminal, lists them by name.
 
-✏️ In the **Ports** tab, click the globe icon next to **Gateway** (port `4000`). It opens Hive Gateway's built-in GraphQL explorer, which works like Apollo Sandbox. Click **Add operation**, and run this query:
+✏️ In the **Ports** tab, click the globe icon next to **Gateway** (port `4000`). It opens Hive Gateway's welcome page. Click **Visit Laboratory** to open its built-in GraphQL explorer, which works like Apollo Sandbox. Click **Add operation**, and run this query:
 
 ```graphql
 {
@@ -142,7 +142,37 @@ You should see:
 
 That one query used two APIs. `policyNumber` came from the Policies API and `totalPaidOut` came from the Billing API. The gateway asked each one for its part.
 
-✏️ In the **Ports** tab, click the globe icon next to **Your Claims API** (port `4002`). Your API opens in Apollo Sandbox. Run this query:
+✏️ In the gateway explorer, add another operation, and ask for claims:
+
+```graphql
+{
+  claims(status: OPEN) {
+    claimNumber
+    policyId
+  }
+}
+```
+
+The gateway rejects it (trimmed for readability):
+
+<div data-toolbar-order="">
+
+```json
+{
+  "errors": [
+    {
+      "message": "Cannot query field \"claims\" on type \"Query\".",
+      "extensions": { "code": "GRAPHQL_VALIDATION_FAILED" }
+    }
+  ]
+}
+```
+
+</div>
+
+None of the APIs the gateway knows about has a `claims` field.
+
+✏️ In the **Ports** tab, click the globe icon next to **Your Claims API** (port `4002`). Your API opens in Apollo Sandbox. Run the same query:
 
 ```graphql
 {
