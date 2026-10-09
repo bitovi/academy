@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 410" role="img" aria-label="Two copies of the server. The adjuster's approveClaim reaches copy A, and the policyholder's subscription to claim c4 is connected to copy B. With in-memory PubSub, the event stays inside copy A and the policyholder never hears about it. With a shared event system like Redis or Kafka, copy A publishes to it, copy B receives the event, withFilter passes it because it's about c4, and B pushes it to the policyholder." font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#374151"/></marker><marker id="arrow-accent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="arrow-warn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b45309"/></marker><marker id="arrow-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6b7280"/></marker></defs>
+  <rect width="800" height="410" fill="#ffffff"/>
+  <text x="20" y="26" text-anchor="start" fill="#b45309" font-size="14" font-weight="600">In-memory PubSub: each copy only hears its own events</text>
+  <rect x="20" y="56" width="140" height="50" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="90" y="78" text-anchor="middle" fill="#1f2937" font-size="14" font-weight="600">Adjuster</text>
+  <text x="90" y="96" text-anchor="middle" fill="#6b7280" font-size="12" font-family="Menlo, Consolas, monospace">approveClaim(c4)</text>
+  <line x1="160" y1="81" x2="208" y2="81" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="210" y="46" width="190" height="70" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="305" y="78" text-anchor="middle" fill="#1f2937" font-size="14" font-weight="600">Server copy A</text>
+  <text x="305" y="96" text-anchor="middle" fill="#6b7280" font-size="12">publishes the event</text>
+  <rect x="430" y="46" width="190" height="70" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="525" y="78" text-anchor="middle" fill="#1f2937" font-size="14" font-weight="600">Server copy B</text>
+  <text x="525" y="96" text-anchor="middle" fill="#6b7280" font-size="12">withFilter: c4?</text>
+  <rect x="650" y="56" width="130" height="50" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="715" y="78" text-anchor="middle" fill="#1f2937" font-size="14" font-weight="600">Policyholder</text>
+  <text x="715" y="96" text-anchor="middle" fill="#6b7280" font-size="12">watching c4</text>
+  <line x1="620" y1="81" x2="650" y2="81" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="635" y="134" text-anchor="middle" fill="#6b7280" font-size="12">WebSocket open,</text>
+  <text x="635" y="150" text-anchor="middle" fill="#6b7280" font-size="12">nothing arrives</text>
+  <text x="415" y="86" text-anchor="middle" fill="#b45309" font-size="22" font-weight="700">✕</text>
+  <text x="305" y="138" text-anchor="middle" fill="#b45309" font-size="12">event stays in A's memory</text>
+  <line x1="20" y1="196" x2="780" y2="196" stroke="#e5e7eb" stroke-width="1.5"/>
+  <text x="20" y="226" text-anchor="start" fill="#0f766e" font-size="14" font-weight="600">Shared event system (Redis, Kafka): every copy hears every event</text>
+  <rect x="20" y="256" width="140" height="50" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="90" y="278" text-anchor="middle" fill="#1f2937" font-size="14" font-weight="600">Adjuster</text>
+  <text x="90" y="296" text-anchor="middle" fill="#6b7280" font-size="12" font-family="Menlo, Consolas, monospace">approveClaim(c4)</text>
+  <line x1="160" y1="281" x2="208" y2="281" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="210" y="246" width="190" height="70" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="305" y="278" text-anchor="middle" fill="#1f2937" font-size="14" font-weight="600">Server copy A</text>
+  <text x="305" y="296" text-anchor="middle" fill="#6b7280" font-size="12">publishes the event</text>
+  <rect x="430" y="246" width="190" height="70" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="525" y="278" text-anchor="middle" fill="#1f2937" font-size="14" font-weight="600">Server copy B</text>
+  <text x="525" y="296" text-anchor="middle" fill="#6b7280" font-size="12">withFilter: c4?</text>
+  <rect x="650" y="256" width="130" height="50" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="715" y="278" text-anchor="middle" fill="#1f2937" font-size="14" font-weight="600">Policyholder</text>
+  <text x="715" y="296" text-anchor="middle" fill="#6b7280" font-size="12">watching c4</text>
+  <rect x="300" y="346" width="240" height="44" rx="6" fill="#e6f4f1" stroke="#0f766e" stroke-width="2"/>
+  <text x="420" y="373" text-anchor="middle" fill="#0f766e" font-size="14" font-weight="600">Redis or Kafka</text>
+  <line x1="305" y1="316" x2="360" y2="344" stroke="#0f766e" stroke-width="1.5" marker-end="url(#arrow-accent)"/>
+  <text x="300" y="336" text-anchor="end" fill="#0f766e" font-size="12">publish</text>
+  <line x1="480" y1="344" x2="525" y2="318" stroke="#0f766e" stroke-width="1.5" marker-end="url(#arrow-accent)"/>
+  <text x="512" y="341" text-anchor="start" fill="#0f766e" font-size="12">deliver</text>
+  <line x1="620" y1="281" x2="648" y2="281" stroke="#0f766e" stroke-width="1.5" marker-end="url(#arrow-accent)"/>
+  <text x="715" y="334" text-anchor="middle" fill="#0f766e" font-size="12">pushed over</text>
+  <text x="715" y="350" text-anchor="middle" fill="#0f766e" font-size="12">the WebSocket</text>
+</svg>

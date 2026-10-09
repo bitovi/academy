@@ -330,6 +330,42 @@ bit-prev-next {
             underConstruction: false
           },
           {
+            logo: './static/img/graphql-logo.png',
+            logoAlt: 'GraphQL',
+            logoHeight: '50',
+            title: 'GraphQL 101',
+            description: 'Query a GraphQL API for a fictional insurance company, then extend it with new fields, arguments, mutations, and batching.',
+            audience: 'Developers who are new to GraphQL',
+            goal: 'Learn GraphQL fundamentals: schemas, resolvers, queries, and mutations.',
+            time: '2 hours',
+            link: './learn-graphql-101.html',
+            underConstruction: false
+          },
+          {
+            logo: './static/img/graphql-logo.png',
+            logoAlt: 'GraphQL',
+            logoHeight: '50',
+            title: 'GraphQL 102',
+            description: 'Get the API you built in GraphQL 101 ready for real users: pagination, custom scalars, error handling, security, authorization, caching, subscriptions, and running the API in production.',
+            audience: 'Developers who have completed GraphQL 101',
+            goal: 'Make a GraphQL API ready for production.',
+            time: '2 hours',
+            link: './learn-graphql-102.html',
+            underConstruction: false
+          },
+          {
+            logo: './static/img/graphql-logo.png',
+            logoAlt: 'GraphQL',
+            logoHeight: '50',
+            title: 'Federated GraphQL + Kafka',
+            description: 'Split one GraphQL API into separately owned APIs that apps query through one endpoint, then connect them with Kafka events and live updates.',
+            audience: 'Developers who have completed GraphQL 102',
+            goal: 'Run a GraphQL API alongside other teams\' APIs, and connect them with events.',
+            time: '2 hours',
+            link: './learn-federated-graphql-and-kafka.html',
+            underConstruction: true
+          },
+          {
             logo: './static/img/javascript.png',
             logoAlt: 'JavaScript',
             logoHeight: '70',

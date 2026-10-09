@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" role="img" aria-label="Without DataLoader, each of the five Policy.policyholder resolvers looks up its own policyholder: ph1, ph1 again, ph2, ph3, ph3 again, five lookups. With DataLoader, each resolver calls load with its id; the loader waits one turn of the event loop, removes duplicates, and calls the batch function once with ph1, ph2, ph3: one lookup." font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#374151"/></marker><marker id="arrow-accent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="arrow-warn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b45309"/></marker><marker id="arrow-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6b7280"/></marker></defs>
+  <rect width="800" height="560" fill="#ffffff"/>
+  <text x="30" y="26" text-anchor="start" fill="#1f2937" font-size="15" font-weight="600">Without DataLoader: 5 lookups</text>
+  <rect x="30" y="40" width="136" height="46" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="98" y="60" text-anchor="middle" fill="#1f2937" font-size="14" font-weight="600">policyholder</text>
+  <text x="98" y="78" text-anchor="middle" fill="#6b7280" font-size="13" font-family="Menlo, Consolas, monospace">parent = p1</text>
+  <rect x="181" y="40" width="136" height="46" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="249" y="60" text-anchor="middle" fill="#1f2937" font-size="14" font-weight="600">policyholder</text>
+  <text x="249" y="78" text-anchor="middle" fill="#6b7280" font-size="13" font-family="Menlo, Consolas, monospace">parent = p2</text>
+  <rect x="332" y="40" width="136" height="46" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="400" y="60" text-anchor="middle" fill="#1f2937" font-size="14" font-weight="600">policyholder</text>
+  <text x="400" y="78" text-anchor="middle" fill="#6b7280" font-size="13" font-family="Menlo, Consolas, monospace">parent = p3</text>
+  <rect x="483" y="40" width="136" height="46" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="551" y="60" text-anchor="middle" fill="#1f2937" font-size="14" font-weight="600">policyholder</text>
+  <text x="551" y="78" text-anchor="middle" fill="#6b7280" font-size="13" font-family="Menlo, Consolas, monospace">parent = p4</text>
+  <rect x="634" y="40" width="136" height="46" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="702" y="60" text-anchor="middle" fill="#1f2937" font-size="14" font-weight="600">policyholder</text>
+  <text x="702" y="78" text-anchor="middle" fill="#6b7280" font-size="13" font-family="Menlo, Consolas, monospace">parent = p5</text>
+  <rect x="200" y="160" width="400" height="40" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="400" y="185" text-anchor="middle" fill="#1f2937" font-size="14" font-weight="600" font-family="Menlo, Consolas, monospace">policyholders</text>
+  <line x1="98" y1="86" x2="240" y2="158" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="154.08" y="113" width="29.84" height="19" fill="#ffffff"/>
+  <text x="169" y="126" text-anchor="middle" fill="#374151" font-size="13">ph1</text>
+  <line x1="249" y1="86" x2="320" y2="158" stroke="#b45309" stroke-width="1.5" marker-end="url(#arrow-warn)"/>
+  <rect x="247.74" y="113" width="73.52" height="19" fill="#ffffff"/>
+  <text x="284.5" y="126" text-anchor="middle" fill="#b45309" font-size="13">ph1 again</text>
+  <line x1="400" y1="86" x2="400" y2="158" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="385.08" y="113" width="29.84" height="19" fill="#ffffff"/>
+  <text x="400" y="126" text-anchor="middle" fill="#374151" font-size="13">ph2</text>
+  <line x1="551" y1="86" x2="480" y2="158" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="500.58" y="113" width="29.84" height="19" fill="#ffffff"/>
+  <text x="515.5" y="126" text-anchor="middle" fill="#374151" font-size="13">ph3</text>
+  <line x1="702" y1="86" x2="560" y2="158" stroke="#b45309" stroke-width="1.5" marker-end="url(#arrow-warn)"/>
+  <rect x="594.24" y="113" width="73.52" height="19" fill="#ffffff"/>
+  <text x="631" y="126" text-anchor="middle" fill="#b45309" font-size="13">ph3 again</text>
+  <line x1="20" y1="232" x2="780" y2="232" stroke="#e5e7eb" stroke-width="1.5"/>
+  <text x="30" y="256" text-anchor="start" fill="#1f2937" font-size="15" font-weight="600">With DataLoader: 1 lookup</text>
+  <rect x="30" y="270" width="136" height="46" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="98" y="290" text-anchor="middle" fill="#1f2937" font-size="14" font-weight="600">policyholder</text>
+  <text x="98" y="308" text-anchor="middle" fill="#6b7280" font-size="13" font-family="Menlo, Consolas, monospace">parent = p1</text>
+  <rect x="181" y="270" width="136" height="46" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="249" y="290" text-anchor="middle" fill="#1f2937" font-size="14" font-weight="600">policyholder</text>
+  <text x="249" y="308" text-anchor="middle" fill="#6b7280" font-size="13" font-family="Menlo, Consolas, monospace">parent = p2</text>
+  <rect x="332" y="270" width="136" height="46" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="400" y="290" text-anchor="middle" fill="#1f2937" font-size="14" font-weight="600">policyholder</text>
+  <text x="400" y="308" text-anchor="middle" fill="#6b7280" font-size="13" font-family="Menlo, Consolas, monospace">parent = p3</text>
+  <rect x="483" y="270" width="136" height="46" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="551" y="290" text-anchor="middle" fill="#1f2937" font-size="14" font-weight="600">policyholder</text>
+  <text x="551" y="308" text-anchor="middle" fill="#6b7280" font-size="13" font-family="Menlo, Consolas, monospace">parent = p4</text>
+  <rect x="634" y="270" width="136" height="46" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="702" y="290" text-anchor="middle" fill="#1f2937" font-size="14" font-weight="600">policyholder</text>
+  <text x="702" y="308" text-anchor="middle" fill="#6b7280" font-size="13" font-family="Menlo, Consolas, monospace">parent = p5</text>
+  <rect x="150" y="380" width="500" height="60" rx="6" fill="#e6f4f1" stroke="#0f766e" stroke-width="2"/>
+  <text x="400" y="405" text-anchor="middle" fill="#0f766e" font-size="15" font-weight="600">DataLoader</text>
+  <text x="400" y="425" text-anchor="middle" fill="#0f766e" font-size="13">waits one event-loop turn, removes duplicates</text>
+  <line x1="98" y1="316" x2="190" y2="378" stroke="#0f766e" stroke-width="1.5" marker-end="url(#arrow-accent)"/>
+  <rect x="99.08" y="338" width="89.84" height="18" fill="#ffffff"/>
+  <text x="144" y="350" text-anchor="middle" fill="#0f766e" font-size="12" font-family="Menlo, Consolas, monospace">load("ph1")</text>
+  <line x1="249" y1="316" x2="295" y2="378" stroke="#0f766e" stroke-width="1.5" marker-end="url(#arrow-accent)"/>
+  <rect x="227.08" y="338" width="89.84" height="18" fill="#ffffff"/>
+  <text x="272" y="350" text-anchor="middle" fill="#0f766e" font-size="12" font-family="Menlo, Consolas, monospace">load("ph1")</text>
+  <line x1="400" y1="316" x2="400" y2="378" stroke="#0f766e" stroke-width="1.5" marker-end="url(#arrow-accent)"/>
+  <rect x="355.08" y="338" width="89.84" height="18" fill="#ffffff"/>
+  <text x="400" y="350" text-anchor="middle" fill="#0f766e" font-size="12" font-family="Menlo, Consolas, monospace">load("ph2")</text>
+  <line x1="551" y1="316" x2="505" y2="378" stroke="#0f766e" stroke-width="1.5" marker-end="url(#arrow-accent)"/>
+  <rect x="483.08" y="338" width="89.84" height="18" fill="#ffffff"/>
+  <text x="528" y="350" text-anchor="middle" fill="#0f766e" font-size="12" font-family="Menlo, Consolas, monospace">load("ph3")</text>
+  <line x1="702" y1="316" x2="610" y2="378" stroke="#0f766e" stroke-width="1.5" marker-end="url(#arrow-accent)"/>
+  <rect x="611.08" y="338" width="89.84" height="18" fill="#ffffff"/>
+  <text x="656" y="350" text-anchor="middle" fill="#0f766e" font-size="12" font-family="Menlo, Consolas, monospace">load("ph3")</text>
+  <line x1="400" y1="440" x2="400" y2="488" stroke="#0f766e" stroke-width="1.5" marker-end="url(#arrow-accent)"/>
+  <text x="410" y="468" text-anchor="start" fill="#0f766e" font-size="13" font-family="Menlo, Consolas, monospace">batch(["ph1", "ph2", "ph3"])</text>
+  <rect x="200" y="490" width="400" height="40" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="400" y="515" text-anchor="middle" fill="#1f2937" font-size="14" font-weight="600" font-family="Menlo, Consolas, monospace">policyholders</text>
+</svg>
