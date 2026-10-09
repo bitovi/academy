@@ -42,7 +42,7 @@ Two subgraphs can both define `Policy`. The Billing API adds `payouts` and `tota
 
 Composition also checks that the subgraphs fit together. If two subgraphs disagree, for example by giving the same field different types, composition fails and the gateway keeps its last working supergraph. Apollo calls this [breaking composition](https://www.apollographql.com/docs/graphos/schema-design/federated-schemas/composition). You'll cause and fix this in the Changing a Shared Graph section.
 
-In production, a schema registry such as Hive or Apollo GraphOS composes the supergraph whenever a team publishes a new subgraph schema. In this course, the `npm start` terminal does it with the Hive CLI's [`hive dev` command](https://the-guild.dev/graphql/hive/docs/api-reference/cli), which is meant for composing local subgraphs. Lines starting with `[compose]` come from it. It composes again whenever a subgraph's schema changes, and writes the result to **gateway/supergraph.graphql**. The gateway reloads that file when it changes.
+In production, a schema registry such as Hive or Apollo GraphOS composes the supergraph whenever a team publishes a new subgraph schema. In this course, `npm start` does it with the Hive CLI's [`hive dev` command](https://the-guild.dev/graphql/hive/docs/api-reference/cli), which is meant for composing local subgraphs. In your first terminal, where `npm start` runs, the lines starting with `[compose]` come from it. It composes again whenever a subgraph's schema changes, and writes the result to **gateway/supergraph.graphql**. The gateway reloads that file when it changes.
 
 ✏️ Open **gateway/supergraph.graphql**, and find `enum join__Graph`. It lists the subgraphs in the supergraph, with the URL of each (trimmed for readability):
 
