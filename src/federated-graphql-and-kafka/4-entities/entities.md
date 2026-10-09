@@ -381,13 +381,74 @@ You should see two claims, and a cursor for the next page:
 
 ### Returning an entity you don't own
 
-A claim stores only its policy's id. To return the whole policy, your subgraph doesn't need the Policies team's data. It returns a reference, and the gateway fetches the rest from the Policies subgraph, the same way it fetched `claims` from yours.
+A claim stores only its policy's id. To return the whole policy, your subgraph doesn't need the Policies team's data. A field resolver can return just a reference, an object with the entity's key, and the gateway fetches the rest from the Policies subgraph, the same way it fetched `claims` from yours.
 
-Your `Policy` type already has the key. So a resolver that returns `{ id: "p3" }` for a `Policy` field is enough.
+The Billing team does this for payouts. Each payout stores a `policyId`, and Billing's schema has a `policy` field on `Payout`, which returns the `Policy` entity Billing already declares:
+
+<div data-toolbar-order="">
+
+```graphql
+type Payout @key(fields: "id") {
+  id: ID!
+  amount: Float!
+  policy: Policy!
+}
+```
+
+</div>
+
+Its resolver returns only the policy's id:
+
+<div data-toolbar-order="">
+
+```ts
+Payout: {
+  policy: (payout: Payout) => ({ id: payout.policyId }),
+},
+```
+
+</div>
+
+This is a field resolver, not a reference resolver. It runs in Billing when a query asks for a payout's `policy`. The gateway takes the `{ id }` it returns, adds `__typename`, and sends that representation to the Policies subgraph for any other fields.
+
+✏️ In the gateway explorer, run:
+
+```graphql
+{
+  payouts {
+    amount
+    policy {
+      policyNumber
+    }
+  }
+}
+```
+
+You should see each payout with its policy number (trimmed for readability):
+
+<div data-toolbar-order="">
+
+```json
+{
+  "data": {
+    "payouts": [
+      { "amount": 1250, "policy": { "policyNumber": "AUTO-100001" } },
+      { "amount": 3800, "policy": { "policyNumber": "HOME-100002" } }
+    ]
+  }
+}
+```
+
+</div>
+
+Billing answered `amount`, and the Policies subgraph answered `policyNumber`.
 
 ### Exercise
 
-✏️ Add a `policy` field to `Claim`, which returns the claim's `Policy!`. Change **claims/src/schema.graphql** and **claims/src/resolvers.ts**.
+✏️ Add a `policy` field to `Claim`, which returns the claim's `Policy!`, the same way Billing's `Payout.policy` does. Your `Policy` type already has the key, so you don't need anything else in the schema.
+
+- In **claims/src/schema.graphql**, add the field to `Claim`.
+- In **claims/src/resolvers.ts**, add a `Claim` entry to `resolvers`, with a `policy` resolver.
 
 ✏️ In the gateway explorer, run:
 
