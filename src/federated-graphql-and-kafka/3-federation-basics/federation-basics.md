@@ -234,17 +234,19 @@ When this file changes, the `npm start` terminal starts composing again, with th
 
 ✏️ Add your Claims API to the gateway's subgraphs. Your API runs at `http://localhost:4002/graphql`. Name it `claims`.
 
-When you save, the `npm start` terminal should show:
+When you save, the `npm start` terminal should show these lines, with others in between:
 
 <div data-toolbar-order="">
 
 ```text
 [compose] subgraphs.json changed. Restarting.
-...
 [compose] ✔ Composition successful
+[gateway] ... INF Supergraph changed. Invalidating...
 ```
 
 </div>
+
+The last line means the gateway noticed the new **supergraph.graphql**, and loaded it. Your subgraph is now part of the graph.
 
 If it shows `Waiting for claims to become a subgraph`, your Claims API doesn't have a `_service` field yet. Finish the exercise in Objective 2. Composing starts on its own once it does.
 
