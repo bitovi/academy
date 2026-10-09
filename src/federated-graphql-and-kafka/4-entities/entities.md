@@ -127,6 +127,14 @@ Policy: {
 
 </div>
 
+Here's what `__resolveReference` does when the gateway asks Billing for policy `p3`'s payouts:
+
+1. The gateway sends Billing's `_entities` field the representation `{ "__typename": "Policy", "id": "p3" }`.
+2. `__resolveReference` receives it as `reference`, and returns the object that stands for that policy in Billing. Billing has no policy data of its own, so `{ id: "p3" }` is all it can return, and all it needs.
+3. GraphQL then resolves the fields the gateway asked for on that object, as with any other object. `payouts` receives it as its parent, so `policy.id` is `"p3"`.
+
+A subgraph that stores the entity returns the whole object instead. The Policies team's reference resolver loads the full policy, which you'll see in Objective 5.
+
 The Policies team didn't change anything for this. Neither will they for yours.
 
 ## Objective 2: Add a policy's claims
