@@ -261,7 +261,7 @@ It works, even with Kafka down:
 ```json
 {
   "data": {
-    "fileClaim": { "claimNumber": "CLM-5007", "status": "OPEN" }
+    "fileClaim": { "claimNumber": "CLM-5008", "status": "OPEN" }
   }
 }
 ```
@@ -289,7 +289,7 @@ A few seconds later, your Claims API's terminal shows:
     "id": "d1e74db1-...",
     "source": "/claims",
     "type": "ClaimFiled",
-    "data": { "claimId": "c7", "policyId": "p4", "amount": 300 }
+    "data": { "claimId": "c8", "policyId": "p4", "amount": 300 }
   }
 ]
 ```
@@ -311,7 +311,7 @@ Within about half a minute, once Kafka is ready, your Claims API's terminal show
 <div data-toolbar-order="">
 
 ```text
-[outbox] Published ClaimFiled for claim c7 (event d1e74db1-...)
+[outbox] Published ClaimFiled for claim c8 (event d1e74db1-...)
 ```
 
 </div>

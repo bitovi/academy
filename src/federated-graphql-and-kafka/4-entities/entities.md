@@ -13,6 +13,7 @@ In this section, we will:
 - Learn what an entity is, and how `@key` lets several subgraphs add fields to the same type
 - See how the gateway asks another subgraph for an entity's fields
 - Add a paginated `claims` field to the Policies team's `Policy` type
+- Page through a policy's claims, and learn what's different about paginating across subgraphs
 - Add a `policy` field to `Claim`, whose fields come from the Policies subgraph
 - Learn why entity resolvers need batching
 
@@ -246,7 +247,119 @@ type Policy @key(fields: "id") {
 
 </details>
 
-## Objective 3: Add each claim's policy
+## Objective 3: Page through a policy's claims
+
+### Paginating across subgraphs
+
+Cursor pagination works the same way in a supergraph: the field takes `first` and `after`, returns a connection, and the client sends back the `endCursor` to get the next page. A few things are specific to federation:
+
+- **The subgraph that owns the list does the paging.** `Policy.claims` is on the Policies team's type, but your subgraph resolves it, so your subgraph makes the cursors, and only it can read them. The gateway passes them through without looking inside.
+- **Other subgraphs only see the current page.** If a page of claims also asks for fields from another subgraph, the gateway sends that subgraph just the claims on the page, in one `_entities` request.
+- **A subgraph can only sort and filter by its own data.** Your subgraph can page claims by `filedDate` or `status`. It can't page them by policyholder name, because the Policies subgraph has that.
+- **Shared page types need `@shareable`.** If two subgraphs both defined a `PageInfo` type, composition would fail, because both would resolve its fields. You'll see that kind of error in the Changing a Shared Graph section.
+
+### See the next page
+
+No policy has more than two claims yet, so every policy fits on one page. Give one more.
+
+✏️ In the gateway explorer, file a third claim against `AUTO-100001`:
+
+```graphql
+mutation {
+  fileClaim(input: { policyId: "p1", amount: 820 }) {
+    claimNumber
+    status
+  }
+}
+```
+
+You should see:
+
+<div data-toolbar-order="">
+
+```json
+{
+  "data": {
+    "fileClaim": { "claimNumber": "CLM-5007", "status": "OPEN" }
+  }
+}
+```
+
+</div>
+
+✏️ Open the Claims Desk on port `3000`. It shows two claims per page. Under `AUTO-100001`, there's now a **Show more claims** link. Click it, and `CLM-5007` appears.
+
+The Desk asked the gateway for the next page, the same way you can.
+
+✏️ In the gateway explorer, ask for the first page of `AUTO-100001`'s claims:
+
+```graphql
+{
+  findPolicy(by: { id: "p1" }) {
+    policyNumber
+    claims(first: 2) {
+      edges {
+        node {
+          claimNumber
+        }
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+    }
+  }
+}
+```
+
+You should see two claims, and a cursor for the next page:
+
+<div data-toolbar-order="">
+
+```json
+{
+  "data": {
+    "findPolicy": {
+      "policyNumber": "AUTO-100001",
+      "claims": {
+        "edges": [
+          { "node": { "claimNumber": "CLM-5001" } },
+          { "node": { "claimNumber": "CLM-5002" } }
+        ],
+        "pageInfo": { "hasNextPage": true, "endCursor": "YzI=" }
+      }
+    }
+  }
+}
+```
+
+</div>
+
+✏️ Run it again with `claims(first: 2, after: "YzI=")`. You get the next page:
+
+<div data-toolbar-order="">
+
+```json
+{
+  "data": {
+    "findPolicy": {
+      "policyNumber": "AUTO-100001",
+      "claims": {
+        "edges": [
+          { "node": { "claimNumber": "CLM-5007" } }
+        ],
+        "pageInfo": { "hasNextPage": false, "endCursor": "Yzc=" }
+      }
+    }
+  }
+}
+```
+
+</div>
+
+`findPolicy` and `policyNumber` came from the Policies subgraph. The page of claims, and its cursors, came from yours. The Policies team didn't do anything to make this work.
+
+## Objective 4: Add each claim's policy
 
 ### Returning an entity you don't own
 
@@ -295,6 +408,13 @@ You should see:
           "policyNumber": "RENTERS-100005",
           "policyholder": { "name": "Priya Raman" }
         }
+      },
+      {
+        "claimNumber": "CLM-5007",
+        "policy": {
+          "policyNumber": "AUTO-100001",
+          "policyholder": { "name": "Maria Alvarez" }
+        }
       }
     ]
   }
@@ -329,7 +449,7 @@ Your subgraph answered `claims`, but only returned `{ __typename: "Policy", id: 
 
 </details>
 
-## Objective 4: Batch entity lookups
+## Objective 5: Batch entity lookups
 
 ### The N+1 problem across subgraphs
 
@@ -350,7 +470,7 @@ Policy: {
 
 </div>
 
-When your `claims(status: OPEN)` query returned two claims, their two policies were looked up in one batch.
+When your `claims(status: OPEN)` query returned three claims, their three policies were looked up in one batch.
 
 ## Next steps
 
