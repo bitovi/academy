@@ -238,7 +238,17 @@ You should see both fields, with the same value:
 
 </div>
 
-The schema now reports `amount` as deprecated, with your reason, so tools that read the schema can warn the app team. The Claims Desk keeps working, since its query is still valid. When the app team moves to `claimedAmount`, and usage of `amount` drops to zero, you can remove it.
+✏️ Open the Claims Desk on port `3000`. It keeps working, since its query is still valid. Within a few seconds, a notice appears at the bottom, with the reason you gave:
+
+<div data-toolbar-order="">
+
+```text
+This app uses Claim.amount, which the schema marks as deprecated. Use claimedAmount. ...
+```
+
+</div>
+
+GraphQL doesn't warn about deprecated fields in a response: `amount` keeps returning data as before. The Desk found out by reading the schema, the same way code generators and editor plugins warn app teams while they work. When the app team moves to `claimedAmount`, and usage of `amount` drops to zero, you can remove it.
 
 ### Solution
 
