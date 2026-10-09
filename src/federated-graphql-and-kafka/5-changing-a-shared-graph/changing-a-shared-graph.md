@@ -21,7 +21,7 @@ In this section, we will:
 
 The Billing team wants staff to see each claim's payout next to the claim. They've built version 2 of their subgraph. It adds a `payout` field to your `Claim` type, the same way you added `claims` to the Policies team's `Policy` type.
 
-✏️ Open a new terminal, and ship the Billing team's version 2:
+✏️ In your third terminal, ship the Billing team's version 2:
 
 ```shell
 npm run billing:ship-v2

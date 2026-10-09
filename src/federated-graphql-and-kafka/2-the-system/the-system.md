@@ -220,7 +220,7 @@ The course runs a single Kafka broker, so each partition has one copy: a replica
     <figcaption style="text-align: center">How events spread across the course's topics, once they start flowing. Both topics are empty right now.</figcaption>
 </figure>
 
-✏️ In a terminal, list the course's topics:
+✏️ In your third terminal, list the course's topics:
 
 ```shell
 npm run topics

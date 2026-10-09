@@ -125,7 +125,7 @@ Within a second, your Claims API's terminal shows the relay publishing the event
 
 </div>
 
-✏️ In a terminal, list the events in `claim-events`, one partition at a time. It takes a few seconds:
+✏️ In your third terminal, list the events in `claim-events`, one partition at a time. It takes a few seconds:
 
 ```shell
 npm run claim-events
@@ -237,7 +237,7 @@ import { claimEvent } from "./events.js";
 
 ### Stop Kafka
 
-✏️ In a terminal, stop Kafka:
+✏️ In your third terminal, stop Kafka:
 
 ```shell
 docker compose stop kafka

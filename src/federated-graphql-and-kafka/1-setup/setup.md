@@ -66,7 +66,7 @@ Everything else runs in Docker, from images the other teams built: Kafka, the Po
 
 ## Start everything
 
-You'll use two terminals: one for everything the other teams run, and one for your Claims API.
+You'll use three terminals: one for everything the other teams run, one for your Claims API, and one for the commands you'll run during the course.
 
 ✏️ In the first terminal, start Kafka, the other teams' APIs, the Claims Desk, and the gateway:
 
@@ -104,6 +104,8 @@ You should see:
 </div>
 
 Leave it running too. It restarts on its own when you save a change to your code.
+
+✏️ Open a third terminal the same way. Leave it open: the course's other commands, like listing Kafka topics, go here.
 
 ## Check that it works
 
@@ -215,7 +217,7 @@ A free GitHub account can run this Codespace for about 15 hours a month at no co
 
 A Codespace stops on its own after [30 minutes without activity](https://docs.github.com/en/codespaces/setting-your-user-preferences/setting-your-timeout-period-for-github-codespaces), unless you've changed that setting. To stop it yourself, see [Stopping and starting a codespace](https://docs.github.com/en/codespaces/developing-in-a-codespace/stopping-and-starting-a-codespace).
 
-Your code changes are kept. When you start the Codespace again, run both commands in [Start everything](#start-everything) again.
+Your code changes are kept. When you start the Codespace again, open the three terminals and run the commands in [Start everything](#start-everything) again.
 
 ## Next steps
 
