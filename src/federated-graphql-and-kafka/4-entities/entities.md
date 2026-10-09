@@ -135,7 +135,17 @@ Here's what `__resolveReference` does when the gateway asks Billing for policy `
 
 A subgraph that stores the entity returns the whole object instead. The Policies team's reference resolver loads the full policy, which you'll see in Objective 5.
 
-The Policies team didn't change anything for this. Neither will they for yours.
+### How the teams worked together
+
+The code is the small part. Here's how the two teams would have shipped `payouts` on `Policy`:
+
+1. **Agree on the change.** Billing wants staff to see each policy's payouts. The teams agree that Billing will add `payouts` and `totalPaidOut` to the `Policy` type, keyed by the policy's `id`, instead of the Policies team storing payouts.
+2. **The Policies team prepares.** They make `Policy` an entity: `@key(fields: "id")` on the type, and a reference resolver that loads a policy by its id. They ship that first. It's a one-time change: once `Policy` is an entity, any team can add fields to it.
+3. **The Billing team builds.** They declare `Policy` with the same key, add their two fields, and write a reference resolver and field resolvers for them.
+4. **They check and test together.** Composition confirms the two subgraphs fit. A schema registry runs it [whenever a team publishes a subgraph schema](https://www.apollographql.com/docs/graphos/schema-design/federated-schemas/composition), so a conflict is caught before anything ships. Then both teams run the combined graph in a shared test environment, and query across both subgraphs, like `policies { policyNumber totalPaidOut }`.
+5. **The Billing team ships.** They deploy their subgraph and publish its schema, and the gateway starts serving the new fields. The Policies team doesn't deploy anything for it.
+
+When you add `claims` to `Policy` next, step 2 is already done, so you won't need anything from the Policies team's code. In a real company, you'd still agree on the change with them and test together before shipping.
 
 ## Objective 2: Add a policy's claims
 
@@ -365,7 +375,7 @@ You should see two claims, and a cursor for the next page:
 
 </div>
 
-`findPolicy` and `policyNumber` came from the Policies subgraph. The page of claims, and its cursors, came from yours. The Policies team didn't do anything to make this work.
+`findPolicy` and `policyNumber` came from the Policies subgraph. The page of claims, and its cursors, came from yours. The Policies team didn't have to change their code for this, because `Policy` was already an entity.
 
 ## Objective 4: Add each claim's policy
 
