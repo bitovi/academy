@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-label="How a status change reaches subscribers. approveClaim saves the claim and a ClaimStatusChanged event in the outbox, and the relay publishes it to claim-events. Every copy of the Claims API reads claim-events with a consumer group of its own, so copy A and copy B both get the event. Each copy passes it to its own PubSub, which sends it to the subscribers connected to that copy, through the gateway: the Claims Desk over a WebSocket, and npm run watch-claims over Server-Sent Events." font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14">
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#374151"/></marker><marker id="arrow-accent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker><marker id="arrow-warn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b45309"/></marker><marker id="arrow-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6b7280"/></marker></defs>
+  <rect width="800" height="420" fill="#ffffff"/>
+  <rect x="20" y="30" width="160" height="52" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="100" y="53" text-anchor="middle" fill="#1f2937" font-size="13" font-weight="600" font-family="Menlo, Consolas, monospace">approveClaim</text>
+  <text x="100" y="71" text-anchor="middle" fill="#6b7280" font-size="12">on any copy</text>
+  <line x1="180" y1="56" x2="216" y2="56" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="218" y="30" width="170" height="52" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="303" y="53" text-anchor="middle" fill="#1f2937" font-size="13" font-weight="600">outbox + relay</text>
+  <text x="303" y="71" text-anchor="middle" fill="#6b7280" font-size="11.5" font-family="Menlo, Consolas, monospace">ClaimStatusChanged</text>
+  <line x1="388" y1="56" x2="424" y2="56" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="426" y="30" width="170" height="52" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="511" y="53" text-anchor="middle" fill="#1f2937" font-size="13" font-weight="600" font-family="Menlo, Consolas, monospace">claim-events</text>
+  <text x="511" y="71" text-anchor="middle" fill="#6b7280" font-size="12">Kafka</text>
+  <rect x="120" y="130" width="250" height="130" rx="8" fill="#e6f4f1" stroke="#0f766e" stroke-width="2"/>
+  <text x="245" y="152" text-anchor="middle" fill="#0f766e" font-size="13.5" font-weight="600">Claims API copy A</text>
+  <rect x="134" y="164" width="222" height="40" rx="6" fill="#ffffff" stroke="#9ca3af" stroke-width="1"/>
+  <text x="245" y="181" text-anchor="middle" fill="#1f2937" font-size="12.5" font-weight="600">live consumer</text>
+  <text x="245" y="199" text-anchor="middle" fill="#6b7280" font-size="11" font-family="Menlo, Consolas, monospace">group claims-live-a1b2...</text>
+  <line x1="245" y1="204" x2="245" y2="216" stroke="#0f766e" stroke-width="1.5" marker-end="url(#arrow-accent)"/>
+  <rect x="134" y="218" width="222" height="32" rx="6" fill="#ffffff" stroke="#9ca3af" stroke-width="1"/>
+  <text x="245" y="239" text-anchor="middle" fill="#1f2937" font-size="12.5" font-weight="600">PubSub (in this process)</text>
+  <line x1="511" y1="82" x2="245" y2="128" stroke="#0f766e" stroke-width="1.5" marker-end="url(#arrow-accent)"/>
+  <rect x="430" y="130" width="250" height="130" rx="8" fill="#e6f4f1" stroke="#0f766e" stroke-width="2"/>
+  <text x="555" y="152" text-anchor="middle" fill="#0f766e" font-size="13.5" font-weight="600">Claims API copy B</text>
+  <rect x="444" y="164" width="222" height="40" rx="6" fill="#ffffff" stroke="#9ca3af" stroke-width="1"/>
+  <text x="555" y="181" text-anchor="middle" fill="#1f2937" font-size="12.5" font-weight="600">live consumer</text>
+  <text x="555" y="199" text-anchor="middle" fill="#6b7280" font-size="11" font-family="Menlo, Consolas, monospace">group claims-live-c3d4...</text>
+  <line x1="555" y1="204" x2="555" y2="216" stroke="#0f766e" stroke-width="1.5" marker-end="url(#arrow-accent)"/>
+  <rect x="444" y="218" width="222" height="32" rx="6" fill="#ffffff" stroke="#9ca3af" stroke-width="1"/>
+  <text x="555" y="239" text-anchor="middle" fill="#1f2937" font-size="12.5" font-weight="600">PubSub (in this process)</text>
+  <line x1="511" y1="82" x2="555" y2="128" stroke="#0f766e" stroke-width="1.5" marker-end="url(#arrow-accent)"/>
+  <rect x="466" y="100" width="189.44" height="18" fill="#ffffff"/>
+  <text x="470" y="112" text-anchor="start" fill="#0f766e" font-size="12">every copy gets every event</text>
+  <rect x="120" y="300" width="560" height="44" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="400" y="319" text-anchor="middle" fill="#1f2937" font-size="13.5" font-weight="600">Gateway</text>
+  <text x="400" y="337" text-anchor="middle" fill="#6b7280" font-size="12">keeps each subscriber's connection to one copy</text>
+  <line x1="245" y1="260" x2="245" y2="298" stroke="#0f766e" stroke-width="1.5" marker-end="url(#arrow-accent)"/>
+  <line x1="555" y1="260" x2="555" y2="298" stroke="#0f766e" stroke-width="1.5" marker-end="url(#arrow-accent)"/>
+  <rect x="120" y="366" width="250" height="44" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="245" y="385" text-anchor="middle" fill="#1f2937" font-size="13" font-weight="600">Claims Desk</text>
+  <text x="245" y="403" text-anchor="middle" fill="#6b7280" font-size="12">WebSocket</text>
+  <rect x="430" y="366" width="250" height="44" rx="6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1"/>
+  <text x="555" y="385" text-anchor="middle" fill="#1f2937" font-size="12.5" font-weight="600" font-family="Menlo, Consolas, monospace">npm run watch-claims</text>
+  <text x="555" y="403" text-anchor="middle" fill="#6b7280" font-size="12">Server-Sent Events</text>
+  <line x1="245" y1="344" x2="245" y2="364" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="555" y1="344" x2="555" y2="364" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+</svg>

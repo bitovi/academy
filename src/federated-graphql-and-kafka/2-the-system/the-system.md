@@ -179,8 +179,8 @@ Two Kafka topics connect the teams:
    <tr>
       <td><code>claim-events</code></td>
       <td>Your Claims API, starting in Publishing Events</td>
-      <td>Billing</td>
-      <td><code>ClaimFiled</code>, <code>ClaimApproved</code></td>
+      <td>Billing, and your Claims API's live updates, starting in Live Updates</td>
+      <td><code>ClaimFiled</code>, <code>ClaimApproved</code>, and <code>ClaimStatusChanged</code> from Live Updates</td>
    </tr>
    <tr>
       <td><code>adjuster-events</code></td>
