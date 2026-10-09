@@ -127,12 +127,12 @@ Your Claims API builds its schema once, in **claims/src/index.ts**, and passes t
 
 ### Exercise
 
-✏️ Turn your Claims API into a subgraph:
+✏️ Turn your Claims API into a subgraph, in this order:
 
-- In **claims/src/schema.graphql**, link the schema to version 2.9 of the federation specification.
-- In **claims/src/index.ts**, build `schema` with `buildSubgraphSchema` instead of `makeExecutableSchema`.
+1. In **claims/src/index.ts**, build `schema` with `buildSubgraphSchema` instead of `makeExecutableSchema`.
+2. In **claims/src/schema.graphql**, link the schema to version 2.9 of the federation specification.
 
-When you save, your Claims API restarts. The terminal should show:
+Each time you save, your Claims API restarts. After the second change, the terminal should show:
 
 <div data-toolbar-order="">
 
@@ -168,6 +168,8 @@ The response (trimmed for readability) starts with your `@link`, followed by the
 
 </div>
 
+If your Claims API stops with `Error: Unknown directive "@link".`, the schema has `@link` but **index.ts** still uses `makeExecutableSchema`. Only `buildSubgraphSchema` knows the federation directives. Finish the change to **index.ts** and save, and the API starts again.
+
 ### Verify
 
 ✏️ Your queries still work as before. In Apollo Sandbox on port `4002`, run:
@@ -187,12 +189,6 @@ You should see `CLM-5004` and `CLM-5006`.
 <details>
 <summary>Click to see the solution</summary>
 
-✏️ In **claims/src/schema.graphql**, add this line at the top:
-
-```graphql
-extend schema @link(url: "https://specs.apollo.dev/federation/v2.9")
-```
-
 ✏️ In **claims/src/index.ts**, replace the `makeExecutableSchema` import with these two:
 
 ```ts
@@ -205,6 +201,12 @@ import { parse } from "graphql";
 ```ts
 const typeDefs = parse(readFileSync(new URL("./schema.graphql", import.meta.url), "utf8"));
 const schema = buildSubgraphSchema([{ typeDefs, resolvers }]);
+```
+
+✏️ In **claims/src/schema.graphql**, add this line at the top:
+
+```graphql
+extend schema @link(url: "https://specs.apollo.dev/federation/v2.9")
 ```
 
 </details>
